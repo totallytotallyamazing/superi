@@ -1,0 +1,112 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{7ABBF7DB-4EFA-43B7-ADDF-B7F8B1E8078C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Superi</RootNamespace>
+    <AssemblyName>Superi</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="FredCK.FCKeditorV2, Version=2.2.2106.29420, Culture=neutral, PublicKeyToken=4f86767c9b519a06">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\FredCK.FCKeditorV2.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common\AppData.cs" />
+    <Compile Include="Common\AppDbParameter.cs" />
+    <Compile Include="Common\AppData1.cs" />
+    <Compile Include="Common\ParameterList.cs" />
+    <Compile Include="CustomControls\GalleryUpload.cs" />
+    <Compile Include="CustomControls\ResourceEditor.cs" />
+    <Compile Include="CustomControls\Scroll.cs" />
+    <Compile Include="Features\Album.cs" />
+    <Compile Include="Features\AlbumList.cs" />
+    <Compile Include="Features\Albums.cs" />
+    <Compile Include="Features\Article.cs" />
+    <Compile Include="Features\ArticleList.cs" />
+    <Compile Include="Features\Articles.cs" />
+    <Compile Include="Features\ArticleScope.cs" />
+    <Compile Include="Features\ArticleScopeList.cs" />
+    <Compile Include="Features\ArticleScopes.cs" />
+    <Compile Include="Features\AttachableFile.cs" />
+    <Compile Include="Features\AttachableFileList.cs" />
+    <Compile Include="Features\AttachableFilesResource.cs" />
+    <Compile Include="Features\Country.cs" />
+    <Compile Include="Features\Galleries.cs" />
+    <Compile Include="Features\Gallery.cs" />
+    <Compile Include="Features\GalleryItem.cs" />
+    <Compile Include="Features\GalleryItemList.cs" />
+    <Compile Include="Features\GalleryItems.cs" />
+    <Compile Include="Features\GalleryList.cs" />
+    <Compile Include="Features\Language.cs" />
+    <Compile Include="Features\LanguageList.cs" />
+    <Compile Include="Features\Languages.cs" />
+    <Compile Include="Features\Navigation.cs" />
+    <Compile Include="Features\NavigationList.cs" />
+    <Compile Include="Features\Navigations.cs" />
+    <Compile Include="Features\News.cs" />
+    <Compile Include="Features\NewsItem.cs" />
+    <Compile Include="Features\NewsItemList.cs" />
+    <Compile Include="Features\Resource.cs" />
+    <Compile Include="Features\Song.cs" />
+    <Compile Include="Features\SongList.cs" />
+    <Compile Include="Features\Songs.cs" />
+    <Compile Include="Features\Text.cs" />
+    <Compile Include="Features\TextList.cs" />
+    <Compile Include="Features\Texts.cs" />
+    <Compile Include="Features\Video.cs" />
+    <Compile Include="Features\VideoList.cs" />
+    <Compile Include="Features\Videos.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Shop\Product.cs" />
+    <Compile Include="Shop\ProductGroup.cs" />
+    <Compile Include="Shop\ProductGroupList.cs" />
+    <Compile Include="Shop\ProductGroups.cs" />
+    <Compile Include="Shop\ProductList.cs" />
+    <Compile Include="Shop\Products.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\FredCK.FCKeditorV2.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\scroll.js" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

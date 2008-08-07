@@ -18,26 +18,6 @@ namespace Superi.Features
 			}
 		}
 
-		//public GalleryItemList(int Top)
-		//{
-		//    ParameterList parameterList = new ParameterList();
-		//    parameterList.Add(new AppDbParameter("_start",0));
-		//    parameterList.Add(new AppDbParameter("_count", Top));
-		//    DbDataReader dr = AppData.ExecStoredProcedure("News_GetRange", parameterList);
-		//    if (dr != null && dr.HasRows)
-		//        Load(dr);
-		//}
-
-		//public GalleryItemList(int Start, int Count)
-		//{
-		//    ParameterList parameterList = new ParameterList();
-		//    parameterList.Add(new AppDbParameter("_start", Start));
-		//    parameterList.Add(new AppDbParameter("_count", Count));
-		//    DbDataReader dr = AppData.ExecStoredProcedure("News_GetRange", parameterList);
-		//    if (dr != null && dr.HasRows)
-		//        Load(dr);
-		//}
-
 		public GalleryList(DataTable dt)
 		{
 			Load(dt);

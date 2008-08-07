@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "F:\AdminModule\", ".", "{38C5D89A-7801-48CB-87BF-EC1F8D2DC2C1}"
+	ProjectSection(WebsiteProperties) = preProject
+		SccProjectName = "Svn"
+		SccAuxPath = "Svn"
+		SccLocalPath = "Svn"
+		SccProvider = "SubversionScc"
+		Debug.AspNetCompiler.VirtualPath = "/AdminModule"
+		Debug.AspNetCompiler.PhysicalPath = "F:\AdminModule\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\AdminModule\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/AdminModule"
+		Release.AspNetCompiler.PhysicalPath = "F:\AdminModule\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\AdminModule\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "1852"
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SubversionScc) = preSolution
+		Svn-Managed = True
+		Manager = AnkhSVN - Subversion Support for Visual Studio
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|.NET = Debug|.NET
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{38C5D89A-7801-48CB-87BF-EC1F8D2DC2C1}.Debug|.NET.ActiveCfg = Debug|.NET
+		{38C5D89A-7801-48CB-87BF-EC1F8D2DC2C1}.Debug|.NET.Build.0 = Debug|.NET
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

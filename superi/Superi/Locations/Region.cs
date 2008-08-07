@@ -1,23 +1,29 @@
+using Superi.Common;
 using System.Data;
 using System.Data.Common;
-using Superi.Common;
 
 namespace Superi.Locations
 {
-    public class Country
+    public class Region
     {
         #region Private fields
         private int id = int.MinValue;
+        private int countryID = int.MinValue;
         private string name = "";
         private int nameTextId = int.MinValue;
-        private string isoCode2 = "";
-        private string isoCode3 = "";
         #endregion
 
         #region Public properties
         public int Id
         {
             get { return id; }
+            set { id = value; }
+        }
+
+        public int CountryID
+        {
+            get { return countryID; }
+            set { countryID = value; }
         }
 
         public string Name
@@ -31,43 +37,31 @@ namespace Superi.Locations
             get { return nameTextId; }
             set { nameTextId = value; }
         }
-
-        public string IsoCode2
-        {
-            get { return isoCode2; }
-            set { isoCode2 = value; }
-        }
-
-        public string IsoCode3
-        {
-            get { return isoCode3; }
-            set { isoCode3 = value; }
-        }
         #endregion
 
         #region Constructors
-        public Country()
+        public Region()
         {
 
         }
 
-        public Country(DataRow dr)
+        public Region(DataRow dr)
         {
             if (dr != null) Load(dr);
         }
 
-        public Country(DbDataReader dr)
+        public Region(DbDataReader dr)
         {
             //if /*(dr.Read())*/ 
             Load(dr);
         }
 
-        public Country(int ID)
+        public Region(int ID)
         {
 
             ParameterList pList = new ParameterList();
             pList.Add(new AppDbParameter("id", ID));
-            DbDataReader dr = AppData.ExecStoredProcedure("Countries_Get", pList);
+            DbDataReader dr = AppData.ExecStoredProcedure("Regions_Get", pList);
             if (dr != null && dr.Read())
                 Load(dr, true);
         }
@@ -82,10 +76,9 @@ namespace Superi.Locations
         public bool Load(DbDataReader dr, bool CloseDr)
         {
             id = dr.GetInt32(dr.GetOrdinal("ID"));
+            CountryID = dr.GetInt32(dr.GetOrdinal("CountryID"));
             Name = dr["Name"].ToString();
             NameTextId = dr.GetInt32(dr.GetOrdinal("NameTextId"));
-            IsoCode2 = dr["IsoCode2"].ToString();
-            IsoCode3 = dr["IsoCode3"].ToString();
 
             if (CloseDr)
                 dr.Close();
@@ -95,10 +88,9 @@ namespace Superi.Locations
         public bool Load(DataRow dr)
         {
             id = (int)dr["ID"];
+            CountryID = (int)dr["CountryID"];
             Name = dr["Name"].ToString();
             NameTextId = (int) dr["NameTextId"];
-            IsoCode2 = dr["IsoCode2"].ToString();
-            IsoCode3 = dr["IsoCode3"].ToString();
 
             return true;
         }
@@ -107,12 +99,11 @@ namespace Superi.Locations
         {
             ParameterList pList = new ParameterList();
             pList.Add(new AppDbParameter("id", id));
+            pList.Add(new AppDbParameter("countryid", CountryID));
             pList.Add(new AppDbParameter("name", Name));
             pList.Add(new AppDbParameter("nametextid", NameTextId));
-            pList.Add(new AppDbParameter("isocode2", IsoCode2));
-            pList.Add(new AppDbParameter("isocode3", IsoCode3));
 
-            DbDataReader dr = AppData.ExecStoredProcedure("Countries_AddUpdate", pList);
+            DbDataReader dr = AppData.ExecStoredProcedure("Regions_AddUpdate", pList);
             if (dr != null && dr.HasRows && dr.Read())
             {
                 id = int.Parse(dr[0].ToString());
@@ -131,7 +122,7 @@ namespace Superi.Locations
             {
                 ParameterList pList = new ParameterList();
                 pList.Add(new AppDbParameter("id", id));
-                AppData.ExecStoredProcedure("Countries_Delete", pList);
+                AppData.ExecStoredProcedure("Regions_Delete", pList);
                 result = true;
             }
             else result = false;

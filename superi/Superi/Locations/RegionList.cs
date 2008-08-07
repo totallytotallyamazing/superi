@@ -5,24 +5,33 @@ using Superi.Common;
 
 namespace Superi.Locations
 {
-    public class CountryList:List<Country>
+    public class RegionList : List<Country>
     {
-        public CountryList(bool GetAll)
+        public RegionList(bool GetAll)
         {
             if (GetAll)
             {
-                DbDataReader dr = AppData.ExecStoredProcedure("Countries_Get", null);
+                DbDataReader dr = AppData.ExecStoredProcedure("Regions_Get", null);
                 if (dr != null && dr.HasRows)
                     Load(dr);
             }
         }
 
-        public CountryList(DataTable dt)
+        public RegionList(int CountryId)
+        {
+            ParameterList pList = new ParameterList();
+            pList.Add(new AppDbParameter("countryid", CountryId));
+            DbDataReader dr = AppData.ExecStoredProcedure("Regions_Get", pList);
+            if (dr != null && dr.HasRows)
+                Load(dr);
+        }
+
+        public RegionList(DataTable dt)
         {
             Load(dt);
         }
 
-        public CountryList(DbDataReader dr)
+        public RegionList(DbDataReader dr)
         {
             Load(dr);
         }
@@ -45,6 +54,5 @@ namespace Superi.Locations
                 }
             dr.Close();
         }
-
     }
 }

@@ -59,6 +59,12 @@
     <Compile Include="Features\AttachableFile.cs" />
     <Compile Include="Features\AttachableFileList.cs" />
     <Compile Include="Features\AttachableFilesResource.cs" />
+    <Compile Include="Features\Event.cs" />
+    <Compile Include="Features\EventList.cs" />
+    <Compile Include="Features\Events.cs" />
+    <Compile Include="Features\EventType.cs" />
+    <Compile Include="Features\EventTypeList.cs" />
+    <Compile Include="Features\EventTypes.cs" />
     <Compile Include="Locations\Countries.cs" />
     <Compile Include="Locations\Country.cs" />
     <Compile Include="Locations\CountryList.cs" />

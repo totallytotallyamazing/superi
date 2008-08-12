@@ -1,8 +1,5 @@
-using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
-using System.Text;
 using Superi.Common;
 
 namespace Superi.Features
@@ -12,7 +9,7 @@ namespace Superi.Features
         #region Private fields
         private int id = int.MinValue;
         private string name = "";
-        private string nameTextId = int.MinValue;
+        private int nameTextId = int.MinValue;
         #endregion
 
         #region Public properties
@@ -27,7 +24,7 @@ namespace Superi.Features
             set { name = value; }
         }
 
-        public string NameTextId
+        public int NameTextId
         {
             get { return nameTextId; }
             set { nameTextId = value; }

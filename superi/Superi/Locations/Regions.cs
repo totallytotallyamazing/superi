@@ -11,7 +11,7 @@ namespace Superi.Locations
         {
             Region item = new Region(ID);
             item.Name = Name;
-            item.CountryID = CountryID
+            item.CountryID = CountryID;
             return item.Save();
         }
 

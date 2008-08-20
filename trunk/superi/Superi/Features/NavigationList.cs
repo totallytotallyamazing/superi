@@ -12,8 +12,7 @@ namespace Superi.Features
 		{
 			if (GetAll)
 			{
-				const string SQL = "select * from Navigation where ParentID <= 0 order by SortOrder";
-				DbDataReader dr = AppData.ExecQuery(SQL);
+			    DbDataReader dr = GetNavigationList(null, null);
 				if (dr != null && dr.HasRows)
 					Load(dr);
 			}
@@ -23,16 +22,28 @@ namespace Superi.Features
 		{
 			if (GetAll)
 			{
-			    string SQL = NotIncluded
-			                     ? "select * from Navigation where ParentID <= 0 order by SortOrder"
-			                     : "select * from Navigation where ParentID <= 0 and IncludeInMenu = 1 order by SortOrder";
-				DbDataReader dr = AppData.ExecQuery(SQL);
-				if (dr != null && dr.HasRows)
-					Load(dr);
+			    bool? included = null;
+                if(!NotIncluded)
+                    included = true;
+                DbDataReader dr = GetNavigationList(null, included);
+                
+                if (dr != null && dr.HasRows)
+                    Load(dr);
 			}
 		}
-		
-		//public NavigationList(bool Get, bool GetSubItems)
+
+        private DbDataReader GetNavigationList(int? ParentId, bool? Included)
+        {
+            ParameterList pList = new ParameterList();
+            if(ParentId!=null)
+                pList.Add(new AppDbParameter("parentID", ParentId));
+            if(Included!=null)
+                pList.Add(new AppDbParameter("included", Included));
+            DbDataReader dr = AppData.ExecStoredProcedure("Navigation_Get", pList);
+            return dr;
+        }
+
+	    //public NavigationList(bool Get, bool GetSubItems)
 		//{
 		//    if (Get)
 		//    {
@@ -49,22 +60,20 @@ namespace Superi.Features
 
 		public NavigationList(int ParentID)
 		{
-			string SQL = "select * from Navigation where ParentID = " + ParentID + " order by SortOrder";
-		    DbDataReader dr = AppData.ExecQuery(SQL);
-		    if (dr != null && dr.HasRows)
-		        Load(dr);
+            DbDataReader dr = GetNavigationList(ParentID, null);
+            if (dr != null && dr.HasRows)
+                Load(dr);
 		}
 
 		public NavigationList(int ParentID, bool NotIncluded)
 		{
-			string SQL;
-			if(NotIncluded)
-				SQL = "select * from Navigation where ParentID = " + ParentID + " order by SortOrder";
-			else
-				SQL = "select * from Navigation where ParentID = " + ParentID + " and IncludeInMenu=1 order by SortOrder";
-			DbDataReader dr = AppData.ExecQuery(SQL);
-			if (dr != null && dr.HasRows)
-				Load(dr);
+            bool? included = null;
+            if (!NotIncluded)
+                included = true;
+            DbDataReader dr = GetNavigationList(ParentID, included);
+
+            if (dr != null && dr.HasRows)
+                Load(dr);
 		}
 
 		public NavigationList(DataTable dt)

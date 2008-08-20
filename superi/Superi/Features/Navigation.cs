@@ -182,19 +182,31 @@ namespace Superi.Features
 
 		public Navigation(int ID)
 		{
-			string sql = "select * from Navigation where ID=" + ID;
-			DbDataReader dr = AppData.ExecQuery(sql);
+			ParameterList pList = new ParameterList();
+            pList.Add(new AppDbParameter("id", ID));
+		    DbDataReader dr = AppData.ExecStoredProcedure("Navigation_Get", pList);
 			if (dr != null && dr.Read())
 				Load(dr, true);
 		}
 
 		public Navigation(string Name)
 		{
-			string sql = "select * from Navigation where Name='" + Name + "'";
-			DbDataReader dr = AppData.ExecQuery(sql);
+            ParameterList pList = new ParameterList();
+            pList.Add(new AppDbParameter("name", Name));
+            DbDataReader dr = AppData.ExecStoredProcedure("Navigation_Get", pList);
 			if (dr != null && dr.Read())
 				Load(dr, true);
 		}
+
+        public Navigation(string Name, int ParentId)
+        {
+            ParameterList pList = new ParameterList();
+            pList.Add(new AppDbParameter("name", Name));
+            pList.Add(new AppDbParameter("parentID", ParentId));
+            DbDataReader dr = AppData.ExecStoredProcedure("Navigation_Get", pList);
+            if (dr != null && dr.Read())
+                Load(dr, true);
+        }
 		#endregion
 
 		#region Public methods

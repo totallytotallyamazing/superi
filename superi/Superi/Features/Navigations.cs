@@ -1,3 +1,5 @@
+using System.Collections;
+
 namespace Superi.Features
 {
 	public static class Navigations
@@ -22,39 +24,30 @@ namespace Superi.Features
 			return new NavigationList(ParentID);
 		}
 		
-		//public static VideoList Get(int SongID)
-		//{
-		//    return new SongList(SongID);
-		//}
+        public static Navigation GetLatestByPath(string Path)
+        {
+            char[] sep = {'/'};
+            string[] preParts = Path.Split(sep);
+            ArrayList parts = new ArrayList();
+            foreach (string s in preParts)
+            {
+                if(!string.IsNullOrEmpty(s))
+                    parts.Add(s);
+            }
+            int parentId = int.MinValue;
+            Navigation result = new Navigation();
+            foreach (string s in parts)
+            {
+                Navigation navigation = new Navigation(s, parentId);
+                if (navigation.ID>0)
+                {
+                    result = navigation;
+                    parentId = result.ID;
+                }
+            }
+            return result;
+        }
 
-		//public static NewsItemList Get(int Top)
-		//{
-		//    return new NewsItemList(Top);
-		//}
 
-		//public static NewsItemList Get(int Start, int Count)
-		//{
-		//    return new NewsItemList(Start, Count);
-		//}
-
-		public static bool Update(string Title, int ID)
-		{
-			Video item = new Video(ID);
-			item.Title = Title;
-			return item.Save();
-		}
-
-		public static bool Delete(int ID)
-		{
-			Video item = new Video(ID);
-			return item.Remove();
-		}
-
-		public static bool Insert(string Title)
-		{
-			Video item = new Video();
-			item.Title = Title;
-			return item.Save();
-		}
 	}
 }

@@ -56,7 +56,7 @@ namespace Superi.CustomControls
                     "}";
         */
         private int _TextID = int.MinValue;
-        private Resource _Values = new Resource();
+        public Resource _Values = new Resource();
         private string _DefaultValue = "";
         private LanguageList _LanguageList = new LanguageList(true);
         private Hashtable LangusgeControls = new Hashtable();

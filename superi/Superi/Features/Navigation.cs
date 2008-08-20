@@ -25,6 +25,7 @@ namespace Superi.Features
 	    private bool _SingleMenuPage = false;
 	    private string additionalTitle = "";
 	    private int additionalTitleTextId = int.MinValue;
+	    private string path = "";
 		#endregion
 
 		#region Properties
@@ -155,6 +156,11 @@ namespace Superi.Features
 	    {
             get { return new Resource(AdditionalTitleTextId); }
 	    }
+
+	    public string Path
+	    {
+	        get { return path; }
+	    }
 	    #endregion
 
         #region Constructors
@@ -217,6 +223,8 @@ namespace Superi.Features
 		    SingleMenuPage = dr.GetBoolean(dr.GetOrdinal("SingleMenuPage"));
 		    AdditionalTitle = dr["AdditionalTitle"].ToString();
 		    AdditionalTitleTextId = dr.GetInt32(dr.GetOrdinal("AdditionalTitleTextID"));
+		    path = dr["Path"].ToString();
+		    path = path.Substring(1);
 
 			if (CloseDr)
 				dr.Close();
@@ -243,6 +251,9 @@ namespace Superi.Features
 		    SingleMenuPage = (bool) dr["SingleMenuPage"];
             AdditionalTitle = dr["AdditionalTitle"].ToString();
 		    AdditionalTitleTextId = (int) dr["AdditionalTitleTextID"];
+		    path = dr["Path"].ToString();
+            path = path.Substring(1);
+
             return true;
 		}
 

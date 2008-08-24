@@ -12,9 +12,9 @@ namespace Superi.Features
 		{
 			if (GetAll)
 			{
-			    DbDataReader dr = GetNavigationList(null, null);
-				if (dr != null && dr.HasRows)
-					Load(dr);
+			    DataTable dt = GetNavigationList(null, null);
+				if (dt != null && dt.Rows.Count>0)
+					Load(dt);
 			}
 		}
 
@@ -25,22 +25,22 @@ namespace Superi.Features
 			    bool? included = null;
                 if(!NotIncluded)
                     included = true;
-                DbDataReader dr = GetNavigationList(null, included);
-                
-                if (dr != null && dr.HasRows)
-                    Load(dr);
+                DataTable dt = GetNavigationList(null, included);
+
+                if (dt != null && dt.Rows.Count > 0)
+                    Load(dt);
 			}
 		}
 
-        private DbDataReader GetNavigationList(int? ParentId, bool? Included)
+        private DataTable GetNavigationList(int? ParentId, bool? Included)
         {
             ParameterList pList = new ParameterList();
             if(ParentId!=null)
                 pList.Add(new AppDbParameter("parentID", ParentId));
             if(Included!=null)
                 pList.Add(new AppDbParameter("included", Included));
-            DbDataReader dr = AppData.ExecStoredProcedure("Navigation_Get", pList);
-            return dr;
+            DataSet ds = AppData.ExecDataSet("Navigation_Get", pList);
+            return ds.Tables[0];
         }
 
 	    //public NavigationList(bool Get, bool GetSubItems)
@@ -60,9 +60,9 @@ namespace Superi.Features
 
 		public NavigationList(int ParentID)
 		{
-            DbDataReader dr = GetNavigationList(ParentID, null);
-            if (dr != null && dr.HasRows)
-                Load(dr);
+            DataTable dt = GetNavigationList(ParentID, null);
+            if (dt != null && dt.Rows.Count > 0)
+                Load(dt);
 		}
 
 		public NavigationList(int ParentID, bool NotIncluded)
@@ -70,10 +70,10 @@ namespace Superi.Features
             bool? included = null;
             if (!NotIncluded)
                 included = true;
-            DbDataReader dr = GetNavigationList(ParentID, included);
+            DataTable dt = GetNavigationList(ParentID, included);
 
-            if (dr != null && dr.HasRows)
-                Load(dr);
+            if (dt != null && dt.Rows.Count > 0)
+                Load(dt);
 		}
 
 		public NavigationList(DataTable dt)

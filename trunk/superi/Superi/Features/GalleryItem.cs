@@ -103,9 +103,9 @@ namespace Superi.Features
 		public GalleryItem(int ID)
 		{
 			string sql = "select * from GalleryItems where ID=" + ID;
-			DbDataReader dr = AppData.ExecQuery(sql);
-			if (dr != null && dr.Read())
-				Load(dr, true);
+			DataSet ds = AppData.GetDataSet(sql);
+			if (ds != null && ds.Tables.Count>0 && ds.Tables[0].Rows.Count>0)
+				Load(ds.Tables[0].Rows[0]);
 		}
 		#endregion
 
@@ -134,14 +134,14 @@ namespace Superi.Features
 
 		public bool Load(DataRow dr)
 		{
-			_ID = int.Parse(dr["ID"].ToString());
+		    _ID = (int) dr["ID"];
 			Title = dr["Title"].ToString();
             TitleTextId = (int)dr["TitleTextID"];
 			SubTitle = dr["SubTitle"].ToString();
             SubTitleTextId = (int)dr["SubTitleTextId"];
 			Picture = dr["Picture"].ToString();
 			Preview = dr["Preview"].ToString();
-			GalleryID = int.Parse(dr["GalleryID"].ToString());
+		    GalleryID = (int) dr["GalleryID"];
             Url = dr["Url"].ToString();
 			return true;
 		}

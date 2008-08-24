@@ -144,17 +144,17 @@ namespace Superi.Features
 		public Article(int ID)
 		{
 			string sql = "select * from Articles where ID=" + ID;
-			DbDataReader dr = AppData.ExecQuery(sql);
-			if (dr != null && dr.Read())
-				Load(dr, true);
+            DataSet ds = AppData.GetDataSet(sql);
+            if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+                Load(ds.Tables[0].Rows[0]);
 		}
 
         public Article(string Alias)
 		{
             string sql = "select * from Articles where Alias='" + Alias + "'";
-			DbDataReader dr = AppData.ExecQuery(sql);
-			if (dr != null && dr.Read())
-				Load(dr, true);
+            DataSet ds = AppData.GetDataSet(sql);
+            if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+                Load(ds.Tables[0].Rows[0]);
 		}
 		#endregion
 
@@ -190,16 +190,16 @@ namespace Superi.Features
 		{
 			_ID = (int)dr["ID"];
 			Title = dr["Title"].ToString();
-            TitleTextID = int.Parse(dr[TitleTextID].ToString());
+		    TitleTextID = (int) dr["TitleTextID"];
 			ShortDescription = dr["ShortDescription"].ToString();
-            ShortDescriptionTextID = int.Parse(dr["ShortDescriptionTextID"].ToString());
+		    ShortDescriptionTextID = (int) dr["ShortDescriptionTextID"];
 			Description = dr["Description"].ToString();
-            DescriptionTextID = int.Parse(dr["DescriptionTextID"].ToString());
+		    DescriptionTextID = (int) dr["DescriptionTextID"];
 			TitlePicture = dr["TitlePicture"].ToString();
 			Picture = dr["Picture"].ToString();
 			PictureSign = dr["PictureSign"].ToString();
 			EntrySource = dr["EntrySource"].ToString();
-			EntryDate = DateTime.Parse(dr["EntryDate"].ToString());
+		    EntryDate = (DateTime) dr["EntryDate"];
 			Alias = dr["Alias"].ToString();
             ScopeID = (int)dr["ScopeID"];
             return true;

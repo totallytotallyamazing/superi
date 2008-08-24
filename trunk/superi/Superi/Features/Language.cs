@@ -60,9 +60,9 @@ namespace Superi.Features
         public Language(int ID)
 		{
 			string sql = "select * from Languages where ID=" + ID;
-			DbDataReader dr = AppData.ExecQuery(sql);
-			if (dr != null && dr.Read())
-				Load(dr, true);
+			DataSet ds = AppData.GetDataSet(sql);
+			if (ds != null && ds.Tables.Count>0 && ds.Tables[0].Rows.Count>0)
+				Load(ds.Tables[0].Rows[0]);
 		}
 		#endregion
 
@@ -85,7 +85,7 @@ namespace Superi.Features
 
         public bool Load(DataRow dr)
         {
-            _ID = int.Parse(dr["ID"].ToString());
+            _ID = (int) dr["ID"];
             Name = dr["Name"].ToString();
             Code = dr["Code"].ToString();
             ShortName = dr["ShortName"].ToString();

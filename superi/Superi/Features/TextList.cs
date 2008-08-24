@@ -12,9 +12,9 @@ namespace Superi.Features
 			if (GetAll)
 			{
 				string SQL = "select * from Texts";
-				DbDataReader dr = AppData.ExecQuery(SQL);
-				if (dr != null && dr.HasRows)
-					Load(dr);
+				DataSet ds = AppData.GetDataSet(SQL);
+				if (ds != null && ds.Tables.Count>0)
+                    Load(ds.Tables[0]);
 			}
 		}
 

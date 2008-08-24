@@ -48,9 +48,9 @@ namespace Superi.Features
         public Resource(int TextID)
         {
             string sql = "select * from Resources where TextID=" + TextID;
-            DbDataReader dr = AppData.ExecQuery(sql);
-            if (dr != null)
-                Load(dr, true);
+            DataSet ds = AppData.GetDataSet(sql);
+            if (ds != null && ds.Tables.Count>0)
+                Load(ds.Tables[0]);
         }
 
         public Resource(DbDataReader dr)
@@ -91,7 +91,7 @@ namespace Superi.Features
             foreach(DataRow dr in dt.Rows)
             {
                 Alias = dr["Alias"].ToString();
-                _TextID = int.Parse(dr["TextID"].ToString());
+                _TextID = (int)dr["TextID"];
                 string lang = dr["Language"].ToString();
                 string value = dr["Value"].ToString();
                 Items.Add(lang, value);

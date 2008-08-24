@@ -19,7 +19,7 @@ namespace Superi.Features
             GalleryItemList list = new GalleryItemList(true);
             Random random = new Random();
             GalleryItemList result =new GalleryItemList(false);
-            for (int i = 0; i <= Count; i++)
+            for (int i = 0; i < Count; i++)
             {
                 int index = random.Next(list.Count - 1);
                 result.Add(list[index]);

@@ -12,18 +12,18 @@ namespace Superi.Features
 			if (GetAll)
 			{
 				string SQL = "select * from Articles order by EntryDate DESC";
-				DbDataReader dr = AppData.ExecQuery(SQL);
-				if (dr != null && dr.HasRows)
-					Load(dr);
+                DataSet ds = AppData.GetDataSet(SQL);
+                if (ds != null && ds.Tables.Count > 0)
+                    Load(ds.Tables[0]);
 			}
 		}
 
         public ArticleList(int ScopeID)
         {
             string SQL = "select * from Articles where ScopeID = " + ScopeID + " order by EntryDate DESC";
-            DbDataReader dr = AppData.ExecQuery(SQL);
-            if (dr != null && dr.HasRows)
-                Load(dr);
+            DataSet ds = AppData.GetDataSet(SQL);
+            if (ds != null && ds.Tables.Count > 0)
+                Load(ds.Tables[0]);
         }
 
 		public ArticleList(DataTable dt)

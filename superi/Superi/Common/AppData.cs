@@ -24,20 +24,10 @@ namespace Superi.Common
 		public static DbDataReader ExecQuery(string SQL)
 		{
 			SqlConnection _conn;
-			if (HttpContext.Current.Application["_conn"] == null)
-			{
-				string cs = ConnectionString;
-				_conn = new SqlConnection(cs);
-				_conn.Open();
-				HttpContext.Current.Application["_conn"] = _conn;
-			}
-			_conn = (HttpContext.Current.Application["_conn"] as SqlConnection);//new SqlConnection(cs);
-			if (_conn.State == ConnectionState.Closed || _conn.State == ConnectionState.Broken)
-				_conn.Open();
-			//_conn.Open();
-			while (_conn.State == ConnectionState.Connecting) { }
-
-			SqlDataReader result;
+			string cs = ConnectionString;
+			_conn = new SqlConnection(cs);
+			_conn.Open();
+			SqlDataReader result = null;
 			try
 			{
 				SqlCommand cmd = new SqlCommand(SQL, _conn);
@@ -46,45 +36,46 @@ namespace Superi.Common
 			catch (Exception)
 			{
 				_conn.Close();
-				_conn.Open();
-				SqlCommand cmd = new SqlCommand(SQL, _conn);
-				result = cmd.ExecuteReader();
 			}
 			//_conn.Close();
 			return result;
 		}
 
+        public static DataSet ExecDataSet(string ProcedureName, ParameterList Parameters)
+        {
+            DataSet result = new DataSet();
+            SqlConnection _conn;
+            string cs = ConnectionString;
+            _conn = new SqlConnection(cs);
+            _conn.Open();
+            SqlCommand cmd = new SqlCommand(ProcedureName, _conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            if (Parameters != null)
+                foreach (AppDbParameter parameter in Parameters)
+                {
+                    cmd.Parameters.Add(parameter.SqlParameter);
+                }
+
+            try
+            {
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                adapter.Fill(result);
+            }
+            catch (Exception)
+            {
+                _conn.Close();
+            }
+            _conn.Close();
+            return result;
+        }
+
 		public static DbDataReader ExecStoredProcedure(string ProcedureName, ParameterList Parameters)
 		{
 			DbDataReader result = null;
-			SqlConnection _conn;
-			if (HttpContext.Current.Application["_conn"] == null)
-			{
-				string cs = ConnectionString;
-				_conn = new SqlConnection(cs);
-				_conn.Open();
-				HttpContext.Current.Application["_conn"] = _conn;
-			}
-			_conn = (HttpContext.Current.Application["_conn"] as SqlConnection);//new SqlConnection(cs);
-			if (_conn.State == ConnectionState.Closed || _conn.State == ConnectionState.Broken)
-				_conn.Open();
-			//_conn.Open();
-			while (_conn.State == ConnectionState.Connecting) { ;}
-
-			//string suffix = "(";
-
-			//if (Parameters.Count > 0)
-			//{
-			//    for (int i = 0; i < Parameters.Count; i++)
-			//    {
-			//        if (i == 0)
-			//            suffix += "?";
-			//        else
-			//            suffix += ",?";
-			//    }
-			//}
-			//suffix += ")";
-
+		    string cs = ConnectionString;
+			SqlConnection _conn = new SqlConnection(cs);
+			_conn.Open();
 			SqlCommand cmd = new SqlCommand(ProcedureName, _conn);
 			cmd.CommandType = CommandType.StoredProcedure;
 
@@ -101,26 +92,16 @@ namespace Superi.Common
 			catch (Exception)
 			{
 				_conn.Close();
-				_conn.Open();
-				cmd.ExecuteNonQuery();
 			}
 			return result;
 		}
 
+        
 		public static bool ExecNonQuery(string SQL)
 		{
-			SqlConnection _conn;
-			if (HttpContext.Current.Application["_conn"] == null)
-			{
-				string cs = ConnectionString;
-				_conn = new SqlConnection(cs);
-				_conn.Open();
-				HttpContext.Current.Application["_conn"] = _conn;
-			}
-			_conn = (HttpContext.Current.Application["_conn"] as SqlConnection);//new SqlConnection(cs);
-			if (_conn.State == ConnectionState.Closed || _conn.State == ConnectionState.Broken)
-				_conn.Open();
-			while (_conn.State == ConnectionState.Connecting) { }
+		    string cs = ConnectionString;
+			SqlConnection _conn = new SqlConnection(cs);
+			_conn.Open();
 			bool result = true;
 			try
 			{
@@ -133,28 +114,16 @@ namespace Superi.Common
 				HttpContext.Current.Response.Write(e.Message);
 				result = false;
 			}
-			//	_conn.Close();
+			_conn.Close();
 			return result;
 		}
 
 		public static DataSet GetDataSet(string SQL)
 		{
-			DataSet ds = new DataSet();
-			//		string cs = ConnectionString;
-			//		SqlConnection _conn = new SqlConnection(cs);
-			//		_conn.Open();
-			SqlConnection _conn;
-			if (HttpContext.Current.Application["_conn"] == null)
-			{
-				string cs = ConnectionString;
-				_conn = new SqlConnection(cs);
-				_conn.Open();
-				HttpContext.Current.Application["_conn"] = _conn;
-			}
-			_conn = (HttpContext.Current.Application["_conn"] as SqlConnection);//new SqlConnection(cs);
-			if (_conn.State == ConnectionState.Closed || _conn.State == ConnectionState.Broken)
-				_conn.Open();
-			while (_conn.State == ConnectionState.Connecting) { }
+		    DataSet ds = new DataSet();
+			string cs = ConnectionString;
+			SqlConnection _conn = new SqlConnection(cs);
+			_conn.Open();
 			try
 			{
 				SqlCommand cmd = new SqlCommand(SQL, _conn);
@@ -164,9 +133,10 @@ namespace Superi.Common
 			}
 			catch
 			{
+			    _conn.Close();
 			}
-			//	_conn.Close();
-			return ds;
+		    _conn.Close();
+		    return ds;
 		}
 	}
 }

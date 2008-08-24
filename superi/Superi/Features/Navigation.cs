@@ -184,18 +184,18 @@ namespace Superi.Features
 		{
 			ParameterList pList = new ParameterList();
             pList.Add(new AppDbParameter("id", ID));
-		    DbDataReader dr = AppData.ExecStoredProcedure("Navigation_Get", pList);
-			if (dr != null && dr.Read())
-				Load(dr, true);
+		    DataSet ds = AppData.ExecDataSet("Navigation_Get", pList);
+            if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count>0)
+				Load(ds.Tables[0].Rows[0]);
 		}
 
 		public Navigation(string Name)
 		{
             ParameterList pList = new ParameterList();
             pList.Add(new AppDbParameter("name", Name));
-            DbDataReader dr = AppData.ExecStoredProcedure("Navigation_Get", pList);
-			if (dr != null && dr.Read())
-				Load(dr, true);
+            DataSet ds = AppData.ExecDataSet("Navigation_Get", pList);
+            if (ds != null && ds.Tables.Count > 0)
+                Load(ds.Tables[0].Rows[0]);
 		}
 
         public Navigation(string Name, int ParentId)
@@ -203,9 +203,9 @@ namespace Superi.Features
             ParameterList pList = new ParameterList();
             pList.Add(new AppDbParameter("name", Name));
             pList.Add(new AppDbParameter("parentID", ParentId));
-            DbDataReader dr = AppData.ExecStoredProcedure("Navigation_Get", pList);
-            if (dr != null && dr.Read())
-                Load(dr, true);
+            DataSet ds = AppData.ExecDataSet("Navigation_Get", pList);
+            if (ds != null && ds.Tables.Count > 0)
+                Load(ds.Tables[0].Rows[0]);
         }
 		#endregion
 
@@ -238,26 +238,28 @@ namespace Superi.Features
 		    path = dr["Path"].ToString();
 		    path = path.Substring(1);
 
-			if (CloseDr)
-				dr.Close();
-			return true;
+            if (CloseDr)
+            {
+                dr.Close();
+            }
+		    return true;
 		}
 
 		public bool Load(DataRow dr)
 		{
-			_ID = int.Parse(dr["ID"].ToString());
+		    _ID = (int) dr["ID"];
 			Name = dr["Name"].ToString();
-            NameTextID = int.Parse(dr["NameTextID"].ToString());
+		    NameTextID = (int) dr["NameTextID"];
 			Text = dr["Text"].ToString();
 			Page = dr["Page"].ToString();
-			IsSeparator = (int.Parse(dr["IsSeparator"].ToString()) == 0) ? false : true;
-			ParentID = int.Parse(dr["ParentID"].ToString());
-			TextID = int.Parse(dr["TextID"].ToString());
-			SortOrder = int.Parse(dr["SortOrder"].ToString());
+		    IsSeparator = (bool) dr["IsSeparator"];
+		    ParentID = (int) dr["ParentID"];
+		    TextID = (int) dr["TextID"];
+		    SortOrder = (int) dr["SortOrder"];
 			Description = dr["Description"].ToString();
 			Keywords = dr["Keywords"].ToString();
-			IncludeInMenu = (int.Parse(dr["IncludeInMenu"].ToString()) == 0) ? false : true;
-            ArticleScopeID = int.Parse(dr["ArticleScopeID"].ToString());
+			IncludeInMenu = (bool)dr["IncludeInMenu"];
+		    ArticleScopeID = (int) dr["ArticleScopeID"];
             ProductGroupID = (int)dr["ProductGroupID"];
 		    Picture = dr["Picture"].ToString();
 		    SingleMenuPage = (bool) dr["SingleMenuPage"];

@@ -12,18 +12,18 @@ namespace Superi.Features
 			if (GetAll)
 			{
                 string SQL = "select * from ArticleScopes where ParentID<=0";
-				DbDataReader dr = AppData.ExecQuery(SQL);
-				if (dr != null && dr.HasRows)
-					Load(dr);
+                DataSet ds = AppData.GetDataSet(SQL);
+                if (ds != null && ds.Tables.Count > 0)
+                    Load(ds.Tables[0]);
 			}
 		}
 
         public ArticleScopeList(int ParentID)
         {
             string SQL = "select * from ArticleScopes where ParentID = " + ParentID;
-            DbDataReader dr = AppData.ExecQuery(SQL);
-            if (dr != null && dr.HasRows)
-                Load(dr);
+            DataSet ds = AppData.GetDataSet(SQL);
+            if (ds != null && ds.Tables.Count > 0)
+                Load(ds.Tables[0]);
         }
 
 		public ArticleScopeList(DataTable dt)

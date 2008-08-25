@@ -16,9 +16,18 @@ namespace Superi.Features
 
         public static GalleryItemList GetRandom(int Count)
         {
-            GalleryItemList list = new GalleryItemList(true);
+            return GetRandom(Count, int.MinValue);
+        }
+
+        public static GalleryItemList GetRandom(int Count, int GalleryId)
+        {
+            GalleryItemList list = null;
+            if (GalleryId <= 0)
+                list = new GalleryItemList(true);
+            else
+                list = new GalleryItemList((int)GalleryId);
             Random random = new Random();
-            GalleryItemList result =new GalleryItemList(false);
+            GalleryItemList result = new GalleryItemList(false);
             for (int i = 0; i < Count; i++)
             {
                 int index = random.Next(list.Count - 1);
@@ -28,19 +37,8 @@ namespace Superi.Features
             return result;
         }
 
-	    //public static NewsItemList Get(int Top)
-		//{
-		//    return new NewsItemList(Top);
-		//}
-
-		//public static NewsItemList Get(int Start, int Count)
-		//{
-		//    return new NewsItemList(Start, Count);
-		//}
-
 		public static bool Update(string Title, int ID)
 		{
-		    //return true;
 			GalleryItem item = new GalleryItem(ID);
 			item.Title = Title;
 			return item.Save();
@@ -50,7 +48,6 @@ namespace Superi.Features
         {
             GalleryItem item = new GalleryItem(ID);
             item.TitleTextId = Titles.Save();
-            //return true;
             return item.Save();
         }
 

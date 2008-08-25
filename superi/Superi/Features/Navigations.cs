@@ -1,4 +1,6 @@
 using System.Collections;
+using System.Data;
+using Superi.Common;
 
 namespace Superi.Features
 {
@@ -24,6 +26,12 @@ namespace Superi.Features
 			return new NavigationList(ParentID);
 		}
 		
+        public static NavigationList GetGalleryBinded()
+        {
+            DataSet ds = AppData.ExecDataSet("Navigation_GetGalleryBinded", null);
+            return new NavigationList(ds.Tables[0]);
+        }
+
         public static Navigation GetLatestByPath(string Path)
         {
             char[] sep = {'/'};

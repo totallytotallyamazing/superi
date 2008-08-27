@@ -65,6 +65,9 @@
     <Compile Include="Features\EventType.cs" />
     <Compile Include="Features\EventTypeList.cs" />
     <Compile Include="Features\EventTypes.cs" />
+    <Compile Include="Features\FAQ.cs" />
+    <Compile Include="Features\FAQList.cs" />
+    <Compile Include="Features\FAQs.cs" />
     <Compile Include="Locations\Countries.cs" />
     <Compile Include="Locations\Country.cs" />
     <Compile Include="Locations\CountryList.cs" />

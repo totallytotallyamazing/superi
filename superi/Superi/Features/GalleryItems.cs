@@ -28,11 +28,14 @@ namespace Superi.Features
                 list = new GalleryItemList((int)GalleryId);
             Random random = new Random();
             GalleryItemList result = new GalleryItemList(false);
-            for (int i = 0; i < Count; i++)
+            if (list.Count >= Count)
             {
-                int index = random.Next(list.Count - 1);
-                result.Add(list[index]);
-                list.RemoveAt(index);
+                for (int i = 0; i < Count; i++)
+                {
+                    int index = random.Next(list.Count - 1);
+                    result.Add(list[index]);
+                    list.RemoveAt(index);
+                }
             }
             return result;
         }

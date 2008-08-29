@@ -194,7 +194,7 @@ namespace Superi.Features
             ParameterList pList = new ParameterList();
             pList.Add(new AppDbParameter("name", Name));
             DataSet ds = AppData.ExecDataSet("Navigation_Get", pList);
-            if (ds != null && ds.Tables.Count > 0)
+            if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count>0)
                 Load(ds.Tables[0].Rows[0]);
 		}
 

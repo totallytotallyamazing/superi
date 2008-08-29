@@ -139,7 +139,7 @@ namespace Superi.Features
             pList.Add(new AppDbParameter("email", Email));
             pList.Add(new AppDbParameter("language", Language));
 
-			DbDataReader dr = AppData.ExecStoredProcedure("Articles_AddUpdate", pList);
+			DbDataReader dr = AppData.ExecStoredProcedure("FAQ_AddUpdate", pList);
 			if (dr != null && dr.HasRows && dr.Read())
 			{
 				id = int.Parse(dr[0].ToString());

@@ -55,7 +55,7 @@ namespace Superi.CustomControls
         "                    el.childNodes[0].style.height='90%';" + Environment.NewLine +
                     "}";
         */
-        private int _TextID = int.MinValue;
+        //private int _TextID = int.MinValue;
         public Resource _Values = new Resource();
         private string _DefaultValue = "";
         private LanguageList _LanguageList = new LanguageList(true);
@@ -75,8 +75,17 @@ namespace Superi.CustomControls
         }
         public int TextID
         {
-            get { return _TextID; }
-            set { _TextID = value; }
+            get
+            {
+                if (ViewState["textId"] == null)
+                    return int.MinValue;
+                return Convert.ToInt32(ViewState["textId"].ToString());
+            }
+
+            set
+            {
+                ViewState["textId"] = value;
+            }
         }
 
         public Resource Values

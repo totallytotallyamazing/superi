@@ -264,7 +264,14 @@ namespace Superi.Features
 		    Picture = dr["Picture"].ToString();
 		    SingleMenuPage = (bool) dr["SingleMenuPage"];
             AdditionalTitle = dr["AdditionalTitle"].ToString();
-		    AdditionalTitleTextId = (int) dr["AdditionalTitleTextID"];
+            try
+            {
+                AdditionalTitleTextId = (int) dr["AdditionalTitleTextID"];
+            }
+            catch
+            {
+                additionalTitleTextId = int.MinValue;
+            }
 		    path = dr["Path"].ToString();
             path = path.Substring(1);
 

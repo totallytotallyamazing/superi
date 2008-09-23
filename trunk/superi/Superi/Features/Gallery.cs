@@ -9,7 +9,7 @@ namespace Superi.Features
 	{
 		#region Private fields
 		private int _ID = int.MinValue;
-		private DateTime _EntryDate = DateTime.MinValue;
+		private DateTime _EntryDate = DateTime.Now;
 		private string _Picture = "";
 		private string _Title = "";
 	    private int _TitleTextId = int.MinValue;
@@ -90,7 +90,7 @@ namespace Superi.Features
 
 		public Gallery(int ID)
 		{
-			string sql = "select * from Gallery where ID=" + ID;
+            string sql = "select * from Galleries where ID=" + ID;
 			DbDataReader dr = AppData.ExecQuery(sql);
 			if (dr != null && dr.Read())
 				Load(dr, true);
@@ -141,7 +141,7 @@ namespace Superi.Features
 			pList.Add(new AppDbParameter("subtitle", SubTitle));
             pList.Add(new AppDbParameter("subtitletextid", SubTitleTextId));
 
-			DbDataReader dr = AppData.ExecStoredProcedure("Gallery_AddUpdate", pList);
+            DbDataReader dr = AppData.ExecStoredProcedure("Galleries_AddUpdate", pList);
 			if (dr != null && dr.HasRows && dr.Read())
 			{
 				_ID = int.Parse(dr[0].ToString());
@@ -160,7 +160,7 @@ namespace Superi.Features
 			{
                 ParameterList pList = new ParameterList();
                 pList.Add(new AppDbParameter("id", ID));
-                AppData.ExecStoredProcedure("Gallery_Delete", pList);
+                AppData.ExecStoredProcedure("Galleries_Delete", pList);
 			    result = true;
             }
 			else result = false;

@@ -11,7 +11,7 @@ namespace Superi.Features
 		{
 			if (GetAll)
 			{
-				string SQL = "select * from GalleryItems order by EntryDate DESC";
+				string SQL = "select * from Galleries order by EntryDate DESC";
 				DbDataReader dr = AppData.ExecQuery(SQL);
 				if (dr != null && dr.HasRows)
 					Load(dr);

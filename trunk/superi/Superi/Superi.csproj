@@ -52,6 +52,9 @@
     <Compile Include="Features\Albums.cs" />
     <Compile Include="Features\Article.cs" />
     <Compile Include="Features\ArticleList.cs" />
+    <Compile Include="Features\ArticlePicture.cs" />
+    <Compile Include="Features\ArticlePictureList.cs" />
+    <Compile Include="Features\ArticlePictures.cs" />
     <Compile Include="Features\Articles.cs" />
     <Compile Include="Features\ArticleScope.cs" />
     <Compile Include="Features\ArticleScopeList.cs" />

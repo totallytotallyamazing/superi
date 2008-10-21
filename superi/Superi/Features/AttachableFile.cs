@@ -4,6 +4,8 @@ using Superi.Common;
 
 namespace Superi.Features
 {
+    public enum ItemTypes{Text, Article}
+
     public class AttachableFile
     {
         #region Private fields

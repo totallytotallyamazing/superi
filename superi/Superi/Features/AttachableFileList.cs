@@ -13,19 +13,26 @@ namespace Superi.Features
 		{
 			if (GetAll)
 			{
-				string SQL = "select * from AttachableFiles";
-				DbDataReader dr = AppData.ExecQuery(SQL);
-				if (dr != null && dr.HasRows)
-					Load(dr);
-			}
+                DataSet ds = AppData.ExecDataSet("AttachableFiles_Get", null);
+                if (ds != null && ds.Tables.Count > 0)
+                    Load(ds.Tables[0]);
+            }
 		}
 
         public AttachableFileList(int ItemId, int ItemType, string Language)
         {
-            string SQL = "select * from AttachableFiles where ItemType=" + ItemType + " and ItemId=" + ItemId + " and Language='"+Language+"'";
-            DbDataReader dr = AppData.ExecQuery(SQL);
-            if (dr != null && dr.HasRows)
-                Load(dr);
+            ParameterList parameterList = new ParameterList();
+            if(ItemId>0)
+                parameterList.Add(new AppDbParameter("itemid", ItemId));
+            if(ItemType>0)
+                parameterList.Add(new AppDbParameter("itemtype", ItemType));
+            if(!string.IsNullOrEmpty(Language))
+                parameterList.Add(new AppDbParameter("language", Language));
+
+
+            DataSet ds = AppData.ExecDataSet("AttachableFiles_Get", parameterList);
+            if (ds != null && ds.Tables.Count>0)
+                Load(ds.Tables[0]);
         }
 
 		public AttachableFileList(DataTable dt)

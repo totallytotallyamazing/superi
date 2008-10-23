@@ -21,6 +21,28 @@ namespace Superi.Features
 
         public AttachableFileList(int ItemId, int ItemType, string Language)
         {
+            //ParameterList parameterList = new ParameterList();
+            //if(ItemId>0)
+            //    parameterList.Add(new AppDbParameter("itemid", ItemId));
+            //if(ItemType>0)
+            //    parameterList.Add(new AppDbParameter("itemtype", ItemType));
+            //if(!string.IsNullOrEmpty(Language))
+            //    parameterList.Add(new AppDbParameter("language", Language));
+
+
+            //DataSet ds = AppData.ExecDataSet("AttachableFiles_Get", parameterList);
+            //if (ds != null && ds.Tables.Count>0)
+            //    Load(ds.Tables[0]);
+            InitAndLoad(ItemId, ItemType, Language);
+        }
+
+        public AttachableFileList(int ItemId, ItemTypes ItemType, string Language)
+        {
+            InitAndLoad(ItemId, (int)ItemType, Language);
+        }
+
+        private void InitAndLoad(int ItemId, int ItemType, string Language)
+        {
             ParameterList parameterList = new ParameterList();
             if(ItemId>0)
                 parameterList.Add(new AppDbParameter("itemid", ItemId));
@@ -35,7 +57,7 @@ namespace Superi.Features
                 Load(ds.Tables[0]);
         }
 
-		public AttachableFileList(DataTable dt)
+        public AttachableFileList(DataTable dt)
 		{
 			Load(dt);
 		}

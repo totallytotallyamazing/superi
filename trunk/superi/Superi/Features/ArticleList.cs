@@ -20,13 +20,25 @@ namespace Superi.Features
 
         public ArticleList(int ScopeID)
         {
-            string SQL = "select * from Articles where ScopeID = " + ScopeID + " order by EntryDate DESC";
+            InitAndLoad(ScopeID, false);
+        }
+
+        public ArticleList(int ScopeID, bool AscendingSort)
+        {
+            InitAndLoad(ScopeID, AscendingSort);
+        }
+
+        private void InitAndLoad(int ScopeID, bool AscendingSort)
+        {
+            string sortDirection = (AscendingSort) ? "ASC" : "DESC";
+            string SQL = "select * from Articles where ScopeID = " + ScopeID + " order by EntryDate "+sortDirection;
             DataSet ds = AppData.GetDataSet(SQL);
             if (ds != null && ds.Tables.Count > 0)
                 Load(ds.Tables[0]);
         }
 
-		public ArticleList(DataTable dt)
+
+        public ArticleList(DataTable dt)
 		{
 			Load(dt);
 		}

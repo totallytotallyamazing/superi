@@ -20,13 +20,13 @@ namespace Superi.CustomControls
         private int height = 0;
         private int width = 0;
 
-        public int Height
+        new public int Height
         {
             get { return height; }
             set { height = value; }
         }
 
-        public int Width
+        new public int Width
         {
             get { return width; }
             set { width = value; }

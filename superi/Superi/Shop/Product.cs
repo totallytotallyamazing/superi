@@ -19,6 +19,7 @@ namespace Superi.Shop
         private decimal _Price = 0M;
         private string _Picture = "";
         private decimal _Weight = 0M;
+        private int typeId = int.MinValue;
         #endregion
 
         #region Public properties
@@ -101,6 +102,12 @@ namespace Superi.Shop
             get { return _Weight; }
             set { _Weight = value; }
         }
+
+        public int TypeId
+        {
+            get { return typeId; }
+            set { typeId = value; }
+        }
         #endregion
 
         #region Constructors
@@ -122,14 +129,24 @@ namespace Superi.Shop
 
 		public Product(int ID)
 		{
-			string sql = "select * from Products where ID=" + ID;
-			DbDataReader dr = AppData.ExecQuery(sql);
-			if (dr != null && dr.Read())
-				Load(dr, true);
+		    Load(ID);
+            //string sql = "select * from Products where ID=" + ID;
+            //DbDataReader dr = AppData.ExecQuery(sql);
+            //if (dr != null && dr.Read())
+            //    Load(dr, true);
 		}
         #endregion
 
         #region Public methods
+        public bool Load(int Id)
+        {
+            string sql = "select * from Products where ID=" + Id;
+            DataSet ds = AppData.GetDataSet(sql);
+            if (ds != null && ds.Tables.Count>0 && ds.Tables[0].Rows.Count>0)
+                return Load(ds.Tables[0].Rows[0]);
+            return false;
+        }
+
         public bool Load(DbDataReader dr)
         {
             return Load(dr, false);
@@ -148,13 +165,13 @@ namespace Superi.Shop
             GroupID = dr.GetInt32(dr.GetOrdinal("GroupID"));
             Price = dr.GetDecimal(dr.GetOrdinal("Price"));
             Weight = dr.GetDecimal(dr.GetOrdinal("Weight"));
-
+            TypeId = dr.GetInt32(dr.GetOrdinal("TypeId"));
             if (CloseDr)
                 dr.Close();
             return true;
         }
 
-        public bool Load(DataRow dr)
+        public virtual bool Load(DataRow dr)
         {
             _ID = (int)dr["ID"];
             Name = dr["Name"].ToString();
@@ -167,10 +184,11 @@ namespace Superi.Shop
             GroupID = (int) dr["GroupID"];
             Price = (decimal) dr["Price"];
             Weight = (decimal) dr["Weight"];
+            TypeId = (int)dr["TypeId"];
             return true;
         }
 
-        public bool Save()
+        public virtual bool Save()
         {
             ParameterList pList = new ParameterList();
             pList.Add(new AppDbParameter("id", ID));
@@ -184,6 +202,7 @@ namespace Superi.Shop
             pList.Add(new AppDbParameter("price", Price));
             pList.Add(new AppDbParameter("groupid", GroupID));
             pList.Add(new AppDbParameter("weight", Weight));
+            pList.Add(new AppDbParameter("typeid", TypeId));
 
             DbDataReader dr = AppData.ExecStoredProcedure("Products_AddUpdate", pList);
             if (dr != null && dr.HasRows && dr.Read())
@@ -196,7 +215,7 @@ namespace Superi.Shop
             return true;
         }
 
-        public bool Remove()
+        public virtual bool Remove()
         {
             bool result;
             if (ID > 0)

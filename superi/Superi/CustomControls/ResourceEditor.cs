@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Web;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
@@ -8,6 +9,7 @@ using FredCK.FCKeditorV2;
 
 namespace Superi.CustomControls
 {
+
     /// <summary>
     /// Possible input types for the resource editor
     /// </summary>
@@ -26,7 +28,7 @@ namespace Superi.CustomControls
         #region Private fields
         private string aPrefix = "";
         private string divPrefix = "";
-        private readonly string _script = "function toggleDivs(lang, id)" + Environment.NewLine +
+        private readonly string _script = "function toggleDivs%COUNT%(lang, id)" + Environment.NewLine +
                                           "{" + Environment.NewLine +
                                           "var lng;" + Environment.NewLine +
                                           "for (lng in langs)" + Environment.NewLine +
@@ -66,6 +68,17 @@ namespace Superi.CustomControls
         private int richHeight = 0;
         private bool readOnly = false;
         #endregion
+
+        private int ControlSessionCount
+        {
+            get
+            {
+                if (HttpContext.Current.Session["resourceControlCount"] != null)
+                    return (int)(HttpContext.Current.Session["resourceControlCount"]);
+                return 0;
+            }
+            set { HttpContext.Current.Session["resourceControlCount"] = value; }
+        }
 
         #region Public properties
         public ResourceEditorType Type
@@ -218,7 +231,7 @@ namespace Superi.CustomControls
                 HtmlAnchor aDefault = new HtmlAnchor();
                 aDefault.InnerText = "Default";
                 aDefault.ID = ID + "_a_Default";
-                aDefault.HRef = "javascript:toggleDivs('Default', '" + ID + "')";
+                aDefault.HRef = "javascript:toggleDivs" + ControlSessionCount + "('Default', '" + ID + "')";
                 aDefault.Style["border"] = "1px solid #8c8c8c";
                 cell = new HtmlTableCell();
                 cell.Controls.Add(aDefault);
@@ -229,7 +242,7 @@ namespace Superi.CustomControls
             {
                 HtmlAnchor a = new HtmlAnchor();
                 a.InnerText = language.Name;
-                a.HRef = "javascript:toggleDivs('" + language.Code + "', '" + ID + "')";
+                a.HRef = "javascript:toggleDivs" + ControlSessionCount + "('" + language.Code + "', '" + ID + "')";
                 a.ID = ID + "_a_" + language.Code;
                 cell = new HtmlTableCell();
                 cell.Controls.Add(a);
@@ -404,7 +417,10 @@ namespace Superi.CustomControls
             }
             GenerateLangsTable();
             GenerateLangDivs();
-            Page.ClientScript.RegisterClientScriptBlock(GetType(), "myscript", _script.Replace("%DIV_PREFIX%", divPrefix).Replace("%A_PREFIX%", aPrefix), true);
+            Page.ClientScript.RegisterClientScriptBlock(GetType(), "myscript" + ControlSessionCount,
+                                                        _script.Replace("%DIV_PREFIX%", divPrefix).Replace(
+                                                            "%A_PREFIX%", aPrefix), true);
+            ControlSessionCount = ControlSessionCount + 1;
             //Page.ClientScript.RegisterStartupScript(this.GetType(), "dimscr", _dimensionsScript.Replace("%DIV_PREFIX%", divPrefix), true);
         }
         #endregion

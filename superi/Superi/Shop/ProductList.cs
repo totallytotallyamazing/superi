@@ -11,7 +11,7 @@ namespace Superi.Shop
 		{
 			if (GetAll)
 			{
-				string SQL = "select * from Products order by EntryDate DESC";
+				string SQL = "select * from Products";
 				DbDataReader dr = AppData.ExecQuery(SQL);
 				if (dr != null && dr.HasRows)
 					Load(dr);
@@ -21,9 +21,9 @@ namespace Superi.Shop
         public ProductList(int GroupID)
         {
             string SQL = "select * from Products where GroupID = " + GroupID;
-            DbDataReader dr = AppData.ExecQuery(SQL);
-            if (dr != null && dr.HasRows)
-                Load(dr);
+            DataSet ds = AppData.GetDataSet(SQL);
+            if (ds != null && ds.Tables.Count>0)
+                Load(ds.Tables[0]);
         }
 
 		public ProductList(DataTable dt)

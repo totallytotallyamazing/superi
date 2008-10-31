@@ -89,9 +89,11 @@ namespace Superi.Common
 			{
 				result = cmd.ExecuteReader();
 			}
-			catch (Exception)
+			catch (Exception ex)
 			{
 				_conn.Close();
+                if (HttpContext.Current != null)
+                    HttpContext.Current.Response.WriteFile(ex.Message);
 			}
 			return result;
 		}

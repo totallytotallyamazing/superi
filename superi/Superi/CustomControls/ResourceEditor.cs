@@ -419,7 +419,8 @@ namespace Superi.CustomControls
             GenerateLangDivs();
             Page.ClientScript.RegisterClientScriptBlock(GetType(), "myscript" + ControlSessionCount,
                                                         _script.Replace("%DIV_PREFIX%", divPrefix).Replace(
-                                                            "%A_PREFIX%", aPrefix), true);
+                                                            "%A_PREFIX%", aPrefix).Replace("%COUNT%",
+                                                                                           ControlSessionCount.ToString()), true);
             ControlSessionCount = ControlSessionCount + 1;
             //Page.ClientScript.RegisterStartupScript(this.GetType(), "dimscr", _dimensionsScript.Replace("%DIV_PREFIX%", divPrefix), true);
         }

@@ -2,6 +2,7 @@ using System.Data;
 using System.Data.Common;
 using Superi.Common;
 using Superi.Features;
+using System;
 
 namespace Superi.Shop
 {
@@ -138,7 +139,7 @@ namespace Superi.Shop
         #endregion
 
         #region Public methods
-        public bool Load(int Id)
+        public virtual bool Load(int Id)
         {
             string sql = "select * from Products where ID=" + Id;
             DataSet ds = AppData.GetDataSet(sql);
@@ -204,11 +205,10 @@ namespace Superi.Shop
             pList.Add(new AppDbParameter("weight", Weight));
             pList.Add(new AppDbParameter("typeid", TypeId));
 
-            DbDataReader dr = AppData.ExecStoredProcedure("Products_AddUpdate", pList);
-            if (dr != null && dr.HasRows && dr.Read())
+            DataSet ds = AppData.ExecDataSet("Products_AddUpdate", pList);
+            if (ds.Tables.Count>0 && ds.Tables[0].Rows.Count>0)
             {
-                _ID = int.Parse(dr[0].ToString());
-                dr.Close();
+                _ID = Convert.ToInt32(ds.Tables[0].Rows[0][0]);
             }
             else
                 return false;

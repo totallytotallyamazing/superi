@@ -11,10 +11,10 @@ namespace Superi.Shop
 		{
 			if (GetAll)
 			{
-				string SQL = "select * from Products";
-				DbDataReader dr = AppData.ExecQuery(SQL);
-				if (dr != null && dr.HasRows)
-					Load(dr);
+                string SQL = "select * from Products";
+                DataSet ds = AppData.GetDataSet(SQL);
+                if (ds != null && ds.Tables.Count > 0)
+                    Load(ds.Tables[0]);
 			}
 		}
 
@@ -23,6 +23,17 @@ namespace Superi.Shop
             string SQL = "select * from Products where GroupID = " + GroupID;
             DataSet ds = AppData.GetDataSet(SQL);
             if (ds != null && ds.Tables.Count>0)
+                Load(ds.Tables[0]);
+        }
+
+        public ProductList(int PropertyId, string PropertyValue)
+        {
+            ParameterList parameterList = new ParameterList();
+            parameterList.Add(new AppDbParameter("propertyId", PropertyId));
+            parameterList.Add(new AppDbParameter("value", PropertyValue));
+
+            DataSet ds = AppData.ExecDataSet("Products_GetByPropertyValue", parameterList);
+            if (ds.Tables.Count > 0)
                 Load(ds.Tables[0]);
         }
 

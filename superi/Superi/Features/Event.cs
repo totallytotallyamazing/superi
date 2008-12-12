@@ -151,8 +151,10 @@ namespace Superi.Features
             ShortDescriptionTextId = dr.GetInt32(dr.GetOrdinal("ShortDescriptionTextID"));
             Description = dr["Description"].ToString();
             DescriptionTextId = dr.GetInt32(dr.GetOrdinal("DescriptionTextID"));
-            StartDate = dr.GetDateTime(dr.GetOrdinal("StartDate"));
-            EndDate = dr.GetDateTime(dr.GetOrdinal("EndDate"));
+            if (!dr.IsDBNull(dr.GetOrdinal("StartDate")))
+                StartDate = dr.GetDateTime(dr.GetOrdinal("StartDate"));
+            if (!dr.IsDBNull(dr.GetOrdinal("EndDate")))
+                EndDate = dr.GetDateTime(dr.GetOrdinal("EndDate"));
 
             if (CloseDr)
                 dr.Close();
@@ -171,7 +173,9 @@ namespace Superi.Features
             ShortDescriptionTextId = int.Parse(dr["ShortDescriptionTextID"].ToString());
             Description = dr["Description"].ToString();
             DescriptionTextId = int.Parse(dr["DescriptionTextID"].ToString());
-            StartDate = DateTime.Parse(dr["StartDate"].ToString());
+            if (dr["StartDate"]!=null)
+                StartDate = DateTime.Parse(dr["StartDate"].ToString());
+            if (dr["EndDate"]!=null)
             EndDate = DateTime.Parse(dr["EndDate"].ToString());
             return true;
         }
@@ -180,10 +184,10 @@ namespace Superi.Features
         {
             ParameterList pList = new ParameterList();
             pList.Add(new AppDbParameter("id", id));
-            pList.Add(new AppDbParameter("sd", ShortDescription));
-            pList.Add(new AppDbParameter("sdtid", ShortDescriptionTextId));
-            pList.Add(new AppDbParameter("d", Description));
-            pList.Add(new AppDbParameter("dtid", DescriptionTextId));
+            pList.Add(new AppDbParameter("shortdescription", ShortDescription));
+            pList.Add(new AppDbParameter("shortdescriptiontextid", ShortDescriptionTextId));
+            pList.Add(new AppDbParameter("description", Description));
+            pList.Add(new AppDbParameter("descriptiontextid", DescriptionTextId));
             pList.Add(new AppDbParameter("name", Name));
             pList.Add(new AppDbParameter("nametextid", NameTextId));
             pList.Add(new AppDbParameter("type", TypeId));

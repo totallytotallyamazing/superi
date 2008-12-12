@@ -27,17 +27,26 @@ namespace Superi.Common
 			string cs = ConnectionString;
 			_conn = new SqlConnection(cs);
 			_conn.Open();
+            SqlCommand cmd = new SqlCommand(SQL, _conn);
 			SqlDataReader result = null;
-			try
-			{
-				SqlCommand cmd = new SqlCommand(SQL, _conn);
-				result = cmd.ExecuteReader();
-			}
-			catch (Exception)
-			{
-				_conn.Close();
-			}
-			//_conn.Close();
+            try
+            {
+                
+                result = cmd.ExecuteReader();
+            }
+            catch (Exception)
+            {
+                cmd.Dispose();
+                _conn.Close();
+            }
+            finally
+            {
+                cmd.Dispose();
+                _conn.Close();
+                _conn.Dispose();
+                cmd = null;
+                _conn = null;
+            }
 			return result;
 		}
 
@@ -64,9 +73,17 @@ namespace Superi.Common
             }
             catch (Exception)
             {
+                cmd.Dispose();
                 _conn.Close();
             }
-            _conn.Close();
+            finally
+            {
+                cmd.Dispose();
+                _conn.Close();
+                _conn.Dispose();
+                cmd = null;
+                _conn = null;
+            }
             return result;
         }
 
@@ -85,38 +102,60 @@ namespace Superi.Common
 				    cmd.Parameters.Add(parameter.SqlParameter);
 			    }
 
-			try
-			{
-				result = cmd.ExecuteReader();
-			}
-			catch (Exception ex)
-			{
-				_conn.Close();
+            try
+            {
+                result = cmd.ExecuteReader();
+            }
+            catch (Exception ex)
+            {
+                _conn.Close();
                 if (HttpContext.Current != null)
                     HttpContext.Current.Response.WriteFile(ex.Message);
-			}
+            }
+            //finally
+            //{
+            //    cmd.Dispose();
+            //    _conn.Close();
+            //    _conn.Dispose();
+            //    cmd = null;
+            //    _conn = null;
+            //}
 			return result;
 		}
 
         
 		public static bool ExecNonQuery(string SQL)
 		{
-		    string cs = ConnectionString;
-			SqlConnection _conn = new SqlConnection(cs);
-			_conn.Open();
+            string cs = ConnectionString;
 			bool result = true;
-			try
-			{
-				SqlCommand cmd = new SqlCommand(SQL, _conn);
-				if (cmd.ExecuteNonQuery() < 1)
-					result = false;
-			}
-			catch (Exception e)
-			{
-				HttpContext.Current.Response.Write(e.Message);
-				result = false;
-			}
-			_conn.Close();
+
+            using (SqlConnection conn = new SqlConnection(cs))
+            {
+                
+                conn.Open();
+                SqlCommand cmd = new SqlCommand(SQL, conn);
+                try
+                {
+                    
+                    if (cmd.ExecuteNonQuery() < 1)
+                        result = false;
+                }
+                catch (Exception e)
+                {
+                    HttpContext.Current.Response.Write(e.Message);
+                    result = false;
+                }
+                finally
+                {
+                    cmd.Dispose();
+                    conn.Close();
+                    cmd = null;
+                }
+            }
+		    
+			///SqlConnection _conn = new SqlConnection(cs);
+
+			//_conn.Close();
 			return result;
 		}
 
@@ -126,18 +165,26 @@ namespace Superi.Common
 			string cs = ConnectionString;
 			SqlConnection _conn = new SqlConnection(cs);
 			_conn.Open();
-			try
-			{
-				SqlCommand cmd = new SqlCommand(SQL, _conn);
-				SqlDataAdapter da = new SqlDataAdapter();
-				da.SelectCommand = cmd;
-				da.Fill(ds);
-			}
-			catch
-			{
-			    _conn.Close();
-			}
-		    _conn.Close();
+            SqlCommand cmd = new SqlCommand(SQL, _conn);
+            try
+            {
+                
+                SqlDataAdapter da = new SqlDataAdapter();
+                da.SelectCommand = cmd;
+                da.Fill(ds);
+            }
+            catch
+            {
+                _conn.Close();
+            }
+            finally
+            {
+                cmd.Dispose();
+                _conn.Close();
+                _conn.Dispose();
+                cmd = null;
+                _conn = null;
+	        }
 		    return ds;
 		}
 	}

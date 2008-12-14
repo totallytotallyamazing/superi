@@ -1,0 +1,75 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <link rel="Stylesheet" href="css/global.css" />
+    <title></title>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <map name="homeMailMap">
+        <area shape="rect" coords="0,0,14,14" alt="На главную" title="На главную" href="#"/>
+        <area shape="rect" coords="26,4,44,14" alt="Написать" title="Написать" href="mailto:mail" />
+    </map>
+    <div id="main">
+        <div id="mainTop">
+            <div id="topLeft"></div>
+            <div id="topMiddle">
+                <div id="homeMail">
+                    <img src="Images/homeMail.jpg" usemap="#homeMailMap" alt="" />
+                </div>
+            </div>
+            <div id="topRight"></div>
+        </div>
+        <div id="mainTitle">
+            Подарочные сертификаты
+        </div>
+        <div id="mainMiddle">
+            <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+            
+            </asp:ContentPlaceHolder>
+        </div>
+        <div id="mainBottom">
+            <div id="bottomPictures">
+                <div id="holiday">
+                    <a href="#">
+                        <img src="Images/holiday.jpg" alt="По празднику" title="По празднику" />
+                    </a>
+                </div>
+                <div id="man">
+                    <a href="#">
+                        <img src="Images/man.jpg" alt="Мужчине" title="Мужчине" />
+                    </a>
+                </div>
+                <div id="woman">
+                    <a href="#">
+                        <img src="Images/woman.jpg" alt="Женщине" title="Женщине" />
+                    </a>
+                </div>
+                <div id="price">
+                    <a href="#">
+                        <img src="Images/price.jpg" alt="По сумме" title="По сумме" />
+                    </a>
+                </div>
+            </div>
+            <div id="bottomLinks">
+                <div id="holidayLink">
+                    <a class="bottomLink" href="#">по празднику</a>
+                </div>
+                <div id="manLink">
+                    <a class="bottomLink" href="#">мужчине</a>
+                </div>
+                <div id="womanLink">
+                    <a class="bottomLink" href="#">женцине</a>
+                </div>
+                <div id="priceLink">
+                    <a class="bottomLink" href="#">по сумме</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    </form>
+</body>
+</html>

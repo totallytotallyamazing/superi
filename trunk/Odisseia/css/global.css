@@ -1,0 +1,44 @@
+﻿*{margin:0px; padding:0px; border:none;}
+body{background:black;}
+/*#main{width:1149px; float:left; position:absolute; left:50%; margin-left:-576px; background:transparent url(../images/maintop.jpg) no-repeat;}*/
+#main{width:1149px; position:relative; margin:0 auto; background:transparent url(../images/maintop.jpg) no-repeat;}
+#mainTop{height:379px; width:100%; float:left; clear:both;}
+
+#mainTitle{float:left; color:#421100; font-family:Arial; font-size:22px; padding:10px 0px; clear:both; width:100%; text-transform:lowercase; text-align:center;background: transparent url(../images/mainBg.jpg) repeat;}
+
+#topLeft{float:left; width:436px; height:379px;}
+#topMiddle{float:left; padding:46px 0px 0px 118px;   height:379px; width:280px; background:transparent url(../images/logo.jpg) no-repeat;}
+#homeMail{float:left;}
+#mainBottom{width:100%; height:302px; background: transparent url(../images/mainBottom.jpg) no-repeat; float:left; clear:both}
+#holiday, #man, #woman, #price{float:left; padding-top:1px;}
+#holiday{ padding-left:213px;}
+#man{padding-left:76px;}
+#woman{padding-left:75px;}
+#price{padding-left:60px;}
+
+
+#mainMiddle{width:100%; padding-bottom:10px; background: transparent url(../images/mainBg.jpg) repeat; float:left; clear:both;}
+#framesHolder{width:100%;}
+
+#leftFrame, #rightFrame{float:left; margin-top:-25px;}
+#framesHolder{padding-left:47px;}
+#framesMiddle{width:100%; background:transparent url(../images/framesMiddle.jpg) repeat-y; float:left; clear:both;}
+#leftFrameTop{width:477px; padding-right:93px; height:103px; float:left; background:transparent url(../images/ProductsTop.jpg) no-repeat;}
+.frameBottomLeft, .frameBottomRight{width:477px; margin-top:-12px; float:left; height:103px;background:transparent url(../images/frameBottom.jpg) no-repeat;}
+.frameBottomLeft{ padding-left:93px;}
+#rightFrameTop{width:477px; height:103px; float:left; background:transparent url(../images/servicesTop.jpg) no-repeat;}
+
+#bottomPictures{float:left; clear:both;}
+#bottomLinks{float:left; clear:both; width:100%;}
+
+#holidayLink, #manLink, #womanLink, #priceLink{float:left; padding-top:2px;}
+.bottomLink{font-family:Arial; text-decoration:none; font-size:14px; color:#391F0F; font-weight:bold;}
+#holidayLink{padding-left:230px;}
+#manLink{padding-left:132px;}
+#womanLink{padding-left:140px;}
+#priceLink{padding-left:130px;}
+#leftFrame{padding-left:65px;}
+#rightFrame{padding-left:225px;}
+
+.day{float:left; width:40px; height:40px; text-align:center;}
+.week{float:left; clear:both;}

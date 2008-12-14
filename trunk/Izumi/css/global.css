@@ -1,0 +1,128 @@
+﻿        div{}
+        body{margin:0px; padding:0px; border:none; color:white;font-family:Times New Roman; font-size:12px; background-color:black;}
+        a{color:white;}
+        img{border:none;}
+        .fixPng{behavior: url(iepngfix.htc);}
+        
+        #startMain
+        {
+			width:1024px;
+            height:768px;
+            background-image:url(../images/startBG.jpg);
+            position:absolute;
+            left:50%;
+            margin-left:-512px;
+            clear:both;
+            background-repeat:no-repeat;
+		}
+		#langSpacer{height:23px;}
+		#langsDiv{width:100%;clear:both;}
+		#uaImg{float:left; width:23; height:15; padding-top:4px;}
+		#ruImg{float:left; width:23; height:15; padding-top:4px;}
+		#enImg{float:left; width:23; height:15; padding-top:4px;}
+		#uaText{height:19px; padding-top:4px;font-size:10px;color:#520101;}
+		#ruText{height:19px; padding-top:4px;font-size:10px;color:#520101;}
+		#enText{height:19px; padding-top:4px;font-size:10px;color:#520101;}
+		#menuSpacer{height:612px;}
+		#conntentContainer a{color:#520101;}
+		
+		.langImg{margin-right:5px;}
+		.addressLink{text-decoration:none; color:#545454;}
+		.addressLink:hover{color:White;}
+        #main
+        {
+            width:1024px;
+            height:768px;
+            background-image:url(../images/mainbg.jpg);
+            position:absolute;
+            left:50%;
+            margin-left:-512px;
+            clear:both;
+            background-repeat:no-repeat
+        }
+                
+        #leftSide{float:left;width:166px;}
+        #centerDiv{float:left;width:651px;}
+        #rightSide{float:left; height:100%;}
+        #homeLink{position:relative; border:none; width:110px; height:85px; top:-15px; cursor:pointer;}
+        #addresses{border-left:1px solid white; padding-left:5px;margin-top:32px;}
+        #mainOffice{border-left:1px solid white; padding-left:5px;}
+        #middleLeft{height:572px;}
+        #pageTitle{width:auto; padding-left:20px; padding-right:20px; height:23px; background-color:black; text-align:center; font-size:18px;text-transform:uppercase;font-weight:bold; padding-top:3px;float:left}
+        #centerTop{height:135px;}
+        #centerBottom{height:227px;width:651px;margin:0 auto;text-align:left;}
+        #titleContainer{clear:both; overflow:hidden; white-space:nowrap; height:26px; width:100%; border-bottom:1px solid black;}
+        #titleLine{float:left; width:2px;border-right:2px solid black; height:26px;}
+        #contentContainer{height:456px;clear:both; padding-left:35px; padding-right:50px; color:black; font-size:14px; overflow:hidden; border-bottom:1px solid black}
+        #menuSpacerTop{height:34px;}
+        #menuSpacerLeft{float:left;width:100px;height:1px;}
+        #scrollLine{float:left; height:25px; border-bottom:1px solid black; overflow:hidden; white-space:nowrap;}
+        #contentSpacer{width:1px; height:20px;}
+        #buttonUp{width:16px; height:16px;position:relative; top:126px; left:-1px; cursor:pointer;}
+        #buttonDown{width:16px; height:16px;position:relative; top:110px; left:642px; cursor:pointer;}
+        #langsTable{margin-top:25px;}
+        #ruTr{height:17px;}
+        #uaTr{height:17px;}
+        #enTr{height:17px;}
+        #ruImgCell{border-right:1px solid white; padding-right:2px; }
+        #enImgCell{border-right:1px solid white; padding-right:2px; }
+        #uaImgCell{border-right:1px solid white; padding-right:2px; }
+        #ruTextCell{width:158px;padding-right:5px;color:#520101;font-size:10px;}
+        #enTextCell{width:158px;padding-right:5px;color:#520101;font-size:10px;}
+        #uaTextCell{width:158px;padding-right:5px;color:#520101;font-size:10px;}
+        #textDiv {width:575px;}
+        #contentContainer img {border:1px solid black;}
+        
+        #contentContainer input {border:none; background-color:Transparent; border-bottom:1px solid black;}
+        #contentContainer textarea {border:1px solid black; background-color:Transparent; width:inherit; overflow:hidden;}
+               
+        .menuDiv{height:68px;vertical-align:middle; text-transform:lowercase; font-size:14px;}
+        .menuDivSeprator{width:1px; background-image:url(../images/menuSeparator.jpg)}
+        .menuLink{height:68px; text-align:center; font-size:14px; padding-left:10px; padding-right:10px;text-decoration:none;}
+
+        .articleTitle{display:block; text-decoration:none; cursor:pointer; color:black; font-weight:bold; font-size:16px;}
+        .articleContent{color:black; text-decoration:none; cursor:pointer; font-size:14px;}
+        .articleImage{border:1px solid black; cursor:pointer; float:left;}
+        .article{clear:both; margin-bottom:15px; border:none; width:480px;}
+        .articleBottomTr{background-image:url(../images/newsLine.png); background-repeat:no-repeat;}
+
+		#subMenuSpacer{height:100px;}
+		#subMenuDiv{border-left:1px solid white; padding-left:5px;}
+		#subMenuTable{height:100%;}
+		
+		.subMenuLink{font-size:10px; text-transform:uppercase;color:White;text-decoration:none;}
+		.subMenuLink:hover{color:#520101;}
+		
+		.productContainer{float:left; margin-right:2px; font-size:12px; font-weight:bold; text-align:center; margin-bottom:20px; background-position: bottom center; background-repeat:no-repeat;}
+		.productTopText{height:40px; width:100%; color:White; padding-left:40px; width:133px;}
+		.productPriceSpacer{}
+		.productInner tr td{background-repeat:repeat-x; background-image:url(../images/productBack.png);}
+		.productBottomPrice{color:White; font-weight:bold; font-size:14px; padding-right:35px;}
+		.productBottomWeight{color:White; font-weight:normal; font-size:12px; padding-right:35px; padding-top:3px;}
+		
+		.singleMenuDataList tr td{ padding-top:20px;}
+		#extraLeftMenu{border-left:1px solid white; padding-left:5px;}
+		.textLink{color:#520101;}
+		.address{behavior: url(iepngfix.htc); color:black;width:593px;height:28px; background-image:url(../images/articleLine.png); text-transform:none; padding-left:25px; font-size:16px;}
+		.addressMap{width:546px; text-align:right; margin-bottom:25px;}
+		.addressTextLink{color:Black; text-decoration:none;}
+		
+		.textPhoto{width:263px; height:210px; text-align:center; color:White; background-image:url(../images/textImageBg.png);behavior: url(iepngfix.htc);}
+		
+		.alcoTable tr td
+		{
+				border:1px solid black;
+				border-collapse:collapse;
+		}
+		
+		.alcoBlack
+		{
+			background-color:Black;
+			color:White;
+		}
+		
+		.alcoRed
+		{
+			background-color:#9E0000;
+			color:white;
+		}

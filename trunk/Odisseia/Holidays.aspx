@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Holidays.aspx.cs" Inherits="Holidays" %>
 <%@ Register TagPrefix="od" TagName="CalendarMonth" Src="~/Controls/CalendarMonth.ascx" %>
+<%@ Register TagPrefix="od" TagName="ThisDay" Src="~/Controls/ThisDay.ascx" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <div id="calendarContent">
         <div id="monthFrame">
@@ -13,7 +14,7 @@
                     </div>             
                 </div>
                 <div id="monthLeftBottom">
-                    
+                    <od:ThisDay runat="server" />
                 </div>
             </div>
             <div id="monthRight">

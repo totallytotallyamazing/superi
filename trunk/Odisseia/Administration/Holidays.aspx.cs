@@ -21,8 +21,8 @@ public partial class Administration_Holidays : System.Web.UI.Page
     {
         get 
         {
-            if (!string.IsNullOrEmpty(ddlDay.SelectedValue))
-                return int.Parse(ddlDay.SelectedValue);
+            if (!string.IsNullOrEmpty(Request.Form[ddlDay.UniqueID]))
+                return int.Parse(Request.Form[ddlDay.UniqueID]);
             return int.MinValue;
         }
     }

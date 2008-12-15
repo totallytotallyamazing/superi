@@ -7,6 +7,9 @@
         <ItemTemplate>
             <div class="day">
                 <asp:HyperLink runat="server" CssClass="dayLink" ID="hlDay"></asp:HyperLink>
+                <asp:PlaceHolder ID="phSelectedDate" runat="server" Visible="false">
+                    <div class="selectedDate"></div>
+                </asp:PlaceHolder>
             </div>
         </ItemTemplate>
     </asp:Repeater>
@@ -19,6 +22,9 @@
             <ItemTemplate>
             <div class="day">
                 <asp:HyperLink runat="server" CssClass="dayLink" ID="hlDay"></asp:HyperLink>
+                <asp:PlaceHolder ID="phSelectedDate" runat="server" Visible="false">
+                    <div class="selectedDate"></div>
+                </asp:PlaceHolder>
             </div>
         </ItemTemplate>
     </asp:Repeater>
@@ -31,6 +37,9 @@
             <ItemTemplate>
             <div class="day">
                 <asp:HyperLink runat="server" CssClass="dayLink" ID="hlDay"></asp:HyperLink>
+                <asp:PlaceHolder ID="phSelectedDate" runat="server" Visible="false">
+                    <div class="selectedDate"></div>
+                </asp:PlaceHolder>
             </div>
         </ItemTemplate>
     </asp:Repeater>
@@ -43,6 +52,9 @@
             <ItemTemplate>
             <div class="day">
                 <asp:HyperLink runat="server" CssClass="dayLink" ID="hlDay"></asp:HyperLink>
+                <asp:PlaceHolder ID="phSelectedDate" runat="server" Visible="false">
+                    <div class="selectedDate"></div>
+                </asp:PlaceHolder>
             </div>
         </ItemTemplate>
     </asp:Repeater>
@@ -55,6 +67,9 @@
             <ItemTemplate>
             <div class="day">
                 <asp:HyperLink runat="server" CssClass="dayLink" ID="hlDay"></asp:HyperLink>
+                <asp:PlaceHolder ID="phSelectedDate" runat="server" Visible="false">
+                    <div class="selectedDate"></div>
+                </asp:PlaceHolder>
             </div>
         </ItemTemplate>
     </asp:Repeater>
@@ -67,6 +82,9 @@
             <ItemTemplate>
             <div class="day weekend">
                 <asp:HyperLink runat="server" CssClass="dayLink" ID="hlDay"></asp:HyperLink>
+                <asp:PlaceHolder ID="phSelectedDate" runat="server" Visible="false">
+                    <div class="selectedDate"></div>
+                </asp:PlaceHolder>
             </div>
         </ItemTemplate>
     </asp:Repeater>
@@ -79,6 +97,9 @@
             <ItemTemplate>
             <div class="day weekend">
                 <asp:HyperLink runat="server" CssClass="dayLink" ID="hlDay"></asp:HyperLink>
+                <asp:PlaceHolder ID="phSelectedDate" runat="server" Visible="false">
+                    <div class="selectedDate"></div>
+                </asp:PlaceHolder>
             </div>
         </ItemTemplate>
     </asp:Repeater>

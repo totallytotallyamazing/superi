@@ -1,6 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="ThisDay.ascx.cs" Inherits="Controls_ThisDay" %>
 <%@ Register TagPrefix="obout" Namespace="OboutInc.Flyout2" Assembly="obout_Flyout2_NET"%>
-<asp:Panel runat="server" ID="pDay">
+<asp:Panel runat="server" ID="pDay" CssClass="todayDay">
     <asp:Label runat="server" ID="lDay"></asp:Label>
 </asp:Panel>
 <asp:Panel runat="server" ID="pDate">
@@ -17,7 +17,7 @@
         <ItemTemplate>
             <div>
                 <asp:HyperLink runat="server" ID="hlHoliday" CssClass="todayHoliday"></asp:HyperLink>
-                <obout:Flyout AttachTo="hlHoliday" runat="server" OpenEvent="ONCLICK" ID="fDescription">
+                <obout:Flyout FadingEffect="true" Align="TOP" AttachTo="hlHoliday" runat="server" OpenEvent="ONCLICK" ID="fDescription">
                     <div class="descriptionDiv">
                         <asp:Literal runat="server" ID="lDescription"></asp:Literal>
                     </div>

@@ -14,7 +14,7 @@
                     </div>             
                 </div>
                 <div id="monthLeftBottom">
-                    <od:ThisDay runat="server" />
+                    <od:ThisDay runat="server" Mode="Large" />
                 </div>
             </div>
             <div id="monthRight">

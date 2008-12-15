@@ -173,10 +173,10 @@ namespace Superi.Features
             ShortDescriptionTextId = int.Parse(dr["ShortDescriptionTextID"].ToString());
             Description = dr["Description"].ToString();
             DescriptionTextId = int.Parse(dr["DescriptionTextID"].ToString());
-            if (dr["StartDate"]!=null)
+            if (!dr.IsNull("StartDate"))
                 StartDate = DateTime.Parse(dr["StartDate"].ToString());
-            if (dr["EndDate"]!=null)
-            EndDate = DateTime.Parse(dr["EndDate"].ToString());
+            if (!dr.IsNull("EndDate"))
+                EndDate = DateTime.Parse(dr["EndDate"].ToString());
             return true;
         }
 

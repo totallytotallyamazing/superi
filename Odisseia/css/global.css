@@ -1,13 +1,14 @@
-﻿*{margin:0px; padding:0px; border:none;}
+﻿*{margin:0px; padding:0px; border:none; font-family:Arial;}
 body{background:black;}
 /*#main{width:1149px; float:left; position:absolute; left:50%; margin-left:-576px; background:transparent url(../images/maintop.jpg) no-repeat;}*/
-#main{width:1149px; position:relative; margin:0 auto; background:transparent url(../images/maintop.jpg) no-repeat;}
+#main{width:1149px; position:relative; margin:0 auto;}
 #mainTop{height:379px; width:100%; float:left; clear:both;}
 
 #mainTitle{float:left; color:#421100; font-family:Arial; font-size:22px; padding:10px 0px; clear:both; width:100%; text-transform:lowercase; text-align:center;background: transparent url(../images/mainBg.jpg) repeat;}
 
-#topLeft{float:left; width:436px; height:379px;}
-#topMiddle{float:left; padding:46px 0px 0px 118px;   height:379px; width:280px; background:transparent url(../images/logo.jpg) no-repeat;}
+#topLeft{float:left; width:436px; height:379px; background:transparent url(../images/topLeft.jpg) no-repeat;}
+#topMiddle{float:left; padding:46px 0px 0px 118px;   height:333px; width:162px; background:transparent url(../images/logo.jpg) no-repeat;}
+#topRight{float:left; width:433px; height:379px; background:transparent url(../images/topRight.jpg) no-repeat;}
 #homeMail{float:left;}
 #mainBottom{width:100%; height:302px; background: transparent url(../images/mainBottom.jpg) no-repeat; float:left; clear:both}
 #holiday, #man, #woman, #price{float:left; padding-top:1px;}
@@ -40,5 +41,15 @@ body{background:black;}
 #leftFrame{padding-left:65px;}
 #rightFrame{padding-left:225px;}
 
-.day{float:left; width:40px; height:40px; text-align:center;}
-.week{float:left; clear:both;}
+#calendarContent{ width:100%; float:left; padding-left:50px;}
+#monthFrame{width:662px; height:650px; background:transparent url(../images/calendar.jpg) no-repeat; padding:60px 0 0 70px;}
+.day{float:left; width:40px; height:40px; text-align:center; font-size:24px; color:#666666;}
+.week{float:left; clear:both; width:100%;}
+.day a{ color:#666666; text-decoration:none;}
+.weekend a{color:#C56669; text-decoration:none;}
+.weekend{color:#C56669;}
+#monthLeft, #monthRight{float:left; margin-top:40px;}
+#monthLeft{width:245px; border-right: 2px solid #BAB6B4;}
+#monthTitle{width:100%; height:40px; text-align:center; padding-top:10px; color:#4A2F17; font-weight:bold; font-size:18px;}
+#monthLeftBottom{width:100%; height:130px; float:left;}
+#monthLeftTop{float:left; border-bottom:2px solid #BAB6B4; width:100%;}

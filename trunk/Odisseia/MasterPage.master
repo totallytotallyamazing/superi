@@ -62,7 +62,7 @@
                     <a class="bottomLink" href="#">мужчине</a>
                 </div>
                 <div id="womanLink">
-                    <a class="bottomLink" href="#">женцине</a>
+                    <a class="bottomLink" href="#">женщине</a>
                 </div>
                 <div id="priceLink">
                     <a class="bottomLink" href="#">по сумме</a>

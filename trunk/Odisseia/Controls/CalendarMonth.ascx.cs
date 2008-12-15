@@ -65,6 +65,7 @@ public partial class Controls_CalendarMonth : System.Web.UI.UserControl
             HyperLink hlDay = (HyperLink)e.Item.FindControl("hlDay");
             int day = (int)e.Item.DataItem;
             hlDay.Text = day.ToString();
+            hlDay.NavigateUrl = "#";
         }
         
     }

@@ -43,6 +43,15 @@ public partial class Controls_ThisDay : System.Web.UI.UserControl
 
     private void PublishControl()
     {
+        switch (Mode)
+        { 
+            case DayDisplayMode.Large:
+                pDay.Visible=false;
+                pDate.CssClass = "todayDateLarge";
+                pHolidays.CssClass = "todayHolidaysLarge";
+                break;
+        }
+
         lDay.Text = GetDayName(Date);
         lMonth.Text = GetMonthName(Date);
         lDate.Text = Date.Day.ToString();
@@ -93,7 +102,6 @@ public partial class Controls_ThisDay : System.Web.UI.UserControl
         HyperLink hlHoliday = (HyperLink)e.Item.FindControl("hlHoliday");
         Event holiday = (Event)e.Item.DataItem;
         hlHoliday.Text = holiday.Name;
-        
         lDescription.Text = holiday.Description;
     }
 

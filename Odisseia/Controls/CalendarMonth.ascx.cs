@@ -63,7 +63,10 @@ public partial class Controls_CalendarMonth : System.Web.UI.UserControl
         if (e.Item.DataItem != null)
         {
             HyperLink hlDay = (HyperLink)e.Item.FindControl("hlDay");
+            PlaceHolder phSelectedDate = (PlaceHolder)e.Item.FindControl("phSelectedDate");
             int day = (int)e.Item.DataItem;
+            if (SelectedDate.Day == day)
+                phSelectedDate.Visible = true;
             hlDay.Text = day.ToString();
             hlDay.NavigateUrl = "#";
         }

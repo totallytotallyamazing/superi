@@ -41,6 +41,8 @@ body{background:black;}
 #leftFrame{padding-left:65px;}
 #rightFrame{padding-left:225px;}
 
+
+/*----------------- Holidays---------------------------*/
 #calendarContent{ width:100%; float:left; padding-left:50px;}
 #monthFrame{width:662px; height:650px; background:transparent url(../images/calendar.jpg) no-repeat; padding:60px 0 0 70px;}
 .day{float:left; width:40px; height:40px; text-align:center; font-size:24px; color:#666666;}
@@ -51,5 +53,17 @@ body{background:black;}
 #monthLeft, #monthRight{float:left; margin-top:40px;}
 #monthLeft{width:245px; border-right: 2px solid #BAB6B4;}
 #monthTitle{width:100%; height:40px; text-align:center; padding-top:10px; color:#4A2F17; font-weight:bold; font-size:18px;}
-#monthLeftBottom{width:100%; height:130px; float:left;}
+#monthLeftBottom{width:100%; height:110px; float:left; padding:20px 0 0 10px;}
 #monthLeftTop{float:left; border-bottom:2px solid #BAB6B4; width:100%;}
+
+.selectedDate{background:transparent url(../images/today.png) no-repeat; height:48px; left:-3px; position:relative; top:-38px; width:49px;}
+.todayDay{color:#8F5E34; font-size:14px;}
+.descriptionDiv{background: white; border:1px solid #59412B; padding:10px; color:#59412B; width:400px;}
+.todayDateLarge{float:left; width:65px; height:81px; background:transparent url(../images/largeDateBg.jpg)}
+.todayDateLarge div.todayMonth{color:White; width:65px; text-align:center; font-weight:bold; font-size:12px; padding-top:3px;}
+
+.todayDateLarge div.todayDate{color:#2E1805; width:65px; text-align:center; font-size:40px; padding-top:7px;}
+.todayHolidaysLarge{float:left; padding-left:10px;}
+.todayHoliday{color:#533A23; text-decoration:underline; cursor:pointer;}
+.todayHolidaysLarge a.todayHoliday{ font-size:14px;}
+/*-------------------------------------------------------*/

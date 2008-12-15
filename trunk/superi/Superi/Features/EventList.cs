@@ -36,9 +36,9 @@ namespace Superi.Features
             if (EndDateTo != null)
                 pList.Add(new AppDbParameter("enddateto", EndDateTo));
 
-            DbDataReader dr = AppData.ExecStoredProcedure("Events_Get", null);
-            if (dr != null && dr.HasRows)
-                Load(dr);
+            DataSet ds = AppData.ExecDataSet("Events_Get", null);
+            if (ds.Tables.Count>0)
+                Load(ds.Tables[0]);
         }
 
         public EventList(DataTable dt)

@@ -6,17 +6,24 @@
         <div id="monthFrame">
             <div id="monthLeft">
                 <div id="monthLeftTop">
-                    <div id="monthTitle">
-                        октябрь
-                    </div>   
-                    <div id="monthDays">
-                        <od:CalendarMonth ID="CalendarMonth1" runat="server" Month="10" />
-                    </div>             
+                    <asp:UpdatePanel runat="server">
+                        <ContentTemplate>
+                            <od:CalendarMonth ID="cmMonth" runat="server"/>
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
                 </div>
                 <div id="monthLeftBottom">
-                    <od:ThisDay runat="server" Mode="Large" />
+                    <asp:UpdatePanel runat="server">
+                        <ContentTemplate>
+                            <od:ThisDay runat="server" Mode="Large" ID="tdHolidays" />
+                        </ContentTemplate>
+                        <Triggers>
+                            <asp:AsyncPostBackTrigger ControlID="cmMonth" EventName="DateChanged" />
+                        </Triggers>
+                    </asp:UpdatePanel>
                 </div>
             </div>
+            
             <div id="monthRight">
             
             </div>

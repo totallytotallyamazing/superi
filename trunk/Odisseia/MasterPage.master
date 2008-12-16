@@ -6,9 +6,11 @@
 <head runat="server">
     <link rel="Stylesheet" href="css/global.css" />
     <title></title>
+    <script type="text/javascript" src="js/master.js"></script>
 </head>
 <body>
     <form id="form1" runat="server">
+    <asp:ScriptManager runat="server" ID="smMain" EnablePartialRendering="true"></asp:ScriptManager>
     <map name="homeMailMap">
         <area shape="rect" coords="0,0,14,14" alt="На главную" title="На главную" href="#"/>
         <area shape="rect" coords="26,4,44,14" alt="Написать" title="Написать" href="mailto:mail" />

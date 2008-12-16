@@ -7,6 +7,15 @@ using System.Collections;
 
 public partial class Controls_CalendarMonth : System.Web.UI.UserControl
 {
+    public delegate void DateChangedEventHandler(object sender, EventArgs e);
+    public event DateChangedEventHandler DateChanged;
+
+    protected virtual void OnDateChanged(EventArgs e)
+    {
+        if (DateChanged != null)
+            DateChanged(this, e);
+    }
+
     public DateTime SelectedDate
     {
         get
@@ -42,6 +51,11 @@ public partial class Controls_CalendarMonth : System.Web.UI.UserControl
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        PublishCalendar();
+    }
+
+    private void PublishCalendar()
+    {
         rMonday.DataSource = GenerateWeek(1);
         rMonday.DataBind();
         rTuesday.DataSource = GenerateWeek(2);
@@ -56,21 +70,31 @@ public partial class Controls_CalendarMonth : System.Web.UI.UserControl
         rSaturday.DataBind();
         rSunday.DataSource = GenerateWeek(7);
         rSunday.DataBind();
+        lMonth.Text = GetMonthName(Month);
     }
 
     protected void rWednesday_ItemDataBound(object sender, RepeaterItemEventArgs e)
     {
         if (e.Item.DataItem != null)
         {
-            HyperLink hlDay = (HyperLink)e.Item.FindControl("hlDay");
+            LinkButton lbDay = (LinkButton)e.Item.FindControl("lbDay");
             PlaceHolder phSelectedDate = (PlaceHolder)e.Item.FindControl("phSelectedDate");
             int day = (int)e.Item.DataItem;
-            if (SelectedDate.Day == day)
+            if (SelectedDate.Day == day && SelectedDate.Month == Month)
                 phSelectedDate.Visible = true;
-            hlDay.Text = day.ToString();
-            hlDay.NavigateUrl = "#";
+            lbDay.Text = day.ToString();
+            lbDay.CommandArgument = day.ToString();
+            lbDay.Click += new EventHandler(lbDay_Click);
         }
         
+    }
+
+    void lbDay_Click(object sender, EventArgs e)
+    {
+        LinkButton lbDay = (LinkButton) sender;
+        SelectedDate = new DateTime(Year, Month, Convert.ToInt32(lbDay.CommandArgument));
+        PublishCalendar();
+        OnDateChanged(e);
     }
 
     private ArrayList GenerateWeek(int DayNumber)
@@ -87,5 +111,38 @@ public partial class Controls_CalendarMonth : System.Web.UI.UserControl
             firstDay = firstDay.AddDays(7);
         }
         return result;
+    }
+
+    private string GetMonthName(int Month)
+    {
+        switch (Month)
+        {
+            case 1:
+                return "январь";
+            case 2:
+                return "февраль";
+            case 3:
+                return "март";
+            case 4:
+                return "апрель";
+            case 5:
+                return "май";
+            case 6:
+                return "июнь";
+            case 7:
+                return "июль";
+            case 8:
+                return "август";
+            case 9:
+                return "сентябрь";
+            case 10:
+                return "октябрь";
+            case 11:
+                return "ноябрь";
+            case 12:
+                return "декабрь";
+            default:
+                return string.Empty;
+        }
     }
 }

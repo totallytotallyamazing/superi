@@ -58,7 +58,19 @@ body{background:black;}
 
 .selectedDate{background:transparent url(../images/today.png) no-repeat; height:48px; left:-3px; position:relative; top:-38px; width:49px;}
 .todayDay{color:#8F5E34; font-size:14px;}
-.descriptionDiv{background: white; border:1px solid #59412B; padding:10px; color:#59412B; width:400px;}
+.descriptionDiv
+{
+    background: white; 
+    border:1px solid #59412B; 
+    padding:10px; 
+    color:#59412B; 
+    width:400px;
+    filter:alpha(opacity=0);
+	-moz-opacity:0;
+	-khtml-opacity: 0;
+	opacity: 0;
+	position:absolute;
+   }
 .todayDateLarge{float:left; width:65px; height:81px; background:transparent url(../images/largeDateBg.jpg)}
 .todayDateLarge div.todayMonth{color:White; width:65px; text-align:center; font-weight:bold; font-size:12px; padding-top:3px;}
 

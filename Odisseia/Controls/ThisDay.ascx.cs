@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using OboutInc.Flyout2;
+using System.Web.UI.HtmlControls;
 using Superi.Features;
 
 public enum DayDisplayMode { Large, Small }
@@ -97,9 +97,12 @@ public partial class Controls_ThisDay : System.Web.UI.UserControl
 
     protected void rHolidays_ItemDataBound(object sender, RepeaterItemEventArgs e)
     {
-        Flyout fDescription = (Flyout)e.Item.FindControl("fDescription");
-        Literal lDescription = (Literal)fDescription.FindControl("lDescription");
+        Literal lDescription = (Literal)e.Item.FindControl("lDescription");
+        HtmlGenericControl divDescription = (HtmlGenericControl)e.Item.FindControl("divDescription");
         HyperLink hlHoliday = (HyperLink)e.Item.FindControl("hlHoliday");
+        hlHoliday.Attributes.Add("onclick", "showDescription('" + divDescription.ClientID + "', this)");
+        hlHoliday.Attributes.Add("onmouseover", "descriptionMouseOver()");
+        hlHoliday.Attributes.Add("onmouseout", "descriptionMouseOut('" + divDescription.ClientID + "')");
         Event holiday = (Event)e.Item.DataItem;
         hlHoliday.Text = holiday.Name;
         lDescription.Text = holiday.Description;

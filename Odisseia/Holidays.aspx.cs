@@ -8,6 +8,11 @@ public partial class Holidays : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        cmMonth.DateChanged+=new Controls_CalendarMonth.DateChangedEventHandler(cmMonth_DateChanged);
+    }
 
+    void cmMonth_DateChanged(object sender, EventArgs e)
+    {
+        tdHolidays.Date = cmMonth.SelectedDate;
     }
 }

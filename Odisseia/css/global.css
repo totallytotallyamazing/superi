@@ -51,13 +51,13 @@ body{background:black;}
 .weekend a{color:#C56669; text-decoration:none;}
 .weekend{color:#C56669;}
 #monthLeft, #monthRight{float:left; margin-top:40px;}
+#monthRight{width:240px;}
 #monthLeft{width:245px; border-right: 2px solid #BAB6B4;}
 #monthTitle{width:100%; height:40px; text-align:center; padding-top:10px; color:#4A2F17; font-weight:bold; font-size:18px;}
 #monthLeftBottom{width:100%; height:110px; float:left; padding:20px 0 0 10px;}
 #monthLeftTop{float:left; border-bottom:2px solid #BAB6B4; width:100%;}
 
-.selectedDate{background:transparent url(../images/today.png) no-repeat; height:48px; left:-3px; position:relative; top:-38px; width:49px;}
-.todayDay{color:#8F5E34; font-size:14px;}
+.selectedDate{background:transparent url(../images/today.png) no-repeat; height:48px;/* margin-left:-3px;margin-top:-38px; */position:absolute; float:left; clear:both;  width:49px;}
 .descriptionDiv
 {
     background: white; 
@@ -70,12 +70,32 @@ body{background:black;}
 	-khtml-opacity: 0;
 	opacity: 0;
 	position:absolute;
+	font-size:14px;
    }
-.todayDateLarge{float:left; width:65px; height:81px; background:transparent url(../images/largeDateBg.jpg)}
+.todayDateLarge{float:left; width:65px; height:81px; background:transparent url(../images/largeDateBg.jpg) no-repeat;}
 .todayDateLarge div.todayMonth{color:White; width:65px; text-align:center; font-weight:bold; font-size:12px; padding-top:3px;}
-
 .todayDateLarge div.todayDate{color:#2E1805; width:65px; text-align:center; font-size:40px; padding-top:7px;}
 .todayHolidaysLarge{float:left; padding-left:10px;}
 .todayHoliday{color:#533A23; text-decoration:underline; cursor:pointer;}
 .todayHolidaysLarge a.todayHoliday{ font-size:14px;}
+
+.todayDateSmall
+{
+    float:left; 
+    width:48px; 
+    height:54px; 
+    background:transparent url(../images/smallDateBg.jpg) no-repeat; 
+    padding-right:20px;
+    border-right:2px solid #BAB6B4;
+}
+.todayDateSmall div.todayMonth{color:White; width:48px; text-align:center; font-weight:bold; font-size:10px; padding-top:1px;}
+.todayDateSmall div.todayDate{color:#2E1805; width:48px; text-align:center; font-size:29px; padding-top:2px;}
+
+.todayHolidaysSmall{float:left; padding-left:20px; width:80px;}
+.todayHolidaysSmall{font-size:10px;}
+.todayHolidaysSmall div.holidaysContainer{font-size:0px;}
+.todayHolidaysSmall a.todayHoliday{ font-size:10px; line-height:12px;}
+.todayDay{color:#8F5E34; font-size:16px; float:left; width:40px; padding-top:17px; padding-right:10px; font-weight:bold;}
+
+.weekDay{padding:0 0 10px 20px; float:left;}
 /*-------------------------------------------------------*/

@@ -50,6 +50,11 @@ public partial class Controls_ThisDay : System.Web.UI.UserControl
                 pDate.CssClass = "todayDateLarge";
                 pHolidays.CssClass = "todayHolidaysLarge";
                 break;
+            case DayDisplayMode.Small:
+                pDay.Visible = true;
+                pDate.CssClass = "todayDateSmall";
+                pHolidays.CssClass = "todayHolidaysSmall";
+                break;
         }
 
         lDay.Text = GetDayName(Date);

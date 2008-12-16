@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.50727</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{7ABBF7DB-4EFA-43B7-ADDF-B7F8B1E8078C}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -49,9 +49,9 @@
     <Compile Include="Common\AppDbParameter.cs" />
     <Compile Include="Common\AppData1.cs" />
     <Compile Include="Common\ParameterList.cs" />
-    <Compile Include="CustomControls\GalleryUpload.cs" />
-    <Compile Include="CustomControls\ResourceEditor.cs" />
-    <Compile Include="CustomControls\Scroll.cs" />
+    <Compile Include="Features\CustomControls\GalleryUpload.cs" />
+    <Compile Include="Features\CustomControls\ResourceEditor.cs" />
+    <Compile Include="Features\CustomControls\Scroll.cs" />
     <Compile Include="Features\Album.cs" />
     <Compile Include="Features\AlbumList.cs" />
     <Compile Include="Features\Albums.cs" />

@@ -14,5 +14,6 @@ public partial class Holidays : System.Web.UI.Page
     void cmMonth_DateChanged(object sender, EventArgs e)
     {
         tdHolidays.Date = cmMonth.SelectedDate;
+        weWeek.CurrentDate = cmMonth.SelectedDate;
     }
 }

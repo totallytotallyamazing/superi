@@ -60,7 +60,7 @@
     <asp:Repeater runat="server" ID="rHolidays" 
         onitemdatabound="rHolidays_ItemDataBound">
         <ItemTemplate>
-            <div>
+            <div class="holidaysContainer">
                 <asp:HyperLink runat="server" ID="hlHoliday" CssClass="todayHoliday"></asp:HyperLink>
                 <div class="descriptionDiv" style="display:none;" runat="server" id="divDescription" onmouseout="descriptionMouseOut(this.id)" onmouseover="descriptionMouseOver()">
                     <asp:Literal runat="server" ID="lDescription"></asp:Literal>

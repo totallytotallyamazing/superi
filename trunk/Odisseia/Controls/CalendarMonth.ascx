@@ -12,7 +12,7 @@
                 <div class="day">
                     <asp:LinkButton runat="server" CssClass="dayLink" ID="lbDay"></asp:LinkButton>
                     <asp:PlaceHolder ID="phSelectedDate" runat="server" Visible="false">
-                        <div class="selectedDate"></div>
+                       <br /> <div class="selectedDate"></div>
                     </asp:PlaceHolder>
                 </div>
             </ItemTemplate>
@@ -27,7 +27,7 @@
                 <div class="day">
                     <asp:LinkButton runat="server" CssClass="dayLink" ID="lbDay"></asp:LinkButton>
                     <asp:PlaceHolder ID="phSelectedDate" runat="server" Visible="false">
-                        <div class="selectedDate"></div>
+                        <br /><div class="selectedDate"></div>
                     </asp:PlaceHolder>
                 </div>
             </ItemTemplate>
@@ -42,7 +42,7 @@
                 <div class="day">
                     <asp:LinkButton runat="server" CssClass="dayLink" ID="lbDay"></asp:LinkButton>
                     <asp:PlaceHolder ID="phSelectedDate" runat="server" Visible="false">
-                        <div class="selectedDate"></div>
+                      <br />  <div class="selectedDate"></div>
                     </asp:PlaceHolder>
                 </div>
             </ItemTemplate>
@@ -57,7 +57,7 @@
                 <div class="day">
                     <asp:LinkButton runat="server" CssClass="dayLink" ID="lbDay"></asp:LinkButton>
                     <asp:PlaceHolder ID="phSelectedDate" runat="server" Visible="false">
-                        <div class="selectedDate"></div>
+                       <br /> <div class="selectedDate"></div>
                     </asp:PlaceHolder>
                 </div>
             </ItemTemplate>
@@ -72,7 +72,7 @@
                 <div class="day">
                     <asp:LinkButton runat="server" CssClass="dayLink" ID="lbDay"></asp:LinkButton>
                     <asp:PlaceHolder ID="phSelectedDate" runat="server" Visible="false">
-                        <div class="selectedDate"></div>
+                      <br />  <div class="selectedDate"></div>
                     </asp:PlaceHolder>
                 </div>
             </ItemTemplate>
@@ -87,7 +87,7 @@
                 <div class="day weekend">
                     <asp:LinkButton runat="server" CssClass="dayLink" ID="lbDay"></asp:LinkButton>
                     <asp:PlaceHolder ID="phSelectedDate" runat="server" Visible="false">
-                        <div class="selectedDate"></div>
+                      <br />  <div class="selectedDate"></div>
                     </asp:PlaceHolder>
                 </div>
             </ItemTemplate>
@@ -102,7 +102,7 @@
                 <div class="day weekend">
                     <asp:LinkButton runat="server" CssClass="dayLink" ID="lbDay"></asp:LinkButton>
                     <asp:PlaceHolder ID="phSelectedDate" runat="server" Visible="false">
-                        <div class="selectedDate"></div>
+                        <br /><div class="selectedDate"></div>
                     </asp:PlaceHolder>
                 </div>
             </ItemTemplate>

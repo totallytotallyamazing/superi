@@ -35,7 +35,11 @@ public partial class Controls_CalendarMonth : System.Web.UI.UserControl
                 return DateTime.Today.Year;
             return Convert.ToInt32(ViewState["year"]);
         }
-        set { ViewState["year"] = value; }
+        set 
+        { 
+            ViewState["year"] = value;
+            OnDateChanged(new EventArgs());
+        }
     }
 
     public int Month

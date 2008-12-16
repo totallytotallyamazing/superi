@@ -36,7 +36,7 @@ namespace Superi.Features
             if (EndDateTo != null)
                 pList.Add(new AppDbParameter("enddateto", EndDateTo));
 
-            DataSet ds = AppData.ExecDataSet("Events_Get", null);
+            DataSet ds = AppData.ExecDataSet("Events_Get", pList);
             if (ds.Tables.Count>0)
                 Load(ds.Tables[0]);
         }

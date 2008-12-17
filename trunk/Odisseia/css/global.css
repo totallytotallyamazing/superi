@@ -1,4 +1,5 @@
 ﻿*{margin:0px; padding:0px; border:none; font-family:Arial;}
+.fixPng{behavior: url(iepngfix.htc);}
 body{background:black;}
 /*#main{width:1149px; float:left; position:absolute; left:50%; margin-left:-576px; background:transparent url(../images/maintop.jpg) no-repeat;}*/
 #main{width:1149px; position:relative; margin:0 auto;}
@@ -44,7 +45,7 @@ body{background:black;}
 
 /*----------------- Holidays---------------------------*/
 #calendarContent{ width:100%; float:left; padding-left:50px;}
-#monthFrame{width:662px; height:650px; background:transparent url(../images/calendar.jpg) no-repeat; padding:60px 0 0 70px;}
+#monthFrame{width:592px; height:590px; float:left; background:transparent url(../images/calendar.jpg) no-repeat; padding:60px 0 0 70px;}
 .day{float:left; width:40px; height:40px; text-align:center; font-size:24px; color:#666666;}
 .week{float:left; clear:both; width:100%;}
 .day a{ color:#666666; text-decoration:none;}
@@ -57,7 +58,18 @@ body{background:black;}
 #monthLeftBottom{width:100%; height:110px; float:left; padding:20px 0 0 10px;}
 #monthLeftTop{float:left; border-bottom:2px solid #BAB6B4; width:100%;}
 
-.selectedDate{background:transparent url(../images/today.png) no-repeat; height:48px; margin-left:-3px;margin-top:-38px; position:absolute; float:left; clear:both;  width:49px;}
+.selectedDate
+{
+    background:transparent url(../images/today.png) no-repeat; 
+    height:48px; 
+    margin-left:-13px;
+    margin-top:-10px; 
+    position:absolute; 
+    display:inline;
+    float:left; 
+    clear:both;  
+    width:49px;
+}
 .descriptionDiv
 {
     background: white; 
@@ -88,7 +100,7 @@ body{background:black;}
     padding-right:20px;
     border-right:2px solid #BAB6B4;
 }
-.todayDateSmall div.todayMonth{color:White; width:48px; text-align:center; font-weight:bold; font-size:10px; padding-top:1px;}
+.todayDateSmall div.todayMonth{color:White; width:48px; text-align:center; font-weight:bold; font-size:9px; padding-top:1px;}
 .todayDateSmall div.todayDate{color:#2E1805; width:48px; text-align:center; font-size:29px; padding-top:2px;}
 
 .todayHolidaysSmall{float:left; padding-left:20px; width:80px;}
@@ -98,4 +110,11 @@ body{background:black;}
 .todayDay{color:#8F5E34; font-size:16px; float:left; width:40px; padding-top:17px; padding-right:10px; font-weight:bold;}
 
 .weekDay{padding:0 0 10px 20px; float:left;}
+
+#calendarSplitter{float:left; margin:130px 25px; width:1px; height:390px; background:black;}
+#calendarMonthList{float:left; width:263px; height:555px; padding-top:95px; padding-left:100px; background:transparent url(../images/monthListBg.jpg) no-repeat;}
+
+.monthListItemContainer{width:144px; text-align:center; float:left; clear:both; padding-bottom:20px;}
+.selectedMonth{behavior: url(iepngfix.htc); background:transparent url(../images/monthSelected.png) no-repeat;}
+.monthListItem{text-transform:uppercase; color:#4A2F17; font-size:16px; text-decoration:none; font-weight:bold;}
 /*-------------------------------------------------------*/

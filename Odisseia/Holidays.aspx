@@ -2,6 +2,7 @@
 <%@ Register TagPrefix="od" TagName="CalendarMonth" Src="~/Controls/CalendarMonth.ascx" %>
 <%@ Register TagPrefix="od" TagName="ThisDay" Src="~/Controls/ThisDay.ascx" %>
 <%@ Register TagPrefix="od" TagName="WeekEvents" Src="~/Controls/WeekEvents.ascx" %>
+<%@ Register TagPrefix="od" TagName="MonthList" Src="~/Controls/MonthList.ascx" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <div id="calendarContent">
         <div id="monthFrame">
@@ -24,7 +25,6 @@
                     </asp:UpdatePanel>
                 </div>
             </div>
-            
             <div id="monthRight">
                 <asp:UpdatePanel runat="server">
                     <ContentTemplate>
@@ -35,6 +35,16 @@
                     </Triggers>
                 </asp:UpdatePanel>
             </div>
+        </div>
+        <div id="calendarSplitter">
+            
+        </div>
+        <div id="calendarMonthList">
+            <asp:UpdatePanel runat="server">
+                <ContentTemplate>
+                    <od:MonthList runat="server" ID="mlMonthes" />
+                </ContentTemplate>
+            </asp:UpdatePanel>
         </div>
     </div>
 </asp:Content>

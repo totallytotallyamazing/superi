@@ -10,10 +10,10 @@
         <asp:Repeater runat="server" ID="rMonday" onitemdatabound="rWednesday_ItemDataBound">
             <ItemTemplate>
                 <div class="day">
-                    <asp:LinkButton runat="server" CssClass="dayLink" ID="lbDay"></asp:LinkButton>
                     <asp:PlaceHolder ID="phSelectedDate" runat="server" Visible="false">
-                       <br /> <div class="selectedDate"></div>
+                      <div class="selectedDate fixPng"></div>
                     </asp:PlaceHolder>
+                    <asp:LinkButton runat="server" CssClass="dayLink" ID="lbDay"></asp:LinkButton>
                 </div>
             </ItemTemplate>
         </asp:Repeater>
@@ -25,10 +25,10 @@
         <asp:Repeater runat="server" ID="rTuesday" onitemdatabound="rWednesday_ItemDataBound">
                 <ItemTemplate>
                 <div class="day">
-                    <asp:LinkButton runat="server" CssClass="dayLink" ID="lbDay"></asp:LinkButton>
                     <asp:PlaceHolder ID="phSelectedDate" runat="server" Visible="false">
-                        <br /><div class="selectedDate"></div>
+                      <div class="selectedDate fixPng"></div>
                     </asp:PlaceHolder>
+                    <asp:LinkButton runat="server" CssClass="dayLink" ID="lbDay"></asp:LinkButton>
                 </div>
             </ItemTemplate>
         </asp:Repeater>
@@ -38,12 +38,12 @@
             С
         </div>
         <asp:Repeater runat="server" ID="rWednesday" onitemdatabound="rWednesday_ItemDataBound">
-                <ItemTemplate>
+            <ItemTemplate>
                 <div class="day">
-                    <asp:LinkButton runat="server" CssClass="dayLink" ID="lbDay"></asp:LinkButton>
                     <asp:PlaceHolder ID="phSelectedDate" runat="server" Visible="false">
-                      <br />  <div class="selectedDate"></div>
+                      <div class="selectedDate fixPng"></div>
                     </asp:PlaceHolder>
+                    <asp:LinkButton runat="server" CssClass="dayLink" ID="lbDay"></asp:LinkButton>
                 </div>
             </ItemTemplate>
         </asp:Repeater>
@@ -55,10 +55,10 @@
         <asp:Repeater runat="server" ID="rThursday" onitemdatabound="rWednesday_ItemDataBound">
                 <ItemTemplate>
                 <div class="day">
-                    <asp:LinkButton runat="server" CssClass="dayLink" ID="lbDay"></asp:LinkButton>
                     <asp:PlaceHolder ID="phSelectedDate" runat="server" Visible="false">
-                       <br /> <div class="selectedDate"></div>
+                       <div class="selectedDate fixPng"></div>
                     </asp:PlaceHolder>
+                    <asp:LinkButton runat="server" CssClass="dayLink" ID="lbDay"></asp:LinkButton>
                 </div>
             </ItemTemplate>
         </asp:Repeater>
@@ -70,10 +70,10 @@
         <asp:Repeater runat="server" ID="rFriday" onitemdatabound="rWednesday_ItemDataBound">
                 <ItemTemplate>
                 <div class="day">
-                    <asp:LinkButton runat="server" CssClass="dayLink" ID="lbDay"></asp:LinkButton>
                     <asp:PlaceHolder ID="phSelectedDate" runat="server" Visible="false">
-                      <br />  <div class="selectedDate"></div>
+                      <div class="selectedDate fixPng"></div>
                     </asp:PlaceHolder>
+                    <asp:LinkButton runat="server" CssClass="dayLink" ID="lbDay"></asp:LinkButton>
                 </div>
             </ItemTemplate>
         </asp:Repeater>
@@ -85,10 +85,10 @@
         <asp:Repeater runat="server" ID="rSaturday" onitemdatabound="rWednesday_ItemDataBound">
                 <ItemTemplate>
                 <div class="day weekend">
-                    <asp:LinkButton runat="server" CssClass="dayLink" ID="lbDay"></asp:LinkButton>
                     <asp:PlaceHolder ID="phSelectedDate" runat="server" Visible="false">
-                      <br />  <div class="selectedDate"></div>
+                      <div class="selectedDate fixPng"></div>
                     </asp:PlaceHolder>
+                    <asp:LinkButton runat="server" CssClass="dayLink" ID="lbDay"></asp:LinkButton>
                 </div>
             </ItemTemplate>
         </asp:Repeater>
@@ -100,10 +100,10 @@
         <asp:Repeater runat="server" ID="rSunday" onitemdatabound="rWednesday_ItemDataBound">
                 <ItemTemplate>
                 <div class="day weekend">
-                    <asp:LinkButton runat="server" CssClass="dayLink" ID="lbDay"></asp:LinkButton>
                     <asp:PlaceHolder ID="phSelectedDate" runat="server" Visible="false">
-                        <br /><div class="selectedDate"></div>
+                        <div class="selectedDate fixPng"></div>
                     </asp:PlaceHolder>
+                    <asp:LinkButton runat="server" CssClass="dayLink" ID="lbDay"></asp:LinkButton>
                 </div>
             </ItemTemplate>
         </asp:Repeater>

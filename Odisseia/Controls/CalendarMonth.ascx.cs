@@ -58,7 +58,7 @@ public partial class Controls_CalendarMonth : System.Web.UI.UserControl
         PublishCalendar();
     }
 
-    private void PublishCalendar()
+    public void PublishCalendar()
     {
         rMonday.DataSource = GenerateWeek(1);
         rMonday.DataBind();
@@ -74,7 +74,7 @@ public partial class Controls_CalendarMonth : System.Web.UI.UserControl
         rSaturday.DataBind();
         rSunday.DataSource = GenerateWeek(7);
         rSunday.DataBind();
-        lMonth.Text = GetMonthName(Month);
+        lMonth.Text = CommonTools.GetMonthName(Month, true);
     }
 
     protected void rWednesday_ItemDataBound(object sender, RepeaterItemEventArgs e)
@@ -115,38 +115,5 @@ public partial class Controls_CalendarMonth : System.Web.UI.UserControl
             firstDay = firstDay.AddDays(7);
         }
         return result;
-    }
-
-    private string GetMonthName(int Month)
-    {
-        switch (Month)
-        {
-            case 1:
-                return "январь";
-            case 2:
-                return "февраль";
-            case 3:
-                return "март";
-            case 4:
-                return "апрель";
-            case 5:
-                return "май";
-            case 6:
-                return "июнь";
-            case 7:
-                return "июль";
-            case 8:
-                return "август";
-            case 9:
-                return "сентябрь";
-            case 10:
-                return "октябрь";
-            case 11:
-                return "ноябрь";
-            case 12:
-                return "декабрь";
-            default:
-                return string.Empty;
-        }
     }
 }

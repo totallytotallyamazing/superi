@@ -58,46 +58,13 @@ public partial class Controls_ThisDay : System.Web.UI.UserControl
         }
 
         lDay.Text = GetDayName(Date);
-        lMonth.Text = GetMonthName(Date);
+        lMonth.Text = CommonTools.GetMonthName(Date.Month, false);
         lDate.Text = Date.Day.ToString();
         DateTime startDateFrom = new DateTime(1900, Date.Month, Date.Day, 0, 0, 0);
         DateTime startDateTo = new DateTime(1900, Date.Month, Date.Day, 23, 59, 59);
         EventList holdays = new EventList(null, null, null, startDateFrom, startDateTo, null, null);
         rHolidays.DataSource = holdays;
         rHolidays.DataBind();
-    }
-
-    private string GetMonthName(DateTime Date)
-    {
-        switch (Date.Month)
-        { 
-            case 1:
-                return "января";
-            case 2:
-                return "февраля";
-            case 3:
-                return "марта";
-            case 4:
-                return "апреля";
-            case 5:
-                return "мая";
-            case 6:
-                return "июня";
-            case 7:
-                return "июля";
-            case 8:
-                return "августа";
-            case 9:
-                return "сентября";
-            case 10:
-                return "октября";
-            case 11:
-                return "ноября";
-            case 12:
-                return "декабря";
-            default:
-                return string.Empty;
-        }
     }
 
     protected void rHolidays_ItemDataBound(object sender, RepeaterItemEventArgs e)

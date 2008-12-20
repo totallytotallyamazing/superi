@@ -7,6 +7,8 @@
     <link rel="Stylesheet" href="css/global.css" />
     <title></title>
     <script type="text/javascript" src="js/master.js"></script>
+    <asp:ContentPlaceHolder ID="titlePlaceHolder" runat="server">
+    </asp:ContentPlaceHolder>
 </head>
 <body>
     <form id="form1" runat="server">

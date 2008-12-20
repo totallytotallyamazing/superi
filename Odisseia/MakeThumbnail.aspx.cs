@@ -93,6 +93,16 @@ public partial class MakeThumbnail : Page
         }
     }
 
+    private Color Background
+    {
+        get 
+        {
+            if (!string.IsNullOrEmpty(Request.QueryString["bg"]))
+                return System.Drawing.ColorTranslator.FromHtml(Request.QueryString["bg"]);
+            return Color.Black;
+        }
+    }
+
     private bool KeepProportions
     {
         get { return string.IsNullOrEmpty(Request.QueryString["kp"]); }
@@ -143,6 +153,8 @@ public partial class MakeThumbnail : Page
     {
         Bitmap thumbnailImage = new Bitmap(Width, Height);
         Graphics graphics = Graphics.FromImage(thumbnailImage);
+
+        graphics.FillRectangle(new SolidBrush(Background), 0, 0, Width, Height);
         graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
         int sourceWidth;
         int sourceHeight;
@@ -256,6 +268,7 @@ public partial class MakeThumbnail : Page
             width = height = MaxDimension;
         Bitmap thumbnailImage = new Bitmap(width, height);
         Graphics graphics = Graphics.FromImage(thumbnailImage);
+        graphics.FillRectangle(new SolidBrush(Background), 0, 0, width, height);
         graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
         graphics.DrawImage(image, 0, 0, thumbnailImage.Width, thumbnailImage.Height);
         return thumbnailImage;

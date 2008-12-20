@@ -105,7 +105,7 @@ public partial class MakeThumbnail : Page
 
     private bool KeepProportions
     {
-        get { return string.IsNullOrEmpty(Request.QueryString["kp"]); }
+        get { return !string.IsNullOrEmpty(Request.QueryString["kp"]); }
     }
     
     protected void Page_Load(object sender, EventArgs e)

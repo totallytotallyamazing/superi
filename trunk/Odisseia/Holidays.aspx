@@ -3,6 +3,11 @@
 <%@ Register TagPrefix="od" TagName="ThisDay" Src="~/Controls/ThisDay.ascx" %>
 <%@ Register TagPrefix="od" TagName="WeekEvents" Src="~/Controls/WeekEvents.ascx" %>
 <%@ Register TagPrefix="od" TagName="MonthList" Src="~/Controls/MonthList.ascx" %>
+
+<asp:Content ID="titleContent" ContentPlaceHolderID="titlePlaceHolder" runat="server">
+    <link rel="Stylesheet" href="css/calendar.css" />
+</asp:Content>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <div id="calendarContent">
         <div id="monthFrame">

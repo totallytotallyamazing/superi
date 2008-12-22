@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="ProductDetails.aspx.cs" Inherits="ProductDetails" %>
-
+<%@ Register TagPrefix="od" TagName="Vouchers" Src="~/Controls/Vouchers.ascx" %>
 
 <asp:Content ID="titleContent" ContentPlaceHolderID="titlePlaceHolder" runat="server">
     <link rel="Stylesheet" href="css/productDescription.css" />
@@ -12,7 +12,7 @@
                 <div id="logo">
                     <asp:Image runat="server" ID="iLogo" />
                 </div>
-                <div id="comments">
+                <div id="comments" class="fixPng">
                     
                 </div>
             </div>
@@ -21,7 +21,7 @@
             </div>
         </div>
         <div id="vouchers">
-        
+            <od:Vouchers runat="server" ID="vVouchers" />
         </div>
         <div id="customDescription">
             <asp:Literal runat="server" ID="lShortDescription"></asp:Literal>

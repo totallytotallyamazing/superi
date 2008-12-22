@@ -1,2 +1,21 @@
-﻿body {
+﻿#detailsContainer{padding-left:55px; padding-top:20px; float:left;}
+#logo
+{
+	background:transparent url(../images/logoFrame.jpg) no-repeat; 
+	width:195px; 
+	height:130px; 
+	padding:47px 0 0 50px; 
+	float:left;
+	border-right:2px solid #9E7F4E;
 }
+
+#description{float:left; padding-left:30px; width:750px;}
+#tradeMarkPropertues{float:left; clear:both;}
+#vouchers {float:left; clear:both; width:1000px; padding-left:15px;}
+#commentsAndLogo{float:left;}
+#customDescription{float:left; clear:both; color:White; padding-top:20px; width:1000px;}
+#additionalProperties{clear:both; float:left; color:White; width:1000px;}
+.voucher{float:left; width:210px; height:130px; margin-top:20px;}
+.voucherSeparator{margin: 30px 25px 0; float:left; height:106px; width:2px; background: #FFD79C;}
+.orderButton{margin:109px 0 0 60px;}
+#comments{}

@@ -30,5 +30,7 @@ public partial class ProductDetails : System.Web.UI.Page
         lRecipient.Text = tradeMark.Recipients;
         lOccasion.Text = tradeMark.Ocasions;
         lEventSuggestion.Text = tradeMark.EventSuggestion;
+        vVouchers.TradeMarkId = TradeMarkId;
+        
     }
 }

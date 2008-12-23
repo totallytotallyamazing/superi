@@ -49,9 +49,6 @@
     <Compile Include="Common\AppDbParameter.cs" />
     <Compile Include="Common\AppData1.cs" />
     <Compile Include="Common\ParameterList.cs" />
-    <Compile Include="Features\CustomControls\GalleryUpload.cs" />
-    <Compile Include="Features\CustomControls\ResourceEditor.cs" />
-    <Compile Include="Features\CustomControls\Scroll.cs" />
     <Compile Include="Features\Album.cs" />
     <Compile Include="Features\AlbumList.cs" />
     <Compile Include="Features\Albums.cs" />

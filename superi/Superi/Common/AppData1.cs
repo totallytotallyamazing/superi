@@ -24,6 +24,7 @@ namespace Superi.Common
 		public static DbDataReader ExecQuery(string SQL)
 		{
 			OdbcConnection _conn = null;
+
 			if (HttpContext.Current.Application["_conn"] == null)
 			{
 				string cs = ConnectionString;

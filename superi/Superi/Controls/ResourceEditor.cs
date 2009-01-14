@@ -9,7 +9,7 @@ using Superi.Features;
 /// <summary>
 /// Summary description for ResourceEditor
 /// </summary>
-namespace CustomControls
+namespace Superi.CustomControls
 {
     /// <summary>
     /// Possible input types for the resource editor

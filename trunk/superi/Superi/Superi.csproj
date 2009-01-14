@@ -39,7 +39,7 @@
   <ItemGroup>
     <Reference Include="FredCK.FCKeditorV2, Version=2.2.2106.29420, Culture=neutral, PublicKeyToken=4f86767c9b519a06">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\FredCK.FCKeditorV2.dll</HintPath>
+      <HintPath>Resources\FredCK.FCKeditorV2.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
@@ -53,6 +53,7 @@
     <Compile Include="Common\AppDbParameter.cs" />
     <Compile Include="Common\AppData1.cs" />
     <Compile Include="Common\ParameterList.cs" />
+    <Compile Include="Controls\ResourceEditor.cs" />
     <Compile Include="Features\Album.cs" />
     <Compile Include="Features\AlbumList.cs" />
     <Compile Include="Features\Albums.cs" />
@@ -123,9 +124,6 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\scroll.js" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controls\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

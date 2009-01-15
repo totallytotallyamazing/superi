@@ -152,4 +152,38 @@ function changeOpac(opacity, id) {
     object.MozOpacity = (opacity / 100);
     object.KhtmlOpacity = (opacity / 100);
     object.filter = "alpha(opacity=" + opacity + ")";
-} 
+}
+
+function scrollSize() {
+    var scroll_ = { w: 0, h: 0 };
+    if (document.body && (document.body.scrollTop || document.body.scrollLeft) && !(window.debug || navigator.vendor == 'KDE')) {
+        scroll_.w = document.body.scrollLeft;
+        scroll_.h = document.body.scrollTop;
+    }
+    else
+        if (document.documentElement && (document.documentElement.scrollTop || document.documentElement.scrollLeft) && !(window.debug || navigator.vendor == 'KDE')) {
+        scroll_.w = document.documentElement.scrollLeft;
+        scroll_.h = document.documentElement.scrollTop;
+    }
+    return scroll_;
+}
+
+function visibleAreaSize() {
+
+    var size = { w: 0, h: 0 };
+    if (window.innerWidth && window.innerHeight) {
+        size.w = window.innerWidth;
+        size.h = window.innerHeight;
+    }
+    else
+        if (document.documentElement && document.documentElement.clientWidth && document.documentElement.clientHeight) {
+        size.w = document.documentElement.clientWidth;
+        size.h = document.documentElement.clientHeight;
+    }
+    else
+        if (document.body && document.body.clientWidth && document.body.clientHeight) {
+        size.w = document.body.clientWidth;
+        size.h = document.body.clientHeight;
+    }
+    return size;
+}

@@ -2,29 +2,71 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" id="htmlElement">
 <head runat="server">
     <link rel="Stylesheet" href="css/global.css" />
     <title></title>
     <script type="text/javascript" src="js/master.js"></script>
     <asp:ContentPlaceHolder ID="titlePlaceHolder" runat="server">
     </asp:ContentPlaceHolder>
-</head>
-<body>
-    <form id="form1" runat="server">
-    <asp:ScriptManager runat="server" ID="smMain" EnablePartialRendering="true"></asp:ScriptManager>
-<%--    <script type="text/javascript" language="javascript">
-
-        Sys.WebForms.PageRequestManager.getInstance().add_endRequest(EndRequestHandler);
-        function EndRequestHandler(sender, args) {
-            if (args.get_error() != undefined) {
-                args.set_errorHandled(true); location.reload(true);
-
+    <script type="text/javascript">
+        var holidays;
+        function closeBaloon(baloonType) {
+            var holidayBaloon = document.getElementById('<%= pHolidays.ClientID %>');
+            switch (baloonType) {
+                case 1:
+                    holidayBaloon.style.display = 'none';
+                    fadeScreen(false);
+                    break;
             }
-
         }
 
-    </script>--%>
+        function fadeScreen(fadeIn) {
+            var holidayBaloon = document.getElementById('<%= pHolidays.ClientID %>');
+            var screenCover = document.getElementById('screenCover');
+            var htmlElement = document.getElementById('htmlElement');
+            var bodyElement = document.getElementById('bodyElement');
+            if (fadeIn) {
+                bodyElement.style.overflow = 'hidden';
+                htmlElement.style.overflow = 'hidden'; 
+                screenCover.style.display = 'block';
+                screenCover.style.height = visibleAreaSize().h + 'px';
+                holidayBaloon.style.display = 'block';
+                screenCover.style.top = scrollSize().h + 'px';
+                
+                alert('!');
+            }
+            else {
+                screenCover.style.display = 'none';
+                bodyElement.style.overflow = '';
+                htmlElement.style.overflow = ''; 
+
+            }
+        }
+    </script>
+</head>
+<body id="bodyElement">
+
+    <form id="form1" runat="server">
+    <asp:ScriptManager runat="server" ID="smMain">
+        <Services>
+            <asp:ServiceReference Path="WebService.asmx" />
+        </Services>
+    </asp:ScriptManager>
+    <script type="text/javascript" language="javascript">
+
+        Sys.WebForms.PageRequestManager.getInstance().add_endRequest(EndRequestHandler);
+
+        function EndRequestHandler(sender, args) {
+            fadeScreen(true);
+            WebService.GetHolidays(SucceededCallback);
+        }
+
+        function SucceededCallback(result) { 
+            alert('!')
+        }
+
+    </script>
     <map name="homeMailMap">
         <area shape="rect" coords="0,0,14,14" alt="На главную" title="На главную" href="#"/>
         <area shape="rect" coords="26,4,44,14" alt="Написать" title="Написать" href="mailto:mail" />
@@ -50,9 +92,7 @@
         <div id="mainBottom">
             <div id="bottomPictures">
                 <div id="holiday">
-                    <a href="#">
-                        <img src="Images/holiday.jpg" alt="По празднику" title="По празднику" />
-                    </a>
+                    <asp:ImageButton runat="server" ToolTip="По празднику" ID="ibHoliday" ImageUrl="~/Images/holiday.jpg" onclick="ibHoliday_Click" />
                 </div>
                 <div id="man">
                     <a href="#">
@@ -70,6 +110,25 @@
                     </a>
                 </div>
             </div>
+            <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                <ContentTemplate>
+                    <div id="screenCover">
+        
+                    </div>
+                    <asp:Panel runat="server" ID="pHolidays" CssClass="holidayBaloon" Visible="false">
+                        <div id="holidayBubbleTop">
+                            <img src="Images/baloonClose.JPG" onclick="closeBaloon(1)" style="cursor:pointer" />
+                        </div>
+                        <div id="holidayBubbleSearch">
+                        </div>
+                        <div id="holidayBubbleList">
+                        </div>
+                    </asp:Panel>
+                </ContentTemplate>
+                <Triggers>
+                    <asp:AsyncPostBackTrigger ControlID="ibHoliday" EventName="Click" />
+                </Triggers>
+            </asp:UpdatePanel>
             <div id="bottomLinks">
                 <div id="holidayLink">
                     <a class="bottomLink" href="#">по празднику</a>

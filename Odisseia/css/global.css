@@ -40,3 +40,35 @@ body{background:black;}
 #priceLink{padding-left:130px;}
 #leftFrame{padding-left:65px;}
 #rightFrame{padding-left:225px;}
+.holidayBaloon
+{
+    background:transparent url("../images/holidayBaloon.png") no-repeat; 
+    width:372px; 
+    height:469px;
+    behavior: url(iepngfix.htc);
+    position:absolute;
+    left:300px;
+    top:320px;
+	z-index:9999;
+}
+
+#screenCover
+{
+    left:0px;
+    top:0px;
+    width:100%; 
+    height:100%; 
+    background:black;
+    opacity: 0.5;
+	-moz-opacity: 0.5;
+	filter: alpha(opacity=50);
+	position:absolute;
+	z-index:9998;
+	display:none;
+}
+
+#holidayBubbleTop
+{
+    padding-left:328px;
+    padding-top:10px;
+}

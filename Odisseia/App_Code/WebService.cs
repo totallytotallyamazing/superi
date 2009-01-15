@@ -1,28 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using System.Web.Services;
+using System.Web.Script.Services;
 using System.Collections;
 using Superi.Features;
+using System.Web.UI;
 
-public partial class MasterPage : System.Web.UI.MasterPage
+/// <summary>
+/// Summary description for WebService
+/// </summary>
+[WebService(Namespace = "http://tempuri.org/")]
+[WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
+[ScriptService]
+public class WebService : System.Web.Services.WebService
 {
-    protected void Page_Load(object sender, EventArgs e)
+    [WebMethod]
+    public string HelloWorld()
     {
-
-    }
-
-    protected void ibHoliday_Click(object sender, ImageClickEventArgs e)
-    {
-        pHolidays.Visible = true;
+        return "Hello World";
     }
 
     [WebMethod]
-    public static string GetHolidays(string str)
+    public Hashtable GetHolidays()
     {
-        return str;
+        //return str;
         Hashtable result = new Hashtable();
         char oldLetter = '#';
         char newLetter;
@@ -37,7 +39,9 @@ public partial class MasterPage : System.Web.UI.MasterPage
                 oldLetter = newLetter;
             result[oldLetter] = pair;
         }
-        return str;
-        //return result;
+        //return str;
+        return result;
     }
+
 }
+

@@ -34,8 +34,12 @@
 				<a   href="<%= WebSession.BaseUrl %>Administration/TradeMarks.aspx">Торговые Марки</a>
 				&nbsp;&nbsp;
 				<a   href="<%= WebSession.BaseUrl %>Administration/Holidays.aspx">Праздники</a>
+				<%--&nbsp;&nbsp;--%>
+				<%--<a   href="<%= WebSession.BaseUrl %>Administration/Prices.aspx">Цены</a>--%>
 				&nbsp;&nbsp;
-				<a   href="<%= WebSession.BaseUrl %>Administration/Prices.aspx">Цены</a>
+				<a   href="<%= WebSession.BaseUrl %>Administration/Comments.aspx">Комментарии</a>
+				&nbsp;&nbsp;
+				<a   href="<%= WebSession.BaseUrl %>Administration/Settings.aspx">Настройки</a>
 	    </div>
         <div style="float:left; padding:0px 10px;"> <a href="javascript:openPopupWindow('ChangePassword.aspx', 400,170);">Сменить пароль</a></div>
         <div style="float:left; padding:0px 10px;"><asp:LinkButton ID="lbSognOut" runat="server" Text="Выход" style="float:right" OnClick="lbSognOut_Click"></asp:LinkButton></div>

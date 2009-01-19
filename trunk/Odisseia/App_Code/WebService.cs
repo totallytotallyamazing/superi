@@ -6,6 +6,7 @@ using System.Web.Script.Services;
 using System.Collections;
 using Superi.Features;
 using System.Web.UI;
+using System.Runtime.Serialization.Json;
 
 /// <summary>
 /// Summary description for WebService
@@ -16,32 +17,21 @@ using System.Web.UI;
 public class WebService : System.Web.Services.WebService
 {
     [WebMethod]
-    public string HelloWorld()
+    public EventList GetHolidays()
     {
-        return "Hello World";
+        return new EventList(true);
     }
 
     [WebMethod]
-    public Hashtable GetHolidays()
+    public EventList FilterHolidays(string Filter)
     {
-        //return str;
-        Hashtable result = new Hashtable();
-        char oldLetter = '#';
-        char newLetter;
-        EventList holidays = new EventList(true);
-        foreach (Event holiday in holidays)
+        EventList result = new EventList(false);
+        foreach (Event ev in new EventList(true))
         {
-            newLetter = holiday.Name[0];
-            Pair pair = new Pair();
-            pair.First = holiday.Name;
-            pair.Second = holiday.Id;
-            if (oldLetter != newLetter)
-                oldLetter = newLetter;
-            result[oldLetter] = pair;
+            if (ev.Name.ToLower().IndexOf(Filter) > -1)
+                result.Add(ev);
         }
-        //return str;
         return result;
     }
 
 }
-

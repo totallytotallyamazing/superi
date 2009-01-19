@@ -1,6 +1,7 @@
-﻿*{margin:0px; padding:0px; border:none; font-family:Arial;}
+﻿*{margin:0px; padding:0px; border:none; font-family:Arial; color:#59412B;}
 .fixPng{behavior: url(iepngfix.htc);}
 body{background:black;}
+.textBox{background:#EAEAEA; border:1px solid #A08278;}
 #main{width:1149px; position:relative; margin:0 auto;}
 #mainTop{height:379px; width:100%; float:left; clear:both;}
 
@@ -43,13 +44,15 @@ body{background:black;}
 .holidayBaloon
 {
     background:transparent url("../images/holidayBaloon.png") no-repeat; 
-    width:372px; 
+    width:314px; 
     height:469px;
     behavior: url(iepngfix.htc);
     position:absolute;
     left:300px;
     top:320px;
 	z-index:9999;
+	padding-left:28px;
+	padding-right:30px;
 }
 
 #screenCover
@@ -69,6 +72,40 @@ body{background:black;}
 
 #holidayBubbleTop
 {
-    padding-left:328px;
+    padding-left:300px;
     padding-top:10px;
+}
+
+#holidayBubbleSearch{padding: 10px 0; width:100%; border-bottom:1px solid #DAD7D4; float:left;}
+
+#holidaySearch{height:20px;padding-top:1px;width:223px;}
+
+#holidayBubbleTitle{padding-top:10px; font-size:18px; width:100%; border-bottom:1px solid #DAD7D4; padding-bottom:10px;}
+
+#holidayBubbleList
+{
+    clear:both;
+    float:left;
+    height:275px;
+    overflow:auto;
+    width:100%;
+    margin-top:5px;
+}
+
+.letterDivider{width:90%; margin:15px 0; border-bottom:1px solid #DAD7D4;}
+
+#searchHoliday{cursor:pointer;}
+
+.pricesBaloon    
+{
+    background:transparent url("../images/priceBaloon.png") no-repeat; 
+    width:256px; 
+    height:452px;
+    behavior: url(iepngfix.htc);
+    position:absolute;
+    left:600px;
+    top:320px;
+	z-index:9999;
+	padding-left:28px;
+	padding-right:30px;
 }

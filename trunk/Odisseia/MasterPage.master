@@ -4,6 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" id="htmlElement">
 <head runat="server">
+    <script type="text/javascript" src="js/jquery.js"></script>
     <link rel="Stylesheet" href="css/global.css" />
     <title></title>
     <script type="text/javascript" src="js/master.js"></script>
@@ -33,14 +34,38 @@
                 screenCover.style.height = visibleAreaSize().h + 'px';
                 holidayBaloon.style.display = 'block';
                 screenCover.style.top = scrollSize().h + 'px';
-                
-                alert('!');
             }
             else {
                 screenCover.style.display = 'none';
                 bodyElement.style.overflow = '';
                 htmlElement.style.overflow = ''; 
 
+            }
+        }
+
+        function filterHolidayList(filter) { 
+            
+        }
+        
+        function drawLetterDivider(letter) {
+            $("div[id='holidayBubbleList']").append('<div class="letterDivider">' + letter + '</div>');
+        }
+
+        function fillHolidayList(holidayList) {
+            $("div[id='holidayBubbleList']").empty();
+            if (typeof (holidayList.length) != 'undefined' && holidayList.length && holidayList.length > 0) {
+
+                var placeHolder = $("div[id='holidayBubbleList']");
+                var oldLetter = '#';
+                var newLetter = '';
+                for (var i in holidayList) {
+                    newLetter = holidayList[i].Name.charAt(0);
+                    if (oldLetter !== newLetter) {
+                        oldLetter = newLetter;
+                        drawLetterDivider(newLetter);
+                    }
+                    placeHolder.append('<a class="holidayLink" href="Products.aspx?holiday=' + holidayList[i].Id + '">' + holidayList[i].Name + '</a><br/>');
+                }
             }
         }
     </script>
@@ -59,11 +84,12 @@
 
         function EndRequestHandler(sender, args) {
             fadeScreen(true);
+            
             WebService.GetHolidays(SucceededCallback);
         }
 
-        function SucceededCallback(result) { 
-            alert('!')
+        function SucceededCallback(result) {
+            fillHolidayList(result);
         }
 
     </script>
@@ -119,7 +145,16 @@
                         <div id="holidayBubbleTop">
                             <img src="Images/baloonClose.JPG" onclick="closeBaloon(1)" style="cursor:pointer" />
                         </div>
+                        <div id="holidayBubbleTitle">
+                            Выбор по празднику
+                        </div>
                         <div id="holidayBubbleSearch">
+                            <div style="float:left;">
+                                <input id="holidaySearch" class="textBox" />
+                            </div>
+                            <div style="float:left; padding-left:5px; padding-top:1px;">
+                                <img alt="Найти" src="Images/searchButton.jpg" /> 
+                            </div>
                         </div>
                         <div id="holidayBubbleList">
                         </div>

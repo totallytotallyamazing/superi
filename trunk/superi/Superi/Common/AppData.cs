@@ -65,7 +65,6 @@ namespace Superi.Common
                 {
                     cmd.Parameters.Add(parameter.SqlParameter);
                 }
-
             try
             {
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);

@@ -14,9 +14,14 @@
         var holidays;
         function closeBaloon(baloonType) {
             var holidayBaloon = document.getElementById('<%= pHolidays.ClientID %>');
+            var priceBaloon = document.getElementById('<%= pPrices.ClientID %>');
             switch (baloonType) {
                 case 1:
                     holidayBaloon.style.display = 'none';
+                    fadeScreen(false);
+                    break;
+                case 2:
+                    priceBaloon.style.display = 'none';
                     fadeScreen(false);
                     break;
             }
@@ -43,19 +48,19 @@
             }
         }
 
-        function filterHolidayList(filter) { 
-            
+        function filterHolidayList() {
+            WebService.FilterHolidays($("#holidaySearch")[0].value, SucceededCallback);
         }
         
         function drawLetterDivider(letter) {
-            $("div[id='holidayBubbleList']").append('<div class="letterDivider">' + letter + '</div>');
+            $("#holidayBubbleList").append('<div class="letterDivider">' + letter + '</div>');
         }
 
         function fillHolidayList(holidayList) {
-            $("div[id='holidayBubbleList']").empty();
+            $("#holidayBubbleList").empty();
             if (typeof (holidayList.length) != 'undefined' && holidayList.length && holidayList.length > 0) {
 
-                var placeHolder = $("div[id='holidayBubbleList']");
+                var placeHolder = $("#holidayBubbleList");
                 var oldLetter = '#';
                 var newLetter = '';
                 for (var i in holidayList) {
@@ -131,9 +136,8 @@
                     </a>
                 </div>
                 <div id="price">
-                    <a href="#">
-                        <img src="Images/price.jpg" alt="По сумме" title="По сумме" />
-                    </a>
+                        <asp:ImageButton runat="server" ToolTip="По сумме" ID="ibPrice" ImageUrl="~/Images/price.jpg" />
+                        <%--<img src="Images/price.jpg" alt="По сумме" title="По сумме" />--%>
                 </div>
             </div>
             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -143,7 +147,7 @@
                     </div>
                     <asp:Panel runat="server" ID="pHolidays" CssClass="holidayBaloon" Visible="false">
                         <div id="holidayBubbleTop">
-                            <img src="Images/baloonClose.JPG" onclick="closeBaloon(1)" style="cursor:pointer" />
+                            <img src="Images/baloonClose.JPG" alt="x" title="x" onclick="closeBaloon(1)" style="cursor:pointer" />
                         </div>
                         <div id="holidayBubbleTitle">
                             Выбор по празднику
@@ -153,20 +157,27 @@
                                 <input id="holidaySearch" class="textBox" />
                             </div>
                             <div style="float:left; padding-left:5px; padding-top:1px;">
-                                <img alt="Найти" src="Images/searchButton.jpg" /> 
+                                <img alt="Найти" src="Images/searchButton.jpg" id="searchHoliday" onclick="filterHolidayList();" /> 
                             </div>
                         </div>
                         <div id="holidayBubbleList">
                         </div>
                     </asp:Panel>
+                    <asp:Panel ID="pPrices" runat="server" CssClass="pricesBaloon">
+                        <div id="priceBaloonTop">
+                            <img src="Images/baloonClose.JPG" alt="x" title="x" onclick="closeBaloon(2)" style="cursor:pointer" />
+                        </div>
+                    </asp:Panel>
                 </ContentTemplate>
                 <Triggers>
                     <asp:AsyncPostBackTrigger ControlID="ibHoliday" EventName="Click" />
+                    <asp:AsyncPostBackTrigger ControlID="ibPrice" EventName="Click" />
                 </Triggers>
             </asp:UpdatePanel>
             <div id="bottomLinks">
                 <div id="holidayLink">
-                    <a class="bottomLink" href="#">по празднику</a>
+                    <asp:LinkButton runat="server" CssClass="bottomLink" OnClick="ibHoliday_Click" Text="по празднику"></asp:LinkButton>
+                    <%--<a class="bottomLink" href="#">по празднику</a>--%>
                 </div>
                 <div id="manLink">
                     <a class="bottomLink" href="#">мужчине</a>

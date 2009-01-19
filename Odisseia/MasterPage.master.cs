@@ -14,7 +14,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
 
     }
 
-    protected void ibHoliday_Click(object sender, ImageClickEventArgs e)
+    protected void ibHoliday_Click(object sender, EventArgs e)
     {
         pHolidays.Visible = true;
     }

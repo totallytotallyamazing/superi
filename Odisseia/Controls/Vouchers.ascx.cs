@@ -22,17 +22,23 @@ public partial class Controls_Vouchers : System.Web.UI.UserControl
         set { ViewState["tmId"] = value; }
     }
 
-    private int step=1;
-
     protected void Page_Load(object sender, EventArgs e)
     {
-        if(TradeMarkId>0)
+        pOrderForm.Visible = false;
+        iCloseOrder.Attributes.Add("onclick", "closeBaloon(3, '" + pOrderForm.ClientID + "')");
+        iCloseOrder.Style["cursor"] = "pointer";
+    }
+
+    protected void Page_PreRender(object sender, EventArgs e)
+    {
+        if (TradeMarkId > 0)
         {
             TradeMark tradeMark = new TradeMark(TradeMarkId);
             rVouchers.DataSource = tradeMark.Vouchers;
             rVouchers.DataBind();
         }
     }
+
     protected void rVouchers_ItemDataBound(object sender, RepeaterItemEventArgs e)
     {
         if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType==ListItemType.AlternatingItem)
@@ -41,17 +47,28 @@ public partial class Controls_Vouchers : System.Web.UI.UserControl
             Voucher voucher = (Voucher)e.Item.DataItem;
             ImageButton ibOrder = (ImageButton)e.Item.FindControl("ibOrder");
             ibOrder.ImageUrl = WebSession.BaseImageUrl + "orderButton.jpg";
+            ibOrder.CommandArgument = voucher.ID.ToString();
             divVoucher.Style["background"] = "transparent url(" + WebSession.BaseUrl + "VoucherBackground.ashx?am=" + (int)voucher.Price + ")";
         }
         if (e.Item.ItemType == ListItemType.Separator)
         {
-            if (step % 4 == 0)
+            if ((e.Item.ItemIndex+1) % 4 == 0)
             {
                 PlaceHolder phSeparator = (PlaceHolder)e.Item.FindControl("phSeparator");
                 phSeparator.Visible = false;
             }
-            step++;
         }
         
+    }
+
+    protected void rVouchers_ItemCommand(object source, RepeaterCommandEventArgs e)
+    {
+        pOrderForm.Visible = true;
+        hfVoucheId.Value = e.CommandArgument.ToString();
+    }
+
+    protected void ibSendOrder_Click(object sender, ImageClickEventArgs e)
+    {
+
     }
 }

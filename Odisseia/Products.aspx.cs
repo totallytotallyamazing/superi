@@ -29,8 +29,8 @@ public partial class Products : System.Web.UI.Page
             TradeMark tradeMark = (TradeMark)e.Item.DataItem;
             hlTradeMark.Text = tradeMark.Name;
             hlTradeMark.ToolTip = tradeMark.Name;
-            hlTradeMark.ImageUrl = WebSession.BaseUrl + "MakeThumbnail.aspx?loc=products&dim=65&file=" + tradeMark.Picture;
-            hlTradeMark.NavigateUrl = WebSession.BaseUrl + "ProductDetails.aspx?id=" + tradeMark.ID;
+            hlTradeMark.ImageUrl = "MakeThumbnail.aspx?loc=products&dim=65&file=" + tradeMark.Picture;
+            hlTradeMark.NavigateUrl = "ProductDetails.aspx?id=" + tradeMark.ID;
         }
     }
 }

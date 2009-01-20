@@ -2,7 +2,7 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml" id="htmlElement">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <script type="text/javascript" src="js/jquery.js"></script>
     <link rel="Stylesheet" href="css/global.css" />
@@ -12,44 +12,38 @@
     </asp:ContentPlaceHolder>
     <script type="text/javascript">
         var holidays;
-        function closeBaloon(baloonType) {
-            var holidayBaloon = document.getElementById('<%= pHolidays.ClientID %>');
-            var priceBaloon = document.getElementById('<%= pPrices.ClientID %>');
+        function closeBaloon(baloonType, controlId) {
             switch (baloonType) {
                 case 1:
-                    holidayBaloon.style.display = 'none';
+                    $("#<%= pHolidays.ClientID %>").css("display", "none");
                     fadeScreen(false);
                     break;
                 case 2:
-                    priceBaloon.style.display = 'none';
+                    $("#<%= pPrices.ClientID %>").css("display", "none");
+                    fadeScreen(false);
+                    break;
+                case 3:
+                    $("#" + controlId).css("display", "none");
                     fadeScreen(false);
                     break;
             }
         }
 
         function fadeScreen(fadeIn) {
-            var holidayBaloon = document.getElementById('<%= pHolidays.ClientID %>');
-            var screenCover = document.getElementById('screenCover');
-            var htmlElement = document.getElementById('htmlElement');
-            var bodyElement = document.getElementById('bodyElement');
             if (fadeIn) {
-                bodyElement.style.overflow = 'hidden';
-                htmlElement.style.overflow = 'hidden'; 
-                screenCover.style.display = 'block';
-                screenCover.style.height = visibleAreaSize().h + 'px';
-                holidayBaloon.style.display = 'block';
-                screenCover.style.top = scrollSize().h + 'px';
+                $("body").css("overflow", "hidden");
+                $("html").css("overflow", "hidden");
+                $("#screenCover").css({"display":"block", "height":visibleAreaSize().h+"px", "top":scrollSize().h + "px"});
             }
             else {
-                screenCover.style.display = 'none';
-                bodyElement.style.overflow = '';
-                htmlElement.style.overflow = ''; 
-
+                $("#screenCover").css("display", "none");
+                $("body").css("overflow", "");
+                $("html").css("overflow", "");
             }
         }
 
         function filterHolidayList() {
-            WebService.FilterHolidays($("#holidaySearch")[0].value, SucceededCallback);
+            WebService.FilterHolidays($("#holidaySearch")[0].value, HolidaysCallback);
         }
         
         function drawLetterDivider(letter) {
@@ -60,7 +54,6 @@
             $("#holidayBubbleList").empty();
             if (typeof (holidayList.length) != 'undefined' && holidayList.length && holidayList.length > 0) {
 
-                var placeHolder = $("#holidayBubbleList");
                 var oldLetter = '#';
                 var newLetter = '';
                 for (var i in holidayList) {
@@ -69,16 +62,15 @@
                         oldLetter = newLetter;
                         drawLetterDivider(newLetter);
                     }
-                    placeHolder.append('<a class="holidayLink" href="Products.aspx?holiday=' + holidayList[i].Id + '">' + holidayList[i].Name + '</a><br/>');
+                    $("#holidayBubbleList").append('<a class="holidayLink" href="Products.aspx?holiday=' + holidayList[i].Id + '">' + holidayList[i].Name + '</a><br/>');
                 }
             }
         }
     </script>
 </head>
-<body id="bodyElement">
-
+<body>
     <form id="form1" runat="server">
-    <asp:ScriptManager runat="server" ID="smMain">
+    <asp:ScriptManager runat="server" ID="smMain" EnablePartialRendering="true">
         <Services>
             <asp:ServiceReference Path="WebService.asmx" />
         </Services>
@@ -88,21 +80,31 @@
         Sys.WebForms.PageRequestManager.getInstance().add_endRequest(EndRequestHandler);
 
         function EndRequestHandler(sender, args) {
-            fadeScreen(true);
             
-            WebService.GetHolidays(SucceededCallback);
+            fadeScreen(true);
+            if(sender._postBackSettings.panelID.indexOf("Holiday")>-1)
+            {
+                $("#<%= pHolidays.ClientID %>").css("display", "block");
+                WebService.GetHolidays(HolidaysCallback);
+            }
+            if(sender._postBackSettings.panelID.indexOf("Price")>-1)
+            {
+                $("#<%= pPrices.ClientID %>").css("display", "block");
+            }
         }
 
-        function SucceededCallback(result) {
+        function HolidaysCallback(result) {
             fillHolidayList(result);
         }
-
     </script>
+
     <map name="homeMailMap">
         <area shape="rect" coords="0,0,14,14" alt="На главную" title="На главную" href="#"/>
         <area shape="rect" coords="26,4,44,14" alt="Написать" title="Написать" href="mailto:mail" />
     </map>
     <div id="main">
+        <div id="screenCover">
+        </div>
         <div id="mainTop">
             <div id="topLeft"></div>
             <div id="topMiddle">
@@ -126,30 +128,43 @@
                     <asp:ImageButton runat="server" ToolTip="По празднику" ID="ibHoliday" ImageUrl="~/Images/holiday.jpg" onclick="ibHoliday_Click" />
                 </div>
                 <div id="man">
-                    <a href="#">
+                    <a href="Products.aspx?t=man">
                         <img src="Images/man.jpg" alt="Мужчине" title="Мужчине" />
                     </a>
                 </div>
                 <div id="woman">
-                    <a href="#">
+                    <a href="Products.aspx?t=woman">
                         <img src="Images/woman.jpg" alt="Женщине" title="Женщине" />
                     </a>
                 </div>
                 <div id="price">
-                        <asp:ImageButton runat="server" ToolTip="По сумме" ID="ibPrice" ImageUrl="~/Images/price.jpg" />
-                        <%--<img src="Images/price.jpg" alt="По сумме" title="По сумме" />--%>
+                        <asp:ImageButton runat="server" ToolTip="По сумме" ID="ibPrice" OnClick="ibPrices_Click" ImageUrl="~/Images/price.jpg" />
                 </div>
             </div>
-            <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+
+            <div id="bottomLinks">
+                <div id="holidayLink">
+                    <asp:LinkButton runat="server" CssClass="bottomLink" ID="lbHoliday" OnClick="ibHoliday_Click" Text="по празднику"></asp:LinkButton>
+                </div>
+                <div id="manLink">
+                    <a class="bottomLink" href="Products.aspx?t=man">мужчине</a>
+                </div>
+                <div id="womanLink">
+                    <a class="bottomLink" href="Products.aspx?t=woman">женщине</a>
+                </div>
+                <div id="priceLink">
+                    <asp:LinkButton runat="server" CssClass="bottomLink" Text="по сумме" OnClick="ibPrices_Click" ID="lbPrice"></asp:LinkButton>
+                </div>
+            </div>
+            
+            <asp:UpdatePanel ID="upMainBaloons" runat="server">
                 <ContentTemplate>
-                    <div id="screenCover">
-        
-                    </div>
+
                     <asp:Panel runat="server" ID="pHolidays" CssClass="holidayBaloon" Visible="false">
                         <div id="holidayBubbleTop">
                             <img src="Images/baloonClose.JPG" alt="x" title="x" onclick="closeBaloon(1)" style="cursor:pointer" />
                         </div>
-                        <div id="holidayBubbleTitle">
+                        <div class="baloonTitle">
                             Выбор по празднику
                         </div>
                         <div id="holidayBubbleSearch">
@@ -163,32 +178,33 @@
                         <div id="holidayBubbleList">
                         </div>
                     </asp:Panel>
-                    <asp:Panel ID="pPrices" runat="server" CssClass="pricesBaloon">
+                    <asp:Panel ID="pPrices" runat="server" CssClass="pricesBaloon" Visible="false">
                         <div id="priceBaloonTop">
                             <img src="Images/baloonClose.JPG" alt="x" title="x" onclick="closeBaloon(2)" style="cursor:pointer" />
+                        </div>
+                        <div class="baloonTitle">
+                            Выбор по сумме
+                        </div>
+                        <div id="pricesList">
+                            <asp:Repeater runat="server" ID="rPrices" 
+                                onitemdatabound="rPrices_ItemDataBound">
+                                <ItemTemplate>
+                                    <asp:HyperLink runat="server" ID="hlPriceScope" CssClass="priceScope"></asp:HyperLink>
+                                </ItemTemplate>
+                                <SeparatorTemplate>
+                                    <div style="width:10px; height:5px; font-size:0px;"></div>
+                                </SeparatorTemplate>
+                            </asp:Repeater>
                         </div>
                     </asp:Panel>
                 </ContentTemplate>
                 <Triggers>
                     <asp:AsyncPostBackTrigger ControlID="ibHoliday" EventName="Click" />
                     <asp:AsyncPostBackTrigger ControlID="ibPrice" EventName="Click" />
+                    <asp:AsyncPostBackTrigger ControlID="lbHoliday" EventName="Click" />
+                    <asp:AsyncPostBackTrigger ControlID="lbPrice" EventName="Click" />
                 </Triggers>
             </asp:UpdatePanel>
-            <div id="bottomLinks">
-                <div id="holidayLink">
-                    <asp:LinkButton runat="server" CssClass="bottomLink" OnClick="ibHoliday_Click" Text="по празднику"></asp:LinkButton>
-                    <%--<a class="bottomLink" href="#">по празднику</a>--%>
-                </div>
-                <div id="manLink">
-                    <a class="bottomLink" href="#">мужчине</a>
-                </div>
-                <div id="womanLink">
-                    <a class="bottomLink" href="#">женщине</a>
-                </div>
-                <div id="priceLink">
-                    <a class="bottomLink" href="#">по сумме</a>
-                </div>
-            </div>
         </div>
     </div>
     </form>

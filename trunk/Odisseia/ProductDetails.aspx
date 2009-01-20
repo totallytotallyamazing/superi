@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="ProductDetails.aspx.cs" Inherits="ProductDetails" %>
+﻿<%@ Page EnableEventValidation="false" Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="ProductDetails.aspx.cs" Inherits="ProductDetails" %>
 <%@ Register TagPrefix="od" TagName="Vouchers" Src="~/Controls/Vouchers.ascx" %>
 
 <asp:Content ID="titleContent" ContentPlaceHolderID="titlePlaceHolder" runat="server">

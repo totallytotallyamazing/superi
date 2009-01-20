@@ -19,3 +19,22 @@
 .voucherSeparator{margin: 30px 25px 0; float:left; height:106px; width:2px; background: #FFD79C;}
 .orderButton{margin:109px 0 0 60px;}
 #comments{}
+.orderForm
+{
+		position:absolute; 
+		margin:auto; 
+		width:417px; 
+		height:280px; 
+		background:transparent url("../images/orderBg.png") no-repeat;
+		z-index:999999;
+		padding:0 30px;
+		font-size:12px;
+}
+#orderTop{padding:5px 0px 10px 404px;}
+
+#orderTitle{border-bottom:1px solid #DAD7D4; font-size:20px; padding-bottom:10px; width:inherit;}
+
+#orderText{border-bottom:1px solid #DAD7D4; padding:10px 0; width:inherit;}
+#divOrderForm{padding:10px 0; width:inherit; text-align:right;}
+#divOrderForm input {width:340px; margin-top:2px;}
+#orderSend{width:inherit; text-align:right;}

@@ -2,9 +2,24 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
-        ConnectionString="Data Source=mssql2.hosting.ua;Initial Catalog=nastyak_Odisseia;Persist Security Info=True;User ID=nastyak_odisseia;Password=cde32wsx" 
         ProviderName="System.Data.SqlClient" 
-        SelectCommand="SELECT [Id], [Name], [Value] FROM [Settings]"></asp:SqlDataSource>
+        SelectCommand="SELECT [ID], [Name], [Value] FROM [Settings]" 
+        DeleteCommand="DELETE FROM [Settings] WHERE [ID] = @ID" 
+        InsertCommand="INSERT INTO [Settings] ([Name], [Value]) VALUES (@Name, @Value)" 
+        UpdateCommand="UPDATE [Settings] SET [Name] = @Name, [Value] = @Value WHERE [ID] = @ID">
+        <DeleteParameters>
+            <asp:Parameter Name="ID" Type="Int32" />
+        </DeleteParameters>
+        <UpdateParameters>
+            <asp:Parameter Name="Name" Type="String" />
+            <asp:Parameter Name="Value" Type="String" />
+            <asp:Parameter Name="ID" Type="Int32" />
+        </UpdateParameters>
+        <InsertParameters>
+            <asp:Parameter Name="Name" Type="String" />
+            <asp:Parameter Name="Value" Type="String" />
+        </InsertParameters>
+    </asp:SqlDataSource>
     <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" 
         DataKeyNames="Id" DataSourceID="SqlDataSource1">
         <Columns>

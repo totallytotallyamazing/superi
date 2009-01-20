@@ -25,8 +25,8 @@ namespace Superi.Common
             ParameterList parameterList = new ParameterList();
             parameterList.Add(new AppDbParameter("Name", Name));
             DataSet ds = AppData.ExecDataSet("Settings_Get", parameterList);
-            if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
-                result = ds.Tables[0].Rows[0]["Value"].ToString();
+            if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0 && ds.Tables[0].Rows.Count >= Offset + 1)
+                result = ds.Tables[0].Rows[Offset]["Value"].ToString();
             return result;
         }
 

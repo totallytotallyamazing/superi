@@ -1,0 +1,2 @@
+<%@ Control Language="VB" AutoEventWireup="false" CodeFile="GalleryEditor.ascx.vb" Inherits="Administration_Controls_GalleryEditor" %>
+Эта страница является страницей объектов. Воспользуйтесь соответствующим пунктом меню

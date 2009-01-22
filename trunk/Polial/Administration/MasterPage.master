@@ -1,0 +1,54 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="Administration_MasterPage" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head runat="server">
+	
+    <title>Untitled Page</title>
+    <link rel="Stylesheet" href="css/admin.css" />    
+    <script type="text/javascript" src="js/common.js"></script>
+    <script type="text/javascript">
+		//open pop-up window
+		function openPopupWindow(sURL, iWidth, iHeight)
+		{
+			//var retval = ""
+			retval = window.open(sURL, "wndPopUpHandle", "width="+ iWidth +", height=" + iHeight + ", menubar=no, top=0, left=0, status=no, location=no, toolbar=no, scrollbars=yes, resizable=no");
+			//return retval;
+		}
+    </script>
+</head>
+<body onmousemove="getMousePosition(event);">
+    <form id="form1" runat="server">
+    <asp:ScriptManager runat="server" ID="smAdmin" EnablePartialRendering="true"></asp:ScriptManager>
+    <div style="border:1px solid #969696; font-weight:bold; width:100%; float:left;">
+        <div style="float:left;">
+                <a href = "<%=WebSession.BaseUrl%>Administration/Structure.aspx">Структура</a>
+				&nbsp;&nbsp;
+                <a href = "<%=WebSession.BaseUrl%>Administration/Pages.aspx">Навигация</a>
+				&nbsp;&nbsp;
+				<a href="<%=WebSession.BaseUrl%>Administration/Texts.aspx">Тексты</a>
+
+			<%--	&nbsp;&nbsp;
+				<a href="<%= DefaultValues.BaseUrl %>Administration/News.aspx">Новости</a>--%>
+				&nbsp;&nbsp;
+<%--				<a href="<%= DefaultValues.BaseUrl %>Administration/Articles.aspx">Статьи</a>
+				&nbsp;&nbsp;
+				<a href="<%= DefaultValues.BaseUrl %>Administration/Products.aspx">Продукты</a>
+--%><%--				&nbsp;&nbsp;
+				<a href="<%= DefaultValues.BaseUrl %>Administration/Images.aspx">Изображения</a>--%>
+<%--				&nbsp;&nbsp;
+				<a href="<%= DefaultValues.BaseUrl %>Administration/Languages.aspx">Языки</a>--%>
+				
+				<a   href="<%= WebSession.BaseUrl %>Administration/Gallery.aspx">Объекты</a></div>
+        <div style="float:left; padding:0px 10px;"> <a href="javascript:openPopupWindow('ChangePassword.aspx', 400,170);">Сменить пароль</a></div>
+        <div style="float:left; padding:0px 10px;"><asp:LinkButton ID="lbSognOut" runat="server" Text="Выход" style="float:right" OnClick="lbSognOut_Click"></asp:LinkButton></div>
+    </div>
+    <div style="width:100%; height:auto; margin-top:2px; margin-left:0px; border:1px solid #969696; border-collapse:collapse;padding:2px; float:left;">
+        <asp:contentplaceholder id="ContentPlaceHolder1" runat="server">
+        </asp:contentplaceholder>
+    </div>
+    </form>
+
+</body>
+</html>

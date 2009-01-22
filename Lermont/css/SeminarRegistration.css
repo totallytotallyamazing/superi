@@ -1,0 +1,6 @@
+﻿.regRow{float:left; clear:both; padding:2px 0; width:340px;}
+.regLabel{float:left; width:140px;}
+.regField{float:left;}
+.regField input{width:200px;}
+
+#seminarRegistrationForm{width:504px; padding-left:164px;}

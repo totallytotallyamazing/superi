@@ -1,0 +1,2 @@
+<%@ Control Language="C#" AutoEventWireup="true" CodeFile="GalleryUpload.ascx.cs" Inherits="GalleryUpload" %>
+<asp:FileUpload ID="fuPreview" runat="server" /> <asp:FileUpload ID="fuPicture" runat="server" /><br />

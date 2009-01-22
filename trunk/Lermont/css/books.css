@@ -1,0 +1,10 @@
+﻿#booksHolder{float:left;width:668px;}
+.bookCover{float:left; width:117px; background-color:#607286; padding:5px 0px 5px 5px;}
+.bookInfo{float:left; width:526px; padding-left:20px;}
+.bookNewBookLink{color:red; text-decoration:none;}
+.bookImageLink img{border:1px solid white;}
+.bookPublisherLink{color:#7aaaed; text-decoration:none; font-style:italic;}
+.bookNewBookLink:hover, .bookPublisherLink:hover, .bookTitleLink:hover{text-decoration:underline;}
+.bookTitleLink{font-size:16px; text-transform:uppercase; text-decoration:none; color:White; font-weight:bold;}
+.bookShortDescription{font-size:12px; border-left:1px solid white; padding-left:5px; margin-top:20px;}
+.bookSeparator{clear:both; height:1px; margin:20px 0; background-color:white; width:100%; float:left;}

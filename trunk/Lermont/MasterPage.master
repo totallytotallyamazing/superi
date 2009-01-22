@@ -1,0 +1,75 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+<%@ Register TagPrefix="Controls" TagName="MainMenu" Src="~/Controls/MainMenu.ascx" %>
+<%@ Register TagPrefix="Controls" TagName="SubMenu" Src="~/Controls/SubMenu.ascx" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head runat="server">
+    <title>Untitled Page</title>
+    <link rel="Stylesheet" href="<%= WebSession.BaseUrl + "css/global.css" %>" />
+    <script type="text/javascript" src="<%= WebSession.BaseUrl %>js/master.js"></script>
+    <link href="<%= WebSession.BaseUrl + "css/lightbox.css" %>" rel="stylesheet" media="screen" />
+    <script type="text/javascript" src="<%= WebSession.BaseUrl %>js/prototype.js"></script>
+    <script type="text/javascript" src="<%= WebSession.BaseUrl %>js/scriptaculous.js?load=effects,builder"></script>
+    <script type="text/javascript" src="<%= WebSession.BaseUrl %>js/lightbox.js"></script>
+    <base href="<%= WebSession.BaseUrl %>" />
+    <%= MetaTags %>
+    <script type="text/javascript">
+        function displayLangTip(id, text)
+        {
+            var div = document.getElementById(id);
+            div.style.color='white';
+        //    div.innerHTML = text;
+        }
+        
+        function hideLangTip(id)
+        {
+            var div = document.getElementById(id);
+            div.style.color='#3760d6';
+           // div.innerHTML = '';  
+        }
+    </script>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div id="main">
+        <div id="mainTop">
+            <div id="title"><%= Page.Title %></div>
+        </div>
+        <div id="middle">
+            <div id="leftSide">
+                <Controls:SubMenu ID="SubMenu1" runat="server" />
+            </div>
+            <div id="contentContainer">
+            <asp:contentplaceholder id="ContentPlaceHolder1" runat="server"></asp:contentplaceholder>
+            </div>
+            <div id="rightSide">
+            
+            </div>
+        </div>
+        <div id="footer">
+            <div id="langsDiv">
+                <% if(WebSession.Language!="UA") %>
+                <%{ %>
+                <div id="uaImg"><a onmouseover="displayLangTip('uaText','укр.')" onmouseout="hideLangTip('uaText')" href="<%= CurrentUrl %>/lang=UA" ><img class="langImg" src="<%=WebSession.BaseUrl %>Images/UALang.jpg" alt="UA" /></a></div>
+                <div id="uaText">&nbsp;UA</div>
+                <% } %>
+                <% if(WebSession.Language!="RU") %>
+                <%{ %>
+                <div id="ruImg"><a onmouseover="displayLangTip('ruText','рус.')" onmouseout="hideLangTip('ruText')"  href="<%= CurrentUrl %>/lang=RU"><img class="langImg" src="<%=WebSession.BaseUrl %>Images/RULang.jpg" alt="RU" /></a></div>
+                <div id="ruText">&nbsp;RU</div>
+                <% } %>
+                <% if(WebSession.Language!="EN") %>
+                <%{ %>
+                <div id="enImg"><a onmouseover="displayLangTip('enText','en.')" onmouseout="hideLangTip('enText')"  href="<%= CurrentUrl %>/lang=EN"><img class="langImg" src="<%=WebSession.BaseUrl %>Images/ENLang.jpg" alt="EN" /></a></div>
+                <div id="enText">&nbsp;EN</div>
+                <% } %>
+            </div>
+            <div id="menuTopSpacer"></div>
+            <Controls:MainMenu ID="MainMenu1" runat="server" />
+        </div>
+    </div>
+    </form>
+</body>
+</html>

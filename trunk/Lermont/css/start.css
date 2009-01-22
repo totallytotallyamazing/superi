@@ -1,0 +1,31 @@
+﻿*{padding:0px; margin:0px; border:none; font-family:Times New Roman;}
+body{background-color:Black;}
+
+#main{height:768px; position:absolute; width:1024px; left:50%; margin-left:-512px; background-image:url(../images/startBg.jpg);}
+#mainMenuContainer{height:32px; overflow:hidden;}
+.mainMenuItem, .mainMenuItemOver, .mainMenuItemActive
+{
+	text-transform:lowercase;  
+	padding:0px 5px 0px 5px; 
+	height:100%; 
+	display:inline; 
+	font-size:32px;
+	height:32px;
+	vertical-align:top;
+	background-repeat:repeat-x;
+}
+
+.mainMenuItemActive{color:White; background-image:url(../images/menuHover.jpg); background-repeat:repeat-x;}
+
+.mainMenuItem a:hover{color:Black;}
+.mainMenuItem a, .mainMenuItemActive a{text-decoration:none; font-size:14px; position:relative; top:-10px; vertical-align:baseline;}
+.mainMenuItem a{color:#747474;}
+.mainMenuItemOver a, .mainMenuItemActive a{color:Black;}
+
+#langsDiv{clear:both; padding-left:15px; padding-bottom:5px;}
+#uaImg{float:left; width:23; height:15; padding-top:4px;}
+#ruImg{float:left; width:23; height:15; padding-top:4px;}
+#enImg{float:left; width:23; height:15; padding-top:4px;}
+#uaText{height:19px; padding-top:4px;font-size:10px;color:#3760d6;}
+#ruText{height:19px; padding-top:4px;font-size:10px;color:#3760d6;}
+#enText{height:19px; padding-top:4px;font-size:10px;color:#3760d6;}

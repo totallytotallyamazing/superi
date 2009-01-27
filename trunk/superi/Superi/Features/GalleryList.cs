@@ -12,9 +12,12 @@ namespace Superi.Features
 			if (GetAll)
 			{
 				string SQL = "select * from Galleries order by EntryDate DESC";
-				DbDataReader dr = AppData.ExecQuery(SQL);
-				if (dr != null && dr.HasRows)
-					Load(dr);
+                DataSet ds = AppData.GetDataSet(SQL);
+                if (ds.Tables.Count > 0)
+                    Load(ds.Tables[0]);
+//				DbDataReader dr = AppData.ExecQuery(SQL);
+                //if (dr != null && dr.HasRows)
+                //    Load(dr);
 			}
 		}
 

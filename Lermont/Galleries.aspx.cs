@@ -81,7 +81,7 @@ public partial class Galleries : System.Web.UI.Page
                 pImageHolder.CssClass = "galleryItem";
             hlImage.ImageUrl = WebSession.BaseUrl + "MakeThumbnail.aspx?w=120&h=80&file=" + item.Picture;
             hlImage.Text = item.Title;
-            hlImage.Attributes.Add("rel", "lightbox[g]");
+            hlImage.Attributes.Add("rel", "fancybox");
             hlImage.NavigateUrl = WebSession.BaseUrl + "MakeThumbnail.aspx?dim=600&file=" + item.Picture;
             itemCount++;
         }

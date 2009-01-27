@@ -9,16 +9,16 @@ public static class WebSession
     {
         get
         {
-            if (HttpContext.Current.Session["Language"] != null)
-            {
-                return HttpContext.Current.Session["Language"].ToString();
-            }
             if (HttpContext.Current.Request.Cookies != null && HttpContext.Current.Request.Cookies.Count > 0)
             {
                 if (HttpContext.Current.Request.Cookies["language"] != null)
                 {
                     HttpContext.Current.Session["Language"] = HttpContext.Current.Request.Cookies["language"].Value;
                 }
+            }
+            if (HttpContext.Current.Session["Language"] != null)
+            {
+                return HttpContext.Current.Session["Language"].ToString();
             }
             if (HttpContext.Current.Session["Language"] != null && (string)HttpContext.Current.Session["Language"] != "")
             {

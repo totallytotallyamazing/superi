@@ -101,8 +101,9 @@ public partial class MakeThumbnail : Page
     protected void Page_Load(object sender, EventArgs e)
     {
         string file = Request.QueryString["file"];
-        
-        Image image = Image.FromFile(ImageLocationPath+ file);
+        if (file.IndexOf("?") > -1)
+            file = file.Substring(0, file.IndexOf("?"));
+        Image image = Image.FromFile(ImageLocationPath + file);
         Bitmap thumbnailImage;
         if(MaxDimension<=0)
         {

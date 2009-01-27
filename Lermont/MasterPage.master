@@ -1,6 +1,7 @@
 <%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
 <%@ Register TagPrefix="Controls" TagName="MainMenu" Src="~/Controls/MainMenu.ascx" %>
 <%@ Register TagPrefix="Controls" TagName="SubMenu" Src="~/Controls/SubMenu.ascx" %>
+<%@ Register TagPrefix="ajax" Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -8,45 +9,151 @@
 <head runat="server">
     <title>Untitled Page</title>
     <link rel="Stylesheet" href="<%= WebSession.BaseUrl + "css/global.css" %>" />
+    <link rel="Stylesheet" href="<%= WebSession.BaseUrl + "css/fancy.css" %>" />
     <script type="text/javascript" src="<%= WebSession.BaseUrl %>js/master.js"></script>
-    <link href="<%= WebSession.BaseUrl + "css/lightbox.css" %>" rel="stylesheet" media="screen" />
-    <script type="text/javascript" src="<%= WebSession.BaseUrl %>js/prototype.js"></script>
-    <script type="text/javascript" src="<%= WebSession.BaseUrl %>js/scriptaculous.js?load=effects,builder"></script>
-    <script type="text/javascript" src="<%= WebSession.BaseUrl %>js/lightbox.js"></script>
+    <script type="text/javascript" src="<%= WebSession.BaseUrl %>js/jquery.js"></script>
+    <script type="text/javascript" src="<%= WebSession.BaseUrl %>js/jquery.pngFix.js"></script>
+    <script type="text/javascript" src="<%= WebSession.BaseUrl %>js/jquery.fancybox.js"></script>
     <base href="<%= WebSession.BaseUrl %>" />
     <%= MetaTags %>
     <script type="text/javascript">
-        function displayLangTip(id, text)
-        {
-            var div = document.getElementById(id);
-            div.style.color='white';
-        //    div.innerHTML = text;
+        
+        function displayLangTip(id, text) {
+            $get(id).style.color = "White";
         }
         
-        function hideLangTip(id)
-        {
-            var div = document.getElementById(id);
-            div.style.color='#3760d6';
-           // div.innerHTML = '';  
+        function hideLangTip(id) {
+            $get(id).style.color = "#3760d6";
+        }
+
+        function logIn(login, password) {
+            $find("<%= mWait.ClientID %>").show();
+            Sys.Services.AuthenticationService.login($get("iLogin").value, $get("iPassword").value, $get("cbPersistant").checked, null, null, OnLoginCompleted, null, "User Context");
+            return false;
+        }
+
+        function logOut() {
+            $find("<%= mWait.ClientID %>").show();
+            Sys.Services.AuthenticationService.logout();
+        }
+
+
+
+        function OnLoginCompleted(validCredentials, userContext, methodName) {
+            //$find("<%= mWait.ClientID %>").hide();
+            if (validCredentials) {
+                __doPostBack("<%= bLogin.ClientID %>", "");
+            }
+            else {
+                alert("Неправильная пара логин/пароль");
+                $find("<%= mWait.ClientID %>").hide();
+            }
+        }
+
+        function LogOutComplete(result) {
+//            __doPostBack("<%= bLogOut.ClientID %>", "");
+        }
+
+        function OnFailed(error, userContext, methodName) {
+            alert(error);
         }
     </script>
 </head>
 <body>
     <form id="form1" runat="server">
+    <asp:ScriptManager runat="server" EnablePartialRendering="true"></asp:ScriptManager>
+    
+    <script>
+        Sys.WebForms.PageRequestManager.getInstance().add_endRequest(EndRequestHandler);
+        Sys.WebForms.PageRequestManager.getInstance().add_beginRequest(BeginRequestHandler);
+
+        function BeginRequestHandler(sender, args) {
+            try
+            {
+                $find("<%= mWait.ClientID %>").show();
+            }
+            catch(ex){}
+        }
+
+        function EndRequestHandler(sender, args) {
+            $find("<%= mWait.ClientID %>").hide();
+            if (args.get_error() != undefined) {
+                args.set_errorHandled(true);
+            }
+        }
+    </script>
+    
+    
+    <asp:LinkButton runat="server" style="display:none" ID="lbStub" Text="askldasjklhasjkldhasjkldh"></asp:LinkButton>
+    <ajax:ModalPopupExtender ID="mWait"
+        runat="server"
+        PopupControlID="pWait"
+        TargetControlID="lbStub"
+        DropShadow="true"
+        BackgroundCssClass="shaded"
+    />
+    
+    
+    <asp:Panel runat="server" ID="pWait" CssClass="shaded">
+        <img src="Images/ajaxLoader.gif" alt="Loading" />
+    </asp:Panel>
     <div id="main">
         <div id="mainTop">
+            <div id="userLogin">
+                <asp:UpdatePanel ID="upLogin" runat="server" UpdateMode="Conditional">
+                    <ContentTemplate>
+                        <asp:Panel runat="server" CssClass="login" ID="pLoginStatus">
+                            Здравствуйте, 
+                            <asp:LoginName ID="LoginName1" runat="server" />
+                            <br />
+                            <asp:Button Text="выход" ID="bLogOut" OnClientClick="logOut();" CssClass="loginButton" runat="server" 
+                                onclick="bLogOut_Click" />
+                        </asp:Panel>
+                        <asp:Panel runat="server" CssClass="login" ID="pLogin">
+                            имя:
+                            <br />
+                            <input type="text" id="iLogin" tabindex="1" />
+                            &nbsp
+                            <asp:Button Text="вход" TabIndex="3" runat="server" ID="bLogin" CssClass="loginButton" />
+                            &nbsp
+                            <asp:Button Text="регистрация" TabIndex="4" runat="server" ID="bRegister" 
+                                CssClass="loginButton" onclick="bRegister_Click" />
+                            <br />
+                            пароль:
+                            <br />
+                            <input type="password" id="iPassword" tabindex="2" />
+                            &nbsp
+                            <input type="checkbox" id="cbPersistant" /> <span style="font-size:14px;">запомнить меня</span>
+                        </asp:Panel>
+                    </ContentTemplate>
+                    <Triggers>
+                        <asp:AsyncPostBackTrigger ControlID="bLogOut" EventName="Click" />
+                        <asp:AsyncPostBackTrigger ControlID="bLogin" EventName="Click" />
+                        <asp:PostBackTrigger ControlID="bRegister" />
+                    </Triggers>
+                </asp:UpdatePanel>
+            </div>
             <div id="title"><%= Page.Title %></div>
         </div>
         <div id="middle">
-            <div id="leftSide">
-                <Controls:SubMenu ID="SubMenu1" runat="server" />
-            </div>
-            <div id="contentContainer">
-            <asp:contentplaceholder id="ContentPlaceHolder1" runat="server"></asp:contentplaceholder>
-            </div>
-            <div id="rightSide">
-            
-            </div>
+            <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                <ContentTemplate>
+                    <div id="leftSide">
+                        <Controls:SubMenu ID="SubMenu1" runat="server" />
+                    </div>
+                </ContentTemplate>
+                <Triggers>
+                    <asp:AsyncPostBackTrigger ControlID="bLogin" EventName="Click" />
+                    <asp:AsyncPostBackTrigger ControlID="bLogOut" EventName="Click" />
+                </Triggers>
+            </asp:UpdatePanel>
+
+                    <div id="contentContainer">
+                        <asp:contentplaceholder id="ContentPlaceHolder1" runat="server"></asp:contentplaceholder>
+                    </div>
+                    <div id="rightSide">
+                    
+                    </div>
         </div>
         <div id="footer">
             <div id="langsDiv">
@@ -70,6 +177,8 @@
             <Controls:MainMenu ID="MainMenu1" runat="server" />
         </div>
     </div>
+
+
     </form>
 </body>
 </html>

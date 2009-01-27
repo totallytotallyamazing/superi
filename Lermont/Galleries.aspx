@@ -18,6 +18,9 @@
             </asp:Repeater>
         </asp:PlaceHolder>
         <asp:PlaceHolder runat="server" ID="phGallery">
+            <script type="text/javascript">
+                $(document).ready(function() { $("a[@rel='fancybox']").fancybox() }); 
+            </script>
             <asp:Repeater ID="rItems" runat="server" OnItemDataBound="rItems_ItemDataBound">
                 <ItemTemplate>
                     <asp:Panel runat="server" ID="pImageHolder">

@@ -1,17 +1,10 @@
 using System;
 using Superi.Features;
+using System.Web.Security;
 
 public partial class MasterPage : System.Web.UI.MasterPage
 {
     private string _MetaTags = "";
-
-    public int NavigationID
-    {
-        get
-        {
-            return WebSession.NavigationID;
-        }
-    }
 
     protected string CurrentUrl
     {
@@ -29,11 +22,51 @@ public partial class MasterPage : System.Web.UI.MasterPage
         set { _MetaTags = value; }
     }
 
+    private void ResetSessionValues()
+    {
+        WebSession.TextID = int.MinValue;
+        WebSession.NavigationID = int.MinValue;
+        WebSession.ArticleID = int.MinValue;
+    }
+
+    protected void Page_Init(object sender, EventArgs e)
+    {
+
+    }
+
+    private void PublishSessionValues()
+    {
+        ResetSessionValues();
+        if (!string.IsNullOrEmpty(Request.QueryString["nid"]))
+            WebSession.NavigationID = Convert.ToInt32(Request.QueryString["nid"]);
+        if (!string.IsNullOrEmpty(Request.QueryString["aid"]))
+            WebSession.ArticleID = Convert.ToInt32(Request.QueryString["aid"]);
+        if (!string.IsNullOrEmpty(Request.QueryString["tid"]))
+            WebSession.TextID = Convert.ToInt32(Request.QueryString["tid"]);
+    }
+
+    protected void Page_PreRender(object sender, EventArgs e)
+    { 
+        if (Membership.GetUser() == null)
+        {
+            pLoginStatus.Visible = false;
+            pLogin.Visible = true;
+        }
+        else
+        {
+            pLogin.Visible = false;
+            pLoginStatus.Visible = true;
+        }
+    }
+
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (NavigationID > 0)
+
+        //bLogOut.Attributes.Add("onclick", "return logOut()");
+        bLogin.Attributes.Add("onclick", "return logIn()");
+        if (WebSession.NavigationID > 0)
         {
-            Navigation navigation = new Navigation(NavigationID);
+            Navigation navigation = new Navigation(WebSession.NavigationID);
             if (!string.IsNullOrEmpty(navigation.Description))
                 MetaTags += "<meta name=\"description\" content=\"" + navigation.Description + "\" />" + Environment.NewLine;
             if (!string.IsNullOrEmpty(navigation.Keywords))
@@ -60,5 +93,13 @@ public partial class MasterPage : System.Web.UI.MasterPage
             else
                 Page.Title = article.Title;
         }
+    }
+    protected void bLogOut_Click(object sender, EventArgs e)
+    {
+        //FormsAuthentication.SignOut();
+    }
+    protected void bRegister_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("~/Register.aspx");
     }
 }

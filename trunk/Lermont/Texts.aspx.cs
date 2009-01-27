@@ -36,4 +36,8 @@ public partial class Texts : Page
         
 
     }
+    protected void b1_Click(object sender, EventArgs e)
+    {
+        Response.Write("!");
+    }
 }

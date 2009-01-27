@@ -15,9 +15,6 @@ public partial class _404 : System.Web.UI.Page
         WebSession.ArticleID = int.MinValue;
         WebSession.NavigationID = int.MinValue;
         ProcessNavigationRedirection(null);
-        //ProcessTextRedirection();
-        //ProcessArticleRedirection();
-        //ProcessDownload();
     }
 
     #region Redirection processors
@@ -52,7 +49,6 @@ public partial class _404 : System.Web.UI.Page
                 Text text = new Text(navigation.TextID);
                 WebSession.NavigationID = navigation.ID;
                 Server.Transfer("texts.aspx?name=" + text.Alias);
-                //   Context.RewritePath("texts.aspx?name=" + text.Alias);
             }
             else if (!string.IsNullOrEmpty(navigation.Page))
             {
@@ -157,17 +153,6 @@ public partial class _404 : System.Web.UI.Page
 
     }
 
-    //private void ProcessArticleRedirection()
-    //{
-    //    if (Request.Url.AbsoluteUri.ToLower().IndexOf("/articleid/") > -1)
-    //    {
-    //        string articleAlias = Request.Url.AbsoluteUri.Substring(Request.Url.AbsoluteUri.ToLower().IndexOf("/articleid/") + 11);
-    //        Article article = new Article(articleAlias);
-    //        WebSession.ArticleID = article.ID;
-    //        Server.Transfer("Article.aspx?name=" + articleAlias);
-    //    }
-    //}
-
     private void ProcessLanguage()
     {
         string url = Request.Url.AbsoluteUri;
@@ -183,16 +168,6 @@ public partial class _404 : System.Web.UI.Page
             ProcessNavigationRedirection(path);
         }
     }
-
-    //private void ProcessDownload()
-    //{
-    //    string url = Request.Url.AbsoluteUri;
-    //    if(url.IndexOf("download:")>-1)
-    //    {
-    //        string fileName = url.Substring(url.IndexOf("download:") + 9);
-    //        Server.Transfer("Download.aspx?item=" + fileName);
-    //    }
-    //}
 
     #endregion
 

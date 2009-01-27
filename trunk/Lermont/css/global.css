@@ -6,7 +6,7 @@ a:hover{color:White;}
 
 #main{width:1024px; float:left; position:absolute; left:50%; margin-left:-512px; clear:both; background:#0e2c84 url("../images/mainBg.jpg") no-repeat}
 #mainTop{width:1024px; height:109px; float:left; clear:both}
-#title{ float:left;text-transform:uppercase; font-size:18px;overflow:hidden; text-align:center; padding-top:83px;width:268px;}
+#title{ float:left;text-transform:uppercase; font-size:18px;overflow:hidden; text-align:center; padding-top:5px; width:268px;}
 #middle{float:left; clear:both; width:1024px;}
 #leftSide{width:270px; height:500px; float:left;}
 #contentContainer{padding-left:12px; padding-top:12px; min-height:500px; float:left;  font-size:14px; background:transparent url("../images/centerBg.jpg") bottom right no-repeat; color:White;}
@@ -60,3 +60,8 @@ a:hover{color:White;}
 .subMenuItem a{font-size:13px; color:White; text-decoration:none; float:left;}
 .subMenuItem a:hover{text-decoration:underline; color:#6c7eb4;}
 #galleryContainer{float:left; width:668px;}
+
+.login{color:White; font-size:11px; padding-left:10px; height:80px;}
+.loginButton{color:White; background:#284fac; border:1px solid #6d80bb;}
+.loginStatus{color:White;}
+.shaded{opacity: 0.5; -moz-opacity: 0.5; filter: alpha(opacity=50); background-color:Black;}

@@ -91,9 +91,10 @@ namespace Superi.Features
 		public Gallery(int ID)
 		{
             string sql = "select * from Galleries where ID=" + ID;
-			DbDataReader dr = AppData.ExecQuery(sql);
-			if (dr != null && dr.Read())
-				Load(dr, true);
+			/*DbDataReader dr = AppData.ExecQuery(sql);*/
+            DataSet ds = AppData.GetDataSet(sql);
+			if(ds.Tables.Count>0 && ds.Tables[0].Rows.Count>0)
+                Load(ds.Tables[0].Rows[0]);
 		}
 		#endregion
 

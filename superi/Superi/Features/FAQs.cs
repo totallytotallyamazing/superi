@@ -2,9 +2,9 @@ namespace Superi.Features
 {
     public class FAQs
     {
-        public static GalleryList Get()
+        public static FAQList Get()
         {
-            return new GalleryList(true);
+            return new FAQList(true);
         }
     }
 }

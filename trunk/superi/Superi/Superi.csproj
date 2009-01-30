@@ -54,7 +54,9 @@
     <Compile Include="Common\AppData1.cs" />
     <Compile Include="Common\ApplicationSettings.cs" />
     <Compile Include="Common\ParameterList.cs" />
+    <Compile Include="Controls\ResourceButton.cs" />
     <Compile Include="Controls\ResourceEditor.cs" />
+    <Compile Include="Controls\ResourceLabel.cs" />
     <Compile Include="Features\Album.cs" />
     <Compile Include="Features\AlbumList.cs" />
     <Compile Include="Features\Albums.cs" />

@@ -25,7 +25,7 @@ public static class WebSession
                 return HttpContext.Current.Session["Language"].ToString();
             }
             {
-                HttpContext.Current.Session["Language"] = "UA";
+                HttpContext.Current.Session["Language"] = "RU";
                 return "UA";
             }
         }

@@ -13,7 +13,7 @@ a:hover{color:White;}
 #rightSide{float:left;}
 #footer{width:100%; height:126px; background:transparent url("../images/footer.jpg") no-repeat; float:left; clear:both;}
 #textDiv{float:left;width:668px;}
-#textDiv ol{padding-left:20px;}
+#textDiv ol{padding-left:30px;}
 
 #langsDiv{clear:both; padding-left:15px; padding-top:70px; width:232px; height:56px; float:left;}
 #uaImg{float:left; width:23; height:15; padding-top:4px;}

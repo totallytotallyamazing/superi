@@ -8,6 +8,9 @@ using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
+using System.Net.Mail;
+using System.Net;
+using System.Text;
 
 public partial class Controls_Vouchers : System.Web.UI.UserControl
 {
@@ -25,8 +28,15 @@ public partial class Controls_Vouchers : System.Web.UI.UserControl
     protected void Page_Load(object sender, EventArgs e)
     {
         pOrderForm.Visible = false;
+        pThankYou.Visible = false;
         iCloseOrder.Attributes.Add("onclick", "closeBaloon(3, '" + pOrderForm.ClientID + "')");
         iCloseOrder.Style["cursor"] = "pointer";
+        
+        iCloseTanks.Attributes.Add("onclick", "closeBaloon(3, '" + pThankYou.ClientID + "')");
+        iCloseTanks.Style["cursor"] = "pointer";
+        iCloseThanksButton.Attributes.Add("onclick", "closeBaloon(3, '" + pThankYou.ClientID + "')");
+        iCloseThanksButton.Style["cursor"] = "pointer";
+        CustomValidator val = new CustomValidator();
     }
 
     protected void Page_PreRender(object sender, EventArgs e)
@@ -46,9 +56,8 @@ public partial class Controls_Vouchers : System.Web.UI.UserControl
             HtmlGenericControl divVoucher = (HtmlGenericControl)e.Item.FindControl("divVoucher");
             Voucher voucher = (Voucher)e.Item.DataItem;
             ImageButton ibOrder = (ImageButton)e.Item.FindControl("ibOrder");
-            ibOrder.ImageUrl = WebSession.BaseImageUrl + "orderButton.jpg";
             ibOrder.CommandArgument = voucher.ID.ToString();
-            divVoucher.Style["background"] = "transparent url(" + WebSession.BaseUrl + "VoucherBackground.ashx?am=" + (int)voucher.Price + ")";
+            divVoucher.Style["background"] = "transparent url(VoucherBackground.ashx?am=" + (int)voucher.Price + ")";
         }
         if (e.Item.ItemType == ListItemType.Separator)
         {
@@ -63,12 +72,49 @@ public partial class Controls_Vouchers : System.Web.UI.UserControl
 
     protected void rVouchers_ItemCommand(object source, RepeaterCommandEventArgs e)
     {
+        int voucherId = Convert.ToInt32(e.CommandArgument);
         pOrderForm.Visible = true;
-        hfVoucheId.Value = e.CommandArgument.ToString();
+        hfVoucheId.Value = voucherId.ToString();
+        Voucher voucher = new Voucher(voucherId);
+        lTradeMark.Text = new TradeMark(voucher.ProductId).Name;
+        lPrice.Text = voucher.Price.ToString("0");
     }
 
     protected void ibSendOrder_Click(object sender, ImageClickEventArgs e)
     {
+        pThankYou.Visible = true;
+        SendOrder();
+        pOrderForm.Visible = false;
+    }
 
+    private bool SendOrder()
+    {
+        SmtpClient client = new SmtpClient("mail.odisseia.com.ua");
+        client.Credentials = new NetworkCredential("sales", "9589373");
+
+        MailMessage message = new MailMessage("sales@odisseia.com.ua", "sales@odisseia.com.ua");
+        message.IsBodyHtml = false;
+        message.Subject = "Заказ с сайта";
+        message.SubjectEncoding = Encoding.GetEncoding("koi8-r");
+        StringBuilder sbBody = new StringBuilder();
+        sbBody.Append("Имя: ");
+        sbBody.Append(tbName.Text);
+        sbBody.Append(Environment.NewLine);
+        sbBody.Append("Email: ");
+        sbBody.Append(tbEmail.Text);
+        sbBody.Append(Environment.NewLine);
+        sbBody.Append("Телефон: ");
+        sbBody.Append(tbPhone.Text);
+        message.Body = sbBody.ToString();
+        message.BodyEncoding = Encoding.GetEncoding("koi8-r");
+        try
+        {
+            client.Send(message);
+        }
+        catch
+        {
+            return false;
+        }
+        return true;
     }
 }

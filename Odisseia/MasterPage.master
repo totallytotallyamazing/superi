@@ -78,9 +78,19 @@
     <script type="text/javascript" language="javascript">
 
         Sys.WebForms.PageRequestManager.getInstance().add_endRequest(EndRequestHandler);
+        Sys.WebForms.PageRequestManager.getInstance().add_beginRequest(BeginRequestHandler);
+
+        function BeginRequestHandler(sender, args) {
+            $("body").css("overflow", "hidden");
+            $("html").css("overflow", "hidden");
+            $("#progressShader").css({ "display": "block", "height": visibleAreaSize().h + "px", "top": scrollSize().h + "px" });
+        }
 
         function EndRequestHandler(sender, args) {
-            
+            $("#progressShader").css("display", "none");
+            $("body").css("overflow", "");
+            $("html").css("overflow", "");
+
             fadeScreen(true);
             if(sender._postBackSettings.panelID.indexOf("Holiday")>-1)
             {
@@ -103,7 +113,11 @@
         <area shape="rect" coords="26,4,44,14" alt="Написать" title="Написать" href="mailto:mail" />
     </map>
     <div id="main">
+        <div id="progressShader">
+            <img src="Images/ajaxLoader.gif" alt="loading" />
+        </div>
         <div id="screenCover">
+            
         </div>
         <div id="mainTop">
             <div id="topLeft"></div>

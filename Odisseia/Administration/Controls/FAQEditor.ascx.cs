@@ -78,23 +78,4 @@ public partial class Administration_Controls_FAQEditor : System.Web.UI.UserContr
         rItems.DataSource = list;
         rItems.DataBind();
     }
-
-    //private FAQList FilterList(FAQList FaqList)
-    //{
-    //    FAQList result = new FAQList(false);
-    //    foreach (FAQ faq in FaqList)
-    //    {
-    //        if(string.IsNullOrEmpty(faq.Answer))
-    //            result.Add(faq);
-    //    }
-    //    return result;
-    //}
-
-    //protected void btnSave_Click(object sender, EventArgs e)
-    //{
-    //    int itemId = int.Parse(hfItemId.Value);
-    //    FAQ item = new FAQ(itemId);
-    //    //item.Answer = tbAnswer.Text;
-    //    item.Save();
-    //}
 }

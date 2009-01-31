@@ -1,6 +1,8 @@
 using System;
 using System.Web.Security;
 using System.Web.UI;
+using System.Web.Services;
+using Superi.Features;
 
 //using System.Data;
 //using System.Configuration;
@@ -25,4 +27,15 @@ public partial class Administration_MasterPage : MasterPage
         //Session["LoggedIn"] = null;
         //Response.Redirect("Login.aspx");
 	}
+
+    [WebMethod]
+    public static void UpdateComment(int Id, string Text)
+    {
+        FAQ faq = new FAQ(Id);
+        if (faq.Id > 0)
+        {
+            faq.Question = Text;
+            faq.Save();
+        }
+    }
 }

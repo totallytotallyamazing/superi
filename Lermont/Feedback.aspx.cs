@@ -21,6 +21,7 @@ public partial class Feedback : System.Web.UI.Page
         comment.Question = tbComment.Text;
         comment.Email = tbEmail.Text;
         comment.Name = tbName.Text;
+        comment.Display = false;
         comment.Save();
     }
 
@@ -41,22 +42,24 @@ public partial class Feedback : System.Web.UI.Page
         {
             (e.Item.FindControl("rlName") as ResourceLabel).Language = WebSession.Language;
             (e.Item.FindControl("rlComment") as ResourceLabel).Language = WebSession.Language;
-            
-            Label lName = (Label)e.Item.FindControl("lName");
-            Label lEmail = (Label)e.Item.FindControl("lEmail");
-            HyperLink hlEmail = (HyperLink)e.Item.FindControl("hlEmail");
-            Literal lComment = (Literal)e.Item.FindControl("lComment");
             FAQ faq = (FAQ)e.Item.DataItem;
-
-            lName.Text = faq.Name;
-            if (string.IsNullOrEmpty(faq.Email))
-                hlEmail.Visible = lEmail.Visible = false;
-            else
+            if (faq.Display)
             {
-                hlEmail.NavigateUrl = "mailto:" + faq.Email;
-                hlEmail.Text = faq.Email;
+                Label lName = (Label)e.Item.FindControl("lName");
+                Label lEmail = (Label)e.Item.FindControl("lEmail");
+                HyperLink hlEmail = (HyperLink)e.Item.FindControl("hlEmail");
+                Literal lComment = (Literal)e.Item.FindControl("lComment");
+
+                lName.Text = faq.Name;
+                if (string.IsNullOrEmpty(faq.Email))
+                    hlEmail.Visible = lEmail.Visible = false;
+                else
+                {
+                    hlEmail.NavigateUrl = "mailto:" + faq.Email;
+                    hlEmail.Text = faq.Email;
+                }
+                lComment.Text = faq.Question;
             }
-            lComment.Text = faq.Question;
-        }
+       }
     }
 }

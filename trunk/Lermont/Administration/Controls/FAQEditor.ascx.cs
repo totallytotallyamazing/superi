@@ -7,54 +7,18 @@ using Superi.Features;
 
 public partial class Administration_Controls_FAQEditor : System.Web.UI.UserControl
 {
-    protected void Page_Load(object sender, EventArgs e)
+    protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
     {
-        phAnswer.Visible = false;
-    }
-
-    protected void Page_PreRender(object sender, EventArgs e)
-    {
-        PublishList();
-    }
-
-    protected void rItems_ItemDataBound(object sender, RepeaterItemEventArgs e)
-    {
-        FAQ item = (FAQ)e.Item.DataItem;
-        Literal lComment = (Literal)e.Item.FindControl("lComment");
-        LinkButton lbDelete = (LinkButton)e.Item.FindControl("lbDelete");
-
-        lComment.Text = item.Question;
-        lbDelete.CommandArgument = item.Id.ToString();
-    }
-    protected void rItems_ItemCommand(object source, RepeaterCommandEventArgs e)
-    {
-        int itemId = int.Parse(e.CommandArgument.ToString());
-        FAQ item = new FAQ(itemId);
-        if (e.CommandName == "Answer")
+        if (e.CommandName == "UpdateComment")
         {
-            phAnswer.Visible = true;
-            lQuestion.Text = item.Question;
-            hfItemId.Value = item.Id.ToString();
-        }
-        if (e.CommandName == "Delete")
-        {
-            item.Remove();
-        }
-    }
-    protected void ddlExpret_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        PublishList();
-    }
+            int faqId = Convert.ToInt32(e.CommandArgument);
+            FAQ faq = new FAQ(faqId);
+            if (faq.Id > 0)
+            {
+                faq.Question = ((TextBox)(e.CommandSource as Button).NamingContainer.FindControl("tbComment")).Text;
+                faq.Save();
+            }
 
-    protected void cbNoAnswers_CheckedChanged(object sender, EventArgs e)
-    {
-        PublishList();
-    }
-
-    private void PublishList()
-    {
-        FAQList list = new FAQList(true);
-        rItems.DataSource = list;
-        rItems.DataBind();
+        }
     }
 }

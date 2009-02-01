@@ -26,7 +26,7 @@ public static class WebSession
             }
             {
                 HttpContext.Current.Session["Language"] = "RU";
-                return "UA";
+                return "RU";
             }
         }
         set { HttpContext.Current.Session["Language"] = value; }
@@ -144,6 +144,45 @@ public static class WebSession
         }
     }
 
+    public static string SmtpServer
+    {
+        get
+        {
+            return System.Configuration.ConfigurationManager.AppSettings["SmtpServer"];
+        }
+    }
+
+    public static string SmtpAccount
+    {
+        get
+        {
+            return System.Configuration.ConfigurationManager.AppSettings["SmtpAccount"];
+        }
+    }
+
+    public static string SmptPassword
+    {
+        get
+        {
+            return System.Configuration.ConfigurationManager.AppSettings["SmptPassword"];
+        }
+    }
+
+    public static string DefaultNotificationsReceiver
+    {
+        get
+        {
+            return System.Configuration.ConfigurationManager.AppSettings["DefaultNotificationsReceiver"];
+        }
+    }
+
+    public static string NotificationsSource
+    {
+        get
+        {
+            return System.Configuration.ConfigurationManager.AppSettings["NotificationsSource"];
+        }
+    }
     //public static int ContentWidth
     //{
     //    get

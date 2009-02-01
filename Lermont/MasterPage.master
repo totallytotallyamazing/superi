@@ -14,6 +14,7 @@
     <script type="text/javascript" src="<%= WebSession.BaseUrl %>js/jquery.js"></script>
     <script type="text/javascript" src="<%= WebSession.BaseUrl %>js/jquery.pngFix.js"></script>
     <script type="text/javascript" src="<%= WebSession.BaseUrl %>js/jquery.fancybox.js"></script>
+    <asp:ContentPlaceHolder ID="cphTitle" runat="server"></asp:ContentPlaceHolder>
     <base href="<%= WebSession.BaseUrl %>" />
     <%= MetaTags %>
     <script type="text/javascript">

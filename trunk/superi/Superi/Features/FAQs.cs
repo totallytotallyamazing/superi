@@ -1,3 +1,5 @@
+using Superi.Common;
+using System.Data;
 namespace Superi.Features
 {
     public class FAQs
@@ -46,6 +48,23 @@ namespace Superi.Features
             faq.Question = Question;
             faq.Answer = Answer;
             faq.Save();
+        }
+
+        public static FAQList Get(bool DisplayableOnly)
+        {
+            if(DisplayableOnly)
+            {
+                ParameterList parameterList = new ParameterList();
+                parameterList.Add(new AppDbParameter("display", true));
+                DataSet ds = AppData.ExecDataSet("FAQ_Get", parameterList);
+                if(ds.Tables.Count>0)
+                {
+                    return new FAQList(ds.Tables[0]);
+                }
+                else 
+                    return null;
+            }
+            return new FAQList(true);
         }
     }
 }

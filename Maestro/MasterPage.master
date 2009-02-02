@@ -1,12 +1,14 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+<%@ Register TagPrefix="maestro" TagName="MainMenu" Src="~/Controls/MainMenu.ascx"  %>
+<%@ Import Namespace="Superi.Common" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
-    <link rel="Stylesheet" href="css/global.css" />
-    <script type="text/javascript" src="js/jquery.js"></script>
+    
+    <link rel="Stylesheet" href="<%= WebSession.BaseUrl + "css/global.css" %>" />
+    <script type="text/javascript" src="<%= WebSession.BaseUrl %>js/jquery.js"></script>
     <script type="text/javascript">
         function langOver(lang) {
             $('#' + lang).css('background', '#ebebeb');
@@ -22,28 +24,35 @@
 <body>
     <form id="form1" runat="server">
     <div id="main">
-    <div id="mainTop">
-        <div id="langs">
-            <div id="UALang">
-                <asp:HyperLink runat="server" onmouseout="langOut('UALang')" onmouseover="langOver('UALang')" NavigateUrl="~/lang=UA" ID="hlUA" ImageUrl="~/Images/UA.jpg"></asp:HyperLink>
+        <div id="mainTop">
+            <div id="langs">
+                <div id="UALang">
+                    <asp:HyperLink runat="server" onmouseout="langOut('UALang')" onmouseover="langOver('UALang')" NavigateUrl="~/lang=UA" ID="hlUA" ImageUrl="~/Images/UA.jpg"></asp:HyperLink>
+                </div>
+                <div id="RULang">
+                    <asp:HyperLink runat="server" onmouseout="langOut('RULang')" onmouseover="langOver('RULang')" ID="hlRU" NavigateUrl="~/lang=RU" ImageUrl="~/Images/RU.jpg"></asp:HyperLink>
+                </div>
+                <div id="ENLang">
+                    <asp:HyperLink runat="server" onmouseout="langOut('ENLang')" onmouseover="langOver('ENLang')" ID="hlEN" NavigateUrl="~/lang=EN" ImageUrl="~/Images/EN.jpg"></asp:HyperLink>
+                </div>
             </div>
-            <div id="RULang">
-                <asp:HyperLink runat="server" onmouseout="langOut('RULang')" onmouseover="langOver('RULang')" ID="hlRU" NavigateUrl="~/lang=RU" ImageUrl="~/Images/RU.jpg"></asp:HyperLink>
+            <div id="title">
+                <asp:Literal runat="server" ID="lTitle"></asp:Literal>
             </div>
-            <div id="ENLang">
-                <asp:HyperLink runat="server" onmouseout="langOut('ENLang')" onmouseover="langOver('ENLang')" ID="hlEN" NavigateUrl="~/lang=EN" ImageUrl="~/Images/EN.jpg"></asp:HyperLink>
+            <div id="menu">
+                <maestro:MainMenu runat="server" />
             </div>
         </div>
-        <div id="title">
-            Новости
+        <div id="middle">
+            <div id="contentContainer">
+                <asp:ContentPlaceHolder id="content" runat="server">
+                
+                </asp:ContentPlaceHolder>
+            </div>
+            <div id="gamesContainer">
+            
+            </div>
         </div>
-        <div id="menu">
-            мультимедия  мультимедия  мультимедия  мультимедия  мультимедия
-        </div>
-    </div>
-        <asp:ContentPlaceHolder id="content" runat="server">
-        
-        </asp:ContentPlaceHolder>
     </div>
     </form>
 </body>

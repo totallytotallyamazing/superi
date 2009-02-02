@@ -1,5 +1,5 @@
 <%@ Control Language="C#" AutoEventWireup="true" CodeFile="ArticlesEditor.ascx.cs" Inherits="Administration_Controls_ArticlesEditor" %>
-<%@ Register TagPrefix="Controls" Namespace="CustomControls" %>
+<%@ Register TagPrefix="Controls" Assembly="Superi" Namespace="Superi.CustomControls" %>
     <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" DeleteMethod="Delete" InsertMethod="Insert" SelectMethod="Get" TypeName="Superi.Features.Articles" UpdateMethod="Update">
         <DeleteParameters>
             <asp:Parameter Name="ID" Type="Int32" />
@@ -10,9 +10,6 @@
             <asp:Parameter Name="ID" Type="Int32" />
         </UpdateParameters>
         <SelectParameters>
-            
-<%--            <asp:ControlParameter ControlID="ihNodeID" DefaultValue="-1" Name="ScopeID" PropertyName="Value"
-                Type="Int32" />--%>
         </SelectParameters>
         <InsertParameters>
             <asp:Parameter Name="Alias" Type="String" />

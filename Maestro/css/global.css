@@ -9,6 +9,8 @@
 #title{float:right; text-transform:uppercase; width:294px; text-align:left; font-size:21px; color:White; padding-top:115px;}
 
 #menu{float:right; clear:both; text-align:right; padding-right:33px;}
-#menuLink{text-decoration:none; color:#052e8c; font-weight:bold;}
-#menuLink:hover{color:#7c98ce;}
-#currentMenuItem{color:#7c98ce; font-weight:bold;}
+.menuLink{text-decoration:none; color:#052e8c; font-weight:bold; text-transform:lowercase;}
+.menuLink:hover{color:#7c98ce;}
+.currentMenuItem{color:#7c98ce; font-weight:bold; text-transform:lowercase;}
+
+#contentContainer{border:1px solid red; width:inherit; height:200px;}

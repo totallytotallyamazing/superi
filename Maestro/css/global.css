@@ -1,0 +1,14 @@
+﻿*{padding:0px; margin:0px; border:none; color:#6b87c5; font-family:Times New Roman;}
+
+#main{width:1024px; margin:0 auto; position:relative; background:transparent url("../images/mainBg.jpg") no-repeat;}
+#mainTop{height:207px; width:inherit;}
+#langs{width:78px; height:50px; padding-left:56px;}
+
+#UALang, #RULang, #ENLang{width:20px; height:14px; float:left; padding:28px 3px 0px 3px;}
+
+#title{float:right; text-transform:uppercase; width:294px; text-align:left; font-size:21px; color:White; padding-top:115px;}
+
+#menu{float:right; clear:both; text-align:right; padding-right:33px;}
+#menuLink{text-decoration:none; color:#052e8c; font-weight:bold;}
+#menuLink:hover{color:#7c98ce;}
+#currentMenuItem{color:#7c98ce; font-weight:bold;}

@@ -1,5 +1,7 @@
 <%@ Page Language="C#" MasterPageFile="~/Administration/MasterPage.master" AutoEventWireup="true" CodeFile="Products.aspx.cs" Inherits="Administration_Products" Title="Untitled Page" %>
-<%@ Register TagPrefix="Controls" Namespace="CustomControls" %>
+<%@ Register TagPrefix="Controls" Assembly="Superi" Namespace="Superi.CustomControls" %>
+
+<%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="cc1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 <script type="text/javascript">

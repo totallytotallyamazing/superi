@@ -23,7 +23,7 @@ public partial class Administration_Controls_EditBokDescription : System.Web.UI.
             SaveClick(this, e);
     }
     
-    protected void Page_Load(object sender, EventArgs e)
+    protected void Page_PreRender(object sender, EventArgs e)
     {
         PublishProperties();
     }

@@ -27,16 +27,16 @@ namespace Superi.CustomControls
     public class ResourceEditor : Control
     {
         #region Private fields
-        private string aPrefix = "";
-        private string divPrefix = "";
-        private readonly string _script = "function toggleDivs(lang, id)" + Environment.NewLine +
+        //private string aPrefix = "";
+        //private string divPrefix = "";
+        private readonly string _script = "function toggleDivs(lang, id, prefix)" + Environment.NewLine +
         "{" + Environment.NewLine +
             "var lng;" + Environment.NewLine +
             "for (lng in langs)" + Environment.NewLine +
             "{" + Environment.NewLine +
                 "var lngVal = langs[lng];" + Environment.NewLine +
-                "var el = document.getElementById('%DIV_PREFIX%' + id + '_div_' +lngVal);" + Environment.NewLine +
-                "var aEl = document.getElementById('%A_PREFIX%' + id + '_a_' +lngVal);" + Environment.NewLine +
+                "var el = document.getElementById(prefix + '_div_' +lngVal);" + Environment.NewLine +
+                "var aEl = document.getElementById(prefix + '_a_' +lngVal);" + Environment.NewLine +
                 "if(lngVal===lang)" + Environment.NewLine +
                 "{" + Environment.NewLine +
 "                    el.style.display='block';" + Environment.NewLine +
@@ -216,7 +216,7 @@ namespace Superi.CustomControls
                 HtmlAnchor aDefault = new HtmlAnchor();
                 aDefault.InnerText = "Default";
                 aDefault.ID = ID + "_a_Default";
-                aDefault.HRef = "javascript:toggleDivs('Default', '" + ID + "')";
+                aDefault.HRef = "javascript:toggleDivs('Default', '" + ID + "', '" + ClientID + "')";
                 aDefault.Style["border"] = "1px solid #8c8c8c";
                 cell = new HtmlTableCell();
                 cell.Controls.Add(aDefault);
@@ -227,12 +227,12 @@ namespace Superi.CustomControls
             {
                 HtmlAnchor a = new HtmlAnchor();
                 a.InnerText = language.Name;
-                a.HRef = "javascript:toggleDivs('" + language.Code + "', '" + ID + "')";
+                a.HRef = "javascript:toggleDivs('" + language.Code + "', '" + ID + "', '" + ClientID + "')";
                 a.ID = ID + "_a_" + language.Code;
                 cell = new HtmlTableCell();
                 cell.Controls.Add(a);
                 row.Controls.Add(cell);
-                aPrefix = a.ClientID.Replace(ID + "_a_" + language.Code, "");
+                //aPrefix = a.ClientID.Replace(ID + "_a_" + language.Code, "");
                 if (!DisplayDefault)
                     if (isFirst)
                     {
@@ -242,7 +242,6 @@ namespace Superi.CustomControls
             }
             table.Controls.Add(row);
             Controls.Add(table);
-            aPrefix = ClientID.Replace(ID, "");
         }
 
         private void GenerateLangDivs()
@@ -254,7 +253,7 @@ namespace Superi.CustomControls
                 div = new HtmlGenericControl("div");
                 div.ID = ID + "_div_Default";
                 Controls.Add(div);
-                divPrefix = div.ClientID.Replace(ID + "_div_Default", "");
+                //divPrefix = div.ClientID.Replace(ID + "_div_Default", "");
                 div.Style["width"] = "100%";
                 div.Style["height"] = "100%";
 
@@ -296,7 +295,7 @@ namespace Superi.CustomControls
                 div = new HtmlGenericControl("div");
                 div.ID = ID + "_div_" + language.Code;
                 Controls.Add(div);
-                divPrefix = div.ClientID.Replace(ID + "_div_" + language.Code, "");
+                //divPrefix = div.ClientID.Replace(ID + "_div_" + language.Code, "");
                 div.Style["width"] = "100%";
                 div.Style["height"] = "100%";
 
@@ -398,7 +397,7 @@ namespace Superi.CustomControls
             }
             GenerateLangsTable();
             GenerateLangDivs();
-            Page.ClientScript.RegisterClientScriptBlock(GetType(), "myscript", _script.Replace("%DIV_PREFIX%", divPrefix).Replace("%A_PREFIX%", aPrefix), true);
+            Page.ClientScript.RegisterClientScriptBlock(GetType(), "myscript", _script, true);
             //Page.ClientScript.RegisterStartupScript(this.GetType(), "dimscr", _dimensionsScript.Replace("%DIV_PREFIX%", divPrefix), true);
         }
         #endregion

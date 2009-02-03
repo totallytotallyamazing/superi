@@ -1,4 +1,6 @@
 <%@ Page Language="C#" MasterPageFile="~/Administration/MasterPage.master" AutoEventWireup="true" CodeFile="Books.aspx.cs" Inherits="Administration_Books" Title="Untitled Page" ValidateRequest="false" EnableEventValidation="false" %>
+
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajax" %>
 <%@ Register TagPrefix="Controls" Namespace="Superi.CustomControls" Assembly="Superi" %>
 <%@ Register TagPrefix="admin" TagName="BookAddEdit" Src="~/Administration/Controls/BookAddEdit.ascx" %>
 <%@ Register TagPrefix="admin" TagName="EditBookDescription" Src="~/Administration/Controls/EditBokDescription.ascx" %>
@@ -53,7 +55,7 @@
     <input type="hidden" id="ihAction" />
     <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" SelectMethod="Get" TypeName="Books"></asp:ObjectDataSource>
     <div style="text-align:left;">
-    <asp:GridView ID="GridView1" runat="server" DataSourceID="ObjectDataSource1" AutoGenerateColumns="False" OnRowCommand="GridView1_RowCommand" OnRowDataBound="GridView1_RowDataBound">
+    <asp:GridView ID="GridView1" Visible="false" runat="server" DataSourceID="ObjectDataSource1" AutoGenerateColumns="False" OnRowCommand="GridView1_RowCommand" OnRowDataBound="GridView1_RowDataBound">
         <Columns>
             <asp:TemplateField HeaderText="Çàãîëîâîê">
                 <ItemTemplate>
@@ -76,8 +78,48 @@
                 </ItemTemplate>
             </asp:TemplateField>
         </Columns>
+        
     </asp:GridView>
     
+    <ajax:ReorderList ID="ReorderList1" runat="server" AllowReorder="True" 
+            DataSourceID="dsProducts" onitemdatabound="ReorderList1_ItemDataBound" 
+            PostBackOnReorder="False" SortOrderField="SortOrder"
+            >
+        <ItemTemplate>
+            <asp:Literal ID="lTitle" runat="server"></asp:Literal>
+            <asp:LinkButton runat="server" ID="lbEdit" Text="Ğåäàêòèğîâàòü" CommandName="EditBook"></asp:LinkButton>
+            <asp:LinkButton runat="server" ID="lbDescription" Text="Îïèñàíèå" CommandName="EditDescription"></asp:LinkButton>
+            <asp:LinkButton runat="server" ID="lbDelete" Text="Óäàëèòü" CommandName="DeleteBook"></asp:LinkButton>
+        </ItemTemplate>
+        <DragHandleTemplate>
+            &gt;
+        </DragHandleTemplate>
+    </ajax:ReorderList>
+
+
+        
+        <asp:SqlDataSource ID="dsProducts" runat="server" 
+            ConnectionString="<%$ ConnectionStrings:1gb_lermontConnectionString %>" 
+            SelectCommand="SELECT [ID], [NameTextID], [SortOrder] FROM [Products]" 
+            DeleteCommand="DELETE FROM [Products] WHERE [ID] = @ID" 
+            InsertCommand="INSERT INTO [Products] ([NameTextID], [SortOrder]) VALUES (@NameTextID, @SortOrder)" 
+            UpdateCommand="UPDATE [Products] SET [NameTextID] = @NameTextID, [SortOrder] = @SortOrder WHERE [ID] = @ID">
+            <DeleteParameters>
+                <asp:Parameter Name="ID" Type="Int32" />
+            </DeleteParameters>
+            <UpdateParameters>
+                <asp:Parameter Name="NameTextID" Type="Int32" />
+                <asp:Parameter Name="SortOrder" Type="Int32" />
+                <asp:Parameter Name="ID" Type="Int32" />
+            </UpdateParameters>
+            <InsertParameters>
+                <asp:Parameter Name="NameTextID" Type="Int32" />
+                <asp:Parameter Name="SortOrder" Type="Int32" />
+            </InsertParameters>
+        </asp:SqlDataSource>
+
+
+        
     <asp:UpdatePanel runat="server" ID="upAddEditBook">
         <ContentTemplate>
         <asp:LinkButton runat="server" ID="lbAdd" Text="Äîáàâèòü" OnClick="lbAdd_Click"></asp:LinkButton>

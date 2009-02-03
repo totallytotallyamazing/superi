@@ -15,7 +15,7 @@ public partial class SeminarRegistration : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         LinkCss();
-        bSend.TextName = "bSend";
+        bSend.ResourceName = "bSend";
     }
 
     private void LinkCss()

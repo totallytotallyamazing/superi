@@ -1,5 +1,5 @@
 <%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="ProductDetails.aspx.cs" Inherits="ProductDetails" Title="Untitled Page" %>
-<%@ Register TagPrefix="Controls" Namespace="CustomControls" %>
+<%@ Register TagPrefix="Controls" Assembly="Superi" Namespace="Superi.CustomControls" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <asp:PlaceHolder runat="server" ID="phStyles"></asp:PlaceHolder>
     <div id="productDetailsContainer">
@@ -8,16 +8,16 @@
         </div>
         <div class="productInfo">
             <div class="productTitle">
-                <Controls:ResourceWriter ID="twTitle" runat="server"></Controls:ResourceWriter>
+                <Controls:ResourceLabel ID="twTitle" runat="server"></Controls:ResourceLabel>
             </div>
             <div class="productSubTitle">
-                <Controls:ResourceWriter ID="twSubTitle" runat="server"></Controls:ResourceWriter>
+                <Controls:ResourceLabel ID="twSubTitle" runat="server"></Controls:ResourceLabel>
             </div>
             <div class="productAdditionalInfo">
-                <Controls:ResourceWriter ID="twAdditionalInfo" runat="server"></Controls:ResourceWriter>
+                <Controls:ResourceLabel ID="twAdditionalInfo" runat="server"></Controls:ResourceLabel>
             </div>
             <div class="productDescription">
-                <Controls:ResourceWriter ID="twDescription" runat="server"></Controls:ResourceWriter>
+                <Controls:ResourceLabel ID="twDescription" runat="server"></Controls:ResourceLabel>
             </div>
             <div class="bookPublisher">
                 <asp:HyperLink runat="server" ID="hlPublisher"></asp:HyperLink>

@@ -46,18 +46,24 @@
                 <Superi:ResourceLinkButton ID="rlbClose" runat="server" ResourceName="close"></Superi:ResourceLinkButton>
             </div>
         </asp:Panel>
-        <ajax:RoundedCornersExtender ID="RoundedCornersExtender1" 
+<%--        <ajax:RoundedCornersExtender ID="RoundedCornersExtender1" 
             runat="server" 
-            Radius="10" 
+            Radius="4" 
             TargetControlID="pDetails" 
-            BorderColor="Black"  />
+            BorderColor="Black"  />--%>
         <ajax:ModalPopupExtender runat="server" 
             ID="mpeDetails" 
             PopupControlID="pDetails" 
             TargetControlID="lbStub" 
-            DropShadow="False" 
+            DropShadow="true" 
             BackgroundCssClass="shaded" 
             CancelControlID="rlbClose"/>
+<%--        <ajax:DropShadowExtender runat="server"
+            TargetControlID="pDetails"
+            Rounded="true"
+            Radius="10" TrackPosition="true"
+            />
+--%>
     </ContentTemplate>
     <Triggers>
         <asp:AsyncPostBackTrigger ControlID="rItems" EventName="ItemCommand" />

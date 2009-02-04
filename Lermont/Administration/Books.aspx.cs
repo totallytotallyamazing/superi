@@ -21,27 +21,7 @@ public partial class Administration_Books : System.Web.UI.Page
 
     protected void Page_PreRender(object sender, EventArgs e)
     {
-        GridView1.DataBind();
-    }
-
-    protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
-    {
-        int bookId = int.Parse(e.CommandArgument.ToString());
-        Book book = new Book(bookId);
-        switch (e.CommandName)
-        {
-            case "DeleteBook":
-                RemovePicture(book.Picture);
-                book.Remove();
-                GridView1.DataBind();
-                break;
-            case "EditBook":
-                baeMain.BookId = book.ID;
-                break;
-            case "EditDescription":
-                ebdMain.BookId = book.ID;
-                break;
-        }
+        ReorderList1.DataBind();
     }
 
     private void RemovePicture(string FileName)
@@ -50,28 +30,6 @@ public partial class Administration_Books : System.Web.UI.Page
         {
             string path = Server.MapPath(WebSession.ProductsImagesFolder) + "\\";
             File.Delete(path + FileName);
-        }
-    }
-
-    protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
-    {
-        if (e.Row.DataItem != null)
-        {
-            Book book = (Book) e.Row.DataItem;
-            Literal lTitle = (Literal) e.Row.FindControl("lTitle");
-            LinkButton lbEdit = (LinkButton) e.Row.FindControl("lbEdit");
-            LinkButton lbDelete = (LinkButton) e.Row.FindControl("lbDelete");
-            LinkButton lbDescription = (LinkButton)e.Row.FindControl("lbDescription");
-
-            lbDelete.CommandArgument = book.ID.ToString();
-            lbEdit.CommandArgument = book.ID.ToString();
-            lbDescription.CommandArgument = book.ID.ToString();
-
-            lbEdit.Attributes.Add("onclick", "setAction('addEditBook')");
-            lbDescription.Attributes.Add("onclick", "setAction('editDescription')");
-            lTitle.Text = book.Names["RU"];
-
-            lbDelete.Attributes.Add("onclick", "return confirmDelete()");
         }
     }
 
@@ -102,6 +60,25 @@ public partial class Administration_Books : System.Web.UI.Page
                 //book.Names["RU"];
 
             lbDelete.Attributes.Add("onclick", "return confirmDelete()");
+        }
+    }
+    protected void ReorderList1_ItemCommand(object sender, AjaxControlToolkit.ReorderListCommandEventArgs e)
+    {
+        int bookId = int.Parse(e.CommandArgument.ToString());
+        Book book = new Book(bookId);
+        switch (e.CommandName)
+        {
+            case "DeleteBook":
+                RemovePicture(book.Picture);
+                book.Remove();
+                ReorderList1.DataBind();
+                break;
+            case "EditBook":
+                baeMain.BookId = book.ID;
+                break;
+            case "EditDescription":
+                ebdMain.BookId = book.ID;
+                break;
         }
     }
 }

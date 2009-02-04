@@ -18,25 +18,17 @@
         {
             if(getAction()==='addEditBook')
             {
-                var paramDiv = document.getElementById('addBookHolder');
-                paramDiv.style.display='block';
-                paramDiv.style.left=mousePosition.x+'px';
-                paramDiv.style.top=mousePosition.y+'px';
+                $find("<%= mpeAddEdit.ClientID %>").show();
             }
             else if(getAction()==='editDescription')
             {
-                var editDiv = document.getElementById('editBookDescription');
-                editDiv.style.display='block';
-                editDiv.style.left=mousePosition.x+'px';
-                editDiv.style.top=mousePosition.y+'px';
+                $find("<%= mpeDescription.ClientID %>").show();
             }
             setAction('');
         }
 
-        function closeParams(elId)
-        {
-            var paramDiv = document.getElementById(elId);
-            paramDiv.style.display='none';
+        function closeParams(elId) {
+            $find(elId).hide();
         }
         
         function setAction(action)
@@ -55,33 +47,36 @@
     <input type="hidden" id="ihAction" />
     <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" SelectMethod="Get" TypeName="Books"></asp:ObjectDataSource>
     <div style="text-align:left;">
-    
-    <ajax:ReorderList ID="ReorderList1" runat="server" AllowReorder="True" 
-            DataSourceID="dsProducts" onitemdatabound="ReorderList1_ItemDataBound" 
-            PostBackOnReorder="False" SortOrderField="SortOrder" onitemcommand="ReorderList1_ItemCommand"
-            >
-        <ItemTemplate>
-            <div class="book">
-                <div class="bookName"><asp:Literal ID="lTitle" runat="server"></asp:Literal></div>
-                <div class="bookActions">
-                    <asp:LinkButton runat="server" ID="lbEdit" Text="Редактировать" CommandName="EditBook"></asp:LinkButton>
-                    <asp:LinkButton runat="server" ID="lbDescription" Text="Описание" CommandName="EditDescription"></asp:LinkButton>
-                    <asp:LinkButton runat="server" ID="lbDelete" Text="Удалить" CommandName="DeleteBook"></asp:LinkButton>
-                </div>
-            </div>
-        </ItemTemplate>
-        <ReorderTemplate>
-            <div class="reorderItem"></div>
-        </ReorderTemplate>
-        <DragHandleTemplate>
-            <div class="dragHandle">
-                &gt;
-            </div>
-        </DragHandleTemplate>
-    </ajax:ReorderList>
+    <asp:UpdatePanel runat="server">
+        <ContentTemplate>
+           <ajax:ReorderList ID="ReorderList1" runat="server" AllowReorder="True" 
+                    DataSourceID="dsProducts" onitemdatabound="ReorderList1_ItemDataBound" 
+                    PostBackOnReorder="True" SortOrderField="SortOrder" onitemcommand="ReorderList1_ItemCommand">
+                <ItemTemplate>
+                    <div class="book">
+                        <div class="bookName"><asp:Literal ID="lTitle" runat="server"></asp:Literal></div>
+                        <div class="bookActions">
+                            <asp:LinkButton runat="server" ID="lbEdit" Text="Редактировать" CommandName="EditBook"></asp:LinkButton>
+                            <asp:LinkButton runat="server" ID="lbDescription" Text="Описание" CommandName="EditDescription"></asp:LinkButton>
+                            <asp:LinkButton runat="server" ID="lbDelete" Text="Удалить" CommandName="DeleteBook"></asp:LinkButton>
+                        </div>
+                    </div>
+                </ItemTemplate>
+                <ReorderTemplate>
+                    <div class="reorderItem"></div>
+                </ReorderTemplate>
+                <DragHandleTemplate>
+                    <div class="dragHandle">
+                        &gt;
+                    </div>
+                </DragHandleTemplate>
+            </ajax:ReorderList>
+        </ContentTemplate>
+        <Triggers>
+            <asp:AsyncPostBackTrigger ControlID="ReorderList1" EventName="ItemReorder" />
+        </Triggers>
+    </asp:UpdatePanel>
 
-
-        
         <asp:SqlDataSource ID="dsProducts" runat="server" 
             ConnectionString="<%$ ConnectionStrings:1gb_lermontConnectionString %>" 
             SelectCommand="SELECT [ID], [NameTextID], [SortOrder] FROM [Products] ORDER BY [SortOrder]" 
@@ -107,14 +102,32 @@
     <asp:UpdatePanel runat="server" ID="upAddEditBook">
         <ContentTemplate>
         <asp:LinkButton runat="server" ID="lbAdd" Text="Добавить" OnClick="lbAdd_Click"></asp:LinkButton>
-            <div id="addBookHolder" style="display:none; position:absolute;">
-                <div style="text-align:right;"><a href="javascript:closeParams('addBookHolder')">X</a></div>
+            <asp:Panel runat="server" id="addBookHolder" CssClass="addBookHolder">
+                <div style="text-align:right;"><a href="javascript:closeParams('<%= mpeAddEdit.ClientID %>')">X</a></div>
                 <admin:BookAddEdit runat="server" ID="baeMain" />
-            </div>
-            <div id="editBookDescription" style="display:none; position:absolute;">
-                <div style="text-align:right;"><a href="javascript:closeParams('editBookDescription')">X</a></div>
+            </asp:Panel>
+            <asp:Panel id="editBookDescription" runat="server" CssClass="editBookDescription" >
+                <div style="text-align:right;"><a href="javascript:closeParams('<%= mpeDescription.ClientID %>')">X</a></div>
                 <admin:EditBookDescription runat="server" ID="ebdMain"/>
-            </div>
+            </asp:Panel>
+            <asp:LinkButton runat="server" ID="lbStub1" style="display:none"></asp:LinkButton>
+            <asp:LinkButton runat="server" ID="lbStub2" style="display:none"></asp:LinkButton>
+            <ajax:ModalPopupExtender runat="server" 
+                TargetControlID="lbStub1"
+                ID="mpeAddEdit"
+                PopupControlID="addBookHolder"
+                DropShadow="true"
+                BackgroundCssClass="shaded"
+            />
+            
+           <ajax:ModalPopupExtender runat="server" 
+                TargetControlID="lbStub2"
+                ID="mpeDescription"
+                PopupControlID="editBookDescription"
+                DropShadow="true"
+                BackgroundCssClass="shaded"
+            />
+
         </ContentTemplate>
         <Triggers>
             <asp:AsyncPostBackTrigger ControlID="lbAdd" EventName="Click" />

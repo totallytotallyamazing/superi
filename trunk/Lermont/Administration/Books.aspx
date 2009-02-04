@@ -55,44 +55,28 @@
     <input type="hidden" id="ihAction" />
     <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" SelectMethod="Get" TypeName="Books"></asp:ObjectDataSource>
     <div style="text-align:left;">
-    <asp:GridView ID="GridView1" Visible="false" runat="server" DataSourceID="ObjectDataSource1" AutoGenerateColumns="False" OnRowCommand="GridView1_RowCommand" OnRowDataBound="GridView1_RowDataBound">
-        <Columns>
-            <asp:TemplateField HeaderText="Çàãîëîâîê">
-                <ItemTemplate>
-                    <asp:Literal ID="lTitle" runat="server"></asp:Literal>
-                </ItemTemplate>
-            </asp:TemplateField>
-            <asp:TemplateField>
-                <ItemTemplate>
-                    <asp:LinkButton runat="server" ID="lbEdit" Text="Ğåäàêòèğîâàòü" CommandName="EditBook"></asp:LinkButton>
-                </ItemTemplate>
-            </asp:TemplateField>
-            <asp:TemplateField>
-                <ItemTemplate>
-                    <asp:LinkButton runat="server" ID="lbDescription" Text="Îïèñàíèå" CommandName="EditDescription"></asp:LinkButton>
-                </ItemTemplate>
-            </asp:TemplateField>
-            <asp:TemplateField>
-                <ItemTemplate>
-                    <asp:LinkButton runat="server" ID="lbDelete" Text="Óäàëèòü" CommandName="DeleteBook"></asp:LinkButton>
-                </ItemTemplate>
-            </asp:TemplateField>
-        </Columns>
-        
-    </asp:GridView>
     
     <ajax:ReorderList ID="ReorderList1" runat="server" AllowReorder="True" 
             DataSourceID="dsProducts" onitemdatabound="ReorderList1_ItemDataBound" 
-            PostBackOnReorder="False" SortOrderField="SortOrder"
+            PostBackOnReorder="False" SortOrderField="SortOrder" onitemcommand="ReorderList1_ItemCommand"
             >
         <ItemTemplate>
-            <asp:Literal ID="lTitle" runat="server"></asp:Literal>
-            <asp:LinkButton runat="server" ID="lbEdit" Text="Ğåäàêòèğîâàòü" CommandName="EditBook"></asp:LinkButton>
-            <asp:LinkButton runat="server" ID="lbDescription" Text="Îïèñàíèå" CommandName="EditDescription"></asp:LinkButton>
-            <asp:LinkButton runat="server" ID="lbDelete" Text="Óäàëèòü" CommandName="DeleteBook"></asp:LinkButton>
+            <div class="book">
+                <div class="bookName"><asp:Literal ID="lTitle" runat="server"></asp:Literal></div>
+                <div class="bookActions">
+                    <asp:LinkButton runat="server" ID="lbEdit" Text="Ğåäàêòèğîâàòü" CommandName="EditBook"></asp:LinkButton>
+                    <asp:LinkButton runat="server" ID="lbDescription" Text="Îïèñàíèå" CommandName="EditDescription"></asp:LinkButton>
+                    <asp:LinkButton runat="server" ID="lbDelete" Text="Óäàëèòü" CommandName="DeleteBook"></asp:LinkButton>
+                </div>
+            </div>
         </ItemTemplate>
+        <ReorderTemplate>
+            <div class="reorderItem"></div>
+        </ReorderTemplate>
         <DragHandleTemplate>
-            &gt;
+            <div class="dragHandle">
+                &gt;
+            </div>
         </DragHandleTemplate>
     </ajax:ReorderList>
 
@@ -100,7 +84,7 @@
         
         <asp:SqlDataSource ID="dsProducts" runat="server" 
             ConnectionString="<%$ ConnectionStrings:1gb_lermontConnectionString %>" 
-            SelectCommand="SELECT [ID], [NameTextID], [SortOrder] FROM [Products]" 
+            SelectCommand="SELECT [ID], [NameTextID], [SortOrder] FROM [Products] ORDER BY [SortOrder]" 
             DeleteCommand="DELETE FROM [Products] WHERE [ID] = @ID" 
             InsertCommand="INSERT INTO [Products] ([NameTextID], [SortOrder]) VALUES (@NameTextID, @SortOrder)" 
             UpdateCommand="UPDATE [Products] SET [NameTextID] = @NameTextID, [SortOrder] = @SortOrder WHERE [ID] = @ID">
@@ -134,7 +118,7 @@
         </ContentTemplate>
         <Triggers>
             <asp:AsyncPostBackTrigger ControlID="lbAdd" EventName="Click" />
-            <asp:AsyncPostBackTrigger ControlID="GridView1" EventName="RowCommand" />
+            <asp:AsyncPostBackTrigger ControlID="ReorderList1" EventName="ItemCommand" />
             <asp:PostBackTrigger ControlID="baeMain" />
             <asp:PostBackTrigger ControlID="ebdMain" />
         </Triggers>

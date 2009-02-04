@@ -58,6 +58,8 @@
     <Compile Include="Controls\ResourceButton.cs" />
     <Compile Include="Controls\ResourceEditor.cs" />
     <Compile Include="Controls\ResourceLabel.cs" />
+    <Compile Include="Controls\ResourceLinkButton.cs" />
+    <Compile Include="Controls\SuperiUpload.cs" />
     <Compile Include="Controls\TextWritter.cs" />
     <Compile Include="Features\Album.cs" />
     <Compile Include="Features\AlbumList.cs" />

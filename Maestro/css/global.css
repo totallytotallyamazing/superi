@@ -16,3 +16,5 @@
 #contentContainer{width:inherit; height:200px;}
 #footer{width:1024px; height:18px; background:transparent url("../images/bottomLine.jpg") no-repeat;}
 .shaded{opacity: 0.5; -moz-opacity: 0.5; filter: alpha(opacity=50); background-color:Black;}
+.articleDetails{background:white; width:500px; height:600px;}
+.articleDetails .articleDetails{overflow:auto;}

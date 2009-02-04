@@ -38,6 +38,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
     
     protected void Page_Init(object sender, EventArgs e)
     {
+        lTitle.Text = Page.Title;
         if (Request.Url.AbsoluteUri.ToLower().IndexOf("default.aspx") > -1)
             WebSession.NavigationID = int.MinValue;
         if (NavigationID > 0)
@@ -50,8 +51,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
 
             if (navigation.Texts != null && navigation.Texts.Items.Count > 0)
             {
-                 Page.Title = lTitle.Text = navigation.Texts[WebSession.Language];
-                
+                Page.Title = lTitle.Text = navigation.Texts[WebSession.Language];
             }
             else if (!string.IsNullOrEmpty(navigation.Text))
                 Page.Title = lTitle.Text = navigation.Text;

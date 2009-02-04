@@ -43,20 +43,21 @@
         <asp:Panel runat="server" ID="pDetails" CssClass="articleDetails">
             <asp:Literal ID="lDetails" runat="server"></asp:Literal>
             <div class="articleDetailsClose">
-                <asp:Button runat="server" ID="bClose" />
+                <Superi:ResourceLinkButton ID="rlbClose" runat="server" ResourceName="close"></Superi:ResourceLinkButton>
             </div>
         </asp:Panel>
         <ajax:RoundedCornersExtender ID="RoundedCornersExtender1" 
             runat="server" 
             Radius="10" 
             TargetControlID="pDetails" 
-            BorderColor="Black" />
+            BorderColor="Black"  />
         <ajax:ModalPopupExtender runat="server" 
             ID="mpeDetails" 
             PopupControlID="pDetails" 
             TargetControlID="lbStub" 
-            DropShadow="true" 
-            BackgroundCssClass="shaded" CancelControlID="bClose"/>
+            DropShadow="False" 
+            BackgroundCssClass="shaded" 
+            CancelControlID="rlbClose"/>
     </ContentTemplate>
     <Triggers>
         <asp:AsyncPostBackTrigger ControlID="rItems" EventName="ItemCommand" />

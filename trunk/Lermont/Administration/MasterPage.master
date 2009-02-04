@@ -1,5 +1,5 @@
 <%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="Administration_MasterPage" %>
-
+<%@ Register TagPrefix="ajax" Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" >
@@ -22,6 +22,34 @@
 <body onmousemove="getMousePosition(event);">
     <form id="form1" runat="server">
     <asp:ScriptManager runat="server" ID="smAdmin" EnablePartialRendering="true" EnablePageMethods="true"></asp:ScriptManager>
+    <script type="text/javascript">
+        Sys.WebForms.PageRequestManager.getInstance().add_endRequest(EndRequestHandlerGlobal);
+        Sys.WebForms.PageRequestManager.getInstance().add_beginRequest(BeginRequestHandlerGlobal);
+
+        function BeginRequestHandlerGlobal(sender, args) {
+                $find("<%= mWait.ClientID %>").show();
+        }
+
+        function EndRequestHandlerGlobal(sender, args) {
+            $find("<%= mWait.ClientID %>").hide();
+        }
+    </script>
+    
+    <asp:LinkButton runat="server" style="display:none" ID="lbStub" Text="askldasjklhasjkldhasjkldh"></asp:LinkButton>
+    <ajax:ModalPopupExtender ID="mWait"
+        runat="server"
+        PopupControlID="pWait"
+        TargetControlID="lbStub"
+        DropShadow="false"
+        BackgroundCssClass="shaded"
+    />
+    
+    
+    <asp:Panel runat="server" ID="pWait" CssClass="shaded">
+        <img src="Images/ajaxLoader.gif" alt="Loading" />
+    </asp:Panel>
+    
+    
     <div style="border:1px solid #969696; font-weight:bold; width:100%; float:left;">
         <div style="float:left;">
                 <a href = "<%=WebSession.BaseUrl%>Administration/Structure.aspx">Структура</a>

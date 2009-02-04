@@ -89,6 +89,7 @@ public partial class Controls_Articles : System.Web.UI.UserControl
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        rlbClose.Language = WebSession.Language;
         ArticleList list = new ArticleList(ArticleScopeId);
         rItems.DataSource = list;
         rItems.DataBind();

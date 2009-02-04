@@ -22,13 +22,13 @@
         runat="server"
         PopupControlID="pWait"
         TargetControlID="lbStub"
-        DropShadow="true"
+        DropShadow="false"
         BackgroundCssClass="shaded"
     />
     
     
 <asp:Panel runat="server" ID="pWait" CssClass="shaded">
-    <img src="<%= WebSession.BaseImageUrl %>">ajaxLoader.gif" alt="Loading" />
+    <img src="<%= WebSession.BaseImageUrl %>ajaxLoader.gif" alt="Loading" />
 </asp:Panel>
 
 

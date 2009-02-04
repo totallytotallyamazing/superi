@@ -1,6 +1,9 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
 <%@ Register TagPrefix="maestro" TagName="MainMenu" Src="~/Controls/MainMenu.ascx"  %>
+<%@ Register assembly="Superi" namespace="Superi.Controls" tagprefix="cc1" %>
+<%@ Register TagPrefix="m" TagName="AjaxLoader" Src="~/Controls/AjaxLoadingIndicator.ascx" %>
 <%@ Import Namespace="Superi.Common" %>
+
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -8,7 +11,12 @@
 <head runat="server">
     
     <link rel="Stylesheet" href="<%= WebSession.BaseUrl + "css/global.css" %>" />
+    <link rel="Stylesheet" href="<%= WebSession.BaseUrl + "css/jScrollPane.css" %>" />
     <script type="text/javascript" src="<%= WebSession.BaseUrl %>js/jquery.js"></script>
+    <script type="text/javascript" src="<%= WebSession.BaseUrl %>js/jquery.em.js"></script>
+    <script type="text/javascript" src="<%= WebSession.BaseUrl %>js/jquery.mousewheel.js"></script>
+    <script type="text/javascript" src="<%= WebSession.BaseUrl %>js/jquery.pngFix.pack.js"></script>
+    <script type="text/javascript" src="<%= WebSession.BaseUrl %>js/jScrollPane.js"></script>
     <script type="text/javascript">
         function langOver(lang) {
             $('#' + lang).css('background', '#ebebeb');
@@ -23,6 +31,9 @@
 </head>
 <body>
     <form id="form1" runat="server">
+    <asp:ScriptManager runat="server" ID="smMain">
+    </asp:ScriptManager>
+    <m:AjaxLoader runat="server" />
     <div id="main">
         <div id="mainTop">
             <div id="langs">
@@ -46,12 +57,15 @@
         <div id="middle">
             <div id="contentContainer">
                 <asp:ContentPlaceHolder id="content" runat="server">
-                
+                    
                 </asp:ContentPlaceHolder>
             </div>
             <div id="gamesContainer">
             
             </div>
+        </div>
+        <div id="footer">
+            
         </div>
     </div>
     </form>

@@ -103,6 +103,8 @@ public partial class Controls_Articles : System.Web.UI.UserControl
         Label lDate = (Label)e.Item.FindControl("lDate");
         Literal lText = (Literal)e.Item.FindControl("lText");
         ResourceLinkButton rlbDetails = (ResourceLinkButton)e.Item.FindControl("rlbDetails");
+        Panel pText = (Panel)e.Item.FindControl("pText");
+        Panel pTitle = (Panel)e.Item.FindControl("pTitle");
         rlbDetails.Language = WebSession.Language;
         if (string.IsNullOrEmpty(article.Picture))
             iPicture.ImageUrl = DefaultImageUrl;
@@ -110,7 +112,13 @@ public partial class Controls_Articles : System.Web.UI.UserControl
             iPicture.ImageUrl = WebSession.ArticlesImagesFolder + article.Picture;
 
         lTitle.Text = article.Titles[WebSession.Language];
-        lDate.Text = article.EntryDate.ToShortDateString();
+        lDate.Text = article.EntryDate.ToString("dd.MM.yyyy");
+        if (SeparateFirstArticle)
+        {
+            pTitle.CssClass = "articleTitleFirst";
+            lDate.CssClass = "articleDateFirst";
+        }
+
         if (BodyAsDescription)
         {
             int maxCahrs = MaxDescriptionChars;

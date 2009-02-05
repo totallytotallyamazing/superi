@@ -22,3 +22,4 @@ a:hover{text-decoration:underline;}
 .paramsSubmitContainer input{ width:80px;}
 .paramsCloseLabel{text-align:right;}
 .galleryUploadHolder{float:left; padding-left:20px;}
+.popUpPanel{background:white; border:1px solid black; padding:20px;}

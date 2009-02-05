@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Database Name="1gb_Maestro" Class="GamesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=mssql2.1gb.ua;Initial Catalog=1gb_Maestro;Persist Security Info=True;User ID=1gb_amc" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="_1gb_MaestroConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Teams" Member="Teams">
+    <Type Name="Team">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="NameTextId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Logo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="DescriptionTextId" Type="System.Int32" DbType="int" CanBeNull="true" />
+      <Association Name="Team_Game" Member="Games" OtherKey="TeamID" Type="Game" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Games" Member="Games">
+    <Type Name="Game">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="TeamID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="HostCount" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TeamCount" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Played" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="Team_Game" Member="Team" ThisKey="TeamID" Type="Team" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

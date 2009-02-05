@@ -2,6 +2,7 @@
 <%@ Register TagPrefix="Superi" Assembly="Superi" Namespace="Superi.CustomControls" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajax" %>
 <%@ Import Namespace="Superi.Common" %>
+
 <script type="text/javascript">
     Sys.WebForms.PageRequestManager.getInstance().add_endRequest(ArticlesEndRequest);
     Sys.WebForms.PageRequestManager.getInstance().add_beginRequest(ArticlesBeginRequest);
@@ -20,19 +21,18 @@
     <ItemTemplate>
         <div class="article">
             <div class="articleImage">
-                <asp:Image runat="server" ID="iPicture"  />
+                <asp:Image BorderColor="Black" BorderWidth="1" runat="server" ID="iPicture"  />
             </div>
-            <div class="articleText">
-                <div class="articleTitle">
+            <asp:Panel CssClass="articleText" runat="server" ID="pText">
+                <asp:Panel runat="server" CssClass="articleTitle" ID="pTitle">
                     <asp:Literal runat="server" ID="lTitle"></asp:Literal>
                     <asp:Label runat="server" ID="lDate" CssClass="articleDate"></asp:Label>
-                </div>
-                <div class="articleText"></div>
+                </asp:Panel>
                 <asp:Literal runat="server" ID="lText"></asp:Literal>
+            </asp:Panel>
+            <div class="articleDetailsLink">
+                <Superi:ResourceLinkButton runat="server" ID="rlbDetails" CommandName="Display" ResourceName="details" />
             </div>
-        </div>
-        <div class="articleDetails">
-            <Superi:ResourceLinkButton runat="server" ID="rlbDetails" CommandName="Display" ResourceName="details" />
         </div>
     </ItemTemplate>
 </asp:Repeater>
@@ -46,11 +46,6 @@
                 <Superi:ResourceLinkButton ID="rlbClose" runat="server" ResourceName="close"></Superi:ResourceLinkButton>
             </div>
         </asp:Panel>
-<%--        <ajax:RoundedCornersExtender ID="RoundedCornersExtender1" 
-            runat="server" 
-            Radius="4" 
-            TargetControlID="pDetails" 
-            BorderColor="Black"  />--%>
         <ajax:ModalPopupExtender runat="server" 
             ID="mpeDetails" 
             PopupControlID="pDetails" 
@@ -58,12 +53,6 @@
             DropShadow="true" 
             BackgroundCssClass="shaded" 
             CancelControlID="rlbClose"/>
-<%--        <ajax:DropShadowExtender runat="server"
-            TargetControlID="pDetails"
-            Rounded="true"
-            Radius="10" TrackPosition="true"
-            />
---%>
     </ContentTemplate>
     <Triggers>
         <asp:AsyncPostBackTrigger ControlID="rItems" EventName="ItemCommand" />

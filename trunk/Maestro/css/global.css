@@ -13,8 +13,8 @@
 .menuLink:hover{color:#7c98ce;}
 .currentMenuItem{color:#7c98ce; font-weight:bold; text-transform:lowercase;}
 
-#contentContainer{width:inherit; height:200px;}
+#middle{width:inherit;}
+#contentContainer{width:735px; padding-left:62px; padding-top:50px;}
 #footer{width:1024px; height:18px; background:transparent url("../images/bottomLine.jpg") no-repeat;}
 .shaded{opacity: 0.5; -moz-opacity: 0.5; filter: alpha(opacity=50); background-color:Black;}
-.articleDetails{background:white; width:800px; height:600px;overflow:auto;}
-.articleDetails .articleDetails{overflow:auto;}
+

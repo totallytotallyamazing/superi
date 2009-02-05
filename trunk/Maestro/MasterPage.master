@@ -1,6 +1,6 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
 <%@ Register TagPrefix="maestro" TagName="MainMenu" Src="~/Controls/MainMenu.ascx"  %>
-<%@ Register assembly="Superi" namespace="Superi.Controls" tagprefix="cc1" %>
+<%@ Register assembly="Superi" namespace="Superi.CustomControls" tagprefix="cc1" %>
 <%@ Register TagPrefix="m" TagName="AjaxLoader" Src="~/Controls/AjaxLoadingIndicator.ascx" %>
 <%@ Import Namespace="Superi.Common" %>
 
@@ -9,7 +9,6 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    
     <link rel="Stylesheet" href="<%= WebSession.BaseUrl + "css/global.css" %>" />
     <link rel="Stylesheet" href="<%= WebSession.BaseUrl + "css/jScrollPane.css" %>" />
     <script type="text/javascript" src="<%= WebSession.BaseUrl %>js/jquery.js"></script>

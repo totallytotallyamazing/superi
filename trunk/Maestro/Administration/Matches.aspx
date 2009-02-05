@@ -53,11 +53,18 @@
     
         <asp:Repeater ID="rMatches" runat="server" DataSourceID="ldsMatches">
             <ItemTemplate>
-                <div>
-                    
+                <div style="text-align:center">
+                    <asp:Image runat="server" ID="iMaestro" />
+                    <asp:Label CssClass="gameCount" Text="<%# Bind("HostCount") %>" runat="server" ID="lHostCount"></asp:Label>
+                    &nbsp;
+                    <asp:Label CssClass="gameCount" runat="server" Text="&mdash"></asp:Label>
+                    &nbsp;
+                    <asp:Label CssClass="gameCount" runat="server" ID="TeamCount"></asp:Label>
+                    <br />
+                    <asp:Label runat="server" ID="lDate"></asp:Label>
                 </div>
             </ItemTemplate>
         </asp:Repeater>
     </div>
-</asp:Content>
+</asp:Content>  
 

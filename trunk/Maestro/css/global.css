@@ -18,3 +18,35 @@
 #footer{width:1024px; height:18px; background:transparent url("../images/bottomLine.jpg") no-repeat;}
 .shaded{opacity: 0.5; -moz-opacity: 0.5; filter: alpha(opacity=50); background-color:Black;}
 
+.match, .matchPlayed{width:181px; height:54px;}
+.match{background:#ede2e2;}
+.matchPlayed{background:ede2e2;}
+
+.matchTeam
+{
+    color:#6082c3;
+    font-size:10px;
+    float: left;
+    position: relative;
+    text-align:center;
+}
+
+.matchDetails
+{
+    float: left;
+}
+
+.match.matchCount
+{
+    display:none;
+    
+}
+
+.matchPlayed.matchCount{display:block;font-size: 38px;}
+.matchPlayed.matchDate{ color:#98add8;}
+.matchDate
+{
+    color:#be1d2d;
+    font-size: 12px;
+}
+

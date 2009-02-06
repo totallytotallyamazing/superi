@@ -10,13 +10,15 @@
     </asp:LinqDataSource>
     <asp:LinqDataSource ID="ldsMatches" runat="server" 
         ContextTypeName="GamesDataContext" 
-        Select="new (Date, ID, HostCount, TeamCount, Team)" TableName="Games">
+        Select="new (Date, ID, HostCount, TeamCount, Team, Played, TeamID)" 
+        TableName="Games" OrderBy="Played, Date desc">
     </asp:LinqDataSource>
     
     <div style="float:left; width:200px;">
     
         <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" 
-            DataSourceID="ldsTeams" onrowdatabound="GridView1_RowDataBound">
+            DataSourceID="ldsTeams" DataKeyNames="ID" 
+            onrowcommand="GridView1_RowCommand">
             <Columns>
                 <asp:BoundField DataField="ID" HeaderText="#" SortExpression="ID" />
                 <asp:ImageField DataImageUrlField="Logo" 
@@ -24,10 +26,16 @@
                 </asp:ImageField>
                 <asp:TemplateField HeaderText="Название">
                     <ItemTemplate>
-                        <asp:Label runat="server" ID="lName"></asp:Label>
-<%--                        <cc1:ResourceWritter ID="rlName" runat="server" 
+                        <%--<asp:Label runat="server" ID="lName"></asp:Label>--%>
+                        <cc1:ResourceWritter ID="rlName" runat="server" 
                             ResourceId='<%# Eval("NameTextId") %>' Language="RU">
-                        </cc1:ResourceWritter>--%>
+                        </cc1:ResourceWritter>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="Удалить">
+                    <ItemTemplate>
+                        <asp:LinkButton ID="LinkButton5" runat="server" 
+                            CommandArgument='<%# Eval("ID") %>' CommandName="DeleteTeam">Удалить</asp:LinkButton>
                     </ItemTemplate>
                 </asp:TemplateField>
             </Columns>
@@ -36,9 +44,9 @@
         
         <cc2:PopupControlExtender ID="LinkButton1_PopupControlExtender" runat="server" 
              Enabled="True" PopupControlID="pCreateTeam" 
-            TargetControlID="lbCreate" >
+            TargetControlID="lbCreate" Position="Bottom">
         </cc2:PopupControlExtender>
-        <%--<cc2:DropShadowExtender runat="server" TargetControlID="pCreateTeam" Rounded="true" Radius="4"></cc2:DropShadowExtender>--%>
+        <%--<asp:Label runat="server" ID="lName"></asp:Label>--%>
         <br />
         <asp:Panel ID="pCreateTeam" runat="server" CssClass="popUpPanel">
             Название:
@@ -52,56 +60,58 @@
     </div>
     <div style="float:left;">
     
-<%--        <asp:Repeater ID="rMatches" runat="server" DataSourceID="ldsMatches">
-            <ItemTemplate>
-                <div style="text-align:center">
-                    <asp:Image runat="server" ID="iMaestro" />
-                    <asp:Label CssClass="gameCount" Text="<%# Eval("HostCount") %>" runat="server" ID="lHostCount"></asp:Label>
-                    &nbsp;
-                    <asp:Label CssClass="gameCount" runat="server" Text="&mdash"></asp:Label>
-                    &nbsp;
-                    <asp:Label CssClass="gameCount" runat="server" Text="<%# Eval("TeamCount") %>" ID="TeamCount"></asp:Label>
-                    <br />
-                    <asp:Label runat="server" Text="<%# Eval("Date") %>" ID="lDate"></asp:Label>
-                </div>
-            </ItemTemplate>
-        </asp:Repeater>--%>
-        <asp:DataList ID="DataList1" runat="server" DataSourceID="ldsMatches">
+<%--<cc2:DropShadowExtender runat="server" TargetControlID="pCreateTeam" Rounded="true" Radius="4"></cc2:DropShadowExtender>--%>
+        <asp:DataList ID="DataList1" runat="server" DataSourceID="ldsMatches" 
+            GridLines="Horizontal" oneditcommand="DataList1_EditCommand" 
+            onitemdatabound="DataList1_ItemDataBound" 
+            onupdatecommand="DataList1_UpdateCommand" 
+            oncancelcommand="DataList1_CancelCommand" 
+            ondeletecommand="DataList1_DeleteCommand">
             <EditItemTemplate>
                 <asp:Label ID="Label4" runat="server" Text="Маестро "></asp:Label>
-                <asp:TextBox ID="TextBox1" runat="server" Width="32px" 
+                <asp:TextBox ID="tbHostCount" runat="server" Width="32px" 
                     Text='<%# Eval("HostCount") %>'></asp:TextBox>
+                <cc2:MaskedEditExtender ID="tbHostCount_MaskedEditExtender" runat="server" 
+                    AutoComplete="False" CultureAMPMPlaceholder="" 
+                    CultureCurrencySymbolPlaceholder="" CultureDateFormat="" 
+                    CultureDatePlaceholder="" CultureDecimalPlaceholder="" 
+                    CultureThousandsPlaceholder="" CultureTimePlaceholder="" Enabled="True" 
+                    Mask="99" MaskType="Number" TargetControlID="tbHostCount">
+                </cc2:MaskedEditExtender>
                 <asp:Label ID="Label3" runat="server" Text="&amp;nbsp;&amp;mdash;&amp;nbsp;"></asp:Label>
-                <asp:TextBox ID="TextBox2" runat="server" Width="32px" 
-                    Text='<%# Eval("TeamCount") %>'></asp:TextBox>
+                <asp:TextBox ID="tbTeamCount" runat="server" Width="32px" 
+                    Text='<%# Eval("TeamCount") %>' EnableViewState="False"></asp:TextBox>
+                <cc2:MaskedEditExtender ID="tbTeamCount_MaskedEditExtender" runat="server" 
+                    AutoComplete="False" CultureAMPMPlaceholder="" 
+                    CultureCurrencySymbolPlaceholder="" CultureDateFormat="" 
+                    CultureDatePlaceholder="" CultureDecimalPlaceholder="" 
+                    CultureThousandsPlaceholder="" CultureTimePlaceholder="" Enabled="True" 
+                    Mask="99" MaskType="Number" TargetControlID="tbTeamCount">
+                </cc2:MaskedEditExtender>
                 <asp:DropDownList ID="ddlTeams" runat="server">
                 </asp:DropDownList>
                 <br />
                 Дата:
-                <asp:TextBox ID="TextBox3" runat="server" Text='<%# Eval("Date", "{0:d}") %>'></asp:TextBox>
+                <asp:TextBox ID="tbDate" runat="server" Text='<%# Bind("Date", "{0:dd.MM.yyyy}") %>'></asp:TextBox>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" 
+                    ControlToValidate="tbDate" ErrorMessage="*" ValidationGroup="g2"></asp:RequiredFieldValidator>
                 <br />
-                <asp:CheckBox ID="cbPlayed" runat="server" Checked='<%# Eval("Played") %>' 
+                <asp:CheckBox ID="cbPlayed" runat="server" Checked='<%# Bind("Played") %>' 
                     Text="Сыгранная" />
+                <asp:HiddenField ID="hfTeamId" runat="server" Value='<%# Eval("TeamID") %>' />
                 <br />
                 <cc2:CalendarExtender ID="TextBox3_CalendarExtender" runat="server" 
-                    TargetControlID="TextBox3" Format="dd.MM.yyyy" FirstDayOfWeek="Monday">
+                    TargetControlID="tbDate" Format="dd.MM.yyyy" FirstDayOfWeek="Monday">
                 </cc2:CalendarExtender>
-                <asp:LinkButton ID="LinkButton3" runat="server" CommandName="Update">Сохранить</asp:LinkButton>
+                <asp:LinkButton ID="lbSave" runat="server" CommandName="update" 
+                    ValidationGroup="g2" CommandArgument='<%# Eval("ID") %>' Text="Сохранить"></asp:LinkButton>
                 &nbsp;
-                <asp:LinkButton ID="LinkButton4" runat="server" CommandName="Cancel">Отмена</asp:LinkButton>
+                <asp:LinkButton ID="lbCancel" runat="server" CommandName="cancel">Отмена</asp:LinkButton>
                 <br />
             </EditItemTemplate>
             <ItemTemplate>
-<%--                    <asp:Image runat="server" ID="iMaestro" />
-                    <asp:Label CssClass="gameCount" Text="<%# Eval("HostCount") %>" runat="server" ID="lHostCount"></asp:Label>
-                    &nbsp;
-                    <asp:Label ID="Label1" CssClass="gameCount" runat="server" Text="&mdash"></asp:Label>
-                    &nbsp;
-                    <asp:Label CssClass="gameCount" runat="server" Text="<%# Eval("TeamCount") %>" ID="TeamCount"></asp:Label>
-                    <br />
-                    <asp:Label runat="server" Text="<%# Eval("Date") %>" ID="lDate"></asp:Label>--%>
                 <div style="float:left;">
-                    <asp:Image ID="iMaestroLogo" runat="server" />
+                    <asp:Image ID="iMaestroLogo" runat="server" ImageUrl="~/Images/mae.gif" />
                     
                     <br />
                     <asp:Label ID="lMaestro" runat="server" Text="Маестро"></asp:Label>
@@ -113,14 +123,16 @@
                     <asp:Label ID="lTeamCount" runat="server" Text='<%# Eval("TeamCount") %>'></asp:Label>
                     &nbsp;
                     <br />
-                    <asp:Label ID="lDate" runat="server" Text='<%# Eval("Date", "{0:d}") %>'></asp:Label>
+                    <asp:Label ID="lDate" runat="server" Text='<%# Eval("Date", "{0:dd.MM.yyyy}") %>'></asp:Label>
                     <br />
                     <asp:Label ID="Label2" runat="server" ForeColor="Red" Text="Сыгранная" 
                         Visible='<%# Eval("Played") %>'></asp:Label>
                     <br />
-                    <asp:LinkButton ID="LinkButton1" runat="server" CommandName="Edit">Редактировать</asp:LinkButton>
+                    <asp:LinkButton ID="LinkButton1" runat="server" CommandName="edit" 
+                        CausesValidation="False" CommandArgument='<%# Eval("ID") %>'>Редактировать</asp:LinkButton>
                     &nbsp;
-                    <asp:LinkButton ID="LinkButton2" runat="server" CommandName="Delete">\</asp:LinkButton>
+                    <asp:LinkButton ID="LinkButton2" runat="server" CommandName="delete" 
+                        CommandArgument='<%# Eval("ID") %>' CausesValidation="False">Удалить</asp:LinkButton>
                 </div>  
                 <div style="float:left;">
                     <asp:Image ID="iTeamLogo" runat="server" />
@@ -129,27 +141,38 @@
                 </div>
             </ItemTemplate>
         </asp:DataList>
+        <br />
         <asp:Panel ID="Panel1" runat="server">
-            <asp:Label ID="Label4" runat="server" Text="Маестро "></asp:Label>
+            <asp:Label ID="Label5" runat="server" Text="Маестро "></asp:Label>
             <asp:TextBox ID="tbHostCount" runat="server" Width="32px" 
                     Text='<%# Eval("HostCount") %>'></asp:TextBox>
-            <asp:Label ID="Label3" runat="server" Text="&amp;nbsp;&amp;mdash;&amp;nbsp;"></asp:Label>
+            <cc2:MaskedEditExtender ID="tbHostCount_MaskedEditExtender" runat="server" 
+                AutoComplete="False" Mask="99" MaskType="Number" TargetControlID="tbHostCount">
+            </cc2:MaskedEditExtender>
+            <asp:Label ID="Label6" runat="server" Text="&amp;nbsp;&amp;mdash;&amp;nbsp;"></asp:Label>
             <asp:TextBox ID="tbTeamCount" runat="server" Width="32px" 
-                    Text='<%# Eval("TeamCount") %>'></asp:TextBox>
+                    Text='<%# Eval("TeamCount") %>' EnableViewState="true"></asp:TextBox>
+            <cc2:MaskedEditExtender ID="tbTeamCount_MaskedEditExtender" runat="server" 
+                AutoComplete="False" ClipboardEnabled="False" Mask="9" MaskType="Number" 
+                MessageValidatorTip="False" TargetControlID="tbTeamCount">
+            </cc2:MaskedEditExtender>
             <asp:DropDownList ID="ddlTeams" runat="server">
             </asp:DropDownList>
             <br />
             Дата:
-            <asp:TextBox ID="tbAddDate" runat="server" Text='<%# Eval("Date", "{0:d}") %>'></asp:TextBox>
+            <asp:TextBox ID="tbAddDate" runat="server" EnableViewState="False"></asp:TextBox>
             <cc2:CalendarExtender ID="tbAddDate_CalendarExtender" runat="server" 
                     TargetControlID="tbAddDate" Format="dd.MM.yyyy" 
                 FirstDayOfWeek="Monday">
             </cc2:CalendarExtender>
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
+                ControlToValidate="tbAddDate" ErrorMessage="*" ValidationGroup="g1"></asp:RequiredFieldValidator>
             <br />
-            <asp:CheckBox ID="cbPlayed" runat="server" Checked='<%# Eval("Played") %>' 
+            <asp:CheckBox ID="cbPlayed" runat="server" 
                 Text="Сыгранная" />
             <br />
-            <asp:LinkButton ID="lbAdd" runat="server">Добавить</asp:LinkButton>
+            <asp:LinkButton ID="lbAdd" runat="server" onclick="lbAdd_Click" 
+                ValidationGroup="g1">Добавить</asp:LinkButton>
             &nbsp;
         </asp:Panel>
         <br />

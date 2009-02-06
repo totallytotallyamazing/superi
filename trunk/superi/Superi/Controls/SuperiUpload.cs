@@ -7,7 +7,7 @@ using System.Drawing.Design;
 using System.Web;
 using System.IO;
 
-namespace Superi.Controls
+namespace Superi.CustomControls
 {
     public enum UnificatorPositionMode {Prefix, Postfix}
 

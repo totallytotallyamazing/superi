@@ -144,6 +144,7 @@ namespace Superi.CustomControls
                     string currentUnificator;
                     int currentIncrement;
                     int lastIndexBeforeExt = fileName.LastIndexOf(".");
+                    int lastIndexBeforeExtOriginal = FileName.LastIndexOf(".");
                     bool noExtension = false;
                     if (lastIndexBeforeExt == -1)
                     {
@@ -170,10 +171,11 @@ namespace Superi.CustomControls
                         else
                         {
                             string file = FileName.Substring(0, FileName.LastIndexOf("."));
-                            currentUnificator = fileName.Substring(file.Length - 1, lastIndexBeforeExt);
+                            int length = FileName.Length - lastIndexBeforeExt;
+                            currentUnificator = fileName.Substring(file.Length, length);
                             currentIncrement = int.Parse(currentUnificator.Replace(Unificator, ""));
                             currentIncrement++;
-                            result = fileName.Insert(lastIndexBeforeExt, Unificator + currentIncrement);
+                            result = FileName.Insert(lastIndexBeforeExtOriginal, Unificator + currentIncrement);
                         }
                     }
                 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Web.UI.WebControls;
 using Superi.Features;
+using Superi.Common;
 
 namespace Superi.CustomControls
 {
@@ -36,9 +37,10 @@ namespace Superi.CustomControls
 
         protected override void  OnPreRender(EventArgs e)
         {
-            base.OnInit(e);
-            if(string.IsNullOrEmpty(language))
-                throw new ArgumentException("The language must be set");
+           // base.OnInit(e);
+            if (string.IsNullOrEmpty(language))
+                //throw new ArgumentException("The language must be set");
+                Language = WebSession.Language;
             if (!string.IsNullOrEmpty(resourceName) && resourceId > 0)
                 throw new ArgumentException("Cannot process content when both ResourceName and ResourceId are set.");
             Features.Text text = null;

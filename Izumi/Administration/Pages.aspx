@@ -1,5 +1,5 @@
 <%@ Page Language="C#" MasterPageFile="~/Administration/MasterPage.master" AutoEventWireup="true" CodeFile="Pages.aspx.cs" Inherits="Administration_Pages" Title="Untitled Page" %>
-<%@ Register TagPrefix="Controls" Namespace="CustomControls" %>
+<%@ Register TagPrefix="Controls" Assembly="Superi" Namespace="Superi.CustomControls" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 	<script type="text/javascript">
 		function popUpTexts()

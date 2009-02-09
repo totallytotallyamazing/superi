@@ -1,5 +1,5 @@
 <%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
-<%@ Register TagPrefix="Controls" Namespace="CustomControls" %>
+<%@ Register TagPrefix="Controls" Assembly="Superi" Namespace="Superi.CustomControls" %>
 <%@ Register TagPrefix="Controls" TagName="MainMenu" Src="~/Controls/MainMenu.ascx" %>
 <%@ Register TagPrefix="Controls" TagName="SubMenu" Src="~/Controls/SubMenu.ascx" %>
 <%@ Register TagPrefix="Controls" TagName="ExtraMenu" Src="~/Controls/ExtraLeftMenu.ascx" %>

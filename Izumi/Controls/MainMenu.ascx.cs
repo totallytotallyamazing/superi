@@ -6,7 +6,7 @@ public partial class Controls_MainMenu : System.Web.UI.UserControl
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        NavigationList navigationList = new NavigationList(true);
+        NavigationList navigationList = new NavigationList(int.MinValue);
         if (navigationList.Count > 0)
         {
             int i = 0;

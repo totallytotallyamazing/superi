@@ -1,6 +1,6 @@
 <%@ Page Language="C#" MasterPageFile="~/Administration/MasterPage.master" ValidateRequest="false" AutoEventWireup="true" CodeFile="Texts.aspx.cs" Inherits="Administration_Texts" Title="Untitled Page" %>
 <%@ Register TagPrefix="FCKeditor" Namespace="FredCK.FCKeditorV2" Assembly="FredCK.FCKeditorV2" %>
-<%@ Register TagPrefix="Controls" Namespace="CustomControls" %>
+<%@ Register TagPrefix="Controls" Assembly="Superi" Namespace="Superi.CustomControls" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 	<asp:HiddenField ID="hfTextSelected" runat="server" />

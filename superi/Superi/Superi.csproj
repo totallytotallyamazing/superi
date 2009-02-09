@@ -58,6 +58,7 @@
     <Compile Include="Common\AppData1.cs" />
     <Compile Include="Common\ApplicationSettings.cs" />
     <Compile Include="Common\ParameterList.cs" />
+    <Compile Include="Common\Tools.cs" />
     <Compile Include="Common\WebSession.cs" />
     <Compile Include="Controls\ResourceButton.cs" />
     <Compile Include="Controls\ResourceEditor.cs" />

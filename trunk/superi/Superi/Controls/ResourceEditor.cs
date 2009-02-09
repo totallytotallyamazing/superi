@@ -83,13 +83,33 @@ namespace Superi.CustomControls
         #region Public properties
         public ResourceEditorType Type
         {
-            get { return _Type; }
-            set { _Type = value; }
+            get 
+            {
+                if (EnableViewState && ViewState["type"] != null)
+                    _Type = (ResourceEditorType)Convert.ToInt32(ViewState["type"]);
+                return _Type; 
+            }
+            set 
+            {
+                if (EnableViewState)
+                    ViewState["type"] = value;
+                _Type = value; 
+            }
         }
         public int TextID
         {
-            get { return _TextID; }
-            set { _TextID = value; }
+            get 
+            {
+                if (EnableViewState && ViewState["textId"] != null)
+                    _TextID = Convert.ToInt32(ViewState["textId"]);
+                return _TextID; 
+            }
+            set
+            {
+                if (EnableViewState)
+                    ViewState["textId"] = value;
+                _TextID = value; 
+            }
         }
 
         public Resource Values

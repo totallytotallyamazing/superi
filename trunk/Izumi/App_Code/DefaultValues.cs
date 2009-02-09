@@ -6,11 +6,11 @@ public class DefaultValues
     //public const string BaseImageUrl = "http://prst-kiev-ua.1gb.ua/Images/";
     //public const string BaseUrl = "http://prst-kiev-ua.1gb.ua/";
 
-    //public const string BaseImageUrl = "http://localhost/izumi/Images/";
-    //public const string BaseUrl = "http://localhost/izumi/";
+    public const string BaseImageUrl = "http://localhost/izumi/Images/";
+    public const string BaseUrl = "http://localhost/izumi/";
 
-    public const string BaseImageUrl = "http://izumi.com.ua/Images/";
-    public const string BaseUrl = "http://izumi.com.ua/";
+    //public const string BaseImageUrl = "http://izumi.com.ua/Images/";
+    //public const string BaseUrl = "http://izumi.com.ua/";
 
     //public const string BaseImageUrl = "http://demo.akula.com.ua/Images/";
     //public const string BaseUrl = "http://demo.akula.com.ua/";

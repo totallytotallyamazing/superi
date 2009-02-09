@@ -64,9 +64,14 @@ public partial class Controls_Match : System.Web.UI.UserControl
 
     protected string matchMainClass = "match";
 
-    protected void Page_Load(object sender, EventArgs e)
+    protected void Page_PreRender(object sender, EventArgs e)
     {
         if (Played)
             matchMainClass = "matchPlayed";
+        if(TeamTextId>0)
+        {
+            GamesDataContext context = new GamesDataContext();
+            Team team = from t = context.Teams 
+        }
     }
 }

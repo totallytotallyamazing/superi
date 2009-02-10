@@ -1,6 +1,7 @@
 using System;
 using Superi.Features;
 using System.Web.Security;
+using System.Web.UI.HtmlControls;
 
 public partial class MasterPage : System.Web.UI.MasterPage
 {
@@ -31,6 +32,29 @@ public partial class MasterPage : System.Web.UI.MasterPage
 
     protected void Page_Init(object sender, EventArgs e)
     {
+        Page.ClientScript.RegisterClientScriptInclude("master",WebSession.BaseUrl + "js/master.js");
+        Page.ClientScript.RegisterClientScriptInclude("jquery", WebSession.BaseUrl + "js/jquery.js");
+        Page.ClientScript.RegisterClientScriptInclude("pngFix", WebSession.BaseUrl + "js/jquery.pngFix.js");
+        Page.ClientScript.RegisterClientScriptInclude("galleria", WebSession.BaseUrl + "js/jquery.galleria.js");
+        Page.ClientScript.RegisterClientScriptInclude("fancybox", WebSession.BaseUrl + "js/jquery.fancybox.js");
+
+        HtmlLink global = new HtmlLink();
+        global.Attributes["rel"] = "Stylesheet";
+        global.Href = WebSession.BaseUrl + "css/global.css";
+        Page.Header.Controls.Add(global);
+
+        HtmlLink fancy = new HtmlLink();
+        fancy.Attributes["rel"] = "Stylesheet";
+        fancy.Href = WebSession.BaseUrl + "css/fancy.css";
+        Page.Header.Controls.Add(fancy);
+
+        /*
+            <link rel="Stylesheet" href="<%= WebSession.BaseUrl + "css/global.css" %>" />
+    <link rel="Stylesheet" href="<%= WebSession.BaseUrl + "css/fancy.css" %>" />
+    <script type="text/javascript" src="<%= WebSession.BaseUrl %>js/jquery.js"></script>
+    <script type="text/javascript" src="<%= WebSession.BaseUrl %>js/jquery.pngFix.js"></script>
+    <script type="text/javascript" src="<%= WebSession.BaseUrl %>js/jquery.fancybox.js"></script>
+         */
 
     }
 

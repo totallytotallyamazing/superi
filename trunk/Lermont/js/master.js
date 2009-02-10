@@ -125,3 +125,45 @@ function getAbsolutePos(el) {
 	}
 	return r;
 }
+
+
+
+function displayLangTip(id, text) {
+    $get(id).style.color = "White";
+}
+
+function hideLangTip(id) {
+    $get(id).style.color = "#3760d6";
+}
+
+function logIn(login, password) {
+    $find("<%= mWait.ClientID %>").show();
+    Sys.Services.AuthenticationService.login($get("iLogin").value, $get("iPassword").value, $get("cbPersistant").checked, null, null, OnLoginCompleted, null, "User Context");
+    return false;
+}
+
+function logOut() {
+    $find("<%= mWait.ClientID %>").show();
+    Sys.Services.AuthenticationService.logout();
+}
+
+
+
+function OnLoginCompleted(validCredentials, userContext, methodName) {
+    //$find("<%= mWait.ClientID %>").hide();
+    if (validCredentials) {
+        __doPostBack("<%= bLogin.ClientID %>", "");
+    }
+    else {
+        alert("Неправильная пара логин/пароль");
+        $find("<%= mWait.ClientID %>").hide();
+    }
+}
+
+function LogOutComplete(result) {
+    //            __doPostBack("<%= bLogOut.ClientID %>", "");
+}
+
+function OnFailed(error, userContext, methodName) {
+    alert(error);
+}

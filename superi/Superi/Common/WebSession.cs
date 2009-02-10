@@ -89,11 +89,60 @@ namespace Superi.Common
             }
         }
 
+        public static string VirtualDirectoryName
+        {
+            get
+            {
+                return System.Configuration.ConfigurationManager.AppSettings["VirtualDirectoryName"];
+            }
+        }
+
         public static string BaseImageUrl
         {
             get
             {
                 return System.Configuration.ConfigurationManager.AppSettings["BaseImageUrl"];
+            }
+        }
+
+        public static string SmtpServer
+        {
+            get
+            {
+                return System.Configuration.ConfigurationManager.AppSettings["SmtpServer"];
+            }
+        }
+
+        public static string SmtpAccount
+        {
+            get
+            {
+                return System.Configuration.ConfigurationManager.AppSettings["SmtpAccount"];
+            }
+        }
+
+
+        public static string SmptPassword
+        {
+            get
+            {
+                return System.Configuration.ConfigurationManager.AppSettings["SmptPassword"];
+            }
+        }
+
+        public static string NotificationsSource
+        {
+            get
+            {
+                return System.Configuration.ConfigurationManager.AppSettings["NotificationsSource"];
+            }
+        }
+
+        public static string DefaultNotificationsReceiver
+        {
+            get
+            {
+                return System.Configuration.ConfigurationManager.AppSettings["DefaultNotificationsReceiver"];
             }
         }
 

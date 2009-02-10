@@ -31,15 +31,6 @@ public partial class Administration_Matches : System.Web.UI.Page
         PublishTeamsDropDown();
     }
 
-    private object GetPropertyValue(string PropertyName, object Item)
-    {
-
-        Type type = Item.GetType();
-        BindingFlags flags = BindingFlags.GetProperty;
-        object value = type.InvokeMember(PropertyName, flags, null, Item, null);
-        return value;
-    } 
-
     protected void bCreate_Click(object sender, EventArgs e)
     {
         Team team = new Team();
@@ -79,7 +70,7 @@ public partial class Administration_Matches : System.Web.UI.Page
     {
         if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
         {
-            Team team = (Team)GetPropertyValue("Team", e.Item.DataItem);
+            Team team = (Team)Tools.GetPropertyValue("Team", e.Item.DataItem);
             Label lTeam = (Label)e.Item.FindControl("lTeam");
             Image iTeamLogo = (Image)e.Item.FindControl("iTeamLogo");
             iTeamLogo.ImageUrl = WebSession.BaseImageUrl + "Logos/" + team.Logo;

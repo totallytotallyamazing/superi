@@ -30,6 +30,7 @@
         <InsertParameters>
             <asp:Parameter Name="Alias" Type="String" />
             <asp:Parameter Name="Title" Type="String" />
+            <asp:Parameter Name="ScopeID" Type="Int32" />
         </InsertParameters>
     </asp:ObjectDataSource>
     
@@ -76,14 +77,20 @@
                 <asp:PlaceHolder runat="server" ID="phEdit">
                     Заголовок:
                     <Controls:ResourceEditor runat="server" ID="reTitle"></Controls:ResourceEditor>
-                    Краткое описание:
-                    <Controls:ResourceEditor runat="server" Type="MultiLine" ID="reShortDescription"></Controls:ResourceEditor>
+                    <asp:PlaceHolder runat="server" ID="phShort">
+                        Краткое описание:
+                        <Controls:ResourceEditor runat="server" Type="MultiLine" ID="reShortDescription"></Controls:ResourceEditor>
+                    </asp:PlaceHolder>
                     Содержимое:
                     <Controls:ResourceEditor runat="server" Type="RichText" RichHeight="400" ID="reDescription"></Controls:ResourceEditor>
                     Изображение: <br />
                     <asp:Image runat="server" ID="iPicture" /><br />
                     <asp:Button runat="server" ID="btnRemovePicture" Text="Удалить изображение" /><br />
                     <asp:FileUpload ID="fuPicture" runat="server" /><br />
+                    <asp:PlaceHolder runat="server" ID="phLargePicture">
+                        Большое изображение:
+                        <Controls:FolderUpload Folder="~/Images/ArticleImages/" runat="server" ID="fuLargePicture" />
+                    </asp:PlaceHolder>
                     <asp:Button ID="btnUpdate" runat="server" Text="Сохранить" />
                 </asp:PlaceHolder>
             </div>

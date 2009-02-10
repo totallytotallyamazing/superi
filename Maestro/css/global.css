@@ -12,15 +12,15 @@
 .menuLink{text-decoration:none; color:#052e8c; font-weight:bold; text-transform:lowercase;}
 .menuLink:hover{color:#7c98ce;}
 .currentMenuItem{color:#7c98ce; font-weight:bold; text-transform:lowercase;}
-
+#gamesContainer{float:left; width:181px; padding-left:10px;}
 #middle{width:inherit;}
-#contentContainer{width:735px; padding-left:62px; padding-top:50px;}
-#footer{width:1024px; height:18px; background:transparent url("../images/bottomLine.jpg") no-repeat;}
+#contentContainer{width:735px; padding-left:62px; padding-top:50px; float:left;}
+#footer{width:1024px; height:18px; background:transparent url("../images/bottomLine.jpg") no-repeat; clear:both;}
 .shaded{opacity: 0.5; -moz-opacity: 0.5; filter: alpha(opacity=50); background-color:Black;}
 
-.match, .matchPlayed{width:181px; height:54px;}
+.match, .matchPlayed{width:179px; padding-left:2px; height:54px; clear:both; margin:20px 0;}
 .match{background:#ede2e2;}
-.matchPlayed{background:ede2e2;}
+.matchPlayed{background:#def0ef;}
 
 .matchTeam
 {
@@ -29,6 +29,7 @@
     float: left;
     position: relative;
     text-align:center;
+    top:-10px;
 }
 
 .matchDetails
@@ -36,17 +37,21 @@
     float: left;
 }
 
-.match.matchCount
+.match .matchCount
 {
     display:none;
-    
 }
 
-.matchPlayed.matchCount{display:block;font-size: 38px;}
-.matchPlayed.matchDate{ color:#98add8;}
+.matchDate, .matchCount {width:80px; text-align:center;}
+.matchCount{height:36px;font-weight:bold;letter-spacing:-4px}
+
+.matchPlayed .matchCount{display:block;font-size: 38px;}
 .matchDate
 {
     color:#be1d2d;
     font-size: 12px;
+    padding-top:10px;
 }
+.matchPlayed .matchDate{ color:#98add8; padding-top:0;}
+
 

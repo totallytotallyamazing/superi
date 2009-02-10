@@ -2,6 +2,7 @@
 <%@ Register TagPrefix="maestro" TagName="MainMenu" Src="~/Controls/MainMenu.ascx"  %>
 <%@ Register assembly="Superi" namespace="Superi.CustomControls" tagprefix="cc1" %>
 <%@ Register TagPrefix="m" TagName="AjaxLoader" Src="~/Controls/AjaxLoadingIndicator.ascx" %>
+<%@ Register TagPrefix="m" TagName="Matches" Src="~/Controls/Matches.ascx" %>
 <%@ Import Namespace="Superi.Common" %>
 
 
@@ -16,6 +17,8 @@
     <script type="text/javascript" src="<%= WebSession.BaseUrl %>js/jquery.mousewheel.js"></script>
     <script type="text/javascript" src="<%= WebSession.BaseUrl %>js/jquery.pngFix.pack.js"></script>
     <script type="text/javascript" src="<%= WebSession.BaseUrl %>js/jScrollPane.js"></script>
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
     <script type="text/javascript">
         function langOver(lang) {
             $('#' + lang).css('background', '#ebebeb');
@@ -25,8 +28,6 @@
             $('#' + lang).css('background', 'White');
         }
     </script>
-    <asp:ContentPlaceHolder id="head" runat="server">
-    </asp:ContentPlaceHolder>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -60,7 +61,7 @@
                 </asp:ContentPlaceHolder>
             </div>
             <div id="gamesContainer">
-            
+                <m:Matches runat="server" />
             </div>
         </div>
         <div id="footer">

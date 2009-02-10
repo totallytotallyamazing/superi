@@ -56,6 +56,11 @@ public partial class Administration_Articles : System.Web.UI.Page
         if (articleID > 0)
         {
             phEdit.Visible = true;
+            ArticleScope scope = new ArticleScope(int.Parse(ihNodeID.Value));
+            if (scope.Name == "новости")
+                phLargePicture.Visible = phShort.Visible = false;
+            else
+                phLargePicture.Visible = phShort.Visible = true;
             Article article = new Article(articleID);
             reTitle.DefaultValue = article.Title;
             reTitle.TextID = article.TitleTextID;
@@ -195,6 +200,12 @@ public partial class Administration_Articles : System.Web.UI.Page
             fuPicture.SaveAs(path + article.ID + extPicture);
 
             article.TitlePicture = article.ID + extPicture;
+        }
+        if (fuLargePicture.HasFile)
+        {
+            if (!string.IsNullOrEmpty(article.Picture))
+                RemovePicture(article.Picture);
+            article.Picture = fuLargePicture.Save();
         }
         article.Save();
     }

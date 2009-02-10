@@ -4,9 +4,12 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Superi.Common;
+using Superi.Features;
 
 public partial class Controls_Match : System.Web.UI.UserControl
 {
+    #region Properties
     public bool Played
     {
         get
@@ -24,7 +27,7 @@ public partial class Controls_Match : System.Web.UI.UserControl
         {
             if (ViewState["hostCount"] != null)
                 return Convert.ToInt32(ViewState["hostCount"]);
-            return 0;
+            return int.MinValue;
         }
         set { ViewState["hostCount"] = value; }
     }
@@ -35,9 +38,20 @@ public partial class Controls_Match : System.Web.UI.UserControl
         {
             if (ViewState["teamCount"] != null)
                 return Convert.ToInt32(ViewState["teamCount"]);
-            return 0;
+            return int.MinValue;
         }
         set { ViewState["teamCount"] = value; }
+    }
+
+    public string ImageUrl
+    {
+        get
+        {
+            if (ViewState["imageUrl"] != null)
+                return Convert.ToString(ViewState["imageUrl"]);
+            return null;
+        }
+        set { ViewState["imageUrl"] = value; }
     }
 
     public DateTime MatchDate
@@ -61,6 +75,7 @@ public partial class Controls_Match : System.Web.UI.UserControl
         }
         set { ViewState["teamTextId"] = value; }
     }
+    #endregion
 
     protected string matchMainClass = "match";
 
@@ -69,9 +84,14 @@ public partial class Controls_Match : System.Web.UI.UserControl
         if (Played)
             matchMainClass = "matchPlayed";
         if(TeamTextId>0)
-        {
-            GamesDataContext context = new GamesDataContext();
-            Team team = from t = context.Teams 
-        }
+            lTeam.Text = new Resource(TeamTextId)[WebSession.Language];
+        lDate.Text = MatchDate.ToString("dd.MM.yyyy");
+        lMaestro.Text = "Маестро";
+        if (HostCount > 0)
+            lHostCount.Text = HostCount.ToString();
+        if (TeamCount > 0)
+            lTeamCount.Text = TeamCount.ToString();
+        if(!string.IsNullOrEmpty(ImageUrl))
+            iTeam.ImageUrl = WebSession.BaseImageUrl + "logos/" + ImageUrl;
     }
 }

@@ -2,6 +2,7 @@ using System;
 using System.Web;
 using Superi.Features;
 using System.Text.RegularExpressions;
+using Superi.Common;
 //using Superi.Shop;
 
 //using System.Web;
@@ -34,8 +35,8 @@ public partial class _404 : System.Web.UI.Page
         string url = Url.Substring(Url.IndexOf(";") + 1);
         Uri uri = new Uri(url);
         string result = uri.AbsolutePath;
-        if (result.IndexOf("/lermont/") != -1)
-            result = result.Substring(9);
+        if (result.IndexOf("/" + WebSession.VirtualDirectoryName + "/") != -1)
+            result = result.Substring(WebSession.VirtualDirectoryName.Length + 2);
         else
             result = result.Substring(1);
         return result;

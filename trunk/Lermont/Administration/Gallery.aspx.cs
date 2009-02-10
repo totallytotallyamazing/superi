@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Web.UI.WebControls;
 using Superi.Features;
+using Superi.Common;
 
 public partial class Administration_Gallery : System.Web.UI.Page
 {

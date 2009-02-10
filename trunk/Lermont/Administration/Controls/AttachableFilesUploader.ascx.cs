@@ -10,6 +10,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
+using Superi.Common;
 
 public partial class Administration_Controls_AttachableFilesUploader : System.Web.UI.UserControl
 {

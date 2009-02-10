@@ -1,6 +1,7 @@
 using System;
 using System.Web.UI.WebControls;
 using Superi.Features;
+using Superi.Common;
 
 public partial class Controls_MainMenu : System.Web.UI.UserControl
 {

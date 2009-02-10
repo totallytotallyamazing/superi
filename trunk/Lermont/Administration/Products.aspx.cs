@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Web.UI.WebControls;
 using Superi.Shop;
+using Superi.Common;
 
 public partial class Administration_Products : System.Web.UI.Page
 {

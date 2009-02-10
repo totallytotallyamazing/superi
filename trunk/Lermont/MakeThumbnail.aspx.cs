@@ -4,6 +4,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.IO;
 using Image=System.Drawing.Image;
+using Superi.Common;
 
 public partial class MakeThumbnail : Page
 {

@@ -2,6 +2,7 @@
 <%@ Register TagPrefix="Controls" TagName="MainMenu" Src="~/Controls/MainMenu.ascx" %>
 <%@ Register TagPrefix="Controls" TagName="SubMenu" Src="~/Controls/SubMenu.ascx" %>
 <%@ Register TagPrefix="ajax" Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" %>
+<%@ Import Namespace="Superi.Common" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 

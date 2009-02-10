@@ -2,6 +2,7 @@ using System;
 using Superi.Features;
 using System.Web.Security;
 using System.Web.UI.HtmlControls;
+using Superi.Common;
 
 public partial class MasterPage : System.Web.UI.MasterPage
 {

@@ -1,5 +1,6 @@
 <%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" %>
 <%@ Register TagPrefix="Controls" TagName="MainMenu" Src="~/Controls/MainMenu.ascx" %>
+<%@ Import Namespace="Superi.Common" %>
 <html>
 <head runat="server">
     <title>        

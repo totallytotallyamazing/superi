@@ -9,6 +9,7 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using Superi.Features;
+using Superi.Common;
 
 public partial class Gallery : System.Web.UI.Page
 {

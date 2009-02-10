@@ -1,5 +1,6 @@
 <%@ Page Language="C#" MasterPageFile="~/Administration/MasterPage.master" AutoEventWireup="true" CodeFile="Images.aspx.cs" Inherits="Administration_Images" Title="Untitled Page" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+<%@ Import Namespace="Superi.Common" %>
 	<script type="text/javascript">
 		function updateImageUrls()
 		{

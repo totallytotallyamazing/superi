@@ -3,6 +3,7 @@ using System.IO;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Superi.Features;
+using Superi.Common;
 
 public partial class Administration_Images : Page
 {

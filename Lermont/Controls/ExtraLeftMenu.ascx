@@ -1,5 +1,6 @@
 <%@ Import namespace="Superi.Features"%>
 <%@ Control Language="C#" AutoEventWireup="true" CodeFile="ExtraLeftMenu.ascx.cs" Inherits="Controls_ExtraLeftMenu" %>
+<%@ Import Namespace="Superi.Common" %>
 <div id="extraLeftMenu">
     <asp:Repeater runat="server" ID="rItems">
         <ItemTemplate>

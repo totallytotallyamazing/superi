@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Feedback.aspx.cs" Inherits="Feedback" %>
 <%@ Register TagPrefix="superi" Assembly="Superi" Namespace="Superi.CustomControls" %>
+<%@ Import Namespace="Superi.Common" %>
 <asp:Content ContentPlaceHolderID="cphTitle" runat="server">
     <link rel="Stylesheet" href="<%= WebSession.BaseUrl + "css/feedback.css" %>" />
 </asp:Content>

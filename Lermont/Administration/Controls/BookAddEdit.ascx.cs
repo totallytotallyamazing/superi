@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Superi.Common;
 
 public partial class Administration_Controls_BookAddEdit : UserControl
 {

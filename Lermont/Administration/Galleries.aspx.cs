@@ -11,6 +11,7 @@ using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using Superi.CustomControls;
 using Superi.Features;
+using Superi.Common;
 
 public partial class Administration_Galleries : System.Web.UI.Page
 {

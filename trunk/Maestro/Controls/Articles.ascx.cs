@@ -10,6 +10,7 @@ using Superi.CustomControls;
 
 public partial class Controls_Articles : System.Web.UI.UserControl
 {
+    #region Properties
     public int ArticleScopeId
     {
         get 
@@ -41,6 +42,17 @@ public partial class Controls_Articles : System.Web.UI.UserControl
             return false;
         }
         set { ViewState["bodyAsDescription"] = value; }
+    }
+
+    public bool DisplayDate
+    {
+        get
+        {
+            if (ViewState["displayDate"] != null)
+                return Convert.ToBoolean(ViewState["displayDate"]);
+            return false;
+        }
+        set { ViewState["displayDate"] = value; }
     }
 
     public int MaxDescriptionChars
@@ -87,6 +99,18 @@ public partial class Controls_Articles : System.Web.UI.UserControl
         set { ViewState["defaultImageUrl"] = value; }
     }
 
+    public bool ZoomImage
+    {
+        get
+        {
+            if (ViewState["zoomImage"] != null)
+                return Convert.ToBoolean(ViewState["zoomImage"]);
+            return false;
+        }
+        set { ViewState["zoomImage"] = value; }
+    }
+    #endregion
+
     protected void Page_Load(object sender, EventArgs e)
     {
         rlbClose.Language = WebSession.Language;
@@ -105,13 +129,36 @@ public partial class Controls_Articles : System.Web.UI.UserControl
         ResourceLinkButton rlbDetails = (ResourceLinkButton)e.Item.FindControl("rlbDetails");
         Panel pText = (Panel)e.Item.FindControl("pText");
         Panel pTitle = (Panel)e.Item.FindControl("pTitle");
+        HyperLink hlPicture = (HyperLink)e.Item.FindControl("hlPicture");
         rlbDetails.Language = WebSession.Language;
-        if (string.IsNullOrEmpty(article.Picture))
-            iPicture.ImageUrl = DefaultImageUrl;
-        else
-            iPicture.ImageUrl = WebSession.ArticlesImagesFolder + article.Picture;
+        string picturePrefix = WebSession.BaseUrl + "MakeThumbnail.aspx?w=76&h=76&loc=article&ha=c&va=m&kp=1&file=";
+        if (ZoomImage)
+        {
+            iPicture.Visible = false;
+            hlPicture.Visible = true;
 
+            if (string.IsNullOrEmpty(article.TitlePicture))
+                hlPicture.ImageUrl = DefaultImageUrl.Replace("~/", WebSession.BaseUrl);
+            else
+            {
+                hlPicture.NavigateUrl = WebSession.ArticlesImagesFolder + article.Picture;
+                hlPicture.ImageUrl = picturePrefix + article.TitlePicture;
+            }
+        }
+        else
+        {
+            hlPicture.Visible = false;
+            iPicture.Visible = true;
+            if (string.IsNullOrEmpty(article.TitlePicture))
+                iPicture.ImageUrl = DefaultImageUrl;
+            else
+                iPicture.ImageUrl = picturePrefix + article.TitlePicture;
+        }
         lTitle.Text = article.Titles[WebSession.Language];
+        if (DisplayDate)
+            lDate.Visible = true;
+        else
+            lDate.Visible = false;
         lDate.Text = article.EntryDate.ToString("dd.MM.yyyy");
         if (SeparateFirstArticle)
         {
@@ -133,7 +180,7 @@ public partial class Controls_Articles : System.Web.UI.UserControl
                 lText.Text = articleText;
         }
         else
-            lText.Text = article.ShortDescriptions[WebSession.Language];
+            lText.Text = article.ShortDescriptions[WebSession.Language].Replace(Environment.NewLine, "<br />");
 
         rlbDetails.CommandArgument = article.ID.ToString();
             
@@ -142,6 +189,12 @@ public partial class Controls_Articles : System.Web.UI.UserControl
     {
         int articleId = Convert.ToInt32(e.CommandArgument);
         Article article = new Article(articleId);
+        iArticlePicture.Visible = false;
+        if(!string.IsNullOrEmpty(article.Picture))
+        {
+            iArticlePicture.Visible = true;
+            iArticlePicture.ImageUrl = WebSession.ArticlesImagesFolder.Replace("~/", WebSession.BaseUrl) + article.Picture;
+        }
         lDetails.Text = article.Descriptions[WebSession.Language];
     }
 }

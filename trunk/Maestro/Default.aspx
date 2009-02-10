@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Untitled" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" %>
+﻿<%@ Page Title="Новости" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" %>
 <%@ Register TagPrefix="m" TagName="Articles" Src="~/Controls/Articles.ascx" %>
 <%@ Import Namespace="Superi.Common" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
@@ -11,6 +11,7 @@
         DefaultImageUrl="~/Images/DefaultArticle.jpg" 
         MaxDescriptionChars="300" 
         SeparateFirstArticle="true" 
-        MaxDescriptionCharsFirst="600" />
+        MaxDescriptionCharsFirst="600"
+        DisplayDate="true" />
 </asp:Content>
 

@@ -4,14 +4,12 @@
     <div class="matchTeam">
         <asp:Image runat="server" ID="iMaestro" ImageUrl="~/Images/mae.gif" />
         <br />
-        &quot;
-        <asp:Literal runat="server" ID="lMaestro"></asp:Literal>
-        &quot;
+        &quot;<asp:Literal runat="server" ID="lMaestro"></asp:Literal>&quot;
     </div>
     <div class="matchDetails">
         <div class="matchCount">
             <asp:Literal runat="server" ID="lHostCount"></asp:Literal>
-            &nbsp;&mdash;&nbsp;
+            :
             <asp:Literal ID="lTeamCount" runat="server"></asp:Literal>
         </div>
         <div class="matchDate">
@@ -21,8 +19,6 @@
     <div class="matchTeam">
         <asp:Image runat="server" ID="iTeam" ImageUrl="~/Images/mae.gif" />
         <br />
-        &quot;
-        <asp:Literal runat="server" ID="lTeam"></asp:Literal>
-        &quot;
+        &quot;<asp:Literal runat="server" ID="lTeam"></asp:Literal>&quot;
     </div>
 </div>

@@ -21,6 +21,7 @@
     <ItemTemplate>
         <div class="article">
             <div class="articleImage">
+                <asp:HyperLink runat="server" ID="hlPicture" BorderColor="Black" BorderWidth="1"></asp:HyperLink>
                 <asp:Image BorderColor="Black" BorderWidth="1" runat="server" ID="iPicture"  />
             </div>
             <asp:Panel CssClass="articleText" runat="server" ID="pText">
@@ -36,11 +37,14 @@
         </div>
     </ItemTemplate>
 </asp:Repeater>
-
+<script type="text/javascript">
+    $(document).ready(function() { $(".articleImage a").fancybox({ 'overlayShow': true }) });
+</script>
 <asp:UpdatePanel runat="server" ID="upDetails">
     <ContentTemplate>
         <asp:LinkButton runat="server" ID="lbStub" style="display:none" />
         <asp:Panel runat="server" ID="pDetails" CssClass="articleDetails">
+            <asp:Image runat="server" ID="iArticlePicture" CssClass="articleDetailPicture" />            
             <asp:Literal ID="lDetails" runat="server"></asp:Literal>
             <div class="articleDetailsClose">
                 <Superi:ResourceLinkButton ID="rlbClose" runat="server" ResourceName="close"></Superi:ResourceLinkButton>

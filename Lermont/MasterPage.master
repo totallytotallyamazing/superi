@@ -8,57 +8,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head runat="server">
     <title>Untitled Page</title>
-    <link rel="Stylesheet" href="<%= WebSession.BaseUrl + "css/global.css" %>" />
-    <link rel="Stylesheet" href="<%= WebSession.BaseUrl + "css/fancy.css" %>" />
-    <script type="text/javascript" src="<%= WebSession.BaseUrl %>js/master.js"></script>
-    <script type="text/javascript" src="<%= WebSession.BaseUrl %>js/jquery.js"></script>
-    <script type="text/javascript" src="<%= WebSession.BaseUrl %>js/jquery.pngFix.js"></script>
-    <script type="text/javascript" src="<%= WebSession.BaseUrl %>js/jquery.fancybox.js"></script>
     <asp:ContentPlaceHolder ID="cphTitle" runat="server"></asp:ContentPlaceHolder>
-    <base href="<%= WebSession.BaseUrl %>" />
-    <%= MetaTags %>
-    <script type="text/javascript">
-        
-        function displayLangTip(id, text) {
-            $get(id).style.color = "White";
-        }
-        
-        function hideLangTip(id) {
-            $get(id).style.color = "#3760d6";
-        }
-
-        function logIn(login, password) {
-            $find("<%= mWait.ClientID %>").show();
-            Sys.Services.AuthenticationService.login($get("iLogin").value, $get("iPassword").value, $get("cbPersistant").checked, null, null, OnLoginCompleted, null, "User Context");
-            return false;
-        }
-
-        function logOut() {
-            $find("<%= mWait.ClientID %>").show();
-            Sys.Services.AuthenticationService.logout();
-        }
-
-
-
-        function OnLoginCompleted(validCredentials, userContext, methodName) {
-            //$find("<%= mWait.ClientID %>").hide();
-            if (validCredentials) {
-                __doPostBack("<%= bLogin.ClientID %>", "");
-            }
-            else {
-                alert("Неправильная пара логин/пароль");
-                $find("<%= mWait.ClientID %>").hide();
-            }
-        }
-
-        function LogOutComplete(result) {
-//            __doPostBack("<%= bLogOut.ClientID %>", "");
-        }
-
-        function OnFailed(error, userContext, methodName) {
-            alert(error);
-        }
-    </script>
 </head>
 <body>
     <form id="form1" runat="server">

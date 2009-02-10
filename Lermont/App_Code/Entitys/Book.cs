@@ -10,7 +10,7 @@ using System.Web.UI.HtmlControls;
 using Superi.Shop;
 public enum ProductPropertyTypes
 {
-    NewBook, SubTitle, Publisher, PublisherUrl, AdditionalInfo
+    NewProduct, SubTitle, Publisher, PublisherUrl, AdditionalInfo
 }
 
 /// <summary>
@@ -18,12 +18,15 @@ public enum ProductPropertyTypes
 /// </summary>
 public class Book : Product
 {
+    #region Fields
     private bool newBook = false;
     private int subTitleTextId = int.MinValue;
     private int publisherTextId = int.MinValue;
     private string publisherUrl = "";
     private int additionalInfo = int.MinValue;
+    #endregion
 
+    #region Properties
     public bool NewBook
     {
         get { return newBook; }
@@ -53,21 +56,32 @@ public class Book : Product
         get { return additionalInfo; }
         set { additionalInfo = value; }
     }
+    #endregion
 
+    #region Constructors
+    public Book()
+        : base()
+    {
+        TypeId = 1;
+    }
     public Book(int Id)
     {
         Load(Id);
         LoadProperties(Id);
+        TypeId = 1;
     }
 
     public Book(DataRow dr)
     {
         Load(dr);
+        TypeId = 1;
     }
+    #endregion
 
+    #region Methods
     private void LoadProperties(int Id)
     {
-        string newBook = ProductPropertyValues.Get(Id, ProductPropertyTypes.NewBook);
+        string newBook = ProductPropertyValues.Get(Id, ProductPropertyTypes.NewProduct);
         if(!string.IsNullOrEmpty(newBook))
             NewBook = bool.Parse(newBook);
         string stId = ProductPropertyValues.Get(Id, ProductPropertyTypes.SubTitle);
@@ -91,7 +105,7 @@ public class Book : Product
 
     private void SaveProperties()
     {
-        ProductPropertyValues.Set(ID, (int)ProductPropertyTypes.NewBook, newBook.ToString());
+        ProductPropertyValues.Set(ID, (int)ProductPropertyTypes.NewProduct, newBook.ToString());
         ProductPropertyValues.Set(ID, (int)ProductPropertyTypes.SubTitle, subTitleTextId.ToString());
         ProductPropertyValues.Set(ID, (int)ProductPropertyTypes.Publisher, publisherTextId.ToString());
         ProductPropertyValues.Set(ID, (int)ProductPropertyTypes.PublisherUrl, publisherUrl);
@@ -100,7 +114,7 @@ public class Book : Product
 
     private void DeleteProperties()
     {
-        ProductPropertyValues.Delete(ID, ProductPropertyTypes.NewBook);
+        ProductPropertyValues.Delete(ID, ProductPropertyTypes.NewProduct);
         ProductPropertyValues.Delete(ID, ProductPropertyTypes.SubTitle);
         ProductPropertyValues.Delete(ID, ProductPropertyTypes.Publisher);
         ProductPropertyValues.Delete(ID, ProductPropertyTypes.PublisherUrl);
@@ -119,4 +133,5 @@ public class Book : Product
         DeleteProperties();
         return base.Remove();
     }
+    #endregion
 }

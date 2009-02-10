@@ -7,13 +7,13 @@
                 <ItemTemplate>
                     <div class="book">
                         <div class="bookCover">
-                            <asp:Hyperlink CssClass="bookImageLink" BorderColor="white" BorderWidth="1" runat="server" ID="hlCover"></asp:Hyperlink>
+                            <asp:Hyperlink CssClass="bookImageLink" Target="_blank" BorderColor="white" BorderWidth="1" runat="server" ID="hlCover"></asp:Hyperlink>
                         </div>
                         <div class="bookInfo">
                             <div class="bookTitle">
-                                <asp:Hyperlink runat="server" ID="hlTitle" CssClass="bookTitleLink"></asp:Hyperlink>
+                                <asp:Hyperlink runat="server" Target="_blank" ID="hlTitle" CssClass="bookTitleLink"></asp:Hyperlink>
                                 &nbsp;
-                                <asp:HyperLink runat="server" ID="hlNewBook" CssClass="bookNewBookLink">
+                                <asp:HyperLink runat="server" ID="hlNewBook" Target="_blank" CssClass="bookNewBookLink">
                                     <Controls:TextWriter TextName="newBook" runat="server"></Controls:TextWriter>
                                 </asp:HyperLink>
                             </div>
@@ -21,7 +21,7 @@
                                 <asp:Literal runat="server" ID="lSubTitle"></asp:Literal>
                             </div>
                             <div class="bookPublisher">
-                                <asp:HyperLink CssClass="bookPublisherLink" runat="server" ID="hlPublisher"></asp:HyperLink>
+                                <asp:HyperLink Target="_blank" CssClass="bookPublisherLink" runat="server" ID="hlPublisher"></asp:HyperLink>
                             </div>
                             <div class="bookShortDescription">
                                 <asp:Literal runat="server" ID="lDescription"></asp:Literal>

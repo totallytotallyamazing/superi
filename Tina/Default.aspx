@@ -39,8 +39,10 @@
                 </div>
             </div>
             <div id="middle">
-                <div class="SongsPlaceHolder">
+                <div class="songsPlaceHolder">
+                    <ul>
                     
+                    </ul>
                 </div>
                 <img class="currentBackground" alt="" />
                 <img class="newBackground" alt="" />

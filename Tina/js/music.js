@@ -1,4 +1,6 @@
-﻿function processAlbums(response) {
+﻿
+
+function processAlbums(response) {
     //getSubMenu().css("display", "none").fadeIn(500);
     for (var i in response) {
         if (i == 0) {
@@ -21,8 +23,25 @@ function subMenuItemClicked(attrs) {
 }
 
 function imageSwapped() {
-    
+    var albumID = $(".subMenuItemActive").parent().attr("albumId");
+    Music.GetAlbumSongs(albumID, songsRetreived, onRetriveSongsFail);
 }
 
-function onRetriveAlbumsFail() { 
+
+
+function songsRetreived(response) {
+    $(".songsPlaceHolder").css("display", "block");
+    for (var i in response) {
+        var name = response[i].Name;
+        var source = response[i].Source;
+        //alert( + " " + );
+        $("<li path='" + source + "'>" + name + "</li>").appendTo(".songsPlaceHolder ul");
+        
+    }
+}
+
+function onRetriveAlbumsFail() {
+}
+
+function onRetriveSongsFail() {
 }

@@ -1,0 +1,38 @@
+﻿*{margin:0; padding:0; border:none; color:#656565}
+body, html{height:100%;}
+body{background:black}
+#main{
+    margin:auto;
+    position:relative;
+    width:1024px;
+    height:768px;
+}
+
+#top, #middle, #bottom{width:inherit;}
+
+#top{height:86px; background:transparent url(../images/top.jpg);}
+#middle{height:616px; z-index:100; position:relative;}
+#bottom{height:98px; z-index:-1; margin-top:-32px; background:transparent url(../images/bottom.jpg);}
+#menu{padding:30px 20px;}
+#menu li{float:left; list-style:none; padding-top:7px; font-size:16px; cursor:pointer; padding-right:10px;}
+.currentSection{border-left:1px solid white; padding-top:0px !important; color:White !important; cursor:default; padding-left:10px;}
+#subMenu{padding:4px 22px;}
+#subMenu ul li{float:left; list-style:none; padding-right:10px;}
+.subMenuItem, .subMenuItemActive{font-size:11px; text-decoration:none;}
+.subMenuItem:hover{text-decoration:underline;}
+.subMenuItemActive{color:White;}
+#copyrigth{font-size:11px; padding-top:70px; float:left;}
+#administration{border-left:1px solid white; color:White; font-size:11px; margin-left:850px; padding-left:10px; position:relative; top:20px;} 
+
+.currentBackground, .newBackground{position:relative; z-index:0;}
+.SongsPlaceHolder
+{
+    position:absolute; 
+    z-index:50; 
+    width:100px; 
+    height:100px; 
+    padding-top:200px; 
+    padding-left:20px; 
+    border:1px solid red;
+    display:none;
+}

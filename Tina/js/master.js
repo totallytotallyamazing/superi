@@ -49,6 +49,7 @@ function menuClicked(el) {
         swapImage($(el.target).attr("image"));
         loadContent(targetElem.attr("section"));
         $("#subMenu ul").empty();
+        $(".songsPlaceHolder ul").empty().css("display", "false");
     }
 }
 

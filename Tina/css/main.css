@@ -35,3 +35,5 @@ body{background:black}
 }
 
 .songsPlaceHolder ul li{list-style-image:url(../images/playButton.png); float:left; margin-left:-530px; color:White; cursor:pointer;}
+
+#flashContainer{position:relative; left:-3000px; width:1px; height:1px; overflow:hidden;}

@@ -8,6 +8,7 @@
     <script src="js/jquery.preloadImages.js" type="text/javascript"></script>
     <script src="js/music.js" type="text/javascript"></script>
     <script src="js/master.js" type="text/javascript"></script>
+    <script src="js/jquery.flash.js" type="text/javascript"></script>
     <link href="css/main.css" rel="stylesheet" type="text/css" />
     <title></title>
 </head>
@@ -53,6 +54,9 @@
                 </div>
                 <div id="administration">
                     администрация:<br />                    Дарья Новикова<br />                    8 (067) 444-44-44<br />                    e-mail: <a href="mailto:darya@tinakarol.ua">darya@tinakarol.ua</a>
+                </div>
+                <div id="flashContainer">
+                
                 </div>
             </div>
         </div>

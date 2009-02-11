@@ -20,6 +20,7 @@ function subMenuItemClicked(attrs) {
     updateSubMenuStyles();
     $(attrs.target).attr("class", "subMenuItemActive");
     updateSubMenuClickHandlers(subMenuItemClicked);
+    $(".songsPlaceHolder ul").empty();
 }
 
 function imageSwapped() {
@@ -31,13 +32,25 @@ function imageSwapped() {
 
 function songsRetreived(response) {
     $(".songsPlaceHolder").css("display", "block");
+    
     for (var i in response) {
         var name = response[i].Name;
         var source = response[i].Source;
         //alert( + " " + );
-        $("<li path='" + source + "'>" + name + "</li>").appendTo(".songsPlaceHolder ul");
-        
+        $("<li path='" + source + "'>" + name + "</li>").appendTo(".songsPlaceHolder ul").animate({marginLeft:"30px"}, 500).click(songClicked);
     }
+}
+
+function songClicked(attrs){
+    $("#flashContainer").empty();
+    var source = $(attrs.target).attr("path")
+    $("#flashContainer").flash({src:"Embed/xspf_jukebox.swf", id:"flashControl", flashvars:{track_title: "title", track_url:"Songs/"+source, autoplay:true}});
+    $(attrs.target).unbind("click", songClicked).click(stopPlaying).css("background", "transparent url(images/playShadow.png)");
+}
+
+function stopPlaying(attrs){
+    $("#flashContainer").empty();
+    $(attrs.target).unbind("click", songClicked).click(songClicked).css("background", "transparent");
 }
 
 function onRetriveAlbumsFail() {

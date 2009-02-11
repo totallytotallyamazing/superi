@@ -91,6 +91,12 @@ namespace Superi.CustomControls
             }
         }
 
+        public string UploadedFile
+        {
+            get { return Save(); }
+            set { }
+        }
+
         private string ServerPath
         {
             get 

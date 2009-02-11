@@ -24,5 +24,12 @@ public class Music : System.Web.Services.WebService
         return albums.ToList();
     }
 
+    [WebMethod]
+    public object GetAlbumSongs(int AlbumID)
+    {
+        MusicDataContext context = new MusicDataContext();
+        var songs = from sn in context.Songs where (sn.AlbumId.Value == AlbumID) select new { sn.Name, sn.Source };
+        return songs.ToList();
+    }
 }
 

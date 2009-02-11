@@ -15,6 +15,7 @@ public partial class Administration_Music : System.Web.UI.Page
     protected void Page_PreRender(object sender, EventArgs e)
     {
         GridView1.DataBind();
+        GridView2.DataBind(); 
     }
     protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
     {

@@ -3,28 +3,24 @@ Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Superi", "..\Superi\Superi.csproj", "{7ABBF7DB-4EFA-43B7-ADDF-B7F8B1E8078C}"
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "tina", "http://localhost/tina", "{0B0A8AB3-7981-42E9-93C6-A84D9A475D9F}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Tina", ".", "{145C0A9F-A1C7-4266-A4C2-1C6998FE74B9}"
 	ProjectSection(WebsiteProperties) = preProject
-		SccProjectName = "Svn"
-		SccAuxPath = "Svn"
-		SccLocalPath = "Svn"
-		SccProvider = "SubversionScc"
 		TargetFramework = "3.5"
-		Debug.AspNetCompiler.VirtualPath = "/tina"
+		Debug.AspNetCompiler.VirtualPath = "/Tina"
 		Debug.AspNetCompiler.PhysicalPath = "..\Tina\"
-		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\tina\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\Tina\"
 		Debug.AspNetCompiler.Updateable = "true"
 		Debug.AspNetCompiler.ForceOverwrite = "true"
 		Debug.AspNetCompiler.FixedNames = "false"
 		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.VirtualPath = "/tina"
+		Release.AspNetCompiler.VirtualPath = "/Tina"
 		Release.AspNetCompiler.PhysicalPath = "..\Tina\"
-		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\tina\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\Tina\"
 		Release.AspNetCompiler.Updateable = "true"
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
-		SlnRelativePath = "..\Tina\"
+		VWDPort = "50589"
 	EndProjectSection
 EndProject
 Global
@@ -51,16 +47,16 @@ Global
 		{7ABBF7DB-4EFA-43B7-ADDF-B7F8B1E8078C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7ABBF7DB-4EFA-43B7-ADDF-B7F8B1E8078C}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{7ABBF7DB-4EFA-43B7-ADDF-B7F8B1E8078C}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{0B0A8AB3-7981-42E9-93C6-A84D9A475D9F}.Debug|.NET.ActiveCfg = Debug|Any CPU
-		{0B0A8AB3-7981-42E9-93C6-A84D9A475D9F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0B0A8AB3-7981-42E9-93C6-A84D9A475D9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0B0A8AB3-7981-42E9-93C6-A84D9A475D9F}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{0B0A8AB3-7981-42E9-93C6-A84D9A475D9F}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{0B0A8AB3-7981-42E9-93C6-A84D9A475D9F}.Release|.NET.ActiveCfg = Debug|Any CPU
-		{0B0A8AB3-7981-42E9-93C6-A84D9A475D9F}.Release|Any CPU.ActiveCfg = Debug|Any CPU
-		{0B0A8AB3-7981-42E9-93C6-A84D9A475D9F}.Release|Any CPU.Build.0 = Debug|Any CPU
-		{0B0A8AB3-7981-42E9-93C6-A84D9A475D9F}.Release|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{0B0A8AB3-7981-42E9-93C6-A84D9A475D9F}.Release|Mixed Platforms.Build.0 = Debug|Any CPU
+		{145C0A9F-A1C7-4266-A4C2-1C6998FE74B9}.Debug|.NET.ActiveCfg = Debug|.NET
+		{145C0A9F-A1C7-4266-A4C2-1C6998FE74B9}.Debug|.NET.Build.0 = Debug|.NET
+		{145C0A9F-A1C7-4266-A4C2-1C6998FE74B9}.Debug|Any CPU.ActiveCfg = Debug|.NET
+		{145C0A9F-A1C7-4266-A4C2-1C6998FE74B9}.Debug|Mixed Platforms.ActiveCfg = Debug|.NET
+		{145C0A9F-A1C7-4266-A4C2-1C6998FE74B9}.Debug|Mixed Platforms.Build.0 = Debug|.NET
+		{145C0A9F-A1C7-4266-A4C2-1C6998FE74B9}.Release|.NET.ActiveCfg = Debug|.NET
+		{145C0A9F-A1C7-4266-A4C2-1C6998FE74B9}.Release|.NET.Build.0 = Debug|.NET
+		{145C0A9F-A1C7-4266-A4C2-1C6998FE74B9}.Release|Any CPU.ActiveCfg = Debug|.NET
+		{145C0A9F-A1C7-4266-A4C2-1C6998FE74B9}.Release|Mixed Platforms.ActiveCfg = Debug|.NET
+		{145C0A9F-A1C7-4266-A4C2-1C6998FE74B9}.Release|Mixed Platforms.Build.0 = Debug|.NET
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

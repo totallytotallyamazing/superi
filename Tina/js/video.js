@@ -8,8 +8,9 @@
 //        }
 //        else {
             appendSubMenuItem(createMenuItem(response[i].Name, subMenuItemClickedVideo).attr({source: response[i].Source, image: "images/VideoImages/" + response[i].Image }));
-//        }
+   //     }
     }
+   // imageSwappedVideo();
 }
 
 function subMenuItemClickedVideo(attrs){
@@ -22,7 +23,7 @@ function subMenuItemClickedVideo(attrs){
 
 function imageSwappedVideo(){
     var source = $(".subMenuItemActive").parent().attr("source");
-    $(".videoPlaceHolder").draggable().css("display", "block").flash({ src: "Embed/player.swf", width: "480", height: "360", flashvars: { skin: "stylish.swf", file: "../Videos/" + source} });
+    $(".videoPlaceHolder").draggable().css("display", "block").flash({ src: "Embed/player.swf", width: "480", height: "360", flashvars: { skin: "http://demo.akula.com.ua/tina/embed/stylish.swf", file: "../Videos/" + source} });
 }
 
 function onRetriveVideosFail(){

@@ -60,6 +60,7 @@ body{background:black}
     padding-top:20px;
     background:#CCCCCC;  
     width:480px;
-    /*position:absolute;  */
+    position:absolute;  
+    z-index:100;
 }
 /*End of video related styles*/

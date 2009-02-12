@@ -68,7 +68,7 @@ function swapImage(imageName, callbackHandler) {
         var oldbg = $(".currentBackground");
         oldbg.attr("class", "newBackground");
         newBg.attr("src", imageName).attr("class", "currentBackground").fadeIn(500, callbackHandler);
-    });
+    }).attr("src", "");
 }
 
 function loadContent(section) {

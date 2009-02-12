@@ -83,7 +83,8 @@
         </asp:GridView>
     
         <asp:FormView ID="FormView2" runat="server" DataKeyNames="ID" 
-            DataSourceID="ldsSongs" DefaultMode="Insert" FooterStyle-VerticalAlign="NotSet">
+            DataSourceID="ldsSongs" DefaultMode="Insert" 
+            FooterStyle-VerticalAlign="NotSet" onitemcommand="FormView2_ItemCommand">
             <InsertItemTemplate>
                 Название:
                 <asp:TextBox ID="NameTextBox" runat="server" Text='<%# Bind("Name") %>' />

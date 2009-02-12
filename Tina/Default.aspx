@@ -9,6 +9,8 @@
     <script src="js/music.js" type="text/javascript"></script>
     <script src="js/master.js" type="text/javascript"></script>
     <script src="js/jquery.flash.js" type="text/javascript"></script>
+    <script src="js/jquery.ui.draggable.js" type="text/javascript"></script>
+    <script src="js/video.js" type="text/javascript"></script>
     <link href="css/main.css" rel="stylesheet" type="text/css" />
     <title></title>
 </head>
@@ -17,6 +19,7 @@
         <asp:ScriptManager runat="server" ID="smMain">
             <Services>
                 <asp:ServiceReference Path="~/Services/Music.asmx" />
+                <asp:ServiceReference Path="~/Services/VideoService.asmx" />
             </Services>
         </asp:ScriptManager>
         <div id="main">
@@ -40,6 +43,9 @@
                 </div>
             </div>
             <div id="middle">
+                <div class="videoPlaceHolder">
+                
+                </div>
                 <div class="songsPlaceHolder">
                     <ul>
                     

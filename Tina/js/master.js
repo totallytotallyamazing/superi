@@ -1,4 +1,10 @@
-﻿function appendSubMenuItem(item) {
+﻿function cleanUp() {
+    $("#flashContainer").empty();
+    $(".videoPlaceHolder").empty().css("display", "none");
+    $(".songsPlaceHolder").css("display", "none");
+}
+
+function appendSubMenuItem(item) {
     item.appendTo("#subMenu ul");
 }
 
@@ -39,6 +45,7 @@ function menuOut(el) {
 }
 
 function menuClicked(el) {
+    cleanUp();
     var targetElem = $(el.target)
     if (targetElem.attr("class") !== "currentSection") {
         var firstElem = $(".currentSection");
@@ -49,7 +56,7 @@ function menuClicked(el) {
         swapImage($(el.target).attr("image"));
         loadContent(targetElem.attr("section"));
         $("#subMenu ul").empty();
-        $(".songsPlaceHolder ul").empty().css("display", "false");
+        $(".songsPlaceHolder ul").empty().css("display", "none");
     }
 }
 
@@ -72,6 +79,7 @@ function loadContent(section) {
         case "photo":
             break;
         case "video":
+            VideoService.GetVideos(processVideos, onRetriveVideosFail);
             break;
         case "news":
             break;

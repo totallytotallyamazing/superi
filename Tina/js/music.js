@@ -16,6 +16,7 @@ function processAlbums(response) {
 }
 
 function subMenuItemClicked(attrs) {
+    cleanUp();
     swapImage($(attrs.target).parent().attr("image"), imageSwapped);
     updateSubMenuStyles();
     $(attrs.target).attr("class", "subMenuItemActive");
@@ -36,22 +37,28 @@ function songsRetreived(response) {
     for (var i in response) {
         var name = response[i].Name;
         var source = response[i].Source;
-        //alert( + " " + );
-        $("<li path='" + source + "'>" + name + "</li>").appendTo(".songsPlaceHolder ul").animate({marginLeft:"30px"}, 500).click(songClicked);
+        $("<li path='" + source + "'>" + name + "</li>").appendTo(".songsPlaceHolder ul").animate({ marginLeft: "10px" }, 500).click(songClicked).wrap('<div style="float:left; margin-right:10px;">');
     }
 }
 
 function songClicked(attrs){
     $("#flashContainer").empty();
     var source = $(attrs.target).attr("path")
-    $("#flashContainer").flash({src:"Embed/xspf_jukebox.swf", id:"flashControl", flashvars:{track_title: "title", track_url:"Songs/"+source, autoplay:true}});
-    $(attrs.target).unbind("click", songClicked).click(stopPlaying).css("background", "transparent url(images/playShadow.png)");
+    $("#flashContainer").flash({ src: "Embed/xspf_jukebox.swf", flashvars: { track_title: "title", track_url: "Songs/" + source, autoplay: true, repeat: false} });
+    resetSongs(attrs.target);
+    $(attrs.target).unbind("click", songClicked).bind("click", stopPlaying).parent().css("background", "transparent url(images/playShadow.png)");
+    $(attrs.target).parent().unbind("click", songClicked);
 }
 
-function stopPlaying(attrs){
+function stopPlaying(attrs) {
     $("#flashContainer").empty();
-    $(attrs.target).unbind("click", songClicked).click(songClicked).css("background", "transparent");
+    $(attrs.target).unbind("click", stopPlaying).bind("click", songClicked).parent().css("background", "transparent");
 }
+
+function resetSongs(el) {
+    $(".songsPlaceHolder ul div li").unbind("click", stopPlaying).unbind("click", songClicked).click(songClicked).parent().css("background", "transparent");
+}
+
 
 function onRetriveAlbumsFail() {
 }

@@ -21,4 +21,8 @@ public partial class Administration_Music : System.Web.UI.Page
     {
         ((HiddenField)FormView2.FindControl("hfAlbumID")).Value = DropDownList1.SelectedValue;
     }
+    protected void FormView2_ItemCommand(object sender, FormViewCommandEventArgs e)
+    {
+        Response.Write("!");
+    }
 }

@@ -8,10 +8,14 @@
     
     <asp:LinqDataSource ID="ldsVideo" runat="server" 
         ContextTypeName="VideoDataContext" EnableDelete="True" EnableInsert="True" 
-        TableName="Videos">
+        TableName="Videos" EnableUpdate="True">
+    </asp:LinqDataSource>
+    <asp:LinqDataSource ID="ldsAlbums" runat="server" 
+        ContextTypeName="MusicDataContext" Select="new (ID, Name)" TableName="Albums">
     </asp:LinqDataSource>
     <asp:ListView ID="ListView1" runat="server" DataKeyNames="ID" 
-        DataSourceID="ldsVideo" InsertItemPosition="LastItem">
+        DataSourceID="ldsVideo" InsertItemPosition="LastItem" 
+        onitemcommand="ListView1_ItemCommand">
         <ItemTemplate>
             <tr style="background-color: #FFFBD6;color: #333333;">
                 <td>
@@ -45,7 +49,7 @@
                 <td>
                     <asp:Button ID="DeleteButton" runat="server" CommandName="Delete" 
                         Text="Удалить" />
-                    <cc2:ConfirmButtonExtender ID="ConfirmButtonExtender1" runat="server" TargetControlID="DeleteButton">
+                    <cc2:ConfirmButtonExtender ConfirmText="Вы уверены?" ID="ConfirmButtonExtender1" runat="server" TargetControlID="DeleteButton">
                      </cc2:ConfirmButtonExtender>
                 </td>
             </tr>
@@ -71,7 +75,17 @@
                     <cc1:FolderUpload Folder="~/Videos/" ID="fuSource" UploadedFile='<%# Bind("Source") %>' runat="server" />
                 </td>
                 <td>
-                    <asp:Button ID="InsertButton" runat="server" CommandName="Insert" 
+<%--                    <asp:DropDownList ID="ddlAlbum" runat="server" DataSourceID="ldsAlbums" 
+                        DataTextField="Name" DataValueField="ID" SelectedValue='<%# Bind("AlbumID") %>'>
+                    </asp:DropDownList>--%>
+                    <asp:DropDownList DataSourceID="ldsAlbums" 
+                    DataTextField="Name" DataValueField="ID"  
+                    AppendDataBoundItems="true" runat="server" ID="ddlAlbum" EnableViewState="False">
+                        <asp:ListItem Text="--" Value="0"></asp:ListItem>
+                    </asp:DropDownList>
+                </td>
+                <td>
+                    <asp:Button ID="InsertButton" runat="server" CommandName="InsertItem" 
                         Text="Добавить" />
                     <asp:Button ID="CancelButton" runat="server" CommandName="Cancel" 
                         Text="Очистить" />
@@ -94,6 +108,9 @@
                                 <th id="Th1" runat="server">
                                     Имя файла
                                 </th>
+                                <th id="Th2" runat="server">
+                                    Альбом
+                                </th>
                             </tr>
                             <tr ID="itemPlaceholder" runat="server">
                             </tr>
@@ -109,5 +126,5 @@
         </LayoutTemplate>
     </asp:ListView>
     
-</asp:Content>
+    </asp:Content>
 

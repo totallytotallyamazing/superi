@@ -1,6 +1,7 @@
 ﻿function processVideos(response) {
     //getSubMenu().css("display", "none").fadeIn(500);
     for (var i in response) {
+        $.preloadImages("images/albumimages/" + response[i].Image);
 //        if (i == 0) {
 //            var item = createMenuItem(response[i].Name, imageSwappedVideo).attr({ source: response[i].Source, image: "images/VideoImages/" + response[i].Image });
 //            item.children().attr("class", "subMenuItemActive");

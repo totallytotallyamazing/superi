@@ -7,6 +7,7 @@
       <Column Name="Name" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
       <Column Name="Source" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
       <Column Name="Image" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="AlbumID" Type="System.Int32" DbType="int" CanBeNull="true" />
     </Type>
   </Table>
 </Database>

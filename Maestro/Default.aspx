@@ -9,7 +9,7 @@
         ArticleScopeId="1" 
         BodyAsDescription="true" 
         DefaultImageUrl="~/Images/DefaultArticle.jpg" 
-        MaxDescriptionChars="300" 
+        MaxDescriptionChars="150" 
         SeparateFirstArticle="true" 
         MaxDescriptionCharsFirst="600"
         DisplayDate="true" />

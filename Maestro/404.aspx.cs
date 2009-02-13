@@ -185,9 +185,9 @@ public partial class _404 : System.Web.UI.Page
             {
                 Server.Transfer("default.aspx");
             }
-            ProcessNavigationRedirection(path);
-            //string path = url.Substring(url.IndexOf("404;") + 4).Replace("/lang=" + lang, "");
-           // Response.Redirect(path);
+           // ProcessNavigationRedirection(path);
+            string pathLa = url.Substring(url.IndexOf("404;") + 4).Replace("/lang=" + lang, "");
+            Response.Redirect(pathLa);
         }
     }
 

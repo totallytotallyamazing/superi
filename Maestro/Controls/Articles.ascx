@@ -16,13 +16,12 @@
     }
 </script>
 
-<asp:Repeater runat="server" ID="rItems" onitemdatabound="rItems_ItemDataBound" 
-    onitemcommand="rItems_ItemCommand">
+<asp:Repeater runat="server" ID="rItems" OnItemDataBound="rItems_ItemDataBound" OnItemCommand="rItems_ItemCommand">
     <ItemTemplate>
         <div class="article">
             <div class="articleImage">
                 <asp:HyperLink runat="server" ID="hlPicture" BorderColor="Black" BorderWidth="1"></asp:HyperLink>
-                <asp:Image BorderColor="Black" BorderWidth="1" runat="server" ID="iPicture"  />
+                <asp:Image BorderColor="Black" BorderWidth="1" runat="server" ID="iPicture" />
             </div>
             <asp:Panel CssClass="articleText" runat="server" ID="pText">
                 <asp:Panel runat="server" CssClass="articleTitle" ID="pTitle">
@@ -37,29 +36,35 @@
         </div>
     </ItemTemplate>
 </asp:Repeater>
+
 <script type="text/javascript">
     $(document).ready(function() { $(".articleImage a").fancybox({ 'overlayShow': true }) });
 </script>
+
 <asp:UpdatePanel runat="server" ID="upDetails">
     <ContentTemplate>
-        <asp:LinkButton runat="server" ID="lbStub" style="display:none" />
+        <asp:LinkButton runat="server" ID="lbStub" Style="display: none" />
         <asp:Panel runat="server" ID="pDetails" CssClass="articleDetails">
-            <asp:Image runat="server" ID="iArticlePicture" CssClass="articleDetailPicture" />            
-            <asp:Literal ID="lDetails" runat="server"></asp:Literal>
-            <div class="articleDetailsClose">
-                <Superi:ResourceLinkButton ID="rlbClose" runat="server" ResourceName="close"></Superi:ResourceLinkButton>
+            <div id="articleBg">
+                <div class="articleBg fancy_bg_n"></div>
+                <div class="articleBg fancy_bg_ne"></div>
+                <div class="articleBg fancy_bg_e"></div>
+                <div class="articleBg fancy_bg_se"></div>
+                <div class="articleBg fancy_bg_s"></div>
+                <div class="articleBg fancy_bg_sw"></div>
+                <div class="articleBg fancy_bg_w"></div>
+                <div class="articleBg fancy_bg_nw"></div>
+            </div>
+            <asp:ImageButton ImageUrl="~/Images/fancybox/fancy_closebox.png" CssClass="articleClose" ID="ibArticleClose" runat="server" />
+            <div class="articleInner">
+                <asp:Image runat="server" ID="iArticlePicture" CssClass="articleDetailPicture" />
+                <asp:Literal ID="lDetails" runat="server"></asp:Literal>
             </div>
         </asp:Panel>
-        <ajax:ModalPopupExtender runat="server" 
-            ID="mpeDetails" 
-            PopupControlID="pDetails" 
-            TargetControlID="lbStub" 
-            DropShadow="true" 
-            BackgroundCssClass="shaded" 
-            CancelControlID="rlbClose"/>
+        <ajax:ModalPopupExtender runat="server" ID="mpeDetails" PopupControlID="pDetails"
+            TargetControlID="lbStub" DropShadow="false" BackgroundCssClass="shaded" CancelControlID="ibArticleClose" />
     </ContentTemplate>
     <Triggers>
         <asp:AsyncPostBackTrigger ControlID="rItems" EventName="ItemCommand" />
     </Triggers>
 </asp:UpdatePanel>
-

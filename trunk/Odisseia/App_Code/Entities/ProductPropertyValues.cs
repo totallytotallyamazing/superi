@@ -82,11 +82,6 @@ public static class ProductPropertyValues
         AppData.ExecStoredProcedure("ProductPropertyValues_AddMultiple", parameterList);
     }
 
-    //public static void SetMultiple(int ProductId, ProductPropertyTypes PropertyId, string ValueList)
-    //{
-    //    SetMultiple(ProductId, (int)PropertyId, ValueList);
-    //}
-
     public static void Delete(int ProductId, int? PropertyId)
     {
         ParameterList parameterList = new ParameterList();

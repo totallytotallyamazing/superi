@@ -37,7 +37,7 @@ public partial class _404 : System.Web.UI.Page
         string url = Url.Substring(Url.IndexOf(";") + 1);
         Uri uri = new Uri(url);
         string result = uri.AbsolutePath;
-        if (result.IndexOf("/polial/") != -1)
+        if (result.ToLower().IndexOf("/polial/") != -1)
             result = result.Substring(8);
         else
             result = result.Substring(1);

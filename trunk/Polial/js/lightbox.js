@@ -189,7 +189,7 @@ Lightbox.prototype = {
         this.updateImageList = Prototype.emptyFunction;
 
         document.observe('click', (function(event){
-            var target = event.findElement('a[rel^=lightbox]') || event.findElement('area[rel^=lightbox]');
+        var target = event.findElement('a[class^=lightbox]') || event.findElement('area[class^=lightbox]') || event.findElement('a[rel^=lightbox]') || event.findElement('area[rel^=lightbox]');
             if (target) {
                 event.stop();
                 this.start(target);
@@ -212,15 +212,15 @@ Lightbox.prototype = {
         new Effect.Appear(this.overlay, { duration: this.overlayDuration, from: 0.0, to: LightboxOptions.overlayOpacity });
 
         this.imageArray = [];
-        var imageNum = 0;       
+        var imageNum = 0;
 
-        if ((imageLink.rel == 'lightbox')){
+        if ((imageLink.className == 'lightbox' || imageLink.rel == 'lightbox')) {
             // if image is NOT part of a set, add single image to imageArray
             this.imageArray.push([imageLink.href, imageLink.title]);         
         } else {
             // if image is part of a set..
-            this.imageArray = 
-                $$(imageLink.tagName + '[href][rel="' + imageLink.rel + '"]').
+            this.imageArray =
+                $$(imageLink.tagName + '[href][class="' + imageLink.className + '"]').
                 collect(function(anchor){ return [anchor.href, anchor.title]; }).
                 uniq();
             

@@ -14,13 +14,17 @@
 .currentMenuItem{color:#7c98ce; font-weight:bold; text-transform:lowercase;}
 #gamesContainer{float:left; width:181px; padding-left:10px;}
 #middle{width:inherit;}
-#contentContainer{width:735px; padding-left:62px; padding-top:50px; float:left;}
-#footer{width:1024px; height:18px; background:transparent url("../images/bottomLine.jpg") no-repeat; clear:both;}
-.shaded{opacity: 0.5; -moz-opacity: 0.5; filter: alpha(opacity=50); background-color:Black;}
+#contentContainer{width:735px; padding-left:62px; padding-top:50px; float:left; min-height:460px;}
+#footer{width:1024px; padding-top:18px; background:transparent url("../images/bottomLine.jpg") no-repeat; clear:both;}
+.shaded{opacity: 0.4; -moz-opacity: 0.4; filter: alpha(opacity=40); background-color:Black;}
 
 .match, .matchPlayed{width:179px; padding-left:2px; height:54px; clear:both; margin:20px 0;}
 .match{background:#ede2e2;}
 .matchPlayed{background:#def0ef;}
+
+
+#sponsors{float:left; padding-left:50px;}
+#akula{float:right; padding-right:30px;}
 
 .matchTeam
 {

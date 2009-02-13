@@ -37,13 +37,13 @@
     <div id="main">
         <div id="mainTop">
             <div id="langs">
-                <div id="UALang">
+                <div id="UALang" <% if(WebSession.Language=="UA"){ %>style="background:#ebebeb"<%} %>>
                     <asp:HyperLink runat="server" onmouseout="langOut('UALang')" onmouseover="langOver('UALang')" NavigateUrl="~/lang=UA" ID="hlUA" ImageUrl="~/Images/UA.jpg"></asp:HyperLink>
                 </div>
-                <div id="RULang">
+                <div id="RULang" <% if(WebSession.Language=="RU"){ %>style="background:#ebebeb"<%} %>>
                     <asp:HyperLink runat="server" onmouseout="langOut('RULang')" onmouseover="langOver('RULang')" ID="hlRU" NavigateUrl="~/lang=RU" ImageUrl="~/Images/RU.jpg"></asp:HyperLink>
                 </div>
-                <div id="ENLang">
+                <div id="ENLang" <% if(WebSession.Language=="EN"){ %>style="background:#ebebeb"<%} %>>
                     <asp:HyperLink runat="server" onmouseout="langOut('ENLang')" onmouseover="langOver('ENLang')" ID="hlEN" NavigateUrl="~/lang=EN" ImageUrl="~/Images/EN.jpg"></asp:HyperLink>
                 </div>
             </div>
@@ -65,7 +65,12 @@
             </div>
         </div>
         <div id="footer">
-            
+            <div id="sponsors">
+                <img src="Images/Sponsors1.jpg" alt="Спонсоры" />
+            </div>
+            <div id="akula">
+                <img src="Images/akula.jpg" alt="Akula" />
+            </div>
         </div>
     </div>
     </form>

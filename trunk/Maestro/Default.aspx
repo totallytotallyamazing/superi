@@ -12,6 +12,6 @@
         MaxDescriptionChars="150" 
         SeparateFirstArticle="true" 
         MaxDescriptionCharsFirst="600"
-        DisplayDate="true" />
+        DisplayDate="true" RemoveImages="true" />
 </asp:Content>
 

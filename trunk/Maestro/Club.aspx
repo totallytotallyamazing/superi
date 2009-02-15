@@ -12,6 +12,6 @@
         BodyAsDescription="false" 
         DefaultImageUrl="~/Images/DefaultArticle.jpg" 
         ZoomImage="true"
-        DisplayDate="false" />
+        DisplayDate="false" MaxPictureDimension="96" />
 </asp:Content>
 

@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using Superi.Features;
 using Superi.Common;
 using Superi.CustomControls;
+using System.Text.RegularExpressions;
 
 public partial class Controls_Articles : System.Web.UI.UserControl
 {
@@ -109,6 +110,28 @@ public partial class Controls_Articles : System.Web.UI.UserControl
         }
         set { ViewState["zoomImage"] = value; }
     }
+
+    public bool RemoveImages
+    {
+        get
+        {
+            if (ViewState["removeImages"] != null)
+                return Convert.ToBoolean(ViewState["removeImages"]);
+            return false;
+        }
+        set { ViewState["removeImages"] = value; }
+    }
+
+    public int MaxPictureDimension
+    {
+        get
+        {
+            if (ViewState["maxPictureDimension"] != null)
+                return Convert.ToInt32(ViewState["maxPictureDimension"]);
+            return 76;
+        }
+        set { ViewState["maxPictureDimension"] = value; }
+    }
     #endregion
 
     protected void Page_Load(object sender, EventArgs e)
@@ -131,7 +154,7 @@ public partial class Controls_Articles : System.Web.UI.UserControl
         Panel pTitle = (Panel)e.Item.FindControl("pTitle");
         HyperLink hlPicture = (HyperLink)e.Item.FindControl("hlPicture");
         rlbDetails.Language = WebSession.Language;
-        string picturePrefix = WebSession.BaseUrl + "MakeThumbnail.aspx?w=76&h=76&loc=article&ha=c&va=m&kp=1&file=";
+        string picturePrefix = WebSession.BaseUrl + "MakeThumbnail.aspx?dim=" + MaxPictureDimension + "&loc=article&ha=c&va=m&kp=1&file=";
         if (ZoomImage)
         {
             iPicture.Visible = false;
@@ -172,6 +195,14 @@ public partial class Controls_Articles : System.Web.UI.UserControl
             if (SeparateFirstArticle && e.Item.ItemIndex == 0)
                 maxCahrs = MaxDescriptionCharsFirst;
             string articleText = article.Descriptions[WebSession.Language];
+            if (RemoveImages)
+            {
+                articleText = articleText.Replace(Environment.NewLine, "").Replace("\n", "");
+                Regex regex = new Regex("<img.*?/>", RegexOptions.Multiline);
+                Regex br = new Regex("(<br./>){2,}", RegexOptions.Multiline);
+                articleText = regex.Replace(articleText, "");
+                articleText = br.Replace(articleText, "<br/>");
+            }
             if (articleText.Length > maxCahrs)
             {
                 lText.Text = articleText.Substring(0, maxCahrs) + "...";

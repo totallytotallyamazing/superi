@@ -32,7 +32,7 @@ $(document).ready(function() {
     $("#menu li").not(".currentSection").mouseover(menuOver).mouseout(menuOut).click(menuClicked);
     $(".currentSection").css("font-size", "26px");
     $(".newBackground, .currentBackground").css("display", "none");
-    $(".currentBackground").attr("src", "Images/AlbumImages/nochenka.png").fadeIn(1000);
+    $(".currentBackground").attr("src", "Images/music.jpg").fadeIn(1000);
     loadContent($(".currentSection").attr("section"));
 });
 

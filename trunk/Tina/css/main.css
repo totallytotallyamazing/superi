@@ -10,9 +10,9 @@ body{background:black}
 
 #top, #middle, #bottom{width:inherit;}
 
-#top{height:86px; background:transparent url(../images/top.jpg);}
+#top{height:84px;}
 #middle{height:616px; z-index:100; position:relative;}
-#bottom{height:98px; z-index:-1; margin-top:-32px; background:transparent url(../images/bottom.jpg);}
+#bottom{height:98px; z-index:-1; margin-top:-32px;}
 #menu{padding:30px 20px;}
 #menu li{float:left; list-style:none; padding-top:7px; font-size:16px; cursor:pointer; padding-right:10px;}
 .currentSection{border-left:1px solid white; padding-top:0px !important; color:White !important; cursor:default; padding-left:10px;}

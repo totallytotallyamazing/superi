@@ -37,9 +37,11 @@
     </ItemTemplate>
 </asp:Repeater>
 
+<%if(ZoomImage){ %>
 <script type="text/javascript">
     $(document).ready(function() { $(".articleImage a").fancybox({ 'overlayShow': true }) });
 </script>
+<%} %>
 
 <asp:UpdatePanel runat="server" ID="upDetails">
     <ContentTemplate>

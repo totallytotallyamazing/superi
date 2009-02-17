@@ -3,8 +3,6 @@
 <%@ Import Namespace="Superi.Common" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
     <link rel="Stylesheet" href="<%= WebSession.BaseUrl + "css/articles.css" %>" />
-    <link rel="Stylesheet" href="<%= WebSession.BaseUrl + "css/fancy.css" %>" />
-    <script type="text/javascript" src="<%= WebSession.BaseUrl %>js/jquery.fancybox.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="content" Runat="Server">
     <m:Articles ID="Articles1" runat="server" 

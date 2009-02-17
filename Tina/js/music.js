@@ -34,6 +34,7 @@ function imageSwapped() {
 
 function songsRetreived(response) {
     $(".songsPlaceHolder").css("display", "block");
+    $(".songsPlaceHolder ul").css("display", "block");
     
     for (var i in response) {
         var name = response[i].Name;
@@ -62,7 +63,9 @@ function resetSongs(el) {
 
 
 function onRetriveAlbumsFail() {
+    alert("albums fail");
 }
 
 function onRetriveSongsFail() {
+    alert("songs fail");
 }

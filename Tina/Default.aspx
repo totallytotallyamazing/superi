@@ -25,9 +25,9 @@
         <div id="main">
             <div id="top">
                 <ul id="menu">
-                    <li image="images/AlbumImages/nochenka.png" section="music" class="currentSection">музыка</li>
+                    <li image="images/music.jpg" section="music" class="currentSection">музыка</li>
                     <li image="images/AlbumImages/newalbum.png" section="photo">фото</li>
-                    <li image="images/AlbumImages/nochenka.png" section="video">видео</li>
+                    <li image="images/video.jpg" section="video">видео</li>
                     <li image="images/AlbumImages/newalbum.png" section="news">новости</li>
                 </ul>
                 <script type="text/javascript">

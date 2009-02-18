@@ -16,7 +16,6 @@ public partial class Administration_Texts : Page
 		if (textID > 0)
 		{
 			Text text = new Text(textID);
-            reText.TextID = text.TextID;
             text.Value = reText.DefaultValue;
             text.TextID = reText.Values.Save();
             text.NameTextId = reName.Values.Save();
@@ -24,6 +23,18 @@ public partial class Administration_Texts : Page
 			phEdit.Visible = true;
 		}
 	}
+
+    //protected void Page_PreRender(object sender, EventArgs e)
+    //{ 
+    //    int textID = int.Parse(hfTextSelected.Value);
+    //    if (textID > 0 && phEdit.Visible)
+    //    {
+    //        Text text = new Text(textID);
+    //        reText.TextID = text.TextID;
+    //        reText.DefaultValue = text.Value;
+    //        reName.TextID = text.NameTextId;
+    //    }
+    //}
 
 	protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
 	{

@@ -47,8 +47,6 @@ public partial class Administration_Products : System.Web.UI.Page
             int productID = int.Parse(hfProductSelected.Value);
             Product product = productID > 0 ? new Product(productID) : new Product();
 
-            //product.Name = reName.DefaultValue;
-            reName.TextID = product.NameTextID;
             product.NameTextID = reName.Values.Save();
 
             string path = Server.MapPath(DefaultValues.ProductsImagesFolder) + "\\";

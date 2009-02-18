@@ -124,10 +124,12 @@
             </div>
             <div id="gamesContainer">
                 <m:Matches runat="server" />
+
                 <div id="gameArchive">
+                    <cc1:ResourceLabel runat="server" ResourceName="gameArchive" style="position:relative; z-index:1000; top:15px; font-size:12px; color:#CD8181;"></cc1:ResourceLabel>
                 </div>
                 <div style="display: none" id="toolTip">
-                    <div class="matchPlayed">
+                    <div class="matchPlayed" style="margin:0;">
                         <div class="matchTeam">
                             <img style="border-width: 0px;" src="Images/mae.gif" />
                             <br />

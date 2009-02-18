@@ -25,7 +25,7 @@ h2{font-size:18px;}
 .matchPlayed{background:#def0ef;}
 
 .dateHasMatch{background:#CC0000;}
-#gameArchive{height:220px;}
+#gameArchive{height:260px; margin-top:-20px; text-align:center;}
 
 #sponsors{float:left; padding-left:50px;}
 #akula{float:right; padding-right:30px;}

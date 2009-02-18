@@ -9,7 +9,7 @@
 <body>
     <form id="form1" runat="server">
     <div>
-        <Controls:TextWriter runat="server" TextName="mailForm"></Controls:TextWriter>
+        <Controls:TextWriter runat="server" Language="RU" TextName="mailForm"></Controls:TextWriter>
     </div>
     </form>
 </body>

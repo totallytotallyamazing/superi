@@ -35,6 +35,17 @@ namespace Superi.CustomControls
             set { ViewState["textName"] = value; }
         }
 
+        public string Language
+        {
+            get
+            {
+                if (ViewState["language"] != null)
+                    return ViewState["language"].ToString();
+                return null;
+            }
+            set { ViewState["language"] = value; }
+        }
+
         protected override void Render(HtmlTextWriter writer)
         {
             base.Render(writer);
@@ -44,7 +55,14 @@ namespace Superi.CustomControls
             else
                 text = new Text(TextName);
             string textToWrite;
-            if (!string.IsNullOrEmpty(WebSession.Language))
+            if (!string.IsNullOrEmpty(this.Language))
+            {
+                if (text.TextResource != null && text.TextResource.Items.Count > 0)
+                    textToWrite = text.TextResource[this.Language];
+                else
+                    textToWrite = text.Value;
+            }
+            else if (!string.IsNullOrEmpty(WebSession.Language))
             {
                 if (text.TextResource != null && text.TextResource.Items.Count > 0)
                     textToWrite = text.TextResource[WebSession.Language];

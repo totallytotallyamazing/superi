@@ -15,9 +15,5 @@ public partial class tst : System.Web.UI.Page
         Page.ClientScript.RegisterClientScriptInclude("pngFix", WebSession.BaseUrl + "js/jquery.pngFix.js");
         Page.ClientScript.RegisterClientScriptInclude("galleria", WebSession.BaseUrl + "js/jquery.galleria.js");
         Page.ClientScript.RegisterClientScriptInclude("fancybox", WebSession.BaseUrl + "js/jquery.fancybox.js");
-
-
-        
-
     }
 }

@@ -13,110 +13,128 @@ using System.Web.UI.HtmlControls;
 
 public partial class Administration_Controls_AttachableFilesUploader : System.Web.UI.UserControl
 {
-    private AttachableFilesResource filesResource = null;
-    private int fileId = int.MinValue;
-    private int itemId = int.MinValue;
-    private int itemType = int.MinValue;
-    protected bool isFirstDiv=true;
-    private bool ftime = true;
+  private AttachableFilesResource filesResource = null;
+  private int fileId = int.MinValue;
+  private int itemId = int.MinValue;
+  private int itemType = int.MinValue;
+  protected bool isFirstDiv = true;
+  private bool ftime = true;
 
-    public AttachableFilesResource FilesResource
+  public AttachableFilesResource FilesResource
+  {
+    get { return filesResource; }
+    set { filesResource = value; }
+  }
+
+  public int FileId
+  {
+    get
     {
-        get { return filesResource; }
-        set { filesResource = value; }
+      if (ViewState["fileId"] == null)
+        return int.MinValue;
+      return Convert.ToInt32(ViewState["fileId"]);
     }
-
-    public int FileId
+    set
     {
-        get { return fileId; }
-        set { fileId = value; }
+      ViewState["fileId"] = value;
     }
+  }
 
-    public int ItemId
+  public int ItemId
+  {
+    get
     {
-        get { return itemId; }
-        set { itemId = value; }
+      if (ViewState["itemId"] == null)
+        return int.MinValue;
+      return Convert.ToInt32(ViewState["itemId"]);
     }
-
-    public int ItemType
+    set
     {
-        get { return itemType; }
-        set { itemType = value; }
+      ViewState["itemId"] = value;
     }
+  }
 
-    protected void Page_Load(object sender, EventArgs e)
+  public int ItemType
+  {
+    get
     {
-        rFiles.ItemDataBound+=rFiles_ItemDataBound;
-        string langList="";
-        foreach (Language language in new LanguageList(true))
-        {
-            langList += "'" + language.Code + "',";
-        }
-        char[] chars = { ',' };
-        langList = langList.TrimEnd(chars);
-        Page.ClientScript.RegisterArrayDeclaration("langs", langList);
-
-        if (FileId > 0)
-            filesResource = new AttachableFilesResource(fileId);
-        rLanguages.DataSource = new LanguageList(true);
-        rLanguages.DataBind();
-        rFiles.DataSource = new LanguageList(true);
-        rFiles.DataBind();
-
-        Page.ClientScript.RegisterStartupScript(GetType(), "strt"+ClientID, "toggleDivs('RU','"+ClientID+"');", true);
+      if (ViewState["itemType"] == null)
+        return int.MinValue;
+      return Convert.ToInt32(ViewState["itemType"]);
     }
-
-    protected void Page_LoadComplete(object sender, EventArgs e)
+    set
     {
-
+      ViewState["itemType"] = value;
     }
+  }
 
-    protected void rFiles_ItemDataBound(object sender, RepeaterItemEventArgs e)
+  protected void Page_Load(object sender, EventArgs e)
+  {
+    rFiles.ItemDataBound += rFiles_ItemDataBound;
+    string langList = "";
+    foreach (Language language in new LanguageList(true))
     {
-        string currentLanguage = ((Language) e.Item.DataItem).Code;
-        Administration_Controls_AttachableFileUploader afuFile = (Administration_Controls_AttachableFileUploader)e.Item.FindControl("afuFile");
-        if(filesResource!=null)
-        {
-            //Administration_Controls_AttachableFileUploader afuFile = (Administration_Controls_AttachableFileUploader)e.Item.FindControl("afuFile");
-            AttachableFile file = filesResource[currentLanguage];
-            afuFile.Title = file.Title;
-        }
-        afuFile.Language = currentLanguage;
-        if (isFirstDiv && !ftime)
-            isFirstDiv = false;
-        if (ftime)
-            ftime = false;
-
+      langList += "'" + language.Code + "',";
     }
+    char[] chars = { ',' };
+    langList = langList.TrimEnd(chars);
+    Page.ClientScript.RegisterArrayDeclaration("langs", langList);
 
-    protected void btnSave_Click(object sender, EventArgs e)
+    if (FileId > 0)
+      filesResource = new AttachableFilesResource(fileId);
+    rLanguages.DataSource = new LanguageList(true);
+    rLanguages.DataBind();
+    rFiles.DataSource = new LanguageList(true);
+    rFiles.DataBind();
+
+    Page.ClientScript.RegisterStartupScript(GetType(), "strt" + ClientID, "toggleDivs('RU','" + ClientID + "');", true);
+  }
+
+  protected void rFiles_ItemDataBound(object sender, RepeaterItemEventArgs e)
+  {
+    string currentLanguage = ((Language)e.Item.DataItem).Code;
+    Administration_Controls_AttachableFileUploader afuFile = (Administration_Controls_AttachableFileUploader)e.Item.FindControl("afuFile");
+    if (filesResource != null && filesResource.Count > 0)
     {
-        AttachableFilesResource resource = new AttachableFilesResource();
-        if (FileId > 0)
-        {
-            resource = new AttachableFilesResource(FileId);
-            resource.Clean(Server.MapPath(DefaultValues.AttachableFilesFolder) + "\\");
-        }
-        foreach (RepeaterItem item in rFiles.Controls)
-        {
-            Administration_Controls_AttachableFileUploader afuFile =
-                (Administration_Controls_AttachableFileUploader) item.FindControl("afuFile");
-            AttachableFile file = new AttachableFile();
-            if (afuFile.File.HasFile)
-            {
-                file.ItemId = ItemId;
-                file.ItemType = ItemType;
-                file.Title = afuFile.Title;
-                file.Language = afuFile.Language;
-                file.Save();
-                string extension = afuFile.File.FileName.Substring(afuFile.File.FileName.LastIndexOf("."));
-                string path = Server.MapPath(DefaultValues.AttachableFilesFolder)+"\\";
-                afuFile.File.SaveAs(path + file.Id + extension);
-                file.FileName = file.Id + extension;
-                resource.Add(afuFile.Language, file);
-            }
-        }   
-        resource.Save();
+      AttachableFile file = filesResource[currentLanguage];
+      afuFile.Title = file.Title;
     }
+    afuFile.Language = currentLanguage;
+    if (isFirstDiv && !ftime)
+      isFirstDiv = false;
+    if (ftime)
+      ftime = false;
+
+  }
+
+  protected void btnSave_Click(object sender, EventArgs e)
+  {
+    AttachableFilesResource resource = new AttachableFilesResource();
+    if (FileId > 0)
+    {
+      resource = new AttachableFilesResource(FileId);
+      resource.Clean(Server.MapPath(DefaultValues.AttachableFilesFolder) + "\\");
+    }
+    foreach (RepeaterItem item in rFiles.Controls)
+    {
+      Administration_Controls_AttachableFileUploader afuFile =
+          (Administration_Controls_AttachableFileUploader)item.FindControl("afuFile");
+      AttachableFile file = new AttachableFile();
+      if (afuFile.File.HasFile)
+      {
+        file.ItemId = ItemId;
+        file.ItemType = ItemType;
+        file.Title = afuFile.Title;
+        file.Language = afuFile.Language;
+        file.Save();
+        string extension = afuFile.File.FileName.Substring(afuFile.File.FileName.LastIndexOf("."));
+        string path = Server.MapPath(DefaultValues.AttachableFilesFolder) + "\\";
+        afuFile.File.SaveAs(path + file.Id + extension);
+        file.FileName = file.Id + extension;
+        resource.Add(afuFile.Language, file);
+      }
+    }
+    resource.Save();
+  }
 
 }

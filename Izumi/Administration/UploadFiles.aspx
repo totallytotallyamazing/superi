@@ -5,21 +5,21 @@
         <tr>
             <td>Меню ПДФ</td>
             <td>
-                <Controls:FilesUploader runat="server" ID="fuPdf" ItemType="1" ItemId="32">
+                <Controls:FilesUploader runat="server" ID="fuPdf" ItemType="1" ItemId="32" FileId="1">
                 </Controls:FilesUploader>
             </td>
         </tr>
         <tr>
             <td>Франчайзинг предложение</td>
             <td>
-                <Controls:FilesUploader runat="server" ID="fuOffer" ItemType="1" ItemId="4">
+                <Controls:FilesUploader runat="server" ID="fuOffer" ItemType="1" ItemId="4" FileId="2">
                 </Controls:FilesUploader>
             </td>
         </tr>
         <tr>
             <td>Франчайзинг анкета</td>
             <td>
-                <Controls:FilesUploader runat="server" ID="fuAnketa" ItemType="1" ItemId="4">
+                <Controls:FilesUploader runat="server" ID="fuAnketa" ItemType="1" ItemId="4" FileId="3">
                 </Controls:FilesUploader>
             </td>
         </tr>

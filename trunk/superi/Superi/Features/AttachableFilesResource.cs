@@ -21,7 +21,7 @@ namespace Superi.Features
         public AttachableFilesResource(int Id)
         {
             ParameterList pList = new ParameterList();
-            pList.Add(new AppDbParameter("id", Id));
+            pList.Add(new AppDbParameter("fileId", Id));
 
             DbDataReader dr = AppData.ExecStoredProcedure("AttachableFiles_Get", pList);
             Load(dr);

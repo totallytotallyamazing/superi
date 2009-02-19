@@ -7,13 +7,14 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     
     <asp:LinqDataSource ID="ldsVideo" runat="server" 
-        ContextTypeName="VideoDataContext" EnableDelete="True" EnableInsert="True" 
+        ContextTypeName="Videos.VideoDataContext" EnableDelete="True" EnableInsert="True" 
         TableName="Videos" EnableUpdate="True">
     </asp:LinqDataSource>
     <asp:LinqDataSource ID="ldsAlbums" runat="server" 
-        ContextTypeName="MusicDataContext" Select="new (ID, Name)" TableName="Albums">
+        ContextTypeName="Musics.MusicDataContext" Select="new (ID, Name)" 
+      TableName="Albums">
     </asp:LinqDataSource>
-    <asp:ListView ID="ListView1" runat="server" DataKeyNames="ID" 
+    <asp:ListView ID="lwVideos" runat="server" DataKeyNames="ID" 
         DataSourceID="ldsVideo" InsertItemPosition="LastItem" 
         onitemcommand="ListView1_ItemCommand">
         <ItemTemplate>
@@ -26,6 +27,12 @@
                 </td>
                 <td>
                     <asp:Label ID="SourceLabel" runat="server" Text='<%# Eval("Source") %>' />
+                </td>
+                <td>
+                    <asp:Label ID="Label1" runat="server" Text='<%# Eval("Album.Name") %>' />
+                </td>
+                <td>
+                  <asp:Button runat="server" ID="EditButton" CommandArgument='<%# Eval("ID") %>' CommandName="Edit" Text="Изменить" />
                 </td>
                 <td>
                     <asp:Button ID="DeleteButton" runat="server" CommandName="Delete" 
@@ -45,6 +52,12 @@
                 </td>
                 <td>
                     <asp:Label ID="SourceLabel" runat="server" Text='<%# Eval("Source") %>' />
+                </td>
+                <td>
+                    <asp:Label ID="Label1" runat="server" Text='<%# Eval("Album.Name") %>' />
+                </td>
+                <td>
+                  <asp:Button runat="server" ID="EditButton" CommandArgument='<%# Eval("ID") %>' CommandName="Edit" Text="Изменить" />
                 </td>
                 <td>
                     <asp:Button ID="DeleteButton" runat="server" CommandName="Delete" 
@@ -111,6 +124,8 @@
                                 <th id="Th2" runat="server">
                                     Альбом
                                 </th>
+                                <th></th>
+                                <th></th>
                             </tr>
                             <tr ID="itemPlaceholder" runat="server">
                             </tr>
@@ -124,6 +139,33 @@
                 </tr>
             </table>
         </LayoutTemplate>
+        <EditItemTemplate>
+                <tr style="background-color: #FFFBD6;color: #333333;">
+                <td>
+                    <asp:TextBox runat="server" ID="NameTextBox" Text='<%# Bind("Name") %>' />
+                </td>
+                <td>
+                    <asp:Label ID="ImageLabel" runat="server" Text='<%# Eval("Image") %>' />
+                </td>
+                <td>
+                    <asp:Label ID="SourceLabel" runat="server" Text='<%# Eval("Source") %>' />
+                </td>
+                <td>
+                    <asp:DropDownList DataSourceID="ldsAlbums" DataTextField="Name" DataValueField="ID"  
+                      AppendDataBoundItems="true" runat="server" ID="ddlAlbum" EnableViewState="False">
+                        <asp:ListItem Text="--" Value="0"></asp:ListItem>
+                    </asp:DropDownList>
+                    <asp:Label ID="Label1" runat="server" Text='<%# Eval("Album.Name") %>' />
+                </td>
+                <td>
+                  <asp:Button runat="server" ID="UpdateButton" CommandArgument='<%# Eval("ID") %>' CommandName="UpdateItem" Text="Сохранить" />
+                </td>
+                <td>
+                    <asp:Button ID="CancelButton" runat="server" CommandName="Cancel" 
+                        Text="Отмена" />
+                </td>
+            </tr>
+        </EditItemTemplate>
     </asp:ListView>
     
     </asp:Content>

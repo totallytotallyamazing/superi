@@ -20,16 +20,11 @@ h2{font-size:18px;}
 #allRights span{color:White !important; font-size:10px;}
 .shaded{opacity: 0.4; -moz-opacity: 0.4; filter: alpha(opacity=40); background-color:Black;}
 
-.match, .matchPlayed{width:179px; padding-left:2px; height:54px; clear:both; margin:20px 0;}
+.match, .matchPlayed, .currentMatch{width:176px; padding-left:5px; height:54px; clear:both; margin:20px 0;}
 .match{background:#ede2e2;}
 .matchPlayed{background:#def0ef;}
+.currentMatch{background:#FFA3A3;}
 
-.dateHasMatch{background:#CC0000;}
-#gameArchive{height:260px; margin-top:-20px; text-align:center;}
-
-#sponsors{float:left; padding-left:50px;}
-#akula{float:right; padding-right:30px;}
-#tooltip{position:absolute;}
 .matchTeam
 {
     color:#6082c3;
@@ -45,7 +40,7 @@ h2{font-size:18px;}
     float: left;
 }
 
-.match .matchCount
+.currentMatch .matchCount, .match .matchCount
 {
     display:none;
 }
@@ -61,5 +56,12 @@ h2{font-size:18px;}
     padding-top:10px;
 }
 .matchPlayed .matchDate{ color:#98add8; padding-top:0;}
+.currentMatch .matchDate{ color:white;}
+.currentMatch .matchTeam{color:White;}
 
+.dateHasMatch{background:#CC0000;}
+#gameArchive{height:260px; margin-top:-20px; text-align:center;}
 
+#sponsors{float:left; padding-left:50px;}
+#akula{float:right; padding-right:30px;}
+#tooltip{position:absolute;}

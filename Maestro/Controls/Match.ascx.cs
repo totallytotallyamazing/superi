@@ -81,6 +81,8 @@ public partial class Controls_Match : System.Web.UI.UserControl
 
     protected void Page_PreRender(object sender, EventArgs e)
     {
+      if (MatchDate.Date == DateTime.Now.Date)
+        matchMainClass = "currentMatch";
         if (Played)
             matchMainClass = "matchPlayed";
         if(TeamTextId>0)

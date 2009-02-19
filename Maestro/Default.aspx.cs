@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Superi.Features;
 using Superi.Common;
+using System.Text;
 
 public partial class _Default : System.Web.UI.Page
 {
@@ -13,5 +14,8 @@ public partial class _Default : System.Web.UI.Page
     {
         Navigation nav = new Navigation("news");
         WebSession.NavigationID = nav.ID;
+
+
+      StringBuilder sb = new StringBuilder();
     }
 }

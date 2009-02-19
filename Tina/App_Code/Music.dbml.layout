@@ -14,7 +14,7 @@
         <elementListCompartment Id="e6767c79-06dd-4c87-9c8c-da413b7123da" absoluteBounds="3.0150000000000006, 5.085, 1.9700000000000002, 1.0291951497395833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(3.375 : 3.04984781901042); (3.375 : 4.625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(3.375 : 3.04984781901042); (3.375 : 4.625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/MusicDataContext/Album/Album_Song" />
       <nodes>
         <classShapeMoniker Id="0e92fd49-ae39-4b98-8cb1-4535dc83742f" />

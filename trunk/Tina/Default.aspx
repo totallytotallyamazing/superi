@@ -10,6 +10,7 @@
     <script src="js/master.js" type="text/javascript"></script>
     <script src="js/jquery.flash.js" type="text/javascript"></script>
     <script src="js/jquery.ui.draggable.js" type="text/javascript"></script>
+    <script src="js/jquery.galleria.js" type="text/javascript"></script>
     <script src="js/video.js" type="text/javascript"></script>
     <link href="css/main.css" rel="stylesheet" type="text/css" />
     <title></title>
@@ -43,6 +44,9 @@
                 </div>
             </div>
             <div id="middle">
+                <div class="galleryPlaceHolder">
+                    
+                </div>
                 <div class="videoPlaceHolder">
                 
                 </div>

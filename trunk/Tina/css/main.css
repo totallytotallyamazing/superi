@@ -64,3 +64,7 @@ body{background:black}
     z-index:100;
 }
 /*End of video related styles*/
+
+/*Gallery related styles*/
+.galleryPlaceHolder{display:none; }
+/*End of gallery related styles*/

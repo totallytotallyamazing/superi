@@ -4,15 +4,17 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <script src="js/jquery.js" type="text/javascript"></script>
+    <script src="js/jquery12.js" type="text/javascript"></script>
     <script src="js/jquery.preloadImages.js" type="text/javascript"></script>
     <script src="js/music.js" type="text/javascript"></script>
     <script src="js/master.js" type="text/javascript"></script>
     <script src="js/jquery.flash.js" type="text/javascript"></script>
     <script src="js/jquery.ui.draggable.js" type="text/javascript"></script>
     <script src="js/jquery.galleria.js" type="text/javascript"></script>
+    <script src="js/gallery.js" type="text/javascript"></script>
     <script src="js/video.js" type="text/javascript"></script>
     <link href="css/main.css" rel="stylesheet" type="text/css" />
+    <link href="css/galleria.css" rel="stylesheet" type="text/css" />
     <title></title>
 </head>
 <body>    
@@ -21,6 +23,7 @@
             <Services>
                 <asp:ServiceReference Path="~/Services/Music.asmx" />
                 <asp:ServiceReference Path="~/Services/VideoService.asmx" />
+                <asp:ServiceReference Path="~/Services/GalleryService.asmx" />
             </Services>
         </asp:ScriptManager>
         <div id="main">
@@ -45,7 +48,14 @@
             </div>
             <div id="middle">
                 <div class="galleryPlaceHolder">
+                    <div id="imageList">
+                        <ul id="galleryUL" class="gallery_unstyled">
+                            
+                        </ul>
+                    </div>
+                    <div id="largeImage">
                     
+                    </div>
                 </div>
                 <div class="videoPlaceHolder">
                 

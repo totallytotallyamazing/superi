@@ -1,2 +1,9 @@
-﻿.hoverLink{color:#bb3d5b;}
+﻿.hoverLink{color}
 .link{color:#6082c3;}
+#mediaContainer{padding-top:100px;}
+.photo, .wallpaper, .video, .photoOver, .wallpaperOver, .videoOver{float:left; text-align:center; padding-left:70px;}
+
+
+.photo a, .wallpaper a, .video a, .photoOver a, .wallpaperOver a, .videoOver a{text-decoration:none;}
+.photoOver a span, .wallpaperOver span, .videoOver span{color:#bb3d5b;}
+.photo span, .video span, .photoOver span, .videoOver span{padding-left:20px;}

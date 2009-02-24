@@ -1,7 +1,11 @@
-﻿function cleanUp() {
+﻿var currentAlbumId = 0;
+
+function cleanUp() {
     $("#flashContainer").empty();
     $(".videoPlaceHolder").empty().css("display", "none");
     $(".songsPlaceHolder").css("display", "none");
+    $(".galleryPlaceHolder").css("display", "none");
+    currentAlbumId = 0;
 }
 
 function appendSubMenuItem(item) {
@@ -34,6 +38,7 @@ $(document).ready(function() {
     $(".newBackground, .currentBackground").css("display", "none");
     $(".currentBackground").attr("src", "Images/music.jpg").fadeIn(1000);
     loadContent($(".currentSection").attr("section"));
+    prepareGallery();
 });
 
 function menuOver(el) {
@@ -77,6 +82,7 @@ function loadContent(section) {
             Music.GetAlbums(processAlbums, onRetriveAlbumsFail);
             break;
         case "photo":
+            GalleryService.GetPhotosByAlbumId(currentAlbumId, loadImages, loadImagesFail);
             break;
         case "video":
             VideoService.GetVideos(processVideos, onRetriveVideosFail);

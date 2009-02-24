@@ -27,6 +27,7 @@ function subMenuItemClicked(attrs) {
 
 function imageSwapped() {
     var albumID = $(".subMenuItemActive").parent().attr("albumId");
+    currentAlbumId = albumID;
     Music.GetAlbumSongs(albumID, songsRetreived, onRetriveSongsFail);
 }
 

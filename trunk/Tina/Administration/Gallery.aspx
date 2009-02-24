@@ -39,7 +39,7 @@
                     <asp:Label ID="Label2" runat="server" Text='<%# Bind("Picture") %>'></asp:Label>
                 </ItemTemplate>
             </asp:TemplateField>
-            <asp:TemplateField HeaderText="Привью">
+<%--            <asp:TemplateField HeaderText="Привью">
                 <EditItemTemplate>
                     <asp:TextBox ID="TextBox2" runat="server" Text='<%# Eval("Thumbnail") %>'></asp:TextBox>
                 </EditItemTemplate>
@@ -47,7 +47,7 @@
                     <asp:Image ID="Image1" runat="server" 
                         ImageUrl='<%# Eval("Thumbnail", "~/Images/Gallery/{0}") %>' />
                 </ItemTemplate>
-            </asp:TemplateField>
+            </asp:TemplateField>--%>
             <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" 
                 CancelText="Отмена" DeleteText="Удалить" EditText="Изменить" 
                 UpdateText="Сохранить" />
@@ -67,12 +67,12 @@
             Подпись:
             <asp:TextBox ID="TitleTextBox" runat="server" Text='<%# Bind("Title") %>' />
             <br />
-            Изображение: <cc1:FolderUpload ID="FolderUpload1" runat="server" Folder="" 
+            Изображение: <cc1:FolderUpload ID="FolderUpload1" runat="server" Folder="~/Images/Gallery/"
                 UnificateIncrementally="True" Unificator="_" UnificatorPosition="Postfix" 
                 UploadedFile='<%# Bind("Picture") %>' /><br />
-            Превью: <cc1:FolderUpload ID="FolderUpload2" runat="server" Folder="" 
+<%--            Превью: <cc1:FolderUpload ID="FolderUpload2" runat="server" Folder="~/Images/Gallery/" 
                 UnificateIncrementally="True" Unificator="_" UnificatorPosition="Postfix" 
-                UploadedFile='<%# Bind("Thumbnail") %>' />
+                UploadedFile='<%# Bind("Thumbnail") %>' />--%>
             <br />
             <asp:LinkButton ID="InsertButton" runat="server" CausesValidation="True" 
                 CommandName="Insert" Text="Добавить" />

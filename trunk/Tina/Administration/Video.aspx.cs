@@ -22,7 +22,6 @@ public partial class Administration_Video : System.Web.UI.Page
             FolderUpload fuImage = (FolderUpload)e.Item.FindControl("fuImage");
             FolderUpload fuSource = (FolderUpload)e.Item.FindControl("fuSource");
             DropDownList ddlAlbum = (DropDownList)e.Item.FindControl("ddlAlbum");
-
             Video video = new Video();
             video.Name = NameTextBox.Text;
             video.Image = fuImage.UploadedFile;
@@ -32,14 +31,7 @@ public partial class Administration_Video : System.Web.UI.Page
             context.Videos.InsertOnSubmit(video);
             context.SubmitChanges();
         }
-        //if (e.CommandName == "Edit")
-        //{
-        //    DropDownList ddlAlbum = (DropDownList)e.Item.FindControl("ddlAlbum");
-        //    int videoId = Convert.ToInt32(e.CommandArgument);
-        //    VideoDataContext context = new VideoDataContext();
-        //    Video video = context.Videos.SingleOrDefault(v => v.ID == videoId);
-        //    ddlAlbum.SelectedValue = video.AlbumID.ToString();
-        //}
+
         if (e.CommandName == "UpdateItem")
         {
             DropDownList ddlAlbum = (DropDownList)e.Item.FindControl("ddlAlbum");

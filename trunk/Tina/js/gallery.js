@@ -31,7 +31,7 @@ function photoAlbumsProcessed(response) {
         appendSubMenuItem(createMenuItem(response[i].Name + "(" + response[i].Year + ")", photoAlbumClicked).attr({ albumId: response[i].ID, image: "images/albumimages/" + response[i].Image }));
     }
     if (currentAlbumId > 0) {
-        $("[albumId='" + currentAlbumId + "']").toggleClass("subMenuItemActive");
+        $("[albumId='" + currentAlbumId + "'] a").toggleClass("subMenuItemActive");
         updateSubMenuClickHandlers(photoAlbumClicked);
     }
 }

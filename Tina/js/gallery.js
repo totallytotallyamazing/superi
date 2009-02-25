@@ -1,67 +1,78 @@
 ﻿function loadImages(result) {
-    $(".gallery_unstyled").empty();
     $(".galleryPlaceHolder").css("display", "block");
-    for(var i in result)
-        createThumbnail(result[i].Picture, result[i].Title);
-    prepareGallery();
-}
-
-function createThumbnail(picture, imageTitle) {
-    $("<img />").attr({src: "images/Gallery/" + picture, title: imageTitle}).wrap("<li>").appendTo(".gallery_unstyled");
-}
-
-function prepareGallery() {
-
-    //$('.gallery_unstyled').addClass('gallery'); // adds new class name to maintain degradability
-
-    $('#galleryUL').galleria({
-        history: true, // activates the history object for bookmarking, back-button etc.
-        clickNext: true, // helper for making the image clickable
-        insert: '#largeImage', // the containing selector for our main image
-        onImage: imageProcessor,
-        onThumb: thumbnailProcessor
-    });
-}
-
-function imageProcessor(image, caption, thumb) {
-
-    // fade in the image & caption
-    if (!($.browser.mozilla && navigator.appVersion.indexOf("Win") != -1)) { // FF/Win fades large images terribly slow
-        image.css('display', 'none').fadeIn(1000);
+    var hasResults = false;
+    for (var i in result) {
+        hasResults = true;
+        createThumbnail(result[i].Picture, result[i].Title, result[i].Thumbnail);
     }
-    caption.css('display', 'none').fadeIn(1000);
-
-    // fetch the thumbnail container
-    var _li = thumb.parents('li');
-
-    // fade out inactive thumbnail
-    _li.siblings().children('img.selected').fadeTo(500, 0.3);
-
-    // fade in active thumbnail
-    thumb.fadeTo('fast', 1).addClass('selected');
-
-    // add a title for the clickable image
-    image.attr('title', 'Следующий >>');
+    $('#thumbs ul.thumbs li').css('opacity', onMouseOutOpacity)
+				.hover(
+					function() {
+					    $(this).not('.selected').fadeTo('fast', 1.0);
+					},
+					function() {
+					    $(this).not('.selected').fadeTo('fast', onMouseOutOpacity);
+					}
+				);
+	if (hasResults)
+	    startGallery();
 }
 
-function thumbnailProcessor(thumb) {
-
-    // fetch the thumbnail container
-    var _li = thumb.parents('li');
-
-    // if thumbnail is active, fade all the way.
-    var _fadeTo = _li.is('.active') ? '1' : '0.3';
-
-    // fade in the thumbnail when finnished loading
-    thumb.css({ display: 'none', opacity: _fadeTo }).fadeIn(1500);
-
-    // hover effects
-//    thumb.hover(
-//					function() { thumb.fadeTo('fast', 1); },
-//					function() { _li.not('.active').children('img').fadeTo('fast', 0.3); } // don't fade out if the parent is active
-//				)
+function createThumbnail(picture, imageTitle, thumbnail) {
+    $(galleryItemHtml.replace("%picture%", picture).replace("%thumbnail%", thumbnail).replace("%caption%", imageTitle)).appendTo(".thumbs");
 }
 
-function loadImagesFail() { 
-    
+var onMouseOutOpacity = 0.67;
+
+
+function startGallery() {
+    var galleryAdv = $('#gallery').galleriffic('#thumbs', {
+        delay: 2000,
+        numThumbs: 21,
+        preloadAhead: 10,
+        enableTopPager: true,
+        enableBottomPager: true,
+        imageContainerSel: '#slideshow',
+        controlsContainerSel: '#controls',
+        captionContainerSel: '',
+        loadingContainerSel: '#loading',
+        renderSSControls: true,
+        renderNavControls: true,
+        playLinkText: 'Слайдшоу',
+        pauseLinkText: 'Пауза',
+        prevLinkText: '&lsaquo; Назад',
+        nextLinkText: 'Вперед &rsaquo;',
+        nextPageLinkText: '&rsaquo;',
+        prevPageLinkText: '&lsaquo;',
+        enableHistory: true,
+        autoStart: false,
+        onChange: function(prevIndex, nextIndex) {
+            $('#thumbs ul.thumbs').children()
+							.eq(prevIndex).fadeTo('fast', onMouseOutOpacity).end()
+							.eq(nextIndex).fadeTo('fast', 1.0);
+        },
+        onTransitionOut: function(callback) {
+            $('#slideshow, #caption').fadeOut('fast', callback);
+        },
+        onTransitionIn: function() {
+            $('#slideshow, #caption').fadeIn('fast');
+        },
+        onPageTransitionOut: function(callback) {
+            $('#thumbs ul.thumbs').fadeOut('fast', callback);
+        },
+        onPageTransitionIn: function() {
+            $('#thumbs ul.thumbs').fadeIn('fast');
+        }
+    });
+    galleryAdv.css("display", "block");
 }
+
+function loadImagesFail() {
+    alert("galleryFail");
+}
+
+var galleryItemHtml =  '<li>' +
+							'<a class="thumb" href="MakeThumbnail.aspx?dim=510&file=%picture%" title="%caption%">' +
+							'	<img src="MakeThumbnail.aspx?dim=75&file=%thumbnail%" alt="%caption%" />' +
+							'</a>' +
+						'</li>';

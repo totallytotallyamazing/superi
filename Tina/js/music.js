@@ -1,17 +1,9 @@
 ﻿
 
 function processAlbums(response) {
-    //getSubMenu().css("display", "none").fadeIn(500);
     for (var i in response) {
         $.preloadImages("images/albumimages/" + response[i].Image);
-//        if (i == 0) {
-//            var item = createMenuItem(response[i].Name + "(" + response[i].Year + ")").attr({ albumId: response[i].ID, image: "images/albumimages/" + response[i].Image })
-//            item.children().attr("class", "subMenuItemActive");
-//            appendSubMenuItem(item);
-//        }
-//        else {
             appendSubMenuItem(createMenuItem(response[i].Name + "(" + response[i].Year + ")", subMenuItemClicked).attr({ albumId: response[i].ID, image: "images/albumimages/" + response[i].Image }));
-        //}
     }
     
 }
@@ -31,12 +23,10 @@ function imageSwapped() {
     Music.GetAlbumSongs(albumID, songsRetreived, onRetriveSongsFail);
 }
 
-
-
 function songsRetreived(response) {
     $(".songsPlaceHolder").css("display", "block");
     $(".songsPlaceHolder ul").css("display", "block");
-    
+    $("#footerMenu a").css("display", "inline");
     for (var i in response) {
         var name = response[i].Name;
         var source = response[i].Source;
@@ -62,6 +52,14 @@ function resetSongs(el) {
     $(".songsPlaceHolder ul div li").unbind("click", stopPlaying).unbind("click", songClicked).click(songClicked).parent().css("background", "transparent");
 }
 
+function showAlbumPhoto() {
+    currentAlbumId = $(".subMenuItemActive").parent().attr("albumId");
+    $("[section='photo']").click();
+}
+
+function showAlbumVideo() { 
+    
+}
 
 function onRetriveAlbumsFail() {
     alert("albums fail");

@@ -7,15 +7,15 @@
         ContextTypeName="Galleria.GalleryDataContext" EnableDelete="True" 
         EnableInsert="True" EnableUpdate="True" TableName="Galleries">
     </asp:LinqDataSource>
-    <asp:GridView ID="GridView1" 
+    <asp:GridView ID="gvGallery" style="float:left" 
         AlternatingRowStyle-BackColor="#FAFAD2" 
         AlternatingRowStyle-ForeColor="#284775"
         RowStyle-BackColor="#FFFBD6" 
         RowStyle-ForeColor="#333333"
         runat="server" AutoGenerateColumns="False" 
         DataKeyNames="ID" DataSourceID="ldsGallery" 
-        onrowcreated="GridView1_RowCreated">
-<RowStyle BackColor="#FFFBD6" ForeColor="#333333"></RowStyle>
+        onrowcreated="GridView1_RowCreated" onrowdeleting="GridView1_RowDeleting">
+        <RowStyle BackColor="#FFFBD6" ForeColor="#333333"></RowStyle>
         <Columns>
             <asp:BoundField DataField="ID" HeaderText="#" InsertVisible="False" 
                 ReadOnly="True" SortExpression="ID" />
@@ -33,51 +33,45 @@
                 SortExpression="Title" />
             <asp:TemplateField HeaderText="Файл изображения" SortExpression="Picture">
                 <EditItemTemplate>
-                    <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("Picture") %>'></asp:TextBox>
+                    <asp:Label ID="lPicture" runat="server" Text='<%# Eval("Picture") %>'></asp:Label>
                 </EditItemTemplate>
                 <ItemTemplate>
                     <asp:Label ID="Label2" runat="server" Text='<%# Bind("Picture") %>'></asp:Label>
                 </ItemTemplate>
             </asp:TemplateField>
-<%--            <asp:TemplateField HeaderText="Привью">
+            <asp:TemplateField HeaderText="Привью">
                 <EditItemTemplate>
-                    <asp:TextBox ID="TextBox2" runat="server" Text='<%# Eval("Thumbnail") %>'></asp:TextBox>
+                    <asp:Label ID="lPreview" runat="server" Text='<%# Eval("Thumbnail") %>'></asp:Label>
                 </EditItemTemplate>
                 <ItemTemplate>
                     <asp:Image ID="Image1" runat="server" 
                         ImageUrl='<%# Eval("Thumbnail", "~/Images/Gallery/{0}") %>' />
                 </ItemTemplate>
-            </asp:TemplateField>--%>
+            </asp:TemplateField>
             <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" 
                 CancelText="Отмена" DeleteText="Удалить" EditText="Изменить" 
                 UpdateText="Сохранить" />
         </Columns>
-
-<AlternatingRowStyle BackColor="LightGoldenrodYellow" ForeColor="#284775"></AlternatingRowStyle>
+        <AlternatingRowStyle BackColor="LightGoldenrodYellow" ForeColor="#284775"></AlternatingRowStyle>
     </asp:GridView>
     
-    <asp:FormView ID="FormView1" runat="server" DataKeyNames="ID" InsertRowStyle-HorizontalAlign="Right" 
-        DataSourceID="ldsGallery" DefaultMode="Insert">
-        <InsertItemTemplate>
+    
+    <div style="text-align:right; float:left; padding-left:20px;">
             Альбом:
-            <asp:DropDownList ID="ddlAlbums" runat="server" 
-                SelectedValue='<%# Bind("AlbumID") %>'>
-            </asp:DropDownList>
+            <asp:DropDownList ID="ddlAlbums" runat="server" />
             <br />
             Подпись:
             <asp:TextBox ID="TitleTextBox" runat="server" Text='<%# Bind("Title") %>' />
             <br />
-            Изображение: <cc1:FolderUpload ID="FolderUpload1" runat="server" Folder="~/Images/Gallery/"
+            Изображение: <cc1:FolderUpload ID="fuPicture" runat="server" Folder="~/Images/Gallery/"
                 UnificateIncrementally="True" Unificator="_" UnificatorPosition="Postfix" 
                 UploadedFile='<%# Bind("Picture") %>' /><br />
-<%--            Превью: <cc1:FolderUpload ID="FolderUpload2" runat="server" Folder="~/Images/Gallery/" 
+            Превью: <cc1:FolderUpload ID="fuPreview" runat="server" Folder="~/Images/Gallery/" 
                 UnificateIncrementally="True" Unificator="_" UnificatorPosition="Postfix" 
-                UploadedFile='<%# Bind("Thumbnail") %>' />--%>
+                UploadedFile='<%# Bind("Thumbnail") %>' />
             <br />
             <asp:LinkButton ID="InsertButton" runat="server" CausesValidation="True" 
-                CommandName="Insert" Text="Добавить" />
-        </InsertItemTemplate>
-    </asp:FormView>
-    
+                Text="Добавить" onclick="InsertButton_Click" />
+    </div>
 </asp:Content>
 

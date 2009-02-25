@@ -4,17 +4,17 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <script src="js/jquery12.js" type="text/javascript"></script>
+    <script src="js/jquery.js" type="text/javascript"></script>
     <script src="js/jquery.preloadImages.js" type="text/javascript"></script>
     <script src="js/music.js" type="text/javascript"></script>
     <script src="js/master.js" type="text/javascript"></script>
     <script src="js/jquery.flash.js" type="text/javascript"></script>
     <script src="js/jquery.ui.draggable.js" type="text/javascript"></script>
-    <script src="js/jquery.galleria.js" type="text/javascript"></script>
     <script src="js/gallery.js" type="text/javascript"></script>
     <script src="js/video.js" type="text/javascript"></script>
+    <script src="js/jquery.galleriffic.js" type="text/javascript"></script>
     <link href="css/main.css" rel="stylesheet" type="text/css" />
-    <link href="css/galleria.css" rel="stylesheet" type="text/css" />
+    <link href="css/galleriffic.css" rel="stylesheet" type="text/css" />
     <title></title>
 </head>
 <body>    
@@ -30,7 +30,7 @@
             <div id="top">
                 <ul id="menu">
                     <li image="images/music.jpg" section="music" class="currentSection">музыка</li>
-                    <li image="images/AlbumImages/newalbum.png" section="photo">фото</li>
+                    <li image="images/music.jpg" section="photo">фото</li>
                     <li image="images/video.jpg" section="video">видео</li>
                     <li image="images/AlbumImages/newalbum.png" section="news">новости</li>
                 </ul>
@@ -48,27 +48,30 @@
             </div>
             <div id="middle">
                 <div class="galleryPlaceHolder">
-                    <div id="imageList">
-                        <ul id="galleryUL" class="gallery_unstyled">
-                            
+                    <div id="thumbs" class="navigation">
+                        <ul class="thumbs noscript">
                         </ul>
                     </div>
-                    <div id="largeImage">
-                    
-                    </div>
+   				    <div id="gallery" class="content">
+					    <div id="controls" class="controls"></div>
+					    <div id="loading" class="loader"></div>
+					    <div id="slideshow" class="slideshow"></div>
+				    </div>
                 </div>
-                <div class="videoPlaceHolder">
-                
-                </div>
+                <div class="videoPlaceHolder"></div>
                 <div class="songsPlaceHolder">
                     <ul>
-                    
                     </ul>
                 </div>
                 <img class="currentBackground" alt="" />
                 <img class="newBackground" alt="" />
             </div>
             <div id="bottom">
+                <div id="footerMenu">
+                    <a href="javascript:showAlbumPhoto()">фото из альбома</a>
+                    &nbsp;&nbsp;
+                    <a href="#">видео из альбома</a>
+                </div>
                 <div id="copyrigth">
                     © 2009, Tina Karol, все права защищены
                 </div>

@@ -53,7 +53,7 @@ public partial class MakeThumbnail : Page
                 case "products":
                     return Server.MapPath(WebSession.ProductsImagesFolder) + "\\";
                 default:
-                    return Server.MapPath(WebSession.GalleryImagesFolder) + "\\";
+                    return Server.MapPath("~/Images/Gallery/") + "\\";
             }
         }
     }

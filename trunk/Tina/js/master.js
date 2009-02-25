@@ -5,7 +5,10 @@ function cleanUp() {
     $(".videoPlaceHolder").empty().css("display", "none");
     $(".songsPlaceHolder").css("display", "none");
     $(".galleryPlaceHolder").css("display", "none");
-    currentAlbumId = 0;
+    $(".thumbs").empty();
+    $('#gallery').css("display", "none")
+    //currentAlbumId = 0;
+    $("#footerMenu a").css("display", "none");
 }
 
 function appendSubMenuItem(item) {
@@ -38,7 +41,6 @@ $(document).ready(function() {
     $(".newBackground, .currentBackground").css("display", "none");
     $(".currentBackground").attr("src", "Images/music.jpg").fadeIn(1000);
     loadContent($(".currentSection").attr("section"));
-    prepareGallery();
 });
 
 function menuOver(el) {

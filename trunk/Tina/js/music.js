@@ -5,7 +5,6 @@ function processAlbums(response) {
         $.preloadImages("images/albumimages/" + response[i].Image);
             appendSubMenuItem(createMenuItem(response[i].Name + "(" + response[i].Year + ")", subMenuItemClicked).attr({ albumId: response[i].ID, image: "images/albumimages/" + response[i].Image }));
     }
-    
 }
 
 function subMenuItemClicked(attrs) {

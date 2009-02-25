@@ -1,4 +1,6 @@
 ﻿function loadImages(result) {
+    loadAlbums();
+    $(".thumbs").empty();
     $(".galleryPlaceHolder").css("display", "block");
     var hasResults = false;
     for (var i in result) {
@@ -16,6 +18,30 @@
 				);
 	if (hasResults)
 	    startGallery();
+}
+
+function loadAlbums() {
+    $("#subMenu ul").empty();
+    Music.GetAlbums(photoAlbumsProcessed, onRetriveAlbumsFail);
+}
+
+function photoAlbumsProcessed(response) {
+    for (var i in response) {
+        $.preloadImages("images/albumimages/" + response[i].Image);
+        appendSubMenuItem(createMenuItem(response[i].Name + "(" + response[i].Year + ")", photoAlbumClicked).attr({ albumId: response[i].ID, image: "images/albumimages/" + response[i].Image }));
+    }
+    if (currentAlbumId > 0) {
+        $("[albumId='" + currentAlbumId + "']").toggleClass("subMenuItemActive");
+        updateSubMenuClickHandlers(photoAlbumClicked);
+    }
+}
+
+function photoAlbumClicked(attrs) {
+    updateSubMenuStyles();
+    $(attrs.target).attr("class", "subMenuItemActive");
+    updateSubMenuClickHandlers(photoAlbumClicked);
+    currentAlbumId = +($(attrs.target).parent().attr("albumId"));
+    GalleryService.GetPhotosByAlbumId(currentAlbumId, loadImages, loadImagesFail);
 }
 
 function createThumbnail(picture, imageTitle, thumbnail) {

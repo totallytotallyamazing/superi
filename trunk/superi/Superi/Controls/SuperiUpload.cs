@@ -93,8 +93,19 @@ namespace Superi.CustomControls
 
         public string UploadedFile
         {
-            get { return Save(); }
-            set { }
+            get 
+            {
+                if (HasFile)
+                    return Save();
+                else
+                {
+                    if (ViewState["uploadedFile"] != null)
+                        return ViewState["uploadedFile"].ToString();
+                    else
+                        return string.Empty;
+                }
+            }
+            set { ViewState["uploadedFile"] = value; }
         }
 
         private string ServerPath

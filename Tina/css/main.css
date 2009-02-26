@@ -21,9 +21,11 @@ body{background:black}
 .subMenuItem, .subMenuItemActive{font-size:11px; text-decoration:none;}
 .subMenuItem:hover{text-decoration:underline;}
 .subMenuItemActive{color:White;}
-#copyrigth{font-size:11px; padding-top:60px; float:left;}
-#administration{border-left:1px solid white; color:White; font-size:11px; margin-left:850px; padding-left:10px; position:relative; top:15px;} 
-
+#copyrigth{font-size:11px; padding-top:70px; float:left; color: #2D2D2D;}
+#administration{border-left:1px solid white; color:White; font-size:11px; margin-left:850px; padding-left:10px; position:relative; z-index:1000; top:20px; cursor:pointer;} 
+#contactsFull{display:none;}
+.dialogTop{width:100%; text-align:right;}
+.dialogTop a{margin-right:10px;}
 .currentBackground, .newBackground{position:relative; z-index:0;}
 
 /* Music related styles*/
@@ -50,7 +52,7 @@ body{background:black}
     cursor:pointer;
 }
 #flashContainer{position:relative; left:-3000px; width:1px; height:1px; overflow:hidden;}
-#footerMenu{width:100%; text-align:right; height:12px;}
+#footerMenu{height:12px;padding-top:0px;text-align:left; padding-left:220px;}
 #footerMenu a{text-decoration:none; font-size:11px; position:relative; z-index:1000; display:none;}
 #footerMenu a:hover{text-decoration:underline;}
 /* End of music related styles*/

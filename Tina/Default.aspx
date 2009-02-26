@@ -9,12 +9,15 @@
     <script src="js/music.js" type="text/javascript"></script>
     <script src="js/master.js" type="text/javascript"></script>
     <script src="js/jquery.flash.js" type="text/javascript"></script>
-    <script src="js/jquery.ui.draggable.js" type="text/javascript"></script>
+    <script src="js/jquery.ui.js" type="text/javascript"></script>
     <script src="js/gallery.js" type="text/javascript"></script>
     <script src="js/video.js" type="text/javascript"></script>
     <script src="js/jquery.galleriffic.js" type="text/javascript"></script>
     <link href="css/main.css" rel="stylesheet" type="text/css" />
     <link href="css/galleriffic.css" rel="stylesheet" type="text/css" />
+    <link href="theme/ui.core.css" rel="stylesheet" type="text/css" />
+    <link href="theme/ui.theme.css" rel="stylesheet" type="text/css" />
+    <link href="theme/ui.dialog.css" rel="stylesheet" type="text/css" />
     <title></title>
 </head>
 <body>    
@@ -75,9 +78,20 @@
                 <div id="copyrigth">
                     © 2009, Tina Karol, все права защищены
                 </div>
-                <div id="administration">
+                <div id="administration" onclick="openContacts()">
                     администрация:<br />                    Дарья Новикова<br />                    8 (067) 444-44-44<br />                    e-mail: <a href="mailto:darya@tinakarol.ua">darya@tinakarol.ua</a>
                 </div>
+                <div id="contactsFull" title="Контакты">
+                    Sklfjsdjklfjsdjkl;f jklsdhfjkl sd fsd
+                     fs
+                     d f
+                     sdf
+                      sd
+                      f 
+                      sdf 
+                      sdf
+                </div>
+                
                 <div id="flashContainer">
                 
                 </div>

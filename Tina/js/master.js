@@ -7,7 +7,6 @@ function cleanUp() {
     $(".galleryPlaceHolder").css("display", "none");
     $(".thumbs").empty();
     $('#gallery').css("display", "none")
-    //currentAlbumId = 0;
     $("#footerMenu a").css("display", "none");
 }
 

@@ -36,7 +36,7 @@ function songsRetreived(response) {
 function songClicked(attrs){
     $("#flashContainer").empty();
     var source = $(attrs.target).attr("path")
-    $("#flashContainer").flash({ src: "Embed/xspf_jukebox.swf", flashvars: { track_title: "title", track_url: "Songs/" + source, autoplay: true, repeat: false} });
+    $("#flashContainer").flash({ src: "Embed/xspf_jukebox.swf", flashvars: {allowscriptaccess: "never", track_title: "title", track_url: "Songs/" + source, autoplay: true, repeat: false} });
     resetSongs(attrs.target);
     $(attrs.target).unbind("click", songClicked).bind("click", stopPlaying).parent().css("background", "transparent url(images/playShadow.png)");
     $(attrs.target).parent().unbind("click", songClicked);

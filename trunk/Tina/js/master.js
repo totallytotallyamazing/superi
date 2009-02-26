@@ -1,5 +1,25 @@
 ﻿var currentAlbumId = 0;
 
+$(document).ready(function() {
+    $("#menu li").not(".currentSection").mouseover(menuOver).mouseout(menuOut).click(menuClicked);
+    $(".currentSection").css("font-size", "26px");
+    $(".newBackground, .currentBackground").css("display", "none");
+    $(".currentBackground").attr("src", "Images/music.jpg").fadeIn(1000);
+    loadContent($(".currentSection").attr("section"));
+    //    alert($("#main").position().left);
+    $("#contactsFull").dialog({ draggable: true, resizable: false, autoOpen: false, height: 300, width: 230, minHeight: 300, position: [$("#main").position().left + 780, 350] });
+});
+
+function openContacts() {
+   // $("#contactsFull").css("display", "block");
+    $("#contactsFull").dialog("open");
+//    $("#administration").effect("transfer", { to: "#contactsFull" });
+}
+
+function closeDialog(el) {
+    $("#contactsFull").css("display", "none");
+}
+
 function cleanUp() {
     $("#flashContainer").empty();
     $(".videoPlaceHolder").empty().css("display", "none");
@@ -33,14 +53,6 @@ function createMenuItem(name, clickHandler) {
     else
         return $('<li><a class="subMenuItem" href="#">' + name + '</a></li>'); 
 }
-
-$(document).ready(function() {
-    $("#menu li").not(".currentSection").mouseover(menuOver).mouseout(menuOut).click(menuClicked);
-    $(".currentSection").css("font-size", "26px");
-    $(".newBackground, .currentBackground").css("display", "none");
-    $(".currentBackground").attr("src", "Images/music.jpg").fadeIn(1000);
-    loadContent($(".currentSection").attr("section"));
-});
 
 function menuOver(el) {
     $(el.toElement).css("text-decoration", "underline");

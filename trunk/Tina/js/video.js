@@ -24,7 +24,7 @@ function subMenuItemClickedVideo(attrs){
 
 function imageSwappedVideo(){
     var source = $(".subMenuItemActive").parent().attr("source");
-    $(".videoPlaceHolder").draggable().css("display", "block").flash({ src: "Embed/player.swf", width: "480", height: "360", flashvars: { skin: "http://demo.akula.com.ua/tina/embed/stylish.swf", file: "../Videos/" + source} });
+    $(".videoPlaceHolder").draggable().css("display", "block").flash({allowscriptaccess:"never", src: "Embed/player.swf", width: "480", height: "360", allowfullscreen:true,  flashvars: { skin: "http://demo.akula.com.ua/tina/embed/stylish.swf", file: "../Videos/" + source} });
 }
 
 function onRetriveVideosFail(){

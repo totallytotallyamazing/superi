@@ -13,11 +13,16 @@
     <script src="js/gallery.js" type="text/javascript"></script>
     <script src="js/video.js" type="text/javascript"></script>
     <script src="js/jquery.galleriffic.js" type="text/javascript"></script>
-    <link href="css/main.css" rel="stylesheet" type="text/css" />
+    <script src="js/news.js" type="text/javascript"></script>
+    <script src="js/jquery.mousewheel.js" type="text/javascript"></script>
+    <script src="js/jquery.em.js" type="text/javascript"></script>
+    <script src="js/jScrollPane.js" type="text/javascript"></script>
     <link href="css/galleriffic.css" rel="stylesheet" type="text/css" />
     <link href="theme/ui.core.css" rel="stylesheet" type="text/css" />
     <link href="theme/ui.theme.css" rel="stylesheet" type="text/css" />
     <link href="theme/ui.dialog.css" rel="stylesheet" type="text/css" />
+    <link href="css/main.css" rel="stylesheet" type="text/css" />
+    <link href="css/jScrollPane.css" rel="stylesheet" type="text/css" />
     <title></title>
 </head>
 <body>    
@@ -27,13 +32,14 @@
                 <asp:ServiceReference Path="~/Services/Music.asmx" />
                 <asp:ServiceReference Path="~/Services/VideoService.asmx" />
                 <asp:ServiceReference Path="~/Services/GalleryService.asmx" />
+                <asp:ServiceReference Path="~/Services/News.asmx" />
             </Services>
         </asp:ScriptManager>
         <div id="main">
             <div id="top">
                 <ul id="menu">
                     <li image="images/music.jpg" section="music" class="currentSection">музыка</li>
-                    <li image="images/music.jpg" section="photo">фото</li>
+                    <li image="images/photo.jpg" section="photo">фото</li>
                     <li image="images/video.jpg" section="video">видео</li>
                     <li image="images/news.jpg" section="news">новости</li>
                 </ul>
@@ -66,6 +72,19 @@
                     <ul>
                     </ul>
                 </div>
+                <div id="newsContainer">
+                    <div id="newsContent">
+                        
+                    </div>
+                    <div class="bottom pagination" id="newsBottomPager"></div>
+                </div>
+                <div id="newsTextContainer" class="scrolPane">
+ <%--                   <div class="jScrollPaneContainer" style="width:900px; height:600px;">
+                        <div id="newsPanel" style="height:auto;overflow-x:visible;overflow-y:visible;padding-right:5px;position:absolute;width:875">
+                            
+                        </div>
+                    </div>--%>
+                </div>
                 <img class="currentBackground" alt="" />
                 <img class="newBackground" alt="" />
             </div>
@@ -79,17 +98,10 @@
                     © 2009, Tina Karol, все права защищены
                 </div>
                 <div id="administration" onclick="openContacts()">
-                    администрация:<br />                    Дарья Новикова<br />                    8 (067) 444-44-44<br />                    e-mail: <a href="mailto:darya@tinakarol.ua">darya@tinakarol.ua</a>
+                    <img src="Images/contacts.jpg" />
                 </div>
                 <div id="contactsFull" title="Контакты">
-                    Sklfjsdjklfjsdjkl;f jklsdhfjkl sd fsd
-                     fs
-                     d f
-                     sdf
-                      sd
-                      f 
-                      sdf 
-                      sdf
+                  <span>администратор:</span><br />                Дарья Новикова<br />                8 (067) 659 44 44<br /><br />                <span>PR:</span><br />                Павел Подопригора<br />                8 (050) 376 77 88<br /><br />                <span>продюсер:</span><br />                Евгений Огир
                 </div>
                 
                 <div id="flashContainer">

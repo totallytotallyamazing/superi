@@ -14,7 +14,7 @@
         </WhereParameters>
     </asp:LinqDataSource>
     <asp:LinqDataSource ID="ldsAlbums" runat="server" 
-        ContextTypeName="MusicDataContext" EnableDelete="True" EnableInsert="True" 
+        ContextTypeName="Musics.MusicDataContext" EnableDelete="True" EnableInsert="True" 
         EnableUpdate="True" TableName="Albums">
     </asp:LinqDataSource>
     <div style="float:left;">
@@ -32,6 +32,17 @@
                     </ItemTemplate>
                     <ItemStyle CssClass="imageSmall" Height="76px" Width="102px" />
                 </asp:TemplateField>
+                <asp:TemplateField HeaderText="Фон для фото">
+<%--                    <EditItemTemplate>
+                        <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+                    </EditItemTemplate>--%>
+                    <ItemTemplate>
+                        <asp:Image Width="102" Height="77"  ID="Image2" runat="server" ImageUrl='<%# Eval("PhotoImage", "~/Images/AlbumImages/{0}")%>' />
+                    </ItemTemplate>
+                     <ItemStyle CssClass="imageSmall" Height="76px" Width="102px" />
+                </asp:TemplateField>
+                <asp:CheckBoxField DataField="InvertColors" HeaderText="Черный" 
+                    SortExpression="InvertColors" />
                 <asp:CommandField DeleteText="Удалить" ShowDeleteButton="True" />
             </Columns>
             <EmptyDataTemplate>
@@ -57,6 +68,13 @@
                     UnificatorPosition="Postfix" UploadedFile='<%# Bind("Image") %>' />
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
                     ControlToValidate="FolderUpload1" ErrorMessage="*" ValidationGroup="v1"></asp:RequiredFieldValidator>
+                    
+                Фон для фото:
+                <cc1:FolderUpload ID="FolderUpload3" runat="server" 
+                    Folder="~/Images/AlbumImages/" UnificateIncrementally="True" Unificator="_" 
+                    UnificatorPosition="Postfix" UploadedFile='<%# Bind("PhotoImage") %>' />
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" 
+                    ControlToValidate="FolderUpload3" ErrorMessage="*" ValidationGroup="v1"></asp:RequiredFieldValidator>
                 <br />
                 <br />
                 <asp:LinkButton ID="InsertButton" runat="server" CausesValidation="True" 

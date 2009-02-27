@@ -20,7 +20,7 @@ namespace Musics
 	using System.Linq.Expressions;
 	
 	
-	[System.Data.Linq.Mapping.DatabaseAttribute(Name="Content")]
+	[System.Data.Linq.Mapping.DatabaseAttribute(Name="1gb_Tina")]
 	public partial class MusicDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -28,12 +28,12 @@ namespace Musics
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InsertAlbum(MusicContext.Album instance);
-    partial void UpdateAlbum(MusicContext.Album instance);
-    partial void DeleteAlbum(MusicContext.Album instance);
     partial void InsertSong(MusicContext.Song instance);
     partial void UpdateSong(MusicContext.Song instance);
     partial void DeleteSong(MusicContext.Song instance);
+    partial void InsertAlbum(MusicContext.Album instance);
+    partial void UpdateAlbum(MusicContext.Album instance);
+    partial void DeleteAlbum(MusicContext.Album instance);
     #endregion
 		
 		public MusicDataContext() : 
@@ -66,19 +66,19 @@ namespace Musics
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<MusicContext.Album> Albums
-		{
-			get
-			{
-				return this.GetTable<MusicContext.Album>();
-			}
-		}
-		
 		public System.Data.Linq.Table<MusicContext.Song> Songs
 		{
 			get
 			{
 				return this.GetTable<MusicContext.Song>();
+			}
+		}
+		
+		public System.Data.Linq.Table<MusicContext.Album> Albums
+		{
+			get
+			{
+				return this.GetTable<MusicContext.Album>();
 			}
 		}
 	}
@@ -90,168 +90,6 @@ namespace MusicContext
 	using System.ComponentModel;
 	using System;
 	
-	
-	[Table(Name="dbo.Albums")]
-	public partial class Album : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _ID;
-		
-		private string _Name;
-		
-		private System.Nullable<int> _Year;
-		
-		private string _Image;
-		
-		private EntitySet<Song> _Songs;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIDChanging(int value);
-    partial void OnIDChanged();
-    partial void OnNameChanging(string value);
-    partial void OnNameChanged();
-    partial void OnYearChanging(System.Nullable<int> value);
-    partial void OnYearChanged();
-    partial void OnImageChanging(string value);
-    partial void OnImageChanged();
-    #endregion
-		
-		public Album()
-		{
-			this._Songs = new EntitySet<Song>(new Action<Song>(this.attach_Songs), new Action<Song>(this.detach_Songs));
-			OnCreated();
-		}
-		
-		[Column(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int ID
-		{
-			get
-			{
-				return this._ID;
-			}
-			set
-			{
-				if ((this._ID != value))
-				{
-					this.OnIDChanging(value);
-					this.SendPropertyChanging();
-					this._ID = value;
-					this.SendPropertyChanged("ID");
-					this.OnIDChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Name", DbType="NVarChar(1000)")]
-		public string Name
-		{
-			get
-			{
-				return this._Name;
-			}
-			set
-			{
-				if ((this._Name != value))
-				{
-					this.OnNameChanging(value);
-					this.SendPropertyChanging();
-					this._Name = value;
-					this.SendPropertyChanged("Name");
-					this.OnNameChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Year", DbType="Int")]
-		public System.Nullable<int> Year
-		{
-			get
-			{
-				return this._Year;
-			}
-			set
-			{
-				if ((this._Year != value))
-				{
-					this.OnYearChanging(value);
-					this.SendPropertyChanging();
-					this._Year = value;
-					this.SendPropertyChanged("Year");
-					this.OnYearChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Image", DbType="VarChar(255)")]
-		public string Image
-		{
-			get
-			{
-				return this._Image;
-			}
-			set
-			{
-				if ((this._Image != value))
-				{
-					this.OnImageChanging(value);
-					this.SendPropertyChanging();
-					this._Image = value;
-					this.SendPropertyChanged("Image");
-					this.OnImageChanged();
-				}
-			}
-		}
-		
-		[Association(Name="Album_Song", Storage="_Songs", ThisKey="ID", OtherKey="AlbumId")]
-		public EntitySet<Song> Songs
-		{
-			get
-			{
-				return this._Songs;
-			}
-			set
-			{
-				this._Songs.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Songs(Song entity)
-		{
-			this.SendPropertyChanging();
-			entity.Album = this;
-		}
-		
-		private void detach_Songs(Song entity)
-		{
-			this.SendPropertyChanging();
-			entity.Album = null;
-		}
-	}
 	
 	[Table(Name="dbo.Songs")]
 	public partial class Song : INotifyPropertyChanging, INotifyPropertyChanged
@@ -449,6 +287,216 @@ namespace MusicContext
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+	}
+	
+	[Table(Name="dbo.Albums")]
+	public partial class Album : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ID;
+		
+		private string _Name;
+		
+		private System.Nullable<int> _Year;
+		
+		private string _Image;
+		
+		private string _PhotoImage;
+		
+		private System.Nullable<bool> _InvertColors;
+		
+		private EntitySet<Song> _Songs;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(int value);
+    partial void OnIDChanged();
+    partial void OnNameChanging(string value);
+    partial void OnNameChanged();
+    partial void OnYearChanging(System.Nullable<int> value);
+    partial void OnYearChanged();
+    partial void OnImageChanging(string value);
+    partial void OnImageChanged();
+    partial void OnPhotoImageChanging(string value);
+    partial void OnPhotoImageChanged();
+    partial void OnInvertColorsChanging(System.Nullable<bool> value);
+    partial void OnInvertColorsChanged();
+    #endregion
+		
+		public Album()
+		{
+			this._Songs = new EntitySet<Song>(new Action<Song>(this.attach_Songs), new Action<Song>(this.detach_Songs));
+			OnCreated();
+		}
+		
+		[Column(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Name", DbType="NVarChar(1000)")]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this.OnNameChanging(value);
+					this.SendPropertyChanging();
+					this._Name = value;
+					this.SendPropertyChanged("Name");
+					this.OnNameChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Year", DbType="Int")]
+		public System.Nullable<int> Year
+		{
+			get
+			{
+				return this._Year;
+			}
+			set
+			{
+				if ((this._Year != value))
+				{
+					this.OnYearChanging(value);
+					this.SendPropertyChanging();
+					this._Year = value;
+					this.SendPropertyChanged("Year");
+					this.OnYearChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Image", DbType="VarChar(255)")]
+		public string Image
+		{
+			get
+			{
+				return this._Image;
+			}
+			set
+			{
+				if ((this._Image != value))
+				{
+					this.OnImageChanging(value);
+					this.SendPropertyChanging();
+					this._Image = value;
+					this.SendPropertyChanged("Image");
+					this.OnImageChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_PhotoImage", DbType="VarChar(255)")]
+		public string PhotoImage
+		{
+			get
+			{
+				return this._PhotoImage;
+			}
+			set
+			{
+				if ((this._PhotoImage != value))
+				{
+					this.OnPhotoImageChanging(value);
+					this.SendPropertyChanging();
+					this._PhotoImage = value;
+					this.SendPropertyChanged("PhotoImage");
+					this.OnPhotoImageChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_InvertColors", DbType="Bit")]
+		public System.Nullable<bool> InvertColors
+		{
+			get
+			{
+				return this._InvertColors;
+			}
+			set
+			{
+				if ((this._InvertColors != value))
+				{
+					this.OnInvertColorsChanging(value);
+					this.SendPropertyChanging();
+					this._InvertColors = value;
+					this.SendPropertyChanged("InvertColors");
+					this.OnInvertColorsChanged();
+				}
+			}
+		}
+		
+		[Association(Name="Album_Song", Storage="_Songs", ThisKey="ID", OtherKey="AlbumId")]
+		public EntitySet<Song> Songs
+		{
+			get
+			{
+				return this._Songs;
+			}
+			set
+			{
+				this._Songs.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Songs(Song entity)
+		{
+			this.SendPropertyChanging();
+			entity.Album = this;
+		}
+		
+		private void detach_Songs(Song entity)
+		{
+			this.SendPropertyChanging();
+			entity.Album = null;
 		}
 	}
 }

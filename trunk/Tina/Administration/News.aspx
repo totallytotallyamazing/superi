@@ -3,6 +3,7 @@
 
 <%@ Register TagPrefix="FCKeditor" Namespace="FredCK.FCKeditorV2" Assembly="FredCK.FCKeditorV2" %>
 <%@ Register Assembly="Superi" Namespace="Superi.CustomControls" TagPrefix="cc1" %>
+<%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="cc2" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <asp:LinqDataSource ID="ldsNews" runat="server" ContextTypeName="NewsDataContext"
         EnableDelete="True" EnableInsert="True" EnableUpdate="True" 
@@ -21,6 +22,18 @@
                     SortExpression="ID" />
                 <asp:BoundField DataField="Title" HeaderText="Заголовок" SortExpression="Title" />
                 <asp:CheckBoxField DataField="Archive" HeaderText="В архиве" SortExpression="Archive" />
+                <asp:TemplateField HeaderText="Дата" SortExpression="Date">
+                    <EditItemTemplate>
+                        <asp:TextBox ID="tbDate" runat="server" Text='<%# Bind("Date") %>' 
+                            ReadOnly="True"></asp:TextBox>
+                        <cc2:CalendarExtender ID="tbDate_CalendarExtender" runat="server" 
+                            Enabled="True" Format="dd.MM.yyyy" TargetControlID="tbDate">
+                        </cc2:CalendarExtender>
+                    </EditItemTemplate>
+                    <ItemTemplate>
+                        <asp:Label ID="Label1" runat="server" Text='<%# Bind("Date", "{0:dd.MM.yyyy}") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
                 <asp:TemplateField HeaderText="Изображение" SortExpression="Picture">
                     <EditItemTemplate>
                         <cc1:FolderUpload ID="fuPicture" runat="server" Folder="~/Images/News/" UnificateIncrementally="True"
@@ -36,27 +49,68 @@
             </Columns>
             <AlternatingRowStyle BackColor="LightGoldenrodYellow" ForeColor="#284775"></AlternatingRowStyle>
         </asp:GridView>
-        <asp:FormView DefaultMode="Insert" runat="server" ID="fwInsert" 
+<%--        <asp:FormView DefaultMode="Insert" runat="server" ID="fwInsert" 
             DataKeyNames="ID" DataSourceID="ldsNews">
             <InsertItemTemplate>
                 Заголовок:
                 <asp:TextBox ID="TitleTextBox" runat="server" Text='<%# Bind("Title") %>'></asp:TextBox>
+                <asp:RequiredFieldValidator ID="rfvTitle" runat="server" 
+                    ControlToValidate="TitleTextBox" ErrorMessage="*" ValidationGroup="g1"></asp:RequiredFieldValidator>
+                <br />
+                Дата:
+                <asp:TextBox ID="tbDate" runat="server" 
+                    Text='<%# Bind("Date", "{0: dd.MM.yyyy}") %>'></asp:TextBox>
+                <cc2:CalendarExtender ID="tbDate_CalendarExtender" runat="server" 
+                    Enabled="True" Format="dd.MM.yyyy" TargetControlID="tbDate">
+                </cc2:CalendarExtender>
+                <asp:RequiredFieldValidator ID="rfvDate" runat="server" 
+                    ControlToValidate="tbDate" ErrorMessage="*" ValidationGroup="g1"></asp:RequiredFieldValidator>
                 <br />
                 В архиве:
                 <asp:CheckBox ID="ArchiveCheckBox" runat="server" 
                     Checked='<%# Bind("Archive") %>' />
                 <br />
                 Изображение:
-                <cc1:FolderUpload ID="FolderUpload1" runat="server" Folder="~/Images/News/" 
+                <cc1:FolderUpload ID="fuPicture" runat="server" Folder="~/Images/News/" 
                     UnificateIncrementally="True" Unificator="_" UnificatorPosition="Postfix" 
                     UploadedFile='<%# Bind("Picture") %>' />
+                <asp:RequiredFieldValidator ID="rfvPicture" runat="server" 
+                    ControlToValidate="fuPicture" ErrorMessage="*" ValidationGroup="g1"></asp:RequiredFieldValidator>
                 <br />
                 <asp:LinkButton ID="InsertButton" runat="server" CausesValidation="True" 
-                    CommandName="Insert" Text="Добавить" />
-                &nbsp;
-            
+                    CommandName="Insert" Text="Добавить" ValidationGroup="g1" />
             </InsertItemTemplate>
-        </asp:FormView>
+        </asp:FormView>--%>
+        <div>
+            <br />
+            Заголовок:
+            <asp:TextBox ID="TitleTextBox" runat="server" Text='<%# Bind("Title") %>'></asp:TextBox>
+            <asp:RequiredFieldValidator ID="rfvTitle" runat="server" 
+                ControlToValidate="TitleTextBox" ErrorMessage="*" ValidationGroup="g1"></asp:RequiredFieldValidator>
+            <br />
+            Дата:
+            <asp:TextBox ID="tbDate" runat="server" 
+                Text='<%# Bind("Date", "{0: dd.MM.yyyy}") %>'></asp:TextBox>
+            <cc2:CalendarExtender ID="tbDate_CalendarExtender" runat="server" 
+                Enabled="True" Format="dd.MM.yyyy" TargetControlID="tbDate">
+            </cc2:CalendarExtender>
+            <asp:RequiredFieldValidator ID="rfvDate" runat="server" 
+                ControlToValidate="tbDate" ErrorMessage="*" ValidationGroup="g1"></asp:RequiredFieldValidator>
+            <br />
+            В архиве:
+            <asp:CheckBox ID="ArchiveCheckBox" runat="server" 
+                Checked='<%# Bind("Archive") %>' />
+            <br />
+            Изображение:
+            <cc1:FolderUpload ID="fuPicture" runat="server" Folder="~/Images/News/" 
+                UnificateIncrementally="True" Unificator="_" UnificatorPosition="Postfix" 
+                UploadedFile='<%# Bind("Picture") %>' />
+            <asp:RequiredFieldValidator ID="rfvPicture" runat="server" 
+                ControlToValidate="fuPicture" ErrorMessage="*" ValidationGroup="g1"></asp:RequiredFieldValidator>
+            <br />
+            <asp:LinkButton ID="InsertButton" runat="server" CausesValidation="True" 
+                Text="Добавить" ValidationGroup="g1" onclick="InsertButton_Click" />
+        </div>
     </div>
     <asp:Panel runat="server" ID="pEdit" Style="float: left; padding-left: 10px;">
         <div>

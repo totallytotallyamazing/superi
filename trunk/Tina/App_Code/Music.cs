@@ -21,7 +21,7 @@ public class Music : System.Web.Services.WebService
     public object GetAlbums()
     {
         MusicDataContext context = new MusicDataContext();
-        var albums = from al in context.Albums select new { al.ID, al.Name, al.Image, al.Year };
+        var albums = from al in context.Albums select new { al.ID, al.Name, al.Image, al.Year, al.InvertColors, al.PhotoImage };
         return albums.ToList();
     }
 

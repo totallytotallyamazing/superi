@@ -26,21 +26,28 @@ function loadAlbums() {
 }
 
 function photoAlbumsProcessed(response) {
+    appendSubMenuItem(createMenuItem("Имидж", photoAlbumClicked).attr({ albumId: 0, image: "images/photo.jpg" }));
     for (var i in response) {
         $.preloadImages("images/albumimages/" + response[i].Image);
-        appendSubMenuItem(createMenuItem(response[i].Name + "(" + response[i].Year + ")", photoAlbumClicked).attr({ albumId: response[i].ID, image: "images/albumimages/" + response[i].Image }));
+        appendSubMenuItem(createMenuItem(response[i].Name + "(" + response[i].Year + ")", photoAlbumClicked).attr({ albumId: response[i].ID, image: "images/albumimages/" + response[i].PhotoImage }));
     }
-    if (currentAlbumId > 0) {
+   // if (currentAlbumId > 0) {
         $("[albumId='" + currentAlbumId + "'] a").toggleClass("subMenuItemActive");
         updateSubMenuClickHandlers(photoAlbumClicked);
-    }
+    //}
 }
 
 function photoAlbumClicked(attrs) {
+    cleanUp();
     updateSubMenuStyles();
     $(attrs.target).attr("class", "subMenuItemActive");
     updateSubMenuClickHandlers(photoAlbumClicked);
-    currentAlbumId = +($(attrs.target).parent().attr("albumId"));
+    swapImage($(attrs.target).parent().attr("image"), photoImageSwapped);
+}
+
+function photoImageSwapped() {
+    var albumID = $(".subMenuItemActive").parent().attr("albumId");
+    currentAlbumId = +albumID;
     GalleryService.GetPhotosByAlbumId(currentAlbumId, loadImages, loadImagesFail);
 }
 

@@ -7,7 +7,8 @@ $(document).ready(function() {
     $(".currentBackground").attr("src", "Images/music.jpg").fadeIn(1000);
     loadContent($(".currentSection").attr("section"));
     //    alert($("#main").position().left);
-    $("#contactsFull").dialog({ draggable: true, resizable: false, autoOpen: false, height: 300, width: 230, minHeight: 300, position: [$("#main").position().left + 780, 350] });
+    $("#contactsFull").dialog({ dialogClass: "contacts", draggable: true, resizable: false, autoOpen: false, height: 300, width: 230, minHeight: 300, position: [$("#main").position().left + 780, 350] });
+    $("#newsTextContainer").dialog({ dialogClass: "contacts", draggable: false, resizable: false, autoOpen: false, height: 600, width: 900, modal: true });
 });
 
 function openContacts() {
@@ -28,6 +29,9 @@ function cleanUp() {
     $(".thumbs").empty();
     $('#gallery').css("display", "none")
     $("#footerMenu a").css("display", "none");
+    $("#newsContent").empty();
+    $("#newsContainer").css("display", "none");
+    $(".songsPlaceHolder").removeClass("songsPlaceHolderInverted")
 }
 
 function appendSubMenuItem(item) {
@@ -101,6 +105,7 @@ function loadContent(section) {
             VideoService.GetVideos(processVideos, onRetriveVideosFail);
             break;
         case "news":
+            News.GetPageCount(processNews, onRetriveNewsFail)
             break;
     }
 }

@@ -304,6 +304,10 @@ namespace GalleryContext
 		
 		private string _Image;
 		
+		private string _PhotoImage;
+		
+		private System.Nullable<bool> _InvertColors;
+		
 		private EntitySet<Gallery> _Galleries;
 		
     #region Extensibility Method Definitions
@@ -318,6 +322,10 @@ namespace GalleryContext
     partial void OnYearChanged();
     partial void OnImageChanging(string value);
     partial void OnImageChanged();
+    partial void OnPhotoImageChanging(string value);
+    partial void OnPhotoImageChanged();
+    partial void OnInvertColorsChanging(System.Nullable<bool> value);
+    partial void OnInvertColorsChanged();
     #endregion
 		
 		public Album()
@@ -402,6 +410,46 @@ namespace GalleryContext
 					this._Image = value;
 					this.SendPropertyChanged("Image");
 					this.OnImageChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_PhotoImage", DbType="VarChar(255)")]
+		public string PhotoImage
+		{
+			get
+			{
+				return this._PhotoImage;
+			}
+			set
+			{
+				if ((this._PhotoImage != value))
+				{
+					this.OnPhotoImageChanging(value);
+					this.SendPropertyChanging();
+					this._PhotoImage = value;
+					this.SendPropertyChanged("PhotoImage");
+					this.OnPhotoImageChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_InvertColors", DbType="Bit")]
+		public System.Nullable<bool> InvertColors
+		{
+			get
+			{
+				return this._InvertColors;
+			}
+			set
+			{
+				if ((this._InvertColors != value))
+				{
+					this.OnInvertColorsChanging(value);
+					this.SendPropertyChanging();
+					this._InvertColors = value;
+					this.SendPropertyChanged("InvertColors");
+					this.OnInvertColorsChanged();
 				}
 			}
 		}

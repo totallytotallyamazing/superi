@@ -93,7 +93,9 @@ public partial class NewsItem : INotifyPropertyChanging, INotifyPropertyChanged
 	
 	private string _DetailPicture;
 	
-	private System.Nullable<bool> _Award = false;
+	private System.Nullable<bool> _Award;
+	
+	private System.Nullable<System.DateTime> _Date;
 	
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -115,6 +117,8 @@ public partial class NewsItem : INotifyPropertyChanging, INotifyPropertyChanged
     partial void OnDetailPictureChanged();
     partial void OnAwardChanging(System.Nullable<bool> value);
     partial void OnAwardChanged();
+    partial void OnDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnDateChanged();
     #endregion
 	
 	public NewsItem()
@@ -278,6 +282,26 @@ public partial class NewsItem : INotifyPropertyChanging, INotifyPropertyChanged
 				this._Award = value;
 				this.SendPropertyChanged("Award");
 				this.OnAwardChanged();
+			}
+		}
+	}
+	
+	[Column(Storage="_Date", DbType="DateTime")]
+	public System.Nullable<System.DateTime> Date
+	{
+		get
+		{
+			return this._Date;
+		}
+		set
+		{
+			if ((this._Date != value))
+			{
+				this.OnDateChanging(value);
+				this.SendPropertyChanging();
+				this._Date = value;
+				this.SendPropertyChanged("Date");
+				this.OnDateChanged();
 			}
 		}
 	}

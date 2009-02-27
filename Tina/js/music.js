@@ -3,7 +3,7 @@
 function processAlbums(response) {
     for (var i in response) {
         $.preloadImages("images/albumimages/" + response[i].Image);
-            appendSubMenuItem(createMenuItem(response[i].Name + "(" + response[i].Year + ")", subMenuItemClicked).attr({ albumId: response[i].ID, image: "images/albumimages/" + response[i].Image }));
+        appendSubMenuItem(createMenuItem(response[i].Name + "(" + response[i].Year + ")", subMenuItemClicked).attr({ albumId: response[i].ID, image: "images/albumimages/" + response[i].Image, photoImage: "images/albumimages/" + response[i].PhotoImage, invertColors: response[i].InvertColors }));
     }
 }
 
@@ -26,6 +26,9 @@ function songsRetreived(response) {
     $(".songsPlaceHolder").css("display", "block");
     $(".songsPlaceHolder ul").css("display", "block");
     $("#footerMenu a").css("display", "inline");
+    var invertColors = ($(".subMenuItemActive").parent().attr("invertColors") == "true");
+    if (invertColors)
+        $(".songsPlaceHolder").addClass("songsPlaceHolderInverted")
     for (var i in response) {
         var name = response[i].Name;
         var source = response[i].Source;
@@ -53,6 +56,8 @@ function resetSongs(el) {
 
 function showAlbumPhoto() {
     currentAlbumId = $(".subMenuItemActive").parent().attr("albumId");
+    var albumPhoto = $(".subMenuItemActive").parent().attr("photoImage");
+    swapImage(albumPhoto);
     $("[section='photo']").click();
 }
 

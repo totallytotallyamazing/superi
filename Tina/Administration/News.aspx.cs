@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.IO;
 using Superi.CustomControls;
+using System.Globalization;
 
 public partial class Administration_News : System.Web.UI.Page
 {
@@ -76,5 +77,21 @@ public partial class Administration_News : System.Web.UI.Page
         NewsItem item = context.NewsItems.SingleOrDefault(ni => ni.ID == newsItemId);
         if (!string.IsNullOrEmpty(item.Picture))
             RemovePicture(item.Picture);
+    }
+
+    protected void InsertButton_Click(object sender, EventArgs e)
+    {
+        NewsItem item = new NewsItem();
+        CultureInfo culture = CultureInfo.GetCultureInfo("ru-RU");
+
+        item.Date = DateTime.Parse(tbDate.Text, culture);
+        item.Title = TitleTextBox.Text;
+        item.Archive = ArchiveCheckBox.Checked;
+        item.Award = false;
+        item.Picture = fuPicture.UploadedFile;
+
+        NewsDataContext context = new NewsDataContext();
+        context.NewsItems.InsertOnSubmit(item);
+        context.SubmitChanges();
     }
 }

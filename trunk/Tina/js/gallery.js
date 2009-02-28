@@ -1,4 +1,5 @@
 ﻿function loadImages(result) {
+    EndRequestHandler();
     loadAlbums();
     $(".thumbs").empty();
     $(".galleryPlaceHolder").css("display", "block");
@@ -22,10 +23,12 @@
 
 function loadAlbums() {
     $("#subMenu ul").empty();
+    BeginRequestHandler();
     Music.GetAlbums(photoAlbumsProcessed, onRetriveAlbumsFail);
 }
 
 function photoAlbumsProcessed(response) {
+    EndRequestHandler();
     appendSubMenuItem(createMenuItem("Имидж", photoAlbumClicked).attr({ albumId: 0, image: "images/photo.jpg" }));
     for (var i in response) {
         $.preloadImages("images/albumimages/" + response[i].Image);
@@ -42,6 +45,7 @@ function photoAlbumClicked(attrs) {
     updateSubMenuStyles();
     $(attrs.target).attr("class", "subMenuItemActive");
     updateSubMenuClickHandlers(photoAlbumClicked);
+    BeginRequestHandler();
     swapImage($(attrs.target).parent().attr("image"), photoImageSwapped);
 }
 

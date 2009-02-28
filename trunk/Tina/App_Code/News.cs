@@ -16,7 +16,7 @@ public class News : System.Web.Services.WebService
     public int GetPageCount()
     {
         NewsDataContext context = new NewsDataContext();
-        int count = context.NewsItems.Count();
+        int count = context.NewsItems.Where(al => al.Archive.Value == false).Count();
         int result = count / 4;
         if (count % 4 > 0)
             result++;

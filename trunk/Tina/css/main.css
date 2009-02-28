@@ -1,13 +1,22 @@
 ﻿*{margin:0; padding:0; border:none; color:#656565}
 body, html{height:100%;}
 body{background:black}
+
+.myShadow
+{
+	opacity: 0.2; -moz-opacity: 0.2; filter: alpha(opacity=20);
+	background:black;
+	position:absolute; z-index:10001;
+}
 #main{
     margin:auto;
     position:relative;
     width:1024px;
     height:768px;
+    background:black;
 }
-
+#loading{position:absolute; z-index:10000; display:block; width:100%; height:100%; background:white; opacity: 0.2; -moz-opacity: 0.2; filter: alpha(opacity=20);}
+#loadingContainer{display:none;}
 .contacts .ui-dialog-titlebar
 {
     background:transparent url(../images/titleLine.jpg) repeat-x;
@@ -101,7 +110,7 @@ body{background:black}
 /*End of gallery related styles*/
 
 /*News related styles*/
-#newsContainer{position:absolute; z-index:1000; left:430px; top:5px; display:none;}
+#newsContainer{position:absolute; z-index:1000; left:430px; top:0px; display:none;}
 
 .newsItem{clear:both; width:567px; margin-top:10px;}
 .newsImage{float:left; background:transparent url(../images/newsImageBox.png) no-repeat; height:129px; width:127px; text-align:right;}
@@ -113,4 +122,23 @@ body{background:black}
 .newsText{height:54px;}
 .newsDetail{text-align:right; margin-right:10px; cursor:pointer;}
 #newsTextContainer{display:none;}
+a.ui-state-active, a.ui-state-default{display:block; height:30px; font-family:Times New Roman; font-size:22px;}
+a.ui-state-active{background: #aaa; color:Black;}
+a.ui-state-active span, a.ui-state-default span
+{
+	display:block; 
+	float:left; 
+	height:18px; 
+	border-right:1px solid black; 
+	font-size:12px; 
+	margin-top:5px;
+	padding-top:3px;
+	padding-left:10px;
+}
+a.ui-state-active span{color:White;}
+a.ui-state-default span{color:Black;}
+a.ui-state-default{background: #737171; color:White;}
+.ui-icon-triangle-1-s, .ui-icon-triangle-1-e{display:none !important;}
+.ui-accordion-content{background:#DEDEDE !important; padding:1em 4.3em !important;}
+.ui-accordion-content div{border-left:1px solid black; padding-left:10px;}
 /*End of news related styles*/

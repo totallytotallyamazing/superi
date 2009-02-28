@@ -22,6 +22,9 @@ public class Music : System.Web.Services.WebService
     {
         MusicDataContext context = new MusicDataContext();
         var albums = from al in context.Albums select new { al.ID, al.Name, al.Image, al.Year, al.InvertColors, al.PhotoImage };
+        //DateTime stop = DateTime.Now.AddSeconds(10);
+        //while (DateTime.Now<stop)
+        //{ ;}
         return albums.ToList();
     }
 

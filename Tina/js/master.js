@@ -1,20 +1,40 @@
 ﻿var currentAlbumId = 0;
+$.history.callback = function(reinstate, cursor )
+{
+    $("[section="+reinstate.section+"]").click();
+}
 
 $(document).ready(function() {
     $("#menu li").not(".currentSection").mouseover(menuOver).mouseout(menuOut).click(menuClicked);
     $(".currentSection").css("font-size", "26px");
     $(".newBackground, .currentBackground").css("display", "none");
-    $(".currentBackground").attr("src", "Images/music.jpg").fadeIn(1000);
-    loadContent($(".currentSection").attr("section"));
-    //    alert($("#main").position().left);
-    $("#contactsFull").dialog({ dialogClass: "contacts", draggable: true, resizable: false, autoOpen: false, height: 300, width: 230, minHeight: 300, position: [$("#main").position().left + 780, 350] });
+    $(".currentBackground").fadeIn(1000);
+    //$(".currentBackground").attr("src", "Images/music.jpg").fadeIn(1000);
+    //loadContent($(".currentSection").attr("section"));
+    $("#contactsFull").dialog({ dialogClass: "contacts", draggable: true, resizable: false, autoOpen: false, height: 300, width: 230, minHeight: 300, position: [$("#main").position().left + 780, 350]});
     $("#newsTextContainer").dialog({ dialogClass: "contacts", draggable: false, resizable: false, autoOpen: false, height: 600, width: 900, modal: true });
 });
 
+        function BeginRequestHandler() {
+            $("#loadingContainer").css("display", "block");
+            $("html, body").css("overflow", "hidden")
+            var vpWidth = $("body").width();
+            var vpHeight = $("body").height();
+            $(".myShadow").css("left", Math.floor(vpWidth/2 - 60)).css("top", Math.floor(vpHeight/2 - 30)).css("display","block");
+            $("#loadingSign").css("left", Math.floor(vpWidth/2 - 50)).css("top", Math.floor(vpHeight/2 - 20)).css("display","block");
+            $("#loading").css("display","block");
+        }
+
+        function EndRequestHandler() {
+            $("html, body").css("overflow", "");
+            $("#loadingContainer").css("display", "none");
+            $(".myShadow").css("display","none");
+            $("#loadingSign").css("display","none");
+            $("#loading").css("display","none");
+        }
+
 function openContacts() {
-   // $("#contactsFull").css("display", "block");
     $("#contactsFull").dialog("open");
-//    $("#administration").effect("transfer", { to: "#contactsFull" });
 }
 
 function closeDialog(el) {
@@ -53,9 +73,9 @@ function getSubMenu() {
 
 function createMenuItem(name, clickHandler) {
     if (clickHandler)
-        return $('<li><a class="subMenuItem" href="#">' + name + '</a></li>').bind("click", clickHandler);
+        return $('<li><a class="subMenuItem">' + name + '</a></li>').bind("click", clickHandler);
     else
-        return $('<li><a class="subMenuItem" href="#">' + name + '</a></li>'); 
+        return $('<li><a class="subMenuItem">' + name + '</a></li>'); 
 }
 
 function menuOver(el) {
@@ -94,6 +114,8 @@ function swapImage(imageName, callbackHandler) {
 }
 
 function loadContent(section) {
+    $.history({section: section});
+    BeginRequestHandler();
     switch (section) {
         case "music":
             Music.GetAlbums(processAlbums, onRetriveAlbumsFail);

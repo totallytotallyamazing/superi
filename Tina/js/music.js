@@ -1,6 +1,7 @@
 ﻿
 
 function processAlbums(response) {
+    EndRequestHandler();
     for (var i in response) {
         $.preloadImages("images/albumimages/" + response[i].Image);
         appendSubMenuItem(createMenuItem(response[i].Name + "(" + response[i].Year + ")", subMenuItemClicked).attr({ albumId: response[i].ID, image: "images/albumimages/" + response[i].Image, photoImage: "images/albumimages/" + response[i].PhotoImage, invertColors: response[i].InvertColors }));
@@ -9,6 +10,7 @@ function processAlbums(response) {
 
 function subMenuItemClicked(attrs) {
     cleanUp();
+    BeginRequestHandler();
     swapImage($(attrs.target).parent().attr("image"), imageSwapped);
     updateSubMenuStyles();
     $(attrs.target).attr("class", "subMenuItemActive");
@@ -23,6 +25,7 @@ function imageSwapped() {
 }
 
 function songsRetreived(response) {
+    EndRequestHandler();
     $(".songsPlaceHolder").css("display", "block");
     $(".songsPlaceHolder ul").css("display", "block");
     $("#footerMenu a").css("display", "inline");

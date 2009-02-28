@@ -1,23 +1,67 @@
 ﻿var currentNewsPage = 1;
-
+var newsPageCount = 1;
 function processNews(response) {
-    if (response > 1)
-        initPages(response);
-    else
-        loadNews(1);
+
+    appendSubMenuItem(createMenuItem("Архив", loadArchive));
+    appendSubMenuItem(createMenuItem("Премии и награды", loadAwards));
+    appendSubMenuItem(createMenuItem("Творчество", loadArt));
+    appendSubMenuItem(createMenuItem("Личное", loadPersonal));
+
+    EndRequestHandler();
+    newsPageCount = +response;
+    if (response > 1)   
+        initPages(newsPageCount);
+    loadNews(1);
 }
 
+function loadAwards(){}
+
+function loadArt(){}
+
+function loadPersonal(){}
+
+function loadArchive()
+{
+    BeginRequestHandler();
+    var wRequest = new Sys.Net.WebRequest();
+    wRequest.set_url("Archive.aspx");
+    wRequest.set_httpVerb("GET");
+    wRequest.set_userContext("user's context");
+    wRequest.add_completed(ArchiveRequestCompleted);
+    wRequest.invoke();
+}
+
+function ArchiveRequestCompleted(executor, eventArgs)
+{
+    EndRequestHandler();
+    $("#newsTextContainer").empty();
+    $(executor.get_responseData()).appendTo("#newsTextContainer");
+    $("#archiveContainer").accordion({
+			autoHeight:false,
+			change: function(event, ui) {$("#newsTextContainer").jScrollPane(); }
+		});
+	$("#archiveContainer").accordion("option", "fillSpace");
+    $("#newsTextContainer").dialog("open");
+    $("#newsTextContainer").jScrollPane();
+}
+
+
+
 function initPages(pageCount) {
+    $("#newsBottomPager").empty();
     for (var i = 1; i <= pageCount; i++) {
         if (i !== currentNewsPage)
-            $("<a>").html(pageCount).appendTo("#newsBottomPager").click(pageChanged);
+            $("<a>").html(i).appendTo("#newsBottomPager").click(pageChanged).css("cursor", "pointer");
         else
-            $("span").html(pageCount).appendTo("#newsBottomPager");
+            $("<span>").addClass("current").html(i).appendTo("#newsBottomPager");
     }
 }
 
 function pageChanged(elem) {
-    loadNews(+$(elem.target).html());
+    currentNewsPage = +$(elem.target).html()
+    loadNews(currentNewsPage);
+    initPages(newsPageCount);
+    
 }
 
 function loadNews(pageNumber) {
@@ -26,10 +70,12 @@ function loadNews(pageNumber) {
     wRequest.set_httpVerb("GET");
     wRequest.set_userContext("user's context");
     wRequest.add_completed(OnWebRequestCompleted);
+    BeginRequestHandler();
     wRequest.invoke();  
 }
 
 function OnWebRequestCompleted(executor, eventArgs) {
+    EndRequestHandler();
     $("#newsContent").empty();
     $("#newsContainer").css("display", "block");
     $(executor.get_responseData()).appendTo("#newsContent");

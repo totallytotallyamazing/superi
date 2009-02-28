@@ -6,7 +6,7 @@
 <%
     int pageNumber = int.Parse(Request.QueryString["page"]) - 1;
     NewsDataContext context = new NewsDataContext();
-    List<NewsItem> news = context.NewsItems.Select(al => al).Where(al => al.Award == false).ToList();
+    List<NewsItem> news = context.NewsItems.Select(al => al).Where(al => al.Archive.Value == false).ToList();
     news = news.Skip(pageNumber * 4).Take(4).ToList();
 
     foreach (NewsItem item in news)

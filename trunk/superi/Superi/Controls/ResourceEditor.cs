@@ -112,6 +112,21 @@ namespace Superi.CustomControls
             }
         }
 
+        public int ResourceId
+        {
+            set 
+            {
+                ViewState["ResourceId"] = value;
+                _TextID = value;
+            }
+            get
+            {
+                _TextID = Values.Save();
+                return _TextID;
+            }
+
+        }
+
         public Resource Values
         {
             get

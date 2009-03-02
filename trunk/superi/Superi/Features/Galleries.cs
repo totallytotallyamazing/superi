@@ -7,6 +7,11 @@ namespace Superi.Features
 			return new GalleryList(true);
 		}
 
+        public static GalleryList Get(int ParentId)
+        {
+            return new GalleryList(ParentId);
+        }
+
 		//public static NewsItemList Get(int Top)
 		//{
 		//    return new NewsItemList(Top);
@@ -23,6 +28,23 @@ namespace Superi.Features
 			item.Title = Title;
 			return item.Save();
 		}
+
+        public static bool Update(int TitleTextId, string Picture, int ID)
+        {
+            Gallery item = new Gallery(ID);
+            item.TitleTextId = TitleTextId;
+            item.Picture = Picture;
+            return item.Save();
+        }
+
+        public static bool Insert(int TitleTextId, string Picture, int ParentId)
+        {
+            Gallery item = new Gallery();
+            item.TitleTextId = TitleTextId;
+            item.Picture = Picture;
+            item.ParentId = ParentId;
+            return item.Save();
+        }
 
 		public static bool Delete(int ID)
 		{

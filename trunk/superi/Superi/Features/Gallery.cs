@@ -15,6 +15,7 @@ namespace Superi.Features
 	    private int _TitleTextId = int.MinValue;
 		private string _SubTitle = "";
 	    private int _SubTitleTextId = int.MinValue;
+        private int parentId = int.MinValue;
 		#endregion
 
 		#region Properties
@@ -69,6 +70,11 @@ namespace Superi.Features
             get { return new Resource(SubTitleTextId); }
 	    }
 
+        public int ParentId
+        {
+            get { return parentId; }
+            set { parentId = value; }
+        }
 	    #endregion
 
 		#region Constructors
@@ -113,6 +119,7 @@ namespace Superi.Features
             SubTitleTextId = dr.GetInt32(dr.GetOrdinal("SubTitleTextID"));
 			Picture = dr["Picture"].ToString();
 			EntryDate = dr.GetDateTime(dr.GetOrdinal("EntryDate"));
+            ParentId = dr.GetInt32(dr.GetOrdinal("ParentId"));
 
 			if (CloseDr)
 				dr.Close();
@@ -128,6 +135,7 @@ namespace Superi.Features
             SubTitleTextId = (int)dr["SubTitleTextId"];
 			Picture = dr["Picture"].ToString();
 			EntryDate = DateTime.Parse(dr["EntryDate"].ToString());
+            ParentId = Convert.ToInt32(dr["ParentId"]);
 			return true;
 		}
 
@@ -141,6 +149,7 @@ namespace Superi.Features
             pList.Add(new AppDbParameter("titletextid", TitleTextId));
 			pList.Add(new AppDbParameter("subtitle", SubTitle));
             pList.Add(new AppDbParameter("subtitletextid", SubTitleTextId));
+            pList.Add(new AppDbParameter("parentid", parentId));
 
             DbDataReader dr = AppData.ExecStoredProcedure("Galleries_AddUpdate", pList);
 			if (dr != null && dr.HasRows && dr.Read())

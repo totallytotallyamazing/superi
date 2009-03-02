@@ -105,8 +105,8 @@
             <cc1:FolderUpload ID="fuPicture" runat="server" Folder="~/Images/News/" 
                 UnificateIncrementally="True" Unificator="_" UnificatorPosition="Postfix" 
                 UploadedFile='<%# Bind("Picture") %>' />
-            <asp:RequiredFieldValidator ID="rfvPicture" runat="server" 
-                ControlToValidate="fuPicture" ErrorMessage="*" ValidationGroup="g1"></asp:RequiredFieldValidator>
+<%--            <asp:RequiredFieldValidator ID="rfvPicture" runat="server" 
+                ControlToValidate="fuPicture" ErrorMessage="*" ValidationGroup="g1"></asp:RequiredFieldValidator>--%>
             <br />
             <asp:LinkButton ID="InsertButton" runat="server" CausesValidation="True" 
                 Text="Добавить" ValidationGroup="g1" onclick="InsertButton_Click" />

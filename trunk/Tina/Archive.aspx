@@ -5,7 +5,7 @@
 <div id="archiveContainer">
 <%
     NewsDataContext context = new NewsDataContext();
-    List<NewsItem> news = context.NewsItems.Select(al => al).Where(al => al.Archive.Value == true).ToList();
+    List<NewsItem> news = context.NewsItems.Select(al => al).Where(al => al.Archive.Value == true).OrderByDescending(al => al.Date).ToList();
  //   news = news.Skip(pageNumber * 4).Take(4).ToList();
 
     foreach (NewsItem item in news)

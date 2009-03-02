@@ -127,7 +127,7 @@ function loadContent(section) {
             VideoService.GetVideos(processVideos, onRetriveVideosFail);
             break;
         case "news":
-            News.GetPageCount(processNews, onRetriveNewsFail)
+            News.GetPageCount(processNews, onRetriveNewsFail);
             break;
     }
 }

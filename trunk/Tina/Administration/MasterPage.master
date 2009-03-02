@@ -1,12 +1,13 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="Administration_MasterPage" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml" >
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
-	
     <title>Untitled Page</title>
-    <link rel="Stylesheet" href="css/admin.css" />    
+    <link rel="Stylesheet" href="css/admin.css" />
+
     <script type="text/javascript" src="js/common.js"></script>
+
     <script type="text/javascript">
 		//open pop-up window
 		function openPopupWindow(sURL, iWidth, iHeight)
@@ -16,24 +17,31 @@
 			//return retval;
 		}
     </script>
+
 </head>
 <body onmousemove="getMousePosition(event);">
     <form id="form1" runat="server">
-    <asp:ScriptManager runat="server" ID="smAdmin" EnablePartialRendering="true"></asp:ScriptManager>
-    <div style="border:1px solid #969696; font-weight:bold; width:100%; float:left;">
-        <div style="float:left;">
-            <a href = "Music.aspx">Музыка</a>&nbsp;&nbsp;
-		</div>
-        <div style="float:right; padding:0px 10px;text-align:right">
-            <asp:LinkButton ID="lbSognOut" runat="server" Text="Выход" style="float:right; padding-right:10px;" OnClick="lbSognOut_Click"></asp:LinkButton>
-            <a href="javascript:openPopupWindow('ChangePassword.aspx', 400,170);" style="float:right; padding-right:10px;">Сменить пароль</a>
+    <asp:ScriptManager runat="server" ID="smAdmin" EnablePartialRendering="true">
+    </asp:ScriptManager>
+    <div style="border: 1px solid #969696; font-weight: bold; width: 100%; float: left;">
+        <div style="float: left;">
+            <a href="Music.aspx">Музыка</a>&nbsp;&nbsp; 
+            <a href="Video.aspx">Видео</a>&nbsp;&nbsp;
+            <a href="Gallery.aspx">Фото</a>&nbsp;&nbsp;
+            <a href="News.aspx">Новости</a>&nbsp;&nbsp;
+        </div>
+        <div style="float: right; padding: 0px 10px; text-align: right">
+            <asp:LinkButton ID="lbSognOut" runat="server" Text="Выход" Style="float: right; padding-right: 10px;"
+                OnClick="lbSognOut_Click"></asp:LinkButton>
+            <a href="javascript:openPopupWindow('ChangePassword.aspx', 400,170);" style="float: right;
+                padding-right: 10px;">Сменить пароль</a>
         </div>
     </div>
-    <div style="width:100%; height:auto; margin-top:2px; margin-left:0px; border:1px solid #969696; border-collapse:collapse;padding:2px; float:left;">
-        <asp:contentplaceholder id="ContentPlaceHolder1" runat="server">
-        </asp:contentplaceholder>
+    <div style="width: 100%; height: auto; margin-top: 2px; margin-left: 0px; border: 1px solid #969696;
+        border-collapse: collapse; padding: 2px; float: left;">
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        </asp:ContentPlaceHolder>
     </div>
     </form>
-
 </body>
 </html>

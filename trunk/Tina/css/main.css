@@ -60,7 +60,7 @@ body{background:black}
     position:absolute; 
     z-index:50; 
     padding-top:270px; 
-    padding-left:20px; 
+    padding-left:5px; 
     display:none;
 }
 
@@ -73,7 +73,7 @@ body{background:black}
     margin-left:-530px; 
     margin-right:10px;
     padding-left:10px; 
-    padding-top:14px; 
+    padding-top:16px; 
     color:White; 
     cursor:pointer;
     font-size:11px;
@@ -123,7 +123,7 @@ body{background:black}
 .newsText{height:54px;}
 .newsDetail{text-align:right; margin-right:10px; cursor:pointer;}
 #newsTextContainer{display:none;}
-a.ui-state-active, a.ui-state-default{display:block; height:30px; font-family:Times New Roman; font-size:22px;}
+a.ui-state-active, a.ui-state-default{display:block; height:30px; padding-top:4px; font-family:Times New Roman; font-size:18px;}
 a.ui-state-active{background: #aaa; color:Black;}
 a.ui-state-active span, a.ui-state-default span
 {
@@ -142,4 +142,5 @@ a.ui-state-default{background: #737171; color:White;}
 .ui-icon-triangle-1-s, .ui-icon-triangle-1-e{display:none !important;}
 .ui-accordion-content{background:#DEDEDE !important; padding:1em 4.3em !important;}
 .ui-accordion-content div{border-left:1px solid black; padding-left:10px;}
+hr{background:white; height:1px;}
 /*End of news related styles*/

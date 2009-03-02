@@ -23,8 +23,13 @@
     <asp:ScriptManager runat="server" ID="smAdmin" EnablePartialRendering="true"></asp:ScriptManager>
     <div style="border:1px solid #969696; font-weight:bold; width:100%; float:left;">
         <div style="float:left;">
-            <a href = "<%=WebSession.BaseUrl%>Administration/Structure.aspx">Навигация</a>&nbsp;&nbsp;
+            <%--<a href = "<%=WebSession.BaseUrl%>Administration/Pages.aspx">Навигация</a>&nbsp;&nbsp;--%>
             <a href = "<%=WebSession.BaseUrl%>Administration/Structure.aspx">Структура сайта</a>&nbsp;&nbsp;
+            <a href = "<%=WebSession.BaseUrl%>Administration/Matches.aspx">Матчи</a>&nbsp;&nbsp;
+            <a href = "<%=WebSession.BaseUrl%>Administration/Articles.aspx">Новости и команда</a>&nbsp;&nbsp;
+            <a href = "<%=WebSession.BaseUrl%>Administration/Galleries.aspx">Галереи</a>&nbsp;&nbsp;
+            <a href = "<%=WebSession.BaseUrl%>Administration/Gallery.aspx">Фото</a>&nbsp;&nbsp;
+            <a href = "<%=WebSession.BaseUrl%>Administration/Wallpapers.aspx">Обои</a>&nbsp;&nbsp;
 		</div>
         <div style="float:right; padding:0px 10px;text-align:right">
             <asp:LinkButton ID="lbSognOut" runat="server" Text="Выход" style="float:right; padding-right:10px;" OnClick="lbSognOut_Click"></asp:LinkButton>

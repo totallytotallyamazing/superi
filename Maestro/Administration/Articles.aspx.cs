@@ -3,6 +3,7 @@ using System.IO;
 using System.Web.UI.WebControls;
 using Superi.Features;
 using Superi.Common;
+using System.Data;
 
 public partial class Administration_Articles : System.Web.UI.Page
 {
@@ -31,7 +32,16 @@ public partial class Administration_Articles : System.Web.UI.Page
             id = 0;
 
         divGrids.Visible = (id > 0);
-
+        if (id == 2)
+        {
+            ReorderList1.Visible = true;
+            gwArticles.Visible = false;
+        }
+        else
+        {
+            ReorderList1.Visible = false;
+            gwArticles.Visible = true;
+        }
         foreach (ArticleScope scope in scopeList)
         {
             TreeNode node = new TreeNode(scope.Name, scope.ID.ToString());
@@ -79,6 +89,7 @@ public partial class Administration_Articles : System.Web.UI.Page
             }
             phEdit.Visible = true;
         }
+        ReorderList1.DataBind();
 
     }
     #endregion
@@ -208,6 +219,8 @@ public partial class Administration_Articles : System.Web.UI.Page
             article.Picture = fuLargePicture.Save();
         }
         article.Save();
+        phEdit.Visible = false;
+        hfArticleSelected.Value = string.Empty;
     }
 
     private void RemovePicture(string PicturePath)
@@ -236,5 +249,43 @@ public partial class Administration_Articles : System.Web.UI.Page
         int articleID = int.Parse(gwArticles.SelectedRow.Cells[0].Text);
         hfArticleSelected.Value = articleID.ToString();
     }
+    protected void ReorderList1_ItemDataBound(object sender, AjaxControlToolkit.ReorderListItemEventArgs e)
+    {
+        if (e.Item.DataItem != null)
+        {
+            DataRowView article = (DataRowView)e.Item.DataItem;
+            DataRow row = article.Row;
+            Literal lTitle = (Literal)e.Item.FindControl("lTitle");
+            LinkButton lbEdit = (LinkButton)e.Item.FindControl("lbEdit");
+            LinkButton lbDelete = (LinkButton)e.Item.FindControl("lbDelete");
+
+            lbDelete.CommandArgument = row["ID"].ToString();
+            lbEdit.CommandArgument = row["ID"].ToString();
+
+            Resource res = new Resource(Convert.ToInt32(row["TitleTextID"]));
+            if (res.Items.Count > 0)
+                lTitle.Text = res["RU"];
+            else
+                lTitle.Text = row["Alias"].ToString();
+        }
+    }
+    protected void ReorderList1_ItemCommand(object sender, AjaxControlToolkit.ReorderListCommandEventArgs e)
+    {
+        int articleId = int.Parse(e.CommandArgument.ToString());
+        Article article = new Article(articleId);
+        switch (e.CommandName)
+        {
+            case "DeleteArticle":
+                RemovePicture(article.Picture);
+                RemovePicture(article.TitlePicture);
+                article.Remove();
+                ReorderList1.DataBind();
+                break;
+            case "EditArticle":
+                hfArticleSelected.Value = articleId.ToString();
+                break;
+        }
+    }
+
     #endregion
 }

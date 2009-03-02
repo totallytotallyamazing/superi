@@ -11,7 +11,7 @@ public partial class Controls_MainMenu : System.Web.UI.UserControl
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        NavigationList list = new NavigationList(true, false);
+        NavigationList list = new NavigationList(int.MinValue, false);
         rItems.DataSource = list;
         rItems.DataBind();
     }

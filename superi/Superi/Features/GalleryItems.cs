@@ -60,6 +60,24 @@ namespace Superi.Features
 			return item.Remove();
 		}
 
+        public static bool Insert(int TitleTextId, int GalleryId)
+        {
+            GalleryItem item = new GalleryItem();
+            item.TitleTextId = TitleTextId;
+            item.GalleryID = GalleryId;
+            return item.Save();
+        }
+
+        public static bool Insert(int TitleTextId, int GalleryId, string Picture, string Preview)
+        {
+            GalleryItem item = new GalleryItem();
+            item.TitleTextId = TitleTextId;
+            item.GalleryID = GalleryId;
+            item.Picture = Picture;
+            item.Preview = Preview;
+            return item.Save();
+        }
+
 		public static bool Insert(string Title)
 		{
 			GalleryItem item = new GalleryItem();

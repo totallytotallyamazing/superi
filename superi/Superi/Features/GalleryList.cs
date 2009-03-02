@@ -15,11 +15,16 @@ namespace Superi.Features
                 DataSet ds = AppData.GetDataSet(SQL);
                 if (ds.Tables.Count > 0)
                     Load(ds.Tables[0]);
-//				DbDataReader dr = AppData.ExecQuery(SQL);
-                //if (dr != null && dr.HasRows)
-                //    Load(dr);
 			}
 		}
+
+        public GalleryList(int ParentId)
+        {
+            string SQL = "select * from Galleries where ParentId = " + ParentId + " order by EntryDate DESC";
+            DataSet ds = AppData.GetDataSet(SQL);
+            if (ds.Tables.Count > 0)
+                Load(ds.Tables[0]);
+        }
 
 		public GalleryList(DataTable dt)
 		{

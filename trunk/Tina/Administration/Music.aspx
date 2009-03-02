@@ -6,7 +6,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <asp:LinqDataSource ID="ldsSongs" runat="server" 
-        ContextTypeName="MusicDataContext" EnableDelete="True" EnableInsert="True" 
+        ContextTypeName="Musics.MusicDataContext" EnableDelete="True" EnableInsert="True" 
         TableName="Songs" Where="AlbumId == @AlbumId1">
         <WhereParameters>
             <asp:ControlParameter ControlID="DropDownList1" DefaultValue="0" 

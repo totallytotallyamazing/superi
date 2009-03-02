@@ -43,9 +43,9 @@ body{background:black}
 .currentSection{border-left:1px solid white; padding-top:0px !important; color:White !important; cursor:default; padding-left:10px;}
 #subMenu{padding:4px 22px;}
 #subMenu ul li{float:left; list-style:none; padding-right:10px;}
-.subMenuItem, .subMenuItemActive{font-size:11px; text-decoration:none;}
+.subMenuItem, .subMenuItemActive{font-size:11px; text-decoration:none; cursor:pointer;}
 .subMenuItem:hover{text-decoration:underline;}
-.subMenuItemActive{color:White;}
+.subMenuItemActive{color:White; cursor:pointer}
 #copyrigth{font-size:11px; padding-top:70px; float:left; color: #2D2D2D;}
 #administration{color:White; font-size:11px; margin-left:940px; width:65px; height:47px; padding-left:10px; position:relative; z-index:1000; top:20px; cursor:pointer;} 
 #contactsFull{display:none; background:black; text-align:center; color:White;}
@@ -73,9 +73,10 @@ body{background:black}
     margin-left:-530px; 
     margin-right:10px;
     padding-left:10px; 
-    padding-top:10px; 
+    padding-top:14px; 
     color:White; 
     cursor:pointer;
+    font-size:11px;
 }
 
 .songsPlaceHolderInverted ul li

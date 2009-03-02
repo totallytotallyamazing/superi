@@ -14,11 +14,43 @@ function processNews(response) {
     loadNews(1);
 }
 
-function loadAwards(){}
+function loadAwards() {
+    BeginRequestHandler();
+    var wRequest = new Sys.Net.WebRequest();
+    wRequest.set_url("Awards.htm");
+    wRequest.set_httpVerb("GET");
+    wRequest.set_userContext("user's context");
+    wRequest.add_completed(AwardsRequestCompleted);
+    wRequest.invoke();
+}
 
-function loadArt(){}
+function AwardsRequestCompleted(executor, eventArgs) {
+    EndRequestHandler();
+    $("#newsTextContainer").empty();
+    $(executor.get_responseData()).appendTo("#newsTextContainer");
+    $("#newsTextContainer").dialog("open");
+    $("#newsTextContainer").jScrollPane();
+}
 
-function loadPersonal(){}
+function loadArt() {
+    BeginRequestHandler();
+    var wRequest = new Sys.Net.WebRequest();
+    wRequest.set_url("Art.htm");
+    wRequest.set_httpVerb("GET");
+    wRequest.set_userContext("user's context");
+    wRequest.add_completed(AwardsRequestCompleted);
+    wRequest.invoke();
+}
+
+function loadPersonal() {
+    BeginRequestHandler();
+    var wRequest = new Sys.Net.WebRequest();
+    wRequest.set_url("Personal.htm");
+    wRequest.set_httpVerb("GET");
+    wRequest.set_userContext("user's context");
+    wRequest.add_completed(AwardsRequestCompleted);
+    wRequest.invoke();
+}
 
 function loadArchive()
 {

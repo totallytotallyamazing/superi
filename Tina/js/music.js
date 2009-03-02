@@ -35,8 +35,15 @@ function songsRetreived(response) {
     for (var i in response) {
         var name = response[i].Name;
         var source = response[i].Source;
-        $("<li path='" + source + "'>" + name + "</li>").appendTo(".songsPlaceHolder ul").animate({ marginLeft: "10px" }, 500).click(songClicked).wrap('<div style="float:left; margin-right:0px;">');
+        if (i == 7) {
+            $("<br />").appendTo(".songsPlaceHolder ul");
+            $("<li path='" + source + "'>" + name + "</li>").appendTo(".songsPlaceHolder ul").mouseover(function(el) { alert("mover"); $(el.toElement).css("text-decoration", "underline") }).mouseout(function(el) { $(el.fromElement).css("text-decoration", "none") }).animate({ marginLeft: "10px" }, 500).click(songClicked).wrap('<div style="float:left; clear:both; margin-right:0px;">');
+        }
+        else {
+            $("<li path='" + source + "'>" + name + "</li>").appendTo(".songsPlaceHolder ul").mouseover(function(el) { $(el.toElement).css("text-decoration", "underline") }).mouseout(function(el) { $(el.fromElement).css("text-decoration", "none") }).animate({ marginLeft: "10px" }, 500).click(songClicked).wrap('<div style="float:left; margin-right:0px;">');
+        }
     }
+    $("<br />").appendTo($(".songsPlaceHolder ul div").eq(5));
 }
 
 function songClicked(attrs){

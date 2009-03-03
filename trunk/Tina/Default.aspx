@@ -60,6 +60,7 @@
     </script>
         <div id="top">
             <ul id="menu">
+                <li style="font-size:0px; width:0px; height:0px; padding:0; margin:0;"></li>
                 <li image="images/music.jpg" section="music">музыка</li>
                 <li image="images/photo.jpg" section="photo">фото</li>
                 <li image="images/video.jpg" section="video">видео</li>
@@ -92,6 +93,8 @@
                 </div>
             </div>
             <div class="videoPlaceHolder">
+                <div class="videoDragHandle">
+                </div>
             </div>
             <div class="songsPlaceHolder">
                 <ul>
@@ -111,8 +114,8 @@
 
         <div id="bottom">
             <div id="footerMenu">
-                <a href="javascript:showAlbumPhoto()">фото из альбома</a> &nbsp;&nbsp; <a>видео
-                    из альбома</a>
+                <a href="javascript:showAlbumPhoto()">фото альбома</a> &nbsp;&nbsp; 
+                <a href="javascript:showAlbumVideo()">видео альбома</a>
             </div>
             <div id="copyrigth">
                 © 2009, Tina Karol, все права защищены

@@ -67,13 +67,12 @@ body{background:black}
 .songsPlaceHolder ul li
 {
     list-style:none; 
-    height:30px; 
+    height:15px; 
     background:transparent url(../images/playButton.png) center left no-repeat;  
     float:left; 
     margin-left:-530px; 
     margin-right:10px;
     padding-left:10px; 
-    padding-top:16px; 
     color:White; 
     cursor:pointer;
     font-size:11px;
@@ -98,10 +97,11 @@ body{background:black}
 {
     display:none;
     padding-top:20px;
-    background:#CCCCCC;  
     width:480px;
     position:absolute;  
+    background: black url(../images/titleLine.jpg) repeat-x; background-position: 0px 10px;
     z-index:100;
+    cursor:move;
 }
 /*End of video related styles*/
 
@@ -142,5 +142,6 @@ a.ui-state-default{background: #737171; color:White;}
 .ui-icon-triangle-1-s, .ui-icon-triangle-1-e{display:none !important;}
 .ui-accordion-content{background:#DEDEDE !important; padding:1em 4.3em !important;}
 .ui-accordion-content div{border-left:1px solid black; padding-left:10px;}
-hr{background:white; height:1px;}
+hr{background:#656565; height:1px;}
+#newsTextContainer p span, #newsTextContainer span{color:#888 !important;}
 /*End of news related styles*/

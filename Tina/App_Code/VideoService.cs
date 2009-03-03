@@ -18,10 +18,14 @@ public class VideoService : System.Web.Services.WebService
 {
 
     [WebMethod]
-    public object GetVideos()
+    public object GetVideos(int AlbumId)
     {
         VideoDataContext context = new VideoDataContext();
-        var videos = from vid in context.Videos select new { vid.Source, vid.Name, vid.Image };
+        object videos;
+        if(AlbumId==0)
+            videos = from vid in context.Videos select new { vid.Source, vid.Name, vid.Image };
+        else
+            videos = from vid in context.Videos where vid.AlbumID==AlbumId select new { vid.Source, vid.Name, vid.Image };
         return videos;
     }
 }

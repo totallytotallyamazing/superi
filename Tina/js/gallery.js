@@ -34,16 +34,22 @@ function photoAlbumsProcessed(response) {
         $.preloadImages("images/albumimages/" + response[i].Image);
         appendSubMenuItem(createMenuItem(response[i].Name + "(" + response[i].Year + ")", photoAlbumClicked).attr({ albumId: response[i].ID, image: "images/albumimages/" + response[i].PhotoImage }));
     }
-   // if (currentAlbumId > 0) {
+//    if (historyCallback) {
+//        $("[albumId='" + photoAlbumId + "'] a").toggleClass("subMenuItemActive");
+//        photoAlbumId = 0;
+//        historyCallback = false;
+//    }
+//    else
         $("[albumId='" + currentAlbumId + "'] a").toggleClass("subMenuItemActive");
-        updateSubMenuClickHandlers(photoAlbumClicked);
-    //}
+    updateSubMenuClickHandlers(photoAlbumClicked);
 }
 
 function photoAlbumClicked(attrs) {
     cleanUp();
     updateSubMenuStyles();
     $(attrs.target).attr("class", "subMenuItemActive");
+    var albumID = $(".subMenuItemActive").parent().attr("albumId");
+//    $.history({ section: "photo", albumId: 0, photoAlbumId: albumID, videoId: 0 });
     updateSubMenuClickHandlers(photoAlbumClicked);
     BeginRequestHandler();
     swapImage($(attrs.target).parent().attr("image"), photoImageSwapped);
@@ -72,16 +78,16 @@ function startGallery() {
         imageContainerSel: '#slideshow',
         controlsContainerSel: '#controls',
         captionContainerSel: '',
-        loadingContainerSel: '#loading',
-        renderSSControls: true,
-        renderNavControls: true,
+        loadingContainerSel: '',
+        renderSSControls: false,
+        renderNavControls: false,
         playLinkText: '',
         pauseLinkText: '',
         prevLinkText: '',
         nextLinkText: '',
         nextPageLinkText: '&rsaquo;',
         prevPageLinkText: '&lsaquo;',
-        enableHistory: true,
+        enableHistory: false,
         autoStart: false,
         onChange: function(prevIndex, nextIndex) {
             $('#thumbs ul.thumbs').children()

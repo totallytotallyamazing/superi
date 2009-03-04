@@ -45,7 +45,7 @@
     </script>
 
     <input type="hidden" id="ihAction" />
-    <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" SelectMethod="Get" TypeName="Books"></asp:ObjectDataSource>
+    <%--<asp:ObjectDataSource ID="ObjectDataSource1" runat="server" SelectMethod="Get" TypeName="Books"></asp:ObjectDataSource>--%>
     <div style="text-align:left;">
     <asp:UpdatePanel runat="server">
         <ContentTemplate>

@@ -101,19 +101,23 @@ namespace Superi.Features
 
         public int Save()
         {
-            ParameterList pList = new ParameterList();
-            pList.Add(new AppDbParameter("textid", TextID));
-            pList.Add(new AppDbParameter("valuepairs", ParseString(Items)));
-            pList.Add(new AppDbParameter("alias", Alias));
-
-            DbDataReader dr = AppData.ExecStoredProcedure("Resources_AddUpdate", pList);
-            if (dr != null && dr.HasRows && dr.Read())
+            string valuepaies = ParseString(Items);
+            if (!string.IsNullOrEmpty(valuepaies))
             {
-                _TextID = int.Parse(dr[0].ToString());
-                dr.Close();
+                ParameterList pList = new ParameterList();
+                pList.Add(new AppDbParameter("textid", TextID));
+                pList.Add(new AppDbParameter("valuepairs", valuepaies));
+                pList.Add(new AppDbParameter("alias", Alias));
+
+                DbDataReader dr = AppData.ExecStoredProcedure("Resources_AddUpdate", pList);
+                if (dr != null && dr.HasRows && dr.Read())
+                {
+                    _TextID = int.Parse(dr[0].ToString());
+                    dr.Close();
+                }
+                else
+                    return int.MinValue;
             }
-            else
-                return int.MinValue;
             return _TextID;
         }
 

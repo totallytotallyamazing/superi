@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Web.UI.WebControls;
 using Superi.Features;
+using Superi.Common;
 
 namespace Superi.CustomControls
 {
@@ -48,6 +49,8 @@ namespace Superi.CustomControls
         {
             base.Render(writer);
             Resource resource = new Resource(resourceId);
+            if (string.IsNullOrEmpty(Language))
+                this.Language = WebSession.Language;
             writer.Write(resource[Language]);
         }
     }

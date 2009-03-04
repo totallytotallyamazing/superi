@@ -1,6 +1,4 @@
-﻿
-
-function processAlbums(response) {
+﻿function processAlbums(response) {
     EndRequestHandler();
     for (var i in response) {
         $.preloadImages("images/albumimages/" + response[i].Image);

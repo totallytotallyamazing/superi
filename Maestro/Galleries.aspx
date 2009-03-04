@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Images.aspx.cs" Inherits="Images" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Galleries.aspx.cs" Inherits="Galleries" %>
 <%@ Import Namespace="Superi.Common" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
     <link rel="Stylesheet" href="<%= WebSession.BaseUrl + "css/articles.css" %>" />
@@ -13,8 +13,4 @@
         </div>
     </ItemTemplate>
 </asp:Repeater>
-<script type="text/javascript">
-    $(document).ready(function() { $(".player a").fancybox({ 'overlayShow': true }) });
-</script>
 </asp:Content>
-

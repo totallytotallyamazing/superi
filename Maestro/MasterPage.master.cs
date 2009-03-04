@@ -38,6 +38,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
     
     protected void Page_Init(object sender, EventArgs e)
     {
+        smMain.Services.Add(new ServiceReference(WebSession.BaseUrl + "Services/Matches.asmx"));
         lTitle.Text = Page.Title;
         if (Request.Url.AbsoluteUri.ToLower().IndexOf("default.aspx") > -1)
             WebSession.NavigationID = int.MinValue;

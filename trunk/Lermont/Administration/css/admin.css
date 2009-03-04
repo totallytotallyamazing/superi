@@ -26,8 +26,8 @@ a:hover{text-decoration:underline;}
 .editBookDescription{width:500px; background-color:White; border:1px solid #969696; text-align:left;}
 
 .book{background-color:#AFE3FF; float:left; clear:both; border:1px solid #848484; margin: 1px 0;}
-.bookName, .bookActions{float:left; padding:2px 0;}
+.articleName, .articleActions{float:left; padding:2px 0;}
 .reorderItem{border:thin transparent solid;}
-.bookName{width:400px;}
+.articleName{width:400px;}
 .dragHandle{background:#413FFF; color:Yellow; cursor:s-resize;}
 .shaded{opacity: 0.5; -moz-opacity: 0.5; filter: alpha(opacity=50); background-color:Black;}

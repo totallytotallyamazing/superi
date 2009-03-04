@@ -8,6 +8,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
+    <base href='<%= WebSession.BaseUrl %>' />
     <link rel="Stylesheet" href="<%= WebSession.BaseUrl + "css/global.css" %>" />
     <link href="<%= WebSession.BaseUrl + "css/ui.core.css"%>" rel="stylesheet" type="text/css" />
     <link href="<%= WebSession.BaseUrl + "css/ui.theme.css"%>" rel="stylesheet" type="text/css" />
@@ -43,9 +44,6 @@
 <body>
     <form id="form1" runat="server">
     <asp:ScriptManager runat="server" ID="smMain">
-        <Services>
-            <asp:ServiceReference Path="~/Services/Matches.asmx" />
-        </Services>
     </asp:ScriptManager>
 
     <script type="text/javascript">

@@ -30,6 +30,7 @@
             <a href = "<%=WebSession.BaseUrl%>Administration/Galleries.aspx">Галереи</a>&nbsp;&nbsp;
             <a href = "<%=WebSession.BaseUrl%>Administration/Gallery.aspx">Фото</a>&nbsp;&nbsp;
             <a href = "<%=WebSession.BaseUrl%>Administration/Wallpapers.aspx">Обои</a>&nbsp;&nbsp;
+            <a href = "<%=WebSession.BaseUrl%>Administration/Videos.aspx">Видео</a>&nbsp;&nbsp;
 		</div>
         <div style="float:right; padding:0px 10px;text-align:right">
             <asp:LinkButton ID="lbSognOut" runat="server" Text="Выход" style="float:right; padding-right:10px;" OnClick="lbSognOut_Click"></asp:LinkButton>

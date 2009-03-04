@@ -31,7 +31,6 @@ public class Matches : System.Web.Services.WebService
                     };
 
         return games.ToList();
-        
     }
 
 }

@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using Superi.Features;
 using Superi.Common;
 using System.Data;
+using System.Text.RegularExpressions;
 
 public partial class Controls_Players : System.Web.UI.UserControl
 {
@@ -21,13 +22,10 @@ public partial class Controls_Players : System.Web.UI.UserControl
     protected void rPlayers_ItemDataBound(object sender, RepeaterItemEventArgs e)
     {
         Article item = (Article)e.Item.DataItem;
-        //ImageButton ibPicture = (ImageButton)e.Item.FindControl("ibPicture");
         LinkButton lbPicture = (LinkButton)e.Item.FindControl("lbPicture");
         LinkButton lbName = (LinkButton)e.Item.FindControl("lbName");
         Image iPicture = (Image)e.Item.FindControl("iPicture");
         iPicture.ImageUrl = WebSession.ArticlesImagesFolder + item.TitlePicture;
-//        ibPicture.OnClientClick = "ibClientClick('" + lbName.UniqueID + "', '" + item.ID + "')";
-        //ibPicture.ImageUrl = WebSession.ArticlesImagesFolder + item.TitlePicture;
         lbName.CommandArgument = lbPicture.CommandArgument = item.ID.ToString();
         if(item.Titles.Items.Count>0)
             lbName.Text = item.Titles[WebSession.Language];
@@ -41,9 +39,17 @@ public partial class Controls_Players : System.Web.UI.UserControl
         if (!string.IsNullOrEmpty(article.Picture))
         {
             iArticlePicture.Visible = true;
-            iArticlePicture.ImageUrl = WebSession.ArticlesImagesFolder.Replace("~/", WebSession.BaseUrl) + article.Picture;
+            iArticlePicture.ImageUrl = WebSession.BaseUrl + "MakeThumbnail.aspx?loc=article&dim=500&file=" + article.Picture;
         }
         lDetails.Text = article.Descriptions[WebSession.Language];
-        lText.Text = article.ShortDescriptions[WebSession.Language];
+        string shortText = article.ShortDescriptions[WebSession.Language];
+        shortText = shortText.Replace(Environment.NewLine, "<br />");
+        Regex ex = new Regex("(?:\\A|<br />)(.*?\\:)");
+        lText.Text = ex.Replace(shortText, WrapString); 
+    }
+        
+    private static string WrapString(Match M)
+    {
+        return M.Value.Replace(M.Groups[1].Value, "<b>" + M.Groups[1] + "</b>");
     }
 }

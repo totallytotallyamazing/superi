@@ -4,6 +4,8 @@ using System.Web.UI.WebControls;
 using Superi.Features;
 using Superi.Common;
 using System.Data;
+using System.Text;
+using System.Threading;
 
 public partial class Administration_Articles : System.Web.UI.Page
 {
@@ -72,12 +74,12 @@ public partial class Administration_Articles : System.Web.UI.Page
             else
                 phLargePicture.Visible = phShort.Visible = true;
             Article article = new Article(articleID);
-            reTitle.DefaultValue = article.Title;
             reTitle.TextID = article.TitleTextID;
-            reShortDescription.DefaultValue = article.ShortDescription;
+            Trace.Write("ReTitleTextId", reTitle.TextID.ToString());
             reShortDescription.TextID = article.ShortDescriptionTextID;
-            reDescription.DefaultValue = article.Description;
+            Trace.Write("reShortDescription.TextID", reShortDescription.TextID.ToString());
             reDescription.TextID = article.DescriptionTextID;
+            Trace.Write("reDescription.TextID", reDescription.TextID.ToString());
 
             btnRemovePicture.Visible = false;
             iPicture.Visible = false;
@@ -124,7 +126,6 @@ public partial class Administration_Articles : System.Web.UI.Page
         TextBox scopeIDTextBox = (TextBox)fwNewArticle.FindControl("ScopeIDTextBox");
         string script = "document.getElementById('" + scopeIDTextBox.ClientID + "').value = " + id + ";";
         Page.ClientScript.RegisterStartupScript(GetType(), "scr", script, true);
-        //scopeIDTextBox.Text = id.ToString();
     }
 
     protected void btnAddScope_Click(object sender, EventArgs e)
@@ -192,14 +193,10 @@ public partial class Administration_Articles : System.Web.UI.Page
         else
             article = new Article();
         
-        article.Title = reTitle.DefaultValue;
-        reTitle.TextID = article.TitleTextID;
         article.TitleTextID = reTitle.Values.Save();
-        article.ShortDescription = reShortDescription.DefaultValue;
-        reShortDescription.TextID = article.ShortDescriptionTextID;
+        Thread.Sleep(500);
         article.ShortDescriptionTextID = reShortDescription.Values.Save();
-        article.Description = reDescription.DefaultValue;
-        reDescription.TextID = article.DescriptionTextID;
+        Thread.Sleep(500);
         article.DescriptionTextID = reDescription.Values.Save();
 
         string path = Server.MapPath(WebSession.ArticlesImagesFolder) + "\\";
@@ -283,6 +280,88 @@ public partial class Administration_Articles : System.Web.UI.Page
                 break;
             case "EditArticle":
                 hfArticleSelected.Value = articleId.ToString();
+                if (article.ScopeID == 2)
+                {
+                    if (article.ShortDescriptionTextID < 0)
+                    {
+                        Resource res = new Resource();
+                        StringBuilder sbRU = new StringBuilder();
+                        sbRU.Append ("Полное имя: ");
+                        sbRU.Append(Environment.NewLine);
+                        sbRU.Append ("Дата рождения: ");
+                        sbRU.Append(Environment.NewLine);
+                        sbRU.Append ("Место рождения: ");
+                        sbRU.Append(Environment.NewLine);
+                        sbRU.Append ("Игровая позиция: ");
+                        sbRU.Append(Environment.NewLine);
+                        sbRU.Append ("Игровой номер: ");
+                        sbRU.Append(Environment.NewLine);
+                        sbRU.Append ("Образование: ");
+                        sbRU.Append(Environment.NewLine);
+                        sbRU.Append ("Род деятельности: ");
+                        sbRU.Append(Environment.NewLine);
+                        sbRU.Append ("Рост(см): ");
+                        sbRU.Append(Environment.NewLine);
+                        sbRU.Append ("Вес(кг): ");
+                        sbRU.Append(Environment.NewLine);
+                        sbRU.Append ("Сыгранно матчей: ");
+                        sbRU.Append(Environment.NewLine);
+                        sbRU.Append ("Забитых голов: ");
+
+                        StringBuilder sbUA = new StringBuilder();
+                        sbUA.Append("Повне iм'я: ");
+                        sbUA.Append(Environment.NewLine);
+                        sbUA.Append("Дата народження: ");
+                        sbUA.Append(Environment.NewLine);
+                        sbUA.Append("Мiсце народження: ");
+                        sbUA.Append(Environment.NewLine);
+                        sbUA.Append("Iгрова позицiя: ");
+                        sbUA.Append(Environment.NewLine);
+                        sbUA.Append("Iгровий номер: ");
+                        sbUA.Append(Environment.NewLine);
+                        sbUA.Append("Освiта: ");
+                        sbUA.Append(Environment.NewLine);
+                        sbUA.Append("Вид дiяльностi: ");
+                        sbUA.Append(Environment.NewLine);
+                        sbUA.Append("Рiст(см): ");
+                        sbUA.Append(Environment.NewLine);
+                        sbUA.Append("Вага(кг): ");
+                        sbUA.Append(Environment.NewLine);
+                        sbUA.Append("Зiграно матчiв: ");
+                        sbUA.Append(Environment.NewLine);
+                        sbUA.Append("Голiв забито: ");
+                        
+                        StringBuilder sbEN = new StringBuilder();
+                        sbEN.Append("Full Name: ");
+                        sbEN.Append(Environment.NewLine);
+                        sbEN.Append("Birth Date: ");
+                        sbEN.Append(Environment.NewLine);
+                        sbEN.Append("Place of Birth: ");
+                        sbEN.Append(Environment.NewLine);
+                        sbEN.Append("Paying position: ");
+                        sbEN.Append(Environment.NewLine);
+                        sbEN.Append("Palyer number: ");
+                        sbEN.Append(Environment.NewLine);
+                        sbEN.Append("Education: ");
+                        sbEN.Append(Environment.NewLine);
+                        sbEN.Append("Occupation: ");
+                        sbEN.Append(Environment.NewLine);
+                        sbEN.Append("Height(см): ");
+                        sbEN.Append(Environment.NewLine);
+                        sbEN.Append("Weight(кг): ");
+                        sbEN.Append(Environment.NewLine);
+                        sbEN.Append("Games played: ");
+                        sbEN.Append(Environment.NewLine);
+                        sbEN.Append("Goals: ");
+
+                        res.Items.Add("RU", sbRU.ToString());
+                        res.Items.Add("UA", sbUA.ToString());
+                        res.Items.Add("EN", sbEN.ToString());
+
+                        article.ShortDescriptionTextID = res.Save();
+                        article.Save();
+                    }
+                }
                 break;
         }
     }

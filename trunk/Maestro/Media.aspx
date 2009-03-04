@@ -14,19 +14,19 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="content" Runat="Server">
     <div id="mediaContainer">
         <div id="photo" class="photo">
-            <a href="<%= WebSession.BaseUrl %>media/photo">
+            <a href="<%= WebSession.BaseUrl %>multimedia/photo">
                 <img src="Images/photoGallery.jpg" alt="photo" /><br />
                 <superi:ResourceLabel runat="server" ResourceName="photo"></superi:ResourceLabel>
             </a>
         </div>
         <div id="wallpaper" class="wallpaper">
-            <a href="<%= WebSession.BaseUrl %>media/wallpaper">
+            <a href="<%= WebSession.BaseUrl %>multimedia/images">
                 <img src="Images/wallpaper.jpg" alt="wallpaper" /><br />
                 <superi:ResourceLabel runat="server" ResourceName="wallpapers"></superi:ResourceLabel>
             </a>
         </div>
         <div id="video" class="video">
-            <a href="<%= WebSession.BaseUrl %>media/video">
+            <a href="<%= WebSession.BaseUrl %>multimedia/video">
                 <img src="Images/video.jpg" alt="video" /><br />
                 <superi:ResourceLabel runat="server" ResourceName="video"></superi:ResourceLabel>
             </a>

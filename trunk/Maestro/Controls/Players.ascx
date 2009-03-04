@@ -17,6 +17,14 @@
         __doPostBack(eventTarget, eventArgument);
         return false;
     }
+
+    $(document).keyup(keyUp);
+
+    function keyUp(eventObj) {
+        if (eventObj.keyCode == 27) {
+            $find("<%= mpeDetails.ClientID %>").hide();
+        }
+    }
 </script>
 
 <asp:Repeater runat="server" ID="rPlayers" 
@@ -51,7 +59,8 @@
             <div class="articleInner">
                 <asp:Image runat="server" ID="iArticlePicture" CssClass="articleDetailPicture" />
                     <asp:Literal ID="lText" runat="server"></asp:Literal>
-                <div style="clear:both">
+                <div>
+                    <hr style="color:#12277F; height:2px; background:#12277F; margin:5px 0;" />
                     <asp:Literal ID="lDetails" runat="server"></asp:Literal>    
                 </div>
             </div>

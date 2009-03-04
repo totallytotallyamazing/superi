@@ -21,6 +21,7 @@ public partial class Controls_Matches : System.Web.UI.UserControl
                         Date = gms.Date, 
                         Logo = gms.Team.Logo
                     };
+
         rMatches.DataSource = games;
         rMatches.DataBind();
     }

@@ -32,15 +32,15 @@ function BeginRequestHandler() {
     $("html, body").css("overflow", "hidden")
     var vpWidth = $("body").width();
     var vpHeight = $("body").height();
-    $(".myShadow").css("left", Math.floor(vpWidth / 2 - 60)).css("top", Math.floor(vpHeight / 2 - 30)).css("display", "block");
-    $("#loadingSign").css("left", Math.floor(vpWidth / 2 - 50)).css("top", Math.floor(vpHeight / 2 - 20)).css("display", "block");
+   // $(".myShadow").css("left", Math.floor(vpWidth / 2 - 60)).css("top", Math.floor(vpHeight / 2 - 30)).css("display", "block");
+    $("#loadingSign").css("left", Math.floor(vpWidth / 2 - 16)).css("top", Math.floor(vpHeight / 2 - 16)).css("display", "block");
     $("#loading").css("display", "block");
 }
 
 function EndRequestHandler() {
     $("html, body").css("overflow", "");
     $("#loadingContainer").css("display", "none");
-    $(".myShadow").css("display", "none");
+   // $(".myShadow").css("display", "none");
     $("#loadingSign").css("display", "none");
     $("#loading").css("display", "none");
 }

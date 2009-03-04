@@ -44,13 +44,9 @@
     </asp:ScriptManager>
     <div id="loadingContainer">
         <div id="loading">
-        
-        </div>
-        <div class="myShadow" style="width:120px; height:60px; display:block;">
-
-        </div>
-        <div id="loadingSign" style="background:black; width:100px; display:block; height:30px; color:White; position:absolute; z-index:10002; text-align:center; padding-top:10px;">
-            загрузка...
+            <div id="loadingSign" style="background:transparent; width:32px; display:block; height:32px; position:absolute; z-index:10002; text-align:center; padding-top:10px;">
+                <img src="Images/ajaxLoader.gif" alt="Загрузка..." />
+            </div>
         </div>
     </div>
 
@@ -118,6 +114,7 @@
                 <a href="javascript:showAlbumVideo()">видео альбома</a>
             </div>
             <div id="copyrigth">
+                <a href="mailto:al@akula.com.ua" ><img src="Images/akula.jpg" /></a>
                 © 2009, Tina Karol, все права защищены
             </div>
             <div id="administration" onclick="openContacts()">

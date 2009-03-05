@@ -49,7 +49,6 @@ public partial class Administration_Controls_TextEditor : System.Web.UI.UserCont
         {
             Text text = new Text(TextId);
             reText.TextID = text.TextID;
-            reText.DefaultValue = text.Value;
             if(DisplayTitle)
                 reName.TextID = text.NameTextId;
         }
@@ -61,7 +60,6 @@ public partial class Administration_Controls_TextEditor : System.Web.UI.UserCont
         {
             Text text = new Text(TextId);
             reText.TextID = text.TextID;
-            reText.DefaultValue = text.Value;
             if(DisplayTitle)
                 reName.TextID = text.NameTextId;
         }
@@ -81,8 +79,6 @@ public partial class Administration_Controls_TextEditor : System.Web.UI.UserCont
         if (TextId > 0)
         {
             Text text = new Text(TextId);
-            reText.TextID = text.TextID;
-            text.Value = reText.DefaultValue;
             text.TextID = reText.Values.Save();
             if(DisplayTitle)
                 text.NameTextId = reName.Values.Save();

@@ -2,17 +2,17 @@
 body{background-color:Black;}
 hr{background-color:White;  margin:10px 0px; height:1px;}
 a {color:#6C7EB4;}
-a:hover{color:White;}
+a:hover{color:Black;}
 
 #main{width:1024px; float:left; position:absolute; left:50%; margin-left:-512px; clear:both; background:#0e2c84 url("../images/mainBg.jpg") no-repeat}
 #mainTop{width:1024px; height:109px; float:left; clear:both}
 #title{ float:left;text-transform:uppercase; font-size:18px;overflow:hidden; text-align:center; padding-top:5px; width:268px;}
 #middle{float:left; clear:both; width:1024px;}
 #leftSide{width:270px; height:500px; float:left;}
-#contentContainer{padding-left:12px; padding-top:12px; min-height:500px; float:left;  font-size:14px; background:transparent url("../images/centerBg.jpg") bottom right no-repeat; color:White;}
+#contentContainer{padding-left:16px; padding-top:12px; min-height:500px; float:left;  font-size:14px; width:664px; background:white;/*transparent url("../images/centerBg.jpg") bottom right no-repeat;*/ color:Black;}
 #rightSide{float:left;}
 #footer{width:100%; height:126px; background:transparent url("../images/footer.jpg") no-repeat; float:left; clear:both;}
-#textDiv{float:left;width:668px;}
+#textDiv{float:left;width:650px;}
 #textDiv ol{padding-left:30px;}
 
 #langsDiv{clear:both; padding-left:15px; padding-top:70px; width:232px; height:56px; float:left;}

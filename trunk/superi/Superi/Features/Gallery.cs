@@ -168,6 +168,8 @@ namespace Superi.Features
 			bool result;
 			if (ID > 0)
 			{
+                Titles.Remove();
+                SubTitles.Remove();
                 ParameterList pList = new ParameterList();
                 pList.Add(new AppDbParameter("id", ID));
                 AppData.ExecStoredProcedure("Galleries_Delete", pList);

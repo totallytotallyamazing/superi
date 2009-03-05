@@ -42,6 +42,11 @@ namespace Superi.Features
             set { nameTextId = value; }
         }
 
+        public Resource Names
+        {
+            get { return new Resource(nameTextId); }
+        }
+
         public int TypeId
         {
             get { return typeId; }
@@ -72,6 +77,11 @@ namespace Superi.Features
             set { shortDescriptionTextId = value; }
         }
 
+        public Resource ShortDescriptions
+        {
+            get { return new Resource(shortDescriptionTextId); }
+        }
+
         public string Description
         {
             get { return description; }
@@ -82,6 +92,11 @@ namespace Superi.Features
         {
             get { return descriptionTextId; }
             set { descriptionTextId = value; }
+        }
+
+        public Resource Descriptions
+        {
+            get { return new Resource(descriptionTextId); }
         }
 
         public DateTime? StartDate
@@ -212,6 +227,9 @@ namespace Superi.Features
             bool result = true;
             if (id > 0)
             {
+                Descriptions.Remove();
+                Names.Remove();
+                ShortDescriptions.Remove();
                 ParameterList pList = new ParameterList();
                 pList.Add(new AppDbParameter("id", id));
                 AppData.ExecStoredProcedure("Events_Delete", pList);

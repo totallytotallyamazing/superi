@@ -239,6 +239,9 @@ namespace Superi.Features
 			bool result;
 			if (ID > 0)
 			{
+                ShortDescriptions.Remove();
+                Descriptions.Remove();
+                Titles.Remove();
 				string sql = "delete from Articles where id=" + ID;
 				result = AppData.ExecNonQuery(sql);
 			}

@@ -57,11 +57,8 @@ public partial class Administration_Articles : System.Web.UI.Page
         {
             phEdit.Visible = true;
             Article article = new Article(articleID);
-            reTitle.DefaultValue = article.Title;
             reTitle.TextID = article.TitleTextID;
-            reShortDescription.DefaultValue = article.ShortDescription;
             reShortDescription.TextID = article.ShortDescriptionTextID;
-            reDescription.DefaultValue = article.Description;
             reDescription.TextID = article.DescriptionTextID;
 
             btnRemovePicture.Visible = false;
@@ -176,14 +173,8 @@ public partial class Administration_Articles : System.Web.UI.Page
         else
             article = new Article();
         
-        article.Title = reTitle.DefaultValue;
-        reTitle.TextID = article.TitleTextID;
         article.TitleTextID = reTitle.Values.Save();
-        article.ShortDescription = reShortDescription.DefaultValue;
-        reShortDescription.TextID = article.ShortDescriptionTextID;
         article.ShortDescriptionTextID = reShortDescription.Values.Save();
-        article.Description = reDescription.DefaultValue;
-        reDescription.TextID = article.DescriptionTextID;
         article.DescriptionTextID = reDescription.Values.Save();
 
         string path = Server.MapPath(WebSession.ArticlesImagesFolder) + "\\";

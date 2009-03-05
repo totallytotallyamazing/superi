@@ -225,7 +225,6 @@ public partial class Administration_Pages : Page
             tbText.Text = navigation.Text;
             if (navigation.NameTextID > 0)
                 reNames.TextID = navigation.NameTextID;
-            reNames.DefaultValue = navigation.Text;
             rbArticles.Checked = false;
             rbPage.Checked = false;
             rbProductGroup.Checked = false;
@@ -312,7 +311,6 @@ public partial class Administration_Pages : Page
 		else
 			navigationList = new NavigationList(true);
 		Navigation navigationPrevious = null;
-
 		foreach (Navigation navigationItem in navigationList)
 		{
 			if (navigationItem.ID == navigation.ID)

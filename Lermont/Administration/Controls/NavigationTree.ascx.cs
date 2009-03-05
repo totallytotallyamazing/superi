@@ -33,11 +33,8 @@ public partial class Administration_Controls_NavigationTree : System.Web.UI.User
         {
             int id;
             if (!int.TryParse(ihNodeID.Value, out id))
-                id = 0;
+                id = int.MinValue;
             return id;
-
-            
-            
         }
     }
 
@@ -58,26 +55,26 @@ public partial class Administration_Controls_NavigationTree : System.Web.UI.User
     protected void Page_PreRender(object sender, EventArgs e)
     {
         ReloadNodes();
+        if (CurrentNavigationID < 0)
+        {
+            ibProperties.ImageUrl = "~/Administration/Images/inactiveProperties.jpg";
+            ibProperties.Enabled = false;
+        }
+        else
+        {
+            ibProperties.ImageUrl = "~/Administration/Images/properties.jpg";
+            ibProperties.Enabled = true;
+        }
     }
 
     public void ReloadNodes()
     {
         twPages.Nodes.Clear();
         TreeNode node = new TreeNode(WebSession.BaseUrl, int.MinValue.ToString());
-        //NavigationList navigationList = new NavigationList(int.MinValue);
+        if(CurrentNavigationID == int.MinValue)
+            node.ImageUrl = "~/Administration/Images/arrow_on_white.gif";
         twPages.Nodes.Add(node);
         ProcessNode(int.MinValue, node);
-        //foreach (Navigation navigation in navigationList)
-        //{
-        //    TreeNode node = new TreeNode(navigation.Name, navigation.ID.ToString());
-        //    twPages.Nodes.Add(node);
-        //    if (navigation.ID == CurrentNavigationID)
-        //        node.ImageUrl = "~/Administration/Images/arrow_on_white.gif";
-        //    else
-        //        node.ImageUrl = "~/Administration/Images/blank7.jpg";
-        //    if (navigation.Children.Count > 0)
-        //        ProcessNode(navigation, node);
-        //}
         twPages.ExpandAll();
     }
 
@@ -101,7 +98,76 @@ public partial class Administration_Controls_NavigationTree : System.Web.UI.User
     {
         ihNodeID.Value = twPages.SelectedValue;
         SelectedIndex = CurrentNavigationID;
-
         OnSelectecIndexChanged(new EventArgs());
+    }
+
+
+    protected void MoveNavigationUp(object sender, ImageClickEventArgs e)
+    {
+        Navigation navigation = new Navigation(CurrentNavigationID);
+        NavigationList navigationList;
+        if (navigation.ParentID > 0)
+            navigationList = new NavigationList(navigation.ParentID);
+        else
+            navigationList = new NavigationList(true);
+        Navigation navigationPrevious = null;
+        foreach (Navigation navigationItem in navigationList)
+        {
+            if (navigationItem.ID == navigation.ID)
+                break;
+            navigationPrevious = navigationItem;
+        }
+
+        if (navigationPrevious != null)
+        {
+            navigation.SortOrder += navigationPrevious.SortOrder;
+            navigationPrevious.SortOrder = navigation.SortOrder - navigationPrevious.SortOrder;
+            navigation.SortOrder -= navigationPrevious.SortOrder;
+            navigation.Save();
+            navigationPrevious.Save();
+        }
+    }
+
+    protected void MoveNavigationDown(object sender, ImageClickEventArgs e)
+    {
+        Navigation navigation = new Navigation(CurrentNavigationID);
+        NavigationList navigationList;
+        if (navigation.ParentID > 0)
+            navigationList = new NavigationList(navigation.ParentID);
+        else
+            navigationList = new NavigationList(true);
+        Navigation navigationNext = null;
+
+        bool next = false;
+        foreach (Navigation navigationItem in navigationList)
+        {
+            if (next)
+            {
+                navigationNext = navigationItem;
+                break;
+            }
+            if (navigationItem.ID == navigation.ID)
+                next = true;
+        }
+
+        if (navigationNext != null)
+        {
+            navigation.SortOrder += navigationNext.SortOrder;
+            navigationNext.SortOrder = navigation.SortOrder - navigationNext.SortOrder;
+            navigation.SortOrder -= navigationNext.SortOrder;
+            navigation.Save();
+            navigationNext.Save();
+        }
+    }
+
+
+    protected void MoveToParent(object sender, ImageClickEventArgs e)
+    {
+
+    }
+
+    protected void MakeChildOfPrevious(object sender, ImageClickEventArgs e)
+    {
+
     }
 }

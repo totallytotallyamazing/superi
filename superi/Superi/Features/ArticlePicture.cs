@@ -131,6 +131,7 @@ namespace Superi.Features
 			bool result = true;
 			if (id > 0)
 			{
+                Descriptions.Remove();
                 ParameterList parameterList = new ParameterList();
                 parameterList.Add(new AppDbParameter("id", id));
 			    AppData.ExecStoredProcedure("ArticlePictures_Delete", parameterList);

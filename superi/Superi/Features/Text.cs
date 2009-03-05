@@ -153,6 +153,8 @@ namespace Superi.Features
 			bool result;
 			if (ID > 0)
 			{
+                Names.Remove();
+                TextResource.Remove();
 				string sql = "delete from Texts	 where id=" + ID;
 				result = AppData.ExecNonQuery(sql);
 			}

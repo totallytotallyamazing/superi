@@ -320,6 +320,8 @@ namespace Superi.Features
 			}
 			if (ID > 0)
 			{
+                this.Texts.Remove();
+                AdditionalTitles.Remove();
                 ParameterList pList = new ParameterList();
                 pList.Add(new AppDbParameter("id", ID));
                 AppData.ExecStoredProcedure("Navigation_Delete", pList);

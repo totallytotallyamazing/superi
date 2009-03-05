@@ -46,5 +46,15 @@ namespace Superi.Features
             item.ScopeID = ScopeID;
 			return item.Save();
 		}
+
+        public static bool Insert(string Alias, string Title, int ScopeID, int TitleTextID)
+        {
+            Article item = new Article();
+            item.Alias = Alias;
+            item.Title = Title;
+            item.ScopeID = ScopeID;
+            item.TitleTextID = TitleTextID;
+            return item.Save();
+        }
     }
 }

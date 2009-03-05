@@ -69,6 +69,9 @@ namespace Superi.CustomControls
         }
 
         #region Public properties
+        /// <summary>
+        /// Teh tepe of input (SingleLine, MultiLine, RichText)
+        /// </summary>
         public ResourceEditorType Type
         {
             get 
@@ -84,6 +87,10 @@ namespace Superi.CustomControls
                 _Type = value; 
             }
         }
+
+        /// <summary>
+        /// The resource ID to get from DB
+        /// </summary>
         public int TextID
         {
             get 
@@ -100,11 +107,13 @@ namespace Superi.CustomControls
             }
         }
 
+        /// <summary>
+        /// Returns TextID afert resource is saved
+        /// </summary>
         public int ResourceId
         {
             set 
             {
-                ViewState["ResourceId"] = value;
                 _TextID = value;
             }
             get

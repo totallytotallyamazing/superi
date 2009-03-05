@@ -49,9 +49,12 @@ namespace Superi.CustomControls
         {
             base.Render(writer);
             Resource resource = new Resource(resourceId);
-            if (string.IsNullOrEmpty(Language))
-                this.Language = WebSession.Language;
-            writer.Write(resource[Language]);
+            if (resource.TextID > 0)
+            {
+                if (string.IsNullOrEmpty(Language))
+                    this.Language = WebSession.Language;
+                writer.Write(resource[Language]);
+            }
         }
     }
 }

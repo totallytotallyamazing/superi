@@ -51,7 +51,7 @@ namespace Superi.CustomControls
         "}";
 
         private int _TextID = int.MinValue;
-        private Resource _Values = new Resource();
+        public Resource _Values = new Resource();
         private LanguageList _LanguageList = new LanguageList(true);
         private ResourceEditorType _Type = ResourceEditorType.SingleLine;
         private int richHeight = 0;

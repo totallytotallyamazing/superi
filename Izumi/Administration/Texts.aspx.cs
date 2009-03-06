@@ -16,9 +16,8 @@ public partial class Administration_Texts : Page
 		if (textID > 0)
 		{
 			Text text = new Text(textID);
-            text.Value = reText.DefaultValue;
-            text.TextID = reText.Values.Save();
-            text.NameTextId = reName.Values.Save();
+            text.TextID = reText.ResourceId;
+            text.NameTextId = reName.ResourceId;
             text.Save();
 			phEdit.Visible = true;
 		}
@@ -44,7 +43,6 @@ public partial class Administration_Texts : Page
 		{
 			Text text = new Text(textID);
             reText.TextID = text.TextID;
-            reText.DefaultValue = text.Value;
             reName.TextID = text.NameTextId;
             phEdit.Visible = true;
 		}

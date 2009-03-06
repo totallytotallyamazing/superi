@@ -208,7 +208,6 @@ public partial class Administration_SEO : Page
             tbText.Text = navigation.Text;
             if (navigation.NameTextID > 0)
                 reNames.TextID = navigation.NameTextID;
-            reNames.DefaultValue = navigation.Text;
             reAdditionalTitle.TextID = navigation.AdditionalTitleTextId;
             rbArticles.Checked = false;
             rbPage.Checked = false;

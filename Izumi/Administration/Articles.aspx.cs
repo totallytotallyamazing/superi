@@ -56,11 +56,8 @@ public partial class Administration_Articles : System.Web.UI.Page
         {
             phEdit.Visible = true;
             Article article = new Article(articleID);
-            reTitle.DefaultValue = article.Title;
             reTitle.TextID = article.TitleTextID;
-            reShortDescription.DefaultValue = article.ShortDescription;
             reShortDescription.TextID = article.ShortDescriptionTextID;
-            reDescription.DefaultValue = article.Description;
             reDescription.TextID = article.DescriptionTextID;
 
             btnRemovePicture.Visible = false;
@@ -175,15 +172,12 @@ public partial class Administration_Articles : System.Web.UI.Page
         else
             article = new Article();
         
-        article.Title = reTitle.DefaultValue;
         reTitle.TextID = article.TitleTextID;
-        article.TitleTextID = reTitle.Values.Save();
-        article.ShortDescription = reShortDescription.DefaultValue;
+        article.TitleTextID = reTitle.ResourceId;
         reShortDescription.TextID = article.ShortDescriptionTextID;
-        article.ShortDescriptionTextID = reShortDescription.Values.Save();
-        article.Description = reDescription.DefaultValue;
+        article.ShortDescriptionTextID = reShortDescription.ResourceId;
         reDescription.TextID = article.DescriptionTextID;
-        article.DescriptionTextID = reDescription.Values.Save();
+        article.DescriptionTextID = reDescription.ResourceId;
 
         string path = Server.MapPath(DefaultValues.ArticlesImagesFolder) + "\\";
         if (fuPicture.HasFile)

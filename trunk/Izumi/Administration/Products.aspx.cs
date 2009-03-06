@@ -121,7 +121,6 @@ public partial class Administration_Products : System.Web.UI.Page
         {
             phEdit.Visible = true;
             Product product = new Product(groupID);
-            reName.DefaultValue = product.Name;
             reName.TextID = product.NameTextID;
 
             btnRemovePicture.Visible = false;

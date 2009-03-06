@@ -225,7 +225,6 @@ public partial class Administration_Pages : Page
             tbText.Text = navigation.Text;
             if (navigation.NameTextID > 0)
                 reNames.TextID = navigation.NameTextID;
-            reNames.DefaultValue = navigation.Text;
             rbArticles.Checked = false;
             rbPage.Checked = false;
             rbProductGroup.Checked = false;

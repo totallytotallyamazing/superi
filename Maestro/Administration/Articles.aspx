@@ -13,7 +13,8 @@
                 return true;
             else
                 return false;
-        }   
+        }
+        //alert("Пожалуйста не трогайте новости (Игроков можно). Когда новости будут готовы, это сообщение появляться не будет");
     </script>
 
     <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" DeleteMethod="Delete"
@@ -35,6 +36,7 @@
             <asp:Parameter Name="Alias" Type="String" />
             <asp:Parameter Name="Title" Type="String" />
             <asp:Parameter Name="ScopeID" Type="Int32" />
+            <asp:Parameter Name="TitleTextID" Type="Int32" />
         </InsertParameters>
     </asp:ObjectDataSource>
     <asp:HiddenField runat="server" ID="ihNodeID" />
@@ -79,12 +81,15 @@
                     <asp:GridView ID="gwArticles" runat="server" DataKeyNames="ID" AutoGenerateColumns="False"
                         DataSourceID="ObjectDataSource1" OnSelectedIndexChanged="gwArticles_SelectedIndexChanged">
                         <Columns>
-                            <asp:BoundField DataField="ID" HeaderText="ID" ReadOnly="True" SortExpression="ID" />
-                            <asp:BoundField DataField="Title" HeaderText="Title" SortExpression="Title" />
-                            <asp:BoundField DataField="Alias" HeaderText="Alias" SortExpression="Alias" />
-                            <asp:CommandField ShowEditButton="True" />
-                            <asp:CommandField ShowSelectButton="True" />
-                            <asp:CommandField ShowDeleteButton="True" />
+                            <asp:BoundField DataField="ID" HeaderText="#" SortExpression="ID" />
+                            <asp:TemplateField HeaderText="Заголовок" SortExpression="Title">
+                                <ItemTemplate>
+                                    <Controls:ResourceWritter ID="ResourceWritter1" runat="server" Language="RU" 
+                                        ResourceId='<%# Eval("TitleTextID") %>' />
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:CommandField SelectText="Редактировать" ShowSelectButton="True" />
+                            <asp:CommandField DeleteText="Удалить" ShowDeleteButton="True" />
                         </Columns>
                     </asp:GridView>
                     <%--                    <asp:UpdatePanel runat="server">
@@ -125,12 +130,16 @@
                                 <asp:TextBox ID="TitleTextBox" runat="server" Text='<%# Bind("Title") %>'>
                                 </asp:TextBox><br />
                             </div>
-                            Идентификатор:
-                            <asp:TextBox ID="AliasTextBox" runat="server" Text='<%# Bind("Alias") %>'>
-                            </asp:TextBox><br />
-                            <div style="display: none;">
-                                <asp:TextBox ID="ScopeIDTextBox" runat="server" Text='<%# Bind("ScopeID")%>'></asp:TextBox>
+                            <div style="display:none"> 
+                                Идентификатор:
+                                <asp:TextBox ID="AliasTextBox" runat="server" Text='<%# Bind("Alias") %>'>
+                                </asp:TextBox><br />
+                                <div style="display: none;">
+                                    <asp:TextBox ID="ScopeIDTextBox" runat="server" Text='<%# Bind("ScopeID")%>'></asp:TextBox>
+                                </div>
                             </div>
+                            Имя игрока / Заголовок новости:
+                            <Controls:ResourceEditor runat="server" ID="reTitle" ResourceId='<%# Bind("TitleTextID") %>' />
                             <asp:LinkButton ID="InsertButton" runat="server" CausesValidation="True" CommandName="Insert"
                                 Text="Добавить">
                             </asp:LinkButton>
@@ -142,7 +151,11 @@
                     <asp:PlaceHolder runat="server" ID="phEdit">Заголовок:
                         <Controls:ResourceEditor runat="server" ID="reTitle">
                         </Controls:ResourceEditor>
-                        <asp:PlaceHolder runat="server" ID="phShort">Краткое описание:
+                        <asp:PlaceHolder runat="server" ID="phShort">
+                            Дата: <asp:TextBox runat="server" ID="tbDate"></asp:TextBox>
+                            <cc1:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="tbDate" Format="dd.MM.yyyy">
+                            </cc1:CalendarExtender>
+                            Краткое описание:
                             <Controls:ResourceEditor runat="server" Type="MultiLine" ID="reShortDescription">
                             </Controls:ResourceEditor>
                         </asp:PlaceHolder>

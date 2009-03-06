@@ -59,8 +59,8 @@
             <div class="articleInner">
                 <asp:Image runat="server" ID="iArticlePicture" CssClass="articleDetailPicture" />
                     <asp:Literal ID="lText" runat="server"></asp:Literal>
-                <div>
-                    <hr style="color:#12277F; height:2px; background:#12277F; margin:5px 0;" />
+                <div style="color:#233A90">
+                    <hr style="margin:5px 0;" />
                     <asp:Literal ID="lDetails" runat="server"></asp:Literal>    
                 </div>
             </div>

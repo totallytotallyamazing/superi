@@ -17,7 +17,7 @@
 
 
 .articleInner{background:white; padding:20px; width:800px; height:500px; overflow:auto;}
-
+.articleInner b{color:#12277F;}
 .articleClose
 {
     /*cursor:pointer;*/

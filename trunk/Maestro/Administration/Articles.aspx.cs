@@ -6,6 +6,7 @@ using Superi.Common;
 using System.Data;
 using System.Text;
 using System.Threading;
+using System.Globalization;
 
 public partial class Administration_Articles : System.Web.UI.Page
 {
@@ -92,6 +93,7 @@ public partial class Administration_Articles : System.Web.UI.Page
             phEdit.Visible = true;
         }
         ReorderList1.DataBind();
+        gwArticles.DataBind();
 
     }
     #endregion
@@ -214,6 +216,11 @@ public partial class Administration_Articles : System.Web.UI.Page
             if (!string.IsNullOrEmpty(article.Picture))
                 RemovePicture(article.Picture);
             article.Picture = fuLargePicture.Save();
+        }
+        if (!string.IsNullOrEmpty(tbDate.Text))
+        {
+            CultureInfo culture = CultureInfo.GetCultureInfo("ru-RU");
+            article.EntryDate = DateTime.Parse(tbDate.Text, culture);
         }
         article.Save();
         phEdit.Visible = false;

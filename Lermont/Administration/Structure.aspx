@@ -19,7 +19,6 @@
 <%--            <admin:GalleryEditor runat="server" ID="geObjects" />--%>
         </asp:PlaceHolder>
         <asp:Button ID="btnSave" runat="server" OnClick="btnSave_Click" Text="Сохранить" />
-        
     </div>
 </asp:Content>
 

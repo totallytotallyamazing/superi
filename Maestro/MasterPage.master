@@ -123,8 +123,8 @@
             <div id="gamesContainer">
                 <m:Matches runat="server" />
 
-                <div id="gameArchive">
-                    <cc1:ResourceLabel runat="server" ResourceName="gameArchive" style="position:relative; z-index:1000; top:13px; font-size:12px; color:#CD8181;"></cc1:ResourceLabel>
+                <div id="gameArchive" style="border-top:2px solid #f3e0e2; margin-top:3px">
+                    <cc1:ResourceLabel runat="server" ResourceName="gameArchive" style="font-size:16px; font-weight:bold; color:#992226;"></cc1:ResourceLabel>
                 </div>
                 <div style="display: none" id="toolTip">
                     <div class="matchPlayed" style="margin:0;">

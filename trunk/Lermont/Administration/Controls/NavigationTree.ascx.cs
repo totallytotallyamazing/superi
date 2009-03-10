@@ -170,4 +170,10 @@ public partial class Administration_Controls_NavigationTree : System.Web.UI.User
     {
 
     }
+
+    protected void InitNavigationPopUp(object sender, ImageClickEventArgs e)
+    {
+        aeNav.NavigationID = CurrentNavigationID;
+        ScriptManager.RegisterStartupScript(Page, this.GetType(), "showProps", "showNavigationPropterties()", true);
+    }
 }

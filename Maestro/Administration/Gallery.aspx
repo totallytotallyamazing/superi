@@ -32,7 +32,7 @@
                         ResourceId='<%# Eval("TitleTextId") %>' />
                 </ItemTemplate>
                 <EditItemTemplate>
-                    <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("TitleTextId") %>'></asp:TextBox>
+                    <cc1:ResourceEditor ResourceId='<%# Bind("TitleTextId") %>' ID="ResourceEditor1" runat="server"/>
                 </EditItemTemplate>
             </asp:TemplateField>
             <asp:TemplateField HeaderText="Привью">
@@ -41,7 +41,9 @@
                         ImageUrl='<%# Eval("Preview", "~/Images/Gallery/{0}") %>' />
                 </ItemTemplate>
             </asp:TemplateField>
-            <asp:CommandField DeleteText="Удалить" ShowDeleteButton="True" />
+            <asp:CommandField DeleteText="Удалить" ShowDeleteButton="True" 
+                CancelText="Отмена" EditText="Редактировать" ShowEditButton="True" 
+                UpdateText="Сохранить" />
         </Columns>
     </asp:GridView>
     

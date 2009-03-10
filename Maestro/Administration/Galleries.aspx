@@ -51,7 +51,7 @@
                 </EditItemTemplate>
             </asp:TemplateField>
             <asp:CommandField CancelText="Отмена" DeleteText="Удалить" 
-                EditText="Редактировать" ShowDeleteButton="True" ShowEditButton="False" 
+                EditText="Редактировать" ShowDeleteButton="True" ShowEditButton="True" 
                 UpdateText="Сохранить" />
         </Columns>
     </asp:GridView>

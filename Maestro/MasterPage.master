@@ -19,8 +19,7 @@
 
     <script type="text/javascript" src="<%= WebSession.BaseUrl %>js/jquery.js"></script>
     <script type="text/javascript" src="<%= WebSession.BaseUrl %>js/jquery.fancybox.js"></script>
-    <script type="text/javascript" src="<%= WebSession.BaseUrl %>js/jquery.ui.draggable.js"></script>
-    <script type="text/javascript" src="<%= WebSession.BaseUrl %>js/jquery.ui.datepicker.js"></script>
+    <script type="text/javascript" src="<%= WebSession.BaseUrl %>js/jquery.ui.js"></script>
     <script type="text/javascript" src="<%= WebSession.BaseUrl %>js/jquery.em.js"></script>
     <script type="text/javascript" src="<%= WebSession.BaseUrl %>js/jquery.mousewheel.js"></script>
     <script type="text/javascript" src="<%= WebSession.BaseUrl %>js/jquery.pngFix.pack.js"></script>

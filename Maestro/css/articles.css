@@ -95,4 +95,6 @@ div.fancy_bg_nw {
 	background: transparent url(../images/fancybox/fancy_shadow_nw.png) no-repeat;
 }
 
-.player{text-align:center; float:left; width:240px; height:150px;}
+.player, .imageSeq{text-align:center; float:left; width:240px; height:150px;}
+.imageSeq{height:260px;}
+

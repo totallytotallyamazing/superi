@@ -32,6 +32,16 @@ public partial class Images : System.Web.UI.Page
         rPictures.DataBind();
     }
 
+    protected void Page_PreRender(object sender, EventArgs e)
+    {
+        if (GalleryId > 0)
+        {
+            Gallery gallery = new Gallery(GalleryId);
+            Page.Title = gallery.Titles[WebSession.Language];
+            (Master.FindControl("lTitle") as Literal).Text = gallery.Titles[WebSession.Language];
+        }
+    }
+
     protected void rPictures_ItemDataBound(object sender, RepeaterItemEventArgs e)
     {
         GalleryItem item = (GalleryItem)e.Item.DataItem;

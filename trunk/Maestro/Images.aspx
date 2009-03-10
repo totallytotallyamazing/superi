@@ -7,14 +7,14 @@
     <asp:Repeater runat="server" ID="rPictures" 
         onitemdatabound="rPictures_ItemDataBound">
     <ItemTemplate>
-        <div class="player">
+        <div class="imageSeq">
             <asp:HyperLink runat="server" ID="hlPicture"></asp:HyperLink><br />
             <asp:HyperLink runat="server" ID="hlTitle"></asp:HyperLink>
         </div>
     </ItemTemplate>
 </asp:Repeater>
 <script type="text/javascript">
-    $(document).ready(function() { $(".player a").fancybox({ 'overlayShow': true }) });
+    $(document).ready(function() { $(".imageSeq a").fancybox({ 'overlayShow': true }) });
 </script>
 </asp:Content>
 

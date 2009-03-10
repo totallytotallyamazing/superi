@@ -7,7 +7,7 @@
     <asp:Repeater runat="server" ID="rPictures" 
         onitemdatabound="rPictures_ItemDataBound">
     <ItemTemplate>
-        <div class="player">
+        <div class="imageSeq">
             <asp:HyperLink runat="server" ID="hlPicture"></asp:HyperLink><br />
             <asp:HyperLink runat="server" ID="hlTitle"></asp:HyperLink>
         </div>

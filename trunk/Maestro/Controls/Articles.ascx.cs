@@ -183,7 +183,7 @@ public partial class Controls_Articles : System.Web.UI.UserControl
         else
             lDate.Visible = false;
         lDate.Text = article.EntryDate.ToString("dd.MM.yyyy");
-        if (SeparateFirstArticle)
+        if (SeparateFirstArticle && e.Item.ItemIndex == 0)
         {
             pTitle.CssClass = "articleTitleFirst";
             lDate.CssClass = "articleDateFirst";

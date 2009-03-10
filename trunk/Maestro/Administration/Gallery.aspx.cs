@@ -23,7 +23,6 @@ public partial class Administration_Gallery : System.Web.UI.Page
 
     protected void PagePreRender(object sender, EventArgs e)
     {
-
         GridView1.DataBind();
     }
 }

@@ -16,7 +16,7 @@
             <cc1:ResourceWritter ID="rwTitle" ResourceId='<%# Bind("TitleTextId") %>' runat="server" />
         </ItemTemplate>
         <SeparatorTemplate>
-            <hr style="margin:10px 0;" />
+            <hr style="margin:10px 0; width:430px;" />
         </SeparatorTemplate>
     </asp:Repeater>
     </center>

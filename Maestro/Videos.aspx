@@ -10,6 +10,7 @@
             ContextTypeName="VideosDataContext" Select="new (TitleTextID, Embed)" 
             TableName="Videos">
         </asp:LinqDataSource>
+        
     <asp:Repeater runat="server" ID="rVideos" DataSourceID="ldsVideos">
         <ItemTemplate>
             <asp:Literal ID="lEmbed" runat="server" Text='<%# Bind("Embed") %>'></asp:Literal><br />

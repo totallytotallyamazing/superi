@@ -6,11 +6,11 @@
 <head runat="server">
     <title>Выберите текст</title>
     <script type="text/javascript">
-		function returnDataToOpener(id)
+		function returnDataToOpener(id, name)
 		{
 			var opener = window.opener;
 			close();
-			opener.setValue(id);
+			opener.setValue(id, name);
 		}
     </script>
     <style type="text/css">

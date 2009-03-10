@@ -2,13 +2,6 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <%@ Register TagPrefix="superi" Namespace="Superi.CustomControls" Assembly="Superi" %>
 <script type="text/javascript">
-    function selectNavType(type) {
-        if (type == "text") {
-            document.getElementById("textContainer").style.display = "block";
-            document.getElementById("pageContainer").style.display = "none";
-        }
-    }
-
     function popUpTexts() {
         openPopupWindow('TextsPopUp.aspx', 500, 400);
     }
@@ -21,10 +14,11 @@
         var rbText = document.getElementById("<%= rbText.ClientID %>");
         if (rbText.checked) {
             $("#textContainer").css("display", "block");
-            $
+            $("#pageContainer").css("display", "none");
         }
-        else { 
-        
+        else {
+            $("#textContainer").css("display", "none");
+            $("#pageContainer").css("display", "block");
         }
     }
 
@@ -40,12 +34,15 @@
     </div>
     <div style="float:left;">
         Заголовок:
-        <%--<superi:ResourceEditor runat="server" ID="reTitle"></superi:ResourceEditor>--%>
+        <superi:ResourceEditor runat="server" ID="reTitle"></superi:ResourceEditor>
     </div>
     <div style="clear:both">
-        <asp:RadioButton Checked="true" runat="server" GroupName="navType" Text="Текст" ID="rbText" />
+        <asp:CheckBox runat="server" ID="cbDisplay" Text="Отображать в меню" />
+    </div>
+    <div style="clear:both">
+        <asp:RadioButton Checked="true" runat="server" onclick="updateDivVisibilities();" GroupName="navType" Text="Текст" ID="rbText" />
         &nbsp;
-        <asp:RadioButton runat="server" GroupName="navType" Text="Файл" ID="rbPage" />
+        <asp:RadioButton runat="server" onclick="updateDivVisibilities();" GroupName="navType" Text="Файл" ID="rbPage" />
     </div>
     <div id="textContainer">
         Выберите текст из базы:<asp:TextBox ToolTip="foo" ReadOnly="true" runat="server" ID="tbTextID"></asp:TextBox>

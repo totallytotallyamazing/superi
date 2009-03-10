@@ -114,11 +114,11 @@ namespace Superi.CustomControls
         {
             set 
             {
-                _TextID = value;
+                TextID = value;
             }
             get
             {
-                _TextID = Values.Save();
+                TextID = Values.Save();
                 return _TextID;
             }
 

@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{7ABBF7DB-4EFA-43B7-ADDF-B7F8B1E8078C}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -69,6 +69,7 @@
     <Compile Include="Common\Tools.cs" />
     <Compile Include="Common\WebSession.cs" />
     <Compile Include="Controls\GalleryExtender.cs" />
+    <Compile Include="Controls\Pager.cs" />
     <Compile Include="Controls\ResourceButton.cs" />
     <Compile Include="Controls\ResourceEditor.cs" />
     <Compile Include="Controls\ResourceLabel.cs" />

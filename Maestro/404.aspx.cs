@@ -92,7 +92,9 @@ public partial class _404 : System.Web.UI.Page
                 NavigationRedirect(navigation);
             else
             {
-                string lastSegment = path.Substring(path.LastIndexOf("/") + 1);
+                string lastSegment = path.Replace(navigation.Path, "");//path.Substring(path.LastIndexOf("/") + 1);
+                if (lastSegment[0] == '/')
+                    lastSegment = lastSegment.Remove(0, 1);
                 if (!string.IsNullOrEmpty(lastSegment))
                 {
                     if (navigation.ArticleScopeID > 0)

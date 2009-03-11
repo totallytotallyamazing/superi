@@ -2,8 +2,9 @@
 
 <div class="<%= matchMainClass %>">
     <div class="matchTeam">
-        <asp:Image runat="server" ID="iMaestro" ImageUrl="~/Images/mae.gif" />
-        <br />
+        <div style="height:40px;">
+            <asp:Image runat="server" ID="iMaestro" ImageUrl="~/Images/mae.gif" />
+        </div>
         &quot;<asp:Literal runat="server" ID="lMaestro"></asp:Literal>&quot;
     </div>
     <div class="matchDetails">
@@ -17,8 +18,9 @@
         </div>
     </div>
     <div class="matchTeam">
-        <asp:Image runat="server" ID="iTeam" ImageUrl="~/Images/mae.gif" />
-        <br />
+        <div style="height:40px;">
+            <asp:Image runat="server" ID="iTeam" ImageUrl="~/Images/mae.gif" />
+        </div>
         &quot;<asp:Literal runat="server" ID="lTeam"></asp:Literal>&quot;
     </div>
 </div>

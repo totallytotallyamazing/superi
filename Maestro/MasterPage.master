@@ -18,12 +18,19 @@
     <link rel="Stylesheet" href="<%= WebSession.BaseUrl + "css/fancy.css" %>" />
 
     <script type="text/javascript" src="<%= WebSession.BaseUrl %>js/jquery.js"></script>
+
     <script type="text/javascript" src="<%= WebSession.BaseUrl %>js/jquery.fancybox.js"></script>
+
     <script type="text/javascript" src="<%= WebSession.BaseUrl %>js/jquery.ui.js"></script>
+
     <script type="text/javascript" src="<%= WebSession.BaseUrl %>js/jquery.em.js"></script>
+
     <script type="text/javascript" src="<%= WebSession.BaseUrl %>js/jquery.mousewheel.js"></script>
+
     <script type="text/javascript" src="<%= WebSession.BaseUrl %>js/jquery.pngFix.pack.js"></script>
+
     <script type="text/javascript" src="<%= WebSession.BaseUrl %>js/jScrollPane.js"></script>
+
     <script type="text/javascript" src="<%= WebSession.BaseUrl %>js/jquery.tooltip.js"></script>
 
     <asp:ContentPlaceHolder ID="head" runat="server">
@@ -56,35 +63,39 @@
 
         function reattachToolTip(date) {
             setTimeout('$(".dateHasMatch").each(attachDateToolTip);', 500);
-            
+
         }
 
         function attachDateToolTip(i) {
-            var properties = this.className.split(" ");
+            var properties = this.className.split("$");
             var teamName = properties[properties.length - 4];
             var hostCount = properties[properties.length - 3];
             var teamCount = properties[properties.length - 2];
             var logo = properties[properties.length - 1];
 
-
-
-            $(this).tooltip({left:10, top:-10, bodyHandler: function() {
-            return $("#toolTip").html().replace("%maestroCount%", hostCount).replace("%teamCount%", teamCount).replace("%teamLogo%", logo).replace("%teamName%", teamName);
+            $(this).tooltip({ left: 10, top: -10, bodyHandler: function() {
+                var result = ""
+                return $("#toolTip").html().replace("%maestroCount%", hostCount).replace("%teamCount%", teamCount).replace("%teamLogo%", logo).replace("%teamName%", teamName);
             }
-            })
+            });
         }
 
         function matchesFailCallback(err1, err2, err3, err4) {
             alert("fail");
         }
 
+        function getDateString(date) {
+            var result = "";
+            
+        }
+
         function beforeShowDayCallback(date) {
             if (matches) {
                 for (var i in matches) {
-                    if (date.getFullYear() == matches[i].Date.getFullYear() &&
-                    date.getMonth() == matches[i].Date.getMonth() &&
-                    date.getDate() == matches[i].Date.getDate()) {
-                        return [false, "dateHasMatch " + matches[i].TeamName + " " + matches[i].HostCount + " " + matches[i].TeamCount + " " + matches[i].Logo];
+                    if (date.getFullYear() == matches[i].Value.Date.getFullYear() &&
+                    date.getMonth() == matches[i].Value.Date.getMonth() &&
+                    date.getDate() == matches[i].Value.Date.getDate()) {
+                        return [false, "dateHasMatch $" + matches[i].Value.TeamName + "$" + matches[i].Value.HostCount + "$" + matches[i].Value.TeamCount + "$" + matches[i].Value.Logo];
                     }
                 }
             }
@@ -96,7 +107,7 @@
     <m:AjaxLoader runat="server" />
     <div id="main">
         <div id="mainTop">
-            <div id="langs">
+            <div id="langs" style="visibility: hidden">
                 <div id="UALang" <% if(WebSession.Language=="UA"){ %>style="background:#ebebeb" <%} %>>
                     <asp:HyperLink runat="server" NavigateUrl="~/lang=UA" ID="hlUA" ImageUrl="~/Images/UA.jpg" />
                 </div>
@@ -121,15 +132,16 @@
             </div>
             <div id="gamesContainer">
                 <m:Matches runat="server" />
-
-                <div id="gameArchive" style="border-top:2px solid #f3e0e2; margin-top:3px">
-                    <cc1:ResourceLabel runat="server" ResourceName="gameArchive" style="font-size:16px; font-weight:bold; color:#992226;"></cc1:ResourceLabel>
+                <div id="gameArchive" style="border-top: 2px solid #f3e0e2; margin-top: 3px">
+                    <cc1:ResourceLabel runat="server" ResourceName="gameArchive" Style="font-size: 16px;
+                        font-weight: bold; color: #992226;"></cc1:ResourceLabel>
                 </div>
                 <div style="display: none" id="toolTip">
-                    <div class="matchPlayed" style="margin:0;">
+                    <div class="matchPlayed" style="margin: 0;">
                         <div class="matchTeam">
-                            <img style="border-width: 0px;" src="Images/mae.gif" />
-                            <br />
+                            <div style="height: 40px;">
+                                <img style="border-width: 0px;" src="Images/mae.gif" />
+                            </div>
                             "Маестро"
                         </div>
                         <div class="matchDetails">
@@ -138,8 +150,9 @@
                             </div>
                         </div>
                         <div class="matchTeam">
-                            <img style="border-width: 0px;" src="%teamLogo%" id="teamLogo" />
-                            <br />
+                            <div style="height: 40px;">
+                                <img style="border-width: 0px;" src="%teamLogo%" id="teamLogo" />
+                            </div>
                             "%teamName%"
                         </div>
                     </div>

@@ -9,26 +9,68 @@ using Superi.Common;
 
 public partial class Images : System.Web.UI.Page
 {
+    const int PAGE_SIZE = 36;
+
     private int GalleryId
     {
-        get 
-       { 
+        get
+        {
             int galleryId = 0;
-            if (!string.IsNullOrEmpty(Request.QueryString["segment"]))
+            string segment = Request.QueryString["segment"];
+            if (string.IsNullOrEmpty(segment))
+                return -1;
+            else if (segment.IndexOf("/") == -1 && segment.IndexOf("p") == -1)
             {
-                if (int.TryParse(Request.QueryString["segment"], out galleryId))
+                if (int.TryParse(segment, out galleryId))
                     return galleryId;
-                return 0;
+                else
+                    return 0;
             }
-            return -1;
-                
+            else if (segment.IndexOf("/") == -1)
+                return -1;
+
+            char[] sep = { '/' };
+            string[] segmentParts = segment.Split(sep);
+            if (int.TryParse(segmentParts[0], out galleryId))
+                return galleryId;
+            else
+                return 0;
+        }
+    }
+
+    private int CurrentPage
+    {
+        get
+        {
+            string segment = Request.QueryString["segment"];
+            if (string.IsNullOrEmpty(segment))
+                return 0;
+            else if ((segment.IndexOf("/") == -1 && segment.IndexOf("p") == -1))
+                return 0;
+            else if (segment.IndexOf("/") == -1)
+                return int.Parse(segment.Replace("p", ""));
+
+            char[] sep = { '/' };
+            string[] segmentParts = segment.Split(sep);
+            return int.Parse(segmentParts[1].Replace("p", ""));
         }
     }
 
     protected void Page_Load(object sender, EventArgs e)
     {
         GalleryItemList list = new GalleryItemList(GalleryId);
-        rPictures.DataSource = list;
+        PagedDataSource pdsGaleryItems = new PagedDataSource();
+        pdsGaleryItems.PageSize = PAGE_SIZE;
+        pdsGaleryItems.DataSource = list;
+        pdsGaleryItems.AllowPaging = true;
+        pPages.PageCount = pdsGaleryItems.PageCount;
+        pdsGaleryItems.CurrentPageIndex = pPages.CurrentPage = CurrentPage;
+        if (GalleryId > 0)
+            pPages.BasePath = WebSession.BaseUrl + "multimedia/images/" + GalleryId + "/p";
+        else
+            pPages.BasePath = WebSession.BaseUrl + "multimedia/images/p";
+
+        rPictures.DataSource = pdsGaleryItems;
         rPictures.DataBind();
     }
 
@@ -51,7 +93,5 @@ public partial class Images : System.Web.UI.Page
         hlTitle.NavigateUrl = hlPicture.NavigateUrl = WebSession.GalleryImagesFolder.Replace("~/", WebSession.BaseUrl) + item.Picture;
         hlPicture.ImageUrl = WebSession.GalleryImagesFolder.Replace("~/", WebSession.BaseUrl) + item.Preview;
         hlTitle.ToolTip = hlPicture.ToolTip = hlTitle.Text = item.Titles[WebSession.Language];
-        
-        //ClientScript.RegisterStartupScript(this.GetType(), "fbox", "$(document).ready(function(){$('.payer a').fancybox({'overlayShow':true});});", true);
     }
 }

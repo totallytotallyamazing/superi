@@ -18,17 +18,19 @@ public class Matches : System.Web.Services.WebService
     public object GetArchive(string Language)
     {
         GamesDataContext context = new GamesDataContext();
-        
-        var games = from gms in context.Games where gms.Played
+
+        var games = (from gms in context.Games
+                    where gms.Played
                     orderby gms.Played, gms.Date descending
                     select new
                     {
+                        gms.ID,
                         TeamName = gms.Team.Names[Language],
                         HostCount = gms.HostCount,
                         TeamCount = gms.TeamCount,
                         Date = gms.Date,
                         Logo = WebSession.BaseImageUrl + "Logos/" + gms.Team.Logo
-                    };
+                    }).ToDictionary(gms => gms.Date.Value.Year.ToString() + gms.Date.Value.Month.ToString() + gms.Date.Value.Day.ToString());
 
         return games.ToList();
     }

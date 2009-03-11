@@ -110,7 +110,8 @@ function showAlbumPhoto() {
 
 function showAlbumVideo() {
     currentAlbumId = $(".subMenuItemActive").parent().attr("albumId");
-    swapImage("images/video.jpg");
+    var albumPhoto = $(".subMenuItemActive").parent().attr("photoImage");
+    swapImage(albumPhoto);
     targetElem = $($("[section='video']"));
     var firstElem = $(".currentSection");
     firstElem.attr("class", "").css("font-size", "16px");

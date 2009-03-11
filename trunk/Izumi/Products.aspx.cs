@@ -22,7 +22,7 @@ public partial class Products : Page
     protected void Page_Load(object sender, EventArgs e)
     {
         ProductList productList = new ProductList(GroupID);
-        if(WebSession.NavigationID==50)
+        if(WebSession.NavigationID==50 || WebSession.NavigationID == 57)
         {
             phAlco.Visible = true;
             rAlco.DataSource = productList;

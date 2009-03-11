@@ -15,9 +15,9 @@ namespace Superi.CustomControls
     [ToolboxData("<{0}:Pager runat=server></{0}:Pager>")]
     public class Pager : WebControl
     {
+        #region Events
         public event EventHandler PageChanged;
-
-
+        #endregion
 
         #region Fields
         private int pageCount = 0;
@@ -155,6 +155,7 @@ namespace Superi.CustomControls
             HyperLink page;
             Label currentPageLabel;
             int pageNumber;
+            Visible = pageCount > 1;
             for (int i = 0; i < pageCount; i++)
             {
                 pageNumber = i + startPage;
@@ -176,7 +177,7 @@ namespace Superi.CustomControls
                 else
                 {
                     page = new HyperLink();
-                    page.NavigateUrl = basePath + pageNumber;
+                    page.NavigateUrl = basePath + i;
                     page.Text = pageNumber.ToString();
                     page.CssClass = pageCssClass;
                     this.Controls.Add(page);

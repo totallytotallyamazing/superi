@@ -19,6 +19,7 @@ function subMenuItemClickedVideo(attrs){
 function clearVideoFilter() {
     cleanUp();
     $("#subMenu ul").empty();
+    swapImage("images/video.jpg");
     VideoService.GetVideos(currentAlbumId, processVideos, onRetriveVideosFail);
 }
 

@@ -25,10 +25,15 @@ public partial class Controls_Players : System.Web.UI.UserControl
         LinkButton lbPicture = (LinkButton)e.Item.FindControl("lbPicture");
         LinkButton lbName = (LinkButton)e.Item.FindControl("lbName");
         Image iPicture = (Image)e.Item.FindControl("iPicture");
-        iPicture.ImageUrl = WebSession.ArticlesImagesFolder + item.TitlePicture;
-        lbName.CommandArgument = lbPicture.CommandArgument = item.ID.ToString();
-        if(item.Titles.Items.Count>0)
-            lbName.Text = item.Titles[WebSession.Language];
+        if (!string.IsNullOrEmpty(item.TitlePicture))
+        {
+            iPicture.ImageUrl = WebSession.ArticlesImagesFolder + item.TitlePicture;
+            lbName.CommandArgument = lbPicture.CommandArgument = item.ID.ToString();
+            if (item.Titles.Items.Count > 0)
+                lbName.Text = item.Titles[WebSession.Language];
+        }
+        else
+            e.Item.Visible = false;
     }
 
     protected void rPlayers_ItemCommand(object source, RepeaterCommandEventArgs e)
@@ -41,6 +46,7 @@ public partial class Controls_Players : System.Web.UI.UserControl
             iArticlePicture.Visible = true;
             iArticlePicture.ImageUrl = WebSession.BaseUrl + "MakeThumbnail.aspx?loc=article&dim=500&file=" + article.Picture;
         }
+        
         lDetails.Text = article.Descriptions[WebSession.Language];
         string shortText = article.ShortDescriptions[WebSession.Language];
         shortText = shortText.Replace(Environment.NewLine, "<br />");

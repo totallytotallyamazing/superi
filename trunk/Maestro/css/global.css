@@ -66,3 +66,7 @@ a.currentMenuItem{text-decoration:none;}
 #sponsors{float:left; padding-left:50px;}
 #akula{float:right; padding-right:30px;}
 #tooltip{position:absolute;}
+/*.page{text-decoration:none;}*/
+.currentPage{font-weight:bold;}
+.page, .currentPage{padding:0 10px;}
+.pagerContainer{padding-top:20px; clear:both; text-align:center;}

@@ -34,6 +34,7 @@ a.currentMenuItem{text-decoration:none;}
     position: relative;
     text-align:center;
     top:-10px;
+    width:47px;
 }
 
 .matchDetails

@@ -67,17 +67,36 @@
         }
 
         function attachDateToolTip(i) {
-            var properties = this.className.split("$");
-            var teamName = properties[properties.length - 4];
-            var hostCount = properties[properties.length - 3];
-            var teamCount = properties[properties.length - 2];
-            var logo = properties[properties.length - 1];
+            var properties = this.className.split(" ");
+//            var teamName = properties[properties.length - 4];
+//            var hostCount = properties[properties.length - 3];
+//            var teamCount = properties[properties.length - 2];
+            //            var logo = properties[properties.length - 1];
+            var dateString = properties[properties.length - 1];
 
             $(this).tooltip({ left: 10, top: -10, bodyHandler: function() {
-                var result = ""
-                return $("#toolTip").html().replace("%maestroCount%", hostCount).replace("%teamCount%", teamCount).replace("%teamLogo%", logo).replace("%teamName%", teamName);
+                var dateMatches = getDateMatches(dateString);
+                var result = "";
+                if (dateMatches) {
+                    for (var i in dateMatches) {
+                        result = result + $("#toolTip").html().replace("%maestroCount%", dateMatches[i].HostCount).replace("%teamCount%", dateMatches[i].TeamCount).replace("%teamLogo%", dateMatches[i].Logo).replace("%teamName%", dateMatches[i].TeamName);
+                    }
+                }
+                return result;
             }
             });
+        }
+
+        function getDateMatches(dateString) {
+            var result = new Array();
+            var counter = 0;
+            for (var i in matches) {
+                if (matches[i].DateString === dateString) {
+                    result[counter] = matches[i];
+                    counter++;
+                }
+            }
+            return result;
         }
 
         function matchesFailCallback(err1, err2, err3, err4) {
@@ -86,16 +105,20 @@
 
         function getDateString(date) {
             var result = "";
-            
+            result = result + date.getFullYear();
+            result = result + (date.getMonth() + 1);
+            result = result + date.getDate();
+            return result;
         }
 
         function beforeShowDayCallback(date) {
             if (matches) {
                 for (var i in matches) {
-                    if (date.getFullYear() == matches[i].Value.Date.getFullYear() &&
-                    date.getMonth() == matches[i].Value.Date.getMonth() &&
-                    date.getDate() == matches[i].Value.Date.getDate()) {
-                        return [false, "dateHasMatch $" + matches[i].Value.TeamName + "$" + matches[i].Value.HostCount + "$" + matches[i].Value.TeamCount + "$" + matches[i].Value.Logo];
+                    if (date.getFullYear() == matches[i].Date.getFullYear() &&
+                    date.getMonth() == matches[i].Date.getMonth() &&
+                    date.getDate() == matches[i].Date.getDate()) {
+                        //return [false, "dateHasMatch $" + matches[i].Value.TeamName + "$" + matches[i].Value.HostCount + "$" + matches[i].Value.TeamCount + "$" + matches[i].Value.Logo];
+                        return [false, "dateHasMatch " + getDateString(date)];
                     }
                 }
             }
@@ -137,7 +160,7 @@
                         font-weight: bold; color: #992226;"></cc1:ResourceLabel>
                 </div>
                 <div style="display: none" id="toolTip">
-                    <div class="matchPlayed" style="margin: 0;">
+                    <div class="matchPlayed" style="margin: 0; margin-bottom:15px;">
                         <div class="matchTeam">
                             <div style="height: 40px;">
                                 <img style="border-width: 0px;" src="Images/mae.gif" />

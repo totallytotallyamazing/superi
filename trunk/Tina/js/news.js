@@ -5,7 +5,7 @@ function processNews(response) {
     appendSubMenuItem(createMenuItem("Архив", loadArchive));
     appendSubMenuItem(createMenuItem("Премии и награды", loadAwards));
     appendSubMenuItem(createMenuItem("Творчество", loadArt));
-    appendSubMenuItem(createMenuItem("Личное", loadPersonal));
+   // appendSubMenuItem(createMenuItem("Личное", loadPersonal));
 
     EndRequestHandler();
     newsPageCount = +response;

@@ -98,6 +98,7 @@ public partial class Administration_Controls_NavigationTree : System.Web.UI.User
     {
         ihNodeID.Value = twPages.SelectedValue;
         SelectedIndex = CurrentNavigationID;
+        aeNav.NavigationID = CurrentNavigationID;
         OnSelectecIndexChanged(new EventArgs());
     }
 

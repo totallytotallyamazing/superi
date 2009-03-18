@@ -2,10 +2,19 @@
 <%@ Register TagPrefix="admin" TagName="AddEditNavigation" Src="~/Administration/Controls/AddEditNavigation.ascx" %>
 <%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="cc1" %>
 <script type="text/javascript">
-    function showNavigationPropterties() {
-      //  alert("!");
-        $find("<%= pNavigationProperties_ModalPopupExtender.ClientID %>").show();
+
+    Sys.WebForms.PageRequestManager.getInstance().add_beginRequest(BeginRequestNTree);
+
+    function BeginRequestNTree(sender, args) {
+      //  $("#<%= pNavigationProperties.ClientID %>").empty();
     }
+
+    function showNavigationPropterties() {
+        $(function() { $("#<%= pNavigationProperties.ClientID %>").dialog({ modal: true, autoOpen: false }); })
+        $("#<%= pNavigationProperties.ClientID %>").dialog("open");
+    }
+
+    $(function() { $("#<%= pNavigationProperties.ClientID %>").dialog({ modal: true, autoOpen: false }); })
 </script>
 
 <input type="hidden" runat="server" id="ihNodeID" />
@@ -30,20 +39,11 @@
         ImageUrl="~/Administration/Images/properties.jpg" ToolTip="Свойства" 
         onclick="InitNavigationPopUp" />
 </div> 
-        <asp:Label ID="lStub" runat="server" style="display:none" />
-
-        <cc1:ModalPopupExtender ID="pNavigationProperties_ModalPopupExtender" 
-            runat="server" DropShadow="False" Enabled="True" 
-            PopupControlID="pNavigationProperties" TargetControlID="lStub" 
-            CancelControlID="lbCancel">
-        </cc1:ModalPopupExtender>
 <asp:UpdatePanel runat="server">
     <ContentTemplate>
         <asp:Panel runat="server" ID="pNavigationProperties">
-            <asp:LinkButton ID="lbCancel" style="float:right" runat="server">LinkButton</asp:LinkButton>
             <admin:AddEditNavigation ID="aeNav" runat="server" />
         </asp:Panel>    
-
     </ContentTemplate>
     <Triggers>
         <asp:AsyncPostBackTrigger ControlID="ibAddNode" EventName="Click" />

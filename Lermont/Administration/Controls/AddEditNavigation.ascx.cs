@@ -29,7 +29,26 @@ public partial class Administration_Controls_AddEditNavigation : System.Web.UI.U
 
     protected void Page_PreRender(object sender, EventArgs e)
     {
-        
+        if (NavigationID > 0)
+        {
+            Navigation navigation = new Navigation(NavigationID);
+            reTitle.TextID = navigation.NameTextID;
+            tbName.Text = navigation.Name;
+            cbDisplay.Checked = navigation.IncludeInMenu;
+            if (navigation.TextID > 0)
+            {
+                rbText.Checked = true;
+                rbPage.Checked = false;
+                Text text = new Text(navigation.TextID);
+                tbTextID.Text = text.Alias;
+                tbTextID.ToolTip = text.ID.ToString();
+            }
+            else
+            {
+                rbText.Checked = false;
+                rbPage.Checked = true;
+            }
+        }
     }
 
     protected void bSave_Click(object sender, EventArgs e)

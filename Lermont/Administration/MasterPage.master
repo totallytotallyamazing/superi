@@ -8,8 +8,10 @@
 	
     <title>Untitled Page</title>
     <link rel="Stylesheet" href="css/admin.css" />  
+    <link href="../css/smoothness/jquery.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="../js/jquery.js"></script>  
     <script type="text/javascript" src="js/common.js"></script>
+    <script src="../js/jquery.ui.js" type="text/javascript"></script>
     <script type="text/javascript">
 		//open pop-up window
 		function openPopupWindow(sURL, iWidth, iHeight)

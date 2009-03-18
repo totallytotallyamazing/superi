@@ -65,7 +65,7 @@ namespace Superi.CustomControls
                     ViewState["lc"] = new Hashtable();
                 return (Hashtable)ViewState["lc"];
             }
-         //   set { ViewState["lc"] = value; }
+            //   set { ViewState["lc"] = value; }
         }
 
         #region Public properties
@@ -74,17 +74,17 @@ namespace Superi.CustomControls
         /// </summary>
         public ResourceEditorType Type
         {
-            get 
+            get
             {
                 if (EnableViewState && ViewState["type"] != null)
                     _Type = (ResourceEditorType)Convert.ToInt32(ViewState["type"]);
-                return _Type; 
+                return _Type;
             }
-            set 
+            set
             {
                 if (EnableViewState)
                     ViewState["type"] = value;
-                _Type = value; 
+                _Type = value;
             }
         }
 
@@ -93,17 +93,17 @@ namespace Superi.CustomControls
         /// </summary>
         public int TextID
         {
-            get 
+            get
             {
                 if (EnableViewState && ViewState["textId"] != null)
                     _TextID = Convert.ToInt32(ViewState["textId"]);
-                return _TextID; 
+                return _TextID;
             }
             set
             {
                 if (EnableViewState)
                     ViewState["textId"] = value;
-                _TextID = value; 
+                _TextID = value;
             }
         }
 
@@ -112,7 +112,7 @@ namespace Superi.CustomControls
         /// </summary>
         public int ResourceId
         {
-            set 
+            set
             {
                 TextID = value;
             }
@@ -171,8 +171,9 @@ namespace Superi.CustomControls
             {
                 HtmlAnchor a = new HtmlAnchor();
                 a.InnerText = language.Name;
-                a.HRef = "javascript:toggleDivs('" + language.Code + "', '" + ID + "', '" + ClientID + "')";
-                a.ID = ID + "_a_" + language.Code;
+                //a.Attributes["rel"] = language.Code;
+                a.Attributes["onclick"] = "$(\"." + ClientID + "_div\").not(\"." + language.Code + "\").css(\"display\", \"none\");$(\"." + ClientID + "_a\").not(this).css(\"border\", \"none\");$(this).css(\"border\", \"1px solid #8c8c8c\");$(\"." + ClientID + "_div\").filter(\"." + language.Code + "\").css(\"display\", \"block\");";
+                a.Attributes["class"] = ClientID + "_a " + language.Code;// + language.Code;
                 cell = new HtmlTableCell();
                 cell.Controls.Add(a);
                 row.Controls.Add(cell);
@@ -194,7 +195,8 @@ namespace Superi.CustomControls
             foreach (Language language in LanguageList)
             {
                 div = new HtmlGenericControl("div");
-                div.ID = ID + "_div_" + language.Code;
+                //div.Attributes["rel"] = language.Code;
+                div.Attributes["class"] = ClientID + "_div " + language.Code;// + language.Code;
                 Controls.Add(div);
                 div.Style["width"] = "100%";
                 div.Style["height"] = "100%";

@@ -5,7 +5,7 @@
         <div>
             <asp:Image runat="server" ID="iMaestro" ImageUrl="~/Images/mae.gif" />
         </div>
-        &quot;<asp:Literal runat="server" ID="lMaestro"></asp:Literal>&quot;
+        <asp:Literal runat="server" ID="lMaestro"></asp:Literal>
     </div>
     <div class="matchDetails">
         <div class="matchCount">
@@ -21,6 +21,6 @@
         <div>
             <asp:Image runat="server" ID="iTeam" ImageUrl="~/Images/mae.gif" />
         </div>
-        &quot;<asp:Literal runat="server" ID="lTeam"></asp:Literal>&quot;
+        <asp:Literal runat="server" ID="lTeam"></asp:Literal>
     </div>
 </div>

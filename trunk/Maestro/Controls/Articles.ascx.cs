@@ -197,11 +197,16 @@ public partial class Controls_Articles : System.Web.UI.UserControl
             string articleText = article.Descriptions[WebSession.Language];
             if (RemoveImages)
             {
-                articleText = articleText.Replace(Environment.NewLine, "").Replace("\n", "");
-                Regex regex = new Regex("<img.*?/>", RegexOptions.Multiline);
-                Regex br = new Regex("(<br./>){2,}", RegexOptions.Multiline);
-                articleText = regex.Replace(articleText, "");
-                articleText = br.Replace(articleText, "<br/>");
+
+                Regex tags = new Regex("<[^>]+?>", RegexOptions.Multiline);
+                articleText = tags.Replace(articleText, "");
+                articleText = articleText.Replace(Environment.NewLine, "<br />");
+                //articleText.Replace(Environment.NewLine, "").Replace("\n", "");
+
+                //Regex regex = new Regex("<img.*?/>", RegexOptions.Multiline);
+                //Regex br = new Regex("(<br./>){2,}", RegexOptions.Multiline);
+                //articleText = regex.Replace(articleText, "");
+                //articleText = br.Replace(articleText, "<br/>");
             }
             if (articleText.Length > maxCahrs)
             {

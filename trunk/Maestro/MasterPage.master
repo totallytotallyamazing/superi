@@ -165,7 +165,7 @@
                             <div style="height: 40px;">
                                 <img style="border-width: 0px;" src="Images/mae.gif" />
                             </div>
-                            "Маестро"
+                            Маестро
                         </div>
                         <div class="matchDetails">
                             <div class="matchCount">
@@ -176,7 +176,7 @@
                             <div style="height: 40px;">
                                 <img style="border-width: 0px;" src="%teamLogo%" id="teamLogo" />
                             </div>
-                            "%teamName%"
+                            %teamName%
                         </div>
                     </div>
                 </div>

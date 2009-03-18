@@ -7,7 +7,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <asp:LinqDataSource ID="ldsNews" runat="server" ContextTypeName="NewsDataContext"
         EnableDelete="True" EnableInsert="True" EnableUpdate="True" 
-        TableName="NewsItems" Where="Award == false">
+        TableName="NewsItems">
     </asp:LinqDataSource>
     <div style="float: left">
         <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" AlternatingRowStyle-BackColor="#FAFAD2"
@@ -25,7 +25,7 @@
                 <asp:TemplateField HeaderText="Дата" SortExpression="Date">
                     <EditItemTemplate>
                         <asp:TextBox ID="tbDate" runat="server" Text='<%# Bind("Date") %>' 
-                            ReadOnly="True"></asp:TextBox>
+                            ReadOnly="false"></asp:TextBox>
                         <cc2:CalendarExtender ID="tbDate_CalendarExtender" runat="server" 
                             Enabled="True" Format="dd.MM.yyyy" TargetControlID="tbDate">
                         </cc2:CalendarExtender>

@@ -1,22 +1,14 @@
 ﻿function loadImages(result) {
     EndRequestHandler();
     loadAlbums();
-    $(".thumbs").empty();
+    $(".thumbs center").empty();
     $(".galleryPlaceHolder").css("display", "block");
     var hasResults = false;
     for (var i in result) {
         hasResults = true;
         createThumbnail(result[i].Picture, result[i].Title, result[i].Thumbnail);
     }
-    $('#thumbs ul.thumbs li').css('opacity', onMouseOutOpacity)
-				.hover(
-					function() {
-					    $(this).not('.selected').fadeTo('fast', 1.0);
-					},
-					function() {
-					    $(this).not('.selected').fadeTo('fast', onMouseOutOpacity);
-					}
-				);
+
 	if (hasResults)
 	    startGallery();
 }
@@ -34,13 +26,7 @@ function photoAlbumsProcessed(response) {
         $.preloadImages("images/albumimages/" + response[i].Image);
         appendSubMenuItem(createMenuItem(response[i].Name + "(" + response[i].Year + ")", photoAlbumClicked).attr({ albumId: response[i].ID, image: "images/albumimages/" + response[i].PhotoImage }));
     }
-//    if (historyCallback) {
-//        $("[albumId='" + photoAlbumId + "'] a").toggleClass("subMenuItemActive");
-//        photoAlbumId = 0;
-//        historyCallback = false;
-//    }
-//    else
-        $("[albumId='" + currentAlbumId + "'] a").toggleClass("subMenuItemActive");
+    $("[albumId='" + currentAlbumId + "'] a").toggleClass("subMenuItemActive");
     updateSubMenuClickHandlers(photoAlbumClicked);
 }
 
@@ -49,7 +35,6 @@ function photoAlbumClicked(attrs) {
     updateSubMenuStyles();
     $(attrs.target).attr("class", "subMenuItemActive");
     var albumID = $(".subMenuItemActive").parent().attr("albumId");
-//    $.history({ section: "photo", albumId: 0, photoAlbumId: albumID, videoId: 0 });
     updateSubMenuClickHandlers(photoAlbumClicked);
     BeginRequestHandler();
     swapImage($(attrs.target).parent().attr("image"), photoImageSwapped);
@@ -62,52 +47,22 @@ function photoImageSwapped() {
 }
 
 function createThumbnail(picture, imageTitle, thumbnail) {
-    $(galleryItemHtml.replace("%picture%", picture).replace("%thumbnail%", thumbnail).replace("%caption%", imageTitle)).appendTo(".thumbs");
+    $(galleryItemHtml.replace("%picture%", picture).replace("%thumbnail%", thumbnail).replace("%caption%", imageTitle)).appendTo(".thumbs center");
 }
 
-var onMouseOutOpacity = 0.67;
-
-
 function startGallery() {
-    var galleryAdv = $('#gallery').galleriffic('#thumbs', {
-        delay: 2000,
-        numThumbs: 21,
-        preloadAhead: 10,
-        enableTopPager: true,
-        enableBottomPager: true,
-        imageContainerSel: '#slideshow',
-        controlsContainerSel: '#controls',
-        captionContainerSel: '',
-        loadingContainerSel: '',
-        renderSSControls: false,
-        renderNavControls: false,
-        playLinkText: '',
-        pauseLinkText: '',
-        prevLinkText: '',
-        nextLinkText: '',
-        nextPageLinkText: '&rsaquo;',
-        prevPageLinkText: '&lsaquo;',
-        enableHistory: false,
-        autoStart: false,
-        onChange: function(prevIndex, nextIndex) {
-            $('#thumbs ul.thumbs').children()
-							.eq(prevIndex).fadeTo('fast', onMouseOutOpacity).end()
-							.eq(nextIndex).fadeTo('fast', 1.0);
-        },
-        onTransitionOut: function(callback) {
-            $('#slideshow, #caption').fadeOut('fast', callback);
-        },
-        onTransitionIn: function() {
-            $('#slideshow, #caption').fadeIn('fast');
-        },
-        onPageTransitionOut: function(callback) {
-            $('#thumbs ul.thumbs').fadeOut('fast', callback);
-        },
-        onPageTransitionIn: function() {
-            $('#thumbs ul.thumbs').fadeIn('fast');
-        }
-    });
-    galleryAdv.css("display", "block");
+    $("a.thumb").fancybox({ 'overlayShow': true });
+    $("a.thumb img").bind("load", function(el) {
+        var pdt = $(".galleryPlaceHolder").height() / 2 - $(".thumbs").height() / 2;
+        if (pdt > 0)
+            $(".thumbs").css("padding-top", pdt);
+        else
+            $(".thumbs").css("padding-top", 0);
+        $(el.target).fadeTo("fast", 0.6);
+    })
+    .bind("mouseover", function(el) { $(el.target).fadeTo("fast", 1); })
+    .bind("mouseout", function(el) { $(el.target).fadeTo("fast", 0.6); })
+
 }
 
 function loadImagesFail() {
@@ -115,7 +70,7 @@ function loadImagesFail() {
 }
 
 var galleryItemHtml =  '<li>' +
-							'<a class="thumb" href="MakeThumbnail.aspx?dim=510&file=%picture%" title="%caption%">' +
-							'	<img src="MakeThumbnail.aspx?dim=75&file=%thumbnail%" alt="%caption%" />' +
+							'<a rel="group" class="thumb" href="MakeThumbnail.aspx?dim=600&file=%picture%">' +
+							'	<img src="MakeThumbnail.aspx?dim=80&file=%thumbnail%" alt="%caption%" />' +
 							'</a>' +
 						'</li>';

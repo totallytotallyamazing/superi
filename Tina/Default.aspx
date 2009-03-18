@@ -18,13 +18,15 @@
     <script src="js/jquery.mousewheel.js" type="text/javascript"></script>
     <script src="js/jquery.em.js" type="text/javascript"></script>
     <script src="js/jScrollPane.js" type="text/javascript"></script>
-    <link href="css/galleriffic.css" rel="stylesheet" type="text/css" />
+    <script src="js/jquery.fancybox.js" type="text/javascript"></script>
+<%--    <link href="css/galleriffic.css" rel="stylesheet" type="text/css" />--%>
     <link href="theme/ui.core.css" rel="stylesheet" type="text/css" />
     <link href="theme/ui.theme.css" rel="stylesheet" type="text/css" />
     <link href="theme/ui.dialog.css" rel="stylesheet" type="text/css" />
     <link href="css/main.css" rel="stylesheet" type="text/css" />
     <link href="css/jScrollPane.css" rel="stylesheet" type="text/css" />
     <link href="theme/ui.accordion.css" rel="stylesheet" type="text/css" />
+    <link href="css/fancy.css" rel="stylesheet" type="text/css" />
     <title></title>
     <script type="text/javascript">
         function noError(){return true;}
@@ -78,7 +80,8 @@
         <div id="middle">
             <div class="galleryPlaceHolder">
                 <div id="thumbs" class="navigation">
-                    <ul class="thumbs noscript">
+                    <ul class="thumbs">
+                        <center></center>
                     </ul>
                 </div>
                 <div id="gallery" class="content">

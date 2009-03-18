@@ -7,6 +7,7 @@
     }
 
     function setValue(id, name) {
+        alert("!");
         $('#<%= tbTextID.ClientID %>').attr({ title: id, value: name });
     }
 
@@ -25,7 +26,6 @@
     $(function() {
         updateDivVisibilities();
     });
-    
 </script>
 <div id="commonProperties">
     <div style="float:left">

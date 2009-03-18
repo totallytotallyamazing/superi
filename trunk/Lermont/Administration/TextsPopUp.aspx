@@ -34,11 +34,11 @@
 						<td>
 						    <% if (Mode.ToLower() == "alias")
              {%>
-							<a href= "javascript:returnDataToOpener('<%# Eval("Alias") %>', '<%# Eval("Title") %>')"><%# Eval("Alias")%></a>
+							<a href= "javascript:returnDataToOpener('<%# Eval("Alias") %>', '<%# Eval("Name") %>')"><%# Eval("Alias")%></a>
 							<%} %>
 							<%else
                                 {%> 
-                            <a href= "javascript:returnDataToOpener(<%# Eval("ID") %>, '<%# Eval("Title") %>')"><%# Eval("ID")%></a>
+                            <a href= "javascript:returnDataToOpener(<%# Eval("ID") %>, '<%# Eval("Name") %>')"><%# Eval("ID")%></a>
 							<%} %>
 						</td>
 						<td>

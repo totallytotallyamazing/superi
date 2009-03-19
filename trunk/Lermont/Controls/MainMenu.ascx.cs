@@ -30,7 +30,7 @@ public partial class Controls_MainMenu : System.Web.UI.UserControl
                 //pItem.Attributes.Add("onmouseout", "switchClass(this, 'mainMenuItem');");
                 pItem.Attributes.Add("onmouseover", "this.style.backgroundImage='url(\"images/menuHover.jpg\")'");
                 pItem.Attributes.Add("onmouseout", "this.style.backgroundImage=''");
-                hlItem.NavigateUrl = "~/" + navigation.Path;
+                hlItem.NavigateUrl = WebSession.BaseUrl + navigation.Path;
             }
             else
             {

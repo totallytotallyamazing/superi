@@ -9,18 +9,30 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using Superi.Features;
+using System.Web.Services;
 
 public partial class Administration_Controls_AddEditNavigation : System.Web.UI.UserControl
 {
     public int NavigationID
     {
-        get 
+        get
         {
             if (ViewState["NavigationID"] != null)
                 return Convert.ToInt32(ViewState["NavigationID"]);
             return int.MinValue;
         }
         set { ViewState["NavigationID"] = value; }
+    }
+
+    public bool AddMode
+    {
+        get 
+        { 
+            if(ViewState["EditMode"]!=null)
+                return Convert.ToBoolean(ViewState["EditMode"]);
+            return false;
+        }
+        set { ViewState["EditMode"] = value; }
     }
 
 
@@ -37,18 +49,26 @@ public partial class Administration_Controls_AddEditNavigation : System.Web.UI.U
             cbDisplay.Checked = navigation.IncludeInMenu;
             if (navigation.TextID > 0)
             {
-                rbText.Checked = true;
-                rbPage.Checked = false;
+                tcTabs.ActiveTabIndex = 0;
                 Text text = new Text(navigation.TextID);
                 tbTextID.Text = text.Alias;
                 tbTextID.ToolTip = text.ID.ToString();
             }
             else
             {
-                rbText.Checked = false;
-                rbPage.Checked = true;
+                tcTabs.ActiveTabIndex = 1;
+                tbPage.Text = navigation.Page;
             }
         }
+    }
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        TextList list = new TextList(true);
+        lbTexts.DataSource = list;
+        lbTexts.DataTextField = "Name";
+        lbTexts.DataValueField = "ID";
+        lbTexts.DataBind();
     }
 
     protected void bSave_Click(object sender, EventArgs e)
@@ -56,34 +76,29 @@ public partial class Administration_Controls_AddEditNavigation : System.Web.UI.U
         if (OnNavigationSaving != null)
             OnNavigationSaving(this, new EventArgs());
         Navigation navigation = null;
-        if (NavigationID > 0)
+        if (!AddMode)
             navigation = new Navigation(NavigationID);
         else
             navigation = new Navigation();
 
         navigation.Name = tbName.Text;
         navigation.NameTextID = reTitle.ResourceId;
-
-        if (rbText.Checked)
+        switch (tcTabs.TabIndex)
         {
-            navigation.TextID = int.Parse(tbTextID.ToolTip);
-            navigation.Save();
+            case 0:
+                if (!string.IsNullOrEmpty(hfTextId.Value))
+                    navigation.TextID = int.Parse(hfTextId.Value);
+                break;
+            case 1:
+                navigation.Page = tbPage.Text;
+                break;
         }
-        else if (rbPage.Checked)
-        {
-            navigation.Page = tbPage.Text;
-            navigation.Save();
-        }
-
+        if (AddMode)
+            navigation.ParentID = NavigationID;
+        navigation.IncludeInMenu = cbDisplay.Checked;
+        navigation.Save();
         if (OnNavigationSaved != null)
             OnNavigationSaved(this, new EventArgs());
-    }
-
-    protected void bCreateText_Click(object sender, EventArgs e)
-    {
-        Text text = new Text();
-        text.Name = tbNewTextTitle.Text;
-        text.Save();
-        ScriptManager.RegisterStartupScript(this, this.GetType(), "textCreated", "setValue(" + text.ID + ", '" + text.Name + "')", true);
+        Page.ClientScript.RegisterStartupScript(this.GetType(), "scr", "addingComplete();", true);
     }
 }

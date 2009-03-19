@@ -50,6 +50,7 @@ public partial class Administration_Controls_NavigationTree : System.Web.UI.User
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        ibAddNode.Attributes["onclick"] = "openNavPopUp(" + CurrentNavigationID + ", true);";
     }
 
     protected void Page_PreRender(object sender, EventArgs e)
@@ -58,12 +59,18 @@ public partial class Administration_Controls_NavigationTree : System.Web.UI.User
         if (CurrentNavigationID < 0)
         {
             ibProperties.ImageUrl = "~/Administration/Images/inactiveProperties.jpg";
+            ibRemoveNode.ImageUrl = "~/Administration/Images/deleteNodeDisabled.jpg";
+            ibProperties.Attributes["onclick"] = "";
             ibProperties.Enabled = false;
+            ibRemoveNode.Enabled = false;
         }
         else
         {
+            ibRemoveNode.ImageUrl = "~/Administration/Images/deleteNode.jpg";
             ibProperties.ImageUrl = "~/Administration/Images/properties.jpg";
+            ibProperties.Attributes["onclick"] = "openNavPopUp(" + CurrentNavigationID + ", false);";
             ibProperties.Enabled = true;
+            ibRemoveNode.Enabled = true;
         }
     }
 
@@ -98,7 +105,6 @@ public partial class Administration_Controls_NavigationTree : System.Web.UI.User
     {
         ihNodeID.Value = twPages.SelectedValue;
         SelectedIndex = CurrentNavigationID;
-        aeNav.NavigationID = CurrentNavigationID;
         OnSelectecIndexChanged(new EventArgs());
     }
 
@@ -174,7 +180,12 @@ public partial class Administration_Controls_NavigationTree : System.Web.UI.User
 
     protected void InitNavigationPopUp(object sender, ImageClickEventArgs e)
     {
-        aeNav.NavigationID = CurrentNavigationID;
-        ScriptManager.RegisterStartupScript(Page, this.GetType(), "showProps", "showNavigationPropterties()", true);
+    }
+
+    protected void DeleteNode(object sender, ImageClickEventArgs e)
+    {
+        Navigation navigation = new Navigation(CurrentNavigationID);
+        navigation.Remove();
+        ihNodeID.Value = int.MinValue.ToString();
     }
 }

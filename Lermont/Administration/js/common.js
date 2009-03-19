@@ -29,4 +29,13 @@ function getMousePosition(ev){
 			    }//if ( typeof(ev.clientX) == 'number' ) 
 		   }// if ( ev ) 
    //return pos;
-}; //fun
+	}; //fun
+
+
+	function openPopupWindow(sURL, iWidth, iHeight) {
+	    retval = window.open(sURL, "wndPopUpHandle", "width=" + iWidth + ", height=" + iHeight + ", menubar=no, top=0, left=0, status=no, location=no, toolbar=no, scrollbars=yes, resizable=no");
+	}
+
+	function reloadPage() {
+	    window.location.reload();
+	}

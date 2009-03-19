@@ -2,19 +2,10 @@
 <%@ Register TagPrefix="admin" TagName="AddEditNavigation" Src="~/Administration/Controls/AddEditNavigation.ascx" %>
 <%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="cc1" %>
 <script type="text/javascript">
-
-    Sys.WebForms.PageRequestManager.getInstance().add_beginRequest(BeginRequestNTree);
-
-    function BeginRequestNTree(sender, args) {
-      //  $("#<%= pNavigationProperties.ClientID %>").empty();
+    function openNavPopUp(id, addMode) {
+        openPopupWindow('NavigationPropertiesPopUp.aspx?id=' + id + "&add=" + addMode, 300, 400);
+        return false;
     }
-
-    function showNavigationPropterties() {
-        $(function() { $("#<%= pNavigationProperties.ClientID %>").dialog({ modal: true, autoOpen: false }); })
-        $("#<%= pNavigationProperties.ClientID %>").dialog("open");
-    }
-
-    $(function() { $("#<%= pNavigationProperties.ClientID %>").dialog({ modal: true, autoOpen: false }); })
 </script>
 
 <input type="hidden" runat="server" id="ihNodeID" />
@@ -22,7 +13,7 @@
 </asp:TreeView>
 
 <div id="NavigationControls" runat="server">
-    <asp:ImageButton runat="server" ID="ibAddNode" ImageUrl="~/Administration/Images/addNode.jpg" ToolTip="Добавить страницу" onclick="InitNavigationPopUp" />
+    <asp:Image runat="server" ID="ibAddNode" ImageUrl="~/Administration/Images/addNode.jpg" ToolTip="Добавить страницу"/>
     <asp:ImageButton runat="server" ID="ibLevelUp" Visible="false"
         ImageUrl="~/Administration/Images/moveUpLevel.jpg" 
         ToolTip="Переместить на уровень выше" onclick="MoveToParent" />
@@ -35,19 +26,13 @@
     <asp:ImageButton runat="server" ID="ibMoveDown" 
         ImageUrl="~/Administration/Images/moveDown.jpg" ToolTip="Сместить вниз" 
         onclick="MoveNavigationDown" />
-    <asp:ImageButton runat="server" ID="ibProperties" 
+    <asp:Image runat="server" ID="ibProperties" 
         ImageUrl="~/Administration/Images/properties.jpg" ToolTip="Свойства" 
         onclick="InitNavigationPopUp" />
+    <asp:ImageButton runat="server" ID="ibRemoveNode" 
+        ImageUrl="~/Administration/Images/deleteNode.jpg" onclick="DeleteNode" />
+    <cc1:ConfirmButtonExtender ID="ibRemoveNode_ConfirmButtonExtender" 
+        runat="server" ConfirmText="Вы уверены?" Enabled="True" 
+        TargetControlID="ibRemoveNode">
+    </cc1:ConfirmButtonExtender>
 </div> 
-<asp:UpdatePanel runat="server">
-    <ContentTemplate>
-        <asp:Panel runat="server" ID="pNavigationProperties">
-            <admin:AddEditNavigation ID="aeNav" runat="server" />
-        </asp:Panel>    
-    </ContentTemplate>
-    <Triggers>
-        <asp:AsyncPostBackTrigger ControlID="ibAddNode" EventName="Click" />
-        <asp:AsyncPostBackTrigger ControlID="ibProperties" EventName="Click" />
-        <asp:PostBackTrigger ControlID="aeNav" />
-    </Triggers>
-</asp:UpdatePanel>

@@ -49,8 +49,6 @@
         <div style="float:left;">
                 <a href = "<%=WebSession.BaseUrl%>Administration/Structure.aspx">Структура</a>
 				&nbsp;&nbsp;
-                <a href = "<%=WebSession.BaseUrl%>Administration/Pages.aspx">Навигация</a>
-				&nbsp;&nbsp;
 				<a href="<%=WebSession.BaseUrl%>Administration/Texts.aspx">Тексты</a>
                 &nbsp;&nbsp;
 				<a   href="<%= WebSession.BaseUrl %>Administration/Gallery.aspx">Объекты</a>

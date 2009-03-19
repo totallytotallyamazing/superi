@@ -119,8 +119,11 @@ namespace Superi.Features
             SubTitleTextId = dr.GetInt32(dr.GetOrdinal("SubTitleTextID"));
 			Picture = dr["Picture"].ToString();
 			EntryDate = dr.GetDateTime(dr.GetOrdinal("EntryDate"));
-            ParentId = dr.GetInt32(dr.GetOrdinal("ParentId"));
-
+            try
+            {
+                ParentId = dr.GetInt32(dr.GetOrdinal("ParentId"));
+            }
+            catch { }
 			if (CloseDr)
 				dr.Close();
 			return true;
@@ -135,7 +138,11 @@ namespace Superi.Features
             SubTitleTextId = (int)dr["SubTitleTextId"];
 			Picture = dr["Picture"].ToString();
 			EntryDate = DateTime.Parse(dr["EntryDate"].ToString());
-            ParentId = Convert.ToInt32(dr["ParentId"]);
+            try
+            {
+                ParentId = Convert.ToInt32(dr["ParentId"]);
+            }
+            catch { }
 			return true;
 		}
 

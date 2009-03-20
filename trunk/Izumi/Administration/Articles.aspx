@@ -29,6 +29,7 @@
         <InsertParameters>
             <asp:Parameter Name="Alias" Type="String" />
             <asp:Parameter Name="Title" Type="String" />
+            <asp:Parameter Name="ScopeID" Type="Int32" DefaultValue="1" />
         </InsertParameters>
     </asp:ObjectDataSource>
     
@@ -59,17 +60,19 @@
                 <asp:FormView ID="fwNewArticle" runat="server" DataSourceID="ObjectDataSource1" DefaultMode="Insert">
                     <InsertItemTemplate>
                         Заголовок:
-                        <asp:TextBox ID="TitleTextBox" runat="server" Text='<%# Bind("Title") %>'>
-                        </asp:TextBox><br />
+                        <asp:TextBox ID="TitleTextBox" runat="server" Text='<%# Bind("Title") %>' />
+                        <br />
                         Адресная строка:
-                        <asp:TextBox ID="AliasTextBox" runat="server" Text='<%# Bind("Alias") %>'>
-                        </asp:TextBox><br />
-                        <div style="display:none;">
-                            <asp:TextBox ID="ScopeIDTextBox" runat="server" Text='<%# Bind("ScopeID")%>'></asp:TextBox>
-                        </div>
+                        <asp:TextBox ID="AliasTextBox" runat="server" Text='<%# Bind("Alias") %>' />
+                        <br />
+<%--                        <div style="display:none;">
+                            ScopeID:
+                            <asp:TextBox ID="ScopeIDTextBox" runat="server" Text='<%# Bind("ScopeID") %>' />
+                            <br />
+                        </div>--%>
                         <asp:LinkButton ID="InsertButton" runat="server" CausesValidation="True" CommandName="Insert"
-                            Text="Добавить">
-                        </asp:LinkButton>
+                            Text="Добавить"></asp:LinkButton>
+                    &nbsp;
                     </InsertItemTemplate>
                 </asp:FormView>
                 <asp:PlaceHolder runat="server" ID="phEdit">

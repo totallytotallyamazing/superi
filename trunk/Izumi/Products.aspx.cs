@@ -17,8 +17,6 @@ public partial class Products : Page
         }
     }
 
-
-
     protected void Page_Load(object sender, EventArgs e)
     {
         ProductList productList = new ProductList(GroupID);

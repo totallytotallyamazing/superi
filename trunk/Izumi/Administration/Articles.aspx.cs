@@ -11,9 +11,9 @@ public partial class Administration_Articles : System.Web.UI.Page
         if (!string.IsNullOrEmpty(Request.Form[ihNodeID.UniqueID]))
         {
             ihNodeID.Value = Request.Form[ihNodeID.UniqueID];
-            TextBox ScopeIDTextBox = (TextBox)fwNewArticle.FindControl("ScopeIDTextBox");
-            string script = "document.getElementById('" + ScopeIDTextBox.ClientID + "').value = " + Request.Form[ihNodeID.UniqueID] + ";";
-            Page.ClientScript.RegisterStartupScript(GetType(), "scr", script, true);
+            //TextBox ScopeIDTextBox = (TextBox)fwNewArticle.FindControl("ScopeIDTextBox");
+            //string script = "document.getElementById('" + ScopeIDTextBox.ClientID + "').value = " + Request.Form[ihNodeID.UniqueID] + ";";
+            //Page.ClientScript.RegisterStartupScript(GetType(), "scr", script, true);
         }
         btnAddScope.Attributes.Add("onclick", "return checkScopeName();");
         btnAddRootScope.Attributes.Add("onclick", "return checkScopeName();");

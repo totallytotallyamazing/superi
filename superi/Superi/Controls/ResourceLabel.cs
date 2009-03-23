@@ -48,7 +48,7 @@ namespace Superi.CustomControls
                 text = new Text(resourceId);
             if(!string.IsNullOrEmpty(resourceName))
                 text = new Text(resourceName);
-            if(text.ID>0)
+            if(text!=null && text.ID>0)
                 this.Text = text.TextResource[language];
         }
 

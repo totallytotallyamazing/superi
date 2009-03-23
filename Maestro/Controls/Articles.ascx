@@ -5,14 +5,11 @@
 
 <script type="text/javascript">
     Sys.WebForms.PageRequestManager.getInstance().add_endRequest(ArticlesEndRequest);
-    Sys.WebForms.PageRequestManager.getInstance().add_beginRequest(ArticlesBeginRequest);
-
-    function ArticlesBeginRequest(sender, args) {
-
-    }
 
     function ArticlesEndRequest(sender, args) {
-        $find("<%= mpeDetails.ClientID %>").show();
+        if($("#<%= hfArticleClicked.ClientID %>").attr("value")==="1")
+            $find("<%= mpeDetails.ClientID %>").show();
+        $("#<%= hfArticleClicked.ClientID %>").attr("value", "0");
     }
 </script>
 
@@ -63,6 +60,7 @@
                 <asp:Literal ID="lDetails" runat="server"></asp:Literal>
             </div>
         </asp:Panel>
+        <asp:HiddenField runat="server" ID="hfArticleClicked" />
         <ajax:ModalPopupExtender runat="server" ID="mpeDetails" PopupControlID="pDetails"
             TargetControlID="lbStub" DropShadow="false" BackgroundCssClass="shaded" CancelControlID="ibArticleClose" />
     </ContentTemplate>

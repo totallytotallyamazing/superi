@@ -51,7 +51,8 @@ public partial class Controls_Players : System.Web.UI.UserControl
         string shortText = article.ShortDescriptions[WebSession.Language];
         shortText = shortText.Replace(Environment.NewLine, "<br />");
         Regex ex = new Regex("(?:\\A|<br />)(.*?\\:)");
-        lText.Text = ex.Replace(shortText, WrapString); 
+        lText.Text = ex.Replace(shortText, WrapString);
+        hfArticleClicked.Value = "1";
     }
         
     private static string WrapString(Match M)

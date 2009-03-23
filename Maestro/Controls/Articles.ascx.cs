@@ -232,5 +232,7 @@ public partial class Controls_Articles : System.Web.UI.UserControl
             iArticlePicture.ImageUrl = WebSession.ArticlesImagesFolder.Replace("~/", WebSession.BaseUrl) + article.Picture;
         }
         lDetails.Text = article.Descriptions[WebSession.Language];
+        hfArticleClicked.Value = "1";
+        //ScriptManager.RegisterStartupScript(Page, Page.GetType(), "articles", "alert('" + mpeDetails.ClientID + "'); alert($find('" + mpeDetails.ClientID + "')); $find('" + mpeDetails.ClientID + "').show();", true);
     }
 }

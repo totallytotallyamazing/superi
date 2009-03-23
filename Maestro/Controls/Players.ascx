@@ -10,7 +10,9 @@
     }
 
     function ArticlesEndRequest(sender, args) {
-        $find("<%= mpeDetails.ClientID %>").show();
+        if ($("#<%= hfArticleClicked.ClientID %>").attr("value") === "1")
+            $find("<%= mpeDetails.ClientID %>").show();
+        $("#<%= hfArticleClicked.ClientID %>").attr("value", "0");
     }
 
     function ibClientClick(eventTarget, eventArgument) {
@@ -65,6 +67,7 @@
                 </div>
             </div>
         </asp:Panel>
+        <asp:HiddenField runat="server" ID="hfArticleClicked" />
         <ajax:ModalPopupExtender runat="server" ID="mpeDetails" PopupControlID="pDetails"
             TargetControlID="lbStub" DropShadow="false" BackgroundCssClass="shaded" CancelControlID="ibArticleClose" />
     </ContentTemplate>

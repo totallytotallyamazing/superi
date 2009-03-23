@@ -35,6 +35,27 @@ public partial class MasterPage : System.Web.UI.MasterPage
         set { _MetaTags = value; }
     }
 
+    protected void ShowArchive(object sender, EventArgs e)
+    {
+
+        GamesDataContext context = new GamesDataContext();
+        var games = from gms in context.Games
+                    orderby gms.Date descending
+                    select new
+                    {
+                        TeamTextId = gms.Team.NameTextId,
+                        HostCount = gms.HostCount,
+                        TeamCount = gms.TeamCount,
+                        Date = gms.Date,
+                        Logo = gms.Team.Logo,
+                        TeamComments = gms.TeamComments,
+                        HostComments = gms.HostComments
+                    };
+
+        rMatches.DataSource = games;
+        rMatches.DataBind();
+        hfShowArchive.Value = "1";
+    }
     
     protected void Page_Init(object sender, EventArgs e)
     {
@@ -80,5 +101,29 @@ public partial class MasterPage : System.Web.UI.MasterPage
         hlRU.ImageUrl = WebSession.BaseImageUrl + "RU.jpg";
         hlUA.ImageUrl = WebSession.BaseImageUrl + "UA.jpg";
         hlEN.ImageUrl = WebSession.BaseImageUrl + "EN.jpg";
+    }
+
+    protected void rMatches_ItemDataBound(object sender, RepeaterItemEventArgs e)
+    {
+        Literal lHostCount = (Literal)e.Item.FindControl("lHostCount");
+        Literal lTeamCount = (Literal)e.Item.FindControl("lTeamCount");
+        Literal lDate = (Literal)e.Item.FindControl("lDate");
+        Literal lTeamName = (Literal)e.Item.FindControl("lTeamName");
+        Literal lHostComments = (Literal)e.Item.FindControl("lHostComments");
+        Literal lTeamComments = (Literal)e.Item.FindControl("lTeamComments");
+        Image iTeamLogo = (Image)e.Item.FindControl("iTeamLogo");
+        object dataItem = e.Item.DataItem;
+        Resource teamName = new Resource(Convert.ToInt32(Tools.GetPropertyValue("TeamTextId", dataItem)));
+        lTeamName.Text = teamName[WebSession.Language];
+        lHostCount.Text = Convert.ToInt32(Tools.GetPropertyValue("HostCount", dataItem)).ToString();
+        lTeamCount.Text = Convert.ToInt32(Tools.GetPropertyValue("TeamCount", dataItem)).ToString();
+        lDate.Text = Convert.ToDateTime(Tools.GetPropertyValue("Date", dataItem)).ToString("dd.MM.yyyy");
+        iTeamLogo.ImageUrl = Convert.ToString(Tools.GetPropertyValue("Logo", dataItem));
+        Resource teamComments = Tools.GetPropertyValue("TeamComments", dataItem) as Resource;
+        Resource hostComments = Tools.GetPropertyValue("HostComments", dataItem) as Resource;
+        if (hostComments.Items.Count>0)
+            lHostComments.Text = hostComments[WebSession.Language];
+        if(teamComments.Items.Count>0)
+            lTeamComments.Text = teamComments[WebSession.Language];
     }
 }

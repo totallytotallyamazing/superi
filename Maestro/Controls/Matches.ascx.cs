@@ -11,7 +11,7 @@ public partial class Controls_Matches : System.Web.UI.UserControl
     protected void Page_Load(object sender, EventArgs e)
     {
         GamesDataContext context = new GamesDataContext();
-        var games = from gms in context.Games orderby gms.Played, gms.Date descending
+        var games = (from gms in context.Games orderby gms.Played, gms.Date descending
                     select new 
                     {
                         TeamTextId = gms.Team.NameTextId, 
@@ -20,7 +20,7 @@ public partial class Controls_Matches : System.Web.UI.UserControl
                         TeamCount = gms.TeamCount, 
                         Date = gms.Date, 
                         Logo = gms.Team.Logo
-                    };
+                    }).Take(10);
 
         rMatches.DataSource = games;
         rMatches.DataBind();

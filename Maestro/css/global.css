@@ -64,6 +64,59 @@ a.currentMenuItem{text-decoration:none;}
 .dateHasMatch{background:#CC0000;}
 #gameArchive{height:260px; margin-top:-20px; text-align:center;}
 
+.archiveGame
+{
+    border:1px solid #CCCCCC;
+    float:left;
+    clear:both; 
+    width:348px;
+}
+.archiveDate, .archiveCount {text-align:center;}
+.archiveCount{height:36px;font-weight:bold; font-size:42px;}
+
+.archiveDate
+{
+    color:#be1d2d;
+    font-size: 12px;
+    padding-top:10px;
+}
+
+.archiveTeam
+{
+    color:#6082c3;
+    font-size:10px;
+    float: left;
+    padding:10px 20px;
+    text-align:center;
+    width:47px;
+}
+
+.teamComments, .hostComments
+{
+    width:163px; 
+    text-align:left; 
+    border-bottom:1px solid #ccc;
+    border-left:1px solid #ccc;   
+    padding-left:10px;
+}
+
+.hostComments{float:left;clear:both;}
+
+.teamComments
+{
+    border-right:1px solid #ccc;
+    float:left;
+    width:164px;
+}
+
+
+
+.archiveDetails
+{
+    padding:0 30px;
+    float: left;
+}
+
 #sponsors{float:left; padding-left:50px;}
 #akula{float:right; padding-right:30px;}
 #tooltip{position:absolute;}
@@ -71,3 +124,85 @@ a.currentMenuItem{text-decoration:none;}
 .currentPage{font-weight:bold;}
 .page, .currentPage{padding:0 10px;}
 .pagerContainer{padding-top:20px; clear:both; text-align:center;}
+
+.archiveInner{background:white; padding:20px; height:500px; overflow:auto;}
+.archiveInner b{color:#12277F;}
+.archiveClose
+{
+    /*cursor:pointer;*/
+    height:30px;
+    position:absolute;
+    right:-12px;
+    top:-12px;
+    width:30px;
+    z-index:100;    
+}
+
+.archive{width:405px; height:540px;}
+
+
+div.articleBg {
+	position: absolute;
+	display: block;
+	z-index: 70;
+}
+
+div.fancy_bg_n {
+	top: -18px;
+	width: 100%;
+	height: 18px;
+	background: transparent url(../images/fancybox/fancy_shadow_n.png) repeat-x;
+}
+
+div.fancy_bg_ne {
+	top: -18px;
+	right: -13px;
+	width: 13px;
+	height: 18px;
+	background: transparent url(../images/fancybox/fancy_shadow_ne.png) no-repeat;
+}
+
+div.fancy_bg_e {
+	right: -13px;
+	height: 100%;
+	width: 13px;
+	background: transparent url(../images/fancybox/fancy_shadow_e.png) repeat-y;
+}
+
+div.fancy_bg_se {
+	bottom: -18px;
+	right: -13px;
+	width: 13px;
+	height: 18px;
+	background: transparent url(../images/fancybox/fancy_shadow_se.png) no-repeat;
+}
+
+div.fancy_bg_s {
+	bottom: -18px;
+	width: 100%;
+	height: 18px;
+	background: transparent url(../images/fancybox/fancy_shadow_s.png) repeat-x;
+}
+
+div.fancy_bg_sw {
+	bottom: -18px;
+	left: -13px;
+	width: 13px;
+	height: 18px;
+	background: transparent url(../images/fancybox/fancy_shadow_sw.png) no-repeat;
+}
+
+div.fancy_bg_w {
+	left: -13px;
+	height: 100%;
+	width: 13px;
+	background: transparent url(../images/fancybox/fancy_shadow_w.png) repeat-y;
+}
+
+div.fancy_bg_nw { 
+	top: -18px;
+	left: -13px;
+	width: 13px;
+	height: 18px;
+	background: transparent url(../images/fancybox/fancy_shadow_nw.png) no-repeat;
+}

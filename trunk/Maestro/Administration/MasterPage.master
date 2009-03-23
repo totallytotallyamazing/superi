@@ -17,6 +17,7 @@
 			//return retval;
 		}
     </script>
+    <script src="../js/jquery.js" type="text/javascript"></script>
 </head>
 <body onmousemove="getMousePosition(event);">
     <form id="form1" runat="server">

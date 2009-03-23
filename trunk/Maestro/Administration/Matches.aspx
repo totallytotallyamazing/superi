@@ -10,8 +10,8 @@
     </asp:LinqDataSource>
     <asp:LinqDataSource ID="ldsMatches" runat="server" 
         ContextTypeName="GamesDataContext" 
-        Select="new (Date, ID, HostCount, TeamCount, Team, Played, TeamID)" 
-        TableName="Games" OrderBy="Played, Date desc">
+        TableName="Games" OrderBy="Played, Date desc" EnableDelete="True" 
+        EnableInsert="True" EnableUpdate="True">
     </asp:LinqDataSource>
     
     <div style="float:left; width:200px;">
@@ -103,10 +103,23 @@
                 <cc2:CalendarExtender ID="TextBox3_CalendarExtender" runat="server" 
                     TargetControlID="tbDate" Format="dd.MM.yyyy" FirstDayOfWeek="Monday">
                 </cc2:CalendarExtender>
-                <asp:LinkButton ID="lbSave" runat="server" CommandName="update" 
-                    ValidationGroup="g2" CommandArgument='<%# Eval("ID") %>' Text="Сохранить"></asp:LinkButton>
-                &nbsp;
-                <asp:LinkButton ID="lbCancel" runat="server" CommandName="cancel">Отмена</asp:LinkButton>
+                
+                
+                Забили / предупреждения
+                <div style="float:left; width:185px;">
+                    <cc1:ResourceEditor ResourceId='<%# Bind("HostCommentsTextID") %>' Type="MultiLine" ID="reHostComments" runat="server">
+                    </cc1:ResourceEditor>
+                </div>                
+                <div style="float:left; padding-left:10px; width:185px;">
+                    <cc1:ResourceEditor ResourceId='<%# Bind("TeamCommentsTextID") %>' Type="MultiLine" ID="reTeamComments" runat="server">
+                    </cc1:ResourceEditor>
+                </div>
+                <div style="clear:both">
+                    <asp:LinkButton ID="lbSave" runat="server" CommandName="update" 
+                        ValidationGroup="g2" CommandArgument='<%# Eval("ID") %>' Text="Сохранить"></asp:LinkButton>
+                    &nbsp;
+                    <asp:LinkButton ID="lbCancel" runat="server" CommandName="cancel">Отмена</asp:LinkButton>
+                </div>
                 <br />
             </EditItemTemplate>
             <ItemTemplate>
@@ -142,7 +155,7 @@
             </ItemTemplate>
         </asp:DataList>
         <br />
-        <asp:Panel ID="Panel1" runat="server">
+        <asp:Panel ID="Panel1" runat="server" style="width:400px;">
             <asp:Label ID="Label5" runat="server" Text="Маестро "></asp:Label>
             <asp:TextBox ID="tbHostCount" runat="server" Width="32px" 
                     Text='<%# Eval("HostCount") %>'></asp:TextBox>
@@ -153,7 +166,7 @@
             <asp:TextBox ID="tbTeamCount" runat="server" Width="32px" 
                     Text='<%# Eval("TeamCount") %>' EnableViewState="true"></asp:TextBox>
             <cc2:MaskedEditExtender ID="tbTeamCount_MaskedEditExtender" runat="server" 
-                AutoComplete="False" ClipboardEnabled="False" Mask="9" MaskType="Number" 
+                AutoComplete="False" ClipboardEnabled="False" Mask="99" MaskType="Number" 
                 MessageValidatorTip="False" TargetControlID="tbTeamCount">
             </cc2:MaskedEditExtender>
             <asp:DropDownList ID="ddlTeams" runat="server">
@@ -171,8 +184,19 @@
             <asp:CheckBox ID="cbPlayed" runat="server" 
                 Text="Сыгранная" />
             <br />
-            <asp:LinkButton ID="lbAdd" runat="server" onclick="lbAdd_Click" 
-                ValidationGroup="g1">Добавить</asp:LinkButton>
+            Забили / предупреждения
+            <div style="float:left; width:185px;">
+                <cc1:ResourceEditor Type="MultiLine" ID="reHostComments" runat="server">
+                </cc1:ResourceEditor>
+            </div>                
+            <div style="float:left; padding-left:10px; width:185px;">
+                <cc1:ResourceEditor Type="MultiLine" ID="reTeamComments" runat="server">
+                </cc1:ResourceEditor>
+            </div>
+            <div style="clear:both">
+                <asp:LinkButton ID="lbAdd" runat="server" onclick="lbAdd_Click" 
+                    ValidationGroup="g1">Добавить</asp:LinkButton>
+            </div>                
             &nbsp;
         </asp:Panel>
         <br />

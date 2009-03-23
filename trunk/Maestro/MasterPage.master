@@ -1,5 +1,5 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
-
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajax" %>
 <%@ Register TagPrefix="maestro" TagName="MainMenu" Src="~/Controls/MainMenu.ascx" %>
 <%@ Register Assembly="Superi" Namespace="Superi.CustomControls" TagPrefix="cc1" %>
 <%@ Register TagPrefix="m" TagName="AjaxLoader" Src="~/Controls/AjaxLoadingIndicator.ascx" %>
@@ -16,21 +16,13 @@
         type="text/css" />
     <link rel="Stylesheet" href="<%= WebSession.BaseUrl + "css/jScrollPane.css" %>" />
     <link rel="Stylesheet" href="<%= WebSession.BaseUrl + "css/fancy.css" %>" />
-
     <script type="text/javascript" src="<%= WebSession.BaseUrl %>js/jquery.js"></script>
-
     <script type="text/javascript" src="<%= WebSession.BaseUrl %>js/jquery.fancybox.js"></script>
-
     <script type="text/javascript" src="<%= WebSession.BaseUrl %>js/jquery.ui.js"></script>
-
     <script type="text/javascript" src="<%= WebSession.BaseUrl %>js/jquery.em.js"></script>
-
     <script type="text/javascript" src="<%= WebSession.BaseUrl %>js/jquery.mousewheel.js"></script>
-
     <script type="text/javascript" src="<%= WebSession.BaseUrl %>js/jquery.pngFix.pack.js"></script>
-
     <script type="text/javascript" src="<%= WebSession.BaseUrl %>js/jScrollPane.js"></script>
-
     <script type="text/javascript" src="<%= WebSession.BaseUrl %>js/jquery.tooltip.js"></script>
 
     <asp:ContentPlaceHolder ID="head" runat="server">
@@ -51,7 +43,15 @@
     <form id="form1" runat="server">
     <asp:ScriptManager runat="server" ID="smMain">
     </asp:ScriptManager>
+    <script type="text/javascript">
+        Sys.WebForms.PageRequestManager.getInstance().add_endRequest(MasterEndRequest);
 
+        function MasterEndRequest(sender, args) {
+            if ($("#<%= hfShowArchive.ClientID %>").attr("value") === "1")
+                $find("<%= mpeArchive.ClientID %>").show();
+            $("#<%= hfShowArchive.ClientID %>").attr("value", "0");
+        }
+    </script>
     <script type="text/javascript">
         var matches;
         Matches.GetArchive("<%= WebSession.Language %>", matchesSuccessCallback, matchesFailCallback);
@@ -156,8 +156,8 @@
             <div id="gamesContainer">
                 <m:Matches runat="server" />
                 <div id="gameArchive" style="border-top: 2px solid #f3e0e2; margin-top: 3px">
-                    <cc1:ResourceLabel runat="server" ResourceName="gameArchive" Style="font-size: 16px;
-                        font-weight: bold; color: #992226;"></cc1:ResourceLabel>
+                    <cc1:ResourceLinkButton runat="server" OnClick="ShowArchive" id="rlbArchive" ResourceName="gameArchive" Style="font-size: 16px;
+                        font-weight: bold; color: #992226;"></cc1:ResourceLinkButton>
                 </div>
                 <div style="display: none" id="toolTip">
                     <div class="matchPlayed" style="margin: 0; margin-bottom:15px;">
@@ -165,7 +165,7 @@
                             <div style="height: 40px;">
                                 <img style="border-width: 0px;" src="Images/mae.gif" />
                             </div>
-                            Маестро
+                            <cc1:ResourceLabel ID="ResourceLabel1" ResourceName="maestro" runat="server"></cc1:ResourceLabel>
                         </div>
                         <div class="matchDetails">
                             <div class="matchCount">
@@ -187,13 +187,78 @@
                 <cc1:ResourceLabel ResourceName="copyright" runat="server"></cc1:ResourceLabel>
             </div>
             <div id="sponsors">
-                <img src="Images/Sponsors1.jpg" alt="Спонсоры" />
+                <img src="Images/Sponsors1.jpg" alt="Спонсоры" /><img src="Images/sbLogo.jpg" />
             </div>
             <div id="akula">
                 <img src="Images/akula.jpg" alt="Akula" />
             </div>
         </div>
     </div>
+    
+    
+    <asp:UpdatePanel runat="server" ID="upDetails">
+    <ContentTemplate>
+        <asp:LinkButton runat="server" ID="lbStub" Style="display: none" />
+        <asp:Panel runat="server" ID="pDetails" CssClass="archive">
+            <div id="articleBg">
+                <div class="articleBg fancy_bg_n"></div>
+                <div class="articleBg fancy_bg_ne"></div>
+                <div class="articleBg fancy_bg_e"></div>
+                <div class="articleBg fancy_bg_se"></div>
+                <div class="articleBg fancy_bg_s"></div>
+                <div class="articleBg fancy_bg_sw"></div>
+                <div class="articleBg fancy_bg_w"></div>
+                <div class="articleBg fancy_bg_nw"></div>
+            </div>
+            <asp:ImageButton ImageUrl="~/Images/fancybox/fancy_closebox.png" CssClass="archiveClose" ID="ibArticleClose" runat="server" />
+            <div class="archiveInner">
+                <asp:Repeater runat="server" ID="rMatches" onitemdatabound="rMatches_ItemDataBound">
+                    <ItemTemplate>
+                        <div class="archiveGame">
+                            <div class="archiveTeam">
+                                <div>
+                                    <img style="border-width: 0px;" src="Images/mae.gif" />
+                                </div>
+                                <cc1:ResourceLabel ResourceName="maestro" runat="server"></cc1:ResourceLabel>
+                            </div>
+                            <div class="archiveDetails">
+                                <div class="archiveCount">
+                                    <asp:Literal runat="server" ID="lHostCount"></asp:Literal>
+                                    &mdash; 
+                                    <asp:Literal runat="server" ID="lTeamCount"></asp:Literal>
+                                </div>
+                                <div class="archiveDate">
+                                    <asp:Literal runat="server" ID="lDate"></asp:Literal>
+                                </div>
+                            </div>
+                            <div class="archiveTeam">
+                                <div>
+                                    <asp:Image runat="server" ID="iTeamLogo" />
+                                </div>
+                                <asp:Literal runat="server" ID="lTeamName"></asp:Literal>
+                            </div>
+                        </div>
+                        <div class="archiveGameComments">
+                            <div class="hostComments">
+                                <asp:Literal runat="server" ID="lHostComments"></asp:Literal>
+                            </div>
+                            <div class="teamComments">
+                                <asp:Literal runat="server" ID="lTeamComments"></asp:Literal>
+                            </div>
+                        </div>
+                    </ItemTemplate>
+                </asp:Repeater>
+            </div>
+        </asp:Panel>
+        <asp:HiddenField runat="server" ID="hfShowArchive" />
+        <ajax:ModalPopupExtender runat="server" ID="mpeArchive" PopupControlID="pDetails"
+            TargetControlID="lbStub" DropShadow="false" BackgroundCssClass="shaded" CancelControlID="ibArticleClose" />
+    </ContentTemplate>
+    <Triggers>
+        <asp:AsyncPostBackTrigger ControlID="rlbArchive" EventName="Click" />
+    </Triggers>
+</asp:UpdatePanel>
+    
     </form>
 </body>
 </html>

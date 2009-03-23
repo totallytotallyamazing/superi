@@ -264,6 +264,10 @@ public partial class Game : INotifyPropertyChanging, INotifyPropertyChanged
 	
 	private bool _Played;
 	
+	private int _HostCommentsTextID;
+	
+	private int _TeamCommentsTextID;
+	
 	private EntityRef<Team> _Team;
 	
     #region Extensibility Method Definitions
@@ -282,6 +286,10 @@ public partial class Game : INotifyPropertyChanging, INotifyPropertyChanged
     partial void OnTeamCountChanged();
     partial void OnPlayedChanging(bool value);
     partial void OnPlayedChanged();
+    partial void OnHostCommentsTextIDChanging(int value);
+    partial void OnHostCommentsTextIDChanged();
+    partial void OnTeamCommentsTextIDChanging(int value);
+    partial void OnTeamCommentsTextIDChanged();
     #endregion
 	
 	public Game()
@@ -410,6 +418,46 @@ public partial class Game : INotifyPropertyChanging, INotifyPropertyChanged
 				this._Played = value;
 				this.SendPropertyChanged("Played");
 				this.OnPlayedChanged();
+			}
+		}
+	}
+	
+	[Column(Storage="_HostCommentsTextID", DbType="int NOT NULL")]
+	public int HostCommentsTextID
+	{
+		get
+		{
+			return this._HostCommentsTextID;
+		}
+		set
+		{
+			if ((this._HostCommentsTextID != value))
+			{
+				this.OnHostCommentsTextIDChanging(value);
+				this.SendPropertyChanging();
+				this._HostCommentsTextID = value;
+				this.SendPropertyChanged("HostCommentsTextID");
+				this.OnHostCommentsTextIDChanged();
+			}
+		}
+	}
+	
+	[Column(Storage="_TeamCommentsTextID", DbType="int NOT NULL")]
+	public int TeamCommentsTextID
+	{
+		get
+		{
+			return this._TeamCommentsTextID;
+		}
+		set
+		{
+			if ((this._TeamCommentsTextID != value))
+			{
+				this.OnTeamCommentsTextIDChanging(value);
+				this.SendPropertyChanging();
+				this._TeamCommentsTextID = value;
+				this.SendPropertyChanged("TeamCommentsTextID");
+				this.OnTeamCommentsTextIDChanged();
 			}
 		}
 	}

@@ -4,6 +4,7 @@ using System.Web.UI.WebControls;
 using System.Reflection;
 using System.Globalization;
 using Superi.Common;
+using Superi.CustomControls;
 
 public partial class Administration_Matches : System.Web.UI.Page
 {
@@ -62,6 +63,8 @@ public partial class Administration_Matches : System.Web.UI.Page
         if (!string.IsNullOrEmpty(tbTeamCount.Text))
             game.TeamCount = int.Parse(tbTeamCount.Text);
         game.TeamID = int.Parse(ddlTeams.SelectedValue);
+        game.HostCommentsTextID = reHostComments.ResourceId;
+        game.TeamCommentsTextID = reTeamComments.ResourceId;
         context.Games.InsertOnSubmit(game);
         context.SubmitChanges();
     }
@@ -97,11 +100,15 @@ public partial class Administration_Matches : System.Web.UI.Page
         DropDownList ddlTeams = (DropDownList)e.Item.FindControl("ddlTeams");
         TextBox tbDate = (TextBox)e.Item.FindControl("tbDate");
         CheckBox cbPlayed = (CheckBox)e.Item.FindControl("cbPlayed");
+        ResourceEditor reHostComments = (ResourceEditor)e.Item.FindControl("reHostComments");
+        ResourceEditor reTeamComments = (ResourceEditor)e.Item.FindControl("reTeamComments");
         GamesDataContext context = new GamesDataContext();
         var game = context.Games.SingleOrDefault(f => f.ID == gameId);
         CultureInfo culture = CultureInfo.GetCultureInfo("ru-RU");
         game.Date = DateTime.Parse(tbDate.Text, culture);
         game.Played = cbPlayed.Checked;
+        game.HostCommentsTextID = reHostComments.ResourceId;
+        game.TeamCommentsTextID = reTeamComments.ResourceId;
         if (!string.IsNullOrEmpty(tbHostCount.Text))
             game.HostCount = int.Parse(tbHostCount.Text);
         else

@@ -26,6 +26,8 @@ namespace Superi.Features
 	    private string additionalTitle = "";
 	    private int additionalTitleTextId = int.MinValue;
 	    private string path = "";
+        private bool authenticationRequired = false;
+        private string allowedGroups = "";
 		#endregion
 
 		#region Properties
@@ -161,6 +163,18 @@ namespace Superi.Features
 	    {
 	        get { return path; }
 	    }
+
+        public bool AuthenticationRequired
+        {
+            get { return authenticationRequired; }
+            set { authenticationRequired = value; }
+        }
+
+        public string AllowedGroups
+        {
+            get { return allowedGroups; }
+            set { allowedGroups = value; }
+        }
 	    #endregion
 
         #region Constructors

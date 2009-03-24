@@ -85,15 +85,26 @@ namespace Superi.Common
         {
             get
             {
-                return System.Configuration.ConfigurationManager.AppSettings["BaseUrl"];
+                return HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Scheme) + HttpContext.Current.Request.Url.Host + WebSession.VirtualDirectoryName;
             }
+        }
+
+        public static string DefaultBaseUrl
+        {
+            get
+            {
+                return System.Configuration.ConfigurationManager.AppSettings["BaseUrl"];
+            }        
         }
 
         public static string VirtualDirectoryName
         {
             get
             {
-                return System.Configuration.ConfigurationManager.AppSettings["VirtualDirectoryName"];
+                if (!string.IsNullOrEmpty(System.Configuration.ConfigurationManager.AppSettings["VirtualDirectoryName"]))
+                    return System.Configuration.ConfigurationManager.AppSettings["VirtualDirectoryName"];
+                else
+                    return "/";
             }
         }
 

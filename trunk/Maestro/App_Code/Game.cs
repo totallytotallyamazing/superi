@@ -18,4 +18,14 @@ public partial class Game
     {
         get { return new Resource(TeamCommentsTextID); }
     }
+
+    public Resource HostFaults
+    {
+        get { return new Resource(HostFaultsTextID); }
+    }
+
+    public Resource TeamFaults
+    {
+        get { return new Resource(TeamFaultsTextID); }
+    }
 }

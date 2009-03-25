@@ -214,38 +214,34 @@
             <div class="archiveInner">
                 <asp:Repeater runat="server" ID="rMatches" onitemdatabound="rMatches_ItemDataBound">
                     <ItemTemplate>
-                        <div class="archiveGame">
-                            <div class="archiveTeam">
-                                <div>
-                                    <img style="border-width: 0px;" src="Images/mae.gif" />
-                                </div>
-                                <cc1:ResourceLabel ResourceName="maestro" runat="server"></cc1:ResourceLabel>
+                        <div class="archiveHeader">
+                            <div class="archiveDate">
+                                <asp:Literal runat="server" ID="lDate" />
                             </div>
-                            <div class="archiveDetails">
-                                <div class="archiveCount">
-                                    <asp:Literal runat="server" ID="lHostCount"></asp:Literal>
-                                    &mdash; 
-                                    <asp:Literal runat="server" ID="lTeamCount"></asp:Literal>
-                                </div>
-                                <div class="archiveDate">
-                                    <asp:Literal runat="server" ID="lDate"></asp:Literal>
-                                </div>
+                            <div class="atchiveHost">
+                                <cc1:ResourceLabel runat="server" ResourceName="fcmaestro" />
+                            </div>
+                            <div class="archiveCount">
+                                <div class="archiveHostCount"><asp:Literal runat="server" ID="lHostCount" /></div>
+                                <div class="archiveColon">:</div>
+                                <div class="archiveTeamCount"><asp:Literal runat="server" ID="lTeamCount" /></div>
                             </div>
                             <div class="archiveTeam">
-                                <div>
-                                    <asp:Image runat="server" ID="iTeamLogo" />
-                                </div>
-                                <asp:Literal runat="server" ID="lTeamName"></asp:Literal>
+                                <asp:Literal runat="server" ID="lTeamName" />
                             </div>
                         </div>
-                        <div class="archiveGameComments">
-                            <div class="hostComments">
-                                <asp:Literal runat="server" ID="lHostComments"></asp:Literal>
-                            </div>
-                            <div class="teamComments">
-                                <asp:Literal runat="server" ID="lTeamComments"></asp:Literal>
-                            </div>
-                        </div>
+                        <table cellpadding="0" cellspacing="0" border="0" class="archiveTable">
+                            <tr>
+                                <td valign="top" class="goals"><cc1:ResourceLabel runat="server" ResourceName="goals" /></td>
+                                <td valign="top" class="hostGoals"><asp:Literal runat="server" ID="lHostGoals" /></td>
+                                <td valign="top" class="teamGoals"><asp:Literal runat="server" ID="lHostFaults" /></td>
+                            </tr>
+                            <tr>
+                                <td valign="top" class="faults"><cc1:ResourceLabel runat="server" ResourceName="faults" /></td>
+                                <td valign="top" class="hostFaults"><asp:Literal runat="server" ID="lTeamGoals" /></td>
+                                <td valign="top" class="teamFaults"><asp:Literal runat="server" ID="lTeamFaults" /></td>
+                            </tr>
+                        </table>
                     </ItemTemplate>
                 </asp:Repeater>
             </div>

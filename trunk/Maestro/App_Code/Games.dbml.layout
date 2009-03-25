@@ -8,13 +8,13 @@
         <elementListCompartment Id="bcf56f68-ab71-446c-bd33-c0ee9ea6280a" absoluteBounds="1.7650000000000001, 4.835, 1.8450000000000002, 0.86484781901041663" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="54ac0c57-1017-45e2-a8b7-790b798b64fa" absoluteBounds="1.375, 0.5, 2, 2.0822371419270831">
+    <classShape Id="54ac0c57-1017-45e2-a8b7-790b798b64fa" absoluteBounds="1.375, 0.5, 2, 2.4109318033854166">
       <DataClassMoniker Name="/GamesDataContext/Game" />
       <nestedChildShapes>
-        <elementListCompartment Id="2220a1a4-3921-4e3d-8c04-412676e2490b" absoluteBounds="1.3900000000000001, 0.96, 1.9700000000000002, 1.5222371419270833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="2220a1a4-3921-4e3d-8c04-412676e2490b" absoluteBounds="1.3900000000000001, 0.96, 1.9700000000000002, 1.8509318033854165" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(2.5625 : 4.375); (2.5625 : 2.58223714192708)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.5625 : 4.375); (2.5625 : 2.91093180338542)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/GamesDataContext/Team/Team_Game" />
       <nodes>
         <classShapeMoniker Id="3dc5bcba-503f-4ea1-85ed-cb62f1490349" />

@@ -65,6 +65,8 @@ public partial class Administration_Matches : System.Web.UI.Page
         game.TeamID = int.Parse(ddlTeams.SelectedValue);
         game.HostCommentsTextID = reHostComments.ResourceId;
         game.TeamCommentsTextID = reTeamComments.ResourceId;
+        game.HostFaultsTextID = reHostFaults.ResourceId;
+        game.TeamFaultsTextID = reTeamFaults.ResourceId;
         context.Games.InsertOnSubmit(game);
         context.SubmitChanges();
     }
@@ -102,6 +104,8 @@ public partial class Administration_Matches : System.Web.UI.Page
         CheckBox cbPlayed = (CheckBox)e.Item.FindControl("cbPlayed");
         ResourceEditor reHostComments = (ResourceEditor)e.Item.FindControl("reHostComments");
         ResourceEditor reTeamComments = (ResourceEditor)e.Item.FindControl("reTeamComments");
+        ResourceEditor reHostFaults = (ResourceEditor)e.Item.FindControl("reHostFaults");
+        ResourceEditor reTeamFaults = (ResourceEditor)e.Item.FindControl("reTeamFaults");
         GamesDataContext context = new GamesDataContext();
         var game = context.Games.SingleOrDefault(f => f.ID == gameId);
         CultureInfo culture = CultureInfo.GetCultureInfo("ru-RU");
@@ -109,6 +113,8 @@ public partial class Administration_Matches : System.Web.UI.Page
         game.Played = cbPlayed.Checked;
         game.HostCommentsTextID = reHostComments.ResourceId;
         game.TeamCommentsTextID = reTeamComments.ResourceId;
+        game.HostFaultsTextID = reHostFaults.ResourceId;
+        game.TeamFaultsTextID = reTeamFaults.ResourceId;
         if (!string.IsNullOrEmpty(tbHostCount.Text))
             game.HostCount = int.Parse(tbHostCount.Text);
         else
@@ -118,7 +124,6 @@ public partial class Administration_Matches : System.Web.UI.Page
         else
             game.TeamCount = null;
         game.TeamID = int.Parse(ddlTeams.SelectedValue);
-       // context.Games.Attach(game, true);
         context.SubmitChanges();
         DataList1.EditItemIndex = -1;
     }

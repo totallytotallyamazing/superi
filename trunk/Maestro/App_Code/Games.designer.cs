@@ -268,6 +268,10 @@ public partial class Game : INotifyPropertyChanging, INotifyPropertyChanged
 	
 	private int _TeamCommentsTextID;
 	
+	private int _HostFaultsTextID;
+	
+	private int _TeamFaultsTextID;
+	
 	private EntityRef<Team> _Team;
 	
     #region Extensibility Method Definitions
@@ -290,6 +294,10 @@ public partial class Game : INotifyPropertyChanging, INotifyPropertyChanged
     partial void OnHostCommentsTextIDChanged();
     partial void OnTeamCommentsTextIDChanging(int value);
     partial void OnTeamCommentsTextIDChanged();
+    partial void OnHostFaultsTextIDChanging(int value);
+    partial void OnHostFaultsTextIDChanged();
+    partial void OnTeamFaultsTextIDChanging(int value);
+    partial void OnTeamFaultsTextIDChanged();
     #endregion
 	
 	public Game()
@@ -458,6 +466,46 @@ public partial class Game : INotifyPropertyChanging, INotifyPropertyChanged
 				this._TeamCommentsTextID = value;
 				this.SendPropertyChanged("TeamCommentsTextID");
 				this.OnTeamCommentsTextIDChanged();
+			}
+		}
+	}
+	
+	[Column(Storage="_HostFaultsTextID", DbType="int")]
+	public int HostFaultsTextID
+	{
+		get
+		{
+			return this._HostFaultsTextID;
+		}
+		set
+		{
+			if ((this._HostFaultsTextID != value))
+			{
+				this.OnHostFaultsTextIDChanging(value);
+				this.SendPropertyChanging();
+				this._HostFaultsTextID = value;
+				this.SendPropertyChanged("HostFaultsTextID");
+				this.OnHostFaultsTextIDChanged();
+			}
+		}
+	}
+	
+	[Column(Storage="_TeamFaultsTextID", DbType="int")]
+	public int TeamFaultsTextID
+	{
+		get
+		{
+			return this._TeamFaultsTextID;
+		}
+		set
+		{
+			if ((this._TeamFaultsTextID != value))
+			{
+				this.OnTeamFaultsTextIDChanging(value);
+				this.SendPropertyChanging();
+				this._TeamFaultsTextID = value;
+				this.SendPropertyChanged("TeamFaultsTextID");
+				this.OnTeamFaultsTextIDChanged();
 			}
 		}
 	}

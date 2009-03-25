@@ -49,7 +49,9 @@ public partial class MasterPage : System.Web.UI.MasterPage
                         Date = gms.Date,
                         Logo = gms.Team.Logo,
                         TeamComments = gms.TeamComments,
-                        HostComments = gms.HostComments
+                        HostComments = gms.HostComments,
+                        TeamFaults = gms.TeamFaults,
+                        HostFaults = gms.HostFaults
                     };
 
         rMatches.DataSource = games;
@@ -58,8 +60,10 @@ public partial class MasterPage : System.Web.UI.MasterPage
     }
     
     protected void Page_Init(object sender, EventArgs e)
-    {
-        smMain.Services.Add(new ServiceReference(WebSession.BaseUrl + "Services/Matches.asmx"));
+   {
+      // smMain.ScriptPath = Request.Url.GetLeftPart(UriPartial.Scheme) + Request.Url.Host + WebSession.VirtualDirectoryName + "Ajax";
+       smMain.Services.Add(new ServiceReference(Request.Url.GetLeftPart(UriPartial.Scheme) + Request.Url.Host + WebSession.VirtualDirectoryName + "Services/Matches.asmx"));
+        
         lTitle.Text = Page.Title;
         if (Request.Url.AbsoluteUri.ToLower().IndexOf("default.aspx") > -1)
             WebSession.NavigationID = int.MinValue;
@@ -109,21 +113,27 @@ public partial class MasterPage : System.Web.UI.MasterPage
         Literal lTeamCount = (Literal)e.Item.FindControl("lTeamCount");
         Literal lDate = (Literal)e.Item.FindControl("lDate");
         Literal lTeamName = (Literal)e.Item.FindControl("lTeamName");
-        Literal lHostComments = (Literal)e.Item.FindControl("lHostComments");
-        Literal lTeamComments = (Literal)e.Item.FindControl("lTeamComments");
-        Image iTeamLogo = (Image)e.Item.FindControl("iTeamLogo");
+        Literal lHostGoals = (Literal)e.Item.FindControl("lHostGoals");
+        Literal lTeamGoals = (Literal)e.Item.FindControl("lTeamGoals");
+        Literal lHostFaults = (Literal)e.Item.FindControl("lHostFaults");
+        Literal lTeamFaults = (Literal)e.Item.FindControl("lTeamFaults");
         object dataItem = e.Item.DataItem;
         Resource teamName = new Resource(Convert.ToInt32(Tools.GetPropertyValue("TeamTextId", dataItem)));
         lTeamName.Text = teamName[WebSession.Language];
         lHostCount.Text = Convert.ToInt32(Tools.GetPropertyValue("HostCount", dataItem)).ToString();
         lTeamCount.Text = Convert.ToInt32(Tools.GetPropertyValue("TeamCount", dataItem)).ToString();
         lDate.Text = Convert.ToDateTime(Tools.GetPropertyValue("Date", dataItem)).ToString("dd.MM.yyyy");
-        iTeamLogo.ImageUrl = Convert.ToString(Tools.GetPropertyValue("Logo", dataItem));
-        Resource teamComments = Tools.GetPropertyValue("TeamComments", dataItem) as Resource;
-        Resource hostComments = Tools.GetPropertyValue("HostComments", dataItem) as Resource;
-        if (hostComments.Items.Count>0)
-            lHostComments.Text = hostComments[WebSession.Language];
-        if(teamComments.Items.Count>0)
-            lTeamComments.Text = teamComments[WebSession.Language];
+        Resource teamGoals = Tools.GetPropertyValue("TeamComments", dataItem) as Resource;
+        Resource hostGoals = Tools.GetPropertyValue("HostComments", dataItem) as Resource;
+        Resource teamFaults = Tools.GetPropertyValue("TeamFaults", dataItem) as Resource;
+        Resource hostFaults = Tools.GetPropertyValue("HostFaults", dataItem) as Resource;
+        if (hostGoals.Items.Count > 0)
+            lHostGoals.Text = hostGoals[WebSession.Language];
+        if (teamGoals.Items.Count > 0)
+            lTeamGoals.Text = teamGoals[WebSession.Language];
+        if (hostFaults.Items.Count > 0)
+            lHostFaults.Text = hostFaults[WebSession.Language];
+        if (teamFaults.Items.Count > 0)
+            lTeamFaults.Text = teamFaults[WebSession.Language];
     }
 }

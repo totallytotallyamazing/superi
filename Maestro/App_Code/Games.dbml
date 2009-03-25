@@ -20,6 +20,8 @@
       <Column Name="Played" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="HostCommentsTextID" Type="System.Int32" DbType="int NOT NULL" CanBeNull="false" />
       <Column Name="TeamCommentsTextID" Type="System.Int32" DbType="int NOT NULL" CanBeNull="false" />
+      <Column Name="HostFaultsTextID" Type="System.Int32" DbType="int" CanBeNull="false" />
+      <Column Name="TeamFaultsTextID" Type="System.Int32" DbType="int" CanBeNull="false" />
       <Association Name="Team_Game" Member="Team" ThisKey="TeamID" OtherKey="ID" Type="Team" IsForeignKey="true" />
     </Type>
   </Table>

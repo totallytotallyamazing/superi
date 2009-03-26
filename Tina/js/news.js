@@ -98,7 +98,7 @@ function pageChanged(elem) {
 
 function loadNews(pageNumber) {
     var wRequest = new Sys.Net.WebRequest();
-    wRequest.set_url("News.aspx?page=" + pageNumber);
+    wRequest.set_url("News.aspx?page=" + pageNumber + "&rnd=" + Math.random());
     wRequest.set_httpVerb("GET");
     wRequest.set_userContext("user's context");
     wRequest.add_completed(OnWebRequestCompleted);
@@ -115,7 +115,7 @@ function OnWebRequestCompleted(executor, eventArgs) {
 }
 
 function detailsClicked(el) {
-    $("#newsTextContainer").html($(el.target).attr("details"));
+    $("#newsTextContainer").html($(el.target).next().html());
     $("#newsTextContainer").dialog("open");
     $("#newsTextContainer").jScrollPane();
 }

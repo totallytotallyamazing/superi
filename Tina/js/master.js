@@ -3,6 +3,7 @@ var historyAlbumId = 0;
 var photoAlbumId = 0;
 var videoId = 0;
 var historyCallback = false;
+var currentGalleryPage = 0;
 
 $.history.callback = function(reinstate, cursor) {
     historyAlbumId = reinstate.albumId;
@@ -43,7 +44,6 @@ function BeginRequestHandler() {
     $("html, body").css("overflow", "hidden")
     var vpWidth = $("body").width();
     var vpHeight = $("body").height();
-   // $(".myShadow").css("left", Math.floor(vpWidth / 2 - 60)).css("top", Math.floor(vpHeight / 2 - 30)).css("display", "block");
     $("#loadingSign").css("left", Math.floor(vpWidth / 2 - 16)).css("top", Math.floor(vpHeight / 2 - 16)).css("display", "block");
     $("#loading").css("display", "block");
 }
@@ -51,7 +51,6 @@ function BeginRequestHandler() {
 function EndRequestHandler() {
     $("html, body").css("overflow", "");
     $("#loadingContainer").css("display", "none");
-   // $(".myShadow").css("display", "none");
     $("#loadingSign").css("display", "none");
     $("#loading").css("display", "none");
 }
@@ -75,7 +74,9 @@ function cleanUp() {
     $("#newsContent").empty();
     $("#newsContainer").css("display", "none");
     $(".songsPlaceHolder").removeClass("songsPlaceHolderInverted");
+    $("#galleryPages").empty().css("display", "none");
     currentAlbumId = 0;
+    currentGalleryPage = 0;
 }
 
 function appendSubMenuItem(item) {

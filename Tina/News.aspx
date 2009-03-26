@@ -17,17 +17,20 @@
                     <img alt="<% Response.Write(item.Title);%>" src="makethumbnail.aspx?w=115&h=115&loc=news&file=<% Response.Write(item.Picture); %>" />
                 </div>
                 <div class="newsContent">
-                    <div class="newsTitle">
-                        <% Response.Write(item.Title); %>
-                    </div>
-                    <div class="newsDate">
-                        <% Response.Write(item.Date.Value.ToString("dd.MM.yy")); %>
-                    </div>
-                    <div class="newsText">
-                        <% Response.Write(item.ShortText); %>
+                    <div class="exceptDetails">
+                        <div class="newsTitle">
+                            <% Response.Write(item.Title); %>
+                        </div>
+                        <div class="newsDate">
+                            <% Response.Write(item.Date.Value.ToString("dd.MM.yy")); %>
+                        </div>
+                        <div class="newsText">
+                            <% Response.Write(item.ShortText); %>
+                        </div>
                     </div>
                     <div class="newsDetail">
-                        <span details="<% Response.Write(item.Text); %>">подробнее...</span>
+                        <span>подробнее...</span>
+                        <span style="display:none" id="newsDetail"> <% Response.Write(item.Text); %></span>
                     </div>
                 </div>
             </div>

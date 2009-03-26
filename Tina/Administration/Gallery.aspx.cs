@@ -14,7 +14,8 @@ public partial class Administration_Gallery : System.Web.UI.Page
         ddlAlbums.Items.Clear();
         Musics.MusicDataContext context = new Musics.MusicDataContext();
         List<Album> albums = context.Albums.Select(al => al).ToList();
-        ddlAlbums.Items.Add(new ListItem("-", "0"));
+        ddlAlbums.Items.Add(new ListItem("Имидж", "0"));
+        ddlAlbums.Items.Add(new ListItem("Галерея", "-1"));
         foreach (var item in albums)
             ddlAlbums.Items.Add(new ListItem(item.Name, item.ID.ToString()));
     }
@@ -33,7 +34,8 @@ public partial class Administration_Gallery : System.Web.UI.Page
             {
                 Musics.MusicDataContext context = new Musics.MusicDataContext();
                 List<Album> albums = context.Albums.Select(al => al).ToList();
-                ddlAlbums.Items.Add(new ListItem("-", "0"));
+                ddlAlbums.Items.Add(new ListItem("Имидж", "0"));
+                ddlAlbums.Items.Add(new ListItem("Галерея", "-1"));
                 foreach (var item in albums)
                     ddlAlbums.Items.Add(new ListItem(item.Name, item.ID.ToString()));
             }

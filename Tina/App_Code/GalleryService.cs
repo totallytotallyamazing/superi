@@ -21,10 +21,37 @@ public class GalleryService : System.Web.Services.WebService
     }
 
     [WebMethod]
+    public int GetPageNumber(int id)
+    {
+        Galleria.GalleryDataContext context = new Galleria.GalleryDataContext();
+        int count = context.Galleries.Where(gl=>gl.AlbumID == id).Count();
+        int result = count / 30;
+        if (count % 30 > 0)
+            result++;
+        return result;
+    }
+
+    [WebMethod]
+    public object GetPhotosPage(int id, int pageNumber)
+    {
+        Galleria.GalleryDataContext context = new Galleria.GalleryDataContext();
+        var result = (from gallery
+                          in context.Galleries
+                      where gallery.AlbumID == id
+                      select new
+                      {
+                          gallery.Title,
+                          gallery.Thumbnail,
+                          gallery.Picture
+                      }).Skip(pageNumber * 30).Take(30);
+        return result;
+    }
+
+    [WebMethod]
     public object GetPhotosByAlbumId(int id)
     {
         Galleria.GalleryDataContext context = new Galleria.GalleryDataContext();
-        var result = from gallery in context.Galleries where gallery.AlbumID == id select new { gallery.Title, gallery.Thumbnail, gallery.Picture };
+        var result = (from gallery in context.Galleries where gallery.AlbumID == id select new { gallery.Title, gallery.Thumbnail, gallery.Picture }).Take(30);
         return result;
     }
 }

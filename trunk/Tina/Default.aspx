@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Title="Официальный сайт Тины Кароль" Inherits="_Default" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -7,7 +7,7 @@
     <script src="js/jquery.js" type="text/javascript"></script>
     <script src="js/jquery.history.js" type="text/javascript"></script>
     <script src="js/jquery.preloadImages.js" type="text/javascript"></script>
-    <script src="js/music.js" type="text/javascript"></script>
+    <script src="js/albums.js" type="text/javascript"></script>
     <script src="js/master.js" type="text/javascript"></script>
     <script src="js/jquery.flash.js" type="text/javascript"></script>
     <script src="js/jquery.ui.js" type="text/javascript"></script>
@@ -19,7 +19,6 @@
     <script src="js/jquery.em.js" type="text/javascript"></script>
     <script src="js/jScrollPane.js" type="text/javascript"></script>
     <script src="js/jquery.fancybox.js" type="text/javascript"></script>
-<%--    <link href="css/galleriffic.css" rel="stylesheet" type="text/css" />--%>
     <link href="theme/ui.core.css" rel="stylesheet" type="text/css" />
     <link href="theme/ui.theme.css" rel="stylesheet" type="text/css" />
     <link href="theme/ui.dialog.css" rel="stylesheet" type="text/css" />
@@ -59,9 +58,9 @@
         <div id="top">
             <ul id="menu">
                 <li style="font-size:0px; width:0px; height:0px; padding:0; margin:0;"></li>
-                <li image="images/music.jpg" section="music">музыка</li>
+                <li image="images/music.jpg" section="music">альбомы</li>
                 <li image="images/photo.jpg" section="photo">фото</li>
-                <li image="images/video.jpg" section="video">видео</li>
+                <li image="images/video.jpg" section="video">клипы</li>
                 <li image="images/news.jpg" section="news">новости</li>
             </ul>
 
@@ -84,11 +83,7 @@
                         <center></center>
                     </ul>
                 </div>
-                <div id="gallery" class="content">
-                    <div id="controls" class="controls">
-                    </div>
-                    <div id="slideshow" class="slideshow">
-                    </div>
+                <div id="galleryPages" class="bottom pagination">
                 </div>
             </div>
             <div class="videoPlaceHolder">
@@ -113,8 +108,9 @@
 
         <div id="bottom">
             <div id="footerMenu">
-                <a href="javascript:showAlbumPhoto()">фото альбома</a> &nbsp;&nbsp; 
-                <a href="javascript:showAlbumVideo()">видео альбома</a>
+                <a href="javascript:showAlbumTracks()">треки</a> &nbsp;&nbsp; 
+                <a href="javascript:showAlbumPhotos()">фото</a> &nbsp;&nbsp; 
+                <a href="javascript:showAlbumVideos()">видео</a>
             </div>
             <div id="copyrigth">
                 <a href="mailto:al@akula.com.ua" ><img src="Images/akula.jpg" /></a>

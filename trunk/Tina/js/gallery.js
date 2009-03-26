@@ -1,6 +1,11 @@
 ﻿function loadImages(result) {
-    EndRequestHandler();
-    loadAlbums();
+    
+    if (currentAlbumId <= 0)
+        loadAlbums();
+    else {
+        $(".songsPlaceHolder ul").empty();
+        $(".songsPlaceHolder ul").css("display", "none");
+    }
     $(".thumbs center").empty();
     $(".galleryPlaceHolder").css("display", "block");
     var hasResults = false;
@@ -8,24 +13,49 @@
         hasResults = true;
         createThumbnail(result[i].Picture, result[i].Title, result[i].Thumbnail);
     }
+    if (hasResults) {
+        GalleryService.GetPageNumber(currentAlbumId, photoPageNumberRetrieved, photoPagesFailed);
+        startGallery();
+    }
+    else {
+        EndRequestHandler();
+    }
+}
 
-	if (hasResults)
-	    startGallery();
+function photoPageNumberRetrieved(response) {
+    EndRequestHandler();
+    if (response > 1) {
+        initGalleryPages(response);
+    }
+}
+
+function initGalleryPages(pageCount) {
+    $("#galleryPages").empty().css("display", "block");
+    for (var i = 1; i <= pageCount; i++) {
+        if (i-1 !== currentGalleryPage)
+            $("<a>").html(i).appendTo("#galleryPages").click(galleryPageChanged).css("cursor", "pointer");
+        else
+            $("<span>").addClass("current").html(i).appendTo("#galleryPages");
+    }
+}
+
+function galleryPageChanged(elem) {
+    currentGalleryPage = +$(elem.target).html() - 1;
+    GalleryService.GetPhotosPage(currentAlbumId, currentGalleryPage, loadImages, loadImagesFail);
 }
 
 function loadAlbums() {
     $("#subMenu ul").empty();
-    BeginRequestHandler();
-    Music.GetAlbums(photoAlbumsProcessed, onRetriveAlbumsFail);
+    appendSubMenuItem(createMenuItem("Имидж", photoAlbumClicked).attr({ albumId: 0, image: "images/photo.jpg" }));
+    appendSubMenuItem(createMenuItem("Галерея", photoAlbumClicked).attr({ albumId: -1, image: "images/photo.jpg" }));
+    $("[albumId='" + currentAlbumId + "'] a").toggleClass("subMenuItemActive");
+    updateSubMenuClickHandlers(photoAlbumClicked);
 }
 
 function photoAlbumsProcessed(response) {
     EndRequestHandler();
     appendSubMenuItem(createMenuItem("Имидж", photoAlbumClicked).attr({ albumId: 0, image: "images/photo.jpg" }));
-    for (var i in response) {
-        $.preloadImages("images/albumimages/" + response[i].Image);
-        appendSubMenuItem(createMenuItem(response[i].Name + "(" + response[i].Year + ")", photoAlbumClicked).attr({ albumId: response[i].ID, image: "images/albumimages/" + response[i].PhotoImage }));
-    }
+    appendSubMenuItem(createMenuItem("Галерея", photoAlbumClicked).attr({ albumId: -1, image: "images/photo.jpg" }));
     $("[albumId='" + currentAlbumId + "'] a").toggleClass("subMenuItemActive");
     updateSubMenuClickHandlers(photoAlbumClicked);
 }
@@ -67,6 +97,10 @@ function startGallery() {
 
 function loadImagesFail() {
     alert("galleryFail");
+}
+
+function photoPagesFailed() {
+    alert("pages failed");
 }
 
 var galleryItemHtml =  '<li>' +

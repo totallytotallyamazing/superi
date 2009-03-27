@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Database Name="Pandemic" Class="EntitiesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=PC-KOKH\SQLEXPRESS;Initial Catalog=Pandemic;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="PandemicConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Entities" Member="Entities">
+    <Type Name="Entity">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Title" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Column Name="Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="Content" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TypeID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SourceID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Entity_EntitySource" Member="EntitySources" ThisKey="SourceID" OtherKey="ID" Type="EntitySource" />
+      <Association Name="Entity_EntityType" Member="EntityTypes" ThisKey="SourceID" OtherKey="ID" Type="EntityType" />
+    </Type>
+  </Table>
+  <Table Name="dbo.EntitySources" Member="EntitySources">
+    <Type Name="EntitySource">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Association Name="Entity_EntitySource" Member="Entity" ThisKey="ID" OtherKey="SourceID" Type="Entity" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.EntityType" Member="EntityTypes">
+    <Type Name="EntityType">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Association Name="Entity_EntityType" Member="Entity" ThisKey="ID" OtherKey="SourceID" Type="Entity" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

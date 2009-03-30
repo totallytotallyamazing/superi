@@ -8,6 +8,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head runat="server">
+
     <title>Untitled Page</title>
     <asp:ContentPlaceHolder ID="cphTitle" runat="server"></asp:ContentPlaceHolder>
 </head>
@@ -127,6 +128,9 @@
             </div>
             <div id="menuTopSpacer"></div>
             <Controls:MainMenu ID="MainMenu1" runat="server" />
+        </div>
+        <div id="counters">
+        
         </div>
     </div>
 

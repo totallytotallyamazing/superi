@@ -49,6 +49,10 @@ public partial class MasterPage : System.Web.UI.MasterPage
         fancy.Href = WebSession.BaseUrl + "css/fancy.css";
         Page.Header.Controls.Add(fancy);
 
+        HtmlGenericControl baseTag = new HtmlGenericControl("base");
+        baseTag.Attributes["href"] = WebSession.BaseUrl;
+        Page.Header.Controls.Add(baseTag);
+        
         /*
             <link rel="Stylesheet" href="<%= WebSession.BaseUrl + "css/global.css" %>" />
     <link rel="Stylesheet" href="<%= WebSession.BaseUrl + "css/fancy.css" %>" />

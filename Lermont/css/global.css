@@ -1,6 +1,6 @@
-﻿*{padding:0px; margin:0px; border:none; font-family:Pragmatica, Tahoma, Times New Roman;}
+﻿*{padding:0px; margin:0px; border:none; font-family:Verdana,Pragmatica,Tahoma,Arial;}
 body{background-color:Black;}
-hr{background-color:White;  margin:10px 0px; height:1px;}
+hr{background-color:Black;  margin:10px 0px; height:1px;}
 a {color:#6C7EB4;}
 a:hover{color:Black;}
 
@@ -9,7 +9,7 @@ a:hover{color:Black;}
 #title{ float:left;text-transform:uppercase; font-size:18px;overflow:hidden; text-align:center; padding-top:5px; width:268px;}
 #middle{float:left; clear:both; width:1024px;}
 #leftSide{width:270px; height:500px; float:left;}
-#contentContainer{padding-left:16px; padding-top:12px; min-height:500px; float:left;  font-size:14px; width:664px; background:white;/*transparent url("../images/centerBg.jpg") bottom right no-repeat;*/ color:Black;}
+#contentContainer{padding-left:16px; padding-top:12px; min-height:500px; float:left;  font-size:14px; width:664px; background:white;/*transparent url("../images/centerBg.jpg") bottom right no-repeat;*/ color:Black; font-size:12px;}
 #rightSide{float:left;}
 #footer{width:100%; height:126px; background:transparent url("../images/footer.jpg") no-repeat; float:left; clear:both;}
 #textDiv{float:left;width:650px;}

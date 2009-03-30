@@ -60,6 +60,13 @@ public partial class Administration_Controls_AddEditNavigation : System.Web.UI.U
                 tbPage.Text = navigation.Page;
             }
         }
+        else
+        {
+            reTitle.TextID = int.MinValue;
+            tbName.Text = string.Empty;
+            cbDisplay.Checked = true;
+            tcTabs.ActiveTabIndex = 0;
+        }
     }
 
     protected void Page_Load(object sender, EventArgs e)

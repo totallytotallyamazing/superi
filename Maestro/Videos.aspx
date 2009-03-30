@@ -21,5 +21,8 @@
             <cc1:Pager CurrentPageCssClass="currentPage" PageCssClass="page" ID="pPages" runat="server" />
         </div>
     </center>
+<div class="mediaMenu">
+    <maestro:MediaMenu ID="MediaMenu1" CurrentIndex="2" runat="server" />
+</div>
 </asp:Content>
 

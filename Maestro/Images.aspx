@@ -21,6 +21,9 @@
 <div class="pagerContainer">
     <cc1:Pager CurrentPageCssClass="currentPage" PageCssClass="page" ID="pPages" runat="server" />
 </div>
+<div class="mediaMenu">
+    <maestro:MediaMenu ID="MediaMenu1" CurrentIndex="1" runat="server" />
+</div>  
 <script type="text/javascript">
     $(document).ready(function() { $(".imageSeq a").fancybox({ 'overlayShow': true }) });
 </script>

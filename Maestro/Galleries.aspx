@@ -10,11 +10,14 @@
     </div>
     <asp:Repeater runat="server" ID="rPictures" 
         onitemdatabound="rPictures_ItemDataBound">
-    <ItemTemplate>
-        <div class="imageSeq">
-            <asp:HyperLink runat="server" ID="hlPicture"></asp:HyperLink><br />
-            <asp:HyperLink runat="server" ID="hlTitle"></asp:HyperLink>
-        </div>
-    </ItemTemplate>
-</asp:Repeater>
+        <ItemTemplate>
+            <div class="imageSeq">
+                <asp:HyperLink runat="server" ID="hlPicture"></asp:HyperLink><br />
+                <asp:HyperLink runat="server" ID="hlTitle"></asp:HyperLink>
+            </div>
+        </ItemTemplate>
+    </asp:Repeater>
+    <div class="mediaMenu">
+        <maestro:MediaMenu ID="MediaMenu1" CurrentIndex="0" runat="server" />
+    </div>
 </asp:Content>

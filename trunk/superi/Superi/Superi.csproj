@@ -68,7 +68,6 @@
     <Compile Include="Common\ParameterList.cs" />
     <Compile Include="Common\Tools.cs" />
     <Compile Include="Common\WebSession.cs" />
-    <Compile Include="Controls\GalleryExtender.cs" />
     <Compile Include="Controls\Pager.cs" />
     <Compile Include="Controls\ResourceButton.cs" />
     <Compile Include="Controls\ResourceEditor.cs" />
@@ -146,9 +145,6 @@
   <ItemGroup>
     <Content Include="Resources\AjaxControlToolkit.dll" />
     <Content Include="Resources\FredCK.FCKeditorV2.dll" />
-    <EmbeddedResource Include="Resources\galleria.css" />
-    <EmbeddedResource Include="Resources\GalleryExtenderBehavior.js" />
-    <EmbeddedResource Include="Resources\jquery.galleria.js" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -68,15 +68,14 @@ a.currentMenuItem{text-decoration:none;}
 #akula{float:right; padding-right:30px;}
 #tooltip{position:absolute;}
 
-.currentPage{font-weight:bold;}
-.page, .currentPage{padding:0 10px;}
+.currentPage{font-weight:normal; color:#BE1D2D;}
+.page, .currentPage{padding:0 2px;}
 .pagerContainer{padding-top:20px; clear:both; text-align:center;}
 
 .archiveInner{background:white; padding:20px; height:500px; overflow:auto;}
 .archiveInner b{color:#12277F;}
 .archiveClose
 {
-    /*cursor:pointer;*/
     height:30px;
     position:absolute;
     right:-12px;
@@ -85,6 +84,9 @@ a.currentMenuItem{text-decoration:none;}
     z-index:100;    
 }
 
+.mediaLink{font-size:12px;}
+span.mediaLink span{color:#BE1D2D;}
+div.mediaMenu{margin:10px 0px; clear:both;}
 .archive{width:836px; height:540px;}
 
 

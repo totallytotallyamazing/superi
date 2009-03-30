@@ -51,7 +51,7 @@
 <% } %>
  href="<%= WebSession.BaseUrl %>multimedia/video" class="mediaLink">
      <superi:ResourceLabel ID="ResourceLabel2" runat="server" ResourceName="video"></superi:ResourceLabel>
-<% if(CurrentIndex==2){ %>
+<% if(CurrentIndex!=2){ %>
   </a>   
 <%} %>
 <% else{ %>

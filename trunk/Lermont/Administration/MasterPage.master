@@ -51,9 +51,13 @@
 				&nbsp;&nbsp;
 				<a href="<%=WebSession.BaseUrl%>Administration/Texts.aspx">Тексты</a>
                 &nbsp;&nbsp;
-				<a   href="<%= WebSession.BaseUrl %>Administration/Gallery.aspx">Объекты</a>
+				<a   href="<%= WebSession.BaseUrl %>Administration/Galleries.aspx">Галереи</a>
+                &nbsp;&nbsp;
+				<a   href="<%= WebSession.BaseUrl %>Administration/Gallery.aspx">Фотографии</a>
 				&nbsp;&nbsp;
 				<a   href="<%= WebSession.BaseUrl %>Administration/Practices.aspx">Практики</a>
+				&nbsp;&nbsp;
+				<a   href="<%= WebSession.BaseUrl %>Administration/Books.aspx">Книги</a>
 		</div>
         <div style="float:left; padding:0px 10px;">
             <a href="javascript:openPopupWindow('ChangePassword.aspx', 400,170);">Сменить пароль</a>

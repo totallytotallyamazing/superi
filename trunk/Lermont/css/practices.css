@@ -8,5 +8,5 @@
 .practicePicture{border:1px solid white; border-width:1px !important;}
 .practiceItemsSeparator{background-color:White; height:1px; width:100%; margin:20px 0;}
 .paging{float:left; clear:both;width:650px; font-size:18px; font-family:Arial;}
-.paging a{color:White; text-decoration:none; font-family:inherit;}
+.paging a{color:Blue; text-decoration:none; font-family:inherit;}
 .currentPage{font-family:inherit; color:Black; background:white;}

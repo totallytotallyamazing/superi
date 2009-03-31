@@ -13,9 +13,9 @@
     {
         %>
             <div class="newsItem">
-                <div class="newsImage">
+<%--                <div class="newsImage">
                     <img alt="<% Response.Write(item.Title);%>" src="makethumbnail.aspx?w=115&h=115&loc=news&file=<% Response.Write(item.Picture); %>" />
-                </div>
+                </div>--%>
                 <div class="newsContent">
                     <div class="exceptDetails">
                         <div class="newsTitle">

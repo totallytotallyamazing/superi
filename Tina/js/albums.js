@@ -25,6 +25,7 @@ function subMenuItemClicked(attrs) {
     $(attrs.target).attr("class", "subMenuItemActive");
     updateSubMenuClickHandlers(subMenuItemClicked);
     $(".songsPlaceHolder ul").empty();
+    fillFooterLinks(0);
 }
 
 //Album image updated
@@ -64,6 +65,7 @@ function showAlbumPhotos() {
     BeginRequestHandler();
     var albumImage = $(".subMenuItemActive").parent().attr("photoImage");
     swapImage(albumImage, albumPhotoSwapped);
+    fillFooterLinks(1);
 }
 
 function showAlbumTracks() {
@@ -73,6 +75,7 @@ function showAlbumTracks() {
     BeginRequestHandler();
     var albumID = $(".subMenuItemActive").parent().attr("albumId");
     Music.GetAlbumSongs(albumID, songsRetreived, onRetriveSongsFail);
+    fillFooterLinks(0);
 }
 
 function showAlbumVideos() {
@@ -81,6 +84,7 @@ function showAlbumVideos() {
     albumsCleanUp();
     BeginRequestHandler();
     VideoService.GetVideos(currentAlbumId, albumVideoLoaded, onRetriveVideosFail);
+    fillFooterLinks(2);
 }
 
 function albumPhotoSwapped() {
@@ -100,8 +104,8 @@ function fillSongsPlaceHolder(response, handler, cssClass) {
         var source = response[i].Source;
         var image = "images/VideoImages/" + response[i].Image;
         var attributes = "path='" + source + "'";
-        if (image != null && typeof (image) != "undefined") {
-            attributes += " image='" + image;
+        if (response[i].Image != null && typeof (response[i].Image) != "undefined") {
+            attributes += " image='" + image + "'";
         }
         if (i == 7) {
             $("<br />").appendTo(".songsPlaceHolder ul");

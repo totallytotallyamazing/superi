@@ -76,6 +76,10 @@
                 </ul>
             </div>
         </div>
+                    <div id="funClub">
+                <a target="_blank" href="http://www.tinakarol.net"><img alt="Фан клуб" src="Images/fun.jpg" /></a>
+            </div>
+
         <div id="middle">
             <div class="galleryPlaceHolder">
                 <div id="thumbs" class="navigation">
@@ -84,6 +88,7 @@
                     </ul>
                 </div>
                 <div id="galleryPages" class="bottom pagination">
+                    <center></center>
                 </div>
             </div>
             <div class="videoPlaceHolder">
@@ -108,28 +113,30 @@
 
         <div id="bottom">
             <div id="footerMenu">
-                <a href="javascript:showAlbumTracks()">треки</a> &nbsp;&nbsp; 
-                <a href="javascript:showAlbumPhotos()">фото</a> &nbsp;&nbsp; 
-                <a href="javascript:showAlbumVideos()">видео</a>
+
             </div>
             <div id="copyrigth">
                 <a href="mailto:al@akula.com.ua" ><img src="Images/akula.jpg" /></a>
                 © 2009, Tina Karol, все права защищены
             </div>
             <div id="administration" onclick="openContacts()">
-                <img src="Images/contacts.jpg" />
+                <!--img src="Images/contacts.jpg" /-->
+                контакты
             </div>
             <div id="contactsFull" title="Контакты">
+                <span>продюсер:</span><br />
+                Евгений Огир<br />
+                <a href="mailto:ogir@tinakarol.com.ua">ogir@tinakarol.com.ua</a>
+                <br /><br />
                 <span>администратор:</span><br />
                 Дарья Новикова<br />
                 8 (067) 659 44 44<br />
-                <br />
+                <a href="mailto:darya@tinakatol.com.ua">darya@tinakatol.com.ua</a>
+                <br /><br />
                 <span>PR:</span><br />
                 Павел Подопригора<br />
                 8 (050) 376 77 88<br />
-                <br />
-                <span>продюсер:</span><br />
-                Евгений Огир
+                <a href="mailto:pavel@tinakarol.com.ua">pavel@tinakarol.com.ua</a>
             </div>
             <div id="flashContainer">
             </div>

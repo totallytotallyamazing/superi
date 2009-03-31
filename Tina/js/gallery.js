@@ -30,17 +30,18 @@ function photoPageNumberRetrieved(response) {
 }
 
 function initGalleryPages(pageCount) {
-    $("#galleryPages").empty().css("display", "block");
+    $("#galleryPages center").empty().css("display", "block");
     for (var i = 1; i <= pageCount; i++) {
-        if (i-1 !== currentGalleryPage)
-            $("<a>").html(i).appendTo("#galleryPages").click(galleryPageChanged).css("cursor", "pointer");
+        if (i - 1 !== currentGalleryPage)
+            $("<a>").html('<img src="images/page.png" alt="'+i+'" />').appendTo("#galleryPages center").click(galleryPageChanged).css("cursor", "pointer");
         else
-            $("<span>").addClass("current").html(i).appendTo("#galleryPages");
+            $("<span>").addClass("current").html('<img src="images/currentPage.png" alt="' + i + '" />').appendTo("#galleryPages center");
     }
 }
 
 function galleryPageChanged(elem) {
-    currentGalleryPage = +$(elem.target).html() - 1;
+    BeginRequestHandler();
+    currentGalleryPage = +$(elem.target).attr("alt") - 1;
     GalleryService.GetPhotosPage(currentAlbumId, currentGalleryPage, loadImages, loadImagesFail);
 }
 
@@ -92,7 +93,8 @@ function startGallery() {
     })
     .bind("mouseover", function(el) { $(el.target).fadeTo("fast", 1); })
     .bind("mouseout", function(el) { $(el.target).fadeTo("fast", 0.6); })
-
+    $("#fancy_close").mouseover(function() { $("#fancy_close").css("background-image", "url(images/fancybox/fancyCloseboxOver.png)") })
+    $("#fancy_close").mouseout(function() { $("#fancy_close").css("background-image", "url(images/fancybox/fancyClosebox.png)") })
 }
 
 function loadImagesFail() {

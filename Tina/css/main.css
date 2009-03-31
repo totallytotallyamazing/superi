@@ -34,7 +34,12 @@ li{list-style:none;}
 /*.ui-state-hover .ui-icon-closethick{background-image: url(../images/dialogCloseHover.jpg) no-repeat !important; background-position:top !important}*/
 
 #top, #middle, #bottom{width:inherit;}
-
+#funClub
+{
+    float:right;
+    margin-top:-61px;
+    
+}
 #top{height:84px;}
 #middle{height:616px; z-index:20; position:relative;}
 #bottom{height:98px; z-index:-1; margin-top:-32px;}
@@ -47,8 +52,21 @@ li{list-style:none;}
 .subMenuItem:hover{text-decoration:underline;}
 .subMenuItemActive{color:White; cursor:pointer}
 #copyrigth{font-size:11px; float:left; color: #2D2D2D; position:relative; z-index:20;}
-#administration{color:White; font-size:11px; margin-left:940px; width:65px; height:47px; padding-left:10px; position:relative; z-index:30; top:20px; cursor:pointer;} 
-#contactsFull{display:none; background:black; text-align:center; color:White;}
+#administration
+{
+    border-right:1px solid white;
+    color:White; 
+    font-size:16px; 
+    margin-left:940px; 
+    /*width:65px; */
+   /* height:47px; */
+    padding-left:10px; 
+    position:relative; 
+    z-index:30; 
+    top:20px; 
+    cursor:pointer;
+} 
+#contactsFull{display:none; background:black; text-align:center; color:White; font-size:14px;}
 #contactsFull span{color:#6a6a6a}
 .dialogTop{width:100%; text-align:right;}
 .dialogTop a{margin-right:10px;}
@@ -90,11 +108,11 @@ li{list-style:none;}
     
     color:Black; 
 }
-
+.activeFooterLink{color:White;}
 
 #flashContainer{position:relative; left:-3000px; width:1px; height:1px; overflow:hidden;}
 #footerMenu{height:12px;padding-top:0px;text-align:left; padding-left:220px;}
-#footerMenu a{text-decoration:none; font-size:11px; position:relative; z-index:30; display:none;}
+#footerMenu a{text-decoration:none; margin-right:10px; font-size:11px; position:relative; z-index:30; display:none; cursor:pointer;}
 #footerMenu a:hover{text-decoration:underline;}
 /* End of music related styles*/
 
@@ -117,22 +135,20 @@ li{list-style:none;}
 .galleryPlaceHolder{display:none; left:250px; top:30px; position:absolute; z-index:30; width:576px; height:470px;}
 #thumbs ul li{ display:inline;}
 #thumbs ul li a img{display:inline; border:5px solid transparent;}
-#galleryPages{position:absolute; left:10px; top:520px;}
+#galleryPages{position:absolute; left:10px; top:520px; width:100%;}
 /*End of gallery related styles*/
 
 /*News related styles*/
-#newsContainer{position:absolute; z-index:30; left:430px; top:0px; display:none;}
-.exceptDetails{height:100px;}
-.newsItem{clear:both; width:567px; padding-top:10px;}
-.newsImage{float:left; background:transparent url(../images/newsImageBox.png) no-repeat; height:129px; width:127px; text-align:right;}
-.newsImage img{margin-right:2px; margin-top:2px;}
-.newsContent{float:left; width:430px; background:transparent url(../images/newsBg.png) bottom repeat-x; height:129px; padding-left:10px;}
-.newsTitle, .newsText, .newsDetail span{color:Black; margin-top:10px;}
+.exceptDetails{border-left:2px solid black; padding-left:3px;}
+#newsContainer{position:absolute; z-index:30; width:594px; left:430px; top:0px; display:none;}
+.newsContent{float:left; background:transparent url(../images/newsBg.png); margin-top:20px; width:584px; padding:5px; }
+.newsTitle, .newsText{color:Black;}
 .newsText *{color:Black !important;}
-.newsTitle{font-size:18px; line-height:14px; padding-top:2px; padding-bottom:2px;}
-.newsDate{color:#4d4c4a; font-size:12px; height:12px;}
-.newsText{height:54px;}
-.newsDetail{text-align:right; margin-right:10px; cursor:pointer;}
+.newsTitle{font-size:18px; line-height:14px; padding-top:2px; color:White; padding-bottom:2px;}
+.newsDate{color:white; font-size:12px; height:12px;}
+.newsText{height:52px; font-size:14px; padding-top:2px;}
+.newsDetail{text-align:right; color:White; cursor:pointer; border-left:2px solid white;}
+.newsDetail span{color:White; font-size:12px;}
 #newsTextContainer{display:none;}
 a.ui-state-active, a.ui-state-default{display:block; height:30px; padding-top:4px; font-family:Times New Roman; font-size:18px;}
 a.ui-state-active{background: #aaa; color:Black;}
@@ -164,26 +180,17 @@ div.pagination {
 
 div.navigation div.top {
 	margin-bottom: 12px;
-	height: 11px;
+	height: 12px;
 }
 div.navigation div.bottom {
 	margin-top: 12px;
 }
 div.pagination a, div.pagination span.current {
-	display: block;
-	float: left;
+	display: inline;
 	margin-right: 2px;
-	padding: 4px 7px 2px 7px;
-	border: 1px solid #ccc;
-}
-div.pagination a:hover {
-	background-color: #eee;
-	text-decoration: none;
+	padding: 0px 7px;
+	border: none
 }
 div.pagination span.current {
-	font-weight: bold;
-	background-color: #000;
-	border-color: #000;
-	color: #fff;
 }
 

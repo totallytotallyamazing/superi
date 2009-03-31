@@ -107,6 +107,8 @@ namespace GalleryContext
 		
 		private string _Title;
 		
+		private int _SortOrder;
+		
 		private EntityRef<Album> _Album;
 		
     #region Extensibility Method Definitions
@@ -123,6 +125,8 @@ namespace GalleryContext
     partial void OnThumbnailChanged();
     partial void OnTitleChanging(string value);
     partial void OnTitleChanged();
+    partial void OnSortOrderChanging(int value);
+    partial void OnSortOrderChanged();
     #endregion
 		
 		public Gallery()
@@ -231,6 +235,26 @@ namespace GalleryContext
 					this._Title = value;
 					this.SendPropertyChanged("Title");
 					this.OnTitleChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_SortOrder", DbType="int")]
+		public int SortOrder
+		{
+			get
+			{
+				return this._SortOrder;
+			}
+			set
+			{
+				if ((this._SortOrder != value))
+				{
+					this.OnSortOrderChanging(value);
+					this.SendPropertyChanging();
+					this._SortOrder = value;
+					this.SendPropertyChanged("SortOrder");
+					this.OnSortOrderChanged();
 				}
 			}
 		}

@@ -16,7 +16,7 @@ public class GalleryService : System.Web.Services.WebService
     public object GetPhotos()
     {
         Galleria.GalleryDataContext context = new Galleria.GalleryDataContext();
-        var result = from gallery in context.Galleries select new { gallery.Title, gallery.Thumbnail, gallery.Picture };
+        var result = from gallery in context.Galleries orderby gallery.SortOrder select new { gallery.Title, gallery.Thumbnail, gallery.Picture };
         return result;
     }
 
@@ -38,6 +38,7 @@ public class GalleryService : System.Web.Services.WebService
         var result = (from gallery
                           in context.Galleries
                       where gallery.AlbumID == id
+                      orderby gallery.SortOrder
                       select new
                       {
                           gallery.Title,
@@ -51,7 +52,7 @@ public class GalleryService : System.Web.Services.WebService
     public object GetPhotosByAlbumId(int id)
     {
         Galleria.GalleryDataContext context = new Galleria.GalleryDataContext();
-        var result = (from gallery in context.Galleries where gallery.AlbumID == id select new { gallery.Title, gallery.Thumbnail, gallery.Picture }).Take(30);
+        var result = (from gallery in context.Galleries where gallery.AlbumID == id orderby gallery.SortOrder select new { gallery.Title, gallery.Thumbnail, gallery.Picture }).Take(30);
         return result;
     }
 }

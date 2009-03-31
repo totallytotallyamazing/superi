@@ -35,7 +35,7 @@ $(document).ready(function() {
     $(".newBackground, .currentBackground").css("display", "none");
     $(".currentBackground").fadeIn(1000);
     $("#contactsFull").dialog({ dialogClass: "contacts", draggable: true, resizable: false, autoOpen: false, height: 300, width: 230, minHeight: 300, position: [$("#main").position().left + 780, 350] });
-    $("#newsTextContainer").dialog({ dialogClass: "contacts", draggable: false, resizable: false, autoOpen: false, height: 600, width: 900, modal: true });
+    $("#newsTextContainer").dialog({ dialogClass: "contacts", draggable: false, resizable: false, autoOpen: false, height: 420, width: 900, modal: true });
     moveSite();
 });
 
@@ -74,7 +74,7 @@ function cleanUp() {
     $("#newsContent").empty();
     $("#newsContainer").css("display", "none");
     $(".songsPlaceHolder").removeClass("songsPlaceHolderInverted");
-    $("#galleryPages").empty().css("display", "none");
+    $("#galleryPages center").empty().css("display", "none");
     currentAlbumId = 0;
     currentGalleryPage = 0;
 }
@@ -156,4 +156,24 @@ function loadContent(section) {
             News.GetPageCount(processNews, onRetriveNewsFail);
             break;
     }
+}
+
+function fillFooterLinks(activeLinkIndex) {
+    $("#footerMenu").empty();
+    if (activeLinkIndex == 0) {
+        $("<a>").html("треки").addClass("activeFooterLink").appendTo("#footerMenu");
+        $("<a>").html("оформление").click(showAlbumPhotos).appendTo("#footerMenu");
+        $("<a>").html("клипы").click(showAlbumVideos).appendTo("#footerMenu");
+    }
+    else if (activeLinkIndex == 1) {
+        $("<a>").html("оформление").addClass("activeFooterLink").appendTo("#footerMenu");
+        $("<a>").html("треки").click(showAlbumTracks).appendTo("#footerMenu");
+        $("<a>").html("клипы").click(showAlbumVideos).appendTo("#footerMenu");
+    }
+    else {
+        $("<a>").html("клипы").addClass("activeFooterLink").appendTo("#footerMenu");
+        $("<a>").html("оформление").click(showAlbumPhotos).appendTo("#footerMenu");
+        $("<a>").html("треки").click(showAlbumTracks).appendTo("#footerMenu");
+    }
+    $("#footerMenu a").css("display", "inline");
 }

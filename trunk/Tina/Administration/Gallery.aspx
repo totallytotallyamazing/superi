@@ -1,77 +1,83 @@
-п»ї<%@ Page Title="" Language="C#" MasterPageFile="~/Administration/MasterPage.master" AutoEventWireup="true" CodeFile="Gallery.aspx.cs" Inherits="Administration_Gallery" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Administration/MasterPage.master" AutoEventWireup="true" CodeFile="Gallery.aspx.cs" Inherits="Administration_Gallery" %>
 
 <%@ Register assembly="Superi" namespace="Superi.CustomControls" tagprefix="cc1" %>
+
+<%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="cc2" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <asp:LinqDataSource ID="ldsGallery" runat="server" 
         ContextTypeName="Galleria.GalleryDataContext" EnableDelete="True" 
-        EnableInsert="True" EnableUpdate="True" TableName="Galleries">
+        EnableInsert="True" EnableUpdate="True" TableName="Galleries" 
+        Where="AlbumID == @AlbumID" OrderBy="SortOrder">
+        <WhereParameters>
+            <asp:ControlParameter ControlID="ddlAlbums" DefaultValue="0" Name="AlbumID" 
+                PropertyName="SelectedValue" Type="Int32" />
+        </WhereParameters>
     </asp:LinqDataSource>
-    <asp:GridView ID="gvGallery" style="float:left" 
-        AlternatingRowStyle-BackColor="#FAFAD2" 
-        AlternatingRowStyle-ForeColor="#284775"
-        RowStyle-BackColor="#FFFBD6" 
-        RowStyle-ForeColor="#333333"
-        runat="server" AutoGenerateColumns="False" 
-        DataKeyNames="ID" DataSourceID="ldsGallery" 
-        onrowcreated="GridView1_RowCreated" onrowdeleting="GridView1_RowDeleting">
-        <RowStyle BackColor="#FFFBD6" ForeColor="#333333"></RowStyle>
-        <Columns>
-            <asp:BoundField DataField="ID" HeaderText="#" InsertVisible="False" 
-                ReadOnly="True" SortExpression="ID" />
-            <asp:TemplateField HeaderText="РђР»СЊР±РѕРј" SortExpression="AlbumID">
-                <EditItemTemplate>
-                    <asp:DropDownList ID="ddlAlbums" runat="server" 
-                        SelectedValue='<%# Bind("AlbumID") %>'>
-                    </asp:DropDownList>
-                </EditItemTemplate>
-                <ItemTemplate>
-                    <asp:Label ID="Label1" runat="server" Text='<%# Eval("Album.Name") %>'></asp:Label>
-                </ItemTemplate>
-            </asp:TemplateField>
-            <asp:BoundField DataField="Title" HeaderText="РќР°Р·РІР°РЅРёРµ" 
-                SortExpression="Title" />
-            <asp:TemplateField HeaderText="Р¤Р°Р№Р» РёР·РѕР±СЂР°Р¶РµРЅРёСЏ" SortExpression="Picture">
-                <EditItemTemplate>
-                    <asp:Label ID="lPicture" runat="server" Text='<%# Eval("Picture") %>'></asp:Label>
-                </EditItemTemplate>
-                <ItemTemplate>
-                    <asp:Label ID="Label2" runat="server" Text='<%# Bind("Picture") %>'></asp:Label>
-                </ItemTemplate>
-            </asp:TemplateField>
-            <asp:TemplateField HeaderText="РџСЂРёРІСЊСЋ">
-                <EditItemTemplate>
-                    <asp:Label ID="lPreview" runat="server" Text='<%# Eval("Thumbnail") %>'></asp:Label>
-                </EditItemTemplate>
-                <ItemTemplate>
-                    <asp:Image ID="Image1" runat="server" 
+    <asp:SqlDataSource ID="sdsGallery" runat="server" 
+        ConnectionString="<%$ ConnectionStrings:ContentConnectionString %>" 
+        DeleteCommand="DELETE FROM [Gallery] WHERE [ID] = @ID" 
+        InsertCommand="INSERT INTO [Gallery] ([AlbumID], [Picture], [Thumbnail], [Title], [SortOrder]) VALUES (@AlbumID, @Picture, @Thumbnail, @Title, @SortOrder)" 
+        SelectCommand="SELECT * FROM [Gallery] WHERE ([AlbumID] = @AlbumID) ORDER BY [SortOrder]" 
+        UpdateCommand="UPDATE [Gallery] SET [SortOrder] = @SortOrder WHERE [ID] = @ID">
+        <SelectParameters>
+            <asp:ControlParameter ControlID="ddlAlbums" Name="AlbumID" 
+                PropertyName="SelectedValue" Type="Int32" />
+        </SelectParameters>
+        <DeleteParameters>
+            <asp:Parameter Name="ID" Type="Int32" />
+        </DeleteParameters>
+        <UpdateParameters>
+            <asp:Parameter Name="AlbumID" Type="Int32" />
+            <asp:Parameter Name="Picture" Type="String" />
+            <asp:Parameter Name="Thumbnail" Type="String" />
+            <asp:Parameter Name="Title" Type="String" />
+            <asp:Parameter Name="SortOrder" Type="Int32" />
+            <asp:Parameter Name="ID" Type="Int32" />
+        </UpdateParameters>
+        <InsertParameters>
+            <asp:Parameter Name="AlbumID" Type="Int32" />
+            <asp:Parameter Name="Picture" Type="String" />
+            <asp:Parameter Name="Thumbnail" Type="String" />
+            <asp:Parameter Name="Title" Type="String" />
+            <asp:Parameter Name="SortOrder" Type="Int32" />
+        </InsertParameters>
+    </asp:SqlDataSource>
+    <center>
+        Альбом:
+        <asp:DropDownList ID="ddlAlbums" runat="server" AutoPostBack="True" />
+        <br />
+        Изображение: <cc1:FolderUpload ID="fuPicture" runat="server" Folder="~/Images/Gallery/"
+            UnificateIncrementally="True" Unificator="_" UnificatorPosition="Postfix" 
+            UploadedFile='<%# Bind("Picture") %>' /><br />
+        Превью: <cc1:FolderUpload ID="fuPreview" runat="server" Folder="~/Images/Gallery/" 
+            UnificateIncrementally="True" Unificator="_" UnificatorPosition="Postfix" 
+            UploadedFile='<%# Bind("Thumbnail") %>' />
+        <br />
+        <asp:LinkButton ID="InsertButton" runat="server" CausesValidation="True" 
+            Text="Добавить" onclick="InsertButton_Click" />
+        <br />
+        <br />
+        <cc2:ReorderList ID="ReorderList1" runat="server" AllowReorder="True" 
+            DataSourceID="sdsGallery" PostBackOnReorder="false"
+            SortOrderField="SortOrder" DragHandleAlignment="Left" 
+            DataKeyField="ID" onitemcommand="ReorderList1_ItemCommand">
+            <ItemTemplate>
+                <asp:Image ID="Image1" runat="server"
                         ImageUrl='<%# Eval("Thumbnail", "~/Images/Gallery/{0}") %>' />
-                </ItemTemplate>
-            </asp:TemplateField>
-            <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" 
-                CancelText="РћС‚РјРµРЅР°" DeleteText="РЈРґР°Р»РёС‚СЊ" EditText="РР·РјРµРЅРёС‚СЊ" 
-                UpdateText="РЎРѕС…СЂР°РЅРёС‚СЊ" />
-        </Columns>
-        <AlternatingRowStyle BackColor="LightGoldenrodYellow" ForeColor="#284775"></AlternatingRowStyle>
-    </asp:GridView>
-    
-    
-    <div style="text-align:right; float:left; padding-left:20px;">
-            РђР»СЊР±РѕРј:
-            <asp:DropDownList ID="ddlAlbums" runat="server" />
-            <br />
-            РџРѕРґРїРёСЃСЊ:
-            <asp:TextBox ID="TitleTextBox" runat="server" Text='<%# Bind("Title") %>' />
-            <br />
-            РР·РѕР±СЂР°Р¶РµРЅРёРµ: <cc1:FolderUpload ID="fuPicture" runat="server" Folder="~/Images/Gallery/"
-                UnificateIncrementally="True" Unificator="_" UnificatorPosition="Postfix" 
-                UploadedFile='<%# Bind("Picture") %>' /><br />
-            РџСЂРµРІСЊСЋ: <cc1:FolderUpload ID="fuPreview" runat="server" Folder="~/Images/Gallery/" 
-                UnificateIncrementally="True" Unificator="_" UnificatorPosition="Postfix" 
-                UploadedFile='<%# Bind("Thumbnail") %>' />
-            <br />
-            <asp:LinkButton ID="InsertButton" runat="server" CausesValidation="True" 
-                Text="Р”РѕР±Р°РІРёС‚СЊ" onclick="InsertButton_Click" />
-    </div>
+                <br />
+                <asp:LinkButton runat="server" Text="Удалить" ID="lbDelete" CommandName="DeleteItem" CommandArgument='<%# Eval("ID") %>'></asp:LinkButton>
+                <cc2:ConfirmButtonExtender ID="Image1_ConfirmButtonExtender" runat="server" 
+                    ConfirmText="Вы уверенны что хотите удалить картинку?" Enabled="True" TargetControlID="lbDelete">
+                </cc2:ConfirmButtonExtender>
+            </ItemTemplate>
+            <DragHandleTemplate>
+                <div style="height:80px; width:80px; cursor:n-resize; background-color:Teal;">
+                    Потяните чтобы изменить положение
+                </div>
+            </DragHandleTemplate>
+        </cc2:ReorderList>
+    </center>
+
 </asp:Content>
 

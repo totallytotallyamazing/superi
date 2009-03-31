@@ -27,7 +27,7 @@
                         <asp:TextBox ID="tbDate" runat="server" Text='<%# Bind("Date") %>' 
                             ReadOnly="false"></asp:TextBox>
                         <cc2:CalendarExtender ID="tbDate_CalendarExtender" runat="server" 
-                            Enabled="True" Format="dd.MM.yyyy" TargetControlID="tbDate">
+                            Enabled="True" TargetControlID="tbDate">
                         </cc2:CalendarExtender>
                     </EditItemTemplate>
                     <ItemTemplate>
@@ -90,9 +90,9 @@
             <br />
             Дата:
             <asp:TextBox ID="tbDate" runat="server" 
-                Text='<%# Bind("Date", "{0: dd.MM.yyyy}") %>'></asp:TextBox>
+                Text='<%# Bind("Date") %>'></asp:TextBox>
             <cc2:CalendarExtender ID="tbDate_CalendarExtender" runat="server" 
-                Enabled="True" Format="dd.MM.yyyy" TargetControlID="tbDate">
+                Enabled="True" TargetControlID="tbDate">
             </cc2:CalendarExtender>
             <asp:RequiredFieldValidator ID="rfvDate" runat="server" 
                 ControlToValidate="tbDate" ErrorMessage="*" ValidationGroup="g1"></asp:RequiredFieldValidator>

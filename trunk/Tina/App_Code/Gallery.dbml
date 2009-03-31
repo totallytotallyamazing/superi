@@ -8,6 +8,7 @@
       <Column Name="Picture" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
       <Column Name="Thumbnail" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
       <Column Name="Title" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="SortOrder" Type="System.Int32" DbType="int" CanBeNull="false" />
       <Association Name="Album_Gallery" Member="Album" ThisKey="AlbumID" OtherKey="ID" Type="Album" IsForeignKey="true" />
     </Type>
   </Table>

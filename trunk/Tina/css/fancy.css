@@ -33,7 +33,7 @@ div#fancy_close {
 	right: -12px;
 	height: 30px;
 	width: 30px;
-	background: transparent url(../images/fancybox/fancy_closebox.png) ;
+	background: transparent url(../images/fancybox/fancyClosebox.png) ;
 	cursor: pointer;
 	z-index: 100;
 	display: none;

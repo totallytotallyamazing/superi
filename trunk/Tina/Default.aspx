@@ -76,7 +76,13 @@
                 </ul>
             </div>
         </div>
-                    <div id="funClub">
+            <div id="promoDiv">
+                не бойся &nbsp;
+                <img src="Images/playPromoG.jpg" id="promoStop" />
+                &nbsp;
+                <img src="Images/stopPromoW.jpg" id="promoPlay" />
+            </div>
+            <div id="funClub">
                 <a target="_blank" href="http://www.tinakarol.net"><img alt="Фан клуб" src="Images/fun.jpg" /></a>
             </div>
 
@@ -140,10 +146,14 @@
             </div>
             <div id="flashContainer">
             </div>
+            <div id="promoContainer">
+            </div>
         </div>
     </div>
     </form>
 
-
+<script type="text/javascript">
+    playPromo();
+</script>
 </body>
 </html>

@@ -35,8 +35,8 @@ public partial class _404 : System.Web.UI.Page
         string url = Url.Substring(Url.IndexOf(";") + 1);
         Uri uri = new Uri(url);
         string result = uri.AbsolutePath;
-        if (result.IndexOf("/" + WebSession.VirtualDirectoryName + "/") != -1)
-            result = result.Substring(WebSession.VirtualDirectoryName.Length + 2);
+        if (result.IndexOf(WebSession.VirtualDirectoryName) != -1)
+            result = result.Substring(WebSession.VirtualDirectoryName.Length);
         else
             result = result.Substring(1);
         return result;

@@ -28,6 +28,8 @@ namespace Superi.Features
 	    private string path = "";
         private bool authenticationRequired = false;
         private string allowedGroups = "";
+
+
 		#endregion
 
 		#region Properties
@@ -249,6 +251,9 @@ namespace Superi.Features
 		    SingleMenuPage = dr.GetBoolean(dr.GetOrdinal("SingleMenuPage"));
 		    AdditionalTitle = dr["AdditionalTitle"].ToString();
 		    AdditionalTitleTextId = dr.GetInt32(dr.GetOrdinal("AdditionalTitleTextID"));
+            AuthenticationRequired = (bool)dr["authenticationRequired"];
+            AllowedGroups = dr["@allowedGroups"].ToString();
+
 		    path = dr["Path"].ToString();
 		    path = path.Substring(1);
 
@@ -278,6 +283,8 @@ namespace Superi.Features
 		    Picture = dr["Picture"].ToString();
 		    SingleMenuPage = (bool) dr["SingleMenuPage"];
             AdditionalTitle = dr["AdditionalTitle"].ToString();
+            AuthenticationRequired = (bool) dr["AuthenticationRequired"];
+		    AllowedGroups = dr["AllowedGroups"].ToString();
             try
             {
                 AdditionalTitleTextId = (int) dr["AdditionalTitleTextID"];
@@ -313,6 +320,8 @@ namespace Superi.Features
 		    pList.Add(new AppDbParameter("singlemenupage", SingleMenuPage));
             pList.Add(new AppDbParameter("additionaltitle", AdditionalTitle));
             pList.Add(new AppDbParameter("AdditionalTitleTextID", AdditionalTitleTextId));
+            pList.Add(new AppDbParameter("authenticationRequired",AuthenticationRequired));
+		    pList.Add(new AppDbParameter("allowedGroups", AllowedGroups));
 
 			DbDataReader dr = AppData.ExecStoredProcedure("Navigation_AddUpdate", pList);
 			if (dr != null && dr.HasRows && dr.Read())

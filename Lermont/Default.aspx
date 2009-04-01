@@ -30,11 +30,6 @@
                         <tr>
                            <td valign="bottom" style="width:234px;">                                
                                 <div id="langsDiv">
-                                    <% if(WebSession.Language!="UA") %>
-                                    <%{ %>
-                                    <div id="uaImg"><a onmouseover="displayLangTip('uaText','укр.')" onmouseout="hideLangTip('uaText')" href="lang=UA" ><img class="langImg" src="<%=WebSession.BaseUrl %>Images/UALang.jpg" alt="UA" /></a></div>
-                                    <div id="uaText">&nbsp;UA</div>
-                                    <% } %>
                                     <% if(WebSession.Language!="RU") %>
                                     <%{ %>
                                     <div id="ruImg"><a onmouseover="displayLangTip('ruText','рус.')" onmouseout="hideLangTip('ruText')"  href="lang=RU"><img class="langImg" src="<%=WebSession.BaseUrl %>Images/RULang.jpg" alt="RU" /></a></div>

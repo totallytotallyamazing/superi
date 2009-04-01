@@ -10,7 +10,7 @@ using System.Web.UI.HtmlControls;
 using Superi.Shop;
 public enum ProductPropertyTypes
 {
-    NewProduct, SubTitle, Publisher, PublisherUrl, AdditionalInfo
+    NewProduct, SubTitle, Publisher, PublisherUrl, AdditionalInfo, Price
 }
 
 /// <summary>
@@ -56,11 +56,11 @@ public class Book : Product
         get { return additionalInfo; }
         set { additionalInfo = value; }
     }
+
     #endregion
 
     #region Constructors
-    public Book()
-        : base()
+    public Book() : base()
     {
         TypeId = 1;
     }

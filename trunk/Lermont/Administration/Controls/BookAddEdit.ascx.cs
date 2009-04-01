@@ -64,6 +64,7 @@ public partial class Administration_Controls_BookAddEdit : UserControl
             reShortDescription.TextID = book.ShortDescriptionTextID;
             rePublisher.TextID = book.PublisherTextId;
             tbPublisherUrl.Text = book.PublisherUrl;
+            tbPrice.Text = book.Price.ToString();
             cbNewBook.Checked = book.NewBook;
         }
         else
@@ -75,6 +76,7 @@ public partial class Administration_Controls_BookAddEdit : UserControl
             ibPicture.Visible = false;
             reShortDescription.TextID = int.MinValue;
             rePublisher.TextID = int.MinValue;
+            tbPrice.Text = "0";
             tbPublisherUrl.Text = "";
             cbNewBook.Checked = false;
         }
@@ -83,12 +85,16 @@ public partial class Administration_Controls_BookAddEdit : UserControl
     private void SaveBook()
     {
         Book book = new Book(BookId);
+        decimal price;
+        decimal.TryParse(tbPrice.Text, out price);
+        book.Price = price;
         book.NameTextID = reTitle.Values.Save();
         book.SubTitleTextId = reSubTitle.Values.Save();
         book.ShortDescriptionTextID = reShortDescription.Values.Save();
         book.PublisherTextId = rePublisher.Values.Save();
         book.PublisherUrl = tbPublisherUrl.Text;
         book.NewBook = cbNewBook.Checked;
+        
         book.Save();
         if (fuPicture.HasFile)
         {

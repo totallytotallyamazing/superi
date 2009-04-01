@@ -23,7 +23,17 @@
                             <div class="bookPublisher">
                                 <asp:HyperLink Target="_blank" CssClass="bookPublisherLink" runat="server" ID="hlPublisher"></asp:HyperLink>
                             </div>
+                            <div>
+                                <Controls:ResourceLabel ID="rlPrice" runat="server" ResourceName="price"></Controls:ResourceLabel>     
+                                &nbsp;
+                                <asp:Label ID="tbPrice" runat="server"/>
+                                <Controls:ResourceLabel ID="lCurrency" runat="server" ResourceName="currency"/>
+                                <br /><br />
+                                <asp:CheckBox ID="cbBuy" runat="server" />&nbsp;
+                                <Controls:ResourceLabel ID="rlBuy" runat="server" ResourceName="buy"/>
+                            </div>
                             <div class="bookShortDescription">
+                              
                                 <asp:Literal runat="server" ID="lDescription"></asp:Literal>
                             </div>
                         </div>

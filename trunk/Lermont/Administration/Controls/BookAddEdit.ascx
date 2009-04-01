@@ -23,6 +23,8 @@
     <br />
     <asp:TextBox runat="server" ID="tbPublisherUrl"></asp:TextBox>
     <br />
+    Цена:<asp:TextBox runat="server" ID="tbPrice"></asp:TextBox>
+    <br />
     <asp:CheckBox runat="server" ID="cbNewBook" />
     <br />
     <asp:Button runat="server" ID="btnUpdate" OnClick="btnUpdate_Click" Text="Сохранить" />

@@ -40,6 +40,7 @@ public partial class Products : System.Web.UI.Page
             Literal lSubTitle = (Literal) e.Item.FindControl("lSubTitle");
             HyperLink hlPublisher = (HyperLink) e.Item.FindControl("hlPublisher");
             Literal lDescription = (Literal)e.Item.FindControl("lDescription");
+            Label tbPrice = (Label)e.Item.FindControl("tbPrice");
 
             
             string navigateUrl = WebSession.BaseUrl + "workshop/product_details/" + book.ID;
@@ -52,6 +53,8 @@ public partial class Products : System.Web.UI.Page
             hlTitle.NavigateUrl = navigateUrl;
 
             hlNewBook.Visible = book.NewBook;
+
+            tbPrice.Text = book.Price.ToString("N");
 
             hlNewBook.NavigateUrl = navigateUrl;
 

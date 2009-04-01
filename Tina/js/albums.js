@@ -141,6 +141,7 @@ function songOut(el) {
 
 function songClicked(attrs) {
     $("#flashContainer").empty();
+    $("#promoContainer").empty();
     var source = $(attrs.target).attr("path")
     $("#flashContainer").flash({ src: "Embed/xspf_jukebox.swf", flashvars: { allowscriptaccess: "never", track_title: "title", track_url: "Songs/" + source, autoplay: true, repeat: false} });
     resetSongs(attrs.target);

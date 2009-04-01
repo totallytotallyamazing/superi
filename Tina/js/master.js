@@ -177,3 +177,18 @@ function fillFooterLinks(activeLinkIndex) {
     }
     $("#footerMenu a").css("display", "inline");
 }
+
+function playPromo() {
+    $("#promoContainer").empty();
+    $("#flashContainer").empty();
+    $("#promoContainer").flash({ repeat: false, src: "Embed/xspf_jukebox.swf", flashvars: { allowscriptaccess: "never", track_title: "title", track_url: "Promo/promo.mp3", autoplay: true, repeat: false} });
+    $("#promoStop").attr("src", "images/playPromoG.jpg").click(stopPromo);
+    $("#promoPlay").attr("src", "images/stopPromoW.jpg").unbind("click", playPromo);
+}
+
+function stopPromo() {
+    $("#promoContainer").empty();
+    $("#promoStop").attr("src", "images/playPromoW.jpg").unbind("click", stopPromo);
+    $("#promoPlay").attr("src", "images/stopPromoG.jpg").click(playPromo);
+
+}

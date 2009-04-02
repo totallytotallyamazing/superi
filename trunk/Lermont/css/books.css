@@ -8,7 +8,3 @@
 .bookTitleLink{font-size:16px; text-transform:uppercase; text-decoration:none; font-weight:bold;}
 .bookShortDescription{font-size:12px; border-left:1px solid white; padding-left:5px; margin-top:20px;}
 .bookSeparator{clear:both; height:1px; margin:20px 0; background-color:white; width:100%; float:left;}
-.bookLeft
-{
-	 clear:both; float:left
-}

@@ -47,6 +47,7 @@ li{list-style:none;}
     margin-top:-40px;    
     margin-right:70px;
     color:White;
+
 }
 
 #promoDiv img{cursor:pointer;}
@@ -120,7 +121,7 @@ li{list-style:none;}
 .activeFooterLink{color:White;}
 
 #flashContainer{position:relative; left:-3000px; width:1px; height:1px; overflow:hidden;}
-#promoContainer{position:relative; left:-3000px; width:1px; height:1px; overflow:hidden;}
+#promoContainer{position:relative; left:-3000px; width:1px; height:1px; overflow:hidden;z-index:9999999999;}
 #footerMenu{height:12px;padding-top:0px;text-align:left; padding-left:220px;}
 #footerMenu a{text-decoration:none; margin-right:10px; font-size:11px; position:relative; z-index:30; display:none; cursor:pointer;}
 #footerMenu a:hover{text-decoration:underline;}

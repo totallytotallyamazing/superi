@@ -160,7 +160,7 @@ table.cnt tr td{border-bottom:1px solid #808080; padding:10px 0px;}
 	left:50%; 
 	margin-left:-419px; 
 	height:13px; 
-	z-index:9999;
+	z-index:20;
 	text-align:center;
 	bottom:127px;
 	font-size:10px;

@@ -104,19 +104,21 @@ public partial class MakeThumbnail : Page
         string file = Request.QueryString["file"];
         if (file.IndexOf("?") > -1)
             file = file.Substring(0, file.IndexOf("?"));
-        Image image = Image.FromFile(ImageLocationPath + file);
-        Bitmap thumbnailImage;
-        if(MaxDimension<=0)
+        if (File.Exists(ImageLocationPath + file))
         {
-            thumbnailImage = ProcessDimensions(image);
+            Image image = Image.FromFile(ImageLocationPath + file);
+            Bitmap thumbnailImage;
+            if (MaxDimension <= 0)
+            {
+                thumbnailImage = ProcessDimensions(image);
+            }
+            else
+            {
+                thumbnailImage = ProcessMaxDimension(image);
+            }
+            DrawImage(thumbnailImage);
+            image.Dispose();
         }
-        else
-        {
-            thumbnailImage = ProcessMaxDimension(image);
-        }
-        DrawImage(thumbnailImage);
-        image.Dispose();
-        
     }
 
     private void DrawImage(Bitmap thumbnailImage)

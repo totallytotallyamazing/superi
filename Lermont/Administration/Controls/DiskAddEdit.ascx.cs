@@ -83,7 +83,7 @@ public partial class Administration_Controls_DiskAddEdit : System.Web.UI.UserCon
         }
     }
 
-    private void SaveBook()
+    private void SaveDisk()
     {
         Disk disk = new Disk(DiskId);
         decimal price;
@@ -127,7 +127,7 @@ public partial class Administration_Controls_DiskAddEdit : System.Web.UI.UserCon
     }
     protected void btnUpdate_Click(object sender, EventArgs e)
     {
-        SaveBook();
+        SaveDisk();
         OnSaveClick(e);
     }
 }

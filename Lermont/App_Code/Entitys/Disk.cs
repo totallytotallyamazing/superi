@@ -25,7 +25,6 @@ public class Disk : Book
 
     public Disk(int Id):base()
     {
-        
         TypeId = 2;
     }
 

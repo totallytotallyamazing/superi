@@ -19,10 +19,11 @@ public class BookList : List<Book>
     {
         if (GetAll)
         {
+
             ParameterList parameterList = new ParameterList();
             parameterList.Add(new AppDbParameter("typeid", 1));
             DataSet ds = AppData.ExecDataSet("Products_Get", parameterList);
-            
+           
             if (ds != null && ds.Tables.Count>0 && ds.Tables[0].Rows.Count>0)
                 Load(ds.Tables[0]);
         }

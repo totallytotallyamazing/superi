@@ -76,15 +76,16 @@
                 </ul>
             </div>
         </div>
+            <div id="funClub">
+                <a target="_blank" href="http://www.tinakarol.net"><img alt="Фан клуб" src="Images/fun.jpg" /></a>
+            </div>
             <div id="promoDiv">
                 не бойся &nbsp;
                 <img src="Images/playPromoG.jpg" id="promoStop" />
                 &nbsp;
                 <img src="Images/stopPromoW.jpg" id="promoPlay" />
             </div>
-            <div id="funClub">
-                <a target="_blank" href="http://www.tinakarol.net"><img alt="Фан клуб" src="Images/fun.jpg" /></a>
-            </div>
+
 
         <div id="middle">
             <div class="galleryPlaceHolder">

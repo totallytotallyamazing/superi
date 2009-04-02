@@ -2,26 +2,26 @@
 <%@ Register TagPrefix="Controls" Assembly="Superi" Namespace="Superi.CustomControls" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <div>
-        <div id="booksHolder">
-            <asp:Repeater ID="rBooks" runat="server" OnItemDataBound="rBooks_ItemDataBound">
+        <div id="disksHolder">
+            <asp:Repeater ID="rDisks" runat="server" OnItemDataBound="rDisks_ItemDataBound">
                 <ItemTemplate>
-                    <div class="book">
-                        <div class="bookCover">
-                            <asp:Hyperlink CssClass="bookImageLink" Target="_blank" BorderColor="white" BorderWidth="1" runat="server" ID="hlCover"></asp:Hyperlink>
+                    <div class="disk">
+                        <div class="diskCover">
+                            <asp:Hyperlink CssClass="diskImageLink" Target="_blank" BorderColor="white" BorderWidth="1" runat="server" ID="hlCover"></asp:Hyperlink>
                         </div>
-                        <div class="bookInfo">
-                            <div class="bookTitle">
-                                <asp:Hyperlink runat="server" Target="_blank" ID="hlTitle" CssClass="bookTitleLink"></asp:Hyperlink>
+                        <div class="diskInfo">
+                            <div class="diskTitle">
+                                <asp:Hyperlink runat="server" Target="_blank" ID="hlTitle" CssClass="diskTitleLink"></asp:Hyperlink>
                                 &nbsp;
-                                <asp:HyperLink runat="server" ID="hlNewBook" Target="_blank" CssClass="bookNewBookLink">
-                                    <Controls:TextWriter ID="TextWriter1" TextName="newBook" runat="server"></Controls:TextWriter>
+                                <asp:HyperLink runat="server" ID="hlNewBook" Target="_blank" CssClass="diskNewDiskLink">
+                                    <Controls:TextWriter ID="TextWriter1" TextName="newDisk" runat="server"></Controls:TextWriter>
                                 </asp:HyperLink>
                             </div>
-                            <div class="bookSubTitle">
+                            <div class="diskSubTitle">
                                 <asp:Literal runat="server" ID="lSubTitle"></asp:Literal>
                             </div>
-                            <div class="bookPublisher">
-                                <asp:HyperLink Target="_blank" CssClass="bookPublisherLink" runat="server" ID="hlPublisher"></asp:HyperLink>
+                            <div class="diskPublisher">
+                                <asp:HyperLink Target="_blank" CssClass="diskPublisherLink" runat="server" ID="hlPublisher"></asp:HyperLink>
                             </div>
                             <div>
                                 <Controls:ResourceLabel ID="rlPrice" runat="server" ResourceName="price"></Controls:ResourceLabel>     
@@ -32,7 +32,7 @@
                                 <asp:CheckBox ID="cbBuy" runat="server" />&nbsp;
                                 <Controls:ResourceLabel ID="rlBuy" runat="server" ResourceName="buy"/>
                             </div>
-                            <div class="bookShortDescription">
+                            <div class="diskShortDescription">
                               
                                 <asp:Literal runat="server" ID="lDescription"></asp:Literal>
                             </div>
@@ -40,7 +40,7 @@
                     </div>
                 </ItemTemplate>
                 <SeparatorTemplate>
-                    <div class="bookSeparator"></div>
+                    <div class="diskSeparator"></div>
                 </SeparatorTemplate>
             </asp:Repeater>
         </div>

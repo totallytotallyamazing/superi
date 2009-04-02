@@ -1,0 +1,10 @@
+﻿#disksHolder{float:left;width:668px;}
+.diskCover{float:left; width:117px; background-color:#607286; padding:5px 0px 5px 5px;}
+.diskInfo{float:left; width:526px; padding-left:20px;}
+.diskNewDiskLink{color:red; text-decoration:none;}
+.diskImageLink img{border:1px solid white;}
+.diskPublisherLink{color:#7aaaed; text-decoration:none; font-style:italic;}
+.diskNewdiskLink:hover, .diskPublisherLink:hover, .diskTitleLink:hover{text-decoration:underline;}
+.diskTitleLink{font-size:16px; text-transform:uppercase; text-decoration:none; font-weight:bold;}
+.diskShortDescription{font-size:12px; border-left:1px solid white; padding-left:5px; margin-top:20px;}
+.diskSeparator{clear:both; height:1px; margin:20px 0; background-color:white; width:100%; float:left;}

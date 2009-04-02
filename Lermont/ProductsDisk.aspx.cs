@@ -17,19 +17,19 @@ public partial class ProductsDisk : System.Web.UI.Page
     {
         LinkCss();
         DiskList diskList = new DiskList(true);
-        rBooks.DataSource = diskList;
-        rBooks.DataBind();
+        rDisks.DataSource = diskList;
+        rDisks.DataBind();
     }
 
     private void LinkCss()
     {
         HtmlLink link = new HtmlLink();
         link.Attributes.Add("rel", "Stylesheet");
-        link.Href = "css/books.css";
+        link.Href = "css/disks.css";
         Page.Controls.Add(link);
     }
 
-    protected void rBooks_ItemDataBound(object sender, RepeaterItemEventArgs e)
+    protected void rDisks_ItemDataBound(object sender, RepeaterItemEventArgs e)
     {
         if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
         {

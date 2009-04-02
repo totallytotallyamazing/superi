@@ -41,7 +41,7 @@ $(document).ready(function() {
 
 function BeginRequestHandler() {
     $("#loadingContainer").css("display", "block");
-    $("html, body").css("overflow", "hidden")
+//    $("html, body").css("overflow", "hidden")
     var vpWidth = $("body").width();
     var vpHeight = $("body").height();
     $("#loadingSign").css("left", Math.floor(vpWidth / 2 - 16)).css("top", Math.floor(vpHeight / 2 - 16)).css("display", "block");
@@ -49,7 +49,7 @@ function BeginRequestHandler() {
 }
 
 function EndRequestHandler() {
-    $("html, body").css("overflow", "");
+//    $("html, body").css("overflow", "");
     $("#loadingContainer").css("display", "none");
     $("#loadingSign").css("display", "none");
     $("#loading").css("display", "none");
@@ -139,8 +139,6 @@ function swapImage(imageName, callbackHandler) {
 }
 
 function loadContent(section) {
-    //if(!historyCallback)
-  //  $.history({ section: section, albumId:0, photoAlbumId:0, videoId:0 });
     BeginRequestHandler();
     switch (section) {
         case "music":

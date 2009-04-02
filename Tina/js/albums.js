@@ -52,7 +52,8 @@ function videoClicked(attrs) {
     $("#flashContainer").empty();
     var source = $(attrs.target).attr("path");
     var image = $(attrs.target).attr("image");
-    $(".videoPlaceHolder").draggable().css("display", "none").flash({ allowscriptaccess: "never", src: "Embed/player.swf", width: "480", height: "360", allowfullscreen: true, flashvars: { skin: "embed/stylish.swf", file: "http://tinakarol.ua/Videos/" + source} });
+    $(".videoPlaceHolder").draggable().css("display", "none").flash({ allowscriptaccess: "never", src: "Embed/player.swf", width: "480", height: "360", allowfullscreen: true, flashvars: { autostart: "true", skin: "embed/stylish.swf", file: "http://tinakarol.ua/Videos/" + source} });
+    stopPromo();
     swapImage(image, albumImageSwappedVideo)
 }
 
@@ -140,8 +141,8 @@ function songOut(el) {
 }
 
 function songClicked(attrs) {
+    stopPromo();
     $("#flashContainer").empty();
-    $("#promoContainer").empty();
     var source = $(attrs.target).attr("path")
     $("#flashContainer").flash({ src: "Embed/xspf_jukebox.swf", flashvars: { allowscriptaccess: "never", track_title: "title", track_url: "Songs/" + source, autoplay: true, repeat: false} });
     resetSongs(attrs.target);

@@ -23,9 +23,10 @@ function clearVideoFilter() {
     VideoService.GetVideos(currentAlbumId, processVideos, onRetriveVideosFail);
 }
 
-function imageSwappedVideo(){
+function imageSwappedVideo() {
+    stopPromo();
     var source = $(".subMenuItemActive").parent().attr("source");
-    $(".videoPlaceHolder").draggable().css("display", "block").flash({ allowscriptaccess: "never", src: "Embed/player.swf", width: "480", height: "360", allowfullscreen: true, flashvars: { skin: "embed/stylish.swf", file: "http://tinakarol.ua/Videos/" + source} });
+    $(".videoPlaceHolder").draggable().css("display", "block").flash({ allowscriptaccess: "never", src: "Embed/player.swf", width: "480", height: "360", allowfullscreen: true, flashvars: {autostart:'true', skin: "embed/stylish.swf", file: "http://tinakarol.ua/Videos/" + source} });
 }
 
 function onRetriveVideosFail() {

@@ -6,7 +6,7 @@
 <%
     int pageNumber = int.Parse(Request.QueryString["page"]) - 1;
     NewsDataContext context = new NewsDataContext();
-    List<NewsItem> news = context.NewsItems.Select(al => al).Where(al => al.Archive.Value == false).ToList();
+    List<NewsItem> news = context.NewsItems.Select(al => al).Where(al => al.Archive.Value == false).OrderByDescending(al => al.Date).ToList();
     news = news.Skip(pageNumber * 4).Take(4).ToList();
 
     foreach (NewsItem item in news)
@@ -28,7 +28,12 @@
                             <% Response.Write(item.ShortText); %>
                         </div>
                     </div>
-                    <div class="newsDetail">
+                    <% string visibility = "visible";
+                       if (string.IsNullOrEmpty(item.Text))
+                       {
+                           visibility = "hidden";
+                       } %>
+                    <div class="newsDetail" style="visibility:<%= visibility %>">
                         <span>подробнее...</span>
                         <span style="display:none" id="newsDetail"> <% Response.Write(item.Text); %></span>
                     </div>

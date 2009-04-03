@@ -65,6 +65,7 @@ public class Book : Product
         TypeId = 1;
     }
     public Book(int Id)
+        : base()
     {
         Load(Id);
         LoadProperties(Id);
@@ -72,6 +73,7 @@ public class Book : Product
     }
 
     public Book(DataRow dr)
+        : base()
     {
         Load(dr);
         TypeId = 1;

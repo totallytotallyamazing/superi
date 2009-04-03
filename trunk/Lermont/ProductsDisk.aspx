@@ -7,18 +7,18 @@
                 <ItemTemplate>
                     <div class="disk">
                         <div class="diskCover">
-                            <asp:Hyperlink CssClass="diskImageLink" Target="_blank" BorderColor="white" BorderWidth="1" runat="server" ID="hlCover"></asp:Hyperlink>
+                            <asp:Image runat="server" CssClass="diskImageLink" ID="hlCover" />
                         </div>
                         <div class="diskInfo">
+                            <div class="diskSubTitle">
+                                <asp:Literal runat="server" ID="lSubTitle"></asp:Literal>
+                            </div>
                             <div class="diskTitle">
                                 <asp:Hyperlink runat="server" Target="_blank" ID="hlTitle" CssClass="diskTitleLink"></asp:Hyperlink>
                                 &nbsp;
                                 <asp:HyperLink runat="server" ID="hlNewBook" Target="_blank" CssClass="diskNewDiskLink">
                                     <Controls:TextWriter ID="TextWriter1" TextName="newDisk" runat="server"></Controls:TextWriter>
                                 </asp:HyperLink>
-                            </div>
-                            <div class="diskSubTitle">
-                                <asp:Literal runat="server" ID="lSubTitle"></asp:Literal>
                             </div>
                             <div class="diskPublisher">
                                 <asp:HyperLink Target="_blank" CssClass="diskPublisherLink" runat="server" ID="hlPublisher"></asp:HyperLink>
@@ -43,6 +43,9 @@
                     <div class="diskSeparator"></div>
                 </SeparatorTemplate>
             </asp:Repeater>
+        </div>
+        <div class="btnAddToCart">
+            <asp:Button Text="Добавить в корзину" runat="server" ID="btnAddToCart" />
         </div>
     </div>
 </asp:Content>

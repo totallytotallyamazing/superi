@@ -34,7 +34,7 @@ public partial class ProductsDisk : System.Web.UI.Page
         if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
         {
             Disk disk = (Disk)e.Item.DataItem;
-            HyperLink hlCover = (HyperLink)e.Item.FindControl("hlCover");
+            Image hlCover = (Image)e.Item.FindControl("hlCover");
             HyperLink hlTitle = (HyperLink)e.Item.FindControl("hlTitle");
             HyperLink hlNewBook = (HyperLink)e.Item.FindControl("hlNewBook");
             Literal lSubTitle = (Literal)e.Item.FindControl("lSubTitle");
@@ -45,9 +45,9 @@ public partial class ProductsDisk : System.Web.UI.Page
 
             string navigateUrl = WebSession.BaseUrl + "workshop/product_details/" + disk.ID;
 
-            hlCover.Text = disk.Names[WebSession.Language];
-            hlCover.ImageUrl = WebSession.BaseUrl + "MakeThumbnail.aspx?loc=products&h=159&w=110&kp=0&file=" + disk.Picture;
-            hlCover.NavigateUrl = navigateUrl;
+            hlCover.ToolTip = disk.Names[WebSession.Language];
+            hlCover.ImageUrl = WebSession.BaseUrl + "MakeThumbnail.aspx?loc=products&h=100&w=100&kp=0&file=" + disk.Picture;
+           
 
             hlTitle.Text = disk.Names[WebSession.Language];
             hlTitle.NavigateUrl = navigateUrl;

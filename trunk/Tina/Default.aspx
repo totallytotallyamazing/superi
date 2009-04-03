@@ -17,7 +17,9 @@
     <script src="js/news.js" type="text/javascript"></script>
     <script src="js/jquery.mousewheel.js" type="text/javascript"></script>
     <script src="js/jquery.em.js" type="text/javascript"></script>
+    <script src="js/jquery.easing.js" type="text/javascript"></script>
     <script src="js/jScrollPane.js" type="text/javascript"></script>
+    <script src="js/jquery.pngFix.js" type="text/javascript"></script>
     <script src="js/jquery.fancybox.js" type="text/javascript"></script>
     <link href="theme/ui.core.css" rel="stylesheet" type="text/css" />
     <link href="theme/ui.theme.css" rel="stylesheet" type="text/css" />

@@ -53,6 +53,7 @@ function EndRequestHandler() {
     $("#loadingContainer").css("display", "none");
     $("#loadingSign").css("display", "none");
     $("#loading").css("display", "none");
+    $(document).pngFix();
 }
 
 function openContacts() {

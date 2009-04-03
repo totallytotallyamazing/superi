@@ -146,6 +146,8 @@ li{list-style:none;}
 /*Gallery related styles*/
 .galleryPlaceHolder{display:none; left:250px; top:30px; position:absolute; z-index:30; width:576px; height:470px;}
 #thumbs ul li{ display:inline;}
+#thumbs ul li a{}
+img{ behavior: url(iepngfix.htc);}
 #thumbs ul li a img{display:inline; border:5px solid transparent;}
 #galleryPages{position:absolute; left:10px; top:520px; width:100%;}
 /*End of gallery related styles*/
@@ -153,7 +155,20 @@ li{list-style:none;}
 /*News related styles*/
 .exceptDetails{border-left:2px solid black; padding-left:3px;}
 #newsContainer{position:absolute; z-index:30; width:594px; left:430px; top:0px; display:none;}
-.newsContent{float:left; background:transparent url(../images/newsBg.png); margin-top:20px; width:584px; padding:5px; }
+.newsContent{float:left;  margin-top:20px; width:584px; padding:5px; }
+.newsBg
+{
+    background:white;    
+    height:110px;
+    margin-left:-5px;
+    margin-top:-5px;
+    opacity:0.3;
+    -moz-opacity: 0.3; 
+    filter: alpha(opacity=30);
+    position:absolute;
+    width:595px;
+    z-index:-10;
+}
 .newsTitle, .newsText{color:Black;}
 .newsText *{color:Black !important;}
 .newsTitle{font-size:18px; line-height:14px; padding-top:2px; color:White; padding-bottom:2px;}

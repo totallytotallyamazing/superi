@@ -17,20 +17,23 @@ public class Disk : Book
 {
 
     #region Constructors
-    public Disk()
-        : base()
+    public Disk(): base()
     {
         TypeId = 2;
     }
 
     public Disk(int Id):base()
     {
+        
         TypeId = 2;
+        base.Load(Id);
     }
 
     public Disk(DataRow dr):base()
     {
+
         TypeId = 2;
+        base.Load(dr);
     }
     #endregion
 

@@ -90,7 +90,7 @@ public partial class Administration_Controls_AddEditNavigation : System.Web.UI.U
 
         navigation.Name = tbName.Text;
         navigation.NameTextID = reTitle.ResourceId;
-        switch (tcTabs.TabIndex)
+        switch (tcTabs.ActiveTabIndex)
         {
             case 0:
                 if (!string.IsNullOrEmpty(hfTextId.Value))

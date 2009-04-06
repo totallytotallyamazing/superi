@@ -14,7 +14,7 @@
                                 <asp:Literal runat="server" ID="lSubTitle"></asp:Literal>
                             </div>
                             <div class="diskTitle">
-                                <asp:Hyperlink runat="server" Target="_blank" ID="hlTitle" CssClass="diskTitleLink"></asp:Hyperlink>
+                                <asp:Label runat="server" ID="lTitle" CssClass="diskTitle"></asp:Label>
                                 &nbsp;
                                 <asp:HyperLink runat="server" ID="hlNewBook" Target="_blank" CssClass="diskNewDiskLink">
                                     <Controls:TextWriter ID="TextWriter1" TextName="newDisk" runat="server"></Controls:TextWriter>

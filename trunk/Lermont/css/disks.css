@@ -5,7 +5,7 @@
 .diskImageLink img{border:1px solid white;}
 .diskPublisherLink{color:#7aaaed; text-decoration:none; font-style:italic;}
 .diskNewdiskLink:hover, .diskPublisherLink:hover, .diskTitleLink:hover{text-decoration:underline;}
-.diskTitleLink{text-decoration:none; font-weight:bold;}
+.diskTitle{text-decoration:none; font-weight:bold;}
 .diskShortDescription{font-size:12px; border-left:1px solid white; padding-left:5px; margin-top:20px;}
 .diskSeparator{clear:both; height:1px; margin:20px 0; background-color:white; width:100%; float:left;}
 .btnAddToCart{padding:10px 10px 10px 10px; float:right;}

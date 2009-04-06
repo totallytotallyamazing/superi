@@ -15,6 +15,12 @@ public partial class ProductsDisk : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (IsPostBack)
+        { 
+            
+        }
+        
+
         LinkCss();
         DiskList diskList = new DiskList(true);
         rDisks.DataSource = diskList;
@@ -35,28 +41,26 @@ public partial class ProductsDisk : System.Web.UI.Page
         {
             Disk disk = (Disk)e.Item.DataItem;
             Image hlCover = (Image)e.Item.FindControl("hlCover");
-            HyperLink hlTitle = (HyperLink)e.Item.FindControl("hlTitle");
+            Label lTitle = (Label)e.Item.FindControl("lTitle");
             HyperLink hlNewBook = (HyperLink)e.Item.FindControl("hlNewBook");
             Literal lSubTitle = (Literal)e.Item.FindControl("lSubTitle");
             HyperLink hlPublisher = (HyperLink)e.Item.FindControl("hlPublisher");
             Literal lDescription = (Literal)e.Item.FindControl("lDescription");
             Label tbPrice = (Label)e.Item.FindControl("tbPrice");
-
-
-            string navigateUrl = WebSession.BaseUrl + "workshop/product_details/" + disk.ID;
+            CheckBox cbBuy = (CheckBox)e.Item.FindControl("cbBuy");
 
             hlCover.ToolTip = disk.Names[WebSession.Language];
             hlCover.ImageUrl = WebSession.BaseUrl + "MakeThumbnail.aspx?loc=products&h=100&w=100&kp=0&file=" + disk.Picture;
            
 
-            hlTitle.Text = disk.Names[WebSession.Language];
-            hlTitle.NavigateUrl = navigateUrl;
+            lTitle.Text = disk.Names[WebSession.Language];
+            
 
             hlNewBook.Visible = disk.NewBook;
 
             tbPrice.Text = disk.Price.ToString("N");
 
-            hlNewBook.NavigateUrl = navigateUrl;
+            cbBuy.Attributes["cbvalue"] = disk.ID.ToString();
 
             lSubTitle.Text = new Resource(disk.SubTitleTextId)[WebSession.Language];
 

@@ -1,6 +1,7 @@
 <%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
 <%@ Register TagPrefix="Controls" TagName="MainMenu" Src="~/Controls/MainMenu.ascx" %>
 <%@ Register TagPrefix="Controls" TagName="SubMenu" Src="~/Controls/SubMenu.ascx" %>
+<%@ Register TagPrefix="Controls" TagName="Cart" Src="~/Controls/CartControl.ascx" %>
 <%@ Register TagPrefix="ajax" Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" %>
 <%@ Import Namespace="Superi.Common" %>
 
@@ -14,7 +15,11 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <asp:ScriptManager runat="server" EnablePartialRendering="true"></asp:ScriptManager>
+    <asp:ScriptManager runat="server" EnablePartialRendering="true">
+        <Services>
+            <asp:ServiceReference Path="~/Services/CartService.asmx" />
+        </Services>
+    </asp:ScriptManager>
     
     <script>
         Sys.WebForms.PageRequestManager.getInstance().add_endRequest(EndRequestHandler);
@@ -85,6 +90,9 @@
                         <asp:PostBackTrigger ControlID="bRegister" />
                     </Triggers>
                 </asp:UpdatePanel>
+            </div>
+            <div>
+                <Controls:Cart runat="server" />
             </div>
             <div id="title"><%= Page.Title %></div>
         </div>

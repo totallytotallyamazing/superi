@@ -15,12 +15,6 @@ public partial class ProductsDisk : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (IsPostBack)
-        { 
-            
-        }
-        
-
         LinkCss();
         DiskList diskList = new DiskList(true);
         rDisks.DataSource = diskList;
@@ -69,5 +63,16 @@ public partial class ProductsDisk : System.Web.UI.Page
 
             lDescription.Text = disk.ShortDescriptions[WebSession.Language];
         }
+    }
+    protected void btnAddToCart_Click(object sender, EventArgs e)
+    {
+        //foreach (RepeaterItem item in rDisks.Items)
+        //{
+        //    CheckBox cbBuy = (CheckBox)item.FindControl("cbBuy");
+        //}
+        CartItem item = new CartItem();
+        item.ID = 0;
+        item.Type = ItemCartType.Membership;
+        Cart.AddItem(item);
     }
 }

@@ -14,4 +14,11 @@ public class CartItemList:List<CartItem>
         // TODO: Add constructor logic here
         //
     }
+
+    public bool Equals(CartItem a, CartItem b)
+    {
+        if (a.ID == b.ID)
+            return true;
+        return false;
+    }
 }

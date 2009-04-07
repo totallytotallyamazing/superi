@@ -133,7 +133,7 @@ namespace Superi.CustomControls
                 foreach (string key in LanguageControls.Keys)
                 {
                     Context.Trace.Write("resEditor/values", "key=" + key);
-                    values.Items.Add(key, Context.Request.Form[LanguageControls[key].ToString()]);
+                    values.Items.Add(key, Context.Server.HtmlDecode(Context.Request.Form[LanguageControls[key].ToString()]));
                 }
                 return values;
             }
@@ -238,6 +238,7 @@ namespace Superi.CustomControls
                         break;
                     case ResourceEditorType.RichText:
                         FCKeditor richText = new FCKeditor();
+                        richText.ToolbarSet = "Demi";
                         richText.BasePath = "~/Administration/Controls/fckeditor/";
                         richText.Width = new Unit(98, UnitType.Percentage);
                         if (RichHeight > 0)

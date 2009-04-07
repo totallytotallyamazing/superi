@@ -41,11 +41,6 @@ function songsRetreived(response) {
     fillSongsPlaceHolder(response, songClicked, "songsLi");
 }
 
-//function albumVideoLoaded() {
-//    EndRequestHandler();
-//    fillSongsPlaceHolder(response, videoClicked, "videoLi")
-//}
-
 function videoClicked(attrs) {
     $(".songsPlaceHolder ul").empty();
     $(".songsPlaceHolder ul").css("display", "none");

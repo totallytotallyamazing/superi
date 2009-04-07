@@ -135,17 +135,17 @@
             <div id="contactsFull" title="Контакты">
                 <span>продюсер:</span><br />
                 Евгений Огир<br />
-                <a href="mailto:ogir@tinakarol.com.ua">ogir@tinakarol.com.ua</a>
+                <a href="mailto:ogir@tinakarol.com.ua">ogir@tinakarol.ua</a>
                 <br /><br />
                 <span>администратор:</span><br />
                 Дарья Новикова<br />
                 8 (067) 659 44 44<br />
-                <a href="mailto:darya@tinakatol.com.ua">darya@tinakatol.com.ua</a>
+                <a href="mailto:darya@tinakatol.com.ua">darya@tinakatol.ua</a>
                 <br /><br />
                 <span>PR:</span><br />
                 Павел Подопригора<br />
                 8 (050) 376 77 88<br />
-                <a href="mailto:pavel@tinakarol.com.ua">pavel@tinakarol.com.ua</a>
+                <a href="mailto:pavel@tinakarol.com.ua">pavel@tinakarol.ua</a>
             </div>
             <div id="flashContainer">
             </div>

@@ -44,11 +44,19 @@ public partial class Administration_Matches : System.Web.UI.Page
 
     protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
     {
-        int teamId = Convert.ToInt32(e.CommandArgument);
-        GamesDataContext context = new GamesDataContext();
-        Team team = context.Teams.SingleOrDefault(f => f.ID == teamId);
-        context.Teams.DeleteOnSubmit(team);
-        context.SubmitChanges();
+        switch (e.CommandName)
+        {
+            case "DeleteTeam":
+                int teamId = Convert.ToInt32(e.CommandArgument);
+                GamesDataContext context = new GamesDataContext();
+                Team team = context.Teams.SingleOrDefault(f => f.ID == teamId);
+                context.Teams.DeleteOnSubmit(team);
+                context.SubmitChanges();
+                break;
+            case "EditName":
+                GridView1.EditIndex = ((e.CommandSource as LinkButton).NamingContainer as GridViewRow).RowIndex;
+                break;
+        }
     }
 
     protected void lbAdd_Click(object sender, EventArgs e)

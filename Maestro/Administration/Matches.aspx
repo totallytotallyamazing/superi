@@ -4,33 +4,53 @@
 <%@ Register Assembly="Superi" Namespace="Superi.CustomControls" TagPrefix="cc1" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc2" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <asp:LinqDataSource ID="ldsTeams" runat="server" ContextTypeName="GamesDataContext"
-        Select="new (NameTextId, DescriptionTextId, Logo, ID)" TableName="Teams">
+    <asp:LinqDataSource ID="ldsTeams" runat="server" 
+        ContextTypeName="GamesDataContext" TableName="Teams" EnableDelete="True" 
+        EnableInsert="True" EnableUpdate="True">
     </asp:LinqDataSource>
     <asp:LinqDataSource ID="ldsMatches" runat="server" ContextTypeName="GamesDataContext"
         TableName="Games" OrderBy="Played, Date desc" EnableDelete="True" EnableInsert="True"
         EnableUpdate="True">
     </asp:LinqDataSource>
-    <div style="float: left; width: 200px;">
+    <div style="float: left;">
         <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="ldsTeams"
             DataKeyNames="ID" OnRowCommand="GridView1_RowCommand">
             <Columns>
-                <asp:BoundField DataField="ID" HeaderText="#" SortExpression="ID" />
-                <asp:ImageField DataImageUrlField="Logo" DataImageUrlFormatString="~/Images/Logos/{0}"
-                    HeaderText="Лого">
-                </asp:ImageField>
+                <asp:BoundField DataField="ID" HeaderText="#" SortExpression="ID" ReadOnly="true" />
+                <asp:TemplateField HeaderText="Лого">
+                    <ItemTemplate>
+                        <asp:Image ImageUrl='<%# Eval("Logo", "~/Images/Logos/{0}") %>' />
+                    </ItemTemplate>
+                    <EditItemTemplate>
+                        <asp:Image ImageUrl='<%# Eval("Logo", "~/Images/Logos/{0}") %>' />
+                    </EditItemTemplate>
+                </asp:TemplateField>
                 <asp:TemplateField HeaderText="Название">
                     <ItemTemplate>
                         <%--<asp:Label runat="server" ID="lName"></asp:Label>--%>
                         <cc1:ResourceWritter ID="rlName" runat="server" ResourceId='<%# Eval("NameTextId") %>'
                             Language="RU"></cc1:ResourceWritter>
                     </ItemTemplate>
+                    <EditItemTemplate>
+                        <cc1:ResourceEditor ID="reName" Type="SingleLine" runat="server" ResourceId='<%# Bind("NameTextId") %>' />
+                    </EditItemTemplate>
                 </asp:TemplateField>
-                <asp:TemplateField HeaderText="Удалить">
+                <asp:TemplateField HeaderText="">
                     <ItemTemplate>
-                        <asp:LinkButton ID="LinkButton5" runat="server" CommandArgument='<%# Eval("ID") %>'
+                        <asp:LinkButton runat="server" ID="lbEdit" Text="Редактировать" CommandName="EditName"></asp:LinkButton>
+                    </ItemTemplate>
+                    <EditItemTemplate>
+                        <asp:LinkButton runat="server" Text="Сохранить" CommandName="Update"></asp:LinkButton>
+                    </EditItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField>
+                    <ItemTemplate>
+                        <asp:LinkButton ID="lbDelete" runat="server" CommandArgument='<%# Eval("ID") %>'
                             CommandName="DeleteTeam">Удалить</asp:LinkButton>
                     </ItemTemplate>
+                    <EditItemTemplate>
+                        <asp:LinkButton runat="server" ID="lbCancel" Text="Отмена" CommandName="Cancel"></asp:LinkButton>
+                    </EditItemTemplate>
                 </asp:TemplateField>
             </Columns>
         </asp:GridView>
@@ -50,7 +70,7 @@
             <asp:Button runat="server" ID="bCreate" Text="Сохранить" OnClick="bCreate_Click" />
         </asp:Panel>
     </div>
-    <div style="float: left;">
+    <div style="float: left; padding-left:10px;">
         <%--<cc2:DropShadowExtender runat="server" TargetControlID="pCreateTeam" Rounded="true" Radius="4"></cc2:DropShadowExtender>--%>
         <asp:DataList ID="DataList1" runat="server" DataSourceID="ldsMatches" GridLines="Horizontal"
             OnEditCommand="DataList1_EditCommand" OnItemDataBound="DataList1_ItemDataBound"
@@ -138,7 +158,7 @@
                     <asp:LinkButton ID="LinkButton2" runat="server" CommandName="delete" CommandArgument='<%# Eval("ID") %>'
                         CausesValidation="False">Удалить</asp:LinkButton>
                 </div>
-                <div style="float: left;">
+                <div style="float: left; width:100px;">
                     <asp:Image ID="iTeamLogo" runat="server" />
                     <br />
                     <asp:Label ID="lTeam" runat="server" Text="Команда"></asp:Label>

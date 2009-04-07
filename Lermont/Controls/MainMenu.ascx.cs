@@ -26,8 +26,6 @@ public partial class Controls_MainMenu : System.Web.UI.UserControl
                 lItem.Visible = false;
                 hlItem.Visible = true;
                 hlItem.Text = navigation.Texts[WebSession.Language];
-                //pItem.Attributes.Add("onmouseover", "switchClass(this, 'mainMenuItemOver');");
-                //pItem.Attributes.Add("onmouseout", "switchClass(this, 'mainMenuItem');");
                 pItem.Attributes.Add("onmouseover", "this.style.backgroundImage='url(\"images/menuHover.jpg\")'");
                 pItem.Attributes.Add("onmouseout", "this.style.backgroundImage=''");
                 hlItem.NavigateUrl = WebSession.BaseUrl + navigation.Path;

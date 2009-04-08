@@ -5,7 +5,6 @@
 <head runat="server">
 
     <script src="js/jquery.js" type="text/javascript"></script>
-    <script src="js/jquery.history.js" type="text/javascript"></script>
     <script src="js/jquery.preloadImages.js" type="text/javascript"></script>
     <script src="js/albums.js" type="text/javascript"></script>
     <script src="js/master.js" type="text/javascript"></script>
@@ -21,6 +20,7 @@
     <script src="js/jScrollPane.js" type="text/javascript"></script>
     <script src="js/jquery.pngFix.js" type="text/javascript"></script>
     <script src="js/jquery.fancybox.js" type="text/javascript"></script>
+    <script src="js/history.js" type="text/javascript"></script>
     <link href="theme/ui.core.css" rel="stylesheet" type="text/css" />
     <link href="theme/ui.theme.css" rel="stylesheet" type="text/css" />
     <link href="theme/ui.dialog.css" rel="stylesheet" type="text/css" />
@@ -154,7 +154,9 @@
         </div>
     </div>
     </form>
-
+<div id="iframeContainer" style="width:1px; height:1px; overflow:hidden; margin-left:-1000px">
+    <iframe id="historyIframe" src="cache.aspx"></iframe>
+</div>
 <script type="text/javascript">
     playPromo();
 </script>

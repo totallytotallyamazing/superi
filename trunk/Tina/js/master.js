@@ -5,20 +5,6 @@ var videoId = 0;
 var historyCallback = false;
 var currentGalleryPage = 0;
 
-$.history.callback = function(reinstate, cursor) {
-    historyAlbumId = reinstate.albumId;
-    photoAlbumId = reinstate.photoAlbumId;
-    videoId = reinstate.videoId;
-    historyCallback = true;
-    var sec = $("[section=" + reinstate.section + "]");
-    if (sec.attr("class") == "currentSection") {
-        loadContent(reinstate.section);
-    }
-    else {
-        sec.click();
-    }
-}
-
 $(window).bind("resize", moveSite);
 
 function moveSite() {
@@ -139,7 +125,21 @@ function swapImage(imageName, callbackHandler) {
     }).attr("src", "");
 }
 
+function sectionHistoryCallback(hash) {
+    $("[section='" + hash + "']").click();
+}
+
+function resetMainMenu() {
+    cleanUp();
+    $("#subMenu ul").empty();
+    BeginRequestHandler();
+    $("#menu li").removeClass("currentSection").css("font-size", "16px");
+    $("#menu li").not(".currentSection").mouseover(menuOver).mouseout(menuOut).click(menuClicked);
+    swapImage("images/glava.jpg", function() { EndRequestHandler(); });
+}
+
 function loadContent(section) {
+    setHistoryCallback(section, sectionHistoryCallback)
     BeginRequestHandler();
     switch (section) {
         case "music":

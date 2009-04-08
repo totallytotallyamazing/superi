@@ -66,13 +66,16 @@ public partial class ProductsDisk : System.Web.UI.Page
     }
     protected void btnAddToCart_Click(object sender, EventArgs e)
     {
-        //foreach (RepeaterItem item in rDisks.Items)
-        //{
-        //    CheckBox cbBuy = (CheckBox)item.FindControl("cbBuy");
-        //}
-        CartItem item = new CartItem();
-        item.ID = 0;
-        item.Type = ItemCartType.Membership;
-        Cart.AddItem(item);
+        foreach (RepeaterItem rItem in rDisks.Items)
+        {
+            CheckBox cbBuy = (CheckBox)rItem.FindControl("cbBuy");
+            if (cbBuy.Checked)
+            {
+                CartItem cItem = new CartItem();
+                cItem.ID = int.Parse(cbBuy.Attributes["cbvalue"]);
+                cItem.Type = ItemCartType.Disk;
+                Cart.AddItem(cItem);
+            }
+        }
     }
 }

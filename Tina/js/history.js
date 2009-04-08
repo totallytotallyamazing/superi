@@ -4,6 +4,10 @@ var newHash = "";
 var intervalID;
 
 function setHistoryCallback(hash, callback) {
+    window.location.hash = hash;
+    if ($.browser.msie) {
+        document.getElementById("historyIframe").contentWindow.location.href = "cache.aspx?" + hash;
+    }
     currentHash = hash;
     for (var i in historyCallBacks) {
         if (historyCallBacks[i].hash == hash) {
@@ -24,9 +28,25 @@ function stopHistoryLoop() {
 }
 
 function historyLoopProcess() {
-    var newHash = window.location.hash;
+    var newHash = window.location.hash.replace("#", "");
+    if ($.browser.msie) {
+        var loc = document.getElementById("historyIframe").contentWindow.location.href;
+        if (loc.indexOf("?") > -1)
+            newHash = loc.substring(loc.indexOf("?") + 1);
+        else
+            newHash = "";
+    }
+    
     if (newHash === currentHash)
         return;
+    if ($.browser.msie) {
+        window.location.hash = newHash;
+    }
+    if (newHash === "") {
+        currentHash = "";
+        resetMainMenu();
+        return;
+    }
     for (var i in historyCallBacks) {
         if (newHash === historyCallBacks[i].hash) {
             currentHash = newHash;

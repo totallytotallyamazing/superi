@@ -1,4 +1,6 @@
-﻿function albumsCleanUp() {
+﻿var albumFromHistory = null;
+
+function albumsCleanUp() {
     $("#flashContainer").empty();
     $(".videoPlaceHolder").empty().css("display", "none");
     $(".songsPlaceHolder").css("display", "none");
@@ -14,10 +16,16 @@ function processAlbums(response) {
         $.preloadImages("images/albumimages/" + response[i].Image);
         appendSubMenuItem(createMenuItem(response[i].Name + "(" + response[i].Year + ")", subMenuItemClicked).attr({ albumId: response[i].ID, image: "images/albumimages/" + response[i].Image, photoImage: "images/albumimages/" + response[i].PhotoImage, invertColors: response[i].InvertColors }));
     }
+    if (albumFromHistory != null) {
+        $("[albumId='" + albumFromHistory + "'] a").click();
+        albumFromHistory = null;
+    }
 }
 
 // Album entry clicked
 function subMenuItemClicked(attrs) {
+    var albumID = $(attrs.target).parent().attr("albumId");
+    setHistoryCallback("music/" + albumID, albumHistoryCallback);
     cleanUp();
     BeginRequestHandler();
     swapImage($(attrs.target).parent().attr("image"), imageSwapped);
@@ -26,6 +34,17 @@ function subMenuItemClicked(attrs) {
     updateSubMenuClickHandlers(subMenuItemClicked);
     $(".songsPlaceHolder ul").empty();
     fillFooterLinks(0);
+}
+
+function albumHistoryCallback(hash) {
+    albumFromHistory = hash.substring(hash.indexOf("/")+1);
+    alert(albumFromHistory);
+    cleanUp();
+    $("#subMenu ul").empty();
+    BeginRequestHandler();
+    $("#menu li").removeClass("currentSection").css("font-size", "16px");
+    $("#menu li").not(".currentSection").mouseover(menuOver).mouseout(menuOut).click(menuClicked);
+    $("[section='music']").click();
 }
 
 //Album image updated

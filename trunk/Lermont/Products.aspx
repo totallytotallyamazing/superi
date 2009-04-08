@@ -3,6 +3,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <div>
         <div id="booksHolder">
+        <asp:UpdatePanel runat="server" ID="upBooks">
+        <ContentTemplate>
             <asp:Repeater ID="rBooks" runat="server" OnItemDataBound="rBooks_ItemDataBound">
                 <ItemTemplate>
                     <div class="book">
@@ -43,6 +45,15 @@
                     <div class="bookSeparator"></div>
                 </SeparatorTemplate>
             </asp:Repeater>
+            </ContentTemplate>
+            <Triggers>
+                <asp:AsyncPostBackTrigger EventName="Click" ControlID="btnAddToCart" />
+            </Triggers>
+            </asp:UpdatePanel>
+            <div class="btnAddToCart">
+                <asp:Button Text="Добавить в корзину" runat="server" ID="btnAddToCart" 
+                    onclick="btnAddToCart_Click" />
+            </div>
         </div>
     </div>
 </asp:Content>

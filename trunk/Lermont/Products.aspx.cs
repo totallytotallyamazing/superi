@@ -66,4 +66,19 @@ public partial class Products : System.Web.UI.Page
             lDescription.Text = book.ShortDescriptions[WebSession.Language];
         }
     }
+
+    protected void btnAddToCart_Click(object sender, EventArgs e)
+    {
+        foreach (RepeaterItem rItem in rBooks.Items)
+        {
+            CheckBox cbBuy = (CheckBox)rItem.FindControl("cbBuy");
+            if (cbBuy.Checked)
+            {
+                CartItem cItem = new CartItem();
+                cItem.ID = int.Parse(cbBuy.Attributes["cbvalue"]);
+                cItem.Type = ItemCartType.Book;
+                Cart.AddItem(cItem);
+            }
+        }
+    }
 }

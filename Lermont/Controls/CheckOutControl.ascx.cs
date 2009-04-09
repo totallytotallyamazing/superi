@@ -70,14 +70,14 @@ public partial class Controls_CheckOutControl : System.Web.UI.UserControl
             if (cartItem.Type == ItemCartType.Book)
             {
                 Book book = new Book(cartItem.ID);
-                title = book.Name;
+                title = book.Names[WebSession.Language];
                 price = book.Price.ToString("N");
                 sum += book.Price;
             }
             else if (cartItem.Type == ItemCartType.Disk)
             {
                 Disk disk = new Disk(cartItem.ID);
-                title = disk.Name;
+                title = disk.Names[WebSession.Language];
                 price = disk.Price.ToString("N");
                 sum += disk.Price;
             }

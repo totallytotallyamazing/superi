@@ -19,33 +19,20 @@ public static class Cart
 
     public static CartItemList Items
     {
-        get 
+        get
         {
             if (HttpContext.Current.Cache["cartItems"] == null)
                 return new CartItemList();
-            return (HttpContext.Current.Cache["cartItems"] as CartItemList); 
+            return (HttpContext.Current.Cache["cartItems"] as CartItemList);
         }
     }
 
     public static void RemoveItem(CartItem item)
-    { 
-        if(Items!=null && Items.Contains(item, new CartItemComparer()))
-            Items.Remove(item);
-    }
-}
-
-public class CartItemComparer : IEqualityComparer<CartItem>
-{
-    public bool Equals(CartItem a, CartItem b)
     {
-        if (a.ID == b.ID)
-            return true;
-        return false;
+        for (int i = Items.Count - 1; i >= 0; i--)
+        {
+            if (item.ID == Items[i].ID)
+                Items.Remove(Items[i]);
+        }
     }
-
-    public int GetHashCode(CartItem obj)
-    {
-        return obj.ID.GetHashCode();
-    }
-
 }

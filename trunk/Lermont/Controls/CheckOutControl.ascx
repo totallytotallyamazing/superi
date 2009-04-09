@@ -1,16 +1,18 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="CheckOutControl.ascx.cs" Inherits="Controls_CheckOutControl" %>
+<asp:UpdatePanel runat="server" ID="upCheckOut">
+<ContentTemplate>
 <asp:Repeater runat="server" ID="rCheckOut" OnItemDataBound="rCheckOut_ItemDataBound">
 <HeaderTemplate>
 <table width="500" class="tabCheckOut" border="1">
 <tr>
     <td width="150">
-        Тайп
+        Тип
     </td>
     <td width="150">
-        Тайтл
+        Название
     </td>
     <td width="150">
-        Прайс
+        Цена
     </td>
     <td>
         Удалить
@@ -52,4 +54,10 @@
 </FooterTemplate>
 </asp:Repeater>
 
+</ContentTemplate>
+<Triggers>
+<asp:AsyncPostBackTrigger EventName="Click" ControlID="btnRecalculate" />
+</Triggers>
+</asp:UpdatePanel>
 <asp:Button runat="server" ID="btnRecalculate" Text="Пересчитать"/>
+

@@ -126,7 +126,29 @@ function swapImage(imageName, callbackHandler) {
 }
 
 function sectionHistoryCallback(hash) {
-    $("[section='" + hash + "']").click();
+    var section = $("[section='" + hash + "']");
+    if (section.attr("class") === "currentSection") {
+        cleanUp();
+        $("#subMenu ul").empty();
+        $(".songsPlaceHolder ul").empty().css("display", "none");
+        switch (hash) {
+            case "music":
+                swapImage("images/music.jpg");
+                Music.GetAlbums(processAlbums, onRetriveAlbumsFail);
+                break;
+            case "video":
+                swapImage("images/video.jpg");
+                VideoService.GetVideos(currentAlbumId, processVideos, onRetriveVideosFail);
+                break;
+            case "photo":
+                swapImage("images/photo.jpg");
+                GalleryService.GetPhotosByAlbumId(currentAlbumId, loadImages, loadImagesFail);
+                break;
+        }
+    }
+    else {
+        $("[section='" + hash + "']").click();
+    }
 }
 
 function resetMainMenu() {

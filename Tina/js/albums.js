@@ -44,7 +44,9 @@ function albumHistoryCallback(hash) {
     BeginRequestHandler();
     $("#menu li").removeClass("currentSection").css("font-size", "16px");
     $("#menu li").not(".currentSection").mouseover(menuOver).mouseout(menuOut).click(menuClicked);
-    $("[section='music']").click();
+    
+    Music.GetAlbums(processAlbums, onRetriveAlbumsFail);
+    //loadContent("music");
 }
 
 //Album image updated

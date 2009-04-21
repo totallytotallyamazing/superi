@@ -15,6 +15,7 @@
     <link href="<%= WebSession.BaseUrl + "css/ui.datepicker.css"%>" rel="stylesheet"
         type="text/css" />
     <link rel="Stylesheet" href="<%= WebSession.BaseUrl + "css/jScrollPane.css" %>" />
+    <meta name="verify-v1" content="U8ZGdLheoh4aBbF92Wst0o7EmAGtAzexcNNCQ2ExxUQ=" />
     <link rel="Stylesheet" href="<%= WebSession.BaseUrl + "css/fancy.css" %>" />
     <script type="text/javascript" src="<%= WebSession.BaseUrl %>js/jquery.js"></script>
     <script type="text/javascript" src="<%= WebSession.BaseUrl %>js/jquery.fancybox.js"></script>
@@ -257,4 +258,13 @@
     
     </form>
 </body>
+<script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+    try {
+        var pageTracker = _gat._getTracker("UA-8476523-1");
+        pageTracker._trackPageview();
+    } catch (err) { }</script>
 </html>

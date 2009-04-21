@@ -28,4 +28,9 @@ public partial class Game
     {
         get { return new Resource(TeamFaultsTextID); }
     }
+
+    public Resource Details
+    {
+        get { return new Resource(DetailsTextID); }
+    }
 }

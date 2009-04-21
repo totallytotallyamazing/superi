@@ -272,6 +272,8 @@ public partial class Game : INotifyPropertyChanging, INotifyPropertyChanged
 	
 	private int _TeamFaultsTextID;
 	
+	private int _DetailsTextID;
+	
 	private EntityRef<Team> _Team;
 	
     #region Extensibility Method Definitions
@@ -298,6 +300,8 @@ public partial class Game : INotifyPropertyChanging, INotifyPropertyChanged
     partial void OnHostFaultsTextIDChanged();
     partial void OnTeamFaultsTextIDChanging(int value);
     partial void OnTeamFaultsTextIDChanged();
+    partial void OnDetailsTextIDChanging(int value);
+    partial void OnDetailsTextIDChanged();
     #endregion
 	
 	public Game()
@@ -506,6 +510,26 @@ public partial class Game : INotifyPropertyChanging, INotifyPropertyChanged
 				this._TeamFaultsTextID = value;
 				this.SendPropertyChanged("TeamFaultsTextID");
 				this.OnTeamFaultsTextIDChanged();
+			}
+		}
+	}
+	
+	[Column(Storage="_DetailsTextID", DbType="int")]
+	public int DetailsTextID
+	{
+		get
+		{
+			return this._DetailsTextID;
+		}
+		set
+		{
+			if ((this._DetailsTextID != value))
+			{
+				this.OnDetailsTextIDChanging(value);
+				this.SendPropertyChanging();
+				this._DetailsTextID = value;
+				this.SendPropertyChanged("DetailsTextID");
+				this.OnDetailsTextIDChanged();
 			}
 		}
 	}

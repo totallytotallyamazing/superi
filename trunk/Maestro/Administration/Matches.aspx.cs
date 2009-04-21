@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Linq;
 using System.Web.UI.WebControls;
+using System.Web.UI;
 using System.Reflection;
 using System.Globalization;
 using Superi.Common;
 using Superi.CustomControls;
+//using System.
 
 public partial class Administration_Matches : System.Web.UI.Page
 {
@@ -153,5 +155,15 @@ public partial class Administration_Matches : System.Web.UI.Page
     protected void DataList1_CancelCommand(object source, DataListCommandEventArgs e)
     {
         DataList1.EditItemIndex = -1;
+    }
+
+    protected void DataList1_ItemCommand(object source, DataListCommandEventArgs e)
+    {
+        if(e.CommandName=="EditDescription")
+        {
+            int detailTextID = Convert.ToInt32(e.CommandArgument);
+            reDetails.TextID = detailTextID;
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "showPopUp", "alert('!');$find('<%= mpeMatchDetails.ClientID %>').show();", true);
+        }
     }
 }

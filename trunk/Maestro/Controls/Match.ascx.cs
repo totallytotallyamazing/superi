@@ -75,9 +75,21 @@ public partial class Controls_Match : System.Web.UI.UserControl
         }
         set { ViewState["teamTextId"] = value; }
     }
+
+    public int DescriptionTextID
+    {
+        get
+        {
+            if (ViewState["DescriptionTextID"] != null)
+                return Convert.ToInt32(ViewState["DescriptionTextID"]);
+            return 0;
+        }
+        set { ViewState["DescriptionTextID"] = value; }
+    }
     #endregion
 
     protected string matchMainClass = "match";
+    protected string matchAttributes = "";
 
     protected void Page_PreRender(object sender, EventArgs e)
     {
@@ -97,5 +109,9 @@ public partial class Controls_Match : System.Web.UI.UserControl
             iTeam.ImageUrl = WebSession.BaseImageUrl + "logos/" + ImageUrl;
         else
             iTeam.ImageUrl = WebSession.BaseImageUrl + "noLogo.png";
+        if (DescriptionTextID > 0)
+        {
+            matchAttributes = "style=\"cursor:pointer\" onclick=\"displayDescription(" + DescriptionTextID + ")\"";
+        }
     }
 }

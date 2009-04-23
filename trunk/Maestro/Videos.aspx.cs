@@ -23,7 +23,7 @@ public partial class Videos : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         VideosDataContext context = new VideosDataContext();
-        List<Video> videos = context.Videos.Select(vid => vid).Skip(CurrentPage*PAGE_SIZE).Take(PAGE_SIZE).ToList();
+        List<Video> videos = context.Videos.Select(vid => vid).OrderByDescending(vid=>vid.ID).Skip(CurrentPage*PAGE_SIZE).Take(PAGE_SIZE).ToList();
         int videosCount = context.Videos.Count();
         int pageNumber = videosCount / PAGE_SIZE;
         if (videosCount % PAGE_SIZE > 0)

@@ -1,6 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="Match.ascx.cs" Inherits="Controls_Match" %>
 
-<div class="<%= matchMainClass %>">
+<div class="<%= matchMainClass %>" <%= matchAttributes %>>
     <div class="matchTeam">
         <div>
             <asp:Image runat="server" ID="iMaestro" ImageUrl="~/Images/mae.gif" />

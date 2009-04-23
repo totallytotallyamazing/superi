@@ -25,3 +25,5 @@ a:hover{text-decoration:underline;}
 .popUpPanel{background:white; border:1px solid black; padding:20px; width:265px;}
 
 .imageSmall img{width:102px; height:77px;}
+
+.shaded{opacity: 0.5; -moz-opacity: 0.5; filter: alpha(opacity=50); background-color:Black;}

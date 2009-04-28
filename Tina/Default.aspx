@@ -159,6 +159,7 @@
 </div>
 <script type="text/javascript">
     playPromo();
+    startHistoryLoop();
 </script>
 </body>
 </html>

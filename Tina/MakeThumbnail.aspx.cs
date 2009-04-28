@@ -44,6 +44,8 @@ public partial class MakeThumbnail : Page
         {
             switch (Request.QueryString["loc"])
             {
+                case "tour":
+                    return Server.MapPath("~/Images/Gallery/Tours/") + "\\";
                 case "practice":
                     return Server.MapPath(WebSession.ArticlesImagesFolder) + "\\";
                 case "article":

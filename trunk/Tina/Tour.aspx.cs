@@ -23,13 +23,12 @@ public partial class TourPage : System.Web.UI.Page
 
     protected int TourID
     {
-        get 
+        get
         {
-            if (ViewState["TourID"] != null)
-                return Convert.ToInt32(ViewState["TourID"]);
-            return int.MinValue;
+            if (string.IsNullOrEmpty(Request.QueryString["id"]))
+                return int.MinValue;
+            return int.Parse(Request.QueryString["id"]);
         }
-        set { ViewState["TourID"] = value; }
     }
 
     protected void Page_Load(object sender, EventArgs e)

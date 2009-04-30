@@ -10,22 +10,22 @@
       <Column Name="Content" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
       <Column Name="TypeID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="SourceID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="Entity_EntitySource" Member="EntitySources" ThisKey="SourceID" OtherKey="ID" Type="EntitySource" />
-      <Association Name="Entity_EntityType" Member="EntityTypes" ThisKey="SourceID" OtherKey="ID" Type="EntityType" />
+      <Association Name="EntityType_Entity" Member="EntityType" ThisKey="TypeID" OtherKey="ID" Type="EntityType" IsForeignKey="true" />
+      <Association Name="EntitySource_Entity" Member="EntitySource" ThisKey="SourceID" OtherKey="ID" Type="EntitySource" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.EntitySources" Member="EntitySources">
     <Type Name="EntitySource">
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="true" />
       <Column Name="Name" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
-      <Association Name="Entity_EntitySource" Member="Entity" ThisKey="ID" OtherKey="SourceID" Type="Entity" IsForeignKey="true" />
+      <Association Name="EntitySource_Entity" Member="Entities" ThisKey="ID" OtherKey="SourceID" Type="Entity" />
     </Type>
   </Table>
   <Table Name="dbo.EntityType" Member="EntityTypes">
     <Type Name="EntityType">
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="true" />
       <Column Name="Name" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
-      <Association Name="Entity_EntityType" Member="Entity" ThisKey="ID" OtherKey="SourceID" Type="Entity" IsForeignKey="true" />
+      <Association Name="EntityType_Entity" Member="Entities" ThisKey="ID" OtherKey="TypeID" Type="Entity" />
     </Type>
   </Table>
 </Database>

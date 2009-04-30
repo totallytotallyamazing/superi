@@ -14,24 +14,24 @@
         <elementListCompartment Id="3635eb0c-aaad-4a49-b95b-87a5421a7192" absoluteBounds="1.7650000000000001, 1.21, 1.9700000000000002, 0.53615315755208326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(3.4375 : 2.5); (3.4375 : 1.84615315755208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/EntitiesDataContext/Entity/Entity_EntitySource" />
-      <nodes>
-        <classShapeMoniker Id="5b6a2e49-c07b-4fbe-9fac-609c3429579a" />
-        <classShapeMoniker Id="f16bc3c3-4463-4a8a-92e7-22f4c72982b2" />
-      </nodes>
-    </associationConnector>
     <classShape Id="aab2b8cd-9dc5-4195-81ef-c52a4598e9a9" absoluteBounds="5.625, 1.875, 2, 1.0961531575520833">
       <DataClassMoniker Name="/EntitiesDataContext/EntityType" />
       <nestedChildShapes>
         <elementListCompartment Id="fe769871-afc5-41ba-9a0d-d75ac7d1016a" absoluteBounds="5.64, 2.335, 1.9700000000000002, 0.53615315755208326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(5.125 : 2.73557657877604); (5.625 : 2.73557657877604)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/EntitiesDataContext/Entity/Entity_EntityType" />
+    <associationConnector edgePoints="[(5.625 : 2.73557657877604); (5.125 : 2.73557657877604)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/EntitiesDataContext/EntityType/EntityType_Entity" />
       <nodes>
-        <classShapeMoniker Id="5b6a2e49-c07b-4fbe-9fac-609c3429579a" />
         <classShapeMoniker Id="aab2b8cd-9dc5-4195-81ef-c52a4598e9a9" />
+        <classShapeMoniker Id="5b6a2e49-c07b-4fbe-9fac-609c3429579a" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(3.4375 : 1.84615315755208); (3.4375 : 2.5)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/EntitiesDataContext/EntitySource/EntitySource_Entity" />
+      <nodes>
+        <classShapeMoniker Id="f16bc3c3-4463-4a8a-92e7-22f4c72982b2" />
+        <classShapeMoniker Id="5b6a2e49-c07b-4fbe-9fac-609c3429579a" />
       </nodes>
     </associationConnector>
   </nestedChildShapes>

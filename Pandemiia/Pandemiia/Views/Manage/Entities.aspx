@@ -1,45 +1,39 @@
 <%@ Page Title="" Language="C#" MasterPageFile="Manage.Master" Inherits="System.Web.Mvc.ViewPage<List<Pandemiia.Models.Entity>>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Entities
+	Посты
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Entities</h2>
+    <h2>Посты</h2>
 
     <table>
         <tr>
             <th></th>
             <th>
-                ID
+                №
             </th>
             <th>
-                Title
+                Заголовок
             </th>
             <th>
-                Date
+                Дата
             </th>
             <th>
-                Description
+                Тип
             </th>
             <th>
-                Content
-            </th>
-            <th>
-                TypeID
-            </th>
-            <th>
-                SourceID
+                Чье
             </th>
         </tr>
 
-    <% foreach (var item in Model) { %>
+    <% foreach (Pandemiia.Models.Entity item in Model) { %>
     
         <tr>
             <td>
-                <%= Html.ActionLink("Edit", "Edit", new { id=item.ID }) %> |
-                <%= Html.ActionLink("Details", "Details", new { id=item.ID })%>
+                <%= Html.ActionLink("Изменить", "EditEntity", new { id=item.ID }) %> |
+                <%= Html.ActionLink("Удалить", "DeleteEntity", new { id = item.ID })%>
             </td>
             <td>
                 <%= Html.Encode(item.ID) %>
@@ -51,16 +45,10 @@
                 <%= Html.Encode(String.Format("{0:g}", item.Date)) %>
             </td>
             <td>
-                <%= Html.Encode(item.Description) %>
+                <%= Html.Encode(item.EntityType.Name) %>
             </td>
             <td>
-                <%= Html.Encode(item.Content) %>
-            </td>
-            <td>
-                <%= Html.Encode(item.TypeID) %>
-            </td>
-            <td>
-                <%= Html.Encode(item.SourceID) %>
+                <%= Html.Encode(item.EntitySource.Name) %>
             </td>
         </tr>
     
@@ -69,7 +57,7 @@
     </table>
 
     <p>
-        <%= Html.ActionLink("Create New", "CreateEntity") %>
+        <%= Html.ActionLink("Создать", "CreateEntity") %>
     </p>
 
 </asp:Content>

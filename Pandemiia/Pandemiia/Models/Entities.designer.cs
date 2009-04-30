@@ -116,9 +116,9 @@ namespace Pandemiia.Models
 		
 		private System.Nullable<int> _SourceID;
 		
-		private EntitySet<EntitySource> _EntitySources;
+		private EntityRef<EntityType> _EntityType;
 		
-		private EntitySet<EntityType> _EntityTypes;
+		private EntityRef<EntitySource> _EntitySource;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -142,8 +142,8 @@ namespace Pandemiia.Models
 		
 		public Entity()
 		{
-			this._EntitySources = new EntitySet<EntitySource>(new Action<EntitySource>(this.attach_EntitySources), new Action<EntitySource>(this.detach_EntitySources));
-			this._EntityTypes = new EntitySet<EntityType>(new Action<EntityType>(this.attach_EntityTypes), new Action<EntityType>(this.detach_EntityTypes));
+			this._EntityType = default(EntityRef<EntityType>);
+			this._EntitySource = default(EntityRef<EntitySource>);
 			OnCreated();
 		}
 		
@@ -258,6 +258,10 @@ namespace Pandemiia.Models
 			{
 				if ((this._TypeID != value))
 				{
+					if (this._EntityType.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnTypeIDChanging(value);
 					this.SendPropertyChanging();
 					this._TypeID = value;
@@ -278,6 +282,10 @@ namespace Pandemiia.Models
 			{
 				if ((this._SourceID != value))
 				{
+					if (this._EntitySource.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnSourceIDChanging(value);
 					this.SendPropertyChanging();
 					this._SourceID = value;
@@ -287,29 +295,71 @@ namespace Pandemiia.Models
 			}
 		}
 		
-		[Association(Name="Entity_EntitySource", Storage="_EntitySources", ThisKey="SourceID", OtherKey="ID")]
-		public EntitySet<EntitySource> EntitySources
+		[Association(Name="EntityType_Entity", Storage="_EntityType", ThisKey="TypeID", OtherKey="ID", IsForeignKey=true)]
+		public EntityType EntityType
 		{
 			get
 			{
-				return this._EntitySources;
+				return this._EntityType.Entity;
 			}
 			set
 			{
-				this._EntitySources.Assign(value);
+				EntityType previousValue = this._EntityType.Entity;
+				if (((previousValue != value) 
+							|| (this._EntityType.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._EntityType.Entity = null;
+						previousValue.Entities.Remove(this);
+					}
+					this._EntityType.Entity = value;
+					if ((value != null))
+					{
+						value.Entities.Add(this);
+						this._TypeID = value.ID;
+					}
+					else
+					{
+						this._TypeID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("EntityType");
+				}
 			}
 		}
 		
-		[Association(Name="Entity_EntityType", Storage="_EntityTypes", ThisKey="SourceID", OtherKey="ID")]
-		public EntitySet<EntityType> EntityTypes
+		[Association(Name="EntitySource_Entity", Storage="_EntitySource", ThisKey="SourceID", OtherKey="ID", IsForeignKey=true)]
+		public EntitySource EntitySource
 		{
 			get
 			{
-				return this._EntityTypes;
+				return this._EntitySource.Entity;
 			}
 			set
 			{
-				this._EntityTypes.Assign(value);
+				EntitySource previousValue = this._EntitySource.Entity;
+				if (((previousValue != value) 
+							|| (this._EntitySource.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._EntitySource.Entity = null;
+						previousValue.Entities.Remove(this);
+					}
+					this._EntitySource.Entity = value;
+					if ((value != null))
+					{
+						value.Entities.Add(this);
+						this._SourceID = value.ID;
+					}
+					else
+					{
+						this._SourceID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("EntitySource");
+				}
 			}
 		}
 		
@@ -331,30 +381,6 @@ namespace Pandemiia.Models
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-		
-		private void attach_EntitySources(EntitySource entity)
-		{
-			this.SendPropertyChanging();
-			entity.Entity = this;
-		}
-		
-		private void detach_EntitySources(EntitySource entity)
-		{
-			this.SendPropertyChanging();
-			entity.Entity = null;
-		}
-		
-		private void attach_EntityTypes(EntityType entity)
-		{
-			this.SendPropertyChanging();
-			entity.Entity = this;
-		}
-		
-		private void detach_EntityTypes(EntityType entity)
-		{
-			this.SendPropertyChanging();
-			entity.Entity = null;
 		}
 	}
 	
@@ -368,7 +394,7 @@ namespace Pandemiia.Models
 		
 		private string _Name;
 		
-		private EntityRef<Entity> _Entity;
+		private EntitySet<Entity> _Entities;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -382,7 +408,7 @@ namespace Pandemiia.Models
 		
 		public EntitySource()
 		{
-			this._Entity = default(EntityRef<Entity>);
+			this._Entities = new EntitySet<Entity>(new Action<Entity>(this.attach_Entities), new Action<Entity>(this.detach_Entities));
 			OnCreated();
 		}
 		
@@ -397,10 +423,6 @@ namespace Pandemiia.Models
 			{
 				if ((this._ID != value))
 				{
-					if (this._Entity.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
 					this.OnIDChanging(value);
 					this.SendPropertyChanging();
 					this._ID = value;
@@ -430,37 +452,16 @@ namespace Pandemiia.Models
 			}
 		}
 		
-		[Association(Name="Entity_EntitySource", Storage="_Entity", ThisKey="ID", OtherKey="SourceID", IsForeignKey=true)]
-		public Entity Entity
+		[Association(Name="EntitySource_Entity", Storage="_Entities", ThisKey="ID", OtherKey="SourceID")]
+		public EntitySet<Entity> Entities
 		{
 			get
 			{
-				return this._Entity.Entity;
+				return this._Entities;
 			}
 			set
 			{
-				Entity previousValue = this._Entity.Entity;
-				if (((previousValue != value) 
-							|| (this._Entity.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Entity.Entity = null;
-						previousValue.EntitySources.Remove(this);
-					}
-					this._Entity.Entity = value;
-					if ((value != null))
-					{
-						value.EntitySources.Add(this);
-						this._ID = value.SourceID;
-					}
-					else
-					{
-						this._ID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Entity");
-				}
+				this._Entities.Assign(value);
 			}
 		}
 		
@@ -482,6 +483,18 @@ namespace Pandemiia.Models
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_Entities(Entity entity)
+		{
+			this.SendPropertyChanging();
+			entity.EntitySource = this;
+		}
+		
+		private void detach_Entities(Entity entity)
+		{
+			this.SendPropertyChanging();
+			entity.EntitySource = null;
 		}
 	}
 	
@@ -495,7 +508,7 @@ namespace Pandemiia.Models
 		
 		private string _Name;
 		
-		private EntityRef<Entity> _Entity;
+		private EntitySet<Entity> _Entities;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -509,7 +522,7 @@ namespace Pandemiia.Models
 		
 		public EntityType()
 		{
-			this._Entity = default(EntityRef<Entity>);
+			this._Entities = new EntitySet<Entity>(new Action<Entity>(this.attach_Entities), new Action<Entity>(this.detach_Entities));
 			OnCreated();
 		}
 		
@@ -524,10 +537,6 @@ namespace Pandemiia.Models
 			{
 				if ((this._ID != value))
 				{
-					if (this._Entity.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
 					this.OnIDChanging(value);
 					this.SendPropertyChanging();
 					this._ID = value;
@@ -557,37 +566,16 @@ namespace Pandemiia.Models
 			}
 		}
 		
-		[Association(Name="Entity_EntityType", Storage="_Entity", ThisKey="ID", OtherKey="SourceID", IsForeignKey=true)]
-		public Entity Entity
+		[Association(Name="EntityType_Entity", Storage="_Entities", ThisKey="ID", OtherKey="TypeID")]
+		public EntitySet<Entity> Entities
 		{
 			get
 			{
-				return this._Entity.Entity;
+				return this._Entities;
 			}
 			set
 			{
-				Entity previousValue = this._Entity.Entity;
-				if (((previousValue != value) 
-							|| (this._Entity.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Entity.Entity = null;
-						previousValue.EntityTypes.Remove(this);
-					}
-					this._Entity.Entity = value;
-					if ((value != null))
-					{
-						value.EntityTypes.Add(this);
-						this._ID = value.SourceID;
-					}
-					else
-					{
-						this._ID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Entity");
-				}
+				this._Entities.Assign(value);
 			}
 		}
 		
@@ -609,6 +597,18 @@ namespace Pandemiia.Models
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_Entities(Entity entity)
+		{
+			this.SendPropertyChanging();
+			entity.EntityType = this;
+		}
+		
+		private void detach_Entities(Entity entity)
+		{
+			this.SendPropertyChanging();
+			entity.EntityType = null;
 		}
 	}
 }

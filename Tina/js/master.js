@@ -59,6 +59,7 @@ function cleanUp() {
     $('#gallery').css("display", "none")
     $("#footerMenu a").css("display", "none");
     $("#newsContent").empty();
+    $("#tourContainer").empty().css("display", "none");
     $("#newsContainer").css("display", "none");
     $(".songsPlaceHolder").removeClass("songsPlaceHolderInverted");
     $("#galleryPages center").empty().css("display", "none");
@@ -176,6 +177,9 @@ function loadContent(section) {
         case "news":
             News.GetPageCount(processNews, onRetriveNewsFail);
             break;
+        case "tours":
+            Tours.GetTours(processTours, onRetriveToursFail);
+            break
     }
 }
 

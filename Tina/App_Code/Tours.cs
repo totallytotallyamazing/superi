@@ -16,7 +16,7 @@ public class Tours : System.Web.Services.WebService
     public object GetTours()
     {
         TourDataContext context = new TourDataContext();
-        List<Tour> result = context.Tours.Select(t => t).ToList();
+        var result = from tour in context.Tours select new { tour.ID, tour.Name, tour.Year, tour.BackgroundImage };
         return result;
     }
 }

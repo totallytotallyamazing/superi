@@ -224,7 +224,7 @@ div.pagination span.current {
 /* End of pager related styles */
 
 /* Tours related styles */
-.tourContainer{width:700px; height:455px; position:absolute;}
+#tourContainer{width:700px; height:455px; position:absolute; display:none; z-index:30; left:300px; top:45px;}
 .tourLeft{float:left; width:177px; text-align:center; padding-top:50px;}
 .tourRight{width:523px; float:left;}
 .tourPics, .tourPicsPager{width:523px;}

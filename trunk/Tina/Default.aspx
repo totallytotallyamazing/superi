@@ -21,6 +21,7 @@
     <script src="js/jquery.pngFix.js" type="text/javascript"></script>
     <script src="js/jquery.fancybox.js" type="text/javascript"></script>
     <script src="js/history.js" type="text/javascript"></script>
+    <script src="js/tours.js" type="text/javascript"></script>
     <link href="theme/ui.core.css" rel="stylesheet" type="text/css" />
     <link href="theme/ui.theme.css" rel="stylesheet" type="text/css" />
     <link href="theme/ui.dialog.css" rel="stylesheet" type="text/css" />
@@ -43,6 +44,7 @@
             <asp:ServiceReference Path="~/Services/VideoService.asmx" />
             <asp:ServiceReference Path="~/Services/GalleryService.asmx" />
             <asp:ServiceReference Path="~/Services/News.asmx" />
+            <asp:ServiceReference Path="~/Services/Tours.asmx" />
         </Services>
     </asp:ScriptManager>
     <div id="loadingContainer">
@@ -60,10 +62,11 @@
         <div id="top">
             <ul id="menu">
                 <li style="font-size:0px; width:0px; height:0px; padding:0; margin:0;"></li>
-                <li image="images/music.jpg" section="music">альбомы</li>
-                <li image="images/photo.jpg" section="photo">фото</li>
-                <li image="images/video.jpg" section="video">клипы</li>
-                <li image="images/news.jpg" section="news">новости</li>
+                <li image="Images/music.jpg" section="music">альбомы</li>
+                <li image="Images/photo.jpg" section="photo">фото</li>
+                <li image="Images/video.jpg" section="video">клипы</li>
+                <li image="Images/news.jpg" section="news">новости</li>
+                <li image="Images/TourImages/bgTour1.jpg" section="tours">туры</li>
             </ul>
 
             <script type="text/javascript">
@@ -115,6 +118,9 @@
                 </div>
             </div>
             <div id="newsTextContainer">
+            </div>
+            <div id="tourContainer">
+                
             </div>
             <img class="currentBackground" alt="" src="Images/glava.jpg" />
             <img class="newBackground" alt="" />

@@ -16,16 +16,16 @@ function processAlbums(response) {
         $.preloadImages("images/albumimages/" + response[i].Image);
         appendSubMenuItem(createMenuItem(response[i].Name + "(" + response[i].Year + ")", subMenuItemClicked).attr({ albumId: response[i].ID, image: "images/albumimages/" + response[i].Image, photoImage: "images/albumimages/" + response[i].PhotoImage, invertColors: response[i].InvertColors }));
     }
-    if (albumFromHistory != null) {
-        $("[albumId='" + albumFromHistory + "'] a").click();
-        albumFromHistory = null;
-    }
+//    if (albumFromHistory != null) {
+//        $("[albumId='" + albumFromHistory + "'] a").click();
+//        albumFromHistory = null;
+//    }
 }
 
 // Album entry clicked
 function subMenuItemClicked(attrs) {
     var albumID = $(attrs.target).parent().attr("albumId");
-    setHistoryCallback("music/" + albumID, albumHistoryCallback);
+    //setHistoryCallback("music/" + albumID, albumHistoryCallback);
     cleanUp();
     BeginRequestHandler();
     swapImage($(attrs.target).parent().attr("image"), imageSwapped);

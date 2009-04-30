@@ -29,6 +29,7 @@
             <a href="Video.aspx">Видео</a>&nbsp;&nbsp;
             <a href="Gallery.aspx">Фото</a>&nbsp;&nbsp;
             <a href="News.aspx">Новости</a>&nbsp;&nbsp;
+            <a href="Tours.aspx">Туры</a>&nbsp;&nbsp;
         </div>
         <div style="float: right; padding: 0px 10px; text-align: right">
             <asp:LinkButton ID="lbSognOut" runat="server" Text="Выход" Style="float: right; padding-right: 10px;"

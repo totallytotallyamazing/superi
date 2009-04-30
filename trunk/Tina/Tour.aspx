@@ -1,8 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Tour.aspx.cs" Inherits="TourPage" %>
 
-<link href="css/main.css" rel="stylesheet" type="text/css" />
 <% if(SelectedTour!=null) {%>
-<div class="tourContainer">
     <div class="tourLeft" style='color:<%= SelectedTour.LeftTextColor %>'>
         <%= SelectedTour.LeftText.Replace(Environment.NewLine, "<br />") %> 
     </div>
@@ -32,5 +30,4 @@
             </div>
         </div>
     </div>
-</div>
 <%} %>

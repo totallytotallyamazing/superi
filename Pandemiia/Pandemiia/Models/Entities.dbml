@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Database Name="Pandemic" Class="EntitiesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=PC-KOKH\SQLEXPRESS;Initial Catalog=Pandemic;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="PandemicConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="WebSettings" ConnectionString="Data Source=.\SQLEXPRESS;Initial Catalog=Pandemic;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="PandemicConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Entities" Member="Entities">
     <Type Name="Entity">
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -12,6 +12,7 @@
       <Column Name="SourceID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="EntityType_Entity" Member="EntityType" ThisKey="TypeID" OtherKey="ID" Type="EntityType" IsForeignKey="true" />
       <Association Name="EntitySource_Entity" Member="EntitySource" ThisKey="SourceID" OtherKey="ID" Type="EntitySource" IsForeignKey="true" />
+      <Association Name="EntityPicture_Entity" Member="EntityPicture" ThisKey="ID" OtherKey="EntityID" Type="EntityPicture" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.EntitySources" Member="EntitySources">
@@ -26,6 +27,15 @@
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="true" />
       <Column Name="Name" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
       <Association Name="EntityType_Entity" Member="Entities" ThisKey="ID" OtherKey="TypeID" Type="Entity" />
+    </Type>
+  </Table>
+  <Table Name="dbo.EntityPictures" Member="EntityPictures">
+    <Type Name="EntityPicture">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Picture" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Preview" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="EntityID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="EntityPicture_Entity" Member="Entities" ThisKey="EntityID" OtherKey="ID" Type="Entity" />
     </Type>
   </Table>
 </Database>

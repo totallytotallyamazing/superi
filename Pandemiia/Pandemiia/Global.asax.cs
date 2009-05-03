@@ -23,8 +23,26 @@ namespace Pandemiia
             );
 
             routes.MapRoute(
+                "Tools",
+                "Tools/{action}/{caller}/{returnAction}/{parameters}",
+                new { controller = "Tools", parameters = "", action = "", caller = "Home", returnAction = "Index" }
+                );
+
+            routes.MapRoute(
+                "Tools1",
+                "Tools/{action}/{entityId}/{caller}/{returnAction}/{uploadFolder}/{fileKey}/{previewKey}",
+                new { controller = "Tools", uploadFolder = "", pairKey = "", action = "", caller = "Home", returnAction = "Index" }
+                );
+
+            routes.MapRoute(
+                "Images",
+                "Manage/{action}/{data}/{entityId}",
+                new { controller = "Manage" }
+                );
+
+            routes.MapRoute(
                 "Filter",                                              // Route name
-                "{action}",                           // URL with parameters
+                "Filter",                           // URL with parameters
                 new { controller = "Home", action = "Filter"}  // Parameter defaults
             );
 

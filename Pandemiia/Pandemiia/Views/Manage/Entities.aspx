@@ -1,11 +1,10 @@
 <%@ Page Title="" Language="C#" MasterPageFile="Manage.Master" Inherits="System.Web.Mvc.ViewPage<List<Pandemiia.Models.Entity>>" %>
-
+<%@ Import Namespace="Pandemiia.Helpers" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	Посты
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-
     <h2>Посты</h2>
 
     <table>
@@ -32,8 +31,23 @@
     
         <tr>
             <td>
-                <%= Html.ActionLink("Изменить", "EditEntity", new { id=item.ID }) %> |
-                <%= Html.ActionLink("Удалить", "DeleteEntity", new { id = item.ID })%>
+                <%= Html.ActionLink("Изменить", "EditEntity", new { id=item.ID }) %> | 
+                <%= Html.ActionLink("Удалить", "DeleteEntity", new { id = item.ID })%> | 
+                <% 
+                    switch(item.EntityType.Name)
+                    {
+                        case "Видео":
+                            Response.Write(Html.PopUpWindowAction("Видео", "Video", "", item.ID, 600, 300));
+                            break;
+                        case "Музыка":
+                            Response.Write(Html.PopUpWindowAction("Музыка", "Music", "", item.ID, 600, 300));
+                            break;
+                        case "Изображения":
+                            Response.Write(Html.PopUpWindowAction("Изображения", "Images", "", item.ID, 600, 300));
+                            break;
+                    }
+           
+                %>
             </td>
             <td>
                 <%= Html.Encode(item.ID) %>

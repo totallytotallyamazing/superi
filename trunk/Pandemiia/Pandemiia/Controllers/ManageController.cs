@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 using Pandemiia.Models;
+using System.Web.UI;
 
 
 namespace Pandemiia.Controllers
@@ -100,7 +101,19 @@ namespace Pandemiia.Controllers
             _context.Entities.InsertOnSubmit(entity);
             _context.SubmitChanges();
             return RedirectToAction("Entities");   
-        }        
+        }
+
+        public ActionResult Images(int id)
+        {
+            Entity entity = _context.Entities.SingleOrDefault(e => e.ID == id);
+            return View(entity);
+        }
+
+        
+        public ActionResult SaveImages(List<Pair> data, int entityId)
+        {
+            return RedirectToAction("CloseWindow", "Tools");
+        }
 
     }
 }

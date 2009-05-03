@@ -39,6 +39,9 @@ namespace Pandemiia.Models
     partial void InsertEntityType(EntityType instance);
     partial void UpdateEntityType(EntityType instance);
     partial void DeleteEntityType(EntityType instance);
+    partial void InsertEntityPicture(EntityPicture instance);
+    partial void UpdateEntityPicture(EntityPicture instance);
+    partial void DeleteEntityPicture(EntityPicture instance);
     #endregion
 		
 		public EntitiesDataContext() : 
@@ -94,6 +97,14 @@ namespace Pandemiia.Models
 				return this.GetTable<EntityType>();
 			}
 		}
+		
+		public System.Data.Linq.Table<EntityPicture> EntityPictures
+		{
+			get
+			{
+				return this.GetTable<EntityPicture>();
+			}
+		}
 	}
 	
 	[Table(Name="dbo.Entities")]
@@ -120,6 +131,8 @@ namespace Pandemiia.Models
 		
 		private EntityRef<EntitySource> _EntitySource;
 		
+		private EntityRef<EntityPicture> _EntityPicture;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -144,6 +157,7 @@ namespace Pandemiia.Models
 		{
 			this._EntityType = default(EntityRef<EntityType>);
 			this._EntitySource = default(EntityRef<EntitySource>);
+			this._EntityPicture = default(EntityRef<EntityPicture>);
 			OnCreated();
 		}
 		
@@ -158,6 +172,10 @@ namespace Pandemiia.Models
 			{
 				if ((this._ID != value))
 				{
+					if (this._EntityPicture.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnIDChanging(value);
 					this.SendPropertyChanging();
 					this._ID = value;
@@ -359,6 +377,40 @@ namespace Pandemiia.Models
 						this._SourceID = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("EntitySource");
+				}
+			}
+		}
+		
+		[Association(Name="EntityPicture_Entity", Storage="_EntityPicture", ThisKey="ID", OtherKey="EntityID", IsForeignKey=true)]
+		public EntityPicture EntityPicture
+		{
+			get
+			{
+				return this._EntityPicture.Entity;
+			}
+			set
+			{
+				EntityPicture previousValue = this._EntityPicture.Entity;
+				if (((previousValue != value) 
+							|| (this._EntityPicture.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._EntityPicture.Entity = null;
+						previousValue.Entities.Remove(this);
+					}
+					this._EntityPicture.Entity = value;
+					if ((value != null))
+					{
+						value.Entities.Add(this);
+						this._ID = value.EntityID;
+					}
+					else
+					{
+						this._ID = default(int);
+					}
+					this.SendPropertyChanged("EntityPicture");
 				}
 			}
 		}
@@ -609,6 +661,168 @@ namespace Pandemiia.Models
 		{
 			this.SendPropertyChanging();
 			entity.EntityType = null;
+		}
+	}
+	
+	[Table(Name="dbo.EntityPictures")]
+	public partial class EntityPicture : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ID;
+		
+		private string _Picture;
+		
+		private string _Preview;
+		
+		private int _EntityID;
+		
+		private EntitySet<Entity> _Entities;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(int value);
+    partial void OnIDChanged();
+    partial void OnPictureChanging(string value);
+    partial void OnPictureChanged();
+    partial void OnPreviewChanging(string value);
+    partial void OnPreviewChanged();
+    partial void OnEntityIDChanging(int value);
+    partial void OnEntityIDChanged();
+    #endregion
+		
+		public EntityPicture()
+		{
+			this._Entities = new EntitySet<Entity>(new Action<Entity>(this.attach_Entities), new Action<Entity>(this.detach_Entities));
+			OnCreated();
+		}
+		
+		[Column(Storage="_ID", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Picture", DbType="VarChar(255)")]
+		public string Picture
+		{
+			get
+			{
+				return this._Picture;
+			}
+			set
+			{
+				if ((this._Picture != value))
+				{
+					this.OnPictureChanging(value);
+					this.SendPropertyChanging();
+					this._Picture = value;
+					this.SendPropertyChanged("Picture");
+					this.OnPictureChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Preview", DbType="VarChar(255)")]
+		public string Preview
+		{
+			get
+			{
+				return this._Preview;
+			}
+			set
+			{
+				if ((this._Preview != value))
+				{
+					this.OnPreviewChanging(value);
+					this.SendPropertyChanging();
+					this._Preview = value;
+					this.SendPropertyChanged("Preview");
+					this.OnPreviewChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_EntityID", DbType="Int NOT NULL")]
+		public int EntityID
+		{
+			get
+			{
+				return this._EntityID;
+			}
+			set
+			{
+				if ((this._EntityID != value))
+				{
+					this.OnEntityIDChanging(value);
+					this.SendPropertyChanging();
+					this._EntityID = value;
+					this.SendPropertyChanged("EntityID");
+					this.OnEntityIDChanged();
+				}
+			}
+		}
+		
+		[Association(Name="EntityPicture_Entity", Storage="_Entities", ThisKey="EntityID", OtherKey="ID")]
+		public EntitySet<Entity> Entities
+		{
+			get
+			{
+				return this._Entities;
+			}
+			set
+			{
+				this._Entities.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Entities(Entity entity)
+		{
+			this.SendPropertyChanging();
+			entity.EntityPicture = this;
+		}
+		
+		private void detach_Entities(Entity entity)
+		{
+			this.SendPropertyChanging();
+			entity.EntityPicture = null;
 		}
 	}
 }

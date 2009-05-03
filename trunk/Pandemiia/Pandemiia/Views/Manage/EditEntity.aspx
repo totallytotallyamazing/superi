@@ -55,7 +55,8 @@
             </p>
             <p>
                 <label for="SourceID">„ье:</label>
-                <%= Html.TextBox("SourceID", Model.SourceID) %>
+                <%= Html.DropDownList("SourceID", (IEnumerable<SelectListItem>)ViewData["EntitySources"], "")%>
+                <%-- = Html.TextBox("SourceID", Model.SourceID) --%>
                 <%= Html.ValidationMessage("SourceID", "*") %>
             </p>
             <p>

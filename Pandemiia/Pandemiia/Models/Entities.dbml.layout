@@ -40,11 +40,11 @@
         <elementListCompartment Id="321a70a3-5c4c-4bf9-a3cb-7c43c5488c34" absoluteBounds="6.515, 0.96, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(6.5 : 0.59375); (4.46875 : 0.59375); (4.46875 : 2.5)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/EntitiesDataContext/EntityPicture/EntityPicture_Entity" />
+    <associationConnector edgePoints="[(5.125 : 2.84375); (8.40625 : 2.84375); (8.40625 : 2.07859537760417)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/EntitiesDataContext/Entity/Entity_EntityPicture" />
       <nodes>
-        <classShapeMoniker Id="0e8bd984-a177-4b91-b975-80e5c56cff5f" />
         <classShapeMoniker Id="5b6a2e49-c07b-4fbe-9fac-609c3429579a" />
+        <classShapeMoniker Id="0e8bd984-a177-4b91-b975-80e5c56cff5f" />
       </nodes>
     </associationConnector>
   </nestedChildShapes>

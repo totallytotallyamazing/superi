@@ -10,9 +10,9 @@
       <Column Name="Content" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
       <Column Name="TypeID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="SourceID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Entity_EntityPicture" Member="EntityPictures" ThisKey="ID" OtherKey="EntityID" Type="EntityPicture" />
       <Association Name="EntityType_Entity" Member="EntityType" ThisKey="TypeID" OtherKey="ID" Type="EntityType" IsForeignKey="true" />
       <Association Name="EntitySource_Entity" Member="EntitySource" ThisKey="SourceID" OtherKey="ID" Type="EntitySource" IsForeignKey="true" />
-      <Association Name="EntityPicture_Entity" Member="EntityPicture" ThisKey="ID" OtherKey="EntityID" Type="EntityPicture" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.EntitySources" Member="EntitySources">
@@ -35,7 +35,7 @@
       <Column Name="Picture" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
       <Column Name="Preview" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
       <Column Name="EntityID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="EntityPicture_Entity" Member="Entities" ThisKey="EntityID" OtherKey="ID" Type="Entity" />
+      <Association Name="Entity_EntityPicture" Member="Entity" ThisKey="EntityID" OtherKey="ID" Type="Entity" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

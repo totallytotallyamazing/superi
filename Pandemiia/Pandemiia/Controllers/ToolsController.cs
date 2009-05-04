@@ -7,6 +7,7 @@ using System.Web.Mvc.Ajax;
 using System.IO;
 using System.Web.UI;
 using System.Web.Routing;
+using System.Web.Script.Serialization;
 
 namespace Pandemiia.Controllers
 {
@@ -37,26 +38,28 @@ namespace Pandemiia.Controllers
             return RedirectToAction(returnAction, caller);
         }
 
-        [AcceptVerbs(HttpVerbs.Post)]
+        //[AcceptVerbs(HttpVerbs.Post)]
         public ActionResult UploadFilePairs(int entityId, string caller, string returnAction, string uploadFolder, string fileKey, string previewKey)
         {
             List<Pair> filePairs = new List<Pair>();
             foreach (string file in Request.Files)
             {
-                if (file.IndexOf(fileKey) > -1 && Request.Files[file]!=null)
+                if (file.IndexOf(fileKey) > -1 &&  !string.IsNullOrEmpty(Request.Files[file].FileName))
                 {
                     foreach (string preview in Request.Files)
                     {
-                        if (preview.IndexOf(previewKey) > -1 && Request.Files[preview] != null)
+                        if (preview.IndexOf(previewKey) > -1 && !string.IsNullOrEmpty(Request.Files[preview].FileName))
                         {
                             if (file.Replace(fileKey, "") == preview.Replace(previewKey, ""))
                             {
                                 HttpPostedFileBase postedFile = Request.Files[file];
                                 string fileName = Path.GetFileName(postedFile.FileName);
+                                initialFileName = fileName;
                                 string fileNameSaved = GetUniqueFileName(uploadFolder, fileName);
                                 postedFile.SaveAs(ServerPath(uploadFolder) + fileNameSaved);
                                 HttpPostedFileBase postedPreview = Request.Files[preview];
-                                string previewName = Path.GetFileName(postedFile.FileName);
+                                string previewName = Path.GetFileName(postedPreview.FileName);
+                                initialFileName = previewName;
                                 string previewNameSaved = GetUniqueFileName(uploadFolder, previewName);
                                 postedPreview.SaveAs(ServerPath(uploadFolder) + previewNameSaved);
                                 Pair filePair = new Pair();
@@ -69,7 +72,8 @@ namespace Pandemiia.Controllers
                     }
                 }
             }
-            return RedirectToAction(returnAction, caller, new { data = filePairs, entityId = entityId });
+            JavaScriptSerializer serializer = new JavaScriptSerializer();
+            return RedirectToAction(returnAction, caller, new { data = serializer.Serialize(filePairs), entityId = entityId });
         }
 
         #region UploadFiles
@@ -81,7 +85,7 @@ namespace Pandemiia.Controllers
 
         private string ServerPath(string uploadFolder)
         {
-            return AppDomain.CurrentDomain.BaseDirectory + Path.DirectorySeparatorChar + uploadFolder.Replace("/", Path.DirectorySeparatorChar.ToString());
+            return AppDomain.CurrentDomain.BaseDirectory + uploadFolder.Replace("/", Path.DirectorySeparatorChar.ToString()) + Path.DirectorySeparatorChar;
         }
 
         private UnificatorPositionMode UnificatorPosition = UnificatorPositionMode.Postfix;

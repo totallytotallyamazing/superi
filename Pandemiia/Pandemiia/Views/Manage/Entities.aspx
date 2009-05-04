@@ -37,13 +37,13 @@
                     switch(item.EntityType.Name)
                     {
                         case "Видео":
-                            Response.Write(Html.PopUpWindowAction("Видео", "Video", "", item.ID, 600, 300));
+                            Response.Write(Html.PopUpWindowAction("Видео", "Video", "", item.ID, 600, 500));
                             break;
                         case "Музыка":
-                            Response.Write(Html.PopUpWindowAction("Музыка", "Music", "", item.ID, 600, 300));
+                            Response.Write(Html.PopUpWindowAction("Музыка", "Music", "", item.ID, 600, 500));
                             break;
                         case "Изображения":
-                            Response.Write(Html.PopUpWindowAction("Изображения", "Images", "", item.ID, 600, 300));
+                            Response.Write(Html.PopUpWindowAction("Изображения", "Images", "", item.ID, 600, 500));
                             break;
                     }
            

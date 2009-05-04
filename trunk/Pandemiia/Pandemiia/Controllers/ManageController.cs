@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 using Pandemiia.Models;
 using System.Web.UI;
+using System.Web.Script.Serialization;
 
 
 namespace Pandemiia.Controllers
@@ -110,8 +111,19 @@ namespace Pandemiia.Controllers
         }
 
         
-        public ActionResult SaveImages(List<Pair> data, int entityId)
+        public ActionResult SaveImages(string data, int entityId)
         {
+            JavaScriptSerializer serializer = new JavaScriptSerializer();
+            List<Pair> filePairs = serializer.Deserialize<List<Pair>>(data);
+            foreach (Pair filePair in filePairs)
+            {
+                EntityPicture picture = new EntityPicture();
+                picture.Picture = filePair.First.ToString();
+                picture.Preview = filePair.Second.ToString();
+                picture.EntityID = entityId;
+                _context.EntityPictures.InsertOnSubmit(picture);
+            }
+            _context.SubmitChanges();
             return RedirectToAction("CloseWindow", "Tools");
         }
 

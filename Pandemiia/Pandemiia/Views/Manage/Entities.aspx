@@ -37,7 +37,7 @@
                     switch(item.EntityType.Name)
                     {
                         case "Видео":
-                            Response.Write(Html.PopUpWindowAction("Видео", "Videos", "", item.ID, 600, 500));
+                            Response.Write(Html.PopUpWindowAction("Видео", "Videos", "", item.ID, 400, 500));
                             break;
                         case "Музыка":
                             Response.Write(Html.PopUpWindowAction("Музыка", "Music", "", item.ID, 600, 500));

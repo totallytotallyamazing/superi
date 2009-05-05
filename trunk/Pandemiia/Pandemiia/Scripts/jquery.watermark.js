@@ -23,7 +23,7 @@
 			.css({overflowY: jElement.css('overflow-y'), overflowX: jElement.css('overflow-x')});
 			
         if(jElement.height() > 0)
-            dummyInput.css({height: jElement.outerHeight(), width: jElement.outerWidth()});
+            dummyInput.css({height: jElement.height(), width: jElement.width()});
 
         dummyInput.hide();
         jElement.before(dummyInput);

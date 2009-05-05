@@ -1,1 +1,4 @@
 ﻿.dateInput{}
+.watermark{color:#ccc;}
+textarea.watermark{margin-top:5px;}
+.wm{color:Black;}

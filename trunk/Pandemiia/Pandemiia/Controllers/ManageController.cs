@@ -11,7 +11,6 @@ using System.Web.Script.Serialization;
 using System.IO;
 using System.Web.Routing;
 
-
 namespace Pandemiia.Controllers
 {
     [Authorize(Roles="Admin")]
@@ -26,7 +25,6 @@ namespace Pandemiia.Controllers
 
         public ActionResult Entities()
         {
-
             return View(_context.Entities.Select(ent=>ent).ToList());
         }
 
@@ -112,6 +110,34 @@ namespace Pandemiia.Controllers
             Entity entity = _context.Entities.SingleOrDefault(e => e.ID == id);
             return View(entity);
         }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult AddVideo(FormCollection form)
+        {
+            EntityVideo video = new EntityVideo();
+            video.EntityID = int.Parse(form["id"]);
+            video.Name = form["name"];
+            video.Source = form["source"];
+            _context.EntityVideos.InsertOnSubmit(video);
+            _context.SubmitChanges();
+            return RedirectToAction("Videos", new RouteValueDictionary(new { id = form["id"] }));
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult RemoveVideos(FormCollection form)
+        {
+            foreach (string key in form.Keys)
+            {
+                if (key != "id" && form[key].IndexOf("true")>-1)
+                {
+                    int videoId = int.Parse(key);
+                    EntityVideo video = _context.EntityVideos.SingleOrDefault(v => v.ID == videoId);
+                    _context.EntityVideos.DeleteOnSubmit(video);
+                }
+            }
+            _context.SubmitChanges();
+            return RedirectToAction("Videos", new RouteValueDictionary(new { id = form["id"] }));
+        }
         #endregion
 
         #region Images
@@ -142,7 +168,7 @@ namespace Pandemiia.Controllers
         {
             foreach (string key in form.Keys)
             {
-                if (key != "id")
+                if (key != "id" && form[key].IndexOf("true") > -1)
                 {
                     int imageId = int.Parse(key);
                     EntityPicture picture = _context.EntityPictures.SingleOrDefault(p => p.ID == imageId);

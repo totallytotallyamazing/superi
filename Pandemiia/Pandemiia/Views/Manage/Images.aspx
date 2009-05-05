@@ -5,15 +5,30 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <h2>
-        Изображения</h2>
+        Изображения
+    </h2>
+    <% bool displayDeleteButton = false; %>
+    <% using (Html.BeginForm("RemoveImages", "Manage"))
+       {%>
+       <%= Html.Hidden("id", Model.ID) %>
+    <center>
     <div class="imagesPreview">
         <%foreach (Pandemiia.Models.EntityPicture picture in Model.EntityPictures)
           {%>
         <div class="entityPicture">
-            <img alt="" src="../EntityImages/<%= picture.Preview %>" />
+            <img alt="" src="../../EntityImages/<%= picture.Preview %>" /><br />
+            <%= Html.CheckBox(picture.ID.ToString()) %>Удалить
         </div>
-        <%} %>
+        <%displayDeleteButton = true;
+          
+          } %>
     </div>
+    <% if (displayDeleteButton)
+       { %>
+    <input type="submit" value="Удалить" />
+    <% }%>
+    </center>
+    <%} %>
     <% using (Html.BeginForm("UploadFilePairs", "Tools", FormMethod.Post, new { enctype = "multipart/form-data" }))
        { %>
        <%= Html.Hidden("entityId", Model.ID)%>
@@ -26,10 +41,10 @@
         <table>
             <tr>
                 <th>
-                    Превью
+                    Изображения
                 </th>
                 <th>
-                    Изображения
+                    Превью
                 </th>
             </tr>
             <tr>

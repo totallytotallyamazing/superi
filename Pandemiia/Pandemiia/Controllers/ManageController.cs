@@ -8,6 +8,8 @@ using System.Web.Mvc.Ajax;
 using Pandemiia.Models;
 using System.Web.UI;
 using System.Web.Script.Serialization;
+using System.IO;
+using System.Web.Routing;
 
 
 namespace Pandemiia.Controllers
@@ -101,16 +103,24 @@ namespace Pandemiia.Controllers
             entity.TypeID = int.Parse(frm["TypeID"]);
             _context.Entities.InsertOnSubmit(entity);
             _context.SubmitChanges();
-            return RedirectToAction("Entities");   
+            return RedirectToAction("Entities");
         }
 
+        #region Videos
+        public ActionResult Videos(int id)
+        {
+            Entity entity = _context.Entities.SingleOrDefault(e => e.ID == id);
+            return View(entity);
+        }
+        #endregion
+
+        #region Images
         public ActionResult Images(int id)
         {
             Entity entity = _context.Entities.SingleOrDefault(e => e.ID == id);
             return View(entity);
         }
-
-        
+                
         public ActionResult SaveImages(string data, int entityId)
         {
             JavaScriptSerializer serializer = new JavaScriptSerializer();
@@ -127,5 +137,32 @@ namespace Pandemiia.Controllers
             return RedirectToAction("CloseWindow", "Tools");
         }
 
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult RemoveImages(FormCollection form)
+        {
+            foreach (string key in form.Keys)
+            {
+                if (key != "id")
+                {
+                    int imageId = int.Parse(key);
+                    EntityPicture picture = _context.EntityPictures.SingleOrDefault(p => p.ID == imageId);
+                    RemovePicture(picture.Picture);
+                    RemovePicture(picture.Preview);
+                    _context.EntityPictures.DeleteOnSubmit(picture);
+                }
+            }
+            _context.SubmitChanges();
+            return RedirectToAction("Images", new RouteValueDictionary(new { id = form["id"] }));
+        }
+
+        private void RemovePicture(string fileName)
+        {
+            if (!string.IsNullOrEmpty(fileName))
+            {
+                string picturePath = AppDomain.CurrentDomain.BaseDirectory + "EntityImages" + Path.DirectorySeparatorChar + fileName;
+                System.IO.File.Delete(picturePath);
+            }
+        }
+        #endregion
     }
 }

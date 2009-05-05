@@ -42,6 +42,9 @@ namespace Pandemiia.Models
     partial void InsertEntityPicture(EntityPicture instance);
     partial void UpdateEntityPicture(EntityPicture instance);
     partial void DeleteEntityPicture(EntityPicture instance);
+    partial void InsertEntityVideo(EntityVideo instance);
+    partial void UpdateEntityVideo(EntityVideo instance);
+    partial void DeleteEntityVideo(EntityVideo instance);
     #endregion
 		
 		public EntitiesDataContext() : 
@@ -105,6 +108,14 @@ namespace Pandemiia.Models
 				return this.GetTable<EntityPicture>();
 			}
 		}
+		
+		public System.Data.Linq.Table<EntityVideo> EntityVideos
+		{
+			get
+			{
+				return this.GetTable<EntityVideo>();
+			}
+		}
 	}
 	
 	[Table(Name="dbo.Entities")]
@@ -128,6 +139,8 @@ namespace Pandemiia.Models
 		private System.Nullable<int> _SourceID;
 		
 		private EntitySet<EntityPicture> _EntityPictures;
+		
+		private EntitySet<EntityVideo> _EntityVideos;
 		
 		private EntityRef<EntityType> _EntityType;
 		
@@ -156,6 +169,7 @@ namespace Pandemiia.Models
 		public Entity()
 		{
 			this._EntityPictures = new EntitySet<EntityPicture>(new Action<EntityPicture>(this.attach_EntityPictures), new Action<EntityPicture>(this.detach_EntityPictures));
+			this._EntityVideos = new EntitySet<EntityVideo>(new Action<EntityVideo>(this.attach_EntityVideos), new Action<EntityVideo>(this.detach_EntityVideos));
 			this._EntityType = default(EntityRef<EntityType>);
 			this._EntitySource = default(EntityRef<EntitySource>);
 			OnCreated();
@@ -322,6 +336,19 @@ namespace Pandemiia.Models
 			}
 		}
 		
+		[Association(Name="Entity_EntityVideo", Storage="_EntityVideos", ThisKey="ID", OtherKey="EntityID")]
+		public EntitySet<EntityVideo> EntityVideos
+		{
+			get
+			{
+				return this._EntityVideos;
+			}
+			set
+			{
+				this._EntityVideos.Assign(value);
+			}
+		}
+		
 		[Association(Name="EntityType_Entity", Storage="_EntityType", ThisKey="TypeID", OtherKey="ID", IsForeignKey=true)]
 		public EntityType EntityType
 		{
@@ -417,6 +444,18 @@ namespace Pandemiia.Models
 		}
 		
 		private void detach_EntityPictures(EntityPicture entity)
+		{
+			this.SendPropertyChanging();
+			entity.Entity = null;
+		}
+		
+		private void attach_EntityVideos(EntityVideo entity)
+		{
+			this.SendPropertyChanging();
+			entity.Entity = this;
+		}
+		
+		private void detach_EntityVideos(EntityVideo entity)
 		{
 			this.SendPropertyChanging();
 			entity.Entity = null;
@@ -794,6 +833,181 @@ namespace Pandemiia.Models
 					if ((value != null))
 					{
 						value.EntityPictures.Add(this);
+						this._EntityID = value.ID;
+					}
+					else
+					{
+						this._EntityID = default(int);
+					}
+					this.SendPropertyChanged("Entity");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[Table(Name="dbo.EntityVideos")]
+	public partial class EntityVideo : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ID;
+		
+		private int _EntityID;
+		
+		private string _Source;
+		
+		private string _Name;
+		
+		private EntityRef<Entity> _Entity;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(int value);
+    partial void OnIDChanged();
+    partial void OnEntityIDChanging(int value);
+    partial void OnEntityIDChanged();
+    partial void OnSourceChanging(string value);
+    partial void OnSourceChanged();
+    partial void OnNameChanging(string value);
+    partial void OnNameChanged();
+    #endregion
+		
+		public EntityVideo()
+		{
+			this._Entity = default(EntityRef<Entity>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_EntityID", DbType="Int")]
+		public int EntityID
+		{
+			get
+			{
+				return this._EntityID;
+			}
+			set
+			{
+				if ((this._EntityID != value))
+				{
+					if (this._Entity.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnEntityIDChanging(value);
+					this.SendPropertyChanging();
+					this._EntityID = value;
+					this.SendPropertyChanged("EntityID");
+					this.OnEntityIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Source", DbType="VarChar(2000)")]
+		public string Source
+		{
+			get
+			{
+				return this._Source;
+			}
+			set
+			{
+				if ((this._Source != value))
+				{
+					this.OnSourceChanging(value);
+					this.SendPropertyChanging();
+					this._Source = value;
+					this.SendPropertyChanged("Source");
+					this.OnSourceChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Name", DbType="VarChar(500)")]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this.OnNameChanging(value);
+					this.SendPropertyChanging();
+					this._Name = value;
+					this.SendPropertyChanged("Name");
+					this.OnNameChanged();
+				}
+			}
+		}
+		
+		[Association(Name="Entity_EntityVideo", Storage="_Entity", ThisKey="EntityID", OtherKey="ID", IsForeignKey=true)]
+		public Entity Entity
+		{
+			get
+			{
+				return this._Entity.Entity;
+			}
+			set
+			{
+				Entity previousValue = this._Entity.Entity;
+				if (((previousValue != value) 
+							|| (this._Entity.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Entity.Entity = null;
+						previousValue.EntityVideos.Remove(this);
+					}
+					this._Entity.Entity = value;
+					if ((value != null))
+					{
+						value.EntityVideos.Add(this);
 						this._EntityID = value.ID;
 					}
 					else

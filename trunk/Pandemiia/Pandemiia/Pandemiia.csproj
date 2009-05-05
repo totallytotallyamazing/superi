@@ -648,8 +648,10 @@
     <None Include="Models\Entities.dbml.layout">
       <DependentUpon>Entities.dbml</DependentUpon>
     </None>
+    <Content Include="Scripts\jquery.watermark.js" />
     <Content Include="Views\Manage\Images.aspx" />
     <Content Include="Views\Manage\PopUp.Master" />
+    <Content Include="Views\Manage\Videos.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -667,12 +669,13 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>False</UseIIS>
+          <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>1353</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>
-          </IISUrl>
+          <IISUrl>http://localhost/Pandemiia</IISUrl>
+          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
+          <IISAppRootUrl>http://localhost/Pandemic</IISAppRootUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

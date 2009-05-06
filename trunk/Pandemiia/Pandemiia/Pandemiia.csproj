@@ -85,6 +85,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Entities.dbml</DependentUpon>
     </Compile>
+    <Compile Include="Models\Utils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -651,6 +652,7 @@
     <Content Include="Controls\fckeditor\fcktools.js" />
     <Content Include="Scripts\jquery.watermark.js" />
     <Content Include="Views\Manage\Images.aspx" />
+    <Content Include="Views\Manage\Music.aspx" />
     <Content Include="Views\Manage\PopUp.Master" />
     <Content Include="Views\Manage\Videos.aspx" />
   </ItemGroup>
@@ -670,11 +672,13 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>False</UseIIS>
+          <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>1353</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost/Pandemiia</IISUrl>
+          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
+          <IISAppRootUrl>http://localhost/Pandemic</IISAppRootUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

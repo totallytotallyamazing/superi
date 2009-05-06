@@ -45,6 +45,9 @@ namespace Pandemiia.Models
     partial void InsertEntityVideo(EntityVideo instance);
     partial void UpdateEntityVideo(EntityVideo instance);
     partial void DeleteEntityVideo(EntityVideo instance);
+    partial void InsertEntityMusic(EntityMusic instance);
+    partial void UpdateEntityMusic(EntityMusic instance);
+    partial void DeleteEntityMusic(EntityMusic instance);
     #endregion
 		
 		public EntitiesDataContext() : 
@@ -116,6 +119,14 @@ namespace Pandemiia.Models
 				return this.GetTable<EntityVideo>();
 			}
 		}
+		
+		public System.Data.Linq.Table<EntityMusic> EntityMusics
+		{
+			get
+			{
+				return this.GetTable<EntityMusic>();
+			}
+		}
 	}
 	
 	[Table(Name="dbo.Entities")]
@@ -141,6 +152,8 @@ namespace Pandemiia.Models
 		private EntitySet<EntityPicture> _EntityPictures;
 		
 		private EntitySet<EntityVideo> _EntityVideos;
+		
+		private EntitySet<EntityMusic> _EntityMusics;
 		
 		private EntityRef<EntityType> _EntityType;
 		
@@ -170,6 +183,7 @@ namespace Pandemiia.Models
 		{
 			this._EntityPictures = new EntitySet<EntityPicture>(new Action<EntityPicture>(this.attach_EntityPictures), new Action<EntityPicture>(this.detach_EntityPictures));
 			this._EntityVideos = new EntitySet<EntityVideo>(new Action<EntityVideo>(this.attach_EntityVideos), new Action<EntityVideo>(this.detach_EntityVideos));
+			this._EntityMusics = new EntitySet<EntityMusic>(new Action<EntityMusic>(this.attach_EntityMusics), new Action<EntityMusic>(this.detach_EntityMusics));
 			this._EntityType = default(EntityRef<EntityType>);
 			this._EntitySource = default(EntityRef<EntitySource>);
 			OnCreated();
@@ -349,6 +363,19 @@ namespace Pandemiia.Models
 			}
 		}
 		
+		[Association(Name="Entity_EntityMusic", Storage="_EntityMusics", ThisKey="ID", OtherKey="EntityID")]
+		public EntitySet<EntityMusic> EntityMusics
+		{
+			get
+			{
+				return this._EntityMusics;
+			}
+			set
+			{
+				this._EntityMusics.Assign(value);
+			}
+		}
+		
 		[Association(Name="EntityType_Entity", Storage="_EntityType", ThisKey="TypeID", OtherKey="ID", IsForeignKey=true)]
 		public EntityType EntityType
 		{
@@ -456,6 +483,18 @@ namespace Pandemiia.Models
 		}
 		
 		private void detach_EntityVideos(EntityVideo entity)
+		{
+			this.SendPropertyChanging();
+			entity.Entity = null;
+		}
+		
+		private void attach_EntityMusics(EntityMusic entity)
+		{
+			this.SendPropertyChanging();
+			entity.Entity = this;
+		}
+		
+		private void detach_EntityMusics(EntityMusic entity)
 		{
 			this.SendPropertyChanging();
 			entity.Entity = null;
@@ -1008,6 +1047,277 @@ namespace Pandemiia.Models
 					if ((value != null))
 					{
 						value.EntityVideos.Add(this);
+						this._EntityID = value.ID;
+					}
+					else
+					{
+						this._EntityID = default(int);
+					}
+					this.SendPropertyChanged("Entity");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[Table(Name="dbo.EntityMusic")]
+	public partial class EntityMusic : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ID;
+		
+		private string _Source;
+		
+		private string _FileName;
+		
+		private int _EntityID;
+		
+		private string _Name;
+		
+		private string _Artist;
+		
+		private string _Album;
+		
+		private string _Comments;
+		
+		private EntityRef<Entity> _Entity;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(int value);
+    partial void OnIDChanged();
+    partial void OnSourceChanging(string value);
+    partial void OnSourceChanged();
+    partial void OnFileNameChanging(string value);
+    partial void OnFileNameChanged();
+    partial void OnEntityIDChanging(int value);
+    partial void OnEntityIDChanged();
+    partial void OnNameChanging(string value);
+    partial void OnNameChanged();
+    partial void OnArtistChanging(string value);
+    partial void OnArtistChanged();
+    partial void OnAlbumChanging(string value);
+    partial void OnAlbumChanged();
+    partial void OnCommentsChanging(string value);
+    partial void OnCommentsChanged();
+    #endregion
+		
+		public EntityMusic()
+		{
+			this._Entity = default(EntityRef<Entity>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_ID", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Source", DbType="VarChar(2000)")]
+		public string Source
+		{
+			get
+			{
+				return this._Source;
+			}
+			set
+			{
+				if ((this._Source != value))
+				{
+					this.OnSourceChanging(value);
+					this.SendPropertyChanging();
+					this._Source = value;
+					this.SendPropertyChanged("Source");
+					this.OnSourceChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_FileName", DbType="VarChar(255)")]
+		public string FileName
+		{
+			get
+			{
+				return this._FileName;
+			}
+			set
+			{
+				if ((this._FileName != value))
+				{
+					this.OnFileNameChanging(value);
+					this.SendPropertyChanging();
+					this._FileName = value;
+					this.SendPropertyChanged("FileName");
+					this.OnFileNameChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_EntityID", DbType="Int")]
+		public int EntityID
+		{
+			get
+			{
+				return this._EntityID;
+			}
+			set
+			{
+				if ((this._EntityID != value))
+				{
+					if (this._Entity.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnEntityIDChanging(value);
+					this.SendPropertyChanging();
+					this._EntityID = value;
+					this.SendPropertyChanged("EntityID");
+					this.OnEntityIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Name", DbType="VarChar(255)")]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this.OnNameChanging(value);
+					this.SendPropertyChanging();
+					this._Name = value;
+					this.SendPropertyChanged("Name");
+					this.OnNameChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Artist", DbType="VarChar(255)")]
+		public string Artist
+		{
+			get
+			{
+				return this._Artist;
+			}
+			set
+			{
+				if ((this._Artist != value))
+				{
+					this.OnArtistChanging(value);
+					this.SendPropertyChanging();
+					this._Artist = value;
+					this.SendPropertyChanged("Artist");
+					this.OnArtistChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Album", DbType="VarChar(255)")]
+		public string Album
+		{
+			get
+			{
+				return this._Album;
+			}
+			set
+			{
+				if ((this._Album != value))
+				{
+					this.OnAlbumChanging(value);
+					this.SendPropertyChanging();
+					this._Album = value;
+					this.SendPropertyChanged("Album");
+					this.OnAlbumChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Comments", DbType="VarChar(1000)")]
+		public string Comments
+		{
+			get
+			{
+				return this._Comments;
+			}
+			set
+			{
+				if ((this._Comments != value))
+				{
+					this.OnCommentsChanging(value);
+					this.SendPropertyChanging();
+					this._Comments = value;
+					this.SendPropertyChanged("Comments");
+					this.OnCommentsChanged();
+				}
+			}
+		}
+		
+		[Association(Name="Entity_EntityMusic", Storage="_Entity", ThisKey="EntityID", OtherKey="ID", IsForeignKey=true)]
+		public Entity Entity
+		{
+			get
+			{
+				return this._Entity.Entity;
+			}
+			set
+			{
+				Entity previousValue = this._Entity.Entity;
+				if (((previousValue != value) 
+							|| (this._Entity.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Entity.Entity = null;
+						previousValue.EntityMusics.Remove(this);
+					}
+					this._Entity.Entity = value;
+					if ((value != null))
+					{
+						value.EntityMusics.Add(this);
 						this._EntityID = value.ID;
 					}
 					else

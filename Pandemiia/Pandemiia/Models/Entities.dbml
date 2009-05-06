@@ -12,6 +12,7 @@
       <Column Name="SourceID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="Entity_EntityPicture" Member="EntityPictures" ThisKey="ID" OtherKey="EntityID" Type="EntityPicture" />
       <Association Name="Entity_EntityVideo" Member="EntityVideos" ThisKey="ID" OtherKey="EntityID" Type="EntityVideo" />
+      <Association Name="Entity_EntityMusic" Member="EntityMusics" ThisKey="ID" OtherKey="EntityID" Type="EntityMusic" />
       <Association Name="EntityType_Entity" Member="EntityType" ThisKey="TypeID" OtherKey="ID" Type="EntityType" IsForeignKey="true" />
       <Association Name="EntitySource_Entity" Member="EntitySource" ThisKey="SourceID" OtherKey="ID" Type="EntitySource" IsForeignKey="true" />
     </Type>
@@ -46,6 +47,19 @@
       <Column Name="Source" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
       <Column Name="Name" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
       <Association Name="Entity_EntityVideo" Member="Entity" ThisKey="EntityID" OtherKey="ID" Type="Entity" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.EntityMusic" Member="EntityMusics">
+    <Type Name="EntityMusic">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Source" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="FileName" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="EntityID" Type="System.Int32" DbType="Int" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Artist" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Album" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Comments" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Association Name="Entity_EntityMusic" Member="Entity" ThisKey="EntityID" OtherKey="ID" Type="Entity" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

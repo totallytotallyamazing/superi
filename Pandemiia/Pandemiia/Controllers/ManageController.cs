@@ -104,6 +104,54 @@ namespace Pandemiia.Controllers
             return RedirectToAction("Entities");
         }
 
+        #region Music
+        public ActionResult Music(int id)
+        {
+            Entity entity = _context.Entities.SingleOrDefault(e => e.ID == id);
+            return View(entity);
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult AddMusic(FormCollection form)
+        {
+            foreach (string file in Request.Files)
+            {
+                int entityId = int.Parse(form["id"]);
+                HttpPostedFileBase postedFile = Request.Files[file];
+                string fileName = Path.GetFileName(postedFile.FileName);
+                string fileNameSaved = Utils.GetUniqueFileName("EntityMusic", fileName, fileName);
+                postedFile.SaveAs(Utils.ServerPath("EntityMusic") + fileNameSaved);
+                EntityMusic music = new EntityMusic();
+                music.EntityID = entityId;
+                music.FileName = fileNameSaved;
+                music.Album = form["album"];
+                music.Artist = form["artist"];
+                music.Name = form["name"];
+                music.Comments = form["comments"];
+                _context.EntityMusics.InsertOnSubmit(music);
+            }
+            _context.SubmitChanges();
+            return RedirectToAction("Music", new RouteValueDictionary(new { id = form["id"] }));
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult RemoveMusic(FormCollection form)
+        {
+            foreach (string key in form.Keys)
+            {
+                if (key != "id" && form[key].IndexOf("true") > -1)
+                {
+                    int musicId = int.Parse(key);
+                    EntityMusic music = _context.EntityMusics.SingleOrDefault(m => m.ID == musicId);
+                    RemoveMusic(music.FileName);
+                    _context.EntityMusics.DeleteOnSubmit(music);
+                }
+            }
+            _context.SubmitChanges();
+            return RedirectToAction("Music", new RouteValueDictionary(new { id = form["id"] }));
+        }
+        #endregion
+
         #region Videos
         public ActionResult Videos(int id)
         {
@@ -181,13 +229,23 @@ namespace Pandemiia.Controllers
             return RedirectToAction("Images", new RouteValueDictionary(new { id = form["id"] }));
         }
 
-        private void RemovePicture(string fileName)
+        private void RemoveFile(string folder, string fileName)
         {
             if (!string.IsNullOrEmpty(fileName))
             {
-                string picturePath = AppDomain.CurrentDomain.BaseDirectory + "EntityImages" + Path.DirectorySeparatorChar + fileName;
+                string picturePath = AppDomain.CurrentDomain.BaseDirectory + folder + Path.DirectorySeparatorChar + fileName;
                 System.IO.File.Delete(picturePath);
             }
+        }
+
+        private void RemovePicture(string fileName)
+        {
+            RemoveFile("EntityImages", fileName);
+        }
+
+        private void RemoveMusic(string fileName)
+        {
+            RemoveFile("EntityMusic", fileName);
         }
         #endregion
     }

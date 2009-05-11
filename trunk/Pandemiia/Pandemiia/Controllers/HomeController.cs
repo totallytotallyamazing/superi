@@ -3,17 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Pandemiia.Models;
 
 namespace Pandemiia.Controllers
 {
     [HandleError]
     public class HomeController : Controller
     {
+
+        EntitiesDataContext _context = new EntitiesDataContext();
+
         public ActionResult Index()
         {
-            ViewData["Message"] = "Welcome to ASP.NET MVC!";
-
-            return View();
+            List<Entity> result = _context.Entities.Select(e => e).ToList();
+            return View(result);
         }
 
         public ActionResult About()
@@ -24,6 +27,11 @@ namespace Pandemiia.Controllers
         public ActionResult Filter()
         {
             return null;
+        }
+
+        public ActionResult Entity(Entity entity)
+        {
+            return View(entity);
         }
     }
 }

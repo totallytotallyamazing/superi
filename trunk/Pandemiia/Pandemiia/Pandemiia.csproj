@@ -103,7 +103,6 @@
     <Content Include="Views\Account\LogOn.aspx" />
     <Content Include="Views\Account\Register.aspx" />
     <Content Include="Views\Home\About.aspx" />
-    <Content Include="Views\Home\Index.aspx" />
     <Content Include="Views\Shared\Error.aspx" />
     <Content Include="Views\Shared\LogOnUserControl.ascx" />
     <Content Include="Views\Shared\Site.Master" />
@@ -649,8 +648,30 @@
     <None Include="Models\Entities.dbml.layout">
       <DependentUpon>Entities.dbml</DependentUpon>
     </None>
+    <Content Include="Content\global.css" />
+    <Content Include="Content\img\admin\noImage.jpg" />
+    <Content Include="Content\img\bottomRight.jpg" />
+    <Content Include="Content\img\fly.jpg" />
+    <Content Include="Content\img\handEye.jpg" />
+    <Content Include="Content\img\header.jpg" />
+    <Content Include="Content\img\imageFilter.jpg" />
+    <Content Include="Content\img\imageFilterActive.jpg" />
+    <Content Include="Content\img\logo.jpg" />
+    <Content Include="Content\img\miscFilter.jpg" />
+    <Content Include="Content\img\miscFilterActive.jpg" />
+    <Content Include="Content\img\oursBg.jpg" />
+    <Content Include="Content\img\pageDot.jpg" />
+    <Content Include="Content\img\readingFilter.jpg" />
+    <Content Include="Content\img\readingFilterActive.jpg" />
+    <Content Include="Content\img\theirsBg.jpg" />
+    <Content Include="Content\img\videoFilter.jpg" />
+    <Content Include="Content\img\videoFilterActive.jpg" />
+    <Content Include="Content\img\yoursBg.jpg" />
     <Content Include="Controls\fckeditor\fcktools.js" />
+    <Content Include="Scripts\fcktools.js" />
     <Content Include="Scripts\jquery.watermark.js" />
+    <Content Include="Views\Home\Entity.ascx" />
+    <Content Include="Views\Home\Index.aspx" />
     <Content Include="Views\Manage\Images.aspx" />
     <Content Include="Views\Manage\Music.aspx" />
     <Content Include="Views\Manage\PopUp.Master" />
@@ -672,7 +693,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>1353</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

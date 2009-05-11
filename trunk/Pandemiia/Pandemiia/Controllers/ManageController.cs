@@ -10,10 +10,11 @@ using System.Web.UI;
 using System.Web.Script.Serialization;
 using System.IO;
 using System.Web.Routing;
+using System.Globalization;
 
 namespace Pandemiia.Controllers
 {
-    [Authorize(Roles="Admin")]
+    [Authorize(Roles = "Admin")]
     public class ManageController : Controller
     {
         EntitiesDataContext _context = new EntitiesDataContext();
@@ -22,10 +23,10 @@ namespace Pandemiia.Controllers
         {
             return View();
         }
-
+        #region Entities
         public ActionResult Entities()
         {
-            return View(_context.Entities.Select(ent=>ent).ToList());
+            return View(_context.Entities.Select(ent => ent).ToList());
         }
 
         public ActionResult CreateEntity()
@@ -45,22 +46,30 @@ namespace Pandemiia.Controllers
             entity.Date = DateTime.Parse(frm["Date"]);
             entity.SourceID = int.Parse(frm["SourceID"]);
             entity.TypeID = int.Parse(frm["TypeID"]);
-            //_context.Entities.InsertOnSubmit(entity);
+            if (Request.Files.Count > 0 && !string.IsNullOrEmpty(Request.Files["image"].FileName))
+            {
+                RemovePicture(entity.Image);
+                HttpPostedFileBase postedFile = Request.Files["image"];
+                string fileName = Path.GetFileName(postedFile.FileName);
+                string fileNameSaved = Utils.GetUniqueFileName("EntityImages", fileName, fileName);
+                entity.Image = fileName;
+                postedFile.SaveAs(Utils.ServerPath("EntityImages") + fileName);
+            }
             _context.SubmitChanges();
-            return RedirectToAction("Entities");  
+            return RedirectToAction("Entities");
         }
 
         public ActionResult DeleteEntity(int Id)
         {
             Entity entity = _context.Entities.SingleOrDefault(en => en.ID == Id);
+            RemovePicture(entity.Image);
             _context.Entities.DeleteOnSubmit(entity);
             _context.SubmitChanges();
-            return RedirectToAction("Entities"); 
+            return RedirectToAction("Entities");
         }
 
         public ActionResult EditEntity(int Id)
         {
-            //ViewData["EntitySources"] = 
             List<EntitySource> entitySources = _context.EntitySources.Select(es => es).ToList();
             List<EntityType> entityTypes = _context.EntityTypes.Select(es => es).ToList();
 
@@ -96,13 +105,23 @@ namespace Pandemiia.Controllers
             entity.Content = Server.HtmlDecode(frm["Content"]);
             entity.Description = Server.HtmlDecode(frm["Description"]);
             entity.Title = frm["Title"];
-            entity.Date = DateTime.Parse(frm["Date"]);
+            CultureInfo info = CultureInfo.GetCultureInfo("en-US");
+            entity.Date = DateTime.Parse(frm["Date"], info);
             entity.SourceID = int.Parse(frm["SourceID"]);
             entity.TypeID = int.Parse(frm["TypeID"]);
+            if (Request.Files.Count > 0 && !string.IsNullOrEmpty(Request.Files["image"].FileName))
+            {
+                HttpPostedFileBase postedFile = Request.Files["image"];
+                string fileName = Path.GetFileName(postedFile.FileName);
+                string fileNameSaved = Utils.GetUniqueFileName("EntityImages", fileName, fileName);
+                entity.Image = fileName;
+                postedFile.SaveAs(Utils.ServerPath("EntityImages") + fileName);
+            }
             _context.Entities.InsertOnSubmit(entity);
             _context.SubmitChanges();
             return RedirectToAction("Entities");
         }
+        #endregion
 
         #region Music
         public ActionResult Music(int id)
@@ -176,7 +195,7 @@ namespace Pandemiia.Controllers
         {
             foreach (string key in form.Keys)
             {
-                if (key != "id" && form[key].IndexOf("true")>-1)
+                if (key != "id" && form[key].IndexOf("true") > -1)
                 {
                     int videoId = int.Parse(key);
                     EntityVideo video = _context.EntityVideos.SingleOrDefault(v => v.ID == videoId);
@@ -194,7 +213,7 @@ namespace Pandemiia.Controllers
             Entity entity = _context.Entities.SingleOrDefault(e => e.ID == id);
             return View(entity);
         }
-                
+
         public ActionResult SaveImages(string data, int entityId)
         {
             JavaScriptSerializer serializer = new JavaScriptSerializer();
@@ -228,6 +247,7 @@ namespace Pandemiia.Controllers
             _context.SubmitChanges();
             return RedirectToAction("Images", new RouteValueDictionary(new { id = form["id"] }));
         }
+        #endregion
 
         private void RemoveFile(string folder, string fileName)
         {
@@ -247,6 +267,5 @@ namespace Pandemiia.Controllers
         {
             RemoveFile("EntityMusic", fileName);
         }
-        #endregion
     }
 }

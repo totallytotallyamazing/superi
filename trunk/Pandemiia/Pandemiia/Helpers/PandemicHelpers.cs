@@ -11,6 +11,15 @@ namespace Pandemiia.Helpers
 {
     public static class PandemicHelpers
     {
+
+        public static string RegisterJS(this System.Web.Mvc.HtmlHelper helper, string scriptLib)
+        {
+            //get the directory where the scripts are
+            string scriptRoot = VirtualPathUtility.ToAbsolute("~/Scripts");
+            string scriptFormat = "<script src=\"{0}/{1}\" type=\"text/javascript\"></script>\r\n";
+            return string.Format(scriptFormat, scriptRoot, scriptLib);
+        }
+
         private const string openPopupWindowScript = "window.open('iURL', 'wndPopUpHandle', 'width=iWIDTH, height=iHEIGHT, menubar=no, top=0, left=0, status=no, location=no, toolbar=no, scrollbars=yes, resizable=no'); return false";
 
         public static string PopUpWindowAction(this HtmlHelper htmlHelper, string linkText, string actionName, int width, int height)

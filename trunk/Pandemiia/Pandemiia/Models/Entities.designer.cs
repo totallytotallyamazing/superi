@@ -22,7 +22,7 @@ namespace Pandemiia.Models
 	using System;
 	
 	
-	[System.Data.Linq.Mapping.DatabaseAttribute(Name="Pandemic")]
+	[System.Data.Linq.Mapping.DatabaseAttribute(Name="Drozd_pandemic")]
 	public partial class EntitiesDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -30,9 +30,6 @@ namespace Pandemiia.Models
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InsertEntity(Entity instance);
-    partial void UpdateEntity(Entity instance);
-    partial void DeleteEntity(Entity instance);
     partial void InsertEntitySource(EntitySource instance);
     partial void UpdateEntitySource(EntitySource instance);
     partial void DeleteEntitySource(EntitySource instance);
@@ -48,6 +45,9 @@ namespace Pandemiia.Models
     partial void InsertEntityMusic(EntityMusic instance);
     partial void UpdateEntityMusic(EntityMusic instance);
     partial void DeleteEntityMusic(EntityMusic instance);
+    partial void InsertEntity(Entity instance);
+    partial void UpdateEntity(Entity instance);
+    partial void DeleteEntity(Entity instance);
     #endregion
 		
 		public EntitiesDataContext() : 
@@ -78,14 +78,6 @@ namespace Pandemiia.Models
 				base(connection, mappingSource)
 		{
 			OnCreated();
-		}
-		
-		public System.Data.Linq.Table<Entity> Entities
-		{
-			get
-			{
-				return this.GetTable<Entity>();
-			}
 		}
 		
 		public System.Data.Linq.Table<EntitySource> EntitySources
@@ -127,377 +119,13 @@ namespace Pandemiia.Models
 				return this.GetTable<EntityMusic>();
 			}
 		}
-	}
-	
-	[Table(Name="dbo.Entities")]
-	public partial class Entity : INotifyPropertyChanging, INotifyPropertyChanged
-	{
 		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _ID;
-		
-		private string _Title;
-		
-		private System.Nullable<System.DateTime> _Date;
-		
-		private string _Description;
-		
-		private string _Content;
-		
-		private System.Nullable<int> _TypeID;
-		
-		private System.Nullable<int> _SourceID;
-		
-		private EntitySet<EntityPicture> _EntityPictures;
-		
-		private EntitySet<EntityVideo> _EntityVideos;
-		
-		private EntitySet<EntityMusic> _EntityMusics;
-		
-		private EntityRef<EntityType> _EntityType;
-		
-		private EntityRef<EntitySource> _EntitySource;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIDChanging(int value);
-    partial void OnIDChanged();
-    partial void OnTitleChanging(string value);
-    partial void OnTitleChanged();
-    partial void OnDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnDateChanged();
-    partial void OnDescriptionChanging(string value);
-    partial void OnDescriptionChanged();
-    partial void OnContentChanging(string value);
-    partial void OnContentChanged();
-    partial void OnTypeIDChanging(System.Nullable<int> value);
-    partial void OnTypeIDChanged();
-    partial void OnSourceIDChanging(System.Nullable<int> value);
-    partial void OnSourceIDChanged();
-    #endregion
-		
-		public Entity()
-		{
-			this._EntityPictures = new EntitySet<EntityPicture>(new Action<EntityPicture>(this.attach_EntityPictures), new Action<EntityPicture>(this.detach_EntityPictures));
-			this._EntityVideos = new EntitySet<EntityVideo>(new Action<EntityVideo>(this.attach_EntityVideos), new Action<EntityVideo>(this.detach_EntityVideos));
-			this._EntityMusics = new EntitySet<EntityMusic>(new Action<EntityMusic>(this.attach_EntityMusics), new Action<EntityMusic>(this.detach_EntityMusics));
-			this._EntityType = default(EntityRef<EntityType>);
-			this._EntitySource = default(EntityRef<EntitySource>);
-			OnCreated();
-		}
-		
-		[Column(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int ID
+		public System.Data.Linq.Table<Entity> Entities
 		{
 			get
 			{
-				return this._ID;
+				return this.GetTable<Entity>();
 			}
-			set
-			{
-				if ((this._ID != value))
-				{
-					this.OnIDChanging(value);
-					this.SendPropertyChanging();
-					this._ID = value;
-					this.SendPropertyChanged("ID");
-					this.OnIDChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Title", DbType="NVarChar(1000)")]
-		public string Title
-		{
-			get
-			{
-				return this._Title;
-			}
-			set
-			{
-				if ((this._Title != value))
-				{
-					this.OnTitleChanging(value);
-					this.SendPropertyChanging();
-					this._Title = value;
-					this.SendPropertyChanged("Title");
-					this.OnTitleChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Date", DbType="DateTime")]
-		public System.Nullable<System.DateTime> Date
-		{
-			get
-			{
-				return this._Date;
-			}
-			set
-			{
-				if ((this._Date != value))
-				{
-					this.OnDateChanging(value);
-					this.SendPropertyChanging();
-					this._Date = value;
-					this.SendPropertyChanged("Date");
-					this.OnDateChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Description", DbType="VarChar(2000)")]
-		public string Description
-		{
-			get
-			{
-				return this._Description;
-			}
-			set
-			{
-				if ((this._Description != value))
-				{
-					this.OnDescriptionChanging(value);
-					this.SendPropertyChanging();
-					this._Description = value;
-					this.SendPropertyChanged("Description");
-					this.OnDescriptionChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Content", DbType="VarChar(MAX)")]
-		public string Content
-		{
-			get
-			{
-				return this._Content;
-			}
-			set
-			{
-				if ((this._Content != value))
-				{
-					this.OnContentChanging(value);
-					this.SendPropertyChanging();
-					this._Content = value;
-					this.SendPropertyChanged("Content");
-					this.OnContentChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_TypeID", DbType="Int")]
-		public System.Nullable<int> TypeID
-		{
-			get
-			{
-				return this._TypeID;
-			}
-			set
-			{
-				if ((this._TypeID != value))
-				{
-					if (this._EntityType.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnTypeIDChanging(value);
-					this.SendPropertyChanging();
-					this._TypeID = value;
-					this.SendPropertyChanged("TypeID");
-					this.OnTypeIDChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_SourceID", DbType="Int")]
-		public System.Nullable<int> SourceID
-		{
-			get
-			{
-				return this._SourceID;
-			}
-			set
-			{
-				if ((this._SourceID != value))
-				{
-					if (this._EntitySource.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnSourceIDChanging(value);
-					this.SendPropertyChanging();
-					this._SourceID = value;
-					this.SendPropertyChanged("SourceID");
-					this.OnSourceIDChanged();
-				}
-			}
-		}
-		
-		[Association(Name="Entity_EntityPicture", Storage="_EntityPictures", ThisKey="ID", OtherKey="EntityID")]
-		public EntitySet<EntityPicture> EntityPictures
-		{
-			get
-			{
-				return this._EntityPictures;
-			}
-			set
-			{
-				this._EntityPictures.Assign(value);
-			}
-		}
-		
-		[Association(Name="Entity_EntityVideo", Storage="_EntityVideos", ThisKey="ID", OtherKey="EntityID")]
-		public EntitySet<EntityVideo> EntityVideos
-		{
-			get
-			{
-				return this._EntityVideos;
-			}
-			set
-			{
-				this._EntityVideos.Assign(value);
-			}
-		}
-		
-		[Association(Name="Entity_EntityMusic", Storage="_EntityMusics", ThisKey="ID", OtherKey="EntityID")]
-		public EntitySet<EntityMusic> EntityMusics
-		{
-			get
-			{
-				return this._EntityMusics;
-			}
-			set
-			{
-				this._EntityMusics.Assign(value);
-			}
-		}
-		
-		[Association(Name="EntityType_Entity", Storage="_EntityType", ThisKey="TypeID", OtherKey="ID", IsForeignKey=true)]
-		public EntityType EntityType
-		{
-			get
-			{
-				return this._EntityType.Entity;
-			}
-			set
-			{
-				EntityType previousValue = this._EntityType.Entity;
-				if (((previousValue != value) 
-							|| (this._EntityType.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._EntityType.Entity = null;
-						previousValue.Entities.Remove(this);
-					}
-					this._EntityType.Entity = value;
-					if ((value != null))
-					{
-						value.Entities.Add(this);
-						this._TypeID = value.ID;
-					}
-					else
-					{
-						this._TypeID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("EntityType");
-				}
-			}
-		}
-		
-		[Association(Name="EntitySource_Entity", Storage="_EntitySource", ThisKey="SourceID", OtherKey="ID", IsForeignKey=true)]
-		public EntitySource EntitySource
-		{
-			get
-			{
-				return this._EntitySource.Entity;
-			}
-			set
-			{
-				EntitySource previousValue = this._EntitySource.Entity;
-				if (((previousValue != value) 
-							|| (this._EntitySource.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._EntitySource.Entity = null;
-						previousValue.Entities.Remove(this);
-					}
-					this._EntitySource.Entity = value;
-					if ((value != null))
-					{
-						value.Entities.Add(this);
-						this._SourceID = value.ID;
-					}
-					else
-					{
-						this._SourceID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("EntitySource");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_EntityPictures(EntityPicture entity)
-		{
-			this.SendPropertyChanging();
-			entity.Entity = this;
-		}
-		
-		private void detach_EntityPictures(EntityPicture entity)
-		{
-			this.SendPropertyChanging();
-			entity.Entity = null;
-		}
-		
-		private void attach_EntityVideos(EntityVideo entity)
-		{
-			this.SendPropertyChanging();
-			entity.Entity = this;
-		}
-		
-		private void detach_EntityVideos(EntityVideo entity)
-		{
-			this.SendPropertyChanging();
-			entity.Entity = null;
-		}
-		
-		private void attach_EntityMusics(EntityMusic entity)
-		{
-			this.SendPropertyChanging();
-			entity.Entity = this;
-		}
-		
-		private void detach_EntityMusics(EntityMusic entity)
-		{
-			this.SendPropertyChanging();
-			entity.Entity = null;
 		}
 	}
 	
@@ -1347,6 +975,402 @@ namespace Pandemiia.Models
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+	}
+	
+	[Table(Name="dbo.Entities")]
+	public partial class Entity : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ID;
+		
+		private string _Title;
+		
+		private System.Nullable<System.DateTime> _Date;
+		
+		private string _Description;
+		
+		private string _Content;
+		
+		private System.Nullable<int> _TypeID;
+		
+		private System.Nullable<int> _SourceID;
+		
+		private string _Image;
+		
+		private EntitySet<EntityMusic> _EntityMusics;
+		
+		private EntitySet<EntityVideo> _EntityVideos;
+		
+		private EntitySet<EntityPicture> _EntityPictures;
+		
+		private EntityRef<EntitySource> _EntitySource;
+		
+		private EntityRef<EntityType> _EntityType;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(int value);
+    partial void OnIDChanged();
+    partial void OnTitleChanging(string value);
+    partial void OnTitleChanged();
+    partial void OnDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnDateChanged();
+    partial void OnDescriptionChanging(string value);
+    partial void OnDescriptionChanged();
+    partial void OnContentChanging(string value);
+    partial void OnContentChanged();
+    partial void OnTypeIDChanging(System.Nullable<int> value);
+    partial void OnTypeIDChanged();
+    partial void OnSourceIDChanging(System.Nullable<int> value);
+    partial void OnSourceIDChanged();
+    partial void OnImageChanging(string value);
+    partial void OnImageChanged();
+    #endregion
+		
+		public Entity()
+		{
+			this._EntityMusics = new EntitySet<EntityMusic>(new Action<EntityMusic>(this.attach_EntityMusics), new Action<EntityMusic>(this.detach_EntityMusics));
+			this._EntityVideos = new EntitySet<EntityVideo>(new Action<EntityVideo>(this.attach_EntityVideos), new Action<EntityVideo>(this.detach_EntityVideos));
+			this._EntityPictures = new EntitySet<EntityPicture>(new Action<EntityPicture>(this.attach_EntityPictures), new Action<EntityPicture>(this.detach_EntityPictures));
+			this._EntitySource = default(EntityRef<EntitySource>);
+			this._EntityType = default(EntityRef<EntityType>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Title", DbType="NVarChar(1000)")]
+		public string Title
+		{
+			get
+			{
+				return this._Title;
+			}
+			set
+			{
+				if ((this._Title != value))
+				{
+					this.OnTitleChanging(value);
+					this.SendPropertyChanging();
+					this._Title = value;
+					this.SendPropertyChanged("Title");
+					this.OnTitleChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Date", DbType="DateTime")]
+		public System.Nullable<System.DateTime> Date
+		{
+			get
+			{
+				return this._Date;
+			}
+			set
+			{
+				if ((this._Date != value))
+				{
+					this.OnDateChanging(value);
+					this.SendPropertyChanging();
+					this._Date = value;
+					this.SendPropertyChanged("Date");
+					this.OnDateChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Description", DbType="VarChar(2000)")]
+		public string Description
+		{
+			get
+			{
+				return this._Description;
+			}
+			set
+			{
+				if ((this._Description != value))
+				{
+					this.OnDescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._Description = value;
+					this.SendPropertyChanged("Description");
+					this.OnDescriptionChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Content", DbType="VarChar(MAX)")]
+		public string Content
+		{
+			get
+			{
+				return this._Content;
+			}
+			set
+			{
+				if ((this._Content != value))
+				{
+					this.OnContentChanging(value);
+					this.SendPropertyChanging();
+					this._Content = value;
+					this.SendPropertyChanged("Content");
+					this.OnContentChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_TypeID", DbType="Int")]
+		public System.Nullable<int> TypeID
+		{
+			get
+			{
+				return this._TypeID;
+			}
+			set
+			{
+				if ((this._TypeID != value))
+				{
+					if (this._EntityType.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnTypeIDChanging(value);
+					this.SendPropertyChanging();
+					this._TypeID = value;
+					this.SendPropertyChanged("TypeID");
+					this.OnTypeIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_SourceID", DbType="Int")]
+		public System.Nullable<int> SourceID
+		{
+			get
+			{
+				return this._SourceID;
+			}
+			set
+			{
+				if ((this._SourceID != value))
+				{
+					if (this._EntitySource.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnSourceIDChanging(value);
+					this.SendPropertyChanging();
+					this._SourceID = value;
+					this.SendPropertyChanged("SourceID");
+					this.OnSourceIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Image", DbType="VarChar(255)")]
+		public string Image
+		{
+			get
+			{
+				return this._Image;
+			}
+			set
+			{
+				if ((this._Image != value))
+				{
+					this.OnImageChanging(value);
+					this.SendPropertyChanging();
+					this._Image = value;
+					this.SendPropertyChanged("Image");
+					this.OnImageChanged();
+				}
+			}
+		}
+		
+		[Association(Name="Entity_EntityMusic", Storage="_EntityMusics", ThisKey="ID", OtherKey="EntityID")]
+		public EntitySet<EntityMusic> EntityMusics
+		{
+			get
+			{
+				return this._EntityMusics;
+			}
+			set
+			{
+				this._EntityMusics.Assign(value);
+			}
+		}
+		
+		[Association(Name="Entity_EntityVideo", Storage="_EntityVideos", ThisKey="ID", OtherKey="EntityID")]
+		public EntitySet<EntityVideo> EntityVideos
+		{
+			get
+			{
+				return this._EntityVideos;
+			}
+			set
+			{
+				this._EntityVideos.Assign(value);
+			}
+		}
+		
+		[Association(Name="Entity_EntityPicture", Storage="_EntityPictures", ThisKey="ID", OtherKey="EntityID")]
+		public EntitySet<EntityPicture> EntityPictures
+		{
+			get
+			{
+				return this._EntityPictures;
+			}
+			set
+			{
+				this._EntityPictures.Assign(value);
+			}
+		}
+		
+		[Association(Name="EntitySource_Entity", Storage="_EntitySource", ThisKey="SourceID", OtherKey="ID", IsForeignKey=true)]
+		public EntitySource EntitySource
+		{
+			get
+			{
+				return this._EntitySource.Entity;
+			}
+			set
+			{
+				EntitySource previousValue = this._EntitySource.Entity;
+				if (((previousValue != value) 
+							|| (this._EntitySource.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._EntitySource.Entity = null;
+						previousValue.Entities.Remove(this);
+					}
+					this._EntitySource.Entity = value;
+					if ((value != null))
+					{
+						value.Entities.Add(this);
+						this._SourceID = value.ID;
+					}
+					else
+					{
+						this._SourceID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("EntitySource");
+				}
+			}
+		}
+		
+		[Association(Name="EntityType_Entity", Storage="_EntityType", ThisKey="TypeID", OtherKey="ID", IsForeignKey=true)]
+		public EntityType EntityType
+		{
+			get
+			{
+				return this._EntityType.Entity;
+			}
+			set
+			{
+				EntityType previousValue = this._EntityType.Entity;
+				if (((previousValue != value) 
+							|| (this._EntityType.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._EntityType.Entity = null;
+						previousValue.Entities.Remove(this);
+					}
+					this._EntityType.Entity = value;
+					if ((value != null))
+					{
+						value.Entities.Add(this);
+						this._TypeID = value.ID;
+					}
+					else
+					{
+						this._TypeID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("EntityType");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_EntityMusics(EntityMusic entity)
+		{
+			this.SendPropertyChanging();
+			entity.Entity = this;
+		}
+		
+		private void detach_EntityMusics(EntityMusic entity)
+		{
+			this.SendPropertyChanging();
+			entity.Entity = null;
+		}
+		
+		private void attach_EntityVideos(EntityVideo entity)
+		{
+			this.SendPropertyChanging();
+			entity.Entity = this;
+		}
+		
+		private void detach_EntityVideos(EntityVideo entity)
+		{
+			this.SendPropertyChanging();
+			entity.Entity = null;
+		}
+		
+		private void attach_EntityPictures(EntityPicture entity)
+		{
+			this.SendPropertyChanging();
+			entity.Entity = this;
+		}
+		
+		private void detach_EntityPictures(EntityPicture entity)
+		{
+			this.SendPropertyChanging();
+			entity.Entity = null;
 		}
 	}
 }

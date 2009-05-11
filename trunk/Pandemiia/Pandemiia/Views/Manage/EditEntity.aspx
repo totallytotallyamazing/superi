@@ -1,74 +1,100 @@
-<%@ Page Title="" ValidateRequest="false" Language="C#" MasterPageFile="~/Views/Manage/Manage.Master" Inherits="System.Web.Mvc.ViewPage<Pandemiia.Models.Entity>" %>
+<%@ Page Title="" ValidateRequest="false" Language="C#" MasterPageFile="~/Views/Manage/Manage.Master"
+    Inherits="System.Web.Mvc.ViewPage<Pandemiia.Models.Entity>" %>
+
 <%@ Register TagPrefix="FCKeditor" Namespace="FredCK.FCKeditorV2" Assembly="FredCK.FCKeditorV2" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Редактировать пост
+    Редактировать пост
 </asp:Content>
-
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Редактировать пост</h2>
+    <script type="text/javascript">
+        $(function() {
+            $(".dateInput").datepicker();
+            $.fck.config = { path: '../../Controls/fckeditor/', height: 300, config: { SkinPath: "skins/office2003/", DefaultLanguage: "RU", AutoDetectLanguage: false, HtmlEncodeOutput: true} };
+            $('textarea#Description').fck();
+            $('textarea#Content').fck();
+            $("#fileDialog").dialog({
+                bgiframe: true,
+                height: 140,
+                modal: true,
+                autoOpen: false,
+                resizable: false,
+                buttons: { Ok: function() { $(this).dialog('close'); } }
+            });
+        });
+    </script>
 
+    <h2>
+        Редактировать пост</h2>
     <%= Html.ValidationSummary("Edit was unsuccessful. Please correct the errors and try again.") %>
-
-    <% using (Html.BeginForm()) {%>
-
-        <fieldset>
-            <legend>Поля</legend>
-            <p style="display:none">
-                <label for="ID">ID:</label>
-                <%= Html.TextBox("ID", Model.ID) %>
-                <%= Html.ValidationMessage("ID", "*") %>
-            </p>
-            <p>
-                <label for="Title">Заголовок:</label>
-                <%= Html.TextBox("Title", Model.Title) %>
-                <%= Html.ValidationMessage("Title", "*") %>
-            </p>
-            <p>
-                <label for="Date">Дата:</label>
-                <%= Html.TextBox("Date", String.Format("{0:g}", Model.Date), new { @class = "dateInput", @readonly = "true" })%>
-                <%= Html.ValidationMessage("Date", "*") %>
-            </p>
-            <script type="text/javascript">
-                $(function() {
-                    $(".dateInput").datepicker();
-                    $.fck.config = { path: '../../Controls/fckeditor/', height: 300, config: { SkinPath: "skins/office2003/", DefaultLanguage: "RU", AutoDetectLanguage: false, HtmlEncodeOutput: true} };
-                    $('textarea#Description').fck();
-                    $('textarea#Content').fck();
-                });
-            </script>
-            <p>
-                <label for="Description">Описание:</label>
-                <%= Html.TextArea("Description", Model.Description) %>
-                <%= Html.ValidationMessage("Description", "*") %>
-            </p>
-            <p>
-            
-                <label for="Content">Содержимое:</label>
-                <%= Html.TextArea("Content", Model.Content)%>
-                <%= Html.ValidationMessage("Content", "*") %>
-            </p>
-            <p>
-                <label for="TypeID">Тип:</label>
-                <%= Html.DropDownList("TypeID", (IEnumerable<SelectListItem>)ViewData["EntytyTypes"], "Выберите тип")%>
-                <%= Html.ValidationMessage("TypeID", "*") %>
-            </p>
-            <p>
-                <label for="SourceID">Чье:</label>
-                <%= Html.DropDownList("SourceID", (IEnumerable<SelectListItem>)ViewData["EntitySources"], "")%>
-                <%-- = Html.TextBox("SourceID", Model.SourceID) --%>
-                <%= Html.ValidationMessage("SourceID", "*") %>
-            </p>
-            <p>
-                <input type="submit" value="Сохранить"/>
-            </p>
-        </fieldset>
-
+    <% using (Html.BeginForm("EditEntity", "Manage", FormMethod.Post, new { enctype = "multipart/form-data" }))
+       {%>
+    <fieldset>
+        <legend>Поля</legend>
+        <p style="display: none">
+            <label for="ID">
+                ID:</label>
+            <%= Html.TextBox("ID", Model.ID) %>
+            <%= Html.ValidationMessage("ID", "*") %>
+        </p>
+        <div>
+            <div style="float: left">
+                <p>
+                    <label for="Title">
+                        Заголовок:</label>
+                    <%= Html.TextBox("Title", Model.Title) %>
+                    <%= Html.ValidationMessage("Title", "*") %>
+                </p>
+                <p>
+                    <label for="Date">
+                        Дата:</label>
+                    <%= Html.TextBox("Date", String.Format("{0:g}", Model.Date), new { @class = "dateInput", @readonly = "true" })%>
+                    <%= Html.ValidationMessage("Date", "*") %>
+                </p>
+            </div>
+            <div class="entityImage">
+                <% if (!string.IsNullOrEmpty(Model.Image))
+                   { %>
+                <img alt="" src="../../EntityImages/<%= Model.Image %>" />
+                <%} %>
+                <input type="file" name="image" style="margin-left: 10px; margin-top: 15px;" />
+            </div>
+            <div style="clear: both">
+            </div>
+        </div>
+        <br />
+        <br />
+        <p>
+            <label for="Description">
+                Описание:</label>
+            <%= Html.TextArea("Description", Model.Description) %>
+            <%= Html.ValidationMessage("Description", "*") %>
+        </p>
+        <p>
+            <label for="Content">
+                Содержимое:</label>
+            <%= Html.TextArea("Content", Model.Content)%>
+            <%= Html.ValidationMessage("Content", "*") %>
+        </p>
+        <p>
+            <label for="TypeID">
+                Тип:</label>
+            <%= Html.DropDownList("TypeID", (IEnumerable<SelectListItem>)ViewData["EntytyTypes"], "Выберите тип")%>
+            <%= Html.ValidationMessage("TypeID", "*") %>
+        </p>
+        <p>
+            <label for="SourceID">
+                Чье:</label>
+            <%= Html.DropDownList("SourceID", (IEnumerable<SelectListItem>)ViewData["EntitySources"], "")%>
+            <%-- = Html.TextBox("SourceID", Model.SourceID) --%>
+            <%= Html.ValidationMessage("SourceID", "*") %>
+        </p>
+        <p>
+            <input type="submit" value="Сохранить" />
+        </p>
+    </fieldset>
     <% } %>
-
     <div>
         <%=Html.ActionLink("Назад", "Entities") %>
     </div>
-
 </asp:Content>
-

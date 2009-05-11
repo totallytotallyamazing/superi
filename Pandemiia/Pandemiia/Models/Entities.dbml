@@ -1,22 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Database Name="Pandemic" Class="EntitiesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=.\SQLEXPRESS;Initial Catalog=Pandemic;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="PandemicConnectionString" Provider="System.Data.SqlClient" />
-  <Table Name="dbo.Entities" Member="Entities">
-    <Type Name="Entity">
-      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Title" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
-      <Column Name="Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="Description" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
-      <Column Name="Content" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="TypeID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="SourceID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="Entity_EntityPicture" Member="EntityPictures" ThisKey="ID" OtherKey="EntityID" Type="EntityPicture" />
-      <Association Name="Entity_EntityVideo" Member="EntityVideos" ThisKey="ID" OtherKey="EntityID" Type="EntityVideo" />
-      <Association Name="Entity_EntityMusic" Member="EntityMusics" ThisKey="ID" OtherKey="EntityID" Type="EntityMusic" />
-      <Association Name="EntityType_Entity" Member="EntityType" ThisKey="TypeID" OtherKey="ID" Type="EntityType" IsForeignKey="true" />
-      <Association Name="EntitySource_Entity" Member="EntitySource" ThisKey="SourceID" OtherKey="ID" Type="EntitySource" IsForeignKey="true" />
-    </Type>
-  </Table>
+<Database Name="Drozd_pandemic" Class="EntitiesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=mssql011007.hosting.ua;Initial Catalog=Drozd_pandemic;User ID=Drozd_pandemic" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="PandemicConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.EntitySources" Member="EntitySources">
     <Type Name="EntitySource">
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="true" />
@@ -60,6 +44,23 @@
       <Column Name="Album" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
       <Column Name="Comments" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
       <Association Name="Entity_EntityMusic" Member="Entity" ThisKey="EntityID" OtherKey="ID" Type="Entity" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Entities" Member="Entities">
+    <Type Name="Entity">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Title" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Column Name="Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="Content" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TypeID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SourceID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Image" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Association Name="Entity_EntityMusic" Member="EntityMusics" ThisKey="ID" OtherKey="EntityID" Type="EntityMusic" />
+      <Association Name="Entity_EntityVideo" Member="EntityVideos" ThisKey="ID" OtherKey="EntityID" Type="EntityVideo" />
+      <Association Name="Entity_EntityPicture" Member="EntityPictures" ThisKey="ID" OtherKey="EntityID" Type="EntityPicture" />
+      <Association Name="EntitySource_Entity" Member="EntitySource" ThisKey="SourceID" OtherKey="ID" Type="EntitySource" IsForeignKey="true" />
+      <Association Name="EntityType_Entity" Member="EntityType" ThisKey="TypeID" OtherKey="ID" Type="EntityType" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

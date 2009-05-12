@@ -1,0 +1,20 @@
+﻿*{margin:0; padding:0; border:none; font-family:Times New Roman;}
+body{background:black;}
+#main{width:1024px; position:relative; margin:0 auto;}
+#left{float:left; width:301px;}
+#right{float:left; width:722px; border-left:1px solid #737373; }
+#content{padding-left:5px;}
+#bottomRight{width:722px; height:128px; background:transparent url(img/bottomRight.jpg)}
+#handEye{clear:both;}
+#handEye img{position:absolute; bottom:0px; left:0px;}
+
+.entity{width:694px; height:318px; background-repeat:no-repeat; padding:5px 5px 48px 5px; clear:both;}
+.theirs{background-image:url(img/theirsBg.jpg);}
+.ours{background-image:url(img/oursBg.jpg);}
+.yours{background-image:url(img/yoursBg.jpg);}
+
+.entityImage{float:left; border:2px solid #2F2F2F; width: 240px; height:318px;}
+.entityText	{float:left; padding-left:10px;}
+.entityTitle{font-size:28px;}
+.entityDate{width:202px; border-bottom:2px solid black; color:#7F7D7D; font-size:12px; padding-bottom:5px;}
+.entityDescription{font-size:12px; padding-top:5px;}

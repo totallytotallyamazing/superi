@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Services;
 using System.Web.Script.Services;
 using Superi.Common;
+using Superi.Features;
 
 /// <summary>
 /// Summary description for Matches
@@ -36,5 +37,14 @@ public class Matches : System.Web.Services.WebService
         return games.ToList();
     }
 
+    [WebMethod]
+    public string GetDescription(int DescriptionID, string Language)
+    {
+        string result = "";
+        Resource resource = new Resource(DescriptionID);
+        if(resource.Items.Count>0 && resource[Language]!=null)
+            result = resource[Language];
+        return result;
+    }
 }
 

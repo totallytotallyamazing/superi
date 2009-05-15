@@ -85,6 +85,8 @@ public partial class Video : INotifyPropertyChanging, INotifyPropertyChanged
 	
 	private string _Embed;
 	
+	private int _SortOrder;
+	
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -95,6 +97,8 @@ public partial class Video : INotifyPropertyChanging, INotifyPropertyChanged
     partial void OnTitleTextIDChanged();
     partial void OnEmbedChanging(string value);
     partial void OnEmbedChanged();
+    partial void OnSortOrderChanging(int value);
+    partial void OnSortOrderChanged();
     #endregion
 	
 	public Video()
@@ -158,6 +162,26 @@ public partial class Video : INotifyPropertyChanging, INotifyPropertyChanged
 				this._Embed = value;
 				this.SendPropertyChanged("Embed");
 				this.OnEmbedChanged();
+			}
+		}
+	}
+	
+	[Column(Storage="_SortOrder", DbType="int")]
+	public int SortOrder
+	{
+		get
+		{
+			return this._SortOrder;
+		}
+		set
+		{
+			if ((this._SortOrder != value))
+			{
+				this.OnSortOrderChanging(value);
+				this.SendPropertyChanging();
+				this._SortOrder = value;
+				this.SendPropertyChanged("SortOrder");
+				this.OnSortOrderChanged();
 			}
 		}
 	}

@@ -77,6 +77,7 @@ public partial class Administration_Matches : System.Web.UI.Page
         game.TeamCommentsTextID = reTeamComments.ResourceId;
         game.HostFaultsTextID = reHostFaults.ResourceId;
         game.TeamFaultsTextID = reTeamFaults.ResourceId;
+        game.DetailsTextID = int.MinValue;
         context.Games.InsertOnSubmit(game);
         context.SubmitChanges();
     }
@@ -88,6 +89,8 @@ public partial class Administration_Matches : System.Web.UI.Page
             Team team = (Team)Tools.GetPropertyValue("Team", e.Item.DataItem);
             Label lTeam = (Label)e.Item.FindControl("lTeam");
             Image iTeamLogo = (Image)e.Item.FindControl("iTeamLogo");
+            LinkButton lbEditDescription = (LinkButton)e.Item.FindControl("lbEditDescription");
+            lbEditDescription.Attributes.Add("onclick", "SetAction('EditDescription')");
             iTeamLogo.ImageUrl = WebSession.BaseImageUrl + "Logos/" + team.Logo;
             lTeam.Text = team.Names["RU"];
         }
@@ -161,9 +164,23 @@ public partial class Administration_Matches : System.Web.UI.Page
     {
         if(e.CommandName=="EditDescription")
         {
-            int detailTextID = Convert.ToInt32(e.CommandArgument);
-            reDetails.TextID = detailTextID;
-            ScriptManager.RegisterStartupScript(Page, typeof(Page), "showPopUp", "alert('!');$find('<%= mpeMatchDetails.ClientID %>').show();", true);
+            int gameID = Convert.ToInt32(e.CommandArgument);
+            GamesDataContext context = new GamesDataContext();
+            Game game = context.Games.SingleOrDefault(f => f.ID == gameID);
+            reDetails.TextID = game.DetailsTextID;
+            hfGameId.Value = gameID.ToString();
+        }
+    }
+
+    protected void bSaveDescription_Click(object source, EventArgs e)
+    {
+        if (!string.IsNullOrEmpty(hfGameId.Value))
+        {
+            int gameID = int.Parse(hfGameId.Value);
+            GamesDataContext context = new GamesDataContext();
+            Game game = context.Games.SingleOrDefault(f => f.ID == gameID);
+            game.DetailsTextID = reDetails.ResourceId;
+            context.SubmitChanges();
         }
     }
 }

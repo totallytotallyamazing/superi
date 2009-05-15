@@ -1,16 +1,31 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Administration/MasterPage.master"
     AutoEventWireup="true" CodeFile="Matches.aspx.cs" Inherits="Administration_Matches" %>
-
+<%@ Register TagPrefix="admin" TagName="ajaxLoading" Src="~/Controls/AjaxLoadingIndicator.ascx" %>
 <%@ Register Assembly="Superi" Namespace="Superi.CustomControls" TagPrefix="cc1" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc2" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
     <script type="text/javascript">
-//        Sys.WebForms.PageRequestManager.getInstance().add_endRequest(MatchEndRequest);
-//        {
-  
-//        }
+        Sys.WebForms.PageRequestManager.getInstance().add_endRequest(MatchEndRequest);
+
+        function MatchEndRequest() {
+            if (GetAction() == "EditDescription") {
+                $find("<%= mpeMatchDetails.ClientID %>").show();
+                SetAction('');
+            }
+        }
+
+        function SetAction(val) {
+            $get("ihAction").value = val;
+        }
+
+        function GetAction() {
+            return $get("ihAction").value;
+        }
     </script>
+
+    <input type="hidden" id="ihAction" />
+    <admin:ajaxLoading runat="server" />
     <asp:LinqDataSource ID="ldsTeams" runat="server" ContextTypeName="GamesDataContext"
         TableName="Teams" EnableDelete="True" EnableInsert="True" EnableUpdate="True">
     </asp:LinqDataSource>
@@ -33,7 +48,6 @@
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="Название">
                     <ItemTemplate>
-                        <%--<asp:Label runat="server" ID="lName"></asp:Label>--%>
                         <cc1:ResourceWritter ID="rlName" runat="server" ResourceId='<%# Eval("NameTextId") %>'
                             Language="RU"></cc1:ResourceWritter>
                     </ItemTemplate>
@@ -64,7 +78,6 @@
         <cc2:PopupControlExtender ID="LinkButton1_PopupControlExtender" runat="server" Enabled="True"
             PopupControlID="pCreateTeam" TargetControlID="lbCreate" Position="Bottom">
         </cc2:PopupControlExtender>
-        <%--<asp:Label runat="server" ID="lName"></asp:Label>--%>
         <br />
         <asp:Panel ID="pCreateTeam" runat="server" CssClass="popUpPanel">
             Название:
@@ -79,7 +92,6 @@
     <div style="float: left; padding-left: 10px;">
         <asp:UpdatePanel runat="server" ID="UpdatePanel1">
             <ContentTemplate>
-                <%--<cc2:DropShadowExtender runat="server" TargetControlID="pCreateTeam" Rounded="true" Radius="4"></cc2:DropShadowExtender>--%>
                 <asp:DataList ID="DataList1" runat="server" DataSourceID="ldsMatches" GridLines="Horizontal"
                     OnEditCommand="DataList1_EditCommand" OnItemDataBound="DataList1_ItemDataBound"
                     OnUpdateCommand="DataList1_UpdateCommand" OnCancelCommand="DataList1_CancelCommand"
@@ -162,7 +174,7 @@
                             <br />
                             <asp:LinkButton ID="LinkButton1" runat="server" CommandName="edit" CausesValidation="False"
                                 CommandArgument='<%# Eval("ID") %>'>Редактировать</asp:LinkButton>
-                            &nbsp;<asp:LinkButton ID="lbEditDescription" runat="server" CommandArgument='<%# Eval("DetailsTextID") %>'
+                            &nbsp;<asp:LinkButton ID="lbEditDescription" runat="server" CommandArgument='<%# Eval("ID") %>'
                                 CommandName="EditDescription">Описание</asp:LinkButton>
                             &nbsp;
                             <asp:LinkButton ID="LinkButton2" runat="server" CommandName="delete" CommandArgument='<%# Eval("ID") %>'
@@ -236,14 +248,23 @@
     </div>
     <asp:UpdatePanel runat="server">
         <ContentTemplate>
-            <asp:LinkButton runat="server" ID="lbStub" style="display:none;"></asp:LinkButton>
-            <asp:Panel runat="server" ID="pMatchDescription">
-               <cc1:ResourceEditor runat="server" Type="RichText" ID="reDetails"></cc1:ResourceEditor>
+            <asp:LinkButton runat="server" ID="lbStub" Style="display: none;"></asp:LinkButton>
+            <asp:Panel runat="server" ID="pMatchDescription" style="width:700px; height:500px; background-color:White;">
+                <asp:HiddenField runat="server" ID="hfGameId" />
+                <div style="width:100%; text-align:right;">
+                    <asp:LinkButton runat="server" Text="X" ID="lbClose"></asp:LinkButton>
+                </div>
+                <cc1:ResourceEditor runat="server" Type="RichText" ID="reDetails">
+                </cc1:ResourceEditor>
+                <asp:Button runat="server" ID="bSaveDescription" Text="Сохранить" OnClick="bSaveDescription_Click" />
             </asp:Panel>
-            <cc2:ModalPopupExtender runat="server" ID="mpeMatchDetails" PopupControlID="pMatchDescription" TargetControlID="lbStub"></cc2:ModalPopupExtender>
+            <cc2:ModalPopupExtender runat="server" ID="mpeMatchDetails" PopupControlID="pMatchDescription"
+                TargetControlID="lbStub" BackgroundCssClass="shaded" DropShadow="true" CancelControlID="lbClose">
+            </cc2:ModalPopupExtender>
         </ContentTemplate>
         <Triggers>
             <asp:AsyncPostBackTrigger ControlID="DataList1" EventName="ItemCommand" />
+            <asp:PostBackTrigger ControlID="bSaveDescription" />
         </Triggers>
     </asp:UpdatePanel>
 </asp:Content>

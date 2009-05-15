@@ -6,6 +6,7 @@
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="TitleTextID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Embed" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="SortOrder" Type="System.Int32" DbType="int" CanBeNull="false" />
     </Type>
   </Table>
 </Database>

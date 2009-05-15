@@ -5,6 +5,10 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc2" %>
 <%@ Register Assembly="Superi" Namespace="Superi.CustomControls" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+    <div>
+        Для сортировки видео потяните за синий квадрат слева
+    </div>
+    <br />
     <admin:LoadingIndicator runat="server" />
     <asp:LinqDataSource ID="ldsVideos" runat="server" ContextTypeName="VideosDataContext"
         EnableDelete="True" EnableInsert="True" EnableUpdate="True" TableName="Videos"

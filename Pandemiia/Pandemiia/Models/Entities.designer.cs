@@ -393,7 +393,7 @@ namespace Pandemiia.Models
 			OnCreated();
 		}
 		
-		[Column(Storage="_ID", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		[Column(Storage="_ID", DbType="Int NOT NULL", IsPrimaryKey=true, IsDbGenerated=true)]
 		public int ID
 		{
 			get
@@ -1000,11 +1000,11 @@ namespace Pandemiia.Models
 		
 		private string _Image;
 		
-		private EntitySet<EntityMusic> _EntityMusics;
+		private EntitySet<EntityPicture> _EntityPictures;
 		
 		private EntitySet<EntityVideo> _EntityVideos;
 		
-		private EntitySet<EntityPicture> _EntityPictures;
+		private EntitySet<EntityMusic> _EntityMusics;
 		
 		private EntityRef<EntitySource> _EntitySource;
 		
@@ -1034,9 +1034,9 @@ namespace Pandemiia.Models
 		
 		public Entity()
 		{
-			this._EntityMusics = new EntitySet<EntityMusic>(new Action<EntityMusic>(this.attach_EntityMusics), new Action<EntityMusic>(this.detach_EntityMusics));
-			this._EntityVideos = new EntitySet<EntityVideo>(new Action<EntityVideo>(this.attach_EntityVideos), new Action<EntityVideo>(this.detach_EntityVideos));
 			this._EntityPictures = new EntitySet<EntityPicture>(new Action<EntityPicture>(this.attach_EntityPictures), new Action<EntityPicture>(this.detach_EntityPictures));
+			this._EntityVideos = new EntitySet<EntityVideo>(new Action<EntityVideo>(this.attach_EntityVideos), new Action<EntityVideo>(this.detach_EntityVideos));
+			this._EntityMusics = new EntitySet<EntityMusic>(new Action<EntityMusic>(this.attach_EntityMusics), new Action<EntityMusic>(this.detach_EntityMusics));
 			this._EntitySource = default(EntityRef<EntitySource>);
 			this._EntityType = default(EntityRef<EntityType>);
 			OnCreated();
@@ -1210,16 +1210,16 @@ namespace Pandemiia.Models
 			}
 		}
 		
-		[Association(Name="Entity_EntityMusic", Storage="_EntityMusics", ThisKey="ID", OtherKey="EntityID")]
-		public EntitySet<EntityMusic> EntityMusics
+		[Association(Name="Entity_EntityPicture", Storage="_EntityPictures", ThisKey="ID", OtherKey="EntityID")]
+		public EntitySet<EntityPicture> EntityPictures
 		{
 			get
 			{
-				return this._EntityMusics;
+				return this._EntityPictures;
 			}
 			set
 			{
-				this._EntityMusics.Assign(value);
+				this._EntityPictures.Assign(value);
 			}
 		}
 		
@@ -1236,16 +1236,16 @@ namespace Pandemiia.Models
 			}
 		}
 		
-		[Association(Name="Entity_EntityPicture", Storage="_EntityPictures", ThisKey="ID", OtherKey="EntityID")]
-		public EntitySet<EntityPicture> EntityPictures
+		[Association(Name="Entity_EntityMusic", Storage="_EntityMusics", ThisKey="ID", OtherKey="EntityID")]
+		public EntitySet<EntityMusic> EntityMusics
 		{
 			get
 			{
-				return this._EntityPictures;
+				return this._EntityMusics;
 			}
 			set
 			{
-				this._EntityPictures.Assign(value);
+				this._EntityMusics.Assign(value);
 			}
 		}
 		
@@ -1337,13 +1337,13 @@ namespace Pandemiia.Models
 			}
 		}
 		
-		private void attach_EntityMusics(EntityMusic entity)
+		private void attach_EntityPictures(EntityPicture entity)
 		{
 			this.SendPropertyChanging();
 			entity.Entity = this;
 		}
 		
-		private void detach_EntityMusics(EntityMusic entity)
+		private void detach_EntityPictures(EntityPicture entity)
 		{
 			this.SendPropertyChanging();
 			entity.Entity = null;
@@ -1361,13 +1361,13 @@ namespace Pandemiia.Models
 			entity.Entity = null;
 		}
 		
-		private void attach_EntityPictures(EntityPicture entity)
+		private void attach_EntityMusics(EntityMusic entity)
 		{
 			this.SendPropertyChanging();
 			entity.Entity = this;
 		}
 		
-		private void detach_EntityPictures(EntityPicture entity)
+		private void detach_EntityMusics(EntityMusic entity)
 		{
 			this.SendPropertyChanging();
 			entity.Entity = null;

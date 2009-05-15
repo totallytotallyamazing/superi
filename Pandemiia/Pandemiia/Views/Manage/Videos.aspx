@@ -1,9 +1,15 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Manage/PopUp.Master" Inherits="System.Web.Mvc.ViewPage<Pandemiia.Models.Entity>" %>
+<%@ Page Title="" Language="C#" ValidateRequest="false" MasterPageFile="~/Views/Manage/PopUp.Master" Inherits="System.Web.Mvc.ViewPage<Pandemiia.Models.Entity>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
     Видео
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+<script type="text/javascript">
+    function htmlEncode() {
+        var src = $('#source').attr('value');
+        $('#source').attr('value', escape(src));
+    }
+</script>
     <h2>
         Видео
     </h2>
@@ -48,7 +54,7 @@
         <input style="width: 270px;" type="text" class="wm" id="name" name="name" /><br />
         <textarea style="width: 270px; margin-top: 5px;" class="wm" id="source" name="source"></textarea>
         <center>
-            <input type="submit" value="Добавить" style="margin-top: 5px;" />
+            <input type="submit" value="Добавить" style="margin-top: 5px;" onclick="htmlEncode()" />
         </center>
         <%} %>
     </fieldset>

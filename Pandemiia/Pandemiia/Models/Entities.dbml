@@ -17,7 +17,7 @@
   </Table>
   <Table Name="dbo.EntityPictures" Member="EntityPictures">
     <Type Name="EntityPicture">
-      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ID" AutoSync="Never" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Picture" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
       <Column Name="Preview" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
       <Column Name="EntityID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
@@ -56,9 +56,9 @@
       <Column Name="TypeID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="SourceID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Image" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
-      <Association Name="Entity_EntityMusic" Member="EntityMusics" ThisKey="ID" OtherKey="EntityID" Type="EntityMusic" />
-      <Association Name="Entity_EntityVideo" Member="EntityVideos" ThisKey="ID" OtherKey="EntityID" Type="EntityVideo" />
       <Association Name="Entity_EntityPicture" Member="EntityPictures" ThisKey="ID" OtherKey="EntityID" Type="EntityPicture" />
+      <Association Name="Entity_EntityVideo" Member="EntityVideos" ThisKey="ID" OtherKey="EntityID" Type="EntityVideo" />
+      <Association Name="Entity_EntityMusic" Member="EntityMusics" ThisKey="ID" OtherKey="EntityID" Type="EntityMusic" />
       <Association Name="EntitySource_Entity" Member="EntitySource" ThisKey="SourceID" OtherKey="ID" Type="EntitySource" IsForeignKey="true" />
       <Association Name="EntityType_Entity" Member="EntityType" ThisKey="TypeID" OtherKey="ID" Type="EntityType" IsForeignKey="true" />
     </Type>

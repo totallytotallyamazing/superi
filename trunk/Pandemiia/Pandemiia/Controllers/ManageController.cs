@@ -184,7 +184,7 @@ namespace Pandemiia.Controllers
             EntityVideo video = new EntityVideo();
             video.EntityID = int.Parse(form["id"]);
             video.Name = form["name"];
-            video.Source = form["source"];
+            video.Source = Server.UrlDecode(form["source"]);
             _context.EntityVideos.InsertOnSubmit(video);
             _context.SubmitChanges();
             return RedirectToAction("Videos", new RouteValueDictionary(new { id = form["id"] }));

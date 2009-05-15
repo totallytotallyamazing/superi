@@ -3,3 +3,5 @@
 .wm{margin-bottom:5px;}
 .wm{color:Black;}
 .entityImage{width:240px; height:318px; background-image:url(img/admin/noImage.jpg); float:left; margin-left:20px; cursor:pointer;}
+.entityPicture{float:left; padding-right:5px;}
+.imagesPreview{clear:both; width:500px;}

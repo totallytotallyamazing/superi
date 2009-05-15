@@ -9,6 +9,9 @@ public partial class Administration_Videos : System.Web.UI.Page
 {
     protected void Page_PreRender(object sender, EventArgs e)
     {
-        GridView1.DataBind();
+        VideosDataContext context = new VideosDataContext();
+        ReorderList1.DataBind();
+        HiddenField hfSortOrder = (HiddenField)FormView1.FindControl("hfSortOrder");
+        hfSortOrder.Value = context.Videos.Count().ToString();
     }
 }

@@ -26,8 +26,9 @@ a:hover{text-decoration:underline;}
 
 .article{background-color:#AFE3FF; float:left; clear:both; border:1px solid #848484; margin: 1px 0;}
 .bookName, .bookActions{float:left; padding:2px 0;}
+
 .reorderItem{border:thin transparent solid;}
-.bookName{width:400px;}
-.dragHandle{background:#413FFF; color:Yellow; cursor:s-resize;}
+.dragHandle{background:#413FFF; color:Yellow; cursor:s-resize; width:20px; height:20px;}
+
 .shaded{opacity: 0.5; -moz-opacity: 0.5; filter: alpha(opacity=50); background-color:Black;}
-.rl ul li{list-style-type:none;}
+ul li{list-style-type:none;}

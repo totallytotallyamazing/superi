@@ -3,7 +3,6 @@
 <%@ Register TagPrefix="m" TagName="Players" Src="~/Controls/Players.ascx" %>
 <%@ Import Namespace="Superi.Common" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
-    <link rel="Stylesheet" href="<%= WebSession.BaseUrl + "css/articles.css" %>" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="content" Runat="Server">
 <%--    <m:Articles ID="Articles1" runat="server" 

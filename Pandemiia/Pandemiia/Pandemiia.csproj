@@ -85,6 +85,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Entities.dbml</DependentUpon>
     </Compile>
+    <Compile Include="Models\Entity.cs" />
     <Compile Include="Models\Utils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -650,27 +651,33 @@
     </None>
     <Content Include="Content\global.css" />
     <Content Include="Content\img\admin\noImage.jpg" />
+    <Content Include="Content\img\audioFinger.jpg" />
     <Content Include="Content\img\bottomRight.jpg" />
     <Content Include="Content\img\fly.jpg" />
     <Content Include="Content\img\handEye.jpg" />
     <Content Include="Content\img\header.jpg" />
     <Content Include="Content\img\imageFilter.jpg" />
     <Content Include="Content\img\imageFilterActive.jpg" />
+    <Content Include="Content\img\imageFinger.jpg" />
     <Content Include="Content\img\logo.jpg" />
     <Content Include="Content\img\miscFilter.jpg" />
     <Content Include="Content\img\miscFilterActive.jpg" />
+    <Content Include="Content\img\otherFinger.jpg" />
     <Content Include="Content\img\oursBg.jpg" />
     <Content Include="Content\img\pageDot.jpg" />
     <Content Include="Content\img\readingFilter.jpg" />
     <Content Include="Content\img\readingFilterActive.jpg" />
+    <Content Include="Content\img\readingFinger.jpg" />
     <Content Include="Content\img\theirsBg.jpg" />
     <Content Include="Content\img\videoFilter.jpg" />
     <Content Include="Content\img\videoFilterActive.jpg" />
+    <Content Include="Content\img\videoFinger.jpg" />
     <Content Include="Content\img\yoursBg.jpg" />
     <Content Include="Controls\fckeditor\fcktools.js" />
     <Content Include="Scripts\fcktools.js" />
     <Content Include="Scripts\jquery.watermark.js" />
     <Content Include="Views\Home\Entity.ascx" />
+    <Content Include="Views\Home\EntityDetails.aspx" />
     <Content Include="Views\Home\Index.aspx" />
     <Content Include="Views\Manage\Images.aspx" />
     <Content Include="Views\Manage\Music.aspx" />

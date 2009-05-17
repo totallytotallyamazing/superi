@@ -39,5 +39,15 @@ namespace Pandemiia.Controllers
             Entity entity = _context.Entities.SingleOrDefault(e => e.ID == id);
             return View(entity);
         }
+
+        public ActionResult EntityVideos(Entity entity)
+        {
+            return View(entity);
+        }
+
+        public ActionResult EntityImages(Entity entity)
+        {
+            return View(entity);
+        }
     }
 }

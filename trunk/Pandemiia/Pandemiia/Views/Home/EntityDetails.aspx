@@ -1,8 +1,11 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<Pandemiia.Models.Entity>" %>
-
+<%@ Import Namespace="Pandemiia.Helpers" %>
 <%@ Import Namespace="Microsoft.Web.Mvc" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
     <%= Model.Title %>
+</asp:Content>
+<asp:Content runat="server" ContentPlaceHolderID="AdditionalStylesContent">
+    <%= Html.RegisterCss("~/Content/entityDetails.css") %>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div class="detailsHeader">
@@ -16,18 +19,24 @@
     <div class="topContent">
         <div class="content">
             <% if (Model.HasAdditionalContent())
-               {%>
-            <%} %>
-            <%else
-                { %>
-            <%= Model.Content %>
-            <%} %>
+               {
+                   if (Model.EntityType.Name == "Видео")
+                       Html.RenderAction("EntityVideos", "Home", new RouteValueDictionary(new { entity = Model }));
+                   if (Model.EntityType.Name == "Музыка")
+                       Html.RenderAction("EntityMusics", "Home", new RouteValueDictionary(new { entity = Model }));
+                   if (Model.EntityType.Name == "Изображения")
+                       Html.RenderAction("EntityImages", "Home", new RouteValueDictionary(new { entity = Model }));
+               }
+               else
+               {
+                   Response.Write(Model.Content);
+            } %>
         </div>
         <div class="finger">
             <%
                 string imageName = "otherFinger.jpg";
                 switch (Model.EntityType.Name)
-                { 
+                {
                     case "Видео":
                         imageName = "videoFinger.jpg";
                         break;
@@ -42,10 +51,14 @@
                         break;
                 }
                 
-                 %>
+            %>
             <%= Html.Image("~/Content/img/" + imageName) %>
         </div>
     </div>
+    <% if (Model.HasAdditionalContent())
+       {%>
     <div class="bottomContent">
+        <%= Model.Content %>
     </div>
+    <%} %>
 </asp:Content>

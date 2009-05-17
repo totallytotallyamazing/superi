@@ -11,6 +11,12 @@ namespace Pandemiia.Helpers
 {
     public static class PandemicHelpers
     {
+        public static string RegisterCss(this System.Web.Mvc.HtmlHelper helper, string relativePath)
+        {
+            string cssPath = VirtualPathUtility.ToAbsolute(relativePath);
+            string linkSource = "<link rel=\"Stylesheet\" href=\"{0}\" />";
+            return string.Format(linkSource, cssPath);
+        }
 
         public static string RegisterJS(this System.Web.Mvc.HtmlHelper helper, string scriptLib)
         {

@@ -5,12 +5,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title><asp:ContentPlaceHolder ID="TitleContent" runat="server" /></title>
+    <asp:ContentPlaceHolder ID="AdditionalStylesContent" runat="server" />
     <%= Html.RegisterJS("jquery.js") %>
-    <link href="../../Content/global.css" rel="stylesheet" type="text/css" />
+    <%= Html.RegisterCss("~/Content/global.css") %>
     <script type="text/javascript">
         $(function() {
-//            alert($(document.body).height());
-  //          $("#handEye").css("top", 1 * $(document.body).height());
         })
     </script>
 </head>

@@ -47,44 +47,6 @@ body
 	bottom: 0px;
 	left: 0px;
 }
-
-.entity
-{
-	width: 694px;
-	height: 318px;
-	background-repeat: no-repeat;
-	padding: 5px 5px 48px 5px;
-	clear: both;
-}
-.theirs
-{
-	background-image: url(img/theirsBg.jpg);
-}
-.ours
-{
-	background-image: url(img/oursBg.jpg);
-}
-.yours
-{
-	background-image: url(img/yoursBg.jpg);
-}
-
-.entityImage
-{
-	float: left;
-	border: 2px solid #2F2F2F;
-	width: 240px;
-	height: 318px;
-}
-.entityText
-{
-	float: left;
-	padding-left: 10px;
-}
-.entityTitle
-{
-	font-size: 28px;
-}
 .entityDate
 {
 	width: 202px;
@@ -93,46 +55,4 @@ body
 	font-size: 12px;
 	padding-bottom: 5px;
 }
-.entityDescription
-{
-	font-size: 12px;
-	padding-top: 5px;
-	height: 180px;
-}
-.detailsLink a
-{
-	color: #7F7D7D;
-	text-decoration: none;
-	font-size: 12px;
-}
-.detailsLink a:hover
-{
-	text-decoration: underline;
-}
-.detailsHeader
-{
-	width: 455px;
-	border-bottom: 2px solid white;
-}
 
-.topContent
-{
-	margin-bottom: 20px;
-}
-.topContent .content
-{
-	width: 455px;
-	min-height: 500px;
-	border-bottom: 2px solid white;
-	padding-top:10px;
-	font-size:12px;
-}
-.finger
-{
-	float: right; height:0px;
-}
-.finger img
-{
-	position: relative;
-	top: -169px;
-}

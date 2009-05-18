@@ -26,7 +26,7 @@ namespace Pandemiia.Controllers
         #region Entities
         public ActionResult Entities()
         {
-            return View(_context.Entities.Select(ent => ent).ToList());
+            return View(_context.Entities.Select(ent => ent).OrderByDescending(ent=>ent.Date).ToList());
         }
 
         public ActionResult CreateEntity()

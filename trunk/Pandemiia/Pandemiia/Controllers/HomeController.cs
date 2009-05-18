@@ -15,7 +15,7 @@ namespace Pandemiia.Controllers
 
         public ActionResult Index()
         {
-            List<Entity> result = _context.Entities.Select(e => e).ToList();
+            List<Entity> result = _context.Entities.Select(e => e).OrderByDescending(e=>e.Date).ToList();
             return View(result);
         }
 

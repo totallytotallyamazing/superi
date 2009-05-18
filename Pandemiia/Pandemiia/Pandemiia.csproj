@@ -69,6 +69,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\FilterController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ToolsController.cs" />
@@ -213,9 +214,11 @@
     <Content Include="Scripts\jquery.easing.js" />
     <Content Include="Scripts\jquery.fancybox.js" />
     <Content Include="Scripts\jquery.watermark.js" />
+    <Content Include="Views\Filter\FilteredList.aspx" />
     <Content Include="Views\Home\Entity.ascx" />
     <Content Include="Views\Home\EntityDetails.aspx" />
     <Content Include="Views\Home\EntityImages.ascx" />
+    <Content Include="Views\Home\EntityList.ascx" />
     <Content Include="Views\Home\EntityVideos.ascx" />
     <Content Include="Views\Home\Index.aspx" />
     <Content Include="Views\Manage\Images.aspx" />
@@ -240,7 +243,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>1353</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

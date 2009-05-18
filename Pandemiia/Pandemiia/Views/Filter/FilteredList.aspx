@@ -3,11 +3,12 @@
 <%@ Import Namespace="Pandemiia.Helpers" %>
 <%@ Import Namespace="Pandemiia.Controllers" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-    Pandemic
+	Pandemic
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="AdditionalStylesContent" runat="server">
+<asp:Content ID="Content4" ContentPlaceHolderID="AdditionalStylesContent" runat="server">
     <%= Html.RegisterCss("~/Content/entityList.css") %>
 </asp:Content>
+
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
-    <% Html.RenderAction<HomeController>(hc => hc.EntityList(Model));%>
+<% Html.RenderAction<HomeController>(action => action.EntityList(Model)); %>
 </asp:Content>

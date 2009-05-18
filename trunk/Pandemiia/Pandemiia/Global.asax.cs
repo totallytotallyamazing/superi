@@ -41,10 +41,10 @@ namespace Pandemiia
                 );
 
             routes.MapRoute(
-                "Filter",                                              // Route name
-                "Filter",                           // URL with parameters
-                new { controller = "Home", action = "Filter"}  // Parameter defaults
-            );
+                "Filter",
+                "Filter/{action}/{typeName}/{pageNumber}",
+                new { controller = "Filter", action = "All", typeName = "All", pageNumber = 0 }
+                );
 
         }
 

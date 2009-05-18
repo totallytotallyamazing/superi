@@ -10,7 +10,6 @@ namespace Pandemiia.Controllers
     [HandleError]
     public class HomeController : Controller
     {
-
         EntitiesDataContext _context = new EntitiesDataContext();
 
         public ActionResult Index()
@@ -19,14 +18,14 @@ namespace Pandemiia.Controllers
             return View(result);
         }
 
+        public ActionResult EntityList(List<Entity> list)
+        {
+            return View(list);
+        }
+
         public ActionResult About()
         {
             return View();
-        }
-
-        public ActionResult Filter()
-        {
-            return null;
         }
 
         public ActionResult Entity(Entity entity)

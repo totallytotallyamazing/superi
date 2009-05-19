@@ -13,8 +13,8 @@
           <NativeDebugging>False</NativeDebugging>
           <SQLDebugging>False</SQLDebugging>
           <PublishCopyOption>RunFiles</PublishCopyOption>
-          <PublishTargetLocation>C:\Kos\Pandemic\Published\</PublishTargetLocation>
-          <PublishDeleteAllFiles>True</PublishDeleteAllFiles>
+          <PublishTargetLocation>C:\My\Pandemic\Published\</PublishTargetLocation>
+          <PublishDeleteAllFiles>False</PublishDeleteAllFiles>
           <PublishCopyAppData>False</PublishCopyAppData>
           <ExternalProgram>
           </ExternalProgram>
@@ -27,6 +27,17 @@
           <EnableENC>False</EnableENC>
           <AlwaysStartWebServerOnDebug>True</AlwaysStartWebServerOnDebug>
           <EnableWcfTestClientForSVC>False</EnableWcfTestClientForSVC>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>1353</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost/Pandemiia</IISUrl>
+          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
+          <IISAppRootUrl>http://localhost/Pandemic</IISAppRootUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
         </WebProjectProperties>
       </FlavorProperties>
     </VisualStudio>

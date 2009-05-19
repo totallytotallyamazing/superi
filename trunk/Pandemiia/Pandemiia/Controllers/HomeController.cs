@@ -14,7 +14,23 @@ namespace Pandemiia.Controllers
 
         public ActionResult Index()
         {
-            List<Entity> result = _context.Entities.Select(e => e).OrderByDescending(e=>e.Date).ToList();
+            ViewData["typeName"] = "All";
+            ViewData["source"] = "All";
+            ViewData["entityCount"] = _context.Entities.Count();
+            List<Entity> result = Utils.GetEntityPage(null);
+            return View(result);
+        }
+
+        public ActionResult Page(int? id)
+        {
+            ViewData["typeName"] = "All";
+            ViewData["source"] = "All";
+            List<Entity> result = Utils.GetEntityPage(id);
+            ViewData["entityCount"] = _context.Entities.Count();
+            if(id!=null)
+                ViewData["pageNumber"] = id.Value;
+            else
+                ViewData["pageNumber"] = 1;
             return View(result);
         }
 

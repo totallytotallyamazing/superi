@@ -12,69 +12,59 @@ namespace Pandemiia.Controllers
     {
         //
         // GET: /Filter/
-        EntitiesDataContext _context = new EntitiesDataContext();
-
-        private string ConvertTypeName(string typeName)
+        public ActionResult All(string typeName, int? pageNumber)
         {
-            string type = "";
-            switch (typeName)
-            {
-                case "Image":
-                    type = "Изображения";
-                    break;
-                case "Video":
-                    type = "Видео";
-                    break;
-                case "Music":
-                    type = "Музыка";
-                    break;
-                case "Reading":
-                    type = "Чтиво";
-                    break;
-                case "Other":
-                    type = "Другое";
-                    break;
-            }
-            return type;        
-        }
-
-        public ActionResult All(string typeName, int pageNumber)
-        {
-            string type = ConvertTypeName(typeName);
-            List<Entity> entities;
-            entities = _context.Entities.Select(e => e).ToList();
-            if (!string.IsNullOrEmpty(type))
-                entities = entities.Where(e => e.EntityType.Name == type).ToList();
+            int totalCount;
+            List<Entity> entities = Utils.GetFilteredList("", typeName, pageNumber, out totalCount);
+            ViewData["source"] = "All";
+            ViewData["typeName"] = (typeName) ?? "All";
+            ViewData["entityCount"] = totalCount;
+            if (pageNumber != null)
+                ViewData["pageNumber"] = pageNumber.Value;
+            else
+                ViewData["pageNumber"] = 1;
             return View("FilteredList", entities);
         }
 
-        public ActionResult Yours(string typeName, int pageNumber)
+        public ActionResult Yours(string typeName, int? pageNumber)
         {
-            string type = ConvertTypeName(typeName);
-            List<Entity> entities;
-            entities = _context.Entities.Select(e => e).Where(e => e.EntitySource.Name == "ваше").ToList();
-            if (!string.IsNullOrEmpty(type))
-                entities = entities.Where(e => e.EntityType.Name == type).ToList();
+            int totalCount;
+            List<Entity> entities = Utils.GetFilteredList("ваше", typeName, pageNumber, out totalCount);
+            ViewData["source"] = "Yours";
+            ViewData["typeName"] = (typeName) ?? "All";
+            ViewData["entityCount"] = totalCount;
+            if (pageNumber != null)
+                ViewData["pageNumber"] = pageNumber.Value;
+            else
+                ViewData["pageNumber"] = 1;
             return View("FilteredList", entities);
         }
 
-        public ActionResult Ours(string typeName, int pageNumber)
+        public ActionResult Ours(string typeName, int? pageNumber)
         {
-            string type = ConvertTypeName(typeName);
-            List<Entity> entities;
-            entities = _context.Entities.Select(e => e).Where(e => e.EntitySource.Name == "наше").ToList();
-            if (!string.IsNullOrEmpty(type))
-                entities = entities.Where(e => e.EntityType.Name == type).ToList();
+            int totalCount;
+            List<Entity> entities = Utils.GetFilteredList("наше", typeName, pageNumber, out totalCount);
+            ViewData["source"] = "Ours";
+            ViewData["typeName"] = (typeName) ?? "All";
+            ViewData["entityCount"] = totalCount;
+            if (pageNumber != null)
+                ViewData["pageNumber"] = pageNumber.Value;
+            else
+                ViewData["pageNumber"] = 1;
             return View("FilteredList", entities);
         }
 
-        public ActionResult Theirs(string typeName, int pageNumber)
+        public ActionResult Theirs(string typeName, int? pageNumber)
         {
-            string type = ConvertTypeName(typeName);
-            List<Entity> entities;
-            entities = _context.Entities.Select(e => e).Where(e => e.EntitySource.Name == "ихнее").ToList();
-            if (!string.IsNullOrEmpty(type))
-                entities = entities.Where(e => e.EntityType.Name == type).ToList();
+            int totalCount;
+            List<Entity> entities = Utils.GetFilteredList("ихнее", typeName, pageNumber, out totalCount);
+            ViewData["source"] = "Theirs";
+            ViewData["typeName"] = (typeName) ?? "All";
+            ViewData["entityCount"] = totalCount;
+            if (pageNumber != null)
+                ViewData["pageNumber"] = pageNumber.Value;
+            else
+                ViewData["pageNumber"] = 1;
             return View("FilteredList", entities);
         }
 

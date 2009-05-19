@@ -15,7 +15,17 @@ namespace Pandemiia
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+            routes.MapRoute(
+                "Filter0",
+                "Filter/{action}/{typeName}",
+                new { controller = "Filter", action = "All", typeName = "All", pageNumber = 1 }
+                );
 
+            routes.MapRoute(
+                "Filter",
+                "Filter/{action}/{typeName}/{pageNumber}",
+                new { controller = "Filter", action = "All", typeName = "All", pageNumber = 1 }
+                );
             routes.MapRoute(
                 "Default",                                              // Route name
                 "{controller}/{action}/{id}",                           // URL with parameters
@@ -40,11 +50,7 @@ namespace Pandemiia
                 new { controller = "Manage" }
                 );
 
-            routes.MapRoute(
-                "Filter",
-                "Filter/{action}/{typeName}/{pageNumber}",
-                new { controller = "Filter", action = "All", typeName = "All", pageNumber = 0 }
-                );
+
 
         }
 

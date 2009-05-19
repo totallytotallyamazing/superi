@@ -202,6 +202,7 @@
     <Content Include="Content\img\imageFilterActive.jpg" />
     <Content Include="Content\img\imageFinger.jpg" />
     <Content Include="Content\img\logo.jpg" />
+    <Content Include="Content\img\mail.jpg" />
     <Content Include="Content\img\miscFilter.jpg" />
     <Content Include="Content\img\miscFilterActive.jpg" />
     <Content Include="Content\img\otherFinger.jpg" />

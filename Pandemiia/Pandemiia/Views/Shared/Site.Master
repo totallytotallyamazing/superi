@@ -16,10 +16,16 @@
 </head>
 
 <body>
+    <map name="home" id="home">
+        <area shape="rect" coords="50,350,301,410" href="<%= VirtualPathUtility.ToAbsolute("~/") %>" alt="pandemic" />
+    </map>
+    <map name="mail" id="mail">
+        <area shape="rect" coords="0,0,18,18" href="mailto:al@akula.com.ua" alt="pandemic" />
+    </map>
     <div id="main">
         <div id="left">
             <div id="logo">
-                <%= Html.Image("~/Content/img/logo.jpg", "Pandemic")%>
+                <%= Html.Image("~/Content/img/logo.jpg", "Pandemic", new { usemap = "#home" })%>
             </div>
         </div>
         <div id="right">
@@ -39,6 +45,7 @@
                     if(ViewData["source"]!=null)
                        source = ViewData["source"].ToString();
                     Html.RenderAction<PagePartsController>(ac => ac.Filter(source, typeName)); %>
+                 <img alt="@" class="mail" usemap="#mail" src="<%=  VirtualPathUtility.ToAbsolute("~/Content/img/mail.jpg") %>" />
             </div>
         </div>
         <div id="handEye">

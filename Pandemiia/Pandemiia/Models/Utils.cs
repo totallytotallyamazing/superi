@@ -10,6 +10,87 @@ namespace Pandemiia.Models
 
     public static class Utils
     {
+        #region Path
+        public static string GetFilterPath(string sourceName, string typeName)
+        {
+            string basePath = VirtualPathUtility.ToAbsolute("~/Filter/{0}/{1}");
+            return string.Format(basePath, sourceName, typeName);
+        }
+        #endregion
+
+        #region Entities
+        private static string ConvertTypeName(string typeName)
+        {
+            string type = "";
+            if (typeName != null)
+            {
+                switch (typeName.ToLower())
+                {
+                    case "image":
+                        type = "Изображения";
+                        break;
+                    case "video":
+                        type = "Видео";
+                        break;
+                    case "music":
+                        type = "Музыка";
+                        break;
+                    case "reading":
+                        type = "Чтиво";
+                        break;
+                    case "other":
+                        type = "Другое";
+                        break;
+                }
+            }
+            return type;
+        }
+
+        public static List<Entity> GetFilteredList(string source, string typeName, int? pageNumber, out int totalCount)
+        {
+            EntitiesDataContext context = new EntitiesDataContext();
+            int startIndex = (pageNumber == null || pageNumber == 0) ? 1 : pageNumber.Value;
+            startIndex--; 
+            startIndex *= Settings.PageSize;
+            int entitiesCount = Settings.PageSize;
+            string type = ConvertTypeName(typeName);
+            List<Entity> entities;
+            if (string.IsNullOrEmpty(source))
+            {
+                if (string.IsNullOrEmpty(type))
+                    entities = context.Entities.Select(e => e)
+                        .OrderByDescending(e=>e.Date)
+                        .ToList();
+                else
+                    entities = context.Entities.Select(e => e)
+                        .OrderByDescending(e => e.Date)
+                        .Where(e => e.EntityType.Name == type)
+                        .ToList();
+            }
+            else
+            {
+                if(string.IsNullOrEmpty(type))
+                    entities = context.Entities.Select(e => e)
+                        .OrderByDescending(e => e.Date)
+                        .Where(e => e.EntitySource.Name == source)
+                        .ToList();
+                else
+                    entities = context.Entities.Select(e => e)
+                        .OrderByDescending(e => e.Date)
+                        .Where(e => (e.EntitySource.Name == source && e.EntityType.Name == type))
+                        .ToList();
+            }
+            totalCount = entities.Count;
+            return entities.Skip(startIndex).Take(entitiesCount).ToList();
+        }
+
+        public static List<Entity> GetEntityPage(int? pageNumber)
+        {
+            int i;
+            return GetFilteredList(null, null, pageNumber, out i);
+        }
+        #endregion
+
         #region UploadFiles
 
         const string DEFAULT_UNIFICATOR = "_";

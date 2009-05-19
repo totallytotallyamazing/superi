@@ -10,4 +10,10 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
     <% Html.RenderAction<HomeController>(hc => hc.EntityList(Model));%>
+    
+    <div class="pages">
+        <%int entityCount = Convert.ToInt32(ViewData["entityCount"]); %>
+        <% Html.RenderAction<PagePartsController>(ac=>ac.Pager(entityCount, 1, "", "")); %>
+    </div>
+
 </asp:Content>

@@ -2,6 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <%@ Import Namespace="Microsoft.Web.Mvc" %>
 <%@ Import Namespace="Pandemiia.Helpers" %>
+<%@ Import Namespace="Pandemiia.Controllers" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title><asp:ContentPlaceHolder ID="TitleContent" runat="server" /></title>
@@ -30,6 +31,14 @@
                 </asp:ContentPlaceHolder>
             </div>
             <div id="bottomRight">
+                <% 
+                    string typeName = "";
+                    string source = "";
+                    if(ViewData["typeName"]!=null)
+                       typeName = ViewData["typeName"].ToString();
+                    if(ViewData["source"]!=null)
+                       source = ViewData["source"].ToString();
+                    Html.RenderAction<PagePartsController>(ac => ac.Filter(source, typeName)); %>
             </div>
         </div>
         <div id="handEye">

@@ -72,6 +72,7 @@
     <Compile Include="Controllers\FilterController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PagePartsController.cs" />
     <Compile Include="Controllers\ToolsController.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -87,6 +88,7 @@
       <DependentUpon>Entities.dbml</DependentUpon>
     </Compile>
     <Compile Include="Models\Entity.cs" />
+    <Compile Include="Models\Settings.cs" />
     <Compile Include="Models\Utils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -188,8 +190,11 @@
     <Content Include="Content\fancy\jquery.fancybox.css" />
     <Content Include="Content\global.css" />
     <Content Include="Content\img\admin\noImage.jpg" />
+    <Content Include="Content\img\allSources.jpg" />
+    <Content Include="Content\img\allTypesFilter.jpg" />
     <Content Include="Content\img\audioFinger.jpg" />
     <Content Include="Content\img\bottomRight.jpg" />
+    <Content Include="Content\img\circle.jpg" />
     <Content Include="Content\img\fly.jpg" />
     <Content Include="Content\img\handEye.jpg" />
     <Content Include="Content\img\header.jpg" />
@@ -200,27 +205,34 @@
     <Content Include="Content\img\miscFilter.jpg" />
     <Content Include="Content\img\miscFilterActive.jpg" />
     <Content Include="Content\img\otherFinger.jpg" />
+    <Content Include="Content\img\ours.jpg" />
     <Content Include="Content\img\oursBg.jpg" />
     <Content Include="Content\img\pageDot.jpg" />
     <Content Include="Content\img\readingFilter.jpg" />
     <Content Include="Content\img\readingFilterActive.jpg" />
     <Content Include="Content\img\readingFinger.jpg" />
+    <Content Include="Content\img\test.jpg" />
+    <Content Include="Content\img\theirs.jpg" />
     <Content Include="Content\img\theirsBg.jpg" />
     <Content Include="Content\img\videoFilter.jpg" />
     <Content Include="Content\img\videoFilterActive.jpg" />
     <Content Include="Content\img\videoFinger.jpg" />
+    <Content Include="Content\img\yours.jpg" />
     <Content Include="Content\img\yoursBg.jpg" />
     <Content Include="Scripts\fcktools.js" />
     <Content Include="Scripts\jquery.easing.js" />
     <Content Include="Scripts\jquery.fancybox.js" />
     <Content Include="Scripts\jquery.watermark.js" />
     <Content Include="Views\Filter\FilteredList.aspx" />
-    <Content Include="Views\Home\Entity.ascx" />
+    <Content Include="Views\PageParts\Filter.ascx" />
+    <Content Include="Views\PageParts\Pager.ascx" />
+    <Content Include="Views\Shared\Entity.ascx" />
     <Content Include="Views\Home\EntityDetails.aspx" />
-    <Content Include="Views\Home\EntityImages.ascx" />
-    <Content Include="Views\Home\EntityList.ascx" />
-    <Content Include="Views\Home\EntityVideos.ascx" />
+    <Content Include="Views\Shared\EntityImages.ascx" />
+    <Content Include="Views\Shared\EntityList.ascx" />
+    <Content Include="Views\Shared\EntityVideos.ascx" />
     <Content Include="Views\Home\Index.aspx" />
+    <Content Include="Views\Home\Page.aspx" />
     <Content Include="Views\Manage\Images.aspx" />
     <Content Include="Views\Manage\Music.aspx" />
     <Content Include="Views\Manage\PopUp.Master" />
@@ -243,18 +255,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>False</UseIIS>
-          <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>1353</DevelopmentServerPort>
-          <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost/Pandemiia</IISUrl>
-          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
-          <IISAppRootUrl>http://localhost/Pandemic</IISAppRootUrl>
-          <NTLMAuthentication>False</NTLMAuthentication>
-          <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl>
-          </CustomServerUrl>
-          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+          <SaveServerSettingsInUserFile>True</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
     </VisualStudio>

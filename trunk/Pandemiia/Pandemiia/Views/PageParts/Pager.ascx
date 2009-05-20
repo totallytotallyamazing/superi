@@ -27,7 +27,7 @@
                }
                else
                {
-                   if (i > Model.Length / 2)
+                   if (i >= Model.Length / 2)
                        bottomDivClass = "pageNumberSecond";
                }
         %>

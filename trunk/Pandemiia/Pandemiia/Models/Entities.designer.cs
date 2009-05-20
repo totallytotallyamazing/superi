@@ -48,6 +48,12 @@ namespace Pandemiia.Models
     partial void InsertEntity(Entity instance);
     partial void UpdateEntity(Entity instance);
     partial void DeleteEntity(Entity instance);
+    partial void InsertTag(Tag instance);
+    partial void UpdateTag(Tag instance);
+    partial void DeleteTag(Tag instance);
+    partial void InsertEntityTagMapping(EntityTagMapping instance);
+    partial void UpdateEntityTagMapping(EntityTagMapping instance);
+    partial void DeleteEntityTagMapping(EntityTagMapping instance);
     #endregion
 		
 		public EntitiesDataContext() : 
@@ -125,6 +131,22 @@ namespace Pandemiia.Models
 			get
 			{
 				return this.GetTable<Entity>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Tag> Tags
+		{
+			get
+			{
+				return this.GetTable<Tag>();
+			}
+		}
+		
+		public System.Data.Linq.Table<EntityTagMapping> EntityTagMappings
+		{
+			get
+			{
+				return this.GetTable<EntityTagMapping>();
 			}
 		}
 	}
@@ -1006,6 +1028,8 @@ namespace Pandemiia.Models
 		
 		private EntitySet<EntityMusic> _EntityMusics;
 		
+		private EntitySet<EntityTagMapping> _EntityTagMappings;
+		
 		private EntityRef<EntitySource> _EntitySource;
 		
 		private EntityRef<EntityType> _EntityType;
@@ -1037,6 +1061,7 @@ namespace Pandemiia.Models
 			this._EntityPictures = new EntitySet<EntityPicture>(new Action<EntityPicture>(this.attach_EntityPictures), new Action<EntityPicture>(this.detach_EntityPictures));
 			this._EntityVideos = new EntitySet<EntityVideo>(new Action<EntityVideo>(this.attach_EntityVideos), new Action<EntityVideo>(this.detach_EntityVideos));
 			this._EntityMusics = new EntitySet<EntityMusic>(new Action<EntityMusic>(this.attach_EntityMusics), new Action<EntityMusic>(this.detach_EntityMusics));
+			this._EntityTagMappings = new EntitySet<EntityTagMapping>(new Action<EntityTagMapping>(this.attach_EntityTagMappings), new Action<EntityTagMapping>(this.detach_EntityTagMappings));
 			this._EntitySource = default(EntityRef<EntitySource>);
 			this._EntityType = default(EntityRef<EntityType>);
 			OnCreated();
@@ -1249,6 +1274,19 @@ namespace Pandemiia.Models
 			}
 		}
 		
+		[Association(Name="Entity_EntityTagMapping", Storage="_EntityTagMappings", ThisKey="ID", OtherKey="EntityID")]
+		public EntitySet<EntityTagMapping> EntityTagMappings
+		{
+			get
+			{
+				return this._EntityTagMappings;
+			}
+			set
+			{
+				this._EntityTagMappings.Assign(value);
+			}
+		}
+		
 		[Association(Name="EntitySource_Entity", Storage="_EntitySource", ThisKey="SourceID", OtherKey="ID", IsForeignKey=true)]
 		public EntitySource EntitySource
 		{
@@ -1371,6 +1409,324 @@ namespace Pandemiia.Models
 		{
 			this.SendPropertyChanging();
 			entity.Entity = null;
+		}
+		
+		private void attach_EntityTagMappings(EntityTagMapping entity)
+		{
+			this.SendPropertyChanging();
+			entity.Entity = this;
+		}
+		
+		private void detach_EntityTagMappings(EntityTagMapping entity)
+		{
+			this.SendPropertyChanging();
+			entity.Entity = null;
+		}
+	}
+	
+	[Table(Name="dbo.Tags")]
+	public partial class Tag : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ID;
+		
+		private string _TagName;
+		
+		private EntitySet<EntityTagMapping> _EntityTagMappings;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(int value);
+    partial void OnIDChanged();
+    partial void OnTagNameChanging(string value);
+    partial void OnTagNameChanged();
+    #endregion
+		
+		public Tag()
+		{
+			this._EntityTagMappings = new EntitySet<EntityTagMapping>(new Action<EntityTagMapping>(this.attach_EntityTagMappings), new Action<EntityTagMapping>(this.detach_EntityTagMappings));
+			OnCreated();
+		}
+		
+		[Column(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[Column(Name="Tag", Storage="_TagName", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string TagName
+		{
+			get
+			{
+				return this._TagName;
+			}
+			set
+			{
+				if ((this._TagName != value))
+				{
+					this.OnTagNameChanging(value);
+					this.SendPropertyChanging();
+					this._TagName = value;
+					this.SendPropertyChanged("TagName");
+					this.OnTagNameChanged();
+				}
+			}
+		}
+		
+		[Association(Name="Tag_EntityTagMapping", Storage="_EntityTagMappings", ThisKey="ID", OtherKey="TagID")]
+		public EntitySet<EntityTagMapping> EntityTagMappings
+		{
+			get
+			{
+				return this._EntityTagMappings;
+			}
+			set
+			{
+				this._EntityTagMappings.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_EntityTagMappings(EntityTagMapping entity)
+		{
+			this.SendPropertyChanging();
+			entity.Tag = this;
+		}
+		
+		private void detach_EntityTagMappings(EntityTagMapping entity)
+		{
+			this.SendPropertyChanging();
+			entity.Tag = null;
+		}
+	}
+	
+	[Table(Name="dbo.EntityTagMappings")]
+	public partial class EntityTagMapping : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ID;
+		
+		private int _EntityID;
+		
+		private int _TagID;
+		
+		private EntityRef<Entity> _Entity;
+		
+		private EntityRef<Tag> _Tag;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(int value);
+    partial void OnIDChanged();
+    partial void OnEntityIDChanging(int value);
+    partial void OnEntityIDChanged();
+    partial void OnTagIDChanging(int value);
+    partial void OnTagIDChanged();
+    #endregion
+		
+		public EntityTagMapping()
+		{
+			this._Entity = default(EntityRef<Entity>);
+			this._Tag = default(EntityRef<Tag>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_EntityID", DbType="Int NOT NULL")]
+		public int EntityID
+		{
+			get
+			{
+				return this._EntityID;
+			}
+			set
+			{
+				if ((this._EntityID != value))
+				{
+					if (this._Entity.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnEntityIDChanging(value);
+					this.SendPropertyChanging();
+					this._EntityID = value;
+					this.SendPropertyChanged("EntityID");
+					this.OnEntityIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_TagID", DbType="Int NOT NULL")]
+		public int TagID
+		{
+			get
+			{
+				return this._TagID;
+			}
+			set
+			{
+				if ((this._TagID != value))
+				{
+					if (this._Tag.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnTagIDChanging(value);
+					this.SendPropertyChanging();
+					this._TagID = value;
+					this.SendPropertyChanged("TagID");
+					this.OnTagIDChanged();
+				}
+			}
+		}
+		
+		[Association(Name="Entity_EntityTagMapping", Storage="_Entity", ThisKey="EntityID", OtherKey="ID", IsForeignKey=true)]
+		public Entity Entity
+		{
+			get
+			{
+				return this._Entity.Entity;
+			}
+			set
+			{
+				Entity previousValue = this._Entity.Entity;
+				if (((previousValue != value) 
+							|| (this._Entity.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Entity.Entity = null;
+						previousValue.EntityTagMappings.Remove(this);
+					}
+					this._Entity.Entity = value;
+					if ((value != null))
+					{
+						value.EntityTagMappings.Add(this);
+						this._EntityID = value.ID;
+					}
+					else
+					{
+						this._EntityID = default(int);
+					}
+					this.SendPropertyChanged("Entity");
+				}
+			}
+		}
+		
+		[Association(Name="Tag_EntityTagMapping", Storage="_Tag", ThisKey="TagID", OtherKey="ID", IsForeignKey=true)]
+		public Tag Tag
+		{
+			get
+			{
+				return this._Tag.Entity;
+			}
+			set
+			{
+				Tag previousValue = this._Tag.Entity;
+				if (((previousValue != value) 
+							|| (this._Tag.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Tag.Entity = null;
+						previousValue.EntityTagMappings.Remove(this);
+					}
+					this._Tag.Entity = value;
+					if ((value != null))
+					{
+						value.EntityTagMappings.Add(this);
+						this._TagID = value.ID;
+					}
+					else
+					{
+						this._TagID = default(int);
+					}
+					this.SendPropertyChanged("Tag");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 }

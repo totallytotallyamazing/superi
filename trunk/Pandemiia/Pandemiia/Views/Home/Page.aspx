@@ -3,7 +3,7 @@
 <%@ Import Namespace="Microsoft.Web.Mvc" %>
 <%@ Import Namespace="Pandemiia.Controllers" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Page
+	Pandemic
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="AdditionalStylesContent" runat="server">

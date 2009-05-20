@@ -59,8 +59,25 @@
       <Association Name="Entity_EntityPicture" Member="EntityPictures" ThisKey="ID" OtherKey="EntityID" Type="EntityPicture" />
       <Association Name="Entity_EntityVideo" Member="EntityVideos" ThisKey="ID" OtherKey="EntityID" Type="EntityVideo" />
       <Association Name="Entity_EntityMusic" Member="EntityMusics" ThisKey="ID" OtherKey="EntityID" Type="EntityMusic" />
+      <Association Name="Entity_EntityTagMapping" Member="EntityTagMappings" ThisKey="ID" OtherKey="EntityID" Type="EntityTagMapping" />
       <Association Name="EntitySource_Entity" Member="EntitySource" ThisKey="SourceID" OtherKey="ID" Type="EntitySource" IsForeignKey="true" />
       <Association Name="EntityType_Entity" Member="EntityType" ThisKey="TypeID" OtherKey="ID" Type="EntityType" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Tags" Member="Tags">
+    <Type Name="Tag">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Tag" Member="TagName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Tag_EntityTagMapping" Member="EntityTagMappings" ThisKey="ID" OtherKey="TagID" Type="EntityTagMapping" />
+    </Type>
+  </Table>
+  <Table Name="dbo.EntityTagMappings" Member="EntityTagMappings">
+    <Type Name="EntityTagMapping">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="EntityID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TagID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Entity_EntityTagMapping" Member="Entity" ThisKey="EntityID" OtherKey="ID" Type="Entity" IsForeignKey="true" />
+      <Association Name="Tag_EntityTagMapping" Member="Tag" ThisKey="TagID" OtherKey="ID" Type="Tag" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

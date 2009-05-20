@@ -27,7 +27,7 @@
           <EnableENC>False</EnableENC>
           <AlwaysStartWebServerOnDebug>True</AlwaysStartWebServerOnDebug>
           <EnableWcfTestClientForSVC>False</EnableWcfTestClientForSVC>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>1353</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

@@ -50,12 +50,6 @@
                 Картинка:<br />
                 <input type="file" name="image" style="margin-left:10px; margin-top:15px;" />
             </div>
-<%--            <div id="fileDialog" title="Файл картинки">
-                <center>
-                    <br />--%>
-                    
-<%--                </center>
-            </div>--%>
         </div>
         <div style="clear: both">
         </div>

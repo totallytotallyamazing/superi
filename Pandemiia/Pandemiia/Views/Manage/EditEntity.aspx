@@ -13,14 +13,14 @@
             $.fck.config = { path: '../../Controls/fckeditor/', height: 300, config: { SkinPath: "skins/office2003/", DefaultLanguage: "RU", AutoDetectLanguage: false, HtmlEncodeOutput: true} };
             $('textarea#Description').fck();
             $('textarea#Content').fck();
-            $("#fileDialog").dialog({
-                bgiframe: true,
-                height: 140,
-                modal: true,
-                autoOpen: false,
-                resizable: false,
-                buttons: { Ok: function() { $(this).dialog('close'); } }
-            });
+//            $("#fileDialog").dialog({
+//                bgiframe: true,
+//                height: 140,
+//                modal: true,
+//                autoOpen: false,
+//                resizable: false,
+//                buttons: { Ok: function() { $(this).dialog('close'); } }
+//            });
         });
     </script>
 
@@ -58,6 +58,13 @@
                 <img alt="" src="../../EntityImages/<%= Model.Image %>" />
                 <%} %>
                 <input type="file" name="image" style="margin-left: 10px; margin-top: 15px;" />
+            </div>
+            <div style="float:left; padding-left:10px;">
+                <label for="tags">Теги</label>
+                <%= Html.TextBox("tags", Model.GetTagString(), new{style = "width:400px"}) %>
+                <div class="tags">
+                
+                </div>
             </div>
             <div style="clear: both">
             </div>

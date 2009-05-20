@@ -72,7 +72,7 @@ namespace Pandemiia.Controllers
         {
             List<EntitySource> entitySources = _context.EntitySources.Select(es => es).ToList();
             List<EntityType> entityTypes = _context.EntityTypes.Select(es => es).ToList();
-
+            string[] allTags = _context.Tags.Select(t => t.TagName).ToArray<string>();
             List<SelectListItem> sliSources = new List<SelectListItem>();
             List<SelectListItem> sliTypes = new List<SelectListItem>();
             Entity entity = _context.Entities.SingleOrDefault(e => e.ID == Id);

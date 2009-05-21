@@ -33,6 +33,8 @@ namespace Pandemiia.Controllers
         {
             ViewData["EntitySources"] = _context.EntitySources.Select(es => es);
             ViewData["EntityTypes"] = _context.EntityTypes.Select(es => es);
+            List<Tag> tagList = _context.Tags.Select(t => t).ToList();
+            ViewData["tagList"] = tagList;
             return View();
         }
 
@@ -55,8 +57,50 @@ namespace Pandemiia.Controllers
                 entity.Image = fileName;
                 postedFile.SaveAs(Utils.ServerPath("EntityImages") + fileName);
             }
+            _context.EntityTagMappings.DeleteAllOnSubmit(entity.EntityTagMappings);
             _context.SubmitChanges();
+            AddTags(frm["tags"], entity.ID);
             return RedirectToAction("Entities");
+        }
+
+        private void AddTags(string tags, int entityId)
+        {
+            //adding completely new tags
+            string[] tagArray = tags.Split((' '));
+            List<Tag> allTagList = _context.Tags.Select(t => t).ToList();
+            string[] allTagArray = allTagList.Select(t => t.TagName).ToArray();
+            string[] newTags = tagArray.Select(t => t).Where(t => (!allTagArray.Contains(t))).ToArray();
+            int[] newTagIds = new int[newTags.Length];
+            for (int i = 0; i < newTags.Length; i++)
+            {
+                string tagName = newTags[i];
+                Tag tag = new Tag();
+                tag.TagName = tagName;
+                _context.Tags.InsertOnSubmit(tag);
+            }
+            _context.SubmitChanges();
+
+            //determining which tag mappings are new
+
+            var mappings = _context.EntityTagMappings.Select(etm=>etm).Where(etm=>etm.EntityID == entityId);
+            int mappingsCount = mappings.Count();
+            foreach (string tag in tagArray)
+            {
+                bool hasMapping = false;
+                if(mappingsCount>0)
+                    foreach (EntityTagMapping mapping in mappings)
+                    {
+                        if (tag == mapping.Tag.TagName)
+                            hasMapping = true;
+                    }
+                if (!hasMapping)
+                {
+                    Tag tagToMap = _context.Tags.SingleOrDefault(t => t.TagName == tag);
+                    EntityTagMapping newMapping = new EntityTagMapping { EntityID = entityId, TagID = tagToMap.ID };
+                    _context.EntityTagMappings.InsertOnSubmit(newMapping);
+                }
+            }
+            _context.SubmitChanges();
         }
 
         public ActionResult DeleteEntity(int Id)
@@ -93,6 +137,8 @@ namespace Pandemiia.Controllers
                 sli.Selected = (type.ID == entity.TypeID);
                 sliTypes.Add(sli);
             }
+            List<Tag> tagList = _context.Tags.Select(t => t).ToList();
+            ViewData["tagList"] = tagList;
             ViewData["EntitySources"] = sliSources;
             ViewData["EntytyTypes"] = sliTypes;
             return View(entity);
@@ -119,6 +165,7 @@ namespace Pandemiia.Controllers
             }
             _context.Entities.InsertOnSubmit(entity);
             _context.SubmitChanges();
+            AddTags(frm["tags"], entity.ID);
             return RedirectToAction("Entities");
         }
         #endregion

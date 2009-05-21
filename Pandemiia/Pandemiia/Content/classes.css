@@ -6,3 +6,4 @@
 .entityPicture{float:left; padding-right:5px;}
 .imagesPreview{clear:both; width:500px;}
 .tags{width:400px; border:1px solid #CCC; height:280px; overflow:auto; margin-top:5px;}
+.tags a{padding: 0 5px;}

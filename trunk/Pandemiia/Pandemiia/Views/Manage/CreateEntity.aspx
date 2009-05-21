@@ -13,15 +13,37 @@
             $.fck.config = { path: '../Controls/fckeditor/', height: 300, config: { SkinPath: "skins/office2003/", DefaultLanguage: "RU", AutoDetectLanguage: false, HtmlEncodeOutput: true} };
             $('textarea#Description').fck();
             $('textarea#Content').fck();
-//            $("#fileDialog").dialog({
-//                bgiframe: true,
-//                height: 140,
-//                modal: true,
-//                autoOpen: false,
-//                resizable: false,
-//                buttons: { Ok: function() { $(this).dialog('close'); } }
-//            });
+            initTags();
         });
+
+        function initTags() {
+            $(".tags a").each(
+                function(i) {
+                    var val = $("input[name='tags']").val();
+                    var tagsTyped = val.split(' ');
+                    if ($.inArray(this.innerHTML, tagsTyped) > -1) {
+                        this.style.color = "green";
+                    }
+                    else {
+                        this.style.color = "";
+                        $(this).unbind("click", addTag);
+                        $(this).bind("click", addTag);
+                    }
+                }
+            );
+        }
+
+        function addTag(el) {
+            var tags = $("input[name='tags']");
+            var tagsText = $("input[name='tags']").val();
+
+            if (tagsText != "") {
+                tags.val(tags.val() + " ");
+            }
+            tags.val(tags.val() + this.innerHTML);
+            this.style.color = "green";
+            $(this).unbind("click", addTag);
+        }
     </script>
 
     <h2>
@@ -51,6 +73,18 @@
                 <input type="file" name="image" style="margin-left:10px; margin-top:15px;" />
             </div>
         </div>
+        <div style="float:left; padding-left:10px;">
+                <label for="tags">Теги</label>
+                <%= Html.TextBox("tags", Model.GetTagString(), new { style = "width:400px", onkeyup = "initTags();", autocomplete = "off" })%>
+                <div class="tags">
+                    <%
+                        List<Tag> tagList = (List<Tag>)ViewData["tagList"];
+                        foreach (Tag tag in tagList)
+                      {%>
+                        <a href="#"><%= tag.TagName%></a>
+                      <%} %>
+                </div>
+            </div>
         <div style="clear: both">
         </div>
         <p>

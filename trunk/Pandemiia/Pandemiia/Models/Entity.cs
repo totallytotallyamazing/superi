@@ -21,9 +21,9 @@ namespace Pandemiia.Models
                 if (!first)
                 {
                     result += " ";
-                    first = false;
                 }
                 result += tm.Tag.TagName;
+                first = false;
             }
             return result;
         }

@@ -75,7 +75,7 @@
         </div>
         <div style="float:left; padding-left:10px;">
                 <label for="tags">Теги</label>
-                <%= Html.TextBox("tags", Model.GetTagString(), new { style = "width:400px", onkeyup = "initTags();", autocomplete = "off" })%>
+                <%= Html.TextBox("tags", "", new { style = "width:400px", onkeyup = "initTags();", autocomplete = "off" })%>
                 <div class="tags">
                     <%
                         List<Tag> tagList = (List<Tag>)ViewData["tagList"];

@@ -9,7 +9,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <script type="text/javascript">
-        $(function(){$("#bottomRight").html("");})        
+        $(function() { $(".filterTop").html(""); $(".filterBottom").html(""); })        
     </script>
     <div class="detailsHeader">
         <div class="entityTitle" style="color: White">

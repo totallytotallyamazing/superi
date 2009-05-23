@@ -19,6 +19,7 @@ namespace Pandemiia.Controllers
             ViewData["source"] = "All";
             ViewData["typeName"] = (typeName) ?? "All";
             ViewData["entityCount"] = totalCount;
+            ViewData["tagName"] = "";
             if (pageNumber != null)
                 ViewData["pageNumber"] = pageNumber.Value;
             else
@@ -65,6 +66,16 @@ namespace Pandemiia.Controllers
                 ViewData["pageNumber"] = pageNumber.Value;
             else
                 ViewData["pageNumber"] = 1;
+            return View("FilteredList", entities);
+        }
+
+        public ActionResult Tags(string typeName)
+        {
+            EntitiesDataContext context = new EntitiesDataContext();
+            List<Entity> entities = (from etm in context.EntityTagMappings where etm.Tag.TagName.ToLower() == typeName.ToLower() select etm.Entity).ToList();
+            ViewData["entityCount"] = entities.Count;
+            ViewData["source"] = "All";
+            ViewData["typeName"] = "All";
             return View("FilteredList", entities);
         }
 

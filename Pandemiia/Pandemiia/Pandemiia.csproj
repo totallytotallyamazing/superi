@@ -212,6 +212,7 @@
     <Content Include="Content\img\readingFilter.jpg" />
     <Content Include="Content\img\readingFilterActive.jpg" />
     <Content Include="Content\img\readingFinger.jpg" />
+    <Content Include="Content\img\tag.jpg" />
     <Content Include="Content\img\test.jpg" />
     <Content Include="Content\img\theirs.jpg" />
     <Content Include="Content\img\theirsBg.jpg" />

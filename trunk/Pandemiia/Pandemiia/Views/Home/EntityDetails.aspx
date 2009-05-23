@@ -1,5 +1,7 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<Pandemiia.Models.Entity>" %>
 <%@ Import Namespace="Pandemiia.Helpers" %>
+<%@ Import Namespace="Pandemiia.Models" %>
+<%@ Import Namespace="Pandemiia.Controllers" %>
 <%@ Import Namespace="Microsoft.Web.Mvc" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
     <%= Model.Title %>
@@ -34,6 +36,16 @@
                {
                    Response.Write(Model.Content);
             } %>
+        </div>
+        <div class="tags">
+            <%= Html.Image("~/Content/img/tag.jpg") %>
+            <% for (int i = 0; i < Model.EntityTagMappings.Count; i++)
+               {
+                   EntityTagMapping mapping = Model.EntityTagMappings[i];
+                   Response.Write(Html.ActionLink<FilterController>(fc => fc.Tags(mapping.Tag.TagName), mapping.Tag.TagName));
+                   if (i != Model.EntityTagMappings.Count - 1)
+                       Response.Write(", ");
+               } %>
         </div>
         <div class="finger">
             <%

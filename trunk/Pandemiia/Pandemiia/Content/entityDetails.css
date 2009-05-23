@@ -5,6 +5,9 @@
 .finger{float: right; height:0px;}
 .finger img{position: relative;	top: -169px;}
 .bottomContent{font-size:12px; width:455px;}
+.tags{float:left; margin-top:-22px; color:#494949;}
+.tags a{text-decoration:none; color:inherit;}
+.tags a:hover{text-decoration:underline;}
 
 /* Images */
 

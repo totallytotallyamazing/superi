@@ -15,6 +15,8 @@ namespace Pandemiia
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+            routes.IgnoreRoute("favicon.ico");
+            routes.IgnoreRoute("pandemic.xml");
             routes.MapRoute(
                 "Filter0",
                 "Filter/{action}/{typeName}",

@@ -13,7 +13,7 @@
     
     <div class="pages">
         <%int entityCount = Convert.ToInt32(ViewData["entityCount"]); %>
-        <% Html.RenderAction<PagePartsController>(ac=>ac.Pager(entityCount, 1, "", "")); %>
+        <% Html.RenderAction<PagePartsController>(ac=>ac.Pager(entityCount, 1, "", "", null)); %>
     </div>
 
 </asp:Content>

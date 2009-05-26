@@ -7,6 +7,7 @@
       string typeName = ViewData["typeName"].ToString();
       int pageNumber = Convert.ToInt32(ViewData["pageNumber"]);
       bool homeController = (string.IsNullOrEmpty(source) && string.IsNullOrEmpty(typeName));
+      string tagName = (ViewData["tagName"] as string);
 %>
 <div style="float:left; display:none;">LEFT</div>
 <center>
@@ -42,14 +43,21 @@
                       else
                           Response.Write(Html.ActionLink<HomeController>(ac => ac.Page(Model[i]), Model[i].ToString()));
                   }
+                  else if (!string.IsNullOrEmpty(tagName))
+                  {
+                      if(current)
+                          Response.Write(Model[i].ToString());
+                      else
+                        Response.Write(Html.ActionLink<FilterController>(ac => ac.Tags(tagName, Model[i]), Model[i].ToString()));
+                  }
                   else
                   {
                       if (current)
                           Response.Write(Model[i].ToString());
                       else
                       {
-                          string response="";
-                          switch(source)
+                          string response = "";
+                          switch (source)
                           {
                               case "All":
                                   response = Html.ActionLink<FilterController>(ac => ac.All(typeName, Model[i]), Model[i].ToString());
@@ -64,7 +72,7 @@
                                   response = Html.ActionLink<FilterController>(ac => ac.Theirs(typeName, Model[i]), Model[i].ToString());
                                   break;
                           }
-                          
+
                           Response.Write(response);
                       }
                   } %>

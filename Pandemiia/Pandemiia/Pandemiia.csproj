@@ -89,6 +89,7 @@
     </Compile>
     <Compile Include="Models\Entity.cs" />
     <Compile Include="Models\Settings.cs" />
+    <Compile Include="Models\TagExtention.cs" />
     <Compile Include="Models\Utils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -221,10 +222,14 @@
     <Content Include="Content\img\videoFinger.jpg" />
     <Content Include="Content\img\yours.jpg" />
     <Content Include="Content\img\yoursBg.jpg" />
+    <Content Include="Content\tagcloud.swf" />
+    <Content Include="favicon.ico" />
     <Content Include="Scripts\fcktools.js" />
     <Content Include="Scripts\jquery.easing.js" />
     <Content Include="Scripts\jquery.fancybox.js" />
+    <Content Include="Scripts\jquery.flash.js" />
     <Content Include="Scripts\jquery.watermark.js" />
+    <Content Include="Scripts\swfobject.js" />
     <Content Include="Views\Filter\FilteredList.aspx" />
     <Content Include="Views\PageParts\Filter.ascx" />
     <Content Include="Views\PageParts\Pager.ascx" />

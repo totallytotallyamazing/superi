@@ -19,7 +19,7 @@ namespace Pandemiia.Controllers
             ViewData["source"] = "All";
             ViewData["typeName"] = (typeName) ?? "All";
             ViewData["entityCount"] = totalCount;
-            ViewData["tagName"] = "";
+            ViewData["tagName"] = null;
             if (pageNumber != null)
                 ViewData["pageNumber"] = pageNumber.Value;
             else
@@ -34,6 +34,7 @@ namespace Pandemiia.Controllers
             ViewData["source"] = "Yours";
             ViewData["typeName"] = (typeName) ?? "All";
             ViewData["entityCount"] = totalCount;
+            ViewData["tagName"] = null;
             if (pageNumber != null)
                 ViewData["pageNumber"] = pageNumber.Value;
             else
@@ -48,6 +49,7 @@ namespace Pandemiia.Controllers
             ViewData["source"] = "Ours";
             ViewData["typeName"] = (typeName) ?? "All";
             ViewData["entityCount"] = totalCount;
+            ViewData["tagName"] = null;
             if (pageNumber != null)
                 ViewData["pageNumber"] = pageNumber.Value;
             else
@@ -62,6 +64,7 @@ namespace Pandemiia.Controllers
             ViewData["source"] = "Theirs";
             ViewData["typeName"] = (typeName) ?? "All";
             ViewData["entityCount"] = totalCount;
+            ViewData["tagName"] = null;
             if (pageNumber != null)
                 ViewData["pageNumber"] = pageNumber.Value;
             else
@@ -69,13 +72,23 @@ namespace Pandemiia.Controllers
             return View("FilteredList", entities);
         }
 
-        public ActionResult Tags(string typeName)
+        public ActionResult Tags(string typeName, int? pageNumber)
         {
+            int startIndex = (pageNumber == null || pageNumber == 0) ? 1 : pageNumber.Value;
+            startIndex--;
+            startIndex *= Settings.PageSize;
+            int entitiesCount = Settings.PageSize;
             EntitiesDataContext context = new EntitiesDataContext();
             List<Entity> entities = (from etm in context.EntityTagMappings where etm.Tag.TagName.ToLower() == typeName.ToLower() select etm.Entity).ToList();
             ViewData["entityCount"] = entities.Count;
+            entities = entities.Skip(startIndex).Take(entitiesCount).ToList();
             ViewData["source"] = "All";
             ViewData["typeName"] = "All";
+            ViewData["tagName"] = typeName;
+            if (pageNumber != null)
+                ViewData["pageNumber"] = pageNumber.Value;
+            else
+                ViewData["pageNumber"] = 1;
             return View("FilteredList", entities);
         }
 

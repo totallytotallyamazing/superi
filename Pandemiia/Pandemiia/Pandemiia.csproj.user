@@ -10,6 +10,7 @@
           </StartPageUrl>
           <StartAction>NoStartPage</StartAction>
           <AspNetDebugging>True</AspNetDebugging>
+          <SilverlightDebugging>False</SilverlightDebugging>
           <NativeDebugging>False</NativeDebugging>
           <SQLDebugging>False</SQLDebugging>
           <PublishCopyOption>RunFiles</PublishCopyOption>
@@ -27,7 +28,7 @@
           <EnableENC>False</EnableENC>
           <AlwaysStartWebServerOnDebug>True</AlwaysStartWebServerOnDebug>
           <EnableWcfTestClientForSVC>False</EnableWcfTestClientForSVC>
-          <UseIIS>False</UseIIS>
+          <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>1353</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

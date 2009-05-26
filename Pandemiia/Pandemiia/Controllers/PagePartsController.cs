@@ -10,7 +10,7 @@ namespace Pandemiia.Controllers
 {
     public class PagePartsController : Controller
     {
-        public ActionResult Pager(int entitiesCount,  int pageNumber, string source, string typeName)
+        public ActionResult Pager(int entitiesCount,  int pageNumber, string source, string typeName, string tagName)
         {
             int pagesCount = entitiesCount / Settings.PageSize;
             if (entitiesCount % Settings.PageSize > 0)
@@ -22,6 +22,7 @@ namespace Pandemiia.Controllers
             ViewData["typeName"] = typeName;
             ViewData["pagesCount"] = pagesCount;
             ViewData["pageNumber"] = pageNumber;
+            ViewData["tagName"] = tagName;
             return View(pages);
         }
 

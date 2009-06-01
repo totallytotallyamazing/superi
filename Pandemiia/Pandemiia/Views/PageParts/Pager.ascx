@@ -1,15 +1,43 @@
 <%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<int[]>" %>
 <%@ Import Namespace="Microsoft.Web.Mvc" %>
 <%@ Import Namespace="Pandemiia.Controllers" %>
-<%if (Model.Length > 0)
+<%if (Model.Length > 1)
   {
       string source = ViewData["source"].ToString();
       string typeName = ViewData["typeName"].ToString();
       int pageNumber = Convert.ToInt32(ViewData["pageNumber"]);
       bool homeController = (string.IsNullOrEmpty(source) && string.IsNullOrEmpty(typeName));
       string tagName = (ViewData["tagName"] as string);
+      
+      RouteValueDictionary routeValues = new RouteValueDictionary();
+      routeValues["controller"] = "Home";
+      routeValues["action"] = "Page";
+      string thereUrl = "#";
+      string hereUrl = "#";
+      if (pageNumber > 1)
+      {
+          routeValues["id"] = pageNumber - 1;
+          thereUrl = Url.RouteUrl(routeValues);
+      }
+      if (pageNumber < Model.Length)
+      {
+          routeValues["id"] = pageNumber + 1;
+          hereUrl = Url.RouteUrl(routeValues);
+      }
+      
 %>
-<div style="float:left; display:none;">LEFT</div>
+<div class="there">
+    <div class="thereImage">
+        <a href= "<%= thereUrl %>">
+            <%= Html.Image("~/Content/img/there.jpg")%>
+        </a>
+    </div>
+    <div class="thereLink">
+        <a href="<%= thereUrl %>">
+            туды
+        </a>
+    </div>
+</div>
 <center>
 <table>
     <tr>
@@ -84,5 +112,16 @@
     </tr>
 </table>
 </center>
-<div style="float:right; display:none;">RIGHT</div>
+<div class="here">    
+    <div class="hereLink">
+        <a href="<%= hereUrl %>">
+            сюды
+        </a>
+    </div>
+    <div class="hereImage">
+        <a href="<%= hereUrl %>">
+            <%= Html.Image("~/Content/img/here.jpg")%>
+        </a>
+    </div>
+</div>
 <%} %>

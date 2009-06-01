@@ -69,6 +69,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ErrorsController.cs" />
     <Compile Include="Controllers\FilterController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -190,15 +191,18 @@
     <Content Include="Content\fancy\fancy_title_right.png" />
     <Content Include="Content\fancy\jquery.fancybox.css" />
     <Content Include="Content\global.css" />
+    <Content Include="Content\img\404.jpg" />
     <Content Include="Content\img\admin\noImage.jpg" />
     <Content Include="Content\img\allSources.jpg" />
     <Content Include="Content\img\allTypesFilter.jpg" />
     <Content Include="Content\img\audioFinger.jpg" />
     <Content Include="Content\img\bottomRight.jpg" />
     <Content Include="Content\img\circle.jpg" />
+    <Content Include="Content\img\fatalError.jpg" />
     <Content Include="Content\img\fly.jpg" />
     <Content Include="Content\img\handEye.jpg" />
     <Content Include="Content\img\header.jpg" />
+    <Content Include="Content\img\here.jpg" />
     <Content Include="Content\img\imageFilter.jpg" />
     <Content Include="Content\img\imageFilterActive.jpg" />
     <Content Include="Content\img\imageFinger.jpg" />
@@ -217,6 +221,7 @@
     <Content Include="Content\img\test.jpg" />
     <Content Include="Content\img\theirs.jpg" />
     <Content Include="Content\img\theirsBg.jpg" />
+    <Content Include="Content\img\there.jpg" />
     <Content Include="Content\img\videoFilter.jpg" />
     <Content Include="Content\img\videoFilterActive.jpg" />
     <Content Include="Content\img\videoFinger.jpg" />
@@ -230,6 +235,8 @@
     <Content Include="Scripts\jquery.flash.js" />
     <Content Include="Scripts\jquery.watermark.js" />
     <Content Include="Scripts\swfobject.js" />
+    <Content Include="Views\Errors\Default.aspx" />
+    <Content Include="Views\Errors\NotFound.aspx" />
     <Content Include="Views\Filter\FilteredList.aspx" />
     <Content Include="Views\PageParts\Filter.ascx" />
     <Content Include="Views\PageParts\Pager.ascx" />

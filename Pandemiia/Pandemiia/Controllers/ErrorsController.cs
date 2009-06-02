@@ -7,6 +7,8 @@ using System.Web.Mvc.Ajax;
 
 namespace Pandemiia.Controllers
 {
+    [HandleError]
+    [HandleError(ExceptionType=typeof(Exception), View="Default")]
     public class ErrorsController : Controller
     {
         //

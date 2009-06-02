@@ -35,6 +35,18 @@
             so.write("tagCloud");
         })
     </script>
+    <script type="text/javascript">
+
+        $(window).scroll(
+                function() {
+                    if ($(window).scrollTop() > $(window).height()) {
+                        $("#tagCloud").css("padding-top", $(window).scrollTop() - $(window).height() / 2 - 301);
+                    }
+                    else {
+                        $("#tagCloud").css("padding-top", 0)
+                    }
+                });
+    </script> 
 </head>
 
 <body>

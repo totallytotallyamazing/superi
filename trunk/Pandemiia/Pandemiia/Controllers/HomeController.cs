@@ -7,7 +7,6 @@ using Pandemiia.Models;
 
 namespace Pandemiia.Controllers
 {
-    [HandleError]
     public class HomeController : Controller
     {
         EntitiesDataContext _context = new EntitiesDataContext();
@@ -61,6 +60,11 @@ namespace Pandemiia.Controllers
         }
 
         public ActionResult EntityImages(Entity entity)
+        {
+            return View(entity);
+        }
+
+        public ActionResult EntityMusics(Entity entity)
         {
             return View(entity);
         }

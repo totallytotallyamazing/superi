@@ -39,8 +39,11 @@
 
         $(window).scroll(
                 function() {
-                    if ($(window).scrollTop() > $(window).height()) {
-                        $("#tagCloud").css("padding-top", $(window).scrollTop() - $(window).height() / 2 - 301);
+                    if ($(window).scrollTop() > 576) {
+                        var topPadding = $(window).scrollTop() - 576;
+                        if (topPadding > 0 && ($(window).scrollTop() + 301 + 326) < $("#handEye").position().top) {
+                            $("#tagCloud").css("padding-top", topPadding);
+                        }
                     }
                     else {
                         $("#tagCloud").css("padding-top", 0)

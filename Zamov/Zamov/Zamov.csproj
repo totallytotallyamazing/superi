@@ -75,11 +75,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>WebResources.ru.resx</DependentUpon>
     </Compile>
-    <Compile Include="App_GlobalResources\WebResources.ua1.designer.cs">
-      <DependentUpon>WebResources.ua.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-    </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Default.aspx.cs">
@@ -136,10 +131,6 @@
     <Content Include="App_GlobalResources\WebResources.en.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>WebResources.en1.designer.cs</LastGenOutput>
-    </Content>
-    <Content Include="App_GlobalResources\WebResources.ua.resx">
-      <Generator>GlobalResourceProxyGenerator</Generator>
-      <LastGenOutput>WebResources.ua1.designer.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>

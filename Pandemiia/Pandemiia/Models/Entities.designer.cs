@@ -393,6 +393,8 @@ namespace Pandemiia.Models
 		
 		private int _EntityID;
 		
+		private string _Description;
+		
 		private EntityRef<Entity> _Entity;
 		
     #region Extensibility Method Definitions
@@ -407,6 +409,8 @@ namespace Pandemiia.Models
     partial void OnPreviewChanged();
     partial void OnEntityIDChanging(int value);
     partial void OnEntityIDChanged();
+    partial void OnDescriptionChanging(string value);
+    partial void OnDescriptionChanged();
     #endregion
 		
 		public EntityPicture()
@@ -495,6 +499,26 @@ namespace Pandemiia.Models
 					this._EntityID = value;
 					this.SendPropertyChanged("EntityID");
 					this.OnEntityIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Description", DbType="VarChar(250)", CanBeNull=false)]
+		public string Description
+		{
+			get
+			{
+				return this._Description;
+			}
+			set
+			{
+				if ((this._Description != value))
+				{
+					this.OnDescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._Description = value;
+					this.SendPropertyChanged("Description");
+					this.OnDescriptionChanged();
 				}
 			}
 		}

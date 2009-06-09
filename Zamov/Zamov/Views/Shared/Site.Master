@@ -8,13 +8,16 @@
 </head>
 
 <body>
+    <div id="header">
+    
+    </div>
     <div class="page">
 
         <div id="header">
             <div id="title">
                 <h1>My MVC Application</h1>
             </div>
-              
+              <%=  HttpContext.GetGlobalResourceObject("WebResources", "City") %>
             <div id="logindisplay">
                 <% Html.RenderPartial("LogOnUserControl"); %>
             </div> 
@@ -24,6 +27,7 @@
                 <ul id="menu">              
                     <li><%= Html.ActionLink("Home", "Index", "Home")%></li>
                     <li><%= Html.ActionLink("About", "About", "Home")%></li>
+                    <%= Html.ActionLink("RU", "Ru", "Home")%>
                 </ul>
             
             </div>

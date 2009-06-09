@@ -21,6 +21,7 @@
       <Column Name="Picture" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
       <Column Name="Preview" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
       <Column Name="EntityID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(250)" CanBeNull="false" />
       <Association Name="Entity_EntityPicture" Member="Entity" ThisKey="EntityID" OtherKey="ID" Type="Entity" IsForeignKey="true" />
     </Type>
   </Table>

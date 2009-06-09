@@ -25,8 +25,9 @@ namespace Zamov.Controllers
 
         public ActionResult Ru()
         {
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("ru-RU");
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("ru-RU");
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("uk-UA");
+            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("uk-UA");
+            //Response.Cookies["lang"] = new HttpCookie("lang", "uk-UA");
             //.CurrentUICulture = CultureInfo.GetCultureInfo("ru-RU");
             return RedirectToAction("Index");
         }

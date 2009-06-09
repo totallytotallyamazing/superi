@@ -3,9 +3,12 @@ The base color for this template is #5c87b2. If you'd like
 to use a different color start by replacing all instances of
 #5c87b2 with your new color.
 ----------------------------------------------------------*/
+
+*{margin:0; padding:0;}
+
 body
 {
-    background-color: #5c87b2;
+    background-color: #ffffff;
     font-size: .75em;
     font-family: Verdana, Helvetica, Sans-Serif;
     margin: 0;

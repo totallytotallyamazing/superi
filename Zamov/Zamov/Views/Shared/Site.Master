@@ -5,6 +5,8 @@
 <head runat="server">
     <title><asp:ContentPlaceHolder ID="TitleContent" runat="server" /></title>
     <link href="../../Content/Site.css" rel="stylesheet" type="text/css" />
+    <script src="../../Scripts/jquery.js" type="text/javascript"></script>
+    <script src="../../Scripts/jquery.cookie.js" type="text/javascript"></script>
 </head>
 
 <body>
@@ -17,17 +19,17 @@
             <div id="title">
                 <h1>My MVC Application</h1>
             </div>
-              <%=  HttpContext.GetGlobalResourceObject("WebResources", "City") %>
             <div id="logindisplay">
                 <% Html.RenderPartial("LogOnUserControl"); %>
             </div> 
             
             <div id="menucontainer">
+              <%=  HttpContext.GetGlobalResourceObject("Resources", "City") %>
             
                 <ul id="menu">              
                     <li><%= Html.ActionLink("Home", "Index", "Home")%></li>
                     <li><%= Html.ActionLink("About", "About", "Home")%></li>
-                    <%= Html.ActionLink("RU", "Ru", "Home")%>
+                    <%= Html.ActionLink("RU", "Ru", "Home", new { onclick = "$.cookie('lang', 'uk-UA');window.location.reload(); return false;" })%>
                 </ul>
             
             </div>

@@ -31,6 +31,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Web.Mvc, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Core">
@@ -70,6 +71,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="App_GlobalResources\Resources.ru-RU.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.ru-RU.resx</DependentUpon>
+    </Compile>
     <Compile Include="App_GlobalResources\Resources.uk-UA.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -77,6 +83,7 @@
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PagePartsController.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -84,11 +91,14 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\Helpers.cs" />
+    <Compile Include="Models\City.cs" />
     <Compile Include="Models\Structure.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Structure.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\TranslationItemTypes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -132,7 +142,19 @@
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>Resources.uk-UA.designer.cs</LastGenOutput>
     </Content>
-    <Content Include="Scripts\jquery.cookie.js" />
+    <Content Include="Content\img\leftBottomRadius.jpg" />
+    <Content Include="Content\img\leftTopRadius.jpg" />
+    <Content Include="Content\img\logo.jpg" />
+    <Content Include="Content\img\rightBottomRadius.jpg" />
+    <Content Include="Content\img\rightTopRadius.jpg" />
+    <Content Include="Views\Shared\LanguageSelector.ascx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_GlobalResources\Resources.ru-RU.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Resources.ru-RU.designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="Views\PageParts\HeaderSelectors.ascx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

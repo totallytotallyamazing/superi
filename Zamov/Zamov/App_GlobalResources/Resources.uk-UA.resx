@@ -117,7 +117,25 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Advertisement" xml:space="preserve">
+    <value>Реклама</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>Категорiя</value>
+  </data>
   <data name="City" xml:space="preserve">
     <value>Мiсто</value>
+  </data>
+  <data name="Contacts" xml:space="preserve">
+    <value>Контакти</value>
+  </data>
+  <data name="News" xml:space="preserve">
+    <value>Новини</value>
+  </data>
+  <data name="Rus" xml:space="preserve">
+    <value>рус</value>
+  </data>
+  <data name="Ukr" xml:space="preserve">
+    <value>укр</value>
   </data>
 </root>

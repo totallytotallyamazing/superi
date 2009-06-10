@@ -133,7 +133,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
         </EntityType>
         <EntityType Name="Translations">
@@ -242,6 +242,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="DeleteTranslations" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ItemId" Type="int" Mode="In" />
+          <Parameter Name="TranslationItemTypeId" Type="int" Mode="In" />
+        </Function>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -277,7 +281,10 @@
           <EntitySet Name="ProductImages" EntityType="BaseEntities.ProductImage" />
           <AssociationSet Name="FK_ProductImages_Products" Association="BaseEntities.FK_ProductImages_Products">
             <End Role="Product" EntitySet="Products" />
-            <End Role="ProductImages" EntitySet="ProductImages" /></AssociationSet></EntityContainer>
+            <End Role="ProductImages" EntitySet="ProductImages" /></AssociationSet>
+          <FunctionImport Name="DeleteTranslations">
+            <Parameter Name="ItemId" Mode="In" Type="Int32" />
+            <Parameter Name="TranslationItemTypeId" Mode="In" Type="Int32" /></FunctionImport></EntityContainer>
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="Id" />
@@ -397,7 +404,7 @@
                 <ScalarProperty Name="Enabled" ColumnName="Enabled" />
               </MappingFragment>
             </EntityTypeMapping>
-          </EntitySetMapping>
+            </EntitySetMapping>
           <EntitySetMapping Name="Dealers">
             <EntityTypeMapping TypeName="IsTypeOf(BaseEntities.Dealer)">
               <MappingFragment StoreEntitySet="Dealers">
@@ -446,7 +453,7 @@
                 <ScalarProperty Name="Text" ColumnName="Translation" />
               </MappingFragment>
             </EntityTypeMapping>
-          </EntitySetMapping>
+            </EntitySetMapping>
           <AssociationSetMapping Name="FK_Groups_Categories" TypeName="BaseEntities.FK_Groups_Categories" StoreEntitySet="Groups">
             <EndProperty Name="Categories">
               <ScalarProperty Name="Id" ColumnName="CategoryId" />
@@ -496,7 +503,8 @@
             <EndProperty Name="ProductImages">
               <ScalarProperty Name="Id" ColumnName="Id" /></EndProperty>
             <EndProperty Name="Product">
-              <ScalarProperty Name="Id" ColumnName="ProductId" /></EndProperty></AssociationSetMapping></EntityContainerMapping>
+              <ScalarProperty Name="Id" ColumnName="ProductId" /></EndProperty></AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="DeleteTranslations" FunctionName="BaseEntities.Store.DeleteTranslations" /></EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>
@@ -514,7 +522,7 @@
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram Name="Structure">
+      <Diagram Name="Structure" ShowGrid="false" DisplayType="false">
         <EntityTypeShape EntityType="BaseEntities.Category" Width="1.5" PointX="5" PointY="2.75" Height="1.4279589843749996" IsExpanded="true" />
         <EntityTypeShape EntityType="BaseEntities.City" Width="1.5" PointX="0.75" PointY="1.125" Height="1.7566536458333333" IsExpanded="true" />
         <EntityTypeShape EntityType="BaseEntities.Dealer" Width="1.5" PointX="8.5" PointY="0.5" Height="1.9210009765624998" IsExpanded="true" />

@@ -17,7 +17,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("BaseEntities", "FK_ProductImages_Products", "Product", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Zamov.Models.Product), "ProductImages", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Zamov.Models.ProductImage))]
 
 // Original file name:
-// Generation date: 09/06/2009 16:23:45
+// Generation date: 10/06/2009 18:47:50
 namespace Zamov.Models
 {
     

@@ -1,19 +1,38 @@
 <%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
 
+<%@ Import Namespace="Zamov.Helpers" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title><asp:ContentPlaceHolder ID="TitleContent" runat="server" /></title>
+    <title>
+        <asp:ContentPlaceHolder ID="TitleContent" runat="server" />
+    </title>
     <link href="../../Content/Site.css" rel="stylesheet" type="text/css" />
-    <script src="../../Scripts/jquery.js" type="text/javascript"></script>
-    <script src="../../Scripts/jquery.cookie.js" type="text/javascript"></script>
 </head>
-
 <body>
     <div id="header">
-    
+        <div id="languageSelector">
+            <% Html.RenderPartial("LanguageSelector"); %>
+        </div>
+        <div id="headerSelectors">
+            <% Html.RenderPartial("HeaderSelectors"); %>
+        </div>
     </div>
-    <div class="page">
+    <div id="mainMenu">
+    </div>
+    <div id="content">
+        <div id="leftSide">
+            <asp:ContentPlaceHolder ID="leftMenu" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+        <div id="rightBanner">
+        </div>
+        <div id="mainContent">
+            <asp:ContentPlaceHolder ID="mainContent" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </div>
+    <%--    <div class="page">
 
         <div id="header">
             <div id="title">
@@ -24,12 +43,13 @@
             </div> 
             
             <div id="menucontainer">
-              <%=  HttpContext.GetGlobalResourceObject("Resources", "City") %>
+              <%=  Html.ResourceString("City") %>
             
                 <ul id="menu">              
                     <li><%= Html.ActionLink("Home", "Index", "Home")%></li>
                     <li><%= Html.ActionLink("About", "About", "Home")%></li>
-                    <%= Html.ActionLink("RU", "Ru", "Home", new { onclick = "$.cookie('lang', 'uk-UA');window.location.reload(); return false;" })%>
+                    <li><%= Html.ActionLink("RU", "Ru", "Home")%></li>
+                    <li><%= Html.ActionLink("UA", "Ua", "Home")%></li>
                 </ul>
             
             </div>
@@ -41,6 +61,6 @@
             <div id="footer">
             </div>
         </div>
-    </div>
+    </div>--%>
 </body>
 </html>

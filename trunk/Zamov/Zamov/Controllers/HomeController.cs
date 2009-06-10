@@ -6,6 +6,8 @@ using System.Web.Mvc;
 using Zamov.Models;
 using System.Globalization;
 using System.Threading;
+using System.Resources;
+using System.Web.Routing;
 
 namespace Zamov.Controllers
 {
@@ -23,13 +25,17 @@ namespace Zamov.Controllers
             return View();
         }
 
-        public ActionResult Ru()
+        public ActionResult SetUkrainian()
         {
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("uk-UA");
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("uk-UA");
-            //Response.Cookies["lang"] = new HttpCookie("lang", "uk-UA");
-            //.CurrentUICulture = CultureInfo.GetCultureInfo("ru-RU");
+            Session["lang"] = "uk-UA";
             return RedirectToAction("Index");
         }
+
+        public ActionResult SetRussian()
+        {
+            Session["lang"] = "ru-RU";
+            return RedirectToAction("Index");
+        }
+
     }
 }

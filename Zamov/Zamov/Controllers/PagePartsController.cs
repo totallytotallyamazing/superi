@@ -25,7 +25,6 @@ namespace Zamov.Controllers
             List<Category> categories = context.Categories.Select(c => c).ToList();
             List<SelectListItem> citiesList = (from city in cities select new SelectListItem { Text = city.Name, Value = city.Id.ToString() }).ToList();
             context.DeleteTranslations(1, 1);
-            //List<SelectListItem> categoriesList
             return View();
         }
     }

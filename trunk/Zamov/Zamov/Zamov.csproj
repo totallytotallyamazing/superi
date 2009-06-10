@@ -99,6 +99,7 @@
       <DependentUpon>Structure.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\TranslationItemTypes.cs" />
+    <Compile Include="Models\ZamovStorage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

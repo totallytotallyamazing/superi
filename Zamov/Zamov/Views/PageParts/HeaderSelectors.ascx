@@ -4,7 +4,7 @@
 
 <div>
     <%= Html.ResourceString("City") %><br />
-    <%= Html.DropDownList( %>
+    
 </div>
 <div>
     <%= Html.ResourceString("City") %><br />

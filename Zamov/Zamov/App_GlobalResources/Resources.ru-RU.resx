@@ -123,6 +123,9 @@
   <data name="Category" xml:space="preserve">
     <value>Категория</value>
   </data>
+  <data name="Cities" xml:space="preserve">
+    <value>Города</value>
+  </data>
   <data name="City" xml:space="preserve">
     <value>Город</value>
   </data>

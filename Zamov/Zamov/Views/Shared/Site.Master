@@ -12,14 +12,20 @@
 </head>
 <body>
     <div id="header">
-        <div id="languageSelector">
-            <% Html.RenderPartial("LanguageSelector"); %>
-            <% Html.RenderAction<PagePartsController>(ppc => ppc.HeaderSelectors()); %>
+        <div id="headerRight">
+            <div id="languageSelector">
+                <% Html.RenderPartial("LanguageSelector"); %>
+            </div>
+            <div id="headerSelectors">
+                <% Html.RenderAction<PagePartsController>(ppc => ppc.HeaderSelectors()); %>
+            </div>
         </div>
-        <div id="headerSelectors">
+        <div id="logo">
+            <%= Html.Image("~/Content/img/logo.jpg", "Zamov.net") %>
         </div>
     </div>
     <div id="mainMenu">
+        <%= Html.ResourceString("News") %> | <%= Html.ResourceString("Contacts") %>
     </div>
     <div id="content">
         <div id="leftSide">

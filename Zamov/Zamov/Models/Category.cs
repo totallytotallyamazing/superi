@@ -5,24 +5,22 @@ using System.Web;
 
 namespace Zamov.Models
 {
-    public partial class City
+    public partial class Category
     {
-        //public const ItemTypes ItemType = ItemTypes.City;
-
         public Dictionary<string, string> Names
         {
-            get 
+            get
             {
                 ZamovStorage context = new ZamovStorage();
                 return (from translation in context.Translations
-                        where( translation.ItemId == this.Id && translation.TranslationItemTypeId == (int)ItemTypes.City)
+                        where (translation.ItemId == this.Id && translation.TranslationItemTypeId == (int)ItemTypes.Category)
                         select new { lang = translation.Language, val = translation.Text })
                         .ToDictionary(k => k.lang, v => v.val);
             }
         }
 
         public string GetName(string language)
-        { 
+        {
             string result = Name;
             if (Names.Keys.Contains(language))
                 result = Names[language];
@@ -32,14 +30,14 @@ namespace Zamov.Models
         public void UpdateTranslations(Dictionary<string, string> translations)
         {
             ZamovStorage context = new ZamovStorage();
-            context.DeleteTranslations(this.Id, (int)ItemTypes.City);
+            context.DeleteTranslations(this.Id, (int)ItemTypes.Category);
             foreach (string key in translations.Keys)
             {
                 Translation translation = new Translation
                 {
                     ItemId = this.Id,
                     Language = key,
-                    TranslationItemTypeId = (int)ItemTypes.City,
+                    TranslationItemTypeId = (int)ItemTypes.Category,
                     Text = translations[key]
                 };
                 context.AddToTranslations(translation);

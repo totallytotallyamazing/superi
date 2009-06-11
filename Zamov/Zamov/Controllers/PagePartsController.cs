@@ -21,10 +21,13 @@ namespace Zamov.Controllers
 
         public ActionResult HeaderSelectors()
         {
+            string currentLanguage = ToolsController.CurrentLanguage;
             List<City> cities = context.Cities.Select(c => c).ToList();
             List<Category> categories = context.Categories.Select(c => c).ToList();
-            List<SelectListItem> citiesList = (from city in cities select new SelectListItem { Text = city.Name, Value = city.Id.ToString() }).ToList();
-            context.DeleteTranslations(1, 1);
+            List<SelectListItem> citiesList = (from city in cities select new SelectListItem { Text = city.GetName(currentLanguage), Value = city.Id.ToString() }).ToList();
+            List<SelectListItem> categoriesList = (from category in categories select new SelectListItem { Text = category.GetName(currentLanguage), Value = category.Id.ToString() }).ToList();
+            ViewData["citiesList"] = citiesList;
+            ViewData["categoriesList"] = categoriesList;
             return View();
         }
     }

@@ -1,14 +1,19 @@
-﻿/*----------------------------------------------------------
-The base color for this template is #5c87b2. If you'd like
-to use a different color start by replacing all instances of
-#5c87b2 with your new color.
-----------------------------------------------------------*/
-
-*{margin:0; padding:0;}
+﻿*{margin:0; padding:0;}
 body{font-family: Arial, Sans-Serif, Helvetica, Tahoma; font-size:0.8em;}
+input[type='select']
+{border:1px solid #bdbdbd;}
+#header, #content{width:auto; margin:30px 40px 0px; min-width:1000px;border:1px solid #dbdbdb}
 
-#header{width:auto; height:140px; border:1px solid #dbdbdb; margin:30px 40px 0px; min-width:1000px; }
+#header{height:140px;}
+#mainMenu{float:right; height:16px; margin:0 40px 0 0;}
 #header, #header a{color:#7c7c7c;}
 #header a{text-decoration:none;}
 #header a:hover{text-decoration:underline;}
 #languageSelector{padding-top:16px; margin-left:26px;}
+#headerSelectors{padding-top:50px; padding-left:16px;}
+#headerSelectors div{float:left; padding-left:10px;}
+#headerSelectors div select{width:160px;}
+#headerRight, #logo{float:left;}
+#logo{position:relative; left:20px; top:20px;}
+#logo img{width:200px; height:130px;}
+#mainContent{padding:20px;}

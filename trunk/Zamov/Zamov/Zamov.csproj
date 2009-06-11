@@ -82,8 +82,10 @@
       <DependentUpon>Resources.uk-UA.resx</DependentUpon>
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PagePartsController.cs" />
+    <Compile Include="Controllers\ToolsController.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -92,6 +94,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\Helpers.cs" />
+    <Compile Include="Models\Category.cs" />
     <Compile Include="Models\City.cs" />
     <Compile Include="Models\Structure.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -155,6 +158,7 @@
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>Resources.ru-RU.designer.cs</LastGenOutput>
     </Content>
+    <Content Include="Views\Admin\Cities.aspx" />
     <Content Include="Views\PageParts\HeaderSelectors.ascx" />
   </ItemGroup>
   <ItemGroup>

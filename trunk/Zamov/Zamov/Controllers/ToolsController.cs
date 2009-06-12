@@ -9,17 +9,15 @@ namespace Zamov.Controllers
 {
     public class ToolsController : Controller
     {
-        //
-        // GET: /Tools/
-
         public static string CurrentLanguage
         {
-            get 
+            get
             {
                 if (System.Web.HttpContext.Current.Session["lang"] == null)
                     System.Web.HttpContext.Current.Session["lang"] = "uk-UA";
                 return (string)System.Web.HttpContext.Current.Session["lang"];
             }
+            set { System.Web.HttpContext.Current.Session["lang"] = value; }
         }
 
     }

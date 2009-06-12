@@ -8,44 +8,48 @@
 
     <h2><%= Html.ResourceString("Cities") %></h2>
 
+    <% using (Html.BeginForm("UpdateCities", "Admin")){ %>
     <table>
         <tr>
-            <th></th>
-            <th>
+            <th style="display:none">
                 Id
             </th>
             <th>
-                Name
+                Укр
             </th>
             <th>
-                Enabled
+                Рус
             </th>
+            <th>
+                Показывать
+            </th>
+            <th></th>
         </tr>
-
-    <% foreach (var item in Model) { %>
+    <% foreach (var item in Model)
+       { %>
     
         <tr>
-            <td>
-
+            <td style="display:none">
+                <%= Html.Hidden("itemId_" + item.Id, item.Id)%>
             </td>
             <td>
-                <%= Html.Encode(item.Id) %>
+                <%= Html.TextBox("ukr_" + item.Id, item.GetName("uk-UA", false))%>
             </td>
             <td>
-                <%= Html.Encode(item.Name) %>
+                <%= Html.TextBox("rus_" + item.Id, item.GetName("ru-RU", false))%>
             </td>
             <td>
-                <%= Html.Encode(item.Enabled) %>
+                <%= Html.CheckBox("enabled_" + item.Id, item.Enabled)%>
+            </td>
+            <td>
+                <% %>
             </td>
         </tr>
     
     <% } %>
 
     </table>
-
-    <p>
-        <%= Html.ActionLink("Create New", "Create") %>
-    </p>
+    <%} %>
 
 </asp:Content>
 

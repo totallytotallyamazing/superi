@@ -22,8 +22,13 @@ namespace Zamov.Models
         }
 
         public string GetName(string language)
-        { 
-            string result = Name;
+        {
+            return GetName(language, true);
+        }
+
+        public string GetName(string language, bool replaceWithDefault)
+        {
+            string result = (replaceWithDefault) ? Name : "";
             if (Names.Keys.Contains(language))
                 result = Names[language];
             return result;

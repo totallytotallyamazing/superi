@@ -10,7 +10,7 @@ namespace Zamov.Controllers
 {
     public class PagePartsController : Controller
     {
-        ZamovStorage context = new ZamovStorage();
+        StorageContext context = StorageContext.Instanse;
         //
         // GET: /PageParts/
 

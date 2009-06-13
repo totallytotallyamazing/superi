@@ -17,3 +17,6 @@ input[type='select']
 #logo{position:relative; left:20px; top:15px;}
 #logo img{width:322px; height:143px;}
 #mainContent{padding:20px;}
+
+
+.adminTable tr td{border-collapse:collapse; border:1px dotted #ccc; padding:3px;}

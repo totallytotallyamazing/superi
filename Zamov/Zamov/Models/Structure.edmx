@@ -282,7 +282,7 @@
           <AssociationSet Name="FK_ProductImages_Products" Association="BaseEntities.FK_ProductImages_Products">
             <End Role="Product" EntitySet="Products" />
             <End Role="ProductImages" EntitySet="ProductImages" /></AssociationSet>
-          <FunctionImport Name="DeleteTranslations" a:MethodAccess="Public" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration">
+          <FunctionImport Name="DeleteTranslations" EntitySet="Translations" ReturnType="Collection(BaseEntities.Translation)">
             <Parameter Name="ItemId" Mode="In" Type="Int32" />
             <Parameter Name="TranslationItemTypeId" Mode="In" Type="Int32" /></FunctionImport></EntityContainer>
         <EntityType Name="Category">

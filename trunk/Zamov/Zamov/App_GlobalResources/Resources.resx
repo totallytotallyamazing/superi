@@ -132,11 +132,17 @@
   <data name="Contacts" xml:space="preserve">
     <value>Контакти</value>
   </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Видалити</value>
+  </data>
   <data name="News" xml:space="preserve">
     <value>Новини</value>
   </data>
   <data name="Rus" xml:space="preserve">
     <value>рус</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Зберегти</value>
   </data>
   <data name="Ukr" xml:space="preserve">
     <value>укр</value>

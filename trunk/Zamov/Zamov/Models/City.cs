@@ -13,7 +13,7 @@ namespace Zamov.Models
         {
             get 
             {
-                ZamovStorage context = new ZamovStorage();
+                StorageContext context = StorageContext.Instanse;
                 return (from translation in context.Translations
                         where( translation.ItemId == this.Id && translation.TranslationItemTypeId == (int)ItemTypes.City)
                         select new { lang = translation.Language, val = translation.Text })
@@ -36,7 +36,7 @@ namespace Zamov.Models
 
         public void UpdateTranslations(Dictionary<string, string> translations)
         {
-            ZamovStorage context = new ZamovStorage();
+            StorageContext context = StorageContext.Instanse;
             context.DeleteTranslations(this.Id, (int)ItemTypes.City);
             foreach (string key in translations.Keys)
             {

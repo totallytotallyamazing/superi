@@ -47,7 +47,6 @@ namespace Zamov.Models
                 };
                 context.AddToTranslations(translation);
             }
-            context.SaveChanges();
         }
     }
 }

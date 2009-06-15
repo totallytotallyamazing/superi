@@ -101,6 +101,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Structure.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\TranslationItem.cs" />
     <Compile Include="Models\TranslationItemTypes.cs" />
     <Compile Include="Models\Utils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

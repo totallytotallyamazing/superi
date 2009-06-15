@@ -5,7 +5,7 @@ function tableChanged(dictionary, field) {
     var fieldName = fieldSegments[0];
     var id = fieldSegments[1];
 
-    dictionary[id] = { key: fieldName, value: field.value };
+    dictionary[id] = eval('{ '+fieldName+': fieldName}');
 }
 
 function collectChanges(dictionary, hiddenId) {

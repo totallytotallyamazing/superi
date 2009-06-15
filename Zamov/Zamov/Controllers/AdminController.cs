@@ -5,15 +5,13 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 using Zamov.Models;
+using System.Web.Script.Serialization;
 
 namespace Zamov.Controllers
 {
     [Authorize(Roles="Administrators")]
     public class AdminController : Controller
     {
-        StorageContext context = StorageContext.Instanse;
-        //
-        // GET: /Admin/
 
         public ActionResult Index()
         {
@@ -22,29 +20,58 @@ namespace Zamov.Controllers
 
         public ActionResult Cities()
         {
-            List<City> cities = context.Cities.Select(c => c).ToList();
-            return View(cities);
+            using (ZamovStorage context = new ZamovStorage())
+            {
+                List<City> cities = context.Cities.Select(c => c).ToList();
+                return View(cities);
+            }
         }
 
         public ActionResult DeleteCity(int id)
         {
-            City city = (from c in context.Cities where c.Id == id select c).First();
-            context.DeleteObject(city);
-            context.SaveChanges();
+            using (ZamovStorage context = new ZamovStorage())
+            {
+                City city = (from c in context.Cities where c.Id == id select c).First();
+                context.DeleteObject(city);
+                context.SaveChanges();
+                context.DeleteTranslations(id, (int)ItemTypes.City);
+            }
             return RedirectToAction("Cities");
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult InsertCity(FormCollection form)
         {
-            City city = new City();
-            city.Name = form["cityName"];
-            context.AddToCities(city);
-            context.SaveChanges();
-            Dictionary<string, string> translations = new Dictionary<string, string>();
-            translations["ru-RU"] = form["cityRusName"];
-            translations["uk-UA"] = form["cityUkrName"];
-            city.UpdateTranslations(translations);
+            using (ZamovStorage context = new ZamovStorage())
+            {
+                City city = new City();
+                city.Name = form["cityName"];
+                city.Names.Clear();
+                city.Names["ru-RU"] = form["cityRusName"];
+                city.Names["uk-UA"] = form["cityUkrName"];
+                city.Enabled = form["cityEnabled"].Contains("true");
+                context.AddToCities(city);
+                context.SaveChanges();
+                context.UpdateTranslations(city.Id, (int)ItemTypes.City, city.NamesXml);
+            }
+            return RedirectToAction("Cities");
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult UpdateCities(FormCollection form)
+        {
+            //JavaScriptSerializer seializer = new JavaScriptSerializer();
+            //Dictionary<string, Dictionary<string, string>> updates = seializer.Deserialize<Dictionary<string, Dictionary<string, string>>>(
+            //    form["updates"]
+            //    );
+            //foreach (string key in updates.Keys)
+            //{
+            //    int itemId = int.Parse(key);
+            //    foreach
+            //    using (ZamovStorage context = new ZamovStorage())
+            //    {
+            //        context.Translations.Select(t=>t).Where(t=>t.ItemId==);
+            //    }
             return RedirectToAction("Cities");
         }
     }

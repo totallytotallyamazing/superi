@@ -19,6 +19,5 @@ namespace Zamov.Controllers
             }
             set { System.Web.HttpContext.Current.Session["lang"] = value; }
         }
-
     }
 }

@@ -144,7 +144,7 @@
           <Property Name="Language" Type="varchar" Nullable="false" MaxLength="5" />
           <Property Name="ItemId" Type="int" Nullable="false" />
           <Property Name="TranslationItemTypeId" Type="int" Nullable="false" />
-          <Property Name="Translation" Type="varchar(max)" />
+          <Property Name="Translation" Type="nvarchar(max)" />
         </EntityType>
         <Association Name="FK_DealerCityMappings_Cities">
           <End Role="Cities" Type="BaseEntities.Store.Cities" Multiplicity="1" />
@@ -242,9 +242,23 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="Cities_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Cities_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="name" Type="varchar" Mode="In" />
+          <Parameter Name="enabled" Type="bit" Mode="In" />
+          <Parameter Name="translations" Type="varchar(max)" Mode="In" />
+        </Function>
         <Function Name="DeleteTranslations" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ItemId" Type="int" Mode="In" />
           <Parameter Name="TranslationItemTypeId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Translations_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="itemId" Type="int" Mode="In" />
+          <Parameter Name="itemTypeId" Type="int" Mode="In" />
+          <Parameter Name="translationsXml" Type="nvarchar(max)" Mode="In" />
         </Function>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -284,7 +298,11 @@
             <End Role="ProductImages" EntitySet="ProductImages" /></AssociationSet>
           <FunctionImport Name="DeleteTranslations" EntitySet="Translations" ReturnType="Collection(BaseEntities.Translation)">
             <Parameter Name="ItemId" Mode="In" Type="Int32" />
-            <Parameter Name="TranslationItemTypeId" Mode="In" Type="Int32" /></FunctionImport></EntityContainer>
+            <Parameter Name="TranslationItemTypeId" Mode="In" Type="Int32" /></FunctionImport>
+          <FunctionImport Name="UpdateTranslations" EntitySet="Translations" ReturnType="Collection(BaseEntities.Translation)">
+            <Parameter Name="itemId" Mode="In" Type="Int32" />
+            <Parameter Name="itemTypeId" Mode="In" Type="Int32" />
+            <Parameter Name="translationsXml" Mode="In" Type="String" /></FunctionImport></EntityContainer>
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="Id" />
@@ -302,7 +320,7 @@
           <Property Name="Enabled" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Dealers" Relationship="BaseEntities.DealerCityMappings" FromRole="Cities" ToRole="Dealers" />
           <NavigationProperty Name="Products" Relationship="BaseEntities.ProductCityMappings" FromRole="Cities" ToRole="Products" />
-        </EntityType>
+          </EntityType>
         <EntityType Name="Dealer">
           <Key>
             <PropertyRef Name="Id" />
@@ -403,7 +421,7 @@
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Enabled" ColumnName="Enabled" />
               </MappingFragment>
-            </EntityTypeMapping>
+              </EntityTypeMapping>
             </EntitySetMapping>
           <EntitySetMapping Name="Dealers">
             <EntityTypeMapping TypeName="IsTypeOf(BaseEntities.Dealer)">
@@ -504,7 +522,8 @@
               <ScalarProperty Name="Id" ColumnName="Id" /></EndProperty>
             <EndProperty Name="Product">
               <ScalarProperty Name="Id" ColumnName="ProductId" /></EndProperty></AssociationSetMapping>
-          <FunctionImportMapping FunctionImportName="DeleteTranslations" FunctionName="BaseEntities.Store.DeleteTranslations" /></EntityContainerMapping>
+          <FunctionImportMapping FunctionImportName="DeleteTranslations" FunctionName="BaseEntities.Store.DeleteTranslations" />
+          <FunctionImportMapping FunctionImportName="UpdateTranslations" FunctionName="BaseEntities.Store.Translations_Update" /></EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>
@@ -524,7 +543,7 @@
     <edmx:Diagrams>
       <Diagram Name="Structure" ShowGrid="false" DisplayType="false">
         <EntityTypeShape EntityType="BaseEntities.Category" Width="1.5" PointX="5" PointY="2.875" Height="1.4279589843749996" IsExpanded="true" />
-        <EntityTypeShape EntityType="BaseEntities.City" Width="1.5" PointX="0.75" PointY="1.125" Height="1.7566536458333333" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaseEntities.City" Width="1.5" PointX="0.75" PointY="1.125" Height="1.7566536458333331" IsExpanded="true" />
         <EntityTypeShape EntityType="BaseEntities.Dealer" PointX="8.5" PointY="0.5" Width="1.5" Height="1.9210009765624998" IsExpanded="true" />
         <EntityTypeShape EntityType="BaseEntities.Group" Width="1.5" PointX="3" PointY="2.375" Height="1.9210009765624996" IsExpanded="true" />
         <EntityTypeShape EntityType="BaseEntities.Product" Width="1.5" PointX="0.5" PointY="3.875" Height="2.0853483072916674" IsExpanded="true" />
@@ -542,11 +561,11 @@
           <ConnectorPoint PointX="2" PointY="4.08550048828125" />
           </AssociationConnector>
         <AssociationConnector ManuallyRouted="false" Association="BaseEntities.DealerCityMappings">
-          <ConnectorPoint PointX="2.25" PointY="1.46875" />
-          <ConnectorPoint PointX="8.5" PointY="1.46875" />
+          <ConnectorPoint PointX="2.25" PointY="1.71875" />
+          <ConnectorPoint PointX="8.5" PointY="1.71875" />
           </AssociationConnector>
         <AssociationConnector Association="BaseEntities.ProductCityMappings" ManuallyRouted="false">
-          <ConnectorPoint PointX="1.375" PointY="2.8816536458333335" />
+          <ConnectorPoint PointX="1.375" PointY="2.8816536458333331" />
           <ConnectorPoint PointX="1.375" PointY="3.875" />
           </AssociationConnector>
         <EntityTypeShape EntityType="BaseEntities.ProductImage" Width="1.5" PointX="7" PointY="3.875" Height="1.4279589843749996" />

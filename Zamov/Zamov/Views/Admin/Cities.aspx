@@ -5,10 +5,14 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-
+    
+    <%= Html.RegisterJS("common.js") %>
+    <script type="text/javascript">
+        var changes = {};
+    </script>
     <h2><%= Html.ResourceString("Cities") %></h2>
 
-    <% using (Html.BeginForm("UpdateCities", "Admin")){ %>
+    
     <table class="adminTable" style="border:1px dotted #ccc" >
         <tr>
             <th style="display:none">
@@ -27,7 +31,9 @@
             <th></th>
         </tr>
     <% foreach (var item in Model)
-       { %>
+       {
+           item.LoadNames();
+            %>
     
         <tr>
             <td style="display:none">
@@ -37,10 +43,10 @@
                 <%= Html.Encode(item.Name) %>
             </td>
             <td>
-                <%= Html.TextBox("ukr_" + item.Id, item.GetName("uk-UA", false))%>
+                <%= Html.TextBox("uk-UA_" + item.Id, item.GetName("uk-UA", false), new { onblur = "tableChanged(changes, this)" })%>
             </td>
             <td>
-                <%= Html.TextBox("rus_" + item.Id, item.GetName("ru-RU", false))%>
+                <%= Html.TextBox("ru-RU_" + item.Id, item.GetName("ru-RU", false), new { onblur = "tableChanged(changes, this)" })%>
             </td>
             <td align="center">
                 <%= Html.CheckBox("enabled_" + item.Id, item.Enabled)%>
@@ -49,11 +55,16 @@
                 <%= Html.ResourceActionLink("Delete", "DeleteCity", new { id = item.Id })%>
             </td>
         </tr>
-    
+        
     <% } %>
 
     </table>
+    
+    <% using (Html.BeginForm("UpdateCities", "Admin")){ %>
+    <%= Html.Hidden("updates") %>
+    <input type="submit" value="<%= Html.ResourceString("Save") %>" onclick="return collectChanges(changes, 'updates')" />
     <%} %>
+    
     <% using (Html.BeginForm("InsertCity", "Admin")){ %>
     <table class="adminTable">
         <tr>
@@ -85,7 +96,7 @@
             </td>
         </tr>
     </table>
-    <input type="submit" value="<%= Html.ResourceString("Save") %>" />
+    <input type="submit" value="<%= Html.ResourceString("Add") %>" />
     <%} %>
     
 

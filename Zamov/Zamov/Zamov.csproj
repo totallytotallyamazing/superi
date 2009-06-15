@@ -96,14 +96,13 @@
     <Compile Include="Helpers\Helpers.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\City.cs" />
-    <Compile Include="Models\StorageContext.cs" />
     <Compile Include="Models\Structure.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Structure.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\TranslationItemTypes.cs" />
-    <Compile Include="Models\ZamovStorage.cs" />
+    <Compile Include="Models\Utils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -159,6 +158,7 @@
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>Resources.ru-RU.designer.cs</LastGenOutput>
     </Content>
+    <Content Include="Scripts\common.js" />
     <Content Include="Views\Admin\Cities.aspx" />
     <Content Include="Views\PageParts\HeaderSelectors.ascx" />
   </ItemGroup>

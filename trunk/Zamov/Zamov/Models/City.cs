@@ -2,27 +2,54 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.IO;
+using System.Xml;
 
 namespace Zamov.Models
 {
     public partial class City
     {
-        //public const ItemTypes ItemType = ItemTypes.City;
+        private Dictionary<string, string> names = new Dictionary<string,string>();
 
         public Dictionary<string, string> Names
         {
             get 
             {
-                StorageContext context = StorageContext.Instanse;
-                return (from translation in context.Translations
-                        where( translation.ItemId == this.Id && translation.TranslationItemTypeId == (int)ItemTypes.City)
-                        select new { lang = translation.Language, val = translation.Text })
-                        .ToDictionary(k => k.lang, v => v.val);
+                //if (names == null)
+                //{
+                //    StorageContext context = StorageContext.Instanse;
+                //    names = (from translation in context.Translations
+                //            where (translation.ItemId == this.Id && translation.TranslationItemTypeId == (int)ItemTypes.City)
+                //            select new { lang = translation.Language, val = translation.Text })
+                //            .ToDictionary(k => k.lang, v => v.val);
+                //    if (names == null)
+                //        names = new Dictionary<string, string>();
+                //}
+                return names;
+            }
+        }
+
+        public void LoadNames()
+        {
+            using (ZamovStorage context = new ZamovStorage())
+                names = (from translation in context.Translations
+                         where (translation.ItemId == this.Id && translation.TranslationItemTypeId == (int)ItemTypes.City)
+                         select new { lang = translation.Language, val = translation.Text })
+                    .ToDictionary(k => k.lang, v => v.val);
+        }
+
+        public string NamesXml
+        {
+            get
+            {
+                return Utils.CreateTranslationXml(Names);
             }
         }
 
         public string GetName(string language)
         {
+            if (Names.Count == 0)
+                LoadNames();
             return GetName(language, true);
         }
 
@@ -32,24 +59,6 @@ namespace Zamov.Models
             if (Names.Keys.Contains(language))
                 result = Names[language];
             return result;
-        }
-
-        public void UpdateTranslations(Dictionary<string, string> translations)
-        {
-            StorageContext context = StorageContext.Instanse;
-            context.DeleteTranslations(this.Id, (int)ItemTypes.City);
-            foreach (string key in translations.Keys)
-            {
-                Translation translation = new Translation
-                {
-                    ItemId = this.Id,
-                    Language = key,
-                    TranslationItemTypeId = (int)ItemTypes.City,
-                    Text = translations[key]
-                };
-                context.AddToTranslations(translation);
-            }
-            context.SaveChanges();
         }
     }
 }

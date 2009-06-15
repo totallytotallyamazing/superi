@@ -8,21 +8,25 @@ namespace Zamov.Models
 {
     public static class Utils
     {
-        public static string CreateTranslationXml(Dictionary<string, string> translations)
+        public static string CreateTranslationXml(int itemId, ItemTypes itemType, Dictionary<string, string> translations)
         {
             XmlDocument document = new XmlDocument();
-            //XmlDeclaration declaration = document.CreateXmlDeclaration("1.0", "ISO-8859-1", null);
-            //document.AppendChild(declaration);
             XmlElement node = document.CreateElement("root");
             document.AppendChild(node);
             foreach (string key in translations.Keys)
             {
                 XmlElement item = document.CreateElement("translation");
-                XmlAttribute lang = document.CreateAttribute("lang");
-                lang.Value = key;
-                XmlAttribute translation = document.CreateAttribute("translation");
+                XmlAttribute language = document.CreateAttribute("Language");
+                language.Value = key;
+                XmlAttribute itemIdAttribute = document.CreateAttribute("ItemId");
+                itemIdAttribute.Value = itemId.ToString();
+                XmlAttribute translationItemTypeId = document.CreateAttribute("TranslationItemTypeId");
+                translationItemTypeId.Value = ((int)itemType).ToString();
+                XmlAttribute translation = document.CreateAttribute("Translation");
                 translation.Value = translations[key];
-                item.Attributes.Append(lang);
+                item.Attributes.Append(language);
+                item.Attributes.Append(itemIdAttribute);
+                item.Attributes.Append(translationItemTypeId);
                 item.Attributes.Append(translation);
                 node.AppendChild(item);
             }

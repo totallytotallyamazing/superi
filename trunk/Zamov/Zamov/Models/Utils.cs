@@ -32,5 +32,30 @@ namespace Zamov.Models
             }
             return document.OuterXml;
         }
+
+        public static string CreateTranslationXml(List<TranslationItem> translations)
+        {
+            XmlDocument document = new XmlDocument();
+            XmlElement root = document.CreateElement("root");
+            document.AppendChild(root);
+            foreach (var translationItem in translations)
+            {
+                XmlElement item = document.CreateElement("translation");
+                XmlAttribute language = document.CreateAttribute("Language");
+                language.Value = translationItem.Language;
+                XmlAttribute itemIdAttribute = document.CreateAttribute("ItemId");
+                itemIdAttribute.Value = translationItem.ItemId.ToString();
+                XmlAttribute translationItemTypeId = document.CreateAttribute("TranslationItemTypeId");
+                translationItemTypeId.Value = ((int)translationItem.ItemType).ToString();
+                XmlAttribute translation = document.CreateAttribute("Translation");
+                translation.Value = translationItem.Translation;
+                item.Attributes.Append(language);
+                item.Attributes.Append(itemIdAttribute);
+                item.Attributes.Append(translationItemTypeId);
+                item.Attributes.Append(translation);
+                root.AppendChild(item); 
+            }
+            return document.OuterXml;
+        }
     }
 }

@@ -9,6 +9,22 @@
     <%= Html.RegisterJS("common.js") %>
     <script type="text/javascript">
         var changes = {};
+        var enables = {};
+        function updateEnables(check, id) {
+            if (check.checked) {
+                enables[id] = true;
+            }
+            else {
+                enables[id] = false;
+            }
+        }
+
+        function collectCityChanges() {
+            collectChanges(changes, 'updates');
+            var enablities = $get("enablities");
+            enablities.value = Sys.Serialization.JavaScriptSerializer.serialize(enables);
+            return true;
+        }
     </script>
     <h2><%= Html.ResourceString("Cities") %></h2>
 
@@ -49,7 +65,7 @@
                 <%= Html.TextBox("ru-RU_" + item.Id, item.GetName("ru-RU", false), new { onblur = "tableChanged(changes, this)" })%>
             </td>
             <td align="center">
-                <%= Html.CheckBox("enabled_" + item.Id, item.Enabled)%>
+                <%= Html.CheckBox("enabled_" + item.Id, item.Enabled, new { onclick = "updateEnables(this, " + item.Id + ")" })%>
             </td>
             <td>
                 <%= Html.ResourceActionLink("Delete", "DeleteCity", new { id = item.Id })%>
@@ -62,7 +78,8 @@
     
     <% using (Html.BeginForm("UpdateCities", "Admin")){ %>
     <%= Html.Hidden("updates") %>
-    <input type="submit" value="<%= Html.ResourceString("Save") %>" onclick="return collectChanges(changes, 'updates')" />
+    <%= Html.Hidden("enablities") %>
+    <input type="submit" value="<%= Html.ResourceString("Save") %>" onclick="return collectCityChanges()" />
     <%} %>
     
     <% using (Html.BeginForm("InsertCity", "Admin")){ %>

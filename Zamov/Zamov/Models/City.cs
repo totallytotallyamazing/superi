@@ -42,7 +42,7 @@ namespace Zamov.Models
         {
             get
             {
-                return Utils.CreateTranslationXml(Names);
+                return Utils.CreateTranslationXml(this.Id, ItemTypes.City, Names);
             }
         }
 

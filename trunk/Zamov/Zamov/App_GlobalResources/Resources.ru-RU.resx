@@ -135,8 +135,14 @@
   <data name="Contacts" xml:space="preserve">
     <value>Контакты</value>
   </data>
+  <data name="Create" xml:space="preserve">
+    <value>Создать</value>
+  </data>
   <data name="Delete" xml:space="preserve">
     <value>Удалить</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Редактировать</value>
   </data>
   <data name="News" xml:space="preserve">
     <value>Новости</value>

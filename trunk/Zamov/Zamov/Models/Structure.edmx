@@ -8,6 +8,7 @@
         <EntityContainer Name="BaseEntitiesStoreContainer">
           <EntitySet Name="Categories" EntityType="BaseEntities.Store.Categories" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Cities" EntityType="BaseEntities.Store.Cities" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="DealerCategoryMapping" EntityType="BaseEntities.Store.DealerCategoryMapping" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="DealerCityMappings" EntityType="BaseEntities.Store.DealerCityMappings" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Dealers" EntityType="BaseEntities.Store.Dealers" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Groups" EntityType="BaseEntities.Store.Groups" store:Type="Tables" Schema="dbo" />
@@ -17,6 +18,14 @@
           <EntitySet Name="sysdiagrams" EntityType="BaseEntities.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="TranslationItemsTypes" EntityType="BaseEntities.Store.TranslationItemsTypes" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Translations" EntityType="BaseEntities.Store.Translations" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_DealerCategoryMapping_Categories" Association="BaseEntities.Store.FK_DealerCategoryMapping_Categories">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="DealerCategoryMapping" EntitySet="DealerCategoryMapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DealerCategoryMapping_Dealers" Association="BaseEntities.Store.FK_DealerCategoryMapping_Dealers">
+            <End Role="Dealers" EntitySet="Dealers" />
+            <End Role="DealerCategoryMapping" EntitySet="DealerCategoryMapping" />
+          </AssociationSet>
           <AssociationSet Name="FK_DealerCityMappings_Cities" Association="BaseEntities.Store.FK_DealerCityMappings_Cities">
             <End Role="Cities" EntitySet="Cities" />
             <End Role="DealerCityMappings" EntitySet="DealerCityMappings" />
@@ -64,6 +73,14 @@
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="Enabled" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DealerCategoryMapping">
+          <Key>
+            <PropertyRef Name="DealerId" />
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="DealerId" Type="int" Nullable="false" />
+          <Property Name="CategoryId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="DealerCityMappings">
           <Key>
@@ -146,6 +163,30 @@
           <Property Name="TranslationItemTypeId" Type="int" Nullable="false" />
           <Property Name="Translation" Type="nvarchar(max)" />
         </EntityType>
+        <Association Name="FK_DealerCategoryMapping_Categories">
+          <End Role="Categories" Type="BaseEntities.Store.Categories" Multiplicity="1" />
+          <End Role="DealerCategoryMapping" Type="BaseEntities.Store.DealerCategoryMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DealerCategoryMapping">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DealerCategoryMapping_Dealers">
+          <End Role="Dealers" Type="BaseEntities.Store.Dealers" Multiplicity="1" />
+          <End Role="DealerCategoryMapping" Type="BaseEntities.Store.DealerCategoryMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dealers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DealerCategoryMapping">
+              <PropertyRef Name="DealerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_DealerCityMappings_Cities">
           <End Role="Cities" Type="BaseEntities.Store.Cities" Multiplicity="1" />
           <End Role="DealerCityMappings" Type="BaseEntities.Store.DealerCityMappings" Multiplicity="*" />
@@ -298,7 +339,10 @@
             <Parameter Name="ItemId" Mode="In" Type="Int32" />
             <Parameter Name="TranslationItemTypeId" Mode="In" Type="Int32" /></FunctionImport>
           <FunctionImport Name="UpdateTranslations" EntitySet="Translations" ReturnType="Collection(BaseEntities.Translation)">
-            <Parameter Name="translationsXml" Mode="In" Type="String" /></FunctionImport></EntityContainer>
+            <Parameter Name="translationsXml" Mode="In" Type="String" /></FunctionImport>
+          <AssociationSet Name="DealerCategoryMapping" Association="BaseEntities.DealerCategoryMapping">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Dealer" EntitySet="Dealers" /></AssociationSet></EntityContainer>
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="Id" />
@@ -306,7 +350,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
           <NavigationProperty Name="Groups" Relationship="BaseEntities.FK_Groups_Categories" FromRole="Categories" ToRole="Groups" />
-        </EntityType>
+          <NavigationProperty Name="Dealers" Relationship="BaseEntities.DealerCategoryMapping" FromRole="Category" ToRole="Dealer" /></EntityType>
         <EntityType Name="City">
           <Key>
             <PropertyRef Name="Id" />
@@ -327,7 +371,7 @@
           <Property Name="Enabled" Type="Boolean" />
           <NavigationProperty Name="Products" Relationship="BaseEntities.FK_Products_Dealers" FromRole="Dealers" ToRole="Products" />
           <NavigationProperty Name="Cities" Relationship="BaseEntities.DealerCityMappings" FromRole="Dealers" ToRole="Cities" />
-        </EntityType>
+          <NavigationProperty Name="Categories" Relationship="BaseEntities.DealerCategoryMapping" FromRole="Dealer" ToRole="Category" /></EntityType>
         <EntityType Name="Group">
           <Key>
             <PropertyRef Name="Id" />
@@ -396,7 +440,10 @@
           <NavigationProperty Name="Products" Relationship="BaseEntities.FK_ProductImages_Products" FromRole="ProductImages" ToRole="Product" /></EntityType>
         <Association Name="FK_ProductImages_Products">
           <End Type="BaseEntities.Product" Role="Product" Multiplicity="1" />
-          <End Type="BaseEntities.ProductImage" Role="ProductImages" Multiplicity="*" /></Association></Schema>
+          <End Type="BaseEntities.ProductImage" Role="ProductImages" Multiplicity="*" /></Association>
+        <Association Name="DealerCategoryMapping">
+          <End Type="BaseEntities.Category" Role="Category" Multiplicity="*" />
+          <End Type="BaseEntities.Dealer" Role="Dealer" Multiplicity="*" /></Association></Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -519,7 +566,12 @@
             <EndProperty Name="Product">
               <ScalarProperty Name="Id" ColumnName="ProductId" /></EndProperty></AssociationSetMapping>
           <FunctionImportMapping FunctionImportName="DeleteTranslations" FunctionName="BaseEntities.Store.DeleteTranslations" />
-          <FunctionImportMapping FunctionImportName="UpdateTranslations" FunctionName="BaseEntities.Store.Translations_Update" /></EntityContainerMapping>
+          <FunctionImportMapping FunctionImportName="UpdateTranslations" FunctionName="BaseEntities.Store.Translations_Update" />
+          <AssociationSetMapping Name="DealerCategoryMapping" TypeName="BaseEntities.DealerCategoryMapping" StoreEntitySet="DealerCategoryMapping">
+            <EndProperty Name="Dealer">
+              <ScalarProperty Name="Id" ColumnName="DealerId" /></EndProperty>
+            <EndProperty Name="Category">
+              <ScalarProperty Name="Id" ColumnName="CategoryId" /></EndProperty></AssociationSetMapping></EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>
@@ -538,27 +590,27 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram Name="Structure" ShowGrid="false" DisplayType="false">
-        <EntityTypeShape EntityType="BaseEntities.Category" Width="1.5" PointX="5" PointY="2.875" Height="1.4279589843749996" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaseEntities.Category" Width="1.5" PointX="5.125" PointY="2.25" Height="1.4279589843749996" IsExpanded="true" />
         <EntityTypeShape EntityType="BaseEntities.City" Width="1.5" PointX="0.75" PointY="1.125" Height="1.7566536458333331" IsExpanded="true" />
-        <EntityTypeShape EntityType="BaseEntities.Dealer" PointX="8.5" PointY="0.5" Width="1.5" Height="1.9210009765624998" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaseEntities.Dealer" PointX="9.125" PointY="0.5" Width="1.5" Height="2.085348307291667" IsExpanded="true" />
         <EntityTypeShape EntityType="BaseEntities.Group" Width="1.5" PointX="3" PointY="2.375" Height="1.9210009765624996" IsExpanded="true" />
         <EntityTypeShape EntityType="BaseEntities.Product" Width="1.5" PointX="0.5" PointY="3.875" Height="2.0853483072916674" IsExpanded="true" />
         <EntityTypeShape EntityType="BaseEntities.TranslationItemsType" Width="1.5" PointX="6.625" PointY="6.25" Height="1.2636116536458335" IsExpanded="true" />
         <EntityTypeShape EntityType="BaseEntities.Translation" Width="1.5" PointX="3.375" PointY="6.25" Height="1.7766536458333331" IsExpanded="true" />
         <AssociationConnector Association="BaseEntities.FK_Groups_Categories" ManuallyRouted="false">
-          <ConnectorPoint PointX="5" PointY="3.58550048828125" />
-          <ConnectorPoint PointX="4.5" PointY="3.58550048828125" /></AssociationConnector>
+          <ConnectorPoint PointX="5.125" PointY="3.1086531575520833" />
+          <ConnectorPoint PointX="4.5" PointY="3.1086531575520833" /></AssociationConnector>
         <AssociationConnector ManuallyRouted="false" Association="BaseEntities.FK_Products_Dealers">
-          <ConnectorPoint PointX="9.28125" PointY="2.4210009765624996" />
-          <ConnectorPoint PointX="9.28125" PointY="5.7450773111979165" />
+          <ConnectorPoint PointX="9.875" PointY="2.585348307291667" />
+          <ConnectorPoint PointX="9.875" PointY="5.7450773111979165" />
           <ConnectorPoint PointX="2" PointY="5.7450773111979165" /></AssociationConnector>
         <AssociationConnector Association="BaseEntities.FK_Products_Groups" ManuallyRouted="false">
           <ConnectorPoint PointX="3" PointY="4.08550048828125" />
           <ConnectorPoint PointX="2" PointY="4.08550048828125" />
           </AssociationConnector>
         <AssociationConnector ManuallyRouted="false" Association="BaseEntities.DealerCityMappings">
-          <ConnectorPoint PointX="2.25" PointY="1.71875" />
-          <ConnectorPoint PointX="8.5" PointY="1.71875" />
+          <ConnectorPoint PointX="2.25" PointY="1.65625" />
+          <ConnectorPoint PointX="9.125" PointY="1.65625" />
           </AssociationConnector>
         <AssociationConnector Association="BaseEntities.ProductCityMappings" ManuallyRouted="false">
           <ConnectorPoint PointX="1.375" PointY="2.8816536458333331" />
@@ -568,6 +620,9 @@
         <AssociationConnector Association="BaseEntities.FK_ProductImages_Products" >
           <ConnectorPoint PointX="2" PointY="4.834208984375" />
           <ConnectorPoint PointX="7" PointY="4.834208984375" />
-          </AssociationConnector></Diagram></edmx:Diagrams>
+          </AssociationConnector>
+        <AssociationConnector Association="BaseEntities.DealerCategoryMapping" >
+          <ConnectorPoint PointX="6.625" PointY="2.4176741536458337" />
+          <ConnectorPoint PointX="9.125" PointY="2.4176741536458337" /></AssociationConnector></Diagram></edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

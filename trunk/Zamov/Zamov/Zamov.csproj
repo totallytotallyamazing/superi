@@ -84,6 +84,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ImageController.cs" />
     <Compile Include="Controllers\PagePartsController.cs" />
     <Compile Include="Controllers\ToolsController.cs" />
     <Compile Include="Default.aspx.cs">
@@ -96,6 +97,7 @@
     <Compile Include="Helpers\Helpers.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\City.cs" />
+    <Compile Include="Models\Dealers.cs" />
     <Compile Include="Models\Structure.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -160,7 +162,9 @@
       <LastGenOutput>Resources.ru-RU.designer.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\common.js" />
+    <Content Include="Views\Admin\AddUpdateDealer.aspx" />
     <Content Include="Views\Admin\Cities.aspx" />
+    <Content Include="Views\Admin\Dealers.aspx" />
     <Content Include="Views\PageParts\HeaderSelectors.ascx" />
   </ItemGroup>
   <ItemGroup>

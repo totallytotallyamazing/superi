@@ -122,10 +122,34 @@ namespace Zamov.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult SaveDealer(FormCollection frm)
+        public ActionResult AddUpdateDealer(FormCollection form)
         {
+            int dealerId = int.Parse(form["dealerId"]);
+            Dealer dealer = null;
+            using(ZamovStorage context = new ZamovStorage())
+            {
+                if (dealerId > 0)
+                    dealer = context.Dealers.Select(d => d).Where(d => d.Id == dealerId).First();
+                dealer.Name = form["name"];
+                dealer.Names["ru-RU"] = form["rDescription"];
+                dealer.Names["uk-UA"] = form["uDescription"];
+                if (!string.IsNullOrEmpty(Request.Files["logoImage"].FileName))
+                {
+                    HttpPostedFileBase file = Request.Files["logoImage"];
+                    dealer.LogoType = file.ContentType;
+                    file.InputStream.Read(dealer.LogoImage, 0, (int)file.InputStream.Length);
+                }
+                context.SaveChanges();
+                context.UpdateTranslations(dealer.NamesXml);
+            }
             return RedirectToAction("Dealers");
         }
+
+        //[AcceptVerbs(HttpVerbs.Post)]
+        //public ActionResult SaveDealer(FormCollection frm)
+        //{
+        //    return RedirectToAction("Dealers");
+        //}
         #endregion
     }
 }

@@ -12,9 +12,10 @@ namespace Zamov.Controllers
         //
         // GET: /Image/
 
-        public void ShowLogo(int id)
+        public void Show(byte[] image, string imageType)
         {
-            
+            Response.ContentType = imageType;
+            Response.BinaryWrite(image);
         }
 
     }

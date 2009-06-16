@@ -97,6 +97,7 @@
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="varchar" Nullable="false" MaxLength="500" />
           <Property Name="LogoImage" Type="image" />
+          <Property Name="LogoType" Type="varchar" MaxLength="20" />
           <Property Name="Enabled" Type="bit" />
         </EntityType>
         <EntityType Name="Groups">
@@ -371,7 +372,8 @@
           <Property Name="Enabled" Type="Boolean" />
           <NavigationProperty Name="Products" Relationship="BaseEntities.FK_Products_Dealers" FromRole="Dealers" ToRole="Products" />
           <NavigationProperty Name="Cities" Relationship="BaseEntities.DealerCityMappings" FromRole="Dealers" ToRole="Cities" />
-          <NavigationProperty Name="Categories" Relationship="BaseEntities.DealerCategoryMapping" FromRole="Dealer" ToRole="Category" /></EntityType>
+          <NavigationProperty Name="Categories" Relationship="BaseEntities.DealerCategoryMapping" FromRole="Dealer" ToRole="Category" />
+          <Property Name="LogoType" Type="String" Nullable="true" /></EntityType>
         <EntityType Name="Group">
           <Key>
             <PropertyRef Name="Id" />
@@ -469,6 +471,7 @@
           <EntitySetMapping Name="Dealers">
             <EntityTypeMapping TypeName="IsTypeOf(BaseEntities.Dealer)">
               <MappingFragment StoreEntitySet="Dealers">
+                <ScalarProperty Name="LogoType" ColumnName="LogoType" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="LogoImage" ColumnName="LogoImage" />
@@ -592,7 +595,7 @@
       <Diagram Name="Structure" ShowGrid="false" DisplayType="false">
         <EntityTypeShape EntityType="BaseEntities.Category" Width="1.5" PointX="5.125" PointY="2.25" Height="1.4279589843749996" IsExpanded="true" />
         <EntityTypeShape EntityType="BaseEntities.City" Width="1.5" PointX="0.75" PointY="1.125" Height="1.7566536458333331" IsExpanded="true" />
-        <EntityTypeShape EntityType="BaseEntities.Dealer" PointX="9.125" PointY="0.5" Width="1.5" Height="2.085348307291667" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaseEntities.Dealer" PointX="9.125" PointY="0.5" Width="1.5" Height="2.5571907552083331" IsExpanded="true" />
         <EntityTypeShape EntityType="BaseEntities.Group" Width="1.5" PointX="3" PointY="2.375" Height="1.9210009765624996" IsExpanded="true" />
         <EntityTypeShape EntityType="BaseEntities.Product" Width="1.5" PointX="0.5" PointY="3.875" Height="2.0853483072916674" IsExpanded="true" />
         <EntityTypeShape EntityType="BaseEntities.TranslationItemsType" Width="1.5" PointX="6.625" PointY="6.25" Height="1.2636116536458335" IsExpanded="true" />
@@ -601,9 +604,9 @@
           <ConnectorPoint PointX="5.125" PointY="3.1086531575520833" />
           <ConnectorPoint PointX="4.5" PointY="3.1086531575520833" /></AssociationConnector>
         <AssociationConnector ManuallyRouted="false" Association="BaseEntities.FK_Products_Dealers">
-          <ConnectorPoint PointX="9.875" PointY="2.585348307291667" />
-          <ConnectorPoint PointX="9.875" PointY="5.7450773111979165" />
-          <ConnectorPoint PointX="2" PointY="5.7450773111979165" /></AssociationConnector>
+          <ConnectorPoint PointX="9.875" PointY="3.0571907552083331" />
+          <ConnectorPoint PointX="9.875" PointY="5.860341796875" />
+          <ConnectorPoint PointX="2" PointY="5.860341796875" /></AssociationConnector>
         <AssociationConnector Association="BaseEntities.FK_Products_Groups" ManuallyRouted="false">
           <ConnectorPoint PointX="3" PointY="4.08550048828125" />
           <ConnectorPoint PointX="2" PointY="4.08550048828125" />
@@ -622,7 +625,7 @@
           <ConnectorPoint PointX="7" PointY="4.834208984375" />
           </AssociationConnector>
         <AssociationConnector Association="BaseEntities.DealerCategoryMapping" >
-          <ConnectorPoint PointX="6.625" PointY="2.4176741536458337" />
-          <ConnectorPoint PointX="9.125" PointY="2.4176741536458337" /></AssociationConnector></Diagram></edmx:Diagrams>
+          <ConnectorPoint PointX="6.625" PointY="2.6535953776041667" />
+          <ConnectorPoint PointX="9.125" PointY="2.6535953776041667" /></AssociationConnector></Diagram></edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

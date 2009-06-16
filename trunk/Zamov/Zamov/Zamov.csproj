@@ -162,6 +162,10 @@
       <LastGenOutput>Resources.ru-RU.designer.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\common.js" />
+    <Content Include="Scripts\fckeditor.js" />
+    <Content Include="Scripts\fckeditorapi.js" />
+    <Content Include="Scripts\fcktools.js" />
+    <Content Include="Scripts\jquery.FCKEditor.js" />
     <Content Include="Views\Admin\AddUpdateDealer.aspx" />
     <Content Include="Views\Admin\Cities.aspx" />
     <Content Include="Views\Admin\Dealers.aspx" />

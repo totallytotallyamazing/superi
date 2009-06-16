@@ -1,11 +1,13 @@
 ﻿
 function tableChanged(dictionary, field) {
     var fieldSegments = field.name.split("_");
-
+    
     var fieldName = fieldSegments[0];
     var id = fieldSegments[1];
-
-    dictionary[id] = eval('{ '+fieldName+': fieldName}');
+    if (dictionary[id] == null) {
+        dictionary[id] = {};
+    }
+        dictionary[id][fieldName] = field.value;
 }
 
 function collectChanges(dictionary, hiddenId) {

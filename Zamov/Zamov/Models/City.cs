@@ -15,16 +15,6 @@ namespace Zamov.Models
         {
             get 
             {
-                //if (names == null)
-                //{
-                //    StorageContext context = StorageContext.Instanse;
-                //    names = (from translation in context.Translations
-                //            where (translation.ItemId == this.Id && translation.TranslationItemTypeId == (int)ItemTypes.City)
-                //            select new { lang = translation.Language, val = translation.Text })
-                //            .ToDictionary(k => k.lang, v => v.val);
-                //    if (names == null)
-                //        names = new Dictionary<string, string>();
-                //}
                 return names;
             }
         }

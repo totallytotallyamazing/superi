@@ -18,6 +18,7 @@ namespace Zamov.Controllers
             return View();
         }
 
+        #region Cities
         public ActionResult Cities()
         {
             using (ZamovStorage context = new ZamovStorage())
@@ -71,18 +72,12 @@ namespace Zamov.Controllers
                     int itemId = int.Parse(key);
                     Dictionary<string, string> translations = updates[key];
                     List<TranslationItem> translationItems = new List<TranslationItem>();
-                    foreach (var item in translations.Keys)
+                    translationItems = (from tr in translations select new TranslationItem { ItemId = itemId, ItemType = ItemTypes.City, Language = tr.Key, Translation = tr.Value }).ToList();
+                    string translationXml = Utils.CreateTranslationXml(translationItems);
+                    using (ZamovStorage context = new ZamovStorage())
                     {
-
+                        context.UpdateTranslations(translationXml);
                     }
-                    TranslationItem translationItem = new TranslationItem();
-                    translationItem.ItemId = itemId;
-                    translationItem.ItemType = ItemTypes.City;
-                    //string translationXml = Utils.CreateTranslationXml(itemId, ItemTypes.City, translations);
-                    //using (ZamovStorage context = new ZamovStorage())
-                    //{
-                    //    context.UpdateTranslations(translationXml);
-                    //}
                 }
             }
             if (!string.IsNullOrEmpty(form["enablities"]))
@@ -101,5 +96,36 @@ namespace Zamov.Controllers
             }
             return RedirectToAction("Cities");
         }
+        #endregion
+
+        #region Dealers
+        public ActionResult Dealers()
+        {
+            using (ZamovStorage context = new ZamovStorage())
+            {
+                List<Dealer> dealers = context.Dealers.Select(d => d).ToList();
+                return View(dealers);
+            }
+        }
+
+        public ActionResult AddUpdateDealer(int id)
+        {
+            if (id > 0)
+            { 
+                using(ZamovStorage context = new ZamovStorage())
+                {
+                    Dealer dealer = context.Dealers.Select(d => d).Where(d => d.Id == id).First();
+                    ViewData["dealer"] = dealer;
+                }
+            }
+            return View();
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult SaveDealer(FormCollection frm)
+        {
+            return RedirectToAction("Dealers");
+        }
+        #endregion
     }
 }

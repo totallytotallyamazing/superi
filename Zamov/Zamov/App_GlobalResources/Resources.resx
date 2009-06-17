@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AccountInfo" xml:space="preserve">
+    <value>Параметри доступу</value>
+  </data>
   <data name="Add" xml:space="preserve">
     <value>Додати</value>
   </data>
@@ -141,6 +144,9 @@
   <data name="CreateDealer" xml:space="preserve">
     <value>Створення постачальника</value>
   </data>
+  <data name="Dealers" xml:space="preserve">
+    <value>Постачальники</value>
+  </data>
   <data name="Delete" xml:space="preserve">
     <value>Видалити</value>
   </data>
@@ -153,11 +159,32 @@
   <data name="EditDealer" xml:space="preserve">
     <value>Редагування постачальника</value>
   </data>
+  <data name="LoginHeader" xml:space="preserve">
+    <value>Будьласка, введiть iм'я користувача та пароль</value>
+  </data>
+  <data name="LoginUnsucsessful" xml:space="preserve">
+    <value>Спроба входу була невдалою</value>
+  </data>
+  <data name="LogOn" xml:space="preserve">
+    <value>Вхiд</value>
+  </data>
   <data name="Name" xml:space="preserve">
     <value>Назва</value>
   </data>
   <data name="News" xml:space="preserve">
     <value>Новини</value>
+  </data>
+  <data name="Off" xml:space="preserve">
+    <value>Вимкнути</value>
+  </data>
+  <data name="On" xml:space="preserve">
+    <value>Ввiмкнути</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Пароль</value>
+  </data>
+  <data name="RememberMe" xml:space="preserve">
+    <value>Запам'ятати мене</value>
   </data>
   <data name="Rus" xml:space="preserve">
     <value>рус</value>
@@ -167,5 +194,8 @@
   </data>
   <data name="Ukr" xml:space="preserve">
     <value>укр</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>Iм'я користувача</value>
   </data>
 </root>

@@ -32,7 +32,7 @@ namespace Zamov.Models
         {
             get
             {
-                return Utils.CreateTranslationXml(this.Id, ItemTypes.DealerDescription, Names);
+                return Utils.CreateTranslationXml(this.Id, ItemTypes.DealerDescription, Descriptions);
             }
         }
 
@@ -48,7 +48,7 @@ namespace Zamov.Models
         public void LoadDescriptions()
         {
             using (ZamovStorage context = new ZamovStorage())
-                names = (from translation in context.Translations
+                descriptions = (from translation in context.Translations
                          where (translation.ItemId == this.Id && translation.TranslationItemTypeId == (int)ItemTypes.DealerDescription)
                          select new { lang = translation.Language, val = translation.Text })
                     .ToDictionary(k => k.lang, v => v.val);
@@ -74,7 +74,7 @@ namespace Zamov.Models
             if (Descriptions.Count == 0)
                 LoadDescriptions();
             string result = "";
-            if (Names.Keys.Contains(language))
+            if (Descriptions.Keys.Contains(language))
                 result = Descriptions[language];
             return result;
         }

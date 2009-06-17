@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 using Zamov.Models;
 using System.Web.Script.Serialization;
+using System.IO;
 
 namespace Zamov.Controllers
 {
@@ -128,28 +129,76 @@ namespace Zamov.Controllers
             Dealer dealer = null;
             using(ZamovStorage context = new ZamovStorage())
             {
-                if (dealerId > 0)
+                if (dealerId >= 0)
                     dealer = context.Dealers.Select(d => d).Where(d => d.Id == dealerId).First();
+                else
+                    dealer = new Dealer();
                 dealer.Name = form["name"];
-                dealer.Names["ru-RU"] = form["rDescription"];
-                dealer.Names["uk-UA"] = form["uDescription"];
+                dealer.Names["ru-RU"] = form["rName"];
+                dealer.Names["uk-UA"] = form["uName"];
+                dealer.Descriptions["ru-RU"] = Server.HtmlDecode(form["rDescription"]);
+                dealer.Descriptions["uk-UA"] = Server.HtmlDecode(form["uDescription"]);
+                dealer.Enabled = form["enabled"].Contains("true");
                 if (!string.IsNullOrEmpty(Request.Files["logoImage"].FileName))
                 {
                     HttpPostedFileBase file = Request.Files["logoImage"];
                     dealer.LogoType = file.ContentType;
-                    file.InputStream.Read(dealer.LogoImage, 0, (int)file.InputStream.Length);
+                    BinaryReader reader = new BinaryReader(file.InputStream);
+                    dealer.LogoImage = reader.ReadBytes((int)file.InputStream.Length);
                 }
+                if (dealerId < 0)
+                    context.AddToDealers(dealer);
                 context.SaveChanges();
                 context.UpdateTranslations(dealer.NamesXml);
+                context.UpdateTranslations(dealer.DescriptionsXml);
             }
             return RedirectToAction("Dealers");
         }
 
-        //[AcceptVerbs(HttpVerbs.Post)]
-        //public ActionResult SaveDealer(FormCollection frm)
-        //{
-        //    return RedirectToAction("Dealers");
-        //}
+        public ActionResult EnableDealer(int id)
+        {
+            using(ZamovStorage context = new ZamovStorage())
+            {
+                Dealer dealer = (from d in context.Dealers where d.Id == id select d).First();
+                dealer.Enabled = true;
+                context.SaveChanges();
+            }
+            return RedirectToAction("Dealers");
+        }
+
+        public ActionResult DisableDealer(int id)
+        {
+            using (ZamovStorage context = new ZamovStorage())
+            {
+                Dealer dealer = (from d in context.Dealers where d.Id == id select d).First();
+                dealer.Enabled = false;
+                context.SaveChanges();
+            }
+            return RedirectToAction("Dealers");
+        }
+
+        public ActionResult DeleteDealer(int id)
+        {
+            using (ZamovStorage context = new ZamovStorage())
+            {
+                Dealer dealer = (from d in context.Dealers where d.Id == id select d).First();
+                context.DeleteObject(dealer);
+                context.SaveChanges();
+            }
+            return RedirectToAction("Dealers");
+        }
+
+        #endregion
+
+        #region Categories
+        public ActionResult Categories()
+        {
+            using (ZamovStorage context = new ZamovStorage())
+            {
+                List<Category> categories = context.Categories.Select(c => c).ToList();
+                return View(categories);
+            }
+        }
         #endregion
     }
 }

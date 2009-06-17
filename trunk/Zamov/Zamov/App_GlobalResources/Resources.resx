@@ -198,4 +198,7 @@
   <data name="Username" xml:space="preserve">
     <value>Iм'я користувача</value>
   </data>
+  <data name="Categories" xml:space="preserve">
+    <value>Категорії</value>
+  </data>
 </root>

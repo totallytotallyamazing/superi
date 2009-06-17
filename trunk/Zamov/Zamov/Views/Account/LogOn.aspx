@@ -1,35 +1,35 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage" %>
-
+<%@ Import Namespace="Zamov.Helpers" %>
 <asp:Content ID="loginTitle" ContentPlaceHolderID="TitleContent" runat="server">
-    Log On
+    <%= Html.ResourceString("LogOn") %>
 </asp:Content>
 
 <asp:Content ID="loginContent" ContentPlaceHolderID="MainContent" runat="server">
-    <h2>Log On</h2>
+    <h2><%= Html.ResourceString("LogOn") %></h2>
     <p>
-        Please enter your username and password. <%= Html.ActionLink("Register", "Register") %> if you don't have an account.
+        <%= Html.ResourceString("LoginHeader") %>
     </p>
-    <%= Html.ValidationSummary("Login was unsuccessful. Please correct the errors and try again.") %>
+    <%= Html.ValidationSummary(Html.ResourceString("LoginUnsucsessful"))%>
 
     <% using (Html.BeginForm()) { %>
         <div>
             <fieldset>
-                <legend>Account Information</legend>
+                <legend><%= Html.ResourceString("AccountInfo") %></legend>
                 <p>
-                    <label for="username">Username:</label>
+                    <label for="username"><%= Html.ResourceString("Username") %>:</label>
                     <%= Html.TextBox("username") %>
                     <%= Html.ValidationMessage("username") %>
                 </p>
                 <p>
-                    <label for="password">Password:</label>
+                    <label for="password"><%= Html.ResourceString("Password") %>:</label>
                     <%= Html.Password("password") %>
                     <%= Html.ValidationMessage("password") %>
                 </p>
                 <p>
-                    <%= Html.CheckBox("rememberMe") %> <label class="inline" for="rememberMe">Remember me?</label>
+                    <%= Html.CheckBox("rememberMe") %> <label class="inline" for="rememberMe"><%= Html.ResourceString("RememberMe") %>?</label>
                 </p>
                 <p>
-                    <input type="submit" value="Log On" />
+                    <input type="submit" value="<%= Html.ResourceString("LogOn") %>" />
                 </p>
             </fieldset>
         </div>

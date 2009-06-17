@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
+using Zamov.Models;
 
 namespace Zamov.Controllers
 {
@@ -12,10 +13,14 @@ namespace Zamov.Controllers
         //
         // GET: /Image/
 
-        public void Show(byte[] image, string imageType)
+        public void ShowLogo(int id)
         {
-            Response.ContentType = imageType;
-            Response.BinaryWrite(image);
+            using (ZamovStorage context = new ZamovStorage())
+            {
+                Dealer dealer = context.Dealers.Select(d => d).Where(d => d.Id == id).First();
+                Response.ContentType = dealer.LogoType;
+                Response.BinaryWrite(dealer.LogoImage);
+            }
         }
 
     }

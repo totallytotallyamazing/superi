@@ -16,9 +16,9 @@
     
 <script type="text/javascript">
     $(function() {
-        $.fck.config = { path: '<%= VirtualPathUtility.ToAbsolute("~/Controls/") %>', height: 300, config: { SkinPath: "skins/office2003/", DefaultLanguage: "RU", AutoDetectLanguage: false, HtmlEncodeOutput: true} };
-        $('textarea#rDescription').fck({ toolbar: "Common" });
-        $('textarea#uDescription').fck({ toolbar: "Common" });
+        $.fck.config = { path: '<%= VirtualPathUtility.ToAbsolute("~/Controls/fckeditor/") %>', height: 300, config: { SkinPath: "skins/office2003/", DefaultLanguage: "RU", AutoDetectLanguage: false, HtmlEncodeOutput: true} };
+        $('textarea#rDescription').fck({ toolbar: "Common", height: 600 });
+        $('textarea#uDescription').fck({ toolbar: "Common", height: 600 });
     });
 </script>
 <%
@@ -32,24 +32,26 @@
     string ukrainianName = "";
     string russianDescription = "";
     string ukrainianDescription = "";
+    bool enabled = true;
     int dealerId = int.MinValue;
         
     if (dealer != null)
     {
         dealerName = dealer.Name;
         if (dealer.LogoImage.Length > 0)
-            logoUrl = Url.Action("Show", "Image", new { image = dealer.LogoImage });
+            logoUrl = Url.Action("ShowLogo", "Image", new { id=dealer.Id });
         russianName = dealer.GetName("ru-RU");
         ukrainianName = dealer.GetName("uk-UA");
         russianDescription = dealer.GetDescription("ru-RU");
         ukrainianDescription = dealer.GetDescription("uk-UA");
         dealerId = dealer.Id;
+        enabled = dealer.Enabled;
         this.Title = pageTitle;
     }
 %>
     <h2><%= pageTitle %></h2>
-    <%= Html.Hidden("dealerId", dealerId)%>
     <% using (Html.BeginForm("AddUpdateDealer", "Admin", FormMethod.Post, new{enctype="multipart/form-data"})) {%>
+        <%= Html.Hidden("dealerId", dealerId)%>
         ID<br />
         <%= Html.TextBox("name", dealerName) %><br />
         Логотип<br />
@@ -63,17 +65,19 @@
             </tr>
             <tr>
                 <td><%= Html.ResourceString("Name") %></td>
-                <td><%= Html.TextBox("rName", russianName, new { style="width:400px;"})%></td>
-                <td><%= Html.TextBox("uName", ukrainianName, new { style = "width:400px;" })%></td>
+                <td><%= Html.TextBox("rName", russianName, new { style="width:450px;"})%></td>
+                <td><%= Html.TextBox("uName", ukrainianName, new { style = "width:450px;" })%></td>
             </tr>
             <tr>
                 <td><%= Html.ResourceString("Description") %></td>
-                <td><%= Html.TextArea("rDescription") %></td>
-                <td><%= Html.TextArea("uDescription") %></td>
+                <td><%= Html.TextArea("rDescription", russianDescription) %></td>
+                <td><%= Html.TextArea("uDescription", ukrainianDescription) %></td>
             </tr>
         </table>
-
-    <input type="submit" value="<%= Html.ResourceString("Save") %>" />
+        <br />
+        <%= Html.CheckBox("enabled", enabled) %><%= Html.ResourceString("On") %><br />
+        <br />
+        <input type="submit" value="<%= Html.ResourceString("Save") %>" />
     <% } %>
 
     <div>

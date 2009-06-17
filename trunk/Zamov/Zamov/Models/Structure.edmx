@@ -98,7 +98,7 @@
           <Property Name="Name" Type="varchar" Nullable="false" MaxLength="500" />
           <Property Name="LogoImage" Type="image" />
           <Property Name="LogoType" Type="varchar" MaxLength="20" />
-          <Property Name="Enabled" Type="bit" />
+          <Property Name="Enabled" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Groups">
           <Key>
@@ -369,7 +369,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property MaxLength="500" Unicode="false" FixedLength="false" Name="Name" Type="String" Nullable="false" />
           <Property MaxLength="Max" FixedLength="false" Name="LogoImage" Type="Binary" />
-          <Property Name="Enabled" Type="Boolean" />
+          <Property Name="Enabled" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Products" Relationship="BaseEntities.FK_Products_Dealers" FromRole="Dealers" ToRole="Products" />
           <NavigationProperty Name="Cities" Relationship="BaseEntities.DealerCityMappings" FromRole="Dealers" ToRole="Cities" />
           <NavigationProperty Name="Categories" Relationship="BaseEntities.DealerCategoryMapping" FromRole="Dealer" ToRole="Category" />

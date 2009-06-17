@@ -7,20 +7,37 @@ namespace Zamov.Models
 {
     public partial class Category
     {
+        private Dictionary<string, string> names = new Dictionary<string, string>();
+
         public Dictionary<string, string> Names
         {
             get
             {
-                ZamovStorage context = new ZamovStorage();
-                return (from translation in context.Translations
-                        where (translation.ItemId == this.Id && translation.TranslationItemTypeId == (int)ItemTypes.Category)
-                        select new { lang = translation.Language, val = translation.Text })
-                        .ToDictionary(k => k.lang, v => v.val);
+                return names;
+            }
+        }
+
+        public void LoadNames()
+        {
+            using (ZamovStorage context = new ZamovStorage())
+                names = (from translation in context.Translations
+                         where (translation.ItemId == this.Id && translation.TranslationItemTypeId == (int)ItemTypes.Category)
+                         select new { lang = translation.Language, val = translation.Text })
+                    .ToDictionary(k => k.lang, v => v.val);
+        }
+
+        public string NamesXml
+        {
+            get
+            {
+                return Utils.CreateTranslationXml(this.Id, ItemTypes.Category, Names);
             }
         }
 
         public string GetName(string language)
         {
+            if (Names.Count == 0)
+                LoadNames();
             return GetName(language, true);
         }
 
@@ -30,23 +47,6 @@ namespace Zamov.Models
             if (Names.Keys.Contains(language))
                 result = Names[language];
             return result;
-        }
-
-        public void UpdateTranslations(Dictionary<string, string> translations)
-        {
-            ZamovStorage context = new ZamovStorage();
-            context.DeleteTranslations(this.Id, (int)ItemTypes.Category);
-            foreach (string key in translations.Keys)
-            {
-                Translation translation = new Translation
-                {
-                    ItemId = this.Id,
-                    Language = key,
-                    TranslationItemTypeId = (int)ItemTypes.Category,
-                    Text = translations[key]
-                };
-                context.AddToTranslations(translation);
-            }
         }
     }
 }

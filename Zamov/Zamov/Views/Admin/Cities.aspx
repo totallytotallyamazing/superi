@@ -76,7 +76,8 @@
 
     </table>
     
-    <% using (Html.BeginForm("UpdateCities", "Admin")){ %>
+    <% using (Html.BeginForm("UpdateCategories", "Admin"))
+       { %>
     <%= Html.Hidden("updates") %>
     <%= Html.Hidden("enablities") %>
     <input type="submit" value="<%= Html.ResourceString("Save") %>" onclick="return collectCityChanges()" />

@@ -199,6 +199,60 @@ namespace Zamov.Controllers
                 return View(categories);
             }
         }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult UpdateCategories(FormCollection form)
+        {
+            JavaScriptSerializer serializer = new JavaScriptSerializer();
+            if (!string.IsNullOrEmpty(form["updates"]))
+            {
+                Dictionary<string, Dictionary<string, string>> updates = serializer.Deserialize<Dictionary<string, Dictionary<string, string>>>(
+                    form["updates"]
+                    );
+                foreach (string key in updates.Keys)
+                {
+                    int itemId = int.Parse(key);
+                    Dictionary<string, string> translations = updates[key];
+                    List<TranslationItem> translationItems = new List<TranslationItem>();
+                    translationItems = (from tr in translations select new TranslationItem { ItemId = itemId, ItemType = ItemTypes.Category, Language = tr.Key, Translation = tr.Value }).ToList();
+                    string translationXml = Utils.CreateTranslationXml(translationItems);
+                    using (ZamovStorage context = new ZamovStorage())
+                    {
+                        context.UpdateTranslations(translationXml);
+                    }
+                }
+            }
+            return RedirectToAction("Categories");
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult InsertCategory(FormCollection form)
+        {
+            using (ZamovStorage context = new ZamovStorage())
+            {
+                Category category = new Category();
+                category.Name = form["categoryName"];
+                category.Names.Clear();
+                category.Names["ru-RU"] = form["categoryRusName"];
+                category.Names["uk-UA"] = form["categoryUkrName"];
+                context.AddToCategories(category);
+                context.SaveChanges();
+                context.UpdateTranslations(category.NamesXml);
+            }
+            return RedirectToAction("Categories");
+        }
+
+        public ActionResult DeleteCategory(int id)
+        {
+            using (ZamovStorage context = new ZamovStorage())
+            {
+                Category category = (from c in context.Categories where c.Id == id select c).First();
+                context.DeleteObject(category);
+                context.SaveChanges();
+                context.DeleteTranslations(id, (int)ItemTypes.Category);
+            }
+            return RedirectToAction("Categories");
+        }
         #endregion
     }
 }

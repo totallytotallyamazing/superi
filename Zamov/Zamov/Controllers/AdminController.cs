@@ -254,5 +254,25 @@ namespace Zamov.Controllers
             return RedirectToAction("Categories");
         }
         #endregion
+
+        #region Mappings
+        public ActionResult DealerMappings(int id, ItemTypes itemType)
+        {
+            List<Dealer> dealers = new List<Dealer>();
+            using (ZamovStorage context = new ZamovStorage())
+            {
+                dealers = context.Dealers.Select(d => d).ToList();
+            }
+            ViewData["id"] = id;
+            ViewData["itemType"] = itemType;
+            return View(dealers);
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public void UpdateDealerMappingsMappings()
+        { 
+            
+        }
+        #endregion
     }
 }

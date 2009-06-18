@@ -41,7 +41,7 @@
                 <%= Html.ResourceActionLink("Edit", "AddUpdateDealer", new { id=item.Id }) %>
             </td>
             <td>
-                <%= Html.ResourceActionLink("Delete", "DeleteDealer", new { id = item.Id })%>
+                <%= Html.ActionLink(Html.ResourceString("Delete"), "DeleteDealer", new { id = item.Id }, new {onclick = "return confirm('" + Html.ResourceString("AreYouSure") + "?')" })%>
             </td>
         </tr>
         <% } %>

@@ -18,7 +18,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("BaseEntities", "DealerCategoryMapping", "Category", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Zamov.Models.Category), "Dealer", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Zamov.Models.Dealer))]
 
 // Original file name:
-// Generation date: 17/06/2009 14:53:17
+// Generation date: 18/06/2009 15:52:56
 namespace Zamov.Models
 {
     

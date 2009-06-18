@@ -201,4 +201,10 @@
   <data name="Categories" xml:space="preserve">
     <value>Категорії</value>
   </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Вiдмiна</value>
+  </data>
+  <data name="AreYouSure" xml:space="preserve">
+    <value>Ви впевненi</value>
+  </data>
 </root>

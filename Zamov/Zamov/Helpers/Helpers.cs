@@ -26,6 +26,11 @@ namespace Zamov.Helpers
             return info;
         }
 
+        public static string CurrentCulture(this System.Web.Mvc.HtmlHelper helper)
+        {
+            return GetSelectedCulture().Name;
+        }
+
         public static string RegisterCss(this System.Web.Mvc.HtmlHelper helper, string relativePath)
         {
             string cssPath = VirtualPathUtility.ToAbsolute(relativePath);

@@ -5,7 +5,6 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-        <%= Html.RegisterJS("common.js") %>
     <script type="text/javascript">
         var changes = {};
     </script>
@@ -46,7 +45,7 @@
                 <%= Html.TextBox("ru-RU_" + item.Id, item.GetName("ru-RU", false), new { onblur = "tableChanged(changes, this)" })%>
             </td>
             <td>
-                <%= Html.ResourceActionLink("Delete", "DeleteCategory", new { id = item.Id })%>
+                <%= Html.ActionLink(Html.ResourceString("Delete"), "DeleteCategory", new { id = item.Id }, new { onclick = "return confirm('" + Html.ResourceString("AreYouSure") + "?')" })%>
             </td>
         </tr>
     

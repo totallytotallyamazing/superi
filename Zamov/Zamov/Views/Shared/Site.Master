@@ -10,8 +10,12 @@
     </title>
     <link href="../../Content/Site.css" rel="stylesheet" type="text/css" />
     <%= Html.RegisterJS("MicrosoftAjax.js")%>
+    <%= Html.RegisterJS("MicrosoftMvcAjax.js")%>
+    <%= Html.RegisterJS("jquery.js")%>
+    <%= Html.RegisterJS("common.js")%>
 </head>
 <body>
+    <div class="shader"></div>
     <div id="header">
         <div id="headerRight">
             <div id="languageSelector">

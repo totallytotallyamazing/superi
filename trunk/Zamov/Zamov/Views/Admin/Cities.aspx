@@ -5,11 +5,10 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    
-    <%= Html.RegisterJS("common.js") %>
     <script type="text/javascript">
         var changes = {};
         var enables = {};
+        var currentLink;
         function updateEnables(check, id) {
             if (check.checked) {
                 enables[id] = true;
@@ -19,15 +18,36 @@
             }
         }
 
+        $(function() {
+            $(".ajax a").click(function(elem) { currentLink = elem.target; })
+        }
+        );
+
+        function closeDelaerMappings() {
+            $("#dealerList").hide();
+            fadeScreenIn();
+        }
+
         function collectCityChanges() {
             collectChanges(changes, 'updates');
             var enablities = $get("enablities");
             enablities.value = Sys.Serialization.JavaScriptSerializer.serialize(enables);
             return true;
         }
+
+        function beginMappingsCall(bla, blavla, c) {
+            fadeScreenOut();
+        }
+
+        function showDealerMappings(bla, mla, blabla) {
+            var pos = $(currentLink).offset();
+            pos.left = pos.left + $(currentLink).width();
+            $("#dealerList").css("top", pos.top).css("left", pos.left).slideDown("slow");
+        }
+        
     </script>
     <h2><%= Html.ResourceString("Cities") %></h2>
-
+<div id="dealerList"></div>
     
     <table class="adminTable" style="border:1px dotted #ccc" >
         <tr>
@@ -44,6 +64,7 @@
             <th>
                 Показывать
             </th>
+            <th></th>
             <th></th>
         </tr>
     <% foreach (var item in Model)
@@ -67,8 +88,12 @@
             <td align="center">
                 <%= Html.CheckBox("enabled_" + item.Id, item.Enabled, new { onclick = "updateEnables(this, " + item.Id + ")" })%>
             </td>
+            <td class="ajax">
+                <%= Ajax.ActionLink(Html.ResourceString("Dealers"), "DealerMappings", new { id = item.Id, itemType = Zamov.Models.ItemTypes.City }, new AjaxOptions { OnBegin = "beginMappingsCall", OnSuccess = "showDealerMappings", UpdateTargetId = "dealerList", InsertionMode = InsertionMode.Replace })%>
+            </td>
             <td>
-                <%= Html.ResourceActionLink("Delete", "DeleteCity", new { id = item.Id })%>
+                <%= Html.ActionLink(Html.ResourceString("Delete"), "DeleteCity", new { id = item.Id }, new { onclick = "return confirm('" + Html.ResourceString("AreYouSure") + "?')" })%>
+                
             </td>
         </tr>
         

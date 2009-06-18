@@ -170,6 +170,7 @@
     <Content Include="Views\Admin\Categories.aspx" />
     <Content Include="Views\Admin\Cities.aspx" />
     <Content Include="Views\Admin\Dealers.aspx" />
+    <Content Include="Views\Admin\DealerMappings.aspx" />
     <Content Include="Views\PageParts\HeaderSelectors.ascx" />
   </ItemGroup>
   <ItemGroup>

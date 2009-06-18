@@ -20,3 +20,6 @@ input[type='select']
 
 
 .adminTable tr td{border-collapse:collapse; border:1px dotted #ccc; padding:3px;}
+.shader{background:white; opacity:0.5; filter:alpha(opacity=50); position:absolute; top:0; left:0; width:100%; height:100%; display:none; z-index:10000;}
+
+#dealerList{position:absolute; padding:10px; border: 1px solid #dbdbdb; display:none; z-index:10001; background:white;}

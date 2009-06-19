@@ -8,10 +8,18 @@
 
     <h2>Удаленное видео</h2>
 
-    <% foreach (var item in Model) { %>
-        Пост &quot;<%= item.Entity.Title %> &quot; <br />
-        Видео &quot;<%= item.Entity.Title %> &quot; 
-    <% } %>
+    <% foreach (var item in Model) {
+           using (Html.BeginForm("UpdateVideoSource", "Manage", FormMethod.Post))
+           {
+           %>
+           <%= Html.Hidden("id", item.ID) %>
+        Пост &quot;<%= item.Entity.Title%> &quot; за <%= item.Entity.Date.Value.ToString("dd.MM.yyyy")%> <br />
+        Видео &quot;<%= item.Entity.Title%> &quot; <br />
+        Код плеера:<br />
+        <%= Html.TextArea("source", item.Source, new { style = "width:270px;" })%><br />
+        <input type="submit" value="Обновить" />
+    <% }
+       } %>
 
 </asp:Content>
 

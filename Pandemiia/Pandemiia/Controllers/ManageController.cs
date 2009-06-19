@@ -333,6 +333,17 @@ namespace Pandemiia.Controllers
             List<EntityVideo> result = videos.Select(v => v).Where(v => !CheckVideo(v.Source)).ToList();
             return View(result);
         }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult UpdateVideoSource(FormCollection form)
+        {
+            int id = int.Parse(form["id"]);
+            string newSource = form["source"];
+            EntityVideo video = _context.EntityVideos.Select(v => v).Where(v => v.ID == id).First();
+            video.Source = newSource;
+            _context.SubmitChanges();
+            return RedirectToAction("BrokenYoutube");
+        }
         #endregion
 
         #region Private methods
@@ -365,8 +376,6 @@ namespace Pandemiia.Controllers
                 string videoId = match.Groups[1].Value;
                 result = QueryYoutube(videoId);
             }
-            else
-                result = false;
             return result;
         }
 

@@ -238,6 +238,8 @@
     <Content Include="Views\Errors\Default.aspx" />
     <Content Include="Views\Errors\NotFound.aspx" />
     <Content Include="Views\Filter\FilteredList.aspx" />
+    <Content Include="Views\Manage\BrokenYoutube.aspx" />
+    <Content Include="Views\Manage\Tags.aspx" />
     <Content Include="Views\Shared\EntityMusics.ascx" />
     <Content Include="Views\PageParts\Filter.ascx" />
     <Content Include="Views\PageParts\Pager.ascx" />

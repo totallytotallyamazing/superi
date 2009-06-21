@@ -18,7 +18,7 @@
         <%
             if (Model.EntityType.Name == "Изображения" && Model.EntityPictures.Count == 1)
             {%>
-              <a class="entitySingleImage" href="<%= VirtalPathUtility.ToAbsolute(Model.EntityPictures[0].Picture) %>">
+              <a class="entitySingleImage" href="<%= VirtualPathUtility.ToAbsolute("~/EntityImages/" + Model.EntityPictures[0].Picture) %>">
                 <%= Html.Image("~/EntityImages/" + Model.Image, "")%>
               </a>  
             <%}

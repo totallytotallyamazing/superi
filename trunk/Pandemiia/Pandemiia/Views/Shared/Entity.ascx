@@ -15,7 +15,23 @@
    } %>
 <div class="entity <%= className %>">
     <div class="entityImage">
-        <%= Html.Image("~/EntityImages/" + Model.Image, "") %>
+        <%
+            if (Model.EntityType.Name == "Изображения" && Model.EntityPictures.Count == 1)
+            {%>
+              <a class="entitySingleImage" href="<%= VirtalPathUtility.ToAbsolute(Model.EntityPictures[0].Picture) %>">
+                <%= Html.Image("~/EntityImages/" + Model.Image, "")%>
+              </a>  
+            <%}
+            else
+            {
+                string link = Url.Action("EntityDetails", new { id = Model.ID });
+                %>
+                <a href="<%= link%>">
+                    <%= Html.Image("~/EntityImages/" + Model.Image, "") %>
+                </a>
+            <%}
+        %>
+        
     </div>
     <div class="entityText">
         <div class="entityTitle">
@@ -34,6 +50,9 @@
            </div>
         <%} %>
     </div>
+    <script type="text/javascript">
+        $(".entitySingleImage").fancybox({ 'overlayShow': true, 'padding': 0, 'imageScale': true });
+    </script>
 </div>
 
 

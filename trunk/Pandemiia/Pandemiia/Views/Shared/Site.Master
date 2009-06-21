@@ -11,7 +11,10 @@
     <meta name="verify-v1" content="6DWG9Q1mBpsI2YxAesnCx0kQJnXr65pDH/X/LKGGtyQ=" />
     <meta name='yandex-verification' content='4807ac62359443d8' />
     <link rel="shortcut icon" type="image/ico" href="/favicon.ico" />
+    <%= Html.RegisterCss("~/Content/fancy/jquery.fancybox.css")%>
     <%= Html.RegisterJS("jquery.js") %>
+    <%= Html.RegisterJS("jquery.fancybox.js")%>
+    <%= Html.RegisterJS("jquery.easing.js")%>
     <%= Html.RegisterJS("swfobject.js")%>
     <%= Html.RegisterCss("~/Content/global.css") %>
     <%

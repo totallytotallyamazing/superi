@@ -2,9 +2,6 @@
 <%@ Import Namespace="Pandemiia.Helpers" %>
 <%@ Import Namespace="Pandemiia.Models" %>
 <%@ Import Namespace="Microsoft.Web.Mvc" %>
-<%= Html.RegisterCss("~/Content/fancy/jquery.fancybox.css")%>
-<%= Html.RegisterJS("jquery.fancybox.js")%>
-<%= Html.RegisterJS("jquery.easing.js")%>
 <script type="text/javascript">
     $(function() {
     $(".image a").fancybox({ 'overlayShow': true, 'padding': 0, 'imageScale': true })

@@ -39,15 +39,15 @@
             fadeScreenOut();
         }
 
-        function showDealerMappings(bla, mla, blabla) {
+        function showDealerMappings() {
             var pos = $(currentLink).offset();
             pos.left = pos.left + $(currentLink).width();
-            $("#dealerList").css("top", pos.top).css("left", pos.left).slideDown("slow");
+            $("#dealerList").css("top", pos.top).css("left", pos.left).slideDown("fast");
         }
         
     </script>
     <h2><%= Html.ResourceString("Cities") %></h2>
-<div id="dealerList"></div>
+<div id="dealerList" class="greyBorderBox popUpBox"></div>
     
     <table class="adminTable" style="border:1px dotted #ccc" >
         <tr>

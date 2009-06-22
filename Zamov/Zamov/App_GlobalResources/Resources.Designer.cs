@@ -79,6 +79,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Створити категорiю.
+        /// </summary>
+        internal static string AddCategory {
+            get {
+                return ResourceManager.GetString("AddCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Створити пiдкатегорiю.
+        /// </summary>
+        internal static string AddSubCategory {
+            get {
+                return ResourceManager.GetString("AddSubCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Реклама.
         /// </summary>
         internal static string Advertisement {

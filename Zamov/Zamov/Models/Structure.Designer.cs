@@ -9,16 +9,18 @@
 //------------------------------------------------------------------------------
 
 [assembly: global::System.Data.Objects.DataClasses.EdmSchemaAttribute()]
-[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("BaseEntities", "FK_Groups_Categories", "Categories", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Zamov.Models.Category), "Groups", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Zamov.Models.Group))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("BaseEntities", "FK_Products_Dealers", "Dealers", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Zamov.Models.Dealer), "Products", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Zamov.Models.Product))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("BaseEntities", "FK_Products_Groups", "Groups", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Zamov.Models.Group), "Products", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Zamov.Models.Product))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("BaseEntities", "DealerCityMappings", "Cities", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Zamov.Models.City), "Dealers", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Zamov.Models.Dealer))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("BaseEntities", "ProductCityMappings", "Cities", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Zamov.Models.City), "Products", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Zamov.Models.Product))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("BaseEntities", "FK_ProductImages_Products", "Product", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Zamov.Models.Product), "ProductImages", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Zamov.Models.ProductImage))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("BaseEntities", "DealerCategoryMapping", "Category", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Zamov.Models.Category), "Dealer", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Zamov.Models.Dealer))]
+[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("BaseEntities", "FK_Groups_Dealers", "Dealer", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Zamov.Models.Dealer), "Group", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Zamov.Models.Group))]
+[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("BaseEntities", "FK_Categories_Categories", "Category", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Zamov.Models.Category), "Category1", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Zamov.Models.Category))]
+[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("BaseEntities", "FK_Groups_Groups", "Group", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Zamov.Models.Group), "Group1", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Zamov.Models.Group))]
 
 // Original file name:
-// Generation date: 18/06/2009 15:52:56
+// Generation date: 22/06/2009 14:01:28
 namespace Zamov.Models
 {
     
@@ -340,27 +342,6 @@ namespace Zamov.Models
         partial void OnNameChanging(string value);
         partial void OnNameChanged();
         /// <summary>
-        /// There are no comments for Groups in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("BaseEntities", "FK_Groups_Categories", "Groups")]
-        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
-        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Data.Objects.DataClasses.EntityCollection<Group> Groups
-        {
-            get
-            {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<Group>("BaseEntities.FK_Groups_Categories", "Groups");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<Group>("BaseEntities.FK_Groups_Categories", "Groups", value);
-                }
-            }
-        }
-        /// <summary>
         /// There are no comments for Dealers in the schema.
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("BaseEntities", "DealerCategoryMapping", "Dealer")]
@@ -378,6 +359,64 @@ namespace Zamov.Models
                 if ((value != null))
                 {
                     ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<Dealer>("BaseEntities.DealerCategoryMapping", "Dealer", value);
+                }
+            }
+        }
+        /// <summary>
+        /// There are no comments for Categories in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("BaseEntities", "FK_Categories_Categories", "Category1")]
+        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
+        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Data.Objects.DataClasses.EntityCollection<Category> Categories
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<Category>("BaseEntities.FK_Categories_Categories", "Category1");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<Category>("BaseEntities.FK_Categories_Categories", "Category1", value);
+                }
+            }
+        }
+        /// <summary>
+        /// There are no comments for Parent in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("BaseEntities", "FK_Categories_Categories", "Category")]
+        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
+        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public Category Parent
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Category>("BaseEntities.FK_Categories_Categories", "Category").Value;
+            }
+            set
+            {
+                ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Category>("BaseEntities.FK_Categories_Categories", "Category").Value = value;
+            }
+        }
+        /// <summary>
+        /// There are no comments for Parent in the schema.
+        /// </summary>
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Data.Objects.DataClasses.EntityReference<Category> ParentReference
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Category>("BaseEntities.FK_Categories_Categories", "Category");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<Category>("BaseEntities.FK_Categories_Categories", "Category", value);
                 }
             }
         }
@@ -722,6 +761,27 @@ namespace Zamov.Models
                 }
             }
         }
+        /// <summary>
+        /// There are no comments for Groups in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("BaseEntities", "FK_Groups_Dealers", "Group")]
+        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
+        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Data.Objects.DataClasses.EntityCollection<Group> Groups
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<Group>("BaseEntities.FK_Groups_Dealers", "Group");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<Group>("BaseEntities.FK_Groups_Dealers", "Group", value);
+                }
+            }
+        }
     }
     /// <summary>
     /// There are no comments for BaseEntities.Group in the schema.
@@ -793,29 +853,6 @@ namespace Zamov.Models
         partial void OnNameChanging(string value);
         partial void OnNameChanged();
         /// <summary>
-        /// There are no comments for Property ParentId in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Nullable<int> ParentId
-        {
-            get
-            {
-                return this._ParentId;
-            }
-            set
-            {
-                this.OnParentIdChanging(value);
-                this.ReportPropertyChanging("ParentId");
-                this._ParentId = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
-                this.ReportPropertyChanged("ParentId");
-                this.OnParentIdChanged();
-            }
-        }
-        private global::System.Nullable<int> _ParentId;
-        partial void OnParentIdChanging(global::System.Nullable<int> value);
-        partial void OnParentIdChanged();
-        /// <summary>
         /// There are no comments for Property Enabled in the schema.
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
@@ -839,43 +876,6 @@ namespace Zamov.Models
         partial void OnEnabledChanging(global::System.Nullable<bool> value);
         partial void OnEnabledChanged();
         /// <summary>
-        /// There are no comments for Categories in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("BaseEntities", "FK_Groups_Categories", "Categories")]
-        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
-        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public Category Categories
-        {
-            get
-            {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Category>("BaseEntities.FK_Groups_Categories", "Categories").Value;
-            }
-            set
-            {
-                ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Category>("BaseEntities.FK_Groups_Categories", "Categories").Value = value;
-            }
-        }
-        /// <summary>
-        /// There are no comments for Categories in the schema.
-        /// </summary>
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Data.Objects.DataClasses.EntityReference<Category> CategoriesReference
-        {
-            get
-            {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Category>("BaseEntities.FK_Groups_Categories", "Categories");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<Category>("BaseEntities.FK_Groups_Categories", "Categories", value);
-                }
-            }
-        }
-        /// <summary>
         /// There are no comments for Products in the schema.
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("BaseEntities", "FK_Products_Groups", "Products")]
@@ -893,6 +893,101 @@ namespace Zamov.Models
                 if ((value != null))
                 {
                     ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<Product>("BaseEntities.FK_Products_Groups", "Products", value);
+                }
+            }
+        }
+        /// <summary>
+        /// There are no comments for Dealers in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("BaseEntities", "FK_Groups_Dealers", "Dealer")]
+        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
+        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public Dealer Dealers
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Dealer>("BaseEntities.FK_Groups_Dealers", "Dealer").Value;
+            }
+            set
+            {
+                ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Dealer>("BaseEntities.FK_Groups_Dealers", "Dealer").Value = value;
+            }
+        }
+        /// <summary>
+        /// There are no comments for Dealers in the schema.
+        /// </summary>
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Data.Objects.DataClasses.EntityReference<Dealer> DealersReference
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Dealer>("BaseEntities.FK_Groups_Dealers", "Dealer");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<Dealer>("BaseEntities.FK_Groups_Dealers", "Dealer", value);
+                }
+            }
+        }
+        /// <summary>
+        /// There are no comments for Groups in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("BaseEntities", "FK_Groups_Groups", "Group1")]
+        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
+        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Data.Objects.DataClasses.EntityCollection<Group> Groups
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<Group>("BaseEntities.FK_Groups_Groups", "Group1");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<Group>("BaseEntities.FK_Groups_Groups", "Group1", value);
+                }
+            }
+        }
+        /// <summary>
+        /// There are no comments for Parent in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("BaseEntities", "FK_Groups_Groups", "Group")]
+        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
+        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public Group Parent
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Group>("BaseEntities.FK_Groups_Groups", "Group").Value;
+            }
+            set
+            {
+                ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Group>("BaseEntities.FK_Groups_Groups", "Group").Value = value;
+            }
+        }
+        /// <summary>
+        /// There are no comments for Parent in the schema.
+        /// </summary>
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Data.Objects.DataClasses.EntityReference<Group> ParentReference
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Group>("BaseEntities.FK_Groups_Groups", "Group");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<Group>("BaseEntities.FK_Groups_Groups", "Group", value);
                 }
             }
         }

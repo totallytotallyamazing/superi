@@ -168,6 +168,7 @@
     <Content Include="Scripts\jquery.FCKEditor.js" />
     <Content Include="Views\Admin\AddUpdateDealer.aspx" />
     <Content Include="Views\Admin\Categories.aspx" />
+    <Content Include="Views\Admin\CategoriesList.ascx" />
     <Content Include="Views\Admin\Cities.aspx" />
     <Content Include="Views\Admin\Dealers.aspx" />
     <Content Include="Views\Admin\DealerMappings.aspx" />

@@ -193,9 +193,21 @@ namespace Zamov.Controllers
         #region Categories
         public ActionResult Categories()
         {
+            return View();
+        }
+
+        public ActionResult CategoriesList(int? id, int level)
+        { 
             using (ZamovStorage context = new ZamovStorage())
             {
                 List<Category> categories = context.Categories.Select(c => c).ToList();
+                if (id == null)
+                    categories = categories.Select(c => c).Where(c => c.Parent == null).ToList();
+                else
+                    categories = categories.Select(c => c).Where(c => c.Parent != null && c.Parent.Id == id.Value).ToList();
+                ViewData["level"] = level;
+                if (id != null)
+                    ViewData["id"] = id.Value;
                 return View(categories);
             }
         }
@@ -230,7 +242,12 @@ namespace Zamov.Controllers
         {
             using (ZamovStorage context = new ZamovStorage())
             {
+                int parentId = int.Parse(form["parentId"]);
+                Category parent = null;
+                if (parentId >= 0)
+                    parent = context.Categories.Select(c => c).Where(c => c.Id == parentId).First();
                 Category category = new Category();
+                category.Parent = parent;
                 category.Name = form["categoryName"];
                 category.Names.Clear();
                 category.Names["ru-RU"] = form["categoryRusName"];

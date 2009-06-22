@@ -207,4 +207,10 @@
   <data name="AreYouSure" xml:space="preserve">
     <value>Вы уверены</value>
   </data>
+  <data name="AddCategory" xml:space="preserve">
+    <value>Создать категорию</value>
+  </data>
+  <data name="AddSubCategory" xml:space="preserve">
+    <value>Создать подкатегорию</value>
+  </data>
 </root>

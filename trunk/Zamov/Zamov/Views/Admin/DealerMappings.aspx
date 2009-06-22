@@ -1,13 +1,7 @@
 <%@ Page Language="C#" Inherits="System.Web.Mvc.ViewPage<IEnumerable<Zamov.Models.Dealer>>" %>
 <%@ Import Namespace="Zamov.Models" %>
 <%@ Import Namespace="Zamov.Helpers" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml" >
-<head runat="server">
-    <title>DelaerMappings</title>
-</head>
-<body>
     <%
         int id = Convert.ToInt32(ViewData["id"]);
         ItemTypes itemType = (ItemTypes)ViewData["itemType"];
@@ -36,7 +30,4 @@
         <input type="submit" value="<%= Html.ResourceString("Save") %>" />
         <input type="button" value="<%= Html.ResourceString("Cancel")  %>" onclick="closeDelaerMappings()" />
     <%} %>
-
-</body>
-</html>
 

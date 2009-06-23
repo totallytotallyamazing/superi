@@ -338,7 +338,7 @@ namespace Pandemiia.Controllers
         public ActionResult UpdateVideoSource(FormCollection form)
         {
             int id = int.Parse(form["id"]);
-            string newSource = form["source"];
+            string newSource = Server.UrlDecode(form["source"]);
             EntityVideo video = _context.EntityVideos.Select(v => v).Where(v => v.ID == id).First();
             video.Source = newSource;
             _context.SubmitChanges();

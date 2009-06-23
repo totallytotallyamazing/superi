@@ -5,7 +5,12 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-
+    <script type="text/javascript">
+        function htmlEncode() {
+            var src = $('#source').attr('value');
+            $('#source').attr('value', escape(src));
+        }
+    </script>
     <h2>Удаленное видео</h2>
 
     <% foreach (var item in Model) {

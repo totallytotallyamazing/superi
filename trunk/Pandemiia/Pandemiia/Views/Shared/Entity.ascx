@@ -43,7 +43,7 @@
         <div class="entityDescription">
             <%= Model.Description %>
         </div>
-        <% if (!string.IsNullOrEmpty(Model.Content) || Model.EntityPictures.Count > 0 || Model.EntityVideos.Count > 0 || Model.EntityMusics.Count>0)
+        <% if (!string.IsNullOrEmpty(Model.Content) || Model.EntityPictures.Count > 1 || Model.EntityVideos.Count > 0 || Model.EntityMusics.Count>0)
            { %>
            <div class="detailsLink">
             <%= Html.ActionLink("тут есть еще>>>", "EntityDetails", new { id = Model.ID })%> 

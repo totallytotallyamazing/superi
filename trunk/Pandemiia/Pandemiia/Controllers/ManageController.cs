@@ -394,7 +394,10 @@ namespace Pandemiia.Controllers
                 reader = new StreamReader(response.GetResponseStream(), System.Text.Encoding.UTF8);
                 responseString = reader.ReadToEnd();
             }
-            catch { }
+            catch(Exception exception) {
+                if (exception.Message.IndexOf("404") > -1)
+                    responseString = "";
+            }
             finally
             {
                 if (reader != null)

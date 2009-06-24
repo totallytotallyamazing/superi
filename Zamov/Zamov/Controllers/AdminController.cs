@@ -8,6 +8,7 @@ using Zamov.Models;
 using System.Web.Script.Serialization;
 using System.IO;
 using System.Web.Security;
+using System.Web.Profile;
 
 namespace Zamov.Controllers
 {
@@ -113,8 +114,8 @@ namespace Zamov.Controllers
         public ActionResult AddUpdateDealer(int id)
         {
             if (id > 0)
-            { 
-                using(ZamovStorage context = new ZamovStorage())
+            {
+                using (ZamovStorage context = new ZamovStorage())
                 {
                     Dealer dealer = context.Dealers.Select(d => d).Where(d => d.Id == id).First();
                     ViewData["dealer"] = dealer;
@@ -128,7 +129,7 @@ namespace Zamov.Controllers
         {
             int dealerId = int.Parse(form["dealerId"]);
             Dealer dealer = null;
-            using(ZamovStorage context = new ZamovStorage())
+            using (ZamovStorage context = new ZamovStorage())
             {
                 if (dealerId >= 0)
                     dealer = context.Dealers.Select(d => d).Where(d => d.Id == dealerId).First();
@@ -158,7 +159,7 @@ namespace Zamov.Controllers
 
         public ActionResult EnableDealer(int id)
         {
-            using(ZamovStorage context = new ZamovStorage())
+            using (ZamovStorage context = new ZamovStorage())
             {
                 Dealer dealer = (from d in context.Dealers where d.Id == id select d).First();
                 dealer.Enabled = true;
@@ -198,7 +199,7 @@ namespace Zamov.Controllers
         }
 
         public ActionResult CategoriesList(int? id, int level)
-        { 
+        {
             using (ZamovStorage context = new ZamovStorage())
             {
                 List<Category> categories = context.Categories.Select(c => c).ToList();
@@ -288,9 +289,50 @@ namespace Zamov.Controllers
 
         [AcceptVerbs(HttpVerbs.Post)]
         public void UpdateDealerMappingsMappings()
-        { 
-            
+        {
+
         }
+        #endregion
+
+        #region Users
+        public ActionResult Users(int? pageIndex)
+        {
+            int totalRecords;
+            MembershipUserCollection users;
+            if (SystemSettings.UsersPageSize > 0)
+            {
+                int index = pageIndex ?? 0;
+                users = Membership.GetAllUsers(index, SystemSettings.UsersPageSize, out totalRecords);
+            }
+            else
+            {
+                users = Membership.GetAllUsers();
+                totalRecords = users.Count;
+            }
+            return View(users);
+        }
+
+        public ActionResult UserDetails(MembershipUser user)
+        {
+            using (ZamovStorage context = new ZamovStorage())
+            {
+                ProfileBase profile = ProfileBase.Create(user.UserName);
+                int dealerId = -1;
+                if (profile["DealerId"] != null)
+                    dealerId = Convert.ToInt32(profile["DealerId"]);
+                var dealers = (from dealer in context.Dealers select dealer).ToList();
+                List<SelectListItem> dealerItems = (from dealer in dealers
+                                                select new SelectListItem
+                                                {
+                                                    Text = dealer.GetName(SystemSettings.CurrentLanguage),
+                                                    Value = dealer.Id.ToString(),
+                                                    Selected = dealer.Id == dealerId
+                                                }).ToList();
+                ViewData["dealerId"] = dealerItems;
+                return View(user);
+            }
+        }
+
         #endregion
     }
 }

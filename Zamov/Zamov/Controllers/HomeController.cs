@@ -27,13 +27,13 @@ namespace Zamov.Controllers
 
         public ActionResult SetUkrainian()
         {
-            ToolsController.CurrentLanguage = "uk-UA";
+            SystemSettings.CurrentLanguage = "uk-UA";
             return RedirectToAction("Index");
         }
 
         public ActionResult SetRussian()
         {
-            ToolsController.CurrentLanguage = "ru-RU";
+            SystemSettings.CurrentLanguage = "ru-RU";
             return RedirectToAction("Index");
         }
 

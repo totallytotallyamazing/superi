@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using System.Web.UI;
+using System.Web.Profile;
 
 namespace Zamov.Controllers
 {
@@ -89,7 +90,7 @@ namespace Zamov.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Register(string userName, string email, string password, string confirmPassword)
+        public ActionResult Register(string userName, string email, string password, string confirmPassword, string firstName, string lastName, string phone)
         {
 
             ViewData["PasswordLength"] = MembershipService.MinPasswordLength;
@@ -98,9 +99,13 @@ namespace Zamov.Controllers
             {
                 // Attempt to register the user
                 MembershipCreateStatus createStatus = MembershipService.CreateUser(userName, password, email);
-
                 if (createStatus == MembershipCreateStatus.Success)
                 {
+                    ProfileBase profile = ProfileBase.Create(userName, false);
+                    profile["FirstName"] = firstName;
+                    profile["LastName"] = lastName;
+                    profile["Phone"] = phone;
+                    profile.Save();
                     FormsAuth.SignIn(userName, false /* createPersistentCookie */);
                     return RedirectToAction("Index", "Home");
                 }

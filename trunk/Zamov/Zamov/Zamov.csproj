@@ -86,7 +86,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ImageController.cs" />
     <Compile Include="Controllers\PagePartsController.cs" />
-    <Compile Include="Controllers\ToolsController.cs" />
+    <Compile Include="Controllers\SystemSettings.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -172,6 +172,8 @@
     <Content Include="Views\Admin\Cities.aspx" />
     <Content Include="Views\Admin\Dealers.aspx" />
     <Content Include="Views\Admin\DealerMappings.aspx" />
+    <Content Include="Views\Admin\UserDetails.ascx" />
+    <Content Include="Views\Admin\Users.aspx" />
     <Content Include="Views\PageParts\HeaderSelectors.ascx" />
   </ItemGroup>
   <ItemGroup>

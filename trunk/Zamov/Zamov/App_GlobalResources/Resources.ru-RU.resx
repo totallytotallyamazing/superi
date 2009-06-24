@@ -234,4 +234,13 @@
   <data name="Phone" xml:space="preserve">
     <value>Телефон</value>
   </data>
+  <data name="Users" xml:space="preserve">
+    <value>Пользователи</value>
+  </data>
+  <data name="Dealer" xml:space="preserve">
+    <value>Постачальник</value>
+  </data>
+  <data name="Manager" xml:space="preserve">
+    <value>Менеджер</value>
+  </data>
 </root>

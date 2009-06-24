@@ -23,7 +23,7 @@ namespace Zamov.Controllers
 
             using (ZamovStorage context = new ZamovStorage())
             {
-                string currentLanguage = ToolsController.CurrentLanguage;
+                string currentLanguage = SystemSettings.CurrentLanguage;
                 List<City> cities = context.Cities.Select(c => c).ToList();
                 List<Category> categories = context.Categories.Select(c => c).ToList();
                 List<SelectListItem> citiesList = (from city in cities select new SelectListItem { Text = city.GetName(currentLanguage), Value = city.Id.ToString() }).ToList();

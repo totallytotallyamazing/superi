@@ -1,15 +1,27 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Web.Mvc;
-using System.Web.Mvc.Ajax;
-using Zamov.Models;
+using System.Web.Configuration;
 
 namespace Zamov.Controllers
 {
-    public class ToolsController : Controller
+    public static class SystemSettings
     {
+        public static int UsersPageSize
+        {
+            get 
+            {
+                int result = 0;
+                string pageSizeString = WebConfigurationManager.AppSettings["UsersPageSize"];
+                if (!string.IsNullOrEmpty(pageSizeString))
+                {
+                    result = int.Parse(pageSizeString);
+                }
+                return result;
+            }
+        }
+
         public static string CurrentLanguage
         {
             get

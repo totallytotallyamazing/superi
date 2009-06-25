@@ -99,6 +99,7 @@
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\City.cs" />
     <Compile Include="Models\Dealers.cs" />
+    <Compile Include="Models\Group.cs" />
     <Compile Include="Models\ProfileCommon.cs" />
     <Compile Include="Models\Structure.Designer.cs">
       <AutoGen>True</AutoGen>

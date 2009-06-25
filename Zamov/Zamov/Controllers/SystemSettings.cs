@@ -3,14 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Configuration;
+using System.Web.SessionState;
 
 namespace Zamov.Controllers
 {
     public static class SystemSettings
     {
+        private static HttpSessionState Session
+        {
+            get { return HttpContext.Current.Session; }
+        }
+
         public static int UsersPageSize
         {
-            get 
+            get
             {
                 int result = 0;
                 string pageSizeString = WebConfigurationManager.AppSettings["UsersPageSize"];
@@ -26,11 +32,23 @@ namespace Zamov.Controllers
         {
             get
             {
-                if (System.Web.HttpContext.Current.Session["lang"] == null)
-                    System.Web.HttpContext.Current.Session["lang"] = "uk-UA";
-                return (string)System.Web.HttpContext.Current.Session["lang"];
+                if (Session["lang"] == null)
+                    Session["lang"] = "uk-UA";
+                return (string)Session["lang"];
             }
             set { System.Web.HttpContext.Current.Session["lang"] = value; }
+        }
+
+        public static int? CurrentDealer
+        {
+            get
+            {
+                int? result = null;
+                if (Session["CurrentDealer"] != null)
+                    result = Convert.ToInt32(Session["CurrentDealer"]);
+                return result;
+            }
+            set { Session["CurrentDealer"] = value; }
         }
     }
 }

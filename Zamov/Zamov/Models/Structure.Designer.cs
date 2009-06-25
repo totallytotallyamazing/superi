@@ -20,7 +20,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("BaseEntities", "FK_Groups_Groups", "Group", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Zamov.Models.Group), "Group1", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Zamov.Models.Group))]
 
 // Original file name:
-// Generation date: 22/06/2009 14:01:28
+// Generation date: 25/06/2009 18:12:38
 namespace Zamov.Models
 {
     
@@ -897,13 +897,13 @@ namespace Zamov.Models
             }
         }
         /// <summary>
-        /// There are no comments for Dealers in the schema.
+        /// There are no comments for Dealer in the schema.
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("BaseEntities", "FK_Groups_Dealers", "Dealer")]
         [global::System.Xml.Serialization.XmlIgnoreAttribute()]
         [global::System.Xml.Serialization.SoapIgnoreAttribute()]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public Dealer Dealers
+        public Dealer Dealer
         {
             get
             {
@@ -915,11 +915,11 @@ namespace Zamov.Models
             }
         }
         /// <summary>
-        /// There are no comments for Dealers in the schema.
+        /// There are no comments for Dealer in the schema.
         /// </summary>
         [global::System.ComponentModel.BrowsableAttribute(false)]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Data.Objects.DataClasses.EntityReference<Dealer> DealersReference
+        public global::System.Data.Objects.DataClasses.EntityReference<Dealer> DealerReference
         {
             get
             {
@@ -1149,13 +1149,13 @@ namespace Zamov.Models
             }
         }
         /// <summary>
-        /// There are no comments for Groups in the schema.
+        /// There are no comments for Group in the schema.
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("BaseEntities", "FK_Products_Groups", "Groups")]
         [global::System.Xml.Serialization.XmlIgnoreAttribute()]
         [global::System.Xml.Serialization.SoapIgnoreAttribute()]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public Group Groups
+        public Group Group
         {
             get
             {
@@ -1167,11 +1167,11 @@ namespace Zamov.Models
             }
         }
         /// <summary>
-        /// There are no comments for Groups in the schema.
+        /// There are no comments for Group in the schema.
         /// </summary>
         [global::System.ComponentModel.BrowsableAttribute(false)]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Data.Objects.DataClasses.EntityReference<Group> GroupsReference
+        public global::System.Data.Objects.DataClasses.EntityReference<Group> GroupReference
         {
             get
             {
@@ -1511,13 +1511,13 @@ namespace Zamov.Models
         partial void OnImageChanging(byte[] value);
         partial void OnImageChanged();
         /// <summary>
-        /// There are no comments for Products in the schema.
+        /// There are no comments for Product in the schema.
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("BaseEntities", "FK_ProductImages_Products", "Product")]
         [global::System.Xml.Serialization.XmlIgnoreAttribute()]
         [global::System.Xml.Serialization.SoapIgnoreAttribute()]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public Product Products
+        public Product Product
         {
             get
             {
@@ -1529,11 +1529,11 @@ namespace Zamov.Models
             }
         }
         /// <summary>
-        /// There are no comments for Products in the schema.
+        /// There are no comments for Product in the schema.
         /// </summary>
         [global::System.ComponentModel.BrowsableAttribute(false)]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Data.Objects.DataClasses.EntityReference<Product> ProductsReference
+        public global::System.Data.Objects.DataClasses.EntityReference<Product> ProductReference
         {
             get
             {

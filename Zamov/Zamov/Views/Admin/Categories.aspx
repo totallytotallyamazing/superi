@@ -1,5 +1,4 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage" %>
-
 <%@ Import Namespace="Zamov.Helpers" %>
 <%@ Import Namespace="Microsoft.Web.Mvc" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
@@ -40,8 +39,8 @@
 
     <h2>
         <%= Html.ResourceString("Categories") %></h2>
-    <% Html.RenderAction<Zamov.Controllers.AdminController>(a => a.CategoriesList(null, 0)); %>
     <% using (Html.BeginForm("UpdateCategories", "Admin", FormMethod.Post)){ %>
+    <% Html.RenderAction<Zamov.Controllers.AdminController>(a => a.CategoriesList(null, 0)); %>
     <%= Html.Hidden("updates") %>
     <input type="submit" value="<%= Html.ResourceString("Save") %>" onclick="return collectChanges(changes, 'updates');" />
     <%} %>

@@ -422,7 +422,7 @@
           <Property Name="Name" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
           <Property Name="Enabled" Type="Boolean" />
           <NavigationProperty Name="Products" Relationship="BaseEntities.FK_Products_Groups" FromRole="Groups" ToRole="Products" />
-          <NavigationProperty Name="Dealers" Relationship="BaseEntities.FK_Groups_Dealers" FromRole="Group" ToRole="Dealer" />
+          <NavigationProperty Name="Dealer" Relationship="BaseEntities.FK_Groups_Dealers" FromRole="Group" ToRole="Dealer" />
           <NavigationProperty Name="Groups" Relationship="BaseEntities.FK_Groups_Groups" FromRole="Group" ToRole="Group1" />
           <NavigationProperty Name="Parent" Relationship="BaseEntities.FK_Groups_Groups" FromRole="Group1" ToRole="Group" /></EntityType>
         <EntityType Name="Product">
@@ -434,7 +434,7 @@
           <Property Name="Price" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
           <Property Name="Enabled" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Dealers" Relationship="BaseEntities.FK_Products_Dealers" FromRole="Products" ToRole="Dealers" />
-          <NavigationProperty Name="Groups" Relationship="BaseEntities.FK_Products_Groups" FromRole="Products" ToRole="Groups" />
+          <NavigationProperty Name="Group" Relationship="BaseEntities.FK_Products_Groups" FromRole="Products" ToRole="Groups" />
           <NavigationProperty Name="Cities" Relationship="BaseEntities.ProductCityMappings" FromRole="Products" ToRole="Cities" />
           <NavigationProperty Name="ProductImages" Relationship="BaseEntities.FK_ProductImages_Products" FromRole="Product" ToRole="ProductImages" /></EntityType>
         <EntityType Name="TranslationItemsType">
@@ -475,7 +475,7 @@
             <PropertyRef Name="Id" /></Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Image" Type="Binary" Nullable="false" />
-          <NavigationProperty Name="Products" Relationship="BaseEntities.FK_ProductImages_Products" FromRole="ProductImages" ToRole="Product" /></EntityType>
+          <NavigationProperty Name="Product" Relationship="BaseEntities.FK_ProductImages_Products" FromRole="ProductImages" ToRole="Product" /></EntityType>
         <Association Name="FK_ProductImages_Products">
           <End Type="BaseEntities.Product" Role="Product" Multiplicity="1" />
           <End Type="BaseEntities.ProductImage" Role="ProductImages" Multiplicity="*" /></Association>

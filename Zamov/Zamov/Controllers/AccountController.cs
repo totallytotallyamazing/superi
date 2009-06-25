@@ -7,7 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using System.Web.UI;
-using System.Web.Profile;
+using Zamov.Models;
 
 namespace Zamov.Controllers
 {
@@ -101,11 +101,12 @@ namespace Zamov.Controllers
                 MembershipCreateStatus createStatus = MembershipService.CreateUser(userName, password, email);
                 if (createStatus == MembershipCreateStatus.Success)
                 {
-                    ProfileBase profile = ProfileBase.Create(userName, false);
-                    profile["FirstName"] = firstName;
-                    profile["LastName"] = lastName;
-                    profile["Phone"] = phone;
+                    ProfileCommon profile = ProfileCommon.Create(userName);
+                    profile.FirstName = firstName;
+                    profile.LastName = lastName;
+                    profile.Phone = phone;
                     profile.Save();
+                    Roles.AddUserToRole(userName, "Customers");
                     FormsAuth.SignIn(userName, false /* createPersistentCookie */);
                     return RedirectToAction("Index", "Home");
                 }

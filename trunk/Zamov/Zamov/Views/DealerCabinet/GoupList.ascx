@@ -1,43 +1,42 @@
 <%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<IEnumerable<Zamov.Models.Group>>" %>
-
-    <table>
+<%@ Import Namespace="Zamov.Helpers" %>
+<%@ Import Namespace="Microsoft.Web.Mvc" %>
+<%
+    int level = Convert.ToInt32(ViewData["level"]);
+    string marginLeft = level * 20 + "px";
+%>
+    <% foreach (var item in Model) {
+           item.LoadNames();
+    %>
+    <table class="adminTable" style="margin-left:<%= marginLeft %>">
+        <%if (level == 0 && ViewData["firstDisplayed"]==null){
+              ViewData["firstDisplayed"] = true;
+              %>
         <tr>
+                <th style="display:none">
+                    ID
+                </th>
+                <th>
+                    Укр
+                </th>
+                <th>
+                    Рус
+                </th>
+                <th>
+                    <%= Html.ResourceString("ActiveF") %>
+                </th>
             <th></th>
-            <th>
-                Id
-            </th>
-            <th>
-                Name
-            </th>
-            <th>
-                Enabled
-            </th>
+            <th></th>
         </tr>
-
-    <% foreach (var item in Model) { %>
-    
+        <%} %>
         <tr>
-            <td>
-                <%= Html.ActionLink("Edit", "Edit", new { id=item.Id }) %> |
-                <%= Html.ActionLink("Details", "Details", new { id=item.Id })%>
-            </td>
-            <td>
-                <%= Html.Encode(item.Id) %>
-            </td>
-            <td>
-                <%= Html.Encode(item.Name) %>
-            </td>
-            <td>
-                <%= Html.Encode(item.Enabled) %>
-            </td>
+            <td style="display:none">
+                <%= Html.Hidden("itemId_" + item.Id, item.Id)%>
+            </td>            
         </tr>
-    
-    <% } %>
-
-    </table>
-
-    <p>
-        <%= Html.ActionLink("Create New", "Create") %>
-    </p>
-
-
+        </table>
+                <% 
+       if (item.Groups.Count > 0)
+           Html.RenderAction<Zamov.Controllers.DealerCabinetController>(a => a.GoupList(dealerId, item.Id, level + 1));
+       
+       } %>

@@ -83,6 +83,7 @@
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\DealerCabinetController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ImageController.cs" />
     <Compile Include="Controllers\PagePartsController.cs" />
@@ -98,6 +99,7 @@
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\City.cs" />
     <Compile Include="Models\Dealers.cs" />
+    <Compile Include="Models\ProfileCommon.cs" />
     <Compile Include="Models\Structure.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -174,6 +176,9 @@
     <Content Include="Views\Admin\DealerMappings.aspx" />
     <Content Include="Views\Admin\UserDetails.ascx" />
     <Content Include="Views\Admin\Users.aspx" />
+    <Content Include="Views\DealerCabinet\GoupList.ascx" />
+    <Content Include="Views\DealerCabinet\Groups.aspx" />
+    <Content Include="Views\DealerCabinet\Index.aspx" />
     <Content Include="Views\PageParts\HeaderSelectors.ascx" />
   </ItemGroup>
   <ItemGroup>

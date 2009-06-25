@@ -18,6 +18,7 @@
             <th><%= Html.ResourceString("LastName")%></th>
             <th><%= Html.ResourceString("Manager") %></th>
             <th><%= Html.ResourceString("Dealer") %></th>
+            <th></th>
         </tr>
         <tr>
             <%

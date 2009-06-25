@@ -79,6 +79,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Активна.
+        /// </summary>
+        internal static string ActiveF {
+            get {
+                return ResourceManager.GetString("ActiveF", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Додати.
         /// </summary>
         internal static string Add {
@@ -93,6 +102,15 @@ namespace Resources {
         internal static string AddCategory {
             get {
                 return ResourceManager.GetString("AddCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Створити групу.
+        /// </summary>
+        internal static string AddGroup {
+            get {
+                return ResourceManager.GetString("AddGroup", resourceCulture);
             }
         }
         
@@ -273,6 +291,15 @@ namespace Resources {
         internal static string FirstName {
             get {
                 return ResourceManager.GetString("FirstName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Групи товарiв.
+        /// </summary>
+        internal static string Groups {
+            get {
+                return ResourceManager.GetString("Groups", resourceCulture);
             }
         }
         

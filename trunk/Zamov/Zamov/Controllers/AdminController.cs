@@ -8,7 +8,6 @@ using Zamov.Models;
 using System.Web.Script.Serialization;
 using System.IO;
 using System.Web.Security;
-using System.Web.Profile;
 
 namespace Zamov.Controllers
 {
@@ -316,10 +315,8 @@ namespace Zamov.Controllers
         {
             using (ZamovStorage context = new ZamovStorage())
             {
-                ProfileBase profile = ProfileBase.Create(user.UserName);
-                int dealerId = -1;
-                if (profile["DealerId"] != null)
-                    dealerId = Convert.ToInt32(profile["DealerId"]);
+                ProfileCommon profile = ProfileCommon.Create(user.UserName);
+                int dealerId = profile.DealerId;
                 var dealers = (from dealer in context.Dealers select dealer).ToList();
                 List<SelectListItem> dealerItems = (from dealer in dealers
                                                 select new SelectListItem
@@ -333,6 +330,30 @@ namespace Zamov.Controllers
             }
         }
 
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult UpdateUser(string userName, string firstName, string lastName, bool dealerEmployee, int dealerId)
+        {
+            ProfileCommon profile = ProfileCommon.Create(userName) as ProfileCommon;
+            profile.FirstName = firstName;
+            profile.LastName = lastName;
+
+            if (dealerEmployee)
+            {
+                profile.DealerEmployee = true;
+                profile.DealerId = dealerId;
+                if (!Roles.IsUserInRole(userName, "Dealers"))
+                    Roles.AddUserToRole(userName, "Dealers");
+            }
+            else
+            { 
+                if (Roles.IsUserInRole(userName, "Dealers"))
+                    Roles.RemoveUserFromRole(userName, "Dealers");
+                profile.DealerId = int.MinValue;
+                profile.DealerEmployee = false;
+            }
+            profile.Save();
+            return RedirectToAction("Users");
+        }
         #endregion
     }
 }

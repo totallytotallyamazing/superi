@@ -243,4 +243,13 @@
   <data name="Manager" xml:space="preserve">
     <value>Менеджер</value>
   </data>
+  <data name="Groups" xml:space="preserve">
+    <value>Групи товарiв</value>
+  </data>
+  <data name="ActiveF" xml:space="preserve">
+    <value>Активна</value>
+  </data>
+  <data name="AddGroup" xml:space="preserve">
+    <value>Створити групу</value>
+  </data>
 </root>

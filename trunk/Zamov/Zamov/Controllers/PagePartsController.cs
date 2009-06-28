@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 using Zamov.Models;
+using System.Web.Security;
 
 namespace Zamov.Controllers
 {
@@ -32,6 +33,23 @@ namespace Zamov.Controllers
                 ViewData["categoriesList"] = categoriesList;
                 return View();
             }
+        }
+
+        public ActionResult MainMenu()
+        {
+            ViewData["authenticated"] = User.Identity.IsAuthenticated;
+            if (User.Identity.IsAuthenticated)
+            {
+                ViewData["dealer"] = Roles.IsUserInRole("Dealers");
+                ViewData["admin"] = Roles.IsUserInRole("Administrators");
+            }
+            return View();
+        }
+
+        public ActionResult LeftMenu(string caption, IEnumerable<SelectListItem> items)
+        {
+            ViewData["caption"] = caption;
+            return View(items);
         }
     }
 }

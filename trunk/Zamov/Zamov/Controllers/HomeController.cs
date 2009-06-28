@@ -25,16 +25,30 @@ namespace Zamov.Controllers
             return View();
         }
 
-        public ActionResult SetUkrainian()
+        public ActionResult SetUkrainian(string returnUrl)
         {
             SystemSettings.CurrentLanguage = "uk-UA";
-            return RedirectToAction("Index");
+            if (!String.IsNullOrEmpty(returnUrl))
+            {
+                return Redirect(returnUrl);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
-        public ActionResult SetRussian()
+        public ActionResult SetRussian(string returnUrl)
         {
             SystemSettings.CurrentLanguage = "ru-RU";
-            return RedirectToAction("Index");
+            if (!String.IsNullOrEmpty(returnUrl))
+            {
+                return Redirect(returnUrl);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
     }

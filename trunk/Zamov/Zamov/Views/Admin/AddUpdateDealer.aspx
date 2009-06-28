@@ -1,4 +1,4 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Admin.Master" Inherits="System.Web.Mvc.ViewPage" %>
 <%@ Import Namespace="Zamov.Models" %>
 <%@ Import Namespace="Microsoft.Web.Mvc" %>
 <%@ Import Namespace="Zamov.Helpers" %>
@@ -85,7 +85,3 @@
     </div>
 
 </asp:Content>
-
-<asp:Content ID="Content3" ContentPlaceHolderID="leftMenu" runat="server">
-</asp:Content>
-

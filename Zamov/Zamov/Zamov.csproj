@@ -152,11 +152,6 @@
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>Resources.uk-UA.designer.cs</LastGenOutput>
     </Content>
-    <Content Include="Content\img\leftBottomRadius.jpg" />
-    <Content Include="Content\img\leftTopRadius.jpg" />
-    <Content Include="Content\img\logo.jpg" />
-    <Content Include="Content\img\rightBottomRadius.jpg" />
-    <Content Include="Content\img\rightTopRadius.jpg" />
     <Content Include="Views\Shared\LanguageSelector.ascx" />
   </ItemGroup>
   <ItemGroup>
@@ -164,10 +159,18 @@
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>Resources.ru-RU.designer.cs</LastGenOutput>
     </Content>
+    <Content Include="Content\img\headerBottom.jpg" />
+    <Content Include="Content\img\headerLeft.jpg" />
+    <Content Include="Content\img\headerRight.jpg" />
+    <Content Include="Content\img\logo.jpg" />
+    <Content Include="Content\img\subFooter.jpg" />
+    <Content Include="Content\img\subHeader.jpg" />
+    <Content Include="Content\img\subItem.jpg" />
     <Content Include="Scripts\common.js" />
     <Content Include="Scripts\fckeditor.js" />
     <Content Include="Scripts\fckeditorapi.js" />
     <Content Include="Scripts\fcktools.js" />
+    <Content Include="Scripts\jquery.corner.js" />
     <Content Include="Scripts\jquery.FCKEditor.js" />
     <Content Include="Views\Admin\AddUpdateDealer.aspx" />
     <Content Include="Views\Admin\Categories.aspx" />

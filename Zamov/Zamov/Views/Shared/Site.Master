@@ -1,4 +1,5 @@
 <%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
+
 <%@ Import Namespace="Microsoft.Web.Mvc" %>
 <%@ Import Namespace="Zamov.Helpers" %>
 <%@ Import Namespace="Zamov.Controllers" %>
@@ -13,9 +14,19 @@
     <%= Html.RegisterJS("MicrosoftMvcAjax.js")%>
     <%= Html.RegisterJS("jquery.js")%>
     <%= Html.RegisterJS("common.js")%>
+    <%= Html.RegisterJS("jquery.corner.js")%>
+    
+    <script type="text/javascript">
+        $(function() {
+            $("#header").corner("top");
+            $("#mainMenu .outer .inner").corner("bottom").parent().css('padding', '1px').corner("bottom");
+        }
+        )
+    </script>
 </head>
 <body>
-    <div class="shader"></div>
+    <div class="shader">
+    </div>
     <div id="header">
         <div id="headerRight">
             <div id="languageSelector">
@@ -25,12 +36,20 @@
                 <% Html.RenderAction<PagePartsController>(ppc => ppc.HeaderSelectors()); %>
             </div>
         </div>
+        <center>
         <div id="logo">
             <%= Html.Image("~/Content/img/logo.jpg", "Zamov.net") %>
         </div>
+        </center>
     </div>
     <div id="mainMenu">
-        <%= Html.ResourceString("News") %> | <%= Html.ResourceString("Contacts") %>
+        <div class="outer greyBg">
+           <div class="inner whiteBg">
+                <%= Html.ResourceString("News").ToLower() %>
+                |
+                <%= Html.ResourceString("Contacts").ToLower()%>
+           </div>
+        </div>
     </div>
     <div id="content">
         <div id="leftSide">
@@ -44,35 +63,5 @@
             </asp:ContentPlaceHolder>
         </div>
     </div>
-    <%--    <div class="page">
-
-        <div id="header">
-            <div id="title">
-                <h1>My MVC Application</h1>
-            </div>
-            <div id="logindisplay">
-                <% Html.RenderPartial("LogOnUserControl"); %>
-            </div> 
-            
-            <div id="menucontainer">
-              <%=  Html.ResourceString("City") %>
-            
-                <ul id="menu">              
-                    <li><%= Html.ActionLink("Home", "Index", "Home")%></li>
-                    <li><%= Html.ActionLink("About", "About", "Home")%></li>
-                    <li><%= Html.ActionLink("RU", "Ru", "Home")%></li>
-                    <li><%= Html.ActionLink("UA", "Ua", "Home")%></li>
-                </ul>
-            
-            </div>
-        </div>
-
-        <div id="main">
-            <asp:ContentPlaceHolder ID="MainContent" runat="server" />
-
-            <div id="footer">
-            </div>
-        </div>
-    </div>--%>
 </body>
 </html>

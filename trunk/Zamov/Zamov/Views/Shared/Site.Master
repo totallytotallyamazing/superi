@@ -18,6 +18,8 @@
     <%= Html.RegisterJS("common.js")%>
     <%= Html.RegisterJS("jquery.corner.js")%>
     
+    <asp:ContentPlaceHolder runat="server" ID="includes"></asp:ContentPlaceHolder>
+    
     <script type="text/javascript">
         $(function() {
             $("#header").corner("top");
@@ -25,6 +27,7 @@
         }
         )
     </script>
+    
 </head>
 <body>
     <div class="shader">

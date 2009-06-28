@@ -18,7 +18,9 @@ height:142px;
 width:195px;
 margin-right:40px;
 }
-logonInput{width:135px;}
+.registerLink{text-decoration:none;}
+.registerLink:hover{text-decoration:underline;}
+.logonInput{width:135px;}
 
 #mainMenu{margin-top:0px;}
 #mainMenu .outer{float:right; position:relative; padding:10px; height:30px;}

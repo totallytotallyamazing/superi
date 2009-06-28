@@ -1,21 +1,31 @@
 ﻿*{margin:0; padding:0;}
 body{font-family: Arial, Sans-Serif, Helvetica, Tahoma; font-size:0.8em;}
-input[type='select']
-{border:1px solid #bdbdbd;}
-#header, #content{width:auto; margin:30px 40px 0px; min-width:1000px;border:1px solid #dbdbdb}
+select
+{border:1px solid #bdbdbd; color:#b5b5b5;}
+#header, #content, #mainMenu{width:auto; margin:30px 40px 0px; min-width:1000px;}
+.greyBg{background:#CFDAD7}
+.whiteBg{background:white;}
 
-#header{height:140px;}
-#mainMenu{float:right; height:16px; margin:0 40px 0 0;}
-#header, #header a{color:#7c7c7c;}
+#header{height:142px; background:#092D45; border:1px solid #5F798A;}
+#header .headerContent{width:100%;}
+#header .leftBorder, #header .rightBorder{ width:7px; height:142px;}
+#header .rightBorder{float:right; background: transparent url(img/headerRight.jpg)}
+#header .leftBorder{float:left; background: transparent url(img/headerLeft.jpg)}
+
+#mainMenu{margin-top:0px;}
+#mainMenu .outer{float:right;}
+#mainMenu .outer .inner{padding:5px; color:#969696; font-size:13px;}
+#mainMenu .outer .inner a{color:#969696;font-size:13px;}
+
+#header, #header a{color:white;}
 #header a{text-decoration:none;}
 #header a:hover{text-decoration:underline;}
 #languageSelector{padding-top:16px; margin-left:26px;}
 #headerSelectors{padding-top:50px; padding-left:16px;}
 #headerSelectors div{float:left; padding-left:10px;}
 #headerSelectors div select{width:160px;}
-#headerRight, #logo{float:left;}
-#logo{position:relative; left:20px; top:15px;}
-#logo img{width:322px; height:143px;}
+#headerRight{position:absolute;}
+#logo img{width:322px; height:142px;}
 #mainContent{padding:20px;}
 
 

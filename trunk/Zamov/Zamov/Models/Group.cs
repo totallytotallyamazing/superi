@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Zamov.Models
 {
-    public class Group
+    public partial class Group
     {
         private Dictionary<string, string> names = new Dictionary<string, string>();
 

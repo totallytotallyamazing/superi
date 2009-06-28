@@ -1,8 +1,11 @@
 <%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl" %>
 <%@ Import Namespace="Zamov.Helpers" %>
-<div style="padding:20px;">
+<div style="padding:10px;">
     <center>
-        <%= Html.ResourceString("Register").ToUpper() %>
+        <% string url = VirtualPathUtility.ToAbsolute("~/Account/Register"); %>
+        <a class="registerLink" href=<%= url %>>
+            <%= Html.ResourceString("Register").ToUpper() %>
+        </a>
     </center>
     <% using (Html.BeginForm("LogOn", "Account", FormMethod.Post)){ %>
     <table cellspacing="5">

@@ -188,6 +188,7 @@
     <Content Include="Views\Shared\MasterLogOn.ascx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Admin.css" />
     <Content Include="Content\img\subItemActive.jpg" />
     <Content Include="Views\Admin\Index.aspx" />
     <Content Include="Views\PageParts\LeftMenu.ascx" />

@@ -65,8 +65,8 @@
             </tr>
             <tr>
                 <td><%= Html.ResourceString("Name") %></td>
-                <td><%= Html.TextBox("rName", russianName, new { style="width:450px;"})%></td>
-                <td><%= Html.TextBox("uName", ukrainianName, new { style = "width:450px;" })%></td>
+                <td><%= Html.TextBox("rName", russianName, new { style="width:430px;"})%></td>
+                <td><%= Html.TextBox("uName", ukrainianName, new { style = "width:430px;" })%></td>
             </tr>
             <tr>
                 <td><%= Html.ResourceString("Description") %></td>

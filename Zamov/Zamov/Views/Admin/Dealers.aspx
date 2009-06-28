@@ -1,4 +1,4 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<Zamov.Models.Dealer>>" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Admin.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<Zamov.Models.Dealer>>" %>
 
 <%@ Import Namespace="Zamov.Helpers" %>
 <%@ Import Namespace="Zamov.Controllers" %>
@@ -27,7 +27,7 @@
                 <%= Html.Encode(item.Id) %>
             </td>
             <td>
-                <%= Html.Encode(item.GetName(ToolsController.CurrentLanguage)) %>
+                <%= Html.Encode(item.GetName(SystemSettings.CurrentLanguage)) %>
             </td>
             <td>
                 <% 
@@ -49,6 +49,4 @@
     <p>
         <%= Html.ResourceActionLink("CreateDealer", "AddUpdateDealer", new { id = int.MinValue })%>
     </p>
-</asp:Content>
-<asp:Content ID="Content3" ContentPlaceHolderID="leftMenu" runat="server">
 </asp:Content>

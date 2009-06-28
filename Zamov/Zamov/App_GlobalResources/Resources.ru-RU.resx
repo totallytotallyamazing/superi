@@ -252,4 +252,16 @@
   <data name="AddGroup" xml:space="preserve">
     <value>Создать группу</value>
   </data>
+  <data name="Login" xml:space="preserve">
+    <value>Логин</value>
+  </data>
+  <data name="Administration" xml:space="preserve">
+    <value>Админстрирование</value>
+  </data>
+  <data name="LogOff" xml:space="preserve">
+    <value>Выход</value>
+  </data>
+  <data name="PersonalCabinet" xml:space="preserve">
+    <value>Личный кабинет</value>
+  </data>
 </root>

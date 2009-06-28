@@ -128,7 +128,7 @@
     <Content Include="Views\Home\About.aspx" />
     <Content Include="Views\Home\Index.aspx" />
     <Content Include="Views\Shared\Error.aspx" />
-    <Content Include="Views\Shared\LogOnUserControl.ascx" />
+    <Content Include="Views\Shared\LogonStatus.ascx" />
     <Content Include="Views\Shared\Site.Master" />
     <Content Include="Views\Web.config" />
   </ItemGroup>
@@ -184,6 +184,15 @@
     <Content Include="Views\DealerCabinet\Groups.aspx" />
     <Content Include="Views\DealerCabinet\Index.aspx" />
     <Content Include="Views\PageParts\HeaderSelectors.ascx" />
+    <Content Include="Views\Shared\LogOnName.ascx" />
+    <Content Include="Views\Shared\MasterLogOn.ascx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\img\subItemActive.jpg" />
+    <Content Include="Views\Admin\Index.aspx" />
+    <Content Include="Views\PageParts\LeftMenu.ascx" />
+    <Content Include="Views\PageParts\MainMenu.ascx" />
+    <Content Include="Views\Shared\Admin.Master" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

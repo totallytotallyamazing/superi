@@ -24,18 +24,7 @@ namespace Zamov.Controllers
             using(ZamovStorage context = new ZamovStorage())
             {
                 int dealerId = int.MinValue;
-                if (User.IsInRole("Administrators"))
-                {
-                    if (SystemSettings.CurrentDealer == null)
-                        return RedirectToAction("Index");
-                    else
-                        dealerId = SystemSettings.CurrentDealer.Value;
-                }
-                else
-                {
-                    ProfileCommon profile = ProfileCommon.Create(User.Identity.Name);
-                    dealerId = profile.DealerId;
-                }
+                dealerId = Security.GetCurentDealerId(User.Identity.Name);
                 ViewData["dealerId"] = dealerId;
                 List<Group> groups = (from g in context.Groups where g.Dealer.Id == dealerId select g).ToList();
                 return View(groups);
@@ -46,6 +35,8 @@ namespace Zamov.Controllers
         {
             using (ZamovStorage context = new ZamovStorage())
             {
+                dealerId = Security.GetCurentDealerId(User.Identity.Name);
+                ViewData["dealerId"] = dealerId;
                 List<Group> groups = context.Groups.Select(g => g).Where(g => g.Dealer.Id == dealerId).ToList();
                 if (id == null)
                     groups = groups.Select(g => g).Where(g => g.Parent == null).ToList();
@@ -54,6 +45,31 @@ namespace Zamov.Controllers
                 ViewData["level"] = level;
                 return View(groups);
             }
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult InsertGroup(string groupName, string groupUkrName, string groupRusName, bool enabled, int parentId)
+        {
+            using (ZamovStorage context = new ZamovStorage())
+            {
+                int dealerId = Security.GetCurentDealerId(User.Identity.Name);
+                Dealer dealer = context.Dealers.Select(d => d).Where(d => d.Id == dealerId).First();
+                Group parent = null;
+                if (parentId >= 0)
+                    parent = context.Groups.Select(c => c).Where(c => c.Id == parentId).First();
+                Group group = new Group();
+                group.Parent = parent;
+                group.Dealer = dealer;
+                group.Name = groupName;
+                group.Names.Clear();
+                group.Names["ru-RU"] = groupRusName;
+                group.Names["uk-UA"] = groupUkrName;
+                group.Enabled = enabled;
+                context.AddToGroups(group);
+                context.SaveChanges();
+                context.UpdateTranslations(group.NamesXml);
+            }
+            return RedirectToAction("Groups");
         }
         #endregion
 

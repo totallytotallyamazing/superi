@@ -20,7 +20,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("BaseEntities", "FK_Groups_Groups", "Group", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Zamov.Models.Group), "Group1", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Zamov.Models.Group))]
 
 // Original file name:
-// Generation date: 25/06/2009 18:12:38
+// Generation date: 30/06/2009 19:32:41
 namespace Zamov.Models
 {
     
@@ -799,11 +799,13 @@ namespace Zamov.Models
         /// </summary>
         /// <param name="id">Initial value of Id.</param>
         /// <param name="name">Initial value of Name.</param>
-        public static Group CreateGroup(int id, string name)
+        /// <param name="enabled">Initial value of Enabled.</param>
+        public static Group CreateGroup(int id, string name, bool enabled)
         {
             Group group = new Group();
             group.Id = id;
             group.Name = name;
+            group.Enabled = enabled;
             return group;
         }
         /// <summary>
@@ -855,9 +857,9 @@ namespace Zamov.Models
         /// <summary>
         /// There are no comments for Property Enabled in the schema.
         /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Nullable<bool> Enabled
+        public bool Enabled
         {
             get
             {
@@ -872,8 +874,8 @@ namespace Zamov.Models
                 this.OnEnabledChanged();
             }
         }
-        private global::System.Nullable<bool> _Enabled;
-        partial void OnEnabledChanging(global::System.Nullable<bool> value);
+        private bool _Enabled;
+        partial void OnEnabledChanging(bool value);
         partial void OnEnabledChanged();
         /// <summary>
         /// There are no comments for Products in the schema.

@@ -7,6 +7,7 @@ using System.Web.Mvc.Ajax;
 using Zamov.Models;
 using System.Web.Security;
 using System.IO;
+using System.Web.Script.Serialization;
 
 namespace Zamov.Controllers
 {
@@ -68,6 +69,57 @@ namespace Zamov.Controllers
                 context.AddToGroups(group);
                 context.SaveChanges();
                 context.UpdateTranslations(group.NamesXml);
+            }
+            return RedirectToAction("Groups");
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult UpdateGroups(FormCollection form)
+        {
+            JavaScriptSerializer serializer = new JavaScriptSerializer();
+            if (!string.IsNullOrEmpty(form["updates"]))
+            {
+                Dictionary<string, Dictionary<string, string>> updates = serializer.Deserialize<Dictionary<string, Dictionary<string, string>>>(
+                    form["updates"]
+                    );
+                foreach (string key in updates.Keys)
+                {
+                    int itemId = int.Parse(key);
+                    Dictionary<string, string> translations = updates[key];
+                    List<TranslationItem> translationItems = new List<TranslationItem>();
+                    translationItems = (from tr in translations select new TranslationItem { ItemId = itemId, ItemType = ItemTypes.Group, Language = tr.Key, Translation = tr.Value }).ToList();
+                    string translationXml = Utils.CreateTranslationXml(translationItems);
+                    using (ZamovStorage context = new ZamovStorage())
+                    {
+                        context.UpdateTranslations(translationXml);
+                    }
+                }
+                if (!string.IsNullOrEmpty(form["enablities"]))
+                {
+                    Dictionary<string, string> enables = serializer.Deserialize<Dictionary<string, string>>(form["enablities"]);
+                    using (ZamovStorage context = new ZamovStorage())
+                    {
+                        foreach (string key in enables.Keys)
+                        {
+                            int id = int.Parse(key);
+                            Group group = context.Groups.Select(g => g).Where(g => g.Id == id).First();
+                            group.Enabled = bool.Parse(enables[key]);
+                        }
+                        context.SaveChanges(true);
+                    }
+                }
+            }
+            return RedirectToAction("Groups");
+        }
+
+        public ActionResult DeleteGroup(int id)
+        {
+            using (ZamovStorage context = new ZamovStorage())
+            {
+                Group group = context.Groups.Select(g => g).Where(g => g.Id == id).First();
+                context.DeleteObject(group);
+                context.SaveChanges();
+                context.DeleteTranslations(id, (int)ItemTypes.Group);
             }
             return RedirectToAction("Groups");
         }

@@ -264,4 +264,13 @@
   <data name="PersonalCabinet" xml:space="preserve">
     <value>Личный кабинет</value>
   </data>
+  <data name="Orders" xml:space="preserve">
+    <value>Заказы</value>
+  </data>
+  <data name="Products" xml:space="preserve">
+    <value>Товары</value>
+  </data>
+  <data name="AddSubGroup" xml:space="preserve">
+    <value>Создать подгруппу</value>
+  </data>
 </root>

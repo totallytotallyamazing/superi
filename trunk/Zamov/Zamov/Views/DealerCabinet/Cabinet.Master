@@ -1,18 +1,18 @@
-﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
+﻿<%@ Master Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewMasterPage" %>
 <%@ Import Namespace="Microsoft.Web.Mvc" %>
 <%@ Import Namespace="Zamov.Helpers" %>
 <asp:Content ContentPlaceHolderID="leftMenu" runat="server">
     <%
         List<SelectListItem> items = new List<SelectListItem>();
-        SelectListItem cities = new SelectListItem { Text = Html.ResourceString("Cities"), Value = VirtualPathUtility.ToAbsolute("~/Admin/Cities") };
-        SelectListItem dealers = new SelectListItem { Text = Html.ResourceString("Dealers"), Value = VirtualPathUtility.ToAbsolute("~/Admin/Dealers") };
-        SelectListItem categories = new SelectListItem { Text = Html.ResourceString("Categories"), Value = VirtualPathUtility.ToAbsolute("~/Admin/Categories") };
-        SelectListItem users = new SelectListItem { Text = Html.ResourceString("Users"), Value = VirtualPathUtility.ToAbsolute("~/Admin/Users") };
-        items.Add(cities);
-        items.Add(dealers);
-        items.Add(categories);
-        items.Add(users);
-        Html.RenderAction<Zamov.Controllers.PagePartsController>(ac => ac.LeftMenu(Html.ResourceString("Administration"), items)); 
+        SelectListItem dealerInfo = new SelectListItem { Text = Html.ResourceString("EditDealer"), Value = VirtualPathUtility.ToAbsolute("~/DealerCabinet/AddUpdateDealer") };
+        SelectListItem groups = new SelectListItem { Text = Html.ResourceString("Groups"), Value = VirtualPathUtility.ToAbsolute("~/DealerCabinet/Groups") };
+        SelectListItem products = new SelectListItem { Text = Html.ResourceString("Products"), Value = VirtualPathUtility.ToAbsolute("~/DealerCabinet/Products") };
+        SelectListItem orders = new SelectListItem { Text = Html.ResourceString("Orders"), Value = VirtualPathUtility.ToAbsolute("~/DealerCabinet/Orders") };
+        items.Add(dealerInfo);
+        items.Add(groups);
+        items.Add(products);
+        items.Add(orders);
+        Html.RenderAction<Zamov.Controllers.PagePartsController>(ac => ac.LeftMenu(Html.ResourceString("PersonalCabinet"), items)); 
     %>
 </asp:Content>
 

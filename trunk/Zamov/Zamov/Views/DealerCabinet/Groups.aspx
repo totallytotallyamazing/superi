@@ -1,4 +1,4 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Views/DealerCabinet/Cabinet.Master" Inherits="System.Web.Mvc.ViewPage" %>
 <%@ Import Namespace="Zamov.Helpers" %>
 <%@ Import Namespace="Microsoft.Web.Mvc" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
@@ -86,13 +86,9 @@
                 </td>
             </tr>
         </table>
-        <%= Html.Hidden("parentId") %>
+        <%= Html.Hidden("parentId", int.MinValue) %>
         <input type="submit" value="<%= Html.ResourceString("Add") %>" />
         <%} %>
     </div>
     
 </asp:Content>
-
-<asp:Content ID="Content3" ContentPlaceHolderID="leftMenu" runat="server">
-</asp:Content>
-

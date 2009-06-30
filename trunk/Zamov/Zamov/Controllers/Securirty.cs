@@ -30,8 +30,14 @@ namespace Zamov.Controllers
                 result = SystemSettings.CurrentDealer.Value;
             if (Roles.IsUserInRole(userName, "Dealers"))
             {
-                ProfileCommon profile = ProfileCommon.Create(userName);
-                result = profile.DealerId;
+                if (SystemSettings.CurrentDealer != null)
+                    result = SystemSettings.CurrentDealer.Value;
+                else
+                {
+                    ProfileCommon profile = ProfileCommon.Create(userName);
+                    result = profile.DealerId;
+                    SystemSettings.CurrentDealer = result;
+                }
             }
             return result;
         }

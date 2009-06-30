@@ -75,7 +75,7 @@
                 </td>
             </tr>
         </table>
-        <%= Html.Hidden("parentId") %>
+        <%= Html.Hidden("parentId", int.MinValue) %>
         <input type="submit" value="<%= Html.ResourceString("Add") %>" />
         <%} %>
     </div>

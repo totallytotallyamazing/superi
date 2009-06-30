@@ -8,7 +8,24 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <script type="text/javascript">
         var changes = {};
+        var enables = {};
 
+        function updateEnables(check, id) {
+            if (check.checked) {
+                enables[id] = true;
+            }
+            else {
+                enables[id] = false;
+            }
+        }
+
+        function collectGroupChanges() {
+            collectChanges(changes, 'updates');
+            var enablities = $get("enablities");
+            enablities.value = Sys.Serialization.JavaScriptSerializer.serialize(enables);
+            return true;
+        }
+        
         function insertGroup(link, parentId) {
             var pos = $(link).offset();
             if (parentId >= 0) {
@@ -42,10 +59,10 @@
         using (Html.BeginForm("UpdateGroups", "DealerCabinet", FormMethod.Post))
         {
             int dealerId = Convert.ToInt32(ViewData["dealerId"]);
-            Response.Write(Html.Hidden("dealerId", dealerId));
             Response.Write(Html.Hidden("updates"));
+            Response.Write(Html.Hidden("enablities"));
             Html.RenderAction<Zamov.Controllers.DealerCabinetController>(ac => ac.GoupList(dealerId, null, 0));
-            Response.Write("<input type=\"submit\" value=\"" + Html.ResourceString("Save") + "\" /> ");
+            Response.Write("<input type=\"submit\" onclick=\"return collectGroupChanges();\" value=\"" + Html.ResourceString("Save") + "\" /> ");
         }
     %>
     

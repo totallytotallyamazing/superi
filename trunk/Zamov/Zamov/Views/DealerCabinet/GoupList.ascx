@@ -1,6 +1,6 @@
 <%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<IEnumerable<Zamov.Models.Group>>" %>
-<%@ Import Namespace="Zamov.Helpers" %>
 <%@ Import Namespace="Microsoft.Web.Mvc" %>
+<%@ Import Namespace="Zamov.Helpers" %>
 <%
     int level = Convert.ToInt32(ViewData["level"]);
     string marginLeft = level * 20 + "px";
@@ -14,7 +14,7 @@
               ViewData["firstDisplayed"] = true;
               %>
         <tr>
-                <th style="display:none">
+                <th>
                     ID
                 </th>
                 <th>
@@ -45,8 +45,11 @@
             <td>
                 <%= Html.TextBox("ru-RU_" + item.Id, item.GetName("ru-RU", false), new { onblur = "tableChanged(changes, this)", style = "width:200px;" })%>
             </td>
+            <td align="center">
+                <input type="checkbox" name="enabled_<%= item.Id %>" <%= (item.Enabled) ? "checked=\"checked\"" : "" %>" onclick="updateEnables(this, <%= item.Id %>)" />
+            </td>
             <td>
-                <a href="#" onclick="insertCategory(this, <%= item.Id %>)">
+                <a href="#" onclick="insertGroup(this, <%= item.Id %>)">
                     <%= Html.ResourceString("AddSubGroup") %>
                 </a>
             </td>

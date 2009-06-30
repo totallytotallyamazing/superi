@@ -110,6 +110,41 @@ namespace Zamov.Controllers
             }
         }
 
+
+
+        public ActionResult EnableDealer(int id)
+        {
+            using (ZamovStorage context = new ZamovStorage())
+            {
+                Dealer dealer = (from d in context.Dealers where d.Id == id select d).First();
+                dealer.Enabled = true;
+                context.SaveChanges();
+            }
+            return RedirectToAction("Dealers");
+        }
+
+        public ActionResult DisableDealer(int id)
+        {
+            using (ZamovStorage context = new ZamovStorage())
+            {
+                Dealer dealer = (from d in context.Dealers where d.Id == id select d).First();
+                dealer.Enabled = false;
+                context.SaveChanges();
+            }
+            return RedirectToAction("Dealers");
+        }
+
+        public ActionResult DeleteDealer(int id)
+        {
+            using (ZamovStorage context = new ZamovStorage())
+            {
+                Dealer dealer = (from d in context.Dealers where d.Id == id select d).First();
+                context.DeleteObject(dealer);
+                context.SaveChanges();
+            }
+            return RedirectToAction("Dealers");
+        }
+
         public ActionResult AddUpdateDealer(int id)
         {
             if (id > 0)
@@ -155,40 +190,6 @@ namespace Zamov.Controllers
             }
             return RedirectToAction("Dealers");
         }
-
-        public ActionResult EnableDealer(int id)
-        {
-            using (ZamovStorage context = new ZamovStorage())
-            {
-                Dealer dealer = (from d in context.Dealers where d.Id == id select d).First();
-                dealer.Enabled = true;
-                context.SaveChanges();
-            }
-            return RedirectToAction("Dealers");
-        }
-
-        public ActionResult DisableDealer(int id)
-        {
-            using (ZamovStorage context = new ZamovStorage())
-            {
-                Dealer dealer = (from d in context.Dealers where d.Id == id select d).First();
-                dealer.Enabled = false;
-                context.SaveChanges();
-            }
-            return RedirectToAction("Dealers");
-        }
-
-        public ActionResult DeleteDealer(int id)
-        {
-            using (ZamovStorage context = new ZamovStorage())
-            {
-                Dealer dealer = (from d in context.Dealers where d.Id == id select d).First();
-                context.DeleteObject(dealer);
-                context.SaveChanges();
-            }
-            return RedirectToAction("Dealers");
-        }
-
         #endregion
 
         #region Categories

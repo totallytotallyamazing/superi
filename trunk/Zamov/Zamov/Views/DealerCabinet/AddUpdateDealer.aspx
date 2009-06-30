@@ -1,4 +1,4 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Admin/Admin.Master" Inherits="System.Web.Mvc.ViewPage" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Admin.Master" Inherits="System.Web.Mvc.ViewPage" %>
 <%@ Import Namespace="Zamov.Models" %>
 <%@ Import Namespace="Microsoft.Web.Mvc" %>
 <%@ Import Namespace="Zamov.Helpers" %>
@@ -51,7 +51,6 @@
 %>
     <h2><%= pageTitle %></h2>
     <% using (Html.BeginForm("AddUpdateDealer", "Admin", FormMethod.Post, new{enctype="multipart/form-data"})) {%>
-        <%= Html.Hidden("dealerId", dealerId)%>
         ID<br />
         <%= Html.TextBox("name", dealerName) %><br />
         Логотип<br />

@@ -12,19 +12,19 @@ namespace Zamov.Models
 
         public virtual string FirstName
         {
-            get { return profile.GetPropertyValue("FirstName").ToString(); }
+            get { return (string)profile.GetPropertyValue("FirstName"); }
             set { profile.SetPropertyValue("FirstName", value); }
         }
 
         public virtual string LastName
         {
-            get { return profile.GetPropertyValue("LastName").ToString(); }
+            get { return (string)profile.GetPropertyValue("LastName"); }
             set { profile.SetPropertyValue("LastName", value); }
         }
 
         public virtual string Phone
         {
-            get { return profile.GetPropertyValue("Phone").ToString(); }
+            get { return (string)profile.GetPropertyValue("Phone"); }
             set { profile.SetPropertyValue("Phone", value); }
         }
 

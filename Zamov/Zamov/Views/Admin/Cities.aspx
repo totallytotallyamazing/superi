@@ -1,4 +1,4 @@
-    <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Admin.Master" Inherits="System.Web.Mvc.ViewPage<List<Zamov.Models.City>>" %>
+    <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Admin/Admin.Master" Inherits="System.Web.Mvc.ViewPage<List<Zamov.Models.City>>" %>
 <%@ Import Namespace="Zamov.Helpers" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	<%= Html.ResourceString("Cities") %>
@@ -101,7 +101,7 @@
 
     </table>
     
-    <% using (Html.BeginForm("UpdateCategories", "Admin"))
+    <% using (Html.BeginForm("UpdateCities", "Admin"))
        { %>
     <%= Html.Hidden("updates") %>
     <%= Html.Hidden("enablities") %>

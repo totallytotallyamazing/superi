@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 using Zamov.Models;
 using System.Web.Security;
+using System.IO;
 
 namespace Zamov.Controllers
 {
@@ -53,6 +54,56 @@ namespace Zamov.Controllers
                 ViewData["level"] = level;
                 return View(groups);
             }
+        }
+        #endregion
+
+        #region Dealer
+        public ActionResult AddUpdateDealer()
+        {
+
+            int id = Security.GetCurentDealerId(User.Identity.Name);
+            if (id > 0)
+            {
+                using (ZamovStorage context = new ZamovStorage())
+                {
+                    Dealer dealer = context.Dealers.Select(d => d).Where(d => d.Id == id).First();
+                    ViewData["dealer"] = dealer;
+                }
+            }
+            return View();
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult AddUpdateDealer(FormCollection form)
+        {
+            int dealerId = Security.GetCurentDealerId(User.Identity.Name);
+            Dealer dealer = null;
+            using (ZamovStorage context = new ZamovStorage())
+            {
+                if (dealerId >= 0)
+                    dealer = context.Dealers.Select(d => d).Where(d => d.Id == dealerId).First();
+                else
+                    dealer = new Dealer();
+                dealer.Name = form["name"];
+                dealer.Names["ru-RU"] = form["rName"];
+                dealer.Names["uk-UA"] = form["uName"];
+                dealer.Descriptions["ru-RU"] = Server.HtmlDecode(form["rDescription"]);
+                dealer.Descriptions["uk-UA"] = Server.HtmlDecode(form["uDescription"]);
+                dealer.Enabled = form["enabled"].Contains("true");
+                if (!string.IsNullOrEmpty(Request.Files["logoImage"].FileName))
+                {
+                    HttpPostedFileBase file = Request.Files["logoImage"];
+                    dealer.LogoType = file.ContentType;
+                    BinaryReader reader = new BinaryReader(file.InputStream);
+                    dealer.LogoImage = reader.ReadBytes((int)file.InputStream.Length);
+                }
+                if (dealerId < 0)
+                    context.AddToDealers(dealer);
+                context.SaveChanges();
+                context.UpdateTranslations(dealer.NamesXml);
+                context.UpdateTranslations(dealer.DescriptionsXml);
+            }
+            return RedirectToAction("Dealers");
         }
         #endregion
     }

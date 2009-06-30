@@ -1,4 +1,4 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Admin.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<Zamov.Models.Dealer>>" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Admin/Admin.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<Zamov.Models.Dealer>>" %>
 
 <%@ Import Namespace="Zamov.Helpers" %>
 <%@ Import Namespace="Zamov.Controllers" %>
@@ -38,7 +38,7 @@
                 %>
             </td>
             <td>
-                <%= Html.ResourceActionLink("Edit", "AddUpdateDealer", new { id=item.Id }) %>
+                <%=Html.ResourceActionLink<AdminController>("Edit", ac => ac.AddUpdateDealer(item.Id))%>
             </td>
             <td>
                 <%= Html.ActionLink(Html.ResourceString("Delete"), "DeleteDealer", new { id = item.Id }, new {onclick = "return confirm('" + Html.ResourceString("AreYouSure") + "?')" })%>
@@ -47,6 +47,6 @@
         <% } %>
     </table>
     <p>
-        <%= Html.ResourceActionLink("CreateDealer", "AddUpdateDealer", new { id = int.MinValue })%>
+        <%=Html.ResourceActionLink<AdminController>("CreateDealer", ac=>ac.AddUpdateDealer(int.MinValue)) %>
     </p>
 </asp:Content>

@@ -34,6 +34,7 @@ public partial class Articles : Page
         Literal lTitle = (Literal)e.Item.FindControl("lTitle");
         Image iPicture = (Image)e.Item.FindControl("iPicture");
         Literal lText = (Literal)e.Item.FindControl("lText");
+        Literal lDate = (Literal)e.Item.FindControl("lDate");
         HtmlTableCell topTr = (HtmlTableCell) e.Item.FindControl("topTr");
         HtmlGenericControl divCutter = (HtmlGenericControl) e.Item.FindControl("divCutter");
 
@@ -48,6 +49,8 @@ public partial class Articles : Page
             iPicture.ImageUrl = DefaultValues.ArticlesImagesFolder + article.TitlePicture;
         else
             iPicture.ImageUrl = DefaultValues.ArticlesImagesFolder + "unknown.jpg";
+
+        lDate.Text = article.EntryDate.ToString("dd.MM.yyyy");
 
         try
         {

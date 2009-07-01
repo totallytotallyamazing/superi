@@ -13,7 +13,13 @@
                             <tr>
                                 <td style="padding-left:5px;" id="topTr" runat="server" valign="top">
                                 <div style="overflow:hidden;" id="divCutter" runat="server">
-                                    <span class="articleTitle"><asp:Literal ID="lTitle" runat="server"></asp:Literal></span>
+                                    <span class="articleTitle">
+                                        <asp:Literal ID="lTitle" runat="server"></asp:Literal>
+                                        <span style="font-weight:normal; font-size:12px;">
+                                            &nbsp; | &nbsp;
+                                            <asp:Literal ID="lDate" runat="server"></asp:Literal>
+                                        </span>
+                                    </span>
                                     <span class="articleContent"><asp:Literal ID="lText" runat="server"></asp:Literal></span>
                                 </div>
                                 </td>

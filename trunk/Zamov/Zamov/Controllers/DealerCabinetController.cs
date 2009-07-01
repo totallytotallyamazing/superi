@@ -42,7 +42,7 @@ namespace Zamov.Controllers
                 if (id == null)
                     groups = groups.Select(g => g).Where(g => g.Parent == null).ToList();
                 else
-                    groups = groups.Select(g => g).Where(g => g.Parent.Id == id.Value).ToList();
+                    groups = groups.Select(g => g).Where(g => g.Parent!=null && g.Parent.Id == id.Value).ToList();
                 ViewData["level"] = level;
                 return View(groups);
             }

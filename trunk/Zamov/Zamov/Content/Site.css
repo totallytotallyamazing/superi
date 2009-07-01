@@ -2,7 +2,7 @@
 body{font-family: Arial, Sans-Serif, Helvetica, Tahoma; font-size:0.8em;}
 select
 {border:1px solid #bdbdbd; color:#b5b5b5;}
-#header, #mainMenu, #breadCrumbs{width:auto; margin:30px 40px 0px; min-width:1000px;}
+#header, #mainMenu, #breadCrumbs{width:auto; margin:30px 40px 0px; min-width:820px;}
 .greyBg{background:#CFDAD7}
 .whiteBg{background:white;}
 

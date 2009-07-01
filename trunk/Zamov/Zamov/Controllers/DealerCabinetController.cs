@@ -176,12 +176,21 @@ namespace Zamov.Controllers
         #endregion
 
         #region Products
-        public ActionResult Products()
+        public ActionResult Products(int? id)
         {
             ZamovStorage context = new ZamovStorage();
             int dealerId = Security.GetCurentDealerId(User.Identity.Name);
-            List<Group> groups = (from g in context.Groups where g.Dealer.Id == dealerId select g).ToList();
-            return View();
+            List<Product> products = new List<Product>();
+            if (id != null)
+            {
+                products = (from product in context.Products
+                            where product.Group.Id == id.Value && product.Dealer.Id == dealerId
+                            select product).ToList();
+            }
+            products = (from product in context.Products
+                        where product.Dealer.Id == dealerId
+                        select product).ToList();
+            return View(products);
         }
         #endregion
     }

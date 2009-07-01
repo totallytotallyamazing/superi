@@ -47,7 +47,8 @@ namespace Pandemiia.Controllers
             entity.Content = Server.HtmlDecode(frm["Content"]);
             entity.Description = Server.HtmlDecode(frm["Description"]);
             entity.Title = frm["Title"];
-            entity.Date = DateTime.Parse(frm["Date"]);
+            CultureInfo info = CultureInfo.GetCultureInfo("en-US");
+            entity.Date = DateTime.Parse(frm["Date"], info);
             entity.SourceID = int.Parse(frm["SourceID"]);
             entity.TypeID = int.Parse(frm["TypeID"]);
             if (Request.Files.Count > 0 && !string.IsNullOrEmpty(Request.Files["image"].FileName))

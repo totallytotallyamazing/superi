@@ -93,11 +93,11 @@ public partial class Controls_Match : System.Web.UI.UserControl
 
     protected void Page_PreRender(object sender, EventArgs e)
     {
-      if (MatchDate.Date == DateTime.Now.Date)
-        matchMainClass = "currentMatch";
+        if (MatchDate.Date == DateTime.Now.Date)
+            matchMainClass = "currentMatch";
         if (Played)
             matchMainClass = "matchPlayed";
-        if(TeamTextId>0)
+        if (TeamTextId > 0)
             lTeam.Text = new Resource(TeamTextId)[WebSession.Language];
         lDate.Text = MatchDate.ToString("dd.MM.yyyy");
         lMaestro.Text = "Маестро";

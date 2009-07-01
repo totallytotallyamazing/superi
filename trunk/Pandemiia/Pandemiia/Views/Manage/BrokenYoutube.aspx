@@ -22,7 +22,7 @@
         Видео &quot;<%= item.Entity.Title%> &quot; <br />
         Код плеера:<br />
         <%= Html.TextArea("source", item.Source, new { style = "width:270px;" })%><br />
-        <input type="submit" value="Обновить" />
+        <input type="submit" value="Обновить" onclick="htmlEncode()" />
     <% }
        } %>
 

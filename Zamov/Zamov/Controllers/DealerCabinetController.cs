@@ -174,5 +174,15 @@ namespace Zamov.Controllers
             return RedirectToAction("Dealers");
         }
         #endregion
+
+        #region Products
+        public ActionResult Products()
+        {
+            ZamovStorage context = new ZamovStorage();
+            int dealerId = Security.GetCurentDealerId(User.Identity.Name);
+            List<Group> groups = (from g in context.Groups where g.Dealer.Id == dealerId select g).ToList();
+            return View();
+        }
+        #endregion
     }
 }

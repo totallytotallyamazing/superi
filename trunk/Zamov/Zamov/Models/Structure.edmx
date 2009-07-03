@@ -140,6 +140,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PartNumber" Type="nvarchar" Nullable="false" MaxLength="100" />
           <Property Name="Name" Type="int" Nullable="false" />
           <Property Name="GroupId" Type="int" Nullable="false" />
           <Property Name="DealerId" Type="int" Nullable="false" />
@@ -436,7 +437,8 @@
           <NavigationProperty Name="Dealer" Relationship="BaseEntities.FK_Products_Dealers" FromRole="Products" ToRole="Dealers" />
           <NavigationProperty Name="Group" Relationship="BaseEntities.FK_Products_Groups" FromRole="Products" ToRole="Groups" />
           <NavigationProperty Name="Cities" Relationship="BaseEntities.ProductCityMappings" FromRole="Products" ToRole="Cities" />
-          <NavigationProperty Name="ProductImages" Relationship="BaseEntities.FK_ProductImages_Products" FromRole="Product" ToRole="ProductImages" /></EntityType>
+          <NavigationProperty Name="ProductImages" Relationship="BaseEntities.FK_ProductImages_Products" FromRole="Product" ToRole="ProductImages" />
+          <Property Name="PartNumber" Type="String" Nullable="false" /></EntityType>
         <EntityType Name="TranslationItemsType">
           <Key>
             <PropertyRef Name="Id" />
@@ -536,6 +538,7 @@
           <EntitySetMapping Name="Products">
             <EntityTypeMapping TypeName="IsTypeOf(BaseEntities.Product)">
               <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="PartNumber" ColumnName="PartNumber" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Price" ColumnName="Price" />

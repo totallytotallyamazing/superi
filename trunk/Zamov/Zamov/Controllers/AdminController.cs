@@ -267,6 +267,7 @@ namespace Zamov.Controllers
             {
                 Category category = (from c in context.Categories where c.Id == id select c).First();
                 context.DeleteObject(category);
+                
                 context.SaveChanges();
                 context.DeleteTranslations(id, (int)ItemTypes.Category);
             }

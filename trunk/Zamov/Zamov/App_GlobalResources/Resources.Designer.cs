@@ -268,6 +268,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Увага! Будуть видалені всі підкатегорії а також прив`язки до постачальників. Ви впевнені що хочете видалити цю категорію?.
+        /// </summary>
+        internal static string DeleteCategoryConfirmation {
+            get {
+                return ResourceManager.GetString("DeleteCategoryConfirmation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Опис.
         /// </summary>
         internal static string Description {
@@ -372,6 +381,15 @@ namespace Resources {
         internal static string LogOn {
             get {
                 return ResourceManager.GetString("LogOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Керування групами.
+        /// </summary>
+        internal static string ManageGroups {
+            get {
+                return ResourceManager.GetString("ManageGroups", resourceCulture);
             }
         }
         
@@ -498,6 +516,15 @@ namespace Resources {
         internal static string Save {
             get {
                 return ResourceManager.GetString("Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Оберiть групу.
+        /// </summary>
+        internal static string SelectGroup {
+            get {
+                return ResourceManager.GetString("SelectGroup", resourceCulture);
             }
         }
         

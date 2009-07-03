@@ -8,29 +8,12 @@ using System.Web.Routing;
 using Microsoft.Web.Mvc;
 using System.Linq.Expressions;
 using System.Web.Mvc;
+using Zamov.Controllers;
 
 namespace Zamov.Helpers
 {
     public static class Helpers
     {
-        private static CultureInfo GetSelectedCulture()
-        {
-            CultureInfo info = null;
-            if (HttpContext.Current.Session["lang"] != null)
-            {
-                string lang = HttpContext.Current.Session["lang"].ToString();
-                info = CultureInfo.GetCultureInfo(lang);
-            }
-            else
-                info = CultureInfo.GetCultureInfo("uk-UA");
-            return info;
-        }
-
-        public static string CurrentCulture(this System.Web.Mvc.HtmlHelper helper)
-        {
-            return GetSelectedCulture().Name;
-        }
-
         public static string RegisterCss(this System.Web.Mvc.HtmlHelper helper, string relativePath)
         {
             string cssPath = VirtualPathUtility.ToAbsolute(relativePath);
@@ -48,36 +31,36 @@ namespace Zamov.Helpers
 
         public static string ResourceString(this System.Web.Mvc.HtmlHelper helper, string resourceName)
         {
-            return HttpContext.GetGlobalResourceObject("Resources", resourceName, GetSelectedCulture()).ToString();
+            return Controllers.Resources.GetResourceString(resourceName);
         }
 
         public static string ResourceActionLink(this System.Web.Mvc.HtmlHelper helper, string resourceName, string actionName, string conrollerName)
         {
-            string linkText = HttpContext.GetGlobalResourceObject("Resources", resourceName, GetSelectedCulture()).ToString();
+            string linkText = Controllers.Resources.GetResourceString(resourceName);
             return helper.ActionLink(linkText, actionName, conrollerName);
         }
 
         public static string ResourceActionLink(this System.Web.Mvc.HtmlHelper helper, string resourceName, string actionName, object routeValues)
         {
-            string linkText = HttpContext.GetGlobalResourceObject("Resources", resourceName, GetSelectedCulture()).ToString();
+            string linkText = Controllers.Resources.GetResourceString(resourceName);
             return helper.ActionLink(linkText, actionName, routeValues);
         }
 
         public static string ResourceActionLink(this System.Web.Mvc.HtmlHelper helper, string resourceName, string actionName)
         {
-            string linkText = HttpContext.GetGlobalResourceObject("Resources", resourceName, GetSelectedCulture()).ToString();
+            string linkText = Controllers.Resources.GetResourceString(resourceName);
             return helper.ActionLink(linkText, actionName);
         }
 
         public static string ResourceActionLink(this System.Web.Mvc.HtmlHelper helper, string resourceName, string actionName, RouteValueDictionary routeValues)
         {
-            string linkText = HttpContext.GetGlobalResourceObject("Resources", resourceName, GetSelectedCulture()).ToString();
+            string linkText = Controllers.Resources.GetResourceString(resourceName);
             return helper.ActionLink(linkText, actionName, routeValues);
         }
 
         public static string ResourceActionLink<TController>(this System.Web.Mvc.HtmlHelper helper, string resourceName, Expression<Action<TController>> action) where TController:Controller
         {
-            string linkText = HttpContext.GetGlobalResourceObject("Resources", resourceName, GetSelectedCulture()).ToString();
+            string linkText = Controllers.Resources.GetResourceString(resourceName);
             return helper.ActionLink<TController>(action, linkText);
         }
     }

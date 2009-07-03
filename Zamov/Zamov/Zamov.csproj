@@ -87,6 +87,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ImageController.cs" />
     <Compile Include="Controllers\PagePartsController.cs" />
+    <Compile Include="Controllers\Resources.cs" />
     <Compile Include="Controllers\Securirty.cs" />
     <Compile Include="Controllers\SystemSettings.cs" />
     <Compile Include="Default.aspx.cs">
@@ -199,6 +200,7 @@
   <ItemGroup>
     <Content Include="Views\Admin\AddUpdateDealer.aspx" />
     <Content Include="Views\DealerCabinet\Cabinet.Master" />
+    <Content Include="Views\DealerCabinet\Products.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

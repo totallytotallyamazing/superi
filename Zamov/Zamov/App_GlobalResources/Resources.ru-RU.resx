@@ -273,4 +273,13 @@
   <data name="AddSubGroup" xml:space="preserve">
     <value>Создать подгруппу</value>
   </data>
+  <data name="ManageGroups" xml:space="preserve">
+    <value>Управление группами</value>
+  </data>
+  <data name="SelectGroup" xml:space="preserve">
+    <value>Выберите группу</value>
+  </data>
+  <data name="DeleteCategoryConfirmation" xml:space="preserve">
+    <value>Внимание! Будут удалены все подкатегории а также привязки к поставщикам. Вы уверены что хотите удалить категорию?</value>
+  </data>
 </root>

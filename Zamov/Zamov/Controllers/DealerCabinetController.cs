@@ -8,10 +8,11 @@ using Zamov.Models;
 using System.Web.Security;
 using System.IO;
 using System.Web.Script.Serialization;
+using Zamov.Helpers;
 
 namespace Zamov.Controllers
 {
-    [Authorize(Roles="Administrators, Dealers")]
+    [Authorize(Roles = "Administrators, Dealers")]
     public class DealerCabinetController : Controller
     {
         public ActionResult Index()
@@ -22,7 +23,7 @@ namespace Zamov.Controllers
         #region Groups
         public ActionResult Groups()
         {
-            using(ZamovStorage context = new ZamovStorage())
+            using (ZamovStorage context = new ZamovStorage())
             {
                 int dealerId = int.MinValue;
                 dealerId = Security.GetCurentDealerId(User.Identity.Name);
@@ -42,7 +43,7 @@ namespace Zamov.Controllers
                 if (id == null)
                     groups = groups.Select(g => g).Where(g => g.Parent == null).ToList();
                 else
-                    groups = groups.Select(g => g).Where(g => g.Parent!=null && g.Parent.Id == id.Value).ToList();
+                    groups = groups.Select(g => g).Where(g => g.Parent != null && g.Parent.Id == id.Value).ToList();
                 ViewData["level"] = level;
                 return View(groups);
             }
@@ -187,10 +188,38 @@ namespace Zamov.Controllers
                             where product.Group.Id == id.Value && product.Dealer.Id == dealerId
                             select product).ToList();
             }
-            products = (from product in context.Products
-                        where product.Dealer.Id == dealerId
-                        select product).ToList();
+            List<SelectListItem> items = new List<SelectListItem>();
+            int currentGroupId = (id) ?? int.MinValue;
+            GetGroupItems(items, dealerId, int.MinValue, "", currentGroupId);
+            ViewData["groups"] = items;
             return View(products);
+        }
+
+        private void GetGroupItems(List<SelectListItem> items, int dealerId, int groupId, string prefix, int currentGroipId)
+        {
+            if (groupId < 0)
+                items.Add(new SelectListItem { Selected = currentGroipId < 0, Text = Resources.GetResourceString("SelectGroup"), Value = "" });
+            using (ZamovStorage context = new ZamovStorage())
+            {
+                List<Group> groups = new List<Group>();
+                if (groupId > 0)
+                    groups = (from g in context.Groups where g.Dealer.Id == dealerId && g.Parent.Id == groupId select g).ToList();
+                else
+                    groups = (from g in context.Groups where g.Dealer.Id == dealerId && g.Parent == null select g).ToList();
+                foreach (var g in groups)
+                {
+                    SelectListItem listItem = new SelectListItem
+                    {
+                        Selected = (g.Id == currentGroipId),
+                        Text = prefix + " " + g.GetName(SystemSettings.CurrentLanguage),
+                        Value = g.Id.ToString()
+                    };
+                    items.Add(listItem);
+                    g.Groups.Load();
+                    if (g.Groups != null && g.Groups.Count > 0)
+                        GetGroupItems(items, dealerId, g.Id, prefix + "--", currentGroipId);
+                }
+            }
         }
         #endregion
     }

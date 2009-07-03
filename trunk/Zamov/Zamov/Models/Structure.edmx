@@ -118,6 +118,7 @@
           <Property Name="GroupId" Type="int" />
           <Property Name="Enabled" Type="bit" Nullable="false" />
           <Property Name="DealerId" Type="int" Nullable="false" />
+          <Property Name="Deleted" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="ProductCityMappings">
           <Key>
@@ -146,6 +147,7 @@
           <Property Name="DealerId" Type="int" Nullable="false" />
           <Property Name="Price" Type="money" Nullable="false" />
           <Property Name="Enabled" Type="bit" Nullable="false" />
+          <Property Name="Deleted" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -425,7 +427,8 @@
           <NavigationProperty Name="Products" Relationship="BaseEntities.FK_Products_Groups" FromRole="Groups" ToRole="Products" />
           <NavigationProperty Name="Dealer" Relationship="BaseEntities.FK_Groups_Dealers" FromRole="Group" ToRole="Dealer" />
           <NavigationProperty Name="Groups" Relationship="BaseEntities.FK_Groups_Groups" FromRole="Group" ToRole="Group1" />
-          <NavigationProperty Name="Parent" Relationship="BaseEntities.FK_Groups_Groups" FromRole="Group1" ToRole="Group" /></EntityType>
+          <NavigationProperty Name="Parent" Relationship="BaseEntities.FK_Groups_Groups" FromRole="Group1" ToRole="Group" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" /></EntityType>
         <EntityType Name="Product">
           <Key>
             <PropertyRef Name="Id" />
@@ -438,7 +441,8 @@
           <NavigationProperty Name="Group" Relationship="BaseEntities.FK_Products_Groups" FromRole="Products" ToRole="Groups" />
           <NavigationProperty Name="Cities" Relationship="BaseEntities.ProductCityMappings" FromRole="Products" ToRole="Cities" />
           <NavigationProperty Name="ProductImages" Relationship="BaseEntities.FK_ProductImages_Products" FromRole="Product" ToRole="ProductImages" />
-          <Property Name="PartNumber" Type="String" Nullable="false" /></EntityType>
+          <Property Name="PartNumber" Type="String" Nullable="false" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" /></EntityType>
         <EntityType Name="TranslationItemsType">
           <Key>
             <PropertyRef Name="Id" />
@@ -529,6 +533,7 @@
           <EntitySetMapping Name="Groups">
             <EntityTypeMapping TypeName="IsTypeOf(BaseEntities.Group)">
               <MappingFragment StoreEntitySet="Groups">
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Enabled" ColumnName="Enabled" />
@@ -538,6 +543,7 @@
           <EntitySetMapping Name="Products">
             <EntityTypeMapping TypeName="IsTypeOf(BaseEntities.Product)">
               <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
                 <ScalarProperty Name="PartNumber" ColumnName="PartNumber" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -659,11 +665,12 @@
         <AssociationConnector ManuallyRouted="false" Association="BaseEntities.FK_Products_Dealers">
           <ConnectorPoint PointX="10.125" PointY="2.91404296875" />
           <ConnectorPoint PointX="10.125" PointY="5.9014794921875" />
-          <ConnectorPoint PointX="2.25" PointY="5.9014794921875" /></AssociationConnector>
+          <ConnectorPoint PointX="2.25" PointY="5.9014794921875" />
+          </AssociationConnector>
         <AssociationConnector Association="BaseEntities.FK_Products_Groups" ManuallyRouted="false">
-          <ConnectorPoint PointX="3.15625" PointY="4.2103483072916665" />
-          <ConnectorPoint PointX="3.15625" PointY="4.8229141666666671" />
-          <ConnectorPoint PointX="2.25" PointY="4.8229141666666671" /></AssociationConnector>
+          <ConnectorPoint PointX="3.177083333333333" PointY="4.3746956380208335" />
+          <ConnectorPoint PointX="3.177083333333333" PointY="4.895833333333333" />
+          <ConnectorPoint PointX="2.25" PointY="4.895833333333333" /></AssociationConnector>
         <AssociationConnector ManuallyRouted="false" Association="BaseEntities.DealerCityMappings">
           <ConnectorPoint PointX="2.25" PointY="1.40625" />
           <ConnectorPoint PointX="9.375" PointY="1.40625" />
@@ -674,8 +681,8 @@
           </AssociationConnector>
         <EntityTypeShape EntityType="BaseEntities.ProductImage" Width="1.5" PointX="7" PointY="4.125" Height="1.4279589843749996" />
         <AssociationConnector Association="BaseEntities.FK_ProductImages_Products" >
-          <ConnectorPoint PointX="2.25" PointY="5.458333333333333" />
-          <ConnectorPoint PointX="7" PointY="5.458333333333333" />
+          <ConnectorPoint PointX="2.25" PointY="5.2660628255208328" />
+          <ConnectorPoint PointX="7" PointY="5.2660628255208328" />
           </AssociationConnector>
         <AssociationConnector Association="BaseEntities.DealerCategoryMapping" >
           <ConnectorPoint PointX="6.625" PointY="2.332021484375" />

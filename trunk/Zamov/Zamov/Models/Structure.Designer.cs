@@ -20,7 +20,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("BaseEntities", "FK_Groups_Groups", "Group", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Zamov.Models.Group), "Group1", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Zamov.Models.Group))]
 
 // Original file name:
-// Generation date: 03/07/2009 14:01:46
+// Generation date: 03/07/2009 17:13:16
 namespace Zamov.Models
 {
     
@@ -800,12 +800,14 @@ namespace Zamov.Models
         /// <param name="id">Initial value of Id.</param>
         /// <param name="name">Initial value of Name.</param>
         /// <param name="enabled">Initial value of Enabled.</param>
-        public static Group CreateGroup(int id, string name, bool enabled)
+        /// <param name="deleted">Initial value of Deleted.</param>
+        public static Group CreateGroup(int id, string name, bool enabled, bool deleted)
         {
             Group group = new Group();
             group.Id = id;
             group.Name = name;
             group.Enabled = enabled;
+            group.Deleted = deleted;
             return group;
         }
         /// <summary>
@@ -877,6 +879,29 @@ namespace Zamov.Models
         private bool _Enabled;
         partial void OnEnabledChanging(bool value);
         partial void OnEnabledChanged();
+        /// <summary>
+        /// There are no comments for Property Deleted in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public bool Deleted
+        {
+            get
+            {
+                return this._Deleted;
+            }
+            set
+            {
+                this.OnDeletedChanging(value);
+                this.ReportPropertyChanging("Deleted");
+                this._Deleted = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("Deleted");
+                this.OnDeletedChanged();
+            }
+        }
+        private bool _Deleted;
+        partial void OnDeletedChanging(bool value);
+        partial void OnDeletedChanged();
         /// <summary>
         /// There are no comments for Products in the schema.
         /// </summary>
@@ -1013,7 +1038,8 @@ namespace Zamov.Models
         /// <param name="price">Initial value of Price.</param>
         /// <param name="enabled">Initial value of Enabled.</param>
         /// <param name="partNumber">Initial value of PartNumber.</param>
-        public static Product CreateProduct(int id, int name, decimal price, bool enabled, string partNumber)
+        /// <param name="deleted">Initial value of Deleted.</param>
+        public static Product CreateProduct(int id, int name, decimal price, bool enabled, string partNumber, bool deleted)
         {
             Product product = new Product();
             product.Id = id;
@@ -1021,6 +1047,7 @@ namespace Zamov.Models
             product.Price = price;
             product.Enabled = enabled;
             product.PartNumber = partNumber;
+            product.Deleted = deleted;
             return product;
         }
         /// <summary>
@@ -1138,6 +1165,29 @@ namespace Zamov.Models
         private string _PartNumber;
         partial void OnPartNumberChanging(string value);
         partial void OnPartNumberChanged();
+        /// <summary>
+        /// There are no comments for Property Deleted in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public bool Deleted
+        {
+            get
+            {
+                return this._Deleted;
+            }
+            set
+            {
+                this.OnDeletedChanging(value);
+                this.ReportPropertyChanging("Deleted");
+                this._Deleted = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("Deleted");
+                this.OnDeletedChanged();
+            }
+        }
+        private bool _Deleted;
+        partial void OnDeletedChanging(bool value);
+        partial void OnDeletedChanged();
         /// <summary>
         /// There are no comments for Dealer in the schema.
         /// </summary>

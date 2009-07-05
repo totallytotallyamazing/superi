@@ -142,7 +142,7 @@
           </Key>
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="PartNumber" Type="nvarchar" Nullable="false" MaxLength="100" />
-          <Property Name="Name" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="500" />
           <Property Name="GroupId" Type="int" Nullable="false" />
           <Property Name="DealerId" Type="int" Nullable="false" />
           <Property Name="Price" Type="money" Nullable="false" />
@@ -434,7 +434,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" />
           <Property Name="Price" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
           <Property Name="Enabled" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Dealer" Relationship="BaseEntities.FK_Products_Dealers" FromRole="Products" ToRole="Dealers" />

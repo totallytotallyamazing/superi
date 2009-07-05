@@ -14,7 +14,6 @@
                     location.href = "/DealerCabinet/Products/" + this.value;
             }
             )
-
         }
     </script>
 
@@ -23,16 +22,54 @@
     <br />
     <%= Html.DropDownList("groupIds", (List<SelectListItem>)ViewData["groups"], new { onchange = "groupSelected()" })%>
     <%= Html.ResourceActionLink("ManageGroups", "Groups") %>
-    
     <table class="adminTable">
         <tr>
-        
         </tr>
         <tr>
-        
         </tr>
         <tr>
-        
         </tr>
     </table>
+    <div>
+        <% using (Html.BeginForm("AddProduct", "DealerCabinet"))
+           { %>
+        <%= Html.Hidden("groupId") %>
+        <table>
+            <tr>
+                <th>
+                    <%= Html.ResourceString("PartNumber")%>
+                </th>
+                <th>
+                    <%= Html.ResourceString("Name")%>
+                </th>
+                <%--                <th>
+                    <%= Html.ResourceString("Description") %>
+                    /
+                    <%= Html.ResourceString("Image") %>
+                </th>--%>
+                <th>
+                    <%= Html.ResourceString("Price")%>
+                </th>
+                <th>
+                    <%= Html.ResourceString("ActiveM")%>
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    <%= Html.TextBox("partNumber")%>
+                </td>
+                <td>
+                    <%= Html.TextBox("name")%>
+                </td>
+                <td>
+                    <%= Html.TextBox("price")%>
+                </td>
+                <td>
+                    <%= Html.CheckBox("active")%>
+                </td>
+            </tr>
+        </table>
+        <input type="submit" value="<%= Html.ResourceString("Add") %>" />
+        <%} %>
+    </div>
 </asp:Content>

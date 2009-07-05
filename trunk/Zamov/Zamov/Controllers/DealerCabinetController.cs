@@ -9,6 +9,7 @@ using System.Web.Security;
 using System.IO;
 using System.Web.Script.Serialization;
 using Zamov.Helpers;
+using System.Data;
 
 namespace Zamov.Controllers
 {
@@ -192,7 +193,30 @@ namespace Zamov.Controllers
             int currentGroupId = (id) ?? int.MinValue;
             GetGroupItems(items, dealerId, int.MinValue, "", currentGroupId);
             ViewData["groups"] = items;
+            ViewData["groupId"] = currentGroupId;
             return View(products);
+        }
+
+        public ActionResult AddProduct(string partNumber, string name, decimal price, bool active, int groupId)
+        {
+            using (ZamovStorage context = new ZamovStorage())
+            {
+                Product product = new Product();
+                int dealerId = Security.GetCurentDealerId(User.Identity.Name);
+                IEnumerable<KeyValuePair<string, object>> dealerKeyValues = new KeyValuePair<string, object>[] { new KeyValuePair<string, object>("Id", dealerId) };
+                EntityKey dealer = new EntityKey("ZamovStorage.Dealers", dealerKeyValues);
+                product.DealerReference.EntityKey = dealer;
+                IEnumerable<KeyValuePair<string, object>> groupKeyValues = new KeyValuePair<string, object>[] { new KeyValuePair<string, object>("Id", groupId) };
+                EntityKey group = new EntityKey("ZamovStorage.Groups", groupKeyValues);
+                product.GroupReference.EntityKey = group;
+                product.PartNumber = partNumber;
+                product.Name = name;
+                product.Price = price;
+                product.Enabled = active;
+                context.AddToProducts(product);
+                context.SaveChanges();
+            }
+            return RedirectToAction("Products");
         }
 
         private void GetGroupItems(List<SelectListItem> items, int dealerId, int groupId, string prefix, int currentGroipId)

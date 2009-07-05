@@ -282,4 +282,16 @@
   <data name="DeleteCategoryConfirmation" xml:space="preserve">
     <value>Увага! Будуть видалені всі підкатегорії а також прив`язки до постачальників. Ви впевнені що хочете видалити цю категорію?</value>
   </data>
+  <data name="PartNumber" xml:space="preserve">
+    <value>Код товару</value>
+  </data>
+  <data name="Image" xml:space="preserve">
+    <value>Зображення</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>Ціна</value>
+  </data>
+  <data name="ActiveM" xml:space="preserve">
+    <value>Активний</value>
+  </data>
 </root>

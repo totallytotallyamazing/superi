@@ -216,7 +216,8 @@ namespace Zamov.Controllers
                 context.AddToProducts(product);
                 context.SaveChanges();
             }
-            return RedirectToAction("Products");
+            string url = Url.Action("Products", "DealerCabinet", new { id = groupId });
+            return Redirect(url);
         }
 
         private void GetGroupItems(List<SelectListItem> items, int dealerId, int groupId, string prefix, int currentGroipId)
@@ -244,6 +245,11 @@ namespace Zamov.Controllers
                         GetGroupItems(items, dealerId, g.Id, prefix + "--", currentGroipId);
                 }
             }
+        }
+
+        public ActionResult UpdateProductImage(int id)
+        {
+            return View();
         }
         #endregion
     }

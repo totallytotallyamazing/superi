@@ -23,5 +23,15 @@ namespace Zamov.Controllers
             }
         }
 
+        public void ProductImage(int id)
+        {
+            using (ZamovStorage context = new ZamovStorage())
+            {
+                ProductImage image = context.ProductImages.Select(pi => pi).Where(pi => pi.Id == id).First();
+                Response.ContentType = image.ImageType;
+                Response.BinaryWrite(image.Image);
+            }
+        }
+
     }
 }

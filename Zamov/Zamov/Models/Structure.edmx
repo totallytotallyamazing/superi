@@ -136,6 +136,7 @@
           <Property Name="ProductId" Type="int" Nullable="false" />
           <Property Name="Image" Type="image" Nullable="false" />
           <Property Name="ImageType" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Default" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Products">
           <Key>
@@ -483,7 +484,8 @@
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Image" Type="Binary" Nullable="false" />
           <NavigationProperty Name="Product" Relationship="BaseEntities.FK_ProductImages_Products" FromRole="ProductImages" ToRole="Product" />
-          <Property Name="ImageType" Type="String" Nullable="false" /></EntityType>
+          <Property Name="ImageType" Type="String" Nullable="false" />
+          <Property Name="Default" Type="Boolean" Nullable="false" /></EntityType>
         <Association Name="FK_ProductImages_Products">
           <End Type="BaseEntities.Product" Role="Product" Multiplicity="1" />
           <End Type="BaseEntities.ProductImage" Role="ProductImages" Multiplicity="*" /></Association>
@@ -608,6 +610,7 @@
           <EntitySetMapping Name="ProductImages">
             <EntityTypeMapping TypeName="IsTypeOf(BaseEntities.ProductImage)">
               <MappingFragment StoreEntitySet="ProductImages">
+                <ScalarProperty Name="Default" ColumnName="Default" />
                 <ScalarProperty Name="ImageType" ColumnName="ImageType" />
                 <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="Id" ColumnName="Id" /></MappingFragment></EntityTypeMapping></EntitySetMapping>

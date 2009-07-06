@@ -249,7 +249,11 @@ namespace Zamov.Controllers
 
         public ActionResult UpdateProductImage(int id)
         {
-            return View();
+            using(ZamovStorage context = new ZamovStorage())
+            {
+                ProductImage image = context.ProductImages.Select(pi => pi).Where(pi => pi.Product.Id == id).SingleOrDefault();
+                return View();
+            }
         }
         #endregion
     }

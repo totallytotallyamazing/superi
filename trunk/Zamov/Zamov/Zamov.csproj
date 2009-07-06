@@ -198,6 +198,7 @@
     <Content Include="Views\Admin\Admin.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\img\productImage.JPG" />
     <Content Include="Views\Admin\AddUpdateDealer.aspx" />
     <Content Include="Views\DealerCabinet\Cabinet.Master" />
     <Content Include="Views\DealerCabinet\Products.aspx" />

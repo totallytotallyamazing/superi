@@ -17,11 +17,11 @@
   </Table>
   <Table Name="dbo.EntityPictures" Member="EntityPictures">
     <Type Name="EntityPicture">
-      <Column Name="ID" AutoSync="Never" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Picture" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
-      <Column Name="Preview" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
-      <Column Name="EntityID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Description" Type="System.String" DbType="VarChar(250)" CanBeNull="false" />
+      <Column Name="ID" AutoSync="Never" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="Picture" Type="System.String" DbType="VarChar(255)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Preview" Type="System.String" DbType="VarChar(255)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="EntityID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(250)" CanBeNull="false" UpdateCheck="Never" />
       <Association Name="Entity_EntityPicture" Member="Entity" ThisKey="EntityID" OtherKey="ID" Type="Entity" IsForeignKey="true" />
     </Type>
   </Table>

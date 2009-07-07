@@ -23,3 +23,7 @@ function collectChanges(dictionary, hiddenId) {
     hidden.value = Sys.Serialization.JavaScriptSerializer.serialize(dictionary);
     return true;
 }
+
+function failureCallback(error) {
+    alert('Error occured during Ajax call');
+}

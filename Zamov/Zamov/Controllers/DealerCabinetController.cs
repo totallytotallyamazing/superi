@@ -247,14 +247,48 @@ namespace Zamov.Controllers
             }
         }
 
+        [AcceptVerbs(HttpVerbs.Get)]
         public ActionResult UpdateProductImage(int id)
         {
             using(ZamovStorage context = new ZamovStorage())
             {
                 ProductImage image = context.ProductImages.Select(pi => pi).Where(pi => pi.Product.Id == id).SingleOrDefault();
+                int imageId = (image != null) ? image.Id : int.MinValue;
+                ViewData["imageId"] = imageId;
+                ViewData["productId"] = id;
                 return View();
             }
         }
+        [AcceptVerbs(HttpVerbs.Post)]
+        public void UpdateProductImage(int id, int productId)
+        {
+            if (!string.IsNullOrEmpty(Request.Files["newImage"].FileName))
+            {
+                ProductImage image = null;
+                image = new ProductImage();
+                IEnumerable<KeyValuePair<string, object>> productKeyValues = new KeyValuePair<string, object>[] { new KeyValuePair<string, object>("Id", productId) };
+                EntityKey product = new EntityKey("ZamovStorage.Products", productKeyValues);
+                image.ProductReference.EntityKey = product;
+                HttpPostedFileBase file = Request.Files["newImage"];
+                image.ImageType = file.ContentType;
+                BinaryReader reader = new BinaryReader(file.InputStream);
+                image.Image = reader.ReadBytes((int)file.InputStream.Length);
+                using (ZamovStorage context = new ZamovStorage())
+                {
+                    context.ClaenupProductImages(productId);
+                    context.AddToProductImages(image);
+                    context.SaveChanges();
+                }
+            }
+            Response.Write("<script type=\"text/javascript\">top.closeImageDialog();</script>");
+        }
         #endregion
+
+        [Authorize(Roles="Administrators")]
+        public ActionResult SelectDealer(int currentDealerId, string redirectTo)
+        {
+            SystemSettings.CurrentDealer = currentDealerId;
+            return Redirect(redirectTo);
+        }
     }
 }

@@ -42,7 +42,8 @@
             <% for (int i = 0; i < Model.EntityTagMappings.Count; i++)
                {
                    EntityTagMapping mapping = Model.EntityTagMappings[i];
-                   Response.Write(Html.ActionLink<FilterController>(fc => fc.Tags(mapping.Tag.TagName, 1), mapping.Tag.TagName));
+                   if (!string.IsNullOrEmpty(mapping.Tag.TagName))
+                    Response.Write(Html.ActionLink<FilterController>(fc => fc.Tags(mapping.Tag.TagName, 1), mapping.Tag.TagName));
                    if (i != Model.EntityTagMappings.Count - 1)
                        Response.Write(", ");
                } %>

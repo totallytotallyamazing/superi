@@ -2,12 +2,17 @@
     Inherits="System.Web.Mvc.ViewPage<List<Zamov.Models.Product>>" %>
 
 <%@ Import Namespace="Zamov.Helpers" %>
+<%@ Import Namespace="Microsoft.Web.Mvc" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
     <%= Html.ResourceString("Products") %>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
     <script type="text/javascript">
+        $(function() {
+            $("#imagePopUp").dialog({ autoOpen: false, width: 440, height: 360, minHeight: 360, resizable: false });
+        })
+
         function groupSelected() {
             $("#groupIds option").each(function(i) {
                 if (this.selected)
@@ -16,9 +21,24 @@
             )
         }
 
-        $(function() { $(".updateImage").html("<img src=\"/Content/img/productImage.JPG\" style=\"border:none\">") })
-    </script>
+        function openImageIframe(productId) {
+            $("#updateImageBox").attr("src", "/DealerCabinet/UpdateProductImage/" + productId);
+            $("#imagePopUp").dialog('open').css("height", 300);
 
+            $('#imagePopUp').dialog('option', 'height', 360);
+            $('#imagePopUp').dialog('option', 'position', 'center');
+            $('#imagePopUp').css('height', 'auto');
+        }
+
+        function closeImageDialog() {
+            $("#imagePopUp").dialog('close');
+        }
+    </script>
+    <div  id="imagePopUp" style="display:block; height:300px;">
+        <iframe id="updateImageBox" frameborder="0" hidefocus="true" style="width:400px; height:299px; background:transparent;">
+        
+        </iframe>
+    </div>
     <h2>
         <%= Html.ResourceString("Products") %></h2>
     <br />
@@ -58,7 +78,9 @@
                     <%= Html.TextBox("name_" + item.Id, item.Name)%>
                 </td>
                 <td align="center">
-                    <%= Ajax.ActionLink("image", "UpdateProductImage", new { id = item.Id }, new AjaxOptions { HttpMethod = "post", InsertionMode = InsertionMode.Replace, OnSuccess = "displayImageDialog", OnFailure = "failureCallback", OnBegin = "fadeScreenIn", OnComplete = "fadeScreenOut", UpdateTargetId = "imageDialog" }, new { @class = "updateImage" })%>
+                    <a href="javascript:openImageIframe(<%= item.Id %>)">
+                        <%= Html.Image("~/Content/img/productImage.jpg", new {style="border:none" })%>
+                    </a>
                     &nbsp;
                     <%= Ajax.ActionLink("i", "UpdateProductDescription", new { id = item.Id }, new AjaxOptions { HttpMethod = "post", InsertionMode = InsertionMode.Replace, OnSuccess = "displayDescriptionDialog", OnFailure = "failureCallback", OnBegin = "fadeScreenIn", OnComplete = "fadeScreenOut", UpdateTargetId = "descriptionDialog" }, new { @class = "updateDescription" })%>
                 </td>

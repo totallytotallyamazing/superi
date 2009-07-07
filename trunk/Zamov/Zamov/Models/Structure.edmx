@@ -335,6 +335,9 @@
           <Parameter Name="ItemId" Type="int" Mode="In" />
           <Parameter Name="TranslationItemTypeId" Type="int" Mode="In" />
         </Function>
+        <Function Name="ProductImages_Cleanup" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="productId" Type="int" Mode="In" />
+        </Function>
         <Function Name="Translations_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="translationsXml" Type="nvarchar(max)" Mode="In" />
         </Function>
@@ -386,7 +389,9 @@
             <End Role="Category1" EntitySet="Categories" /></AssociationSet>
           <AssociationSet Name="FK_Groups_Groups" Association="BaseEntities.FK_Groups_Groups">
             <End Role="Group" EntitySet="Groups" />
-            <End Role="Group1" EntitySet="Groups" /></AssociationSet></EntityContainer>
+            <End Role="Group1" EntitySet="Groups" /></AssociationSet>
+          <FunctionImport Name="ProductImages_Cleanup">
+            <Parameter Name="productId" Mode="In" Type="Int32" /></FunctionImport></EntityContainer>
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="Id" />
@@ -642,7 +647,8 @@
               <ScalarProperty Name="Id" ColumnName="Id" /></EndProperty>
             <EndProperty Name="Group">
               <ScalarProperty Name="Id" ColumnName="GroupId" /></EndProperty>
-            <Condition ColumnName="GroupId" IsNull="false" /></AssociationSetMapping></EntityContainerMapping>
+            <Condition ColumnName="GroupId" IsNull="false" /></AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="ProductImages_Cleanup" FunctionName="BaseEntities.Store.ProductImages_Cleanup" /></EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

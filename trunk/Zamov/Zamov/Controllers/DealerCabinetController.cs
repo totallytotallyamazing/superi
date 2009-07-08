@@ -248,6 +248,20 @@ namespace Zamov.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Get)]
+        public ActionResult UpdateProductDescription(int id)
+        {
+            using (ZamovStorage context = new ZamovStorage())
+            {
+                Product product = (from p in context.Products where p.Id == id select p).First();
+                product.LoadDescriptions();
+                ViewData["descroptionUkr"] = product.GetDescription("uk-UA");
+                ViewData["descroptionRus"] = product.GetDescription("ru-RU");
+                ViewData["productId"] = id;
+            }
+            return View();
+        }
+
+        [AcceptVerbs(HttpVerbs.Get)]
         public ActionResult UpdateProductImage(int id)
         {
             using(ZamovStorage context = new ZamovStorage())

@@ -38,8 +38,13 @@ namespace Zamov.Models
         }
 
         public static void UpdateProducts(this ZamovStorage context, string updatesXml)
-        { 
-            
+        {
+            EntityParameter parameter = new EntityParameter();
+            parameter.ParameterName = "updatesXml";
+            parameter.IsNullable = false;
+            parameter.Value = updatesXml;
+            parameter.DbType = System.Data.DbType.String;
+            ExecuteNonQuery(context, "ZamovStorage.UpdateProducts", parameter);
         }
     }
 }

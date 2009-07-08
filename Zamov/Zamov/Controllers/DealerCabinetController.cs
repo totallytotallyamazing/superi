@@ -290,9 +290,7 @@ namespace Zamov.Controllers
                 JavaScriptSerializer serializer = new JavaScriptSerializer();
                 Dictionary<string, Dictionary<string, string>> updates = serializer.Deserialize<Dictionary<string, Dictionary<string, string>>>(changes);
                 using (ZamovStorage context = new ZamovStorage())
-                {
-                    updates.CreateUpdatesXml();
-                }
+                    context.UpdateProducts(updates.CreateUpdatesXml());
             }
             return RedirectToAction("Products");
         }

@@ -15,7 +15,12 @@ function tableChanged(dictionary, field) {
     if (dictionary[id] == null) {
         dictionary[id] = {};
     }
-    dictionary[id][fieldName] = field.value;
+    if (field.checked) {
+        dictionary[id][fieldName] = field.checked;
+    }
+    else {
+        dictionary[id][fieldName] = field.value;
+    }
 }
 
 function collectChanges(dictionary, hiddenId) {

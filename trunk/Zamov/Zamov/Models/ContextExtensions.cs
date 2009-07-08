@@ -10,18 +10,13 @@ namespace Zamov.Models
 {
     public static class ContextExtensions
     {
-        public static void ClaenupProductImages(this ZamovStorage context, int productId)
+        private static void ExecuteNonQuery(ZamovStorage context, string storedProcedureName, params EntityParameter[] parameters)
         {
             bool closeConnection = false;
             DbCommand command = context.Connection.CreateCommand();
             command.CommandType = System.Data.CommandType.StoredProcedure;
-            command.CommandText = "ZamovStorage.ProductImages_Cleanup";
-            EntityParameter parameter = new EntityParameter();
-            parameter.ParameterName = "productId";
-            parameter.IsNullable = false;
-            parameter.Value = productId;
-            parameter.DbType = System.Data.DbType.Int32;
-            command.Parameters.Add(parameter);
+            command.CommandText = storedProcedureName;
+            command.Parameters.AddRange(parameters);
             if (context.Connection.State != System.Data.ConnectionState.Open)
             {
                 context.Connection.Open();
@@ -30,6 +25,21 @@ namespace Zamov.Models
             command.ExecuteNonQuery();
             if (closeConnection)
                 context.Connection.Close();
+        }
+
+        public static void ClaenupProductImages(this ZamovStorage context, int productId)
+        {
+            EntityParameter parameter = new EntityParameter();
+            parameter.ParameterName = "productId";
+            parameter.IsNullable = false;
+            parameter.Value = productId;
+            parameter.DbType = System.Data.DbType.Int32;
+            ExecuteNonQuery(context, "ZamovStorage.ProductImages_Cleanup", parameter);
+        }
+
+        public static void UpdateProducts(this ZamovStorage context, string updatesXml)
+        { 
+            
         }
     }
 }

@@ -57,5 +57,28 @@ namespace Zamov.Models
             }
             return document.OuterXml;
         }
+
+        public static string CreateUpdatesXml(this Dictionary<string, Dictionary<string, string>> updates)
+        {
+            XmlDocument document = new XmlDocument();
+            XmlElement root = document.CreateElement("root");
+            document.AppendChild(root);
+            foreach (string key in updates.Keys)
+            {
+                Dictionary<string, string> itemUpdates = updates[key];
+                XmlElement item = document.CreateElement("item");
+                XmlAttribute itemIdAttribute = document.CreateAttribute("Id");
+                itemIdAttribute.Value = key;
+                item.Attributes.Append(itemIdAttribute);
+                foreach (string itemKey in itemUpdates.Keys)
+                {
+                    XmlAttribute itemAttribute = document.CreateAttribute(itemKey);
+                    itemAttribute.Value = itemUpdates[itemKey];
+                    item.Attributes.Append(itemAttribute);
+                }
+                root.AppendChild(item);
+            }
+            return document.OuterXml;
+        }
     }
 }

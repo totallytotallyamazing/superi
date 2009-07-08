@@ -9,6 +9,8 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
     <script type="text/javascript">
+        var updates = {};
+        
         $(function() {
             $("#imagePopUp").dialog({ autoOpen: false, width: 440, height: 360, minHeight: 360, resizable: false });
         })
@@ -72,10 +74,10 @@
 	{%>
             <tr>
                 <td>
-                    <%= Html.TextBox("partNumber_" + item.Id, item.PartNumber)%>
+                    <%= Html.TextBox("partNumber_" + item.Id, item.PartNumber, new { onblur = "tableChanged(updates, this)"})%>
                 </td>
                 <td>
-                    <%= Html.TextBox("name_" + item.Id, item.Name)%>
+                    <%= Html.TextBox("name_" + item.Id, item.Name, new { onblur = "tableChanged(updates, this)" })%>
                 </td>
                 <td align="center">
                     <a href="javascript:openImageIframe(<%= item.Id %>)">
@@ -85,16 +87,21 @@
                     <%= Ajax.ActionLink("i", "UpdateProductDescription", new { id = item.Id }, new AjaxOptions { HttpMethod = "post", InsertionMode = InsertionMode.Replace, OnSuccess = "displayDescriptionDialog", OnFailure = "failureCallback", OnBegin = "fadeScreenIn", OnComplete = "fadeScreenOut", UpdateTargetId = "descriptionDialog" }, new { @class = "updateDescription" })%>
                 </td>
                 <td>
-                    <%= Html.TextBox("price_" + item.Id, item.Price)%>
+                    <%= Html.TextBox("price_" + item.Id, item.Price, new { onblur = "tableChanged(updates, this)" })%>
                 </td>
                 <td align="center">
-                    <%= Html.CheckBox("active_" + item.Id, item.Enabled)%>
+                    <%= Html.CheckBox("active_" + item.Id, item.Enabled, new { onclick = "tableChanged(updates, this)" })%>
                 </td>
             </tr>
             		 
 <%	} %>
 
     </table>
+    <%using (Html.BeginForm("UpdateProducts", "DealerCabinet", FormMethod.Post))
+      { %>
+    <%= Html.Hidden("changes") %>
+    <input type="submit" value="<%= Html.ResourceString("Save") %>" onclick="collectChanges(updates, 'changes')" />
+    <%} %>
 <%} %>
 
 <%

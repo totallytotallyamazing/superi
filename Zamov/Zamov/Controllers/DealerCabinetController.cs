@@ -282,6 +282,20 @@ namespace Zamov.Controllers
             }
             Response.Write("<script type=\"text/javascript\">top.closeImageDialog();</script>");
         }
+
+        public ActionResult UpdateProducts(string changes)
+        {
+            if (!string.IsNullOrEmpty(changes))
+            {
+                JavaScriptSerializer serializer = new JavaScriptSerializer();
+                Dictionary<string, Dictionary<string, string>> updates = serializer.Deserialize<Dictionary<string, Dictionary<string, string>>>(changes);
+                using (ZamovStorage context = new ZamovStorage())
+                {
+                    updates.CreateUpdatesXml();
+                }
+            }
+            return RedirectToAction("Products");
+        }
         #endregion
 
         [Authorize(Roles="Administrators")]

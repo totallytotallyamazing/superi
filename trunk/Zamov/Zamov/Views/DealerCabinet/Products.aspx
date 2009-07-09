@@ -18,7 +18,7 @@
                     autoOpen: false, 
                     resizable: false,
                     modal: true,
-                    buttons: { "<%= Html.ResourceString("Upload") %>": function(){ $get("xslForm").submit(); } }
+                    buttons: { "<%= Html.ResourceString("Upload") %>": function(){ $get("xlsForm").submit(); } }
                  });
             $("#descriptionPopUp")
                 .dialog({
@@ -71,7 +71,7 @@
             $("#descriptionPopUp").dialog('close');
         }
         
-        function uploadXsl(){
+        function uploadXls(){
             $("#importProducts").dialog('open');
 
 //            $('#imagePopUp').dialog('option', 'height', 360);
@@ -89,9 +89,9 @@
     </div>
     
     <div id="importProducts" style="padding:20px; text-align:center;">  
-        <%using (Html.BeginForm("UploadXsl", "DealerCabinet", FormMethod.Post, new { id="xslForm", enctype="multipart/form-data" }))
+        <%using (Html.BeginForm("UploadXls", "DealerCabinet", FormMethod.Post, new { id="xlsForm", enctype="multipart/form-data" }))
           { %>
-            <input type="file" name="xsl" id="xsl" />
+            <input type="file" name="xls" id="xls" />
         <%} %>
     </div>
     <h2>
@@ -100,7 +100,7 @@
     
     <%= Html.DropDownList("groupIds", (List<SelectListItem>)ViewData["groups"], new { onchange = "groupSelected()" })%>
     <%= Html.ResourceActionLink("ManageGroups", "Groups") %>
-    <a href="javascript:uploadXsl()">
+    <a href="javascript:uploadXls()">
         <%= Html.ResourceString("ImportProducts") %>
     </a>
     

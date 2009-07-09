@@ -69,3 +69,13 @@ margin-right:40px;
 
 #imagePopUp{width:400px; height:300px;}
 iframe{padding:0; margin:0; border:none;}
+
+.productDescriptionLink
+{
+    font-style: italic;
+    font-weight: bold;
+    font-size: 14px;
+    text-decoration: none;
+    font-family: Times New Roman;
+    color: #800080;
+}

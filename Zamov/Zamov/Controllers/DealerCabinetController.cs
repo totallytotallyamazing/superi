@@ -261,6 +261,33 @@ namespace Zamov.Controllers
             return View();
         }
 
+        [AcceptVerbs(HttpVerbs.Post)]
+        public void UpdateProductDescription(int productId, string descroptionUkr, string descroptionRus)
+        {
+            TranslationItem ukrItem = new TranslationItem
+            {
+                ItemId = productId,
+                ItemType = ItemTypes.ProductDescription,
+                Language = "uk-UA",
+                Translation = Server.HtmlDecode(descroptionUkr)
+            };
+
+            TranslationItem rusItem = new TranslationItem
+            {
+                ItemId = productId,
+                ItemType = ItemTypes.ProductDescription,
+                Language = "ru-RU",
+                Translation = Server.HtmlDecode(descroptionRus)
+            };
+
+            List<TranslationItem> items = new List<TranslationItem>();
+            items.Add(ukrItem);
+            items.Add(rusItem);
+            using (ZamovStorage context = new ZamovStorage())
+                context.UpdateTranslations(Utils.CreateTranslationXml(items));
+            Response.Write("<script type=\"text/javascript\">top.closeDescriptionDialog();</script>");
+        }
+
         [AcceptVerbs(HttpVerbs.Get)]
         public ActionResult UpdateProductImage(int id)
         {

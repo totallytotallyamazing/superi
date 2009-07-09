@@ -163,6 +163,7 @@
     <Content Include="App_GlobalResources\Resources.ru-RU.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>Resources.ru-RU.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Content\img\headerBottom.jpg" />
     <Content Include="Content\img\headerLeft.jpg" />

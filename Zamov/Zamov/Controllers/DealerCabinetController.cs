@@ -338,9 +338,27 @@ namespace Zamov.Controllers
         #endregion
 
         #region Products import
-        public ActionResult ImportedProducts()
+        public ActionResult ImportedProducts(int id)
         {
+            string fileName = Server.MapPath("~/UploadedFiles/" + id + "_Imported.xls");
+            List<Dictionary<string, object>> importedProductsSet = Utils.QureyUploadedXls(fileName);
             return View();
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult UploadXls()
+        {
+            if (!string.IsNullOrEmpty(Request.Files["xls"].FileName))
+            {
+                string fileName = Request.Files["xls"].FileName;
+                if(Path.GetExtension(fileName)!=".xls")
+                    return RedirectToAction("UploadXlsError");
+                int hashcode = User.GetHashCode();
+                Request.Files["xls"].SaveAs(Server.MapPath("~/UploadedFiles/" + hashcode + "_Imported.xls"));
+                return RedirectToAction("ImportedProducts", new {id = hashcode});
+            }
+            else
+                return RedirectToAction("UploadXlsError");
         }
         #endregion
 

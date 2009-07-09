@@ -2,7 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Data;
+using System.Data.OleDb;
 using System.Xml;
+using Zamov.Models;
+using System.IO;
 
 namespace Zamov.Models
 {
@@ -53,7 +57,7 @@ namespace Zamov.Models
                 item.Attributes.Append(itemIdAttribute);
                 item.Attributes.Append(translationItemTypeId);
                 item.Attributes.Append(translation);
-                root.AppendChild(item); 
+                root.AppendChild(item);
             }
             return document.OuterXml;
         }
@@ -79,6 +83,32 @@ namespace Zamov.Models
                 root.AppendChild(item);
             }
             return document.OuterXml;
+        }
+
+        public static List<Dictionary<string, object>> QureyUploadedXls(string fileName)
+        {
+            DataSet result = new DataSet();
+            string connectionString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + fileName + ";Extended Properties=Excel 8.0;";
+
+            OleDbConnection connection = new OleDbConnection(connectionString);
+            connection.Open();
+
+            OleDbCommand command = new OleDbCommand("Select * from [Sheet1$]", connection);
+            OleDbDataAdapter adapter = new OleDbDataAdapter(command);
+            adapter.Fill(result);
+
+            DataTable table = result.Tables[0];
+            List<Dictionary<string, object>> importedItems = new List<Dictionary<string, object>>();
+            foreach (DataRow row in table.Rows)
+            {
+                Dictionary<string, object> item = new Dictionary<string, object>();
+                foreach (DataColumn column in table.Columns)
+                    item.Add(column.ColumnName, row[column]);
+                importedItems.Add(item);
+            }
+            connection.Close();
+            File.Delete(fileName);
+            return importedItems;
         }
     }
 }

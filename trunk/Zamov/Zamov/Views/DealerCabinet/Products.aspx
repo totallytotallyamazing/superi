@@ -13,6 +13,13 @@
 
         $(function() {
             $("#imagePopUp").dialog({ autoOpen: false, width: 440, height: 360, minHeight: 360, resizable: false });
+            $("#importProducts")
+                .dialog({
+                    autoOpen: false, 
+                    resizable: false,
+                    modal: true,
+                    buttons: { "<%= Html.ResourceString("Upload") %>": function(){ $get("xslForm").submit(); } }
+                 });
             $("#descriptionPopUp")
                 .dialog({
                     autoOpen: false,
@@ -22,7 +29,7 @@
                     resizable: false,
                     buttons: {
                         "<%= Html.ResourceString("Cancel") %>": function(){closeDescriptionDialog();},
-                        "<%= Html.ResourceString("Save") %>": function() { alert(window.frames.descriptionsFrame); $get("descriptionsFrame").contentWindow.updateDescription(); }
+                        "<%= Html.ResourceString("Save") %>": function() { $get("descriptionsFrame").contentWindow.updateDescription(); }
                     }
                 });
         })
@@ -63,21 +70,40 @@
         function closeDescriptionDialog() {
             $("#descriptionPopUp").dialog('close');
         }
-    </script>
+        
+        function uploadXsl(){
+            $("#importProducts").dialog('open');
 
-    <div id="imagePopUp" style="display: block; height: 300px;">
+//            $('#imagePopUp').dialog('option', 'height', 360);
+//            $('#imagePopUp').dialog('option', 'position', 'center');
+//            $('#imagePopUp').css('height', 'auto');
+        }
+    </script>
+    
+    <div title="<%= Html.ResourceString("Image") %>" id="imagePopUp" style="display: block; height: 300px;">
         <iframe id="updateImageBox" frameborder="0" hidefocus="true" style="width: 400px;
             height: 299px; background: transparent;"></iframe>
     </div>
     
-    <div id="descriptionPopUp" style="display: block; height: 300px;">
+    <div title="<%= Html.ResourceString("Description") %>" id="descriptionPopUp" style="display: block; height: 300px;">
     </div>
     
+    <div id="importProducts" style="padding:20px; text-align:center;">  
+        <%using (Html.BeginForm("UploadXsl", "DealerCabinet", FormMethod.Post, new { id="xslForm", enctype="multipart/form-data" }))
+          { %>
+            <input type="file" name="xsl" id="xsl" />
+        <%} %>
+    </div>
     <h2>
         <%= Html.ResourceString("Products") %></h2>
     <br />
+    
     <%= Html.DropDownList("groupIds", (List<SelectListItem>)ViewData["groups"], new { onchange = "groupSelected()" })%>
     <%= Html.ResourceActionLink("ManageGroups", "Groups") %>
+    <a href="javascript:uploadXsl()">
+        <%= Html.ResourceString("ImportProducts") %>
+    </a>
+    
     <%
         if (Model != null && Model.Count > 0)
         { 
@@ -123,7 +149,7 @@
                 <%= Html.TextBox("price_" + item.Id, item.Price, new { onblur = "tableChanged(updates, this)" })%>
             </td>
             <td align="center">
-                <%= Html.CheckBox("active_" + item.Id, item.Enabled, new { onclick = "tableChanged(updates, this)" })%>
+                <%= Html.CheckBox("active_" + item.Id, item.Enabled, new { onblur = "tableChanged(updates, this)" })%>
             </td>
         </tr>
         <%	} %>
@@ -131,6 +157,7 @@
     <%using (Html.BeginForm("UpdateProducts", "DealerCabinet", FormMethod.Post))
       { %>
     <%= Html.Hidden("changes") %>
+    <%= Html.Hidden("groupId") %>
     <input type="submit" value="<%= Html.ResourceString("Save") %>" onclick="collectChanges(updates, 'changes')" />
     <%} %>
     <%} %>

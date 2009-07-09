@@ -324,7 +324,7 @@ namespace Zamov.Controllers
             Response.Write("<script type=\"text/javascript\">top.closeImageDialog();</script>");
         }
 
-        public ActionResult UpdateProducts(string changes)
+        public ActionResult UpdateProducts(int groupId, string changes)
         {
             if (!string.IsNullOrEmpty(changes))
             {
@@ -333,7 +333,14 @@ namespace Zamov.Controllers
                 using (ZamovStorage context = new ZamovStorage())
                     context.UpdateProducts(updates.CreateUpdatesXml());
             }
-            return RedirectToAction("Products");
+            return Redirect("~/DealerCabinet/Products/" + groupId);
+        }
+        #endregion
+
+        #region Products import
+        public ActionResult ImportedProducts()
+        {
+            return View();
         }
         #endregion
 

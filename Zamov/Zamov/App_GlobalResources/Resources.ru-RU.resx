@@ -294,4 +294,10 @@
   <data name="ActiveM" xml:space="preserve">
     <value>Активный</value>
   </data>
+  <data name="ImportProducts" xml:space="preserve">
+    <value>Импортировать товары из Excel</value>
+  </data>
+  <data name="Upload" xml:space="preserve">
+    <value>Загрузить</value>
+  </data>
 </root>

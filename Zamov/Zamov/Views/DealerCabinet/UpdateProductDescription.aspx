@@ -19,7 +19,6 @@
     });
 
     function updateDescription() {
-        alert("submit");
         $("#mainForm").submit();
     }
 </script>

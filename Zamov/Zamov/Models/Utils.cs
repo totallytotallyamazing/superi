@@ -85,7 +85,7 @@ namespace Zamov.Models
             return document.OuterXml;
         }
 
-        public static List<Dictionary<string, object>> QureyUploadedXls(string fileName)
+        public static List<Dictionary<string, object>> QureyUploadedXls(string fileName, int dealerId)
         {
             DataSet result = new DataSet();
             string connectionString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + fileName + ";Extended Properties=Excel 8.0;";
@@ -97,7 +97,15 @@ namespace Zamov.Models
             OleDbDataAdapter adapter = new OleDbDataAdapter(command);
             adapter.Fill(result);
 
-            DataTable table = result.Tables[0];
+            List<Dictionary<string, object>> importedItems = result.Tables[0].ToDictionaryList();
+
+            connection.Close();
+            File.Delete(fileName);
+            return importedItems;
+        }
+
+        public static List<Dictionary<string, object>> ToDictionaryList(this DataTable table)
+        {
             List<Dictionary<string, object>> importedItems = new List<Dictionary<string, object>>();
             foreach (DataRow row in table.Rows)
             {
@@ -106,9 +114,25 @@ namespace Zamov.Models
                     item.Add(column.ColumnName, row[column]);
                 importedItems.Add(item);
             }
-            connection.Close();
-            File.Delete(fileName);
             return importedItems;
+        }
+
+        private static void MarkImportedCorrespondences(List<Dictionary<string, object>> importedItems, int dealerId)
+        {
+            List<Product> products = new List<Product>();
+            List<Group> groups = new List<Group>();
+            using (ZamovStorage context = new ZamovStorage())
+            {
+                products = (from product in context.Products
+                            where product.Deleted == false && product.Dealer.Id == dealerId
+                            select product).ToList();
+
+                groups = (from g in context.Groups where g.Dealer.Id == dealerId select g).ToList();
+            }
+            foreach (var item in importedItems)
+            {
+
+            }
         }
     }
 }

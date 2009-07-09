@@ -341,7 +341,7 @@ namespace Zamov.Controllers
         public ActionResult ImportedProducts(int id)
         {
             string fileName = Server.MapPath("~/UploadedFiles/" + id + "_Imported.xls");
-            List<Dictionary<string, object>> importedProductsSet = Utils.QureyUploadedXls(fileName);
+            List<Dictionary<string, object>> importedProductsSet = Utils.QureyUploadedXls(fileName, id);
             return View();
         }
 
@@ -354,7 +354,7 @@ namespace Zamov.Controllers
                 if(Path.GetExtension(fileName)!=".xls")
                     return RedirectToAction("UploadXlsError");
                 int hashcode = User.GetHashCode();
-                Request.Files["xls"].SaveAs(Server.MapPath("~/UploadedFiles/" + hashcode + "_Imported.xls"));
+                Request.Files["xls"].SaveAs(Server.MapPath("~/UploadedFiles/" + SystemSettings.CurrentDealer + "_Imported.xls"));
                 return RedirectToAction("ImportedProducts", new {id = hashcode});
             }
             else

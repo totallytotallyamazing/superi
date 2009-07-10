@@ -158,7 +158,8 @@ function resetMainMenu() {
     BeginRequestHandler();
     $("#menu li").removeClass("currentSection").css("font-size", "16px");
     $("#menu li").not(".currentSection").mouseover(menuOver).mouseout(menuOut).click(menuClicked);
-    swapImage("images/glava.jpg", function() { EndRequestHandler(); });
+    swapImage("images/main.jpg", function() { EndRequestHandler(); });
+    showPromoClip();
 }
 
 function loadContent(section) {
@@ -216,4 +217,8 @@ function stopPromo() {
     $("#promoStop").attr("src", "images/playPromoW.jpg").unbind("click", stopPromo);
     $("#promoPlay").attr("src", "images/stopPromoG.jpg").click(playPromo);
 
+}
+
+function showPromoClip() {
+    $(".videoPlaceHolder").draggable().css("display", "block").flash({ allowscriptaccess: "never", src: "Embed/player.swf", width: "480", height: "360", allowfullscreen: true, flashvars: { autostart: 'true', skin: "embed/stylish.swf", file: "http://tinakarol.ua/Videos/clip.flv"} });
 }

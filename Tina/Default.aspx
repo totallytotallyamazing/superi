@@ -85,10 +85,10 @@
                 <a target="_blank" href="http://www.tinakarol.net"><img alt="Фан клуб" src="Images/fun.jpg" /></a>
             </div>
             <div id="promoDiv">
-                не бойся &nbsp;
+<%--                не бойся &nbsp;
                 <img src="Images/playPromoG.jpg" id="promoStop" />
                 &nbsp;
-                <img src="Images/stopPromoW.jpg" id="promoPlay" />
+                <img src="Images/stopPromoW.jpg" id="promoPlay" />--%>
             </div>
 
 

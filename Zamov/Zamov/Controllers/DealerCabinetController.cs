@@ -353,8 +353,8 @@ namespace Zamov.Controllers
                 string fileName = Request.Files["xls"].FileName;
                 if(Path.GetExtension(fileName)!=".xls")
                     return RedirectToAction("UploadXlsError");
-                int hashcode = User.GetHashCode();
-                Request.Files["xls"].SaveAs(Server.MapPath("~/UploadedFiles/" + SystemSettings.CurrentDealer + "_Imported.xls"));
+                int hashcode = SystemSettings.CurrentDealer.Value;
+                Request.Files["xls"].SaveAs(Server.MapPath("~/UploadedFiles/" + hashcode + "_Imported.xls"));
                 return RedirectToAction("ImportedProducts", new {id = hashcode});
             }
             else

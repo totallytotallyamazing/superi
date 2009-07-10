@@ -7,6 +7,10 @@ using System.Data.OleDb;
 using System.Xml;
 using Zamov.Models;
 using System.IO;
+using Microsoft.Office.Interop.Excel;
+using System.Reflection;
+using System.Text;
+using System.Collections;
 
 namespace Zamov.Models
 {
@@ -87,6 +91,16 @@ namespace Zamov.Models
 
         public static List<Dictionary<string, object>> QureyUploadedXls(string fileName, int dealerId)
         {
+            DataSet result = GetExcelDataSetInterop(fileName);
+
+            List<Dictionary<string, object>> importedItems = result.Tables[0].ToDictionaryList();
+
+            File.Delete(fileName);
+            return importedItems;
+        }
+
+        private static DataSet GetExcelDataSetOleDb(string fileName)
+        {
             DataSet result = new DataSet();
             string connectionString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + fileName + ";Extended Properties=Excel 8.0;";
 
@@ -96,18 +110,75 @@ namespace Zamov.Models
             OleDbCommand command = new OleDbCommand("Select * from [Sheet1$]", connection);
             OleDbDataAdapter adapter = new OleDbDataAdapter(command);
             adapter.Fill(result);
-
-            List<Dictionary<string, object>> importedItems = result.Tables[0].ToDictionaryList();
-
             connection.Close();
-            File.Delete(fileName);
-            return importedItems;
+            return result;
         }
 
-        public static List<Dictionary<string, object>> ToDictionaryList(this DataTable table)
+        private static DataSet GetExcelDataSetInterop(string fileName)
+        {
+            Application oXL;
+            Workbook oWB;
+            Worksheet oSheet;
+            Range oRng;
+            oXL = new ApplicationClass();
+            try
+            {
+                //  creat a Application object
+                //   get   WorkBook  object
+                oWB = oXL.Workbooks.Open(fileName, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value,
+                        Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value,
+                        Missing.Value, Missing.Value);
+
+                //   get   WorkSheet object 
+                oSheet = (Microsoft.Office.Interop.Excel.Worksheet)oWB.Sheets[1];
+                foreach (Worksheet ws in oWB.Sheets)
+                { }
+                System.Data.DataTable dt = new System.Data.DataTable("dtExcel");
+                DataSet ds = new DataSet();
+                ds.Tables.Add(dt);
+                DataRow dr;
+
+                StringBuilder sb = new StringBuilder();
+                int jValue = oSheet.UsedRange.Cells.Columns.Count;
+                int iValue = oSheet.UsedRange.Cells.Rows.Count;
+                List<string> columns = new List<string>();
+                for (int i = 1; i <= jValue; i++)
+                {
+                    oRng = (Microsoft.Office.Interop.Excel.Range)oSheet.Cells[1, i];
+                    columns.Add(oRng.Text.ToString());
+                }
+
+                //  get data columns
+                for (int j = 0; j < jValue; j++)
+                {
+                    dt.Columns.Add(columns[j], System.Type.GetType("System.String"));
+                }
+
+                //  get data in cell
+                for (int i = 2; i <= iValue; i++)
+                {
+                    dr = ds.Tables["dtExcel"].NewRow();
+                    for (int j = 1; j <= jValue; j++)
+                    {
+                        oRng = (Microsoft.Office.Interop.Excel.Range)oSheet.Cells[i, j];
+                        string strValue = oRng.Text.ToString();
+                        dr[columns[j - 1]] = strValue;
+                    }
+                    ds.Tables["dtExcel"].Rows.Add(dr);
+                }
+                return ds;
+            }
+            catch { return null; }
+            finally
+            {
+                oXL.Quit();
+            }
+        }
+
+        public static List<Dictionary<string, object>> ToDictionaryList(this System.Data.DataTable table)
         {
             List<Dictionary<string, object>> importedItems = new List<Dictionary<string, object>>();
-            foreach (DataRow row in table.Rows)
+            foreach (System.Data.DataRow row in table.Rows)
             {
                 Dictionary<string, object> item = new Dictionary<string, object>();
                 foreach (DataColumn column in table.Columns)

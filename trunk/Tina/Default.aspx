@@ -122,7 +122,7 @@
             <div id="tourContainer">
                 
             </div>
-            <img class="currentBackground" alt="" src="Images/glava.jpg" />
+            <img class="currentBackground" alt="" src="Images/main.jpg" />
             <img class="newBackground" alt="" />
         </div>
 
@@ -146,7 +146,7 @@
                 <span>администратор:</span><br />
                 Дарья Новикова<br />
                 8 (067) 659 44 44<br />
-                <a href="mailto:darya@tinakatol.com.ua">darya@tinakatol.ua</a>
+                <a href="mailto:darya@tinakarol.com.ua">darya@tinakarol.ua</a>
                 <br /><br />
                 <span>PR:</span><br />
                 Павел Подопригора<br />
@@ -164,7 +164,8 @@
     <iframe id="historyIframe" src="cache.aspx"></iframe>
 </div>
 <script type="text/javascript">
-    playPromo();
+    //playPromo();
+    showPromoClip()
     startHistoryLoop();
 </script>
 </body>

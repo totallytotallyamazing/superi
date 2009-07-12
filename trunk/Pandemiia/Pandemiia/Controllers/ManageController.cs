@@ -26,9 +26,36 @@ namespace Pandemiia.Controllers
             return View();
         }
         #region Entities
-        public ActionResult Entities()
+        //public ActionResult Entities()
+        //{
+        //    return View(_context.Entities.Select(ent => ent).OrderByDescending(ent => ent.Date).ToList());
+        //}
+
+        public ActionResult Entities(int? year, int? month)
         {
-            return View(_context.Entities.Select(ent => ent).OrderByDescending(ent => ent.Date).ToList());
+            List<Entity> entities;
+            if (year != null && month != null)
+                entities = _context.Entities.Select(ent => ent)
+                    .Where(ent => ent.Date.Value.Year == year.Value && ent.Date.Value.Month == month.Value)
+                    .OrderByDescending(ent => ent.Date)
+                    .ToList();
+            else if (year != null)
+                entities = _context.Entities.Select(ent => ent)
+                    .Where(ent => ent.Date.Value.Year == year.Value)
+                    .OrderByDescending(ent => ent.Date)
+                    .ToList();
+            else if (month != null)
+                entities = _context.Entities.Select(ent => ent)
+                    .Where(ent => ent.Date.Value.Month == month.Value)
+                    .OrderByDescending(ent => ent.Date)
+                    .ToList();
+            else
+                entities = _context.Entities.Select(ent => ent)
+                    .OrderByDescending(ent => ent.Date)
+                    .ToList();
+            ViewData["year"] = year;
+            ViewData["month"] = month;
+            return View(entities);
         }
 
         public ActionResult CreateEntity()

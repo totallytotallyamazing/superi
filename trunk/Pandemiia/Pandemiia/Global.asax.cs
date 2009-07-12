@@ -18,6 +18,12 @@ namespace Pandemiia
             routes.IgnoreRoute("favicon.ico");
             routes.IgnoreRoute("pandemic.xml");
             routes.MapRoute(
+            "ManageEntitiesFilter",
+            "Manage/Entities/{year}/{month}",
+            new { controller = "Manage", action = "Entities"}
+            );
+
+            routes.MapRoute(
                 "Filter0",
                 "Filter/{action}/{typeName}",
                 new { controller = "Filter", action = "All", typeName = "All", pageNumber = 1 }

@@ -94,7 +94,6 @@ namespace Zamov.Models
 
             List<Dictionary<string, object>> importedItems = result.Tables[0].ToDictionaryList();
 
-            File.Delete(fileName);
             MarkImportedCorrespondences(importedItems, dealerId);
             return importedItems;
         }

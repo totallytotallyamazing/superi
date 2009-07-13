@@ -23,9 +23,9 @@ public class VideoService : System.Web.Services.WebService
         VideoDataContext context = new VideoDataContext();
         object videos;
         if(AlbumId==0)
-            videos = from vid in context.Videos select new { vid.Source, vid.Name, vid.Image };
+            videos = from vid in context.Videos orderby vid.AlbumID descending select new { vid.Source, vid.Name, vid.Image };
         else
-            videos = from vid in context.Videos where vid.AlbumID==AlbumId select new { vid.Source, vid.Name, vid.Image };
+            videos = from vid in context.Videos where vid.AlbumID == AlbumId orderby vid.AlbumID descending select new { vid.Source, vid.Name, vid.Image };
         return videos;
     }
 }

@@ -1,6 +1,7 @@
 <%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl" %>
 
 <%
+    string[] months = { "нул€брь", "€нварь", "февраль", "март", "апрель", "май", "июнь", "июль", "август", "сент€брь", "окт€брь", "но€брь", "декабрь" };
     int year = 2008;
     int month = 1;
     if (ViewData["year"] != null)
@@ -11,7 +12,7 @@
     for (int i = 2008; i <= 2012; i++)
     { 
         string color = "";
-        if (year == i)
+        if (year == i && ViewData["year"] != null)
             color = "color:red";
         %>
       <span style="padding:0px 5px;">
@@ -23,12 +24,12 @@
     for (int j = 1; j <= 12; j++)
     {
         string color = "";
-        if (month == j)
+        if (month == j && ViewData["month"] != null)
             color = "color:red";
 
          %>
       <span style="padding:0px 5px;">
-        <%= Html.ActionLink(j.ToString(), "Entities", new { year = year, month = j }, new { style = color })%>
+        <%= Html.ActionLink(months[j], "Entities", new { year = year, month = j }, new { style = color })%>
       </span>  
    <%}
    %></div><%       

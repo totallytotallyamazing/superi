@@ -331,6 +331,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Група.
+        /// </summary>
+        internal static string Group {
+            get {
+                return ResourceManager.GetString("Group", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Групи товарiв.
         /// </summary>
         internal static string Groups {
@@ -435,6 +444,15 @@ namespace Resources {
         internal static string Name {
             get {
                 return ResourceManager.GetString("Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Новi товари.
+        /// </summary>
+        internal static string NewProducts {
+            get {
+                return ResourceManager.GetString("NewProducts", resourceCulture);
             }
         }
         
@@ -579,6 +597,15 @@ namespace Resources {
         internal static string Ukr {
             get {
                 return ResourceManager.GetString("Ukr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Товари, що змiнилися.
+        /// </summary>
+        internal static string UpdatedProducts {
+            get {
+                return ResourceManager.GetString("UpdatedProducts", resourceCulture);
             }
         }
         

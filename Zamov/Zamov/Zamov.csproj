@@ -31,8 +31,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Office.Interop.Excel, Version=11.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" />
-    <Reference Include="Microsoft.Office.Tools.Excel, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Excel, Version=2.0.0.157, Culture=neutral, PublicKeyToken=93517dbe6a4012fa, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Web.Mvc, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -225,6 +224,7 @@
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Views\Admin\AddUpdateDealer.aspx" />
     <Content Include="Views\DealerCabinet\Cabinet.Master" />
+    <Content Include="Views\DealerCabinet\ImportedProduct.ascx" />
     <Content Include="Views\DealerCabinet\ImportedProducts.aspx" />
     <Content Include="Views\DealerCabinet\Products.aspx" />
     <Content Include="Views\DealerCabinet\SelectDealer.ascx" />
@@ -233,6 +233,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="bin\" />
     <Folder Include="UploadedFiles\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

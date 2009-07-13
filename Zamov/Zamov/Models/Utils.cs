@@ -111,12 +111,19 @@ namespace Zamov.Models
             DataSet result = new DataSet();
             DataTable table = new DataTable("dtExcel");
             bool columnDefinitions = true;
+            List<string> columns = new List<string>();
+            columns.Add("groupPath");
+            columns.Add("partNumber");
+            columns.Add("name");
+            columns.Add("price");
+            columns.Add("ukDescription");
+            columns.Add("ruDescription");
             while (excelReader.Read())
             {
                 if (columnDefinitions)
                 {
                     for (int i = 0; i < excelReader.FieldCount; i++)
-                        table.Columns.Add(excelReader.GetString(i), typeof(string));
+                        table.Columns.Add(columns[i], typeof(string));
                     columnDefinitions = false;
                 }
                 else

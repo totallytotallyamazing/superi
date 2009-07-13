@@ -359,11 +359,11 @@ namespace Zamov.Controllers
         {
             int productId = (int)product["productId"];
             int? groupId = (int?)product["groupId"];
-            string partNumber = (string)product.Skip(1).Take(1).Select(p=>p.Value).SingleOrDefault();
-            string name = (string)product.Skip(2).Take(1).Select(p => p.Value).SingleOrDefault();
-            string price = (string)product.Skip(3).Take(1).Select(p => p.Value).SingleOrDefault();
-            string ukDescription = (string)product.Skip(3).Take(1).Select(p => p.Value).SingleOrDefault();
-            string ruDescription = (string)product.Skip(4).Take(1).Select(p => p.Value).SingleOrDefault();
+            string partNumber = (string)product["partNumber"];
+            string name = (string)product["name"];
+            string price = (string)product["price"];
+            string ukDescription = (string)product["ukDescription"];
+            string ruDescription = (string)product["ruDescription"];
             List<SelectListItem> items = new List<SelectListItem>();
             int currentGroupId = (groupId) ?? int.MinValue;
             GetGroupItems(items, SystemSettings.CurrentDealer.Value, int.MinValue, "", currentGroupId);

@@ -338,10 +338,10 @@ namespace Zamov.Controllers
         #endregion
 
         #region Products import
-        public ActionResult ImportedProducts(int id)
+        public ActionResult ImportedProducts()
         {
-            string fileName = Server.MapPath("~/UploadedFiles/" + id + "_Imported.xls");
-            List<Dictionary<string, object>> importedProductsSet = Utils.QureyUploadedXls(fileName, id);
+            string fileName = (string)Session["uploadedXls"];
+            List<Dictionary<string, object>> importedProductsSet = Utils.QureyUploadedXls(fileName, SystemSettings.CurrentDealer.Value);
             List<Dictionary<string, object>> updatedItems = (from item in importedProductsSet where item["productId"] != null select item).ToList();
             List<Dictionary<string, object>> newItems = (from item in importedProductsSet where item["productId"] == null select item).ToList();
             int productId = 1;
@@ -390,9 +390,10 @@ namespace Zamov.Controllers
                 string extension = Path.GetExtension(fileName);
                 if (extension != ".xls" && extension != ".xlsx")
                     return RedirectToAction("UploadXlsError");
-                int hashcode = SystemSettings.CurrentDealer.Value;
+                int hashcode = User.GetHashCode();
                 Request.Files["xls"].SaveAs(Server.MapPath("~/UploadedFiles/" + hashcode + "_Imported" + extension));
-                return RedirectToAction("ImportedProducts", new {id = hashcode});
+                Session["uploadedXls"] = Server.MapPath("~/UploadedFiles/" + hashcode + "_Imported" + extension);
+                return RedirectToAction("ImportedProducts");
             }
             else
                 return RedirectToAction("UploadXlsError");
@@ -404,6 +405,15 @@ namespace Zamov.Controllers
         {
             SystemSettings.CurrentDealer = currentDealerId;
             return Redirect(redirectTo);
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult SaveImportedProducts(string newItemUpdates, string updatedItemUpdates)
+        {
+            string fileName = (string)Session["uploadedXls"];
+            System.IO.File.Delete(fileName);
+            Session["uploadedXls"] = null;
+            return RedirectToAction("Products");
         }
     }
 }

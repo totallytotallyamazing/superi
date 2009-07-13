@@ -85,6 +85,12 @@
             </table>
         </div>
     </div>
+    
+    <% using(Html.BeginForm("SaveImportedProducts", "DealerCabinet", FormMethod.Post)){ %>
+        <%= Html.Hidden("newItemUpdates") %>
+        <%= Html.Hidden("updatedItemUpdates") %>
+        <input style="padding:10px; margin-top:10px;" type="submit" class="ui-state-default ui-corner-all" value="<%= Html.ResourceString("Save") %>" onclick="collectChanges(newItems, 'newItemUpdates'); collectChanges(updatedItems, 'updatedItemUpdates')" />
+    <%} %>
 
 </asp:Content>
 

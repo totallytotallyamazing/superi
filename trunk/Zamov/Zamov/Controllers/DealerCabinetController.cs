@@ -342,6 +342,42 @@ namespace Zamov.Controllers
         {
             string fileName = Server.MapPath("~/UploadedFiles/" + id + "_Imported.xls");
             List<Dictionary<string, object>> importedProductsSet = Utils.QureyUploadedXls(fileName, id);
+            List<Dictionary<string, object>> updatedItems = (from item in importedProductsSet where item["productId"] != null select item).ToList();
+            List<Dictionary<string, object>> newItems = (from item in importedProductsSet where item["productId"] == null select item).ToList();
+            int productId = 1;
+            foreach (var item in newItems)
+            {
+                item["productId"] = productId;
+                productId++;
+            }
+            Session["updatedItems"] = updatedItems;
+            Session["newItems"] = newItems;
+            return View();
+        }
+
+        public ActionResult ImportedProduct(Dictionary<string, object> product, bool isNew)
+        {
+            int productId = (int)product["productId"];
+            int? groupId = (int?)product["groupId"];
+            string partNumber = (string)product.Skip(1).Take(1).Select(p=>p.Value).SingleOrDefault();
+            string name = (string)product.Skip(2).Take(1).Select(p => p.Value).SingleOrDefault();
+            string price = (string)product.Skip(3).Take(1).Select(p => p.Value).SingleOrDefault();
+            string ukDescription = (string)product.Skip(3).Take(1).Select(p => p.Value).SingleOrDefault();
+            string ruDescription = (string)product.Skip(4).Take(1).Select(p => p.Value).SingleOrDefault();
+            List<SelectListItem> items = new List<SelectListItem>();
+            int currentGroupId = (groupId) ?? int.MinValue;
+            GetGroupItems(items, SystemSettings.CurrentDealer.Value, int.MinValue, "", currentGroupId);
+            ViewData["id"] = productId;
+            ViewData["partNumber"] = partNumber;
+            ViewData["name"] = name;
+            decimal decimalPrice = 0;
+            if (!decimal.TryParse(price, out decimalPrice))
+                decimalPrice = 0M;
+            ViewData["price"] = decimalPrice;
+            ViewData["ukDescription"] = ukDescription;
+            ViewData["ruDescription"] = ruDescription;
+            ViewData["groupList"] = items;
+            ViewData["isNew"] = isNew;
             return View();
         }
 
@@ -351,10 +387,11 @@ namespace Zamov.Controllers
             if (!string.IsNullOrEmpty(Request.Files["xls"].FileName))
             {
                 string fileName = Request.Files["xls"].FileName;
-                if(Path.GetExtension(fileName)!=".xls")
+                string extension = Path.GetExtension(fileName);
+                if (extension != ".xls" && extension != ".xlsx")
                     return RedirectToAction("UploadXlsError");
                 int hashcode = SystemSettings.CurrentDealer.Value;
-                Request.Files["xls"].SaveAs(Server.MapPath("~/UploadedFiles/" + hashcode + "_Imported.xls"));
+                Request.Files["xls"].SaveAs(Server.MapPath("~/UploadedFiles/" + hashcode + "_Imported" + extension));
                 return RedirectToAction("ImportedProducts", new {id = hashcode});
             }
             else

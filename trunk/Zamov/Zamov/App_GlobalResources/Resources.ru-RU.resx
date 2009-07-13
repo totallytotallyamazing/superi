@@ -300,4 +300,13 @@
   <data name="Upload" xml:space="preserve">
     <value>Загрузить</value>
   </data>
+  <data name="NewProducts" xml:space="preserve">
+    <value>Новые товары</value>
+  </data>
+  <data name="UpdatedProducts" xml:space="preserve">
+    <value>Измененные товары</value>
+  </data>
+  <data name="Group" xml:space="preserve">
+    <value>Группа</value>
+  </data>
 </root>

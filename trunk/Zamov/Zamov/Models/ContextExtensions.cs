@@ -46,5 +46,19 @@ namespace Zamov.Models
             parameter.DbType = System.Data.DbType.String;
             ExecuteNonQuery(context, "ZamovStorage.UpdateProducts", parameter);
         }
+
+        public static bool MatchesPath(this Group g, string[] path)
+        {
+            bool result = false;
+            if (path != null && path.Length == 1 && g.Name == path[0])
+                result = true;
+            else
+            {
+                g.ParentReference.Load();
+                if (path != null && path.Length > 1 && g.Parent != null)
+                    result = g.Parent.MatchesPath(path.Take(path.Length - 1).ToArray());
+            }
+            return result;
+        }
     }
 }

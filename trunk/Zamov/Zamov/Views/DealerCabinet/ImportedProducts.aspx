@@ -16,7 +16,7 @@
                 .dialog({
                     autoOpen: false,
                     width: 700,
-                    height: 600,
+                    height: 530,
                     minHeight: 360,
                     resizable: false,
                     modal: true,
@@ -32,19 +32,25 @@
         }
 
         function openDescriptionDialog(id) {
-            $("#"+id).dialog('open');
-            $("#"+id).dialog('open').css("height", 500);
-            $("#"+id).dialog('option', 'height', 600);
+            $("#" + id).dialog('open');
+            $("#" + id).dialog('open').css("height", 425);
+            $("#" + id).dialog('option', 'height', 530);
             $("#" + id).dialog('option', 'position', 'center');
+        }
+
+        function saveImports() {
+            collectChanges(newItems, 'newItemUpdates');
+            collectChanges(updatedItems, 'updatedItemUpdates');
+            $("#saveForm").submit();
         }
     </script>
 <%
-    List<Dictionary<string, object>> updatedItems = (List<Dictionary<string, object>>)Session["updatedItems"];
-    List<Dictionary<string, object>> newItems = (List<Dictionary<string, object>>)Session["newItems"];
+    List<Dictionary<string, string>> updatedItems = (List<Dictionary<string, string>>)ViewData["updatedItems"];
+    List<Dictionary<string, string>> newItems = (List<Dictionary<string, string>>)ViewData["newItems"];
 %>
     
     <h2>ImportedProducts</h2>
-    
+    <input style="padding:10px; margin-top:10px;" type="button" class="ui-state-default ui-corner-all" value="<%= Html.ResourceString("Save") %>" onclick="saveImports()" />
     <div id="tabs">
         <ul>
             <li>
@@ -86,11 +92,12 @@
         </div>
     </div>
     
-    <% using(Html.BeginForm("SaveImportedProducts", "DealerCabinet", FormMethod.Post)){ %>
-        <%= Html.Hidden("newItemUpdates") %>
-        <%= Html.Hidden("updatedItemUpdates") %>
-        <input style="padding:10px; margin-top:10px;" type="submit" class="ui-state-default ui-corner-all" value="<%= Html.ResourceString("Save") %>" onclick="collectChanges(newItems, 'newItemUpdates'); collectChanges(updatedItems, 'updatedItemUpdates')" />
+    <% using (Html.BeginForm("SaveImportedProducts", "DealerCabinet", FormMethod.Post, new { id="saveForm" }))
+       { %>
+        <%= Html.Hidden("newItemUpdates")%>
+        <%= Html.Hidden("updatedItemUpdates")%>
     <%} %>
+    <input style="padding:10px; margin-top:10px;" type="button" class="ui-state-default ui-corner-all" value="<%= Html.ResourceString("Save") %>" onclick="saveImports()" />
 
 </asp:Content>
 

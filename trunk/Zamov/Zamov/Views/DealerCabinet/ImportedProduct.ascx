@@ -15,7 +15,7 @@
 
 <tr>
     <td>
-        <%= Html.DropDownList("groupList_" + ViewData["id"], (List<SelectListItem>)ViewData["groupList"], new { onblur = changeFunction })%>
+        <%= Html.DropDownList("groupPath_" + ViewData["id"], (List<SelectListItem>)ViewData["groupList"], new { onblur = changeFunction })%>
     </td>
     <td>
         <%= Html.TextBox("partNumber_" + ViewData["id"], ViewData["partNumber"], new { onblur = changeFunction })%>
@@ -30,7 +30,7 @@
         <a href="javascript:openDescriptionDialog('<%= divId %>')" class="productDescriptionLink">
             i
         </a>
-        <div class="productDescriptionContainer" id="<%= divId %>">
+        <div class="productDescriptionContainer" title="<%= Html.ResourceString("Description") %>" id="<%= divId %>">
             <table>
                 <tr class="adminTable">
                     <td align="center"><%= Html.ResourceString("Ukr")%></td>

@@ -341,24 +341,30 @@ namespace Zamov.Controllers
         public ActionResult ImportedProducts()
         {
             string fileName = (string)Session["uploadedXls"];
-            List<Dictionary<string, object>> importedProductsSet = Utils.QureyUploadedXls(fileName, SystemSettings.CurrentDealer.Value);
-            List<Dictionary<string, object>> updatedItems = (from item in importedProductsSet where item["productId"] != null select item).ToList();
-            List<Dictionary<string, object>> newItems = (from item in importedProductsSet where item["productId"] == null select item).ToList();
+            List<Dictionary<string, string>> importedProductsSet = Utils.QureyUploadedXls(fileName, SystemSettings.CurrentDealer.Value);
+            List<Dictionary<string, string>> updatedItems = (from item in importedProductsSet where item["productId"] != null select item).ToList();
+            List<Dictionary<string, string>> newItems = (from item in importedProductsSet where item["productId"] == null select item).ToList();
             int productId = 1;
             foreach (var item in newItems)
             {
-                item["productId"] = productId;
+                item["productId"] = productId.ToString();
                 productId++;
             }
-            Session["updatedItems"] = updatedItems;
-            Session["newItems"] = newItems;
+            Dictionary<string, Dictionary<string, string>> updatedItemsDictionary = updatedItems.ToDictionary(el => (string)el["productId"], el => el);
+            Dictionary<string, Dictionary<string, string>> newItemsDictionary = newItems.ToDictionary(el => (string)el["productId"], el => el);
+            ViewData["updatedItems"] = updatedItems;
+            ViewData["newItems"] = newItems;
+            Session["updatedItems"] = updatedItemsDictionary;
+            Session["newItems"] = newItemsDictionary;
             return View();
         }
 
-        public ActionResult ImportedProduct(Dictionary<string, object> product, bool isNew)
+        public ActionResult ImportedProduct(Dictionary<string, string> product, bool isNew)
         {
-            int productId = (int)product["productId"];
-            int? groupId = (int?)product["groupId"];
+            int productId = int.Parse(product["productId"]);
+            int? groupId = null;
+            if (product["groupId"] != null)
+                groupId = int.Parse(product["groupId"]);
             string partNumber = (string)product["partNumber"];
             string name = (string)product["name"];
             string price = (string)product["price"];
@@ -412,6 +418,33 @@ namespace Zamov.Controllers
         {
             string fileName = (string)Session["uploadedXls"];
             System.IO.File.Delete(fileName);
+            Dictionary<string, Dictionary<string, string>> updatedItemsDictionary = (Dictionary<string, Dictionary<string, string>>)Session["updatedItems"];
+            Dictionary<string, Dictionary<string, string>> newItemsDictionary = (Dictionary<string, Dictionary<string, string>>)Session["newItems"];
+
+            if (!string.IsNullOrEmpty(newItemUpdates))
+            {
+                JavaScriptSerializer serializer = new JavaScriptSerializer();
+                Dictionary<string, Dictionary<string, string>> newUpdates = serializer.Deserialize<Dictionary<string, Dictionary<string, string>>>(newItemUpdates);
+                foreach (string key in newUpdates.Keys)
+                {
+                    Dictionary<string, string> update = newUpdates[key];
+                    foreach (string updateKey in update.Keys)
+                        newItemsDictionary[key][updateKey] = update[updateKey];
+                }
+            }
+
+            if (!string.IsNullOrEmpty(updatedItemUpdates))
+            {
+                JavaScriptSerializer serializer = new JavaScriptSerializer();
+                Dictionary<string, Dictionary<string, string>> updatedUpdates = serializer.Deserialize<Dictionary<string, Dictionary<string, string>>>(newItemUpdates);
+                foreach (string key in updatedUpdates.Keys)
+                {
+                    Dictionary<string, string> update = updatedUpdates[key];
+                    foreach (string updateKey in update.Keys)
+                        updatedItemsDictionary[key][updateKey] = update[updateKey];
+                }
+            }
+            
             Session["uploadedXls"] = null;
             return RedirectToAction("Products");
         }

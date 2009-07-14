@@ -88,11 +88,11 @@ namespace Zamov.Models
             return document.OuterXml;
         }
 
-        public static List<Dictionary<string, object>> QureyUploadedXls(string fileName, int dealerId)
+        public static List<Dictionary<string, string>> QureyUploadedXls(string fileName, int dealerId)
         {
             DataSet result = GetExcelDataSet(fileName);
 
-            List<Dictionary<string, object>> importedItems = result.Tables[0].ToDictionaryList();
+            List<Dictionary<string, string>> importedItems = result.Tables[0].ToDictionaryList();
 
             MarkImportedCorrespondences(importedItems, dealerId);
             return importedItems;
@@ -155,81 +155,20 @@ namespace Zamov.Models
             return result;
         }
 
-        //private static DataSet GetExcelDataSetInterop(string fileName)
-        //{
-        //    Application oXL;
-        //    Workbook oWB;
-        //    Worksheet oSheet;
-        //    Range oRng;
-        //    oXL = new ApplicationClass();
-        //    try
-        //    {
-        //        //  creat a Application object
-        //        //   get   WorkBook  object
-        //        oWB = oXL.Workbooks.Open(fileName, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value,
-        //                Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value,
-        //                Missing.Value, Missing.Value);
-
-        //        //   get   WorkSheet object 
-        //        oSheet = (Microsoft.Office.Interop.Excel.Worksheet)oWB.Sheets[1];
-        //        foreach (Worksheet ws in oWB.Sheets)
-        //        { }
-        //        System.Data.DataTable dt = new System.Data.DataTable("dtExcel");
-        //        DataSet ds = new DataSet();
-        //        ds.Tables.Add(dt);
-        //        DataRow dr;
-
-        //        StringBuilder sb = new StringBuilder();
-        //        int jValue = oSheet.UsedRange.Cells.Columns.Count;
-        //        int iValue = oSheet.UsedRange.Cells.Rows.Count;
-        //        List<string> columns = new List<string>();
-        //        for (int i = 1; i <= jValue; i++)
-        //        {
-        //            oRng = (Microsoft.Office.Interop.Excel.Range)oSheet.Cells[1, i];
-        //            columns.Add(oRng.Text.ToString());
-        //        }
-
-        //        //  get data columns
-        //        for (int j = 0; j < jValue; j++)
-        //        {
-        //            dt.Columns.Add(columns[j], System.Type.GetType("System.String"));
-        //        }
-
-        //        //  get data in cell
-        //        for (int i = 2; i <= iValue; i++)
-        //        {
-        //            dr = ds.Tables["dtExcel"].NewRow();
-        //            for (int j = 1; j <= jValue; j++)
-        //            {
-        //                oRng = (Microsoft.Office.Interop.Excel.Range)oSheet.Cells[i, j];
-        //                string strValue = oRng.Text.ToString();
-        //                dr[columns[j - 1]] = strValue;
-        //            }
-        //            ds.Tables["dtExcel"].Rows.Add(dr);
-        //        }
-        //        return ds;
-        //    }
-        //    catch { return null; }
-        //    finally
-        //    {
-        //        oXL.Quit();
-        //    }
-        //}
-
-        public static List<Dictionary<string, object>> ToDictionaryList(this System.Data.DataTable table)
+        public static List<Dictionary<string, string>> ToDictionaryList(this System.Data.DataTable table)
         {
-            List<Dictionary<string, object>> importedItems = new List<Dictionary<string, object>>();
+            List<Dictionary<string, string>> importedItems = new List<Dictionary<string, string>>();
             foreach (System.Data.DataRow row in table.Rows)
             {
-                Dictionary<string, object> item = new Dictionary<string, object>();
+                Dictionary<string, string> item = new Dictionary<string, string>();
                 foreach (DataColumn column in table.Columns)
-                    item.Add(column.ColumnName, row[column]);
+                    item.Add(column.ColumnName, row[column].ToString());
                 importedItems.Add(item);
             }
             return importedItems;
         }
 
-        private static void MarkImportedCorrespondences(List<Dictionary<string, object>> importedItems, int dealerId)
+        private static void MarkImportedCorrespondences(List<Dictionary<string, string>> importedItems, int dealerId)
         {
             List<Product> products = new List<Product>();
             List<Group> groups = new List<Group>();
@@ -245,14 +184,14 @@ namespace Zamov.Models
                 string partNumber = item.Values.Skip(1).Take(1).First().ToString();
 
                 Product product = (from p in products where p.PartNumber == partNumber select p).SingleOrDefault();
-                item["productId"] = (product != null) ? (int?)product.Id : null;
+                item["productId"] = (product != null) ? product.Id.ToString() : null;
                 item["groupId"] = IdentifyGroup(group);
             }
         }
 
-        private static int? IdentifyGroup(string group)
+        private static string IdentifyGroup(string group)
         {
-            int? result = null;
+            string result = null;
             string[] groupPath = group.Split(new char[] { '/' });
             ZamovStorage context = new ZamovStorage();
             if (groupPath.Length > 0)
@@ -262,7 +201,7 @@ namespace Zamov.Models
                 foreach (var g in groups)
                 {
                     if (result == null && g.MatchesPath(groupPath))
-                        result = g.Id;
+                        result = g.Id.ToString();
                 }
             }
             else

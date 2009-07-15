@@ -47,6 +47,34 @@ namespace Zamov.Models
             ExecuteNonQuery(context, "ZamovStorage.UpdateProducts", parameter);
         }
 
+        public static void InsertImportedProducts(this ZamovStorage context, string updatesXml, int dealerId)
+        {
+            EntityParameter dealerIdParameter = new EntityParameter();
+            dealerIdParameter.ParameterName = "dealerId";
+            dealerIdParameter.IsNullable = false;
+            dealerIdParameter.Value = dealerId;
+            dealerIdParameter.DbType = System.Data.DbType.Int32;
+
+            EntityParameter updatesXmlParameter = new EntityParameter();
+            updatesXmlParameter.ParameterName = "updatesXml";
+            updatesXmlParameter.IsNullable = false;
+            updatesXmlParameter.Value = updatesXml;
+            updatesXmlParameter.DbType = System.Data.DbType.String;
+
+            ExecuteNonQuery(context, "ZamovStorage.InsertImportedProducts", dealerIdParameter, updatesXmlParameter);
+        }
+
+        public static void UpdateImportedProducts(this ZamovStorage context, string updatesXml)
+        {
+            EntityParameter updatesXmlParameter = new EntityParameter();
+            updatesXmlParameter.ParameterName = "updatesXml";
+            updatesXmlParameter.IsNullable = false;
+            updatesXmlParameter.Value = updatesXml;
+            updatesXmlParameter.DbType = System.Data.DbType.String;
+
+            ExecuteNonQuery(context, "ZamovStorage.{", updatesXmlParameter);
+        }
+
         public static bool MatchesPath(this Group g, string[] path)
         {
             bool result = false;

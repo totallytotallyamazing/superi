@@ -338,7 +338,14 @@
         <Function Name="ProductImages_Cleanup" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="productId" Type="int" Mode="In" />
         </Function>
+        <Function Name="Products_InsertImported" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="updatesXml" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="dealerId" Type="int" Mode="In" />
+        </Function>
         <Function Name="Products_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="updatesXml" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="Products_UpdateImported" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="updatesXml" Type="nvarchar(max)" Mode="In" />
         </Function>
         <Function Name="Translations_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -396,7 +403,12 @@
             <Parameter Name="updatesXml" Mode="In" Type="String" /></FunctionImport>
           <AssociationSet Name="FK_Groups_Groups" Association="BaseEntities.FK_Groups_Groups">
             <End Role="Group" EntitySet="Groups" />
-            <End Role="Group1" EntitySet="Groups" /></AssociationSet></EntityContainer>
+            <End Role="Group1" EntitySet="Groups" /></AssociationSet>
+          <FunctionImport Name="InsertImportedProducts">
+            <Parameter Name="updatesXml" Mode="In" Type="String" />
+            <Parameter Name="dealerId" Mode="In" Type="Int32" /></FunctionImport>
+          <FunctionImport Name="UpdateImportedProducts">
+            <Parameter Name="updatesXml" Mode="In" Type="String" /></FunctionImport></EntityContainer>
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="Id" />
@@ -654,7 +666,9 @@
               <ScalarProperty Name="Id" ColumnName="Id" /></EndProperty>
             <EndProperty Name="Group">
               <ScalarProperty Name="Id" ColumnName="GroupId" /></EndProperty>
-            <Condition ColumnName="GroupId" IsNull="false" /></AssociationSetMapping></EntityContainerMapping>
+            <Condition ColumnName="GroupId" IsNull="false" /></AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="InsertImportedProducts" FunctionName="BaseEntities.Store.Products_InsertImported" />
+          <FunctionImportMapping FunctionImportName="UpdateImportedProducts" FunctionName="BaseEntities.Store.Products_UpdateImported" /></EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

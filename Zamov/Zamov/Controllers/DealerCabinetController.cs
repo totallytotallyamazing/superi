@@ -291,7 +291,7 @@ namespace Zamov.Controllers
         [AcceptVerbs(HttpVerbs.Get)]
         public ActionResult UpdateProductImage(int id)
         {
-            using(ZamovStorage context = new ZamovStorage())
+            using (ZamovStorage context = new ZamovStorage())
             {
                 ProductImage image = context.ProductImages.Select(pi => pi).Where(pi => pi.Product.Id == id).SingleOrDefault();
                 int imageId = (image != null) ? image.Id : int.MinValue;
@@ -404,14 +404,6 @@ namespace Zamov.Controllers
             else
                 return RedirectToAction("UploadXlsError");
         }
-        #endregion
-
-        [Authorize(Roles="Administrators")]
-        public ActionResult SelectDealer(int currentDealerId, string redirectTo)
-        {
-            SystemSettings.CurrentDealer = currentDealerId;
-            return Redirect(redirectTo);
-        }
 
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult SaveImportedProducts(string newItemUpdates, string updatedItemUpdates)
@@ -444,9 +436,26 @@ namespace Zamov.Controllers
                         updatedItemsDictionary[key][updateKey] = update[updateKey];
                 }
             }
-            
+
+            string updatesXml = updatedItemsDictionary.CreateUpdatesXml();
+            string newItemsXml = newItemsDictionary.CreateUpdatesXml();
+            using (ZamovStorage context = new ZamovStorage())
+            {
+                context.InsertImportedProducts(newItemsXml, SystemSettings.CurrentDealer.Value);
+                context.UpdateImportedProducts(updatesXml);
+            }
             Session["uploadedXls"] = null;
             return RedirectToAction("Products");
         }
+        #endregion
+
+        [Authorize(Roles = "Administrators")]
+        public ActionResult SelectDealer(int currentDealerId, string redirectTo)
+        {
+            SystemSettings.CurrentDealer = currentDealerId;
+            return Redirect(redirectTo);
+        }
+
+
     }
 }

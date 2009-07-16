@@ -88,9 +88,9 @@
             <td align="center">
                 <%= Html.CheckBox("enabled_" + item.Id, item.Enabled, new { onclick = "updateEnables(this, " + item.Id + ")" })%>
             </td>
-            <td class="ajax">
+<%--            <td class="ajax">
                 <%= Ajax.ActionLink(Html.ResourceString("Dealers"), "DealerMappings", new { id = item.Id, itemType = Zamov.Models.ItemTypes.City }, new AjaxOptions { OnBegin = "beginMappingsCall", OnSuccess = "showDealerMappings", UpdateTargetId = "dealerList", InsertionMode = InsertionMode.Replace })%>
-            </td>
+            </td>--%>
             <td>
                 <%= Html.ActionLink(Html.ResourceString("Delete"), "DeleteCity", new { id = item.Id }, new { onclick = "return confirm('" + Html.ResourceString("AreYouSure") + "?')" })%>
                 

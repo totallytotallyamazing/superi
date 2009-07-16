@@ -15,7 +15,7 @@
 
 <tr>
     <td>
-        <%= Html.DropDownList("groupPath_" + ViewData["id"], (List<SelectListItem>)ViewData["groupList"], new { onblur = changeFunction })%>
+        <%= Html.DropDownList("groupId_" + ViewData["id"], (List<SelectListItem>)ViewData["groupList"], new { onblur = changeFunction })%>
     </td>
     <td>
         <%= Html.TextBox("partNumber_" + ViewData["id"], ViewData["partNumber"], new { onblur = changeFunction })%>

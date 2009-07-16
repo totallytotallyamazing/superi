@@ -428,7 +428,7 @@ namespace Zamov.Controllers
             if (!string.IsNullOrEmpty(updatedItemUpdates))
             {
                 JavaScriptSerializer serializer = new JavaScriptSerializer();
-                Dictionary<string, Dictionary<string, string>> updatedUpdates = serializer.Deserialize<Dictionary<string, Dictionary<string, string>>>(newItemUpdates);
+                Dictionary<string, Dictionary<string, string>> updatedUpdates = serializer.Deserialize<Dictionary<string, Dictionary<string, string>>>(updatedItemUpdates);
                 foreach (string key in updatedUpdates.Keys)
                 {
                     Dictionary<string, string> update = updatedUpdates[key];
@@ -447,6 +447,97 @@ namespace Zamov.Controllers
             Session["uploadedXls"] = null;
             return RedirectToAction("Products");
         }
+        #endregion
+
+        #region DealerMappings
+        public ActionResult DealerCityMappings()
+        {
+            int dealerId = SystemSettings.CurrentDealer.Value;
+            List<City> cities = null;
+            List<City> dealerCities = null;
+            using (ZamovStorage context = new ZamovStorage())
+            {
+                cities = (from city in context.Cities select city).ToList();
+                dealerCities = (from dealer in context.Dealers where dealer.Id == dealerId select dealer.Cities).First().ToList();
+            }
+            List<SelectListItem> items = (from city in cities
+                                          select new SelectListItem
+                                          {
+                                              Text = city.GetName(SystemSettings.CurrentLanguage),
+                                              Value = city.Id.ToString(),
+                                              Selected =
+                                                (from dc in dealerCities where dc.Id == city.Id select dc).Count() > 0
+                                          }).ToList();
+            ViewData["items"] = items;
+            return View();
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public void DealerCityMappings(FormCollection form)
+        {
+            using (ZamovStorage context = new ZamovStorage())
+            {
+                Dealer dealer = (from d in context.Dealers where d.Id == SystemSettings.CurrentDealer.Value select d).First();
+                dealer.Cities.Load();
+                dealer.Cities.Clear();
+                foreach (string key in form.Keys)
+                {
+                    if (form[key].IndexOf("true") > -1)
+                    {
+                        int cityId = int.Parse(key);
+                        City city = (from c in context.Cities where c.Id == cityId select c).First();
+                        dealer.Cities.Add(city);
+                    }
+                }
+                context.SaveChanges();
+            }
+            Response.Write("<script>top.closeCityMappings();</script>");
+        }
+
+        public ActionResult DealerCategoryMappings()
+        {
+            int dealerId = SystemSettings.CurrentDealer.Value;
+            List<Category> categories = null;
+            List<Category> dealerCategories = null;
+            using (ZamovStorage context = new ZamovStorage())
+            {
+                categories = (from category in context.Categories select category).ToList();
+                dealerCategories = (from dealer in context.Dealers where dealer.Id == dealerId select dealer.Categories).First().ToList();
+            }
+            List<SelectListItem> items = (from category in categories
+                                          select new SelectListItem
+                                          {
+                                              Text = category.GetName(SystemSettings.CurrentLanguage),
+                                              Value = category.Id.ToString(),
+                                              Selected =
+                                                (from dc in dealerCategories where dc.Id == category.Id select dc).Count() > 0
+                                          }).ToList();
+            ViewData["items"] = items;
+            return View();
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public void DealerCategoryMappings(FormCollection form)
+        {
+            using (ZamovStorage context = new ZamovStorage())
+            {
+                Dealer dealer = (from d in context.Dealers where d.Id == SystemSettings.CurrentDealer.Value select d).First();
+                dealer.Categories.Load();
+                dealer.Categories.Clear();
+                foreach (string key in form.Keys)
+                {
+                    if (form[key].IndexOf("true") > -1)
+                    {
+                        int categoryId = int.Parse(key);
+                        Category category = (from c in context.Categories where c.Id == categoryId select c).First();
+                        dealer.Categories.Add(category);
+                    }
+                }
+                context.SaveChanges();
+            }
+            Response.Write("<script>top.closeCategoryMappings();</script>");
+        }
+
         #endregion
 
         [Authorize(Roles = "Administrators")]

@@ -224,6 +224,8 @@
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Views\Admin\AddUpdateDealer.aspx" />
     <Content Include="Views\DealerCabinet\Cabinet.Master" />
+    <Content Include="Views\DealerCabinet\DealerCategoryMappings.aspx" />
+    <Content Include="Views\DealerCabinet\DealerCityMappings.aspx" />
     <Content Include="Views\DealerCabinet\ImportedProduct.ascx" />
     <Content Include="Views\DealerCabinet\ImportedProducts.aspx" />
     <Content Include="Views\DealerCabinet\Products.aspx" />

@@ -72,7 +72,7 @@ namespace Zamov.Models
             updatesXmlParameter.Value = updatesXml;
             updatesXmlParameter.DbType = System.Data.DbType.String;
 
-            ExecuteNonQuery(context, "ZamovStorage.{", updatesXmlParameter);
+            ExecuteNonQuery(context, "ZamovStorage.UpdateImportedProducts", updatesXmlParameter);
         }
 
         public static bool MatchesPath(this Group g, string[] path)

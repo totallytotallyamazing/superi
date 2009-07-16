@@ -1,38 +1,105 @@
 ﻿<%@ Master Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewMasterPage" %>
+
 <%@ Import Namespace="Microsoft.Web.Mvc" %>
 <%@ Import Namespace="Zamov.Helpers" %>
 <asp:Content ContentPlaceHolderID="leftMenu" runat="server">
     <%
         List<SelectListItem> items = new List<SelectListItem>();
         SelectListItem dealerInfo = new SelectListItem { Text = Html.ResourceString("EditDealer"), Value = VirtualPathUtility.ToAbsolute("~/DealerCabinet/AddUpdateDealer") };
+        SelectListItem cities = new SelectListItem { Text = Html.ResourceString("Cities"), Value = "javascript:selectCityMappings()" };
+        SelectListItem categories = new SelectListItem { Text = Html.ResourceString("Categories"), Value = "javascript:selectCategoryMappings()" };
         SelectListItem groups = new SelectListItem { Text = Html.ResourceString("Groups"), Value = VirtualPathUtility.ToAbsolute("~/DealerCabinet/Groups") };
         SelectListItem products = new SelectListItem { Text = Html.ResourceString("Products"), Value = VirtualPathUtility.ToAbsolute("~/DealerCabinet/Products") };
         SelectListItem orders = new SelectListItem { Text = Html.ResourceString("Orders"), Value = VirtualPathUtility.ToAbsolute("~/DealerCabinet/Orders") };
         items.Add(dealerInfo);
+        items.Add(cities);
+        items.Add(categories);
         items.Add(groups);
         items.Add(products);
         items.Add(orders);
         Html.RenderAction<Zamov.Controllers.PagePartsController>(ac => ac.LeftMenu(Html.ResourceString("PersonalCabinet"), items)); 
     %>
 </asp:Content>
-
 <asp:Content ContentPlaceHolderID="TitleContent" runat="server">
-    <asp:ContentPlaceHolder ID="TitleContent" runat="server"></asp:ContentPlaceHolder>
+    <asp:ContentPlaceHolder ID="TitleContent" runat="server">
+    </asp:ContentPlaceHolder>
 </asp:Content>
-
 <asp:Content ContentPlaceHolderID="mainContent" runat="server">
+
+    <script type="text/javascript">
+        $(function() { 
+             $("#cityMappings")
+                .dialog({
+                    autoOpen: false,
+                    width: 700,
+                    height: 600,
+                    minHeight: 360,
+                    resizable: false,
+                    buttons: {
+                        "<%= Html.ResourceString("Cancel") %>": function(){closeCityMappings();},
+                        "<%= Html.ResourceString("Save") %>": function() { $get("cityMappingsFrame").contentWindow.updateCityMappings(); }
+                    }
+                });
+                
+              $("#categoryMappings")
+                .dialog({
+                    autoOpen: false,
+                    width: 700,
+                    height: 600,
+                    minHeight: 360,
+                    resizable: false,
+                    buttons: {
+                        "<%= Html.ResourceString("Cancel") %>": function(){closeCategoryMappings();},
+                        "<%= Html.ResourceString("Save") %>": function() { $get("categoryMappingsFrame").contentWindow.updateCategoryMappings(); }
+                    }
+                });
+        })
+    
+        function selectCityMappings() { 
+             $("#cityMappings")
+                .html('<iframe frameborder="0" name="cityMappingsFrame" id="cityMappingsFrame" hidefocus="true" style="width:660px; height:500px;" src="/DealerCabinet/DealerCityMappings"></iframe>');
+
+            $("#cityMappings").dialog('open').css("height", 500);
+            $('#cityMappings').dialog('option', 'height', 600);
+            $('#cityMappings').dialog('option', 'position', 'center');
+        }
+        
+        function selectCategoryMappings(){
+            $("#categoryMappings")
+                .html('<iframe frameborder="0" name="categoryMappingsFrame" id="categoryMappingsFrame" hidefocus="true" style="width:660px; height:500px;" src="/DealerCabinet/DealerCategoryMappings"></iframe>');
+
+            $("#categoryMappings").dialog('open').css("height", 500);
+            $('#categoryMappings').dialog('option', 'height', 600);
+            $('#categoryMappings').dialog('option', 'position', 'center');
+        }
+        
+        function closeCityMappings()
+        {
+            $("#cityMappings").dialog('close');
+        }
+        
+        function closeCategoryMappings()
+        {
+             $("#categoryMappings").dialog('close');
+        }
+    </script>
+
+    <div id="cityMappings">
+    </div>
+    <div id="categoryMappings">
+    </div>
     <%if (Roles.IsUserInRole("Administrators"))
       {
           Html.RenderPartial("SelectDealer");
       }
     %>
-    
-    <asp:ContentPlaceHolder ID="mainContent" runat="server"></asp:ContentPlaceHolder>
+    <asp:ContentPlaceHolder ID="mainContent" runat="server">
+    </asp:ContentPlaceHolder>
 </asp:Content>
-
 <asp:Content ContentPlaceHolderID="includes" runat="server">
     <%= Html.RegisterCss("~/Content/Admin.css") %>
     <%= Html.RegisterCss("~/Content/redmond/jquery.ui.css")%>
     <%= Html.RegisterJS("jquery.ui.js")%>
-    <asp:ContentPlaceHolder runat="server" ID="includes"></asp:ContentPlaceHolder>
+    <asp:ContentPlaceHolder runat="server" ID="includes">
+    </asp:ContentPlaceHolder>
 </asp:Content>

@@ -84,6 +84,8 @@
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\Cache.cs" />
+    <Compile Include="Controllers\CacheController.cs" />
     <Compile Include="Controllers\DealerCabinetController.cs" />
     <Compile Include="Controllers\Extensions.cs" />
     <Compile Include="Controllers\HomeController.cs" />

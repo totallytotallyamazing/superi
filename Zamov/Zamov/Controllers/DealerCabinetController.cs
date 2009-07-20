@@ -10,11 +10,12 @@ using System.IO;
 using System.Web.Script.Serialization;
 using Zamov.Helpers;
 using System.Data;
+using System.Collections;
 
 namespace Zamov.Controllers
 {
     [Authorize(Roles = "Administrators, Dealers")]
-    public class DealerCabinetController : Controller
+    public class DealerCabinetController : CacheController
     {
         public ActionResult Index()
         {
@@ -222,15 +223,23 @@ namespace Zamov.Controllers
 
         private void GetGroupItems(List<SelectListItem> items, int dealerId, int groupId, string prefix, int currentGroipId)
         {
+
             if (groupId < 0)
                 items.Add(new SelectListItem { Selected = currentGroipId < 0, Text = Resources.GetResourceString("SelectGroup"), Value = "" });
             using (ZamovStorage context = new ZamovStorage())
             {
                 List<Group> groups = new List<Group>();
-                if (groupId > 0)
-                    groups = (from g in context.Groups where g.Dealer.Id == dealerId && g.Parent.Id == groupId select g).ToList();
+                string cacheKey = "dId_" + dealerId + "gId" + groupId;
+                if (Cache[cacheKey] != null)
+                    groups = (List<Group>)Cache[cacheKey];
                 else
-                    groups = (from g in context.Groups where g.Dealer.Id == dealerId && g.Parent == null select g).ToList();
+                {
+                    if (groupId > 0)
+                        groups = (from g in context.Groups where g.Dealer.Id == dealerId && g.Parent.Id == groupId select g).ToList();
+                    else
+                        groups = (from g in context.Groups where g.Dealer.Id == dealerId && g.Parent == null select g).ToList();
+                    Cache[cacheKey] = groups;
+                }
                 foreach (var g in groups)
                 {
                     SelectListItem listItem = new SelectListItem
@@ -240,7 +249,8 @@ namespace Zamov.Controllers
                         Value = g.Id.ToString()
                     };
                     items.Add(listItem);
-                    g.Groups.Load();
+                    if(!g.Groups.IsLoaded)
+                        g.Groups.Load();
                     if (g.Groups != null && g.Groups.Count > 0)
                         GetGroupItems(items, dealerId, g.Id, prefix + "--", currentGroipId);
                 }
@@ -372,7 +382,14 @@ namespace Zamov.Controllers
             string ruDescription = (string)product["ruDescription"];
             List<SelectListItem> items = new List<SelectListItem>();
             int currentGroupId = (groupId) ?? int.MinValue;
-            GetGroupItems(items, SystemSettings.CurrentDealer.Value, int.MinValue, "", currentGroupId);
+            string cacheKey = "ImportedProduct_DealerId=" + SystemSettings.CurrentDealer.Value;
+            if (Cache[cacheKey] != null)
+                items = (List<SelectListItem>)Cache[cacheKey];
+            else
+            {
+                GetGroupItems(items, SystemSettings.CurrentDealer.Value, int.MinValue, "", currentGroupId);
+                Cache[cacheKey] = items;
+            }
             ViewData["id"] = productId;
             ViewData["partNumber"] = partNumber;
             ViewData["name"] = name;

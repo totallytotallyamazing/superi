@@ -335,6 +335,9 @@
           <Parameter Name="ItemId" Type="int" Mode="In" />
           <Parameter Name="TranslationItemTypeId" Type="int" Mode="In" />
         </Function>
+        <Function Name="Groups_GetPaths" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="dealerId" Type="int" Mode="In" />
+        </Function>
         <Function Name="ProductImages_Cleanup" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="productId" Type="int" Mode="In" />
         </Function>
@@ -408,7 +411,9 @@
             <Parameter Name="updatesXml" Mode="In" Type="String" />
             <Parameter Name="dealerId" Mode="In" Type="Int32" /></FunctionImport>
           <FunctionImport Name="UpdateImportedProducts">
-            <Parameter Name="updatesXml" Mode="In" Type="String" /></FunctionImport></EntityContainer>
+            <Parameter Name="updatesXml" Mode="In" Type="String" /></FunctionImport>
+          <FunctionImport Name="GetGroupsPath">
+            <Parameter Name="dealerId" Mode="In" Type="Int32" /></FunctionImport></EntityContainer>
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="Id" />
@@ -522,7 +527,8 @@
           <End Type="BaseEntities.Category" Role="Category1" Multiplicity="*" /></Association>
         <Association Name="FK_Groups_Groups">
           <End Type="BaseEntities.Group" Role="Group" Multiplicity="0..1" />
-          <End Type="BaseEntities.Group" Role="Group1" Multiplicity="*" /></Association></Schema>
+          <End Type="BaseEntities.Group" Role="Group1" Multiplicity="*" /></Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -668,7 +674,8 @@
               <ScalarProperty Name="Id" ColumnName="GroupId" /></EndProperty>
             <Condition ColumnName="GroupId" IsNull="false" /></AssociationSetMapping>
           <FunctionImportMapping FunctionImportName="InsertImportedProducts" FunctionName="BaseEntities.Store.Products_InsertImported" />
-          <FunctionImportMapping FunctionImportName="UpdateImportedProducts" FunctionName="BaseEntities.Store.Products_UpdateImported" /></EntityContainerMapping>
+          <FunctionImportMapping FunctionImportName="UpdateImportedProducts" FunctionName="BaseEntities.Store.Products_UpdateImported" />
+          <FunctionImportMapping FunctionImportName="GetGroupsPath" FunctionName="BaseEntities.Store.Groups_GetPaths" /></EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>
@@ -704,8 +711,8 @@
           <ConnectorPoint PointX="3.15625" PointY="4.79070594805726" />
           <ConnectorPoint PointX="2.25" PointY="4.79070594805726" /></AssociationConnector>
         <AssociationConnector ManuallyRouted="false" Association="BaseEntities.DealerCityMappings">
-          <ConnectorPoint PointX="2.25" PointY="1.40625" />
-          <ConnectorPoint PointX="9.375" PointY="1.40625" />
+          <ConnectorPoint PointX="2.25" PointY="1.375" />
+          <ConnectorPoint PointX="9.375" PointY="1.375" />
           </AssociationConnector>
         <AssociationConnector Association="BaseEntities.ProductCityMappings" ManuallyRouted="false">
           <ConnectorPoint PointX="1.5" PointY="2.8816536458333331" />
@@ -733,6 +740,7 @@
           <ConnectorPoint PointX="3.5319230769230767" PointY="2" />
           <ConnectorPoint PointX="3.5319230769230767" PointY="1.75" />
           <ConnectorPoint PointX="3.9784615384615383" PointY="1.75" />
-          <ConnectorPoint PointX="3.9784615384615383" PointY="2" /></AssociationConnector></Diagram></edmx:Diagrams>
+          <ConnectorPoint PointX="3.9784615384615383" PointY="2" /></AssociationConnector>
+        </Diagram></edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

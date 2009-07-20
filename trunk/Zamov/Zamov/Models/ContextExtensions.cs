@@ -5,6 +5,7 @@ using System.Web;
 using System.Data.SqlClient;
 using System.Data.Common;
 using System.Data.EntityClient;
+using System.Data;
 
 namespace Zamov.Models
 {
@@ -25,6 +26,17 @@ namespace Zamov.Models
             command.ExecuteNonQuery();
             if (closeConnection)
                 context.Connection.Close();
+        }
+
+        private static DbDataReader ExecuteReader(ZamovStorage context, string storedProcedureName, params EntityParameter[] parameters)
+        {
+            DbCommand command = context.Connection.CreateCommand();
+            command.CommandType = System.Data.CommandType.StoredProcedure;
+            command.CommandText = storedProcedureName;
+            command.Parameters.AddRange(parameters);
+            if (context.Connection.State != System.Data.ConnectionState.Open)
+                context.Connection.Open();
+            return command.ExecuteReader(CommandBehavior.SequentialAccess);
         }
 
         public static void ClaenupProductImages(this ZamovStorage context, int productId)
@@ -86,6 +98,28 @@ namespace Zamov.Models
                 if (path != null && path.Length > 1 && g.Parent != null)
                     result = g.Parent.MatchesPath(path.Take(path.Length - 1).ToArray());
             }
+            return result;
+        }
+
+        public static Dictionary<int, string> GetGroupsPath(this ZamovStorage context, int dealerId)
+        {
+            EntityParameter dealerIdParameter = new EntityParameter();
+            dealerIdParameter.ParameterName = "dealerId";
+            dealerIdParameter.IsNullable = false;
+            dealerIdParameter.Value = dealerId;
+            dealerIdParameter.DbType = System.Data.DbType.Int32;
+            DbDataReader reader = ExecuteReader(context, "ZamovStorage.GetGroupsPath", dealerIdParameter);
+            Dictionary<int, string> result = new Dictionary<int, string>();
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    int id = reader.GetInt32(reader.GetOrdinal("Id"));
+                    string path = reader.GetString(reader.GetOrdinal("Path"));
+                    result.Add(id, path);
+                }
+            }
+            reader.Close();
             return result;
         }
     }

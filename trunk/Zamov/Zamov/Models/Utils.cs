@@ -170,47 +170,52 @@ namespace Zamov.Models
 
         private static void MarkImportedCorrespondences(List<Dictionary<string, string>> importedItems, int dealerId)
         {
-            List<Product> products = new List<Product>();
-            List<Group> groups = new List<Group>();
+            Dictionary<string, Product> products = new Dictionary<string, Product>();
+            Dictionary<int, string> groups = new Dictionary<int, string>();
             using (ZamovStorage context = new ZamovStorage())
             {
                 products = (from product in context.Products
                             where product.Deleted == false && product.Dealer.Id == dealerId
-                            select product).ToList();
+                            select product).ToDictionary(p=>p.PartNumber, p=>p);
+                groups = context.GetGroupsPath(dealerId);
             }
+            
             foreach (var item in importedItems)
             {
-                string group = item.Values.Skip(0).Take(1).First().ToString();
-                string partNumber = item.Values.Skip(1).Take(1).First().ToString();
+                string groupPath = item["groupPath"];
+                string partNumber = item["partNumber"];
 
-                Product product = (from p in products where p.PartNumber == partNumber select p).SingleOrDefault();
+                Product product = null;
+                if(products.Keys.Contains(partNumber))
+                    product = products[partNumber];
                 item["productId"] = (product != null) ? product.Id.ToString() : null;
-                item["groupId"] = IdentifyGroup(group);
+                int? groupId = (from g in groups where g.Value == groupPath select g.Key).SingleOrDefault();
+                item["groupId"] = (groupId != null) ? groupId.Value.ToString() : null;
             }
         }
 
-        private static string IdentifyGroup(string group)
-        {
-            string result = null;
-            string[] groupPath = group.Split(new char[] { '/' });
-            ZamovStorage context = new ZamovStorage();
-            if (groupPath.Length > 0)
-            {
-                string groupName = groupPath[groupPath.Length - 1];
-                List<Group> groups = (from g in context.Groups where g.Name == groupName select g).ToList();
-                foreach (var g in groups)
-                {
-                    if (result == null && g.MatchesPath(groupPath))
-                        result = g.Id.ToString();
-                }
-            }
-            else
-            {
-                result = null;
-            }
-            context.Connection.Close();
-            context.Dispose();
-            return result;
-        }
+        //private static string IdentifyGroup(string group)
+        //{
+        //    string result = null;
+        //    string[] groupPath = group.Split(new char[] { '/' });
+        //    ZamovStorage context = new ZamovStorage();
+        //    if (groupPath.Length > 0)
+        //    {
+        //        string groupName = groupPath[groupPath.Length - 1];
+        //        List<Group> groups = (from g in context.Groups where g.Name == groupName select g).ToList();
+        //        foreach (var g in groups)
+        //        {
+        //            if (result == null && g.MatchesPath(groupPath))
+        //                result = g.Id.ToString();
+        //        }
+        //    }
+        //    else
+        //    {
+        //        result = null;
+        //    }
+        //    context.Connection.Close();
+        //    context.Dispose();
+        //    return result;
+        //}
     }
 }

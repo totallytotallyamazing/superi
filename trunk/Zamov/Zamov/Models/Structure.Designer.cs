@@ -20,7 +20,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("BaseEntities", "FK_Groups_Groups", "Group", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Zamov.Models.Group), "Group1", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Zamov.Models.Group))]
 
 // Original file name:
-// Generation date: 15/07/2009 15:06:25
+// Generation date: 20/07/2009 16:07:50
 namespace Zamov.Models
 {
     

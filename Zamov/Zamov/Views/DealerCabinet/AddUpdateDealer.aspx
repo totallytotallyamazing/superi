@@ -8,11 +8,6 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <%= Html.RegisterJS("jquery.js") %>
-    <%= Html.RegisterJS("fckeditorapi.js") %>
-    <%= Html.RegisterJS("fckeditor.js") %>
-    <%= Html.RegisterJS("fcktools.js") %>
-    <%= Html.RegisterJS("jquery.FCKeditor.js") %>
     
 <script type="text/javascript">
     $(function() {
@@ -83,4 +78,11 @@
         <%=Html.ActionLink("Назад", "Dealers") %>
     </div>
 
+</asp:Content>
+
+<asp:Content ContentPlaceHolderID="includes" runat="server">
+    <%= Html.RegisterJS("fckeditorapi.js") %>
+    <%= Html.RegisterJS("fckeditor.js") %>
+    <%= Html.RegisterJS("fcktools.js") %>
+    <%= Html.RegisterJS("jquery.FCKeditor.js") %>
 </asp:Content>

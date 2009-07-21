@@ -23,7 +23,7 @@
     <script type="text/javascript">
         $(function() {
             $("#header").corner("top");
-            hu $("#mainMenu .outer .inner").corner("bottom").parent().css('padding', '1px').corner("bottom");
+            $("#mainMenu .outer .inner").corner("bottom").parent().css('padding', '1px').corner("bottom");
         }
         )
     </script>

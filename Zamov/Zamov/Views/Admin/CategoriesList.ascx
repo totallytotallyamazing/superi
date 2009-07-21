@@ -16,12 +16,14 @@
             <th style="display:none;">
                 Id
             </th>
-            <th></th>
             <th>
-                Рус
+                <%= Html.ResourceString("Ukr") %>
             </th>
             <th>
-                Укр
+                <%= Html.ResourceString("Rus") %>
+            </th>
+            <th align="center">
+                <%= Html.ResourceString("Show") %>
             </th>
             <th></th>
             <th></th>
@@ -33,15 +35,13 @@
                 <%= Html.Hidden("itemId_" + item.Id, item.Id)%>
             </td>
             <td>
-                <div style="width:200px;">
-                    <%= Html.Encode(item.Name) %>
-                </div>
+                <%= Html.TextBox("uk-UA_" + item.Id, item.GetName("uk-UA", false), new { onblur = "tableChanged(changes, this)", style="width:120px;" })%>
             </td>
             <td>
-                <%= Html.TextBox("uk-UA_" + item.Id, item.GetName("uk-UA", false), new { onblur = "tableChanged(changes, this)", style="width:200px;" })%>
+                <%= Html.TextBox("ru-RU_" + item.Id, item.GetName("ru-RU", false), new { onblur = "tableChanged(changes, this)", style = "width:120px;" })%>
             </td>
-            <td>
-                <%= Html.TextBox("ru-RU_" + item.Id, item.GetName("ru-RU", false), new { onblur = "tableChanged(changes, this)", style = "width:200px;" })%>
+            <td align="center" style="width:75px;">
+                <%= Html.CheckBox("Enabled_" + item.Id, item.Enabled, new { onblur = "updateEnables(this, " + item.Id + ")" })%>
             </td>
             <td>
                 <a href="#" onclick="insertCategory(this, <%= item.Id %>)">

@@ -309,4 +309,7 @@
   <data name="Group" xml:space="preserve">
     <value>Группа</value>
   </data>
+  <data name="Show" xml:space="preserve">
+    <value>Показывать</value>
+  </data>
 </root>

@@ -236,6 +236,20 @@ namespace Zamov.Controllers
                     }
                 }
             }
+            if (!string.IsNullOrEmpty(form["enablities"]))
+            {
+                Dictionary<string, string> enables = serializer.Deserialize<Dictionary<string, string>>(form["enablities"]);
+                using (ZamovStorage context = new ZamovStorage())
+                {
+                    foreach (string key in enables.Keys)
+                    {
+                        int id = int.Parse(key);
+                        Category category = context.Categories.Select(c => c).Where(c => c.Id == id).First();
+                        category.Enabled = bool.Parse(enables[key]);
+                    }
+                    context.SaveChanges(true);
+                }
+            }
             return RedirectToAction("Categories");
         }
 
@@ -250,10 +264,11 @@ namespace Zamov.Controllers
                     parent = context.Categories.Select(c => c).Where(c => c.Id == parentId).First();
                 Category category = new Category();
                 category.Parent = parent;
-                category.Name = form["categoryName"];
+                category.Name = form["categoryUkrName"];
                 category.Names.Clear();
                 category.Names["ru-RU"] = form["categoryRusName"];
                 category.Names["uk-UA"] = form["categoryUkrName"];
+                category.Enabled = form["categoryEnabled"].ToLowerInvariant().IndexOf("true") > -1;
                 context.AddToCategories(category);
                 context.SaveChanges();
                 context.UpdateTranslations(category.NamesXml);

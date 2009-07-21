@@ -56,13 +56,13 @@
             </th>
             <th></th>
             <th>
-                Укр
+                <%= Html.ResourceString("Ukr") %>
             </th>
             <th>
-                Рус
+                <%= Html.ResourceString("Rus") %>
             </th>
             <th>
-                Показывать
+                <%= Html.ResourceString("Show") %>
             </th>
             <th></th>
             <th></th>

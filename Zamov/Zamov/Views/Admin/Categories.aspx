@@ -8,7 +8,23 @@
 
     <script type="text/javascript">
         var changes = {};
+        var enables = {};
+        function updateEnables(check, id) {
+            if (check.checked) {
+                enables[id] = true;
+            }
+            else {
+                enables[id] = false;
+            }
+        }
 
+        function collectCategoryChanges() {
+            collectChanges(changes, 'updates');
+            var enablities = $get("enablities");
+            enablities.value = Sys.Serialization.JavaScriptSerializer.serialize(enables);
+            return true;
+        }
+    
         function insertCategory(link, parentId) {
             var pos = $(link).offset();
             if (parentId >= 0) {
@@ -42,7 +58,8 @@
     <% using (Html.BeginForm("UpdateCategories", "Admin", FormMethod.Post)){ %>
     <% Html.RenderAction<Zamov.Controllers.AdminController>(a => a.CategoriesList(null, 0)); %>
     <%= Html.Hidden("updates") %>
-    <input type="submit" value="<%= Html.ResourceString("Save") %>" onclick="return collectChanges(changes, 'updates');" />
+    <%= Html.Hidden("enablities") %>
+    <input type="submit" value="<%= Html.ResourceString("Save") %>" onclick="return collectCategoryChanges();" />
     <%} %>
     
     <a href="#" onclick="insertCategory(this, <%= int.MinValue %>)">
@@ -54,24 +71,24 @@
         <table class="adminTable">
             <tr>
                 <th>
-                    ID
+                    <%= Html.ResourceString("Ukr") %>
                 </th>
                 <th>
-                    Укр
+                    <%= Html.ResourceString("Rus") %>
                 </th>
                 <th>
-                    Рус
+                    <%= Html.ResourceString("Show") %>
                 </th>
             </tr>
             <tr>
-                <td>
-                    <%= Html.TextBox("categoryName") %>
-                </td>
                 <td>
                     <%= Html.TextBox("categoryUkrName")%>
                 </td>
                 <td>
                     <%= Html.TextBox("categoryRusName")%>
+                </td>
+                <td align="center">
+                    <%= Html.CheckBox("categoryEnabled", true) %>
                 </td>
             </tr>
         </table>

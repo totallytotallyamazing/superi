@@ -18,9 +18,10 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("BaseEntities", "FK_Groups_Dealers", "Dealer", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Zamov.Models.Dealer), "Group", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Zamov.Models.Group))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("BaseEntities", "FK_Categories_Categories", "Category", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Zamov.Models.Category), "Category1", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Zamov.Models.Category))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("BaseEntities", "FK_Groups_Groups", "Group", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Zamov.Models.Group), "Group1", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Zamov.Models.Group))]
+[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("BaseEntities", "FK_CategoryImages_Categories", "Category", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Zamov.Models.Category), "CategoryImages", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Zamov.Models.CategoryImage))]
 
 // Original file name:
-// Generation date: 20/07/2009 16:07:50
+// Generation date: 21/07/2009 17:25:25
 namespace Zamov.Models
 {
     
@@ -175,6 +176,21 @@ namespace Zamov.Models
         }
         private global::System.Data.Objects.ObjectQuery<ProductImage> _ProductImages;
         /// <summary>
+        /// There are no comments for CategoryImages in the schema.
+        /// </summary>
+        public global::System.Data.Objects.ObjectQuery<CategoryImage> CategoryImages
+        {
+            get
+            {
+                if ((this._CategoryImages == null))
+                {
+                    this._CategoryImages = base.CreateQuery<CategoryImage>("[CategoryImages]");
+                }
+                return this._CategoryImages;
+            }
+        }
+        private global::System.Data.Objects.ObjectQuery<CategoryImage> _CategoryImages;
+        /// <summary>
         /// There are no comments for Categories in the schema.
         /// </summary>
         public void AddToCategories(Category category)
@@ -229,6 +245,13 @@ namespace Zamov.Models
         public void AddToProductImages(ProductImage productImage)
         {
             base.AddObject("ProductImages", productImage);
+        }
+        /// <summary>
+        /// There are no comments for CategoryImages in the schema.
+        /// </summary>
+        public void AddToCategoryImages(CategoryImage categoryImage)
+        {
+            base.AddObject("CategoryImages", categoryImage);
         }
         /// <summary>
         /// There are no comments for BaseEntities.DeleteTranslations in the schema.
@@ -288,11 +311,13 @@ namespace Zamov.Models
         /// </summary>
         /// <param name="id">Initial value of Id.</param>
         /// <param name="name">Initial value of Name.</param>
-        public static Category CreateCategory(int id, string name)
+        /// <param name="enabled">Initial value of Enabled.</param>
+        public static Category CreateCategory(int id, string name, bool enabled)
         {
             Category category = new Category();
             category.Id = id;
             category.Name = name;
+            category.Enabled = enabled;
             return category;
         }
         /// <summary>
@@ -341,6 +366,29 @@ namespace Zamov.Models
         private string _Name;
         partial void OnNameChanging(string value);
         partial void OnNameChanged();
+        /// <summary>
+        /// There are no comments for Property Enabled in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public bool Enabled
+        {
+            get
+            {
+                return this._Enabled;
+            }
+            set
+            {
+                this.OnEnabledChanging(value);
+                this.ReportPropertyChanging("Enabled");
+                this._Enabled = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("Enabled");
+                this.OnEnabledChanged();
+            }
+        }
+        private bool _Enabled;
+        partial void OnEnabledChanging(bool value);
+        partial void OnEnabledChanged();
         /// <summary>
         /// There are no comments for Dealers in the schema.
         /// </summary>
@@ -417,6 +465,27 @@ namespace Zamov.Models
                 if ((value != null))
                 {
                     ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<Category>("BaseEntities.FK_Categories_Categories", "Category", value);
+                }
+            }
+        }
+        /// <summary>
+        /// There are no comments for Images in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("BaseEntities", "FK_CategoryImages_Categories", "CategoryImages")]
+        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
+        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Data.Objects.DataClasses.EntityCollection<CategoryImage> Images
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<CategoryImage>("BaseEntities.FK_CategoryImages_Categories", "CategoryImages");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<CategoryImage>("BaseEntities.FK_CategoryImages_Categories", "CategoryImages", value);
                 }
             }
         }
@@ -1671,6 +1740,113 @@ namespace Zamov.Models
                 if ((value != null))
                 {
                     ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<Product>("BaseEntities.FK_ProductImages_Products", "Product", value);
+                }
+            }
+        }
+    }
+    /// <summary>
+    /// There are no comments for BaseEntities.CategoryImage in the schema.
+    /// </summary>
+    /// <KeyProperties>
+    /// Id
+    /// </KeyProperties>
+    [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="BaseEntities", Name="CategoryImage")]
+    [global::System.Runtime.Serialization.DataContractAttribute(IsReference=true)]
+    [global::System.Serializable()]
+    public partial class CategoryImage : global::System.Data.Objects.DataClasses.EntityObject
+    {
+        /// <summary>
+        /// Create a new CategoryImage object.
+        /// </summary>
+        /// <param name="id">Initial value of Id.</param>
+        /// <param name="image">Initial value of Image.</param>
+        public static CategoryImage CreateCategoryImage(int id, byte[] image)
+        {
+            CategoryImage categoryImage = new CategoryImage();
+            categoryImage.Id = id;
+            categoryImage.Image = image;
+            return categoryImage;
+        }
+        /// <summary>
+        /// There are no comments for Property Id in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id
+        {
+            get
+            {
+                return this._Id;
+            }
+            set
+            {
+                this.OnIdChanging(value);
+                this.ReportPropertyChanging("Id");
+                this._Id = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("Id");
+                this.OnIdChanged();
+            }
+        }
+        private int _Id;
+        partial void OnIdChanging(int value);
+        partial void OnIdChanged();
+        /// <summary>
+        /// There are no comments for Property Image in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] Image
+        {
+            get
+            {
+                return global::System.Data.Objects.DataClasses.StructuralObject.GetValidValue(this._Image);
+            }
+            set
+            {
+                this.OnImageChanging(value);
+                this.ReportPropertyChanging("Image");
+                this._Image = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
+                this.ReportPropertyChanged("Image");
+                this.OnImageChanged();
+            }
+        }
+        private byte[] _Image;
+        partial void OnImageChanging(byte[] value);
+        partial void OnImageChanged();
+        /// <summary>
+        /// There are no comments for Category in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("BaseEntities", "FK_CategoryImages_Categories", "Category")]
+        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
+        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public Category Category
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Category>("BaseEntities.FK_CategoryImages_Categories", "Category").Value;
+            }
+            set
+            {
+                ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Category>("BaseEntities.FK_CategoryImages_Categories", "Category").Value = value;
+            }
+        }
+        /// <summary>
+        /// There are no comments for Category in the schema.
+        /// </summary>
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Data.Objects.DataClasses.EntityReference<Category> CategoryReference
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Category>("BaseEntities.FK_CategoryImages_Categories", "Category");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<Category>("BaseEntities.FK_CategoryImages_Categories", "Category", value);
                 }
             }
         }

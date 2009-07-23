@@ -22,6 +22,9 @@
             <th>
                 <%= Html.ResourceString("Rus") %>
             </th>
+            <th align="center" style="width:85px;">
+                <%= Html.ResourceString("Image") %>
+            </th>
             <th align="center">
                 <%= Html.ResourceString("Show") %>
             </th>
@@ -39,6 +42,11 @@
             </td>
             <td>
                 <%= Html.TextBox("ru-RU_" + item.Id, item.GetName("ru-RU", false), new { onblur = "tableChanged(changes, this)", style = "width:120px;" })%>
+            </td>
+            <td align="center" style="width:85px;">
+                <a href="javascript:openImageIframe(<%= item.Id %>)" style="text-decoration:none;">
+                    <%= Html.Image("~/Content/img/productImage.jpg", new {style="border:none" })%>
+                </a>
             </td>
             <td align="center" style="width:75px;">
                 <%= Html.CheckBox("Enabled_" + item.Id, item.Enabled, new { onblur = "updateEnables(this, " + item.Id + ")" })%>

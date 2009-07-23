@@ -8,6 +8,7 @@ using Zamov.Models;
 using System.Web.Script.Serialization;
 using System.IO;
 using System.Web.Security;
+using System.Data;
 
 namespace Zamov.Controllers
 {
@@ -287,6 +288,43 @@ namespace Zamov.Controllers
                 context.DeleteTranslations(id, (int)ItemTypes.Category);
             }
             return RedirectToAction("Categories");
+        }
+
+        [AcceptVerbs(HttpVerbs.Get)]
+        public ActionResult UpdateCategoryImage(int id)
+        {
+            using (ZamovStorage context = new ZamovStorage())
+            {
+                CategoryImage image = context.CategoryImages.Select(pi => pi).Where(pi => pi.Category.Id == id).SingleOrDefault();
+                int imageId = (image != null) ? image.Id : int.MinValue;
+                ViewData["imageId"] = imageId;
+                ViewData["categoryId"] = id;
+                return View();
+            }
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public void UpdateCategoryImage(int id, int categoryId)
+        {
+            if (!string.IsNullOrEmpty(Request.Files["newImage"].FileName))
+            {
+                CategoryImage image = null;
+                image = new CategoryImage();
+                IEnumerable<KeyValuePair<string, object>> productKeyValues = new KeyValuePair<string, object>[] { new KeyValuePair<string, object>("Id", categoryId) };
+                EntityKey product = new EntityKey("ZamovStorage.Categories", productKeyValues);
+                image.CategoryReference.EntityKey = product;
+                HttpPostedFileBase file = Request.Files["newImage"];
+                image.ImageType = file.ContentType;
+                BinaryReader reader = new BinaryReader(file.InputStream);
+                image.Image = reader.ReadBytes((int)file.InputStream.Length);
+                using (ZamovStorage context = new ZamovStorage())
+                {
+                    context.CleanupCategoryImages(categoryId);
+                    context.AddToCategoryImages(image);
+                    context.SaveChanges();
+                }
+            }
+            Response.Write("<script type=\"text/javascript\">top.closeImageDialog();</script>");
         }
         #endregion
 

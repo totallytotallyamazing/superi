@@ -27,4 +27,5 @@
 
 <asp:Content ContentPlaceHolderID="includes" runat="server">
     <%= Html.RegisterCss("~/Content/Admin.css") %>
+    <asp:ContentPlaceHolder runat="server" ID="includes"></asp:ContentPlaceHolder>
 </asp:Content>

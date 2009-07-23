@@ -49,10 +49,23 @@
 
         $(function() {
             $("#insertCategory").click(function(e) { e.stopPropagation(); if (window.event) { window.event.cancelBubbling = true; } });
+            $("#imagePopUp").dialog({ autoOpen: false, width: 440, height: 360, minHeight: 360, resizable: false });
         }
         );
-    </script>
 
+        function openImageIframe(categoryId) {
+            $("#updateImageBox").attr("src", "/Admin/UpdateCategoryImage/" + categoryId);
+            $("#imagePopUp").dialog('open').css("height", 300);
+
+            $('#imagePopUp').dialog('option', 'height', 360);
+            $('#imagePopUp').dialog('option', 'position', 'center');
+            $('#imagePopUp').css('height', 'auto');
+        }
+    </script>
+    <div title="<%= Html.ResourceString("Image") %>" id="imagePopUp" style="display: block; height: 300px;">
+        <iframe id="updateImageBox" frameborder="0" hidefocus="true" style="width: 400px;
+            height: 299px; background: transparent;"></iframe>
+    </div>
     <h2>
         <%= Html.ResourceString("Categories") %></h2>
     <% using (Html.BeginForm("UpdateCategories", "Admin", FormMethod.Post)){ %>
@@ -96,4 +109,10 @@
         <input type="submit" value="<%= Html.ResourceString("Add") %>" />
         <%} %>
     </div>
+</asp:Content>
+
+<asp:Content runat="server" ContentPlaceHolderID="includes">
+    <%= Html.RegisterCss("~/Content/Admin.css") %>
+    <%= Html.RegisterCss("~/Content/redmond/jquery.ui.css")%>
+    <%= Html.RegisterJS("jquery.ui.js")%>
 </asp:Content>

@@ -39,7 +39,7 @@ namespace Zamov.Models
             return command.ExecuteReader(CommandBehavior.SequentialAccess);
         }
 
-        public static void ClaenupProductImages(this ZamovStorage context, int productId)
+        public static void CleanupProductImages(this ZamovStorage context, int productId)
         {
             EntityParameter parameter = new EntityParameter();
             parameter.ParameterName = "productId";
@@ -47,6 +47,16 @@ namespace Zamov.Models
             parameter.Value = productId;
             parameter.DbType = System.Data.DbType.Int32;
             ExecuteNonQuery(context, "ZamovStorage.ProductImages_Cleanup", parameter);
+        }
+        
+        public static void CleanupCategoryImages(this ZamovStorage context, int categoryId)
+        {
+            EntityParameter parameter = new EntityParameter();
+            parameter.ParameterName = "categoryId";
+            parameter.IsNullable = false;
+            parameter.Value = categoryId;
+            parameter.DbType = System.Data.DbType.Int32;
+            ExecuteNonQuery(context, "ZamovStorage.CategoryImages_Cleanup", parameter);
         }
 
         public static void UpdateProducts(this ZamovStorage context, string updatesXml)

@@ -88,6 +88,7 @@
           <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="CategoryId" Type="int" Nullable="false" />
           <Property Name="Image" Type="image" Nullable="false" />
+          <Property Name="ImageType" Type="nvarchar" Nullable="false" MaxLength="50" />
         </EntityType>
         <EntityType Name="Cities">
           <Key>
@@ -350,6 +351,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="CategoryImages_Cleanup" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="categoryId" Type="int" Mode="In" />
+        </Function>
         <Function Name="Cities_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id" Type="int" Mode="In" />
         </Function>
@@ -567,7 +571,8 @@
             <PropertyRef Name="Id" /></Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Image" Type="Binary" Nullable="false" />
-          <NavigationProperty Name="Category" Relationship="BaseEntities.FK_CategoryImages_Categories" FromRole="CategoryImages" ToRole="Category" /></EntityType>
+          <NavigationProperty Name="Category" Relationship="BaseEntities.FK_CategoryImages_Categories" FromRole="CategoryImages" ToRole="Category" />
+          <Property Name="ImageType" Type="String" Nullable="false" /></EntityType>
         <Association Name="FK_CategoryImages_Categories">
           <End Type="BaseEntities.Category" Role="Category" Multiplicity="1" />
           <End Type="BaseEntities.CategoryImage" Role="CategoryImages" Multiplicity="*" /></Association></Schema>
@@ -722,6 +727,7 @@
           <EntitySetMapping Name="CategoryImages">
             <EntityTypeMapping TypeName="IsTypeOf(BaseEntities.CategoryImage)">
               <MappingFragment StoreEntitySet="CategoryImages">
+                <ScalarProperty Name="ImageType" ColumnName="ImageType" />
                 <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="Id" ColumnName="Id" /></MappingFragment></EntityTypeMapping></EntitySetMapping>
           <AssociationSetMapping Name="FK_CategoryImages_Categories" TypeName="BaseEntities.FK_CategoryImages_Categories" StoreEntitySet="CategoryImages">
@@ -777,27 +783,27 @@
           <ConnectorPoint PointX="7" PointY="5.3627427366093112" />
           </AssociationConnector>
         <AssociationConnector Association="BaseEntities.DealerCategoryMapping" >
-          <ConnectorPoint PointX="6.625" PointY="2.09375" />
-          <ConnectorPoint PointX="9.375" PointY="2.09375" /></AssociationConnector>
+          <ConnectorPoint PointX="6.625" PointY="1.96875" />
+          <ConnectorPoint PointX="9.375" PointY="1.96875" /></AssociationConnector>
         <AssociationConnector Association="BaseEntities.FK_Groups_Dealers" >
           <ConnectorPoint PointX="9.7187475" PointY="2.91404296875" />
-          <ConnectorPoint PointX="9.7187475" PointY="4.0264794921875" />
-          <ConnectorPoint PointX="4.5" PointY="4.0264794921875" />
+          <ConnectorPoint PointX="9.7187475" PointY="3.9836531575520833" />
+          <ConnectorPoint PointX="4.5" PointY="3.9836531575520833" />
           </AssociationConnector>
         <AssociationConnector Association="BaseEntities.FK_Categories_Categories" >
-          <ConnectorPoint PointX="5.6569230769230767" PointY="3.6710009765625" />
-          <ConnectorPoint PointX="5.6569230769230767" PointY="3.9210009765624996" />
-          <ConnectorPoint PointX="6.1034615384615378" PointY="3.9210009765624996" />
-          <ConnectorPoint PointX="6.1034615384615378" PointY="3.6710009765625" /></AssociationConnector>
+          <ConnectorPoint PointX="5.6354166666666661" PointY="1.75" />
+          <ConnectorPoint PointX="5.6354166666666661" PointY="1.5" />
+          <ConnectorPoint PointX="6.1875" PointY="1.5" />
+          <ConnectorPoint PointX="6.1875" PointY="1.75" /></AssociationConnector>
         <AssociationConnector Association="BaseEntities.FK_Groups_Groups" >
           <ConnectorPoint PointX="3.5319230769230767" PointY="2" />
           <ConnectorPoint PointX="3.5319230769230767" PointY="1.75" />
           <ConnectorPoint PointX="3.9784615384615383" PointY="1.75" />
           <ConnectorPoint PointX="3.9784615384615383" PointY="2" /></AssociationConnector>
-        <EntityTypeShape EntityType="BaseEntities.CategoryImage" Width="1.875" PointX="7.25" PointY="2.5" Height="1.4279589843749996" />
+        <EntityTypeShape EntityType="BaseEntities.CategoryImage" Width="1.875" PointX="7.25" PointY="2.25" Height="1.5923063151041665" />
         <AssociationConnector Association="BaseEntities.FK_CategoryImages_Categories" >
-          <ConnectorPoint PointX="6.625" PointY="3.08550048828125" />
-          <ConnectorPoint PointX="7.25" PointY="3.08550048828125" />
+          <ConnectorPoint PointX="6.625" PointY="3.0426741536458337" />
+          <ConnectorPoint PointX="7.25" PointY="3.0426741536458337" />
           </AssociationConnector></Diagram></edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

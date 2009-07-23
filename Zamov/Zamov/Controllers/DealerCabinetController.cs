@@ -326,7 +326,7 @@ namespace Zamov.Controllers
                 image.Image = reader.ReadBytes((int)file.InputStream.Length);
                 using (ZamovStorage context = new ZamovStorage())
                 {
-                    context.ClaenupProductImages(productId);
+                    context.CleanupProductImages(productId);
                     context.AddToProductImages(image);
                     context.SaveChanges();
                 }

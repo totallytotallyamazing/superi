@@ -21,7 +21,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("BaseEntities", "FK_CategoryImages_Categories", "Category", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Zamov.Models.Category), "CategoryImages", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Zamov.Models.CategoryImage))]
 
 // Original file name:
-// Generation date: 21/07/2009 17:25:25
+// Generation date: 23/07/2009 17:36:27
 namespace Zamov.Models
 {
     
@@ -1760,11 +1760,13 @@ namespace Zamov.Models
         /// </summary>
         /// <param name="id">Initial value of Id.</param>
         /// <param name="image">Initial value of Image.</param>
-        public static CategoryImage CreateCategoryImage(int id, byte[] image)
+        /// <param name="imageType">Initial value of ImageType.</param>
+        public static CategoryImage CreateCategoryImage(int id, byte[] image, string imageType)
         {
             CategoryImage categoryImage = new CategoryImage();
             categoryImage.Id = id;
             categoryImage.Image = image;
+            categoryImage.ImageType = imageType;
             return categoryImage;
         }
         /// <summary>
@@ -1813,6 +1815,29 @@ namespace Zamov.Models
         private byte[] _Image;
         partial void OnImageChanging(byte[] value);
         partial void OnImageChanged();
+        /// <summary>
+        /// There are no comments for Property ImageType in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string ImageType
+        {
+            get
+            {
+                return this._ImageType;
+            }
+            set
+            {
+                this.OnImageTypeChanging(value);
+                this.ReportPropertyChanging("ImageType");
+                this._ImageType = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
+                this.ReportPropertyChanged("ImageType");
+                this.OnImageTypeChanged();
+            }
+        }
+        private string _ImageType;
+        partial void OnImageTypeChanging(string value);
+        partial void OnImageTypeChanged();
         /// <summary>
         /// There are no comments for Category in the schema.
         /// </summary>

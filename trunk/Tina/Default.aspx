@@ -149,7 +149,7 @@
                 <a href="mailto:darya@tinakarol.com.ua">darya@tinakarol.ua</a>
                 <br /><br />
                 <span>PR:</span><br />
-                Павел Подопригора<br />
+                Павел Орлов<br />
                 8 (050) 376 77 88<br />
                 <a href="mailto:pavel@tinakarol.com.ua">pavel@tinakarol.ua</a>
             </div>

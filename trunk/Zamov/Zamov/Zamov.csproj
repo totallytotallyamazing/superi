@@ -222,6 +222,7 @@
     <Content Include="Content\redmond\images\ui-icons_d8e7f3_256x240.png" />
     <Content Include="Content\redmond\images\ui-icons_f9bd01_256x240.png" />
     <Content Include="Content\redmond\jquery.ui.css" />
+    <Content Include="Content\Start.css" />
     <Content Include="Scripts\jquery.ui.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Views\Admin\AddUpdateDealer.aspx" />

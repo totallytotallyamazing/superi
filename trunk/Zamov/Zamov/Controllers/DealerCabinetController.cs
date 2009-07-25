@@ -19,7 +19,8 @@ namespace Zamov.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            var Ko = "Pisun";
+            return View(Ko);
         }
 
         #region Groups

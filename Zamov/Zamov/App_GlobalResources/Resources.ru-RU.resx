@@ -312,4 +312,7 @@
   <data name="Show" xml:space="preserve">
     <value>Показывать</value>
   </data>
+  <data name="Forward" xml:space="preserve">
+    <value>Вперед</value>
+  </data>
 </root>

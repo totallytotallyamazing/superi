@@ -315,4 +315,7 @@
   <data name="Forward" xml:space="preserve">
     <value>Вперед</value>
   </data>
+  <data name="SelectCategory" xml:space="preserve">
+    <value>Оберіть категорію</value>
+  </data>
 </root>

@@ -118,6 +118,10 @@
     <Compile Include="Models\TranslationItemTypes.cs" />
     <Compile Include="Models\Utils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Tools.asmx.cs">
+      <DependentUpon>Tools.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Default.aspx" />
@@ -225,6 +229,7 @@
     <Content Include="Content\Start.css" />
     <Content Include="Scripts\jquery.ui.js" />
     <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Services\Tools.asmx" />
     <Content Include="Views\Admin\AddUpdateDealer.aspx" />
     <Content Include="Views\Admin\UpdateCategoryImage.aspx" />
     <Content Include="Views\DealerCabinet\Cabinet.Master" />

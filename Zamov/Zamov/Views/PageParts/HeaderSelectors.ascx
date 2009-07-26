@@ -5,6 +5,14 @@
     function cityChanged() {
         var currentCity = document.getElementById("currentCity");
         var cityId = currentCity[currentCity.selectedIndex].value;
+
+        var webRequest = Sys.Net.WebServiceProxy.invoke("/Services/Tools.asmx", "GetCityCategories", false, { id: cityId }, citySuccessCallback, failureCallback);
+    }
+
+    function citySuccessCallback(response) {
+        for (var i in response) { 
+            
+        }
     }
 </script>
 

@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 using Zamov.Models;
 using System.Web.Security;
+using System.Data.Objects;
 
 namespace Zamov.Controllers
 {
@@ -50,6 +51,12 @@ namespace Zamov.Controllers
         {
             ViewData["caption"] = caption;
             return View(items);
+        }
+
+        public ActionResult GetCityCategories(int id)
+        {
+            using (ZamovStorage context = new ZamovStorage())
+                return Json(context.GetCategories(id));
         }
     }
 }

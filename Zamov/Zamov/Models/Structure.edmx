@@ -351,6 +351,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="Categories_GetByCityId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cityId" Type="int" Mode="In" />
+        </Function>
         <Function Name="CategoryImages_Cleanup" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="categoryId" Type="int" Mode="In" />
         </Function>
@@ -449,7 +452,9 @@
           <EntitySet Name="CategoryImages" EntityType="BaseEntities.CategoryImage" />
           <AssociationSet Name="FK_CategoryImages_Categories" Association="BaseEntities.FK_CategoryImages_Categories">
             <End Role="Category" EntitySet="Categories" />
-            <End Role="CategoryImages" EntitySet="CategoryImages" /></AssociationSet></EntityContainer>
+            <End Role="CategoryImages" EntitySet="CategoryImages" /></AssociationSet>
+          <FunctionImport Name="GetCategories" EntitySet="Categories" ReturnType="Collection(BaseEntities.Category)">
+            <Parameter Name="cityId" Mode="In" Type="Int32" /></FunctionImport></EntityContainer>
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="Id" />
@@ -734,7 +739,8 @@
             <EndProperty Name="CategoryImages">
               <ScalarProperty Name="Id" ColumnName="Id" /></EndProperty>
             <EndProperty Name="Category">
-              <ScalarProperty Name="Id" ColumnName="CategoryId" /></EndProperty></AssociationSetMapping></EntityContainerMapping>
+              <ScalarProperty Name="Id" ColumnName="CategoryId" /></EndProperty></AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="GetCategories" FunctionName="BaseEntities.Store.Categories_GetByCityId" /></EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

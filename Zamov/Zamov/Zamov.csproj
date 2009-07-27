@@ -86,7 +86,10 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\Cache.cs" />
     <Compile Include="Controllers\CacheController.cs" />
+    <Compile Include="Controllers\CategoriesController.cs" />
+    <Compile Include="Controllers\ContextCacheExtension.cs" />
     <Compile Include="Controllers\DealerCabinetController.cs" />
+    <Compile Include="Controllers\DealersController.cs" />
     <Compile Include="Controllers\Extensions.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ImageController.cs" />
@@ -232,6 +235,7 @@
     <Content Include="Services\Tools.asmx" />
     <Content Include="Views\Admin\AddUpdateDealer.aspx" />
     <Content Include="Views\Admin\UpdateCategoryImage.aspx" />
+    <Content Include="Views\Categories\Index.aspx" />
     <Content Include="Views\DealerCabinet\Cabinet.Master" />
     <Content Include="Views\DealerCabinet\DealerCategoryMappings.aspx" />
     <Content Include="Views\DealerCabinet\DealerCityMappings.aspx" />

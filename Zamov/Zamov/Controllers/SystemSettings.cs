@@ -62,5 +62,17 @@ namespace Zamov.Controllers
             }
             set { Session["CityId"] = value; }
         }
+
+        public static int CategoryId
+        {
+            get
+            {
+                int result = int.MinValue;
+                if (Session["CategoryId"] != null)
+                    result = Convert.ToInt32(Session["CategoryId"]);
+                return result;
+            }
+            set { Session["CategoryId"] = value; }
+        }
     }
 }

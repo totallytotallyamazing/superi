@@ -33,5 +33,15 @@ namespace Zamov.Controllers
             }
         }
 
+        public void CategoryImage(int id)
+        {
+            using (ZamovStorage context = new ZamovStorage())
+            {
+                CategoryImage image = context.CategoryImages.Select(ci => ci).Where(ci => ci.Category.Id == id).First();
+                Response.ContentType = image.ImageType;
+                Response.BinaryWrite(image.Image);
+            }
+        }
+
     }
 }

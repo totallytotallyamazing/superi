@@ -318,4 +318,7 @@
   <data name="SelectCategory" xml:space="preserve">
     <value>Оберіть категорію</value>
   </data>
+  <data name="SubCategories" xml:space="preserve">
+    <value>Підкатегорії</value>
+  </data>
 </root>

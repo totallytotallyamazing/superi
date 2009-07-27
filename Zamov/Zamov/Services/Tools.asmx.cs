@@ -1,9 +1,10 @@
-﻿using System;
+﻿    using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Services;
 using Zamov.Models;
+using Zamov.Controllers;
 
 namespace Zamov.Services
 {
@@ -18,11 +19,12 @@ namespace Zamov.Services
     public class Tools : System.Web.Services.WebService
     {
 
-        [WebMethod]
+        [WebMethod(EnableSession=true)]
         public object GetCityCategories(int id)
         {
-            using (ZamovStorage context = new ZamovStorage())
-                return context.GetCategories(id).ToList();
+            List<Category> categories = ContextCache.GetCachedCategories(id, false);
+            var result = (from category in categories select new { Text = category.GetName(SystemSettings.CurrentLanguage), Value = category.Id });
+            return result;
         }
     }
 }

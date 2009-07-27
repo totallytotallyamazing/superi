@@ -39,7 +39,7 @@ namespace Zamov.Controllers
         Cache() 
         {
             thread = new Thread(ExpireCache);
-            thread.Start();
+           // thread.Start();
         }
 
         public void Dispose()

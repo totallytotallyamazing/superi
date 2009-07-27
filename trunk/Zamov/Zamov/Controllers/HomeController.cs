@@ -20,6 +20,14 @@ namespace Zamov.Controllers
             return View();
         }
 
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Index(int currentCity, int currentCategory)
+        {
+            SystemSettings.CityId = currentCity;
+            SystemSettings.CategoryId = currentCategory;
+            return Redirect("~/Categories");
+        }
+
         public ActionResult About()
         {
             return View();

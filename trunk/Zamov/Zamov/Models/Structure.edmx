@@ -797,10 +797,10 @@
           <ConnectorPoint PointX="4.5" PointY="3.9836531575520833" />
           </AssociationConnector>
         <AssociationConnector Association="BaseEntities.FK_Categories_Categories" >
-          <ConnectorPoint PointX="5.6354166666666661" PointY="1.75" />
-          <ConnectorPoint PointX="5.6354166666666661" PointY="1.5" />
-          <ConnectorPoint PointX="6.1875" PointY="1.5" />
-          <ConnectorPoint PointX="6.1875" PointY="1.75" /></AssociationConnector>
+          <ConnectorPoint PointX="5.5104166666666661" PointY="1.75" />
+          <ConnectorPoint PointX="5.5104166666666661" PointY="1.5" />
+          <ConnectorPoint PointX="6.2916666666666661" PointY="1.5" />
+          <ConnectorPoint PointX="6.2916666666666661" PointY="1.75" /></AssociationConnector>
         <AssociationConnector Association="BaseEntities.FK_Groups_Groups" >
           <ConnectorPoint PointX="3.5319230769230767" PointY="2" />
           <ConnectorPoint PointX="3.5319230769230767" PointY="1.75" />

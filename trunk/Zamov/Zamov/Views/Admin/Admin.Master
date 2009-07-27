@@ -8,7 +8,7 @@
         SelectListItem dealers = new SelectListItem { Text = Html.ResourceString("Dealers"), Value = VirtualPathUtility.ToAbsolute("~/Admin/Dealers") };
         SelectListItem categories = new SelectListItem { Text = Html.ResourceString("Categories"), Value = VirtualPathUtility.ToAbsolute("~/Admin/Categories") };
         SelectListItem users = new SelectListItem { Text = Html.ResourceString("Users"), Value = VirtualPathUtility.ToAbsolute("~/Admin/Users") };
-        items.Add(cities);
+        items.Add(cities);  
         items.Add(dealers);
         items.Add(categories);
         items.Add(users);

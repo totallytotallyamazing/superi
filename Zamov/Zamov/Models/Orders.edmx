@@ -74,16 +74,16 @@
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="ZamovOrders" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
-        <EntityContainer Name="Entities">
-          <EntitySet Name="Carts" EntityType="ZamovOrders.Cart" />
-          <EntitySet Name="OrderItems" EntityType="ZamovOrders.OrderItem" />
-          <EntitySet Name="Orders" EntityType="ZamovOrders.Order" />
-          <AssociationSet Name="FK_Order_Cart" Association="ZamovOrders.FK_Order_Cart">
+      <Schema Namespace="OrderEntities" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
+        <EntityContainer Name="ZamovOrders">
+          <EntitySet Name="Carts" EntityType="OrderEntities.Cart" />
+          <EntitySet Name="OrderItems" EntityType="OrderEntities.OrderItem" />
+          <EntitySet Name="Orders" EntityType="OrderEntities.Order" />
+          <AssociationSet Name="FK_Order_Cart" Association="OrderEntities.FK_Order_Cart">
             <End Role="Carts" EntitySet="Carts" />
             <End Role="Orders" EntitySet="Orders" />
           </AssociationSet>
-          <AssociationSet Name="FK_OrderItems_Order" Association="ZamovOrders.FK_OrderItems_Order">
+          <AssociationSet Name="FK_OrderItems_Order" Association="OrderEntities.FK_OrderItems_Order">
             <End Role="Orders" EntitySet="Orders" />
             <End Role="OrderItems" EntitySet="OrderItems" />
           </AssociationSet>
@@ -96,7 +96,7 @@
           <Property Name="Date" Type="DateTime" />
           <Property Name="Name" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
           <Property Name="UserId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Orders" Relationship="ZamovOrders.FK_Order_Cart" FromRole="Carts" ToRole="Orders" />
+          <NavigationProperty Name="Orders" Relationship="OrderEntities.FK_Order_Cart" FromRole="Carts" ToRole="Orders" />
         </EntityType>
         <EntityType Name="OrderItem">
           <Key>
@@ -106,7 +106,7 @@
           <Property Name="PartNumber" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="500" Unicode="true" FixedLength="false" />
           <Property Name="Price" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
-          <NavigationProperty Name="Order" Relationship="ZamovOrders.FK_OrderItems_Order" FromRole="OrderItems" ToRole="Orders" />
+          <NavigationProperty Name="Order" Relationship="OrderEntities.FK_OrderItems_Order" FromRole="OrderItems" ToRole="Orders" />
         </EntityType>
         <EntityType Name="Order">
           <Key>
@@ -115,25 +115,25 @@
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Date" Type="DateTime" />
           <Property Name="UserId" Type="String" />
-          <NavigationProperty Name="Cart" Relationship="ZamovOrders.FK_Order_Cart" FromRole="Orders" ToRole="Carts" />
-          <NavigationProperty Name="OrderItems" Relationship="ZamovOrders.FK_OrderItems_Order" FromRole="Orders" ToRole="OrderItems" />
+          <NavigationProperty Name="Cart" Relationship="OrderEntities.FK_Order_Cart" FromRole="Orders" ToRole="Carts" />
+          <NavigationProperty Name="OrderItems" Relationship="OrderEntities.FK_OrderItems_Order" FromRole="Orders" ToRole="OrderItems" />
           <Property Name="DealerId" Type="Int32" Nullable="true" /></EntityType>
         <Association Name="FK_Order_Cart">
-          <End Role="Carts" Type="ZamovOrders.Cart" Multiplicity="0..1" />
-          <End Role="Orders" Type="ZamovOrders.Order" Multiplicity="*" />
+          <End Role="Carts" Type="OrderEntities.Cart" Multiplicity="0..1" />
+          <End Role="Orders" Type="OrderEntities.Order" Multiplicity="*" />
         </Association>
         <Association Name="FK_OrderItems_Order">
-          <End Role="Orders" Type="ZamovOrders.Order" Multiplicity="1" />
-          <End Role="OrderItems" Type="ZamovOrders.OrderItem" Multiplicity="*" />
+          <End Role="Orders" Type="OrderEntities.Order" Multiplicity="1" />
+          <End Role="OrderItems" Type="OrderEntities.OrderItem" Multiplicity="*" />
         </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="urn:schemas-microsoft-com:windows:storage:mapping:CS">
-        <EntityContainerMapping StorageEntityContainer="ZamovOrdersStoreContainer" CdmEntityContainer="Entities">
+        <EntityContainerMapping StorageEntityContainer="ZamovOrdersStoreContainer" CdmEntityContainer="ZamovOrders">
           <EntitySetMapping Name="Carts">
-            <EntityTypeMapping TypeName="IsTypeOf(ZamovOrders.Cart)">
+            <EntityTypeMapping TypeName="IsTypeOf(OrderEntities.Cart)">
               <MappingFragment StoreEntitySet="Carts">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
@@ -143,7 +143,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="OrderItems">
-            <EntityTypeMapping TypeName="IsTypeOf(ZamovOrders.OrderItem)">
+            <EntityTypeMapping TypeName="IsTypeOf(OrderEntities.OrderItem)">
               <MappingFragment StoreEntitySet="OrderItems">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="PartNumber" ColumnName="PartNumber" />
@@ -153,7 +153,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Orders">
-            <EntityTypeMapping TypeName="IsTypeOf(ZamovOrders.Order)">
+            <EntityTypeMapping TypeName="IsTypeOf(OrderEntities.Order)">
               <MappingFragment StoreEntitySet="Orders">
                 <ScalarProperty Name="DealerId" ColumnName="DealerId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -162,7 +162,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="FK_Order_Cart" TypeName="ZamovOrders.FK_Order_Cart" StoreEntitySet="Orders">
+          <AssociationSetMapping Name="FK_Order_Cart" TypeName="OrderEntities.FK_Order_Cart" StoreEntitySet="Orders">
             <EndProperty Name="Carts">
               <ScalarProperty Name="Id" ColumnName="CartId" />
             </EndProperty>
@@ -171,7 +171,7 @@
             </EndProperty>
             <Condition ColumnName="CartId" IsNull="false" />
           </AssociationSetMapping>
-          <AssociationSetMapping Name="FK_OrderItems_Order" TypeName="ZamovOrders.FK_OrderItems_Order" StoreEntitySet="OrderItems">
+          <AssociationSetMapping Name="FK_OrderItems_Order" TypeName="OrderEntities.FK_OrderItems_Order" StoreEntitySet="OrderItems">
             <EndProperty Name="Orders">
               <ScalarProperty Name="Id" ColumnName="OrderId" />
             </EndProperty>
@@ -198,13 +198,13 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram Name="Orders">
-        <EntityTypeShape EntityType="ZamovOrders.Cart" Width="1.5" PointX="0.75" PointY="1" Height="1.7566536458333337" IsExpanded="true" />
-        <EntityTypeShape EntityType="ZamovOrders.OrderItem" Width="1.5" PointX="5.25" PointY="1" Height="1.7566536458333335" IsExpanded="true" />
-        <EntityTypeShape EntityType="ZamovOrders.Order" Width="1.5" PointX="3" PointY="0.875" Height="1.9210009765625" IsExpanded="true" />
-        <AssociationConnector Association="ZamovOrders.FK_Order_Cart" ManuallyRouted="false">
+        <EntityTypeShape EntityType="OrderEntities.Cart" Width="1.5" PointX="0.75" PointY="1" Height="1.7566536458333337" IsExpanded="true" />
+        <EntityTypeShape EntityType="OrderEntities.OrderItem" Width="1.5" PointX="5.25" PointY="1" Height="1.7566536458333335" IsExpanded="true" />
+        <EntityTypeShape EntityType="OrderEntities.Order" Width="1.5" PointX="3" PointY="0.875" Height="1.9210009765625" IsExpanded="true" />
+        <AssociationConnector Association="OrderEntities.FK_Order_Cart" ManuallyRouted="false">
           <ConnectorPoint PointX="2.25" PointY="1.8783268229166668" />
           <ConnectorPoint PointX="3" PointY="1.8783268229166668" /></AssociationConnector>
-        <AssociationConnector Association="ZamovOrders.FK_OrderItems_Order" ManuallyRouted="false">
+        <AssociationConnector Association="OrderEntities.FK_OrderItems_Order" ManuallyRouted="false">
           <ConnectorPoint PointX="4.5" PointY="1.8783268229166668" />
           <ConnectorPoint PointX="5.25" PointY="1.8783268229166668" /></AssociationConnector></Diagram></edmx:Diagrams>
   </edmx:Designer>

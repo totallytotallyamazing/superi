@@ -22,7 +22,7 @@
         <div class="categoryItem">
             <%= Html.Image("~/Image/CategoryImage/" + item.Value)%>
             <br />
-            <%= Html.ActionLink(item.Text, "SelectCategory", new {id = int.Parse(item.Value)} %>
+            <%= Html.ActionLink(item.Text, "SelectCategory", new {id = int.Parse(item.Value)}) %>
         </div>
     <%
     }

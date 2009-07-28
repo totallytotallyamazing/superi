@@ -20,13 +20,15 @@
     { 
     %>
         <div class="categoryItem">
-            <%= Html.Image("~/Image/CategoryImage/" + item.Value)%>
-            <br />
-            <%= Html.ActionLink(item.Text, "SelectCategory", new {id = int.Parse(item.Value)}) %>
+            <div class="categoryImage">
+                <%= Html.Image("~/Image/CategoryImageByCategoryId/" + item.Value)%>
+            </div>
+            <%= Html.ActionLink(item.Text, "SelectCategory", new { id = int.Parse(item.Value) }, new { @class = "categoryLink" })%>
         </div>
     <%
     }
 %>
+    <div style="clear:both;"></div>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="includes" runat="server">

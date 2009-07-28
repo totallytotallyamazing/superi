@@ -8,7 +8,7 @@
     <body>
         <%
             if (Convert.ToInt32(ViewData["imageId"]) >= 0)
-                Response.Write(Html.Image("~/Image/ProductImage/" + ViewData["imageId"]));
+                Response.Write(Html.Image("~/Image/CategoryImage/" + ViewData["imageId"]));
             using (Html.BeginForm("UpdateCategoryImage", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
             {%>
                 <%= Html.Hidden("id", ViewData["imageId"]) %>

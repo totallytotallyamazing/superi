@@ -31,8 +31,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Excel, Version=2.0.0.157, Culture=neutral, PublicKeyToken=93517dbe6a4012fa, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.Web.Mvc, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Excel, Version=2.0.0.157, Culture=neutral, PublicKeyToken=93517dbe6a4012fa, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Mvc, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Microsoft.Web.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Core">
@@ -110,6 +116,11 @@
     <Compile Include="Models\ContextExtensions.cs" />
     <Compile Include="Models\Dealers.cs" />
     <Compile Include="Models\Group.cs" />
+    <Compile Include="Models\Orders.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Orders.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProfileCommon.cs" />
     <Compile Include="Models\Structure.Designer.cs">
@@ -245,6 +256,12 @@
     <Content Include="Views\DealerCabinet\SelectDealer.ascx" />
     <Content Include="Views\DealerCabinet\UpdateProductDescription.aspx" />
     <Content Include="Views\DealerCabinet\UpdateProductImage.aspx" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Models\Orders.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Orders.Designer.cs</LastGenOutput>
+    </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -10,10 +10,10 @@
 
 [assembly: global::System.Data.Objects.DataClasses.EdmSchemaAttribute()]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("Zamov_baseModel", "FK_Order_Cart", "Cart", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Zamov.Models.Cart), "Order", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Zamov.Models.Order))]
-[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("Zamov_baseModel", "FK_OrderItems_Order", "Order", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Zamov.Models.Order), "OrderItems", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Zamov.Models.OrderItems))]
+[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("Zamov_baseModel", "FK_OrderItems_Order", "Order", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Zamov.Models.Order), "OrderItems", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Zamov.Models.OrderItem))]
 
 // Original file name:
-// Generation date: 28.07.2009 10:52:58
+// Generation date: 28/07/2009 10:57:28
 namespace Zamov.Models
 {
     
@@ -48,70 +48,70 @@ namespace Zamov.Models
         }
         partial void OnContextCreated();
         /// <summary>
-        /// There are no comments for Cart in the schema.
+        /// There are no comments for Carts in the schema.
         /// </summary>
-        public global::System.Data.Objects.ObjectQuery<Cart> Cart
+        public global::System.Data.Objects.ObjectQuery<Cart> Carts
         {
             get
             {
-                if ((this._Cart == null))
+                if ((this._Carts == null))
                 {
-                    this._Cart = base.CreateQuery<Cart>("[Cart]");
+                    this._Carts = base.CreateQuery<Cart>("[Carts]");
                 }
-                return this._Cart;
+                return this._Carts;
             }
         }
-        private global::System.Data.Objects.ObjectQuery<Cart> _Cart;
+        private global::System.Data.Objects.ObjectQuery<Cart> _Carts;
         /// <summary>
-        /// There are no comments for Order in the schema.
+        /// There are no comments for Orders in the schema.
         /// </summary>
-        public global::System.Data.Objects.ObjectQuery<Order> Order
+        public global::System.Data.Objects.ObjectQuery<Order> Orders
         {
             get
             {
-                if ((this._Order == null))
+                if ((this._Orders == null))
                 {
-                    this._Order = base.CreateQuery<Order>("[Order]");
+                    this._Orders = base.CreateQuery<Order>("[Orders]");
                 }
-                return this._Order;
+                return this._Orders;
             }
         }
-        private global::System.Data.Objects.ObjectQuery<Order> _Order;
+        private global::System.Data.Objects.ObjectQuery<Order> _Orders;
         /// <summary>
         /// There are no comments for OrderItems in the schema.
         /// </summary>
-        public global::System.Data.Objects.ObjectQuery<OrderItems> OrderItems
+        public global::System.Data.Objects.ObjectQuery<OrderItem> OrderItems
         {
             get
             {
                 if ((this._OrderItems == null))
                 {
-                    this._OrderItems = base.CreateQuery<OrderItems>("[OrderItems]");
+                    this._OrderItems = base.CreateQuery<OrderItem>("[OrderItems]");
                 }
                 return this._OrderItems;
             }
         }
-        private global::System.Data.Objects.ObjectQuery<OrderItems> _OrderItems;
+        private global::System.Data.Objects.ObjectQuery<OrderItem> _OrderItems;
         /// <summary>
-        /// There are no comments for Cart in the schema.
+        /// There are no comments for Carts in the schema.
         /// </summary>
-        public void AddToCart(Cart cart)
+        public void AddToCarts(Cart cart)
         {
-            base.AddObject("Cart", cart);
+            base.AddObject("Carts", cart);
         }
         /// <summary>
-        /// There are no comments for Order in the schema.
+        /// There are no comments for Orders in the schema.
         /// </summary>
-        public void AddToOrder(Order order)
+        public void AddToOrders(Order order)
         {
-            base.AddObject("Order", order);
+            base.AddObject("Orders", order);
         }
         /// <summary>
         /// There are no comments for OrderItems in the schema.
         /// </summary>
-        public void AddToOrderItems(OrderItems orderItems)
+        public void AddToOrderItems(OrderItem orderItem)
         {
-            base.AddObject("OrderItems", orderItems);
+            base.AddObject("OrderItems", orderItem);
         }
     }
     /// <summary>
@@ -230,13 +230,13 @@ namespace Zamov.Models
         partial void OnUserIdChanging(int value);
         partial void OnUserIdChanged();
         /// <summary>
-        /// There are no comments for Order in the schema.
+        /// There are no comments for Orders in the schema.
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("Zamov_baseModel", "FK_Order_Cart", "Order")]
         [global::System.Xml.Serialization.XmlIgnoreAttribute()]
         [global::System.Xml.Serialization.SoapIgnoreAttribute()]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Data.Objects.DataClasses.EntityCollection<Order> Order
+        public global::System.Data.Objects.DataClasses.EntityCollection<Order> Orders
         {
             get
             {
@@ -408,44 +408,44 @@ namespace Zamov.Models
         [global::System.Xml.Serialization.XmlIgnoreAttribute()]
         [global::System.Xml.Serialization.SoapIgnoreAttribute()]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Data.Objects.DataClasses.EntityCollection<OrderItems> OrderItems
+        public global::System.Data.Objects.DataClasses.EntityCollection<OrderItem> OrderItems
         {
             get
             {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<OrderItems>("Zamov_baseModel.FK_OrderItems_Order", "OrderItems");
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<OrderItem>("Zamov_baseModel.FK_OrderItems_Order", "OrderItems");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<OrderItems>("Zamov_baseModel.FK_OrderItems_Order", "OrderItems", value);
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<OrderItem>("Zamov_baseModel.FK_OrderItems_Order", "OrderItems", value);
                 }
             }
         }
     }
     /// <summary>
-    /// There are no comments for Zamov_baseModel.OrderItems in the schema.
+    /// There are no comments for Zamov_baseModel.OrderItem in the schema.
     /// </summary>
     /// <KeyProperties>
     /// PartNumber
     /// OrderId
     /// </KeyProperties>
-    [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="Zamov_baseModel", Name="OrderItems")]
+    [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="Zamov_baseModel", Name="OrderItem")]
     [global::System.Runtime.Serialization.DataContractAttribute(IsReference=true)]
     [global::System.Serializable()]
-    public partial class OrderItems : global::System.Data.Objects.DataClasses.EntityObject
+    public partial class OrderItem : global::System.Data.Objects.DataClasses.EntityObject
     {
         /// <summary>
-        /// Create a new OrderItems object.
+        /// Create a new OrderItem object.
         /// </summary>
         /// <param name="partNumber">Initial value of PartNumber.</param>
         /// <param name="orderId">Initial value of OrderId.</param>
-        public static OrderItems CreateOrderItems(string partNumber, int orderId)
+        public static OrderItem CreateOrderItem(string partNumber, int orderId)
         {
-            OrderItems orderItems = new OrderItems();
-            orderItems.PartNumber = partNumber;
-            orderItems.OrderId = orderId;
-            return orderItems;
+            OrderItem orderItem = new OrderItem();
+            orderItem.PartNumber = partNumber;
+            orderItem.OrderId = orderId;
+            return orderItem;
         }
         /// <summary>
         /// There are no comments for Property PartNumber in the schema.

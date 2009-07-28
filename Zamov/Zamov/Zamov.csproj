@@ -116,6 +116,11 @@
     <Compile Include="Models\ContextExtensions.cs" />
     <Compile Include="Models\Dealers.cs" />
     <Compile Include="Models\Group.cs" />
+    <Compile Include="Models\Orders.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Orders.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProfileCommon.cs" />
     <Compile Include="Models\Structure.Designer.cs">
@@ -251,6 +256,12 @@
     <Content Include="Views\DealerCabinet\SelectDealer.ascx" />
     <Content Include="Views\DealerCabinet\UpdateProductDescription.aspx" />
     <Content Include="Views\DealerCabinet\UpdateProductImage.aspx" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Models\Orders.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Orders.Designer.cs</LastGenOutput>
+    </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -61,6 +61,10 @@
             $('#imagePopUp').dialog('option', 'position', 'center');
             $('#imagePopUp').css('height', 'auto');
         }
+
+        function closeImageDialog() {
+            $("#imagePopUp").dialog('close');
+        }
     </script>
     <div title="<%= Html.ResourceString("Image") %>" id="imagePopUp" style="display: block; height: 300px;">
         <iframe id="updateImageBox" frameborder="0" hidefocus="true" style="width: 400px;

@@ -85,7 +85,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="CategoryId" Type="int" Nullable="false" />
           <Property Name="Image" Type="image" Nullable="false" />
           <Property Name="ImageType" Type="nvarchar" Nullable="false" MaxLength="50" />
@@ -454,7 +454,9 @@
             <End Role="Category" EntitySet="Categories" />
             <End Role="CategoryImages" EntitySet="CategoryImages" /></AssociationSet>
           <FunctionImport Name="GetCategories" EntitySet="Categories" ReturnType="Collection(BaseEntities.Category)">
-            <Parameter Name="cityId" Mode="In" Type="Int32" /></FunctionImport></EntityContainer>
+            <Parameter Name="cityId" Mode="In" Type="Int32" /></FunctionImport>
+          <FunctionImport Name="CategoryImages_Cleanup">
+            <Parameter Name="categoryId" Mode="In" Type="Int32" /></FunctionImport></EntityContainer>
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="Id" />
@@ -465,7 +467,8 @@
           <NavigationProperty Name="Categories" Relationship="BaseEntities.FK_Categories_Categories" FromRole="Category" ToRole="Category1" />
           <NavigationProperty Name="Parent" Relationship="BaseEntities.FK_Categories_Categories" FromRole="Category1" ToRole="Category" />
           <NavigationProperty Name="Images" Relationship="BaseEntities.FK_CategoryImages_Categories" FromRole="Category" ToRole="CategoryImages" />
-          <Property Name="Enabled" Type="Boolean" Nullable="false" /></EntityType>
+          <Property Name="Enabled" Type="Boolean" Nullable="false" />
+          </EntityType>
         <EntityType Name="City">
           <Key>
             <PropertyRef Name="Id" />
@@ -740,7 +743,8 @@
               <ScalarProperty Name="Id" ColumnName="Id" /></EndProperty>
             <EndProperty Name="Category">
               <ScalarProperty Name="Id" ColumnName="CategoryId" /></EndProperty></AssociationSetMapping>
-          <FunctionImportMapping FunctionImportName="GetCategories" FunctionName="BaseEntities.Store.Categories_GetByCityId" /></EntityContainerMapping>
+          <FunctionImportMapping FunctionImportName="GetCategories" FunctionName="BaseEntities.Store.Categories_GetByCityId" />
+          <FunctionImportMapping FunctionImportName="CategoryImages_Cleanup" FunctionName="BaseEntities.Store.CategoryImages_Cleanup" /></EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>
@@ -759,7 +763,7 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram Name="Structure" ShowGrid="false" DisplayType="false" ZoomLevel="100">
-        <EntityTypeShape EntityType="BaseEntities.Category" Width="1.5" PointX="5.125" PointY="1.75" Height="1.427958984375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaseEntities.Category" Width="1.5" PointX="5.125" PointY="1.75" Height="2.085348307291667" IsExpanded="true" />
         <EntityTypeShape EntityType="BaseEntities.City" Width="1.5" PointX="0.75" PointY="1.125" Height="1.7566536458333331" IsExpanded="true" />
         <EntityTypeShape EntityType="BaseEntities.Dealer" PointX="9.375" PointY="0.5" Width="1.5" Height="2.41404296875" IsExpanded="true" />
         <EntityTypeShape EntityType="BaseEntities.Group" Width="1.5" PointX="3" PointY="2" Height="2.2496956380208335" IsExpanded="true" />
@@ -777,8 +781,9 @@
           <ConnectorPoint PointX="2.25" PointY="4.79070594805726" /></AssociationConnector>
         <AssociationConnector ManuallyRouted="false" Association="BaseEntities.DealerCityMappings">
           <ConnectorPoint PointX="2.25" PointY="1.375" />
-          <ConnectorPoint PointX="9.375" PointY="1.375" />
-          </AssociationConnector>
+          <ConnectorPoint PointX="3.151375705128205" PointY="1.3749999999999993" />
+          <ConnectorPoint PointX="3.3180423717948719" PointY="1.375" />
+          <ConnectorPoint PointX="9.375" PointY="1.375" /></AssociationConnector>
         <AssociationConnector Association="BaseEntities.ProductCityMappings" ManuallyRouted="false">
           <ConnectorPoint PointX="1.5" PointY="2.8816536458333331" />
           <ConnectorPoint PointX="1.5" PointY="4.25" />
@@ -792,15 +797,15 @@
           <ConnectorPoint PointX="6.625" PointY="1.96875" />
           <ConnectorPoint PointX="9.375" PointY="1.96875" /></AssociationConnector>
         <AssociationConnector Association="BaseEntities.FK_Groups_Dealers" >
-          <ConnectorPoint PointX="9.7187475" PointY="2.91404296875" />
-          <ConnectorPoint PointX="9.7187475" PointY="3.9836531575520833" />
-          <ConnectorPoint PointX="4.5" PointY="3.9836531575520833" />
+          <ConnectorPoint PointX="9.375" PointY="0.90624750000000009" />
+          <ConnectorPoint PointX="3.2347090384615385" PointY="0.90624750000000009" />
+          <ConnectorPoint PointX="3.2347090384615385" PointY="2" />
           </AssociationConnector>
         <AssociationConnector Association="BaseEntities.FK_Categories_Categories" >
-          <ConnectorPoint PointX="5.5104166666666661" PointY="1.75" />
-          <ConnectorPoint PointX="5.5104166666666661" PointY="1.5" />
-          <ConnectorPoint PointX="6.2916666666666661" PointY="1.5" />
-          <ConnectorPoint PointX="6.2916666666666661" PointY="1.75" /></AssociationConnector>
+          <ConnectorPoint PointX="5.6569230769230767" PointY="3.835348307291667" />
+          <ConnectorPoint PointX="5.6569230769230767" PointY="4.0853483072916674" />
+          <ConnectorPoint PointX="6.1034615384615378" PointY="4.0853483072916674" />
+          <ConnectorPoint PointX="6.1034615384615378" PointY="3.835348307291667" /></AssociationConnector>
         <AssociationConnector Association="BaseEntities.FK_Groups_Groups" >
           <ConnectorPoint PointX="3.5319230769230767" PointY="2" />
           <ConnectorPoint PointX="3.5319230769230767" PointY="1.75" />

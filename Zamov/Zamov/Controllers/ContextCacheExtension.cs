@@ -10,17 +10,17 @@ namespace Zamov.Controllers
     {
         private static Cache Cache { get { return Zamov.Controllers.Cache.UniqueInstance; } }
 
-        public static List<Category> GetCachedCategories(int cityId, bool reload)
+        public static List<Category> GetCachedCategories(this ZamovStorage context, int cityId, bool reload)
         {
             List<Category> result = new List<Category>();
             if (Cache["CityCategories_" + cityId] != null && !reload)
                 result = (List<Category>)Cache["CityCategories_" + cityId];
             else
             {
-                using (ZamovStorage context = new ZamovStorage())
-                {
-                    result = context.GetCategories(cityId).ToList();
-                }
+                result = (from category in context.Categories.Include("Parent").Include("Dealers")
+                          where category.Parent == null
+                          && category.Dealers.Where(d => d.Cities.Where(c => c.Id == cityId).Count() > 0).Count() > 0
+                          select category).ToList();
                 Cache.UniqueInstance["CityCategories_" + cityId] = result;
             }
             return result;
@@ -41,7 +41,7 @@ namespace Zamov.Controllers
             {
                 using (ZamovStorage context = new ZamovStorage())
                 {
-                    result = (from category in context.Categories where category.Parent.Id == categoryId select category).ToList();
+                    result = (from category in context.Categories where category.Parent.Id == categoryId && category.Dealers.Count > 0 select category).ToList();
                 }
                 Cache.UniqueInstance["SubCategories_" + categoryId] = result;
             }

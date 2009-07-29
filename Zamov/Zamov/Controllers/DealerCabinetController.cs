@@ -30,8 +30,7 @@ namespace Zamov.Controllers
                 int dealerId = int.MinValue;
                 dealerId = Security.GetCurentDealerId(User.Identity.Name);
                 ViewData["dealerId"] = dealerId;
-                List<Group> groups = (from g in context.Groups where g.Dealer.Id == dealerId select g).ToList();
-                return View(groups);
+                return View();
             }
         }
 

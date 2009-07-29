@@ -23,6 +23,12 @@ namespace Zamov.Controllers
             }
         }
 
+        public void ShowImage(string imageType, byte[] image)
+        {
+            Response.ContentType = imageType;
+            Response.BinaryWrite(image); 
+        }
+
         public void ProductImage(int id)
         {
             using (ZamovStorage context = new ZamovStorage())

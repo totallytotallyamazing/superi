@@ -256,6 +256,7 @@
     <Content Include="Views\DealerCabinet\SelectDealer.ascx" />
     <Content Include="Views\DealerCabinet\UpdateProductDescription.aspx" />
     <Content Include="Views\DealerCabinet\UpdateProductImage.aspx" />
+    <Content Include="Views\Dealers\Index.aspx" />
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="Models\Orders.edmx">

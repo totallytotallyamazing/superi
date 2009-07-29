@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 using System.Web.Security;
+using Zamov.Models;
 
 namespace Zamov.Controllers
 {
@@ -15,8 +16,14 @@ namespace Zamov.Controllers
 
         public ActionResult Index()
         {
-            
-            return View();
+            using (ZamovStorage context = new ZamovStorage())
+            {
+                List<Dealer> dealers = (from dealer in context.Dealers.Include("Cities").Include("Categories")
+                                        where dealer.Cities.Where(c => c.Id == SystemSettings.CityId).Count() > 0
+                                        && dealer.Categories.Where(c => c.Id == SystemSettings.CategoryId).Count() > 0
+                                        select dealer).ToList();
+                return View(dealers);
+            }
         }
 
     }

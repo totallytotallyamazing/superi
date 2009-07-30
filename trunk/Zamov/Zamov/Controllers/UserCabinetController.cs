@@ -35,7 +35,17 @@ namespace Zamov.Controllers
 
         public ActionResult DeleteCart(int id)
         {
-            return Redirect("~/UserCabinet");
+
+            using(OrderStorage context = new OrderStorage())
+            {
+                /*
+                Cart cart = (from c in context.Carts where c.Id==id select c).First();
+                context.DeleteObject(cart);
+                context.SaveChanges();
+                */
+
+                return Redirect("~/UserCabinet");
+            }
         }
     }
 }

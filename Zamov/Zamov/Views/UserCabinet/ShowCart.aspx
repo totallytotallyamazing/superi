@@ -10,24 +10,17 @@
 
     <table>
         <tr>
-            <th></th>
             <th>
-                Id
+                Номер
             </th>
             <th>
-                Date
+                Дата
             </th>
             <th>
-                DealerId
+                Дата доставки
             </th>
             <th>
-                UserId
-            </th>
-            <th>
-                DeliveryDate
-            </th>
-            <th>
-                Status
+                Статус
             </th>
         </tr>
 
@@ -35,20 +28,10 @@
     
         <tr>
             <td>
-                <%= Html.ActionLink("Edit", "Edit", new { id=item.Id }) %> |
-                <%= Html.ActionLink("Details", "Details", new { id=item.Id })%>
-            </td>
-            <td>
                 <%= Html.Encode(item.Id) %>
             </td>
             <td>
                 <%= Html.Encode(String.Format("{0:g}", item.Date)) %>
-            </td>
-            <td>
-                <%= Html.Encode(item.DealerId) %>
-            </td>
-            <td>
-                <%= Html.Encode(item.UserId) %>
             </td>
             <td>
                 <%= Html.Encode(String.Format("{0:g}", item.DeliveryDate)) %>
@@ -57,15 +40,13 @@
                 <%= Html.Encode(item.Status) %>
             </td>
         </tr>
-    
+ 
     <% } %>
-
     </table>
-
-    <p>
-        <%= Html.ActionLink("Create New", "Create") %>
-    </p>
-
+    
+       <div>
+        <%=Html.ActionLink("Назад", "../UserCabinet")%>
+    </div>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="includes" runat="server">

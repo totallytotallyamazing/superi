@@ -16,7 +16,7 @@ namespace Zamov.Controllers
         public ActionResult Index()
         {
 
-            using (OrdersCS context = new OrdersCS())
+            using (OrderStorage context = new OrderStorage())
             {
                 List<Cart> carts = (from cart in context.Carts select cart).ToList();
                 return View(carts);
@@ -26,7 +26,13 @@ namespace Zamov.Controllers
 
         public ActionResult ShowCart(int id)
         {
-            return View();
+            using (OrderStorage context = new OrderStorage())
+            {
+                List<Order> orders = (from order in context.Orders where order.Cart.Id == id select order).ToList();
+                return View(orders);
+            }
+
+            
         }
 
     }

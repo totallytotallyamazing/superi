@@ -24,5 +24,10 @@ namespace Zamov.Controllers
             }
         }
 
+        public ActionResult Description(int id)
+        {
+            return View();
+        }
+
     }
 }

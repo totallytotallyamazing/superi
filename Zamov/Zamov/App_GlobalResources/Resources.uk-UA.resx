@@ -324,4 +324,10 @@
   <data name="MeassureUnit" xml:space="preserve">
     <value>Одиниця вимiру</value>
   </data>
+  <data name="Quantity" xml:space="preserve">
+    <value>Кiлькiсть</value>
+  </data>
+  <data name="ToOrder" xml:space="preserve">
+    <value>Замовити</value>
+  </data>
 </root>

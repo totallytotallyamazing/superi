@@ -565,6 +565,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Кiлькiсть.
+        /// </summary>
+        internal static string Quantity {
+            get {
+                return ResourceManager.GetString("Quantity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Реєстрація.
         /// </summary>
         internal static string Register {
@@ -633,6 +642,15 @@ namespace Resources {
         internal static string SubCategories {
             get {
                 return ResourceManager.GetString("SubCategories", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Замовити.
+        /// </summary>
+        internal static string ToOrder {
+            get {
+                return ResourceManager.GetString("ToOrder", resourceCulture);
             }
         }
         

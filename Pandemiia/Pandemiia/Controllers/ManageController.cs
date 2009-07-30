@@ -34,6 +34,10 @@ namespace Pandemiia.Controllers
         public ActionResult Entities(int? year, int? month)
         {
             List<Entity> entities;
+            if (year == null)
+                year = DateTime.Now.Year;
+            if (month == null)
+                month = DateTime.Now.Month;
             if (year != null && month != null)
                 entities = _context.Entities.Select(ent => ent)
                     .Where(ent => ent.Date.Value.Year == year.Value && ent.Date.Value.Month == month.Value)
@@ -74,7 +78,7 @@ namespace Pandemiia.Controllers
             entity.Content = Server.HtmlDecode(frm["Content"]);
             entity.Description = Server.HtmlDecode(frm["Description"]);
             entity.Title = frm["Title"];
-            CultureInfo info = CultureInfo.GetCultureInfo("en-US");
+            CultureInfo info = CultureInfo.GetCultureInfo("ru-RU");
             entity.Date = DateTime.Parse(frm["Date"], info);
             entity.SourceID = int.Parse(frm["SourceID"]);
             entity.TypeID = int.Parse(frm["TypeID"]);

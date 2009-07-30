@@ -13,7 +13,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("OrderEntities", "FK_OrderItems_Orders", "Orders", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Zamov.Models.Order), "OrderItems", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Zamov.Models.OrderItem))]
 
 // Original file name:
-// Generation date: 28/07/2009 13:13:04
+// Generation date: 30.07.2009 12:25:35
 namespace Zamov.Models
 {
     
@@ -575,6 +575,29 @@ namespace Zamov.Models
         private int _Status;
         partial void OnStatusChanging(int value);
         partial void OnStatusChanged();
+        /// <summary>
+        /// There are no comments for Property Address in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string Address
+        {
+            get
+            {
+                return this._Address;
+            }
+            set
+            {
+                this.OnAddressChanging(value);
+                this.ReportPropertyChanging("Address");
+                this._Address = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
+                this.ReportPropertyChanged("Address");
+                this.OnAddressChanged();
+            }
+        }
+        private string _Address;
+        partial void OnAddressChanging(string value);
+        partial void OnAddressChanged();
         /// <summary>
         /// There are no comments for Cart in the schema.
         /// </summary>

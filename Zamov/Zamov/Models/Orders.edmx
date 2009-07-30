@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="OrderEntities.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
+    <Schema Namespace="OrderEntities.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
         <EntityContainer Name="OrderEntitiesStoreContainer">
           <EntitySet Name="Carts" EntityType="OrderEntities.Store.Carts" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="OrderItems" EntityType="OrderEntities.Store.OrderItems" store:Type="Tables" Schema="dbo" />
@@ -48,6 +48,7 @@
           <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="DeliveryDate" Type="datetime" />
           <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="500" />
         </EntityType>
         <Association Name="FK_OrderItems_Orders">
           <End Role="Orders" Type="OrderEntities.Store.Orders" Multiplicity="1" />
@@ -73,8 +74,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="OrderEntities" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
@@ -123,7 +123,7 @@
           <Property Name="Status" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Cart" Relationship="OrderEntities.FK_Orders_Carts" FromRole="Orders" ToRole="Carts" />
           <NavigationProperty Name="OrderItems" Relationship="OrderEntities.FK_OrderItems_Orders" FromRole="Orders" ToRole="OrderItems" />
-        </EntityType>
+          <Property Name="Address" Type="String" Nullable="true" /></EntityType>
         <Association Name="FK_Orders_Carts">
           <End Role="Carts" Type="OrderEntities.Cart" Multiplicity="1" />
           <End Role="Orders" Type="OrderEntities.Order" Multiplicity="*" />
@@ -161,6 +161,7 @@
           <EntitySetMapping Name="Orders">
             <EntityTypeMapping TypeName="IsTypeOf(OrderEntities.Order)">
               <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="DealerId" ColumnName="DealerId" />

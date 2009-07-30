@@ -103,6 +103,7 @@
     <Compile Include="Controllers\Resources.cs" />
     <Compile Include="Controllers\Securirty.cs" />
     <Compile Include="Controllers\SystemSettings.cs" />
+    <Compile Include="Controllers\UserCabinetController.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -257,6 +258,8 @@
     <Content Include="Views\DealerCabinet\UpdateProductDescription.aspx" />
     <Content Include="Views\DealerCabinet\UpdateProductImage.aspx" />
     <Content Include="Views\Dealers\Index.aspx" />
+    <Content Include="Views\UserCabinet\Index.aspx" />
+    <Content Include="Views\UserCabinet\ShowCart.aspx" />
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="Models\Orders.edmx">

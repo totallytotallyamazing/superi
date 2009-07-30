@@ -17,5 +17,10 @@ namespace Zamov.Controllers
             return View();
         }
 
+        public ActionResult ShowCart(int id)
+        {
+            return View();
+        }
+
     }
 }

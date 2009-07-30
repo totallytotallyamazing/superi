@@ -1,5 +1,5 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<Zamov.Models.Order>>" %>
-
+<%@ Import Namespace="Zamov.Models" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	ShowCart
 </asp:Content>
@@ -27,25 +27,40 @@
             </th>
         </tr>
 
-    <% foreach (var item in Model) { %>
+    <% foreach (Order order in Model) { %>
     
         <tr>
             <td>
-                <%= Html.Encode(item.Id) %>
+                <%= Html.Encode(order.Id)%>
             </td>
             <td>
-                <%= Html.Encode(String.Format("{0:g}", item.Date)) %>
+                <%= Html.Encode(String.Format("{0:g}", order.Date))%>
             </td>
             <td>
-                <%= Html.Encode(String.Format("{0:g}", item.DeliveryDate)) %>
+                <%= Html.Encode(String.Format("{0:g}", order.DeliveryDate))%>
             </td>
             <td>
-                <%= Html.Encode(item.Status) %>
+                <%= Html.Encode(order.Status)%>
             </td>
             <td>
-                <%= Html.Encode(item.OrderItems.Count) %>
+                <%= Html.Encode(order.OrderItems.Count)%>
             </td>
         </tr>
+ 
+ 
+    <%
+    foreach (OrderItem orderItem in order.OrderItems)
+    {
+        %>
+        
+        <tr>
+            <td><%=Html.Encode(orderItem.Price)%></td>
+        </tr>
+        
+        <%
+        
+    } 
+    %>
  
     <% } %>
     </table>

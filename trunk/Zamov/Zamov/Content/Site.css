@@ -82,11 +82,14 @@ iframe{padding:0; margin:0; border:none;}
 
 .categoryItem{text-align:center; float:left; padding:0px 15px;}
 .categoryImage{height:110px}
-
 .categoryLink{color:Black; font-size:12px; text-decoration:none}
 
+.dealerLogo{float:left; padding:5px 20px; height:120px;}
 
 
+.commonTable{ border-collapse:collapse; }
+.commonTable th{background-color:#f4fef5; border:1px solid black; border-collapse:collapse; padding:20px;}
+.commonTable td{border:1px solid black; border-collapse:collapse; padding: 0px 5px}
 
 .tableOrders
 {

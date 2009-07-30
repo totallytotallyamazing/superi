@@ -321,4 +321,7 @@
   <data name="SubCategories" xml:space="preserve">
     <value>Подкатегории</value>
   </data>
+  <data name="MeassureUnit" xml:space="preserve">
+    <value>Единица измерения</value>
+  </data>
 </root>

@@ -100,6 +100,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ImageController.cs" />
     <Compile Include="Controllers\PagePartsController.cs" />
+    <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\Resources.cs" />
     <Compile Include="Controllers\Securirty.cs" />
     <Compile Include="Controllers\SystemSettings.cs" />
@@ -242,6 +243,7 @@
     <Content Include="Content\redmond\images\ui-icons_f9bd01_256x240.png" />
     <Content Include="Content\redmond\jquery.ui.css" />
     <Content Include="Content\Start.css" />
+    <Content Include="Scripts\jquery.dropshadow.js" />
     <Content Include="Scripts\jquery.ui.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Services\Tools.asmx" />
@@ -258,6 +260,7 @@
     <Content Include="Views\DealerCabinet\UpdateProductDescription.aspx" />
     <Content Include="Views\DealerCabinet\UpdateProductImage.aspx" />
     <Content Include="Views\Dealers\Index.aspx" />
+    <Content Include="Views\Products\Index.aspx" />
     <Content Include="Views\UserCabinet\Index.aspx" />
     <Content Include="Views\UserCabinet\ShowCart.aspx" />
   </ItemGroup>

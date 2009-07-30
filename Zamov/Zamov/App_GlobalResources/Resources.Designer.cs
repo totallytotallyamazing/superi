@@ -448,6 +448,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Одиниця вимiру.
+        /// </summary>
+        internal static string MeassureUnit {
+            get {
+                return ResourceManager.GetString("MeassureUnit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Назва.
         /// </summary>
         internal static string Name {

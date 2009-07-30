@@ -185,7 +185,7 @@ namespace Zamov.Controllers
             List<Product> products = new List<Product>();
             if (id != null)
             {
-                products = (from product in context.Products
+                products = (from product in context.Products 
                             where product.Group.Id == id.Value && product.Dealer.Id == dealerId
                             select product).ToList();
             }

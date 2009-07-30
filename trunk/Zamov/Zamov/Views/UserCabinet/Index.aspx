@@ -14,26 +14,35 @@
 
     <table border="1" class="tableCarts">
     <tr>
-    <td colspan="5">
+    <td colspan="8">
     История Ваших покупок/сохраненные Вами корзины
     </td>
     </tr>
         <tr>
             <!--<th></th>-->
             <th>
-                Номер
-            </th>
-            <th>
-                Дата
+                №
             </th>
             <th>
                 Название корзины
             </th>
             <th>
-            
+                Поставщик
             </th>
             <th>
-            
+                Дата
+            </th>
+            <th>
+                Сумма, грн
+            </th>
+            <th>
+                
+            </th>
+            <th>
+                Статус заказа
+            </th>
+            <th>
+                
             </th>
         </tr>
 
@@ -49,13 +58,22 @@
                 <%= Html.Encode(item.Id) %>
             </td>
             <td>
-                <%= Html.Encode(String.Format("{0:g}", item.Date)) %>
-            </td>
-            <td>
                 <%= Html.Encode(item.Name) %>
             </td>
             <td>
+            
+            </td>
+            <td>
+                <%= Html.Encode(String.Format("{0:g}", item.Date)) %>
+            </td>
+            <td>
+            
+            </td>
+            <td>
             <%=Html.ActionLink("просмотр", "ShowCart", new { id = item.Id })%>
+            </td>
+            <td>
+            
             </td>
             <td>
             <%=Html.ActionLink("удалить", "DeleteCart", new { id = item.Id }, new { onclick = "return confirm('" + Html.ResourceString("AreYouSure") + "?')" })%>

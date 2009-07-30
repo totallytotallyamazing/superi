@@ -8,62 +8,90 @@
 
     <h2>ShowCart</h2>
 
-    <table>
-        <tr>
-            <th>
-                Номер
-            </th>
-            <th>
-                Дата
-            </th>
-            <th>
-                Дата доставки
-            </th>
-            <th>
-                Статус
-            </th>
-            <th>
-                Количество заказов
-            </th>
-        </tr>
 
+    <table>
     <% foreach (Order order in Model) { %>
-    
+    <tr>
+        <td>
+        
+        
+        <table class="tableOrders" border="1">
         <tr>
+            <td>
+                Номер
+            </td>
             <td>
                 <%= Html.Encode(order.Id)%>
             </td>
+        </tr>
+        <tr>
             <td>
-                <%= Html.Encode(String.Format("{0:g}", order.Date))%>
+                Дата
             </td>
             <td>
-                <%= Html.Encode(String.Format("{0:g}", order.DeliveryDate))%>
+                <%= Html.Encode(order.Date.ToShortDateString())%>
             </td>
+        </tr>
+        <tr>
+            <td>Дата доставки</td>
+            <td>
+                <%= Html.Encode(((DateTime)order.DeliveryDate).ToShortDateString())%>
+            </td>
+        </tr>
+        <tr>
+            <td>Статус</td>
             <td>
                 <%= Html.Encode(order.Status)%>
             </td>
+        </tr>
+        <tr>
+            <td>Количество заказов</td>
             <td>
                 <%= Html.Encode(order.OrderItems.Count)%>
             </td>
         </tr>
- 
- 
-    <%
-    foreach (OrderItem orderItem in order.OrderItems)
-    {
-        %>
+        <tr>
+            <td colspan="2" style="padding:1px;">
+        
+                <table class="tableOrderItems" border="1">
+                <tr>
+                    <td>Номер:</td>
+                    <td>Название:</td>
+                    <td>Артикул:</td>
+                    <td>Цена:</td>
+                </tr>
+            <%
+            foreach (OrderItem orderItem in order.OrderItems)
+            {
+                %>
+                <tr>
+                    <td align="center"><%=Html.Encode(orderItem.Id)%></td>
+                    <td><%=Html.Encode(orderItem.Name)%></td>
+                    <td><%=Html.Encode(orderItem.PartNumber)%></td>
+                    <td><%=Html.Encode(orderItem.Price)%></td>
+                </tr>
+                <%
+            } 
+            %>
+                </table>
+            
+         </td>
+         </tr>
+         </table>   
+            
+            
+        </td>            
+        </tr>            
+        
         
         <tr>
-            <td><%=Html.Encode(orderItem.Price)%></td>
-        </tr>
-        
-        <%
-        
-    } 
-    %>
- 
+        <td style="padding-top:10px;">
+        &nbsp;
+        </td>            
+        </tr>            
+
     <% } %>
-    </table>
+</table>
     
        <div>
         <%=Html.ActionLink("Назад", "../UserCabinet")%>

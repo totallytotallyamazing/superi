@@ -1,4 +1,5 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<Zamov.Models.Cart>>" %>
+<%@ Import Namespace="Zamov.Helpers"%>
 
 
 
@@ -11,7 +12,7 @@
 
     
 
-    <table border="1" style="border-collapse:collapse">
+    <table border="1" class="tableCarts">
     <tr>
     <td colspan="5">
     История Ваших покупок/сохраненные Вами корзины
@@ -57,7 +58,7 @@
             <%=Html.ActionLink("просмотр", "ShowCart", new { id = item.Id })%>
             </td>
             <td>
-            <%=Html.ActionLink("удалить", "DeleteCart", new { id = item.Id })%>
+            <%=Html.ActionLink("удалить", "DeleteCart", new { id = item.Id }, new { onclick = "return confirm('" + Html.ResourceString("AreYouSure") + "?')" })%>
             </td>
         </tr>
     <% } %>

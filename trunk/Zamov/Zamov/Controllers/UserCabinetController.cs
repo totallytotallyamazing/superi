@@ -35,7 +35,7 @@ namespace Zamov.Controllers
 
         public ActionResult DeleteCart(int id)
         {
-            return View();
+            return Redirect("~/UserCabinet");
         }
     }
 }

@@ -1,11 +1,17 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<List<Zamov.Models.Category>>" %>
 <%@ Import Namespace="Zamov.Helpers" %>
 <%@ Import Namespace="Microsoft.Web.Mvc" %>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="leftMenu" runat="server">
     <%
         List<SelectListItem> leftMenuItems = (List<SelectListItem>)ViewData["leftMenuItems"];
-        Html.RenderAction<Zamov.Controllers.PagePartsController>(ac => ac.LeftMenu(Html.ResourceString("SubCategories"), leftMenuItems)); 
+        List<SelectListItem> items=  new List<SelectListItem>();
+        foreach (var item in leftMenuItems)
+        {
+            SelectListItem listItem = new SelectListItem { Text = item.Text, Value = "/Categories/SelectCategory/" + item.Value };
+            items.Add(listItem);
+        }
+        Html.RenderAction<Zamov.Controllers.PagePartsController>(ac => ac.LeftMenu(Html.ResourceString("SubCategories"), items)); 
     %>
 </asp:Content>
 

@@ -48,7 +48,6 @@
 
 
     <% foreach (var item in Model) { %>
-    
         <tr>
             <!--<td>
                 <%= Html.ActionLink("Edit", "Edit", new { id=item.Id }) %> |
@@ -67,7 +66,7 @@
                 <%= Html.Encode(String.Format("{0:g}", item.Date)) %>
             </td>
             <td>
-            
+                
             </td>
             <td>
             <%=Html.ActionLink("просмотр", "ShowCart", new { id = item.Id })%>

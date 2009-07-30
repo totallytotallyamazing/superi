@@ -22,6 +22,9 @@
             <th>
                 Статус
             </th>
+            <th>
+                Количество заказов
+            </th>
         </tr>
 
     <% foreach (var item in Model) { %>
@@ -38,6 +41,9 @@
             </td>
             <td>
                 <%= Html.Encode(item.Status) %>
+            </td>
+            <td>
+                <%= Html.Encode(item.OrderItems.Count) %>
             </td>
         </tr>
  

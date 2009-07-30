@@ -13,7 +13,7 @@
 
     <table border="1" style="border-collapse:collapse">
     <tr>
-    <td colspan="4">
+    <td colspan="5">
     История Ваших покупок/сохраненные Вами корзины
     </td>
     </tr>
@@ -27,6 +27,9 @@
             </th>
             <th>
                 Название корзины
+            </th>
+            <th>
+            
             </th>
             <th>
             
@@ -53,8 +56,10 @@
             <td>
             <%=Html.ActionLink("просмотр", "ShowCart", new { id = item.Id })%>
             </td>
+            <td>
+            <%=Html.ActionLink("удалить", "DeleteCart", new { id = item.Id })%>
+            </td>
         </tr>
-    
     <% } %>
 
     </table>

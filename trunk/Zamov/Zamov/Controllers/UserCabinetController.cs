@@ -31,8 +31,11 @@ namespace Zamov.Controllers
                 List<Order> orders = (from order in context.Orders.Include("OrderItems") where order.Cart.Id == id select order).ToList();
                 return View(orders);
             }
+        }
 
-            
+        public ActionResult DeleteCart(int id)
+        {
+            return View();
         }
     }
 }

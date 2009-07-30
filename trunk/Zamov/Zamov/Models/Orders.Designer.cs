@@ -20,12 +20,12 @@ namespace Zamov.Models
     /// <summary>
     /// There are no comments for OrdersCS in the schema.
     /// </summary>
-    public partial class OrdersCS : global::System.Data.Objects.ObjectContext
+    public partial class OrderStorage : global::System.Data.Objects.ObjectContext
     {
         /// <summary>
         /// Initializes a new OrdersCS object using the connection string found in the 'OrdersCS' section of the application configuration file.
         /// </summary>
-        public OrdersCS() : 
+        public OrderStorage() : 
                 base("name=OrdersCS", "OrdersCS")
         {
             this.OnContextCreated();
@@ -33,7 +33,7 @@ namespace Zamov.Models
         /// <summary>
         /// Initialize a new OrdersCS object.
         /// </summary>
-        public OrdersCS(string connectionString) : 
+        public OrderStorage(string connectionString) : 
                 base(connectionString, "OrdersCS")
         {
             this.OnContextCreated();
@@ -41,7 +41,7 @@ namespace Zamov.Models
         /// <summary>
         /// Initialize a new OrdersCS object.
         /// </summary>
-        public OrdersCS(global::System.Data.EntityClient.EntityConnection connection) : 
+        public OrderStorage(global::System.Data.EntityClient.EntityConnection connection) : 
                 base(connection, "OrdersCS")
         {
             this.OnContextCreated();

@@ -1,27 +1,35 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<Zamov.Models.Cart>>" %>
 
+
+
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	Index
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Index</h2>
 
-    <table>
+    
+
+    <table border="1" style="border-collapse:collapse">
+    <tr>
+    <td colspan="4">
+    История Ваших покупок/сохраненные Вами корзины
+    </td>
+    </tr>
         <tr>
-            <th></th>
+            <!--<th></th>-->
             <th>
-                Id
+                Номер
             </th>
             <th>
-                Date
+                Дата
             </th>
             <th>
-                Name
+                Название корзины
             </th>
             <th>
-                UserId
+            
             </th>
         </tr>
 
@@ -29,10 +37,10 @@
     <% foreach (var item in Model) { %>
     
         <tr>
-            <td>
+            <!--<td>
                 <%= Html.ActionLink("Edit", "Edit", new { id=item.Id }) %> |
                 <%= Html.ActionLink("Details", "Details", new { id=item.Id })%>
-            </td>
+            </td>-->
             <td>
                 <%= Html.Encode(item.Id) %>
             </td>
@@ -43,18 +51,18 @@
                 <%= Html.Encode(item.Name) %>
             </td>
             <td>
-                <%= Html.Encode(item.UserId) %>
+            <%=Html.ActionLink("просмотр", "ShowCart", new { id = item.Id })%>
             </td>
         </tr>
     
     <% } %>
 
     </table>
-
+<!--
     <p>
         <%= Html.ActionLink("Create New", "Create") %>
     </p>
-
+-->
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="includes" runat="server">

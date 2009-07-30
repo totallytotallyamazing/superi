@@ -9,7 +9,7 @@
 
     <script type="text/javascript">
         $(function() {
-            $(".dateInput").datepicker();
+            $(".dateInput").datepicker({dateFormat: "dd.mm.yy"});
             $.fck.config = { path: '../Controls/fckeditor/', height: 300, config: { SkinPath: "skins/office2003/", DefaultLanguage: "RU", AutoDetectLanguage: false, HtmlEncodeOutput: true} };
             $('textarea#Description').fck();
             $('textarea#Content').fck();
@@ -64,7 +64,7 @@
                 <p>
                     <label for="Date">
                         Дата:</label>
-                    <%= Html.TextBox("Date", null, new { @class = "dateInput", @readonly = "true"})%>
+                    <%= Html.TextBox("Date", String.Format("{0:dd.MM.yyyy%}", DateTime.Now), new { @class = "dateInput", @readonly = "true"})%>
                     <%= Html.ValidationMessage("Date", "*") %>
                 </p>
             </div>

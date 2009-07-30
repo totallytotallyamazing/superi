@@ -9,6 +9,13 @@
     <%
         Html.RenderPartial("DateFilter", ViewData);     
     %>
+    <br />
+    
+    <p>
+        <%= Html.ActionLink("Создать", "CreateEntity") %>
+    </p>
+    
+    
     <table>
         <tr>
             <th></th>
@@ -72,9 +79,6 @@
 
     </table>
 
-    <p>
-        <%= Html.ActionLink("Создать", "CreateEntity") %>
-    </p>
 
 </asp:Content>
 

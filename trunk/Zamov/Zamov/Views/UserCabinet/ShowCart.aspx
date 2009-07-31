@@ -10,14 +10,14 @@
     <tr>
         <td>
         <%=Html.Encode(order.Dealers.Name)%>
-        <table class="tableOrders" border="1">
+        <table class="commonTable" border="1">
         <tr>
-            <td>Наименование</td>
-            <td>Фото</td>
-            <td>Единица измерения</td>
-            <td>Цена грн.</td>
-            <td>Кол-во</td>
-            <td>Стоимость грн.</td>
+            <th>Наименование</th>
+            <th>Фото</th>
+            <th>Единица измерения</th>
+            <th>Цена грн.</th>
+            <th>Кол-во</th>
+            <th>Стоимость грн.</th>
         </tr>
         <%
         foreach (OrderItem orderItem in order.OrderItems)
@@ -32,8 +32,15 @@
             <td></td>
         </tr>
         <%
-        } 
+        }
+            
         %>
+        <tr>
+            <td colspan="3"></td>
+            <td>Всего</td>
+            <td><%=order.OrderItems.Count%></td>
+            <td><%=order.OrderItems.Sum(oi=>oi.Price)%></td>
+        </tr>
          </table>   
         </td>            
         </tr>            

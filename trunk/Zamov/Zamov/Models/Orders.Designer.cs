@@ -13,7 +13,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("OrderEntities", "FK_OrderItems_Orders", "Orders", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Zamov.Models.Order), "OrderItems", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Zamov.Models.OrderItem))]
 
 // Original file name:
-// Generation date: 30.07.2009 12:25:35
+// Generation date: 31.07.2009 10:35:01
 namespace Zamov.Models
 {
     
@@ -130,11 +130,13 @@ namespace Zamov.Models
         /// </summary>
         /// <param name="id">Initial value of Id.</param>
         /// <param name="userId">Initial value of UserId.</param>
-        public static Cart CreateCart(int id, int userId)
+        /// <param name="isDeleted">Initial value of IsDeleted.</param>
+        public static Cart CreateCart(int id, int userId, int isDeleted)
         {
             Cart cart = new Cart();
             cart.Id = id;
             cart.UserId = userId;
+            cart.IsDeleted = isDeleted;
             return cart;
         }
         /// <summary>
@@ -229,6 +231,29 @@ namespace Zamov.Models
         private int _UserId;
         partial void OnUserIdChanging(int value);
         partial void OnUserIdChanged();
+        /// <summary>
+        /// There are no comments for Property IsDeleted in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public int IsDeleted
+        {
+            get
+            {
+                return this._IsDeleted;
+            }
+            set
+            {
+                this.OnIsDeletedChanging(value);
+                this.ReportPropertyChanging("IsDeleted");
+                this._IsDeleted = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("IsDeleted");
+                this.OnIsDeletedChanged();
+            }
+        }
+        private int _IsDeleted;
+        partial void OnIsDeletedChanging(int value);
+        partial void OnIsDeletedChanged();
         /// <summary>
         /// There are no comments for Orders in the schema.
         /// </summary>

@@ -14,7 +14,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("OrderEntities", "FK_Orders_Dealers", "Dealers", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Zamov.Models.Dealers), "Order", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Zamov.Models.Order))]
 
 // Original file name:
-// Generation date: 31.07.2009 11:01:18
+// Generation date: 31.07.2009 15:31:50
 namespace Zamov.Models
 {
     
@@ -317,13 +317,15 @@ namespace Zamov.Models
         /// <param name="partNumber">Initial value of PartNumber.</param>
         /// <param name="name">Initial value of Name.</param>
         /// <param name="price">Initial value of Price.</param>
-        public static OrderItem CreateOrderItem(int id, string partNumber, string name, decimal price)
+        /// <param name="quantity">Initial value of Quantity.</param>
+        public static OrderItem CreateOrderItem(int id, string partNumber, string name, decimal price, int quantity)
         {
             OrderItem orderItem = new OrderItem();
             orderItem.Id = id;
             orderItem.PartNumber = partNumber;
             orderItem.Name = name;
             orderItem.Price = price;
+            orderItem.Quantity = quantity;
             return orderItem;
         }
         /// <summary>
@@ -418,6 +420,29 @@ namespace Zamov.Models
         private decimal _Price;
         partial void OnPriceChanging(decimal value);
         partial void OnPriceChanged();
+        /// <summary>
+        /// There are no comments for Property Quantity in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public int Quantity
+        {
+            get
+            {
+                return this._Quantity;
+            }
+            set
+            {
+                this.OnQuantityChanging(value);
+                this.ReportPropertyChanging("Quantity");
+                this._Quantity = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("Quantity");
+                this.OnQuantityChanged();
+            }
+        }
+        private int _Quantity;
+        partial void OnQuantityChanging(int value);
+        partial void OnQuantityChanged();
         /// <summary>
         /// There are no comments for Orders in the schema.
         /// </summary>

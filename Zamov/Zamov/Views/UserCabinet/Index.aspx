@@ -5,12 +5,8 @@
 	Index
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <table border="1" class="tableCarts">
-    <tr>
-    <td colspan="8">
-    История Ваших покупок/сохраненные Вами корзины
-    </td>
-    </tr>
+История Ваших покупок/сохраненные Вами корзины
+    <table border="1" class="commonTable">
         <tr>
             <th>№</th>
             <th>Название корзины</th>

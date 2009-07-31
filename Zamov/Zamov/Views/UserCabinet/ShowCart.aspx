@@ -9,52 +9,31 @@
     <% foreach (Order order in Model) { %>
     <tr>
         <td>
+        <%=Html.Encode(order.Dealers.Name)%>
         <table class="tableOrders" border="1">
         <tr>
-            <td>Номер</td>
-            <td><%= Html.Encode(order.Id)%></td>
+            <td>Наименование</td>
+            <td>Фото</td>
+            <td>Единица измерения</td>
+            <td>Цена грн.</td>
+            <td>Кол-во</td>
+            <td>Стоимость грн.</td>
         </tr>
+        <%
+        foreach (OrderItem orderItem in order.OrderItems)
+        {
+        %>
         <tr>
-            <td>Дата</td>
-            <td><%= Html.Encode(order.Date.ToShortDateString())%></td>
+            <td><%=Html.Encode(orderItem.Name)%></td>
+            <td></td>
+            <td></td>
+            <td><%=Html.Encode(orderItem.Price)%></td>
+            <td></td>
+            <td></td>
         </tr>
-        <tr>
-            <td>Дата доставки</td>
-            <td><%= Html.Encode(((DateTime)order.DeliveryDate).ToShortDateString())%></td>
-        </tr>
-        <tr>
-            <td>Статус</td>
-            <td><%= Html.Encode(order.Status)%></td>
-        </tr>
-        <tr>
-            <td>Количество заказов</td>
-            <td><%= Html.Encode(order.OrderItems.Count)%></td>
-        </tr>
-        <tr>
-            <td colspan="2" style="padding:1px;">
-                <table class="tableOrderItems" border="1">
-                <tr>
-                    <td>Номер:</td>
-                    <td>Название:</td>
-                    <td>Артикул:</td>
-                    <td>Цена:</td>
-                </tr>
-            <%
-            foreach (OrderItem orderItem in order.OrderItems)
-            {
-                %>
-                <tr>
-                    <td align="center"><%=Html.Encode(orderItem.Id)%></td>
-                    <td><%=Html.Encode(orderItem.Name)%></td>
-                    <td><%=Html.Encode(orderItem.PartNumber)%></td>
-                    <td><%=Html.Encode(orderItem.Price)%></td>
-                </tr>
-                <%
-            } 
-            %>
-                </table>
-         </td>
-         </tr>
+        <%
+        } 
+        %>
          </table>   
         </td>            
         </tr>            
@@ -63,11 +42,10 @@
         &nbsp;
         </td>            
         </tr>            
-
     <% } %>
-</table>
-       <div>
-        <%=Html.ActionLink("Назад", "../UserCabinet")%>
+    </table>
+    <div>
+    <%=Html.ActionLink("Назад", "../UserCabinet")%>
     </div>
 </asp:Content>
 

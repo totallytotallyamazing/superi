@@ -5,12 +5,12 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <h2>ShowCart</h2>
-    <table>
+    <table border="0">
     <% foreach (Order order in Model) { %>
     <tr>
         <td>
         <%=Html.Encode(order.Dealers.Name)%>
-        <table class="commonTable" border="1">
+        <table class="commonTable">
         <tr>
             <th>Наименование</th>
             <th>Фото</th>
@@ -20,16 +20,21 @@
             <th>Стоимость грн.</th>
         </tr>
         <%
+        
+        decimal allsum = 0;   
         foreach (OrderItem orderItem in order.OrderItems)
         {
+            
+            decimal sum = orderItem.Quantity * orderItem.Price;
+            allsum += sum;
         %>
         <tr>
             <td><%=Html.Encode(orderItem.Name)%></td>
             <td></td>
             <td></td>
             <td><%=Html.Encode(orderItem.Price)%></td>
-            <td></td>
-            <td></td>
+            <td><%=Html.Encode(orderItem.Quantity)%></td>
+            <td><%=Html.Encode(sum.ToString("N"))%></td>
         </tr>
         <%
         }
@@ -38,8 +43,8 @@
         <tr>
             <td colspan="3"></td>
             <td>Всего</td>
-            <td><%=order.OrderItems.Count%></td>
-            <td><%=order.OrderItems.Sum(oi=>oi.Price)%></td>
+            <td><%=Html.Encode(order.OrderItems.Sum(oi=>oi.Quantity))%></td>
+            <td><%=Html.Encode(allsum.ToString("N"))%></td>
         </tr>
          </table>   
         </td>            

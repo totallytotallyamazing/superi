@@ -18,7 +18,7 @@ namespace Zamov.Controllers
 
             using (OrderStorage context = new OrderStorage())
             {
-                List<Cart> carts = (from cart in context.Carts select cart).ToList();
+                List<Cart> carts = (from cart in context.Carts where cart.Deleted == 0 select cart).ToList();
                 return View(carts);
             } 
 
@@ -35,15 +35,11 @@ namespace Zamov.Controllers
 
         public ActionResult DeleteCart(int id)
         {
-
             using(OrderStorage context = new OrderStorage())
             {
-                /*
                 Cart cart = (from c in context.Carts where c.Id==id select c).First();
-                context.DeleteObject(cart);
+                cart.Deleted = 1;
                 context.SaveChanges();
-                */
-
                 return Redirect("~/UserCabinet");
             }
         }

@@ -1,5 +1,6 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<Zamov.Models.Cart>>" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<Zamov.Models.Order>>" %>
 <%@ Import Namespace="Zamov.Helpers"%>
+<%@ Import Namespace="Zamov.Models" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	Index
 </asp:Content>
@@ -20,18 +21,41 @@
             <th>—татус заказа</th>
             <th></th>
         </tr>
-    <% foreach (var item in Model) { %>
+    <%
+
+        int PrevId=0;
+        foreach (Order order in Model) 
+        {
+        int NextId=order.Cart.Id;
+        int c = order.OrderItems.Count;
+        if (PrevId != NextId)
+        {
+        %>
         <tr>
-            <td><%= Html.Encode(item.Id) %></td>
-            <td><%= Html.Encode(item.Name) %></td>
-            <td></td>
-            <td><%= Html.Encode(String.Format("{0:g}", item.Date)) %></td>
-            <td></td>
-            <td><%=Html.ActionLink("просмотр", "ShowCart", new { id = item.Id })%></td>
-            <td></td>
-            <td><%=Html.ActionLink("удалить", "DeleteCart", new { id = item.Id }, new { onclick = "return confirm('" + Html.ResourceString("AreYouSure") + "?')" })%></td>
+            <td rowspan="<%=Html.Encode(c)%>"><%=Html.Encode(order.Cart.Id)%></td>
+            <td rowspan="<%=Html.Encode(c)%>"><%=Html.Encode(order.Cart.Name)%></td>
+            <td><%=Html.Encode(order.Dealers.Name)%></td>
+            <td rowspan="<%=Html.Encode(c)%>"><%=Html.Encode(String.Format("{0:g}", order.Cart.Date))%></td>
+            <td><%=Html.Encode(order.OrderItems.Sum(oi => oi.Price))%></td>
+            <td rowspan="<%=Html.Encode(c)%>"><%=Html.ActionLink("просмотр", "ShowCart", new {id = order.Cart.Id})%></td>
+            <td><%=Html.Encode(order.Status)%></td>
+            <td  rowspan="<%=Html.Encode(c)%>"><%=Html.ActionLink("удалить", "DeleteCart", new {id = order.Cart.Id},new{onclick ="return confirm('" + Html.ResourceString("AreYouSure") + "?')"})%></td>
         </tr>
-    <% } %>
+        <%
+        }
+        else
+        {
+            %>
+            <tr>
+                <td><%=Html.Encode(order.Dealers.Name)%></td>
+                <td><%=Html.Encode(order.OrderItems.Sum(oi => oi.Price))%></td>
+                <td><%=Html.Encode(order.Status)%></td>
+            </tr>
+            
+            <%
+        }
+            PrevId = NextId;
+    }   %>
     </table>
 </asp:Content>
 

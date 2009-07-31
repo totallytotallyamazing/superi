@@ -15,12 +15,13 @@ namespace Zamov.Controllers
 
         public ActionResult Index()
         {
-
             using (OrderStorage context = new OrderStorage())
             {
-                List<Cart> carts = (from cart in context.Carts where cart.Deleted == 0 select cart).ToList();
-                return View(carts);
-            } 
+                List<Order> orders = (from order in context.Orders.Include("Dealers").Include("Cart").Include("OrderItems") select order).ToList();
+                return View(orders);
+            }
+
+
         }
 
         public ActionResult ShowCart(int id)

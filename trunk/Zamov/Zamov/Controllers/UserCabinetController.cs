@@ -21,7 +21,6 @@ namespace Zamov.Controllers
                 List<Cart> carts = (from cart in context.Carts where cart.Deleted == 0 select cart).ToList();
                 return View(carts);
             } 
-
         }
 
         public ActionResult ShowCart(int id)

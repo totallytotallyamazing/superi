@@ -11,9 +11,10 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmSchemaAttribute()]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("OrderEntities", "FK_Orders_Carts", "Carts", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Zamov.Models.Cart), "Orders", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Zamov.Models.Order))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("OrderEntities", "FK_OrderItems_Orders", "Orders", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Zamov.Models.Order), "OrderItems", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Zamov.Models.OrderItem))]
+[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("OrderEntities", "FK_Orders_Dealers", "Dealers", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Zamov.Models.Dealers), "Order", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Zamov.Models.Order))]
 
 // Original file name:
-// Generation date: 31.07.2009 10:35:01
+// Generation date: 31.07.2009 11:01:18
 namespace Zamov.Models
 {
     
@@ -93,6 +94,21 @@ namespace Zamov.Models
         }
         private global::System.Data.Objects.ObjectQuery<Order> _Orders;
         /// <summary>
+        /// There are no comments for Dealers in the schema.
+        /// </summary>
+        public global::System.Data.Objects.ObjectQuery<Dealers> Dealers
+        {
+            get
+            {
+                if ((this._Dealers == null))
+                {
+                    this._Dealers = base.CreateQuery<Dealers>("[Dealers]");
+                }
+                return this._Dealers;
+            }
+        }
+        private global::System.Data.Objects.ObjectQuery<Dealers> _Dealers;
+        /// <summary>
         /// There are no comments for Carts in the schema.
         /// </summary>
         public void AddToCarts(Cart cart)
@@ -113,6 +129,13 @@ namespace Zamov.Models
         {
             base.AddObject("Orders", order);
         }
+        /// <summary>
+        /// There are no comments for Dealers in the schema.
+        /// </summary>
+        public void AddToDealers(Dealers dealers)
+        {
+            base.AddObject("Dealers", dealers);
+        }
     }
     /// <summary>
     /// There are no comments for OrderEntities.Cart in the schema.
@@ -130,13 +153,13 @@ namespace Zamov.Models
         /// </summary>
         /// <param name="id">Initial value of Id.</param>
         /// <param name="userId">Initial value of UserId.</param>
-        /// <param name="isDeleted">Initial value of IsDeleted.</param>
-        public static Cart CreateCart(int id, int userId, int isDeleted)
+        /// <param name="deleted">Initial value of Deleted.</param>
+        public static Cart CreateCart(int id, int userId, int deleted)
         {
             Cart cart = new Cart();
             cart.Id = id;
             cart.UserId = userId;
-            cart.IsDeleted = isDeleted;
+            cart.Deleted = deleted;
             return cart;
         }
         /// <summary>
@@ -232,28 +255,28 @@ namespace Zamov.Models
         partial void OnUserIdChanging(int value);
         partial void OnUserIdChanged();
         /// <summary>
-        /// There are no comments for Property IsDeleted in the schema.
+        /// There are no comments for Property Deleted in the schema.
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public int IsDeleted
+        public int Deleted
         {
             get
             {
-                return this._IsDeleted;
+                return this._Deleted;
             }
             set
             {
-                this.OnIsDeletedChanging(value);
-                this.ReportPropertyChanging("IsDeleted");
-                this._IsDeleted = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
-                this.ReportPropertyChanged("IsDeleted");
-                this.OnIsDeletedChanged();
+                this.OnDeletedChanging(value);
+                this.ReportPropertyChanging("Deleted");
+                this._Deleted = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("Deleted");
+                this.OnDeletedChanged();
             }
         }
-        private int _IsDeleted;
-        partial void OnIsDeletedChanging(int value);
-        partial void OnIsDeletedChanged();
+        private int _Deleted;
+        partial void OnDeletedChanging(int value);
+        partial void OnDeletedChanged();
         /// <summary>
         /// There are no comments for Orders in the schema.
         /// </summary>
@@ -449,15 +472,13 @@ namespace Zamov.Models
         /// </summary>
         /// <param name="id">Initial value of Id.</param>
         /// <param name="date">Initial value of Date.</param>
-        /// <param name="dealerId">Initial value of DealerId.</param>
         /// <param name="userId">Initial value of UserId.</param>
         /// <param name="status">Initial value of Status.</param>
-        public static Order CreateOrder(int id, global::System.DateTime date, int dealerId, global::System.Guid userId, int status)
+        public static Order CreateOrder(int id, global::System.DateTime date, global::System.Guid userId, int status)
         {
             Order order = new Order();
             order.Id = id;
             order.Date = date;
-            order.DealerId = dealerId;
             order.UserId = userId;
             order.Status = status;
             return order;
@@ -508,29 +529,6 @@ namespace Zamov.Models
         private global::System.DateTime _Date;
         partial void OnDateChanging(global::System.DateTime value);
         partial void OnDateChanged();
-        /// <summary>
-        /// There are no comments for Property DealerId in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public int DealerId
-        {
-            get
-            {
-                return this._DealerId;
-            }
-            set
-            {
-                this.OnDealerIdChanging(value);
-                this.ReportPropertyChanging("DealerId");
-                this._DealerId = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
-                this.ReportPropertyChanged("DealerId");
-                this.OnDealerIdChanged();
-            }
-        }
-        private int _DealerId;
-        partial void OnDealerIdChanging(int value);
-        partial void OnDealerIdChanged();
         /// <summary>
         /// There are no comments for Property UserId in the schema.
         /// </summary>
@@ -678,6 +676,205 @@ namespace Zamov.Models
                 if ((value != null))
                 {
                     ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<OrderItem>("OrderEntities.FK_OrderItems_Orders", "OrderItems", value);
+                }
+            }
+        }
+        /// <summary>
+        /// There are no comments for Dealers in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("OrderEntities", "FK_Orders_Dealers", "Dealers")]
+        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
+        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public Dealers Dealers
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Dealers>("OrderEntities.FK_Orders_Dealers", "Dealers").Value;
+            }
+            set
+            {
+                ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Dealers>("OrderEntities.FK_Orders_Dealers", "Dealers").Value = value;
+            }
+        }
+        /// <summary>
+        /// There are no comments for Dealers in the schema.
+        /// </summary>
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Data.Objects.DataClasses.EntityReference<Dealers> DealersReference
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Dealers>("OrderEntities.FK_Orders_Dealers", "Dealers");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<Dealers>("OrderEntities.FK_Orders_Dealers", "Dealers", value);
+                }
+            }
+        }
+    }
+    /// <summary>
+    /// There are no comments for OrderEntities.Dealers in the schema.
+    /// </summary>
+    /// <KeyProperties>
+    /// Id
+    /// </KeyProperties>
+    [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="OrderEntities", Name="Dealers")]
+    [global::System.Runtime.Serialization.DataContractAttribute(IsReference=true)]
+    [global::System.Serializable()]
+    public partial class Dealers : global::System.Data.Objects.DataClasses.EntityObject
+    {
+        /// <summary>
+        /// Create a new Dealers object.
+        /// </summary>
+        /// <param name="id">Initial value of Id.</param>
+        /// <param name="name">Initial value of Name.</param>
+        /// <param name="enabled">Initial value of Enabled.</param>
+        public static Dealers CreateDealers(int id, string name, bool enabled)
+        {
+            Dealers dealers = new Dealers();
+            dealers.Id = id;
+            dealers.Name = name;
+            dealers.Enabled = enabled;
+            return dealers;
+        }
+        /// <summary>
+        /// There are no comments for Property Id in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id
+        {
+            get
+            {
+                return this._Id;
+            }
+            set
+            {
+                this.OnIdChanging(value);
+                this.ReportPropertyChanging("Id");
+                this._Id = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("Id");
+                this.OnIdChanged();
+            }
+        }
+        private int _Id;
+        partial void OnIdChanging(int value);
+        partial void OnIdChanged();
+        /// <summary>
+        /// There are no comments for Property Name in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name
+        {
+            get
+            {
+                return this._Name;
+            }
+            set
+            {
+                this.OnNameChanging(value);
+                this.ReportPropertyChanging("Name");
+                this._Name = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
+                this.ReportPropertyChanged("Name");
+                this.OnNameChanged();
+            }
+        }
+        private string _Name;
+        partial void OnNameChanging(string value);
+        partial void OnNameChanged();
+        /// <summary>
+        /// There are no comments for Property LogoImage in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] LogoImage
+        {
+            get
+            {
+                return global::System.Data.Objects.DataClasses.StructuralObject.GetValidValue(this._LogoImage);
+            }
+            set
+            {
+                this.OnLogoImageChanging(value);
+                this.ReportPropertyChanging("LogoImage");
+                this._LogoImage = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
+                this.ReportPropertyChanged("LogoImage");
+                this.OnLogoImageChanged();
+            }
+        }
+        private byte[] _LogoImage;
+        partial void OnLogoImageChanging(byte[] value);
+        partial void OnLogoImageChanged();
+        /// <summary>
+        /// There are no comments for Property LogoType in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string LogoType
+        {
+            get
+            {
+                return this._LogoType;
+            }
+            set
+            {
+                this.OnLogoTypeChanging(value);
+                this.ReportPropertyChanging("LogoType");
+                this._LogoType = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
+                this.ReportPropertyChanged("LogoType");
+                this.OnLogoTypeChanged();
+            }
+        }
+        private string _LogoType;
+        partial void OnLogoTypeChanging(string value);
+        partial void OnLogoTypeChanged();
+        /// <summary>
+        /// There are no comments for Property Enabled in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public bool Enabled
+        {
+            get
+            {
+                return this._Enabled;
+            }
+            set
+            {
+                this.OnEnabledChanging(value);
+                this.ReportPropertyChanging("Enabled");
+                this._Enabled = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("Enabled");
+                this.OnEnabledChanged();
+            }
+        }
+        private bool _Enabled;
+        partial void OnEnabledChanging(bool value);
+        partial void OnEnabledChanged();
+        /// <summary>
+        /// There are no comments for Orders in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("OrderEntities", "FK_Orders_Dealers", "Order")]
+        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
+        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Data.Objects.DataClasses.EntityCollection<Order> Orders
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<Order>("OrderEntities.FK_Orders_Dealers", "Order");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<Order>("OrderEntities.FK_Orders_Dealers", "Order", value);
                 }
             }
         }

@@ -8,11 +8,10 @@ using Zamov.Models;
 
 namespace Zamov.Controllers
 {
+
     public class UserCabinetController : Controller
     {
-        //
-        // GET: /UserCabinet/
-
+        
         public ActionResult Index()
         {
             using (OrderStorage context = new OrderStorage())

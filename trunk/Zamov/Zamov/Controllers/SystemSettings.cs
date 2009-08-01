@@ -63,6 +63,7 @@ namespace Zamov.Controllers
                 {
                     MembershipUser user = Membership.GetUser();
                     result = (Guid)user.ProviderUserKey;
+                    Session["CurrentUser"] = result;
                 }
                 return result;
             }

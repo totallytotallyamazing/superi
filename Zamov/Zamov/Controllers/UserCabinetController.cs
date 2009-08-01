@@ -12,7 +12,6 @@ namespace Zamov.Controllers
     [Authorize(Roles = "Administrators, Dealers, Customers")]
     public class UserCabinetController : Controller
     {
-        
         public ActionResult Index()
         {
             using (OrderStorage context = new OrderStorage())

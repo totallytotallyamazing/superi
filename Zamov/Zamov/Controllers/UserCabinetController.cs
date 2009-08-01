@@ -5,10 +5,11 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 using Zamov.Models;
+using System.Web.Security;
 
 namespace Zamov.Controllers
 {
-
+    [Authorize(Roles = "Administrators, Dealers, Customers")]
     public class UserCabinetController : Controller
     {
         
@@ -16,11 +17,12 @@ namespace Zamov.Controllers
         {
             using (OrderStorage context = new OrderStorage())
             {
-                List<Order> orders = (from order in context.Orders.Include("Dealers").Include("Cart").Include("OrderItems") select order).ToList();
+                List<Order> orders = (
+                    from order in context.Orders.Include("Dealers").Include("Cart").Include("OrderItems") 
+                    where order.UserId==SystemSettings.CurrentUserId 
+                    select order).ToList();
                 return View(orders);
             }
-
-
         }
 
         public ActionResult ShowCart(int id)

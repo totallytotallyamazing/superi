@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Configuration;
 using System.Web.SessionState;
+using System.Web.Security;
 
 namespace Zamov.Controllers
 {
@@ -50,7 +51,24 @@ namespace Zamov.Controllers
             }
             set { Session["CurrentDealer"] = value; }
         }
-
+        
+        public static Guid CurrentUserId
+        {
+            get
+            {
+                Guid result;
+                if (Session["CurrentUser"] != null)
+                    result = (Guid)Session["CurrentUser"];
+                else
+                {
+                    MembershipUser user = Membership.GetUser();
+                    result = (Guid)user.ProviderUserKey;
+                }
+                return result;
+            }
+            set { Session["CurrentUser"] = value; }
+        }
+        
         public static int CityId
         {
             get 

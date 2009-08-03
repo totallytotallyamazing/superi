@@ -14,7 +14,7 @@
                 groupId = Convert.ToInt32(ViewData["groupId"]);
             using (ZamovStorage context = new ZamovStorage())
             {
-                var groups = (from g in context.Groups.Include("Parent").Include("Groups") where g.Parent == null select g);
+                var groups = (from g in context.Groups.Include("Parent").Include("Groups") where g.Parent == null && g.Dealer.Id == dealerId select g);
                 foreach (var g in groups)
                 {
         %>

@@ -5,7 +5,9 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 <script type="text/javascript">
     $(function() {
-        $(".dealerLogo div").dropShadow({ left: 8, top: 8, blur: 3, opacity: 0.8 });
+    $(".dealerLogo div").wrap("<div class='wrap0'><div class='wrap1'><div class='wrap2'>" +
+"<div class='wrap3'></div></div></div></div>");
+
     })
 </script>
 
@@ -25,7 +27,7 @@
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="includes" runat="server">
-    <%= Html.RegisterJS("jquery.dropshadow.js")%>
+    <%= Html.RegisterCss("~/Content/DropShadow.css") %>
 </asp:Content>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="leftMenu" runat="server">

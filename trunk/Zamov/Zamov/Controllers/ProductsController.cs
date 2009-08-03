@@ -19,6 +19,8 @@ namespace Zamov.Controllers
             {
                 List<Group> groups = (from g in context.Groups.Include("Groups") where g.Dealer.Id == dealerId select g).ToList();
                 ViewData["groups"] = groups;
+                ViewData["dealerId"] = dealerId;
+                ViewData["groupId"] = groupId;
                 List<Product> products = (from product in context.Products where (groupId == null) || product.Group.Id == groupId select product).ToList();
                 return View(products);
             }
@@ -26,7 +28,17 @@ namespace Zamov.Controllers
 
         public ActionResult Description(int id)
         {
-            return View();
+            using (ZamovStorage context = new ZamovStorage())
+            {
+                bool hasImage = context.ProductImages.Where(pi => pi.Product.Id == id).Count() > 0;
+                ViewData["hasImage"] = hasImage;
+                if (hasImage)
+                {
+                    ViewData["imageId"] = context.ProductImages.Where(pi => pi.Product.Id == id).Select(pi => pi.Id).First();
+                }
+                Product product = context.Products.Select(p => p).Where(p => p.Id == id).First();
+                return View(product);
+            }
         }
 
     }

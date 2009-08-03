@@ -53,7 +53,7 @@ namespace Zamov.Controllers
         public void ShowImage(string imageType, byte[] image)
         {
             Response.ContentType = imageType;
-            Response.BinaryWrite(image); 
+            Response.BinaryWrite(image);
         }
 
         public void ProductImage(int id)
@@ -64,6 +64,48 @@ namespace Zamov.Controllers
                 Response.ContentType = image.ImageType;
                 Response.BinaryWrite(image.Image);
             }
+        }
+
+        public void ProductImageScaled(int id, int maxDimension)
+        {
+            Bitmap image = null;
+            using (ZamovStorage context = new ZamovStorage())
+            {
+                ProductImage productImage = context.ProductImages.Select(pi => pi).Where(pi => pi.Id == id).First();
+                MemoryStream stream = new MemoryStream(productImage.Image);
+                image = new Bitmap(stream);
+                stream.Close();
+                stream.Dispose();
+            }
+
+            int width;
+            int height;
+            if (image.Width > image.Height)
+            {
+                width = maxDimension;
+                height = (maxDimension * image.Height) / image.Width;
+
+            }
+            else if (image.Height > image.Width)
+            {
+                height = maxDimension;
+                width = (maxDimension * image.Width) / image.Height;
+            }
+            else
+                width = height = maxDimension;
+
+
+            Bitmap thumbnailImage = new Bitmap(width, height);
+            Graphics graphics = Graphics.FromImage(thumbnailImage);
+            graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+            graphics.DrawImage(image, 0, 0, thumbnailImage.Width, thumbnailImage.Height);
+            MemoryStream imageStream = new MemoryStream();
+            thumbnailImage.Save(imageStream, System.Drawing.Imaging.ImageFormat.Jpeg);
+            byte[] imageContent = new Byte[imageStream.Length];
+            imageStream.Position = 0;
+            imageStream.Read(imageContent, 0, (int)imageStream.Length);
+            Response.ContentType = "image/jpeg";
+            Response.BinaryWrite(imageContent);
         }
 
         public void CategoryImage(int id)
@@ -83,7 +125,7 @@ namespace Zamov.Controllers
                 CategoryImage image = context.CategoryImages.Select(ci => ci).Where(ci => ci.Category.Id == id).First();
                 Response.ContentType = image.ImageType;
                 Response.BinaryWrite(image.Image);
-            }        
+            }
         }
 
     }

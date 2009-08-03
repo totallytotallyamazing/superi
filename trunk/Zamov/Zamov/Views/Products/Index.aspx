@@ -58,4 +58,5 @@ foreach (var item in Model)
 </asp:Content>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="leftMenu" runat="server">
+    <% Html.RenderPartial("ProductGroups"); %>
 </asp:Content>

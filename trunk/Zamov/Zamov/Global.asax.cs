@@ -17,6 +17,12 @@ namespace Zamov
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+            "ProductImageScaled",                                              // Route name
+                "Image/ProductImageScaled/{id}/{maxDimension}",                           // URL with parameters
+                new { controller = "Image", action = "ProductImageScaled", id = "", maxDimension = "100" }  // Parameter defaults
+            );
+
+            routes.MapRoute(
             "ProductDescription",                                              // Route name
                 "Products/Description/{id}",                           // URL with parameters
                 new { controller = "Products", action = "Description", id = ""}  // Parameter defaults

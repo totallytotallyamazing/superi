@@ -8,26 +8,20 @@
 
     <h2>Orders</h2>
 
-    <table>
+    <table class="commonTable">
         <tr>
             <th></th>
             <th>
-                Id
+                № заказа
             </th>
             <th>
-                Date
+                Дата и время доставки
             </th>
             <th>
-                UserId
+                Информация о клиенте, заказе и доставке
             </th>
             <th>
-                DeliveryDate
-            </th>
-            <th>
-                Status
-            </th>
-            <th>
-                Address
+                Статус
             </th>
         </tr>
 
@@ -35,37 +29,22 @@
     
         <tr>
             <td>
-                <%= Html.ActionLink("Edit", "Edit", new { id=item.Id }) %> |
-                <%= Html.ActionLink("Details", "Details", new { id=item.Id })%>
-            </td>
-            <td>
                 <%= Html.Encode(item.Id) %>
-            </td>
-            <td>
-                <%= Html.Encode(String.Format("{0:g}", item.Date)) %>
-            </td>
-            <td>
-                <%= Html.Encode(item.UserId) %>
             </td>
             <td>
                 <%= Html.Encode(String.Format("{0:g}", item.DeliveryDate)) %>
             </td>
             <td>
-                <%= Html.Encode(item.Status) %>
+                <%= Html.Encode(item.Address) %>
             </td>
             <td>
-                <%= Html.Encode(item.Address) %>
+                <%= Html.Encode(item.Status) %>
             </td>
         </tr>
     
     <% } %>
 
     </table>
-
-    <p>
-        <%= Html.ActionLink("Create New", "Create") %>
-    </p>
-
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="includes" runat="server">

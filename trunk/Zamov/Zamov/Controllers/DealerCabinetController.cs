@@ -568,9 +568,12 @@ namespace Zamov.Controllers
         {
             using (OrderStorage context = new OrderStorage())
             {
+
+                int? did = SystemSettings.CurrentDealer;
+
                 List<Order> orders = (
                                          from order in
-                                             context.Orders.Include("Dealers").Include("Cart").Include("OrderItems")
+                                             context.Orders.Include("Dealers")
                                          where order.Dealers.Id == SystemSettings.CurrentDealer
                                          select order).ToList();
                 return View(orders);

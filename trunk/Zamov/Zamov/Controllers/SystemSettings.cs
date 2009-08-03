@@ -52,22 +52,15 @@ namespace Zamov.Controllers
             set { Session["CurrentDealer"] = value; }
         }
         
-        public static Guid CurrentUserId
+        public static Guid? CurrentUserId
         {
             get
             {
-                Guid result;
-                if (Session["CurrentUser"] != null)
-                    result = (Guid)Session["CurrentUser"];
-                else
-                {
-                    MembershipUser user = Membership.GetUser();
-                    result = (Guid)user.ProviderUserKey;
-                    Session["CurrentUser"] = result;
-                }
-                return result;
+                MembershipUser user = Membership.GetUser();
+                if (user != null)
+                    return (Guid) user.ProviderUserKey;
+                return null;
             }
-            set { Session["CurrentUser"] = value; }
         }
         
         public static int CityId

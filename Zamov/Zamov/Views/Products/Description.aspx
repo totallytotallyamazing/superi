@@ -1,14 +1,21 @@
-<%@ Page Language="C#" Inherits="System.Web.Mvc.ViewPage" %>
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml" >
-<head runat="server">
-    <title>Description</title>
-</head>
-<body>
-    <div>
-    
-    </div>
-</body>
-</html>
+<%@ Page Language="C#" Inherits="System.Web.Mvc.ViewPage<Product>" %>
+<%@ Import Namespace="Microsoft.Web.Mvc" %>
+<%@ Import Namespace="Zamov.Models" %>
+<%@ Import Namespace="Zamov.Controllers" %>
+<%
+    bool hasImage = Convert.ToBoolean(ViewData["hasImage"]);
+%>
+<div class="productDescription">
+    <%
+        if (hasImage)
+        {
+            int imageId = Convert.ToInt32(ViewData["imageId"]);
+            %>
+            <div class="productDescriptionImage">
+                <%= Html.Image("~/Image/ProductImageScaled/" + imageId + "/300")%>
+            </div>
+            <%
+        }
+    %>
+    <%= Model.GetDescription(SystemSettings.CurrentLanguage) %>
+</div>

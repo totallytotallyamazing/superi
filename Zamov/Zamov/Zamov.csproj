@@ -225,6 +225,7 @@
     <Content Include="Views\Admin\Admin.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\DropShadow.css" />
     <Content Include="Content\fancy\fancy_closebox.png" />
     <Content Include="Content\fancy\fancy_left.png" />
     <Content Include="Content\fancy\fancy_progress.png" />
@@ -241,7 +242,11 @@
     <Content Include="Content\fancy\fancy_title_main.png" />
     <Content Include="Content\fancy\fancy_title_right.png" />
     <Content Include="Content\fancy\jquery.fancybox.css" />
+    <Content Include="Content\shadow\corner_bl.gif" />
+    <Content Include="Content\shadow\corner_tr.gif" />
     <Content Include="Content\img\productImage.JPG" />
+    <Content Include="Content\shadow\shadow.gif" />
+    <Content Include="Content\shadow\shadow180.gif" />
     <Content Include="Content\redmond\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\redmond\images\ui-bg_flat_55_fbec88_40x100.png" />
     <Content Include="Content\redmond\images\ui-bg_glass_75_d0e5f5_1x400.png" />
@@ -265,6 +270,9 @@
     <Content Include="Scripts\jquery.ui.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Services\Tools.asmx" />
+    <Content Include="SetCookie.aspx" />
+    <Content Include="Soon.htm" />
+    <Content Include="stub.jpg" />
     <Content Include="Views\Admin\AddUpdateDealer.aspx" />
     <Content Include="Views\Admin\UpdateCategoryImage.aspx" />
     <Content Include="Views\Categories\Index.aspx" />
@@ -281,6 +289,7 @@
     <Content Include="Views\Dealers\Index.aspx" />
     <Content Include="Views\Products\Description.aspx" />
     <Content Include="Views\Products\Index.aspx" />
+    <Content Include="Views\Products\ProductGroups.ascx" />
     <Content Include="Views\UserCabinet\Index.aspx" />
     <Content Include="Views\UserCabinet\ShowCart.aspx" />
   </ItemGroup>

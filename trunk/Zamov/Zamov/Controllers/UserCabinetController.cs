@@ -9,7 +9,7 @@ using System.Web.Security;
 
 namespace Zamov.Controllers
 {
-    [Authorize(Roles = "Administrators, Dealers, Customers")]
+    [Authorize(Roles = "Administrators, Customers")]
     public class UserCabinetController : Controller
     {
         public ActionResult Index()

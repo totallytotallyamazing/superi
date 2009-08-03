@@ -273,6 +273,7 @@
     <Content Include="Views\DealerCabinet\DealerCityMappings.aspx" />
     <Content Include="Views\DealerCabinet\ImportedProduct.ascx" />
     <Content Include="Views\DealerCabinet\ImportedProducts.aspx" />
+    <Content Include="Views\DealerCabinet\Orders.aspx" />
     <Content Include="Views\DealerCabinet\Products.aspx" />
     <Content Include="Views\DealerCabinet\SelectDealer.ascx" />
     <Content Include="Views\DealerCabinet\UpdateProductDescription.aspx" />

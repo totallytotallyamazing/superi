@@ -45,6 +45,7 @@ namespace Zamov.Controllers
         {
             get
             {
+                return 1;
                 int? result = null;
                 if (Session["CurrentDealer"] != null)
                     result = Convert.ToInt32(Session["CurrentDealer"]);

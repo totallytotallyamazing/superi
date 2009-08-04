@@ -579,5 +579,15 @@ namespace Zamov.Controllers
                 return View(orders);
             }
         }
+
+        [Authorize(Roles = "Administrators, Dealers")]
+        public ActionResult ShowOrder(int id)
+        {
+            using (OrderStorage context = new OrderStorage())
+            {
+                List<Order> orders = (from order in context.Orders.Include("OrderItems") where order.Id == id select order).ToList();
+                return View(orders);
+            }
+        }
     }
 }

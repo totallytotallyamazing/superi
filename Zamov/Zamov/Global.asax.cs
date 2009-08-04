@@ -23,9 +23,15 @@ namespace Zamov
             );
 
             routes.MapRoute(
+             "AddToCart",                                              // Route name
+                 "Products/AddToCart",                           // URL with parameters
+                 new { controller = "Products", action = "AddToCart" }  // Parameter defaults
+             );
+
+            routes.MapRoute(
             "ProductDescription",                                              // Route name
                 "Products/Description/{id}",                           // URL with parameters
-                new { controller = "Products", action = "Description", id = ""}  // Parameter defaults
+                new { controller = "Products", action = "Description", id = "" }  // Parameter defaults
             );
 
             routes.MapRoute(

@@ -13,15 +13,16 @@
 
         function submitForm() {
             collectChanges(items, "items");
-            $("form").submit();
+            $get("addToCart").submit();
         }
         
     </script>
     <%if(Model.Count>0){ %>
         <input type="button" value="<%= Html.ResourceString("AddToCart") %>" onclick="submitForm()" />
-        <%using (Html.BeginForm("AddToCart", "Products", FormMethod.Post)){ %>
-            <%= Html.Hidden("dealerId", ViewData["dealerId"]) %>
-            <%= Html.Hidden("items") %>
+        <%using (Html.BeginForm("AddToCart", "Products", FormMethod.Post, new { id="addToCart" }))
+          { %>
+            <%= Html.Hidden("dealerId", ViewData["dealerId"])%>
+            <%= Html.Hidden("items")%>
         <%} %>
     <table class="commonTable">
         <tr>

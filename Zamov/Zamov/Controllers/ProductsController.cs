@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 using Zamov.Models;
+using System.Web.Script.Serialization;
 
 namespace Zamov.Controllers
 {
@@ -33,9 +34,12 @@ namespace Zamov.Controllers
             }
         }
 
+        [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult AddToCart(int dealerId, string items)
         {
-
+            JavaScriptSerializer serializer = new JavaScriptSerializer();
+            Dictionary<string, Dictionary<string, string>> orderItems = 
+                serializer.Deserialize<Dictionary<string, Dictionary<string, string>>>(items);
             return RedirectToAction("Index");
         }
 

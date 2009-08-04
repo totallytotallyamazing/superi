@@ -330,4 +330,7 @@
   <data name="ToOrder" xml:space="preserve">
     <value>Заказать</value>
   </data>
+  <data name="AddToCart" xml:space="preserve">
+    <value>Добавить в корзину</value>
+  </data>
 </root>

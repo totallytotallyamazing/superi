@@ -21,9 +21,34 @@ namespace Zamov.Controllers
                 ViewData["groups"] = groups;
                 ViewData["dealerId"] = dealerId;
                 ViewData["groupId"] = groupId;
-                List<Product> products = (from product in context.Products where (groupId == null) || product.Group.Id == groupId select product).ToList();
+                List<Product> products = new List<Product>();
+                if (groupId != null)
+                {
+                    Group currentGroup = groups.Where(g => g.Id == groupId.Value).Select(g => g).SingleOrDefault();
+                    CollectProducts(products, currentGroup);
+                }
+                else
+                    products = (from product in context.Products where ((groupId == null) || product.Group.Id == groupId) && product.Dealer.Id == dealerId select product).ToList();
                 return View(products);
             }
+        }
+
+        public ActionResult AddToCart(int dealerId, string items)
+        {
+
+            return RedirectToAction("Index");
+        }
+
+        private void CollectProducts(List<Product> products, Group currentGroup)
+        {
+            if(!currentGroup.Products.IsLoaded)
+                currentGroup.Products.Load(); 
+            products.AddRange(currentGroup.Products);
+            if (!currentGroup.Groups.IsLoaded)
+                currentGroup.Groups.Load();
+            if (currentGroup.Groups.Count > 0)
+                foreach (var g in currentGroup.Groups)
+                    CollectProducts(products, g);
         }
 
         public ActionResult Description(int id)

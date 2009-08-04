@@ -1,4 +1,4 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<Zamov.Models.Product>>" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<List<Zamov.Models.Product>>" %>
 <%@ Import Namespace="Zamov.Helpers" %>
 <%@ Import Namespace="Microsoft.Web.Mvc" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
@@ -6,10 +6,23 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <script type="text/javascript">
+        var items = new Array();
         $(function() {
             $(".productDescription").fancybox({frameWidth: 700, frameHeight: 500});
         })
+
+        function submitForm() {
+            collectChanges(items, "items");
+            $("form").submit();
+        }
+        
     </script>
+    <%if(Model.Count>0){ %>
+        <input type="button" value="<%= Html.ResourceString("AddToCart") %>" onclick="submitForm()" />
+        <%using (Html.BeginForm("AddToCart", "Products", FormMethod.Post)){ %>
+            <%= Html.Hidden("dealerId", ViewData["dealerId"]) %>
+            <%= Html.Hidden("items") %>
+        <%} %>
     <table class="commonTable">
         <tr>
             <th><%= Html.ResourceString("Name") %></th>
@@ -39,16 +52,18 @@ foreach (var item in Model)
                 <%= item.Price.ToString("#.00#") %>
             </td>
             <td align="center">
-                <%= Html.TextBox("quantity", null, new { style="width:20px;"})%>
+                <%= Html.TextBox("quantity_" + item.Id, null, new { style="width:20px;", onblur = "tableChanged(items, this)"})%>
             </td>
             <td align="center">
-                <%= Html.CheckBox("order") %>
+                <%= Html.CheckBox("order_" + item.Id, false, new { onblur = "tableChanged(items, this)" })%>
             </td>
         </tr>
     <%   
     }     
 %>
     </table>
+    <input type="button" value="<%= Html.ResourceString("AddToCart") %>" onclick="submitForm()" />
+    <%} %>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="includes" runat="server">

@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Configuration;
 using System.Web.SessionState;
 using System.Web.Security;
+using Zamov.Models;
 
 namespace Zamov.Controllers
 {
@@ -85,6 +86,16 @@ namespace Zamov.Controllers
                 return result;
             }
             set { Session["CategoryId"] = value; }
+        }
+
+        public static Cart Cart
+        {
+            get 
+            {
+                if (Session["Cart"] == null)
+                    Session["Cart"] = new Cart();
+                return (Cart)Session["Cart"];
+            }
         }
     }
 }

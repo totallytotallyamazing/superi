@@ -185,7 +185,7 @@ namespace Pandemiia.Controllers
             entity.Content = Server.HtmlDecode(frm["Content"]);
             entity.Description = Server.HtmlDecode(frm["Description"]);
             entity.Title = frm["Title"];
-            CultureInfo info = CultureInfo.GetCultureInfo("en-US");
+            CultureInfo info = CultureInfo.GetCultureInfo("ru-RU");
             entity.Date = DateTime.Parse(frm["Date"], info);
             entity.SourceID = int.Parse(frm["SourceID"]);
             entity.TypeID = int.Parse(frm["TypeID"]);

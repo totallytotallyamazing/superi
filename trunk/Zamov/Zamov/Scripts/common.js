@@ -15,7 +15,7 @@ function tableChanged(dictionary, field) {
     if (dictionary[id] == null) {
         dictionary[id] = {};
     }
-    if (typeof (field.type) == "checkbox") {
+    if (field.type == "checkbox") {
         dictionary[id][fieldName] = field.checked;
     }
     else {

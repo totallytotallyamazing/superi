@@ -8,6 +8,7 @@
     <h2>Посты</h2>
     <%
         Html.RenderPartial("DateFilter", ViewData);     
+        
     %>
     <br />
     
@@ -46,13 +47,13 @@
                     switch(item.EntityType.Name)
                     {
                         case "Видео":
-                            Response.Write(Html.PopUpWindowAction("Видео", "Videos", "", item.ID, 400, 500));
+                            Response.Write(Html.PopUpWindowAction("Видео", "Videos", "Manage", item.ID, 400, 500));
                             break;
                         case "Музыка":
-                            Response.Write(Html.PopUpWindowAction("Музыка", "Music", "", item.ID, 600, 500));
+                            Response.Write(Html.PopUpWindowAction("Музыка", "Music", "Manage", item.ID, 600, 500));
                             break;
                         case "Изображения":
-                            Response.Write(Html.PopUpWindowAction("Изображения", "Images", "", item.ID, 600, 500));
+                            Response.Write(Html.PopUpWindowAction("Изображения", "Images", "Manage", item.ID, 600, 500));
                             break;
                     }
            

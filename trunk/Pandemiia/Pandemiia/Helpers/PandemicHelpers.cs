@@ -35,7 +35,9 @@ namespace Pandemiia.Helpers
         public static string PopUpWindowAction(this HtmlHelper htmlHelper, string linkText, string actionName, string controller, object parameter, int width, int height)
         {
             StringBuilder resultingHtml = new StringBuilder();
-            string actionUrl = actionName + ((parameter != null) ? "/" + parameter.ToString() : "");
+            UrlHelper helper = new UrlHelper(htmlHelper.ViewContext.RequestContext);
+
+            string actionUrl = helper.Action(actionName, controller, new { id = parameter});//actionName + ((parameter != null) ? "/" + parameter.ToString() : "");
             string openWindowScript = openPopupWindowScript.Replace("iURL", actionUrl)
                 .Replace("iWIDTH", width.ToString())
                 .Replace("iHEIGHT", height.ToString());

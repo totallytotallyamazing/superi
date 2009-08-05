@@ -375,4 +375,7 @@
   <data name="String1" xml:space="preserve">
     <value>Единица измерения</value>
   </data>
+  <data name="PickAnotherDealer" xml:space="preserve">
+    <value>Выбрать другого поставщика</value>
+  </data>
 </root>

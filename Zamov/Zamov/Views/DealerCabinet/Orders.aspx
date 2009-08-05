@@ -24,13 +24,13 @@
     <table class="commonTable">
         <tr>
             <th>
-                № заказа
+                № <%=Html.ResourceString("OfOrder")%>
             </th>
             <th>
-                Дата и время доставки
+                <%=Html.ResourceString("OrderDeliveryDateTime")%>
             </th>
             <th>
-                Информация о клиенте, заказе и доставке
+                <%=Html.ResourceString("OrderInfo")%>
             </th>
             <th>
                 Статус

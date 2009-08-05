@@ -529,11 +529,38 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Замовлення.
+        /// </summary>
+        internal static string OfOrder {
+            get {
+                return ResourceManager.GetString("OfOrder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ввiмкнути.
         /// </summary>
         internal static string On {
             get {
                 return ResourceManager.GetString("On", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Дата та час доставки.
+        /// </summary>
+        internal static string OrderDeliveryDateTime {
+            get {
+                return ResourceManager.GetString("OrderDeliveryDateTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Інформація про клієнта, замовлення та доставку.
+        /// </summary>
+        internal static string OrderInfo {
+            get {
+                return ResourceManager.GetString("OrderInfo", resourceCulture);
             }
         }
         

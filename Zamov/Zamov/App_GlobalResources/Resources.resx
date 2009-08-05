@@ -342,4 +342,13 @@
   <data name="Close" xml:space="preserve">
     <value>Закрити</value>
   </data>
+  <data name="OfOrder" xml:space="preserve">
+    <value>Замовлення</value>
+  </data>
+  <data name="OrderDeliveryDateTime" xml:space="preserve">
+    <value>Дата та час доставки</value>
+  </data>
+  <data name="OrderInfo" xml:space="preserve">
+    <value>Інформація про клієнта, замовлення та доставку</value>
+  </data>
 </root>

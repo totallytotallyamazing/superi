@@ -3,7 +3,9 @@
 <%@ Import Namespace="Zamov.Models" %>
 <%@ Import Namespace="Zamov.Helpers"%>
 <table border="0">
-    <% foreach (Order order in Model) { %>
+    <% foreach (Order order in Model) {
+           
+            %>
     <tr>
         <td>
         <%= Html.Image("~/Image/ShowLogo/" + order.Dealer.Id, new { style="border:1px solid #ccc;" })%>  
@@ -21,7 +23,6 @@
         decimal allsum = 0;   
         foreach (OrderItem orderItem in order.OrderItems)
         {
-            
             decimal sum = orderItem.Quantity * orderItem.Price;
             allsum += sum;
         %>

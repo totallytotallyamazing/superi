@@ -18,7 +18,7 @@ namespace Zamov.Controllers
             {
                 List<Order> orders = (
                                          from order in
-                                             context.Orders.Include("Dealers").Include("Cart").Include("OrderItems")
+                                             context.Orders.Include("Dealer").Include("Cart").Include("OrderItems")
                                          where order.UserId == SystemSettings.CurrentUserId
                                          select order).ToList();
                 return View(orders);
@@ -29,7 +29,7 @@ namespace Zamov.Controllers
         {
             using (OrderStorage context = new OrderStorage())
             {
-                List<Order> orders = (from order in context.Orders.Include("OrderItems").Include("Dealers") where order.Cart.Id == id select order).ToList();
+                List<Order> orders = (from order in context.Orders.Include("OrderItems").Include("Dealer") where order.Cart.Id == id select order).ToList();
                 return View(orders);
             }
         }

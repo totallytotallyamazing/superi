@@ -30,7 +30,7 @@
         <tr>
             <td rowspan="<%=Html.Encode(c)%>"><%=Html.Encode(order.Cart.Id)%></td>
             <td rowspan="<%=Html.Encode(c)%>"><%=Html.Encode(order.Cart.Name)%></td>
-            <td><%=Html.Encode(order.Dealers.Name)%></td>
+            <td><%=Html.Encode(order.Dealer.Name)%></td>
             <td rowspan="<%=Html.Encode(c)%>"><%=Html.Encode(String.Format("{0:dd.MM.yyyy HH:mm}", order.Cart.Date))%></td>
             <td><%=Html.Encode(order.OrderItems.Sum(oi => oi.Price))%></td>
             <td rowspan="<%=Html.Encode(c)%>"><%=Html.ActionLink("просмотр", "ShowCart", new {id = order.Cart.Id})%></td>
@@ -43,7 +43,7 @@
         {
             %>
             <tr>
-                <td><%=Html.Encode(order.Dealers.Name)%></td>
+                <td><%=Html.Encode(order.Dealer.Name)%></td>
                 <td><%=Html.Encode(order.OrderItems.Sum(oi => oi.Price))%></td>
                 <td><%=Html.Encode(order.Status)%></td>
             </tr>

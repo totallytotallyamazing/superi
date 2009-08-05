@@ -9,7 +9,7 @@
     <% foreach (Order order in Model) { %>
     <tr>
         <td>
-        <%=Html.Encode(order.Dealers.Name)%>
+        <%=Html.Encode(order.Dealer.Name)%>
         <table class="commonTable">
         <tr>
             <th>Наименование</th>

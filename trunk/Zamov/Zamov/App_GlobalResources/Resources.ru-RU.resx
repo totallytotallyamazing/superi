@@ -345,4 +345,13 @@
   <data name="Close" xml:space="preserve">
     <value>Закрыть</value>
   </data>
+  <data name="OfOrder" xml:space="preserve">
+    <value>Заказа</value>
+  </data>
+  <data name="OrderDeliveryDateTime" xml:space="preserve">
+    <value>Дата и время доставки</value>
+  </data>
+  <data name="OrderInfo" xml:space="preserve">
+    <value>Информация о клиенте, заказе и доставке</value>
+  </data>
 </root>

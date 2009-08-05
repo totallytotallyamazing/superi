@@ -1,4 +1,4 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<Zamov.Models.Order>>" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Views/DealerCabinet/Cabinet.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<Zamov.Models.Order>>" %>
 <%@ Import Namespace="Zamov.Models"%>
 <%@ Import Namespace="Zamov.Helpers"%>
 
@@ -68,7 +68,3 @@
     <%= Html.RegisterJS("jquery.fancybox.js")%>
     <%= Html.RegisterCss("~/Content/fancy/jquery.fancybox.css")%>
 </asp:Content>
-
-<asp:Content ID="Content4" ContentPlaceHolderID="leftMenu" runat="server">
-</asp:Content>
-

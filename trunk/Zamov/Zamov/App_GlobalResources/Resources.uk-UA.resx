@@ -369,4 +369,10 @@
   <data name="Date" xml:space="preserve">
     <value>Дата</value>
   </data>
+  <data name="Cost" xml:space="preserve">
+    <value>Вартість</value>
+  </data>
+  <data name="Unit" xml:space="preserve">
+    <value>Одиниця вимірювання</value>
+  </data>
 </root>

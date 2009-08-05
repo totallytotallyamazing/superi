@@ -1,5 +1,6 @@
 <%@ Page Language="C#" Inherits="System.Web.Mvc.ViewPage<IEnumerable<Zamov.Models.Order>>" %>
 <%@ Import Namespace="Zamov.Models" %>
+<%@ Import Namespace="Zamov.Helpers"%>
 <table border="0">
     <% foreach (Order order in Model) { %>
     <tr>
@@ -7,12 +8,12 @@
         <%=Html.Encode(order.Dealer.Name)%>
         <table class="commonTable">
         <tr>
-            <th>Наименование</th>
+            <th><%=Html.ResourceString("Title")%></th>
             <th>Фото</th>
-            <th>Единица измерения</th>
-            <th>Цена грн.</th>
-            <th>Кол-во</th>
-            <th>Стоимость грн.</th>
+            <th><%=Html.ResourceString("Unit")%></th>
+            <th><%=Html.ResourceString("Price")%></th>
+            <th><%=Html.ResourceString("Quantity")%></th>
+            <th><%=Html.ResourceString("Cost")%> грн.</th>
         </tr>
         <%
         

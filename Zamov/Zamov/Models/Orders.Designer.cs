@@ -14,36 +14,36 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("OrderEntities", "FK_Orders_Dealers", "Dealers", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Zamov.Models.Dealers), "Order", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Zamov.Models.Order))]
 
 // Original file name:
-// Generation date: 05.08.2009 11:28:03
+// Generation date: 05/08/2009 15:46:45
 namespace Zamov.Models
 {
     
     /// <summary>
-    /// There are no comments for OrdersCS in the schema.
+    /// There are no comments for OrderStorage in the schema.
     /// </summary>
     public partial class OrderStorage : global::System.Data.Objects.ObjectContext
     {
         /// <summary>
-        /// Initializes a new OrdersCS object using the connection string found in the 'OrdersCS' section of the application configuration file.
+        /// Initializes a new OrderStorage object using the connection string found in the 'OrderStorage' section of the application configuration file.
         /// </summary>
         public OrderStorage() : 
-                base("name=OrdersCS", "OrdersCS")
+                base("name=OrderStorage", "OrderStorage")
         {
             this.OnContextCreated();
         }
         /// <summary>
-        /// Initialize a new OrdersCS object.
+        /// Initialize a new OrderStorage object.
         /// </summary>
         public OrderStorage(string connectionString) : 
-                base(connectionString, "OrdersCS")
+                base(connectionString, "OrderStorage")
         {
             this.OnContextCreated();
         }
         /// <summary>
-        /// Initialize a new OrdersCS object.
+        /// Initialize a new OrderStorage object.
         /// </summary>
         public OrderStorage(global::System.Data.EntityClient.EntityConnection connection) : 
-                base(connection, "OrdersCS")
+                base(connection, "OrderStorage")
         {
             this.OnContextCreated();
         }
@@ -444,13 +444,13 @@ namespace Zamov.Models
         partial void OnQuantityChanging(int value);
         partial void OnQuantityChanged();
         /// <summary>
-        /// There are no comments for Orders in the schema.
+        /// There are no comments for Order in the schema.
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("OrderEntities", "FK_OrderItems_Orders", "Orders")]
         [global::System.Xml.Serialization.XmlIgnoreAttribute()]
         [global::System.Xml.Serialization.SoapIgnoreAttribute()]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public Order Orders
+        public Order Order
         {
             get
             {
@@ -462,11 +462,11 @@ namespace Zamov.Models
             }
         }
         /// <summary>
-        /// There are no comments for Orders in the schema.
+        /// There are no comments for Order in the schema.
         /// </summary>
         [global::System.ComponentModel.BrowsableAttribute(false)]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Data.Objects.DataClasses.EntityReference<Order> OrdersReference
+        public global::System.Data.Objects.DataClasses.EntityReference<Order> OrderReference
         {
             get
             {
@@ -782,13 +782,13 @@ namespace Zamov.Models
             }
         }
         /// <summary>
-        /// There are no comments for Dealers in the schema.
+        /// There are no comments for Dealer in the schema.
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("OrderEntities", "FK_Orders_Dealers", "Dealers")]
         [global::System.Xml.Serialization.XmlIgnoreAttribute()]
         [global::System.Xml.Serialization.SoapIgnoreAttribute()]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public Dealers Dealers
+        public Dealers Dealer
         {
             get
             {
@@ -800,11 +800,11 @@ namespace Zamov.Models
             }
         }
         /// <summary>
-        /// There are no comments for Dealers in the schema.
+        /// There are no comments for Dealer in the schema.
         /// </summary>
         [global::System.ComponentModel.BrowsableAttribute(false)]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Data.Objects.DataClasses.EntityReference<Dealers> DealersReference
+        public global::System.Data.Objects.DataClasses.EntityReference<Dealers> DealerReference
         {
             get
             {

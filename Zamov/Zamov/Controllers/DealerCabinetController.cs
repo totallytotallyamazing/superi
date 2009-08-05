@@ -568,9 +568,6 @@ namespace Zamov.Controllers
         {
             using (OrderStorage context = new OrderStorage())
             {
-
-                int? did = SystemSettings.CurrentDealer;
-
                 List<Order> orders = (
                                          from order in
                                              context.Orders.Include("Dealers")
@@ -585,8 +582,11 @@ namespace Zamov.Controllers
         {
             using (OrderStorage context = new OrderStorage())
             {
-                List<Order> orders = (from order in context.Orders.Include("OrderItems") where order.Id == id select order).ToList();
-                return View(orders);
+                Order order = (from o in context.Orders.Include("OrderItems") where o.Id == id select o).First();
+                return View(order);
+
+                /*List<Order> orders = (from order in context.Orders.Include("OrderItems") where order.Id == id select order).ToList();
+                return View(orders);*/
             }
         }
     }

@@ -570,7 +570,7 @@ namespace Zamov.Controllers
             {
                 List<Order> orders = (
                                          from order in
-                                             context.Orders.Include("Dealers")
+                                             context.Orders.Include("Dealer")
                                          where order.Dealer.Id == SystemSettings.CurrentDealer
                                          select order).ToList();
                 return View(orders);

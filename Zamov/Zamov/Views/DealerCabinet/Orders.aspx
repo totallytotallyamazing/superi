@@ -15,7 +15,7 @@
             {
                 frameWidth: 700,
                 frameHeight: 500,
-                hideOnContentClick: false,
+                hideOnContentClick: false
             });
         })
     </script>

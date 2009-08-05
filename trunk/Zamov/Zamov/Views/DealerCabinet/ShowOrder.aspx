@@ -1,16 +1,9 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<Zamov.Models.Order>" %>
+<%@ Page Language="C#" Inherits="System.Web.Mvc.ViewPage<Zamov.Models.Order>" %>
 <%@ Import Namespace="Zamov.Models"%>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	ShowOrder
-</asp:Content>
-
-<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-
-    <h2>ShowOrder</h2>
+<div>
 Заказ № <%=Html.Encode(Model.Id) %>
-    <fieldset>
-        <legend>Fields</legend>
+   
         <p>
             Клиент:
             <%= Html.Encode(Model.ClientName)%>
@@ -30,7 +23,7 @@
             Адрес доставки:
             <%= Html.Encode(Model.Address) %>
         </p>
-    </fieldset>
+
     
     <table class="commonTable">
         <tr>
@@ -65,11 +58,4 @@
     <td><%=Html.Encode(allsum.ToString("N"))%></td>
 </tr>
 </table>
-</asp:Content>
-
-<asp:Content ID="Content3" ContentPlaceHolderID="includes" runat="server">
-</asp:Content>
-
-<asp:Content ID="Content4" ContentPlaceHolderID="leftMenu" runat="server">
-</asp:Content>
-
+</div>

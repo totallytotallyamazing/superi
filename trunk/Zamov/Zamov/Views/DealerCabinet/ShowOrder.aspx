@@ -63,11 +63,10 @@
 <br />
 <input type="submit" value="<%=Html.ResourceString("AcceptOrder") %>" />
 <%
-    using (Html.BeginForm("AcceptOrder","DealerCabinet",FormMethod.Post,new {id="acceptOrder"}))
-    {
-        %>
+    using (Html.BeginForm("AcceptOrder","DealerCabinet",FormMethod.Post))
+    {%>
+        
         <%=Html.Hidden("orderId",Model.Id) %>
-        <%
-    } 
-%>
+        
+  <%}%>
 </div>

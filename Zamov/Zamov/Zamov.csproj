@@ -322,6 +322,7 @@
     <Content Include="Views\Shared\Cart.ascx" />
     <Content Include="Views\Shared\CurrentDealer.ascx" />
     <Content Include="Views\UserCabinet\Index.aspx" />
+    <Content Include="Views\Shared\ShowCart.ascx" />
     <Content Include="Views\UserCabinet\ShowCart.aspx" />
   </ItemGroup>
   <ItemGroup>

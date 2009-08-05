@@ -14,7 +14,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("OrderEntities", "FK_Orders_Dealers", "Dealers", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Zamov.Models.Dealers), "Order", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Zamov.Models.Order))]
 
 // Original file name:
-// Generation date: 31.07.2009 15:31:50
+// Generation date: 05.08.2009 11:28:03
 namespace Zamov.Models
 {
     
@@ -499,13 +499,21 @@ namespace Zamov.Models
         /// <param name="date">Initial value of Date.</param>
         /// <param name="userId">Initial value of UserId.</param>
         /// <param name="status">Initial value of Status.</param>
-        public static Order CreateOrder(int id, global::System.DateTime date, global::System.Guid userId, int status)
+        /// <param name="address">Initial value of Address.</param>
+        /// <param name="phone">Initial value of Phone.</param>
+        /// <param name="clientName">Initial value of ClientName.</param>
+        /// <param name="paymentType">Initial value of PaymentType.</param>
+        public static Order CreateOrder(int id, global::System.DateTime date, global::System.Guid userId, int status, string address, string phone, string clientName, int paymentType)
         {
             Order order = new Order();
             order.Id = id;
             order.Date = date;
             order.UserId = userId;
             order.Status = status;
+            order.Address = address;
+            order.Phone = phone;
+            order.ClientName = clientName;
+            order.PaymentType = paymentType;
             return order;
         }
         /// <summary>
@@ -626,7 +634,7 @@ namespace Zamov.Models
         /// <summary>
         /// There are no comments for Property Address in the schema.
         /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
         public string Address
         {
@@ -638,7 +646,7 @@ namespace Zamov.Models
             {
                 this.OnAddressChanging(value);
                 this.ReportPropertyChanging("Address");
-                this._Address = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
+                this._Address = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
                 this.ReportPropertyChanged("Address");
                 this.OnAddressChanged();
             }
@@ -646,6 +654,75 @@ namespace Zamov.Models
         private string _Address;
         partial void OnAddressChanging(string value);
         partial void OnAddressChanged();
+        /// <summary>
+        /// There are no comments for Property Phone in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string Phone
+        {
+            get
+            {
+                return this._Phone;
+            }
+            set
+            {
+                this.OnPhoneChanging(value);
+                this.ReportPropertyChanging("Phone");
+                this._Phone = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
+                this.ReportPropertyChanged("Phone");
+                this.OnPhoneChanged();
+            }
+        }
+        private string _Phone;
+        partial void OnPhoneChanging(string value);
+        partial void OnPhoneChanged();
+        /// <summary>
+        /// There are no comments for Property ClientName in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string ClientName
+        {
+            get
+            {
+                return this._ClientName;
+            }
+            set
+            {
+                this.OnClientNameChanging(value);
+                this.ReportPropertyChanging("ClientName");
+                this._ClientName = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
+                this.ReportPropertyChanged("ClientName");
+                this.OnClientNameChanged();
+            }
+        }
+        private string _ClientName;
+        partial void OnClientNameChanging(string value);
+        partial void OnClientNameChanged();
+        /// <summary>
+        /// There are no comments for Property PaymentType in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public int PaymentType
+        {
+            get
+            {
+                return this._PaymentType;
+            }
+            set
+            {
+                this.OnPaymentTypeChanging(value);
+                this.ReportPropertyChanging("PaymentType");
+                this._PaymentType = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("PaymentType");
+                this.OnPaymentTypeChanged();
+            }
+        }
+        private int _PaymentType;
+        partial void OnPaymentTypeChanging(int value);
+        partial void OnPaymentTypeChanged();
         /// <summary>
         /// There are no comments for Cart in the schema.
         /// </summary>

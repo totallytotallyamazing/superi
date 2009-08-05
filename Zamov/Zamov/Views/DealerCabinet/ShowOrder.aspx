@@ -92,7 +92,7 @@
   else
   {
      %>
-     <input type="button" value="<%=Html.ResourceString("Close")%>" />
+     <input type="button" value="<%=Html.ResourceString("Close")%>" onclick="javascript:self.close();" />
      <% 
   } %>
 </div>

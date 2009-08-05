@@ -5,6 +5,18 @@
 	Index
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+<script type="text/javascript">
+        var items = new Array();
+        $(function() {
+            $(".cartDescription")
+            .fancybox(
+            {
+                frameWidth: 700,
+                //frameHeight: 500,
+                hideOnContentClick: false
+            });
+        })
+    </script>
 История Ваших покупок/сохраненные Вами корзины
     <table class="commonTable">
         <tr>
@@ -33,9 +45,9 @@
             <td><%=Html.Encode(order.Dealer.Name)%></td>
             <td rowspan="<%=Html.Encode(c)%>"><%=Html.Encode(String.Format("{0:dd.MM.yyyy HH:mm}", order.Cart.Date))%></td>
             <td><%=Html.Encode(order.OrderItems.Sum(oi => oi.Price))%></td>
-            <td rowspan="<%=Html.Encode(c)%>"><%=Html.ActionLink("просмотр", "ShowCart", new {id = order.Cart.Id})%></td>
-            <td><%=Html.Encode(order.Status)%></td>
-            <td  rowspan="<%=Html.Encode(c)%>"><%=Html.ActionLink("удалить", "DeleteCart", new {id = order.Cart.Id},new{onclick ="return confirm('" + Html.ResourceString("AreYouSure") + "?')"})%></td>
+            <td rowspan="<%=Html.Encode(c)%>"><%=Html.ActionLink(Html.ResourceString("View"), "ShowCart", new { id = order.Cart.Id }, new { @class = "cartDescription" })%></td>
+            <td><%=Html.Encode(Status.status[order.Status])%></td>
+            <td  rowspan="<%=Html.Encode(c)%>"><%=Html.ActionLink(Html.ResourceString("Delete"), "DeleteCart", new { id = order.Cart.Id }, new { onclick = "return confirm('" + Html.ResourceString("AreYouSure") + "?')" })%></td>
         </tr>
         <%
         }
@@ -45,7 +57,7 @@
             <tr>
                 <td><%=Html.Encode(order.Dealer.Name)%></td>
                 <td><%=Html.Encode(order.OrderItems.Sum(oi => oi.Price))%></td>
-                <td><%=Html.Encode(order.Status)%></td>
+                <td><%=Html.Encode(Status.status[order.Status])%></td>
             </tr>
             
             <%
@@ -56,8 +68,7 @@
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="includes" runat="server">
+    <%= Html.RegisterJS("jquery.easing.js")%>
+    <%= Html.RegisterJS("jquery.fancybox.js")%>
+    <%= Html.RegisterCss("~/Content/fancy/jquery.fancybox.css")%>
 </asp:Content>
-
-<asp:Content ID="Content4" ContentPlaceHolderID="leftMenu" runat="server">
-</asp:Content>
-

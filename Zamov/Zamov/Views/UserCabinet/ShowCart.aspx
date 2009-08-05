@@ -1,11 +1,6 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<Zamov.Models.Order>>" %>
+<%@ Page Language="C#" Inherits="System.Web.Mvc.ViewPage<IEnumerable<Zamov.Models.Order>>" %>
 <%@ Import Namespace="Zamov.Models" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	ShowCart
-</asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <h2>ShowCart</h2>
-    <table border="0">
+<table border="0">
     <% foreach (Order order in Model) { %>
     <tr>
         <td>
@@ -56,14 +51,3 @@
         </tr>            
     <% } %>
     </table>
-    <div>
-    <%=Html.ActionLink("Назад", "../UserCabinet")%>
-    </div>
-</asp:Content>
-
-<asp:Content ID="Content3" ContentPlaceHolderID="includes" runat="server">
-</asp:Content>
-
-<asp:Content ID="Content4" ContentPlaceHolderID="leftMenu" runat="server">
-</asp:Content>
-

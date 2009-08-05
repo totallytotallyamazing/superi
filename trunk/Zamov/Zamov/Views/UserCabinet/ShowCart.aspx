@@ -1,11 +1,12 @@
 <%@ Page Language="C#" Inherits="System.Web.Mvc.ViewPage<IEnumerable<Zamov.Models.Order>>" %>
+<%@ Import Namespace="Microsoft.Web.Mvc" %>
 <%@ Import Namespace="Zamov.Models" %>
 <%@ Import Namespace="Zamov.Helpers"%>
 <table border="0">
     <% foreach (Order order in Model) { %>
     <tr>
         <td>
-        <%=Html.Encode(order.Dealer.Name)%>
+        <%= Html.Image("~/Image/ShowLogo/" + order.Dealer.Id, new { style="border:1px solid #ccc;" })%>  
         <table class="commonTable">
         <tr>
             <th><%=Html.ResourceString("Title")%></th>

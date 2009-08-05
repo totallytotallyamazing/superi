@@ -342,4 +342,7 @@
   <data name="CancelOrder" xml:space="preserve">
     <value>Скасувати замовлення</value>
   </data>
+  <data name="Close" xml:space="preserve">
+    <value>Закрити</value>
+  </data>
 </root>

@@ -241,6 +241,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Закрити.
+        /// </summary>
+        internal static string Close {
+            get {
+                return ResourceManager.GetString("Close", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Підтвердження паролю.
         /// </summary>
         internal static string ConfirmPassword {

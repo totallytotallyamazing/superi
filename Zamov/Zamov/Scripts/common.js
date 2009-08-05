@@ -12,14 +12,14 @@ function tableChanged(dictionary, field) {
 
     var fieldName = fieldSegments[0];
     var id = fieldSegments[1];
-    if (dictionary[id] == null) {
-        dictionary[id] = {};
+    if (dictionary[id.toString()] == null) {
+        dictionary[id.toString()] = {};
     }
     if (field.type == "checkbox") {
-        dictionary[id][fieldName] = field.checked;
+        dictionary[id.toString()][fieldName] = field.checked;
     }
     else {
-        dictionary[id][fieldName] = field.value;
+        dictionary[id.toString()][fieldName] = field.value;
     }
 }
 

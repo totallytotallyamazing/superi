@@ -15,7 +15,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("OrderEntities", "FK_OrderItems_Units", "Units", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Zamov.Models.Units), "OrderItem", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Zamov.Models.OrderItem))]
 
 // Original file name:
-// Generation date: 05.08.2009 21:52:46
+// Generation date: 05.08.2009 21:58:01
 namespace Zamov.Models
 {
     

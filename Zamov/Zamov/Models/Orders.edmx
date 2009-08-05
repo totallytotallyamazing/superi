@@ -10,8 +10,13 @@
           <EntitySet Name="Dealers" EntityType="OrderEntities.Store.Dealers" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="OrderItems" EntityType="OrderEntities.Store.OrderItems" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Orders" EntityType="OrderEntities.Store.Orders" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Units" EntityType="OrderEntities.Store.Units" store:Type="Tables" Schema="dbo" />
           <AssociationSet Name="FK_OrderItems_Orders" Association="OrderEntities.Store.FK_OrderItems_Orders">
             <End Role="Orders" EntitySet="Orders" />
+            <End Role="OrderItems" EntitySet="OrderItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderItems_Units" Association="OrderEntities.Store.FK_OrderItems_Units">
+            <End Role="Units" EntitySet="Units" />
             <End Role="OrderItems" EntitySet="OrderItems" />
           </AssociationSet>
           <AssociationSet Name="FK_Orders_Carts" Association="OrderEntities.Store.FK_Orders_Carts">
@@ -71,6 +76,13 @@
           <Property Name="ClientName" Type="nvarchar" Nullable="false" MaxLength="100" />
           <Property Name="PaymentType" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="Units">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
         <Association Name="FK_OrderItems_Orders">
           <End Role="Orders" Type="OrderEntities.Store.Orders" Multiplicity="1" />
           <End Role="OrderItems" Type="OrderEntities.Store.OrderItems" Multiplicity="*" />
@@ -80,6 +92,18 @@
             </Principal>
             <Dependent Role="OrderItems">
               <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderItems_Units">
+          <End Role="Units" Type="OrderEntities.Store.Units" Multiplicity="1" />
+          <End Role="OrderItems" Type="OrderEntities.Store.OrderItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Units">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrderItems">
+              <PropertyRef Name="UnitId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -126,7 +150,11 @@
           <EntitySet Name="Dealers" EntityType="OrderEntities.Dealers" />
           <AssociationSet Name="FK_Orders_Dealers" Association="OrderEntities.FK_Orders_Dealers">
             <End Role="Dealers" EntitySet="Dealers" />
-            <End Role="Order" EntitySet="Orders" /></AssociationSet></EntityContainer>
+            <End Role="Order" EntitySet="Orders" /></AssociationSet>
+          <EntitySet Name="Units" EntityType="OrderEntities.Units" />
+          <AssociationSet Name="FK_OrderItems_Units" Association="OrderEntities.FK_OrderItems_Units">
+            <End Role="Units" EntitySet="Units" />
+            <End Role="OrderItem" EntitySet="OrderItems" /></AssociationSet></EntityContainer>
         <EntityType Name="Cart">
           <Key>
             <PropertyRef Name="Id" />
@@ -147,7 +175,7 @@
           <Property Name="Price" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
           <NavigationProperty Name="Order" Relationship="OrderEntities.FK_OrderItems_Orders" FromRole="OrderItems" ToRole="Orders" />
           <Property Name="Quantity" Type="Int32" Nullable="false" />
-          <Property Name="UnitId" Type="Int32" Nullable="false" /></EntityType>
+          <NavigationProperty Name="Units" Relationship="OrderEntities.FK_OrderItems_Units" FromRole="OrderItem" ToRole="Units" /></EntityType>
         <EntityType Name="Order">
           <Key>
             <PropertyRef Name="Id" />
@@ -183,7 +211,16 @@
           <NavigationProperty Name="Orders" Relationship="OrderEntities.FK_Orders_Dealers" FromRole="Dealers" ToRole="Order" /></EntityType>
         <Association Name="FK_Orders_Dealers">
           <End Type="OrderEntities.Dealers" Role="Dealers" Multiplicity="1" />
-          <End Type="OrderEntities.Order" Role="Order" Multiplicity="*" /></Association></Schema>
+          <End Type="OrderEntities.Order" Role="Order" Multiplicity="*" /></Association>
+        <EntityType Name="Units">
+          <Key>
+            <PropertyRef Name="Id" /></Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <NavigationProperty Name="OrderItems" Relationship="OrderEntities.FK_OrderItems_Units" FromRole="Units" ToRole="OrderItem" /></EntityType>
+        <Association Name="FK_OrderItems_Units">
+          <End Type="OrderEntities.Units" Role="Units" Multiplicity="1" />
+          <End Type="OrderEntities.OrderItem" Role="OrderItem" Multiplicity="*" /></Association></Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -203,7 +240,6 @@
           <EntitySetMapping Name="OrderItems">
             <EntityTypeMapping TypeName="IsTypeOf(OrderEntities.OrderItem)">
               <MappingFragment StoreEntitySet="OrderItems">
-                <ScalarProperty Name="UnitId" ColumnName="UnitId" />
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="PartNumber" ColumnName="PartNumber" />
@@ -255,7 +291,17 @@
             <EndProperty Name="Order">
               <ScalarProperty Name="Id" ColumnName="Id" /></EndProperty>
             <EndProperty Name="Dealers">
-              <ScalarProperty Name="Id" ColumnName="DealerId" /></EndProperty></AssociationSetMapping></EntityContainerMapping>
+              <ScalarProperty Name="Id" ColumnName="DealerId" /></EndProperty></AssociationSetMapping>
+          <EntitySetMapping Name="Units">
+            <EntityTypeMapping TypeName="IsTypeOf(OrderEntities.Units)">
+              <MappingFragment StoreEntitySet="Units">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" /></MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <AssociationSetMapping Name="FK_OrderItems_Units" TypeName="OrderEntities.FK_OrderItems_Units" StoreEntitySet="OrderItems">
+            <EndProperty Name="OrderItem">
+              <ScalarProperty Name="Id" ColumnName="Id" /></EndProperty>
+            <EndProperty Name="Units">
+              <ScalarProperty Name="Id" ColumnName="UnitId" /></EndProperty></AssociationSetMapping></EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>
@@ -275,7 +321,7 @@
     <edmx:Diagrams>
       <Diagram Name="Orders">
         <EntityTypeShape EntityType="OrderEntities.Cart" Width="1.5" PointX="0.75" PointY="1.125" Height="1.9210009765625" IsExpanded="true" />
-        <EntityTypeShape EntityType="OrderEntities.OrderItem" Width="1.5" PointX="7.125" PointY="2.375" Height="1.9210009765625" IsExpanded="true" />
+        <EntityTypeShape EntityType="OrderEntities.OrderItem" Width="1.5" PointX="7.125" PointY="2.375" Height="2.0853483072916656" IsExpanded="true" />
         <EntityTypeShape EntityType="OrderEntities.Order" Width="1.5" PointX="4.5" PointY="0.875" Height="2.9070849609375" IsExpanded="true" />
         <AssociationConnector Association="OrderEntities.FK_Orders_Carts" ManuallyRouted="false">
           <ConnectorPoint PointX="2.25" PointY="2.08550048828125" />
@@ -288,6 +334,12 @@
         <AssociationConnector Association="OrderEntities.FK_Orders_Dealers" >
           <ConnectorPoint PointX="3.375" PointY="4.96050048828125" />
           <ConnectorPoint PointX="5.25" PointY="4.96050048828125" />
-          <ConnectorPoint PointX="5.25" PointY="3.7820849609375" /></AssociationConnector></Diagram></edmx:Diagrams>
+          <ConnectorPoint PointX="5.25" PointY="3.7820849609375" />
+          </AssociationConnector>
+        <EntityTypeShape EntityType="OrderEntities.Units" Width="1.5" PointX="5.25" PointY="6" Height="1.4279589843749996" />
+        <AssociationConnector Association="OrderEntities.FK_OrderItems_Units" >
+          <ConnectorPoint PointX="6.40625" PointY="6" />
+          <ConnectorPoint PointX="6.40625" PointY="4.1524666341145826" />
+          <ConnectorPoint PointX="7.125" PointY="4.1524666341145826" /></AssociationConnector></Diagram></edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

@@ -14,7 +14,7 @@
             .fancybox(
             {
                 frameWidth: 700,
-                frameHeight: 500,
+                //frameHeight: 500,
                 hideOnContentClick: false
             });
         })

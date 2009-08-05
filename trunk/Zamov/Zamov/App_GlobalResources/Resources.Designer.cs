@@ -61,6 +61,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Прийняти замовлення.
+        /// </summary>
+        internal static string AcceptOrder {
+            get {
+                return ResourceManager.GetString("AcceptOrder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Параметри доступу.
         /// </summary>
         internal static string AccountInfo {
@@ -183,6 +192,15 @@ namespace Resources {
         internal static string Cancel {
             get {
                 return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Скасувати замовлення.
+        /// </summary>
+        internal static string CancelOrder {
+            get {
+                return ResourceManager.GetString("CancelOrder", resourceCulture);
             }
         }
         

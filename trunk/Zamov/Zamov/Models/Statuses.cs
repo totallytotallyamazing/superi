@@ -8,7 +8,7 @@ namespace Zamov.Models
     public enum Statuses
     {
         New = 0,
-        Recived = 1,
+        Accepted = 1,
         Complited = 2,
         Canceled = 3
     }

@@ -125,6 +125,7 @@
     </Compile>
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProfileCommon.cs" />
+    <Compile Include="Models\Statuses.cs" />
     <Compile Include="Models\Structure.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

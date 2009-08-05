@@ -1,4 +1,5 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<Zamov.Models.Order>>" %>
+<%@ Import Namespace="Zamov.Models"%>
 <%@ Import Namespace="Zamov.Helpers"%>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
@@ -41,13 +42,13 @@
                 <%= Html.Encode(String.Format("{0:g}", item.DeliveryDate)) %>
             </td>
             <td>
-                <%= Html.Encode(item.Address) %>
+                <%= Html.Encode(item.ClientName+", "+item.Address) %>
             </td>
             <td>
-                <%= Html.Encode(item.Status) %>
+                <%= Html.Encode(Status.status[item.Status]) %>
             </td>
             <td>
-                <a class="orderDescription" href="/DealerCabinet/ShowOrder/<%=item.Id%>">просмотр</a>
+                <%=Html.ActionLink(Html.ResourceString("OpenOrder"), "ShowOrder", new { id = item.Id }, new { @class = "orderDescription" })%>
             </td>
         </tr>
     

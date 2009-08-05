@@ -333,4 +333,13 @@
   <data name="AddToCart" xml:space="preserve">
     <value>Добавить в корзину</value>
   </data>
+  <data name="OpenOrder" xml:space="preserve">
+    <value>просмотреть</value>
+  </data>
+  <data name="AcceptOrder" xml:space="preserve">
+    <value>Принять заказ</value>
+  </data>
+  <data name="CancelOrder" xml:space="preserve">
+    <value>Отменить заказ</value>
+  </data>
 </root>

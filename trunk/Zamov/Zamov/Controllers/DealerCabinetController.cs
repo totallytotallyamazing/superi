@@ -589,5 +589,16 @@ namespace Zamov.Controllers
                 return View(orders);*/
             }
         }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult AcceptOrder(int dealerId)
+        {
+            /*
+            JavaScriptSerializer serializer = new JavaScriptSerializer();
+            Dictionary<string, Dictionary<string, string>> orderItems =
+                serializer.Deserialize<Dictionary<string, Dictionary<string, string>>>(items);
+             * */
+            return RedirectToAction("Orders");
+        }
     }
 }

@@ -88,11 +88,5 @@
     </td>
 </tr>
 </table>
-<%}
-  else
-  {
-     %>
-     <input type="button" value="<%=Html.ResourceString("Close")%>" onclick="javascript:self.close();" />
-     <% 
-  } %>
+<%}%>
 </div>

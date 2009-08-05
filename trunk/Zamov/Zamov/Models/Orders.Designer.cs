@@ -12,9 +12,10 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("OrderEntities", "FK_Orders_Carts", "Carts", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Zamov.Models.Cart), "Orders", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Zamov.Models.Order))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("OrderEntities", "FK_OrderItems_Orders", "Orders", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Zamov.Models.Order), "OrderItems", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Zamov.Models.OrderItem))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("OrderEntities", "FK_Orders_Dealers", "Dealers", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Zamov.Models.Dealers), "Order", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Zamov.Models.Order))]
+[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("OrderEntities", "FK_OrderItems_Unit", "Unit", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Zamov.Models.Unit), "OrderItem", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Zamov.Models.OrderItem))]
 
 // Original file name:
-// Generation date: 05.08.2009 22:09:04
+// Generation date: 05.08.2009 22:19:09
 namespace Zamov.Models
 {
     
@@ -109,6 +110,21 @@ namespace Zamov.Models
         }
         private global::System.Data.Objects.ObjectQuery<Dealers> _Dealers;
         /// <summary>
+        /// There are no comments for Unit in the schema.
+        /// </summary>
+        public global::System.Data.Objects.ObjectQuery<Unit> Unit
+        {
+            get
+            {
+                if ((this._Unit == null))
+                {
+                    this._Unit = base.CreateQuery<Unit>("[Unit]");
+                }
+                return this._Unit;
+            }
+        }
+        private global::System.Data.Objects.ObjectQuery<Unit> _Unit;
+        /// <summary>
         /// There are no comments for Carts in the schema.
         /// </summary>
         public void AddToCarts(Cart cart)
@@ -135,6 +151,13 @@ namespace Zamov.Models
         public void AddToDealers(Dealers dealers)
         {
             base.AddObject("Dealers", dealers);
+        }
+        /// <summary>
+        /// There are no comments for Unit in the schema.
+        /// </summary>
+        public void AddToUnit(Unit unit)
+        {
+            base.AddObject("Unit", unit);
         }
     }
     /// <summary>
@@ -477,6 +500,43 @@ namespace Zamov.Models
                 if ((value != null))
                 {
                     ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<Order>("OrderEntities.FK_OrderItems_Orders", "Orders", value);
+                }
+            }
+        }
+        /// <summary>
+        /// There are no comments for Unit in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("OrderEntities", "FK_OrderItems_Unit", "Unit")]
+        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
+        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public Unit Unit
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Unit>("OrderEntities.FK_OrderItems_Unit", "Unit").Value;
+            }
+            set
+            {
+                ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Unit>("OrderEntities.FK_OrderItems_Unit", "Unit").Value = value;
+            }
+        }
+        /// <summary>
+        /// There are no comments for Unit in the schema.
+        /// </summary>
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Data.Objects.DataClasses.EntityReference<Unit> UnitReference
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Unit>("OrderEntities.FK_OrderItems_Unit", "Unit");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<Unit>("OrderEntities.FK_OrderItems_Unit", "Unit", value);
                 }
             }
         }
@@ -977,6 +1037,97 @@ namespace Zamov.Models
                 if ((value != null))
                 {
                     ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<Order>("OrderEntities.FK_Orders_Dealers", "Order", value);
+                }
+            }
+        }
+    }
+    /// <summary>
+    /// There are no comments for OrderEntities.Unit in the schema.
+    /// </summary>
+    /// <KeyProperties>
+    /// Id
+    /// </KeyProperties>
+    [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="OrderEntities", Name="Unit")]
+    [global::System.Runtime.Serialization.DataContractAttribute(IsReference=true)]
+    [global::System.Serializable()]
+    public partial class Unit : global::System.Data.Objects.DataClasses.EntityObject
+    {
+        /// <summary>
+        /// Create a new Unit object.
+        /// </summary>
+        /// <param name="id">Initial value of Id.</param>
+        /// <param name="name">Initial value of Name.</param>
+        public static Unit CreateUnit(int id, string name)
+        {
+            Unit unit = new Unit();
+            unit.Id = id;
+            unit.Name = name;
+            return unit;
+        }
+        /// <summary>
+        /// There are no comments for Property Id in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id
+        {
+            get
+            {
+                return this._Id;
+            }
+            set
+            {
+                this.OnIdChanging(value);
+                this.ReportPropertyChanging("Id");
+                this._Id = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("Id");
+                this.OnIdChanged();
+            }
+        }
+        private int _Id;
+        partial void OnIdChanging(int value);
+        partial void OnIdChanged();
+        /// <summary>
+        /// There are no comments for Property Name in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name
+        {
+            get
+            {
+                return this._Name;
+            }
+            set
+            {
+                this.OnNameChanging(value);
+                this.ReportPropertyChanging("Name");
+                this._Name = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
+                this.ReportPropertyChanged("Name");
+                this.OnNameChanged();
+            }
+        }
+        private string _Name;
+        partial void OnNameChanging(string value);
+        partial void OnNameChanged();
+        /// <summary>
+        /// There are no comments for OrderItems in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("OrderEntities", "FK_OrderItems_Unit", "OrderItem")]
+        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
+        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Data.Objects.DataClasses.EntityCollection<OrderItem> OrderItems
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<OrderItem>("OrderEntities.FK_OrderItems_Unit", "OrderItem");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<OrderItem>("OrderEntities.FK_OrderItems_Unit", "OrderItem", value);
                 }
             }
         }

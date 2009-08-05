@@ -60,12 +60,27 @@
 </tr>
 </table>
 <br />
-<input type="submit" value="<%=Html.ResourceString("AcceptOrder") %>" />
-<%
-    using (Html.BeginForm("AcceptOrder","DealerCabinet",FormMethod.Post))
-    {%>
-        
-        <%=Html.Hidden("orderId",Model.Id) %>
-        
-  <%}%>
+
+<table>
+<tr>
+    <td>
+    <%
+        using (Html.BeginForm("AcceptOrder","DealerCabinet",FormMethod.Post))
+        {%>
+            <input type="submit" value="<%=Html.ResourceString("AcceptOrder") %>" />
+            <%=Html.Hidden("orderId",Model.Id) %>
+            
+      <%}%>
+    </td>
+    <td>
+    <%
+        using (Html.BeginForm("CancelOrder","DealerCabinet",FormMethod.Post))
+        {%>
+            <input type="submit" value="<%=Html.ResourceString("CancelOrder") %>" />
+            <%=Html.Hidden("orderId",Model.Id) %>
+            
+      <%}%>
+    </td>
+</tr>
+</table>
 </div>

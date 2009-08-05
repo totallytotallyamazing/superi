@@ -593,12 +593,25 @@ namespace Zamov.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult AcceptOrder(int orderId)
         {
-            /*
-            JavaScriptSerializer serializer = new JavaScriptSerializer();
-            Dictionary<string, Dictionary<string, string>> orderItems =
-                serializer.Deserialize<Dictionary<string, Dictionary<string, string>>>(items);
-             * */
-            return RedirectToAction("Orders");
+            using (OrderStorage context = new OrderStorage())
+            {
+                Order order = (from o in context.Orders where o.Id == orderId select o).First();
+                order.Status = (int)Statuses.Accepted;
+                context.SaveChanges();
+                return RedirectToAction("Orders");
+            }
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult CancelOrder(int orderId)
+        {
+            using (OrderStorage context = new OrderStorage())
+            {
+                Order order = (from o in context.Orders where o.Id == orderId select o).First();
+                order.Status = (int)Statuses.Canceled;
+                context.SaveChanges();
+                return RedirectToAction("Orders");
+            }
         }
     }
 }

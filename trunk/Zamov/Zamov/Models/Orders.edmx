@@ -110,7 +110,7 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="OrderEntities" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
-        <EntityContainer Name="OrdersCS">
+        <EntityContainer Name="OrderStorage">
           <EntitySet Name="Carts" EntityType="OrderEntities.Cart" />
           <EntitySet Name="OrderItems" EntityType="OrderEntities.OrderItem" />
           <EntitySet Name="Orders" EntityType="OrderEntities.Order" />
@@ -144,7 +144,7 @@
           <Property Name="PartNumber" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="500" Unicode="true" FixedLength="false" />
           <Property Name="Price" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
-          <NavigationProperty Name="Orders" Relationship="OrderEntities.FK_OrderItems_Orders" FromRole="OrderItems" ToRole="Orders" />
+          <NavigationProperty Name="Order" Relationship="OrderEntities.FK_OrderItems_Orders" FromRole="OrderItems" ToRole="Orders" />
           <Property Name="Quantity" Type="Int32" Nullable="false" /></EntityType>
         <EntityType Name="Order">
           <Key>
@@ -158,7 +158,7 @@
           <NavigationProperty Name="Cart" Relationship="OrderEntities.FK_Orders_Carts" FromRole="Orders" ToRole="Carts" />
           <NavigationProperty Name="OrderItems" Relationship="OrderEntities.FK_OrderItems_Orders" FromRole="Orders" ToRole="OrderItems" />
           <Property Name="Address" Type="String" Nullable="false" />
-          <NavigationProperty Name="Dealers" Relationship="OrderEntities.FK_Orders_Dealers" FromRole="Order" ToRole="Dealers" />
+          <NavigationProperty Name="Dealer" Relationship="OrderEntities.FK_Orders_Dealers" FromRole="Order" ToRole="Dealers" />
           <Property Name="Phone" Type="String" Nullable="false" />
           <Property Name="ClientName" Type="String" Nullable="false" />
           <Property Name="PaymentType" Type="Int32" Nullable="false" /></EntityType>
@@ -186,7 +186,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="urn:schemas-microsoft-com:windows:storage:mapping:CS">
-        <EntityContainerMapping StorageEntityContainer="OrderEntitiesStoreContainer" CdmEntityContainer="OrdersCS">
+        <EntityContainerMapping StorageEntityContainer="OrderEntitiesStoreContainer" CdmEntityContainer="OrderStorage">
           <EntitySetMapping Name="Carts">
             <EntityTypeMapping TypeName="IsTypeOf(OrderEntities.Cart)">
               <MappingFragment StoreEntitySet="Carts">

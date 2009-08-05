@@ -242,7 +242,11 @@
     <Content Include="Content\fancy\fancy_title_main.png" />
     <Content Include="Content\fancy\fancy_title_right.png" />
     <Content Include="Content\fancy\jquery.fancybox.css" />
+    <Content Include="Content\img\cart.jpg" />
+    <Content Include="Content\img\cartBg.jpg" />
+    <Content Include="Content\img\cartShadow.jpg" />
     <Content Include="Content\img\productImage.JPG" />
+    <Content Include="Content\img\tickMark.jpg" />
     <Content Include="Content\redmond\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\redmond\images\ui-bg_flat_55_fbec88_40x100.png" />
     <Content Include="Content\redmond\images\ui-bg_glass_75_d0e5f5_1x400.png" />

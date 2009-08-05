@@ -38,7 +38,9 @@
         }
         
     </script>
-
+    <div class="subHeader">
+        <% Html.RenderPartial("CurrentDealer");  %>
+    </div>
     
     <%if(Model.Count>0){ %>
         <input type="button" value="<%= Html.ResourceString("AddToCart") %>" onclick="submitForm()" />

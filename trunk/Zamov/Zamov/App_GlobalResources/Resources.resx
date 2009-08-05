@@ -375,4 +375,7 @@
   <data name="Unit" xml:space="preserve">
     <value>Одиниця вимірювання</value>
   </data>
+  <data name="PickAnotherDealer" xml:space="preserve">
+    <value>Обрати іншого постачальника</value>
+  </data>
 </root>

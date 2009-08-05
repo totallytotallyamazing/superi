@@ -1,12 +1,6 @@
 <%@ Page Language="C#" Inherits="System.Web.Mvc.ViewPage<Zamov.Models.Order>" %>
 <%@ Import Namespace="Zamov.Helpers"%>
 <%@ Import Namespace="Zamov.Models"%>
-<script type="text/javascript">
-    function submitFormAccept() {
-        $get("acceptOrder").submit();
-    }
-        
-    </script>
 <div align="center">
 <div align="left"  style="padding-left:30px; padding-top:10px;">
     <p>
@@ -67,7 +61,7 @@
 </tr>
 </table>
 <br />
-<input type="button" value="<%=Html.ResourceString("AcceptOrder") %>" onclick="submitFormAccept()" />
+<input type="submit" value="<%=Html.ResourceString("AcceptOrder") %>" />
 <%
     using (Html.BeginForm("AcceptOrder","DealerCabinet",FormMethod.Post,new {id="acceptOrder"}))
     {

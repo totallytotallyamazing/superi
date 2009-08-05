@@ -10,7 +10,13 @@
 <script type="text/javascript">
         var items = new Array();
         $(function() {
-            $(".orderDescription").fancybox({ frameWidth: 700, frameHeight: 500 });
+            $(".orderDescription")
+            .fancybox(
+            {
+                frameWidth: 700,
+                frameHeight: 500,
+                hideOnContentClick: false,
+            });
         })
     </script>
     <h2>Orders</h2>

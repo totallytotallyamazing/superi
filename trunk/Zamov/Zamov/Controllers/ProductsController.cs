@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 using Zamov.Models;
 using System.Web.Script.Serialization;
+using System.Data.Objects;
 
 namespace Zamov.Controllers
 {
@@ -16,7 +17,7 @@ namespace Zamov.Controllers
 
         public ActionResult Index(int dealerId, int? groupId)
         {
-            using (ZamovStorage context =new ZamovStorage())
+            using (ZamovStorage context = new ZamovStorage())
             {
                 List<Group> groups = (from g in context.Groups.Include("Groups") where g.Dealer.Id == dealerId select g).ToList();
                 ViewData["groups"] = groups;
@@ -37,16 +38,52 @@ namespace Zamov.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult AddToCart(int dealerId, string items)
         {
+            Cart cart = SystemSettings.Cart;
             JavaScriptSerializer serializer = new JavaScriptSerializer();
-            Dictionary<string, Dictionary<string, string>> orderItems = 
+            Dictionary<string, Dictionary<string, string>> orderItems =
                 serializer.Deserialize<Dictionary<string, Dictionary<string, string>>>(items);
+            Order order = (from o in cart.Orders where o.Dealer.Id == dealerId select o).SingleOrDefault();
+            var orderItemList =
+                (from oi in orderItems
+                 where oi.Value["order"].ToLowerInvariant() == "true"
+                 select new { Id = int.Parse(oi.Key), Quantity = int.Parse(oi.Value["quantity"]) })
+                 .ToList();
+            if (order == null)
+                order = new Order();
+            Dictionary<int, Product> products = null;
+            using (ZamovStorage context = new ZamovStorage())
+            {
+                string productIds = string.Join(",", orderItemList.Select(oil => oil.Id.ToString()).ToArray());
+                ObjectQuery<Product> productsQuery = new ObjectQuery<Product>(
+                            "SELECT VALUE P FROM Products AS P WHERE P.Id IN {" + productIds + "}",
+                            context);
+                products = productsQuery.ToDictionary(pr=>pr.Id);
+            }
+            if (products != null && products.Count > 0)
+            {
+                foreach (var orderItem in orderItemList)
+                {
+                    Product product = products[orderItem.Id];
+                    OrderItem item = null;
+                    if (order.OrderItems != null && order.OrderItems.Count > 0)
+                        item = (from i in order.OrderItems where i.PartNumber == product.PartNumber select i).SingleOrDefault();
+                    if (item == null)
+                        item = new OrderItem();
+                    item.PartNumber = product.PartNumber;
+                    item.Name = product.Name;
+                    item.Price = product.Price;
+                    item.Quantity = orderItem.Quantity;
+                    order.OrderItems.Add(item);
+                }
+                cart.Orders.Add(order);
+            }
             return RedirectToAction("Index");
         }
 
         private void CollectProducts(List<Product> products, Group currentGroup)
         {
-            if(!currentGroup.Products.IsLoaded)
-                currentGroup.Products.Load(); 
+            if (!currentGroup.Products.IsLoaded)
+                currentGroup.Products.Load();
             products.AddRange(currentGroup.Products);
             if (!currentGroup.Groups.IsLoaded)
                 currentGroup.Groups.Load();

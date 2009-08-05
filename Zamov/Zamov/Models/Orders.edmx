@@ -53,6 +53,7 @@
           <Property Name="Price" Type="money" Nullable="false" />
           <Property Name="OrderId" Type="int" Nullable="false" />
           <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="UnitId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Orders">
           <Key>
@@ -145,7 +146,8 @@
           <Property Name="Name" Type="String" Nullable="false" MaxLength="500" Unicode="true" FixedLength="false" />
           <Property Name="Price" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
           <NavigationProperty Name="Order" Relationship="OrderEntities.FK_OrderItems_Orders" FromRole="OrderItems" ToRole="Orders" />
-          <Property Name="Quantity" Type="Int32" Nullable="false" /></EntityType>
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="UnitId" Type="Int32" Nullable="false" /></EntityType>
         <EntityType Name="Order">
           <Key>
             <PropertyRef Name="Id" />
@@ -201,6 +203,7 @@
           <EntitySetMapping Name="OrderItems">
             <EntityTypeMapping TypeName="IsTypeOf(OrderEntities.OrderItem)">
               <MappingFragment StoreEntitySet="OrderItems">
+                <ScalarProperty Name="UnitId" ColumnName="UnitId" />
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="PartNumber" ColumnName="PartNumber" />

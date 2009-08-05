@@ -27,7 +27,7 @@
         <tr>
             <td><%=Html.Encode(orderItem.Name)%></td>
             <td></td>
-            <td></td>
+            <td><%=Html.Encode(orderItem.UnitId)%></td>
             <td><%=Html.Encode(orderItem.Price)%></td>
             <td><%=Html.Encode(orderItem.Quantity)%></td>
             <td><%=Html.Encode(sum.ToString("N"))%></td>

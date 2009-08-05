@@ -1,9 +1,17 @@
 <%@ Page Language="C#" Inherits="System.Web.Mvc.ViewPage<Zamov.Models.Order>" %>
+<%@ Import Namespace="Zamov.Helpers"%>
 <%@ Import Namespace="Zamov.Models"%>
-
-<div>
-Заказ № <%=Html.Encode(Model.Id) %>
-   
+<script type="text/javascript">
+    function submitFormAccept() {
+        $get("acceptOrder").submit();
+    }
+        
+    </script>
+<div align="center">
+<div align="left"  style="padding-left:30px; padding-top:10px;">
+    <p>
+    <b>Заказ № <%=Html.Encode(Model.Id) %></b>
+   </p>
         <p>
             Клиент:
             <%= Html.Encode(Model.ClientName)%>
@@ -24,7 +32,8 @@
             <%= Html.Encode(Model.Address) %>
         </p>
 
-    
+    <br />
+</div>    
     <table class="commonTable">
         <tr>
             <th></th>
@@ -51,11 +60,20 @@
         </tr>
         <%
     }
-            
 %>
 <tr>
     <td colspan="4"></td>
     <td><%=Html.Encode(allsum.ToString("N"))%></td>
 </tr>
 </table>
+<br />
+<input type="button" value="<%=Html.ResourceString("AcceptOrder") %>" onclick="submitFormAccept()" />
+<%
+    using (Html.BeginForm("AcceptOrder","DealerCabinet",FormMethod.Post,new {id="acceptOrder"}))
+    {
+        %>
+        <%=Html.Hidden("orderId",Model.Id) %>
+        <%
+    } 
+%>
 </div>

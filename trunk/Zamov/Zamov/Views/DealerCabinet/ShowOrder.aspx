@@ -4,25 +4,25 @@
 <div align="center">
 <div align="left"  style="padding-left:30px; padding-top:10px;">
     <p>
-    <b>Заказ № <%=Html.Encode(Model.Id) %></b>
+    <b><%=Html.ResourceString("Orders")%> № <%=Html.Encode(Model.Id) %></b>
    </p>
         <p>
-            Клиент:
+            <%=Html.ResourceString("Client") %>:
             <%= Html.Encode(Model.ClientName)%>
         </p>
         <p>
-            Телефон:
+            <%=Html.ResourceString("Phone") %>:
             <%= Html.Encode(Model.Phone)%>
         </p>
         <p>
-            Дата и время доставки:
+            <%=Html.ResourceString("OrderDeliveryDateTime") %>:
             <%= Html.Encode(String.Format("{0:g}", Model.DeliveryDate)) %>
         </p>
         <p>
-            Email:
+            <%=Html.ResourceString("Email") %>:
         </p>
         <p>
-            Адрес доставки:
+            <%=Html.ResourceString("DeliveryAddress") %>:
             <%= Html.Encode(Model.Address) %>
         </p>
 
@@ -31,10 +31,10 @@
     <table class="commonTable">
         <tr>
             <th></th>
-            <th>Код товара</th>
-            <th>Наименование</th>
-            <th>Количество</th>
-            <th>Цена</th>
+            <th><%=Html.ResourceString("PartNumber") %></th>
+            <th><%=Html.ResourceString("Title") %></th>
+            <th><%=Html.ResourceString("Quantity") %></th>
+            <th><%=Html.ResourceString("Price") %></th>
         </tr>
     <%
     int cnt = 0;

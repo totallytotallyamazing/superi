@@ -33,7 +33,7 @@
                 <%=Html.ResourceString("OrderInfo")%>
             </th>
             <th>
-                Статус
+                <%=Html.ResourceString("Status")%>
             </th>
             <th></th>
         </tr>

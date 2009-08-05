@@ -241,6 +241,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Клієнт.
+        /// </summary>
+        internal static string Client {
+            get {
+                return ResourceManager.GetString("Client", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Закрити.
         /// </summary>
         internal static string Close {
@@ -318,6 +327,15 @@ namespace Resources {
         internal static string DeleteCategoryConfirmation {
             get {
                 return ResourceManager.GetString("DeleteCategoryConfirmation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Адреса доставки.
+        /// </summary>
+        internal static string DeliveryAddress {
+            get {
+                return ResourceManager.GetString("DeliveryAddress", resourceCulture);
             }
         }
         
@@ -700,11 +718,29 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Статус.
+        /// </summary>
+        internal static string Status {
+            get {
+                return ResourceManager.GetString("Status", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Підкатегорії.
         /// </summary>
         internal static string SubCategories {
             get {
                 return ResourceManager.GetString("SubCategories", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Найменування.
+        /// </summary>
+        internal static string Title {
+            get {
+                return ResourceManager.GetString("Title", resourceCulture);
             }
         }
         

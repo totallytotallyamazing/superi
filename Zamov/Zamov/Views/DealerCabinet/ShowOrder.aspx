@@ -61,26 +61,38 @@
 </table>
 <br />
 
+
+<%if (Model.Status == (int)Statuses.New)
+  { %>
 <table>
 <tr>
     <td>
     <%
-        using (Html.BeginForm("AcceptOrder","DealerCabinet",FormMethod.Post))
-        {%>
+    using (Html.BeginForm("AcceptOrder", "DealerCabinet", FormMethod.Post))
+    {%>
             <input type="submit" value="<%=Html.ResourceString("AcceptOrder") %>" />
-            <%=Html.Hidden("orderId",Model.Id) %>
+            <%=Html.Hidden("orderId", Model.Id)%>
             
       <%}%>
     </td>
     <td>
     <%
-        using (Html.BeginForm("CancelOrder","DealerCabinet",FormMethod.Post))
-        {%>
-            <input type="submit" value="<%=Html.ResourceString("CancelOrder") %>" />
-            <%=Html.Hidden("orderId",Model.Id) %>
+    using (Html.BeginForm("CancelOrder", "DealerCabinet", FormMethod.Post))
+    {%>
+            <input type="submit" value="<%=Html.ResourceString("CancelOrder")%>" />
+            <%=Html.Hidden("orderId", Model.Id)%>
             
-      <%}%>
+      <%
+        
+    }%>
     </td>
 </tr>
 </table>
+<%}
+  else
+  {
+     %>
+     <input type="button" value="<%=Html.ResourceString("Close")%>" />
+     <% 
+  } %>
 </div>

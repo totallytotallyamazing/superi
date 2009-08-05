@@ -591,7 +591,7 @@ namespace Zamov.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult AcceptOrder(int dealerId)
+        public ActionResult AcceptOrder(int orderId)
         {
             /*
             JavaScriptSerializer serializer = new JavaScriptSerializer();

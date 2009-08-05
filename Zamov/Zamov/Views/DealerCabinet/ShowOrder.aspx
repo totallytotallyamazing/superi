@@ -37,9 +37,8 @@
             <th>Цена</th>
         </tr>
     <%
-
-        int cnt = 0;
-        decimal allsum = 0;
+    int cnt = 0;
+    decimal allsum = 0;
     foreach (OrderItem orderItem  in Model.OrderItems)
     {
         decimal sum = orderItem.Price * orderItem.Quantity;

@@ -54,7 +54,7 @@
                 <%= Html.Encode(Status.status[item.Status]) %>
             </td>
             <td>
-                <%=Html.ActionLink(Html.ResourceString("OpenOrder"), "ShowOrder", new { id = item.Id }, new { @class = "orderDescription" })%>
+                <%=Html.ActionLink(Html.ResourceString("View"), "ShowOrder", new { id = item.Id }, new { @class = "orderDescription" })%>
             </td>
         </tr>
     

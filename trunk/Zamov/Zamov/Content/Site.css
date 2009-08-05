@@ -92,12 +92,6 @@ iframe{padding:0; margin:0; border:none;}
 .commonTable th{background-color:#f4fef5; border:1px solid black; border-collapse:collapse; padding:20px;}
 .commonTable td{border:1px solid black; border-collapse:collapse; padding: 0px 5px}
 
-.productDescription
-{
-        
-}
-
-.orderDescription
-{
-	
-}
+.productDescription{}
+.orderDescription{}
+.cartDescription{}

@@ -29,14 +29,7 @@
         <tr>
             <td><%=Html.Encode(orderItem.Name)%></td>
             <td></td>
-            <td>
-            <%
-            if (orderItem.Unit != null)
-              {
-                  Html.Encode(orderItem.Unit.Name);
-              } 
-            %>
-            </td>
+            <td><%=Html.Encode(orderItem.Unit.Name)%></td>
             <td><%=Html.Encode(orderItem.Price)%></td>
             <td><%=Html.Encode(orderItem.Quantity)%></td>
             <td><%=Html.Encode(sum.ToString("N"))%></td>

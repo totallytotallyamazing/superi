@@ -36,13 +36,13 @@ namespace Zamov.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult AddToCart(int dealerId, string items)
+        public ActionResult AddToCart(int dealerId, string items, int? groupId)
         {
             Cart cart = SystemSettings.Cart;
             JavaScriptSerializer serializer = new JavaScriptSerializer();
             Dictionary<string, Dictionary<string, string>> orderItems =
                 serializer.Deserialize<Dictionary<string, Dictionary<string, string>>>(items);
-            Order order = (from o in cart.Orders where o.Dealer.Id == dealerId select o).SingleOrDefault();
+            Order order = (from o in cart.Orders where o.Dealer!=null && o.Dealer.Id == dealerId select o).SingleOrDefault();
             var orderItemList =
                 (from oi in orderItems
                  where oi.Value["order"].ToLowerInvariant() == "true"
@@ -77,7 +77,7 @@ namespace Zamov.Controllers
                 }
                 cart.Orders.Add(order);
             }
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", new { dealerId = dealerId, groupId = groupId });
         }
 
         private void CollectProducts(List<Product> products, Group currentGroup)

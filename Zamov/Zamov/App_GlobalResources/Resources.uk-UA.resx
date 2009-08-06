@@ -399,4 +399,16 @@
   <data name="OrdersHistory" xml:space="preserve">
     <value>Історія Ваших придбань / збережені Вами кошики</value>
   </data>
+  <data name="CartItemsCount" xml:space="preserve">
+    <value>В кошику товарiв</value>
+  </data>
+  <data name="EmptyCart" xml:space="preserve">
+    <value>Очистити кошик</value>
+  </data>
+  <data name="MakeOrder" xml:space="preserve">
+    <value>Оформити замовлення</value>
+  </data>
+  <data name="PurchaseTotalPrice" xml:space="preserve">
+    <value>Вартiсть покупки грн.</value>
+  </data>
 </root>

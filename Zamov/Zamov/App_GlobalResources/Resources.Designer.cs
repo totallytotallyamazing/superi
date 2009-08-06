@@ -205,6 +205,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to В кошику товарiв.
+        /// </summary>
+        internal static string CartItemsCount {
+            get {
+                return ResourceManager.GetString("CartItemsCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Назва кошика.
         /// </summary>
         internal static string CartName {
@@ -403,6 +412,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Очистити кошик.
+        /// </summary>
+        internal static string EmptyCart {
+            get {
+                return ResourceManager.GetString("EmptyCart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ім&apos;я.
         /// </summary>
         internal static string FirstName {
@@ -507,6 +525,15 @@ namespace Resources {
         internal static string LogOn {
             get {
                 return ResourceManager.GetString("LogOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Оформити замовлення.
+        /// </summary>
+        internal static string MakeOrder {
+            get {
+                return ResourceManager.GetString("MakeOrder", resourceCulture);
             }
         }
         
@@ -696,6 +723,15 @@ namespace Resources {
         internal static string Products {
             get {
                 return ResourceManager.GetString("Products", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Вартiсть покупки грн..
+        /// </summary>
+        internal static string PurchaseTotalPrice {
+            get {
+                return ResourceManager.GetString("PurchaseTotalPrice", resourceCulture);
             }
         }
         

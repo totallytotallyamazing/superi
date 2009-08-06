@@ -5,7 +5,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 <script type="text/javascript">
     $(function() {
-        applyDropShadows(".dealerLogo div a img", "shadow3");
+        applyDropShadows(".dealerLogo div a", "shadow3");
     })
 </script>
 

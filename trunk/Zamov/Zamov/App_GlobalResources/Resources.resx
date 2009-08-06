@@ -378,4 +378,10 @@
   <data name="PickAnotherDealer" xml:space="preserve">
     <value>Обрати іншого постачальника</value>
   </data>
+  <data name="CartName" xml:space="preserve">
+    <value>Назва кошика</value>
+  </data>
+  <data name="OrderStatus" xml:space="preserve">
+    <value>Статус замовлення</value>
+  </data>
 </root>

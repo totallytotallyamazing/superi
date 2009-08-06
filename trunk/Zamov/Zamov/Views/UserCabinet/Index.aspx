@@ -21,12 +21,12 @@
     <table class="commonTable">
         <tr>
             <th>№</th>
-            <th>Название корзины</th>
-            <th>Поставщик</th>
-            <th>Дата</th>
-            <th>Сумма, грн</th>
+            <th><%=Html.ResourceString("CartName")%></th>
+            <th><%=Html.ResourceString("Dealer")%></th>
+            <th><%=Html.ResourceString("Date")%></th>
+            <th><%=Html.ResourceString("Cost")%>, грн</th>
             <th></th>
-            <th>Статус заказа</th>
+            <th><%=Html.ResourceString("OrderStatus")%></th>
             <th></th>
         </tr>
     <%

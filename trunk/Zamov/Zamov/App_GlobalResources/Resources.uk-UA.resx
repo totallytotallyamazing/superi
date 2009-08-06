@@ -375,4 +375,10 @@
   <data name="Unit" xml:space="preserve">
     <value>Одиниця вимірювання</value>
   </data>
+  <data name="CartName" xml:space="preserve">
+    <value>Назва кошика</value>
+  </data>
+  <data name="OrderStatus" xml:space="preserve">
+    <value>Статус замовленя</value>
+  </data>
 </root>

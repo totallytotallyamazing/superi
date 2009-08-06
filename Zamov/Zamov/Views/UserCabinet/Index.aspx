@@ -1,4 +1,5 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<Zamov.Models.Order>>" %>
+<%@ Import Namespace="Zamov.Controllers"%>
 <%@ Import Namespace="Zamov.Helpers"%>
 <%@ Import Namespace="Zamov.Models" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
@@ -42,7 +43,7 @@
         <tr>
             <td rowspan="<%=Html.Encode(c)%>"><%=Html.Encode(order.Cart.Id)%></td>
             <td rowspan="<%=Html.Encode(c)%>"><%=Html.Encode(order.Cart.Name)%></td>
-            <td><%=Html.Encode(order.Dealer.Name)%></td>
+            <td><%=Html.Encode(order.Dealer.GetName(SystemSettings.CurrentLanguage))%></td>
             <td rowspan="<%=Html.Encode(c)%>"><%=Html.Encode(String.Format("{0:dd.MM.yyyy HH:mm}", order.Cart.Date))%></td>
             <td><%=Html.Encode(order.OrderItems.Sum(oi => oi.Price))%></td>
             <td rowspan="<%=Html.Encode(c)%>"><%=Html.ActionLink(Html.ResourceString("View"), "ShowCart", new { id = order.Cart.Id }, new { @class = "cartDescription" })%></td>
@@ -55,7 +56,7 @@
         {
             %>
             <tr>
-                <td><%=Html.Encode(order.Dealer.Name)%></td>
+                <td><%=Html.Encode(order.Dealer.GetName(SystemSettings.CurrentLanguage))%></td>
                 <td><%=Html.Encode(order.OrderItems.Sum(oi => oi.Price))%></td>
                 <td><%=Html.Encode(Status.status[order.Status])%></td>
             </tr>

@@ -162,9 +162,9 @@
             <End Role="Orders" EntitySet="Orders" />
             <End Role="OrderItems" EntitySet="OrderItems" />
           </AssociationSet>
-          <EntitySet Name="Dealers" EntityType="OrderEntities.Dealers" />
+          <EntitySet Name="OrderDealers" EntityType="OrderEntities.OrderDealer" />
           <AssociationSet Name="FK_Orders_Dealers" Association="OrderEntities.FK_Orders_Dealers">
-            <End Role="Dealers" EntitySet="Dealers" />
+            <End Role="Dealers" EntitySet="OrderDealers" />
             <End Role="Order" EntitySet="Orders" /></AssociationSet>
           <EntitySet Name="Unit" EntityType="OrderEntities.Unit" />
           <AssociationSet Name="FK_OrderItems_Unit" Association="OrderEntities.FK_OrderItems_Unit">
@@ -215,7 +215,7 @@
           <End Role="Orders" Type="OrderEntities.Order" Multiplicity="1" />
           <End Role="OrderItems" Type="OrderEntities.OrderItem" Multiplicity="*" />
         </Association>
-        <EntityType Name="Dealers">
+        <EntityType Name="OrderDealer">
           <Key>
             <PropertyRef Name="Id" /></Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
@@ -225,7 +225,7 @@
           <Property Name="Enabled" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Orders" Relationship="OrderEntities.FK_Orders_Dealers" FromRole="Dealers" ToRole="Order" /></EntityType>
         <Association Name="FK_Orders_Dealers">
-          <End Type="OrderEntities.Dealers" Role="Dealers" Multiplicity="1" />
+          <End Type="OrderEntities.OrderDealer" Role="Dealers" Multiplicity="1" />
           <End Type="OrderEntities.Order" Role="Order" Multiplicity="*" /></Association>
         <EntityType Name="Unit">
           <Key>
@@ -294,8 +294,8 @@
               <ScalarProperty Name="Id" ColumnName="Id" />
             </EndProperty>
           </AssociationSetMapping>
-          <EntitySetMapping Name="Dealers">
-            <EntityTypeMapping TypeName="IsTypeOf(OrderEntities.Dealers)">
+          <EntitySetMapping Name="OrderDealers">
+            <EntityTypeMapping TypeName="IsTypeOf(OrderEntities.OrderDealer)">
               <MappingFragment StoreEntitySet="Dealers">
                 <ScalarProperty Name="Enabled" ColumnName="Enabled" />
                 <ScalarProperty Name="LogoType" ColumnName="LogoType" />
@@ -340,22 +340,22 @@
         <EntityTypeShape EntityType="OrderEntities.Order" Width="1.5" PointX="4.5" PointY="0.625" Height="2.9070849609375" IsExpanded="true" />
         <AssociationConnector Association="OrderEntities.FK_Orders_Carts" ManuallyRouted="false">
           <ConnectorPoint PointX="2.25" PointY="2.08550048828125" />
-          <ConnectorPoint PointX="2.8229166666666665" PointY="2.0855004882812493" />
-          <ConnectorPoint PointX="2.9895833333333335" PointY="2.08550048828125" />
+          <ConnectorPoint PointX="3.2916666666666665" PointY="2.0855004882812493" />
+          <ConnectorPoint PointX="3.4583333333333335" PointY="2.08550048828125" />
           <ConnectorPoint PointX="4.5" PointY="2.08550048828125" /></AssociationConnector>
         <AssociationConnector Association="OrderEntities.FK_OrderItems_Orders" ManuallyRouted="false">
           <ConnectorPoint PointX="6" PointY="1.9374994999999997" />
           <ConnectorPoint PointX="8" PointY="1.9374994999999997" />
           <ConnectorPoint PointX="8" PointY="3.25" /></AssociationConnector>
-        <EntityTypeShape EntityType="OrderEntities.Dealers" Width="1.5" PointX="2" PointY="5" Height="1.9210009765624996" />
+        <EntityTypeShape EntityType="OrderEntities.OrderDealer" Width="1.5" PointX="2.625" PointY="4.125" Height="1.9210009765624996" />
         <AssociationConnector Association="OrderEntities.FK_Orders_Dealers" >
-          <ConnectorPoint PointX="2.90625" PointY="5" />
-          <ConnectorPoint PointX="2.90625" PointY="0.84374999999999989" />
-          <ConnectorPoint PointX="4.5" PointY="0.84374999999999989" /></AssociationConnector>
-        <EntityTypeShape EntityType="OrderEntities.Unit" Width="1.5" PointX="5.125" PointY="6.25" Height="1.4279589843749996" />
+          <ConnectorPoint PointX="3.375" PointY="4.125" />
+          <ConnectorPoint PointX="3.375" PointY="1.323997744140625" />
+          <ConnectorPoint PointX="4.5" PointY="1.323997744140625" /></AssociationConnector>
+        <EntityTypeShape EntityType="OrderEntities.Unit" Width="1.5" PointX="5" PointY="4.875" Height="1.4279589843749996" />
         <AssociationConnector Association="OrderEntities.FK_OrderItems_Unit" >
-          <ConnectorPoint PointX="6.34375" PointY="6.25" />
-          <ConnectorPoint PointX="6.34375" PointY="4.4649666341145826" />
-          <ConnectorPoint PointX="7.25" PointY="4.4649666341145826" /></AssociationConnector></Diagram></edmx:Diagrams>
+          <ConnectorPoint PointX="6.5" PointY="5.1051741536458328" />
+          <ConnectorPoint PointX="7.25" PointY="5.1051741536458328" />
+          </AssociationConnector></Diagram></edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

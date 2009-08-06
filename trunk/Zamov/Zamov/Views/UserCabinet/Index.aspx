@@ -18,7 +18,7 @@
             });
         })
     </script>
-История Ваших покупок/сохраненные Вами корзины
+    <%=Html.ResourceString("OrdersHistory") %>
     <table class="commonTable">
         <tr>
             <th>№</th>
@@ -47,7 +47,7 @@
             <td rowspan="<%=Html.Encode(c)%>"><%=Html.Encode(String.Format("{0:dd.MM.yyyy HH:mm}", order.Cart.Date))%></td>
             <td><%=Html.Encode(order.OrderItems.Sum(oi => oi.Price))%></td>
             <td rowspan="<%=Html.Encode(c)%>"><%=Html.ActionLink(Html.ResourceString("View"), "ShowCart", new { id = order.Cart.Id }, new { @class = "cartDescription" })%></td>
-            <td><%=Html.Encode(Status.status[order.Status])%></td>
+            <td><%=Html.ResourceString("Status" + (Statuses)order.Status)%></td>
             <td  rowspan="<%=Html.Encode(c)%>"><%=Html.ActionLink(Html.ResourceString("Delete"), "DeleteCart", new { id = order.Cart.Id }, new { onclick = "return confirm('" + Html.ResourceString("AreYouSure") + "?')" })%></td>
         </tr>
         <%
@@ -58,7 +58,7 @@
             <tr>
                 <td><%=Html.Encode(order.Dealer.GetName(SystemSettings.CurrentLanguage))%></td>
                 <td><%=Html.Encode(order.OrderItems.Sum(oi => oi.Price))%></td>
-                <td><%=Html.Encode(Status.status[order.Status])%></td>
+                <td><%=Html.ResourceString("Status"+(Statuses)order.Status)%></td>
             </tr>
             
             <%

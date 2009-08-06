@@ -19,7 +19,7 @@
             });
         })
     </script>
-    <h2>Orders</h2>
+    <h3><%=Html.ResourceString("Orders")%></h3>
 
     <table class="commonTable">
         <tr>
@@ -51,7 +51,7 @@
                 <%= Html.Encode(item.ClientName+", "+item.Address) %>
             </td>
             <td>
-                <%= Html.Encode(Status.status[item.Status]) %>
+                <%=Html.ResourceString("Status"+(Statuses)item.Status)%>
             </td>
             <td>
                 <%=Html.ActionLink(Html.ResourceString("View"), "ShowOrder", new { id = item.Id }, new { @class = "orderDescription" })%>

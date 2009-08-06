@@ -55,7 +55,8 @@
     }
 %>
 <tr>
-    <td colspan="4"></td>
+    <td colspan="3"></td>
+    <td><%=Html.ResourceString("Total") %></td>
     <td><%=Html.Encode(allsum.ToString("N"))%></td>
 </tr>
 </table>

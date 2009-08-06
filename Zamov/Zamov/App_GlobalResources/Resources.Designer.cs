@@ -619,6 +619,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to История Ваших покупок/сохраненные Вами корзины.
+        /// </summary>
+        internal static string OrdersHistory {
+            get {
+                return ResourceManager.GetString("OrdersHistory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Статус замовлення.
         /// </summary>
         internal static string OrderStatus {
@@ -768,6 +777,42 @@ namespace Resources {
         internal static string Status {
             get {
                 return ResourceManager.GetString("Status", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Прийнятий.
+        /// </summary>
+        internal static string StatusAccepted {
+            get {
+                return ResourceManager.GetString("StatusAccepted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Скасований.
+        /// </summary>
+        internal static string StatusCanceled {
+            get {
+                return ResourceManager.GetString("StatusCanceled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Виконаний.
+        /// </summary>
+        internal static string StatusComplited {
+            get {
+                return ResourceManager.GetString("StatusComplited", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Новий.
+        /// </summary>
+        internal static string StatusNew {
+            get {
+                return ResourceManager.GetString("StatusNew", resourceCulture);
             }
         }
         

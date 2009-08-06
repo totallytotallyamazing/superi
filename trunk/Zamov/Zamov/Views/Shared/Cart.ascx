@@ -13,6 +13,11 @@
     string cartUrl = Url.Action("Index", "Cart");
 %>
 
+<script type="text/javascript">
+    $(function() { 
+        $("#emptyCart")
+    })
+</script>
 <div class="cartContainer">
     <table class="cartTable">
         <tr>
@@ -31,12 +36,14 @@
         </tr>
         <tr>
             <td>
-                <a href="<%= emptyCartUrl %>">
-                    <%= Html.Image("~/Content/img/crossMark.jpg", new { style="border:none" })%>
-                </a>
+                <% using (Html.BeginForm("EmptyCart", "Cart", FormMethod.Post)){ %>
+                    <%= Html.Hidden("dealerId", ViewData["dealerId"])%>
+                    <%= Html.Hidden("groupId", ViewData["groupId"])%>
+                    <%= Html.SubmitImage("emptyCart", "~/Content/img/crossMark.jpg", new { onclick = "return confirm('" + Html.ResourceString("AreYouSure") + "')" })%>
+                <%} %>
             </td>
             <td style="padding-top:0px;">
-                <div onclick="location.href = '<%= cartUrl %>'">
+                <div onclick="location.href = '<%= cartUrl %>'" style="margin:0 auto">
                     <%= orderItemsCount %>
                 </div>
             </td>

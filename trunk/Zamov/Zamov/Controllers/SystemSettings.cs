@@ -97,5 +97,10 @@ namespace Zamov.Controllers
                 return (Cart)Session["Cart"];
             }
         }
+
+        public static void EmptyCart()
+        {
+            Session["Cart"] = null;
+        }
     }
 }

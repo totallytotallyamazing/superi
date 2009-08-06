@@ -799,6 +799,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Всього.
+        /// </summary>
+        internal static string Total {
+            get {
+                return ResourceManager.GetString("Total", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to укр.
         /// </summary>
         internal static string Ukr {

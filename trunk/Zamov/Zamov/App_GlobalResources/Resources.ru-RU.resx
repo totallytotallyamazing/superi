@@ -384,4 +384,7 @@
   <data name="OrderStatus" xml:space="preserve">
     <value>Статус заказа</value>
   </data>
+  <data name="Total" xml:space="preserve">
+    <value>Всего</value>
+  </data>
 </root>

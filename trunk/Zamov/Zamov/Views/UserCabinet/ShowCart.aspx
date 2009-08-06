@@ -30,10 +30,12 @@
             <td><%=Html.Encode(orderItem.Name)%></td>
             <td></td>
             <td>
-            <%if (orderItem.Unit != null)
-              { %>
-            <%=Html.Encode(orderItem.Unit.Name)%>
-            <%} %>
+            <%
+            if (orderItem.Unit != null)
+              {
+                  Html.Encode(orderItem.Unit.Name);
+              } 
+            %>
             </td>
             <td><%=Html.Encode(orderItem.Price)%></td>
             <td><%=Html.Encode(orderItem.Quantity)%></td>
@@ -45,7 +47,7 @@
         %>
         <tr>
             <td colspan="3"></td>
-            <td>Всего</td>
+            <td><%=Html.ResourceString("Total") %></td>
             <td><%=Html.Encode(order.OrderItems.Sum(oi=>oi.Quantity))%></td>
             <td><%=Html.Encode(allsum.ToString("N"))%></td>
         </tr>

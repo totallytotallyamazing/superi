@@ -96,7 +96,11 @@ iframe{padding:0; margin:0; border:none;}
 .orderDescription{}
 .cartDescription{}
 
-.subHeader
-{
-	height:105px; background: transparent url(img/cartBg.jpg) repeat-x 0px 70px;	
-}
+.subHeader{	height:105px; background: transparent url(img/cartBg.jpg) repeat-x 0px 70px; }
+.subHeaderCurrentDealer{float:left;}
+
+.cartContainer{}
+.cartTable tr th,.cartTable tr td {text-align:center; padding:5px; padding-bottom:0;}
+.cartTable tr th {font-size:10px; font-weight:bold;}
+.cartTable tr td{ font-weight:bold; color:#b62727; }
+.cartTable tr td div{cursor:pointer; width:29px; height:50px; background: transparent url(img/cart.jpg) no-repeat 0 100%; padding-right:10px;}

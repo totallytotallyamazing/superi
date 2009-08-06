@@ -245,6 +245,7 @@
     <Content Include="Content\img\cart.jpg" />
     <Content Include="Content\img\cartBg.jpg" />
     <Content Include="Content\img\cartShadow.jpg" />
+    <Content Include="Content\img\crossMark.jpg" />
     <Content Include="Content\img\productImage.JPG" />
     <Content Include="Content\img\tickMark.jpg" />
     <Content Include="Content\redmond\images\ui-bg_flat_0_aaaaaa_40x100.png" />

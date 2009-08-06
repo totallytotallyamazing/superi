@@ -402,4 +402,16 @@
   <data name="OrdersHistory" xml:space="preserve">
     <value>История Ваших покупок/сохраненные Вами корзины</value>
   </data>
+  <data name="CartItemsCount" xml:space="preserve">
+    <value>Товаров в корзине</value>
+  </data>
+  <data name="EmptyCart" xml:space="preserve">
+    <value>Очиистить корзину</value>
+  </data>
+  <data name="MakeOrder" xml:space="preserve">
+    <value>Оформить заказ</value>
+  </data>
+  <data name="PurchaseTotalPrice" xml:space="preserve">
+    <value>Стоимость покупки, грн.</value>
+  </data>
 </root>

@@ -40,6 +40,7 @@
     </script>
     <div class="subHeader">
         <% Html.RenderPartial("CurrentDealer");  %>
+        <% Html.RenderPartial("Cart");  %>
     </div>
     
     <%if(Model.Count>0){ %>
@@ -47,6 +48,7 @@
         <%using (Html.BeginForm("AddToCart", "Products", FormMethod.Post, new { id="addToCart" }))
           { %>
             <%= Html.Hidden("dealerId", ViewData["dealerId"])%>
+            <%= Html.Hidden("groupId", ViewData["groupId"])%>
             <%= Html.Hidden("items")%>
         <%} %>
     <table class="commonTable" style="margin:10px 0">
@@ -96,6 +98,8 @@ foreach (var item in Model)
     <%= Html.RegisterJS("jquery.easing.js")%>
     <%= Html.RegisterJS("jquery.fancybox.js")%>
     <%= Html.RegisterCss("~/Content/fancy/jquery.fancybox.css")%>
+    <%= Html.RegisterCss("~/Content/shadows.css")%>
+    <%= Html.RegisterJS("dropshadow.js")%>
 </asp:Content>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="leftMenu" runat="server">

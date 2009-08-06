@@ -238,7 +238,7 @@
     <value>Пользователи</value>
   </data>
   <data name="Dealer" xml:space="preserve">
-    <value>Постачальник</value>
+    <value>Поставщик</value>
   </data>
   <data name="Manager" xml:space="preserve">
     <value>Менеджер</value>
@@ -372,10 +372,16 @@
   <data name="Cost" xml:space="preserve">
     <value>Стоимость</value>
   </data>
-  <data name="String1" xml:space="preserve">
+  <data name="Unit" xml:space="preserve">
     <value>Единица измерения</value>
   </data>
   <data name="PickAnotherDealer" xml:space="preserve">
     <value>Выбрать другого поставщика</value>
+  </data>
+  <data name="CartName" xml:space="preserve">
+    <value>Название корзины</value>
+  </data>
+  <data name="OrderStatus" xml:space="preserve">
+    <value>Статус заказа</value>
   </data>
 </root>

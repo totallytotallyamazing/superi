@@ -39,10 +39,6 @@
             },
             failureCallback);
     }
-
-    function citySuccessCallback(response) {
-
-    }
 </script>
 
 <table>

@@ -414,4 +414,7 @@
   <data name="PurchaseTotalPrice" xml:space="preserve">
     <value>Стоимость покупки, грн.</value>
   </data>
+  <data name="Recalculate" xml:space="preserve">
+    <value>Пересчитать</value>
+  </data>
 </root>

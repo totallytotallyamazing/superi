@@ -10,7 +10,7 @@
 
     string emptyCartUrl = Url.Action("EmptyCart", "Cart");
     string makeOrderUrl = Url.Action("MakeOrder", "Cart");
-    string cartUrl = Url.Action("Index", "Cart");
+    string cartUrl = Url.Action("Index", "Cart", new { id = ViewData["dealerId"] });
 %>
 
 <script type="text/javascript">

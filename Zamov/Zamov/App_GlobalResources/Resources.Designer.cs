@@ -745,6 +745,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Перерахувати.
+        /// </summary>
+        internal static string Recalculate {
+            get {
+                return ResourceManager.GetString("Recalculate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Реєстрація.
         /// </summary>
         internal static string Register {

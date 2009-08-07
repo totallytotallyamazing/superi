@@ -64,7 +64,7 @@
             <%=Html.Encode(orderItem.Price)%>
         </td>
         <td>
-            <%= (cartMode) ? Html.TextBox("quantity_" + orderItem.GetHashCode(), orderItem.Quantity, new { style= "width:20px;" }) : Html.Encode(orderItem.Quantity)%>
+            <%= (cartMode) ? Html.TextBox("quantity_" + orderItem.GetHashCode(), orderItem.Quantity, new { style= "width:20px;", onblur="tableChanged(items, this)" }) : Html.Encode(orderItem.Quantity)%>
         </td>
         <td>
             <%=Html.Encode(sum.ToString("N"))%>

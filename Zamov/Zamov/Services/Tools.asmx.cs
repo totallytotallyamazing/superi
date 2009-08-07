@@ -29,5 +29,36 @@ namespace Zamov.Services
                 return result;
             }
         }
+        
+        
+        [WebMethod(EnableSession = true)]
+        public object GetNewOrders(DateTime requestTime)
+        {
+            using (OrderStorage context = new OrderStorage())
+            {
+                List<Order> orders = (
+                                         from order in
+                                             context.Orders.Include("Dealer")
+                                         where order.Dealer.Id == SystemSettings.CurrentDealer
+                                         select order ).ToList();
+
+                var result = (from order in orders
+                              select
+                                  new
+                                      {
+                                          Id = order.Id,
+                                          DeliveryDate = order.DeliveryDate,
+                                          ClientName = order.ClientName,
+                                          Address = order.Address
+                                      });
+                return result;
+            }
+        }
+        
+
+
+       
+
+
     }
 }

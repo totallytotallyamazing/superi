@@ -10,6 +10,8 @@
 <script type="text/javascript">
         var items = new Array();
         $(function() {
+
+
             $(".orderDescription")
             .fancybox(
             {
@@ -18,10 +20,48 @@
                 hideOnContentClick: false
             });
         })
+
+
+        $(function() {
+            queryOrders();
+            //setInterval(queryOrders, 5000);
+        });
+
+        function queryOrders() {
+
+            var lastRequestTime = new Date();
+            var webRequest = Sys.Net.WebServiceProxy.invoke(
+            "/Services/Tools.asmx",
+            "GetNewOrders",
+            false,
+            { requestTime: lastRequestTime },
+            function(response) {
+
+                var row = document.createElement("tr");
+
+                for (var i in response) {
+
+                    var col1 = document.createElement("td");
+                    col1.innerHTML = response[i].Id;
+                    row.appendChild(col1);
+
+                    var col2 = document.createElement("td");
+                    col2.innerHTML = response[i].DeliveryDate;
+                    row.appendChild(col2);
+                    //$(row).insertAfter($($get('orderTable').firstChild));
+                    $(row.outerHTML).insertAfter($($get('orderTable').firstChild))
+                }
+
+            },
+            failureCallback);
+        }
+        
     </script>
     <h3><%=Html.ResourceString("Orders")%></h3>
 
-    <table class="commonTable">
+    <div id="div1"></div>
+
+    <table class="commonTable" id="orderTable">
         <tr>
             <th>
                 ¹ <%=Html.ResourceString("OfOrder")%>

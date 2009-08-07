@@ -566,6 +566,7 @@ namespace Zamov.Controllers
         [Authorize(Roles = "Administrators, Dealers")]
         public ActionResult Orders()
         {
+            SystemSettings.LastTime = DateTime.Now;
             using (OrderStorage context = new OrderStorage())
             {
                 List<Order> orders = (
@@ -573,6 +574,7 @@ namespace Zamov.Controllers
                                              context.Orders.Include("Dealer")
                                          where order.Dealer.Id == SystemSettings.CurrentDealer
                                          select order).ToList();
+                
                 return View(orders);
             }
         }

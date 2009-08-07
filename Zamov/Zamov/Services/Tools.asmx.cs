@@ -36,10 +36,12 @@ namespace Zamov.Services
         {
             using (OrderStorage context = new OrderStorage())
             {
+                DateTime lasttime = SystemSettings.LastTime;
+                SystemSettings.LastTime = DateTime.Now;
                 List<Order> orders = (
                                          from order in
                                              context.Orders.Include("Dealer")
-                                         where order.Dealer.Id == SystemSettings.CurrentDealer
+                                         where order.Dealer.Id == SystemSettings.CurrentDealer //&& order.Date > lasttime
                                          select order ).ToList();
 
                 var result = (from order in orders
@@ -47,7 +49,7 @@ namespace Zamov.Services
                                   new
                                       {
                                           Id = order.Id,
-                                          DeliveryDate = order.DeliveryDate,
+                                          DeliveryDate = String.Format("{0:g}", order.DeliveryDate),
                                           ClientName = order.ClientName,
                                           Address = order.Address
                                       });

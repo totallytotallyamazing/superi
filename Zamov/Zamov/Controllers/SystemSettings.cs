@@ -41,6 +41,17 @@ namespace Zamov.Controllers
             set { System.Web.HttpContext.Current.Session["lang"] = value; }
         }
 
+        public static DateTime LastTime
+        {
+            get
+            {
+                if (Session["lasttime"] == null)
+                    Session["lasttime"] = DateTime.Now;
+                return (DateTime)Session["lasttime"];
+            }
+            set { System.Web.HttpContext.Current.Session["lasttime"] = value; }
+        }
+
         public static int? CurrentDealer
         {
             get

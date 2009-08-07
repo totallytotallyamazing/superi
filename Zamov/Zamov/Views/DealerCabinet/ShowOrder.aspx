@@ -38,11 +38,11 @@
         </tr>
     <%
     int cnt = 0;
-    decimal allsum = 0;
+    decimal total = 0;
     foreach (OrderItem orderItem  in Model.OrderItems)
     {
         decimal sum = orderItem.Price * orderItem.Quantity;
-        allsum += sum;
+        total += sum;
         %>
         <tr>
             <td><%=Html.Encode(++cnt)%></td>
@@ -57,7 +57,7 @@
 <tr>
     <td colspan="3"></td>
     <td><%=Html.ResourceString("Total") %></td>
-    <td><%=Html.Encode(allsum.ToString("N"))%></td>
+    <td><%=Html.Encode(total.ToString("N"))%></td>
 </tr>
 </table>
 <br />

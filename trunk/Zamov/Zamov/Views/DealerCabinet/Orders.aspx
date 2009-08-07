@@ -36,11 +36,8 @@
             false,
             { requestTime: lastRequestTime },
             function(response) {
-
-                var row = document.createElement("tr");
-
                 for (var i in response) {
-
+                    var row = document.createElement("tr");
                     var col1 = document.createElement("td");
                     col1.innerHTML = response[i].Id;
                     row.appendChild(col1);
@@ -48,8 +45,8 @@
                     var col2 = document.createElement("td");
                     col2.innerHTML = response[i].DeliveryDate;
                     row.appendChild(col2);
-                    //$(row).insertAfter($($get('orderTable').firstChild));
-                    $(row.outerHTML).insertAfter($($get('orderTable').firstChild))
+                    var tableHeader = $get('orderTable').getElementsByTagName("tr")[0];
+                    $(row).insertAfter($(tableHeader))
                 }
 
             },

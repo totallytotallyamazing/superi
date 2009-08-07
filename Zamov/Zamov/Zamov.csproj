@@ -309,6 +309,7 @@
     <Content Include="stub.jpg" />
     <Content Include="Views\Admin\AddUpdateDealer.aspx" />
     <Content Include="Views\Admin\UpdateCategoryImage.aspx" />
+    <Content Include="Views\Cart\Index.aspx" />
     <Content Include="Views\Categories\Index.aspx" />
     <Content Include="Views\DealerCabinet\Cabinet.Master" />
     <Content Include="Views\DealerCabinet\DealerCategoryMappings.aspx" />

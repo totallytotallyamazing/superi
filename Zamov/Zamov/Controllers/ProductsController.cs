@@ -43,6 +43,9 @@ namespace Zamov.Controllers
             Dictionary<string, Dictionary<string, string>> orderItems =
                 serializer.Deserialize<Dictionary<string, Dictionary<string, string>>>(items);
             Order order = (from o in cart.Orders where o.Dealer!=null && o.Dealer.Id == dealerId select o).SingleOrDefault();
+            OrderDealer dealer = null;
+            using(OrderStorage context  =  new OrderStorage())
+                dealer = (from d in context.OrderDealers where d.Id == dealerId select d).First();
             var orderItemList =
                 (from oi in orderItems
                  where oi.Value["order"].ToLowerInvariant() == "true"
@@ -50,6 +53,7 @@ namespace Zamov.Controllers
                  .ToList();
             if (order == null)
                 order = new Order();
+            order.Dealer = dealer;
             Dictionary<int, Product> products = null;
             using (ZamovStorage context = new ZamovStorage())
             {

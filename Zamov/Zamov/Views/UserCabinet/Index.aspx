@@ -72,4 +72,6 @@
     <%= Html.RegisterJS("jquery.easing.js")%>
     <%= Html.RegisterJS("jquery.fancybox.js")%>
     <%= Html.RegisterCss("~/Content/fancy/jquery.fancybox.css")%>
+    <%= Html.RegisterCss("~/Content/shadows.css")%>
+    <%= Html.RegisterJS("dropshadow.js")%>
 </asp:Content>

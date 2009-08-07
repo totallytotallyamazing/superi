@@ -23,6 +23,7 @@
 %>    
 <center>
 `   <% using(Html.BeginForm("Recalculate", "Cart", FormMethod.Post)){ %>
+        <%= Html.Hidden("dealerId", ViewData["dealerId"]) %>
         <%= Html.Hidden("updates") %>
         <%= Html.SubmitButton("recalculate", Html.ResourceString("Recalculate"), new { onclick = "collectChanges(items, 'updates');" })%>
     <%} %>

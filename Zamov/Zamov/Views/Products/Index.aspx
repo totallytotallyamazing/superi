@@ -80,7 +80,7 @@ foreach (var item in Model)
                 <%= item.Price.ToString("#.00#") %>
             </td>
             <td align="center">
-                <%= Html.TextBox("quantity_" + item.Id, null, new { style = "width:20px;", onblur = "tableChanged(items,this)", onkeyup="order(this)" })%>
+                <%= Html.TextBox("quantity_" + item.Id, null, new { style = "width:12px; font-size:10px;", onblur = "tableChanged(items,this)", onkeyup = "order(this)" })%>
             </td>
             <td align="center">
                 <%= Html.CheckBox("order_" + item.Id, false, new { onblur = "tableChanged(items,this)", onclick="order(this)" })%>

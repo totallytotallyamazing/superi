@@ -8,6 +8,9 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+<script type="text/javascript">
+    var items = {};
+</script>
 <div class="subHeader">
     <% Html.RenderPartial("Cart");  %>
 </div>
@@ -18,11 +21,18 @@
             Html.RenderAction<UserCabinetController>(ac => ac.ShowOrder(order, true));
     }
 %>    
+<center>
+`   <% using(Html.BeginForm("Recalculate", "Cart", FormMethod.Post)){ %>
+        <%= Html.Hidden("updates") %>
+        <%= Html.SubmitButton("recalculate", Html.ResourceString("Recalculate"), new { onclick = "collectChanges(items, 'updates');" })%>
+    <%} %>
+</center>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="includes" runat="server">
     <%= Html.RegisterCss("~/Content/shadows.css")%>
     <%= Html.RegisterJS("dropshadow.js")%>
+    
 </asp:Content>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="leftMenu" runat="server">

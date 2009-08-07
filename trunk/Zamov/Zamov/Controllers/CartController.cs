@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 using Zamov.Models;
+using System.Web.Script.Serialization;
 
 namespace Zamov.Controllers
 {
@@ -13,7 +14,7 @@ namespace Zamov.Controllers
         //
         // GET: /Cart/
 
-        public ActionResult Index()
+        public ActionResult Index(int id)
         {
 
             using (ZamovStorage context = new ZamovStorage())
@@ -24,6 +25,7 @@ namespace Zamov.Controllers
                                         select dealer).ToList();
                 ViewData["dealers"] = dealers;
             }
+            ViewData["dealerId"] = id;
             return View(SystemSettings.Cart.Orders);
         }
 
@@ -51,8 +53,41 @@ namespace Zamov.Controllers
             return RedirectToAction("Index");
         }
 
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Recalculate(string updates)
+        {
+            if (!string.IsNullOrEmpty(updates))
+            {
+                Cart cart = SystemSettings.Cart;
+                JavaScriptSerializer serializer = new JavaScriptSerializer();
+                Dictionary<string, Dictionary<string, string>> orderItems =
+                    serializer.Deserialize<Dictionary<string, Dictionary<string, string>>>(updates);
+                var orderItemList =
+                    (from oi in orderItems
+                     select new { Id = int.Parse(oi.Key), Quantity = int.Parse(oi.Value["quantity"]) })
+                     .ToList();
+                foreach (var order in cart.Orders)
+                {
+                    if (order.OrderItems != null && order.OrderItems.Count > 0)
+                    {
+                        foreach (var orderItem in order.OrderItems)
+                        {
+                            foreach (var item in orderItemList)
+                            {
+                                if (orderItem.GetHashCode() == item.Id)
+                                    orderItem.Quantity = item.Quantity;
+                            }
+                        }
+
+                    }
+                }
+            }
+            return RedirectToAction("Index");
+        }
+
+
         //public ActionResult MakeOrder() { 
-            
+
         //}
     }
 }

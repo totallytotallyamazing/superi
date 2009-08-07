@@ -14,7 +14,7 @@ namespace Zamov.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            return View(SystemSettings.Cart.Orders);
         }
 
         public ActionResult EmptyCart(int dealerId, int? groupId)

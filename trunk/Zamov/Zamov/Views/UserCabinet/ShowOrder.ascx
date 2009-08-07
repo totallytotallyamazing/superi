@@ -2,9 +2,17 @@
 <%@ Import Namespace="Microsoft.Web.Mvc" %>
 <%@ Import Namespace="Zamov.Models" %>
 <%@ Import Namespace="Zamov.Helpers"%>
+        <script type="text/javascript">
+            var showOrdershadowsDeclared = false;
+            if (!showOrdershadowsDeclared) {
+                $(function() {
+                    applyDropShadows(".dealerImageLogo", "shadow3");
+                })
+                showOrdershadowsDeclared = true;
+            }
+        </script>
 
-
-        <%= Html.Image("~/Image/ShowLogo/" + Model.Dealer.Id, new { style="border:1px solid #ccc;" })%>  
+        <%= Html.Image("~/Image/ShowLogo/" + Model.Dealer.Id, new { style="border:1px solid #ccc;", @class="dealerImageLogo" })%>  
         <table class="commonTable">
         <tr>
             <th><%=Html.ResourceString("Title")%></th>
@@ -25,7 +33,7 @@
         <tr>
             <td><%=Html.Encode(orderItem.Name)%></td>
             <td></td>
-            <td><%=Html.Encode(orderItem.Unit.Name)%></td>
+            <td><%=Html.Encode((orderItem.Unit != null) ? orderItem.Unit.Name: "" )%></td>
             <td><%=Html.Encode(orderItem.Price)%></td>
             <td><%=Html.Encode(orderItem.Quantity)%></td>
             <td><%=Html.Encode(sum.ToString("N"))%></td>
@@ -42,5 +50,5 @@
         </tr>
          </table>   
         
-        
+       
 

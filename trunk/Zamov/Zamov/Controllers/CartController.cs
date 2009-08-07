@@ -54,7 +54,7 @@ namespace Zamov.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Recalculate(string updates)
+        public ActionResult Recalculate(string updates, int dealerId)
         {
             if (!string.IsNullOrEmpty(updates))
             {
@@ -82,7 +82,7 @@ namespace Zamov.Controllers
                     }
                 }
             }
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", new { id = dealerId });
         }
 
 

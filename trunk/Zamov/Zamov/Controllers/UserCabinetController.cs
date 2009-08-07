@@ -44,5 +44,11 @@ namespace Zamov.Controllers
                 return Redirect("~/UserCabinet");
             }
         }
+
+        public ActionResult ShowOrder(Order order)
+        {
+            return View(order);
+        }
+
     }
 }

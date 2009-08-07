@@ -330,6 +330,7 @@
     <Content Include="Views\UserCabinet\Index.aspx" />
     <Content Include="Views\Shared\ShowCart.ascx" />
     <Content Include="Views\UserCabinet\ShowCart.aspx" />
+    <Content Include="Views\UserCabinet\ShowOrder.ascx" />
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="Models\Orders.edmx">

@@ -45,8 +45,10 @@ namespace Zamov.Controllers
             }
         }
 
-        public ActionResult ShowOrder(Order order)
+        public ActionResult ShowOrder(Order order, bool cartMode)
         {
+            if (cartMode)
+                ViewData["cartMode"] = cartMode;
             return View(order);
         }
 

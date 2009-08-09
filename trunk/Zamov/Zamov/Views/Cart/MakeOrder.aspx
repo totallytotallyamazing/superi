@@ -1,15 +1,15 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<Zamov.Models.Order>>" %>
-
+<%@ Import Namespace="Microsoft.Web.Mvc" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	MakeOrder
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <% foreach (var order in Model){%>
-      <div class="orderDealerLogo">
-      
-      </div>     
-    <%}%>
+<% foreach (var order in Model){%>
+    <div class="orderDealerLogo">
+        <%= Html.Image("~/Image/ShowLogo/" + order.Dealer.Id) %>
+    </div>     
+<%}%>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="includes" runat="server">

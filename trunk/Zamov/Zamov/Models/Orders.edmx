@@ -47,6 +47,7 @@
           <Property Name="LogoImage" Type="image" />
           <Property Name="LogoType" Type="varchar" MaxLength="20" />
           <Property Name="Enabled" Type="bit" Nullable="false" />
+          <Property Name="HasDiscounts" Type="bit" />
         </EntityType>
         <EntityType Name="OrderItems">
           <Key>
@@ -75,6 +76,7 @@
           <Property Name="Phone" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="ClientName" Type="nvarchar" Nullable="false" MaxLength="100" />
           <Property Name="PaymentType" Type="int" Nullable="false" />
+          <Property Name="DiscountCardNumber" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Unit">
           <Key>
@@ -206,7 +208,8 @@
           <NavigationProperty Name="Dealer" Relationship="OrderEntities.FK_Orders_Dealers" FromRole="Order" ToRole="Dealers" />
           <Property Name="Phone" Type="String" Nullable="false" />
           <Property Name="ClientName" Type="String" Nullable="false" />
-          <Property Name="PaymentType" Type="Int32" Nullable="false" /></EntityType>
+          <Property Name="PaymentType" Type="Int32" Nullable="false" />
+          <Property Name="DiscountCardNumber" Type="String" Nullable="true" /></EntityType>
         <Association Name="FK_Orders_Carts">
           <End Role="Carts" Type="OrderEntities.Cart" Multiplicity="1" />
           <End Role="Orders" Type="OrderEntities.Order" Multiplicity="*" />
@@ -223,7 +226,8 @@
           <Property Name="LogoImage" Type="Binary" Nullable="true" />
           <Property Name="LogoType" Type="String" Nullable="true" />
           <Property Name="Enabled" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Orders" Relationship="OrderEntities.FK_Orders_Dealers" FromRole="Dealers" ToRole="Order" /></EntityType>
+          <NavigationProperty Name="Orders" Relationship="OrderEntities.FK_Orders_Dealers" FromRole="Dealers" ToRole="Order" />
+          <Property Name="HasDiscounts" Type="Boolean" Nullable="true" /></EntityType>
         <Association Name="FK_Orders_Dealers">
           <End Type="OrderEntities.OrderDealer" Role="Dealers" Multiplicity="1" />
           <End Type="OrderEntities.Order" Role="Order" Multiplicity="*" /></Association>
@@ -266,6 +270,7 @@
           <EntitySetMapping Name="Orders">
             <EntityTypeMapping TypeName="IsTypeOf(OrderEntities.Order)">
               <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="DiscountCardNumber" ColumnName="DiscountCardNumber" />
                 <ScalarProperty Name="PaymentType" ColumnName="PaymentType" />
                 <ScalarProperty Name="ClientName" ColumnName="ClientName" />
                 <ScalarProperty Name="Phone" ColumnName="Phone" />
@@ -297,6 +302,7 @@
           <EntitySetMapping Name="OrderDealers">
             <EntityTypeMapping TypeName="IsTypeOf(OrderEntities.OrderDealer)">
               <MappingFragment StoreEntitySet="Dealers">
+                <ScalarProperty Name="HasDiscounts" ColumnName="HasDiscounts" />
                 <ScalarProperty Name="Enabled" ColumnName="Enabled" />
                 <ScalarProperty Name="LogoType" ColumnName="LogoType" />
                 <ScalarProperty Name="LogoImage" ColumnName="LogoImage" />

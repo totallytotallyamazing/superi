@@ -123,6 +123,7 @@
           <Property Name="LogoImage" Type="image" />
           <Property Name="LogoType" Type="varchar" MaxLength="20" />
           <Property Name="Enabled" Type="bit" Nullable="false" />
+          <Property Name="HasDiscounts" Type="bit" />
         </EntityType>
         <EntityType Name="Groups">
           <Key>
@@ -491,7 +492,8 @@
           <NavigationProperty Name="Cities" Relationship="BaseEntities.DealerCityMappings" FromRole="Dealers" ToRole="Cities" />
           <NavigationProperty Name="Categories" Relationship="BaseEntities.DealerCategoryMapping" FromRole="Dealer" ToRole="Category" />
           <Property Name="LogoType" Type="String" Nullable="true" />
-          <NavigationProperty Name="Groups" Relationship="BaseEntities.FK_Groups_Dealers" FromRole="Dealer" ToRole="Group" /></EntityType>
+          <NavigationProperty Name="Groups" Relationship="BaseEntities.FK_Groups_Dealers" FromRole="Dealer" ToRole="Group" />
+          <Property Name="HasDiscounts" Type="Boolean" Nullable="true" /></EntityType>
         <EntityType Name="Group">
           <Key>
             <PropertyRef Name="Id" />
@@ -610,6 +612,7 @@
           <EntitySetMapping Name="Dealers">
             <EntityTypeMapping TypeName="IsTypeOf(BaseEntities.Dealer)">
               <MappingFragment StoreEntitySet="Dealers">
+                <ScalarProperty Name="HasDiscounts" ColumnName="HasDiscounts" />
                 <ScalarProperty Name="LogoType" ColumnName="LogoType" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />

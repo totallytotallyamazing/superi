@@ -36,21 +36,13 @@ namespace Zamov.Controllers
 
         public ActionResult DeleteCart(int id)
         {
-            using(OrderStorage context = new OrderStorage())
+            using (OrderStorage context = new OrderStorage())
             {
-                Cart cart = (from c in context.Carts where c.Id==id select c).First();
+                Cart cart = (from c in context.Carts where c.Id == id select c).First();
                 cart.Deleted = 1;
                 context.SaveChanges();
                 return Redirect("~/UserCabinet");
             }
         }
-
-        public ActionResult ShowOrder(Order order, bool cartMode)
-        {
-            if (cartMode)
-                ViewData["cartMode"] = cartMode;
-            return View(order);
-        }
-
     }
 }

@@ -86,8 +86,9 @@ namespace Zamov.Controllers
         }
 
 
-        //public ActionResult MakeOrder() { 
-
-        //}
+        public ActionResult MakeOrder()
+        {
+            return View(SystemSettings.Cart.Orders);
+        }
     }
 }

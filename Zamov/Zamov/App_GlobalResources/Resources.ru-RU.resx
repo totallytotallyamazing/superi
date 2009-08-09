@@ -426,4 +426,22 @@
   <data name="Noncash" xml:space="preserve">
     <value>Безналичный расчет</value>
   </data>
+  <data name="Agreed" xml:space="preserve">
+    <value>Я согласен с данными условиями</value>
+  </data>
+  <data name="DiscountWillBeRespected" xml:space="preserve">
+    <value>Чек с учетом скидки Вы получите у курьера при доставке</value>
+  </data>
+  <data name="Done" xml:space="preserve">
+    <value>Готово</value>
+  </data>
+  <data name="InputCaptcha" xml:space="preserve">
+    <value>Введите символы с картинки</value>
+  </data>
+  <data name="InputVoucher" xml:space="preserve">
+    <value>Номер вашей дисконтной карточки (если есть)</value>
+  </data>
+  <data name="SelectPaymentType" xml:space="preserve">
+    <value>Выберите форму оплаты</value>
+  </data>
 </root>

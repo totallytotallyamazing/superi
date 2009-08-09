@@ -124,6 +124,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Orders.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\PaymentTypes.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProfileCommon.cs" />
     <Compile Include="Models\Statuses.cs" />
@@ -331,7 +332,7 @@
     <Content Include="Views\UserCabinet\Index.aspx" />
     <Content Include="Views\Shared\ShowCart.ascx" />
     <Content Include="Views\UserCabinet\ShowCart.aspx" />
-    <Content Include="Views\UserCabinet\ShowOrder.ascx" />
+    <Content Include="Views\PageParts\ShowOrder.ascx" />
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="Models\Orders.edmx">

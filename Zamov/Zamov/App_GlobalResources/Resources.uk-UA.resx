@@ -414,4 +414,13 @@
   <data name="Recalculate" xml:space="preserve">
     <value>Перерахувати</value>
   </data>
+  <data name="Card" xml:space="preserve">
+    <value>Картка</value>
+  </data>
+  <data name="Encash" xml:space="preserve">
+    <value>Готівка</value>
+  </data>
+  <data name="Noncash" xml:space="preserve">
+    <value>Безготівковий розрахунок</value>
+  </data>
 </root>

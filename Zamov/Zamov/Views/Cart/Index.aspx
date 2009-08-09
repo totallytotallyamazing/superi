@@ -18,7 +18,7 @@
     if (Model != null)
     {
         foreach (var order in Model)
-            Html.RenderAction<UserCabinetController>(ac => ac.ShowOrder(order, true));
+            Html.RenderAction<PagePartsController>(ac => ac.ShowOrder(order, true));
     }
 %>    
 <center>

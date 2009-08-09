@@ -63,5 +63,13 @@ namespace Zamov.Controllers
             using (ZamovStorage context = new ZamovStorage())
                 return Json(context.GetCategories(id));
         }
+
+
+        public ActionResult ShowOrder(Order order, bool cartMode)
+        {
+            if (cartMode)
+                ViewData["cartMode"] = cartMode;
+            return View(order);
+        }
     }
 }

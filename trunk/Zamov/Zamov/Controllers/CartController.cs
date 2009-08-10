@@ -90,5 +90,12 @@ namespace Zamov.Controllers
         {
             return View(SystemSettings.Cart.Orders);
         }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult MakeOrder(string firstName, string lastName, string city, string deliveryAddress,   string contactPhone, string email, string comments,  DateTime deliveryDateTime, string orderSettings)
+        {
+
+            return RedirectToAction("ThankYou");
+        }
     }
 }

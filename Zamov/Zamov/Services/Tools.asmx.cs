@@ -53,7 +53,8 @@ namespace Zamov.Services
                                           DeliveryDate = String.Format("{0:g}", order.DeliveryDate),
                                           ClientName = order.ClientName,
                                           Address = order.Address,
-                                          Status = Controllers.Resources.GetResourceString("Status" + (Statuses)order.Status)
+                                          Status = Controllers.Resources.GetResourceString("Status" + (Statuses)order.Status),
+                                          aLink = ""
                                       });
                 return result;
             }

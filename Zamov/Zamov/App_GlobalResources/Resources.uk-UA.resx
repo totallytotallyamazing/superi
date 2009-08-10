@@ -427,7 +427,7 @@
     <value>Я згоден з даними умовами</value>
   </data>
   <data name="DiscountWillBeRespected" xml:space="preserve">
-    <value>Чек p урахуванням знижки ви отримаєте у кур'єра при доставці</value>
+    <value>Чек з урахуванням знижки ви отримаєте у кур'єра при доставці</value>
   </data>
   <data name="Done" xml:space="preserve">
     <value>Готово</value>
@@ -440,5 +440,17 @@
   </data>
   <data name="SelectPaymentType" xml:space="preserve">
     <value>Оберіть форму оплати</value>
+  </data>
+  <data name="Comments" xml:space="preserve">
+    <value>Коментарi</value>
+  </data>
+  <data name="ContactPhone" xml:space="preserve">
+    <value>Конактний телефон</value>
+  </data>
+  <data name="DeliveryDateTime" xml:space="preserve">
+    <value>Дата i час доставки</value>
+  </data>
+  <data name="YourDetails" xml:space="preserve">
+    <value>Вашi реквiзити</value>
   </data>
 </root>

@@ -47,7 +47,7 @@
           <Property Name="LogoImage" Type="image" />
           <Property Name="LogoType" Type="varchar" MaxLength="20" />
           <Property Name="Enabled" Type="bit" Nullable="false" />
-          <Property Name="HasDiscounts" Type="bit" />
+          <Property Name="HasDiscounts" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="OrderItems">
           <Key>
@@ -227,7 +227,7 @@
           <Property Name="LogoType" Type="String" Nullable="true" />
           <Property Name="Enabled" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Orders" Relationship="OrderEntities.FK_Orders_Dealers" FromRole="Dealers" ToRole="Order" />
-          <Property Name="HasDiscounts" Type="Boolean" Nullable="true" /></EntityType>
+          <Property Name="HasDiscounts" Type="Boolean" Nullable="false" /></EntityType>
         <Association Name="FK_Orders_Dealers">
           <End Type="OrderEntities.OrderDealer" Role="Dealers" Multiplicity="1" />
           <End Type="OrderEntities.Order" Role="Order" Multiplicity="*" /></Association>
@@ -343,21 +343,20 @@
       <Diagram Name="Orders">
         <EntityTypeShape EntityType="OrderEntities.Cart" Width="1.5" PointX="0.75" PointY="1.125" Height="1.9210009765625" IsExpanded="true" />
         <EntityTypeShape EntityType="OrderEntities.OrderItem" Width="1.5" PointX="7.25" PointY="3.25" Height="1.9210009765624996" IsExpanded="true" />
-        <EntityTypeShape EntityType="OrderEntities.Order" Width="1.5" PointX="4.5" PointY="0.625" Height="2.9070849609375" IsExpanded="true" />
+        <EntityTypeShape EntityType="OrderEntities.Order" Width="1.5" PointX="4.5" PointY="0.625" Height="2.5783902994791665" IsExpanded="true" />
         <AssociationConnector Association="OrderEntities.FK_Orders_Carts" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="2.08550048828125" />
-          <ConnectorPoint PointX="3.2916666666666665" PointY="2.0855004882812493" />
-          <ConnectorPoint PointX="3.4583333333333335" PointY="2.08550048828125" />
-          <ConnectorPoint PointX="4.5" PointY="2.08550048828125" /></AssociationConnector>
+          <ConnectorPoint PointX="2.25" PointY="1.8645833333333333" />
+          <ConnectorPoint PointX="4.5" PointY="1.8645833333333333" />
+          </AssociationConnector>
         <AssociationConnector Association="OrderEntities.FK_OrderItems_Orders" ManuallyRouted="false">
-          <ConnectorPoint PointX="6" PointY="1.9374994999999997" />
-          <ConnectorPoint PointX="8" PointY="1.9374994999999997" />
+          <ConnectorPoint PointX="6" PointY="1.9141951497395833" />
+          <ConnectorPoint PointX="8" PointY="1.9141951497395833" />
           <ConnectorPoint PointX="8" PointY="3.25" /></AssociationConnector>
         <EntityTypeShape EntityType="OrderEntities.OrderDealer" Width="1.5" PointX="2.625" PointY="4.125" Height="1.9210009765624996" />
         <AssociationConnector Association="OrderEntities.FK_Orders_Dealers" >
           <ConnectorPoint PointX="3.375" PointY="4.125" />
-          <ConnectorPoint PointX="3.375" PointY="1.323997744140625" />
-          <ConnectorPoint PointX="4.5" PointY="1.323997744140625" /></AssociationConnector>
+          <ConnectorPoint PointX="3.375" PointY="2.6187528747996911" />
+          <ConnectorPoint PointX="4.5" PointY="2.6187528747996911" /></AssociationConnector>
         <EntityTypeShape EntityType="OrderEntities.Unit" Width="1.5" PointX="5" PointY="4.875" Height="1.4279589843749996" />
         <AssociationConnector Association="OrderEntities.FK_OrderItems_Unit" >
           <ConnectorPoint PointX="6.5" PointY="5.1051741536458328" />

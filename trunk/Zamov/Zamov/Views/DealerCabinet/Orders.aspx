@@ -18,7 +18,6 @@
             .fancybox(
             {
                 frameWidth: 700,
-                //frameHeight: 500,
                 hideOnContentClick: false
             });
         })
@@ -60,18 +59,16 @@
                     var url = '<a href="<%= showOrderUrl%>/{0}" class="orderDescription">{1}</a>';
                     var urlLayout = String.format(url, response[i].Id, '<%= Html.ResourceString("View")%>');
                     var col5 = document.createElement("td");
-                    col5.innerHTML = urlLayout;
+                    $(urlLayout).appendTo(col5).fancybox({frameWidth: 700,hideOnContentClick: false});
                     row.appendChild(col5);
 
 
 
                     var tableHeader = $get('orderTable').getElementsByTagName("tr")[0];
                     $(row).insertAfter($(tableHeader))
-
-
-
-
                 }
+
+
 
             },
             failureCallback);

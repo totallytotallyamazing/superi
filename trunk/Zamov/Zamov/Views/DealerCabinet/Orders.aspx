@@ -1,12 +1,14 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/DealerCabinet/Cabinet.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<Zamov.Models.Order>>" %>
 <%@ Import Namespace="Zamov.Models"%>
 <%@ Import Namespace="Zamov.Helpers"%>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	Orders
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+<%
+        string showOrderUrl = Url.Action("ShowOrder");
+    %>
 <script type="text/javascript">
         var items = new Array();
         $(function() {
@@ -55,6 +57,13 @@
                     row.appendChild(col4);
 
 
+                    var url = '<a href="<%= showOrderUrl%>/{0}" class="orderDescription">{1}</a>';
+                    var urlLayout = String.format(url, response[i].Id, '<%= Html.ResourceString("View")%>');
+                    var col5 = document.createElement("td");
+                    col5.innerHTML = urlLayout;
+                    row.appendChild(col5);
+
+
 
                     var tableHeader = $get('orderTable').getElementsByTagName("tr")[0];
                     $(row).insertAfter($(tableHeader))
@@ -69,6 +78,10 @@
         }
         
     </script>
+    
+    
+    
+    
     <h3><%=Html.ResourceString("Orders")%></h3>
 
     <div id="div1"></div>

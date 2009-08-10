@@ -45,8 +45,23 @@
                     var col2 = document.createElement("td");
                     col2.innerHTML = response[i].DeliveryDate;
                     row.appendChild(col2);
+
+                    var col3 = document.createElement("td");
+                    col3.innerHTML = response[i].ClientName + " " + response[i].Address;
+                    row.appendChild(col3);
+
+                    var col4 = document.createElement("td");
+                    col4.innerHTML = response[i].Status;
+                    row.appendChild(col4);
+
+
+
                     var tableHeader = $get('orderTable').getElementsByTagName("tr")[0];
                     $(row).insertAfter($(tableHeader))
+
+
+
+
                 }
 
             },

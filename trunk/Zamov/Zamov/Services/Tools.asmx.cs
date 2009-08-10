@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Services;
 using Zamov.Models;
 using Zamov.Controllers;
+using Zamov.Helpers;
 
 namespace Zamov.Services
 {
@@ -51,7 +52,8 @@ namespace Zamov.Services
                                           Id = order.Id,
                                           DeliveryDate = String.Format("{0:g}", order.DeliveryDate),
                                           ClientName = order.ClientName,
-                                          Address = order.Address
+                                          Address = order.Address,
+                                          Status = Controllers.Resources.GetResourceString("Status" + (Statuses)order.Status)
                                       });
                 return result;
             }

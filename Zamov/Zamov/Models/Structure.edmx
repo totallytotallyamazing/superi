@@ -123,7 +123,7 @@
           <Property Name="LogoImage" Type="image" />
           <Property Name="LogoType" Type="varchar" MaxLength="20" />
           <Property Name="Enabled" Type="bit" Nullable="false" />
-          <Property Name="HasDiscounts" Type="bit" />
+          <Property Name="HasDiscounts" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Groups">
           <Key>
@@ -493,7 +493,7 @@
           <NavigationProperty Name="Categories" Relationship="BaseEntities.DealerCategoryMapping" FromRole="Dealer" ToRole="Category" />
           <Property Name="LogoType" Type="String" Nullable="true" />
           <NavigationProperty Name="Groups" Relationship="BaseEntities.FK_Groups_Dealers" FromRole="Dealer" ToRole="Group" />
-          <Property Name="HasDiscounts" Type="Boolean" Nullable="true" /></EntityType>
+          <Property Name="HasDiscounts" Type="Boolean" Nullable="false" /></EntityType>
         <EntityType Name="Group">
           <Key>
             <PropertyRef Name="Id" />
@@ -800,15 +800,15 @@
           <ConnectorPoint PointX="6.625" PointY="1.96875" />
           <ConnectorPoint PointX="9.375" PointY="1.96875" /></AssociationConnector>
         <AssociationConnector Association="BaseEntities.FK_Groups_Dealers" >
-          <ConnectorPoint PointX="9.375" PointY="0.90624750000000009" />
-          <ConnectorPoint PointX="3.2347090384615385" PointY="0.90624750000000009" />
-          <ConnectorPoint PointX="3.2347090384615385" PointY="2" />
+          <ConnectorPoint PointX="9.7187475" PointY="3.078390299479167" />
+          <ConnectorPoint PointX="9.7187475" PointY="3.9836531575520833" />
+          <ConnectorPoint PointX="4.5" PointY="3.9836531575520833" />
           </AssociationConnector>
         <AssociationConnector Association="BaseEntities.FK_Categories_Categories" >
-          <ConnectorPoint PointX="5.6569230769230767" PointY="3.835348307291667" />
-          <ConnectorPoint PointX="5.6569230769230767" PointY="4.0853483072916674" />
-          <ConnectorPoint PointX="6.1034615384615378" PointY="4.0853483072916674" />
-          <ConnectorPoint PointX="6.1034615384615378" PointY="3.835348307291667" /></AssociationConnector>
+          <ConnectorPoint PointX="6.21875" PointY="1.75" />
+          <ConnectorPoint PointX="6.21875" PointY="1.5" />
+          <ConnectorPoint PointX="5.583333333333333" PointY="1.5" />
+          <ConnectorPoint PointX="5.583333333333333" PointY="1.75" /></AssociationConnector>
         <AssociationConnector Association="BaseEntities.FK_Groups_Groups" >
           <ConnectorPoint PointX="3.5319230769230767" PointY="2" />
           <ConnectorPoint PointX="3.5319230769230767" PointY="1.75" />

@@ -4,6 +4,7 @@
 <%@ Import Namespace="Zamov.Models" %>
 <%@ Import Namespace="Zamov.Controllers" %>
 <%@ Import Namespace="AjaxControlToolkitMvc" %>
+<%@ Import Namespace="MvcContrib.UI.Html" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
     MakeOrder
 </asp:Content>
@@ -18,6 +19,8 @@
             $.datepicker.setDefaults($.extend({ showMonthAfterYear: false }, $.datepicker.regional['']));
             applyDropShadows(".orderDetails .logo img", "shadow3");
             $("#deliveryDate").datepicker($.datepicker.regional["<%= pickerLocale %>"]);
+            
+            $()
         })
     </script>
 
@@ -99,7 +102,9 @@
             <table cellpadding="0" cellspacing="0">
                 <tr>
                     <td class="parameterName"><%= Html.ResourceString("FirstName") %></td>
-                    <td class="parameterValue"><%= Html.TextBox("firstName") %></td>
+                    <td class="parameterValue">
+                        <%= Html.TextBox("firstName") %>
+                    </td>
                 </tr>
                 <tr>
                     <td class="parameterName"><%= Html.ResourceString("LastName")%></td>
@@ -107,7 +112,9 @@
                 </tr>
                 <tr>
                     <td class="parameterName"><%= Html.ResourceString("City") %></td>
-                    <td class="parameterValue"></td>
+                    <td class="parameterValue">
+                        <%= Html.Hidden("city", "ส่ๅโ") %>
+                    </td>
                 </tr>
                 <tr>
                     <td class="parameterName"><%= Html.ResourceString("DeliveryAddress")%></td>
@@ -128,6 +135,8 @@
             </table>
             <div class="menuFooter"></div>
         </div>
+        <%= Html.Hidden("deliveryDateTime", DateTime.Now)%>
+        <%} %>
         
         <div class="deliveryDate">
             <div class="menuHeader centered">
@@ -138,17 +147,9 @@
                 <%= Html.TextBox("deliveryTime") %>
                 <%= Html.Hidden("deliveryTimeClientState") %>
                 <%= Ajax.MaskEdit("deliveryTimeClientState", MaskTypes.Time, "99:99", false, false, "deliveryTime")%>
-<%--             <script type="text/javascript">
-                 Sys.Application.initialize();
-                 Sys.Application.add_init(function() {
-                 $create(AjaxControlToolkit.MaskedEditBehavior, { "AcceptNegative": 1, "CultureAMPMPlaceholder": "AM;PM", "CultureCurrencySymbolPlaceholder": "$", "CultureDateFormat": "MDY", "CultureDatePlaceholder": "/", "CultureDecimalPlaceholder": ".", "CultureName": "en-US", "CultureThousandsPlaceholder": ",", "CultureTimePlaceholder": ":", "DisplayMoney": 1, "ErrorTooltipEnabled": true, "InputDirection": 1, "Mask": "9,999,999.99", "MaskType": 2, "id": "ctl00_SampleContent_MaskedEditExtender2" }, null, null, $get("deliveryTime"));
-                 });
-
-             </script>--%>
-             
             </div>
             <div class="menuFooter"></div>
         </div>
-    <%} %>
+    
 
 </asp:Content>

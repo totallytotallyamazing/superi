@@ -444,4 +444,16 @@
   <data name="SelectPaymentType" xml:space="preserve">
     <value>Выберите форму оплаты</value>
   </data>
+  <data name="Comments" xml:space="preserve">
+    <value>Комментарии</value>
+  </data>
+  <data name="ContactPhone" xml:space="preserve">
+    <value>Конактный телефон</value>
+  </data>
+  <data name="DeliveryDateTime" xml:space="preserve">
+    <value>Дата и время доставки</value>
+  </data>
+  <data name="YourDetails" xml:space="preserve">
+    <value>Вашы реквизиты</value>
+  </data>
 </root>

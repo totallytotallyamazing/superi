@@ -15,7 +15,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("OrderEntities", "FK_OrderItems_Unit", "Unit", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Zamov.Models.Unit), "OrderItem", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Zamov.Models.OrderItem))]
 
 // Original file name:
-// Generation date: 11/08/2009 12:59:07
+// Generation date: 11/08/2009 15:02:58
 namespace Zamov.Models
 {
     
@@ -110,20 +110,20 @@ namespace Zamov.Models
         }
         private global::System.Data.Objects.ObjectQuery<OrderDealer> _OrderDealers;
         /// <summary>
-        /// There are no comments for Unit in the schema.
+        /// There are no comments for Units in the schema.
         /// </summary>
-        public global::System.Data.Objects.ObjectQuery<Unit> Unit
+        public global::System.Data.Objects.ObjectQuery<Unit> Units
         {
             get
             {
-                if ((this._Unit == null))
+                if ((this._Units == null))
                 {
-                    this._Unit = base.CreateQuery<Unit>("[Unit]");
+                    this._Units = base.CreateQuery<Unit>("[Units]");
                 }
-                return this._Unit;
+                return this._Units;
             }
         }
-        private global::System.Data.Objects.ObjectQuery<Unit> _Unit;
+        private global::System.Data.Objects.ObjectQuery<Unit> _Units;
         /// <summary>
         /// There are no comments for Carts in the schema.
         /// </summary>
@@ -153,11 +153,11 @@ namespace Zamov.Models
             base.AddObject("OrderDealers", orderDealer);
         }
         /// <summary>
-        /// There are no comments for Unit in the schema.
+        /// There are no comments for Units in the schema.
         /// </summary>
-        public void AddToUnit(Unit unit)
+        public void AddToUnits(Unit unit)
         {
-            base.AddObject("Unit", unit);
+            base.AddObject("Units", unit);
         }
     }
     /// <summary>

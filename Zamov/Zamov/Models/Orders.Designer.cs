@@ -15,7 +15,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("OrderEntities", "FK_OrderItems_Unit", "Unit", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Zamov.Models.Unit), "OrderItem", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Zamov.Models.OrderItem))]
 
 // Original file name:
-// Generation date: 10/08/2009 12:22:56
+// Generation date: 11/08/2009 12:59:07
 namespace Zamov.Models
 {
     
@@ -467,6 +467,29 @@ namespace Zamov.Models
         partial void OnQuantityChanging(int value);
         partial void OnQuantityChanged();
         /// <summary>
+        /// There are no comments for Property ProductId in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Nullable<int> ProductId
+        {
+            get
+            {
+                return this._ProductId;
+            }
+            set
+            {
+                this.OnProductIdChanging(value);
+                this.ReportPropertyChanging("ProductId");
+                this._ProductId = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("ProductId");
+                this.OnProductIdChanged();
+            }
+        }
+        private global::System.Nullable<int> _ProductId;
+        partial void OnProductIdChanging(global::System.Nullable<int> value);
+        partial void OnProductIdChanged();
+        /// <summary>
         /// There are no comments for Order in the schema.
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("OrderEntities", "FK_OrderItems_Orders", "Orders")]
@@ -557,18 +580,18 @@ namespace Zamov.Models
         /// </summary>
         /// <param name="id">Initial value of Id.</param>
         /// <param name="date">Initial value of Date.</param>
-        /// <param name="userId">Initial value of UserId.</param>
+        /// <param name="deliveryDate">Initial value of DeliveryDate.</param>
         /// <param name="status">Initial value of Status.</param>
         /// <param name="address">Initial value of Address.</param>
         /// <param name="phone">Initial value of Phone.</param>
         /// <param name="clientName">Initial value of ClientName.</param>
         /// <param name="paymentType">Initial value of PaymentType.</param>
-        public static Order CreateOrder(int id, global::System.DateTime date, global::System.Guid userId, int status, string address, string phone, string clientName, int paymentType)
+        public static Order CreateOrder(int id, global::System.DateTime date, global::System.DateTime deliveryDate, int status, string address, string phone, string clientName, int paymentType)
         {
             Order order = new Order();
             order.Id = id;
             order.Date = date;
-            order.UserId = userId;
+            order.DeliveryDate = deliveryDate;
             order.Status = status;
             order.Address = address;
             order.Phone = phone;
@@ -625,9 +648,9 @@ namespace Zamov.Models
         /// <summary>
         /// There are no comments for Property UserId in the schema.
         /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Guid UserId
+        public global::System.Nullable<global::System.Guid> UserId
         {
             get
             {
@@ -642,15 +665,15 @@ namespace Zamov.Models
                 this.OnUserIdChanged();
             }
         }
-        private global::System.Guid _UserId;
-        partial void OnUserIdChanging(global::System.Guid value);
+        private global::System.Nullable<global::System.Guid> _UserId;
+        partial void OnUserIdChanging(global::System.Nullable<global::System.Guid> value);
         partial void OnUserIdChanged();
         /// <summary>
         /// There are no comments for Property DeliveryDate in the schema.
         /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Nullable<global::System.DateTime> DeliveryDate
+        public global::System.DateTime DeliveryDate
         {
             get
             {
@@ -665,8 +688,8 @@ namespace Zamov.Models
                 this.OnDeliveryDateChanged();
             }
         }
-        private global::System.Nullable<global::System.DateTime> _DeliveryDate;
-        partial void OnDeliveryDateChanging(global::System.Nullable<global::System.DateTime> value);
+        private global::System.DateTime _DeliveryDate;
+        partial void OnDeliveryDateChanging(global::System.DateTime value);
         partial void OnDeliveryDateChanged();
         /// <summary>
         /// There are no comments for Property Status in the schema.

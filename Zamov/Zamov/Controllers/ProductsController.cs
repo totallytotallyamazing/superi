@@ -76,6 +76,7 @@ namespace Zamov.Controllers
                     item.PartNumber = product.PartNumber;
                     item.Name = product.Name;
                     item.Price = product.Price;
+                    item.ProductId = product.Id;
                     item.Quantity = orderItem.Quantity;
                     order.OrderItems.Add(item);
                 }

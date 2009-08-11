@@ -6,6 +6,8 @@ using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 using Zamov.Models;
 using System.Web.Script.Serialization;
+using System.Globalization;
+using System.Web.Security;
 
 namespace Zamov.Controllers
 {
@@ -50,7 +52,7 @@ namespace Zamov.Controllers
                     }
                 }
             }
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", new { id = id });
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
@@ -92,10 +94,62 @@ namespace Zamov.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult MakeOrder(string firstName, string lastName, string city, string deliveryAddress,   string contactPhone, string email, string comments,  DateTime deliveryDateTime, string orderSettings)
+        public ActionResult MakeOrder(string firstName, string lastName, string city, string deliveryAddress, string contactPhone, string email, string comments, string deliveryDateTime, string orderSettings)
         {
-
+            Cart cart = SystemSettings.Cart;
+            JavaScriptSerializer serializer = new JavaScriptSerializer();
+            Dictionary<string, Dictionary<string, string>> orderSettingsDictionary =
+                serializer.Deserialize<Dictionary<string, Dictionary<string, string>>>(orderSettings);
+            var systemSettingsList = (from os in orderSettingsDictionary
+                                      select new
+                                      {
+                                          Id = int.Parse(os.Key),
+                                          VoucherCode = (os.Value.ContainsKey("voucherCode"))? os.Value["voucherCode"] : null,
+                                          PaymentType = GetPaymentType(os.Value)
+                                      }).ToList();
+            CultureInfo cultureInfo = CultureInfo.GetCultureInfo("ru-RU");
+            DateTime deliveryDate = DateTime.Parse(deliveryDateTime, cultureInfo);
+            MembershipUser user = Membership.GetUser(true);
+            Guid? userId = null;
+            if (user != null)
+                userId = (Guid)user.ProviderUserKey;
+            foreach (var order in cart.Orders)
+            {
+                order.Address = deliveryAddress;
+                order.ClientName = firstName + " " + lastName;
+                order.DeliveryDate = deliveryDate;
+                order.Phone = contactPhone;
+                order.UserId = userId;
+                order.PaymentType = (int)PaymentTypes.Encash;
+                foreach (var option in systemSettingsList)
+                {
+                    if (option.Id == order.GetHashCode())
+                    {
+                        if (option.PaymentType != null)
+                            order.PaymentType = option.PaymentType.Value; ;
+                        order.DiscountCardNumber = option.VoucherCode;
+                    }
+                }
+            }
+            using (OrderStorage context = new OrderStorage())
+            {
+                context.AddToCarts(cart);
+                context.SaveChanges();
+            }
             return RedirectToAction("ThankYou");
+        }
+
+        public ActionResult ThankYou()
+        {
+            return View();
+        }
+
+        private int? GetPaymentType(Dictionary<string, string> item)
+        {
+            int? result = null;
+            if (item.ContainsKey("paymentType") && item["paymentType"] != null)
+                result = int.Parse(item["paymentType"]);
+            return result;
         }
     }
 }

@@ -12,6 +12,7 @@
     if (!showOrdershadowsDeclared) {
         $(function() {
             applyDropShadows(".dealerImageLogo", "shadow3");
+            $(".productDescription").fancybox({ frameWidth: 700, frameHeight: 500 });
         })
         showOrdershadowsDeclared = true;
     }
@@ -56,6 +57,9 @@
             <%=Html.Encode(orderItem.Name)%>
         </td>
         <td>
+            <a class="productDescription" style="text-decoration:none" href="/Products/Description/<%= orderItem.ProductId %>" <%= (orderItem.ProductId==null)?"disabled":"" %>>
+                <%= Html.Image("~/Content/img/productImage.JPG", new { style="border:none;" })%> / <span class="productDescriptionLink">i</span>
+            </a>
         </td>
         <td>
             <%=Html.Encode((orderItem.Unit != null) ? orderItem.Unit.Name: "" )%>

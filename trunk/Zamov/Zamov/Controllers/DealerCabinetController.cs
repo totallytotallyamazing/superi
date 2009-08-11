@@ -572,7 +572,8 @@ namespace Zamov.Controllers
                 List<Order> orders = (
                                          from order in
                                              context.Orders.Include("Dealer")
-                                         where order.Dealer.Id == SystemSettings.CurrentDealer
+                                         where order.Dealer.Id == SystemSettings.CurrentDealer 
+                                         orderby order.Date descending
                                          select order).ToList();
                 
                 return View(orders);

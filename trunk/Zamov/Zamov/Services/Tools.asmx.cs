@@ -42,7 +42,7 @@ namespace Zamov.Services
                 List<Order> orders = (
                                          from order in
                                              context.Orders.Include("Dealer")
-                                         where order.Dealer.Id == SystemSettings.CurrentDealer //&& order.Date > lasttime
+                                         where order.Dealer.Id == SystemSettings.CurrentDealer && order.Date > lasttime
                                          select order ).ToList();
 
                 var result = (from order in orders

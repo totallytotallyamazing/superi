@@ -120,7 +120,8 @@ namespace Zamov.Controllers
                 {
                     order.Address = deliveryAddress;
                     order.ClientName = firstName + " " + lastName;
-                    order.Date = order.DeliveryDate = deliveryDate;
+                    order.Date = DateTime.Now.AddSeconds(30);
+                    order.DeliveryDate = deliveryDate;
                     order.Phone = contactPhone;
                     order.UserId = userId;
                     order.PaymentType = (int)PaymentTypes.Encash;

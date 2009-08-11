@@ -29,6 +29,7 @@
                     var option = document.createElement("option");
                     option.text = response[i].Text;
                     option.value = response[i].Value;
+                    option.selected = response[i].Selected;
                     try {
                         currentCategory.add(option, null);
                     }

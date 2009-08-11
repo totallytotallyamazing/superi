@@ -456,4 +456,7 @@
   <data name="YourDetails" xml:space="preserve">
     <value>Вашы реквизиты</value>
   </data>
+  <data name="UserCabinet" xml:space="preserve">
+    <value>Кабинет пользователя</value>
+  </data>
 </root>

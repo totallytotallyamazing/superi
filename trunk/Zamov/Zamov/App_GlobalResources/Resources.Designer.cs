@@ -1042,6 +1042,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Кабінет користувача.
+        /// </summary>
+        internal static string UserCabinet {
+            get {
+                return ResourceManager.GetString("UserCabinet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Iм&apos;я користувача.
         /// </summary>
         internal static string Username {

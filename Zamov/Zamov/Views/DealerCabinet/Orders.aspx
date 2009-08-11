@@ -24,8 +24,8 @@
 
 
         $(function() {
-            queryOrders();
-            //setInterval(queryOrders, 5000);
+            //queryOrders();
+            setInterval(queryOrders, 30000);
         });
 
         function queryOrders() {

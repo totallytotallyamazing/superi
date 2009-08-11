@@ -3,7 +3,7 @@
 <%@ Import Namespace="Zamov.Helpers"%>
 <%@ Import Namespace="Zamov.Models" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Index
+	<%= Html.ResourceString("UserCabinet")%>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 <script type="text/javascript">

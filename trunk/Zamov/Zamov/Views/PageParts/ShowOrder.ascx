@@ -64,13 +64,13 @@
         <td>
             <%=Html.Encode((orderItem.Unit != null) ? orderItem.Unit.Name: "" )%>
         </td>
-        <td>
-            <%=Html.Encode(orderItem.Price)%>
+        <td align="right">
+            <%=Html.Encode(orderItem.Price.ToString("N"))%>
         </td>
-        <td <%= (cartMode) ? "align=\"center\"" : ""%>>
-            <%= (cartMode) ? Html.TextBox("quantity_" + orderItem.GetHashCode(), orderItem.Quantity, new { style= "width:12px; font-size:10px;", onblur="tableChanged(items, this)" }) : Html.Encode(orderItem.Quantity)%>
+        <td <%= (cartMode) ? "align=\"center\"" : "align=\"right\""%>>
+            <%= (cartMode) ? Html.TextBox("quantity_" + orderItem.GetHashCode(), orderItem.Quantity, new { style= "width:12px; font-size:10px;", onblur="tableChanged(items, this)" }) : Html.Encode(orderItem.Quantity.ToString("N"))%>
         </td>
-        <td>
+        <td align="right">
             <%=Html.Encode(sum.ToString("N"))%>
         </td>
         <%if (cartMode)
@@ -87,13 +87,13 @@
     <tr>
         <td colspan="3">
         </td>
-        <td>
-            <%=Html.ResourceString("Total") %>
+        <td align="right">
+            <%=Html.ResourceString("Total")+":" %>
         </td>
-        <td>
-            <%=Html.Encode(Model.OrderItems.Sum(oi=>oi.Quantity))%>
+        <td align="right">
+            <%=Html.Encode(Model.OrderItems.Sum(oi=>oi.Quantity).ToString("N"))%>
         </td>
-        <td>
+        <td align="right">
             <%=Html.Encode(total.ToString("N"))%>
         </td>
         <%if (cartMode){ %>

@@ -33,7 +33,10 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="includes" runat="server">
     <%= Html.RegisterCss("~/Content/shadows.css")%>
     <%= Html.RegisterJS("dropshadow.js")%>
-    
+    <%= Html.RegisterJS("jquery.easing.js")%>
+    <%= Html.RegisterJS("jquery.fancybox.js")%>
+    <%= Html.RegisterCss("~/Content/fancy/jquery.fancybox.css")%>
+
 </asp:Content>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="leftMenu" runat="server">

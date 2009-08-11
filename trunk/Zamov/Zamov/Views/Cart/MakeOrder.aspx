@@ -4,7 +4,6 @@
 <%@ Import Namespace="Zamov.Models" %>
 <%@ Import Namespace="Zamov.Controllers" %>
 <%@ Import Namespace="AjaxControlToolkitMvc" %>
-<%@ Import Namespace="MvcContrib.UI.Html" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
     MakeOrder
 </asp:Content>
@@ -19,9 +18,13 @@
             $.datepicker.setDefaults($.extend({ showMonthAfterYear: false }, $.datepicker.regional['']));
             applyDropShadows(".orderDetails .logo img", "shadow3");
             $("#deliveryDate").datepicker($.datepicker.regional["<%= pickerLocale %>"]);
-            
-            $()
+            $("#deliveryDate").datepicker("setDate", new Date());
         })
+
+        function setOrderTime() {
+            var date = $("#deliveryDate").datepicker("getDate");
+            $get("deliveryDateTime").value = date.getDate() + "." + (1 * date.getMonth() + 1) + "." + date.getYear() + " " + $get("deliveryTime").value;
+        }
     </script>
 
     <% foreach (var order in Model)
@@ -76,7 +79,7 @@
             <table>
                 <tr>
                     <td valign="middle"><%= Html.ResourceString("Done") %>!</td>
-                    <td><%= Html.SubmitImage("", "~/Content/img/tickMark.jpg", new { onclick = "collectCahnges(settings, 'orderSettings'); $get('makeOrder').submit();" })%></td>
+                    <td><%= Html.SubmitImage("", "~/Content/img/tickMark.jpg", new { onclick = "collectChanges(settings, 'orderSettings'); setOrderTime(); $get('makeOrder').submit();" })%></td>
                 </tr>
             </table>
         </div>
@@ -144,7 +147,7 @@
             </div>
             <div class="datePicker">
                 <%= Html.TextBox("deliveryDate") %><br />
-                <%= Html.TextBox("deliveryTime") %>
+                <%= Html.TextBox("deliveryTime", DateTime.Now.AddHours(1).ToString("HH:mm")) %>
                 <%= Html.Hidden("deliveryTimeClientState") %>
                 <%= Ajax.MaskEdit("deliveryTimeClientState", MaskTypes.Time, "99:99", false, false, "deliveryTime")%>
             </div>

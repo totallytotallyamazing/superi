@@ -60,6 +60,7 @@
           <Property Name="OrderId" Type="int" Nullable="false" />
           <Property Name="Quantity" Type="int" Nullable="false" />
           <Property Name="UnitId" Type="int" Nullable="false" />
+          <Property Name="ProductId" Type="int" />
         </EntityType>
         <EntityType Name="Orders">
           <Key>
@@ -69,8 +70,8 @@
           <Property Name="Date" Type="datetime" Nullable="false" />
           <Property Name="CartId" Type="int" Nullable="false" />
           <Property Name="DealerId" Type="int" Nullable="false" />
-          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="DeliveryDate" Type="datetime" />
+          <Property Name="UserId" Type="uniqueidentifier" />
+          <Property Name="DeliveryDate" Type="datetime" Nullable="false" />
           <Property Name="Status" Type="int" Nullable="false" />
           <Property Name="Address" Type="nvarchar" Nullable="false" MaxLength="500" />
           <Property Name="Phone" Type="nvarchar" Nullable="false" MaxLength="50" />
@@ -192,15 +193,16 @@
           <Property Name="Price" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
           <NavigationProperty Name="Order" Relationship="OrderEntities.FK_OrderItems_Orders" FromRole="OrderItems" ToRole="Orders" />
           <Property Name="Quantity" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Unit" Relationship="OrderEntities.FK_OrderItems_Unit" FromRole="OrderItem" ToRole="Unit" /></EntityType>
+          <NavigationProperty Name="Unit" Relationship="OrderEntities.FK_OrderItems_Unit" FromRole="OrderItem" ToRole="Unit" />
+          <Property Name="ProductId" Type="Int32" Nullable="true" /></EntityType>
         <EntityType Name="Order">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Date" Type="DateTime" Nullable="false" />
-          <Property Name="UserId" Type="Guid" Nullable="false" />
-          <Property Name="DeliveryDate" Type="DateTime" />
+          <Property Name="UserId" Type="Guid" Nullable="true" />
+          <Property Name="DeliveryDate" Type="DateTime" Nullable="false" />
           <Property Name="Status" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Cart" Relationship="OrderEntities.FK_Orders_Carts" FromRole="Orders" ToRole="Carts" />
           <NavigationProperty Name="OrderItems" Relationship="OrderEntities.FK_OrderItems_Orders" FromRole="Orders" ToRole="OrderItems" />
@@ -259,6 +261,7 @@
           <EntitySetMapping Name="OrderItems">
             <EntityTypeMapping TypeName="IsTypeOf(OrderEntities.OrderItem)">
               <MappingFragment StoreEntitySet="OrderItems">
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="PartNumber" ColumnName="PartNumber" />

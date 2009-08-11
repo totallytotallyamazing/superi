@@ -49,7 +49,7 @@ namespace Zamov.Controllers
                     Session["lasttime"] = DateTime.Now;
                 return (DateTime)Session["lasttime"];
             }
-            set { System.Web.HttpContext.Current.Session["lasttime"] = value; }
+            set { Session["lasttime"] = value; }
         }
 
         public static int? CurrentDealer

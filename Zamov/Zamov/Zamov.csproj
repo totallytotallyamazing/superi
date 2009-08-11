@@ -123,6 +123,11 @@
     <Compile Include="Models\ContextExtensions.cs" />
     <Compile Include="Models\Dealers.cs" />
     <Compile Include="Models\Group.cs" />
+    <Compile Include="Models\MembershipEntities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MembershipEntities.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\Orders.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -450,6 +455,12 @@
     <EntityDeploy Include="Models\Orders.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Orders.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Models\MembershipEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>MembershipEntities.Designer.cs</LastGenOutput>
     </EntityDeploy>
   </ItemGroup>
   <ItemGroup>

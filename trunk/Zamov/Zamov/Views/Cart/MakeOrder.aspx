@@ -29,12 +29,13 @@
 
     <% foreach (var order in Model)
        {%>
+       
     <div class="orderDetails">
         <div class="logo">
-            <%= Html.Image("~/Image/ShowLogo/" + order.Dealer.Id) %>
+            <%= Html.Image("~/Image/ShowLogo/" + order.DealerReference.EntityKey.EntityKeyValues[0].Value) %>
         </div>
-        <%if (order.Dealer.HasDiscounts)
-          {%>
+        
+          <%{%>
         <div class="discount">
             <%= Html.ResourceString("InputVoucher") %>
             <%= Html.TextBox("voucherCode_" + order.GetHashCode()) %>
@@ -46,44 +47,40 @@
             <%= Html.ResourceString("SelectPaymentType") %>
         </div>
         <div class="paymentTypes">
-            <center>
-                <table>
-                <% 
-                    List<SelectListItem> paymentTypes = new List<SelectListItem>();
-                    paymentTypes.Add(new SelectListItem { Text = Html.ResourceString("Encash"), Value = ((int)PaymentTypes.Encash).ToString(), Selected = true });
-                    paymentTypes.Add(new SelectListItem { Text = Html.ResourceString("Card"), Value = ((int)PaymentTypes.Card).ToString() });
-                    paymentTypes.Add(new SelectListItem { Text = Html.ResourceString("Noncash"), Value = ((int)PaymentTypes.Noncash).ToString() });
-                    string[] options = Html.RadioButtonList("paymentType_" + order.GetHashCode(), paymentTypes, new { onblur = "tableChanged(settings, this)" });
-                    for (int i = 0; i<options.Length; i++)
-                    {%>
-                    <tr>
-                        <td><%= paymentTypes[i].Text %></td>
-                        <td><%= options[i] %></td>
-                    </tr>    
-                  <%}
-                %>
-                </table>
-            </center>
+            <table>
+            <% 
+                List<SelectListItem> paymentTypes = new List<SelectListItem>();
+                paymentTypes.Add(new SelectListItem { Text = Html.ResourceString("Encash"), Value = ((int)PaymentTypes.Encash).ToString(), Selected = true });
+                paymentTypes.Add(new SelectListItem { Text = Html.ResourceString("Card"), Value = ((int)PaymentTypes.Card).ToString() });
+                paymentTypes.Add(new SelectListItem { Text = Html.ResourceString("Noncash"), Value = ((int)PaymentTypes.Noncash).ToString() });
+                string[] options = Html.RadioButtonList("paymentType_" + order.GetHashCode(), paymentTypes, new { onblur = "tableChanged(settings, this)" });
+                for (int i = 0; i<options.Length; i++)
+                {%>
+                <tr>
+                    <td><%= paymentTypes[i].Text %></td>
+                    <td><%= options[i] %></td>
+                </tr>    
+              <%}
+            %>
+            </table>
         </div>
         <%} %>
         <%} %>
         <div style="clear: both;">
         </div>
     </div>
-    <center>
-        <div>
-            <%= Html.CheckBox("agreed", false) %>
-            <%= Html.ResourceString("Agreed") %>
-        </div>
-        <div class="orderDone">
-            <table>
-                <tr>
-                    <td valign="middle"><%= Html.ResourceString("Done") %>!</td>
-                    <td><%= Html.SubmitImage("", "~/Content/img/tickMark.jpg", new { onclick = "collectChanges(settings, 'orderSettings'); setOrderTime(); $get('makeOrder').submit();" })%></td>
-                </tr>
-            </table>
-        </div>
-    </center>
+    <div>
+        <%= Html.CheckBox("agreed", false) %>
+        <%= Html.ResourceString("Agreed") %>
+    </div>
+    <div class="orderDone">
+        <table>
+            <tr>
+                <td valign="middle"><%= Html.ResourceString("Done") %>!</td>
+                <td><%= Html.SubmitImage("", "~/Content/img/tickMark.jpg", new { onclick = "collectChanges(settings, 'orderSettings'); setOrderTime(); $get('makeOrder').submit();" })%></td>
+            </tr>
+        </table>
+    </div>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="includes" runat="server">
     <%= Html.RegisterCss("~/Content/Cart.css") %>

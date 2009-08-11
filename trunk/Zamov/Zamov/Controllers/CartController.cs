@@ -8,6 +8,7 @@ using Zamov.Models;
 using System.Web.Script.Serialization;
 using System.Globalization;
 using System.Web.Security;
+using System.Data.Objects.DataClasses;
 
 namespace Zamov.Controllers
 {
@@ -104,7 +105,7 @@ namespace Zamov.Controllers
                                       select new
                                       {
                                           Id = int.Parse(os.Key),
-                                          VoucherCode = (os.Value.ContainsKey("voucherCode"))? os.Value["voucherCode"] : null,
+                                          VoucherCode = (os.Value.ContainsKey("voucherCode")) ? os.Value["voucherCode"] : null,
                                           PaymentType = GetPaymentType(os.Value)
                                       }).ToList();
             CultureInfo cultureInfo = CultureInfo.GetCultureInfo("ru-RU");
@@ -113,26 +114,26 @@ namespace Zamov.Controllers
             Guid? userId = null;
             if (user != null)
                 userId = (Guid)user.ProviderUserKey;
-            foreach (var order in cart.Orders)
-            {
-                order.Address = deliveryAddress;
-                order.ClientName = firstName + " " + lastName;
-                order.DeliveryDate = deliveryDate;
-                order.Phone = contactPhone;
-                order.UserId = userId;
-                order.PaymentType = (int)PaymentTypes.Encash;
-                foreach (var option in systemSettingsList)
-                {
-                    if (option.Id == order.GetHashCode())
-                    {
-                        if (option.PaymentType != null)
-                            order.PaymentType = option.PaymentType.Value; ;
-                        order.DiscountCardNumber = option.VoucherCode;
-                    }
-                }
-            }
             using (OrderStorage context = new OrderStorage())
             {
+                foreach (var order in cart.Orders)
+                {
+                    order.Address = deliveryAddress;
+                    order.ClientName = firstName + " " + lastName;
+                    order.Date = order.DeliveryDate = deliveryDate;
+                    order.Phone = contactPhone;
+                    order.UserId = userId;
+                    order.PaymentType = (int)PaymentTypes.Encash;
+                    foreach (var option in systemSettingsList)
+                    {
+                        if (option.Id == order.GetHashCode())
+                        {
+                            if (option.PaymentType != null)
+                                order.PaymentType = option.PaymentType.Value; ;
+                            order.DiscountCardNumber = option.VoucherCode;
+                        }
+                    }
+                }
                 context.AddToCarts(cart);
                 context.SaveChanges();
             }

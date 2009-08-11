@@ -32,7 +32,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Date" Type="datetime" />
           <Property Name="Name" Type="nvarchar" MaxLength="500" />
           <Property Name="UserId" Type="int" Nullable="false" />
@@ -53,7 +53,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="PartNumber" Type="nvarchar" Nullable="false" MaxLength="100" />
           <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="500" />
           <Property Name="Price" Type="money" Nullable="false" />
@@ -66,7 +66,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Date" Type="datetime" Nullable="false" />
           <Property Name="CartId" Type="int" Nullable="false" />
           <Property Name="DealerId" Type="int" Nullable="false" />
@@ -83,7 +83,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
         </EntityType>
         <Association Name="FK_OrderItems_Orders">
@@ -169,9 +169,9 @@
           <AssociationSet Name="FK_Orders_Dealers" Association="OrderEntities.FK_Orders_Dealers">
             <End Role="Dealers" EntitySet="OrderDealers" />
             <End Role="Order" EntitySet="Orders" /></AssociationSet>
-          <EntitySet Name="Unit" EntityType="OrderEntities.Unit" />
+          <EntitySet Name="Units" EntityType="OrderEntities.Unit" />
           <AssociationSet Name="FK_OrderItems_Unit" Association="OrderEntities.FK_OrderItems_Unit">
-            <End Role="Unit" EntitySet="Unit" />
+            <End Role="Unit" EntitySet="Units" />
             <End Role="OrderItem" EntitySet="OrderItems" /></AssociationSet></EntityContainer>
         <EntityType Name="Cart">
           <Key>
@@ -316,7 +316,7 @@
               <ScalarProperty Name="Id" ColumnName="Id" /></EndProperty>
             <EndProperty Name="Dealers">
               <ScalarProperty Name="Id" ColumnName="DealerId" /></EndProperty></AssociationSetMapping>
-          <EntitySetMapping Name="Unit">
+          <EntitySetMapping Name="Units">
             <EntityTypeMapping TypeName="IsTypeOf(OrderEntities.Unit)">
               <MappingFragment StoreEntitySet="Unit">
                 <ScalarProperty Name="Name" ColumnName="Name" />

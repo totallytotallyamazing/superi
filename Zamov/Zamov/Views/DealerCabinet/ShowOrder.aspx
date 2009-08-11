@@ -49,7 +49,7 @@
             <td><%=Html.Encode(orderItem.PartNumber)%></td>
             <td><%=Html.Encode(orderItem.Name)%></td>
             <td><%=Html.Encode(orderItem.Quantity)%></td>
-            <td><%=Html.Encode(sum.ToString("N"))%></td>
+            <td align="right"><%=Html.Encode(sum.ToString("N"))%></td>
         </tr>
         <%
     }
@@ -57,7 +57,7 @@
 <tr>
     <td colspan="3"></td>
     <td><%=Html.ResourceString("Total") %></td>
-    <td><%=Html.Encode(total.ToString("N"))%></td>
+    <td align="right"><%=Html.Encode(total.ToString("N"))%></td>
 </tr>
 </table>
 <br />

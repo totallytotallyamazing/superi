@@ -18,7 +18,7 @@
     }
 </script>
 
-<%= Html.Image("~/Image/ShowLogo/" + Model.Dealer.Id, new { style="border:1px solid #ccc;", @class="dealerImageLogo" })%>
+<%= Html.Image("~/Image/ShowLogo/" + Model.DealerReference.EntityKey.EntityKeyValues[0].Value, new { style="border:1px solid #ccc;", @class="dealerImageLogo" })%>
 <table class="commonTable">
     <tr>
         <th>

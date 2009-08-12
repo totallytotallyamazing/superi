@@ -44,35 +44,35 @@ namespace Zamov.Controllers
         }  
         */
 
-        protected override void OnActionExecuting(ActionExecutingContext filterContext)
-        {
-            // make sure no values are getting sent in from the outside
-            if (filterContext.ActionParameters.ContainsKey("captchaValid"))
-                filterContext.ActionParameters["captchaValid"] = null;
+        //protected override void OnActionExecuting(ActionExecutingContext filterContext)
+        //{
+        //    // make sure no values are getting sent in from the outside
+        //    if (filterContext.ActionParameters.ContainsKey("captchaValid"))
+        //        filterContext.ActionParameters["captchaValid"] = null;
 
-            // get the guid from the post back
-            string guid = filterContext.HttpContext.Request.Form["captcha-guid"];
+        //    // get the guid from the post back
+        //    string guid = filterContext.HttpContext.Request.Form["captcha-guid"];
 
-            // check for the guid because it is required from the rest of the opperation
-            if (String.IsNullOrEmpty(guid))
-            {
-                filterContext.RouteData.Values.Add("captchaValid", false);
-                return;
-            }
+        //    // check for the guid because it is required from the rest of the opperation
+        //    if (String.IsNullOrEmpty(guid))
+        //    {
+        //        filterContext.RouteData.Values.Add("captchaValid", false);
+        //        return;
+        //    }
 
-            // get values
-            CaptchaImage image = CaptchaImage.GetCachedCaptcha(guid);
-            string actualValue = filterContext.HttpContext.Request.Form["captcha"];
-            string expectedValue = image == null ? String.Empty : image.Text;
+        //    // get values
+        //    CaptchaImage image = CaptchaImage.GetCachedCaptcha(guid);
+        //    string actualValue = filterContext.HttpContext.Request.Form["captcha"];
+        //    string expectedValue = image == null ? String.Empty : image.Text;
 
-            // removes the captch from cache so it cannot be used again
-            filterContext.HttpContext.Cache.Remove(guid);
+        //    // removes the captch from cache so it cannot be used again
+        //    filterContext.HttpContext.Cache.Remove(guid);
 
-            // validate the captch
-            filterContext.ActionParameters["captchaValid"] =
-                    !String.IsNullOrEmpty(actualValue)
-                    && !String.IsNullOrEmpty(expectedValue)
-                    && String.Equals(actualValue, expectedValue, StringComparison.OrdinalIgnoreCase);
-        }
+        //    // validate the captch
+        //    filterContext.ActionParameters["captchaValid"] =
+        //            !String.IsNullOrEmpty(actualValue)
+        //            && !String.IsNullOrEmpty(expectedValue)
+        //            && String.Equals(actualValue, expectedValue, StringComparison.OrdinalIgnoreCase);
+        //}
     }
 }

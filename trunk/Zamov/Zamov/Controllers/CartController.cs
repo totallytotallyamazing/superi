@@ -31,10 +31,10 @@ namespace Zamov.Controllers
             return View(SystemSettings.Cart.Orders);
         }
 
-        public ActionResult EmptyCart(int dealerId, int? groupId)
+        public ActionResult EmptyCart()
         {
             SystemSettings.EmptyCart();
-            return RedirectToAction("Index", "Products", new { dealerId = dealerId, groupId = groupId });
+            return RedirectToAction("Index", "Categories");
         }
 
         public ActionResult RemoveOrderItem(int id)

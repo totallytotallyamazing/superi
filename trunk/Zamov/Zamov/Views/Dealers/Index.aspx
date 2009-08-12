@@ -1,11 +1,12 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<Zamov.Models.Dealer>>" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<List<DealerPresentation>>" %>
 <%@ Import Namespace="Microsoft.Web.Mvc" %>
 <%@ Import Namespace="Zamov.Controllers" %>
+<%@ Import Namespace="Zamov.Models" %>
 <%@ Import Namespace="Zamov.Helpers" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 <script type="text/javascript">
     $(function() {
-        applyDropShadows(".dealerLogo div a", "shadow3");
+        applyDropShadows(".dealerLogo a", "shadow3");
     })
 </script>
 
@@ -13,11 +14,12 @@
     foreach (var item in Model)
     {%>
         <div class="dealerLogo">
-            <div>
-                <a href="/Products/<%= item.Id %>">
-                    <%= Html.Image("~/Image/ShowLogo/" + item.Id, new { style="border:1px solid #ccc;" })%>  
-                </a>
-            </div>
+            <%if(item.OnLine){ %>
+            <div class="dalerOnline"></div>
+            <%} %>
+            <a href="/Products/<%= item.Id %>">
+                <%= Html.Image("~/Image/ShowLogo/" + item.Id, new { style="border:1px solid #ccc;" })%>  
+            </a>
         </div>
     <%}
 %>
@@ -34,7 +36,7 @@
     List<SelectListItem> items = new List<SelectListItem>();
     foreach (var item in Model)
     {
-        SelectListItem listItem = new SelectListItem { Text = item.GetName(SystemSettings.CurrentLanguage), Value = "/Products/" + item.Id };
+        SelectListItem listItem = new SelectListItem { Text = item.Name, Value = "/Products/" + item.Id };
         items.Add(listItem);
     }
     Html.RenderAction<PagePartsController>(ac => ac.LeftMenu(Html.ResourceString("Dealers"), items));

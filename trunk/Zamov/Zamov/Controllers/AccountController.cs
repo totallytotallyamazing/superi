@@ -63,6 +63,11 @@ namespace Zamov.Controllers
             }
 
             FormsAuth.SignIn(userName, rememberMe);
+            if (Roles.IsUserInRole("Dealers"))
+            {
+                ProfileCommon profile = ProfileCommon.Create(userName);
+                SystemSettings.CurrentDealer = profile.DealerId;
+            }
             if (!String.IsNullOrEmpty(returnUrl))
             {
                 return Redirect(returnUrl);

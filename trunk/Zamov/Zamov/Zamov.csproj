@@ -126,8 +126,14 @@
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\City.cs" />
     <Compile Include="Models\ContextExtensions.cs" />
+    <Compile Include="Models\DealerPresentation.cs" />
     <Compile Include="Models\Dealers.cs" />
     <Compile Include="Models\Group.cs" />
+    <Compile Include="Models\Membership.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Membership.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\MembershipExtensions.cs" />
     <Compile Include="Models\Orders.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -260,6 +266,7 @@
     <Content Include="Content\img\cartBg.jpg" />
     <Content Include="Content\img\cartShadow.jpg" />
     <Content Include="Content\img\crossMark.jpg" />
+    <Content Include="Content\img\online.png" />
     <Content Include="Content\img\productImage.JPG" />
     <Content Include="Content\img\tickMark.jpg" />
     <Content Include="Content\redmond\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -458,6 +465,12 @@
     <EntityDeploy Include="Models\Orders.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Orders.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Models\Membership.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Membership.Designer.cs</LastGenOutput>
     </EntityDeploy>
   </ItemGroup>
   <ItemGroup>

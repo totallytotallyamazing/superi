@@ -12,6 +12,14 @@
     
     <br />
     <br />
+    
+    <%
+
+        bool captchaValid = Convert.ToBoolean(ViewData["captchaValid"]);
+
+        Response.Write(captchaValid.ToString());
+        
+            %>
 <%
     using (Html.BeginForm("DoSomething", "Test", FormMethod.Post))
     {%>

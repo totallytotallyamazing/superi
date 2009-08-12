@@ -47,6 +47,13 @@
                     <%= Html.TextBox("phone")%>
                 </p>
                 <p>
+                    <label for="captcha">Введите нижеуказанную надпись
+                    <br />
+                    <%= Html.CaptchaImage(50, 170)%></label><br />
+                    <%= Html.TextBox("captcha") %>
+                    <%= Html.ValidationMessage("captcha1")%>
+                </p>
+                <p>
                     <input type="submit" value="<%= Html.ResourceString("Register") %>" />
                 </p>
             </fieldset>

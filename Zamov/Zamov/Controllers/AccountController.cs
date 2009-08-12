@@ -95,12 +95,13 @@ namespace Zamov.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Register(string userName, string email, string password, string confirmPassword, string firstName, string lastName, string phone)
+        [CaptchaValidation("captcha")]
+        public ActionResult Register(string userName, string email, string password, string confirmPassword, string firstName, string lastName, string phone, bool captchaValid)
         {
 
             ViewData["PasswordLength"] = MembershipService.MinPasswordLength;
 
-            if (ValidateRegistration(userName, email, password, confirmPassword))
+            if (ValidateRegistration(userName, email, password, confirmPassword, captchaValid))
             {
                 // Attempt to register the user
                 MembershipCreateStatus createStatus = MembershipService.CreateUser(userName, password, email);
@@ -223,8 +224,12 @@ namespace Zamov.Controllers
             return ModelState.IsValid;
         }
 
-        private bool ValidateRegistration(string userName, string email, string password, string confirmPassword)
+        private bool ValidateRegistration(string userName, string email, string password, string confirmPassword, bool captchaValid)
         {
+            if (!captchaValid)
+            {
+                ModelState.AddModelError("captcha1", "captcha-cha-cha-cha!!!");
+            }
             if (String.IsNullOrEmpty(userName))
             {
                 ModelState.AddModelError("username", "You must specify a username.");

@@ -93,6 +93,7 @@
     <Compile Include="Controllers\Cache.cs" />
     <Compile Include="Controllers\CacheController.cs" />
     <Compile Include="Controllers\CartController.cs" />
+    <Compile Include="Controllers\CartHostActions.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\ContextCacheExtension.cs" />
     <Compile Include="Controllers\DealerCabinetController.cs" />
@@ -259,6 +260,7 @@
     <Content Include="Content\fancy\fancy_title_right.png" />
     <Content Include="Content\fancy\jquery.fancybox.css" />
     <Content Include="Content\img\cart.jpg" />
+    <Content Include="Content\img\cartActive.jpg" />
     <Content Include="Content\img\cartBg.jpg" />
     <Content Include="Content\img\cartShadow.jpg" />
     <Content Include="Content\img\crossMark.jpg" />

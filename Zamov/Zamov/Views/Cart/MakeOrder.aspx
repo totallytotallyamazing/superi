@@ -8,6 +8,11 @@
     MakeOrder
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+<div class="subHeader" style="text-align:center">
+    <center>
+        <% Html.RenderPartial("Cart");  %>
+    </center>
+</div>
 <%
     string pickerLocale = (SystemSettings.CurrentLanguage == "uk-UA") ? "uk" : "ru";
 %>
@@ -47,39 +52,41 @@
             <%= Html.ResourceString("SelectPaymentType") %>
         </div>
         <div class="paymentTypes">
-            <table>
-            <% 
-                List<SelectListItem> paymentTypes = new List<SelectListItem>();
-                paymentTypes.Add(new SelectListItem { Text = Html.ResourceString("Encash"), Value = ((int)PaymentTypes.Encash).ToString(), Selected = true });
-                paymentTypes.Add(new SelectListItem { Text = Html.ResourceString("Card"), Value = ((int)PaymentTypes.Card).ToString() });
-                paymentTypes.Add(new SelectListItem { Text = Html.ResourceString("Noncash"), Value = ((int)PaymentTypes.Noncash).ToString() });
-                string[] options = Html.RadioButtonList("paymentType_" + order.GetHashCode(), paymentTypes, new { onblur = "tableChanged(settings, this)" });
-                for (int i = 0; i<options.Length; i++)
-                {%>
-                <tr>
-                    <td><%= paymentTypes[i].Text %></td>
-                    <td><%= options[i] %></td>
-                </tr>    
-              <%}
-            %>
-            </table>
+            <center>
+                <table>
+                <% 
+                    List<SelectListItem> paymentTypes = new List<SelectListItem>();
+                    paymentTypes.Add(new SelectListItem { Text = Html.ResourceString("Encash"), Value = ((int)PaymentTypes.Encash).ToString(), Selected = true });
+                    paymentTypes.Add(new SelectListItem { Text = Html.ResourceString("Card"), Value = ((int)PaymentTypes.Card).ToString() });
+                    paymentTypes.Add(new SelectListItem { Text = Html.ResourceString("Noncash"), Value = ((int)PaymentTypes.Noncash).ToString() });
+                    string[] options = Html.RadioButtonList("paymentType_" + order.GetHashCode(), paymentTypes, new { onblur = "tableChanged(settings, this)" });
+                    for (int i = 0; i<options.Length; i++)
+                    {%>
+                    <tr>
+                        <td><%= paymentTypes[i].Text %></td>
+                        <td><%= options[i] %></td>
+                    </tr>    
+                  <%}
+                %>
+                </table>
+            </center>
         </div>
         <%} %>
         <%} %>
-        <div style="clear: both;">
-        </div>
     </div>
-    <div>
+    <div style="text-align:center; margin-top:50px;">
         <%= Html.CheckBox("agreed", false) %>
         <%= Html.ResourceString("Agreed") %>
     </div>
     <div class="orderDone">
-        <table>
-            <tr>
-                <td valign="middle"><%= Html.ResourceString("Done") %>!</td>
-                <td><%= Html.SubmitImage("", "~/Content/img/tickMark.jpg", new { onclick = "collectChanges(settings, 'orderSettings'); setOrderTime(); $get('makeOrder').submit();" })%></td>
-            </tr>
-        </table>
+        <center>
+            <table>
+                <tr>
+                    <td valign="middle"><%= Html.ResourceString("Done") %>!</td>
+                    <td><%= Html.SubmitImage("", "~/Content/img/tickMark.jpg", new { onclick = "collectChanges(settings, 'orderSettings'); setOrderTime(); $get('makeOrder').submit();" })%></td>
+                </tr>
+            </table>
+        </center>
     </div>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="includes" runat="server">

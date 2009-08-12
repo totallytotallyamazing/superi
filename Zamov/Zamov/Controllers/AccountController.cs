@@ -77,7 +77,7 @@ namespace Zamov.Controllers
         {
 
             FormsAuth.SignOut();
-
+            SystemSettings.EmptyCart();
             return RedirectToAction("Index", "Home");
         }
 

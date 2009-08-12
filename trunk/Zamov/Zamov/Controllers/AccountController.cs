@@ -80,7 +80,7 @@ namespace Zamov.Controllers
 
         public ActionResult LogOff()
         {
-
+            SystemSettings.CurrentDealer = null;
             FormsAuth.SignOut();
             SystemSettings.EmptyCart();
             return RedirectToAction("Index", "Home");

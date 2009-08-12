@@ -17,8 +17,9 @@
         showOrdershadowsDeclared = true;
     }
 </script>
-
+<div style="height:120px;">
 <%= Html.Image("~/Image/ShowLogo/" + Model.DealerReference.EntityKey.EntityKeyValues[0].Value, new { style="border:1px solid #ccc;", @class="dealerImageLogo" })%>
+</div>
 <table class="commonTable">
     <tr>
         <th>

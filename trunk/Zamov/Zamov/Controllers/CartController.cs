@@ -17,7 +17,7 @@ namespace Zamov.Controllers
         //
         // GET: /Cart/
 
-        public ActionResult Index(int id)
+        public ActionResult Index()
         {
 
             using (ZamovStorage context = new ZamovStorage())
@@ -28,7 +28,6 @@ namespace Zamov.Controllers
                                         select dealer).ToList();
                 ViewData["dealers"] = dealers;
             }
-            ViewData["dealerId"] = id;
             return View(SystemSettings.Cart.Orders);
         }
 
@@ -57,7 +56,7 @@ namespace Zamov.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Recalculate(string updates, int dealerId)
+        public ActionResult Recalculate(string updates)
         {
             if (!string.IsNullOrEmpty(updates))
             {
@@ -85,7 +84,7 @@ namespace Zamov.Controllers
                     }
                 }
             }
-            return RedirectToAction("Index", new { id = dealerId });
+            return RedirectToAction("Index");
         }
 
 
@@ -141,8 +140,11 @@ namespace Zamov.Controllers
             return RedirectToAction("ThankYou");
         }
 
+        
+
         public ActionResult ThankYou()
         {
+            SystemSettings.EmptyCart();
             return View();
         }
 

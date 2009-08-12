@@ -1,12 +1,12 @@
-﻿.orderDetails{ width:auto; text-align:center; }
+﻿.orderDetails{ width:auto; text-align:center; padding-top:5px; }
 .orderDetails .logo{float:left; padding:0 10px;}
 .orderDetails .logo img{border:none;}
 .orderDetails .discount{float:left;}
 .orderDetails .discount .respectDiscount{color:Blue;}
 .orderDetails .paymentTypes{}
 .paymentTypes table td{padding:0 5px; text-align:left;}
-.orderDetails .paymentTypesHeader{ clear:both; font-size:1.2em; text-transform:uppercase; padding:10px 0; text-align:center;}
-.orderDone{vertical-align:top; height:30px;}
+.orderDetails .paymentTypesHeader{padding-top:110px; font-size:1.2em; text-transform:uppercase; text-align:center;}
+.orderDone{vertical-align:top; height:30px; text-align:center;}
 .orderDone table td{padding:5px;}
 
 .yourDetails, .deliveryDate{width:175px;}

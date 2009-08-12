@@ -11,8 +11,10 @@
 <script type="text/javascript">
     var items = {};
 </script>
-<div class="subHeader">
-    <% Html.RenderPartial("Cart");  %>
+<div class="subHeader" style="text-align:center;">
+    <center>
+        <% Html.RenderPartial("Cart");  %>
+    </center>
 </div>
 <%
     if (Model != null)
@@ -23,7 +25,6 @@
 %>    
 <center>
 `   <% using(Html.BeginForm("Recalculate", "Cart", FormMethod.Post)){ %>
-        <%= Html.Hidden("dealerId", ViewData["dealerId"]) %>
         <%= Html.Hidden("updates") %>
         <%= Html.SubmitButton("recalculate", Html.ResourceString("Recalculate"), new { onclick = "collectChanges(items, 'updates');" })%>
     <%} %>

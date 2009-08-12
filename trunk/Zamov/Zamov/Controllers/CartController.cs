@@ -98,8 +98,10 @@ namespace Zamov.Controllers
         public ActionResult MakeOrder(string firstName, string lastName, string city, string deliveryAddress, string contactPhone, string email, string comments, string deliveryDateTime, string orderSettings, bool captchaValid)
         {
             if (!captchaValid)
+            {
+                ViewData["warning"] = "wrong validate sign";
                 return View(SystemSettings.Cart.Orders);
-
+            }
             Cart cart = SystemSettings.Cart;
             JavaScriptSerializer serializer = new JavaScriptSerializer();
             Dictionary<string, Dictionary<string, string>> orderSettingsDictionary =

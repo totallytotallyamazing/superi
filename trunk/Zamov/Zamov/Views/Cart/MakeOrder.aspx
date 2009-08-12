@@ -141,8 +141,17 @@
                 </tr>
                 <tr>
                     <td colspan="2">
-                     <label for="captcha">¬ведите нижеуказанную надпись <%= Html.CaptchaImage(50, 150)%></label><br />
+                    <div style="color:Red; font-weight:bold">
+                    <label for="captcha">¬ведите нижеуказанную надпись
+                    <br />
+                    <%= Html.CaptchaImage(50, 170)%></label><br />
                     <%= Html.TextBox("captcha") %>
+                    
+                    <%
+                        if (ViewData["warning"] != null)
+                            Response.Write(ViewData["warning"].ToString());
+                    %>
+                    </div>
                     </td>
                 </tr>
             </table>

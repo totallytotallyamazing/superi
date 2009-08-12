@@ -105,6 +105,7 @@
     <Compile Include="Controllers\Resources.cs" />
     <Compile Include="Controllers\Securirty.cs" />
     <Compile Include="Controllers\SystemSettings.cs" />
+    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\UserCabinetController.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -118,6 +119,9 @@
     <Compile Include="Helpers\MaskEditExtensions.cs" />
     <Compile Include="Helpers\ResourceTracker.cs" />
     <Compile Include="Helpers\ScriptExtensions.cs" />
+    <Compile Include="Models\Captcha\CaptchaImage.cs" />
+    <Compile Include="Models\Captcha\CaptchaImageHandler.cs" />
+    <Compile Include="Models\Captcha\CaptchaValidationAttribute.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\City.cs" />
     <Compile Include="Models\ContextExtensions.cs" />
@@ -446,6 +450,7 @@
     <Content Include="Views\Products\ProductGroups.ascx" />
     <Content Include="Views\Shared\Cart.ascx" />
     <Content Include="Views\Shared\CurrentDealer.ascx" />
+    <Content Include="Views\Test\Index.aspx" />
     <Content Include="Views\UserCabinet\Index.aspx" />
     <Content Include="Views\Shared\ShowCart.ascx" />
     <Content Include="Views\UserCabinet\ShowCart.aspx" />

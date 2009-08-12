@@ -21,8 +21,8 @@
     <%=Html.ResourceString("OrdersHistory") %>
     <table class="commonTable">
         <tr>
-            <th>№</th>
-            <th><%=Html.ResourceString("CartName")%></th>
+            <th>№ Корзины</th>
+            <th>№ <%=Html.ResourceString("OfOrder")%></th>
             <th><%=Html.ResourceString("Dealer")%></th>
             <th><%=Html.ResourceString("Date")%></th>
             <th><%=Html.ResourceString("Cost")%>, грн</th>
@@ -42,7 +42,7 @@
         %>
         <tr>
             <td rowspan="<%=Html.Encode(c)%>"><%=Html.Encode(order.Cart.Id)%></td>
-            <td rowspan="<%=Html.Encode(c)%>"><%=Html.Encode(order.Cart.Id)%></td>
+            <td><%=Html.Encode(order.Id)%></td>
             <td><%=Html.Encode(order.Dealer.GetName(SystemSettings.CurrentLanguage))%></td>
             <td rowspan="<%=Html.Encode(c)%>"><%=Html.Encode(String.Format("{0:dd.MM.yyyy HH:mm}", order.Cart.Date))%></td>
             <td><%=Html.Encode(order.OrderItems.Sum(oi => oi.Price*oi.Quantity))%></td>
@@ -56,6 +56,7 @@
         {
             %>
             <tr>
+                <td><%=Html.Encode(order.Id)%></td>
                 <td><%=Html.Encode(order.Dealer.GetName(SystemSettings.CurrentLanguage))%></td>
                 <td><%=Html.Encode(order.OrderItems.Sum(oi => oi.Price * oi.Quantity))%></td>
                 <td><%=Html.ResourceString("Status"+(Statuses)order.Status)%></td>

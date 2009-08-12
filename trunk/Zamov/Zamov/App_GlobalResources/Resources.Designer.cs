@@ -691,6 +691,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Кошика.
+        /// </summary>
+        internal static string OfCart {
+            get {
+                return ResourceManager.GetString("OfCart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Вимкнути.
         /// </summary>
         internal static string Off {

@@ -456,4 +456,7 @@
   <data name="UserCabinet" xml:space="preserve">
     <value>Кабінет користувача</value>
   </data>
+  <data name="OfCart" xml:space="preserve">
+    <value>Кошика</value>
+  </data>
 </root>

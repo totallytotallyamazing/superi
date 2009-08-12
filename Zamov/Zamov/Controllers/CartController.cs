@@ -123,7 +123,7 @@ namespace Zamov.Controllers
                 {
                     order.Address = deliveryAddress;
                     order.ClientName = firstName + " " + lastName;
-                    order.Date = DateTime.Now.AddSeconds(30);
+                    order.Date = DateTime.Now;
                     order.DeliveryDate = deliveryDate;
                     order.Phone = contactPhone;
                     order.UserId = userId;

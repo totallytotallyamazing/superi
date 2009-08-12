@@ -28,7 +28,7 @@
 
         function setOrderTime() {
             var date = $("#deliveryDate").datepicker("getDate");
-            $get("deliveryDateTime").value = date.getDate() + "." + (1 * date.getMonth() + 1) + "." + date.getYear() + " " + $get("deliveryTime").value;
+            $get("deliveryDateTime").value = $get("deliveryDate").value + " " + $get("deliveryTime").value;
         }
     </script>
 

@@ -18,7 +18,8 @@ namespace Zamov.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult DoSomething()
+        [CaptchaValidation("captcha")]
+        public ActionResult DoSomething(bool captchaValid)
         {
             if (HttpContext.Request.Form["captchaValid"] == "true")
             {

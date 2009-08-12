@@ -21,7 +21,7 @@
     <%=Html.ResourceString("OrdersHistory") %>
     <table class="commonTable">
         <tr>
-            <th>№ Корзины</th>
+            <th>№ <%=Html.ResourceString("OfCart")%></th>
             <th>№ <%=Html.ResourceString("OfOrder")%></th>
             <th><%=Html.ResourceString("Dealer")%></th>
             <th><%=Html.ResourceString("Date")%></th>

@@ -139,6 +139,12 @@
                     <td class="parameterName"><%= Html.ResourceString("Comments") %></td>
                     <td class="parameterValue"><%= Html.TextArea("comments")%></td>
                 </tr>
+                <tr>
+                    <td colspan="2">
+                     <label for="captcha">¬ведите нижеуказанную надпись <%= Html.CaptchaImage(50, 150)%></label><br />
+                    <%= Html.TextBox("captcha") %>
+                    </td>
+                </tr>
             </table>
             <div class="menuFooter"></div>
         </div>

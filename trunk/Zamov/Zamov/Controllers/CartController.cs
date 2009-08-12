@@ -94,8 +94,12 @@ namespace Zamov.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult MakeOrder(string firstName, string lastName, string city, string deliveryAddress, string contactPhone, string email, string comments, string deliveryDateTime, string orderSettings)
+        [CaptchaValidation("captcha")]
+        public ActionResult MakeOrder(string firstName, string lastName, string city, string deliveryAddress, string contactPhone, string email, string comments, string deliveryDateTime, string orderSettings, bool captchaValid)
         {
+            if (!captchaValid)
+                return View(SystemSettings.Cart.Orders);
+
             Cart cart = SystemSettings.Cart;
             JavaScriptSerializer serializer = new JavaScriptSerializer();
             Dictionary<string, Dictionary<string, string>> orderSettingsDictionary =

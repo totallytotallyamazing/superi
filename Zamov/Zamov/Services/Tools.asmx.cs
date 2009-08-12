@@ -6,6 +6,7 @@ using System.Web.Services;
 using Zamov.Models;
 using Zamov.Controllers;
 using Zamov.Helpers;
+using System.Web.Security;
 
 namespace Zamov.Services
 {
@@ -55,6 +56,8 @@ namespace Zamov.Services
                                           Address = order.Address,
                                           Status = Controllers.Resources.GetResourceString("Status" + (Statuses)order.Status)
                                       });
+                //needed to update LastActivityTime of user
+                Membership.GetUser(true);
                 return result;
             }
         }

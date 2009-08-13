@@ -42,7 +42,6 @@
             <td>
                 
             </td>
-           
             <td>
                 <%= Html.Encode(String.Format("{0:F}", item.Price)) %>
             </td>

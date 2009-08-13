@@ -462,4 +462,19 @@
   <data name="OfCart" xml:space="preserve">
     <value>Корзины</value>
   </data>
+  <data name="Delivery" xml:space="preserve">
+    <value>Доставка</value>
+  </data>
+  <data name="DeliveryInfo" xml:space="preserve">
+    <value>Информация о доставке</value>
+  </data>
+  <data name="DealerInformation" xml:space="preserve">
+    <value>Информация о фирме</value>
+  </data>
+  <data name="Feedback" xml:space="preserve">
+    <value>Отзывы</value>
+  </data>
+  <data name="OfTheSiteVisitors" xml:space="preserve">
+    <value>посетителей сайта</value>
+  </data>
 </root>

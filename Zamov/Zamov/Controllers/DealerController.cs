@@ -33,5 +33,14 @@ namespace Zamov.Controllers
             }
         }
 
+        public ActionResult DeliveryInfo(int id)
+        {
+            return View();
+        }
+
+        public ActionResult Feedback(int id)
+        {
+            return View();
+        }
     }
 }

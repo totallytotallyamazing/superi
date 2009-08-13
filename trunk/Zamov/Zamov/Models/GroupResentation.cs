@@ -5,11 +5,9 @@ using System.Web;
 
 namespace Zamov.Models
 {
-    public class DealerPresentation
+    public class GroupResentation
     {
-        public int Id { get; set; }
         public string Name { get; set; }
-        public string Description { get; set; }
-        public bool OnLine { get; set; }
+        public int Id { get; set; }
     }
 }

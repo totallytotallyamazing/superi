@@ -19,9 +19,10 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("BaseEntities", "FK_Categories_Categories", "Category", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Zamov.Models.Category), "Category1", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Zamov.Models.Category))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("BaseEntities", "FK_Groups_Groups", "Group", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Zamov.Models.Group), "Group1", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Zamov.Models.Group))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("BaseEntities", "FK_CategoryImages_Categories", "Category", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Zamov.Models.Category), "CategoryImages", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Zamov.Models.CategoryImage))]
+[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("BaseEntities", "FK_DealerFeedback_Dealers", "Dealer", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Zamov.Models.Dealer), "DealerFeedback", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Zamov.Models.DealerFeedback))]
 
 // Original file name:
-// Generation date: 10/08/2009 12:23:37
+// Generation date: 13/08/2009 10:56:18
 namespace Zamov.Models
 {
     
@@ -191,6 +192,21 @@ namespace Zamov.Models
         }
         private global::System.Data.Objects.ObjectQuery<CategoryImage> _CategoryImages;
         /// <summary>
+        /// There are no comments for DealerFeedback in the schema.
+        /// </summary>
+        public global::System.Data.Objects.ObjectQuery<DealerFeedback> DealerFeedback
+        {
+            get
+            {
+                if ((this._DealerFeedback == null))
+                {
+                    this._DealerFeedback = base.CreateQuery<DealerFeedback>("[DealerFeedback]");
+                }
+                return this._DealerFeedback;
+            }
+        }
+        private global::System.Data.Objects.ObjectQuery<DealerFeedback> _DealerFeedback;
+        /// <summary>
         /// There are no comments for Categories in the schema.
         /// </summary>
         public void AddToCategories(Category category)
@@ -252,6 +268,13 @@ namespace Zamov.Models
         public void AddToCategoryImages(CategoryImage categoryImage)
         {
             base.AddObject("CategoryImages", categoryImage);
+        }
+        /// <summary>
+        /// There are no comments for DealerFeedback in the schema.
+        /// </summary>
+        public void AddToDealerFeedback(DealerFeedback dealerFeedback)
+        {
+            base.AddObject("DealerFeedback", dealerFeedback);
         }
         /// <summary>
         /// There are no comments for BaseEntities.DeleteTranslations in the schema.
@@ -889,6 +912,27 @@ namespace Zamov.Models
                 if ((value != null))
                 {
                     ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<Group>("BaseEntities.FK_Groups_Dealers", "Group", value);
+                }
+            }
+        }
+        /// <summary>
+        /// There are no comments for DealerFeedback in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("BaseEntities", "FK_DealerFeedback_Dealers", "DealerFeedback")]
+        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
+        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Data.Objects.DataClasses.EntityCollection<DealerFeedback> DealerFeedback
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<DealerFeedback>("BaseEntities.FK_DealerFeedback_Dealers", "DealerFeedback");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<DealerFeedback>("BaseEntities.FK_DealerFeedback_Dealers", "DealerFeedback", value);
                 }
             }
         }
@@ -1913,6 +1957,138 @@ namespace Zamov.Models
                 if ((value != null))
                 {
                     ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<Category>("BaseEntities.FK_CategoryImages_Categories", "Category", value);
+                }
+            }
+        }
+    }
+    /// <summary>
+    /// There are no comments for BaseEntities.DealerFeedback in the schema.
+    /// </summary>
+    /// <KeyProperties>
+    /// Id
+    /// </KeyProperties>
+    [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="BaseEntities", Name="DealerFeedback")]
+    [global::System.Runtime.Serialization.DataContractAttribute(IsReference=true)]
+    [global::System.Serializable()]
+    public partial class DealerFeedback : global::System.Data.Objects.DataClasses.EntityObject
+    {
+        /// <summary>
+        /// Create a new DealerFeedback object.
+        /// </summary>
+        /// <param name="id">Initial value of Id.</param>
+        /// <param name="userId">Initial value of UserId.</param>
+        /// <param name="text">Initial value of Text.</param>
+        public static DealerFeedback CreateDealerFeedback(int id, global::System.Guid userId, string text)
+        {
+            DealerFeedback dealerFeedback = new DealerFeedback();
+            dealerFeedback.Id = id;
+            dealerFeedback.UserId = userId;
+            dealerFeedback.Text = text;
+            return dealerFeedback;
+        }
+        /// <summary>
+        /// There are no comments for Property Id in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id
+        {
+            get
+            {
+                return this._Id;
+            }
+            set
+            {
+                this.OnIdChanging(value);
+                this.ReportPropertyChanging("Id");
+                this._Id = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("Id");
+                this.OnIdChanged();
+            }
+        }
+        private int _Id;
+        partial void OnIdChanging(int value);
+        partial void OnIdChanged();
+        /// <summary>
+        /// There are no comments for Property UserId in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Guid UserId
+        {
+            get
+            {
+                return this._UserId;
+            }
+            set
+            {
+                this.OnUserIdChanging(value);
+                this.ReportPropertyChanging("UserId");
+                this._UserId = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("UserId");
+                this.OnUserIdChanged();
+            }
+        }
+        private global::System.Guid _UserId;
+        partial void OnUserIdChanging(global::System.Guid value);
+        partial void OnUserIdChanged();
+        /// <summary>
+        /// There are no comments for Property Text in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string Text
+        {
+            get
+            {
+                return this._Text;
+            }
+            set
+            {
+                this.OnTextChanging(value);
+                this.ReportPropertyChanging("Text");
+                this._Text = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
+                this.ReportPropertyChanged("Text");
+                this.OnTextChanged();
+            }
+        }
+        private string _Text;
+        partial void OnTextChanging(string value);
+        partial void OnTextChanged();
+        /// <summary>
+        /// There are no comments for Dealers in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("BaseEntities", "FK_DealerFeedback_Dealers", "Dealer")]
+        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
+        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public Dealer Dealers
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Dealer>("BaseEntities.FK_DealerFeedback_Dealers", "Dealer").Value;
+            }
+            set
+            {
+                ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Dealer>("BaseEntities.FK_DealerFeedback_Dealers", "Dealer").Value = value;
+            }
+        }
+        /// <summary>
+        /// There are no comments for Dealers in the schema.
+        /// </summary>
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Data.Objects.DataClasses.EntityReference<Dealer> DealersReference
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Dealer>("BaseEntities.FK_DealerFeedback_Dealers", "Dealer");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<Dealer>("BaseEntities.FK_DealerFeedback_Dealers", "Dealer", value);
                 }
             }
         }

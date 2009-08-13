@@ -97,6 +97,7 @@
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\ContextCacheExtension.cs" />
     <Compile Include="Controllers\DealerCabinetController.cs" />
+    <Compile Include="Controllers\DealerController.cs" />
     <Compile Include="Controllers\DealersController.cs" />
     <Compile Include="Controllers\Extensions.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -129,6 +130,7 @@
     <Compile Include="Models\DealerPresentation.cs" />
     <Compile Include="Models\Dealers.cs" />
     <Compile Include="Models\Group.cs" />
+    <Compile Include="Models\GroupResentation.cs" />
     <Compile Include="Models\Membership.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -450,6 +452,7 @@
     <Content Include="Views\DealerCabinet\UpdateProductDescription.aspx" />
     <Content Include="Views\DealerCabinet\UpdateProductImage.aspx" />
     <Content Include="Views\Dealers\Index.aspx" />
+    <Content Include="Views\Dealer\Index.aspx" />
     <Content Include="Views\Products\Description.aspx" />
     <Content Include="Views\Products\Index.aspx" />
     <Content Include="Views\Products\ProductGroups.ascx" />

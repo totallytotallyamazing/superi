@@ -11,6 +11,7 @@
           <EntitySet Name="Cities" EntityType="BaseEntities.Store.Cities" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="DealerCategoryMapping" EntityType="BaseEntities.Store.DealerCategoryMapping" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="DealerCityMappings" EntityType="BaseEntities.Store.DealerCityMappings" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="DealerFeedback" EntityType="BaseEntities.Store.DealerFeedback" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Dealers" EntityType="BaseEntities.Store.Dealers" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Groups" EntityType="BaseEntities.Store.Groups" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ProductCityMappings" EntityType="BaseEntities.Store.ProductCityMappings" store:Type="Tables" Schema="dbo" />
@@ -42,6 +43,10 @@
           <AssociationSet Name="FK_DealerCityMappings_Dealers" Association="BaseEntities.Store.FK_DealerCityMappings_Dealers">
             <End Role="Dealers" EntitySet="Dealers" />
             <End Role="DealerCityMappings" EntitySet="DealerCityMappings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DealerFeedback_Dealers" Association="BaseEntities.Store.FK_DealerFeedback_Dealers">
+            <End Role="Dealers" EntitySet="Dealers" />
+            <End Role="DealerFeedback" EntitySet="DealerFeedback" />
           </AssociationSet>
           <AssociationSet Name="FK_Groups_Dealers" Association="BaseEntities.Store.FK_Groups_Dealers">
             <End Role="Dealers" EntitySet="Dealers" />
@@ -113,6 +118,15 @@
           </Key>
           <Property Name="DealerId" Type="int" Nullable="false" />
           <Property Name="CityId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DealerFeedback">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="DealerId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Text" Type="nvarchar" Nullable="false" MaxLength="1000" />
         </EntityType>
         <EntityType Name="Dealers">
           <Key>
@@ -264,6 +278,18 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="DealerCityMappings">
+              <PropertyRef Name="DealerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DealerFeedback_Dealers">
+          <End Role="Dealers" Type="BaseEntities.Store.Dealers" Multiplicity="1" />
+          <End Role="DealerFeedback" Type="BaseEntities.Store.DealerFeedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dealers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DealerFeedback">
               <PropertyRef Name="DealerId" />
             </Dependent>
           </ReferentialConstraint>
@@ -457,7 +483,11 @@
           <FunctionImport Name="GetCategories" EntitySet="Categories" ReturnType="Collection(BaseEntities.Category)">
             <Parameter Name="cityId" Mode="In" Type="Int32" /></FunctionImport>
           <FunctionImport Name="CategoryImages_Cleanup">
-            <Parameter Name="categoryId" Mode="In" Type="Int32" /></FunctionImport></EntityContainer>
+            <Parameter Name="categoryId" Mode="In" Type="Int32" /></FunctionImport>
+          <EntitySet Name="DealerFeedback" EntityType="BaseEntities.DealerFeedback" />
+          <AssociationSet Name="FK_DealerFeedback_Dealers" Association="BaseEntities.FK_DealerFeedback_Dealers">
+            <End Role="Dealer" EntitySet="Dealers" />
+            <End Role="DealerFeedback" EntitySet="DealerFeedback" /></AssociationSet></EntityContainer>
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="Id" />
@@ -493,7 +523,8 @@
           <NavigationProperty Name="Categories" Relationship="BaseEntities.DealerCategoryMapping" FromRole="Dealer" ToRole="Category" />
           <Property Name="LogoType" Type="String" Nullable="true" />
           <NavigationProperty Name="Groups" Relationship="BaseEntities.FK_Groups_Dealers" FromRole="Dealer" ToRole="Group" />
-          <Property Name="HasDiscounts" Type="Boolean" Nullable="false" /></EntityType>
+          <Property Name="HasDiscounts" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="DealerFeedback" Relationship="BaseEntities.FK_DealerFeedback_Dealers" FromRole="Dealer" ToRole="DealerFeedback" /></EntityType>
         <EntityType Name="Group">
           <Key>
             <PropertyRef Name="Id" />
@@ -585,7 +616,17 @@
           <Property Name="ImageType" Type="String" Nullable="false" /></EntityType>
         <Association Name="FK_CategoryImages_Categories">
           <End Type="BaseEntities.Category" Role="Category" Multiplicity="1" />
-          <End Type="BaseEntities.CategoryImage" Role="CategoryImages" Multiplicity="*" /></Association></Schema>
+          <End Type="BaseEntities.CategoryImage" Role="CategoryImages" Multiplicity="*" /></Association>
+        <EntityType Name="DealerFeedback">
+          <Key>
+            <PropertyRef Name="Id" /></Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="Text" Type="String" Nullable="false" />
+          <NavigationProperty Name="Dealers" Relationship="BaseEntities.FK_DealerFeedback_Dealers" FromRole="DealerFeedback" ToRole="Dealer" /></EntityType>
+        <Association Name="FK_DealerFeedback_Dealers">
+          <End Type="BaseEntities.Dealer" Role="Dealer" Multiplicity="1" />
+          <End Type="BaseEntities.DealerFeedback" Role="DealerFeedback" Multiplicity="*" /></Association></Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -747,7 +788,18 @@
             <EndProperty Name="Category">
               <ScalarProperty Name="Id" ColumnName="CategoryId" /></EndProperty></AssociationSetMapping>
           <FunctionImportMapping FunctionImportName="GetCategories" FunctionName="BaseEntities.Store.Categories_GetByCityId" />
-          <FunctionImportMapping FunctionImportName="CategoryImages_Cleanup" FunctionName="BaseEntities.Store.CategoryImages_Cleanup" /></EntityContainerMapping>
+          <FunctionImportMapping FunctionImportName="CategoryImages_Cleanup" FunctionName="BaseEntities.Store.CategoryImages_Cleanup" />
+          <EntitySetMapping Name="DealerFeedback">
+            <EntityTypeMapping TypeName="IsTypeOf(BaseEntities.DealerFeedback)">
+              <MappingFragment StoreEntitySet="DealerFeedback">
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" /></MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <AssociationSetMapping Name="FK_DealerFeedback_Dealers" TypeName="BaseEntities.FK_DealerFeedback_Dealers" StoreEntitySet="DealerFeedback">
+            <EndProperty Name="DealerFeedback">
+              <ScalarProperty Name="Id" ColumnName="Id" /></EndProperty>
+            <EndProperty Name="Dealer">
+              <ScalarProperty Name="Id" ColumnName="DealerId" /></EndProperty></AssociationSetMapping></EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>
@@ -771,37 +823,36 @@
         <EntityTypeShape EntityType="BaseEntities.Dealer" PointX="9.375" PointY="0.5" Width="1.5" Height="2.41404296875" IsExpanded="true" />
         <EntityTypeShape EntityType="BaseEntities.Group" Width="1.5" PointX="3" PointY="2" Height="2.2496956380208335" IsExpanded="true" />
         <EntityTypeShape EntityType="BaseEntities.Product" Width="1.5" PointX="0.75" PointY="4.25" Height="2.2496956380208335" IsExpanded="true" />
-        <EntityTypeShape EntityType="BaseEntities.TranslationItemsType" Width="1.5" PointX="6.625" PointY="6.25" Height="1.2636116536458335" IsExpanded="true" />
-        <EntityTypeShape EntityType="BaseEntities.Translation" Width="1.5" PointX="3.375" PointY="6.25" Height="1.7766536458333331" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaseEntities.TranslationItemsType" Width="1.5" PointX="11.25" PointY="2.5" Height="1.2636116536458335" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaseEntities.Translation" Width="1.5" PointX="11.25" PointY="0.5" Height="1.7566536458333335" IsExpanded="true" />
         <AssociationConnector ManuallyRouted="false" Association="BaseEntities.FK_Products_Dealers">
-          <ConnectorPoint PointX="10.125" PointY="2.91404296875" />
-          <ConnectorPoint PointX="10.125" PointY="6.0658268229166667" />
-          <ConnectorPoint PointX="2.25" PointY="6.0658268229166667" />
+          <ConnectorPoint PointX="10.552083333333332" PointY="3.2427376302083331" />
+          <ConnectorPoint PointX="10.552083333333332" PointY="6.4290983072916674" />
+          <ConnectorPoint PointX="2.25" PointY="6.4290983072916674" />
           </AssociationConnector>
         <AssociationConnector Association="BaseEntities.FK_Products_Groups" ManuallyRouted="false">
           <ConnectorPoint PointX="3.15625" PointY="4.2496956380208335" />
           <ConnectorPoint PointX="3.15625" PointY="4.79070594805726" />
           <ConnectorPoint PointX="2.25" PointY="4.79070594805726" /></AssociationConnector>
         <AssociationConnector ManuallyRouted="false" Association="BaseEntities.DealerCityMappings">
-          <ConnectorPoint PointX="2.25" PointY="1.375" />
-          <ConnectorPoint PointX="3.151375705128205" PointY="1.3749999999999993" />
-          <ConnectorPoint PointX="3.3180423717948719" PointY="1.375" />
-          <ConnectorPoint PointX="9.375" PointY="1.375" /></AssociationConnector>
+          <ConnectorPoint PointX="2.25" PointY="1.25" />
+          <ConnectorPoint PointX="9.375" PointY="1.25" />
+          </AssociationConnector>
         <AssociationConnector Association="BaseEntities.ProductCityMappings" ManuallyRouted="false">
           <ConnectorPoint PointX="1.5" PointY="2.8816536458333331" />
           <ConnectorPoint PointX="1.5" PointY="4.25" />
           </AssociationConnector>
-        <EntityTypeShape EntityType="BaseEntities.ProductImage" Width="1.5" PointX="7" PointY="4.125" Height="1.4279589843749996" />
+        <EntityTypeShape EntityType="BaseEntities.ProductImage" Width="1.5" PointX="5.125" PointY="4.125" Height="1.7566536458333335" />
         <AssociationConnector Association="BaseEntities.FK_ProductImages_Products" >
-          <ConnectorPoint PointX="2.25" PointY="5.3627427366093112" />
-          <ConnectorPoint PointX="7" PointY="5.3627427366093112" />
+          <ConnectorPoint PointX="2.25" PointY="5.390444099928434" />
+          <ConnectorPoint PointX="5.125" PointY="5.390444099928434" />
           </AssociationConnector>
         <AssociationConnector Association="BaseEntities.DealerCategoryMapping" >
           <ConnectorPoint PointX="6.625" PointY="1.96875" />
           <ConnectorPoint PointX="9.375" PointY="1.96875" /></AssociationConnector>
         <AssociationConnector Association="BaseEntities.FK_Groups_Dealers" >
-          <ConnectorPoint PointX="9.7187475" PointY="3.078390299479167" />
-          <ConnectorPoint PointX="9.7187475" PointY="3.9836531575520833" />
+          <ConnectorPoint PointX="9.6354166666666661" PointY="3.2427376302083331" />
+          <ConnectorPoint PointX="9.6354166666666661" PointY="3.9836531575520833" />
           <ConnectorPoint PointX="4.5" PointY="3.9836531575520833" />
           </AssociationConnector>
         <AssociationConnector Association="BaseEntities.FK_Categories_Categories" >
@@ -818,6 +869,12 @@
         <AssociationConnector Association="BaseEntities.FK_CategoryImages_Categories" >
           <ConnectorPoint PointX="6.625" PointY="3.0426741536458337" />
           <ConnectorPoint PointX="7.25" PointY="3.0426741536458337" />
+          </AssociationConnector>
+        <EntityTypeShape EntityType="BaseEntities.DealerFeedback" Width="1.875" PointX="7.5" PointY="4.375" Height="1.592306315104167" />
+        <AssociationConnector Association="BaseEntities.FK_DealerFeedback_Dealers" >
+          <ConnectorPoint PointX="10.052083333333332" PointY="3.2427376302083331" />
+          <ConnectorPoint PointX="10.052083333333332" PointY="5.1711531575520837" />
+          <ConnectorPoint PointX="9.375" PointY="5.1711531575520837" />
           </AssociationConnector></Diagram></edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

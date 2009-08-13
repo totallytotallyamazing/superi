@@ -17,7 +17,7 @@
             <%if(item.OnLine){ %>
             <div class="dalerOnline"></div>
             <%} %>
-            <a href="/Products/<%= item.Id %>">
+            <a href="/Dealer/<%= item.Id %>">
                 <%= Html.Image("~/Image/ShowLogo/" + item.Id, new { style="border:1px solid #ccc;" })%>  
             </a>
         </div>

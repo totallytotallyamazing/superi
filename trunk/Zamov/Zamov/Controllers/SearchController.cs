@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Data.Objects;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -23,6 +24,13 @@ namespace Zamov.Controllers
         {
             using (ZamovStorage context = new ZamovStorage())
             {
+                ObjectQuery<Product> productsQuery = new ObjectQuery<Product>(
+                    "SELECT VALUE P FROM Products AS P WHERE P.Name LIKE '%" + searchContext + "%'", context);
+                List<Product> products = productsQuery.ToList();
+                products.ForEach(p => p.DealerReference.Load());
+                return View(products);
+
+                /*
                 List<Product> products =
                     (from product in context.Products.Include("Dealer")
                      where product.Name == searchContext 
@@ -30,6 +38,7 @@ namespace Zamov.Controllers
                      && !product.Deleted
                      select product).ToList();
                 return View(products);
+                */
             }
 
         }

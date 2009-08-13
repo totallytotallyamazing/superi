@@ -367,7 +367,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Постачальник.
+        ///   Looks up a localized string similar to Продавець.
         /// </summary>
         internal static string Dealer {
             get {
@@ -376,7 +376,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Постачальники.
+        ///   Looks up a localized string similar to Продавцi.
         /// </summary>
         internal static string Dealers {
             get {

@@ -21,15 +21,17 @@ namespace Zamov.Controllers
 
         public ActionResult SearchProduct(string searchContext)
         {
-            using (ZamovStorage context = new ZamovStorage() )
+            using (ZamovStorage context = new ZamovStorage())
             {
                 List<Product> products =
                     (from product in context.Products.Include("Dealer")
                      where product.Name == searchContext 
+                     && product.Enabled
+                     && !product.Deleted
                      select product).ToList();
                 return View(products);
             }
-            
+
         }
 
 

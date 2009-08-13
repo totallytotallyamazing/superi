@@ -1,36 +1,32 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<Zamov.Models.Product>>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Index
+	SearchProduct
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Index</h2>
+    <h2>Результаты поиска</h2>
 
-    <table>
+    <table class="commonTable">
         <tr>
-            <th></th>
             <th>
-                NamesXml
+                Название
             </th>
             <th>
-                Id
+                Продавец
             </th>
             <th>
-                Name
+                Единица измерения
             </th>
             <th>
-                Price
+                Цена
             </th>
             <th>
-                Enabled
+                Количество
             </th>
             <th>
-                PartNumber
-            </th>
-            <th>
-                Deleted
+                Заказать
             </th>
         </tr>
 
@@ -38,36 +34,28 @@
     
         <tr>
             <td>
-                <%= Html.ActionLink("Edit", "Edit", new { id=item.Id }) %> |
-                <%= Html.ActionLink("Details", "Details", new { id=item.Id })%>
-            </td>
-            <td>
-                <%= Html.Encode(item.NamesXml) %>
-            </td>
-            <td>
-                <%= Html.Encode(item.Id) %>
-            </td>
-            <td>
                 <%= Html.Encode(item.Name) %>
             </td>
+            <td>
+                <%= Html.Encode(item.Dealer.Name) %>
+            </td>
+            <td>
+                
+            </td>
+           
             <td>
                 <%= Html.Encode(String.Format("{0:F}", item.Price)) %>
             </td>
             <td>
-                <%= Html.Encode(item.Enabled) %>
+                
             </td>
             <td>
-                <%= Html.Encode(item.PartNumber) %>
-            </td>
-            <td>
-                <%= Html.Encode(item.Deleted) %>
+                
             </td>
         </tr>
     
     <% } %>
-
     </table>
-
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="includes" runat="server">

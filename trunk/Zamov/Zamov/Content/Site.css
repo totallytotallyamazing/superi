@@ -109,4 +109,11 @@ iframe{padding:0; margin:0; border:none;}
 .cartTable tr td div{cursor:pointer; width:29px; height:50px; background: transparent url(img/cartActive.jpg) no-repeat 0 100%; padding-right:10px;}
 .cartDisabled{background: transparent url(img/cart.jpg) no-repeat 0 100% !important;}
 
-.largeCart{}
+.deliveryInfo, .userFeedback{margin-top:10px; float:left;  text-align:center; padding: 5px 20px 10px 0;}
+.userFeedback{width:200px;}
+.deliveryInfo{width:220px;  background:transparent url(img/truck.jpg) no-repeat 100% 0;}
+.dealerFeedbackLinkFirst, .deliveryInfoLinkSecond{text-transform:uppercase; font-size:14px; color:Black; text-decoration:none;}
+.dealerFeedbacLinkSecond, .deliveryInfoLinkFirst{text-transform:none; color: #2b587a; font-size:12px; line-height:20px; text-decoration:none;}
+.dealerDescription{ border: 1px solid #dbdbdb; padding:10px;}
+
+.dealerDescription div.descriptionHeader{color:#2b587a; text-align:center; font-size:14px;}

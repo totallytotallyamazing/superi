@@ -272,6 +272,7 @@
     <Content Include="Content\img\online.png" />
     <Content Include="Content\img\productImage.JPG" />
     <Content Include="Content\img\tickMark.jpg" />
+    <Content Include="Content\img\truck.jpg" />
     <Content Include="Content\redmond\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\redmond\images\ui-bg_flat_55_fbec88_40x100.png" />
     <Content Include="Content\redmond\images\ui-bg_glass_75_d0e5f5_1x400.png" />
@@ -453,6 +454,8 @@
     <Content Include="Views\DealerCabinet\UpdateProductDescription.aspx" />
     <Content Include="Views\DealerCabinet\UpdateProductImage.aspx" />
     <Content Include="Views\Dealers\Index.aspx" />
+    <Content Include="Views\Dealer\DeliveryInfo.aspx" />
+    <Content Include="Views\Dealer\Feedback.aspx" />
     <Content Include="Views\Dealer\Index.aspx" />
     <Content Include="Views\Products\Description.aspx" />
     <Content Include="Views\Products\Index.aspx" />

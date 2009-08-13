@@ -376,6 +376,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Iнформацiя про фiрму.
+        /// </summary>
+        internal static string DealerInformation {
+            get {
+                return ResourceManager.GetString("DealerInformation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Продавцi.
         /// </summary>
         internal static string Dealers {
@@ -403,6 +412,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Доставка.
+        /// </summary>
+        internal static string Delivery {
+            get {
+                return ResourceManager.GetString("Delivery", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Адреса доставки.
         /// </summary>
         internal static string DeliveryAddress {
@@ -417,6 +435,15 @@ namespace Resources {
         internal static string DeliveryDateTime {
             get {
                 return ResourceManager.GetString("DeliveryDateTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Iнформацiя про доставку.
+        /// </summary>
+        internal static string DeliveryInfo {
+            get {
+                return ResourceManager.GetString("DeliveryInfo", resourceCulture);
             }
         }
         
@@ -489,6 +516,15 @@ namespace Resources {
         internal static string Encash {
             get {
                 return ResourceManager.GetString("Encash", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Вiдгуки.
+        /// </summary>
+        internal static string Feedback {
+            get {
+                return ResourceManager.GetString("Feedback", resourceCulture);
             }
         }
         
@@ -714,6 +750,15 @@ namespace Resources {
         internal static string OfOrder {
             get {
                 return ResourceManager.GetString("OfOrder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to вiдвiдувачiв сайту.
+        /// </summary>
+        internal static string OfTheSiteVisitors {
+            get {
+                return ResourceManager.GetString("OfTheSiteVisitors", resourceCulture);
             }
         }
         

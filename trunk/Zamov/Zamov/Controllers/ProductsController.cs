@@ -37,7 +37,7 @@ namespace Zamov.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult AddToCart(int dealerId, string items, int? groupId)
+        public ActionResult AddToCart(int dealerId, int? groupId, FormCollection items)
         {
             Cart cart = SystemSettings.Cart;
             JavaScriptSerializer serializer = new JavaScriptSerializer();

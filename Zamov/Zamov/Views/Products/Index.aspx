@@ -12,7 +12,7 @@
         })
 
         function submitForm() {
-            collectChanges(items, "items");
+            //collectChanges(items, "items");
             $get("addToCart").submit();
         }
 
@@ -49,8 +49,6 @@
           { %>
             <%= Html.Hidden("dealerId", ViewData["dealerId"])%>
             <%= Html.Hidden("groupId", ViewData["groupId"])%>
-            <%= Html.Hidden("items")%>
-        <%} %>
     <table class="commonTable" style="margin:10px 0">
         <tr>
             <th><%= Html.ResourceString("Name") %></th>
@@ -80,16 +78,18 @@ foreach (var item in Model)
                 <%= item.Price.ToString("#.00#") %>
             </td>
             <td align="center">
-                <%= Html.TextBox("quantity_" + item.Id, null, new { style = "width:12px; font-size:10px;", onblur = "tableChanged(items,this)", onkeyup = "order(this)" })%>
+                <%= Html.TextBox("quantity_" + item.Id, null, new { style = "width:12px; font-size:10px;", onkeyup = "order(this)" })%>
             </td>
             <td align="center">
-                <%= Html.CheckBox("order_" + item.Id, false, new { onblur = "tableChanged(items,this)", onclick="order(this)" })%>
+                <%= Html.CheckBox("order_" + item.Id, false, new {onclick="order(this)" })%>
             </td>
         </tr>
     <%   
     }     
 %>
     </table>
+   <%} %>
+
     <input type="button" value="<%= Html.ResourceString("AddToCart") %>" onclick="submitForm()" />
     <%} %>
 </asp:Content>

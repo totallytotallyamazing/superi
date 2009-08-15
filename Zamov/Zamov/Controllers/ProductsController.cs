@@ -36,13 +36,29 @@ namespace Zamov.Controllers
             }
         }
 
+        private Dictionary<string, Dictionary<string, string>> ProcessPostData(FormCollection form, params string[] excludeFields)
+        {
+            Dictionary<string, Dictionary<string, string>> result = new Dictionary<string, Dictionary<string, string>>();
+            foreach (string key in form.Keys)
+            {
+                if (excludeFields == null || !excludeFields.Contains(key))
+                {
+                    string[] item = key.Split('_');
+                    string itemId = item[1];
+                    string fieldName = item[0];
+                }
+            }
+            return result;
+        }
+
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult AddToCart(int dealerId, int? groupId, FormCollection items)
         {
             Cart cart = SystemSettings.Cart;
-            JavaScriptSerializer serializer = new JavaScriptSerializer();
-            Dictionary<string, Dictionary<string, string>> orderItems =
-                serializer.Deserialize<Dictionary<string, Dictionary<string, string>>>(items);
+            //JavaScriptSerializer serializer = new JavaScriptSerializer();
+            Dictionary<string, Dictionary<string, string>> orderItems = ProcessPostData(items, "dealerId", "groupId");
+            //serializer.Deserialize<Dictionary<string, Dictionary<string, string>>>(items);
+
             Order order = (from o in cart.Orders where o.Dealer != null && o.Dealer.Id == dealerId select o).SingleOrDefault();
             var orderItemList =
                 (from oi in orderItems

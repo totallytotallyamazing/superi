@@ -26,6 +26,9 @@
     <td>
         <%= Html.TextBox("price_" + ViewData["id"], ViewData["price"], new { onblur = changeFunction })%>
     </td>
+    <td>
+        <%= Html.TextBox("unit_" + ViewData["id"], ViewData["unit"], new { onblur = changeFunction })%>
+    </td>
     <td align="center">
         <a href="javascript:openDescriptionDialog('<%= divId %>')" class="productDescriptionLink">
             i

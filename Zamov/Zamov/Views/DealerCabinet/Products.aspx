@@ -125,6 +125,9 @@
                 <%= Html.ResourceString("Price")%>
             </th>
             <th>
+                <%= Html.ResourceString("Unit")%>
+            </th>
+            <th>
                 <%= Html.ResourceString("ActiveM")%>
             </th>
         </tr>
@@ -148,6 +151,10 @@
             <td>
                 <%= Html.TextBox("price_" + item.Id, item.Price, new { onblur = "tableChanged(updates, this)" })%>
             </td>
+            <td>
+                <%= Html.TextBox("unit_" + item.Id, item.Unit, new { onblur = "tableChanged(updates, this)" })%>
+            </td>
+
             <td align="center">
                 <%= Html.CheckBox("active_" + item.Id, item.Enabled, new { onblur = "tableChanged(updates, this)" })%>
             </td>
@@ -186,6 +193,9 @@
                     <%= Html.ResourceString("Price")%>
                 </th>
                 <th>
+                    <%= Html.ResourceString("Unit")%>
+                </th>
+                <th>
                     <%= Html.ResourceString("ActiveM")%>
                 </th>
             </tr>
@@ -198,6 +208,9 @@
                 </td>
                 <td>
                     <%= Html.TextBox("price")%>
+                </td>
+                <td>
+                    <%= Html.TextBox("unit")%>
                 </td>
                 <td align="center">
                     <%= Html.CheckBox("active")%>

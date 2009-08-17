@@ -67,6 +67,7 @@
                     <td align="center"><%= Html.ResourceString("PartNumber") %></td>
                     <td align="center"><%= Html.ResourceString("Name") %></td>
                     <td align="center"><%= Html.ResourceString("Price") %></td>
+                    <td align="center"><%= Html.ResourceString("Unit") %></td>
                     <td align="center"><%= Html.ResourceString("Description") %></td>
                 </tr>
                 <%
@@ -82,6 +83,7 @@
                     <td align="center"><%= Html.ResourceString("PartNumber") %></td>
                     <td align="center"><%= Html.ResourceString("Name") %></td>
                     <td align="center"><%= Html.ResourceString("Price") %></td>
+                    <td align="center"><%= Html.ResourceString("Unit") %></td>
                     <td align="center"><%= Html.ResourceString("Description") %></td>
                 </tr>
                 <%

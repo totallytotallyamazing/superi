@@ -52,9 +52,16 @@ namespace Zamov.Controllers
         public ActionResult AddToCart(FormCollection items)
         {
             Cart cart = SystemSettings.Cart;
-            Dictionary<string, Dictionary<string, string>> orderItems = items.ProcessPostData("dealerId", "groupId");
+            Dictionary<string, Dictionary<string, string>> orderItems = items.ProcessPostData();
             if (orderItems.Count > 0)
             {
+                var orderItemList =
+                   (from oi in orderItems
+                    where oi.Value["order"].ToLowerInvariant().Contains("true")
+                    select new { Id = int.Parse(oi.Key), Dealer = int.Parse(oi.Value["dealer"]) })
+                    .ToList();
+
+
 
             }
 

@@ -51,6 +51,7 @@
             </td>
             <td>
                 <%= Html.Encode(item.Dealer.Name)%>
+                <%=Html.Hidden("dealer_"+ item.Id,item.Dealer.Id)%>
             </td>
             <td>
                 

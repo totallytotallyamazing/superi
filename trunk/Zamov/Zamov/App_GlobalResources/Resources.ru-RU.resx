@@ -376,7 +376,7 @@
     <value>Единица измерения</value>
   </data>
   <data name="PickAnotherDealer" xml:space="preserve">
-    <value>Выбрать другого поставщика</value>
+    <value>Выбрать другого продавца</value>
   </data>
   <data name="CartName" xml:space="preserve">
     <value>Название корзины</value>

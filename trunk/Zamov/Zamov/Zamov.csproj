@@ -118,6 +118,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\AjaxExtensions.cs" />
+    <Compile Include="Helpers\FormCollectionExtender.cs" />
     <Compile Include="Helpers\Helpers.cs" />
     <Compile Include="Helpers\MaskEditExtensions.cs" />
     <Compile Include="Helpers\ResourceTracker.cs" />

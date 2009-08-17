@@ -4,6 +4,7 @@ using System.Web.Mvc;
 using Zamov.Models;
 using System.Data.Objects;
 using System.Data;
+using Zamov.Helpers;
 
 namespace Zamov.Controllers
 {
@@ -32,29 +33,11 @@ namespace Zamov.Controllers
             }
         }
 
-        private Dictionary<string, Dictionary<string, string>> ProcessPostData(FormCollection form, params string[] excludeFields)
-        {
-            Dictionary<string, Dictionary<string, string>> result = new Dictionary<string, Dictionary<string, string>>();
-            foreach (string key in form.Keys)
-            {
-                if (excludeFields == null || !excludeFields.Contains(key))
-                {
-                    string[] item = key.Split('_');
-                    string itemId = item[1];
-                    string fieldName = item[0];
-                    if (!result.ContainsKey(itemId))
-                        result[itemId] = new Dictionary<string, string>();
-                    result[itemId][fieldName] = form[key];
-                }
-            }
-            return result;
-        }
-
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult AddToCart(int dealerId, int? groupId, FormCollection items)
         {
             Cart cart = SystemSettings.Cart;
-            Dictionary<string, Dictionary<string, string>> orderItems = ProcessPostData(items, "dealerId", "groupId");
+            Dictionary<string, Dictionary<string, string>> orderItems = items.ProcessPostData("dealerId", "groupId");
             if (orderItems.Count > 0)
             {
                 Order order = (from o in cart.Orders where o.Dealer != null && o.Dealer.Id == dealerId select o).SingleOrDefault();

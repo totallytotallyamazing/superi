@@ -22,7 +22,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("BaseEntities", "FK_DealerFeedback_Dealers", "Dealer", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Zamov.Models.Dealer), "DealerFeedback", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Zamov.Models.DealerFeedback))]
 
 // Original file name:
-// Generation date: 13/08/2009 10:56:18
+// Generation date: 17/08/2009 11:59:22
 namespace Zamov.Models
 {
     

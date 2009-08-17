@@ -6,6 +6,8 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 using Zamov.Models;
+using System.Data;
+using Zamov.Helpers;
 
 namespace Zamov.Controllers
 {
@@ -49,6 +51,12 @@ namespace Zamov.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult AddToCart(FormCollection items)
         {
+            Cart cart = SystemSettings.Cart;
+            Dictionary<string, Dictionary<string, string>> orderItems = items.ProcessPostData("dealerId", "groupId");
+            if (orderItems.Count > 0)
+            {
+
+            }
 
             return RedirectToAction("SearchProduct");
         }

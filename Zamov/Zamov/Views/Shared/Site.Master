@@ -57,11 +57,17 @@
     <div id="mainMenu">
         <div class="outer greyBg">
             <div class="inner whiteBg">
-            search:<%using (Html.BeginForm("SearchProduct", "Search", FormMethod.Post))
-                     {%><%=Html.TextBox("searchContext")%>
-               <input type="submit" value=">>>" />
+            <table>
+            <tr>
+            <td>
+            search:
+            </td>
+            <td><%using (Html.BeginForm("SearchProduct", "Search", FormMethod.Post)){%><%=Html.TextBox("searchContext")%><input type="submit" value=">>>" />
                <%
-           } %>
+           } %></td>
+            </tr>
+            </table>
+            
                 
             </div>
         </div>

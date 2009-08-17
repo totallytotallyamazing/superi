@@ -15,7 +15,7 @@ using System.Collections;
 namespace Zamov.Controllers
 {
     [Authorize(Roles = "Administrators, Dealers")]
-    public class DealerCabinetController : CacheController
+    public class DealerCabinetController : Controller
     {
         public ActionResult Index()
         {
@@ -185,7 +185,7 @@ namespace Zamov.Controllers
             List<Product> products = new List<Product>();
             if (id != null)
             {
-                products = (from product in context.Products 
+                products = (from product in context.Products
                             where product.Group.Id == id.Value && product.Dealer.Id == dealerId
                             select product).ToList();
             }
@@ -197,7 +197,7 @@ namespace Zamov.Controllers
             return View(products);
         }
 
-        public ActionResult AddProduct(string partNumber, string name, decimal price, bool active, int groupId)
+        public ActionResult AddProduct(string partNumber, string name, decimal price, bool active, int groupId, string unit)
         {
             using (ZamovStorage context = new ZamovStorage())
             {
@@ -213,6 +213,7 @@ namespace Zamov.Controllers
                 product.Name = name;
                 product.Price = price;
                 product.Enabled = active;
+                product.Unit = unit;
                 context.AddToProducts(product);
                 context.SaveChanges();
             }
@@ -229,15 +230,15 @@ namespace Zamov.Controllers
             {
                 List<Group> groups = new List<Group>();
                 string cacheKey = "dId_" + dealerId + "gId" + groupId;
-                if (Cache[cacheKey] != null)
-                    groups = (List<Group>)Cache[cacheKey];
+                if (HttpContext.Cache[cacheKey] != null)
+                    groups = (List<Group>)HttpContext.Cache[cacheKey];
                 else
                 {
                     if (groupId > 0)
                         groups = (from g in context.Groups where g.Dealer.Id == dealerId && g.Parent.Id == groupId select g).ToList();
                     else
                         groups = (from g in context.Groups where g.Dealer.Id == dealerId && g.Parent == null select g).ToList();
-                    Cache[cacheKey] = groups;
+                    HttpContext.Cache[cacheKey] = groups;
                 }
                 foreach (var g in groups)
                 {
@@ -248,7 +249,7 @@ namespace Zamov.Controllers
                         Value = g.Id.ToString()
                     };
                     items.Add(listItem);
-                    if(!g.Groups.IsLoaded)
+                    if (!g.Groups.IsLoaded)
                         g.Groups.Load();
                     if (g.Groups != null && g.Groups.Count > 0)
                         GetGroupItems(items, dealerId, g.Id, prefix + "--", currentGroipId);
@@ -379,15 +380,16 @@ namespace Zamov.Controllers
             string price = (string)product["price"];
             string ukDescription = (string)product["ukDescription"];
             string ruDescription = (string)product["ruDescription"];
+            string unit = (string)product["unit"];
             List<SelectListItem> items = new List<SelectListItem>();
             int currentGroupId = (groupId) ?? int.MinValue;
             string cacheKey = "ImportedProduct_DealerId=" + SystemSettings.CurrentDealer.Value;
-            if (Cache[cacheKey] != null)
-                items = (List<SelectListItem>)Cache[cacheKey];
+            if (HttpContext.Cache[cacheKey] != null)
+                items = (List<SelectListItem>)HttpContext.Cache[cacheKey];
             else
             {
                 GetGroupItems(items, SystemSettings.CurrentDealer.Value, int.MinValue, "", currentGroupId);
-                Cache[cacheKey] = items;
+                HttpContext.Cache[cacheKey] = items;
             }
             ViewData["id"] = productId;
             ViewData["partNumber"] = partNumber;
@@ -399,6 +401,7 @@ namespace Zamov.Controllers
             ViewData["ukDescription"] = ukDescription;
             ViewData["ruDescription"] = ruDescription;
             ViewData["groupList"] = items;
+            ViewData["unit"] = unit;
             ViewData["isNew"] = isNew;
             return View();
         }
@@ -572,10 +575,10 @@ namespace Zamov.Controllers
                 List<Order> orders = (
                                          from order in
                                              context.Orders.Include("Dealer")
-                                         where order.Dealer.Id == SystemSettings.CurrentDealer 
+                                         where order.Dealer.Id == SystemSettings.CurrentDealer
                                          orderby order.Date descending
                                          select order).ToList();
-                
+
                 return View(orders);
             }
         }

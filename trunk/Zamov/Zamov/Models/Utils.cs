@@ -115,6 +115,7 @@ namespace Zamov.Models
             columns.Add("partNumber");
             columns.Add("name");
             columns.Add("price");
+            columns.Add("unit");
             columns.Add("ukDescription");
             columns.Add("ruDescription");
             while (excelReader.Read())

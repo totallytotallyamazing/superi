@@ -22,7 +22,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("BaseEntities", "FK_DealerFeedback_Dealers", "Dealer", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Zamov.Models.Dealer), "DealerFeedback", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Zamov.Models.DealerFeedback))]
 
 // Original file name:
-// Generation date: 17/08/2009 11:59:22
+// Generation date: 17/08/2009 17:45:59
 namespace Zamov.Models
 {
     
@@ -207,6 +207,21 @@ namespace Zamov.Models
         }
         private global::System.Data.Objects.ObjectQuery<DealerFeedback> _DealerFeedback;
         /// <summary>
+        /// There are no comments for MeassureUnits in the schema.
+        /// </summary>
+        public global::System.Data.Objects.ObjectQuery<MeassureUnit> MeassureUnits
+        {
+            get
+            {
+                if ((this._MeassureUnits == null))
+                {
+                    this._MeassureUnits = base.CreateQuery<MeassureUnit>("[MeassureUnits]");
+                }
+                return this._MeassureUnits;
+            }
+        }
+        private global::System.Data.Objects.ObjectQuery<MeassureUnit> _MeassureUnits;
+        /// <summary>
         /// There are no comments for Categories in the schema.
         /// </summary>
         public void AddToCategories(Category category)
@@ -275,6 +290,13 @@ namespace Zamov.Models
         public void AddToDealerFeedback(DealerFeedback dealerFeedback)
         {
             base.AddObject("DealerFeedback", dealerFeedback);
+        }
+        /// <summary>
+        /// There are no comments for MeassureUnits in the schema.
+        /// </summary>
+        public void AddToMeassureUnits(MeassureUnit meassureUnit)
+        {
+            base.AddObject("MeassureUnits", meassureUnit);
         }
         /// <summary>
         /// There are no comments for BaseEntities.DeleteTranslations in the schema.
@@ -1343,6 +1365,29 @@ namespace Zamov.Models
         partial void OnDeletedChanging(bool value);
         partial void OnDeletedChanged();
         /// <summary>
+        /// There are no comments for Property Unit in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string Unit
+        {
+            get
+            {
+                return this._Unit;
+            }
+            set
+            {
+                this.OnUnitChanging(value);
+                this.ReportPropertyChanging("Unit");
+                this._Unit = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
+                this.ReportPropertyChanged("Unit");
+                this.OnUnitChanged();
+            }
+        }
+        private string _Unit;
+        partial void OnUnitChanging(string value);
+        partial void OnUnitChanged();
+        /// <summary>
         /// There are no comments for Dealer in the schema.
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("BaseEntities", "FK_Products_Dealers", "Dealers")]
@@ -2092,5 +2137,75 @@ namespace Zamov.Models
                 }
             }
         }
+    }
+    /// <summary>
+    /// There are no comments for BaseEntities.MeassureUnit in the schema.
+    /// </summary>
+    /// <KeyProperties>
+    /// Id
+    /// </KeyProperties>
+    [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="BaseEntities", Name="MeassureUnit")]
+    [global::System.Runtime.Serialization.DataContractAttribute(IsReference=true)]
+    [global::System.Serializable()]
+    public partial class MeassureUnit : global::System.Data.Objects.DataClasses.EntityObject
+    {
+        /// <summary>
+        /// Create a new MeassureUnit object.
+        /// </summary>
+        /// <param name="id">Initial value of Id.</param>
+        /// <param name="name">Initial value of Name.</param>
+        public static MeassureUnit CreateMeassureUnit(int id, string name)
+        {
+            MeassureUnit meassureUnit = new MeassureUnit();
+            meassureUnit.Id = id;
+            meassureUnit.Name = name;
+            return meassureUnit;
+        }
+        /// <summary>
+        /// There are no comments for Property Id in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id
+        {
+            get
+            {
+                return this._Id;
+            }
+            set
+            {
+                this.OnIdChanging(value);
+                this.ReportPropertyChanging("Id");
+                this._Id = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("Id");
+                this.OnIdChanged();
+            }
+        }
+        private int _Id;
+        partial void OnIdChanging(int value);
+        partial void OnIdChanged();
+        /// <summary>
+        /// There are no comments for Property Name in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name
+        {
+            get
+            {
+                return this._Name;
+            }
+            set
+            {
+                this.OnNameChanging(value);
+                this.ReportPropertyChanging("Name");
+                this._Name = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
+                this.ReportPropertyChanged("Name");
+                this.OnNameChanged();
+            }
+        }
+        private string _Name;
+        partial void OnNameChanging(string value);
+        partial void OnNameChanged();
     }
 }

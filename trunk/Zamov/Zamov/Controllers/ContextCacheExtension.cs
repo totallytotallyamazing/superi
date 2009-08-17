@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Zamov.Models;
+using System.Web.Caching;
 
 namespace Zamov.Controllers
 {
     public static class ContextCache
     {
-        private static Cache Cache { get { return Zamov.Controllers.Cache.UniqueInstance; } }
+        private static Cache Cache { get { return HttpContext.Current.Cache; } }
 
         public static List<Category> GetCachedCategories(this ZamovStorage context, int cityId, bool reload)
         {
@@ -21,7 +22,20 @@ namespace Zamov.Controllers
                           where category.Parent == null
                           && category.Dealers.Where(d => d.Cities.Where(c => c.Id == cityId).Count() > 0).Count() > 0
                           select category).ToList();
-                Cache.UniqueInstance["CityCategories_" + cityId] = result;
+                Cache["CityCategories_" + cityId] = result;
+            }
+            return result;
+        }
+
+        public static List<UnitPresentation> GetCachedUnitPresentations(this ZamovStorage context, bool reload)
+        {
+            List<UnitPresentation> result = new List<UnitPresentation>();
+            if (Cache["Units"] != null && !reload)
+                result = (List<UnitPresentation>)Cache["Units"];
+            else
+            {
+                result = (from unit in context.MeassureUnits select new UnitPresentation { Id = unit.Id, Name = unit.Name }).ToList();
+                Cache["Units"] = result;
             }
             return result;
         }
@@ -43,7 +57,7 @@ namespace Zamov.Controllers
                 {
                     result = (from category in context.Categories where category.Parent.Id == categoryId && category.Dealers.Count > 0 select category).ToList();
                 }
-                Cache.UniqueInstance["SubCategories_" + categoryId] = result;
+                Cache["SubCategories_" + categoryId] = result;
             }
             return result;
         }

@@ -22,25 +22,28 @@ namespace Zamov.Controllers
 
         public ActionResult SearchProduct(string searchContext)
         {
-            using (ZamovStorage context = new ZamovStorage())
+            if (!string.IsNullOrEmpty(searchContext))
             {
-                ObjectQuery<Product> productsQuery = new ObjectQuery<Product>(
-                    "SELECT VALUE P FROM Products AS P WHERE P.Name LIKE '%" + searchContext + "%'", context);
-                List<Product> products = productsQuery.ToList();
-                products.ForEach(p => p.DealerReference.Load());
-                return View(products);
+                using (ZamovStorage context = new ZamovStorage())
+                {
+                    ObjectQuery<Product> productsQuery = new ObjectQuery<Product>(
+                        "SELECT VALUE P FROM Products AS P WHERE P.Name LIKE '%" + searchContext + "%'", context);
+                    List<Product> products = productsQuery.ToList();
+                    products.ForEach(p => p.DealerReference.Load());
+                    return View(products);
 
-                /*
-                List<Product> products =
-                    (from product in context.Products.Include("Dealer")
-                     where product.Name == searchContext 
-                     && product.Enabled
-                     && !product.Deleted
-                     select product).ToList();
-                return View(products);
-                */
+                    /*
+                    List<Product> products =
+                        (from product in context.Products.Include("Dealer")
+                         where product.Name == searchContext 
+                         && product.Enabled
+                         && !product.Deleted
+                         select product).ToList();
+                    return View(products);
+                    */
+                }
             }
-
+            return View();
         }
 
 

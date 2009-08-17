@@ -477,4 +477,7 @@
   <data name="PickAnotherDealer" xml:space="preserve">
     <value>Обрати іншого продавця</value>
   </data>
+  <data name="Search" xml:space="preserve">
+    <value>Пошук</value>
+  </data>
 </root>

@@ -477,4 +477,7 @@
   <data name="OfTheSiteVisitors" xml:space="preserve">
     <value>вiдвiдувачiв сайту</value>
   </data>
+  <data name="Search" xml:space="preserve">
+    <value>Пошук</value>
+  </data>
 </root>

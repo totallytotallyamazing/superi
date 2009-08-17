@@ -58,11 +58,11 @@
         <div class="outer greyBg">
             <div class="inner whiteBg">
             <table>
-            <tr>
-            <td>
-            search:
-            </td>
-            <td><%using (Html.BeginForm("SearchProduct", "Search", FormMethod.Post)){%><%=Html.TextBox("searchContext")%><input type="submit" value=">>>" />
+                <tr>
+                <td>
+                <%=Html.ResourceString("Search")%>:
+                </td>
+                <td><%using (Html.BeginForm("SearchProduct", "Search", FormMethod.Post)){%><%=Html.TextBox("searchContext")%>
                <%
            } %></td>
             </tr>

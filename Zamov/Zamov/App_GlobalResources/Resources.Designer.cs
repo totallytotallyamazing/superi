@@ -943,6 +943,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Пошук.
+        /// </summary>
+        internal static string Search {
+            get {
+                return ResourceManager.GetString("Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Оберіть категорію.
         /// </summary>
         internal static string SelectCategory {

@@ -46,6 +46,13 @@ namespace Zamov.Controllers
             return View();
         }
 
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult AddToCart(FormCollection items)
+        {
+
+            return RedirectToAction("SearchProduct");
+        }
+
 
     }
 }

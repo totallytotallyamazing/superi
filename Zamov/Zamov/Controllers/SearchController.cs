@@ -61,7 +61,7 @@ namespace Zamov.Controllers
                     select new { Id = int.Parse(oi.Key), Dealer = int.Parse(oi.Value["dealer"]) })
                     .ToList();
 
-
+                маньяк!!!!
 
             }
 

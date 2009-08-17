@@ -853,7 +853,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Обрати іншого постачальника.
+        ///   Looks up a localized string similar to Обрати іншого продавця.
         /// </summary>
         internal static string PickAnotherDealer {
             get {

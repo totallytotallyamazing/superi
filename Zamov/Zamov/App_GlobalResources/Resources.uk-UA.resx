@@ -474,4 +474,7 @@
   <data name="OfTheSiteVisitors" xml:space="preserve">
     <value>вiдвiдувачiв сайту</value>
   </data>
+  <data name="PickAnotherDealer" xml:space="preserve">
+    <value>Обрати іншого продавця</value>
+  </data>
 </root>

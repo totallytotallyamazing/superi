@@ -201,6 +201,7 @@
     <Content Include="App_GlobalResources\Resources.uk-UA.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>Resources.uk-UA.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Views\Shared\LanguageSelector.ascx" />
   </ItemGroup>

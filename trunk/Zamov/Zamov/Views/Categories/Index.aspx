@@ -27,7 +27,9 @@
     %>
         <div class="categoryItem">
             <div class="categoryImage">
-                <%= Html.Image("~/Image/CategoryImageByCategoryId/" + item.Value)%>
+                <a href="/Categories/SelectCategory/<%= item.Value %>">
+                    <%= Html.Image("~/Image/CategoryImageByCategoryId/" + item.Value, new { style="border:none;"})%>
+                </a>
             </div>
             <%= Html.ActionLink(item.Text, "SelectCategory", new { id = int.Parse(item.Value) }, new { @class = "categoryLink" })%>
         </div>

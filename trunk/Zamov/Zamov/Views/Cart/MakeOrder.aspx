@@ -36,18 +36,17 @@
        {%>
        
     <div class="orderDetails">
-        <div class="logo">
-            <%= Html.Image("~/Image/ShowLogo/" + order.DealerReference.EntityKey.EntityKeyValues[0].Value) %>
-        </div>
-        
-          <%{%>
-        <div class="discount">
-            <%= Html.ResourceString("InputVoucher") %>
-            <%= Html.TextBox("voucherCode_" + order.GetHashCode()) %>
-            <div class="respectDiscount">
-                <%= Html.ResourceString("DiscountWillBeRespected") %>
+            <div class="logo">
+                <%= Html.Image("~/Image/ShowLogo/" + order.DealerReference.EntityKey.EntityKeyValues[0].Value) %>
             </div>
-        </div>
+            
+            <div class="discount">
+                <%= Html.ResourceString("InputVoucher") %>
+                <%= Html.TextBox("voucherCode_" + order.GetHashCode()) %>
+                <div class="respectDiscount">
+                    <%= Html.ResourceString("DiscountWillBeRespected") %>
+                </div>
+            </div>
         <div class="paymentTypesHeader">
             <%= Html.ResourceString("SelectPaymentType") %>
         </div>
@@ -71,9 +70,9 @@
                 </table>
             </center>
         </div>
-        <%} %>
-        <%} %>
     </div>
+        <%} %>
+    
     <div style="text-align:center; margin-top:50px;">
         <%= Html.CheckBox("agreed", false) %>
         <%= Html.ResourceString("Agreed") %>

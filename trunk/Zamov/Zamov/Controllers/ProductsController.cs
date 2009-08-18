@@ -47,10 +47,12 @@ namespace Zamov.Controllers
                      select new { Id = int.Parse(oi.Key), Quantity = int.Parse(oi.Value["quantity"]) })
                      .ToList();
                 if (order == null)
+                {
                     order = new Order();
-                IEnumerable<KeyValuePair<string, object>> dealerKeyValues = new KeyValuePair<string, object>[] { new KeyValuePair<string, object>("Id", dealerId) };
-                EntityKey dealer = new EntityKey("OrderStorage.OrderDealers", dealerKeyValues);
-                order.DealerReference.EntityKey = dealer;
+                    IEnumerable<KeyValuePair<string, object>> dealerKeyValues = new KeyValuePair<string, object>[] { new KeyValuePair<string, object>("Id", dealerId) };
+                    EntityKey dealer = new EntityKey("OrderStorage.OrderDealers", dealerKeyValues);
+                    order.DealerReference.EntityKey = dealer;
+                }
                 Dictionary<int, Product> products = null;
                 using (ZamovStorage context = new ZamovStorage())
                 {

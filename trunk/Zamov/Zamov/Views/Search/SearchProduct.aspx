@@ -6,13 +6,11 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-<script type="text/javascript">
-    function submitForm() {
-        //collectChanges(items, "items");
-        $get("addToCart").submit();
-    }
-</script>
-    <h2>Результаты поиска</h2>
+
+    <%
+        
+        using (Ajax.BeginForm("AddToCart", "Search", new AjaxOptions { HttpMethod = "POST" }, new { id="addToCart" }))
+        {%>
 
     <table class="commonTable">
         <tr>
@@ -36,12 +34,8 @@
             </th>
         </tr>
 
-    <%
-        
-        using (Ajax.BeginForm("AddToCart", "Search", new AjaxOptions { HttpMethod = "POST" }, new { id="addToCart" }))
-        {
 
-            if (Model != null)
+       <%     if (Model != null)
                 foreach (var item in Model)
                 { %>
     
@@ -71,10 +65,12 @@
     <% }
             %>
           
-            <%
+
+    </table>            
+    <input type="submit" value="<%=Html.ResourceString("AddToCart") %>" />  
+
+    <%
         } %>
-    </table>
-<input type="button" value="<%=Html.ResourceString("AddToCart") %>" onclick="submitForm()" />  
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="includes" runat="server">

@@ -33,16 +33,6 @@ namespace Zamov.Controllers
                     List<Product> products = productsQuery.ToList();
                     products.ForEach(p => p.DealerReference.Load());
                     return View(products);
-
-                    /*
-                    List<Product> products =
-                        (from product in context.Products.Include("Dealer")
-                         where product.Name == searchContext 
-                         && product.Enabled
-                         && !product.Deleted
-                         select product).ToList();
-                    return View(products);
-                    */
                 }
             }
             return View();

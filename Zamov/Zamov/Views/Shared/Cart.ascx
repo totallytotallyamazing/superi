@@ -66,7 +66,7 @@
                 </div>
             </td>
             <td valign="middle">
-                <%= totalPrice %>
+                <%= totalPrice.ToString("N") %>
             </td>
             <%if(hostAction!= CartHostActions.MakeOrder){ %>
             <td>

@@ -8,9 +8,8 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 <script language="javascript">
     function AddToCartSuccess(response) {
-        for (var i in response) {
-            alert(i.toString());
-        }
+        alert(response.TotalCartPrice);
+        
     }
 </script>
 

@@ -28,12 +28,8 @@ namespace Zamov.Controllers
                 string currentLanguage = SystemSettings.CurrentLanguage;
                 List<City> cities = context.Cities.Select(c => c).ToList();
                 List<Category> categories = context.Categories.Select(c => c).ToList();
-                List<SelectListItem> citiesList = (from city in cities select new SelectListItem { Selected = city.Id == SystemSettings.CityId, Text = city.GetName(currentLanguage), Value = city.Id.ToString() }).ToList();
+                List<SelectListItem> citiesList = (from city in cities where city.Enabled select new SelectListItem { Selected = city.Id == SystemSettings.CityId, Text = city.GetName(currentLanguage), Value = city.Id.ToString() }).ToList();
                 List<SelectListItem> categoriesList = new List<SelectListItem>();
-                                                       // (from category in categories
-                                                       //where category.Parent == null
-                                                       //select new SelectListItem { Text = category.GetName(currentLanguage), Value = category.Id.ToString() })
-                                                       //.ToList();
                 categoriesList.Insert(0, new SelectListItem { Selected = true, Text = Resources.GetResourceString("SelectCategory"), Value = "" });
                 ViewData["citiesList"] = citiesList;
                 ViewData["categoriesList"] = categoriesList;

@@ -74,7 +74,7 @@ namespace Zamov.Controllers
                 {
                     foreach (var orderItem in orderItemList)
                     {
-                        Order order = (from o in cart.Orders where o.Dealer != null && o.Dealer.Id == orderItem.Dealer select o).SingleOrDefault();
+                        Order order = (from o in cart.Orders where o.DealerReference.EntityKey != null && (int)o.DealerReference.EntityKey.EntityKeyValues[0].Value == orderItem.Dealer select o).SingleOrDefault();
                         if (order == null)
                         {
                             order = new Order();

@@ -6,10 +6,24 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+<script language="javascript">
+    function AddToCartSuccess(response) {
+        for (var i in response) {
+            alert(i.toString());
+        }
+    }
+</script>
 
+    <div class="subHeader">
+        <%
+            if (ViewData["TotalCartPrice"] != null)
+                Html.Encode(ViewData["TotalCartPrice"].ToString());
+        %>
+        <% Html.RenderPartial("Cart");  %>
+    </div>
     <%
         
-        using (Ajax.BeginForm("AddToCart", "Search", new AjaxOptions { HttpMethod = "POST" }, new { id="addToCart" }))
+        using (Ajax.BeginForm("AddToCart", "Search", new AjaxOptions { HttpMethod = "POST", OnSuccess = "AddToCartSuccess" }, new { id = "addToCart" }))
         {%>
 
     <table class="commonTable">

@@ -61,12 +61,14 @@
                 <%} %>
             </td>
             <td style="padding-top:0px;">
-                <div onclick="<%= (hostAction == CartHostActions.Cart)?"return false; " : "" %>location.href = '<%= cartUrl %>'" style="margin:0 auto" <%= (hostAction == CartHostActions.Cart)?"class=\"cartDisabled\"":""%>>
+                <div id="orderItemsCount" onclick="<%= (hostAction == CartHostActions.Cart)?"return false; " : "" %>location.href = '<%= cartUrl %>'" style="margin:0 auto" <%= (hostAction == CartHostActions.Cart)?"class=\"cartDisabled\"":""%>>
                     <%= orderItemsCount%>
                 </div>
             </td>
             <td valign="middle">
+            <div id="totalPrice">
                 <%= totalPrice.ToString("N") %>
+            </div>
             </td>
             <%if(hostAction!= CartHostActions.MakeOrder){ %>
             <td>

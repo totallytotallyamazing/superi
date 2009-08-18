@@ -65,10 +65,8 @@
                     <%= orderItemsCount%>
                 </div>
             </td>
-            <td valign="middle">
-            <div id="totalPrice">
+            <td valign="middle" id="totalPrice">
                 <%= totalPrice.ToString("N") %>
-            </div>
             </td>
             <%if(hostAction!= CartHostActions.MakeOrder){ %>
             <td>

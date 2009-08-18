@@ -1,6 +1,10 @@
 <%@ Page Language="C#" Inherits="System.Web.Mvc.ViewPage<Zamov.Models.Order>" %>
 <%@ Import Namespace="Zamov.Helpers"%>
 <%@ Import Namespace="Zamov.Models"%>
+
+<script type="text/javascript">
+    var showOrdershadowsDeclared = false;
+</script>
 <div align="center">
 <div align="left"  style="padding-left:30px; padding-top:10px;">
     <p>

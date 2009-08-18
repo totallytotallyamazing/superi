@@ -10,6 +10,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 <script type="text/javascript">
     var items = {};
+    var showOrdershadowsDeclared = false;
 </script>
 <div class="subHeader" style="text-align:center;">
     <center>

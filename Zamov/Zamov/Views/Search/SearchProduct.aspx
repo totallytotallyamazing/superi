@@ -10,6 +10,7 @@
     function AddToCartSuccess(response) {
         $get("totalPrice").innerHTML = response.get_response().get_object().TotalCartPrice;
         $get("orderItemsCount").innerHTML = response.get_response().get_object().TotalCartItems;
+        $(".orderCb").attr("checked", "");
     }
 </script>
 
@@ -70,7 +71,7 @@
                 
             </td>
             <td>
-              <%= Html.CheckBox("order_" + item.Id, false)%>
+              <%= Html.CheckBox("order_" + item.Id, false, new { @class="orderCb"})%>
             </td>
             
         </tr>

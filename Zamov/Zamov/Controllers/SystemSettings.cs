@@ -99,6 +99,17 @@ namespace Zamov.Controllers
             set { Session["CategoryId"] = value; }
         }
 
+        public static string CategoryName
+        {
+            get 
+            {
+                if (Session["categoryName"] == null)
+                    return null;
+                return Session["categoryName"].ToString();
+            }
+            set { Session["categoryName"] = value; }
+        }
+
         public static Cart Cart
         {
             get 

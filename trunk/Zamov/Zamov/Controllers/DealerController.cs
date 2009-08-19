@@ -25,7 +25,7 @@ namespace Zamov.Controllers
                                                             && nameTranslations.TranslationItemTypeId == (int)ItemTypes.DealerName
                                                             && nameTranslations.Language == SystemSettings.CurrentLanguage
                                                             && dealer.Id == id
-                                                       select new DealerPresentation {Id = id, Name = nameTranslations.Text, Description = translation.Text }
+                                                       select new DealerPresentation { Id = id, Name = nameTranslations.Text, Description = translation.Text }
                                                 ).First();
                 ViewData["description"] = dealerProperties;
                 ViewData["dealerId"] = id;
@@ -42,5 +42,6 @@ namespace Zamov.Controllers
         {
             return View();
         }
+
     }
 }

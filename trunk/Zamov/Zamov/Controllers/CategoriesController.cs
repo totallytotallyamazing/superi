@@ -19,6 +19,7 @@ namespace Zamov.Controllers
                                                       Text = category.GetName(SystemSettings.CurrentLanguage),
                                                       Value = category.Id.ToString()
                                                   }).ToList();
+            HttpContext.Cache["categoryItems"] = leftMenuItems;
             ViewData["leftMenuItems"] = leftMenuItems;
             return View();
         }
@@ -26,6 +27,10 @@ namespace Zamov.Controllers
         public ActionResult SelectCategory(int id)
         {
             SystemSettings.CategoryId = id;
+            List<SelectListItem> leftMenuItems = (List<SelectListItem>)HttpContext.Cache["categoryItems"];
+            string categoryName = leftMenuItems.Where(lmi => lmi.Value == id.ToString()).Select(lmi => lmi.Text).SingleOrDefault();
+            SystemSettings.CategoryName = categoryName;
+            HttpContext.Cache.Remove("categoryItems");
             return Redirect("~/Dealers");
         }
     }

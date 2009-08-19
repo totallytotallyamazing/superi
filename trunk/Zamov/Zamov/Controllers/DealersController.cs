@@ -34,5 +34,30 @@ namespace Zamov.Controllers
                 return View(result);
             }
         }
+
+        public ActionResult SelectDealer(int id)
+        {
+            int? groupId = null;
+            using (ZamovStorage context = new ZamovStorage())
+            {
+                Dealer currentDealer = context.Dealers.Include("Groups").Select(d => d).Where(d => d.Id == id).First();
+                var g = (from gr in currentDealer.Groups
+                         join trr in context.Translations on gr.Id equals trr.ItemId
+                         join tru in context.Translations on gr.Id equals tru.ItemId
+                         where
+                              trr.Language == "ru-RU" && tru.Language == "uk-UA"
+                              && trr.TranslationItemTypeId == (int)ItemTypes.Group && tru.TranslationItemTypeId == (int)ItemTypes.Group
+                         select new { Id = gr.Id, NameUa = tru.Text, NameRu = trr.Text });
+                foreach (var item in g)
+                {
+                    if (item.NameRu == SystemSettings.CategoryName || item.NameUa == SystemSettings.CategoryName)
+                    {
+                        groupId = item.Id;
+                        break;
+                    }
+                }
+            }
+            return RedirectToAction("Index", "Products", new { dealerId = id, groupId = groupId });
+        }
     }
 }

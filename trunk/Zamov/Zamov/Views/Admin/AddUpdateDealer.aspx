@@ -8,7 +8,6 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <%= Html.RegisterJS("jquery.js") %>
     <%= Html.RegisterJS("fckeditorapi.js") %>
     <%= Html.RegisterJS("fckeditor.js") %>
     <%= Html.RegisterJS("fcktools.js") %>

@@ -13,6 +13,6 @@ namespace Zamov.Models
         Group = 4, 
         DealerName = 5,
         DealerDescription = 6,
-        DealerDeliveryDetails = 7
+        DealerDeliveryInfo = 7
     }
 }

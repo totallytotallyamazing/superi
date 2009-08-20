@@ -7,15 +7,6 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <script type="text/javascript">
         var items = {};
-        $(function() {
-            $(".productDescription").fancybox({frameWidth: 700, frameHeight: 500});
-        })
-
-        function submitForm() {
-            //collectChanges(items, "items");
-            $get("addToCart").submit();
-        }
-
         function order(element) {
             var fieldSegments = element.name.split("_");
 
@@ -44,12 +35,12 @@
     </div>
     
     <%if(Model.Count>0){ %>
-        <input type="button" value="<%= Html.ResourceString("AddToCart") %>" onclick="submitForm()" />
         <%using (Html.BeginForm("AddToCart", "Products", FormMethod.Post, new { id="addToCart" }))
           { %>
+            <input type="submit" style="float:right" value="<%= Html.ResourceString("AddToCart") %>" />
             <%= Html.Hidden("dealerId", ViewData["dealerId"])%>
             <%= Html.Hidden("groupId", ViewData["groupId"])%>
-    <table class="commonTable" style="margin:10px 0">
+    <table class="commonTable" style="margin:10px 0; width:100%;">
         <tr>
             <th><%= Html.ResourceString("Name") %></th>
             <th><%= Html.ResourceString("Description") %></th>
@@ -88,9 +79,9 @@ foreach (var item in Model)
     }     
 %>
     </table>
+    <input type="submit" style="float:right" value="<%= Html.ResourceString("AddToCart") %>" />
    <%} %>
 
-    <input type="button" value="<%= Html.ResourceString("AddToCart") %>" onclick="submitForm()" />
     <%} %>
 </asp:Content>
 

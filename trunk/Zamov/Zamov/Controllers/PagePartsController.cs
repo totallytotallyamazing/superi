@@ -67,5 +67,11 @@ namespace Zamov.Controllers
                 ViewData["cartMode"] = cartMode;
             return View(order);
         }
+
+        public ActionResult CurrentDealer(int id)
+        {
+            ViewData["dealerId"] = id;
+            return View();
+        }
     }
 }

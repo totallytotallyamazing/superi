@@ -6,12 +6,14 @@
     <%
         List<SelectListItem> items = new List<SelectListItem>();
         SelectListItem dealerInfo = new SelectListItem { Text = Html.ResourceString("EditDealer"), Value = VirtualPathUtility.ToAbsolute("~/DealerCabinet/AddUpdateDealer") };
+        SelectListItem delivery = new SelectListItem { Text = Html.ResourceString("Delivery"), Value = "javascript:openDeliveryDetailsIframe()" };
         SelectListItem cities = new SelectListItem { Text = Html.ResourceString("Cities"), Value = "javascript:selectCityMappings()" };
         SelectListItem categories = new SelectListItem { Text = Html.ResourceString("Categories"), Value = "javascript:selectCategoryMappings()" };
         SelectListItem groups = new SelectListItem { Text = Html.ResourceString("Groups"), Value = VirtualPathUtility.ToAbsolute("~/DealerCabinet/Groups") };
         SelectListItem products = new SelectListItem { Text = Html.ResourceString("Products"), Value = VirtualPathUtility.ToAbsolute("~/DealerCabinet/Products") };
         SelectListItem orders = new SelectListItem { Text = Html.ResourceString("Orders"), Value = VirtualPathUtility.ToAbsolute("~/DealerCabinet/Orders") };
         items.Add(dealerInfo);
+        items.Add(delivery);
         items.Add(cities);
         items.Add(categories);
         items.Add(groups);
@@ -53,6 +55,18 @@
                         "<%= Html.ResourceString("Save") %>": function() { $get("categoryMappingsFrame").contentWindow.updateCategoryMappings(); }
                     }
                 });
+                $("#deliveryDetailsPopUp")
+                .dialog({
+                    autoOpen: false,
+                    width: 700,
+                    height: 600,
+                    minHeight: 360,
+                    resizable: false,
+                    buttons: {
+                        "<%= Html.ResourceString("Cancel") %>": function(){closeDeliveryDetailsDialog();},
+                        "<%= Html.ResourceString("Save") %>": function() { $get("deliveryDetailsFrame").contentWindow.updateDeliveryDetails(); }
+                    }
+                });
         })
     
         function selectCityMappings() { 
@@ -73,6 +87,15 @@
             $('#categoryMappings').dialog('option', 'position', 'center');
         }
         
+        function openDeliveryDetailsIframe() {
+            $("#deliveryDetailsPopUp")
+                .html('<iframe frameborder="0" name="deliveryDetailsFrame" id="deliveryDetailsFrame" hidefocus="true" style="width:660px; height:500px;" src="/DealerCabinet/DeliveryInfo/"></iframe>');
+
+            $("#deliveryDetailsPopUp").dialog('open').css("height", 500);
+            $('#deliveryDetailsPopUp').dialog('option', 'height', 600);
+            $('#deliveryDetailsPopUp').dialog('option', 'position', 'center');
+        }
+        
         function closeCityMappings()
         {
             $("#cityMappings").dialog('close');
@@ -82,11 +105,17 @@
         {
              $("#categoryMappings").dialog('close');
         }
+        
+        function closeDeliveryDetailsDialog() {
+            $("#deliveryDetailsPopUp").dialog('close');
+        }
     </script>
 
     <div id="cityMappings">
     </div>
     <div id="categoryMappings">
+    </div>
+    <div id="deliveryDetailsPopUp">
     </div>
     <%if (Roles.IsUserInRole("Administrators"))
       {

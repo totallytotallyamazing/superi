@@ -43,5 +43,22 @@ namespace Zamov.Controllers
             return View();
         }
 
+        public ActionResult DealerDeliveryDetails(int id)
+        {
+            int dealerId = id;
+            string dealerDeliveryInfo = "";
+            using (ZamovStorage context = new ZamovStorage())
+            {
+                var query = (from translation in context.Translations
+                             where translation.Language == SystemSettings.CurrentLanguage
+                             && translation.ItemId == dealerId
+                             && translation.TranslationItemTypeId == (int)ItemTypes.DealerDeliveryInfo
+                             select translation.Text);
+                if (query.Count() > 0)
+                    dealerDeliveryInfo = query.First();
+            }
+            ViewData["dealerDeliveryInfo"] = dealerDeliveryInfo;
+            return View();
+        }
     }
 }

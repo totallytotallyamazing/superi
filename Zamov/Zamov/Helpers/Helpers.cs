@@ -75,11 +75,25 @@ namespace Zamov.Helpers
             return helper.ActionLink(linkText, actionName, conrollerName);
         }
 
+        public static string ResourceActionLink(this System.Web.Mvc.HtmlHelper helper, string resourceName, string actionName, string conrollerName, object routeValues, object htmlAttributes)
+        {
+            string linkText = Controllers.Resources.GetResourceString(resourceName);
+            return helper.ActionLink(linkText, actionName, conrollerName, routeValues, htmlAttributes);
+        }
+
+
         public static string ResourceActionLink(this System.Web.Mvc.HtmlHelper helper, string resourceName, string actionName, object routeValues)
         {
             string linkText = Controllers.Resources.GetResourceString(resourceName);
             return helper.ActionLink(linkText, actionName, routeValues);
         }
+
+        public static string ResourceActionLink(this System.Web.Mvc.HtmlHelper helper, string resourceName, string actionName, object routeValues, object htmlAttributes)
+        {
+            string linkText = Controllers.Resources.GetResourceString(resourceName);
+            return helper.ActionLink(linkText, actionName, routeValues, htmlAttributes);
+        }
+
 
         public static string ResourceActionLink(this System.Web.Mvc.HtmlHelper helper, string resourceName, string actionName)
         {

@@ -17,7 +17,8 @@
     }
 </script>
 <div style="height:120px;">
-<%= Html.Image("~/Image/ShowLogo/" + Model.DealerReference.EntityKey.EntityKeyValues[0].Value, new { style="border:1px solid #ccc;", @class="dealerImageLogo" })%>
+    <% Html.RenderAction<PagePartsController>(ac => ac.CurrentDealer((int)Model.DealerReference.EntityKey.EntityKeyValues[0].Value)); %>
+<%--<%= Html.Image("~/Image/ShowLogo/" + Model.DealerReference.EntityKey.EntityKeyValues[0].Value, new { style="border:1px solid #ccc;", @class="dealerImageLogo" })%>--%>
 </div>
 <table class="commonTable">
     <tr>

@@ -24,6 +24,9 @@
     <asp:ContentPlaceHolder runat="server" ID="includes"></asp:ContentPlaceHolder>
     
     <script type="text/javascript">
+        var fancyboxAttached = false;
+        var showOrdershadowsDeclared = false;
+    
         $(function() {
             $("#header").corner("top");
             $("#mainMenu .outer .inner").corner("bottom").parent().css('padding', '1px').corner("bottom");

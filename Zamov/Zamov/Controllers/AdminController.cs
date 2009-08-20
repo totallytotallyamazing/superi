@@ -111,8 +111,6 @@ namespace Zamov.Controllers
             }
         }
 
-
-
         public ActionResult EnableDealer(int id)
         {
             using (ZamovStorage context = new ZamovStorage())

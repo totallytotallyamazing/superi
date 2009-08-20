@@ -175,6 +175,56 @@ namespace Zamov.Controllers
             }
             return RedirectToAction("Dealers");
         }
+
+        public ActionResult DeliveryInfo()
+        {
+            int id = Security.GetCurentDealerId(User.Identity.Name);
+            if (id > 0)
+            {
+                using (ZamovStorage context = new ZamovStorage())
+                {
+                    var deliveryInfo = (from ruTran in context.Translations
+                                        from uaTran in context.Translations
+                                        where ruTran.ItemId == 1 && uaTran.ItemId == 1
+                                        && ruTran.Language == "ru-RU" && uaTran.Language == "uk-UA"
+                                        && ruTran.TranslationItemTypeId == (int)ItemTypes.DealerDeliveryInfo
+                                        && uaTran.TranslationItemTypeId == (int)ItemTypes.DealerDeliveryInfo
+                                        select new { RuDeliveryInfo = ruTran.Text, UaDeliveryInfo = uaTran.Text }).SingleOrDefault();
+                    if (deliveryInfo != null)
+                    {
+                        ViewData["deliveryDetailsRus"] = deliveryInfo.RuDeliveryInfo;
+                        ViewData["deliveryDetailsUkr"] = deliveryInfo.UaDeliveryInfo;
+                    }
+                }
+            }
+            return View();
+        }
+
+        public void UpdateDeliveryDetails(string deliveryDetailsUkr, string deliveryDetailsRus)
+        {
+            TranslationItem ukrItem = new TranslationItem
+            {
+                ItemId = SystemSettings.CurrentDealer.Value,
+                ItemType = ItemTypes.DealerDeliveryInfo,
+                Language = "uk-UA",
+                Translation = Server.HtmlDecode(deliveryDetailsUkr)
+            };
+
+            TranslationItem rusItem = new TranslationItem
+            {
+                ItemId = SystemSettings.CurrentDealer.Value,
+                ItemType = ItemTypes.DealerDeliveryInfo,
+                Language = "ru-RU",
+                Translation = Server.HtmlDecode(deliveryDetailsRus)
+            };
+
+            List<TranslationItem> items = new List<TranslationItem>();
+            items.Add(ukrItem);
+            items.Add(rusItem);
+            using (ZamovStorage context = new ZamovStorage())
+                context.UpdateTranslations(Utils.CreateTranslationXml(items));
+            Response.Write("<script type=\"text/javascript\">top.closeDeliveryDetailsDialog();</script>");
+        }
         #endregion
 
         #region Products

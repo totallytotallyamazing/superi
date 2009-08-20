@@ -13,6 +13,7 @@
     if (!fancyboxAttached) {
         $(function() {
             $(".dealerDeliveryDetails").fancybox({ frameWidth: 700, hideOnContentClick: false });
+            $(".feedback").fancybox({ frameWidth: 700, hideOnContentClick: false });
         })
         fancyboxAttached = true;
     }
@@ -22,5 +23,7 @@
     <%= Html.Image("~/Image/ShowLogo/" + ViewData["dealerId"], new { @class = "dealerLogoTop" })%>
     <div style="clear: both">
         <%= Html.ResourceActionLink("Delivery", "DealerDeliveryDetails", "Dealer", new { id = ViewData["dealerId"] }, new { @class="dealerDeliveryDetails" })%>
+        &nbsp;
+        <%= Html.ResourceActionLink("Feedback", "Index", "Feedback", new { id = ViewData["dealerId"] }, new { @class="feedback" })%>
     </div>
 </div>

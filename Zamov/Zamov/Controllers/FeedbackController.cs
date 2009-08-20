@@ -44,8 +44,16 @@ namespace Zamov.Controllers
             return View(feedbacks);
         }
 
-        [Authorize]
+        [Authorize(Roles = "Administrators, Customers, Dealers")]
+        [AcceptVerbs(HttpVerbs.Get)]
+        public ActionResult CreateFeedback()
+        {
+            return View();
+        }
+
+        [Authorize(Roles="Administrators, Customers, Dealers")]
         [CaptchaValidation("captcha")]
+        [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult CreateFeedback(string text, bool captchaValid)
         {
             if (!captchaValid)

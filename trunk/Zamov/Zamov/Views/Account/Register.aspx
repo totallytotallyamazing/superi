@@ -51,13 +51,13 @@
                 </tr>
             </table>
         </fieldset>
-        <fieldset style="margin-top:20px;">
+        <fieldset style="margin-top: 20px;">
             <legend>
-                <%= Html.ResourceString("AccountInformation")%></legend>
+                <%= Html.ResourceString("YourDetails")%></legend>
             <table class="registrationTable">
                 <tr>
                     <td>
-                        <label for="confirmPassword">
+                        <label for="firstName">
                             <%= Html.ResourceString("FirstName") %>:</label>
                         <%= Html.ValidationMessage("firstName", "*", new { @class = "validationError" })%>
                     </td>
@@ -67,12 +67,22 @@
                 </tr>
                 <tr>
                     <td>
-                        <label for="confirmPassword">
+                        <label for="lastName">
                             <%= Html.ResourceString("LastName") %>:</label>
                         <%= Html.ValidationMessage("lastName", "*", new { @class = "validationError" })%>
                     </td>
                     <td>
                         <%= Html.TextBox("lastName")%>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="deliveryAddress">
+                            <%= Html.ResourceString("DeliveryAddress") %>:</label>
+                        <%= Html.ValidationMessage("deliveryAddress", "*", new { @class = "validationError" })%>
+                    </td>
+                    <td>
+                        <%= Html.TextArea("deliveryAddress")%>
                     </td>
                 </tr>
                 <tr>
@@ -87,9 +97,8 @@
                 </tr>
                 <tr>
                     <td>
-                        <label for="confirmPassword">
+                        <label for="phone">
                             <%= Html.ResourceString("Phone") %>:</label>
-                        <%= Html.ValidationMessage("firstName", "*", new { @class = "validationError" })%>
                     </td>
                     <td>
                         <%= Html.TextBox("phone")%>
@@ -97,23 +106,24 @@
                 </tr>
             </table>
         </fieldset>
-        <table>
+        <table class="captchaTable">
             <tr>
-                <td>
+                <td valign="middle">
                     <label for="captcha">
-                        Введите нижеуказанную надпись
-                        <%= Html.ValidationMessage("captchaCheck", "*", new { @class = "validationError" })%>
-                        <br />
-                        <%= Html.CaptchaImage(50, 170)%></label><br />
-                    <%= Html.TextBox("captcha") %>
+                        <%= Html.ResourceString("InputCaptcha") %>
+                    </label>
+                    <%= Html.ValidationMessage("captchaCheck", "*", new { @class = "validationError" })%>
                 </td>
-            </tr>
-            <tr>
-                <td>
-                    <input type="submit" value="<%= Html.ResourceString("Register") %>" />
+                <td valign="middle">
+                    <%= Html.CaptchaImage(50, 150)%><br />
+                </td>
+                <td valign="middle">
+                    <%= Html.TextBox("captcha", null, new { style="width:60px; text-align:center;"})%>
                 </td>
             </tr>
         </table>
+        <%= Html.CheckBox("rememberMe") %>&nbsp;<%= Html.ResourceString("RememberMe") %><br />
+        <input type="submit" value="<%= Html.ResourceString("Register") %>" />
     </div>
     <% } %>
 </asp:Content>

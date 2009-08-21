@@ -42,7 +42,7 @@ namespace Zamov.Services
                 SystemSettings.LastTime = DateTime.Now;
                 List<Order> orders = (
                                          from order in
-                                             context.Orders.Include("Dealer")
+                                             context.Orders.Include("Dealer").Include("OrderItems")
                                          where order.Dealer.Id == SystemSettings.CurrentDealer && order.Date > lasttime
                                          select order ).ToList();
 
@@ -54,6 +54,8 @@ namespace Zamov.Services
                                           DeliveryDate = String.Format("{0:g}", order.DeliveryDate),
                                           ClientName = order.ClientName,
                                           Address = order.Address,
+                                          //TotalPrice = ((decimal)order.OrderItems.Sum(oi => oi.Quantity * oi.Price)).ToString("N"),
+                                          TotalPrice = order.OrderItems.Sum(oi => oi.Quantity * oi.Price),
                                           Status = Controllers.Resources.GetResourceString("Status" + (Statuses)order.Status)
                                       });
                 //needed to update LastActivityTime of user

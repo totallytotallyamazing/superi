@@ -568,19 +568,24 @@ namespace Zamov.Controllers
             int dealerId = SystemSettings.CurrentDealer.Value;
             List<Category> categories = null;
             List<Category> dealerCategories = null;
+
             using (ZamovStorage context = new ZamovStorage())
-            {
-                categories = (from category in context.Categories select category).ToList();
-                dealerCategories = (from dealer in context.Dealers where dealer.Id == dealerId select dealer.Categories).First().ToList();
+            { 
+                List<Category> categories = 
             }
-            List<SelectListItem> items = (from category in categories
-                                          select new SelectListItem
-                                          {
-                                              Text = category.GetName(SystemSettings.CurrentLanguage),
-                                              Value = category.Id.ToString(),
-                                              Selected =
-                                                (from dc in dealerCategories where dc.Id == category.Id select dc).Count() > 0
-                                          }).ToList();
+            //using (ZamovStorage context = new ZamovStorage())
+            //{
+            //    categories = (from category in context.Categories select category).ToList();
+            //    dealerCategories = (from dealer in context.Dealers where dealer.Id == dealerId select dealer.Categories).First().ToList();
+            //}
+            //List<SelectListItem> items = (from category in categories
+            //                              select new SelectListItem
+            //                              {
+            //                                  Text = category.GetName(SystemSettings.CurrentLanguage),
+            //                                  Value = category.Id.ToString(),
+            //                                  Selected =
+            //                                    (from dc in dealerCategories where dc.Id == category.Id select dc).Count() > 0
+            //                              }).ToList();
             ViewData["items"] = items;
             return View();
         }

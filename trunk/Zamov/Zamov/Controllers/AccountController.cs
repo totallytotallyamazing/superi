@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using System.Web.Security;
 using System.Web.UI;
 using Zamov.Models;
+using System.Text.RegularExpressions;
 
 namespace Zamov.Controllers
 {
@@ -95,12 +96,12 @@ namespace Zamov.Controllers
 
         [AcceptVerbs(HttpVerbs.Post)]
         [CaptchaValidation("captcha")]
-        public ActionResult Register(string userName, string email, string password, string confirmPassword, string firstName, string lastName, string phone, bool captchaValid)
+        public ActionResult Register(string userName, string email, string password, string confirmPassword, string firstName, string lastName,string mobilePhone, string phone, bool captchaValid)
         {
 
             ViewData["PasswordLength"] = MembershipService.MinPasswordLength;
 
-            if (ValidateRegistration(email, email, password, confirmPassword, captchaValid))
+            if (ValidateRegistration(email, password, confirmPassword, firstName, lastName, mobilePhone, phone,  captchaValid))
             {
                 // Attempt to register the user
                 MembershipCreateStatus createStatus = MembershipService.CreateUser(email, password, email);
@@ -223,31 +224,40 @@ namespace Zamov.Controllers
             return ModelState.IsValid;
         }
 
-        private bool ValidateRegistration(string userName, string email, string password, string confirmPassword, bool captchaValid)
+        private bool ValidateRegistration(string email, string password, string confirmPassword, string firstName, string lastName, string mobilePhone, string phone,  bool captchaValid)
         {
             if (!captchaValid)
             {
-                ModelState.AddModelError("captcha1", "captcha-cha-cha-cha!!!");
-            }
-            if (String.IsNullOrEmpty(userName))
-            {
-                ModelState.AddModelError("username", "You must specify a username.");
+                ModelState.AddModelError("captchaCheck", Resources.GetResourceString("IncorrectCaptcha"));
             }
             if (String.IsNullOrEmpty(email))
             {
-                ModelState.AddModelError("email", "You must specify an email address.");
+                ModelState.AddModelError("email", Resources.GetResourceString("EmailRequired"));
             }
+            else
+            {
+                Regex regex = new Regex("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}$");
+                if(!regex.IsMatch(email))
+                    ModelState.AddModelError("email", Resources.GetResourceString("EmailIncorrect"));
+            }
+
             if (password == null || password.Length < MembershipService.MinPasswordLength)
             {
                 ModelState.AddModelError("password",
                     String.Format(CultureInfo.CurrentCulture,
-                         "You must specify a password of {0} or more characters.",
+                         Resources.GetResourceString("PasswordShouldContain") + " {0}",
                          MembershipService.MinPasswordLength));
             }
             if (!String.Equals(password, confirmPassword, StringComparison.Ordinal))
             {
-                ModelState.AddModelError("_FORM", "The new password and confirmation password do not match.");
+                ModelState.AddModelError("_FORM", Resources.GetResourceString("PasswordAndConfirmationShouldMatch"));
             }
+            if(string.IsNullOrEmpty(firstName))
+                ModelState.AddModelError("firstName", Resources.GetResourceString("FirstNameRequired"));
+            if(string.IsNullOrEmpty(lastName))
+                ModelState.AddModelError("lastName", Resources.GetResourceString("LastNameRequired"));
+            if(string.IsNullOrEmpty(mobilePhone))
+                ModelState.AddModelError("mobilePhone", Resources.GetResourceString("PhoneRequired"));
             return ModelState.IsValid;
         }
 

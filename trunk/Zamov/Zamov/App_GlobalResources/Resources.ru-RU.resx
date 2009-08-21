@@ -492,4 +492,25 @@
   <data name="RegisterToFeedback" xml:space="preserve">
     <value>Зарегистрируйтесь чтобы оставить отзыв</value>
   </data>
+  <data name="EmailIncorrect" xml:space="preserve">
+    <value>Неправильный формат электронной почты</value>
+  </data>
+  <data name="EmailRequired" xml:space="preserve">
+    <value>Введите адресс электронной почты</value>
+  </data>
+  <data name="FirstNameRequired" xml:space="preserve">
+    <value>Веедите имя</value>
+  </data>
+  <data name="LastNameRequired" xml:space="preserve">
+    <value>Введите фамилию</value>
+  </data>
+  <data name="PasswordAndConfirmationShouldMatch" xml:space="preserve">
+    <value>Пароль и поддтверждение должны совпадать</value>
+  </data>
+  <data name="PasswordShouldContain" xml:space="preserve">
+    <value>Длинна пароля на должна быть меньше чем</value>
+  </data>
+  <data name="PhoneRequired" xml:space="preserve">
+    <value>Введите мобильный телефон</value>
+  </data>
 </root>

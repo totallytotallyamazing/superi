@@ -492,6 +492,9 @@
   <data name="RegisterToFeedback" xml:space="preserve">
     <value>Зареєструйтеся, щоб залишити відгук</value>
   </data>
+  <data name="AccountCreationFailed" xml:space="preserve">
+    <value>Спроба реєстрації була невдалою, будьласка виправте помилки і спробуйте ще раз</value>
+  </data>
   <data name="EmailIncorrect" xml:space="preserve">
     <value>Невірний формат електронної скриньки</value>
   </data>
@@ -503,6 +506,9 @@
   </data>
   <data name="LastNameRequired" xml:space="preserve">
     <value>Введіть прізвище</value>
+  </data>
+  <data name="NewUser" xml:space="preserve">
+    <value>Новий користувач</value>
   </data>
   <data name="PasswordAndConfirmationShouldMatch" xml:space="preserve">
     <value>Пароль та підтвердження повинні співпадати</value>

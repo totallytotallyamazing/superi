@@ -70,6 +70,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Спроба реєстрації була невдалою, будьласка виправте помилки і спробуйте ще раз.
+        /// </summary>
+        internal static string AccountCreationFailed {
+            get {
+                return ResourceManager.GetString("AccountCreationFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Параметри доступу.
         /// </summary>
         internal static string AccountInfo {
@@ -777,6 +786,15 @@ namespace Resources {
         internal static string News {
             get {
                 return ResourceManager.GetString("News", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Новий користувач.
+        /// </summary>
+        internal static string NewUser {
+            get {
+                return ResourceManager.GetString("NewUser", resourceCulture);
             }
         }
         

@@ -52,15 +52,20 @@
                     row.appendChild(col3);
 
                     var col4 = document.createElement("td");
-                    col4.innerHTML = response[i].Status;
+                    col4.innerHTML = response[i].TotalPrice;
+                    //col4.attributes["align"] = "right";
                     row.appendChild(col4);
+
+                    var col5 = document.createElement("td");
+                    col5.innerHTML = response[i].Status;
+                    row.appendChild(col5);
 
 
                     var url = '<a href="<%= showOrderUrl%>/{0}" class="orderDescription">{1}</a>';
                     var urlLayout = String.format(url, response[i].Id, '<%= Html.ResourceString("View")%>');
-                    var col5 = document.createElement("td");
-                    $(urlLayout).appendTo(col5).fancybox({frameWidth: 700,hideOnContentClick: false});
-                    row.appendChild(col5);
+                    var col6 = document.createElement("td");
+                    $(urlLayout).appendTo(col6).fancybox({ frameWidth: 700, hideOnContentClick: false });
+                    row.appendChild(col6);
 
 
 
@@ -95,6 +100,9 @@
                 <%=Html.ResourceString("OrderInfo")%>
             </th>
             <th>
+                <%=Html.ResourceString("Price")%>
+            </th>
+            <th>
                 <%=Html.ResourceString("Status")%>
             </th>
             <th></th>
@@ -111,6 +119,9 @@
             </td>
             <td>
                 <%= Html.Encode(item.ClientName+", "+item.Address) %>
+            </td>
+            <td align="right">
+                <%= Html.Encode(((decimal)item.OrderItems.Sum(oi=>oi.Quantity * oi.Price)).ToString("N"))%>
             </td>
             <td>
                 <%=Html.ResourceString("Status"+(Statuses)item.Status)%>

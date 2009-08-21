@@ -56,7 +56,6 @@ namespace Zamov.Controllers
             Justification = "Needs to take same parameter type as Controller.Redirect()")]
         public ActionResult LogOn(string userName, string password, bool rememberMe, string returnUrl)
         {
-
             if (!ValidateLogOn(userName, password))
             {
                 return View();
@@ -101,10 +100,10 @@ namespace Zamov.Controllers
 
             ViewData["PasswordLength"] = MembershipService.MinPasswordLength;
 
-            if (ValidateRegistration(userName, email, password, confirmPassword, captchaValid))
+            if (ValidateRegistration(email, email, password, confirmPassword, captchaValid))
             {
                 // Attempt to register the user
-                MembershipCreateStatus createStatus = MembershipService.CreateUser(userName, password, email);
+                MembershipCreateStatus createStatus = MembershipService.CreateUser(email, password, email);
                 if (createStatus == MembershipCreateStatus.Success)
                 {
                     ProfileCommon profile = ProfileCommon.Create(userName);

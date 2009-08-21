@@ -10,6 +10,7 @@
         }
         else {
             alert('<%= Html.ResourceString("IncorrectCaptcha") %>');
+            $("#fancy_ajax").load('/Feedback/<%= ViewData["dealerId"] %>')
         }
     }
 </script>

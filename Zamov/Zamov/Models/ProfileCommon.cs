@@ -22,6 +22,12 @@ namespace Zamov.Models
             set { profile.SetPropertyValue("LastName", value); }
         }
 
+        public virtual string MobilePhone
+        {
+            get { return (string)profile.GetPropertyValue("MobilePhone"); }
+            set { profile.SetPropertyValue("MobilePhone", value); }
+        }
+
         public virtual string Phone
         {
             get { return (string)profile.GetPropertyValue("Phone"); }

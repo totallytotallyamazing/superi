@@ -15,25 +15,23 @@
             <fieldset>
                 <legend><%= Html.ResourceString("AccountInformation")%> </legend>
                 <p>
-                    <label for="username"><%= Html.ResourceString("Username") %>:</label>
+                    <label for="username"><%= Html.ResourceString("Email") %>:</label>
                     <%= Html.TextBox("username") %>
-                    <%= Html.ValidationMessage("username") %>
-                </p>
-                <p>
-                    <label for="email"><%= Html.ResourceString("Email") %>:</label>
-                    <%= Html.TextBox("email") %>
-                    <%= Html.ValidationMessage("email") %>
+                    <%= Html.ValidationMessage("username", "*", new { @class="validationError" })%>
                 </p>
                 <p>
                     <label for="password"><%= Html.ResourceString("Password") %>:</label>
                     <%= Html.Password("password") %>
-                    <%= Html.ValidationMessage("password") %>
+                    <%= Html.ValidationMessage("password", "*", new { @class = "validationError" })%>
                 </p>
                 <p>
                     <label for="confirmPassword"><%= Html.ResourceString("ConfirmPassword") %>:</label>
                     <%= Html.Password("confirmPassword") %>
                     <%= Html.ValidationMessage("confirmPassword") %>
                 </p>
+            </fieldset>
+            <fieldset>
+                <legend><%= Html.ResourceString("AccountInformation")%></legend>
                 <p>
                     <label for="confirmPassword"><%= Html.ResourceString("FirstName") %>:</label>
                     <%= Html.TextBox("firstName")%>
@@ -41,6 +39,10 @@
                 <p>
                     <label for="confirmPassword"><%= Html.ResourceString("LastName") %>:</label>
                     <%= Html.TextBox("lastName")%>
+                </p>
+                <p>
+                    <label for="mobilePhone"><%= Html.ResourceString("Phone") %>:</label>
+                    <%= Html.TextBox("mobilePhone")%>
                 </p>
                 <p>
                     <label for="confirmPassword"><%= Html.ResourceString("Phone") %>:</label>

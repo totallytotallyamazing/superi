@@ -19,7 +19,7 @@ namespace Zamov.Controllers
             else
             {
                 result = (from category in context.Categories.Include("Parent").Include("Dealers")
-                          where category.Parent == null
+                          where category.Parent == null && category.Enabled
                           && category.Dealers.Where(d => d.Cities.Where(c => c.Id == cityId).Count() > 0).Count() > 0
                           select category).ToList();
                 Cache["CityCategories_" + cityId] = result;
@@ -55,7 +55,7 @@ namespace Zamov.Controllers
             {
                 using (ZamovStorage context = new ZamovStorage())
                 {
-                    result = (from category in context.Categories where category.Parent.Id == categoryId && category.Dealers.Count > 0 select category).ToList();
+                    result = (from category in context.Categories where category.Parent.Id == categoryId && category.Dealers.Count > 0 && category.Enabled select category).ToList();
                 }
                 Cache["SubCategories_" + categoryId] = result;
             }

@@ -522,4 +522,10 @@
   <data name="ChangePassword" xml:space="preserve">
     <value>Изменить пароль</value>
   </data>
+  <data name="CheckValidatoinValue" xml:space="preserve">
+    <value>Неправильно введен код подтреждения</value>
+  </data>
+  <data name="EnterCode" xml:space="preserve">
+    <value>Введите нижеуказанный код подтверждения</value>
+  </data>
 </root>

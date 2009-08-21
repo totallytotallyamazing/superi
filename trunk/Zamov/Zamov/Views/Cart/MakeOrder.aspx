@@ -73,6 +73,33 @@
     </div>
         <%} %>
     
+    
+    
+    <div style="color:Red; font-weight:bold" class="orderValidation">
+    <script type="text/javascript">
+        $(function() {
+        var elements = document.getElementsByName('captcha-guid');
+            $get('captcha-guid1').value = elements[0].value;
+        })
+        
+        function copyValues() {
+            var elements = document.getElementsByName('captcha-guid');
+            $get('captcha-guid1').value = elements[0].value;
+            $get('captcha').value = $get('validation-value').value;
+        }
+    </script>
+                    <label for="captcha"><%=Html.ResourceString("EnterCode")%>
+                    <br />
+                    <%= Html.CaptchaImage(50, 170)%></label><br />
+                    <%= Html.TextBox("validation-value", "", new { onkeyup = "copyValues()" })%>
+                    <br />
+                    <%
+                        if (ViewData["warning"] != null)
+                            //Response.Write(ViewData["warning"].ToString());
+                            Response.Write(Html.ResourceString("CheckValidatoinValue"));
+                    %>
+    </div>
+    
     <div style="text-align:center; margin-top:50px;">
         <%= Html.CheckBox("agreed", false) %>
         <%= Html.ResourceString("Agreed") %>
@@ -138,22 +165,9 @@
                     <td class="parameterName"><%= Html.ResourceString("Comments") %></td>
                     <td class="parameterValue"><%= Html.TextArea("comments")%></td>
                 </tr>
-                <tr>
-                    <td colspan="2">
-                    <div style="color:Red; font-weight:bold">
-                    <label for="captcha">¬ведите нижеуказанную надпись
-                    <br />
-                    <%= Html.CaptchaImage(50, 170)%></label><br />
-                    <%= Html.TextBox("captcha") %>
-                    
-                    <%
-                        if (ViewData["warning"] != null)
-                            Response.Write(ViewData["warning"].ToString());
-                    %>
-                    </div>
-                    </td>
-                </tr>
             </table>
+            <%=Html.Hidden("captcha")%>
+            <%=Html.Hidden("captcha-guid1")%>
             <div class="menuFooter"></div>
         </div>
         <%= Html.Hidden("deliveryDateTime", DateTime.Now)%>

@@ -99,7 +99,7 @@ namespace Zamov.Controllers
         {
             if (!captchaValid)
             {
-                ViewData["warning"] = "wrong validate sign";
+                ViewData["warning"] = "1";
                 return View(SystemSettings.Cart.Orders);
             }
             Cart cart = SystemSettings.Cart;

@@ -4,6 +4,9 @@
 <asp:Content ID="registerTitle" ContentPlaceHolderID="TitleContent" runat="server">
     <%= Html.ResourceString("Register") %>
 </asp:Content>
+<asp:Content ContentPlaceHolderID="includes" runat="server">
+    <%= Html.RegisterCss("~/Content/register.css") %>
+</asp:Content>
 <asp:Content ID="registerContent" ContentPlaceHolderID="MainContent" runat="server">
     <h2>
         <%= Html.ResourceString("Register") %></h2>
@@ -15,7 +18,7 @@
             <legend>
                 <%= Html.ResourceString("NewUser")%>
             </legend>
-            <table>
+            <table class="registrationTable">
                 <tr>
                     <td>
                         <label style="width: 300px" for="email">
@@ -51,7 +54,7 @@
         <fieldset style="margin-top:20px;">
             <legend>
                 <%= Html.ResourceString("AccountInformation")%></legend>
-            <table>
+            <table class="registrationTable">
                 <tr>
                     <td>
                         <label for="confirmPassword">

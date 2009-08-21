@@ -112,8 +112,8 @@ namespace Zamov.Controllers
                     profile.LastName = lastName;
                     profile.Phone = phone;
                     profile.Save();
-                    Roles.AddUserToRole(userName, "Customers");
-                    FormsAuth.SignIn(userName, false /* createPersistentCookie */);
+                    Roles.AddUserToRole(email, "Customers");
+                    FormsAuth.SignIn(email, false /* createPersistentCookie */);
                     return RedirectToAction("Index", "Home");
                 }
                 else

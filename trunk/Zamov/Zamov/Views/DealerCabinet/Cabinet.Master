@@ -34,7 +34,7 @@
                 .dialog({
                     autoOpen: false,
                     width: 700,
-                    height: 600,
+                    height: 500,
                     minHeight: 360,
                     resizable: false,
                     buttons: {
@@ -47,7 +47,7 @@
                 .dialog({
                     autoOpen: false,
                     width: 700,
-                    height: 600,
+                    height: 500,
                     minHeight: 360,
                     resizable: false,
                     buttons: {
@@ -59,7 +59,7 @@
                 .dialog({
                     autoOpen: false,
                     width: 700,
-                    height: 600,
+                    height: 500,
                     minHeight: 360,
                     resizable: false,
                     buttons: {
@@ -73,8 +73,8 @@
              $("#cityMappings")
                 .html('<iframe frameborder="0" name="cityMappingsFrame" id="cityMappingsFrame" hidefocus="true" style="width:660px; height:500px;" src="/DealerCabinet/DealerCityMappings"></iframe>');
 
-            $("#cityMappings").dialog('open').css("height", 500);
-            $('#cityMappings').dialog('option', 'height', 600);
+            $("#cityMappings").dialog('open').css("height", 400);
+            $('#cityMappings').dialog('option', 'height', 500);
             $('#cityMappings').dialog('option', 'position', 'center');
         }
         
@@ -82,8 +82,8 @@
             $("#categoryMappings")
                 .html('<iframe frameborder="0" name="categoryMappingsFrame" id="categoryMappingsFrame" hidefocus="true" style="width:660px; height:500px;" src="/DealerCabinet/DealerCategoryMappings"></iframe>');
 
-            $("#categoryMappings").dialog('open').css("height", 500);
-            $('#categoryMappings').dialog('option', 'height', 600);
+            $("#categoryMappings").dialog('open').css("height", 400);
+            $('#categoryMappings').dialog('option', 'height', 500);
             $('#categoryMappings').dialog('option', 'position', 'center');
         }
         
@@ -91,8 +91,8 @@
             $("#deliveryDetailsPopUp")
                 .html('<iframe frameborder="0" name="deliveryDetailsFrame" id="deliveryDetailsFrame" hidefocus="true" style="width:660px; height:500px;" src="/DealerCabinet/DeliveryInfo/"></iframe>');
 
-            $("#deliveryDetailsPopUp").dialog('open').css("height", 500);
-            $('#deliveryDetailsPopUp').dialog('option', 'height', 600);
+            $("#deliveryDetailsPopUp").dialog('open').css("height", 400);
+            $('#deliveryDetailsPopUp').dialog('option', 'height', 500);
             $('#deliveryDetailsPopUp').dialog('option', 'position', 'center');
         }
         

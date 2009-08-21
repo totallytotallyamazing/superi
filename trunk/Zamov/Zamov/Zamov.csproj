@@ -292,6 +292,7 @@
     <Content Include="Content\redmond\images\ui-icons_d8e7f3_256x240.png" />
     <Content Include="Content\redmond\images\ui-icons_f9bd01_256x240.png" />
     <Content Include="Content\redmond\jquery.ui.css" />
+    <Content Include="Content\register.css" />
     <Content Include="Content\shadows.css" />
     <Content Include="Content\shadows\01\corner_bl %281%29.gif" />
     <Content Include="Content\shadows\01\corner_bl.gif" />

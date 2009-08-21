@@ -96,7 +96,7 @@ namespace Zamov.Controllers
 
         [AcceptVerbs(HttpVerbs.Post)]
         [CaptchaValidation("captcha")]
-        public ActionResult Register(string userName, string email, string password, string confirmPassword, string firstName, string lastName,string mobilePhone, string phone, bool captchaValid)
+        public ActionResult Register(string userName, string email, string password, string confirmPassword, string firstName, string lastName, string deliveryAddress, string mobilePhone, string phone, bool rememberMe, bool captchaValid)
         {
 
             ViewData["PasswordLength"] = MembershipService.MinPasswordLength;
@@ -111,9 +111,11 @@ namespace Zamov.Controllers
                     profile.FirstName = firstName;
                     profile.LastName = lastName;
                     profile.Phone = phone;
+                    profile.MobilePhone = mobilePhone;
+                    profile.DeliveryAddress = deliveryAddress;
                     profile.Save();
                     Roles.AddUserToRole(email, "Customers");
-                    FormsAuth.SignIn(email, false /* createPersistentCookie */);
+                    FormsAuth.SignIn(email, rememberMe);
                     return RedirectToAction("Index", "Home");
                 }
                 else

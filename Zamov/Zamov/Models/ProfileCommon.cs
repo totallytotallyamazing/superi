@@ -34,6 +34,12 @@ namespace Zamov.Models
             set { profile.SetPropertyValue("Phone", value); }
         }
 
+        public virtual string DeliveryAddress
+        {
+            get { return (string)profile.GetPropertyValue("DeliveryAddress"); }
+            set { profile.SetPropertyValue("DeliveryAddress", value); }
+        }
+
         public virtual bool DealerEmployee
         {
             get 

@@ -566,28 +566,31 @@ namespace Zamov.Controllers
         public ActionResult DealerCategoryMappings()
         {
             int dealerId = SystemSettings.CurrentDealer.Value;
-            List<Category> categories = null;
-            List<Category> dealerCategories = null;
 
             using (ZamovStorage context = new ZamovStorage())
-            { 
-                List<Category> categories = 
+            {
+                List<CategoryPresentation> categories = (from category in context.Categories
+                                                         join translation in context.Translations on category.Id equals translation.ItemId
+                                                         where translation.TranslationItemTypeId == (int)ItemTypes.Category
+                                                            && translation.Language == SystemSettings.CurrentLanguage
+                                                            && category.Enabled
+                                                         select new CategoryPresentation
+                                                             {
+                                                                 Id = category.Id,
+                                                                 Name = translation.Text,
+                                                                 Selected = context.Dealers.Include("Categories")
+                                                                    .Where(d => d.Id == dealerId)
+                                                                    .FirstOrDefault().Categories
+                                                                    .Where(c => c.Id == category.Id).Count() > 0,
+                                                                 ParentId = (category.Parent != null) ? (int?)category.Parent.Id : null
+                                                             }
+                                                         ).ToList();
+
+                categories.ForEach(ac => ac.PickChildren(categories));
+                List<CategoryPresentation> sortedCategories = categories.Select(c => c).Where(c => c.ParentId == null).ToList();
+                return View(sortedCategories);
+
             }
-            //using (ZamovStorage context = new ZamovStorage())
-            //{
-            //    categories = (from category in context.Categories select category).ToList();
-            //    dealerCategories = (from dealer in context.Dealers where dealer.Id == dealerId select dealer.Categories).First().ToList();
-            //}
-            //List<SelectListItem> items = (from category in categories
-            //                              select new SelectListItem
-            //                              {
-            //                                  Text = category.GetName(SystemSettings.CurrentLanguage),
-            //                                  Value = category.Id.ToString(),
-            //                                  Selected =
-            //                                    (from dc in dealerCategories where dc.Id == category.Id select dc).Count() > 0
-            //                              }).ToList();
-            ViewData["items"] = items;
-            return View();
         }
 
         [AcceptVerbs(HttpVerbs.Post)]

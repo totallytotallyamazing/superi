@@ -117,3 +117,7 @@ iframe{padding:0; margin:0; border:none;}
 .dealerDescription{ border: 1px solid #dbdbdb; padding:10px;}
 
 .dealerDescription div.descriptionHeader{color:#2b587a; text-align:center; font-size:14px;}
+#feedbackConteiner{ padding:10px; width:auto;}
+#createFeedback{width:auto; padding:10px; text-align:center;}
+.feedbackTextInput{width:100%; text-align:left; height:100px;}
+.registerToFeedback{padding:10px; width:auto; text-align:center;}

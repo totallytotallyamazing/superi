@@ -480,4 +480,16 @@
   <data name="Search" xml:space="preserve">
     <value>Поиск</value>
   </data>
+  <data name="CreateFeedback" xml:space="preserve">
+    <value>Оставить отзыв</value>
+  </data>
+  <data name="EmptyFeedback" xml:space="preserve">
+    <value>Для этого продавца еще нет отзывов. Вы можете быть первым.</value>
+  </data>
+  <data name="IncorrectCaptcha" xml:space="preserve">
+    <value>Неправильно введены символы с картинки</value>
+  </data>
+  <data name="RegisterToFeedback" xml:space="preserve">
+    <value>Зарегистрируйтесь чтобы оставить отзыв</value>
+  </data>
 </root>

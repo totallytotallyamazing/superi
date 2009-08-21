@@ -38,8 +38,8 @@
                     minHeight: 360,
                     resizable: false,
                     buttons: {
-                        "<%= Html.ResourceString("Cancel") %>": function(){closeCityMappings();},
-                        "<%= Html.ResourceString("Save") %>": function() { $get("cityMappingsFrame").contentWindow.updateCityMappings(); }
+                        '<%= Html.ResourceString("Cancel") %>': function(){closeCityMappings();},
+                        '<%= Html.ResourceString("Save") %>': function() { $get("cityMappingsFrame").contentWindow.updateCityMappings(); }
                     }
                 });
                 
@@ -51,8 +51,8 @@
                     minHeight: 360,
                     resizable: false,
                     buttons: {
-                        "<%= Html.ResourceString("Cancel") %>": function(){closeCategoryMappings();},
-                        "<%= Html.ResourceString("Save") %>": function() { $get("categoryMappingsFrame").contentWindow.updateCategoryMappings(); }
+                        '<%= Html.ResourceString("Cancel") %>': function(){closeCategoryMappings();},
+                        '<%= Html.ResourceString("Save") %>': function() { $get("categoryMappingsFrame").contentWindow.updateCategoryMappings(); }
                     }
                 });
                 $("#deliveryDetailsPopUp")
@@ -63,8 +63,8 @@
                     minHeight: 360,
                     resizable: false,
                     buttons: {
-                        "<%= Html.ResourceString("Cancel") %>": function(){closeDeliveryDetailsDialog();},
-                        "<%= Html.ResourceString("Save") %>": function() { $get("deliveryDetailsFrame").contentWindow.updateDeliveryDetails(); }
+                        '<%= Html.ResourceString("Cancel") %>': function(){closeDeliveryDetailsDialog();},
+                        '<%= Html.ResourceString("Save") %>': function() { $get("deliveryDetailsFrame").contentWindow.updateDeliveryDetails(); }
                     }
                 });
         })

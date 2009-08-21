@@ -5,7 +5,30 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
     <%= Html.ResourceString("Dealers") %>
 </asp:Content>
+<asp:Content ContentPlaceHolderID="includes" runat="server">
+    <%= Html.RegisterCss("~/Content/Admin.css") %>
+    <%= Html.RegisterCss("~/Content/redmond/jquery.ui.css")%>
+    <%= Html.RegisterJS("jquery.ui.js")%>
+</asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+<script type="text/javascript">
+    $(function() {
+    $("#dealerFeedback")
+                .dialog({
+                    autoOpen: false,
+                    width: 700,
+                    height: 600,
+                    minHeight: 360,
+                    resizable: false
+                });
+    })
+    function feedback(id) {
+        $("#dealerFeedback")
+                .html('<iframe frameborder="0" name="feedback" id="feedback" hidefocus="true" style="width:660px; height:500px;" src="/Feedback/ModifyFeedback/' + id + '"></iframe>');
+        $("#dealerFeedback").dialog('open');
+    }
+</script>
+<div id="dealerFeedback"></div>
     <h2><%= Html.ResourceString("Dealers") %></h2>
     <table class="adminTable">
         <tr>
@@ -17,6 +40,7 @@
             </th>
             <th>
             </th>
+            <th></th>
             <th></th>
             <th></th>
         </tr>
@@ -39,6 +63,11 @@
             </td>
             <td>
                 <%=Html.ResourceActionLink<AdminController>("Edit", ac => ac.AddUpdateDealer(item.Id))%>
+            </td>
+            <td>
+                <a href="javascript:feedback(<%= item.Id %>)">
+                    <%= Html.ResourceString("Feedback") %>
+                </a>
             </td>
             <td>
                 <%= Html.ActionLink(Html.ResourceString("Delete"), "DeleteDealer", new { id = item.Id }, new {onclick = "return confirm('" + Html.ResourceString("AreYouSure") + "?')" })%>

@@ -480,4 +480,16 @@
   <data name="Search" xml:space="preserve">
     <value>Пошук</value>
   </data>
+  <data name="CreateFeedback" xml:space="preserve">
+    <value>Залишити відгук</value>
+  </data>
+  <data name="EmptyFeedback" xml:space="preserve">
+    <value>Для цього продавця ще немає відгуків. Ви можете бути першим</value>
+  </data>
+  <data name="IncorrectCaptcha" xml:space="preserve">
+    <value>Невірно введені символи з зображення</value>
+  </data>
+  <data name="RegisterToFeedback" xml:space="preserve">
+    <value>Зареєструйтеся, щоб залишити відгук</value>
+  </data>
 </root>

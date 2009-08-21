@@ -130,6 +130,7 @@
           <Property Name="Text" Type="nvarchar" Nullable="false" MaxLength="1000" />
           <Property Name="Email" Type="nvarchar" MaxLength="1000" />
           <Property Name="FirstName" Type="nvarchar" MaxLength="150" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Dealers">
           <Key>
@@ -649,7 +650,8 @@
           <Property Name="Text" Type="String" Nullable="false" />
           <NavigationProperty Name="Dealer" Relationship="BaseEntities.FK_DealerFeedback_Dealers" FromRole="DealerFeedback" ToRole="Dealer" />
           <Property Name="Email" Type="String" Nullable="true" />
-          <Property Name="FirstName" Type="String" Nullable="true" /></EntityType>
+          <Property Name="FirstName" Type="String" Nullable="true" />
+          <Property Name="Date" Type="DateTime" Nullable="false" /></EntityType>
         <Association Name="FK_DealerFeedback_Dealers">
           <End Type="BaseEntities.Dealer" Role="Dealer" Multiplicity="1" />
           <End Type="BaseEntities.DealerFeedback" Role="DealerFeedback" Multiplicity="*" /></Association>
@@ -831,6 +833,7 @@
           <EntitySetMapping Name="DealerFeedback">
             <EntityTypeMapping TypeName="IsTypeOf(BaseEntities.DealerFeedback)">
               <MappingFragment StoreEntitySet="DealerFeedback">
+                <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Text" ColumnName="Text" />

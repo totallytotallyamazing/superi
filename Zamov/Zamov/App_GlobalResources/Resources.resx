@@ -492,4 +492,25 @@
   <data name="RegisterToFeedback" xml:space="preserve">
     <value>Зареєструйтеся, щоб залишити відгук</value>
   </data>
+  <data name="EmailIncorrect" xml:space="preserve">
+    <value>Невірний формат електронної скриньки</value>
+  </data>
+  <data name="EmailRequired" xml:space="preserve">
+    <value>Введіть електронну скриньку</value>
+  </data>
+  <data name="FirstNameRequired" xml:space="preserve">
+    <value>Введіть ім'я</value>
+  </data>
+  <data name="LastNameRequired" xml:space="preserve">
+    <value>Введіть прізвище</value>
+  </data>
+  <data name="PasswordAndConfirmationShouldMatch" xml:space="preserve">
+    <value>Пароль та підтвердження повинні співпадати</value>
+  </data>
+  <data name="PasswordShouldContain" xml:space="preserve">
+    <value>Довжина паролю не повинна бути меньшою чим</value>
+  </data>
+  <data name="PhoneRequired" xml:space="preserve">
+    <value>Введіть мобільний телефон</value>
+  </data>
 </root>

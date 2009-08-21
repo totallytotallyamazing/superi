@@ -55,7 +55,6 @@ namespace Zamov.Services
                                           ClientName = order.ClientName,
                                           Address = order.Address,
                                           TotalPrice = ((decimal)order.OrderItems.Sum(oi => oi.Quantity * oi.Price)).ToString("N"),
-                                          //TotalPrice = order.OrderItems.Sum(oi => oi.Quantity * oi.Price),
                                           Status = Controllers.Resources.GetResourceString("Status" + (Statuses)order.Status)
                                       });
                 //needed to update LastActivityTime of user

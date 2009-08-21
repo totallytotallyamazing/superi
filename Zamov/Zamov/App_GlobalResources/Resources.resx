@@ -519,4 +519,7 @@
   <data name="PhoneRequired" xml:space="preserve">
     <value>Введіть мобільний телефон</value>
   </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>Змініти пароль</value>
+  </data>
 </root>

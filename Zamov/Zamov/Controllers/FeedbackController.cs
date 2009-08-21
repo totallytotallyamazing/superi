@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 using Zamov.Models;
 using System.Web.Security;
+using System.Data;
 
 namespace Zamov.Controllers
 {
@@ -20,6 +21,7 @@ namespace Zamov.Controllers
             {
                 List<FeedbackPresentation> feedbacks = (from feedback in context.DealerFeedback.Include("Dealer")
                                                         where feedback.Dealer.Id == dealerId
+                                                        orderby feedback.Date descending
                                                         select new FeedbackPresentation
                                                         {
                                                             Text = feedback.Text,
@@ -31,9 +33,11 @@ namespace Zamov.Controllers
             }
         }
 
+        [AcceptVerbs(HttpVerbs.Get)]
         public ActionResult Index(int id)
         {
             List<FeedbackPresentation> feedbacks = GetFeedbacks(id);
+            ViewData["dealerId"] = id;
             return View(feedbacks);
         }
 
@@ -41,20 +45,34 @@ namespace Zamov.Controllers
         public ActionResult ModifyFeedback(int id)
         {
             List<FeedbackPresentation> feedbacks = GetFeedbacks(id);
+            ViewData["dealerId"] = id;
             return View(feedbacks);
         }
 
         [Authorize(Roles = "Administrators, Customers, Dealers")]
         [AcceptVerbs(HttpVerbs.Get)]
-        public ActionResult CreateFeedback()
+        public ActionResult CreateFeedback(int id)
         {
+            ViewData["dealerId"] = id;
             return View();
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult DeleteFeedback(int dealerId, int feedbackId)
+        { 
+            using(ZamovStorage context = new ZamovStorage())
+            {
+                DealerFeedback feedback = context.DealerFeedback.Select(df => df).Where(df => df.Id == feedbackId).First();
+                context.DeleteObject(feedback);
+                context.SaveChanges();
+            }
+            return RedirectToAction("ModifyFeedback", "Feedback", new { id = dealerId });
         }
 
         [Authorize(Roles="Administrators, Customers, Dealers")]
         [CaptchaValidation("captcha")]
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult CreateFeedback(string text, bool captchaValid)
+        public ActionResult CreateFeedback(int dealerId, string text, bool captchaValid)
         {
             if (!captchaValid)
                 return Json(false);
@@ -67,6 +85,12 @@ namespace Zamov.Controllers
                 feedback.UserId = (Guid)user.ProviderUserKey;
                 feedback.FirstName = profile.FirstName;
                 feedback.Email = user.Email;
+                feedback.Date = DateTime.Now;
+                List<EntityKeyMember> list = new List<EntityKeyMember>();
+                EntityKeyMember member = new EntityKeyMember{ Key="Id", Value = dealerId};
+                list.Add(member);
+                EntityKey dealer = new EntityKey("ZamovStorage.Dealers", list);
+                feedback.DealerReference.EntityKey = dealer;
                 using (ZamovStorage context = new ZamovStorage())
                 {
                     context.AddToDealerFeedback(feedback);

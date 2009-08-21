@@ -53,7 +53,7 @@
 
                     var col4 = document.createElement("td");
                     col4.innerHTML = response[i].TotalPrice;
-                    //col4.attributes["align"] = "right";
+                    $(col4).attr("align", "right");
                     row.appendChild(col4);
 
                     var col5 = document.createElement("td");

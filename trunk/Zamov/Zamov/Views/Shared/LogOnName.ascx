@@ -3,3 +3,7 @@
 <% using(Html.BeginForm("LogOff", "Account", FormMethod.Get)){ %>
     <input type="submit" value="<%= Html.ResourceString("LogOff") %>" />
 <%} %>
+
+<br />
+
+<%=Html.ResourceActionLink("ChangePassword", "ChangePassword","Account")%>

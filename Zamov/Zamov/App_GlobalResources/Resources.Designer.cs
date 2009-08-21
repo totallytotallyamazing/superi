@@ -277,6 +277,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Неправильно введений код підтвердження.
+        /// </summary>
+        internal static string CheckValidatoinValue {
+            get {
+                return ResourceManager.GetString("CheckValidatoinValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Micта.
         /// </summary>
         internal static string Cities {
@@ -570,6 +579,15 @@ namespace Resources {
         internal static string Encash {
             get {
                 return ResourceManager.GetString("Encash", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Введіть нижчевказаний код підтвердження.
+        /// </summary>
+        internal static string EnterCode {
+            get {
+                return ResourceManager.GetString("EnterCode", resourceCulture);
             }
         }
         

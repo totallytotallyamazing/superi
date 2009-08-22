@@ -73,6 +73,7 @@
     <Reference Include="System.Web.Mobile" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicationData.cs" />
     <Compile Include="App_GlobalResources\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -120,6 +121,7 @@
     <Compile Include="Helpers\FormCollectionExtender.cs" />
     <Compile Include="Helpers\Helpers.cs" />
     <Compile Include="Helpers\MaskEditExtensions.cs" />
+    <Compile Include="Helpers\ModalPopUpExtensions.cs" />
     <Compile Include="Helpers\ResourceTracker.cs" />
     <Compile Include="Helpers\ScriptExtensions.cs" />
     <Compile Include="Helpers\TreeViewHtmlHelper.cs" />
@@ -149,6 +151,11 @@
     <Compile Include="Models\PaymentTypes.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProfileCommon.cs" />
+    <Compile Include="Models\SetingsStorage.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SetingsStorage.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\Statuses.cs" />
     <Compile Include="Models\Structure.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -460,6 +467,8 @@
     <Content Include="Soon.htm" />
     <Content Include="stub.jpg" />
     <Content Include="Views\Admin\AddUpdateDealer.aspx" />
+    <Content Include="Views\Admin\Agreement.aspx" />
+    <Content Include="Views\Admin\ContactsHeader.aspx" />
     <Content Include="Views\Admin\UpdateCategoryImage.aspx" />
     <Content Include="Views\Cart\Index.aspx" />
     <Content Include="Views\Cart\MakeOrder.aspx" />
@@ -507,6 +516,12 @@
     <EntityDeploy Include="Models\Membership.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Membership.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Models\SetingsStorage.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SetingsStorage.Designer.cs</LastGenOutput>
     </EntityDeploy>
   </ItemGroup>
   <ItemGroup>

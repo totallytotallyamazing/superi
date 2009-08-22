@@ -408,5 +408,22 @@ namespace Zamov.Controllers
             return RedirectToAction("Users");
         }
         #endregion
+
+        #region ApplicationSettings
+        public ActionResult Agreement()
+        {
+            return View();
+        }
+
+        public void UpdateAgreement(string ruAgreement, string uaAgreement)
+        { 
+            ApplicationData.Agreement
+        }
+
+        public ActionResult ContactsHeader()
+        {
+            return View();
+        }
+        #endregion
     }
 }

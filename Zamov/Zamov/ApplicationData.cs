@@ -5,75 +5,59 @@ using System.Web;
 using Zamov.Models;
 using System.Web.Caching;
 using Zamov.Controllers;
+using System.Data.Common;
+using System.Data.EntityClient;
 
 public static class ApplicationData
 {
     public static string ContactsHeader
     {
-        get
-        {
-            string currentLanguage = SystemSettings.CurrentLanguage;
-            if (HttpRuntime.Cache["ApplicationData_ContactsHeader_" + currentLanguage] == null)
-            {
-                using (SettingsStorage context = new SettingsStorage())
-                {
-                    string result = (from data in context.ApplicationSettings 
-                                     where data.Name == "ContactsHeader" 
-                                     && data.Language == currentLanguage
-                                     select data.Value).First();
-                    HttpRuntime.Cache.Insert("ApplicationData_ContactsHeader_" + currentLanguage, result, null, DateTime.Now.AddHours(3), Cache.NoSlidingExpiration);
-                }
-            }
-            return HttpRuntime.Cache["ApplicationData_ContactsHeader_" + currentLanguage].ToString();
-        }
-        set
-        {
-            string currentLanguage = SystemSettings.CurrentLanguage;
-            HttpRuntime.Cache.Remove("ApplicationData_ContactsHeader_" + currentLanguage);
-            using (SettingsStorage context = new SettingsStorage())
-            {
-                ApplicationSettings result = (from data in context.ApplicationSettings 
-                                              where data.Name == "ContactsHeader" 
-                                              && data.Language == currentLanguage
-                                              select data).First();
-                result.Value = value;
-                context.SaveChanges();
-            }
-
-        }
+        get { return GetApplicationData("ContactsHeader", SystemSettings.CurrentLanguage); }
     }
 
     public static string Agreement
     {
-        get
+        get { return GetApplicationData("Agreement", SystemSettings.CurrentLanguage); }
+    }
+
+    public static void UpdateAgreement(Dictionary<string, string> values)
+    {
+        UpdateApplicationData("Agreement", values);
+    }
+
+    public static void UpdateContactsHeader(Dictionary<string, string> values)
+    {
+        UpdateApplicationData("ConteactsHeader", values);
+    }
+
+    private static string GetApplicationData(string name, string language)
+    {
+        if (HttpRuntime.Cache["ApplicationData_" + name + "_" + language] == null)
         {
-            string currentLanguage = SystemSettings.CurrentLanguage;
-            if (HttpRuntime.Cache["ApplicationData_Agreement_" + currentLanguage] == null)
-            {
-                using (SettingsStorage context = new SettingsStorage())
-                {
-                    string result = (from data in context.ApplicationSettings
-                                     where data.Name == "Agreement"
-                                     && data.Language == currentLanguage
-                                     select data.Value).First();
-                    HttpRuntime.Cache.Insert("ApplicationData_Agreement_" + currentLanguage, result, null, DateTime.Now.AddHours(3), Cache.NoSlidingExpiration);
-                }
-            }
-            return HttpRuntime.Cache["ApplicationData_Agreement_" + currentLanguage].ToString();
-        }
-        set
-        {
-            string currentLanguage = SystemSettings.CurrentLanguage;
-            HttpRuntime.Cache.Remove("ApplicationData_Agreement_" + currentLanguage);
             using (SettingsStorage context = new SettingsStorage())
             {
-                ApplicationSettings result = (from data in context.ApplicationSettings
-                                              where data.Name == "Agreement" 
-                                              && data.Language == currentLanguage
-                                              select data).First();
-                result.Value = value;
-                context.SaveChanges();
+                string result = (from data in context.ApplicationSettings
+                                 where data.Name == name
+                                 && data.Language == language
+                                 select data.Value).First();
+                HttpRuntime.Cache.Insert("ApplicationData_" + name + "_" + language, result, null, DateTime.Now.AddHours(3), Cache.NoSlidingExpiration);
             }
+        }
+        return HttpRuntime.Cache["ApplicationData_" + name + "_" + language].ToString();
+    }
+
+    private static void UpdateApplicationData(string name, Dictionary<string, string> values)
+    {
+        using (SettingsStorage context = new SettingsStorage())
+        {
+            foreach (string key in values.Keys)
+            {
+                EntityCommand command = (context.Connection.CreateCommand() as EntityCommand);
+                command.CommandType = System.Data.CommandType.Text;
+                command.CommandText = "UPDATE ApplicationSettings SET " + name + " = '" + values[key] + "' where Language = '" + key + "'";
+                command.ExecuteNonQuery();
+            }
+            context.SaveChanges();
         }
     }
 }

@@ -415,14 +415,26 @@ namespace Zamov.Controllers
             return View();
         }
 
-        public void UpdateAgreement(string ruAgreement, string uaAgreement)
+        public void UpdateAgreement(string ruText, string uaText)
         { 
-            ApplicationData.Agreement
+            Dictionary<string, string> values  = new Dictionary<string,string>();
+            values["ru-RU"] = ruText;
+            values["uk-UA"] = uaText;
+            ApplicationData.UpdateAgreement(values);
         }
 
         public ActionResult ContactsHeader()
         {
             return View();
+        }
+
+        public void UpdateContactsHeader(string ruText, string uaText)
+        {
+            Dictionary<string, string> values = new Dictionary<string, string>();
+            values["ru-RU"] = ruText;
+            values["uk-UA"] = uaText;
+            ApplicationData.UpdateContactsHeader(values);
+        
         }
         #endregion
     }

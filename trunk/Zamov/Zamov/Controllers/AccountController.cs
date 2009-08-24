@@ -1,4 +1,4 @@
-﻿using System;
+﻿    using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -159,13 +159,13 @@ namespace Zamov.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("_FORM", "The current password is incorrect or the new password is invalid.");
+                    ModelState.AddModelError("_FORM", Controllers.Resources.GetResourceString("TheCurrentPasswordIsIncorrectOrTheNewPasswordIsInvalid"));
                     return View();
                 }
             }
             catch
             {
-                ModelState.AddModelError("_FORM", "The current password is incorrect or the new password is invalid.");
+                ModelState.AddModelError("_FORM", Controllers.Resources.GetResourceString("TheCurrentPasswordIsIncorrectOrTheNewPasswordIsInvalid"));
                 return View();
             }
         }

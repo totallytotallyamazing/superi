@@ -18,7 +18,7 @@
             $('textarea#ruText').fck({ toolbar: "NoHyperlinks", height: 400, language: "RU", HTMLEncode: true });
         });
 
-        function updateDeliveryDetails() {
+        function updateData() {
             $("#mainForm").submit();
         }
     </script>

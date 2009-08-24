@@ -27,7 +27,17 @@ public static class ApplicationData
 
     public static void UpdateContactsHeader(Dictionary<string, string> values)
     {
-        UpdateApplicationData("ConteactsHeader", values);
+        UpdateApplicationData("ContactsHeader", values);
+    }
+
+    public static string GetAgreement(string language)
+    {
+        return GetApplicationData("Agreement", language);
+    }
+
+    public static string GetContactsHeader(string language)
+    {
+        return GetApplicationData("ContactsHeader", language);
     }
 
     private static string GetApplicationData(string name, string language)
@@ -48,15 +58,17 @@ public static class ApplicationData
 
     private static void UpdateApplicationData(string name, Dictionary<string, string> values)
     {
+        HttpRuntime.Cache.Remove("ApplicationData_" + name + "_uk-UA");
+        HttpRuntime.Cache.Remove("ApplicationData_" + name + "_ru-RU");
         using (SettingsStorage context = new SettingsStorage())
         {
+            var data = (from appData in context.ApplicationSettings
+                        where appData.Name == name
+                        select appData);
             foreach (string key in values.Keys)
-            {
-                EntityCommand command = (context.Connection.CreateCommand() as EntityCommand);
-                command.CommandType = System.Data.CommandType.Text;
-                command.CommandText = "UPDATE ApplicationSettings SET " + name + " = '" + values[key] + "' where Language = '" + key + "'";
-                command.ExecuteNonQuery();
-            }
+                foreach (var item in data)
+                    if (item.Language == key)
+                        item.Value = values[key];
             context.SaveChanges();
         }
     }

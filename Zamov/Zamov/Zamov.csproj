@@ -84,11 +84,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.ru-RU.resx</DependentUpon>
     </Compile>
-    <Compile Include="App_GlobalResources\Resources.uk-UA.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.uk-UA.resx</DependentUpon>
-    </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CartController.cs" />
@@ -209,11 +204,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_GlobalResources\Resources.uk-UA.resx">
-      <Generator>GlobalResourceProxyGenerator</Generator>
-      <LastGenOutput>Resources.uk-UA.designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Views\Shared\LanguageSelector.ascx" />
   </ItemGroup>
   <ItemGroup>

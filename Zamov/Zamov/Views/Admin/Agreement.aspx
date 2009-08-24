@@ -14,11 +14,11 @@
     <script type="text/javascript">
         $(function() {
             $.fck.config = { path: '<%= VirtualPathUtility.ToAbsolute("~/Controls/fckeditor/") %>', config: { SkinPath: "skins/office2003/"} };
-            $('textarea#uaTetx').fck({ toolbar: "NoHyperlinks", height: 400, language: "RU", HTMLEncode: true });
-            $('textarea#uaTetx').fck({ toolbar: "NoHyperlinks", height: 400, language: "RU", HTMLEncode: true });
+            $('textarea#uaText').fck({ toolbar: "NoHyperlinks", height: 400, language: "RU", HTMLEncode: true });
+            $('textarea#ruText').fck({ toolbar: "NoHyperlinks", height: 400, language: "RU", HTMLEncode: true });
         });
 
-        function updateAgreement() {
+        function updateData() {
             $("#mainForm").submit();
         }
     </script>
@@ -34,7 +34,7 @@
         </tr>
         <tr>
             <td style="width:330px;">
-                <%= Html.TextArea("uaTetx")%>
+                <%= Html.TextArea("uaText")%>
             </td>
             <td style="width:330px;">
                 <%= Html.TextArea("ruText")%>

@@ -6,9 +6,6 @@
     <%= Html.ResourceString("Dealers") %>
 </asp:Content>
 <asp:Content ContentPlaceHolderID="includes" runat="server">
-    <%= Html.RegisterCss("~/Content/Admin.css") %>
-    <%= Html.RegisterCss("~/Content/redmond/jquery.ui.css")%>
-    <%= Html.RegisterJS("jquery.ui.js")%>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 <script type="text/javascript">

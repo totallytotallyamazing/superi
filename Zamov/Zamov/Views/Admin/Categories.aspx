@@ -116,7 +116,4 @@
 </asp:Content>
 
 <asp:Content runat="server" ContentPlaceHolderID="includes">
-    <%= Html.RegisterCss("~/Content/Admin.css") %>
-    <%= Html.RegisterCss("~/Content/redmond/jquery.ui.css")%>
-    <%= Html.RegisterJS("jquery.ui.js")%>
 </asp:Content>

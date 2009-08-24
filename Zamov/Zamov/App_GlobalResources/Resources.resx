@@ -528,6 +528,8 @@
   <data name="EnterCode" xml:space="preserve">
     <value>Введіть нижчевказаний код підтвердження</value>
   </data>
+  <data name="UserAgreement" xml:space="preserve">
+    <value>Угода х користувачем</value>
   <data name="CharactersInLength" xml:space="preserve">
     <value>символів</value>
   </data>

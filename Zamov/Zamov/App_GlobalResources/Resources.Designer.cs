@@ -277,6 +277,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to символів.
+        /// </summary>
+        internal static string CharactersInLength {
+            get {
+                return ResourceManager.GetString("CharactersInLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Неправильно введений код підтвердження.
         /// </summary>
         internal static string CheckValidatoinValue {
@@ -327,6 +336,15 @@ namespace Resources {
         internal static string Comments {
             get {
                 return ResourceManager.GetString("Comments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Підтвердження нового паролю.
+        /// </summary>
+        internal static string ConfirmNewPassword {
+            get {
+                return ResourceManager.GetString("ConfirmNewPassword", resourceCulture);
             }
         }
         
@@ -390,6 +408,15 @@ namespace Resources {
         internal static string CreateFeedback {
             get {
                 return ResourceManager.GetString("CreateFeedback", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Поточний пароль.
+        /// </summary>
+        internal static string CurrentPassword {
+            get {
+                return ResourceManager.GetString("CurrentPassword", resourceCulture);
             }
         }
         
@@ -799,6 +826,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Новий пароль.
+        /// </summary>
+        internal static string NewPassword {
+            get {
+                return ResourceManager.GetString("NewPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Новий пароль повинен складитись мінімум з.
+        /// </summary>
+        internal static string NewPasswordsAreRequired {
+            get {
+                return ResourceManager.GetString("NewPasswordsAreRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Новi товари.
         /// </summary>
         internal static string NewProducts {
@@ -948,6 +993,24 @@ namespace Resources {
         internal static string PasswordAndConfirmationShouldMatch {
             get {
                 return ResourceManager.GetString("PasswordAndConfirmationShouldMatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Зміна паролю.
+        /// </summary>
+        internal static string PasswordChange {
+            get {
+                return ResourceManager.GetString("PasswordChange", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Пароль не був змінений. Виправте помилки і спробуйте знову..
+        /// </summary>
+        internal static string PasswordChangeWasUnsuccessful {
+            get {
+                return ResourceManager.GetString("PasswordChangeWasUnsuccessful", resourceCulture);
             }
         }
         
@@ -1182,6 +1245,15 @@ namespace Resources {
         internal static string SubCategories {
             get {
                 return ResourceManager.GetString("SubCategories", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Поточний пароль невірний або невірно введений новий.
+        /// </summary>
+        internal static string TheCurrentPasswordIsIncorrectOrTheNewPasswordIsInvalid {
+            get {
+                return ResourceManager.GetString("TheCurrentPasswordIsIncorrectOrTheNewPasswordIsInvalid", resourceCulture);
             }
         }
         

@@ -1,35 +1,33 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage" %>
-
+<%@ Import Namespace="Zamov.Helpers" %>
 <asp:Content ID="changePasswordTitle" ContentPlaceHolderID="TitleContent" runat="server">
-    Change Password
+    <%=Html.ResourceString("PasswordChange")%>
 </asp:Content>
 
 <asp:Content ID="changePasswordContent" ContentPlaceHolderID="MainContent" runat="server">
-    <h2>Change Password</h2>
+    <h2><%=Html.ResourceString("PasswordChange")%></h2>
     <p>
-        Use the form below to change your password. 
+       <%=Html.ResourceString("NewPasswordsAreRequired")%> <%=Html.Encode(ViewData["PasswordLength"])%>-ти <%=Html.ResourceString("CharactersInLength")%>.
     </p>
-    <p>
-        New passwords are required to be a minimum of <%=Html.Encode(ViewData["PasswordLength"])%> characters in length.
-    </p>
-    <%= Html.ValidationSummary("Password change was unsuccessful. Please correct the errors and try again.")%>
+    <div style="color:Red">
+    <%= Html.ValidationSummary(Html.ResourceString("PasswordChangeWasUnsuccessful"))%>
+    </div>
 
     <% using (Html.BeginForm()) { %>
         <div>
             <fieldset>
-                <legend>Account Information</legend>
                 <p>
-                    <label for="currentPassword">Current password:</label>
+                    <label for="currentPassword"><%=Html.ResourceString("CurrentPassword")%>:</label>
                     <%= Html.Password("currentPassword") %>
                     <%= Html.ValidationMessage("currentPassword") %>
                 </p>
                 <p>
-                    <label for="newPassword">New password:</label>
+                    <label for="newPassword"><%=Html.ResourceString("NewPassword")%>:</label>
                     <%= Html.Password("newPassword") %>
                     <%= Html.ValidationMessage("newPassword") %>
                 </p>
                 <p>
-                    <label for="confirmPassword">Confirm new password:</label>
+                    <label for="confirmPassword"><%=Html.ResourceString("ConfirmNewPassword")%>:</label>
                     <%= Html.Password("confirmPassword") %>
                     <%= Html.ValidationMessage("confirmPassword") %>
                 </p>

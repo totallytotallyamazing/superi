@@ -528,4 +528,28 @@
   <data name="EnterCode" xml:space="preserve">
     <value>Введите нижеуказанный код подтверждения</value>
   </data>
+  <data name="CharactersInLength" xml:space="preserve">
+    <value>символов</value>
+  </data>
+  <data name="ConfirmNewPassword" xml:space="preserve">
+    <value>Подтверждение нового пароля</value>
+  </data>
+  <data name="CurrentPassword" xml:space="preserve">
+    <value>Текущий пароль</value>
+  </data>
+  <data name="NewPassword" xml:space="preserve">
+    <value>Новый пароль</value>
+  </data>
+  <data name="NewPasswordsAreRequired" xml:space="preserve">
+    <value>Новий пароль должен состоять минимум из</value>
+  </data>
+  <data name="PasswordChange" xml:space="preserve">
+    <value>Смена пароля</value>
+  </data>
+  <data name="PasswordChangeWasUnsuccessful" xml:space="preserve">
+    <value>Пароль не был изменён. Исправте ошибки и попробуйте ещё раз.</value>
+  </data>
+  <data name="TheCurrentPasswordIsIncorrectOrTheNewPasswordIsInvalid" xml:space="preserve">
+    <value>Текущий пароль неверный или неправильно введен новый</value>
+  </data>
 </root>

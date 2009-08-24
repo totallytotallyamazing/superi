@@ -15,26 +15,26 @@
 
     <% using (Html.BeginForm()) { %>
         <div>
-            <fieldset>
-                <p>
-                    <label for="currentPassword"><%=Html.ResourceString("CurrentPassword")%>:</label>
-                    <%= Html.Password("currentPassword") %>
-                    <%= Html.ValidationMessage("currentPassword") %>
-                </p>
-                <p>
-                    <label for="newPassword"><%=Html.ResourceString("NewPassword")%>:</label>
-                    <%= Html.Password("newPassword") %>
-                    <%= Html.ValidationMessage("newPassword") %>
-                </p>
-                <p>
-                    <label for="confirmPassword"><%=Html.ResourceString("ConfirmNewPassword")%>:</label>
-                    <%= Html.Password("confirmPassword") %>
-                    <%= Html.ValidationMessage("confirmPassword") %>
-                </p>
-                <p>
-                    <input type="submit" value="Change Password" />
-                </p>
-            </fieldset>
+            <table>
+            <tr>
+                <td><label for="currentPassword"><%=Html.ResourceString("CurrentPassword")%>:</label></td>
+                <td><%= Html.Password("currentPassword") %></td>
+                <td><%= Html.ValidationMessage("currentPassword") %></td>
+            </tr>
+            <tr>
+                <td><label for="newPassword"><%=Html.ResourceString("NewPassword")%>:</label></td>
+                <td><%= Html.Password("newPassword") %></td>
+                <td><%= Html.ValidationMessage("newPassword") %></td>
+            </tr>
+            <tr>
+                <td> <label for="confirmPassword"><%=Html.ResourceString("ConfirmNewPassword")%>:</label></td>
+                <td><%= Html.Password("confirmPassword") %></td>
+                <td><%= Html.ValidationMessage("confirmPassword") %></td>
+            </tr>
+            </table>
+                <input type="submit" value="<%=Html.ResourceString("ChangePassword")%>" />
+            
+            
         </div>
     <% } %>
 </asp:Content>

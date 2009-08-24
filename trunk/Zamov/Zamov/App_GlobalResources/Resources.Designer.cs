@@ -1015,6 +1015,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ваш пароль змінено..
+        /// </summary>
+        internal static string PasswordHasBeenChanged {
+            get {
+                return ResourceManager.GetString("PasswordHasBeenChanged", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Довжина паролю не повинна бути меньшою чим.
         /// </summary>
         internal static string PasswordShouldContain {

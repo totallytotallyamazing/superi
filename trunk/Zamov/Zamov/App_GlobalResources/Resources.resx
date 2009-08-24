@@ -552,4 +552,7 @@
   <data name="TheCurrentPasswordIsIncorrectOrTheNewPasswordIsInvalid" xml:space="preserve">
     <value>Поточний пароль невірний або невірно введений новий</value>
   </data>
+  <data name="PasswordHasBeenChanged" xml:space="preserve">
+    <value>Ваш пароль змінено.</value>
+  </data>
 </root>

@@ -549,6 +549,9 @@
   <data name="PasswordChangeWasUnsuccessful" xml:space="preserve">
     <value>Пароль не был изменён. Исправте ошибки и попробуйте ещё раз.</value>
   </data>
+  <data name="PasswordHasBeenChanged" xml:space="preserve">
+    <value>Ваш пароль был успешно изменён.</value>
+  </data>
   <data name="TheCurrentPasswordIsIncorrectOrTheNewPasswordIsInvalid" xml:space="preserve">
     <value>Текущий пароль неверный или неправильно введен новый</value>
   </data>

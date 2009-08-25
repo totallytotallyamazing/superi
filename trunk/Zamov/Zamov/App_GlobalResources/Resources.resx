@@ -588,4 +588,19 @@
   <data name="ErrInvalidUserName" xml:space="preserve">
     <value>Невірно введене ім'я користувача.</value>
   </data>
+  <data name="Send" xml:space="preserve">
+    <value>Відправити</value>
+  </data>
+  <data name="Feedback2" xml:space="preserve">
+    <value>Зворотній зв'язок</value>
+  </data>
+  <data name="MessageBody" xml:space="preserve">
+    <value>Текст повідомлення</value>
+  </data>
+  <data name="MessageSubj" xml:space="preserve">
+    <value>Тема повідомлення</value>
+  </data>
+  <data name="YourName" xml:space="preserve">
+    <value>Ваше ім'я</value>
+  </data>
 </root>

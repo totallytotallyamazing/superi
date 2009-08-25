@@ -69,5 +69,15 @@ namespace Zamov.Controllers
             return View();
         }
 
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult SendMessage(string userName, string messageSubj, string messageBody, string email, string phone)
+        {
+
+
+
+
+            return RedirectToAction("Index", "Home");
+        }
+
     }
 }

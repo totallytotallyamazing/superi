@@ -21,4 +21,4 @@
 %>
                     <%= Html.ResourceString("News").ToLower() %>
                 |
-                <%= Html.ResourceString("Contacts").ToLower()%>
+                <%= Html.ResourceActionLink("Contacts","Contacts","Home").ToLower()%>

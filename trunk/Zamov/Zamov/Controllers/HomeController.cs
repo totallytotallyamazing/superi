@@ -64,5 +64,10 @@ namespace Zamov.Controllers
             }
         }
 
+        public ActionResult Contacts()
+        {
+            return View();
+        }
+
     }
 }

@@ -140,6 +140,11 @@
       <DependentUpon>Membership.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\MembershipExtensions.cs" />
+    <Compile Include="Models\News.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>News.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\Orders.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -517,6 +522,12 @@
     <EntityDeploy Include="Models\SetingsStorage.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>SetingsStorage.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Models\News.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>News.Designer.cs</LastGenOutput>
     </EntityDeploy>
   </ItemGroup>
   <ItemGroup>

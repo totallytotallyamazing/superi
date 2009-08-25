@@ -20,6 +20,7 @@
 </asp:Content>
  
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+<% Html.AddBreadCrumb("Categories", "/Categories"); %>
 <%
     List<SelectListItem> leftMenuItems = (List<SelectListItem>)ViewData["leftMenuItems"];
     foreach (var item in leftMenuItems)

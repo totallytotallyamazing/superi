@@ -700,6 +700,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Зворотній зв&apos;язок.
+        /// </summary>
+        internal static string Feedback2 {
+            get {
+                return ResourceManager.GetString("Feedback2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ім&apos;я.
         /// </summary>
         internal static string FirstName {
@@ -885,6 +894,24 @@ namespace Resources {
         internal static string MeassureUnit {
             get {
                 return ResourceManager.GetString("MeassureUnit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Текст повідомлення.
+        /// </summary>
+        internal static string MessageBody {
+            get {
+                return ResourceManager.GetString("MessageBody", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Тема повідомлення.
+        /// </summary>
+        internal static string MessageSubj {
+            get {
+                return ResourceManager.GetString("MessageSubj", resourceCulture);
             }
         }
         
@@ -1267,6 +1294,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Відправити.
+        /// </summary>
+        internal static string Send {
+            get {
+                return ResourceManager.GetString("Send", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Показувати.
         /// </summary>
         internal static string Show {
@@ -1470,6 +1506,15 @@ namespace Resources {
         internal static string YourDetails {
             get {
                 return ResourceManager.GetString("YourDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ваше ім&apos;я.
+        /// </summary>
+        internal static string YourName {
+            get {
+                return ResourceManager.GetString("YourName", resourceCulture);
             }
         }
     }

@@ -132,6 +132,7 @@
     <Compile Include="Models\FeedbackPresentation.cs" />
     <Compile Include="Models\Group.cs" />
     <Compile Include="Models\GroupResentation.cs" />
+    <Compile Include="Models\MemberProperties.cs" />
     <Compile Include="Models\Membership.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -485,6 +486,7 @@
     <Content Include="Views\Feedback\CreateFeedback.ascx" />
     <Content Include="Views\Feedback\Index.aspx" />
     <Content Include="Views\Feedback\ModifyFeedback.aspx" />
+    <Content Include="Views\Home\Agreement.aspx" />
     <Content Include="Views\Products\Description.aspx" />
     <Content Include="Views\Products\Index.aspx" />
     <Content Include="Views\Products\ProductGroups.ascx" />

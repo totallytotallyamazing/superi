@@ -9,6 +9,7 @@ using System.Web.Script.Serialization;
 using System.Globalization;
 using System.Web.Security;
 using System.Data.Objects.DataClasses;
+using System.Text.RegularExpressions;
 
 namespace Zamov.Controllers
 {
@@ -95,13 +96,24 @@ namespace Zamov.Controllers
 
         [AcceptVerbs(HttpVerbs.Post)]
         [CaptchaValidation("captcha")]
-        public ActionResult MakeOrder(string firstName, string lastName, string city, string deliveryAddress, string contactPhone, string email, string comments, string deliveryDateTime, string orderSettings, bool captchaValid)
+        public ActionResult MakeOrder(
+            string firstName,
+            string lastName,
+            string city,
+            string deliveryAddress,
+            string contactPhone,
+            string email,
+            string comments,
+            string deliveryDate,
+            string deliveryTime,
+            string deliveryDateTime,
+            string orderSettings,
+            bool agreed,
+            bool captchaValid
+            )
         {
-            if (!captchaValid)
-            {
-                ViewData["warning"] = "1";
+            if (!ValidateMakeOrder(firstName, city, deliveryAddress, contactPhone, deliveryDate, deliveryTime, agreed, captchaValid))
                 return View(SystemSettings.Cart.Orders);
-            }
             Cart cart = SystemSettings.Cart;
             JavaScriptSerializer serializer = new JavaScriptSerializer();
             Dictionary<string, Dictionary<string, string>> orderSettingsDictionary =
@@ -114,9 +126,15 @@ namespace Zamov.Controllers
                                           PaymentType = GetPaymentType(os.Value)
                                       }).ToList();
             CultureInfo cultureInfo = CultureInfo.GetCultureInfo("ru-RU");
-            DateTime deliveryDate = DateTime.Parse(deliveryDateTime, cultureInfo);
+            DateTime date = DateTime.Parse(deliveryDateTime, cultureInfo);
             MembershipUser user = Membership.GetUser(true);
             Guid? userId = null;
+            SystemSettings.MemberProperties.DeliveryAddress = deliveryAddress;
+            SystemSettings.MemberProperties.Email = email;
+            SystemSettings.MemberProperties.FirstName = firstName;
+            SystemSettings.MemberProperties.LastName = lastName;
+            SystemSettings.MemberProperties.MobilePhone = contactPhone;
+            SystemSettings.MemberProperties.Phone = contactPhone;
             if (user != null)
                 userId = (Guid)user.ProviderUserKey;
             using (OrderStorage context = new OrderStorage())
@@ -126,7 +144,7 @@ namespace Zamov.Controllers
                     order.Address = deliveryAddress;
                     order.ClientName = firstName + " " + lastName;
                     order.Date = DateTime.Now;
-                    order.DeliveryDate = deliveryDate;
+                    order.DeliveryDate = date;
                     order.Phone = contactPhone;
                     order.UserId = userId;
                     order.PaymentType = (int)PaymentTypes.Encash;
@@ -146,7 +164,38 @@ namespace Zamov.Controllers
             return RedirectToAction("ThankYou");
         }
 
-        
+        private bool ValidateMakeOrder(
+            string firstName,
+            string city,
+            string deliveryAddress,
+            string contactPhone,
+            string deliveryDate,
+            string deliveryTime,
+            bool agreed,
+            bool captchaValid
+            )
+        {
+            if (string.IsNullOrEmpty(firstName))
+                ModelState.AddModelError("firstName", Resources.GetResourceString("FirstNameRequired"));
+            if (string.IsNullOrEmpty(city))
+                ModelState.AddModelError("city", Resources.GetResourceString("CityRequired"));
+            if (string.IsNullOrEmpty(deliveryAddress))
+                ModelState.AddModelError("deliveryAddress", Resources.GetResourceString("DeliveryAddressRequired"));
+            if (string.IsNullOrEmpty(contactPhone))
+                ModelState.AddModelError("contactPhone", Resources.GetResourceString("PhoneRequired"));
+            CultureInfo cultureInfo = CultureInfo.GetCultureInfo("ru-RU");
+            DateTime date;
+            if (!DateTime.TryParse(deliveryDate, cultureInfo, DateTimeStyles.None, out date))
+                ModelState.AddModelError("deliveryDate", Resources.GetResourceString("DateTimeInvalidOrEmpty"));
+            Regex rtime = new Regex(@"[0-2][0-9]\:[0-6][0-9]");
+            if (!rtime.IsMatch(deliveryTime))
+                ModelState.AddModelError("deliveryTime", Resources.GetResourceString("TimeInvalidOrEmpty"));
+            if (!agreed)
+                ModelState.AddModelError("agreed", Resources.GetResourceString("YouMustAgree"));
+            if (!captchaValid)
+                ModelState.AddModelError("captchaInvalid", Resources.GetResourceString("IncorrectCaptcha"));
+            return ModelState.IsValid;
+        }
 
         public ActionResult ThankYou()
         {

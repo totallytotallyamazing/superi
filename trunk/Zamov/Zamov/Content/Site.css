@@ -121,3 +121,5 @@ iframe{padding:0; margin:0; border:none;}
 #createFeedback{width:auto; padding:10px; text-align:center;}
 .feedbackTextInput{width:100%; text-align:left; height:100px;}
 .registerToFeedback{padding:10px; width:auto; text-align:center;}
+
+.validationError{color:Red;}

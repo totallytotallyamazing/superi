@@ -33,6 +33,11 @@ namespace Zamov.Controllers
             return View();
         }
 
+        public ActionResult Agreement()
+        {
+            return View();
+        }
+
         public ActionResult SetUkrainian(string returnUrl)
         {
             SystemSettings.CurrentLanguage = "uk-UA";

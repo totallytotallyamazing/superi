@@ -120,6 +120,17 @@ namespace Zamov.Controllers
             }
         }
 
+        public static MemberProperties MemberProperties
+        {
+            get 
+            {
+                if (Session["MemberProperties"] == null)
+                    Session["MemberProperties"] = new MemberProperties();
+                return (MemberProperties)Session["MemberProperties"];
+            }
+            
+        }
+
         public static void EmptyCart()
         {
             Session["Cart"] = null;

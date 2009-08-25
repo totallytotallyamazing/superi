@@ -14,7 +14,7 @@
 
 .yourDetails table{width:100%; border-collapse:collapse;}
 .yourDetails table td { border-collapse:collapse; border:1px solid #dbdbdb; padding:0px 2px;}
-.yourDetails table td.parameterName{width:45px; color:#324d62; font-size:10px;}
+.yourDetails table td.parameterName{width:55px; color:#324d62; font-size:10px;}
 .yourDetails table td.parameterValue{ padding:0px;}
 .yourDetails table td.parameterValue input,
 .yourDetails table td.parameterValue textarea{width:97%; padding:1px; border:none; background:transparent;}

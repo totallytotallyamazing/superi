@@ -14,8 +14,8 @@
     <script type="text/javascript">
         $(function() {
             $.fck.config = { path: '<%= VirtualPathUtility.ToAbsolute("~/Controls/fckeditor/") %>', config: { SkinPath: "skins/office2003/"} };
-            $('textarea#uaTetx').fck({ toolbar: "NoHyperlinks", height: 400, language: "RU", HTMLEncode: true });
-            $('textarea#ruText').fck({ toolbar: "NoHyperlinks", height: 400, language: "RU", HTMLEncode: true });
+            $('textarea#uaTetx').fck({ toolbar: "Basic", height: 400, language: "RU", HTMLEncode: true });
+            $('textarea#ruText').fck({ toolbar: "Basic", height: 400, language: "RU", HTMLEncode: true });
         });
 
         function updateData() {

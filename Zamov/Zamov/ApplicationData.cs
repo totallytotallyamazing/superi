@@ -20,6 +20,18 @@ public static class ApplicationData
         get { return GetApplicationData("Agreement", SystemSettings.CurrentLanguage); }
     }
 
+    public static string FeedbackEmail
+    {
+        get { return GetApplicationData("FeedbackEmail", "All"); }
+        set 
+        { 
+            Dictionary<string, string> values = new Dictionary<string, string>();
+            values.Add("All", value);
+            UpdateApplicationData("FeedbackEmail", values);
+        }
+    }
+
+
     public static void UpdateAgreement(Dictionary<string, string> values)
     {
         UpdateApplicationData("Agreement", values);
@@ -39,6 +51,7 @@ public static class ApplicationData
     {
         return GetApplicationData("ContactsHeader", language);
     }
+
 
     private static string GetApplicationData(string name, string language)
     {

@@ -41,7 +41,7 @@ namespace Zamov
         {
             // make sure no values are getting sent in from the outside
             if (filterContext.ActionParameters.ContainsKey("captchaValid"))
-                filterContext.ActionParameters["captchaValid"] = null;
+                filterContext.ActionParameters["captchaValid"] = false;
 
             // get the guid from the post back
             string guid = filterContext.HttpContext.Request.Form["captcha-guid1"];

@@ -96,7 +96,19 @@ namespace Zamov.Controllers
 
         [AcceptVerbs(HttpVerbs.Post)]
         [CaptchaValidation("captcha")]
-        public ActionResult Register(string userName, string email, string password, string confirmPassword, string firstName, string lastName, string deliveryAddress, string mobilePhone, string phone, bool rememberMe, bool captchaValid)
+        public ActionResult Register(
+            string userName, 
+            string email, 
+            string password, 
+            string confirmPassword, 
+            string firstName, 
+            string lastName, 
+            string deliveryAddress, 
+            string mobilePhone, 
+            string phone, 
+            bool rememberMe, 
+            bool captchaValid
+            )
         {
 
             ViewData["PasswordLength"] = MembershipService.MinPasswordLength;

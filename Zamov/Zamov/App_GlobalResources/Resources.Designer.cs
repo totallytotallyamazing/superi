@@ -646,6 +646,51 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Користувач з такою Email-адресою вже зареєстрований. Будь ласка введіть іншу Email-адресу..
+        /// </summary>
+        internal static string ErrDuplicateEmail {
+            get {
+                return ResourceManager.GetString("ErrDuplicateEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Користувач з таким ім&apos;ям вже зареєстрований. Будь ласка введіть інше ім&apos;я..
+        /// </summary>
+        internal static string ErrDuplicateUserName {
+            get {
+                return ResourceManager.GetString("ErrDuplicateUserName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Невірно введена Email-адреса..
+        /// </summary>
+        internal static string ErrInvalidEmail {
+            get {
+                return ResourceManager.GetString("ErrInvalidEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Невірно введений пароль..
+        /// </summary>
+        internal static string ErrInvalidPassword {
+            get {
+                return ResourceManager.GetString("ErrInvalidPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Невірно введене ім&apos;я користувача..
+        /// </summary>
+        internal static string ErrInvalidUserName {
+            get {
+                return ResourceManager.GetString("ErrInvalidUserName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Вiдгуки.
         /// </summary>
         internal static string Feedback {

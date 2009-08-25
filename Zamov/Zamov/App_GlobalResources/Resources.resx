@@ -573,4 +573,19 @@
   <data name="YouMustAgree" xml:space="preserve">
     <value>Ви не погодилися з умовами надання послуги</value>
   </data>
+  <data name="ErrDuplicateEmail" xml:space="preserve">
+    <value>Користувач з такою Email-адресою вже зареєстрований. Будь ласка введіть іншу Email-адресу.</value>
+  </data>
+  <data name="ErrDuplicateUserName" xml:space="preserve">
+    <value>Користувач з таким ім'ям вже зареєстрований. Будь ласка введіть інше ім'я.</value>
+  </data>
+  <data name="ErrInvalidEmail" xml:space="preserve">
+    <value>Невірно введена Email-адреса.</value>
+  </data>
+  <data name="ErrInvalidPassword" xml:space="preserve">
+    <value>Невірно введений пароль.</value>
+  </data>
+  <data name="ErrInvalidUserName" xml:space="preserve">
+    <value>Невірно введене ім'я користувача.</value>
+  </data>
 </root>

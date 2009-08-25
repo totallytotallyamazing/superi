@@ -530,6 +530,7 @@
   </data>
   <data name="UserAgreement" xml:space="preserve">
     <value>Пользовательское соглашение</value>
+  </data>
   <data name="CharactersInLength" xml:space="preserve">
     <value>символов</value>
   </data>

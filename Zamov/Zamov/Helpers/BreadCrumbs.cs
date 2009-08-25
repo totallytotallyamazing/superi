@@ -47,7 +47,7 @@ namespace Zamov.Helpers
 
         public static string RenderSeparator()
         {
-            return "<span>/</span>";
+            return "<span class=\"breadCrumbSeparator\">/</span>";
         }
     }
 }

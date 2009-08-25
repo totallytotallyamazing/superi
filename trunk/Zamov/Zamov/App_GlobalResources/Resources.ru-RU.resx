@@ -558,4 +558,19 @@
   <data name="TheCurrentPasswordIsIncorrectOrTheNewPasswordIsInvalid" xml:space="preserve">
     <value>Текущий пароль неверный или неправильно введен новый</value>
   </data>
+  <data name="CityRequired" xml:space="preserve">
+    <value>Не указан город</value>
+  </data>
+  <data name="DateTimeInvalidOrEmpty" xml:space="preserve">
+    <value>Дата не указана или введена неверно</value>
+  </data>
+  <data name="DeliveryAddressRequired" xml:space="preserve">
+    <value>Не указан адресс доставки</value>
+  </data>
+  <data name="TimeInvalidOrEmpty" xml:space="preserve">
+    <value>Время не указано или введено неверно</value>
+  </data>
+  <data name="YouMustAgree" xml:space="preserve">
+    <value>Вы не согласились с условиями предоставления услуги</value>
+  </data>
 </root>

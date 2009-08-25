@@ -19,11 +19,11 @@ namespace AjaxControlToolkitMvc
 
         protected virtual void Initialize(HttpContextBase context)
         {
-            _resources = (List<T>)context.Items[resourceKey];
+            _resources = (List<T>)context.Session[resourceKey];
             if (_resources == null)
             {
                 _resources = new List<T>();
-                context.Items[resourceKey] = _resources;
+                context.Session[resourceKey] = _resources;
             }
         }
 
@@ -46,25 +46,6 @@ namespace AjaxControlToolkitMvc
     public class ResourceTracker : BaseTracker<string>
     {
         public ResourceTracker(HttpContextBase context) : base(context) { }
-
-        //protected string resourceKey = "__resources";
-
-        //private List<string> _resources;
-
-        //public ResourceTracker(HttpContextBase context)
-        //{
-        //    Initialize(context);
-        //}
-
-        //protected virtual void Initialize(HttpContextBase context)
-        //{
-        //    _resources = (List<string>)context.Items[resourceKey];
-        //    if (_resources == null)
-        //    {
-        //        _resources = new List<string>();
-        //        context.Items[resourceKey] = _resources;
-        //    }
-        //}
 
         public override void Add(string url)
         {

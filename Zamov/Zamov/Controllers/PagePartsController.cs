@@ -7,6 +7,8 @@ using System.Web.Mvc.Ajax;
 using Zamov.Models;
 using System.Web.Security;
 using System.Data.Objects;
+using Zamov.Helpers;
+using System.Text;
 
 namespace Zamov.Controllers
 {
@@ -18,6 +20,20 @@ namespace Zamov.Controllers
         public ActionResult Index()
         {
             return View();
+        }
+
+        public void BreadCrumbs()
+        {
+            BreadCrumbsTracker tracker = new BreadCrumbsTracker(HttpContext);
+            StringBuilder layout = new StringBuilder();
+            int itemsCount = tracker.Items.Count;
+            for (int i = 0; i < itemsCount; i++)
+            {
+                layout.Append(BreadCrumbsExtensions.RenderItem(tracker.Items[i]));
+                if (i < itemsCount - 1)
+                    layout.Append(BreadCrumbsExtensions.RenderSeparator());
+            }
+            Response.Write(layout.ToString());
         }
 
         public ActionResult HeaderSelectors()

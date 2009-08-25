@@ -558,4 +558,19 @@
   <data name="PasswordHasBeenChanged" xml:space="preserve">
     <value>Ваш пароль змінено.</value>
   </data>
+  <data name="CityRequired" xml:space="preserve">
+    <value>Не вказвно мiсто</value>
+  </data>
+  <data name="DateTimeInvalidOrEmpty" xml:space="preserve">
+    <value>Дату не вказано або введено невiрно</value>
+  </data>
+  <data name="DeliveryAddressRequired" xml:space="preserve">
+    <value>Не вказано адресу доставки</value>
+  </data>
+  <data name="TimeInvalidOrEmpty" xml:space="preserve">
+    <value>Час не вказано або введено невiрно</value>
+  </data>
+  <data name="YouMustAgree" xml:space="preserve">
+    <value>Ви не погодилися з умовами надання послуги</value>
+  </data>
 </root>

@@ -313,6 +313,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Не вказвно мiсто.
+        /// </summary>
+        internal static string CityRequired {
+            get {
+                return ResourceManager.GetString("CityRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Клієнт.
         /// </summary>
         internal static string Client {
@@ -430,6 +439,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Дату не вказано або введено невiрно.
+        /// </summary>
+        internal static string DateTimeInvalidOrEmpty {
+            get {
+                return ResourceManager.GetString("DateTimeInvalidOrEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Продавець.
         /// </summary>
         internal static string Dealer {
@@ -489,6 +507,15 @@ namespace Resources {
         internal static string DeliveryAddress {
             get {
                 return ResourceManager.GetString("DeliveryAddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Не вказано адресу доставки.
+        /// </summary>
+        internal static string DeliveryAddressRequired {
+            get {
+                return ResourceManager.GetString("DeliveryAddressRequired", resourceCulture);
             }
         }
         
@@ -1267,6 +1294,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Час не вказано або введено невiрно.
+        /// </summary>
+        internal static string TimeInvalidOrEmpty {
+            get {
+                return ResourceManager.GetString("TimeInvalidOrEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Найменування.
         /// </summary>
         internal static string Title {
@@ -1371,6 +1407,15 @@ namespace Resources {
         internal static string View {
             get {
                 return ResourceManager.GetString("View", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ви не погодилися з умовами надання послуги.
+        /// </summary>
+        internal static string YouMustAgree {
+            get {
+                return ResourceManager.GetString("YouMustAgree", resourceCulture);
             }
         }
         

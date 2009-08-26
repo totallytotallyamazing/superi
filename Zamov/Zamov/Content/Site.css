@@ -3,7 +3,7 @@
 h2{font-size:16px;}
 body{font-family: Arial, Sans-Serif, Helvetica, Tahoma; font-size:0.8em;}
 select
-{border:1px solid #bdbdbd; color:#b5b5b5;}
+{border:1px solid #bdbdbd; color:#8d8d8d;}
 #header, #mainMenu, #breadCrumbs{width:auto; margin:30px 40px 0px; min-width:820px;}
 #content{min-width:645px;}
 .greyBg{background:#CFDAD7}
@@ -128,3 +128,4 @@ iframe{padding:0; margin:0; border:none;}
 .breadCrumb a:hover{text-decoration:underline;}
 .breadCrumbSeparator{color:#c2bfbf; padding-right:5px;}
 .currentBreadCrumb{color:#2b587a;}
+.headerSelect{background-color:#092d45; border:1px solid teal; color:Teal;  padding:0 5px; font-weight:bold;}

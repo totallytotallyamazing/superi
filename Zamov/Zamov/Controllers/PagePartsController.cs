@@ -31,8 +31,19 @@ namespace Zamov.Controllers
                 List<City> cities = context.Cities.Select(c => c).ToList();
                 List<Category> categories = context.Categories.Select(c => c).ToList();
                 List<SelectListItem> citiesList = (from city in cities where city.Enabled select new SelectListItem { Selected = city.Id == SystemSettings.CityId, Text = city.GetName(currentLanguage), Value = city.Id.ToString() }).ToList();
-                List<SelectListItem> categoriesList = new List<SelectListItem>();
-                categoriesList.Insert(0, new SelectListItem { Selected = true, Text = ResourcesHelper.GetResourceString("SelectCategory"), Value = "" });
+                int cityId = int.MinValue;
+                if (citiesList.Where(cl => cl.Selected).Count() == 0)
+                    citiesList[0].Selected = true;
+                cityId = (from cl in citiesList where cl.Selected select int.Parse(cl.Value)).First();
+                List<SelectListItem> categoriesList = context.GetCachedCategories(cityId, false)
+                    .Select(c => new SelectListItem
+                    {
+                        Text = c.GetName(SystemSettings.CurrentLanguage),
+                        Value = c.Id.ToString(),
+                        Selected = c.Id == SystemSettings.CategoryId
+                    })
+                    .ToList();
+                categoriesList.Insert(0, new SelectListItem { Selected = true, Text = "--" + ResourcesHelper.GetResourceString("SelectCategory") + "--", Value = "" });
                 ViewData["citiesList"] = citiesList;
                 ViewData["categoriesList"] = categoriesList;
                 return View();

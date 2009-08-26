@@ -5,21 +5,7 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-
-
-<script type="text/javascript">
-    function checkEmail() {
-
-        var email = $get('email').value;
-        
-        //return false;
-    }
-</script>
-
     <h2><%=Html.ResourceString("Contacts")%></h2>
-    
-
-
 <br />    
     <%=Html.Encode(ApplicationData.ContactsHeader)%>
 <br />
@@ -64,7 +50,7 @@
         <td><%=Html.TextBox("phone")%></td>
     </tr>
     </table>
-    <input type="submit" onclick="return checkEmail()" value="<%=Html.ResourceString("Send")%>" />
+    <input type="submit" value="<%=Html.ResourceString("Send")%>" />
 <%} %>
 
 <table></table>

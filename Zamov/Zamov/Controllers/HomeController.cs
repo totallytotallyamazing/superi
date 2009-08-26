@@ -92,6 +92,7 @@ namespace Zamov.Controllers
                 }
                 catch
                 {
+
                 }
                 return RedirectToAction("Index", "Home");
             }

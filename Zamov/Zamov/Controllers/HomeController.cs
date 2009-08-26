@@ -83,9 +83,7 @@ namespace Zamov.Controllers
                     MailMessage message = new MailMessage(mailAddressFrom, mailAddressTo);
                     message.Subject = messageSubj;
                     message.Body = messageBody;
-
                     string host = "";
-                    int port;
                     SmtpClient client = new SmtpClient(host);
                     client.Send(message);
                 }

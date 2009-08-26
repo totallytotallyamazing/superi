@@ -612,4 +612,7 @@
   <data name="MainPage" xml:space="preserve">
     <value>Главная</value>
   </data>
+  <data name="MessageRequired" xml:space="preserve">
+    <value>Не заполнено поле "Текст сообщения"</value>
+  </data>
 </root>

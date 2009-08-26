@@ -77,7 +77,7 @@ namespace Zamov.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Contacts(string userName, string messageSubj, string messageBody, string email, string phone)
         {
-            if (ValidEmail(email))
+            if (Validate(email, messageBody))
             {
                 try
                 {
@@ -86,8 +86,7 @@ namespace Zamov.Controllers
                     MailMessage message = new MailMessage(mailAddressFrom, mailAddressTo);
                     message.Subject = messageSubj;
                     message.Body = messageBody;
-                    string host = "";
-                    SmtpClient client = new SmtpClient(host);
+                    SmtpClient client = new SmtpClient(ApplicationData.ZamovSMTPHost);
                     client.Send(message);
                 }
                 catch
@@ -99,12 +98,14 @@ namespace Zamov.Controllers
             return View();
         }
 
-        private bool ValidEmail(string email)
+        private bool Validate(string email, string messageBody)
         {
             Regex regex = new Regex("^(?:[a-zA-Z0-9_'^&amp;/+-])+(?:\\.(?:[a-zA-Z0-9_'^&amp;/+-])+)*@(?:(?:\\[?(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?))\\.){3}(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\]?)|(?:[a-zA-Z0-9-]+\\.)+(?:[a-zA-Z]){2,}\\.?)$");
             //return regex.IsMatch(email);
             if (!regex.IsMatch(email))
                 ModelState.AddModelError("email", ResourcesHelper.GetResourceString("EmailIncorrect"));
+            if(string.IsNullOrEmpty(messageBody.Trim()))
+                ModelState.AddModelError("messageBody", ResourcesHelper.GetResourceString("MessageRequired"));
             return ModelState.IsValid;
         }
 

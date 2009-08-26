@@ -31,7 +31,7 @@ margin-right:40px;
 #mainMenu .outer .inner a{color:#969696;font-size:13px; text-decoration:none;}
 #mainMenu .outer .inner a:hover{text-decoration:underline;}
 
-#breadCrumbs{height:30px;}
+#breadCrumbs{height:20px; padding-top:10px;}
 
 #header, #header a{color:white;}
 #header a{text-decoration:none;}
@@ -51,7 +51,7 @@ margin-right:40px;
     border-bottom: 1px solid #dbdbdb;
     padding:18px 6px 35px 18px;
 }
-#content{width:auto; margin:30px 215px 0px 40px; border-top:6px solid #99B6BA;}
+#content{width:auto; margin:0px 215px 0px 40px; border-top:6px solid #99B6BA;}
 
 #mainContent{padding:20px; margin-left:212px; border:2px solid #dbdbdb; border-top:none;}
 
@@ -123,3 +123,8 @@ iframe{padding:0; margin:0; border:none;}
 .registerToFeedback{padding:10px; width:auto; text-align:center;}
 
 .validationError{color:Red;}
+
+.breadCrumb a{color:#c2bfbf; text-decoration:none; padding-right:5px;}
+.breadCrumb a:hover{text-decoration:underline;}
+.breadCrumbSeparator{color:#c2bfbf; padding-right:5px;}
+.currentBreadCrumb{color:#2b587a;}

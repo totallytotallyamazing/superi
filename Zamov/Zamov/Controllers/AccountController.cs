@@ -9,11 +9,13 @@ using System.Web.Security;
 using System.Web.UI;
 using Zamov.Models;
 using System.Text.RegularExpressions;
+using Zamov.Helpers;
 
 namespace Zamov.Controllers
 {
 
     [HandleError]
+    [BreadCrumb(ResourceName = "Account", Url = "/Account")]
     public class AccountController : Controller
     {
 
@@ -46,9 +48,9 @@ namespace Zamov.Controllers
             private set;
         }
 
+        [BreadCrumb( ResourceName = "LogOn", Url = "/LogOn")]
         public ActionResult LogOn()
         {
-
             return View();
         }
 
@@ -86,6 +88,7 @@ namespace Zamov.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        [BreadCrumb(ResourceName = "Register", Url = "/LogOn")]
         public ActionResult Register()
         {
 
@@ -141,6 +144,7 @@ namespace Zamov.Controllers
         }
 
         [Authorize]
+        [BreadCrumb(ResourceName = "ChangePassword", Url = "/ChangePassword")]
         public ActionResult ChangePassword()
         {
 
@@ -171,20 +175,19 @@ namespace Zamov.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("_FORM", Controllers.Resources.GetResourceString("TheCurrentPasswordIsIncorrectOrTheNewPasswordIsInvalid"));
+                    ModelState.AddModelError("_FORM", Controllers.ResourcesHelper.GetResourceString("TheCurrentPasswordIsIncorrectOrTheNewPasswordIsInvalid"));
                     return View();
                 }
             }
             catch
             {
-                ModelState.AddModelError("_FORM", Controllers.Resources.GetResourceString("TheCurrentPasswordIsIncorrectOrTheNewPasswordIsInvalid"));
+                ModelState.AddModelError("_FORM", Controllers.ResourcesHelper.GetResourceString("TheCurrentPasswordIsIncorrectOrTheNewPasswordIsInvalid"));
                 return View();
             }
         }
 
         public ActionResult ChangePasswordSuccess()
         {
-
             return View();
         }
 
@@ -242,36 +245,36 @@ namespace Zamov.Controllers
         {
             if (!captchaValid)
             {
-                ModelState.AddModelError("captchaCheck", Resources.GetResourceString("IncorrectCaptcha"));
+                ModelState.AddModelError("captchaCheck", ResourcesHelper.GetResourceString("IncorrectCaptcha"));
             }
             if (String.IsNullOrEmpty(email))
             {
-                ModelState.AddModelError("email", Resources.GetResourceString("EmailRequired"));
+                ModelState.AddModelError("email", ResourcesHelper.GetResourceString("EmailRequired"));
             }
             else
             {
                 Regex regex = new Regex("^(?:[a-zA-Z0-9_'^&amp;/+-])+(?:\\.(?:[a-zA-Z0-9_'^&amp;/+-])+)*@(?:(?:\\[?(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?))\\.){3}(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\]?)|(?:[a-zA-Z0-9-]+\\.)+(?:[a-zA-Z]){2,}\\.?)$");
                 if(!regex.IsMatch(email))
-                    ModelState.AddModelError("email", Resources.GetResourceString("EmailIncorrect"));
+                    ModelState.AddModelError("email", ResourcesHelper.GetResourceString("EmailIncorrect"));
             }
 
             if (password == null || password.Length < MembershipService.MinPasswordLength)
             {
                 ModelState.AddModelError("password",
                     String.Format(CultureInfo.CurrentCulture,
-                         Resources.GetResourceString("PasswordShouldContain") + " {0}",
+                         ResourcesHelper.GetResourceString("PasswordShouldContain") + " {0}",
                          MembershipService.MinPasswordLength));
             }
             if (!String.Equals(password, confirmPassword, StringComparison.Ordinal))
             {
-                ModelState.AddModelError("_FORM", Resources.GetResourceString("PasswordAndConfirmationShouldMatch"));
+                ModelState.AddModelError("_FORM", ResourcesHelper.GetResourceString("PasswordAndConfirmationShouldMatch"));
             }
             if(string.IsNullOrEmpty(firstName))
-                ModelState.AddModelError("firstName", Resources.GetResourceString("FirstNameRequired"));
+                ModelState.AddModelError("firstName", ResourcesHelper.GetResourceString("FirstNameRequired"));
             if(string.IsNullOrEmpty(lastName))
-                ModelState.AddModelError("lastName", Resources.GetResourceString("LastNameRequired"));
+                ModelState.AddModelError("lastName", ResourcesHelper.GetResourceString("LastNameRequired"));
             if(string.IsNullOrEmpty(mobilePhone))
-                ModelState.AddModelError("mobilePhone", Resources.GetResourceString("PhoneRequired"));
+                ModelState.AddModelError("mobilePhone", ResourcesHelper.GetResourceString("PhoneRequired"));
             return ModelState.IsValid;
         }
 
@@ -282,16 +285,16 @@ namespace Zamov.Controllers
             switch (createStatus)
             {
                 case MembershipCreateStatus.DuplicateUserName:
-                    return Resources.GetResourceString("ErrDuplicateUserName");
+                    return ResourcesHelper.GetResourceString("ErrDuplicateUserName");
 
                 case MembershipCreateStatus.DuplicateEmail:
-                    return Resources.GetResourceString("ErrDuplicateEmail");
+                    return ResourcesHelper.GetResourceString("ErrDuplicateEmail");
 
                 case MembershipCreateStatus.InvalidPassword:
-                    return Resources.GetResourceString("ErrInvalidPassword");
+                    return ResourcesHelper.GetResourceString("ErrInvalidPassword");
 
                 case MembershipCreateStatus.InvalidEmail:
-                    return Resources.GetResourceString("ErrInvalidEmail");
+                    return ResourcesHelper.GetResourceString("ErrInvalidEmail");
 
                 case MembershipCreateStatus.InvalidAnswer:
                     return "The password retrieval answer provided is invalid. Please check the value and try again.";
@@ -300,7 +303,7 @@ namespace Zamov.Controllers
                     return "The password retrieval question provided is invalid. Please check the value and try again.";
 
                 case MembershipCreateStatus.InvalidUserName:
-                    return Resources.GetResourceString("ErrInvalidUserName");
+                    return ResourcesHelper.GetResourceString("ErrInvalidUserName");
 
                 case MembershipCreateStatus.ProviderError:
                     return "The authentication provider returned an error. Please verify your entry and try again. If the problem persists, please contact your system administrator.";

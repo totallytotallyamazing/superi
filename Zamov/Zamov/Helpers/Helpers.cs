@@ -33,7 +33,7 @@ namespace Zamov.Helpers
 
         public static string ResourceString(this System.Web.Mvc.HtmlHelper helper, string resourceName)
         {
-            return Controllers.Resources.GetResourceString(resourceName);
+            return Controllers.ResourcesHelper.GetResourceString(resourceName);
         }
 
         public static string CaptchaImage(this HtmlHelper helper, int height, int width)
@@ -71,45 +71,45 @@ namespace Zamov.Helpers
 
         public static string ResourceActionLink(this System.Web.Mvc.HtmlHelper helper, string resourceName, string actionName, string conrollerName)
         {
-            string linkText = Controllers.Resources.GetResourceString(resourceName);
+            string linkText = Controllers.ResourcesHelper.GetResourceString(resourceName);
             return helper.ActionLink(linkText, actionName, conrollerName);
         }
 
         public static string ResourceActionLink(this System.Web.Mvc.HtmlHelper helper, string resourceName, string actionName, string conrollerName, object routeValues, object htmlAttributes)
         {
-            string linkText = Controllers.Resources.GetResourceString(resourceName);
+            string linkText = Controllers.ResourcesHelper.GetResourceString(resourceName);
             return helper.ActionLink(linkText, actionName, conrollerName, routeValues, htmlAttributes);
         }
 
 
         public static string ResourceActionLink(this System.Web.Mvc.HtmlHelper helper, string resourceName, string actionName, object routeValues)
         {
-            string linkText = Controllers.Resources.GetResourceString(resourceName);
+            string linkText = Controllers.ResourcesHelper.GetResourceString(resourceName);
             return helper.ActionLink(linkText, actionName, routeValues);
         }
 
         public static string ResourceActionLink(this System.Web.Mvc.HtmlHelper helper, string resourceName, string actionName, object routeValues, object htmlAttributes)
         {
-            string linkText = Controllers.Resources.GetResourceString(resourceName);
+            string linkText = Controllers.ResourcesHelper.GetResourceString(resourceName);
             return helper.ActionLink(linkText, actionName, routeValues, htmlAttributes);
         }
 
 
         public static string ResourceActionLink(this System.Web.Mvc.HtmlHelper helper, string resourceName, string actionName)
         {
-            string linkText = Controllers.Resources.GetResourceString(resourceName);
+            string linkText = Controllers.ResourcesHelper.GetResourceString(resourceName);
             return helper.ActionLink(linkText, actionName);
         }
 
         public static string ResourceActionLink(this System.Web.Mvc.HtmlHelper helper, string resourceName, string actionName, RouteValueDictionary routeValues)
         {
-            string linkText = Controllers.Resources.GetResourceString(resourceName);
+            string linkText = Controllers.ResourcesHelper.GetResourceString(resourceName);
             return helper.ActionLink(linkText, actionName, routeValues);
         }
 
         public static string ResourceActionLink<TController>(this System.Web.Mvc.HtmlHelper helper, string resourceName, Expression<Action<TController>> action) where TController:Controller
         {
-            string linkText = Controllers.Resources.GetResourceString(resourceName);
+            string linkText = Controllers.ResourcesHelper.GetResourceString(resourceName);
             return helper.ActionLink<TController>(action, linkText);
         }
     }

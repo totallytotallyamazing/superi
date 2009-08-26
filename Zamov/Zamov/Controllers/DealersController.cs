@@ -7,6 +7,7 @@ using System.Web.Mvc.Ajax;
 using System.Web.Security;
 using Zamov.Models;
 using System.Web.Profile;
+using Zamov.Helpers;
 
 namespace Zamov.Controllers
 {
@@ -14,7 +15,7 @@ namespace Zamov.Controllers
     {
         //
         // GET: /Dealers/
-
+        [BreadCrumb( ResourceName = "Dealers", Url = "/Dealers")]
         public ActionResult Index()
         {
             using (ZamovStorage context = new ZamovStorage())

@@ -19,11 +19,11 @@ namespace AjaxControlToolkitMvc
 
         protected virtual void Initialize(HttpContextBase context)
         {
-            _resources = (List<T>)context.Session[resourceKey];
+            _resources = (List<T>)context.Items[resourceKey];
             if (_resources == null)
             {
                 _resources = new List<T>();
-                context.Session[resourceKey] = _resources;
+                context.Items[resourceKey] = _resources;
             }
         }
 

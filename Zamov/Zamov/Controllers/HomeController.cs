@@ -10,6 +10,8 @@ using System.Globalization;
 using System.Threading;
 using System.Resources;
 using System.Web.Routing;
+using Zamov.Helpers;
+using System.Linq.Expressions;
 
 namespace Zamov.Controllers
 {
@@ -66,6 +68,7 @@ namespace Zamov.Controllers
             }
         }
 
+        [BreadCrumb(ResourceName = "Contacts", Url = "/Home/Contacts")]
         public ActionResult Contacts()
         {
             return View();

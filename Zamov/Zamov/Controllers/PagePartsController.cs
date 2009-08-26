@@ -22,20 +22,6 @@ namespace Zamov.Controllers
             return View();
         }
 
-        public void BreadCrumbs()
-        {
-            BreadCrumbsTracker tracker = new BreadCrumbsTracker(HttpContext);
-            StringBuilder layout = new StringBuilder();
-            int itemsCount = tracker.Items.Count;
-            for (int i = 0; i < itemsCount; i++)
-            {
-                layout.Append(BreadCrumbsExtensions.RenderItem(tracker.Items[i]));
-                if (i < itemsCount - 1)
-                    layout.Append(BreadCrumbsExtensions.RenderSeparator());
-            }
-            Response.Write(layout.ToString());
-        }
-
         public ActionResult HeaderSelectors()
         {
 
@@ -46,7 +32,7 @@ namespace Zamov.Controllers
                 List<Category> categories = context.Categories.Select(c => c).ToList();
                 List<SelectListItem> citiesList = (from city in cities where city.Enabled select new SelectListItem { Selected = city.Id == SystemSettings.CityId, Text = city.GetName(currentLanguage), Value = city.Id.ToString() }).ToList();
                 List<SelectListItem> categoriesList = new List<SelectListItem>();
-                categoriesList.Insert(0, new SelectListItem { Selected = true, Text = Resources.GetResourceString("SelectCategory"), Value = "" });
+                categoriesList.Insert(0, new SelectListItem { Selected = true, Text = ResourcesHelper.GetResourceString("SelectCategory"), Value = "" });
                 ViewData["citiesList"] = citiesList;
                 ViewData["categoriesList"] = categoriesList;
                 return View();

@@ -35,7 +35,7 @@
     <h3><%=Html.ResourceString("Feedback2") %></h3>
     <br />
     
-    <% using (Html.BeginForm("SendMessage", "Home", FormMethod.Post))
+    <% using (Html.BeginForm())
        { %>
        
     <%= Html.ValidationSummary() %>

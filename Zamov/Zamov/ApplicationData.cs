@@ -31,6 +31,17 @@ public static class ApplicationData
         }
     }
 
+    public static string ZamovSMTPHost
+    {
+        get { return GetApplicationData("smtp", "All"); }
+        set
+        {
+            Dictionary<string, string> values = new Dictionary<string, string>();
+            values.Add("All", value);
+            UpdateApplicationData("smtp", values);
+        }
+    }
+
 
     public static void UpdateAgreement(Dictionary<string, string> values)
     {

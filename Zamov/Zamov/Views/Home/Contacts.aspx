@@ -7,20 +7,10 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <h2><%=Html.ResourceString("Contacts")%></h2>
 <br />    
-    <%=Html.Encode(ApplicationData.ContactsHeader)%>
-<br />
-<br />    
-<hr />
-<br />
-<h3><%=Html.ResourceString("ContactPhone") %></h3>
+    <% 
+        Response.Write(ApplicationData.ContactsHeader);
+    %>
 
-<br />
-<br />    
-<hr />
-<br />
-    <h3><%=Html.ResourceString("Feedback2") %></h3>
-    <br />
-    
     <% using (Html.BeginForm())
        { %>
        
@@ -36,7 +26,9 @@
     </tr>
     <tr>
         <td><%=Html.ResourceString("MessageBody")%>:</td>
-        <td><%=Html.TextArea("messageBody", new { cols = "17", rows = "5" })%></td>
+        <td><%=Html.TextArea("messageBody", new { cols = "17", rows = "5" })%>
+        <%= Html.ValidationMessage("messageBody", "*", new { @class = "validationError" })%>
+        </td>
     </tr>
     <tr>
         <td>Email:</td>

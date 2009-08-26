@@ -943,6 +943,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Не заповнене поле &quot;Текст повідомлення&quot;.
+        /// </summary>
+        internal static string MessageRequired {
+            get {
+                return ResourceManager.GetString("MessageRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Тема повідомлення.
         /// </summary>
         internal static string MessageSubj {

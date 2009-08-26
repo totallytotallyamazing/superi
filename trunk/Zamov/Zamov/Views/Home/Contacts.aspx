@@ -37,6 +37,8 @@
     
     <% using (Html.BeginForm("SendMessage", "Home", FormMethod.Post))
        { %>
+       
+    <%= Html.ValidationSummary() %>
     <table>
     <tr>
         <td><%=Html.ResourceString("YourName") %>:</td>

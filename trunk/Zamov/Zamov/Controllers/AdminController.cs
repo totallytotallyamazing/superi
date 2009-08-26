@@ -9,10 +9,12 @@ using System.Web.Script.Serialization;
 using System.IO;
 using System.Web.Security;
 using System.Data;
+using Zamov.Helpers;
 
 namespace Zamov.Controllers
 {
     [Authorize(Roles = "Administrators")]
+    [BreadCrumb(ResourceName = "Administration", Url = "/Admin")]
     public class AdminController : Controller
     {
 
@@ -22,6 +24,7 @@ namespace Zamov.Controllers
         }
 
         #region Cities
+        [BreadCrumb(ResourceName = "Cities", Url = "/Admin/Cities")]
         public ActionResult Cities()
         {
             using (ZamovStorage context = new ZamovStorage())
@@ -102,6 +105,7 @@ namespace Zamov.Controllers
         #endregion
 
         #region Dealers
+        [BreadCrumb(ResourceName = "Dealers", Url = "/Admin/Dealers")]
         public ActionResult Dealers()
         {
             using (ZamovStorage context = new ZamovStorage())
@@ -143,17 +147,20 @@ namespace Zamov.Controllers
             }
             return RedirectToAction("Dealers");
         }
-
+        
         public ActionResult AddUpdateDealer(int id)
         {
+            string bcText = ResourcesHelper.GetResourceString("CreateDealer");
             if (id > 0)
             {
+                bcText = ResourcesHelper.GetResourceString("EditDealer");
                 using (ZamovStorage context = new ZamovStorage())
                 {
                     Dealer dealer = context.Dealers.Select(d => d).Where(d => d.Id == id).First();
                     ViewData["dealer"] = dealer;
                 }
             }
+            BreadCrumbsExtensions.AddBreadCrumb(HttpContext, bcText, "/Admin/AddUpdateDealer/" + id);
             return View();
         }
 
@@ -192,6 +199,7 @@ namespace Zamov.Controllers
         #endregion
 
         #region Categories
+        [BreadCrumb(ResourceName = "Categories", Url = "/Admin/Categories")]
         public ActionResult Categories()
         {
             return View();
@@ -347,6 +355,7 @@ namespace Zamov.Controllers
         #endregion
 
         #region Users
+        [BreadCrumb(ResourceName = "Users", Url = "/Admin/Users")]
         public ActionResult Users(int? pageIndex)
         {
             int totalRecords;

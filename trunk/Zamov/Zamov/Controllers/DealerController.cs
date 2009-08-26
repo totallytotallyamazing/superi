@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 using Zamov.Models;
+using Zamov.Helpers;
 
 namespace Zamov.Controllers
 {
@@ -29,6 +30,7 @@ namespace Zamov.Controllers
                                                 ).First();
                 ViewData["description"] = dealerProperties;
                 ViewData["dealerId"] = id;
+                BreadCrumbsExtensions.AddBreadCrumb(HttpContext, dealerProperties.Name, "/Dealer/" + dealerProperties.Id); 
                 return View(dealerProperties);
             }
         }

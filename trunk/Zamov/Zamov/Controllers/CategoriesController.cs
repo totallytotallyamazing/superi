@@ -5,11 +5,13 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 using Zamov.Models;
+using Zamov.Helpers;
 
 namespace Zamov.Controllers
 {
     public class CategoriesController : Controller
     {
+        [BreadCrumb(ResourceName = "Categories", Url = "/Categories")]
         public ActionResult Index()
         {
             List<Category> subCategories = ContextCache.GetSubCategories(SystemSettings.CategoryId, false);

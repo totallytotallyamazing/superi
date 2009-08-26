@@ -176,24 +176,24 @@ namespace Zamov.Controllers
             )
         {
             if (string.IsNullOrEmpty(firstName))
-                ModelState.AddModelError("firstName", Resources.GetResourceString("FirstNameRequired"));
+                ModelState.AddModelError("firstName", ResourcesHelper.GetResourceString("FirstNameRequired"));
             if (string.IsNullOrEmpty(city))
-                ModelState.AddModelError("city", Resources.GetResourceString("CityRequired"));
+                ModelState.AddModelError("city", ResourcesHelper.GetResourceString("CityRequired"));
             if (string.IsNullOrEmpty(deliveryAddress))
-                ModelState.AddModelError("deliveryAddress", Resources.GetResourceString("DeliveryAddressRequired"));
+                ModelState.AddModelError("deliveryAddress", ResourcesHelper.GetResourceString("DeliveryAddressRequired"));
             if (string.IsNullOrEmpty(contactPhone))
-                ModelState.AddModelError("contactPhone", Resources.GetResourceString("PhoneRequired"));
+                ModelState.AddModelError("contactPhone", ResourcesHelper.GetResourceString("PhoneRequired"));
             CultureInfo cultureInfo = CultureInfo.GetCultureInfo("ru-RU");
             DateTime date;
             if (!DateTime.TryParse(deliveryDate, cultureInfo, DateTimeStyles.None, out date))
-                ModelState.AddModelError("deliveryDate", Resources.GetResourceString("DateTimeInvalidOrEmpty"));
+                ModelState.AddModelError("deliveryDate", ResourcesHelper.GetResourceString("DateTimeInvalidOrEmpty"));
             Regex rtime = new Regex(@"[0-2][0-9]\:[0-6][0-9]");
             if (!rtime.IsMatch(deliveryTime))
-                ModelState.AddModelError("deliveryTime", Resources.GetResourceString("TimeInvalidOrEmpty"));
+                ModelState.AddModelError("deliveryTime", ResourcesHelper.GetResourceString("TimeInvalidOrEmpty"));
             if (!agreed)
-                ModelState.AddModelError("agreed", Resources.GetResourceString("YouMustAgree"));
+                ModelState.AddModelError("agreed", ResourcesHelper.GetResourceString("YouMustAgree"));
             if (!captchaValid)
-                ModelState.AddModelError("captchaInvalid", Resources.GetResourceString("IncorrectCaptcha"));
+                ModelState.AddModelError("captchaInvalid", ResourcesHelper.GetResourceString("IncorrectCaptcha"));
             return ModelState.IsValid;
         }
 

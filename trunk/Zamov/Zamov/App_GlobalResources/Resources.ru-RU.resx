@@ -603,4 +603,13 @@
   <data name="YourName" xml:space="preserve">
     <value>Ваше имя</value>
   </data>
+  <data name="Account" xml:space="preserve">
+    <value>Учетная запись</value>
+  </data>
+  <data name="ImportedProducts" xml:space="preserve">
+    <value>Iмпортованi товари</value>
+  </data>
+  <data name="MainPage" xml:space="preserve">
+    <value>Главная</value>
+  </data>
 </root>

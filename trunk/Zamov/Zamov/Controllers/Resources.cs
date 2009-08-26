@@ -6,7 +6,7 @@ using System.Globalization;
 
 namespace Zamov.Controllers
 {
-    public static class Resources
+    public static class ResourcesHelper
     {
         public static CultureInfo GetSelectedCulture()
         {

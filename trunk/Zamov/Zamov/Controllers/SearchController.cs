@@ -18,7 +18,7 @@ namespace Zamov.Controllers
             return View();
         }
 
-
+        [BreadCrumb( ResourceName = "Search", Url = "/Search")]
         public ActionResult SearchProduct(string searchContext)
         {
             if (!string.IsNullOrEmpty(searchContext))

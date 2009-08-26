@@ -36,7 +36,6 @@
     
 </head>
 <body>
-<% Html.AddBreadCrumb("Main", "/"); %>
 <map id="logoLink" name="logoLink">
     <area alt="Zamov.net" shape="rect" coords="0,40,233, 90" href="/" />
 </map>
@@ -81,7 +80,7 @@
             </div>
         </div>
     </div>
-    <div id="breadCrumbs"></div>
+    <div id="breadCrumbs"><%= Html.BreadCrumbs()%></div>
     <div id="content">
         <div id="leftSide">
             <asp:ContentPlaceHolder ID="leftMenu" runat="server">
@@ -95,6 +94,5 @@
     </div>
     <div id="rightBanner">
     </div>
-    <%= Ajax.BreadCrumbs("breadCrumbs")%>
 </body>
 </html>

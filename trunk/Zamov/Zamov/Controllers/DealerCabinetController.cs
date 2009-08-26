@@ -15,6 +15,7 @@ using System.Collections;
 namespace Zamov.Controllers
 {
     [Authorize(Roles = "Administrators, Dealers")]
+    [BreadCrumb( ResourceName="DealerCabinet", Url="/DealerCabinet")]
     public class DealerCabinetController : Controller
     {
         public ActionResult Index()
@@ -23,6 +24,7 @@ namespace Zamov.Controllers
         }
 
         #region Groups
+        [BreadCrumb(ResourceName = "Groups", Url = "/DealerCabinet/Groups")]
         public ActionResult Groups()
         {
             using (ZamovStorage context = new ZamovStorage())
@@ -128,6 +130,7 @@ namespace Zamov.Controllers
         #endregion
 
         #region Dealer
+        [BreadCrumb(ResourceName = "EditDealer", Url = "/DealerCabinet/AddUpdateDealer")]
         public ActionResult AddUpdateDealer()
         {
 
@@ -228,6 +231,7 @@ namespace Zamov.Controllers
         #endregion
 
         #region Products
+        [BreadCrumb(ResourceName = "Products", Url = "/DealerCabinet/Products")]
         public ActionResult Products(int? id)
         {
             ZamovStorage context = new ZamovStorage();
@@ -275,7 +279,7 @@ namespace Zamov.Controllers
         {
 
             if (groupId < 0)
-                items.Add(new SelectListItem { Selected = currentGroipId < 0, Text = Resources.GetResourceString("SelectGroup"), Value = "" });
+                items.Add(new SelectListItem { Selected = currentGroipId < 0, Text = ResourcesHelper.GetResourceString("SelectGroup"), Value = "" });
             using (ZamovStorage context = new ZamovStorage())
             {
                 List<Group> groups = new List<Group>();
@@ -398,6 +402,7 @@ namespace Zamov.Controllers
         #endregion
 
         #region Products import
+        [BreadCrumb(ResourceName = "ImportedProducts", Url = "/DealerCabinet/ImportedProducts")]
         public ActionResult ImportedProducts()
         {
             string fileName = (string)Session["uploadedXls"];
@@ -624,7 +629,9 @@ namespace Zamov.Controllers
             return Redirect(redirectTo);
         }
 
+        #region Ordering
         [Authorize(Roles = "Administrators, Dealers")]
+        [BreadCrumb(ResourceName = "Orders", Url = "/DealerCabinet/Orders")]
         public ActionResult Orders()
         {
             SystemSettings.LastTime = DateTime.Now;
@@ -677,5 +684,6 @@ namespace Zamov.Controllers
                 return RedirectToAction("Orders");
             }
         }
+        #endregion
     }
 }

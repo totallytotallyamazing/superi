@@ -103,7 +103,6 @@
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\Securirty.cs" />
     <Compile Include="Controllers\SystemSettings.cs" />
-    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\UserCabinetController.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -113,6 +112,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\AjaxExtensions.cs" />
+    <Compile Include="Helpers\BreadCrumbAttribute.cs" />
     <Compile Include="Helpers\BreadCrumbs.cs" />
     <Compile Include="Helpers\FormCollectionExtender.cs" />
     <Compile Include="Helpers\Helpers.cs" />
@@ -500,7 +500,6 @@
     <Content Include="Views\Search\SearchProduct.aspx" />
     <Content Include="Views\Shared\Cart.ascx" />
     <Content Include="Views\Shared\CurrentDealer.ascx" />
-    <Content Include="Views\Test\Index.aspx" />
     <Content Include="Views\UserCabinet\Index.aspx" />
     <Content Include="Views\Shared\ShowCart.ascx" />
     <Content Include="Views\UserCabinet\ShowCart.aspx" />

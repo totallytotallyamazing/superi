@@ -70,6 +70,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Облiковий запис.
+        /// </summary>
+        internal static string Account {
+            get {
+                return ResourceManager.GetString("Account", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Спроба реєстрації була невдалою, будьласка виправте помилки і спробуйте ще раз.
         /// </summary>
         internal static string AccountCreationFailed {
@@ -457,6 +466,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Власний кабiнет продавця.
+        /// </summary>
+        internal static string DealerCabinet {
+            get {
+                return ResourceManager.GetString("DealerCabinet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Iнформацiя про фiрму.
         /// </summary>
         internal static string DealerInformation {
@@ -763,6 +781,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Iмпортованi товари.
+        /// </summary>
+        internal static string ImportedProducts {
+            get {
+                return ResourceManager.GetString("ImportedProducts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Імпортувати товари з Excel.
         /// </summary>
         internal static string ImportProducts {
@@ -858,6 +885,15 @@ namespace Resources {
         internal static string LogOn {
             get {
                 return ResourceManager.GetString("LogOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Головна.
+        /// </summary>
+        internal static string MainPage {
+            get {
+                return ResourceManager.GetString("MainPage", resourceCulture);
             }
         }
         

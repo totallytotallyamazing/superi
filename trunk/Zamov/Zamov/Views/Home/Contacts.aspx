@@ -6,6 +6,16 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
+
+<script type="text/javascript">
+    function checkEmail() {
+
+        var email = $get('email').value;
+        
+        //return false;
+    }
+</script>
+
     <h2><%=Html.ResourceString("Contacts")%></h2>
     
 
@@ -42,14 +52,17 @@
     </tr>
     <tr>
         <td>Email:</td>
-        <td><%=Html.TextBox("email")%>:</td>
+        <td>
+        <%=Html.TextBox("email")%>
+        <%= Html.ValidationMessage("email", "*", new { @class="validationError" })%>
+        </td>
     </tr>
     <tr>
         <td><%=Html.ResourceString("Phone")%>:</td>
         <td><%=Html.TextBox("phone")%></td>
     </tr>
     </table>
-    <input type="submit" value="<%=Html.ResourceString("Send")%>" />
+    <input type="submit" onclick="return checkEmail()" value="<%=Html.ResourceString("Send")%>" />
 <%} %>
 
 <table></table>

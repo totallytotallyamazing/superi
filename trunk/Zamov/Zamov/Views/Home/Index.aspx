@@ -59,9 +59,7 @@
     <div id="content">
     <div id="headerSelectors">
         <center>
-            <% using(Html.BeginForm()){ %>
                 <% Html.RenderAction<PagePartsController>(ppc => ppc.HeaderSelectors()); %>
-            <%} %>
         </center>
     </div>
     </div>

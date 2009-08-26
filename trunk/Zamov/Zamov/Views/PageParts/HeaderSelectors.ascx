@@ -3,7 +3,10 @@
 <%@ Import Namespace="Zamov.Helpers" %>
 <script type="text/javascript">
 
-    $(function() { cityChanged(); });
+
+    $(function() {
+        $("#currentCategory").click(function() { $(this).parent().css({ border: "none", padding: "2px" }); });
+    })
     function cityChanged() {
         var currentCity = document.getElementById("currentCity");
         var cityId = currentCity[currentCity.selectedIndex].value;
@@ -39,9 +42,19 @@
                 }
             },
             failureCallback);
-    }
-</script>
+        }
 
+        function checkSelectedCategory() {
+            if ($get("currentCategory").value) {
+                return true;
+            }
+            else {
+                $("#currentCategory").parent().css("border", "1px solid red").css("padding", "1px;");
+                return false;
+            }
+        }
+</script>
+<% using(Html.BeginForm("Index", "Home")){ %>
 <table>
     <tr>
         <td>
@@ -50,13 +63,13 @@
         </td>
         <td>
             <%= Html.ResourceString("Category") %><br />
-            <%= Html.DropDownList("currentCategory", (List<SelectListItem>)ViewData["categoriesList"]) %>
+            <div style="padding:2px;">
+                <%= Html.DropDownList("currentCategory", (List<SelectListItem>)ViewData["categoriesList"]) %>
+            </div>
         </td>
-        <% if (Request.Url.Segments.Length==1 && Request.Url.Segments[0] == "/")
-           { %>
-            <td>
-                <input type="submit" value="<%= Html.ResourceString("Forward") %>" style="margin-top:14px;" />
-            </td>
-        <%} %>
+        <td>
+            <input type="submit" onclick="return checkSelectedCategory()" value=">" class="headerSelect" style="margin-top:14px;" />
+        </td>
     </tr>
 </table>
+<%} %>

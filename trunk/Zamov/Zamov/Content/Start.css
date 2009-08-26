@@ -1,7 +1,7 @@
 ﻿*{margin:0; padding:0;}
 body{font-family: Arial, Sans-Serif, Helvetica, Tahoma; font-size:0.8em;}
 select
-{border:1px solid #bdbdbd; color:#b5b5b5;}
+{border:1px solid #bdbdbd; color:#afafaf;}
 #header, #mainMenu, #breadCrumbs{width:auto; margin:30px 40px 0px; min-width:820px;}
 #content{min-width:645px;}
 .greyBg{background:#CFDAD7}
@@ -42,3 +42,4 @@ margin-right:40px;
 #logo{padding-left:200px;}
 
 #content{width:auto; margin:30px 40px 0px 40px; padding-bottom:60px; border-bottom:6px solid #99B6BA;}
+.headerSelect{background-color:#092d45; border:1px solid Teal; color:Teal; padding:0 5px; font-weight:bold;}

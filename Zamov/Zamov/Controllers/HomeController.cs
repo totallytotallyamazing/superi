@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 using Zamov.Models;
@@ -72,11 +74,35 @@ namespace Zamov.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult SendMessage(string userName, string messageSubj, string messageBody, string email, string phone)
         {
+            if (ValidEmail(email))
+            {
+                try
+                {
+                    MailAddress mailAddressFrom = new MailAddress(email);
+                    MailAddress mailAddressTo = new MailAddress(ApplicationData.FeedbackEmail);
+                    MailMessage message = new MailMessage(mailAddressFrom, mailAddressTo);
+                    message.Subject = messageSubj;
+                    message.Body = messageBody;
 
+                    string host = "";
+                    SmtpClient client = new SmtpClient(host);
+                    client.Send(message);
+                }
+                catch
+                {
+                }
+                return RedirectToAction("Index", "Home");
+            }
+            return RedirectToAction("Contacts", "Home");
+        }
 
-
-
-            return RedirectToAction("Index", "Home");
+        private bool ValidEmail(string email)
+        {
+            Regex regex = new Regex("^(?:[a-zA-Z0-9_'^&amp;/+-])+(?:\\.(?:[a-zA-Z0-9_'^&amp;/+-])+)*@(?:(?:\\[?(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?))\\.){3}(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\]?)|(?:[a-zA-Z0-9-]+\\.)+(?:[a-zA-Z]){2,}\\.?)$");
+            //return regex.IsMatch(email);
+            if (!regex.IsMatch(email))
+                ModelState.AddModelError("email", Resources.GetResourceString("EmailIncorrect"));
+            return ModelState.IsValid;
         }
 
     }

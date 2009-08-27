@@ -6,13 +6,15 @@
     <%
         List<SelectListItem> items = new List<SelectListItem>();
         SelectListItem dealerInfo = new SelectListItem { Text = Html.ResourceString("EditDealer"), Value = VirtualPathUtility.ToAbsolute("~/DealerCabinet/AddUpdateDealer") };
-        SelectListItem delivery = new SelectListItem { Text = Html.ResourceString("Delivery"), Value = "javascript:openDeliveryDetailsIframe()" };
-        SelectListItem cities = new SelectListItem { Text = Html.ResourceString("Cities"), Value = "javascript:selectCityMappings()" };
-        SelectListItem categories = new SelectListItem { Text = Html.ResourceString("Categories"), Value = "javascript:selectCategoryMappings()" };
+        SelectListItem payment = new SelectListItem { Text = Html.ResourceString("Payment"), Value = "javascript:openPaymentDetails()" };
+        SelectListItem delivery = new SelectListItem { Text = Html.ResourceString("Delivery"), Value = "javascript:openDeliveryDetails()" };
+        SelectListItem cities = new SelectListItem { Text = Html.ResourceString("Cities"), Value = "javascript:oenCityMappings()" };
+        SelectListItem categories = new SelectListItem { Text = Html.ResourceString("Categories"), Value = "javascript:openCategoryMappings()" };
         SelectListItem groups = new SelectListItem { Text = Html.ResourceString("Groups"), Value = VirtualPathUtility.ToAbsolute("~/DealerCabinet/Groups") };
         SelectListItem products = new SelectListItem { Text = Html.ResourceString("Products"), Value = VirtualPathUtility.ToAbsolute("~/DealerCabinet/Products") };
         SelectListItem orders = new SelectListItem { Text = Html.ResourceString("Orders"), Value = VirtualPathUtility.ToAbsolute("~/DealerCabinet/Orders") };
         items.Add(dealerInfo);
+        items.Add(payment);
         items.Add(delivery);
         items.Add(cities);
         items.Add(categories);
@@ -27,96 +29,15 @@
     </asp:ContentPlaceHolder>
 </asp:Content>
 <asp:Content ContentPlaceHolderID="mainContent" runat="server">
-
-    <script type="text/javascript">
-        $(function() { 
-             $("#cityMappings")
-                .dialog({
-                    autoOpen: false,
-                    width: 700,
-                    height: 500,
-                    minHeight: 360,
-                    resizable: false,
-                    buttons: {
-                        '<%= Html.ResourceString("Cancel") %>': function(){closeCityMappings();},
-                        '<%= Html.ResourceString("Save") %>': function() { $get("cityMappingsFrame").contentWindow.updateCityMappings(); }
-                    }
-                });
-                
-              $("#categoryMappings")
-                .dialog({
-                    autoOpen: false,
-                    width: 700,
-                    height: 500,
-                    minHeight: 360,
-                    resizable: false,
-                    buttons: {
-                        '<%= Html.ResourceString("Cancel") %>': function(){closeCategoryMappings();},
-                        '<%= Html.ResourceString("Save") %>': function() { $get("categoryMappingsFrame").contentWindow.updateCategoryMappings(); }
-                    }
-                });
-                $("#deliveryDetailsPopUp")
-                .dialog({
-                    autoOpen: false,
-                    width: 700,
-                    height: 500,
-                    minHeight: 360,
-                    resizable: false,
-                    buttons: {
-                        '<%= Html.ResourceString("Cancel") %>': function(){closeDeliveryDetailsDialog();},
-                        '<%= Html.ResourceString("Save") %>': function() { $get("deliveryDetailsFrame").contentWindow.updateDeliveryDetails(); }
-                    }
-                });
-        })
+    <%= Html.FrameWindow("CityMappings", "/DealerCabinet/DealerCityMappings")%>
+    <%= Html.FrameWindow("CategoryMappings", "/DealerCabinet/DealerCategoryMappings")%>
+    <%= Html.FrameWindow("DeliveryDetails", "/DealerCabinet/DeliveryInfo")%>
+    <%= Html.FrameWindow("PaymentDetails", "/DealerCabinet/PaymentDetails")%>
     
-        function selectCityMappings() { 
-             $("#cityMappings")
-                .html('<iframe frameborder="0" name="cityMappingsFrame" id="cityMappingsFrame" hidefocus="true" style="width:660px; height:500px;" src="/DealerCabinet/DealerCityMappings"></iframe>');
-
-            $("#cityMappings").dialog('open').css("height", 400);
-            $('#cityMappings').dialog('option', 'height', 500);
-            $('#cityMappings').dialog('option', 'position', 'center');
-        }
-        
-        function selectCategoryMappings(){
-            $("#categoryMappings")
-                .html('<iframe frameborder="0" name="categoryMappingsFrame" id="categoryMappingsFrame" hidefocus="true" style="width:660px; height:500px;" src="/DealerCabinet/DealerCategoryMappings"></iframe>');
-
-            $("#categoryMappings").dialog('open').css("height", 400);
-            $('#categoryMappings').dialog('option', 'height', 500);
-            $('#categoryMappings').dialog('option', 'position', 'center');
-        }
-        
-        function openDeliveryDetailsIframe() {
-            $("#deliveryDetailsPopUp")
-                .html('<iframe frameborder="0" name="deliveryDetailsFrame" id="deliveryDetailsFrame" hidefocus="true" style="width:660px; height:500px;" src="/DealerCabinet/DeliveryInfo/"></iframe>');
-
-            $("#deliveryDetailsPopUp").dialog('open').css("height", 400);
-            $('#deliveryDetailsPopUp').dialog('option', 'height', 500);
-            $('#deliveryDetailsPopUp').dialog('option', 'position', 'center');
-        }
-        
-        function closeCityMappings()
-        {
-            $("#cityMappings").dialog('close');
-        }
-        
-        function closeCategoryMappings()
-        {
-             $("#categoryMappings").dialog('close');
-        }
-        
-        function closeDeliveryDetailsDialog() {
-            $("#deliveryDetailsPopUp").dialog('close');
-        }
-    </script>
-
-    <div id="cityMappings">
-    </div>
-    <div id="categoryMappings">
-    </div>
-    <div id="deliveryDetailsPopUp">
-    </div>
+    <div id="PaymentDetails"></div>
+    <div id="CityMappings"></div>
+    <div id="CategoryMappings"></div>
+    <div id="DeliveryDetails"></div>
     <%if (Roles.IsUserInRole("Administrators"))
       {
           Html.RenderPartial("SelectDealer");

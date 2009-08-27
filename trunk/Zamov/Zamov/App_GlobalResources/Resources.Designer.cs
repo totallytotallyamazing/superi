@@ -772,6 +772,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Можна ввести ваучер.
+        /// </summary>
+        internal static string HasDiscounts {
+            get {
+                return ResourceManager.GetString("HasDiscounts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Зображення.
         /// </summary>
         internal static string Image {

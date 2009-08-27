@@ -636,4 +636,7 @@
   <data name="ToMainPage" xml:space="preserve">
     <value>На головну</value>
   </data>
+  <data name="HasDiscounts" xml:space="preserve">
+    <value>Можна ввести ваучер</value>
+  </data>
 </root>

@@ -11,6 +11,7 @@ using Microsoft.Web.Mvc;
 using System.Linq.Expressions;
 using System.Web.Mvc;
 using Zamov.Models;
+using Zamov.Controllers;
 
 namespace Zamov.Helpers
 {
@@ -107,10 +108,51 @@ namespace Zamov.Helpers
             return helper.ActionLink(linkText, actionName, routeValues);
         }
 
-        public static string ResourceActionLink<TController>(this System.Web.Mvc.HtmlHelper helper, string resourceName, Expression<Action<TController>> action) where TController:Controller
+        public static string ResourceActionLink<TController>(this System.Web.Mvc.HtmlHelper helper, string resourceName, Expression<Action<TController>> action) where TController : Controller
         {
             string linkText = Controllers.ResourcesHelper.GetResourceString(resourceName);
             return helper.ActionLink<TController>(action, linkText);
+        }
+
+        public static string FrameWindow(this HtmlHelper helper, string targetControlId, string contentUrl)
+        {
+            string onLoadScript = @"    
+             $(function() { " +
+                 "$('#" + targetControlId + "')" +
+                    @".dialog({
+                        autoOpen: false,
+                        width: 700,
+                        height: 500,
+                        minHeight: 360,
+                        resizable: false,
+                        buttons: {" +
+                            "'" + ResourcesHelper.GetResourceString("Cancel") + "': function(){close" + targetControlId + "();}," +
+                            "'" + ResourcesHelper.GetResourceString("Save") + "': function() { $get('" + targetControlId + "Frame').contentWindow.update" + targetControlId + "(); }" +
+                        @"}
+                    });
+                });
+
+                ";
+
+            string displayWindowFunction = "function open" + targetControlId + "() {" +
+                "var controlId = '#" + targetControlId + "';" +
+            "$(controlId)" +
+                ".html('<iframe frameborder=\"0\" name=\"" + targetControlId + "Frame\" id=\"" + targetControlId + "Frame\" hidefocus=\"true\" style=\"width:660px; height:500px;\" src=\"" + contentUrl + "\"></iframe>');" +
+            @"$(controlId).dialog('open').css('height', 400);
+            $(controlId).dialog('option', 'height', 500);
+            $(controlId).dialog('option', 'position', 'center');
+        };
+
+        ";
+
+            string closeWindowFunction = "function close" + targetControlId + "(){$('#" + targetControlId + "').dialog('close');}";
+
+            return "<script type=\"text/javascript\">" + string.Concat(onLoadScript, displayWindowFunction, closeWindowFunction) + "</script>";
+        }
+
+        public static string CloseParentScript(string targetControlId)
+        {
+            return "<script>top.close" + targetControlId + "();</script>";
         }
     }
 }

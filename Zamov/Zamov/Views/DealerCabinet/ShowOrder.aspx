@@ -9,20 +9,24 @@
     <p>
     <b><%=Html.ResourceString("Orders")%> ¹ <%=Html.Encode(Model.Id) %></b>
    </p>
+<%if (Model.Status == (int)Statuses.Accepted)
+  { %>
         <p>
-            <%=Html.ResourceString("Client") %>:
-            <%= Html.Encode(Model.ClientName)%>
+            <%=Html.ResourceString("Client")%>:
+            <%=Html.Encode(Model.ClientName)%>
         </p>
         <p>
-            <%=Html.ResourceString("Phone") %>:
-            <%= Html.Encode(Model.Phone)%>
+            <%=Html.ResourceString("Phone")%>:
+            <%=Html.Encode(Model.Phone)%>
         </p>
+        <p>
+            <%=Html.ResourceString("Email")%>:
+            <%=Html.Encode(Model.Email)%>
+        </p>
+<%} %>
         <p>
             <%=Html.ResourceString("OrderDeliveryDateTime") %>:
             <%= Html.Encode(String.Format("{0:g}", Model.DeliveryDate)) %>
-        </p>
-        <p>
-            <%=Html.ResourceString("Email") %>:
         </p>
         <p>
             <%=Html.ResourceString("DeliveryAddress") %>:

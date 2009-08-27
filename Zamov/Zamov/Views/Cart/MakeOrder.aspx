@@ -9,11 +9,6 @@
     MakeOrder
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="subHeader" style="text-align: center">
-        <center>
-            <% Html.RenderPartial("Cart");  %>
-        </center>
-    </div>
     <%= Html.ValidationSummary() %>
     <%
         string pickerLocale = (SystemSettings.CurrentLanguage == "uk-UA") ? "uk" : "ru";
@@ -164,9 +159,10 @@
             <tr>
                 <td class="parameterName">
                     <%= Html.ResourceString("City") %>
+                    <%= Html.ValidationMessage("city", "*", new { @class="validationError"})%>
                 </td>
                 <td class="parameterValue">
-                    <%= Html.Hidden("city", "ส่ๅโ") %>
+                    <%= Html.TextBox("city") %>
                 </td>
             </tr>
             <tr>

@@ -322,7 +322,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Не вказвно мiсто.
+        ///   Looks up a localized string similar to Не вказано мiсто.
         /// </summary>
         internal static string CityRequired {
             get {
@@ -412,7 +412,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Створення постачальника.
+        ///   Looks up a localized string similar to Створення продавця.
         /// </summary>
         internal static string CreateDealer {
             get {
@@ -592,7 +592,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Редагування постачальника.
+        ///   Looks up a localized string similar to Редагування продавця.
         /// </summary>
         internal static string EditDealer {
             get {
@@ -1182,6 +1182,15 @@ namespace Resources {
         internal static string PasswordShouldContain {
             get {
                 return ResourceManager.GetString("PasswordShouldContain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Оплата.
+        /// </summary>
+        internal static string Payment {
+            get {
+                return ResourceManager.GetString("Payment", resourceCulture);
             }
         }
         

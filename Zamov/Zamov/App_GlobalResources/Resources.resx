@@ -142,7 +142,7 @@
     <value>Створити</value>
   </data>
   <data name="CreateDealer" xml:space="preserve">
-    <value>Створення постачальника</value>
+    <value>Створення продавця</value>
   </data>
   <data name="Dealers" xml:space="preserve">
     <value>Продавцi</value>
@@ -157,7 +157,7 @@
     <value>Редагувати</value>
   </data>
   <data name="EditDealer" xml:space="preserve">
-    <value>Редагування постачальника</value>
+    <value>Редагування продавця</value>
   </data>
   <data name="LoginHeader" xml:space="preserve">
     <value>Будьласка, введiть iм'я користувача та пароль</value>
@@ -559,7 +559,7 @@
     <value>Ваш пароль змінено.</value>
   </data>
   <data name="CityRequired" xml:space="preserve">
-    <value>Не вказвно мiсто</value>
+    <value>Не вказано мiсто</value>
   </data>
   <data name="DateTimeInvalidOrEmpty" xml:space="preserve">
     <value>Дату не вказано або введено невiрно</value>
@@ -617,6 +617,9 @@
   </data>
   <data name="MessageRequired" xml:space="preserve">
     <value>Не заповнене поле "Текст повідомлення"</value>
+  </data>
+  <data name="Payment" xml:space="preserve">
+    <value>Оплата</value>
   </data>
   <data name="No" xml:space="preserve">
     <value>Ні</value>

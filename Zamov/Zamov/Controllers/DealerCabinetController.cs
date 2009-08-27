@@ -162,7 +162,6 @@ namespace Zamov.Controllers
                 dealer.Names["uk-UA"] = form["uName"];
                 dealer.Descriptions["ru-RU"] = Server.HtmlDecode(form["rDescription"]);
                 dealer.Descriptions["uk-UA"] = Server.HtmlDecode(form["uDescription"]);
-                dealer.Enabled = form["enabled"].Contains("true");
                 if (!string.IsNullOrEmpty(Request.Files["logoImage"].FileName))
                 {
                     HttpPostedFileBase file = Request.Files["logoImage"];
@@ -620,6 +619,35 @@ namespace Zamov.Controllers
             Response.Write("<script>top.closeCategoryMappings();</script>");
         }
 
+        #endregion
+
+        #region Payment details
+        public ActionResult PaymentDetails()
+        { 
+            using (ZamovStorage context = new ZamovStorage())
+            {
+                Dealer dealer = (from d in context.Dealers where d.Id == SystemSettings.CurrentDealer select d).First();
+                ViewData["cash"] = dealer.Cash;
+                ViewData["noncash"] = dealer.Noncash;
+                ViewData["card"] = dealer.Card;
+                ViewData["hasDiscounts"] = dealer.HasDiscounts;
+                return View();
+            }
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public void PaymentDetails(bool cash, bool noncash, bool card, bool hasDiscounts)
+        {
+            using (ZamovStorage context = new ZamovStorage())
+            {
+                Dealer dealer = (from d in context.Dealers where d.Id == SystemSettings.CurrentDealer select d).First();
+                dealer.Cash = cash;
+                dealer.Card = card;
+                dealer.Noncash = noncash;
+                dealer.HasDiscounts = hasDiscounts;
+                context.SaveChanges();
+            }
+        }
         #endregion
 
         [Authorize(Roles = "Administrators")]

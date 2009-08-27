@@ -144,6 +144,9 @@
           <Property Name="HasDiscounts" Type="bit" Nullable="false" />
           <Property Name="TopDealer" Type="bit" Nullable="false" />
           <Property Name="TopDealerTill" Type="datetime" />
+          <Property Name="Cash" Type="bit" Nullable="false" />
+          <Property Name="Noncash" Type="bit" Nullable="false" />
+          <Property Name="Card" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Groups">
           <Key>
@@ -545,7 +548,10 @@
           <Property Name="HasDiscounts" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="DealerFeedback" Relationship="BaseEntities.FK_DealerFeedback_Dealers" FromRole="Dealer" ToRole="DealerFeedback" />
           <Property Name="TopDealer" Type="Boolean" Nullable="false" />
-          <Property Name="TopDealerTill" Type="DateTime" Nullable="true" /></EntityType>
+          <Property Name="TopDealerTill" Type="DateTime" Nullable="true" />
+          <Property Name="Cash" Type="Boolean" Nullable="false" />
+          <Property Name="Noncash" Type="Boolean" Nullable="false" />
+          <Property Name="Card" Type="Boolean" Nullable="false" /></EntityType>
         <EntityType Name="Group">
           <Key>
             <PropertyRef Name="Id" />
@@ -688,6 +694,9 @@
           <EntitySetMapping Name="Dealers">
             <EntityTypeMapping TypeName="IsTypeOf(BaseEntities.Dealer)">
               <MappingFragment StoreEntitySet="Dealers">
+                <ScalarProperty Name="Card" ColumnName="Card" />
+                <ScalarProperty Name="Noncash" ColumnName="Noncash" />
+                <ScalarProperty Name="Cash" ColumnName="Cash" />
                 <ScalarProperty Name="TopDealerTill" ColumnName="TopDealerTill" />
                 <ScalarProperty Name="TopDealer" ColumnName="TopDealer" />
                 <ScalarProperty Name="HasDiscounts" ColumnName="HasDiscounts" />
@@ -876,9 +885,9 @@
         <EntityTypeShape EntityType="BaseEntities.TranslationItemsType" Width="1.5" PointX="11.25" PointY="2.625" Height="1.4033821614583331" IsExpanded="true" />
         <EntityTypeShape EntityType="BaseEntities.Translation" Width="1.5" PointX="11.25" PointY="0.5" Height="1.7566536458333335" IsExpanded="true" />
         <AssociationConnector ManuallyRouted="false" Association="BaseEntities.FK_Products_Dealers">
-          <ConnectorPoint PointX="10.463544166666665" PointY="3.5714322916666661" />
-          <ConnectorPoint PointX="10.463544166666665" PointY="6.6721402994791656" />
-          <ConnectorPoint PointX="2.25" PointY="6.6721402994791656" />
+          <ConnectorPoint PointX="10.416666666666666" PointY="4.0644742838541656" />
+          <ConnectorPoint PointX="10.416666666666666" PointY="6.75431396484375" />
+          <ConnectorPoint PointX="2.25" PointY="6.75431396484375" />
           </AssociationConnector>
         <AssociationConnector Association="BaseEntities.FK_Products_Groups" ManuallyRouted="false">
           <ConnectorPoint PointX="3.125" PointY="3.9996956380208335" />
@@ -902,9 +911,8 @@
           <ConnectorPoint PointX="6.625" PointY="1.96875" />
           <ConnectorPoint PointX="9.375" PointY="1.96875" /></AssociationConnector>
         <AssociationConnector Association="BaseEntities.FK_Groups_Dealers" >
-          <ConnectorPoint PointX="9.7083333333333321" PointY="3.5714322916666661" />
-          <ConnectorPoint PointX="9.7083333333333321" PointY="3.9522509765625" />
-          <ConnectorPoint PointX="4.5" PointY="3.9522509765625" />
+          <ConnectorPoint PointX="9.375" PointY="3.9166666666666665" />
+          <ConnectorPoint PointX="4.5" PointY="3.9166666666666665" />
           </AssociationConnector>
         <AssociationConnector Association="BaseEntities.FK_Categories_Categories" >
           <ConnectorPoint PointX="5.614583333333333" PointY="1.75" />
@@ -923,9 +931,9 @@
           </AssociationConnector>
         <EntityTypeShape EntityType="BaseEntities.DealerFeedback" Width="1.875" PointX="7.5" PointY="4.375" Height="1.592306315104167" />
         <AssociationConnector Association="BaseEntities.FK_DealerFeedback_Dealers" >
-          <ConnectorPoint PointX="9.9895833333333321" PointY="3.5714322916666661" />
-          <ConnectorPoint PointX="9.9895833333333321" PointY="5.1711531575520837" />
-          <ConnectorPoint PointX="9.375" PointY="5.1711531575520837" />
+          <ConnectorPoint PointX="10.041666666666666" PointY="4.0644742838541656" />
+          <ConnectorPoint PointX="10.041666666666666" PointY="5.4176741536458337" />
+          <ConnectorPoint PointX="9.375" PointY="5.4176741536458337" />
           </AssociationConnector>
         <EntityTypeShape EntityType="BaseEntities.MeassureUnit" Width="1.5" PointX="3.25" PointY="4.5" Height="1.4033821614583326" />
         </Diagram></edmx:Diagrams>

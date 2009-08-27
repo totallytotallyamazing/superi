@@ -142,7 +142,7 @@
     <value>Создать</value>
   </data>
   <data name="CreateDealer" xml:space="preserve">
-    <value>Создание поставщика</value>
+    <value>Создание продавца</value>
   </data>
   <data name="Dealers" xml:space="preserve">
     <value>Продавцы</value>
@@ -157,7 +157,7 @@
     <value>Редактировать</value>
   </data>
   <data name="EditDealer" xml:space="preserve">
-    <value>Редактирование поставщика</value>
+    <value>Редактирование продавца</value>
   </data>
   <data name="LoginHeader" xml:space="preserve">
     <value>Пожалуйста введите имя пользователя и пароль</value>
@@ -614,6 +614,9 @@
   </data>
   <data name="MessageRequired" xml:space="preserve">
     <value>Не заполнено поле "Текст сообщения"</value>
+  </data>
+  <data name="Payment" xml:space="preserve">
+    <value>Оплата</value>
   </data>
   <data name="No" xml:space="preserve">
     <value>Нет</value>

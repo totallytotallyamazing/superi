@@ -210,7 +210,8 @@ namespace Zamov.Controllers
 
         public ActionResult ThankYou()
         {
-            SystemSettings.EmptyCart();
+            if (Request.IsAuthenticated)
+                SystemSettings.EmptyCart();
             return View();
         }
 

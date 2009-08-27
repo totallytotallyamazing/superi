@@ -615,4 +615,19 @@
   <data name="MessageRequired" xml:space="preserve">
     <value>Не заполнено поле "Текст сообщения"</value>
   </data>
+  <data name="No" xml:space="preserve">
+    <value>Нет</value>
+  </data>
+  <data name="WouldRegister" xml:space="preserve">
+    <value>Хотите зарегистрироваться и получить дополнительные возможности?</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Да</value>
+  </data>
+  <data name="ThankYou" xml:space="preserve">
+    <value>Спасибо</value>
+  </data>
+  <data name="ToMainPage" xml:space="preserve">
+    <value>На главную</value>
+  </data>
 </root>

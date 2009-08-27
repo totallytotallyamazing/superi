@@ -32,18 +32,23 @@
     </script>
 
     <% foreach (var order in Model)
-       {%>
+       {
+           int dealerId = (int)order.DealerReference.EntityKey.EntityKeyValues[0].Value;
+           DealerPresentation presentation = Dealer.GetPresentation(dealerId);
+    %>
     <div class="orderDetails">
         <div class="logo">
             <%= Html.Image("~/Image/ShowLogo/" + order.DealerReference.EntityKey.EntityKeyValues[0].Value) %>
         </div>
+        <%if (presentation.HasDiscounts){ %>
         <div class="discount">
-            <%= Html.ResourceString("InputVoucher") %>
-            <%= Html.TextBox("voucherCode_" + order.GetHashCode()) %>
+            <%= Html.ResourceString("InputVoucher")%>
+            <%= Html.TextBox("voucherCode_" + order.GetHashCode())%>
             <div class="respectDiscount">
-                <%= Html.ResourceString("DiscountWillBeRespected") %>
+                <%= Html.ResourceString("DiscountWillBeRespected")%>
             </div>
         </div>
+        <%} %>
         <div class="paymentTypesHeader">
             <%= Html.ResourceString("SelectPaymentType") %>
         </div>
@@ -51,11 +56,13 @@
             <center>
                 <table>
                     <% 
-                        int dealerId = (int)order.DealerReference.EntityKey.EntityKeyValues[0].Value;
                         List<SelectListItem> paymentTypes = new List<SelectListItem>();
-                        paymentTypes.Add(new SelectListItem { Text = Html.ResourceString("Encash"), Value = ((int)PaymentTypes.Encash).ToString(), Selected = true });
-                        paymentTypes.Add(new SelectListItem { Text = Html.ResourceString("Card"), Value = ((int)PaymentTypes.Card).ToString() });
-                        paymentTypes.Add(new SelectListItem { Text = Html.ResourceString("Noncash"), Value = ((int)PaymentTypes.Noncash).ToString() });
+                        if (presentation.Cash)
+                            paymentTypes.Add(new SelectListItem { Text = Html.ResourceString("Encash"), Value = ((int)PaymentTypes.Encash).ToString(), Selected = true });
+                        if (presentation.Card)
+                            paymentTypes.Add(new SelectListItem { Text = Html.ResourceString("Card"), Value = ((int)PaymentTypes.Card).ToString() });
+                        if (presentation.Noncash)
+                            paymentTypes.Add(new SelectListItem { Text = Html.ResourceString("Noncash"), Value = ((int)PaymentTypes.Noncash).ToString() });
                         string[] options = Html.RadioButtonList("paymentType_" + order.GetHashCode(), paymentTypes, new { onblur = "tableChanged(settings, this)" });
                         for (int i = 0; i < options.Length; i++)
                         {%>
@@ -89,11 +96,12 @@
             }
         </script>
 
-        <label for="captcha"></label>
-            <%=Html.ResourceString("EnterCode")%>
-            <%= Html.ValidationMessage("captchaInvalid", "*", new { @class="validationError"})%>
-            <br />
-            <%= Html.CaptchaImage(50, 170)%><br />
+        <label for="captcha">
+        </label>
+        <%=Html.ResourceString("EnterCode")%>
+        <%= Html.ValidationMessage("captchaInvalid", "*", new { @class="validationError"})%>
+        <br />
+        <%= Html.CaptchaImage(50, 170)%><br />
         <%= Html.TextBox("validation-value", "", new { onkeyup = "copyValues()" })%>
         <br />
     </div>
@@ -223,5 +231,5 @@
         <div class="menuFooter">
         </div>
     </div>
-   <%} %>
+    <%} %>
 </asp:Content>

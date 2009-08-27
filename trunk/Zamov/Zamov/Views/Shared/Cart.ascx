@@ -14,7 +14,7 @@
     string cartUrl = Url.Action("Index", "Cart", new { id = ViewData["dealerId"] });
     string action = (string)ViewContext.RouteData.Values["action"];
     string controller = (string)ViewContext.RouteData.Values["controller"];
-    CartHostActions hostAction = CartHostActions.Cart;
+    CartHostActions hostAction = CartHostActions.Other;
 
     if (controller.ToUpperInvariant() == "PRODUCTS")
         hostAction = CartHostActions.Products;
@@ -25,13 +25,18 @@
         else if (action.ToUpperInvariant() == "MAKEORDER")
             hostAction = CartHostActions.MakeOrder;
     }
+    else
+        hostAction = CartHostActions.Other;
+
+    bool displayCartContainer = orderItemsCount > 0 || hostAction != CartHostActions.Other;
+
 %>
 
+<%if(!displayCartContainer){ %>
 <script type="text/javascript">
-    $(function() { 
-        $("#emptyCart")
-    })
+    $(function() { $(".subHeader").css("display", "none"); });
 </script>
+<%} %>
 <div class="cartContainer">
     <table class="cartTable">
         <tr>

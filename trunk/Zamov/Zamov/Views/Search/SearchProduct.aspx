@@ -11,6 +11,7 @@
         $get("totalPrice").innerHTML = response.get_response().get_object().TotalCartPrice;
         $get("orderItemsCount").innerHTML = response.get_response().get_object().TotalCartItems;
         $(".orderCb").attr("checked", "");
+        $(".subHeader").css("display", "block");
     }
 </script>
 

@@ -1015,6 +1015,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ні.
+        /// </summary>
+        internal static string No {
+            get {
+                return ResourceManager.GetString("No", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Безготівковий розрахунок.
         /// </summary>
         internal static string Noncash {
@@ -1411,6 +1420,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Дякуємо.
+        /// </summary>
+        internal static string ThankYou {
+            get {
+                return ResourceManager.GetString("ThankYou", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Поточний пароль невірний або невірно введений новий.
         /// </summary>
         internal static string TheCurrentPasswordIsIncorrectOrTheNewPasswordIsInvalid {
@@ -1434,6 +1452,15 @@ namespace Resources {
         internal static string Title {
             get {
                 return ResourceManager.GetString("Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to На головну.
+        /// </summary>
+        internal static string ToMainPage {
+            get {
+                return ResourceManager.GetString("ToMainPage", resourceCulture);
             }
         }
         
@@ -1533,6 +1560,24 @@ namespace Resources {
         internal static string View {
             get {
                 return ResourceManager.GetString("View", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Бажаєте зареєструватися та отримати додадкові можливості?.
+        /// </summary>
+        internal static string WouldRegister {
+            get {
+                return ResourceManager.GetString("WouldRegister", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Так.
+        /// </summary>
+        internal static string Yes {
+            get {
+                return ResourceManager.GetString("Yes", resourceCulture);
             }
         }
         

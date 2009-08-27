@@ -11,11 +11,7 @@
 <script type="text/javascript">
     var items = {};
 </script>
-<div class="subHeader" style="text-align:center;">
-    <center>
-        <% Html.RenderPartial("Cart");  %>
-    </center>
-</div>
+
 <%
     if (Model != null)
     {

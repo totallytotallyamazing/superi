@@ -14,13 +14,13 @@
     }
 </script>
 
-    <div class="subHeader">
+<%--    <div class="subHeader">
         <%
             if (ViewData["TotalCartPrice"] != null)
                 Html.Encode(ViewData["TotalCartPrice"].ToString());
         %>
         <% Html.RenderPartial("Cart");  %>
-    </div>
+    </div>--%>
     <%
         
         using (Ajax.BeginForm("AddToCart", "Search", new AjaxOptions { HttpMethod = "POST", OnSuccess = "AddToCartSuccess" }, new { id = "addToCart" }))

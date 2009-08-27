@@ -4,6 +4,10 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 </asp:Content>
 
+<asp:Content ContentPlaceHolderID="dealerLogo" runat="server">
+    <% Html.RenderPartial("CurrentDealer");  %>
+</asp:Content>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <script type="text/javascript">
         var items = {};
@@ -29,10 +33,6 @@
         }
         
     </script>
-    <div class="subHeader">
-        <% Html.RenderPartial("CurrentDealer");  %>
-        <% Html.RenderPartial("Cart");  %>
-    </div>
     
     <%if(Model.Count>0){ %>
         <%using (Html.BeginForm("AddToCart", "Products", FormMethod.Post, new { id="addToCart" }))

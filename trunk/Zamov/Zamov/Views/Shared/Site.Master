@@ -3,7 +3,6 @@
 <%@ Import Namespace="Microsoft.Web.Mvc" %>
 <%@ Import Namespace="Zamov.Helpers" %>
 <%@ Import Namespace="Zamov.Controllers" %>
-
 <%
     if (Request.Cookies["administration"] == null)
         Response.Redirect("~/Soon.htm");
@@ -20,25 +19,24 @@
     <%= Html.RegisterJS("jquery.js")%>
     <%= Html.RegisterJS("common.js")%>
     <%= Html.RegisterJS("jquery.corner.js")%>
-    
-    <asp:ContentPlaceHolder runat="server" ID="includes"></asp:ContentPlaceHolder>
-    
+    <asp:ContentPlaceHolder runat="server" ID="includes">
+    </asp:ContentPlaceHolder>
+
     <script type="text/javascript">
         var fancyboxAttached = false;
         var showOrdershadowsDeclared = false;
-    
+
         $(function() {
             $("#header").corner("top");
             $("#mainMenu .outer .inner").corner("bottom").parent().css('padding', '1px').corner("bottom");
-        }
-        )
+        })
     </script>
-    
+
 </head>
 <body>
-<map id="logoLink" name="logoLink">
-    <area alt="Zamov.net" shape="rect" coords="0,40,233, 90" href="/" />
-</map>
+    <map id="logoLink" name="logoLink">
+        <area alt="Zamov.net" shape="rect" coords="0,40,233, 90" href="/" />
+    </map>
     <div class="shader">
     </div>
     <div id="header">
@@ -52,26 +50,27 @@
         </div>
         <% Html.RenderPartial("LogonStatus"); %>
         <center>
-        <div id="logo">
-            <%= Html.Image("~/Content/img/logo.jpg", "Zamov.net", new { usemap="#logoLink", style="border:none"})%>
-        </div>
+            <div id="logo">
+                <%= Html.Image("~/Content/img/logo.jpg", "Zamov.net", new { usemap="#logoLink", style="border:none"})%>
+            </div>
         </center>
     </div>
     <div id="mainMenu">
         <div class="outer greyBg">
             <div class="inner whiteBg">
-            <table>
-                <tr>
-                <td>
-                <%=Html.ResourceString("Search")%>:
-                </td>
-                <td><%using (Html.BeginForm("SearchProduct", "Search", FormMethod.Post)){%><%=Html.TextBox("searchContext")%>
-               <%
-           } %></td>
-            </tr>
-            </table>
-            
-                
+                <table>
+                    <tr>
+                        <td>
+                            <%=Html.ResourceString("Search")%>:
+                        </td>
+                        <td>
+                            <%using (Html.BeginForm("SearchProduct", "Search", FormMethod.Post))
+                              {%><%=Html.TextBox("searchContext")%>
+                            <%
+                                } %>
+                        </td>
+                    </tr>
+                </table>
             </div>
         </div>
         <div class="outer greyBg">
@@ -80,14 +79,21 @@
             </div>
         </div>
     </div>
-    <div id="breadCrumbs"><%= Html.BreadCrumbs()%></div>
+    <div id="breadCrumbs">
+        <%= Html.BreadCrumbs()%></div>
     <div id="content">
         <div id="leftSide">
             <asp:ContentPlaceHolder ID="leftMenu" runat="server">
             </asp:ContentPlaceHolder>
         </div>
-
         <div id="mainContent">
+            <div class="subHeader">
+                <asp:ContentPlaceHolder ID="dealerLogo" runat="server">
+                </asp:ContentPlaceHolder>
+                <center>
+                    <% Html.RenderPartial("Cart"); %>
+                </center>
+            </div>
             <asp:ContentPlaceHolder ID="mainContent" runat="server">
             </asp:ContentPlaceHolder>
         </div>

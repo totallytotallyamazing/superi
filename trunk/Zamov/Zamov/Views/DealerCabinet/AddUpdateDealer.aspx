@@ -69,8 +69,6 @@
             </tr>
         </table>
         <br />
-        <%= Html.CheckBox("enabled", enabled) %><%= Html.ResourceString("On") %><br />
-        <br />
         <input type="submit" value="<%= Html.ResourceString("Save") %>" />
     <% } %>
 

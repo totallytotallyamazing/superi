@@ -40,7 +40,7 @@ namespace Zamov.Controllers
             Dictionary<string, Dictionary<string, string>> orderItems = items.ProcessPostData("dealerId", "groupId");
             if (orderItems.Count > 0)
             {
-                Order order = (from o in cart.Orders where o.Dealer != null && o.Dealer.Id == dealerId select o).SingleOrDefault();
+                Order order = (from o in cart.Orders where o.DealerReference.EntityKey != null && (int)o.DealerReference.EntityKey.EntityKeyValues[0].Value == dealerId select o).SingleOrDefault();
                 var orderItemList =
                     (from oi in orderItems
                      where oi.Value["order"].ToLowerInvariant().Contains("true")

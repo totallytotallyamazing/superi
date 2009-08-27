@@ -91,6 +91,16 @@ namespace Zamov.Controllers
 
         public ActionResult MakeOrder()
         {
+            using (ZamovStorage context = new ZamovStorage())
+            {
+                string city = (from c in context.Cities
+                               join tran in context.Translations on c.Id equals tran.ItemId
+                               where tran.TranslationItemTypeId == (int)ItemTypes.City
+                                   && tran.Language == SystemSettings.CurrentLanguage
+                                   && c.Id == SystemSettings.CityId
+                               select tran.Text).First();
+                ViewData["city"] = city;
+            }
             return View(SystemSettings.Cart.Orders);
         }
 
@@ -146,6 +156,7 @@ namespace Zamov.Controllers
                     order.Date = DateTime.Now;
                     order.DeliveryDate = date;
                     order.Phone = contactPhone;
+                    order.Email = email;
                     order.UserId = userId;
                     order.PaymentType = (int)PaymentTypes.Encash;
                     foreach (var option in systemSettingsList)

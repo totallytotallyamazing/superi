@@ -51,6 +51,7 @@
             <center>
                 <table>
                     <% 
+                        int dealerId = (int)order.DealerReference.EntityKey.EntityKeyValues[0].Value;
                         List<SelectListItem> paymentTypes = new List<SelectListItem>();
                         paymentTypes.Add(new SelectListItem { Text = Html.ResourceString("Encash"), Value = ((int)PaymentTypes.Encash).ToString(), Selected = true });
                         paymentTypes.Add(new SelectListItem { Text = Html.ResourceString("Card"), Value = ((int)PaymentTypes.Card).ToString() });

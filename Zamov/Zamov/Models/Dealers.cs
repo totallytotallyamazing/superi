@@ -86,6 +86,16 @@ namespace Zamov.Models
 
     public partial class Dealer
     {
+        public static DealerPresentation GetPresentation(int dealerId) 
+        {
+            using (ZamovStorage context = new ZamovStorage())
+            { 
+                return (from dealer in context.Dealers 
+                        join tr in context.Translations on dealer.Id equals tr.ItemId
+                        where dealer.Id == dealerId select new DealerPresentation{ })
+            }
+        }
+
         private Dictionary<string, string> names = new Dictionary<string, string>();
         private Dictionary<string, string> descriptions = new Dictionary<string, string>();
 

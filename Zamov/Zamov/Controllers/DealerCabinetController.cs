@@ -225,7 +225,7 @@ namespace Zamov.Controllers
             items.Add(rusItem);
             using (ZamovStorage context = new ZamovStorage())
                 context.UpdateTranslations(Utils.CreateTranslationXml(items));
-            Response.Write("<script type=\"text/javascript\">top.closeDeliveryDetailsDialog();</script>");
+            Response.Write(Helpers.Helpers.CloseParentScript("DeliveryDetails"));
         }
         #endregion
 
@@ -564,7 +564,7 @@ namespace Zamov.Controllers
                 }
                 context.SaveChanges();
             }
-            Response.Write("<script>top.closeCityMappings();</script>");
+            Response.Write(Helpers.Helpers.CloseParentScript("CityMappings"));
         }
 
         public ActionResult DealerCategoryMappings()
@@ -616,7 +616,7 @@ namespace Zamov.Controllers
                 }
                 context.SaveChanges();
             }
-            Response.Write("<script>top.closeCategoryMappings();</script>");
+            Response.Write(Helpers.Helpers.CloseParentScript("CategoryMappings"));
         }
 
         #endregion
@@ -647,6 +647,7 @@ namespace Zamov.Controllers
                 dealer.HasDiscounts = hasDiscounts;
                 context.SaveChanges();
             }
+            Response.Write(Helpers.Helpers.CloseParentScript("PaymentDetails"));
         }
         #endregion
 

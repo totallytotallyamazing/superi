@@ -89,6 +89,12 @@ namespace Zamov.Controllers
         }
 
 
+        public ActionResult ClearCart()
+        {
+            SystemSettings.EmptyCart();
+            return RedirectToAction("Index", "Home");
+        }
+
         public ActionResult MakeOrder()
         {
             using (ZamovStorage context = new ZamovStorage())

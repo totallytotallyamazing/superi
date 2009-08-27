@@ -21,8 +21,13 @@ namespace Zamov.Controllers
         public ActionResult Index()
         {
             ViewData["Message"] = "Welcome to ASP.NET MVC!";
+
+
+
             return View();
         }
+
+        
 
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Index(int currentCity, int currentCategory)

@@ -89,10 +89,21 @@ namespace Zamov.Models
         public static DealerPresentation GetPresentation(int dealerId) 
         {
             using (ZamovStorage context = new ZamovStorage())
-            { 
-                return (from dealer in context.Dealers 
+            {
+                return (from dealer in context.Dealers
                         join tr in context.Translations on dealer.Id equals tr.ItemId
-                        where dealer.Id == dealerId select new DealerPresentation{ })
+                        where tr.TranslationItemTypeId == (int)ItemTypes.DealerName
+                        && tr.Language == SystemSettings.CurrentLanguage
+                        && dealer.Id == dealerId
+                        select new DealerPresentation
+                            {
+                                Name = tr.Text,
+                                Card = dealer.Card,
+                                Cash = dealer.Cash,
+                                HasDiscounts = dealer.HasDiscounts,
+                                Id = dealer.Id,
+                                Noncash = dealer.Noncash,
+                            }).First();
             }
         }
 

@@ -487,8 +487,6 @@
     <Content Include="Views\DealerCabinet\UpdateProductImage.aspx" />
     <Content Include="Views\Dealers\Index.aspx" />
     <Content Include="Views\Dealer\DealerDeliveryDetails.aspx" />
-    <Content Include="Views\Dealer\DeliveryInfo.aspx" />
-    <Content Include="Views\Dealer\Feedback.aspx" />
     <Content Include="Views\Dealer\Index.aspx" />
     <Content Include="Views\Feedback\CreateFeedback.ascx" />
     <Content Include="Views\Feedback\Index.aspx" />

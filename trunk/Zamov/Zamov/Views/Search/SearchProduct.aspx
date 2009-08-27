@@ -6,7 +6,7 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-<script language="javascript">
+<script language="javascript" type="text/javascript">
     function AddToCartSuccess(response) {
         $get("totalPrice").innerHTML = response.get_response().get_object().TotalCartPrice;
         $get("orderItemsCount").innerHTML = response.get_response().get_object().TotalCartItems;

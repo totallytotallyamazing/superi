@@ -94,6 +94,15 @@ namespace Zamov.Controllers
 
             ViewData["PasswordLength"] = MembershipService.MinPasswordLength;
 
+            if (SystemSettings.MemberProperties != null)
+            {
+                ViewData["email"] = SystemSettings.MemberProperties.Email;
+                ViewData["firstName"] = SystemSettings.MemberProperties.FirstName;
+                ViewData["lastName"] = SystemSettings.MemberProperties.LastName;
+                ViewData["deliveryAddress"] = SystemSettings.MemberProperties.DeliveryAddress;
+                ViewData["mobilePhone"] = SystemSettings.MemberProperties.MobilePhone;
+                ViewData["phone"] = SystemSettings.MemberProperties.Phone;
+            }
             return View();
         }
 

@@ -15,7 +15,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("OrderEntities", "FK_OrderItems_Unit", "Unit", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Zamov.Models.Unit), "OrderItem", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Zamov.Models.OrderItem))]
 
 // Original file name:
-// Generation date: 11/08/2009 15:02:58
+// Generation date: 27.08.2009 13:51:07
 namespace Zamov.Models
 {
     
@@ -830,6 +830,29 @@ namespace Zamov.Models
         partial void OnDiscountCardNumberChanging(string value);
         partial void OnDiscountCardNumberChanged();
         /// <summary>
+        /// There are no comments for Property Email in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string Email
+        {
+            get
+            {
+                return this._Email;
+            }
+            set
+            {
+                this.OnEmailChanging(value);
+                this.ReportPropertyChanging("Email");
+                this._Email = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
+                this.ReportPropertyChanged("Email");
+                this.OnEmailChanged();
+            }
+        }
+        private string _Email;
+        partial void OnEmailChanging(string value);
+        partial void OnEmailChanged();
+        /// <summary>
         /// There are no comments for Cart in the schema.
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("OrderEntities", "FK_Orders_Carts", "Carts")]
@@ -943,13 +966,15 @@ namespace Zamov.Models
         /// <param name="name">Initial value of Name.</param>
         /// <param name="enabled">Initial value of Enabled.</param>
         /// <param name="hasDiscounts">Initial value of HasDiscounts.</param>
-        public static OrderDealer CreateOrderDealer(int id, string name, bool enabled, bool hasDiscounts)
+        /// <param name="topDealer">Initial value of TopDealer.</param>
+        public static OrderDealer CreateOrderDealer(int id, string name, bool enabled, bool hasDiscounts, bool topDealer)
         {
             OrderDealer orderDealer = new OrderDealer();
             orderDealer.Id = id;
             orderDealer.Name = name;
             orderDealer.Enabled = enabled;
             orderDealer.HasDiscounts = hasDiscounts;
+            orderDealer.TopDealer = topDealer;
             return orderDealer;
         }
         /// <summary>
@@ -1090,6 +1115,52 @@ namespace Zamov.Models
         private bool _HasDiscounts;
         partial void OnHasDiscountsChanging(bool value);
         partial void OnHasDiscountsChanged();
+        /// <summary>
+        /// There are no comments for Property TopDealer in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public bool TopDealer
+        {
+            get
+            {
+                return this._TopDealer;
+            }
+            set
+            {
+                this.OnTopDealerChanging(value);
+                this.ReportPropertyChanging("TopDealer");
+                this._TopDealer = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("TopDealer");
+                this.OnTopDealerChanged();
+            }
+        }
+        private bool _TopDealer;
+        partial void OnTopDealerChanging(bool value);
+        partial void OnTopDealerChanged();
+        /// <summary>
+        /// There are no comments for Property TopDealerTill in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Nullable<global::System.DateTime> TopDealerTill
+        {
+            get
+            {
+                return this._TopDealerTill;
+            }
+            set
+            {
+                this.OnTopDealerTillChanging(value);
+                this.ReportPropertyChanging("TopDealerTill");
+                this._TopDealerTill = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("TopDealerTill");
+                this.OnTopDealerTillChanged();
+            }
+        }
+        private global::System.Nullable<global::System.DateTime> _TopDealerTill;
+        partial void OnTopDealerTillChanging(global::System.Nullable<global::System.DateTime> value);
+        partial void OnTopDealerTillChanged();
         /// <summary>
         /// There are no comments for Orders in the schema.
         /// </summary>

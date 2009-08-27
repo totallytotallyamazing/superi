@@ -48,6 +48,8 @@
           <Property Name="LogoType" Type="varchar" MaxLength="20" />
           <Property Name="Enabled" Type="bit" Nullable="false" />
           <Property Name="HasDiscounts" Type="bit" Nullable="false" />
+          <Property Name="TopDealer" Type="bit" Nullable="false" />
+          <Property Name="TopDealerTill" Type="datetime" />
         </EntityType>
         <EntityType Name="OrderItems">
           <Key>
@@ -78,6 +80,7 @@
           <Property Name="ClientName" Type="nvarchar" Nullable="false" MaxLength="100" />
           <Property Name="PaymentType" Type="int" Nullable="false" />
           <Property Name="DiscountCardNumber" Type="varchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="Unit">
           <Key>
@@ -134,21 +137,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <!--Errors Found During Generation:
-      warning 6037: Foreign Key constraint 'FK_OrderItems_Unit1' has been omitted from the storage model. Column 'UnitId' of table 'OrderEntities.Store.OrderItems' is a Foreign Key participating in multiple relationships. A one-to-one Entity Model will not validate since data inconsistency is possible.
-      
-      <Association Name="FK_OrderItems_Unit1">
-        <End Role="Unit" Type="OrderEntities.Store.Unit" Multiplicity="1" />
-        <End Role="OrderItems" Type="OrderEntities.Store.OrderItems" Multiplicity="*" />
-        <ReferentialConstraint>
-          <Principal Role="Unit">
-            <PropertyRef Name="Id" />
-          </Principal>
-          <Dependent Role="OrderItems">
-            <PropertyRef Name="UnitId" />
-          </Dependent>
-        </ReferentialConstraint>
-      </Association>-->
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -211,7 +199,8 @@
           <Property Name="Phone" Type="String" Nullable="false" />
           <Property Name="ClientName" Type="String" Nullable="false" />
           <Property Name="PaymentType" Type="Int32" Nullable="false" />
-          <Property Name="DiscountCardNumber" Type="String" Nullable="true" /></EntityType>
+          <Property Name="DiscountCardNumber" Type="String" Nullable="true" />
+          <Property Name="Email" Type="String" Nullable="true" /></EntityType>
         <Association Name="FK_Orders_Carts">
           <End Role="Carts" Type="OrderEntities.Cart" Multiplicity="1" />
           <End Role="Orders" Type="OrderEntities.Order" Multiplicity="*" />
@@ -229,7 +218,9 @@
           <Property Name="LogoType" Type="String" Nullable="true" />
           <Property Name="Enabled" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Orders" Relationship="OrderEntities.FK_Orders_Dealers" FromRole="Dealers" ToRole="Order" />
-          <Property Name="HasDiscounts" Type="Boolean" Nullable="false" /></EntityType>
+          <Property Name="HasDiscounts" Type="Boolean" Nullable="false" />
+          <Property Name="TopDealer" Type="Boolean" Nullable="false" />
+          <Property Name="TopDealerTill" Type="DateTime" Nullable="true" /></EntityType>
         <Association Name="FK_Orders_Dealers">
           <End Type="OrderEntities.OrderDealer" Role="Dealers" Multiplicity="1" />
           <End Type="OrderEntities.Order" Role="Order" Multiplicity="*" /></Association>
@@ -273,6 +264,7 @@
           <EntitySetMapping Name="Orders">
             <EntityTypeMapping TypeName="IsTypeOf(OrderEntities.Order)">
               <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="DiscountCardNumber" ColumnName="DiscountCardNumber" />
                 <ScalarProperty Name="PaymentType" ColumnName="PaymentType" />
                 <ScalarProperty Name="ClientName" ColumnName="ClientName" />
@@ -305,6 +297,8 @@
           <EntitySetMapping Name="OrderDealers">
             <EntityTypeMapping TypeName="IsTypeOf(OrderEntities.OrderDealer)">
               <MappingFragment StoreEntitySet="Dealers">
+                <ScalarProperty Name="TopDealerTill" ColumnName="TopDealerTill" />
+                <ScalarProperty Name="TopDealer" ColumnName="TopDealer" />
                 <ScalarProperty Name="HasDiscounts" ColumnName="HasDiscounts" />
                 <ScalarProperty Name="Enabled" ColumnName="Enabled" />
                 <ScalarProperty Name="LogoType" ColumnName="LogoType" />

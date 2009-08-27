@@ -26,7 +26,7 @@
                         <%= Html.ValidationMessage("email", "*", new { @class="validationError" })%>
                     </td>
                     <td>
-                        <%= Html.TextBox("email",Zamov.Controllers.SystemSettings.MemberProperties.Email) %>
+                        <%= Html.TextBox("email") %>
                     </td>
                 </tr>
                 <tr>
@@ -62,7 +62,7 @@
                         <%= Html.ValidationMessage("firstName", "*", new { @class = "validationError" })%>
                     </td>
                     <td>
-                        <%= Html.TextBox("firstName", Zamov.Controllers.SystemSettings.MemberProperties.FirstName)%>
+                        <%= Html.TextBox("firstName")%>
                     </td>
                 </tr>
                 <tr>
@@ -72,7 +72,7 @@
                         <%= Html.ValidationMessage("lastName", "*", new { @class = "validationError" })%>
                     </td>
                     <td>
-                        <%= Html.TextBox("lastName",,Zamov.Controllers.SystemSettings.MemberProperties.LastName)%>
+                        <%= Html.TextBox("lastName")%>
                     </td>
                 </tr>
                 <tr>
@@ -82,7 +82,7 @@
                         <%= Html.ValidationMessage("deliveryAddress", "*", new { @class = "validationError" })%>
                     </td>
                     <td>
-                        <%= Html.TextArea("deliveryAddress",Zamov.Controllers.SystemSettings.MemberProperties.DeliveryAddress)%>
+                        <%= Html.TextArea("deliveryAddress")%>
                     </td>
                 </tr>
                 <tr>
@@ -92,7 +92,7 @@
                         <%= Html.ValidationMessage("mobilePhone", "*", new { @class = "validationError" })%>
                     </td>
                     <td>
-                        <%= Html.TextBox("mobilePhone",Zamov.Controllers.SystemSettings.MemberProperties.MobilePhone)%>
+                        <%= Html.TextBox("mobilePhone")%>
                     </td>
                 </tr>
                 <tr>
@@ -101,7 +101,7 @@
                             <%= Html.ResourceString("Phone") %>:</label>
                     </td>
                     <td>
-                        <%= Html.TextBox("phone",Zamov.Controllers.SystemSettings.MemberProperties.Phone)%>
+                        <%= Html.TextBox("phone")%>
                     </td>
                 </tr>
             </table>

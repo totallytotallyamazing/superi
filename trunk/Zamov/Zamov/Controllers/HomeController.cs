@@ -27,9 +27,8 @@ namespace Zamov.Controllers
             return View();
         }
 
-        
-
         [AcceptVerbs(HttpVerbs.Post)]
+        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
         public ActionResult Index(int currentCity, int currentCategory)
         {
             SystemSettings.CityId = currentCity;
@@ -109,7 +108,7 @@ namespace Zamov.Controllers
             //return regex.IsMatch(email);
             if (!regex.IsMatch(email))
                 ModelState.AddModelError("email", ResourcesHelper.GetResourceString("EmailIncorrect"));
-            if(string.IsNullOrEmpty(messageBody.Trim()))
+            if (string.IsNullOrEmpty(messageBody.Trim()))
                 ModelState.AddModelError("messageBody", ResourcesHelper.GetResourceString("MessageRequired"));
             return ModelState.IsValid;
         }

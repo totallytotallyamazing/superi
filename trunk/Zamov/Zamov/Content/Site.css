@@ -4,8 +4,8 @@ h2{font-size:16px;}
 body{font-family: Arial, Sans-Serif, Helvetica, Tahoma; font-size:0.8em;}
 select
 {border:1px solid #bdbdbd; color:#8d8d8d;}
-#header, #mainMenu, #breadCrumbs{width:auto; margin:30px 40px 0px; min-width:820px;}
-#content{min-width:645px;}
+#header, #mainMenu, #breadCrumbs{width:auto; margin:30px 40px 0px; min-width:1030px;}
+#content{min-width:855px;}
 .greyBg{background:#CFDAD7}
 .whiteBg{background:white;}
 
@@ -99,7 +99,7 @@ iframe{padding:0; margin:0; border:none;}
 .orderDescription{}
 .cartDescription{}
 
-.subHeader{	height:105px; background: transparent url(img/cartBg.jpg) repeat-x 0px 70px; }
+.subHeader{	height:125px; background: transparent url(img/cartBg.jpg) repeat-x 0px 70px; }
 .subHeaderCurrentDealer{float:left;}
 
 .cartContainer{}

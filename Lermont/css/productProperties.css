@@ -1,9 +1,0 @@
-﻿#productDetailsContainer{width:668px;}
-.productImage{width:207px; height:318px; background-color:#607286; margin:0 10px 10px 0; padding:5px 0px 0px 5px; float:left;}
-.productInfo{padding:0 20px;}
-.productTitle{font-size:16px; text-transform:uppercase; font-weight:bold;}
-.productAdditionalInfo{padding:10px 0px; float:left; margin-bottom:10px; width:420px; border-bottom:1px solid white;}
-.productDescription{padding-top:10px;}
-.bookPublisher{padding-top:5px; text-align:right; width:100%;}
-.bookPublisher a{color:#7aaaed; text-decoration:none; font-style:italic;}
-.bookPublisher a:hover{text-decoration:underline;}

@@ -1,0 +1,92 @@
+﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" MasterPageFile="~/Views/Shared/Site.Master" %>
+
+<%@ Import Namespace="Microsoft.Web.Mvc" %>
+<%@ Import Namespace="Zamov.Helpers" %>
+<asp:Content ContentPlaceHolderID="leftMenu" runat="server">
+    <%
+        List<SelectListItem> items = new List<SelectListItem>();
+        SelectListItem cities = new SelectListItem { Text = Html.ResourceString("Cities"), Value = VirtualPathUtility.ToAbsolute("~/Admin/Cities") };
+        SelectListItem dealers = new SelectListItem { Text = Html.ResourceString("Dealers"), Value = VirtualPathUtility.ToAbsolute("~/Admin/Dealers") };
+        SelectListItem categories = new SelectListItem { Text = Html.ResourceString("Categories"), Value = VirtualPathUtility.ToAbsolute("~/Admin/Categories") };
+        SelectListItem users = new SelectListItem { Text = Html.ResourceString("Users"), Value = VirtualPathUtility.ToAbsolute("~/Admin/Users") };
+        SelectListItem agreement = new SelectListItem { Text = Html.ResourceString("UserAgreement"), Value = "javascript:userAgreement();" };
+        SelectListItem contacts = new SelectListItem { Text = Html.ResourceString("Contacts"), Value = "javascript:contacts();" };
+        items.Add(cities);
+        items.Add(dealers);
+        items.Add(categories);
+        items.Add(users);
+        items.Add(agreement);
+        items.Add(contacts);
+        Html.RenderAction<Zamov.Controllers.PagePartsController>(ac => ac.LeftMenu(Html.ResourceString("Administration"), items)); 
+    %>
+</asp:Content>
+<asp:Content ContentPlaceHolderID="TitleContent" runat="server">
+    <asp:ContentPlaceHolder ID="TitleContent" runat="server">
+    </asp:ContentPlaceHolder>
+</asp:Content>
+<asp:Content ContentPlaceHolderID="mainContent" runat="server">
+
+    <script type="text/javascript">
+        $(function() {
+            $("#contacts")
+                .dialog({
+                    autoOpen: false,
+                    width: 700,
+                    height: 500,
+                    minHeight: 360,
+                    resizable: false,
+                    buttons: {
+                        '<%= Html.ResourceString("Cancel") %>': function() { closeContacts(); },
+                        '<%= Html.ResourceString("Save") %>': function() { $get("cotactsFrame").contentWindow.updateData(); }
+                    }
+                });
+
+            $("#userAgreement")
+                .dialog({
+                    autoOpen: false,
+                    width: 700,
+                    height: 500,
+                    minHeight: 360,
+                    resizable: false,
+                    buttons: {
+                        '<%= Html.ResourceString("Cancel") %>': function() { closeAgreement(); },
+                        '<%= Html.ResourceString("Save") %>': function() { $get("userAgreementFrame").contentWindow.updateData(); }
+                    }
+                });
+        })
+
+        function contacts(id) {
+            $("#contacts")
+                .html('<iframe frameborder="0" name="cotacts" id="cotactsFrame" hidefocus="true" style="width:660px; height:500px;" src="/Admin/ContactsHeader"></iframe>');
+            $("#contacts").dialog('open');
+        }
+
+        function userAgreement(id) {
+            $("#userAgreement")
+                .html('<iframe frameborder="0" name="userAgreementFrame" id="userAgreementFrame" hidefocus="true" style="width:660px; height:500px;" src="/Admin/Agreement"></iframe>');
+            $("#userAgreement").dialog('open');
+        }
+
+        function closeContacts() {
+            $("#contacts").dialog('close');
+        }
+
+        function closeAgreement() {
+            $("#userAgreement").dialog('close');
+        }
+    </script>
+
+    <div id="contacts" title='<%= Html.ResourceString("Contacts") %>'>
+    </div>
+    <div id="userAgreement" title='<%= Html.ResourceString("UserAgreement") %>'>
+    </div>
+    <asp:ContentPlaceHolder ID="mainContent" runat="server">
+    </asp:ContentPlaceHolder>
+</asp:Content>
+<asp:Content ContentPlaceHolderID="includes" runat="server">
+    <%= Html.RegisterCss("~/Content/Admin.css") %>
+    <%= Html.RegisterCss("~/Content/redmond/jquery.ui.css")%>
+    <%= Html.RegisterJS("jquery.ui.js")%>
+    <asp:ContentPlaceHolder runat="server" ID="includes">
+    </asp:ContentPlaceHolder>
+</asp:Content>

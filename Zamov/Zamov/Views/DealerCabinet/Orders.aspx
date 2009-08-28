@@ -105,7 +105,6 @@
             <th>
                 <%=Html.ResourceString("Status")%>
             </th>
-            <th></th>
         </tr>
 
     <% foreach (var item in Model) { %>
@@ -125,10 +124,7 @@
                 <%= Html.Encode(((decimal)item.OrderItems.Sum(oi=>oi.Quantity * oi.Price)).ToString("N"))%>
             </td>
             <td>
-                <%=Html.ResourceString("Status"+(Statuses)item.Status)%>
-            </td>
-            <td>
-                <%=Html.ActionLink(Html.ResourceString("View"), "ShowOrder", new { id = item.Id }, new { @class = "orderDescription" })%>
+                <%=Html.ActionLink(Html.ResourceString("Status" + (Statuses)item.Status), "ShowOrder", new { id = item.Id }, new { @class = "orderDescription" })%>
             </td>
         </tr>
     

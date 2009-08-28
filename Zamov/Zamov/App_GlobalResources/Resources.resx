@@ -289,7 +289,7 @@
     <value>Зображення</value>
   </data>
   <data name="Price" xml:space="preserve">
-    <value>Вартість, грн</value>
+    <value>Вартість</value>
   </data>
   <data name="ActiveM" xml:space="preserve">
     <value>Активний</value>

@@ -22,6 +22,7 @@ namespace Zamov.Controllers
             return View();
         }
 
+        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
         public ActionResult HeaderSelectors()
         {
 

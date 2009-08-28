@@ -100,7 +100,7 @@
                 <%=Html.ResourceString("OrderInfo")%>
             </th>
             <th>
-                <%=Html.ResourceString("Price")%>
+                <%=Html.ResourceString("Price")%>, грн.
             </th>
             <th>
                 <%=Html.ResourceString("Status")%>

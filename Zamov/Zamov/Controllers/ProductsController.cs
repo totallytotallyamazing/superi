@@ -54,35 +54,46 @@ namespace Zamov.Controllers
                     order.DealerReference.EntityKey = dealer;
                 }
                 Dictionary<int, Product> products = null;
-                using (ZamovStorage context = new ZamovStorage())
+                string productIds = string.Join(",", orderItemList.Select(oil => oil.Id.ToString()).ToArray());
+                if (!string.IsNullOrEmpty(productIds))
                 {
-                    string productIds = string.Join(",", orderItemList.Select(oil => oil.Id.ToString()).ToArray());
-                    ObjectQuery<Product> productsQuery = new ObjectQuery<Product>(
-                                "SELECT VALUE P FROM Products AS P WHERE P.Id IN {" + productIds + "}",
-                                context);
-                    products = productsQuery.ToDictionary(pr => pr.Id);
-                }
-                if (products != null && products.Count > 0)
-                {
-                    foreach (var orderItem in orderItemList)
+                    using (ZamovStorage context = new ZamovStorage())
                     {
-                        Product product = products[orderItem.Id];
-                        OrderItem item = null;
-                        if (order.OrderItems != null && order.OrderItems.Count > 0)
-                            item = (from i in order.OrderItems where i.PartNumber == product.PartNumber select i).SingleOrDefault();
-                        if (item == null)
-                            item = new OrderItem();
-                        item.PartNumber = product.PartNumber;
-                        item.Name = product.Name;
-                        item.Price = product.Price;
-                        item.ProductId = product.Id;
-                        item.Quantity = orderItem.Quantity;
-                        IEnumerable<KeyValuePair<string, object>> unitKeyValues = new KeyValuePair<string, object>[] { new KeyValuePair<string, object>("Id", 1) };
-                        EntityKey unit = new EntityKey("OrderStorage.Units", unitKeyValues);
-                        item.UnitReference.EntityKey = unit;
-                        order.OrderItems.Add(item);
+                        ObjectQuery<Product> productsQuery = new ObjectQuery<Product>(
+                                    "SELECT VALUE P FROM Products AS P WHERE P.Id IN {" + productIds + "}",
+                                    context);
+                        products = productsQuery.ToDictionary(pr => pr.Id);
                     }
-                    cart.Orders.Add(order);
+                    if (products != null && products.Count > 0)
+                    {
+                        foreach (var orderItem in orderItemList)
+                        {
+                            bool hasItem = false;
+                            Product product = products[orderItem.Id];
+                            OrderItem item = null;
+                            if (order.OrderItems != null && order.OrderItems.Count > 0)
+                                item = (from i in order.OrderItems where i.PartNumber == product.PartNumber select i).SingleOrDefault();
+                            if (item == null)
+                                item = new OrderItem();
+                            else
+                                hasItem = true;
+                            if (!hasItem)
+                            {
+                                item.PartNumber = product.PartNumber;
+                                item.Name = product.Name;
+                                item.Price = product.Price;
+                                item.ProductId = product.Id;
+                                item.Quantity = orderItem.Quantity;
+                                IEnumerable<KeyValuePair<string, object>> unitKeyValues = new KeyValuePair<string, object>[] { new KeyValuePair<string, object>("Id", 1) };
+                                EntityKey unit = new EntityKey("OrderStorage.Units", unitKeyValues);
+                                item.UnitReference.EntityKey = unit;
+                                order.OrderItems.Add(item);
+                            }
+                            else
+                                item.Quantity += orderItem.Quantity;
+                        }
+                        cart.Orders.Add(order);
+                    }
                 }
             }
             return RedirectToAction("Index", new { dealerId = dealerId, groupId = groupId });

@@ -92,7 +92,7 @@ iframe{padding:0; margin:0; border:none;}
 
 
 .commonTable{ border-collapse:collapse; }
-.commonTable th{background-color:#f4fef5; border:1px solid black; border-collapse:collapse; padding:20px;}
+.commonTable th{background-color:#f4fef5; border:1px solid black; border-collapse:collapse; padding:15px; font-size:12px;}
 .commonTable td{border:1px solid black; border-collapse:collapse; padding: 0px 5px}
 
 .productDescription{}
@@ -129,3 +129,5 @@ iframe{padding:0; margin:0; border:none;}
 .breadCrumbSeparator{color:#c2bfbf; padding-right:5px;}
 .currentBreadCrumb{color:#2b587a;}
 .headerSelect{background-color:#092d45; border:1px solid teal; color:Teal;  padding:0 5px; font-weight:bold;}
+
+.topDealers{border:1px solid #8d8d8d; background:transparent; margin-right:0px;  margin-bottom:10px;}

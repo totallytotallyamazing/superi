@@ -15,5 +15,6 @@ namespace Zamov.Models
         public bool Cash { get; set; }
         public bool Noncash { get; set; }
         public bool HasDiscounts { get; set; }
+        public bool TopDealer { get; set; }
     }
 }

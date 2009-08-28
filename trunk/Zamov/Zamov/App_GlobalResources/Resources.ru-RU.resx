@@ -636,4 +636,10 @@
   <data name="HasDiscounts" xml:space="preserve">
     <value>Можно ввести ваучер</value>
   </data>
+  <data name="Top" xml:space="preserve">
+    <value>Топ</value>
+  </data>
+  <data name="TopDealers" xml:space="preserve">
+    <value>Топ продавцы</value>
+  </data>
 </root>

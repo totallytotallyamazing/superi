@@ -46,7 +46,6 @@
 
         </div>
     </div>
-    
     <div class="dealerDescription">
         <div class="descriptionHeader">
             <%= Html.ResourceString("DealerInformation")%>

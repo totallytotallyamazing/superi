@@ -1,46 +1,81 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<List<DealerPresentation>>" %>
+
 <%@ Import Namespace="Microsoft.Web.Mvc" %>
 <%@ Import Namespace="Zamov.Controllers" %>
 <%@ Import Namespace="Zamov.Models" %>
 <%@ Import Namespace="Zamov.Helpers" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-<script type="text/javascript">
-    $(function() {
-        applyDropShadows(".dealerLogo a", "shadow3");
-    })
-</script>
 
-<%
-    foreach (var item in Model)
-    {%>
+    <script type="text/javascript">
+        $(function() {
+            applyDropShadows(".dealerLogo a", "shadow3");
+            if (window.ActiveXObject) {
+                $(".topDealers").width($(mainContent).width() - 15);
+                $(window).resize(function() { $(".topDealers").width($(mainContent).width() - 15); });
+            }
+            else {
+                $(".topDealers").css({width: "100%", float: "left"});
+            }
+
+        })
+    </script>
+
+    <%
+        var topDealers = Model.Where(d => d.TopDealer);
+        var dealers = Model.Where(d => !d.TopDealer);
+
+        if (topDealers.Count() > 0)
+        {%>
+    <div class="topDealers">
+        <h2 style="display: block;">
+            <%= Html.ResourceString("TopDealers") %>
+        </h2>
+        <%      foreach (var item in topDealers)
+                {%>
         <div class="dealerLogo">
-            <%if(item.OnLine){ %>
-            <div class="dalerOnline"></div>
+            <%if (item.OnLine)
+              { %>
+            <div class="dalerOnline">
+            </div>
             <%} %>
             <a href="/Dealers/SelectDealer/<%= item.Id %>">
-                <%= Html.Image("~/Image/ShowLogo/" + item.Id, new { style="border:1px solid #ccc;" })%>  
+                <%= Html.Image("~/Image/ShowLogo/" + item.Id, new { style="border:1px solid #ccc;" })%>
             </a>
         </div>
+    <%}%>
+    </div>
+    
+    <%  }
+    foreach (var item in dealers)
+    {%>
+    <div class="dealerLogo">
+        <%if (item.OnLine)
+          { %>
+        <div class="dalerOnline">
+        </div>
+        <%} %>
+        <a href="/Dealers/SelectDealer/<%= item.Id %>">
+            <%= Html.Image("~/Image/ShowLogo/" + item.Id, new { style="border:1px solid #ccc;" })%>
+        </a>
+    </div>
     <%}
-%>
-<div style="clear:both;"></div>
+    %>
+    <div style="clear: both;">
+    </div>
 </asp:Content>
-
 <asp:Content ID="Content3" ContentPlaceHolderID="includes" runat="server">
     <%= Html.RegisterCss("~/Content/shadows.css")%>
     <%= Html.RegisterJS("dropshadow.js")%>
 </asp:Content>
-
 <asp:Content ID="Content4" ContentPlaceHolderID="leftMenu" runat="server">
-<%
-    List<SelectListItem> items = new List<SelectListItem>();
-    foreach (var item in Model)
-    {
-        SelectListItem listItem = new SelectListItem { Text = item.Name, Value = "/Dealers/SelectDealer/" + item.Id };
-        items.Add(listItem);
-    }
-    Html.RenderAction<PagePartsController>(ac => ac.LeftMenu(Html.ResourceString("Dealers"), items));
+    <%
+        List<SelectListItem> items = new List<SelectListItem>();
+        foreach (var item in Model)
+        {
+            SelectListItem listItem = new SelectListItem { Text = item.Name, Value = "/Dealers/SelectDealer/" + item.Id };
+            items.Add(listItem);
+        }
+        Html.RenderAction<PagePartsController>(ac => ac.LeftMenu(Html.ResourceString("Dealers"), items));
          
-%>
+    %>
 </asp:Content>
-

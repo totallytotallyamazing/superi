@@ -35,12 +35,12 @@
     </script>
     
     <%if(Model.Count>0){ %>
-        <%using (Html.BeginForm("AddToCart", "Products", FormMethod.Post, new { id="addToCart" }))
+        <%using (Html.BeginForm("AddToCart", "Products", FormMethod.Post, new { id="addToCart", style="margin-bottom:20px;" }))
           { %>
             <input type="submit" style="float:right" value="<%= Html.ResourceString("AddToCart") %>" />
             <%= Html.Hidden("dealerId", ViewData["dealerId"])%>
             <%= Html.Hidden("groupId", ViewData["groupId"])%>
-    <table class="commonTable" style="margin:10px 0; width:100%;">
+    <table class="commonTable" style="margin:35px 0 10px; width:100%;">
         <tr>
             <th><%= Html.ResourceString("Name") %></th>
             <th><%= Html.ResourceString("Description") %></th>
@@ -68,10 +68,10 @@ foreach (var item in Model)
             <td align="right">
                 <%= item.Price.ToString("#.00#") %>
             </td>
-            <td align="center">
+            <td align="center" valign="middle">
                 <%= Html.TextBox("quantity_" + item.Id, null, new { style = "width:12px; font-size:10px;", onkeyup = "order(this)" })%>
             </td>
-            <td align="center">
+            <td align="center" valign="middle">
                 <%= Html.CheckBox("order_" + item.Id, false, new {onclick="order(this)" })%>
             </td>
         </tr>

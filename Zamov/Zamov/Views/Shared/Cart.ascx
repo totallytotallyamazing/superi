@@ -43,11 +43,9 @@
             <th>
                 <%= Html.ResourceString("EmptyCart") %>
             </th>
-            <%if (hostAction != CartHostActions.Cart){ %>
             <th>
                 <%= Html.ResourceString("CartItemsCount")%>
             </th>
-            <%} %>
             <th>
                 <%= Html.ResourceString("PurchaseTotalPrice")%>
             </th>

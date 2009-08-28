@@ -26,12 +26,13 @@ namespace Zamov.Controllers
                                    && dealer.Categories.Where(c => c.Id == SystemSettings.CategoryId).Count() > 0
                                    && trn.TranslationItemTypeId == (int)ItemTypes.DealerName
                                    && trn.Language == SystemSettings.CurrentLanguage
-                               select new { Id = dealer.Id, Name = trn.Text });
+                                   && dealer.Enabled
+                               select new { Id = dealer.Id, Name = trn.Text,  TopDealer = dealer.TopDealer });
                 int[] onlineDealers = MembershipExtensions.GetOnlineDealers();
 
                 List<DealerPresentation> result = new List<DealerPresentation>();
                 foreach (var item in dealers)
-                    result.Add(new DealerPresentation { Id = item.Id, Name = item.Name, OnLine = onlineDealers.Contains(item.Id) });
+                    result.Add(new DealerPresentation { Id = item.Id, Name = item.Name, OnLine = onlineDealers.Contains(item.Id), TopDealer = item.TopDealer });
                 return View(result);
             }
         }

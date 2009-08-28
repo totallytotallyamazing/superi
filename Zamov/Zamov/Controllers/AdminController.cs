@@ -115,23 +115,26 @@ namespace Zamov.Controllers
             }
         }
 
-        public ActionResult EnableDealer(int id)
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Dealers(FormCollection form)
         {
-            using (ZamovStorage context = new ZamovStorage())
-            {
-                Dealer dealer = (from d in context.Dealers where d.Id == id select d).First();
-                dealer.Enabled = true;
-                context.SaveChanges();
-            }
-            return RedirectToAction("Dealers");
-        }
+            Dictionary<string, Dictionary<string, string>> postData = form.ProcessPostData();
+            var dealerUpdates = (from pd in postData 
+                                 select new 
+                                 { 
+                                     Id = int.Parse(pd.Key), 
+                                     Top = pd.Value["top"].Contains("true"), 
+                                     Enabled = pd.Value["enabled"].Contains("true") 
+                                 });
 
-        public ActionResult DisableDealer(int id)
-        {
             using (ZamovStorage context = new ZamovStorage())
             {
-                Dealer dealer = (from d in context.Dealers where d.Id == id select d).First();
-                dealer.Enabled = false;
+                List<Dealer> dealers = (from dealer in context.Dealers select dealer).ToList();
+                dealers.ForEach(d=>
+                {
+                    d.TopDealer = (from du in dealerUpdates where du.Id == d.Id select du.Top).First();
+                    d.Enabled = (from du in dealerUpdates where du.Id == d.Id select du.Enabled).First();
+                });
                 context.SaveChanges();
             }
             return RedirectToAction("Dealers");

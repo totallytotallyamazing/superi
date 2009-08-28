@@ -1492,6 +1492,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Топ.
+        /// </summary>
+        internal static string Top {
+            get {
+                return ResourceManager.GetString("Top", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Топ продавцi.
+        /// </summary>
+        internal static string TopDealers {
+            get {
+                return ResourceManager.GetString("TopDealers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Всього.
         /// </summary>
         internal static string Total {

@@ -27,15 +27,20 @@
 </script>
 <div id="dealerFeedback"></div>
     <h2><%= Html.ResourceString("Dealers") %></h2>
+    <% using (Html.BeginForm()){ %>
     <table class="adminTable">
         <tr>
             <th>
                 ID
             </th>
             <th>
-                <%= Html.ResourceString("Name") %>
+                <%= Html.ResourceString("Name")%>
             </th>
             <th>
+                <%= Html.ResourceString("Top")%>
+            </th>
+            <th>
+                <%= Html.ResourceString("ActiveM")%>
             </th>
             <th></th>
             <th></th>
@@ -45,33 +50,39 @@
            { %>
         <tr>
             <td>
-                <%= Html.Encode(item.Id) %>
+                <%= Html.Encode(item.Id)%>
             </td>
             <td>
-                <%= Html.Encode(item.GetName(SystemSettings.CurrentLanguage)) %>
+                <%= Html.Encode(item.GetName(SystemSettings.CurrentLanguage))%>
             </td>
-            <td>
-                <% 
+            <td align="center">
+                <%= Html.CheckBox("top_" + item.Id, item.TopDealer)%>
+            </td>
+            <td align="center">
+                <%= Html.CheckBox("enabled_" + item.Id, item.Enabled)%>
+<%--                <% 
                     if (!item.Enabled)
                         Response.Write(Html.ResourceActionLink("On", "EnableDealer", new { id=item.Id }));
                     else
                         Response.Write(Html.ResourceActionLink("Off", "DisableDealer", new { id = item.Id }));
-                %>
+                %>--%>
             </td>
             <td>
                 <%=Html.ResourceActionLink<AdminController>("Edit", ac => ac.AddUpdateDealer(item.Id))%>
             </td>
             <td>
                 <a href="javascript:feedback(<%= item.Id %>)">
-                    <%= Html.ResourceString("Feedback") %>
+                    <%= Html.ResourceString("Feedback")%>
                 </a>
             </td>
             <td>
-                <%= Html.ActionLink(Html.ResourceString("Delete"), "DeleteDealer", new { id = item.Id }, new {onclick = "return confirm('" + Html.ResourceString("AreYouSure") + "?')" })%>
+                <%= Html.ActionLink(Html.ResourceString("Delete"), "DeleteDealer", new { id = item.Id }, new { onclick = "return confirm('" + Html.ResourceString("AreYouSure") + "?')" })%>
             </td>
         </tr>
         <% } %>
     </table>
+    <input type="submit" value="<%= Html.ResourceString("Save") %>" />
+    <%} %>
     <p>
         <%=Html.ResourceActionLink<AdminController>("CreateDealer", ac=>ac.AddUpdateDealer(int.MinValue)) %>
     </p>

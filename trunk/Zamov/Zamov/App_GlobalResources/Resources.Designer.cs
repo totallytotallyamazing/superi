@@ -1240,7 +1240,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ціна.
+        ///   Looks up a localized string similar to Вартість, грн.
         /// </summary>
         internal static string Price {
             get {

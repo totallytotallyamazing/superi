@@ -387,15 +387,12 @@ namespace Zamov.Controllers
             Response.Write("<script type=\"text/javascript\">top.closeImageDialog();</script>");
         }
 
-        public ActionResult UpdateProducts(int groupId, string changes)
+        public ActionResult UpdateProducts(FormCollection form)
         {
-            if (!string.IsNullOrEmpty(changes))
-            {
-                JavaScriptSerializer serializer = new JavaScriptSerializer();
-                Dictionary<string, Dictionary<string, string>> updates = serializer.Deserialize<Dictionary<string, Dictionary<string, string>>>(changes);
-                using (ZamovStorage context = new ZamovStorage())
-                    context.UpdateProducts(updates.CreateUpdatesXml());
-            }
+            Dictionary<string, Dictionary<string, string>> updates = form.ProcessPostData("groupId");
+            int groupId = int.Parse(form["groupId"]);
+            using (ZamovStorage context = new ZamovStorage())
+                context.UpdateProducts(updates.CreateUpdatesXml());
             return Redirect("~/DealerCabinet/Products/" + groupId);
         }
         #endregion

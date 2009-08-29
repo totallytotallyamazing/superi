@@ -20,7 +20,10 @@ namespace Zamov.Helpers
                     string fieldName = item[0];
                     if (!result.ContainsKey(itemId))
                         result[itemId] = new Dictionary<string, string>();
-                    result[itemId][fieldName] = form[key];
+                    if (form[key] == "true,false")
+                        result[itemId][fieldName] = "true";
+                    else
+                        result[itemId][fieldName] = form[key];
                 }
             }
             return result;

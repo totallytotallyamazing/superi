@@ -108,6 +108,8 @@
         if (Model != null && Model.Count > 0)
         { 
     %>
+        <%using (Html.BeginForm("UpdateProducts", "DealerCabinet", FormMethod.Post))
+      { %>
     <table class="adminTable">
         <tr>
             <th>
@@ -128,18 +130,26 @@
                 <%= Html.ResourceString("Unit")%>
             </th>
             <th>
+                <%= Html.ResourceString("New") %>
+            </th>
+            <th>
+                <%= Html.ResourceString("Action") %>
+            </th>
+            <th>
+                <%= Html.ResourceString("Top") %>
+            </th>
+            <th>
                 <%= Html.ResourceString("ActiveM")%>
             </th>
-            
         </tr>
         <%foreach (var item in Model)
           {%>
         <tr>
             <td>
-                <%= Html.TextBox("partNumber_" + item.Id, item.PartNumber, new { onblur = "tableChanged(updates, this)"})%>
+                <%= Html.TextBox("partNumber_" + item.Id, item.PartNumber)%>
             </td>
             <td>
-                <%= Html.TextBox("name_" + item.Id, item.Name, new { onblur = "tableChanged(updates, this)" })%>
+                <%= Html.TextBox("name_" + item.Id, item.Name)%>
             </td>
             <td align="center">
                 <a href="javascript:openImageIframe(<%= item.Id %>)" style="text-decoration:none;">
@@ -150,23 +160,28 @@
                 </a>
             </td>
             <td>
-                <%= Html.TextBox("price_" + item.Id, item.Price, new { onblur = "tableChanged(updates, this)" })%>
+                <%= Html.TextBox("price_" + item.Id, item.Price )%>
             </td>
             <td>
-                <%= Html.TextBox("unit_" + item.Id, item.Unit, new { onblur = "tableChanged(updates, this)" })%>
+                <%= Html.TextBox("unit_" + item.Id, item.Unit)%>
             </td>
-
+            <td>
+                <%= Html.CheckBox("new_" + item.Id, item.New) %>
+            </td>
+            <td>
+                <%= Html.CheckBox("action_" + item.Id, item.New) %>
+            </td>
+            <td>
+                <%= Html.CheckBox("top_" + item.Id, item.New) %>
+            </td>
             <td align="center">
                 <%= Html.CheckBox("active_" + item.Id, item.Enabled, new { onblur = "tableChanged(updates, this)" })%>
             </td>
         </tr>
         <%	} %>
     </table>
-    <%using (Html.BeginForm("UpdateProducts", "DealerCabinet", FormMethod.Post))
-      { %>
-    <%= Html.Hidden("changes") %>
     <%= Html.Hidden("groupId") %>
-    <input type="submit" value="<%= Html.ResourceString("Save") %>" onclick="collectChanges(updates, 'changes')" />
+    <input type="submit" value="<%= Html.ResourceString("Save") %>" />
     <%} %>
     <%} %>
     <%

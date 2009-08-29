@@ -130,6 +130,7 @@
             <th>
                 <%= Html.ResourceString("ActiveM")%>
             </th>
+            
         </tr>
         <%foreach (var item in Model)
           {%>

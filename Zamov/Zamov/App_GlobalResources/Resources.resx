@@ -645,4 +645,10 @@
   <data name="TopDealers" xml:space="preserve">
     <value>Топ продавцi</value>
   </data>
+  <data name="Action" xml:space="preserve">
+    <value>Акція</value>
+  </data>
+  <data name="New" xml:space="preserve">
+    <value>Новий</value>
+  </data>
 </root>

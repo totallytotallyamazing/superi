@@ -172,7 +172,7 @@
                 <%= Html.CheckBox("action_" + item.Id, item.New) %>
             </td>
             <td>
-                <%= Html.CheckBox("top_" + item.Id, item.New) %>
+                <%= Html.CheckBox("topProduct_" + item.Id, item.New) %>
             </td>
             <td align="center">
                 <%= Html.CheckBox("active_" + item.Id, item.Enabled, new { onblur = "tableChanged(updates, this)" })%>

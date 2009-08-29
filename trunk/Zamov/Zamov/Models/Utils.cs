@@ -111,7 +111,6 @@ namespace Zamov.Models
             DataTable table = new DataTable("dtExcel");
             bool columnDefinitions = true;
             List<string> columns = new List<string>();
-            columns.Add("groupPath");
             columns.Add("partNumber");
             columns.Add("name");
             columns.Add("price");

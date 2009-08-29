@@ -53,6 +53,9 @@ namespace Zamov.Controllers
                     }
                 }
             }
+            int orderItemsCount = cart.Orders.Sum(o => o.OrderItems.Sum(oi => oi.Quantity));
+            if (orderItemsCount == 0)
+                SystemSettings.EmptyCart();
             return RedirectToAction("Index", new { id = id });
         }
 

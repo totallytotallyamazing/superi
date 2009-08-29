@@ -402,7 +402,7 @@ namespace Zamov.Controllers
 
         #region Products import
         [BreadCrumb(ResourceName = "ImportedProducts", Url = "/DealerCabinet/ImportedProducts")]
-        public ActionResult ImportedProducts()
+        public ActionResult ImportedProducts(int? groupId)
         {
             string fileName = (string)Session["uploadedXls"];
             List<Dictionary<string, string>> importedProductsSet = Utils.QureyUploadedXls(fileName, SystemSettings.CurrentDealer.Value);
@@ -461,7 +461,7 @@ namespace Zamov.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult UploadXls()
+        public ActionResult UploadXls(int? groupId)
         {
             if (!string.IsNullOrEmpty(Request.Files["xls"].FileName))
             {
@@ -472,7 +472,7 @@ namespace Zamov.Controllers
                 int hashcode = User.GetHashCode();
                 Request.Files["xls"].SaveAs(Server.MapPath("~/UploadedFiles/" + hashcode + "_Imported" + extension));
                 Session["uploadedXls"] = Server.MapPath("~/UploadedFiles/" + hashcode + "_Imported" + extension);
-                return RedirectToAction("ImportedProducts");
+                return RedirectToAction("ImportedProducts", new { groupId = groupId });
             }
             else
                 return RedirectToAction("UploadXlsError");

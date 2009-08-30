@@ -9,12 +9,12 @@
     <script type="text/javascript">
         $(function() {
             applyDropShadows(".dealerLogo a", "shadow3");
-            if (window.ActiveXObject) {
+            if ($.browser.msie && $.browser.version!=="8.0") {
                 $(".topDealers").width($(mainContent).width() - 15);
                 $(window).resize(function() { $(".topDealers").width($(mainContent).width() - 15); });
             }
             else {
-                $(".topDealers").css({width: "100%", float: "left"});
+                $(".topDealers").css({ width: "100%", float: "left" });
             }
 
         })

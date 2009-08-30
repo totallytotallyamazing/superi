@@ -11,6 +11,8 @@ using System.Web.Script.Serialization;
 using Zamov.Helpers;
 using System.Data;
 using System.Collections;
+using System.Drawing;
+using System.Drawing.Imaging;
 
 namespace Zamov.Controllers
 {
@@ -375,7 +377,31 @@ namespace Zamov.Controllers
                 image.ProductReference.EntityKey = product;
                 HttpPostedFileBase file = Request.Files["newImage"];
                 image.ImageType = file.ContentType;
-                BinaryReader reader = new BinaryReader(file.InputStream);
+                Image uploadedImage = Image.FromStream(file.InputStream);
+
+                const int maxDimension = 300;
+                int width;
+                int height;
+                if (uploadedImage.Width > uploadedImage.Height)
+                {
+                    width = maxDimension;
+                    height = (maxDimension * uploadedImage.Height) / uploadedImage.Width;
+
+                }
+                else if (uploadedImage.Height > uploadedImage.Width)
+                {
+                    height = maxDimension;
+                    width = (maxDimension * uploadedImage.Width) / uploadedImage.Height;
+                }
+                else
+                    width = height = maxDimension;
+                Bitmap bitmap = new Bitmap(width, height);
+                Graphics graphics = Graphics.FromImage(bitmap);
+                graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                graphics.DrawImage(uploadedImage, 0, 0, width, height);
+                MemoryStream stream = new MemoryStream();
+                bitmap.Save(stream, ImageFormat.Jpeg);
+                BinaryReader reader = new BinaryReader(stream);
                 image.Image = reader.ReadBytes((int)file.InputStream.Length);
                 using (ZamovStorage context = new ZamovStorage())
                 {

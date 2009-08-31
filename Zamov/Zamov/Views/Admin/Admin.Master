@@ -9,12 +9,14 @@
         SelectListItem dealers = new SelectListItem { Text = Html.ResourceString("Dealers"), Value = VirtualPathUtility.ToAbsolute("~/Admin/Dealers") };
         SelectListItem categories = new SelectListItem { Text = Html.ResourceString("Categories"), Value = VirtualPathUtility.ToAbsolute("~/Admin/Categories") };
         SelectListItem users = new SelectListItem { Text = Html.ResourceString("Users"), Value = VirtualPathUtility.ToAbsolute("~/Admin/Users") };
+        SelectListItem news = new SelectListItem { Text = Html.ResourceString("News"), Value = VirtualPathUtility.ToAbsolute("~/Admin/News") };
         SelectListItem agreement = new SelectListItem { Text = Html.ResourceString("UserAgreement"), Value = "javascript:userAgreement();" };
         SelectListItem contacts = new SelectListItem { Text = Html.ResourceString("Contacts"), Value = "javascript:contacts();" };
         items.Add(cities);
         items.Add(dealers);
         items.Add(categories);
         items.Add(users);
+        items.Add(news);
         items.Add(agreement);
         items.Add(contacts);
         Html.RenderAction<Zamov.Controllers.PagePartsController>(ac => ac.LeftMenu(Html.ResourceString("Administration"), items)); 

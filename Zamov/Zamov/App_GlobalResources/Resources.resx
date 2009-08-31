@@ -651,4 +651,22 @@
   <data name="New" xml:space="preserve">
     <value>Новий</value>
   </data>
+  <data name="CreateNews" xml:space="preserve">
+    <value>Створити новину</value>
+  </data>
+  <data name="EditNews" xml:space="preserve">
+    <value>Редагувати новину</value>
+  </data>
+  <data name="Header" xml:space="preserve">
+    <value>Заголовок</value>
+  </data>
+  <data name="LongText" xml:space="preserve">
+    <value>Повний текст</value>
+  </data>
+  <data name="NorAllProperties" xml:space="preserve">
+    <value>Введенi не всi данi</value>
+  </data>
+  <data name="ShortText" xml:space="preserve">
+    <value>Короткий текст</value>
+  </data>
 </root>

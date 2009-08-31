@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="News.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
+    <Schema Namespace="News.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
         <EntityContainer Name="NewsStoreContainer">
           <EntitySet Name="News" EntityType="News.Store.News" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Translations" EntityType="News.Store.Translations" store:Type="Tables" Schema="dbo" />
@@ -16,6 +16,7 @@
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Image" Type="image" />
           <Property Name="Date" Type="datetime" />
+          <Property Name="Enabled" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Translations">
           <Key>
@@ -27,8 +28,7 @@
           <Property Name="TranslationItemTypeId" Type="int" Nullable="false" />
           <Property Name="Translation" Type="nvarchar(max)" />
         </EntityType>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="News" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
@@ -42,8 +42,8 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="Date" Type="DateTime" />
-        </EntityType>
+          <Property Name="Date" Type="DateTime" Nullable="false" />
+          <Property Name="Enabled" Type="Boolean" Nullable="false" /></EntityType>
         <EntityType Name="Translations">
           <Key>
             <PropertyRef Name="Id" />
@@ -63,6 +63,7 @@
           <EntitySetMapping Name="News">
             <EntityTypeMapping TypeName="IsTypeOf(News.News)">
               <MappingFragment StoreEntitySet="News">
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="Date" ColumnName="Date" />

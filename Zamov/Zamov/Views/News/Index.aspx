@@ -5,9 +5,23 @@
     <%= Html.ResourceString("News") %>
 </asp:Content>
 
+
+<asp:Content ID="Content3" ContentPlaceHolderID="includes" runat="server">
+    <%= Html.RegisterJS("jquery.easing.js")%>
+    <%= Html.RegisterJS("jquery.fancybox.js")%>
+    <%= Html.RegisterCss("~/Content/fancy/jquery.fancybox.css")%>
+    <%= Html.RegisterCss("~/Content/News.css")%>
+    
+    <script type="text/javascript">
+        $(function() {
+            $(".detailsLink").fancybox({ frameWidth: 700, hideOnContentClick: false });
+        })
+    </script>
+</asp:Content>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <center>
-        <%= Html.ResourceString("News").ToUpper() %>
+        <strong><%= Html.ResourceString("News").ToUpper() %></strong>
     </center>
     
     <div class="newsContainer">
@@ -18,17 +32,14 @@
             <div class="title">
                 <%= item.Title %>
             </div>
-            <%= item.ShortText %>
+            <%= HttpUtility.HtmlDecode(item.ShortText) %>
             <div class="itemFooter">
-                <%= Html.ResourceActionLink("Details", "Details", new { id=item.Id })%>
+                <%= HttpUtility.HtmlDecode(Html.ResourceActionLink("Details", "Details", new { id = item.Id }, new { @class = "detailsLink" }))%>
             </div>
         </div>        
   <%}
 %>
     </div>
-</asp:Content>
-
-<asp:Content ID="Content3" ContentPlaceHolderID="includes" runat="server">
 </asp:Content>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="leftMenu" runat="server">

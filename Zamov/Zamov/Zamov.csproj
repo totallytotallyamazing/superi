@@ -302,6 +302,7 @@
     <Content Include="Content\img\tickMark.jpg" />
     <Content Include="Content\img\truck.jpg" />
     <Content Include="Content\jquery.treeview.css" />
+    <Content Include="Content\News.css" />
     <Content Include="Content\redmond\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\redmond\images\ui-bg_flat_55_fbec88_40x100.png" />
     <Content Include="Content\redmond\images\ui-bg_glass_75_d0e5f5_1x400.png" />

@@ -33,7 +33,7 @@ namespace Zamov.Controllers
             List<SelectListItem> leftMenuItems = (List<SelectListItem>)HttpContext.Cache["categoryItems"];
             string categoryName = leftMenuItems.Where(lmi => lmi.Value == id.ToString()).Select(lmi => lmi.Text).SingleOrDefault();
             SystemSettings.CategoryName = categoryName;
-            return Redirect("~/Dealers");
+            return RedirectToRoute("Default", new { controller="Dealers", action = "Index", id="" });
         }
     }
 }

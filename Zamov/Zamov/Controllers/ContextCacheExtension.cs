@@ -55,11 +55,13 @@ namespace Zamov.Controllers
             {
                 using (ZamovStorage context = new ZamovStorage())
                 {
-                    result = (from category in context.Categories where category.Parent.Id == categoryId && category.Dealers.Count > 0 && category.Enabled select category).ToList();
+                    result = (from category in context.Categories.Include("Categories") where category.Parent.Id == categoryId && category.Dealers.Count > 0 && category.Enabled select category).ToList();
                 }
                 Cache["SubCategories_" + categoryId] = result;
             }
             return result;
         }
+
+
     }
 }

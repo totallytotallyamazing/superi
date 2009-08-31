@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 using Zamov.Models;
 using Zamov.Helpers;
+using System.Data.Objects;
 
 namespace Zamov.Controllers
 {
@@ -23,7 +24,7 @@ namespace Zamov.Controllers
                                                   }).ToList();
             HttpContext.Cache["categoryItems"] = leftMenuItems;
             ViewData["leftMenuItems"] = leftMenuItems;
-            return View();
+            return View(subCategories);
         }
 
         public ActionResult SelectCategory(int id)

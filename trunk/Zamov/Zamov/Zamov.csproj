@@ -296,6 +296,7 @@
     <Content Include="Content\img\cartBg.jpg" />
     <Content Include="Content\img\cartShadow.jpg" />
     <Content Include="Content\img\crossMark.jpg" />
+    <Content Include="Content\img\newsSplitter.jpg" />
     <Content Include="Content\img\online.png" />
     <Content Include="Content\img\productImage.JPG" />
     <Content Include="Content\img\tickMark.jpg" />
@@ -497,6 +498,8 @@
     <Content Include="Views\Feedback\ModifyFeedback.aspx" />
     <Content Include="Views\Home\Agreement.aspx" />
     <Content Include="Views\Home\Contacts.aspx" />
+    <Content Include="Views\News\Details.aspx" />
+    <Content Include="Views\News\Index.aspx" />
     <Content Include="Views\PageParts\TranslatedText.aspx" />
     <Content Include="Views\Products\Description.aspx" />
     <Content Include="Views\Products\Index.aspx" />

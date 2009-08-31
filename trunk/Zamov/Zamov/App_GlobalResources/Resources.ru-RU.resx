@@ -666,4 +666,7 @@
   <data name="ShortText" xml:space="preserve">
     <value>Краткий текст</value>
   </data>
+  <data name="Details" xml:space="preserve">
+    <value>Подробнее &amp;gt;&amp;gt;</value>
+  </data>
 </root>

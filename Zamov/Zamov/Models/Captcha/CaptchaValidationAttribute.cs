@@ -44,7 +44,7 @@ namespace Zamov
                 filterContext.ActionParameters["captchaValid"] = false;
 
             // get the guid from the post back
-            string guid = filterContext.HttpContext.Request.Form["captcha-guid1"];
+            string guid = filterContext.HttpContext.Request.Form["captcha-guid"];
 
             // check for the guid because it is required from the rest of the opperation
             if (String.IsNullOrEmpty(guid))

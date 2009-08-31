@@ -47,7 +47,7 @@
                     %>
                     <li>
                        
-                        <%=Html.Encode(subSubCategory.Name)%>
+                        <%= Html.ActionLink(subSubCategory.Name, "SelectCategory", new { id = subSubCategory.Id }, new { @class = "categoryLink" })%>
                         
                     </li>
                     

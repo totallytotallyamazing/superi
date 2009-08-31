@@ -53,6 +53,15 @@ namespace Zamov.Controllers
                     }
                 }
             }
+            
+            if(cart.Orders!=null)
+                for (int i = cart.Orders.Count - 1; i >= 0; i--)
+                {
+                    Order order = cart.Orders.ElementAt(i);
+                    if (order.OrderItems.Count == 0)
+                        cart.Orders.Remove(order);
+                }
+
             int orderItemsCount = cart.Orders.Sum(o => o.OrderItems.Sum(oi => oi.Quantity));
             if (orderItemsCount == 0)
                 SystemSettings.EmptyCart();

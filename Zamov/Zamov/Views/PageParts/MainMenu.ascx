@@ -19,6 +19,6 @@
     if ((authenticated && customer))
         Response.Write(Html.ResourceActionLink("PersonalCabinet", "Index", "UserCabinet").ToLower() + "&nbsp;|&nbsp;");
 %>
-                    <%= Html.ResourceString("News").ToLower() %>
+                    <%= Html.ResourceActionLink("News", "Index", "News").ToLower()%>
                 |
                 <%= Html.ResourceActionLink("Contacts","Contacts","Home").ToLower()%>

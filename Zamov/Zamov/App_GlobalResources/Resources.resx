@@ -669,4 +669,7 @@
   <data name="ShortText" xml:space="preserve">
     <value>Короткий текст</value>
   </data>
+  <data name="Details" xml:space="preserve">
+    <value>Далі &amp;gt;&amp;gt;</value>
+  </data>
 </root>

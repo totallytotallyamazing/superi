@@ -90,7 +90,7 @@ namespace Zamov.Controllers
                     MailMessage message = new MailMessage(mailAddressFrom, mailAddressTo);
                     message.Subject = messageSubj;
                     message.Body = messageBody;
-                    SmtpClient client = new SmtpClient(ApplicationData.ZamovSMTPHost);
+                    SmtpClient client = new SmtpClient(ApplicationData.ZamovSmtpHost);
                     client.Send(message);
                 }
                 catch

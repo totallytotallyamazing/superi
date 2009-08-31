@@ -493,7 +493,7 @@
     <value>Зареєструйтеся, щоб залишити відгук</value>
   </data>
   <data name="AccountCreationFailed" xml:space="preserve">
-    <value>Спроба реєстрації була невдалою, будьласка виправте помилки і спробуйте ще раз</value>
+    <value>Спроба реєстрації була невдалою, будь-ласка, виправте помилки і спробуйте ще раз.</value>
   </data>
   <data name="EmailIncorrect" xml:space="preserve">
     <value>Невірний формат електронної скриньки</value>

@@ -493,7 +493,7 @@
     <value>Зарегистрируйтесь чтобы оставить отзыв</value>
   </data>
   <data name="AccountCreationFailed" xml:space="preserve">
-    <value>Попытка регистрации не удалась, пожалуйста исправьте онибки и попробуйте еще раз.</value>
+    <value>Попытка регистрации не удалась, пожалуйста, исправьте ошибки и попробуйте еще раз.</value>
   </data>
   <data name="EmailIncorrect" xml:space="preserve">
     <value>Неправильный формат электронной почты</value>

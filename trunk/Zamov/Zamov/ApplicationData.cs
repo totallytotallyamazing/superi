@@ -31,7 +31,7 @@ public static class ApplicationData
         }
     }
 
-    public static string ZamovSMTPHost
+    public static string ZamovSmtpHost
     {
         get { return GetApplicationData("smtp", "All"); }
         set

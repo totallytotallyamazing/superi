@@ -116,7 +116,36 @@ namespace Zamov.Helpers
 
         public static string FrameWindow(this HtmlHelper helper, string targetControlId, string contentUrl)
         {
-            string onLoadScript = @"    
+            string onLoadScript = DialogScript(targetControlId);
+
+            string displayWindowFunction = DisplayWindowFunction(targetControlId, contentUrl);
+
+            string closeWindowFunction = CloseWindowFunction(targetControlId);
+
+            return "<script type=\"text/javascript\">" + string.Concat(onLoadScript, displayWindowFunction, closeWindowFunction) + "</script>";
+        }
+
+        public static string TranslatedText(this HtmlHelper helper, string targetControlId, string formAction, string formController, string richEditorPanel)
+        {
+            string onLoadScript = DialogScript(targetControlId);
+
+            if (string.IsNullOrEmpty(richEditorPanel))
+                richEditorPanel = "Basic";
+            string displayWindowFunction = DisplayWindowFunction(targetControlId, "/PageParts/TranslatedText?formAction=" + formAction + "&formController=" + formController + "&richEditorPanel=" + richEditorPanel);
+
+            string closeWindowFunction = CloseWindowFunction(targetControlId);
+
+            return "<script type=\"text/javascript\">" + string.Concat(onLoadScript, displayWindowFunction, closeWindowFunction) + "</script>";
+        }
+
+        public static string CloseParentScript(string targetControlId)
+        {
+            return "<script>top.close" + targetControlId + "();</script>";
+        }
+
+        private static string DialogScript(string targetControlId)
+        {
+            return @"    
              $(function() { " +
                  "$('#" + targetControlId + "')" +
                     @".dialog({
@@ -133,26 +162,25 @@ namespace Zamov.Helpers
                 });
 
                 ";
+        }
 
-            string displayWindowFunction = "function open" + targetControlId + "() {" +
+        private static string DisplayWindowFunction(string targetControlId, string contentUrl)
+        {
+            return "function open" + targetControlId + "() {" +
                 "var controlId = '#" + targetControlId + "';" +
             "$(controlId)" +
                 ".html('<iframe frameborder=\"0\" name=\"" + targetControlId + "Frame\" id=\"" + targetControlId + "Frame\" hidefocus=\"true\" style=\"width:660px; height:500px;\" src=\"" + contentUrl + "\"></iframe>');" +
             @"$(controlId).dialog('open').css('height', 400);
             $(controlId).dialog('option', 'height', 500);
             $(controlId).dialog('option', 'position', 'center');
-        };
+            };
 
-        ";
-
-            string closeWindowFunction = "function close" + targetControlId + "(){$('#" + targetControlId + "').dialog('close');}";
-
-            return "<script type=\"text/javascript\">" + string.Concat(onLoadScript, displayWindowFunction, closeWindowFunction) + "</script>";
+            ";
         }
 
-        public static string CloseParentScript(string targetControlId)
+        private static string CloseWindowFunction(string targetControlId)
         {
-            return "<script>top.close" + targetControlId + "();</script>";
+            return "function close" + targetControlId + "(){$('#" + targetControlId + "').dialog('close');}";
         }
     }
 }

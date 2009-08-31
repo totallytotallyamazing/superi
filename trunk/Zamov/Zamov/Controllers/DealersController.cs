@@ -15,9 +15,12 @@ namespace Zamov.Controllers
     {
         //
         // GET: /Dealers/
-        [BreadCrumb( ResourceName = "Dealers", Url = "/Dealers")]
+        //[BreadCrumb( ResourceName = "Dealers", Url = "/Dealers")]
         public ActionResult Index()
         {
+            BreadCrumbsExtensions.AddBreadCrumb(HttpContext, ResourcesHelper.GetResourceString("Categories"), "/Categories");
+            BreadCrumbsExtensions.AddBreadCrumb(HttpContext, SystemSettings.CategoryName, "/Categories");
+            BreadCrumbsExtensions.AddBreadCrumb(HttpContext, ResourcesHelper.GetResourceString("Dealers"), "/Dealers");
             using (ZamovStorage context = new ZamovStorage())
             {
                 var dealers = (from dealer in context.Dealers.Include("Cities").Include("Categories")

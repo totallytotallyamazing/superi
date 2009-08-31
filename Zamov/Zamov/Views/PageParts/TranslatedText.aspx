@@ -3,8 +3,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" >
-<head runat="server">
-    <title>ContactsHeader</title>
+<head id="Head1" runat="server">
+    <title></title>
     <%= Html.RegisterJS("jquery.js") %>
     <%= Html.RegisterJS("fckeditorapi.js") %>
     <%= Html.RegisterJS("fckeditor.js") %>
@@ -14,8 +14,8 @@
     <script type="text/javascript">
         $(function() {
             $.fck.config = { path: '<%= VirtualPathUtility.ToAbsolute("~/Controls/fckeditor/") %>', config: { SkinPath: "skins/office2003/"} };
-            $('textarea#uaText').fck({ toolbar: "Basic", height: 400, language: "RU", HTMLEncode: true });
-            $('textarea#ruText').fck({ toolbar: "Basic", height: 400, language: "RU", HTMLEncode: true });
+            $('textarea#uaText').fck({ toolbar: '<%= ViewData["richEditorPanel"] %>', height: 400, language: "RU", HTMLEncode: true });
+            $('textarea#ruText').fck({ toolbar: '<%= ViewData["richEditorPanel"] %>', height: 400, language: "RU", HTMLEncode: true });
         });
 
         function updateData() {
@@ -25,7 +25,7 @@
 
 </head>
 <body>
-    <% using (Html.BeginForm("UpdateAgreement", "Admin", FormMethod.Post, new { id="mainForm" }))
+    <% using (Html.BeginForm(ViewData["formAction"].ToString(), ViewData["formController"].ToString(), FormMethod.Post, new { id = "mainForm" }))
        { %>
     <table>
         <tr class="adminTable">
@@ -44,3 +44,4 @@
     <%} %>
 </body>
 </html>
+

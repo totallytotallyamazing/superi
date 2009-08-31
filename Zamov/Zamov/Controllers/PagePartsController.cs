@@ -87,5 +87,13 @@ namespace Zamov.Controllers
             ViewData["dealerId"] = id;
             return View();
         }
+
+        public ActionResult TranslatedText(string formAction, string formController, string richEditorPanel)
+        { 
+            ViewData["formAction"] = formAction;
+            ViewData["formController"] = formController;
+            ViewData["richEditorPanel"] = richEditorPanel;
+            return View();
+        }
     }
 }

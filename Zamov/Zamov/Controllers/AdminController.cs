@@ -435,6 +435,7 @@ namespace Zamov.Controllers
             values["ru-RU"] = HttpUtility.HtmlDecode(ruText);
             values["uk-UA"] = HttpUtility.HtmlDecode(uaText);
             ApplicationData.UpdateAgreement(values);
+            Response.Write(Helpers.Helpers.CloseParentScript("Agreement"));
         }
 
         public ActionResult ContactsHeader()
@@ -450,7 +451,18 @@ namespace Zamov.Controllers
             values["ru-RU"] = HttpUtility.HtmlDecode(ruText);
             values["uk-UA"] = HttpUtility.HtmlDecode(uaText);
             ApplicationData.UpdateContactsHeader(values);
+            Response.Write(Helpers.Helpers.CloseParentScript("Contacts"));
+
         }
         #endregion
+
+        #region News
+        public ActionResult News()
+        {
+
+            return View();
+        }
+        #endregion
+
     }
 }

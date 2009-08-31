@@ -41,19 +41,19 @@
         if (subCategory.Categories != null)
             if (subCategory.Categories.Count > 0)
             {
-                %><table><%
+                %><ul><%
                 foreach (Category subSubCategory in subCategory.Categories)
                 {
                     %>
-                    <tr>
-                        <td>
+                    <li>
+                       
                         <%=Html.Encode(subSubCategory.Name)%>
-                        </td>
-                    </tr>
+                        
+                    </li>
                     
                     <%
                 }
-                %></table><%
+                %></ul><%
             }
         %>
         </div>

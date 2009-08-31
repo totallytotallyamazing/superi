@@ -439,6 +439,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Створити новину.
+        /// </summary>
+        internal static string CreateNews {
+            get {
+                return ResourceManager.GetString("CreateNews", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Поточний пароль.
         /// </summary>
         internal static string CurrentPassword {
@@ -606,6 +615,15 @@ namespace Resources {
         internal static string EditDealer {
             get {
                 return ResourceManager.GetString("EditDealer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Редагувати новину.
+        /// </summary>
+        internal static string EditNews {
+            get {
+                return ResourceManager.GetString("EditNews", resourceCulture);
             }
         }
         
@@ -790,6 +808,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Заголовок.
+        /// </summary>
+        internal static string Header {
+            get {
+                return ResourceManager.GetString("Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Зображення.
         /// </summary>
         internal static string Image {
@@ -903,6 +930,15 @@ namespace Resources {
         internal static string LogOn {
             get {
                 return ResourceManager.GetString("LogOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Повний текст.
+        /// </summary>
+        internal static string LongText {
+            get {
+                return ResourceManager.GetString("LongText", resourceCulture);
             }
         }
         
@@ -1056,6 +1092,15 @@ namespace Resources {
         internal static string Noncash {
             get {
                 return ResourceManager.GetString("Noncash", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Введенi не всi данi.
+        /// </summary>
+        internal static string NorAllProperties {
+            get {
+                return ResourceManager.GetString("NorAllProperties", resourceCulture);
             }
         }
         
@@ -1389,6 +1434,15 @@ namespace Resources {
         internal static string Send {
             get {
                 return ResourceManager.GetString("Send", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Короткий текст.
+        /// </summary>
+        internal static string ShortText {
+            get {
+                return ResourceManager.GetString("ShortText", resourceCulture);
             }
         }
         

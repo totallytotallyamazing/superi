@@ -1,5 +1,6 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<List<Zamov.Models.Category>>" %>
 <%@ Import Namespace="Zamov.Helpers" %>
+<%@ Import Namespace="Zamov.Models" %>
 <%@ Import Namespace="Microsoft.Web.Mvc" %>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="leftMenu" runat="server">
@@ -22,19 +23,45 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 <%
     List<SelectListItem> leftMenuItems = (List<SelectListItem>)ViewData["leftMenuItems"];
-    foreach (var item in leftMenuItems)
-    { 
-    %>
+
+    if(Model!=null)
+    foreach (Category subCategory in Model)
+    {
+        
+        %>
         <div class="categoryItem">
             <div class="categoryImage">
-                <a href="/Categories/SelectCategory/<%= item.Value %>">
-                    <%= Html.Image("~/Image/CategoryImageByCategoryId/" + item.Value, new { style="border:none;"})%>
+                <a href="/Categories/SelectCategory/<%= subCategory.Id %>">
+                    <%= Html.Image("~/Image/CategoryImageByCategoryId/" + subCategory.Id, new { style = "border:none;" })%>
                 </a>
             </div>
-            <%= Html.ActionLink(item.Text, "SelectCategory", new { id = int.Parse(item.Value) }, new { @class = "categoryLink" })%>
-        </div>
+            <%= Html.ActionLink(subCategory.Name, "SelectCategory", new { id = subCategory.Id }, new { @class = "categoryLink" })%>
     <%
+        
+        if (subCategory.Categories != null)
+            if (subCategory.Categories.Count > 0)
+            {
+                %><table><%
+                foreach (Category subSubCategory in subCategory.Categories)
+                {
+                    %>
+                    <tr>
+                        <td>
+                        <%=Html.Encode(subSubCategory.Name)%>
+                        </td>
+                    </tr>
+                    
+                    <%
+                }
+                %></table><%
+            }
+        %>
+        </div>
+        <%
     }
+    
+    
+  
 %>
     <div style="clear:both;"></div>
 </asp:Content>

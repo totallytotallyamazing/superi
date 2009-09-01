@@ -133,3 +133,11 @@ iframe{padding:0; margin:0; border:none;}
 .topDealers{border:1px solid #8d8d8d; background:transparent; margin-right:0px;  margin-bottom:10px;}
 
 .productDescriptionImage{float:left; margin-right:10px; margin-bottom:5px;}
+
+
+.statusNew{font-weight:bold;}
+.statusAccepted{ background-color:#ddafff;}
+.statusComplited{ background-color:Olive;}
+.statusCanceled{ color:Silver;}
+
+

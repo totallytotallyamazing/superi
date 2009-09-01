@@ -108,8 +108,7 @@
         </tr>
 
     <% foreach (var item in Model) { %>
-    
-        <tr>
+      <tr class="status<%=(Statuses)item.Status%>">
             <td>
                 <%= Html.Encode(item.Id) %>
             </td>

@@ -85,13 +85,10 @@
 
         <script type="text/javascript">
             $(function() {
-                var elements = document.getElementsByName('captcha-guid');
-                $get('captcha-guid1').value = elements[0].value;
+                $("input[name='captcha-guid']").appendTo("#makeOrder");
             })
 
             function copyValues() {
-                var elements = document.getElementsByName('captcha-guid');
-                $get('captcha-guid1').value = elements[0].value;
                 $get('captcha').value = $get('validation-value').value;
             }
         </script>
@@ -101,7 +98,7 @@
         <%=Html.ResourceString("EnterCode")%>
         <%= Html.ValidationMessage("captchaInvalid", "*", new { @class="validationError"})%>
         <br />
-        <%= Html.CaptchaImage(50, 170)%><br />
+        <%= Html.CaptchaImage(40, 100)%><br />
         <%= Html.TextBox("validation-value", "", new { onkeyup = "copyValues()" })%>
         <br />
     </div>
@@ -210,7 +207,6 @@
             </tr>
         </table>
         <%=Html.Hidden("captcha")%>
-        <%=Html.Hidden("captcha-guid1")%>
         <div class="menuFooter">
         </div>
     </div>

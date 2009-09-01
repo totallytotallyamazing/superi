@@ -154,6 +154,7 @@
     </Compile>
     <Compile Include="Models\PaymentTypes.cs" />
     <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\ProductPresentation.cs" />
     <Compile Include="Models\ProfileCommon.cs" />
     <Compile Include="Models\SetingsStorage.Designer.cs">
       <AutoGen>True</AutoGen>

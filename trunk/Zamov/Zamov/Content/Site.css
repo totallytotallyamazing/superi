@@ -4,8 +4,8 @@ h2{font-size:16px;}
 body{font-family: Tahoma, Sans-Serif, Helvetica, Tahoma; font-size:0.8em;}
 select
 {border:1px solid #bdbdbd; color:#8d8d8d;}
-#header, #mainMenu, #breadCrumbs{width:auto; margin:30px 40px 0px; min-width:1030px;}
-#content{min-width:855px;}
+#header, #mainMenu, #breadCrumbs{width:auto; margin:30px 40px 0px; min-width:1095px;}
+#content{min-width:920px;}
 .greyBg{background:#CFDAD7}
 .whiteBg{background:white;}
 
@@ -131,3 +131,5 @@ iframe{padding:0; margin:0; border:none;}
 .headerSelect{background-color:#092d45; border:1px solid teal; color:Teal;  padding:0 5px; font-weight:bold;}
 
 .topDealers{border:1px solid #8d8d8d; background:transparent; margin-right:0px;  margin-bottom:10px;}
+
+.productDescriptionImage{float:left; margin-right:10px; margin-bottom:5px;}

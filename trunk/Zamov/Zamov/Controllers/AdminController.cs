@@ -454,7 +454,6 @@ namespace Zamov.Controllers
             values["uk-UA"] = HttpUtility.HtmlDecode(uaText);
             ApplicationData.UpdateContactsHeader(values);
             Response.Write(Helpers.Helpers.CloseParentScript("Contacts"));
-
         }
         #endregion
 

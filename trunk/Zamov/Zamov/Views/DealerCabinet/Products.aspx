@@ -1,6 +1,6 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/DealerCabinet/Cabinet.Master"
     Inherits="System.Web.Mvc.ViewPage<List<Zamov.Models.Product>>" %>
-
+<%@ Import Namespace="System.Globalization" %>
 <%@ Import Namespace="Zamov.Helpers" %>
 <%@ Import Namespace="Microsoft.Web.Mvc" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
@@ -160,7 +160,8 @@
                 </a>
             </td>
             <td>
-                <%= Html.TextBox("price_" + item.Id, item.Price )%>
+                <% CultureInfo enUs = CultureInfo.GetCultureInfo("en-US"); %>
+                <%= Html.TextBox("price_" + item.Id, item.Price.ToString(enUs))%>
             </td>
             <td>
                 <%= Html.TextBox("unit_" + item.Id, item.Unit)%>

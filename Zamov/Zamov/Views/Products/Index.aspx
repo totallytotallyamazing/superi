@@ -11,6 +11,10 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <script type="text/javascript">
+        $(function() {
+            $(".productDescription").fancybox({ width: "700px", hideOnContentClick: false });
+        })
+        
         var items = {};
         function order(element) {
             var fieldSegments = element.name.split("_");

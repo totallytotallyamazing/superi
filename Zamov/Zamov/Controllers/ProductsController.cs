@@ -34,23 +34,23 @@ namespace Zamov.Controllers
             }
         }
 
-        public ActionResult ProductGroups(int dealerId,int? groupId)
+        public ActionResult ProductGroups(int dealerId, int? groupId)
         {
             List<GroupResentation> groups = null;
             using (ZamovStorage context = new ZamovStorage())
             {
                 groups = (from gr in context.Groups
-                              join translation in context.Translations on gr.Id equals translation.ItemId
-                              where translation.TranslationItemTypeId == (int)ItemTypes.Group
-                                 && translation.Language == SystemSettings.CurrentLanguage
-                                 && gr.Enabled
-                                 && gr.Dealer.Id == dealerId
-                              select new GroupResentation
-                                  {
-                                      Id = gr.Id,
-                                      Name = translation.Text,
-                                      ParentId = (gr.Parent != null) ? (int?)gr.Parent.Id : null
-                                  }
+                          join translation in context.Translations on gr.Id equals translation.ItemId
+                          where translation.TranslationItemTypeId == (int)ItemTypes.Group
+                             && translation.Language == SystemSettings.CurrentLanguage
+                             && gr.Enabled
+                             && gr.Dealer.Id == dealerId
+                          select new GroupResentation
+                              {
+                                  Id = gr.Id,
+                                  Name = translation.Text,
+                                  ParentId = (gr.Parent != null) ? (int?)gr.Parent.Id : null
+                              }
                               ).ToList();
             }
             int groupToExpand = int.MinValue;
@@ -153,13 +153,21 @@ namespace Zamov.Controllers
         {
             using (ZamovStorage context = new ZamovStorage())
             {
-                bool hasImage = context.ProductImages.Where(pi => pi.Product.Id == id).Count() > 0;
-                ViewData["hasImage"] = hasImage;
-                if (hasImage)
-                {
-                    ViewData["imageId"] = context.ProductImages.Where(pi => pi.Product.Id == id).Select(pi => pi.Id).First();
-                }
-                Product product = context.Products.Select(p => p).Where(p => p.Id == id).First();
+                ProductPresentation product = (from item in context.Products.Include("ProductImages")
+                                               join description in context.Translations on item.Id equals description.ItemId
+                                               where description.TranslationItemTypeId == (int)ItemTypes.ProductDescription
+                                               && item.Id == id
+                                               let hasImage = item.ProductImages.Count > 0
+                                               let imageId = (hasImage) ? item.ProductImages.FirstOrDefault().Id : 0
+                                               select new ProductPresentation
+                                               {
+                                                   Name = item.Name,
+                                                   Description = description.Text,
+                                                   HasImage = hasImage,
+                                                   ImageId = imageId,
+                                                   Id = item.Id
+                                               }
+                                               ).First();
                 return View(product);
             }
         }

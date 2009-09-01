@@ -276,6 +276,7 @@
     <Content Include="Content\fancy\fancy_title_main.png" />
     <Content Include="Content\fancy\fancy_title_right.png" />
     <Content Include="Content\fancy\jquery.fancybox.css" />
+    <Content Include="Content\GroupsTreeview.css" />
     <Content Include="Content\images\file.gif" />
     <Content Include="Content\images\folder-closed.gif" />
     <Content Include="Content\images\folder.gif" />
@@ -300,6 +301,7 @@
     <Content Include="Content\img\online.png" />
     <Content Include="Content\img\productImage.JPG" />
     <Content Include="Content\img\tickMark.jpg" />
+    <Content Include="Content\img\treeArrows.jpg" />
     <Content Include="Content\img\truck.jpg" />
     <Content Include="Content\jquery.treeview.css" />
     <Content Include="Content\News.css" />

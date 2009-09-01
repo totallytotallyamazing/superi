@@ -1,46 +1,46 @@
-<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl" %>
+<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<List<GroupResentation>>" %>
 <%@ Import Namespace="Zamov.Models" %>
 <%@ Import Namespace="Zamov.Helpers" %>
 <%@ Import Namespace="Zamov.Controllers" %>
+<% 
+    int dealerId = Convert.ToInt32(ViewData["dealerId"]);
+    int groupToExpand = Convert.ToInt32(ViewData["groupToExpand"]);
+    int groupId = (ViewData["groupId"] != null) ? Convert.ToInt32(ViewData["groupId"]) : int.MinValue;
+%>
 <div class="menu">
     <div class="menuHeader">
         <%= Html.ResourceString("Groups") %>
     </div>
     <div class="menuItems">
-        <% 
-            int dealerId = Convert.ToInt32(ViewData["dealerId"]);
-            int groupId = int.MinValue;
-            if (ViewData["groupId"] != null)
-                groupId = Convert.ToInt32(ViewData["groupId"]);
-            using (ZamovStorage context = new ZamovStorage())
-            {
-                var groups = (from g in context.Groups.Include("Parent").Include("Groups") where g.Parent == null && g.Dealer.Id == dealerId select g);
-                foreach (var g in groups)
-                {
-        %>
+        <% foreach (GroupResentation item in Model)
+           {%>
         <div class="menuItem">
-            <%= Html.ActionLink(g.GetName(SystemSettings.CurrentLanguage), "Index", new {dealerId = dealerId, groupId = g.Id}) %>
+            <%= Html.ActionLink(item.Name, "Index", new { dealerId = dealerId, groupId = item.Id }, new { @class = (item.Id == groupId) ? "active" : string.Empty })%>
         </div>
-        <%
-            if (g.Id == groupId || g.Groups.Where(gr=>gr.Id == groupId).Count()>0)
-            {
-                g.Groups.Load();
-                foreach (var subGroup in g.Groups)
+        <%      if (item.Id == groupToExpand)
                 {
-        %>
-        <div class="subMenuItem">
-            <%= Html.ActionLink(subGroup.GetName(SystemSettings.CurrentLanguage), "Index", new {dealerId = dealerId, groupId = subGroup.Id}) %>
-        </div>
-        <%
-            }
-
+                    List<GroupResentation> subGroups = item.Children;
+                    if (subGroups.Count > 0)
+                        Response.Write(
+                            Html.TreeView("productGroups", subGroups, sg => sg.Children, sg =>
+                            {
+                                string format = "<div class=\"subMenuItem\">{0}</div>";
+                                return string.Format(format, Html.ActionLink(sg.Name, "Index", new { dealerId = dealerId, groupId = sg.Id }, new { @class = (sg.Id == groupId) ? "active" : string.Empty }));
+                            })
+                            );
                 }
         %>
-        <% 
-            }
-            } 
-        %>
+        <% } %>
     </div>
     <div class="menuFooter">
     </div>
 </div>
+<%--
+        %>
+        
+        <div class="subMenuItem">
+            <%= Html.ActionLink(subGroup.GetName(SystemSettings.CurrentLanguage), "Index", new {dealerId = dealerId, groupId = subGroup.Id}) %>
+            <%= Html.TreeView("sybGroups", g %>
+        </div>
+        <%
+--%>

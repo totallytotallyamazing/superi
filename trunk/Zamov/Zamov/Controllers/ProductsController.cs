@@ -5,6 +5,7 @@ using Zamov.Models;
 using System.Data.Objects;
 using System.Data;
 using Zamov.Helpers;
+using System;
 
 namespace Zamov.Controllers
 {
@@ -31,6 +32,43 @@ namespace Zamov.Controllers
                     products = (from product in context.Products where ((groupId == null) || product.Group.Id == groupId) && product.Dealer.Id == dealerId select product).ToList();
                 return View(products);
             }
+        }
+
+        public ActionResult ProductGroups(int dealerId,int? groupId)
+        {
+            List<GroupResentation> groups = null;
+            using (ZamovStorage context = new ZamovStorage())
+            {
+                groups = (from gr in context.Groups
+                              join translation in context.Translations on gr.Id equals translation.ItemId
+                              where translation.TranslationItemTypeId == (int)ItemTypes.Group
+                                 && translation.Language == SystemSettings.CurrentLanguage
+                                 && gr.Enabled
+                                 && gr.Dealer.Id == dealerId
+                              select new GroupResentation
+                                  {
+                                      Id = gr.Id,
+                                      Name = translation.Text,
+                                      ParentId = (gr.Parent != null) ? (int?)gr.Parent.Id : null
+                                  }
+                              ).ToList();
+            }
+            int groupToExpand = int.MinValue;
+            groups.ForEach(ac => { ac.PickChildren(groups); ac.PickParent(groups); });
+            if (groupId != null)
+            {
+                GroupResentation currentGroup = groups.Where(g => g.Id == groupId.Value).SingleOrDefault();
+                while (currentGroup != null)
+                {
+                    groupToExpand = currentGroup.Id;
+                    currentGroup = currentGroup.Parent;
+                }
+            }
+            ViewData["groupToExpand"] = groupToExpand;
+            ViewData["dealerId"] = dealerId;
+            ViewData["groupId"] = groupId;
+            List<GroupResentation> sortedGroups = groups.Select(c => c).Where(c => c.ParentId == null).ToList();
+            return View(sortedGroups);
         }
 
         [AcceptVerbs(HttpVerbs.Post)]

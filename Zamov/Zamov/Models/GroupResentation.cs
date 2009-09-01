@@ -7,7 +7,24 @@ namespace Zamov.Models
 {
     public class GroupResentation
     {
+        private List<GroupResentation> children = new List<GroupResentation>();
+        
+
         public string Name { get; set; }
         public int Id { get; set; }
+        public int? ParentId { get; set; }
+        public List<GroupResentation> Children { get { return children; } }
+        public GroupResentation Parent{get; private set;} 
+
+        public void PickChildren(List<GroupResentation> source)
+        {
+            children = (from item in source where item.ParentId == Id select item).ToList();
+        }
+
+        public void PickParent(List<GroupResentation> source)
+        {
+            if (ParentId != null)
+                Parent = (from item in source where item.Id == ParentId.Value select item).First();
+        }
     }
 }

@@ -1,5 +1,6 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<List<Zamov.Models.Product>>" %>
 <%@ Import Namespace="Zamov.Helpers" %>
+<%@ Import Namespace="Zamov.Controllers" %>
 <%@ Import Namespace="Microsoft.Web.Mvc" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 </asp:Content>
@@ -91,8 +92,10 @@ foreach (var item in Model)
     <%= Html.RegisterCss("~/Content/fancy/jquery.fancybox.css")%>
     <%= Html.RegisterCss("~/Content/shadows.css")%>
     <%= Html.RegisterJS("dropshadow.js")%>
+    <%= Html.RegisterJS("jquery.treeview.js") %>
+    <%= Html.RegisterCss("~/Content/GroupsTreeview.css") %>
 </asp:Content>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="leftMenu" runat="server">
-    <% Html.RenderPartial("ProductGroups"); %>
+    <% Html.RenderAction<ProductsController>(c=> c.ProductGroups((int)ViewData["dealerId"], (int?)ViewData["groupId"])); %>
 </asp:Content>

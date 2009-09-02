@@ -63,6 +63,18 @@ namespace Zamov.Controllers
             }
             set { Session["CurrentDealer"] = value; }
         }
+
+        public static int? SelectedDealer
+        {
+            get
+            {
+                int? result = null;
+                if (Session["SelectedDealer"] != null)
+                    result = Convert.ToInt32(Session["SelectedDealer"]);
+                return result;
+            }
+            set { Session["SelectedDealer"] = value; }
+        }
         
         public static Guid? CurrentUserId
         {

@@ -30,7 +30,6 @@ namespace Zamov.Controllers
                                                 ).First();
                 ViewData["description"] = dealerProperties;
                 ViewData["dealerId"] = id;
-                BreadCrumbsExtensions.AddBreadCrumb(HttpContext, dealerProperties.Name, "/Dealer/" + dealerProperties.Id); 
                 return View(dealerProperties);
             }
         }

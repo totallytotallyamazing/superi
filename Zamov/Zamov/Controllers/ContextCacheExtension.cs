@@ -49,16 +49,20 @@ namespace Zamov.Controllers
         public static List<Category> GetSubCategories(int categoryId, bool reload)
         {
             List<Category> result = new List<Category>();
-            if (Cache["SubCategories_" + categoryId] != null && !reload)
-                result = (List<Category>)Cache["SubCategories_" + categoryId];
-            else
-            {
+            //if (Cache["SubCategories_" + categoryId] != null && !reload)
+            //    result = (List<Category>)Cache["SubCategories_" + categoryId];
+            //else
+            //{
                 using (ZamovStorage context = new ZamovStorage())
                 {
-                    result = (from category in context.Categories.Include("Categories") where category.Parent.Id == categoryId && category.Dealers.Count > 0 && category.Enabled select category).ToList();
+                    result = (from category in context.Categories.Include("Categories") 
+                              where category.Parent.Id == categoryId 
+                              && category.Dealers.Count > 0 
+                              && category.Enabled 
+                              select category).ToList();
                 }
-                Cache["SubCategories_" + categoryId] = result;
-            }
+               // Cache["SubCategories_" + categoryId] = result;
+            //}
             return result;
         }
 

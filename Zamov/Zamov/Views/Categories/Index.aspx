@@ -44,6 +44,8 @@
                 %><ul><%
                 foreach (Category subSubCategory in subCategory.Categories)
                 {
+                    if (subSubCategory.Enabled)
+                    {
                     %>
                     <li>
                        
@@ -52,6 +54,7 @@
                     </li>
                     
                     <%
+                          }
                 }
                 %></ul><%
             }

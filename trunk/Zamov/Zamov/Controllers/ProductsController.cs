@@ -9,13 +9,19 @@ using System;
 
 namespace Zamov.Controllers
 {
+    [BreadCrumb(CategoryId = true)]
     public class ProductsController : Controller
     {
         //
         // GET: /Products/
 
+        [BreadCrumb(SubCategoryId = true)]
         public ActionResult Index(int dealerId, int? groupId)
         {
+            BreadCrumbsExtensions.AddBreadCrumb(HttpContext, BreadCrumbAttribute.DealerName(dealerId), "/Delers/SelectDealer/" + dealerId);
+            if (groupId != null)
+                BreadCrumbAttribute.ProcessGroup(groupId.Value, HttpContext);
+
             using (ZamovStorage context = new ZamovStorage())
             {
                 List<Group> groups = (from g in context.Groups.Include("Groups") where g.Dealer.Id == dealerId select g).ToList();

@@ -12,7 +12,7 @@ namespace Zamov.Controllers
 {
     public class CategoriesController : Controller
     {
-        [BreadCrumb(ResourceName = "Categories", Url = "/Categories")]
+        [BreadCrumb(CategoryId=true)]
         public ActionResult Index()
         {
             List<Category> subCategories = ContextCache.GetSubCategories(SystemSettings.CategoryId, false);

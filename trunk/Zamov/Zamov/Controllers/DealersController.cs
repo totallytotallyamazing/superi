@@ -11,16 +11,14 @@ using Zamov.Helpers;
 
 namespace Zamov.Controllers
 {
+    [BreadCrumb(CategoryId = true)]
     public class DealersController : Controller
     {
         //
         // GET: /Dealers/
-        //[BreadCrumb( ResourceName = "Dealers", Url = "/Dealers")]
+        [BreadCrumb( SubCategoryId = true )]
         public ActionResult Index()
         {
-            BreadCrumbsExtensions.AddBreadCrumb(HttpContext, ResourcesHelper.GetResourceString("Categories"), "/Categories");
-            BreadCrumbsExtensions.AddBreadCrumb(HttpContext, SystemSettings.CategoryName, "/Categories");
-            BreadCrumbsExtensions.AddBreadCrumb(HttpContext, ResourcesHelper.GetResourceString("Dealers"), "/Dealers");
             using (ZamovStorage context = new ZamovStorage())
             {
                 var dealers = (from dealer in context.Dealers.Include("Cities").Include("Categories")
@@ -43,6 +41,7 @@ namespace Zamov.Controllers
         public ActionResult SelectDealer(int id)
         {
             int? groupId = null;
+            SystemSettings.SelectedDealer = id;
             using (ZamovStorage context = new ZamovStorage())
             {
                 Dealer currentDealer = context.Dealers.Include("Groups").Select(d => d).Where(d => d.Id == id).First();

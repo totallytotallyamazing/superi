@@ -110,27 +110,5 @@ namespace Zamov.Models
             }
             return result;
         }
-
-        public static Dictionary<int, string> GetGroupsPath(this ZamovStorage context, int dealerId)
-        {
-            EntityParameter dealerIdParameter = new EntityParameter();
-            dealerIdParameter.ParameterName = "dealerId";
-            dealerIdParameter.IsNullable = false;
-            dealerIdParameter.Value = dealerId;
-            dealerIdParameter.DbType = System.Data.DbType.Int32;
-            DbDataReader reader = ExecuteReader(context, "ZamovStorage.GetGroupsPath", dealerIdParameter);
-            Dictionary<int, string> result = new Dictionary<int, string>();
-            if (reader.HasRows)
-            {
-                while (reader.Read())
-                {
-                    int id = reader.GetInt32(reader.GetOrdinal("Id"));
-                    string path = reader.GetString(reader.GetOrdinal("Path"));
-                    result.Add(id, path);
-                }
-            }
-            reader.Close();
-            return result;
-        }
     }
 }

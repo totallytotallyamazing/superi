@@ -39,7 +39,7 @@ namespace Zamov.Controllers
         public ActionResult AddToCart(FormCollection items)
         {
             Cart cart = SystemSettings.Cart;
-            Dictionary<string, Dictionary<string, string>> orderItems = items.ProcessPostData("X-Requested-With");
+            PostData orderItems = items.ProcessPostData("X-Requested-With");
             if (orderItems.Count > 0)
             {
                 var orderItemList =

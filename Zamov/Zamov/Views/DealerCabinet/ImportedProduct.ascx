@@ -3,31 +3,27 @@
 
 <%
     bool isNew = (bool)ViewData["isNew"];
-    string changeFunction = "tableChanged({0}, this)";
-    if (isNew)
-        changeFunction = String.Format(changeFunction, "newItems");
-    else
-        changeFunction = String.Format(changeFunction, "updatedItems");
+    string checkClass = (isNew) ? "newCheck" : "modifiedCheck";
     string divId = (isNew) ? "newProductDescription_" + ViewData["id"] : "updatedProductDescription_" + ViewData["id"];
     string fckUkId = (isNew) ? "newUkDescription_" + ViewData["id"] : "updatedUkDescription_" + ViewData["id"];
     string fckRuId = (isNew) ? "newRuDescription_" + ViewData["id"] : "updatedRuDescription_" + ViewData["id"];
 %>
 
 <tr>
-    <td>
-        <%= Html.DropDownList("groupId_" + ViewData["id"], (List<SelectListItem>)ViewData["groupList"], new { onblur = changeFunction })%>
+    <td class="check">
+        <%= Html.CheckBox("check_" + ViewData["id"], false, new { @class = checkClass })%>
     </td>
     <td>
-        <%= Html.TextBox("partNumber_" + ViewData["id"], ViewData["partNumber"], new { onblur = changeFunction })%>
+        <%= ViewData["partNumber"] %>
     </td>
     <td>
-        <%= Html.TextBox("name_" + ViewData["id"], ViewData["name"], new { onblur = changeFunction })%>
+        <%= ViewData["name"] %>
     </td>
     <td>
-        <%= Html.TextBox("price_" + ViewData["id"], ViewData["price"], new { onblur = changeFunction })%>
+        <%= ViewData["price"] %>
     </td>
     <td>
-        <%= Html.TextBox("unit_" + ViewData["id"], ViewData["unit"], new { onblur = changeFunction })%>
+        <%= ViewData["unit"] %>
     </td>
     <td align="center">
         <a href="javascript:openDescriptionDialog('<%= divId %>')" class="productDescriptionLink">
@@ -41,10 +37,10 @@
                 </tr>
                 <tr>
                     <td style="width:330px;">
-                        <%= Html.TextArea(fckUkId, (string)ViewData["ukDescription"], new { onblur = changeFunction, @class = "fck" })%>
+                        <%= ViewData["ukDescription"] %>
                     </td>
                     <td style="width:330px;">
-                        <%= Html.TextArea(fckRuId, (string)ViewData["ruDescription"], new { onblur = changeFunction, @class = "fck" })%>
+                        <%= ViewData["ruDescription"] %>
                     </td>
                 </tr>
             </table>

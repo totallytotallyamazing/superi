@@ -88,13 +88,13 @@ namespace Zamov.Models
             return document.OuterXml;
         }
 
-        public static List<Dictionary<string, string>> QureyUploadedXls(string fileName, int dealerId)
+        public static List<Dictionary<string, string>> QureyUploadedXls(string fileName, int dealerId, int? groupId)
         {
             DataSet result = GetExcelDataSet(fileName);
 
             List<Dictionary<string, string>> importedItems = result.Tables[0].ToDictionaryList();
 
-            MarkImportedCorrespondences(importedItems, dealerId);
+            MarkImportedCorrespondences(importedItems, dealerId, groupId);
             return importedItems;
         }
 
@@ -168,54 +168,27 @@ namespace Zamov.Models
             return importedItems;
         }
 
-        private static void MarkImportedCorrespondences(List<Dictionary<string, string>> importedItems, int dealerId)
+        private static void MarkImportedCorrespondences(List<Dictionary<string, string>> importedItems, int dealerId, int? groupId)
         {
             Dictionary<string, Product> products = new Dictionary<string, Product>();
-            Dictionary<int, string> groups = new Dictionary<int, string>();
             using (ZamovStorage context = new ZamovStorage())
             {
                 products = (from product in context.Products
                             where product.Deleted == false && product.Dealer.Id == dealerId
+                            && (groupId == null || product.Group.Id == groupId.Value)
                             select product).ToDictionary(p=>p.PartNumber, p=>p);
-                groups = context.GetGroupsPath(dealerId);
             }
-            
+
             foreach (var item in importedItems)
             {
-                string groupPath = item["groupPath"];
                 string partNumber = item["partNumber"];
 
                 Product product = null;
-                if(products.Keys.Contains(partNumber))
+                if (products.Keys.Contains(partNumber))
                     product = products[partNumber];
                 item["productId"] = (product != null) ? product.Id.ToString() : null;
-                int? groupId = (from g in groups where g.Value == groupPath select g.Key).SingleOrDefault();
-                item["groupId"] = (groupId != null) ? groupId.Value.ToString() : null;
             }
         }
 
-        //private static string IdentifyGroup(string group)
-        //{
-        //    string result = null;
-        //    string[] groupPath = group.Split(new char[] { '/' });
-        //    ZamovStorage context = new ZamovStorage();
-        //    if (groupPath.Length > 0)
-        //    {
-        //        string groupName = groupPath[groupPath.Length - 1];
-        //        List<Group> groups = (from g in context.Groups where g.Name == groupName select g).ToList();
-        //        foreach (var g in groups)
-        //        {
-        //            if (result == null && g.MatchesPath(groupPath))
-        //                result = g.Id.ToString();
-        //        }
-        //    }
-        //    else
-        //    {
-        //        result = null;
-        //    }
-        //    context.Connection.Close();
-        //    context.Dispose();
-        //    return result;
-        //}
     }
 }

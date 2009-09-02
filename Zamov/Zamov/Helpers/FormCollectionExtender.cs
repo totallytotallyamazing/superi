@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Zamov.Controllers;
 
 namespace Zamov.Helpers
 {
     public static class FormCollectionExtender
     {
-        public static Dictionary<string, Dictionary<string, string>> ProcessPostData(this FormCollection form, params string[] excludeFields)
+        public static PostData ProcessPostData(this FormCollection form, params string[] excludeFields)
         {
-            Dictionary<string, Dictionary<string, string>> result = new Dictionary<string, Dictionary<string, string>>();
+            PostData result = new PostData();
             foreach (string key in form.Keys)
             {
                 if (excludeFields == null || !excludeFields.Contains(key))

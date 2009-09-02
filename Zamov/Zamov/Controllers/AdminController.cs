@@ -120,7 +120,7 @@ namespace Zamov.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Dealers(FormCollection form)
         {
-            Dictionary<string, Dictionary<string, string>> postData = form.ProcessPostData();
+            PostData postData = form.ProcessPostData();
             var dealerUpdates = (from pd in postData
                                  select new
                                  {
@@ -481,7 +481,7 @@ namespace Zamov.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult News(FormCollection form)
         {
-            Dictionary<string, Dictionary<string, string>> updates = form.ProcessPostData();
+            PostData updates = form.ProcessPostData();
             using (NewsStorage context = new NewsStorage())
             {
                 var news = (from item in context.News select item).ToList();

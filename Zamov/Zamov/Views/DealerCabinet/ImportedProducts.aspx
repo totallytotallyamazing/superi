@@ -2,7 +2,7 @@
 <%@ Import Namespace="Microsoft.Web.Mvc" %>
 <%@ Import Namespace="Zamov.Helpers" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	ImportedProducts
+	<%= Html.ResourceString("ImportedProducts") %>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
@@ -23,8 +23,6 @@
                     buttons: { "Ok": closeDescriptionDialog }
                 });
 
-            $.fck.config = { path: '<%= VirtualPathUtility.ToAbsolute("~/Controls/fckeditor/") %>', config: { SkinPath: "skins/office2003/"} };
-            $('textarea.fck').fck({ toolbar: "Basic", height: 400, language: "RU", HTMLEncode: true });
         })
         
         function closeDescriptionDialog() {
@@ -38,10 +36,23 @@
             $("#" + id).dialog('option', 'position', 'center');
         }
 
-        function saveImports() {
-            collectChanges(newItems, 'newItemUpdates');
-            collectChanges(updatedItems, 'updatedItemUpdates');
-            $("#saveForm").submit();
+        function checkAll(className, el) {
+            if (el.checked)
+                $("." + className).attr("checked", true);
+            else {
+                $("." + className).attr("checked", false); 
+            }
+        }
+
+        function verifyGroupSaving() {
+            if ($get("groupItems").value) {
+                return true;
+            }
+            else {
+                $get("groupItems").style.color = "red";
+                return false;
+            }
+                
         }
     </script>
 <%
@@ -49,7 +60,7 @@
     List<Dictionary<string, string>> newItems = (List<Dictionary<string, string>>)ViewData["newItems"];
 %>
     
-    <h2>ImportedProducts</h2>
+    <h2><%= Html.ResourceString("ImportedProducts") %></h2>
     <input style="padding:10px; margin-top:10px;" type="button" class="ui-state-default ui-corner-all" value="<%= Html.ResourceString("Save") %>" onclick="saveImports()" />
     <div id="tabs">
         <ul>
@@ -61,46 +72,57 @@
             </li>
         </ul>
         <div id="tabs-1">
-            <table>
+            <%using(Html.BeginForm("SaveSelectedTo", "DealerCabinet")){ %>
+            <div>
+                <%= Html.ResourceString("CheckedSaveTo")%>
+                <%= Html.DropDownList("groupItems")%>
+                <input type="submit" value=">" onclick="return verifyGroupSaving()" style="padding:0 5px;" />
+            </div>
+            <table class="importedTable">
                 <tr>
-                    <td align="center"><%= Html.ResourceString("Group") %></td>
-                    <td align="center"><%= Html.ResourceString("PartNumber") %></td>
-                    <td align="center"><%= Html.ResourceString("Name") %></td>
-                    <td align="center"><%= Html.ResourceString("Price") %></td>
-                    <td align="center"><%= Html.ResourceString("Unit") %></td>
-                    <td align="center"><%= Html.ResourceString("Description") %></td>
+                    <td class="check">
+                        <input type="checkbox" onclick="checkAll('newCheck', this)" />
+                    </td>
+                    <td align="center"><%= Html.ResourceString("PartNumber")%></td>
+                    <td align="center"><%= Html.ResourceString("Name")%></td>
+                    <td align="center"><%= Html.ResourceString("Price")%></td>
+                    <td align="center"><%= Html.ResourceString("Unit")%></td>
+                    <td align="center"><%= Html.ResourceString("Description")%></td>
                 </tr>
                 <%
-                    foreach(var item in newItems)
-                        Html.RenderAction<Zamov.Controllers.DealerCabinetController>(ac=>ac.ImportedProduct(item, true));
+                foreach (var item in newItems)
+                    Html.RenderAction<Zamov.Controllers.DealerCabinetController>(ac => ac.ImportedProduct(item, true));
                 %>
             </table>
+            <%} %>
         </div>
         <div id="tabs-2">
-            <table>
+            <% using (Html.BeginForm("MoveToNew", "DealerCabinet"))
+               {%>
+            <input type="submit" value="<%= Html.ResourceString("MoveCheckedToNew") %>" />
+            <table class="importedTable">
                 <tr>
-                    <td align="center"><%= Html.ResourceString("Group") %></td>
-                    <td align="center"><%= Html.ResourceString("PartNumber") %></td>
-                    <td align="center"><%= Html.ResourceString("Name") %></td>
-                    <td align="center"><%= Html.ResourceString("Price") %></td>
-                    <td align="center"><%= Html.ResourceString("Unit") %></td>
-                    <td align="center"><%= Html.ResourceString("Description") %></td>
+                    <td align="center" class="check">
+                        <input type="checkbox" onclick="checkAll('modifiedCheck', this)" />
+                    </td>
+                    <td align="center"><%= Html.ResourceString("PartNumber")%></td>
+                    <td align="center"><%= Html.ResourceString("Name")%></td>
+                    <td align="center"><%= Html.ResourceString("Price")%></td>
+                    <td align="center"><%= Html.ResourceString("Unit")%></td>
+                    <td align="center"><%= Html.ResourceString("Description")%></td>
                 </tr>
                 <%
-                    foreach(var item in updatedItems)
-                        Html.RenderAction<Zamov.Controllers.DealerCabinetController>(ac=>ac.ImportedProduct(item, false));
+                foreach (var item in updatedItems)
+                    Html.RenderAction<Zamov.Controllers.DealerCabinetController>(ac => ac.ImportedProduct(item, false));
                 %>
             </table>
+            <%} %>
+            <% using(Html.BeginForm("SaveUpdated", "DealerCabinet")){ %>
+                <%= Html.Hidden("groupId", ViewData["groupId"]) %>
+                <input type="submit" value="<%= Html.ResourceString("Save") %>" />
+            <%} %>
         </div>
     </div>
-    
-    <% using (Html.BeginForm("SaveImportedProducts", "DealerCabinet", FormMethod.Post, new { id="saveForm" }))
-       { %>
-        <%= Html.Hidden("newItemUpdates")%>
-        <%= Html.Hidden("updatedItemUpdates")%>
-    <%} %>
-    <input style="padding:10px; margin-top:10px;" type="button" class="ui-state-default ui-corner-all" value="<%= Html.ResourceString("Save") %>" onclick="saveImports()" />
-
 </asp:Content>
 
 <asp:Content ContentPlaceHolderID="includes" runat="server">

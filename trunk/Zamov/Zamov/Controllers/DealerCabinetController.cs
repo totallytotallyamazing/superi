@@ -276,11 +276,11 @@ namespace Zamov.Controllers
             return Redirect(url);
         }
 
-        private void GetGroupItems(List<SelectListItem> items, int dealerId, int groupId, string prefix, int currentGroipId)
+        private void GetGroupItems(List<SelectListItem> items, int dealerId, int groupId, string prefix, int? currentGroupId)
         {
 
             if (groupId < 0)
-                items.Add(new SelectListItem { Selected = currentGroipId < 0, Text = ResourcesHelper.GetResourceString("SelectGroup"), Value = "" });
+                items.Add(new SelectListItem { Selected = currentGroupId == null, Text = ResourcesHelper.GetResourceString("SelectGroup"), Value = "" });
             using (ZamovStorage context = new ZamovStorage())
             {
                 List<Group> groups = new List<Group>();
@@ -299,7 +299,7 @@ namespace Zamov.Controllers
                 {
                     SelectListItem listItem = new SelectListItem
                     {
-                        Selected = (g.Id == currentGroipId),
+                        Selected = (g.Id == currentGroupId),
                         Text = prefix + " " + g.GetName(SystemSettings.CurrentLanguage),
                         Value = g.Id.ToString()
                     };
@@ -307,7 +307,7 @@ namespace Zamov.Controllers
                     if (!g.Groups.IsLoaded)
                         g.Groups.Load();
                     if (g.Groups != null && g.Groups.Count > 0)
-                        GetGroupItems(items, dealerId, g.Id, prefix + "--", currentGroipId);
+                        GetGroupItems(items, dealerId, g.Id, prefix + "--", currentGroupId);
                 }
             }
         }
@@ -365,6 +365,7 @@ namespace Zamov.Controllers
                 return View();
             }
         }
+
         [AcceptVerbs(HttpVerbs.Post)]
         public void UpdateProductImage(int id, int productId)
         {
@@ -415,7 +416,7 @@ namespace Zamov.Controllers
 
         public ActionResult UpdateProducts(FormCollection form)
         {
-            Dictionary<string, Dictionary<string, string>> updates = form.ProcessPostData("groupId");
+            PostData updates = form.ProcessPostData("groupId");
             int groupId = int.Parse(form["groupId"]);
             using (ZamovStorage context = new ZamovStorage())
                 context.UpdateProducts(updates.CreateUpdatesXml());
@@ -424,19 +425,21 @@ namespace Zamov.Controllers
         #endregion
 
         #region Products import
+
         [BreadCrumb(ResourceName = "ImportedProducts", Url = "/DealerCabinet/ImportedProducts")]
         public ActionResult ImportedProducts(int? groupId)
         {
             string fileName = (string)Session["uploadedXls"];
-            List<Dictionary<string, string>> importedProductsSet = Utils.QureyUploadedXls(fileName, SystemSettings.CurrentDealer.Value);
+            List<Dictionary<string, string>> importedProductsSet = Utils.QureyUploadedXls(fileName, SystemSettings.CurrentDealer.Value, groupId);
             List<Dictionary<string, string>> updatedItems = (from item in importedProductsSet where item["productId"] != null select item).ToList();
             List<Dictionary<string, string>> newItems = (from item in importedProductsSet where item["productId"] == null select item).ToList();
-            int productId = 1;
-            foreach (var item in newItems)
-            {
-                item["productId"] = productId.ToString();
-                productId++;
-            }
+            
+            newItems.ForEach(i => i["productId"] = (-i.GetHashCode()).ToString());
+
+            List<SelectListItem> items = new List<SelectListItem>();
+            string cacheKey = "ImportedProduct_DealerId=" + SystemSettings.CurrentDealer.Value;
+            GetGroupItems(items, SystemSettings.CurrentDealer.Value, int.MinValue, "", groupId);
+            ViewData["groupItems"] = items;
             Dictionary<string, Dictionary<string, string>> updatedItemsDictionary = updatedItems.ToDictionary(el => (string)el["productId"], el => el);
             Dictionary<string, Dictionary<string, string>> newItemsDictionary = newItems.ToDictionary(el => (string)el["productId"], el => el);
             ViewData["updatedItems"] = updatedItems;
@@ -449,25 +452,12 @@ namespace Zamov.Controllers
         public ActionResult ImportedProduct(Dictionary<string, string> product, bool isNew)
         {
             int productId = int.Parse(product["productId"]);
-            int? groupId = null;
-            if (product["groupId"] != null)
-                groupId = int.Parse(product["groupId"]);
             string partNumber = (string)product["partNumber"];
             string name = (string)product["name"];
             string price = (string)product["price"];
             string ukDescription = (string)product["ukDescription"];
             string ruDescription = (string)product["ruDescription"];
             string unit = (string)product["unit"];
-            List<SelectListItem> items = new List<SelectListItem>();
-            int currentGroupId = (groupId) ?? int.MinValue;
-            string cacheKey = "ImportedProduct_DealerId=" + SystemSettings.CurrentDealer.Value;
-            if (HttpContext.Cache[cacheKey] != null)
-                items = (List<SelectListItem>)HttpContext.Cache[cacheKey];
-            else
-            {
-                GetGroupItems(items, SystemSettings.CurrentDealer.Value, int.MinValue, "", currentGroupId);
-                HttpContext.Cache[cacheKey] = items;
-            }
             ViewData["id"] = productId;
             ViewData["partNumber"] = partNumber;
             ViewData["name"] = name;
@@ -477,7 +467,6 @@ namespace Zamov.Controllers
             ViewData["price"] = decimalPrice;
             ViewData["ukDescription"] = ukDescription;
             ViewData["ruDescription"] = ruDescription;
-            ViewData["groupList"] = items;
             ViewData["unit"] = unit;
             ViewData["isNew"] = isNew;
             return View();
@@ -502,46 +491,68 @@ namespace Zamov.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult SaveImportedProducts(string newItemUpdates, string updatedItemUpdates)
+        public ActionResult MoveToNew(FormCollection form, int? groupId)
         {
-            string fileName = (string)Session["uploadedXls"];
-            System.IO.File.Delete(fileName);
+            PostData postData = form.ProcessPostData("groupId");
+            int[] items = (from item in postData where item.Value["check"] == "true" select int.Parse(item.Key)).ToArray();
+            Dictionary<string, Dictionary<string, string>> updatedItemsDictionary = (Dictionary<string, Dictionary<string, string>>)Session["updatedItems"];
+            Dictionary<string, Dictionary<string, string>> newItemsDictionary = (Dictionary<string, Dictionary<string, string>>)Session["newItems"];
+            foreach (int id in items)
+            {
+                Dictionary<string, string> itemToMove = (from item in updatedItemsDictionary where item.Key == id.ToString() select item.Value).First();
+                newItemsDictionary.Add((-itemToMove.GetHashCode()).ToString(), itemToMove);
+                updatedItemsDictionary.Remove(id.ToString());
+            }
+
+            if (updatedItemsDictionary.Count == 0 && newItemsDictionary.Count == 0)
+                return RedirectToAction("Products", new { groupId = groupId });
+            
+            return RedirectToAction("ImportedProducts", new { groupId = groupId });
+        }
+
+        public ActionResult SaveSelectedTo(FormCollection form, int groupItems)
+        {
+            PostData postData = form.ProcessPostData("groupItems");
+            int[] items = (from item in postData where item.Value["check"] == "true" select int.Parse(item.Key)).ToArray();
+            
+            Dictionary<string, Dictionary<string, string>> newItemsDictionary = (Dictionary<string, Dictionary<string, string>>)Session["newItems"];
+            Dictionary<string, Dictionary<string, string>> updatedItemsDictionary = (Dictionary<string, Dictionary<string, string>>)Session["updatedItems"];
+            
+            Dictionary<string, Dictionary<string, string>> itemsToMove =
+                (from item in newItemsDictionary where items.Contains(int.Parse(item.Key)) select item.Value).ToDictionary(i => i["productId"], i => i);
+
+            foreach (string key in itemsToMove.Keys)
+            {
+                itemsToMove[key]["groupId"] = groupItems.ToString();
+                newItemsDictionary.Remove(key);
+            }
+
+            string newItemsXml = itemsToMove.CreateUpdatesXml();
+
+            using (ZamovStorage context = new ZamovStorage())
+                context.InsertImportedProducts(newItemsXml, SystemSettings.CurrentDealer.Value);
+
+            if (updatedItemsDictionary.Count == 0 && newItemsDictionary.Count == 0)
+                return RedirectToAction("Products", new { groupId = groupItems });
+
+            return RedirectToAction("ImportedProducts", new { groupId = groupItems });
+        }
+
+        private ActionResult SaveUpdated(int? groupId)
+        {
             Dictionary<string, Dictionary<string, string>> updatedItemsDictionary = (Dictionary<string, Dictionary<string, string>>)Session["updatedItems"];
             Dictionary<string, Dictionary<string, string>> newItemsDictionary = (Dictionary<string, Dictionary<string, string>>)Session["newItems"];
 
-            if (!string.IsNullOrEmpty(newItemUpdates))
-            {
-                JavaScriptSerializer serializer = new JavaScriptSerializer();
-                Dictionary<string, Dictionary<string, string>> newUpdates = serializer.Deserialize<Dictionary<string, Dictionary<string, string>>>(newItemUpdates);
-                foreach (string key in newUpdates.Keys)
-                {
-                    Dictionary<string, string> update = newUpdates[key];
-                    foreach (string updateKey in update.Keys)
-                        newItemsDictionary[key][updateKey] = update[updateKey];
-                }
-            }
-
-            if (!string.IsNullOrEmpty(updatedItemUpdates))
-            {
-                JavaScriptSerializer serializer = new JavaScriptSerializer();
-                Dictionary<string, Dictionary<string, string>> updatedUpdates = serializer.Deserialize<Dictionary<string, Dictionary<string, string>>>(updatedItemUpdates);
-                foreach (string key in updatedUpdates.Keys)
-                {
-                    Dictionary<string, string> update = updatedUpdates[key];
-                    foreach (string updateKey in update.Keys)
-                        updatedItemsDictionary[key][updateKey] = update[updateKey];
-                }
-            }
-
             string updatesXml = updatedItemsDictionary.CreateUpdatesXml();
-            string newItemsXml = newItemsDictionary.CreateUpdatesXml();
             using (ZamovStorage context = new ZamovStorage())
-            {
-                context.InsertImportedProducts(newItemsXml, SystemSettings.CurrentDealer.Value);
                 context.UpdateImportedProducts(updatesXml);
-            }
-            Session["uploadedXls"] = null;
-            return RedirectToAction("Products");
+
+            ((Dictionary<string, Dictionary<string, string>>)Session["updatedItems"]).Clear();
+
+            if (updatedItemsDictionary.Count == 0 && newItemsDictionary.Count == 0)
+                return RedirectToAction("Products", new { groupId = groupId });
+
+            return RedirectToAction("ImportedProducts", new { groupId = groupId });
         }
         #endregion
 

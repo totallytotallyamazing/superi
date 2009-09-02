@@ -99,6 +99,7 @@
     <Compile Include="Controllers\ImageController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\PagePartsController.cs" />
+    <Compile Include="Controllers\PostData.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\Resources.cs" />
     <Compile Include="Controllers\SearchController.cs" />
@@ -261,6 +262,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Cart.css" />
+    <Content Include="Content\DelaerCabinet.css" />
     <Content Include="Content\fancy\fancy_closebox.png" />
     <Content Include="Content\fancy\fancy_left.png" />
     <Content Include="Content\fancy\fancy_progress.png" />

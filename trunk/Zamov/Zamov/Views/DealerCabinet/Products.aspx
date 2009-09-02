@@ -91,6 +91,7 @@
     <div id="importProducts" style="padding:20px; text-align:center;">  
         <%using (Html.BeginForm("UploadXls", "DealerCabinet", FormMethod.Post, new { id="xlsForm", enctype="multipart/form-data" }))
           { %>
+            <%= Html.Hidden("groupId", ViewData["groupId"]) %>
             <input type="file" name="xls" id="xls" />
         <%} %>
     </div>
@@ -170,10 +171,10 @@
                 <%= Html.CheckBox("new_" + item.Id, item.New) %>
             </td>
             <td>
-                <%= Html.CheckBox("action_" + item.Id, item.New) %>
+                <%= Html.CheckBox("action_" + item.Id, item.Action) %>
             </td>
             <td>
-                <%= Html.CheckBox("topProduct_" + item.Id, item.New) %>
+                <%= Html.CheckBox("topProduct_" + item.Id, item.TopProduct) %>
             </td>
             <td align="center">
                 <%= Html.CheckBox("active_" + item.Id, item.Enabled, new { onblur = "tableChanged(updates, this)" })%>

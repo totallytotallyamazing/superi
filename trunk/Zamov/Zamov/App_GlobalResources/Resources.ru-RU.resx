@@ -669,4 +669,10 @@
   <data name="Details" xml:space="preserve">
     <value>Подробнее &amp;gt;&amp;gt;</value>
   </data>
+  <data name="CheckedSaveTo" xml:space="preserve">
+    <value>Отмеченные сохранить в</value>
+  </data>
+  <data name="MoveCheckedToNew" xml:space="preserve">
+    <value>Переместить в новые</value>
+  </data>
 </root>

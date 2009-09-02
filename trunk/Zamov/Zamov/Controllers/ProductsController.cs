@@ -75,7 +75,7 @@ namespace Zamov.Controllers
         public ActionResult AddToCart(int dealerId, int? groupId, FormCollection items)
         {
             Cart cart = SystemSettings.Cart;
-            Dictionary<string, Dictionary<string, string>> orderItems = items.ProcessPostData("dealerId", "groupId");
+            PostData orderItems = items.ProcessPostData("dealerId", "groupId");
             if (orderItems.Count > 0)
             {
                 Order order = (from o in cart.Orders where o.DealerReference.EntityKey != null && (int)o.DealerReference.EntityKey.EntityKeyValues[0].Value == dealerId select o).SingleOrDefault();

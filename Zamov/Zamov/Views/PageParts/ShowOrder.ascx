@@ -33,6 +33,7 @@
         </th>
         <th>
             <%=Html.ResourceString("Price")%>
+            грн.
         </th>
         <th>
             <%=Html.ResourceString("Quantity")%>

@@ -3,6 +3,15 @@
 <%@ Import Namespace="Zamov.Models"%>
 
 <script type="text/javascript">
+    var orderId = '<%= Model.Id %>';
+    var orderStatus = '<%= Html.ResourceString("StatusAccepted") %>';
+
+    function orderAccepted(response) {
+        fadeScreenOut();
+        $("#fancy_ajax").load("/DealerCabinet/ShowOrder/" + orderId, null, function() { fadeScreenIn(); });
+        $("#orderStatus" + orderId).html(orderStatus);
+    }
+    
 </script>
 <div align="center">
 <div align="left"  style="padding-left:30px; padding-top:10px;">
@@ -27,6 +36,10 @@
         <p>
             <%=Html.ResourceString("OrderDeliveryDateTime") %>:
             <%= Html.Encode(String.Format("{0:g}", Model.DeliveryDate)) %>
+        </p>
+        <p>
+            <%=Html.ResourceString("City") %>:
+            <%= Html.Encode(Model.City) %>
         </p>
         <p>
             <%=Html.ResourceString("DeliveryAddress") %>:
@@ -76,8 +89,8 @@
 <tr>
     <td>
     <%
-    using (Html.BeginForm("AcceptOrder", "DealerCabinet", FormMethod.Post))
-    {%>
+        using (Ajax.BeginForm("AcceptOrder", "DealerCabinet", new AjaxOptions { OnSuccess = "orderAccepted", OnFailure = "failureCallback", OnBegin = "fadeScreenOut", OnComplete = "fadeScreenIn" }))
+        {%>
             <input type="submit" value="<%=Html.ResourceString("AcceptOrder") %>" />
             <%=Html.Hidden("orderId", Model.Id)%>
             

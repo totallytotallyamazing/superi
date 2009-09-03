@@ -50,6 +50,9 @@
           <Property Name="HasDiscounts" Type="bit" Nullable="false" />
           <Property Name="TopDealer" Type="bit" Nullable="false" />
           <Property Name="TopDealerTill" Type="datetime" />
+          <Property Name="Cash" Type="bit" Nullable="false" />
+          <Property Name="Noncash" Type="bit" Nullable="false" />
+          <Property Name="Card" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="OrderItems">
           <Key>
@@ -81,6 +84,7 @@
           <Property Name="PaymentType" Type="int" Nullable="false" />
           <Property Name="DiscountCardNumber" Type="varchar" MaxLength="50" />
           <Property Name="Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="City" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Unit">
           <Key>
@@ -200,7 +204,8 @@
           <Property Name="ClientName" Type="String" Nullable="false" />
           <Property Name="PaymentType" Type="Int32" Nullable="false" />
           <Property Name="DiscountCardNumber" Type="String" Nullable="true" />
-          <Property Name="Email" Type="String" Nullable="true" /></EntityType>
+          <Property Name="Email" Type="String" Nullable="true" />
+          <Property Name="City" Type="String" Nullable="true" /></EntityType>
         <Association Name="FK_Orders_Carts">
           <End Role="Carts" Type="OrderEntities.Cart" Multiplicity="1" />
           <End Role="Orders" Type="OrderEntities.Order" Multiplicity="*" />
@@ -220,7 +225,10 @@
           <NavigationProperty Name="Orders" Relationship="OrderEntities.FK_Orders_Dealers" FromRole="Dealers" ToRole="Order" />
           <Property Name="HasDiscounts" Type="Boolean" Nullable="false" />
           <Property Name="TopDealer" Type="Boolean" Nullable="false" />
-          <Property Name="TopDealerTill" Type="DateTime" Nullable="true" /></EntityType>
+          <Property Name="TopDealerTill" Type="DateTime" Nullable="true" />
+          <Property Name="Cash" Type="Boolean" Nullable="false" />
+          <Property Name="Noncash" Type="Boolean" Nullable="false" />
+          <Property Name="Card" Type="Boolean" Nullable="false" /></EntityType>
         <Association Name="FK_Orders_Dealers">
           <End Type="OrderEntities.OrderDealer" Role="Dealers" Multiplicity="1" />
           <End Type="OrderEntities.Order" Role="Order" Multiplicity="*" /></Association>
@@ -264,6 +272,7 @@
           <EntitySetMapping Name="Orders">
             <EntityTypeMapping TypeName="IsTypeOf(OrderEntities.Order)">
               <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="City" ColumnName="City" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="DiscountCardNumber" ColumnName="DiscountCardNumber" />
                 <ScalarProperty Name="PaymentType" ColumnName="PaymentType" />
@@ -297,6 +306,9 @@
           <EntitySetMapping Name="OrderDealers">
             <EntityTypeMapping TypeName="IsTypeOf(OrderEntities.OrderDealer)">
               <MappingFragment StoreEntitySet="Dealers">
+                <ScalarProperty Name="Card" ColumnName="Card" />
+                <ScalarProperty Name="Noncash" ColumnName="Noncash" />
+                <ScalarProperty Name="Cash" ColumnName="Cash" />
                 <ScalarProperty Name="TopDealerTill" ColumnName="TopDealerTill" />
                 <ScalarProperty Name="TopDealer" ColumnName="TopDealer" />
                 <ScalarProperty Name="HasDiscounts" ColumnName="HasDiscounts" />

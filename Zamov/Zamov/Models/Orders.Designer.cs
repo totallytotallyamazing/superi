@@ -15,7 +15,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("OrderEntities", "FK_OrderItems_Unit", "Unit", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Zamov.Models.Unit), "OrderItem", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Zamov.Models.OrderItem))]
 
 // Original file name:
-// Generation date: 27.08.2009 13:51:07
+// Generation date: 03/09/2009 19:16:19
 namespace Zamov.Models
 {
     
@@ -853,6 +853,29 @@ namespace Zamov.Models
         partial void OnEmailChanging(string value);
         partial void OnEmailChanged();
         /// <summary>
+        /// There are no comments for Property City in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string City
+        {
+            get
+            {
+                return this._City;
+            }
+            set
+            {
+                this.OnCityChanging(value);
+                this.ReportPropertyChanging("City");
+                this._City = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
+                this.ReportPropertyChanged("City");
+                this.OnCityChanged();
+            }
+        }
+        private string _City;
+        partial void OnCityChanging(string value);
+        partial void OnCityChanged();
+        /// <summary>
         /// There are no comments for Cart in the schema.
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("OrderEntities", "FK_Orders_Carts", "Carts")]
@@ -967,7 +990,10 @@ namespace Zamov.Models
         /// <param name="enabled">Initial value of Enabled.</param>
         /// <param name="hasDiscounts">Initial value of HasDiscounts.</param>
         /// <param name="topDealer">Initial value of TopDealer.</param>
-        public static OrderDealer CreateOrderDealer(int id, string name, bool enabled, bool hasDiscounts, bool topDealer)
+        /// <param name="cash">Initial value of Cash.</param>
+        /// <param name="noncash">Initial value of Noncash.</param>
+        /// <param name="card">Initial value of Card.</param>
+        public static OrderDealer CreateOrderDealer(int id, string name, bool enabled, bool hasDiscounts, bool topDealer, bool cash, bool noncash, bool card)
         {
             OrderDealer orderDealer = new OrderDealer();
             orderDealer.Id = id;
@@ -975,6 +1001,9 @@ namespace Zamov.Models
             orderDealer.Enabled = enabled;
             orderDealer.HasDiscounts = hasDiscounts;
             orderDealer.TopDealer = topDealer;
+            orderDealer.Cash = cash;
+            orderDealer.Noncash = noncash;
+            orderDealer.Card = card;
             return orderDealer;
         }
         /// <summary>
@@ -1161,6 +1190,75 @@ namespace Zamov.Models
         private global::System.Nullable<global::System.DateTime> _TopDealerTill;
         partial void OnTopDealerTillChanging(global::System.Nullable<global::System.DateTime> value);
         partial void OnTopDealerTillChanged();
+        /// <summary>
+        /// There are no comments for Property Cash in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public bool Cash
+        {
+            get
+            {
+                return this._Cash;
+            }
+            set
+            {
+                this.OnCashChanging(value);
+                this.ReportPropertyChanging("Cash");
+                this._Cash = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("Cash");
+                this.OnCashChanged();
+            }
+        }
+        private bool _Cash;
+        partial void OnCashChanging(bool value);
+        partial void OnCashChanged();
+        /// <summary>
+        /// There are no comments for Property Noncash in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public bool Noncash
+        {
+            get
+            {
+                return this._Noncash;
+            }
+            set
+            {
+                this.OnNoncashChanging(value);
+                this.ReportPropertyChanging("Noncash");
+                this._Noncash = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("Noncash");
+                this.OnNoncashChanged();
+            }
+        }
+        private bool _Noncash;
+        partial void OnNoncashChanging(bool value);
+        partial void OnNoncashChanged();
+        /// <summary>
+        /// There are no comments for Property Card in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public bool Card
+        {
+            get
+            {
+                return this._Card;
+            }
+            set
+            {
+                this.OnCardChanging(value);
+                this.ReportPropertyChanging("Card");
+                this._Card = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("Card");
+                this.OnCardChanged();
+            }
+        }
+        private bool _Card;
+        partial void OnCardChanging(bool value);
+        partial void OnCardChanged();
         /// <summary>
         /// There are no comments for Orders in the schema.
         /// </summary>

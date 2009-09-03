@@ -289,7 +289,7 @@
     <value>Изображение</value>
   </data>
   <data name="Price" xml:space="preserve">
-    <value>Стоимость</value>
+    <value>Цена</value>
   </data>
   <data name="ActiveM" xml:space="preserve">
     <value>Активный</value>
@@ -674,5 +674,11 @@
   </data>
   <data name="MoveCheckedToNew" xml:space="preserve">
     <value>Переместить в новые</value>
+  </data>
+  <data name="Value" xml:space="preserve">
+    <value>Стоимость</value>
+  </data>
+  <data name="Welcome" xml:space="preserve">
+    <value>Добро пожаловать</value>
   </data>
 </root>

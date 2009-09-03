@@ -9,7 +9,7 @@
     <script type="text/javascript">
         $(function() {
             applyDropShadows(".dealerLogo a", "shadow3");
-            if ($.browser.msie && $.browser.version!=="8.0") {
+            if ($.browser.msie && $.browser.version !== "8.0") {
                 $(".topDealers").width($(mainContent).width() - 15);
                 $(window).resize(function() { $(".topDealers").width($(mainContent).width() - 15); });
             }
@@ -17,6 +17,13 @@
                 $(".topDealers").css({ width: "100%", float: "left" });
             }
 
+            $(".dalerOnline").each(function() {
+                var top = $(this.parentNode).offset().top + 5;
+                var left = $(this.parentNode).offset().left + $(this.parentNode).width() + 10;
+                this.style.left = left + "px";
+                this.style.top = top + "px";
+            }
+            )
         })
     </script>
 

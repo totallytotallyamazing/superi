@@ -286,7 +286,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Змініти пароль.
+        ///   Looks up a localized string similar to Змінити пароль.
         /// </summary>
         internal static string ChangePassword {
             get {
@@ -1330,7 +1330,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Вартість.
+        ///   Looks up a localized string similar to Цiна.
         /// </summary>
         internal static string Price {
             get {
@@ -1690,11 +1690,29 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Вартiсть.
+        /// </summary>
+        internal static string Value {
+            get {
+                return ResourceManager.GetString("Value", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Перегляд.
         /// </summary>
         internal static string View {
             get {
                 return ResourceManager.GetString("View", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ласкаво просимо.
+        /// </summary>
+        internal static string Welcome {
+            get {
+                return ResourceManager.GetString("Welcome", resourceCulture);
             }
         }
         

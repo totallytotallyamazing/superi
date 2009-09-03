@@ -289,7 +289,7 @@
     <value>Зображення</value>
   </data>
   <data name="Price" xml:space="preserve">
-    <value>Вартість</value>
+    <value>Цiна</value>
   </data>
   <data name="ActiveM" xml:space="preserve">
     <value>Активний</value>
@@ -520,7 +520,7 @@
     <value>Введіть мобільний телефон</value>
   </data>
   <data name="ChangePassword" xml:space="preserve">
-    <value>Змініти пароль</value>
+    <value>Змінити пароль</value>
   </data>
   <data name="CheckValidatoinValue" xml:space="preserve">
     <value>Неправильно введений код підтвердження</value>
@@ -677,5 +677,11 @@
   </data>
   <data name="MoveCheckedToNew" xml:space="preserve">
     <value>Перемiстити в новi</value>
+  </data>
+  <data name="Value" xml:space="preserve">
+    <value>Вартiсть</value>
+  </data>
+  <data name="Welcome" xml:space="preserve">
+    <value>Ласкаво просимо</value>
   </data>
 </root>

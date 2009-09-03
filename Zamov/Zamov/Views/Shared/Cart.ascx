@@ -28,7 +28,7 @@
     else
         hostAction = CartHostActions.Other;
 
-    bool displayCartContainer = orderItemsCount > 0 || hostAction != CartHostActions.Other;
+    bool displayCartContainer = (orderItemsCount > 0 && cart.Id == 0) || hostAction != CartHostActions.Other;
 
 %>
 

@@ -18,7 +18,7 @@
                     autoOpen: false, 
                     resizable: false,
                     modal: true,
-                    buttons: { "<%= Html.ResourceString("Upload") %>": function(){ $get("xlsForm").submit(); } }
+                    buttons: { '<%= Html.ResourceString("Upload") %>': function(){ $get("xlsForm").submit(); } }
                  });
             $("#descriptionPopUp")
                 .dialog({
@@ -28,8 +28,8 @@
                     minHeight: 360,
                     resizable: false,
                     buttons: {
-                        "<%= Html.ResourceString("Cancel") %>": function(){closeDescriptionDialog();},
-                        "<%= Html.ResourceString("Save") %>": function() { $get("descriptionsFrame").contentWindow.updateDescription(); }
+                        '<%= Html.ResourceString("Cancel") %>': function(){closeDescriptionDialog();},
+                        '<%= Html.ResourceString("Save") %>': function() { $get("descriptionsFrame").contentWindow.updateDescription(); }
                     }
                 });
         })

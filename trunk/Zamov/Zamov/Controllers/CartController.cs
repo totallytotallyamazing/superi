@@ -10,6 +10,8 @@ using System.Globalization;
 using System.Web.Security;
 using System.Data.Objects.DataClasses;
 using System.Text.RegularExpressions;
+using System.Net.Mail;
+using Zamov.Helpers;
 
 namespace Zamov.Controllers
 {
@@ -203,8 +205,32 @@ namespace Zamov.Controllers
                 context.AddToCarts(cart);
                 context.SaveChanges();
                 context.Detach(cart);
+                MailOrders(cart);
             }
             return RedirectToAction("ThankYou");
+        }
+
+        private void MailOrders(Cart cart)
+        {
+            if (!cart.Orders.IsLoaded)
+                cart.Orders.Load();
+            List<MailAddress> addresses = new List<MailAddress>();
+            foreach (Order order in cart.Orders)
+            {
+                if (NeedsToBeMailed(order))
+                    addresses.Add(new MailAddress(MembershipExtensions.GetDealerEmail((int)order.DealerReference.EntityKey.EntityKeyValues[0].Value)));
+            }
+            MailHelper.SendTemplate(ApplicationData.FeedbackEmail, addresses, "newOrder", false);
+        }
+
+        private bool NeedsToBeMailed(Order order)
+        {
+            if (HttpContext.Items["onlineDealers"] == null)
+                HttpContext.Items["onlineDealers"] = MembershipExtensions.GetOnlineDealers();
+            int[] onlineDealers = (int[])HttpContext.Items["onlineDealers"];
+            if (!onlineDealers.Contains((int)order.DealerReference.EntityKey.EntityKeyValues[0].Value))
+                return true;
+            return false;
         }
 
         private bool ValidateMakeOrder(

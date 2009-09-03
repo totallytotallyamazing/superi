@@ -43,5 +43,39 @@ namespace Zamov.Models
             int endPosition = int.Parse(properties[3]);
             return int.Parse(propertyValues.Substring(0, endPosition));
         }
+
+        
+
+        public static string GetDealerEmail(int dealerId)
+        {
+            string dealerEmail = null;
+            if(HttpContext.Current.Cache["dealerEmail" + dealerId] == null)
+            {
+                using (MembershipStorage context = new MembershipStorage())
+                {
+                    var profiles = (from
+                                        user in context.aspnet_Users.Include("aspnet_Roles").Include("aspnet_Profile")
+                                    where
+                                        user.aspnet_Roles.Where(r => r.RoleName == "Dealers").Count() > 0
+                                    select
+                                        new
+                                        {
+                                            PropertyNames = user.aspnet_Profile.PropertyNames,
+                                            PropertyValues = user.aspnet_Profile.PropertyValuesString,
+                                            UserId = user.aspnet_Profile.UserId
+                                        });
+
+                    foreach (var item in profiles)
+                    {
+                        int id = ExtractDealerId(item.PropertyNames, item.PropertyValues);
+                        if(dealerId == id)
+                            dealerEmail = Membership.GetUser(item.UserId).UserName;
+                    }
+                }
+                HttpContext.Current.Cache["dealerEmail" + dealerId] = dealerEmail;
+            }
+            dealerEmail = HttpContext.Current.Cache["dealerEmail" + dealerId].ToString();
+            return dealerEmail;
+        }
     }
 }

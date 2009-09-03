@@ -118,6 +118,7 @@
     <Compile Include="Helpers\BreadCrumbs.cs" />
     <Compile Include="Helpers\FormCollectionExtender.cs" />
     <Compile Include="Helpers\Helpers.cs" />
+    <Compile Include="Helpers\MailHelper.cs" />
     <Compile Include="Helpers\MaskEditExtensions.cs" />
     <Compile Include="Helpers\ModalPopUpExtensions.cs" />
     <Compile Include="Helpers\ResourceTracker.cs" />
@@ -307,6 +308,7 @@
     <Content Include="Content\img\treeArrows.jpg" />
     <Content Include="Content\img\truck.jpg" />
     <Content Include="Content\jquery.treeview.css" />
+    <None Include="Content\MailTemplates\newOrder" />
     <Content Include="Content\News.css" />
     <Content Include="Content\redmond\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\redmond\images\ui-bg_flat_55_fbec88_40x100.png" />

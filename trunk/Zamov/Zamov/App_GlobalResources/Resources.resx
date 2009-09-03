@@ -684,4 +684,7 @@
   <data name="Welcome" xml:space="preserve">
     <value>Ласкаво просимо</value>
   </data>
+  <data name="YouHaveNewOrder" xml:space="preserve">
+    <value>У вас нове замовлення</value>
+  </data>
 </root>

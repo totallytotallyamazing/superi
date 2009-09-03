@@ -22,63 +22,43 @@
             });
         })
 
+        function updateOrdersTable(response) {
+            for (var i in response) {
+                var row = document.createElement("tr");
+                var col1 = document.createElement("td");
+                col1.innerHTML = response[i].Id;
+                row.appendChild(col1);
 
-        $(function() {
-            //queryOrders();
-            setInterval(queryOrders, 30000);
-        });
+                var col2 = document.createElement("td");
+                col2.innerHTML = response[i].DeliveryDate;
+                row.appendChild(col2);
 
-        function queryOrders() {
+                var col3 = document.createElement("td");
+                col3.innerHTML = response[i].ClientName + " " + response[i].Address;
+                row.appendChild(col3);
 
-            var lastRequestTime = new Date();
-            var webRequest = Sys.Net.WebServiceProxy.invoke(
-            "/Services/Tools.asmx",
-            "GetNewOrders",
-            false,
-            { requestTime: lastRequestTime },
-            function(response) {
-                for (var i in response) {
-                    var row = document.createElement("tr");
-                    var col1 = document.createElement("td");
-                    col1.innerHTML = response[i].Id;
-                    row.appendChild(col1);
+                var col4 = document.createElement("td");
+                col4.innerHTML = response[i].TotalPrice;
+                $(col4).attr("align", "right");
+                row.appendChild(col4);
 
-                    var col2 = document.createElement("td");
-                    col2.innerHTML = response[i].DeliveryDate;
-                    row.appendChild(col2);
-
-                    var col3 = document.createElement("td");
-                    col3.innerHTML = response[i].ClientName + " " + response[i].Address;
-                    row.appendChild(col3);
-
-                    var col4 = document.createElement("td");
-                    col4.innerHTML = response[i].TotalPrice;
-                    $(col4).attr("align", "right");
-                    row.appendChild(col4);
-
-                    var col5 = document.createElement("td");
-                    col5.innerHTML = response[i].Status;
-                    row.appendChild(col5);
+                var col5 = document.createElement("td");
+                col5.innerHTML = response[i].Status;
+                row.appendChild(col5);
 
 
-                    var url = '<a href="<%= showOrderUrl%>/{0}" class="orderDescription">{1}</a>';
-                    var urlLayout = String.format(url, response[i].Id, '<%= Html.ResourceString("View")%>');
-                    var col6 = document.createElement("td");
-                    $(urlLayout).appendTo(col6).fancybox({ frameWidth: 700, hideOnContentClick: false });
-                    row.appendChild(col6);
+                var url = '<a href="<%= showOrderUrl%>/{0}" class="orderDescription">{1}</a>';
+                var urlLayout = String.format(url, response[i].Id, '<%= Html.ResourceString("View")%>');
+                var col6 = document.createElement("td");
+                $(urlLayout).appendTo(col6).fancybox({ frameWidth: 700, hideOnContentClick: false });
+                row.appendChild(col6);
 
 
 
-                    var tableHeader = $get('orderTable').getElementsByTagName("tr")[0];
-                    $(row).insertAfter($(tableHeader))
-                }
-
-
-
-            },
-            failureCallback);
+                var tableHeader = $get('orderTable').getElementsByTagName("tr")[0];
+                $(row).insertAfter($(tableHeader))
+            }
         }
-        
     </script>
     
     

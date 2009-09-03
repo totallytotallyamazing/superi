@@ -122,8 +122,8 @@
             <td align="right">
                 <%= Html.Encode(((decimal)item.OrderItems.Sum(oi=>oi.Quantity * oi.Price)).ToString("N"))%>
             </td>
-            <td>
-                <%=Html.ActionLink(Html.ResourceString("Status" + (Statuses)item.Status), "ShowOrder", new { id = item.Id }, new { @class = "orderDescription" })%>
+            <td >
+                <%=Html.ActionLink(Html.ResourceString("Status" + (Statuses)item.Status), "ShowOrder", new { id = item.Id }, new { @class = "orderDescription", id = "orderStatus" + item.Id })%>
             </td>
         </tr>
     

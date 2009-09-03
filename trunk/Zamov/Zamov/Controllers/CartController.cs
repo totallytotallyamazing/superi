@@ -119,6 +119,17 @@ namespace Zamov.Controllers
                                select tran.Text).First();
                 ViewData["city"] = city;
             }
+            if(Request.IsAuthenticated)
+            {
+                MembershipUser user = Membership.GetUser();
+                ProfileCommon profile = ProfileCommon.Create(user.UserName);
+                ViewData["firstName"] = profile.FirstName;
+                ViewData["lastName"] = profile.LastName;
+                ViewData["deliveryAddress"] = profile.DeliveryAddress;
+                ViewData["contactPhone"] = profile.MobilePhone;
+                ViewData["phone"] = profile.Phone;
+            }
+
             return View(SystemSettings.Cart.Orders);
         }
 
@@ -177,6 +188,7 @@ namespace Zamov.Controllers
                     order.Email = email;
                     order.UserId = userId;
                     order.PaymentType = (int)PaymentTypes.Encash;
+                    order.City = city;
                     foreach (var option in systemSettingsList)
                     {
                         if (option.Id == order.GetHashCode())
@@ -187,8 +199,10 @@ namespace Zamov.Controllers
                         }
                     }
                 }
+                cart.Date = DateTime.Now;
                 context.AddToCarts(cart);
                 context.SaveChanges();
+                context.Detach(cart);
             }
             return RedirectToAction("ThankYou");
         }

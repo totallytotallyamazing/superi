@@ -725,14 +725,14 @@ namespace Zamov.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult AcceptOrder(int orderId)
+        public void AcceptOrder(int orderId)
         {
             using (OrderStorage context = new OrderStorage())
             {
                 Order order = (from o in context.Orders where o.Id == orderId select o).First();
                 order.Status = (int)Statuses.Accepted;
                 context.SaveChanges();
-                return RedirectToAction("Orders");
+                //return RedirectToAction("Orders");
             }
         }
 

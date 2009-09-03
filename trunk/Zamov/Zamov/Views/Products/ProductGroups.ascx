@@ -15,7 +15,7 @@
         <% foreach (GroupResentation item in Model)
            {%>
         <div class="menuItem">
-            <%= Html.ActionLink(item.Name, "Index", new { dealerId = dealerId, groupId = item.Id }, new { @class = (item.Id == groupId) ? "active" : string.Empty })%>
+            <%= Html.ActionLink(item.Name, "Index", new { dealerId = dealerId, groupId = item.Id }, new { @class = (item.Id == groupId || item.Id == groupToExpand) ? "active" : string.Empty })%>
         </div>
         <%      if (item.Id == groupToExpand)
                 {
@@ -25,7 +25,20 @@
                             Html.TreeView("productGroups", subGroups, sg => sg.Children, sg =>
                             {
                                 string format = "<div class=\"subMenuItem\">{0}</div>";
-                                return string.Format(format, Html.ActionLink(sg.Name, "Index", new { dealerId = dealerId, groupId = sg.Id }, new { @class = (sg.Id == groupId) ? "active" : string.Empty }));
+                                
+                                return string.Format(
+                                    format, 
+                                    Html.ActionLink(
+                                    sg.Name, 
+                                    "Index", new 
+                                    { 
+                                        dealerId = dealerId, 
+                                        groupId = sg.Id 
+                                    }, 
+                                    new 
+                                    { 
+                                        @class = (sg.Id == groupId || sg.Id == groupToExpand) ? "active" : string.Empty 
+                                    }));
                             })
                             );
                 }
@@ -35,12 +48,3 @@
     <div class="menuFooter">
     </div>
 </div>
-<%--
-        %>
-        
-        <div class="subMenuItem">
-            <%= Html.ActionLink(subGroup.GetName(SystemSettings.CurrentLanguage), "Index", new {dealerId = dealerId, groupId = subGroup.Id}) %>
-            <%= Html.TreeView("sybGroups", g %>
-        </div>
-        <%
---%>

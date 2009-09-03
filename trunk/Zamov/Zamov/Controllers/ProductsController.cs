@@ -18,7 +18,7 @@ namespace Zamov.Controllers
         [BreadCrumb(SubCategoryId = true)]
         public ActionResult Index(int dealerId, int? groupId)
         {
-            BreadCrumbsExtensions.AddBreadCrumb(HttpContext, BreadCrumbAttribute.DealerName(dealerId), "/Delers/SelectDealer/" + dealerId);
+            BreadCrumbsExtensions.AddBreadCrumb(HttpContext, BreadCrumbAttribute.DealerName(dealerId), "/Dealers/SelectDealer/" + dealerId);
             if (groupId != null)
                 BreadCrumbAttribute.ProcessGroup(groupId.Value, HttpContext);
 

@@ -20,6 +20,7 @@ namespace Zamov.Controllers
                                          from order in
                                              context.Orders.Include("Dealer").Include("Cart").Include("OrderItems")
                                          where order.UserId == SystemSettings.CurrentUserId
+                                         orderby order.Cart.Date ascending, order.Cart.Id descending
                                          select order).ToList();
                 return View(orders);
             }

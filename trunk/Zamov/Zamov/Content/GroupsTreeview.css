@@ -1,9 +1,9 @@
-﻿.menuItem a{ font-weight:bold;}
+﻿.menuItem a{ font-weight:normal;}
 .subMenuItem a{color:#324d62; text-decoration:none;}
 
 li ul li .subMenuItem a{color:Highlight; text-decoration:underline;}
 
-.active{color:Red !important;}
+.active{font-weight:bold !important;}
 
 .treeview, .treeview ul { 
 	padding: 0;

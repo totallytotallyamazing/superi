@@ -140,6 +140,23 @@ namespace Zamov.Controllers
                     profile.Save();
                     Roles.AddUserToRole(email, "Customers");
                     FormsAuth.SignIn(email, rememberMe);
+                    if (SystemSettings.Cart.Id > 0)
+                    {
+                        Cart cart = SystemSettings.Cart;
+                        using (OrderStorage context = new OrderStorage())
+                        {
+                            Guid userId = (Guid)Membership.GetUser(email).ProviderUserKey;
+                            context.Attach(cart);
+                            context.AcceptAllChanges();
+                            cart.Orders.Load();
+                            foreach (Order item in cart.Orders)
+                                item.UserId = userId;
+                            context.ApplyPropertyChanges("OrderStorage.Carts", cart);
+                            context.SaveChanges();
+                        }
+                        SystemSettings.EmptyCart();
+                    }
+
                     return RedirectToAction("Index", "Home");
                 }
                 else

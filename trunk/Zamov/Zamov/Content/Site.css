@@ -138,7 +138,7 @@ iframe{padding:0; margin:0; border:none;}
 .currentBreadCrumb{color:#2b587a;}
 .headerSelect{background-color:#092d45; border:1px solid teal; color:Teal;  padding:0 5px; font-weight:bold;}
 
-.topDealers{border:1px solid #8d8d8d; background:transparent; margin-right:0px;  margin-bottom:10px;}
+.topDealers{border:1px solid #DBDBDB; background:#F4F4F4; margin-right:0px;  margin-bottom:10px; padding:10px}
 
 .productDescriptionImage{float:left; margin-right:10px; margin-bottom:5px;}
 

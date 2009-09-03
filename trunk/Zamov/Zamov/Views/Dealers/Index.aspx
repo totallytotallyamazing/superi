@@ -10,11 +10,11 @@
         $(function() {
             applyDropShadows(".dealerLogo a", "shadow3");
             if ($.browser.msie && $.browser.version !== "8.0") {
-                $(".topDealers").width($(mainContent).width() - 15);
+                $(".topDealers").width($(mainContent).width() - 30);
                 $(window).resize(function() { $(".topDealers").width($(mainContent).width() - 15); });
             }
             else {
-                $(".topDealers").css({ width: "100%", float: "left" });
+                $(".topDealers").css({ width: "97%", float: "left" });
             }
 
             $(".dalerOnline").each(function() {
@@ -34,9 +34,6 @@
         if (topDealers.Count() > 0)
         {%>
     <div class="topDealers">
-        <h2 style="display: block;">
-            <%= Html.ResourceString("TopDealers") %>
-        </h2>
         <%      foreach (var item in topDealers)
                 {%>
         <div class="dealerLogo">

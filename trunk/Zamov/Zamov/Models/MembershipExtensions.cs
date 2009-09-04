@@ -48,7 +48,7 @@ namespace Zamov.Models
 
         public static string GetDealerEmail(int dealerId)
         {
-            string dealerEmail = null;
+            string dealerEmail = "";
             if(HttpContext.Current.Cache["dealerEmail" + dealerId] == null)
             {
                 using (MembershipStorage context = new MembershipStorage())
@@ -69,7 +69,7 @@ namespace Zamov.Models
                     {
                         int id = ExtractDealerId(item.PropertyNames, item.PropertyValues);
                         if(dealerId == id)
-                            dealerEmail = Membership.GetUser(item.UserId).UserName;
+                            dealerEmail = Membership.GetUser(item.UserId).Email;
                     }
                 }
                 HttpContext.Current.Cache["dealerEmail" + dealerId] = dealerEmail;

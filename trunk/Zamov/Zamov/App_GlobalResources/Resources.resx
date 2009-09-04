@@ -529,7 +529,7 @@
     <value>Введіть нижчевказаний код підтвердження</value>
   </data>
   <data name="UserAgreement" xml:space="preserve">
-    <value>Угода х користувачем</value>
+    <value>Угода з користувачем</value>
   </data>
   <data name="CharactersInLength" xml:space="preserve">
     <value>символів</value>
@@ -686,5 +686,11 @@
   </data>
   <data name="YouHaveNewOrder" xml:space="preserve">
     <value>У вас нове замовлення</value>
+  </data>
+  <data name="LastOrderStatus" xml:space="preserve">
+    <value>Статус останнього замовлення</value>
+  </data>
+  <data name="YouHaveNewOrders" xml:space="preserve">
+    <value>У вас нових заказiв</value>
   </data>
 </root>

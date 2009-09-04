@@ -42,7 +42,10 @@
             </div>
 
         </div>
+        <div id="masterLogin">
         <% Html.RenderPartial("LogonStatus"); %>
+        <%if (SystemSettings.CurrentDealer != null) Html.RenderPartial("DealerOrdersInfo"); %>
+        </div>
         <center>
         <div id="logo">
             <%= Html.Image("~/Content/img/logo.jpg", "Zamov.net", new { usemap="#logoLink", style="border:none"})%>

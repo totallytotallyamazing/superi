@@ -30,5 +30,6 @@ function collectChanges(dictionary, hiddenId) {
 }
 
 function failureCallback(error) {
+    debugger;
     alert('Error occured during Ajax call');
 }

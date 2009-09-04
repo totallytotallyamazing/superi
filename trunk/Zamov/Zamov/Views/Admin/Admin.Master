@@ -12,6 +12,7 @@
         SelectListItem news = new SelectListItem { Text = Html.ResourceString("News"), Value = VirtualPathUtility.ToAbsolute("~/Admin/News") };
         SelectListItem agreement = new SelectListItem { Text = Html.ResourceString("UserAgreement"), Value = "javascript:userAgreement();" };
         SelectListItem contacts = new SelectListItem { Text = Html.ResourceString("Contacts"), Value = "javascript:contacts();" };
+        SelectListItem startText = new SelectListItem { Text = Html.ResourceString("StartText"), Value = "javascript:startText();" };
         items.Add(cities);
         items.Add(dealers);
         items.Add(categories);
@@ -19,6 +20,7 @@
         items.Add(news);
         items.Add(agreement);
         items.Add(contacts);
+        items.Add(startText);
         Html.RenderAction<Zamov.Controllers.PagePartsController>(ac => ac.LeftMenu(Html.ResourceString("Administration"), items)); 
     %>
 </asp:Content>
@@ -55,18 +57,38 @@
                         '<%= Html.ResourceString("Save") %>': function() { $get("userAgreementFrame").contentWindow.updateData(); }
                     }
                 });
+
+                $("#startText")
+                .dialog({
+                    autoOpen: false,
+                    width: 700,
+                    height: 500,
+                    minHeight: 360,
+                    resizable: false,
+                    buttons: {
+                        '<%= Html.ResourceString("Cancel") %>': function() { closeStartText(); },
+                        '<%= Html.ResourceString("Save") %>': function() { $get("startTextFrame").contentWindow.updateData(); }
+                    }
+                });
         })
 
-        function contacts(id) {
+        function contacts() {
             $("#contacts")
                 .html('<iframe frameborder="0" name="cotacts" id="cotactsFrame" hidefocus="true" style="width:660px; height:500px;" src="/Admin/ContactsHeader"></iframe>');
             $("#contacts").dialog('open');
         }
 
-        function userAgreement(id) {
+        function userAgreement() {
             $("#userAgreement")
                 .html('<iframe frameborder="0" name="userAgreementFrame" id="userAgreementFrame" hidefocus="true" style="width:660px; height:500px;" src="/Admin/Agreement"></iframe>');
             $("#userAgreement").dialog('open');
+        }
+
+        function startText() {
+            $("#startText")
+                .html('<iframe frameborder="0" name="startTextFrame" id="startTextFrame" hidefocus="true" style="width:660px; height:500px;" src="/Admin/StartText"></iframe>');
+            $("#startText").dialog('open');
+
         }
 
         function closeContacts() {
@@ -76,11 +98,17 @@
         function closeAgreement() {
             $("#userAgreement").dialog('close');
         }
+
+        function closeStartText() {
+            $("#startText").dialog('close');
+        }
     </script>
 
     <div id="contacts" title='<%= Html.ResourceString("Contacts") %>'>
     </div>
     <div id="userAgreement" title='<%= Html.ResourceString("UserAgreement") %>'>
+    </div>
+    <div id="startText" title='<%= Html.ResourceString("StartText") %>'>
     </div>
     <asp:ContentPlaceHolder ID="mainContent" runat="server">
     </asp:ContentPlaceHolder>

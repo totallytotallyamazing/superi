@@ -690,4 +690,7 @@
   <data name="YouHaveNewOrders" xml:space="preserve">
     <value>У вас новых заказов</value>
   </data>
+  <data name="StartText" xml:space="preserve">
+    <value>Текст на стартовой</value>
+  </data>
 </root>

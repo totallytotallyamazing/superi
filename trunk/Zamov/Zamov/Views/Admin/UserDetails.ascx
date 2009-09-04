@@ -3,7 +3,7 @@
 <%@ Import Namespace="System.Web.Profile" %>
 <%@ Import Namespace="Zamov.Helpers" %>
 <%
-    Zamov.Models.ProfileCommon profile = Zamov.Models.ProfileCommon.Create(Model.UserName);
+    Zamov.Models.ProfileCommon profile = Zamov.Models.ProfileCommon.Create(Model.UserName) as Zamov.Models.ProfileCommon;
 %>
 <% using(Html.BeginForm("UpdateUser", "Admin", FormMethod.Post)){%>
 <tr>

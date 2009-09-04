@@ -124,7 +124,7 @@ namespace Zamov.Controllers
             if(Request.IsAuthenticated)
             {
                 MembershipUser user = Membership.GetUser();
-                ProfileCommon profile = ProfileCommon.Create(user.UserName);
+                ProfileCommon profile = ProfileCommon.Create(user.UserName) as ProfileCommon;
                 ViewData["firstName"] = profile.FirstName;
                 ViewData["lastName"] = profile.LastName;
                 ViewData["deliveryAddress"] = profile.DeliveryAddress;

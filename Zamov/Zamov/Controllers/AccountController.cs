@@ -131,7 +131,7 @@ namespace Zamov.Controllers
                 MembershipCreateStatus createStatus = MembershipService.CreateUser(email, password, email);
                 if (createStatus == MembershipCreateStatus.Success)
                 {
-                    ProfileCommon profile = ProfileCommon.Create(userName);
+                    ProfileCommon profile = ProfileCommon.Create(email) as ProfileCommon;
                     profile.FirstName = firstName;
                     profile.LastName = lastName;
                     profile.Phone = phone;

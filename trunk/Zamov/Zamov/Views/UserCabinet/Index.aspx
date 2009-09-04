@@ -1,4 +1,4 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<Zamov.Models.Order>>" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Views/UserCabinet/UserCabinet.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<Zamov.Models.Order>>" %>
 <%@ Import Namespace="Zamov.Controllers"%>
 <%@ Import Namespace="Zamov.Helpers"%>
 <%@ Import Namespace="Zamov.Models" %>

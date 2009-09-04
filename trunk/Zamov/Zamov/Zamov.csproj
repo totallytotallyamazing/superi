@@ -309,6 +309,7 @@
     <Content Include="Content\img\truck.jpg" />
     <Content Include="Content\jquery.treeview.css" />
     <None Include="Content\MailTemplates\newOrder" />
+    <Content Include="Views\UserCabinet\UserCabinet.Master" />
     <Content Include="Content\News.css" />
     <Content Include="Content\redmond\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\redmond\images\ui-bg_flat_55_fbec88_40x100.png" />
@@ -521,6 +522,7 @@
     <Content Include="Views\Shared\ShowCart.ascx" />
     <Content Include="Views\UserCabinet\ShowCart.aspx" />
     <Content Include="Views\PageParts\ShowOrder.ascx" />
+    <Content Include="Views\UserCabinet\UserDetails.aspx" />
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="Models\Orders.edmx">

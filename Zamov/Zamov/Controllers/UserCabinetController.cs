@@ -47,7 +47,45 @@ namespace Zamov.Controllers
         }
 
 
+        public ActionResult UserDetails()
+        {
+            string userEmail = Membership.GetUser(true).UserName;
+            ProfileCommon profile = ProfileCommon.Create(userEmail) as ProfileCommon;
+            ViewData["firstName"] = profile.FirstName;
+            ViewData["lastName"] = profile.LastName;
+            ViewData["deliveryAddress"] = profile.DeliveryAddress;
+            ViewData["mobilePhone"] = profile.MobilePhone;
+            ViewData["phone"] = profile.Phone;
+            return View();
+        }
+        
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult UserDetails(string firstName, string lastName, string deliveryAddress, string mobilePhone, string phone)
+        {
+            if (ValidateDetails(firstName, lastName, mobilePhone, phone))
+            {
+                string userEmail = Membership.GetUser(true).Email;
+                ProfileCommon profile = ProfileCommon.Create(userEmail) as ProfileCommon;
+                profile.FirstName = firstName;
+                profile.LastName = lastName;
+                profile.DeliveryAddress = deliveryAddress;
+                profile.MobilePhone = mobilePhone;
+                profile.Phone = phone;
+                profile.Save();
+            }
+            return View();
+        }
 
+        private bool ValidateDetails(string firstName, string lastName, string mobilePhone, string phone)
+        {
+            if (string.IsNullOrEmpty(firstName))
+                ModelState.AddModelError("firstName", ResourcesHelper.GetResourceString("FirstNameRequired"));
+            if (string.IsNullOrEmpty(lastName))
+                ModelState.AddModelError("lastName", ResourcesHelper.GetResourceString("LastNameRequired"));
+            if (string.IsNullOrEmpty(mobilePhone))
+                ModelState.AddModelError("mobilePhone", ResourcesHelper.GetResourceString("PhoneRequired"));
+            return ModelState.IsValid;
+        }
         
     }
 }

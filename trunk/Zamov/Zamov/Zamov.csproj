@@ -310,6 +310,7 @@
     <Content Include="Content\jquery.treeview.css" />
     <None Include="Content\MailTemplates\newOrder" />
     <Content Include="Views\Admin\StartText.aspx" />
+    <Content Include="Views\Dealer\DealerInfo.aspx" />
     <Content Include="Views\UserCabinet\UserCabinet.Master" />
     <Content Include="Content\News.css" />
     <Content Include="Content\redmond\images\ui-bg_flat_0_aaaaaa_40x100.png" />

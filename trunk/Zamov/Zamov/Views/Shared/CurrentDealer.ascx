@@ -5,7 +5,7 @@
 <script type="text/javascript">
     if (!showOrdershadowsDeclared) {
         $(function() {
-            applyDropShadows("img.dealerLogoTop", "shadow3");
+            applyDropShadows("#dealerLink", "shadow3");
         })
         showOrdershadowsDeclared = true;
     }
@@ -14,13 +14,16 @@
         $(function() {
             $(".dealerDeliveryDetails").fancybox({ frameWidth: 700, hideOnContentClick: false });
             $(".feedback").fancybox({ frameWidth: 700, hideOnContentClick: false });
+            $("#dealerLink").fancybox({ frameWidth: 700, hideOnContentClick: false });
         })
         fancyboxAttached = true;
     }
 </script>
 
 <div class="subHeaderCurrentDealer">
-    <%= Html.Image("~/Image/ShowLogo/" + ViewData["dealerId"], new { @class = "dealerLogoTop" })%>
+    <a href='/Dealer/DealerInfo/<%= ViewData["dealerId"] %>' style="border:none; text-decoration:none;" id="dealerLink">
+    <%= Html.Image("~/Image/ShowLogo/" + ViewData["dealerId"], new { @class = "dealerLogoTop",  style="border:none;" })%>
+    </a>
     <div style="clear: both">
         <%= Html.ResourceActionLink("Delivery", "DealerDeliveryDetails", "Dealer", new { id = ViewData["dealerId"] }, new { @class="dealerDeliveryDetails" })%>
         &nbsp;

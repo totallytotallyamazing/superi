@@ -34,9 +34,21 @@ namespace Zamov.Controllers
             }
         }
 
-        public ActionResult DeliveryInfo(int id)
+        public ActionResult DealerInfo(int id)
         {
-            return View();
+            using(ZamovStorage context = new ZamovStorage())
+            {
+                DealerPresentation dealerDescription = (from dealer in context.Dealers
+                                                        join translation in context.Translations on dealer.Id equals translation.ItemId
+                                                        join nameTranslations in context.Translations on dealer.Id equals nameTranslations.ItemId
+                                                        where dealer.Id == id
+                                                        && translation.Language == SystemSettings.CurrentLanguage
+                                                        && nameTranslations.Language == SystemSettings.CurrentLanguage
+                                                        && translation.TranslationItemTypeId == (int)ItemTypes.DealerDescription
+                                                        && nameTranslations.TranslationItemTypeId == (int)ItemTypes.DealerName
+                                                        select new DealerPresentation { Name = nameTranslations.Text, Description = translation.Text }).First();
+                return View(dealerDescription);
+           }
         }
 
         public ActionResult Feedback(int id)

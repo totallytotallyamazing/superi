@@ -30,7 +30,7 @@
             <th></th>
         </tr>
         <%} %>
-        <tr>
+        <tr class="groupLevel<%= level %>">
             <td style="display:none">
                 <%= Html.Hidden("itemId_" + item.Id, item.Id)%>
             </td>  

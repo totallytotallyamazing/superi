@@ -684,4 +684,10 @@
   <data name="YouHaveNewOrder" xml:space="preserve">
     <value>У вас новый заказ</value>
   </data>
+  <data name="LastOrderStatus" xml:space="preserve">
+    <value>Статус последнего заказа</value>
+  </data>
+  <data name="YouHaveNewOrders" xml:space="preserve">
+    <value>У вас новых заказов</value>
+  </data>
 </root>

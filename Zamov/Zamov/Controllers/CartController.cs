@@ -212,15 +212,24 @@ namespace Zamov.Controllers
 
         private void MailOrders(Cart cart)
         {
-            if (!cart.Orders.IsLoaded)
-                cart.Orders.Load();
-            List<MailAddress> addresses = new List<MailAddress>();
-            foreach (Order order in cart.Orders)
+            using (OrderStorage context = new OrderStorage())
             {
-                if (NeedsToBeMailed(order))
-                    addresses.Add(new MailAddress(MembershipExtensions.GetDealerEmail((int)order.DealerReference.EntityKey.EntityKeyValues[0].Value)));
+                context.Attach(cart);
+                if (!cart.Orders.IsLoaded)
+                    cart.Orders.Load();
+                List<MailAddress> addresses = new List<MailAddress>();
+                foreach (Order order in cart.Orders)
+                {
+                    if (NeedsToBeMailed(order))
+                    {
+                        string mailAddress = MembershipExtensions.GetDealerEmail((int)order.DealerReference.EntityKey.EntityKeyValues[0].Value);
+                        if(!string.IsNullOrEmpty(mailAddress))
+                        addresses.Add(new MailAddress(mailAddress));
+                    }
+                }
+                if (addresses.Count > 0)
+                    MailHelper.SendTemplate(ApplicationData.FeedbackEmail, addresses, "newOrder", false);
             }
-            MailHelper.SendTemplate(ApplicationData.FeedbackEmail, addresses, "newOrder", false);
         }
 
         private bool NeedsToBeMailed(Order order)

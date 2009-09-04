@@ -34,19 +34,21 @@ namespace Zamov.Services
         
         
         [WebMethod(EnableSession = true)]
-        public object GetNewOrders(DateTime requestTime)
+        public object GetNewOrders()
         {
             using (OrderStorage context = new OrderStorage())
             {
                 DateTime lasttime = SystemSettings.LastTime;
                 SystemSettings.LastTime = DateTime.Now;
+                int ordersCount = context.Orders.Where(o => o.Dealer.Id == SystemSettings.CurrentDealer.Value && o.Status == (int)Statuses.New).Count();
+
                 List<Order> orders = (
                                          from order in
                                              context.Orders.Include("Dealer").Include("OrderItems")
                                          where order.Dealer.Id == SystemSettings.CurrentDealer && order.Date > lasttime
-                                         select order ).ToList();
+                                         select order).ToList();
 
-                var result = (from order in orders
+                var newOrders = (from order in orders
                               select
                                   new
                                       {
@@ -57,6 +59,11 @@ namespace Zamov.Services
                                           TotalPrice = ((decimal)order.OrderItems.Sum(oi => oi.Quantity * oi.Price)).ToString("N"),
                                           Status = Controllers.ResourcesHelper.GetResourceString("Status" + (Statuses)order.Status)
                                       });
+                var result = new
+                {
+                    NewOrdersCount = ordersCount,
+                    NewOrders = newOrders
+                };
                 //needed to update LastActivityTime of user
                 Membership.GetUser(true);
                 return result;

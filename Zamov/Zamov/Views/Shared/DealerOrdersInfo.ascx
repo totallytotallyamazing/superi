@@ -1,27 +1,45 @@
 <%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl" %>
+<%@ Import Namespace="Zamov.Helpers" %>
+<%@ Import Namespace="Zamov.Models" %>
+<%@ Import Namespace="Zamov.Controllers" %>
+<%
+    int newOrdersCount = 0;
+    using(OrderStorage context = new OrderStorage())
+    {
+        newOrdersCount = context.Orders.Where(o => o.Dealer.Id == SystemSettings.CurrentDealer.Value && o.Status == (int)Statuses.New).Count();
+    }
+%>
 
 <script type="text/javascript">
         $(function() {
-            //queryOrders();
-            setInterval(queryOrders, 30000);
+            setInterval(queryOrders, 10000);
         });
 
 
 
         function queryOrders() {
-            var lastRequestTime = new Date();
             var webRequest = Sys.Net.WebServiceProxy.invoke(
             "/Services/Tools.asmx",
             "GetNewOrders",
             false,
-            { requestTime: lastRequestTime },
+            null,
             function(response) {
-                if (response && response.length > 0) {
+                updateNewOrdersCount(response.NewOrdersCount);
+                if (response.NewOrders && response.NewOrders.length > 0) {
                     alert('<%= Html.ResourceString("YouHaveNewOrder") %>');
                 }
                 if (typeof (updateOrdersTable) !== "undefined")
-                    updateOrdersTable(response);
+                    updateOrdersTable(response.NewOrders);
             },
             failureCallback);
         }
+
+        function updateNewOrdersCount(newCount) {
+            $("#dealerOrdersCount").html(newCount);
+        }
 </script>
+
+<div id="dealerOrdersInfo">
+    <%= Html.ResourceString("YouHaveNewOrders") + ":" %>
+    <%= Html.ActionLink(newOrdersCount.ToString(), "Orders", "DealerCabinet", null, new { id = "dealerOrdersCount" }) %>
+</div>

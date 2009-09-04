@@ -50,7 +50,7 @@
         </div>
         <div id="masterLogin">
             <% Html.RenderPartial("LogonStatus"); %>
-            <%if (SystemSettings.CurrentDealer != null) Html.RenderPartial("DealerOrdersInfo.ascx"); %>
+            <%if (SystemSettings.CurrentDealer != null) Html.RenderPartial("DealerOrdersInfo"); %>
         </div>
         <center>
             <div id="logo">

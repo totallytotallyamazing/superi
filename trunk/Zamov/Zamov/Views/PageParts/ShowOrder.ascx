@@ -89,13 +89,13 @@
     <tr>
         <td colspan="3">
         </td>
-        <td align="right">
+        <td align="center" style="font-weight:bold">
             <%=Html.ResourceString("Total")+":" %>
         </td>
-        <td align="right">
+        <td align="center" style="font-weight:bold">
             <%=Html.Encode(Model.OrderItems.Sum(oi=>oi.Quantity).ToString("N"))%>
         </td>
-        <td align="right">
+        <td align="right" style="font-weight:bold">
             <%=Html.Encode(total.ToString("N"))%>
         </td>
         <%if (cartMode){ %>

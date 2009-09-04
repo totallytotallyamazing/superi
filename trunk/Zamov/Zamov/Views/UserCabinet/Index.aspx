@@ -26,7 +26,6 @@
             <th>№ <%=Html.ResourceString("OfOrder")%></th>
             <th><%=Html.ResourceString("Dealer")%></th>
             <th><%=Html.ResourceString("Cost")%>, грн</th>
-            <th></th>
             <th><%=Html.ResourceString("OrderStatus")%></th>
             <th></th>
         </tr>
@@ -46,9 +45,8 @@
             <td><%=Html.Encode(order.Id)%></td>
             <td><%=Html.Encode(order.Dealer.GetName(SystemSettings.CurrentLanguage))%></td>
             <td><%=Html.Encode(order.OrderItems.Sum(oi => oi.Price*oi.Quantity))%></td>
-            <td rowspan="<%=Html.Encode(c)%>"><%=Html.ActionLink(Html.ResourceString("View"), "ShowCart", new { id = order.Cart.Id }, new { @class = "cartDescription" })%></td>
-            <td><%=Html.ResourceString("Status" + (Statuses)order.Status)%></td>
-            <td  rowspan="<%=Html.Encode(c)%>"><%=Html.ActionLink(Html.ResourceString("Delete"), "DeleteCart", new { id = order.Cart.Id }, new { onclick = "return confirm('" + Html.ResourceString("AreYouSure") + "?')" })%></td>
+            <td><%=Html.ActionLink(Html.ResourceString("Status" + (Statuses)order.Status), "ShowCart", new { id = order.Cart.Id }, new { @class = "cartDescription" })%></td>
+            <td rowspan="<%=Html.Encode(c)%>"><%=Html.ActionLink(Html.ResourceString("Delete"), "DeleteCart", new { id = order.Cart.Id }, new { onclick = "return confirm('" + Html.ResourceString("AreYouSure") + "?')" })%></td>
         </tr>
         <%
         }
@@ -59,7 +57,7 @@
                 <td><%=Html.Encode(order.Id)%></td>
                 <td><%=Html.Encode(order.Dealer.GetName(SystemSettings.CurrentLanguage))%></td>
                 <td><%=Html.Encode(order.OrderItems.Sum(oi => oi.Price * oi.Quantity))%></td>
-                <td><%=Html.ResourceString("Status"+(Statuses)order.Status)%></td>
+                <td><%=Html.ActionLink(Html.ResourceString("Status" + (Statuses)order.Status), "ShowCart", new { id = order.Cart.Id }, new { @class = "cartDescription" })%></td>
             </tr>
             
             <%

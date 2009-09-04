@@ -88,7 +88,7 @@ namespace Zamov.Controllers
                 var orderItemList =
                     (from oi in orderItems
                      where oi.Value["order"].ToLowerInvariant().Contains("true")
-                     select new { Id = int.Parse(oi.Key), Quantity = int.Parse(oi.Value["quantity"]) })
+                     select new { Id = int.Parse(oi.Key), Quantity = int.Parse(oi.Value["quantity"].Replace("_", string.Empty)) })
                      .ToList();
                 if (order == null)
                 {

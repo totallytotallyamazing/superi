@@ -2,6 +2,7 @@
 <%@ Import Namespace="Zamov.Helpers" %>
 <%@ Import Namespace="Zamov.Controllers" %>
 <%@ Import Namespace="Microsoft.Web.Mvc" %>
+<%@ Import Namespace="AjaxControlToolkitMvc" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 </asp:Content>
 
@@ -68,13 +69,19 @@ foreach (var item in Model)
                 </a>
             </td>
             <td align="center">
-                øò.
+                <%= item.Unit %>
             </td>
             <td align="right">
                 <%= item.Price.ToString("#.00#") %>
             </td>
             <td align="center" valign="middle">
-                <%= Html.TextBox("quantity_" + item.Id, null, new { style = "width:12px; font-size:10px;", onkeyup = "order(this)" })%>
+<%
+    string mask = "9{4}";
+   // if (item.Unit == "êã." || item.Unit == "êã" || item.Unit == "ë" || item.Unit == "ë.")
+     //   mask = "99.99";
+%>
+                <%= Html.TextBox("quantity_" + item.Id, null, new { style = "width:24px; font-size:10px; text-align:center", onkeyup = "order(this)" })%>
+                <%= Ajax.MaskEdit("", MaskTypes.Number, mask, false, true, "quantity_" + item.Id)%>
             </td>
             <td align="center" valign="middle">
                 <%= Html.CheckBox("order_" + item.Id, false, new {onclick="order(this)" })%>

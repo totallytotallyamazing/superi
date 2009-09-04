@@ -151,3 +151,8 @@ iframe{padding:0; margin:0; border:none;}
 
 .logOnProperties{padding:10px;}
 #dealerOrdersInfo{padding:0 10px;}
+
+.feedbackItem{border-bottom:1px dashed #ccc; margin-bottom:10px;}
+.feedbackItem .itemHeader a {color:#ACABAB; text-decoration:none;}
+.feedbackItem .itemHeader a:hover{text-decoration:underline;}
+.feedbackItem .itemText{padding-top:10px; padding-bottom:10px;}

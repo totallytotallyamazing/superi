@@ -424,6 +424,22 @@ namespace Zamov.Controllers
         #endregion
 
         #region ApplicationSettings
+        public ActionResult StartText()
+        {
+            ViewData["ruText"] = ApplicationData.GetStartText("ru-RU");
+            ViewData["uaText"] = ApplicationData.GetStartText("uk-UA");
+            return View();
+        }
+
+        public void UpdateStartText(string ruText, string uaText)
+        {
+            Dictionary<string, string> values = new Dictionary<string, string>();
+            values["ru-RU"] = HttpUtility.HtmlDecode(ruText);
+            values["uk-UA"] = HttpUtility.HtmlDecode(uaText);
+            ApplicationData.UpdateStartText(values);
+            Response.Write(Helpers.Helpers.CloseParentScript("StartText"));
+        }
+
         public ActionResult Agreement()
         {
             ViewData["ruText"] = ApplicationData.GetAgreement("ru-RU");

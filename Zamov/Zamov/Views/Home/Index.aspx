@@ -66,5 +66,9 @@
         </center>
     </div>
     </div>
+    
+    <div class="startText">
+        <%= ApplicationData.StartText %>
+    </div>
 </body>
 </html>

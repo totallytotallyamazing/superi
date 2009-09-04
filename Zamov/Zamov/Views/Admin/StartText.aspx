@@ -25,7 +25,7 @@
 
 </head>
 <body>
-    <% using (Html.BeginForm("UpdateAgreement", "Admin", FormMethod.Post, new { id="mainForm" }))
+    <% using (Html.BeginForm("UpdateStartText", "Admin", FormMethod.Post, new { id="mainForm" }))
        { %>
     <table>
         <tr class="adminTable">

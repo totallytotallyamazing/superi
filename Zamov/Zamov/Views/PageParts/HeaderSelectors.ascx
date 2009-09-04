@@ -53,6 +53,13 @@
                 return false;
             }
         }
+
+        function keydownSelectCategory(form) {
+            var key = window.event.keyCode;
+            if (key == 13) {
+                form.submit();
+            }
+        }
 </script>
 <% using(Html.BeginForm("Index", "Home")){ %>
 <table>
@@ -64,7 +71,7 @@
         <td>
             <%= Html.ResourceString("Category") %><br />
             <div style="padding:2px;">
-                <%= Html.DropDownList("currentCategory", (List<SelectListItem>)ViewData["categoriesList"]) %>
+                <%= Html.DropDownList("currentCategory", (List<SelectListItem>)ViewData["categoriesList"], new { onkeydown = "keydownSelectCategory(this.form)" })%>
             </div>
         </td>
         <td>

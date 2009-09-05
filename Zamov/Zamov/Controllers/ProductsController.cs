@@ -15,6 +15,8 @@ namespace Zamov.Controllers
         //
         // GET: /Products/
 
+        private const int MaxTopProductsNumber = 5;
+
         [BreadCrumb(SubCategoryId = true)]
         public ActionResult Index(int dealerId, int? groupId)
         {
@@ -36,8 +38,31 @@ namespace Zamov.Controllers
                 }
                 else
                     products = (from product in context.Products where ((groupId == null) || product.Group.Id == groupId) && product.Dealer.Id == dealerId select product).ToList();
-                return View(products);
+
+                ViewData["topProducts"] = GetTopProducts(products);
+
+                return View(RemoveTopProducts(products));
             }
+        }
+
+        private List<Product> GetTopProducts(List<Product> source)
+        {
+            List<Product> allTops = source.Where(p => p.TopProduct).Select(p => p).ToList();
+
+            if (allTops.Count < MaxTopProductsNumber + 1)
+                return allTops;
+
+            List<Product> result = new List<Product>();
+            Random random = new Random();
+            int topCount = allTops.Count;
+            for (int i = 0; i < MaxTopProductsNumber; i++)
+                result.Add(allTops[random.Next(topCount)]);
+            return result;
+        }
+
+        private List<Product> RemoveTopProducts(List<Product> source)
+        {
+            return source.Where(p => !p.TopProduct).Select(p => p).ToList();
         }
 
         public ActionResult ProductGroups(int dealerId, int? groupId)

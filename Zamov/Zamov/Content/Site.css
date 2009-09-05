@@ -160,3 +160,16 @@ iframe{padding:0; margin:0; border:none;}
 .groupLevel0{background-color:Beige;}
 .groupLevel1{background-color:Silver;}
 .groupLevel2{background-color:Gray;}
+
+div.topProducts{border:1px solid #dbdbdb; padding:10px; background:#F4F4F4; height:163px; text-align:center; width:auto; margin-bottom:10px;}
+div.topProducts span.header{color:#FE1F1F; font-size:14px;}
+table.topProducts tr td{border:1px solid #A0ADB6; width:130px; height:90px; padding:10px 0 }
+tr.topProduct td span{color:#FE1F1F;}
+
+td.actionNew,
+td.new,
+td.action{background-repeat:no-repeat; background-position:right;}
+
+td.actionNew{background-image: url(img/actionNew.jpg)}
+td.action{background-image: url(img/action.jpg)}
+td.new{background-image: url(img/new.jpg)}

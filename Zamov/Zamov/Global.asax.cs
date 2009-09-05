@@ -20,6 +20,13 @@ namespace Zamov
             routes.IgnoreRoute("captcha.ashx");
 
             routes.MapRoute(
+            "ProductImageDefault",                                              // Route name
+                "Image/ProductImageDefault/{id}/{maxDimension}",                           // URL with parameters
+                new { controller = "Image", action = "ProductImageScaled", id = "", maxDimension = "100" }  // Parameter defaults
+            );
+
+
+            routes.MapRoute(
             "ProductImageScaled",                                              // Route name
                 "Image/ProductImageScaled/{id}/{maxDimension}",                           // URL with parameters
                 new { controller = "Image", action = "ProductImageScaled", id = "", maxDimension = "100" }  // Parameter defaults

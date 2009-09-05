@@ -66,18 +66,8 @@ namespace Zamov.Controllers
             }
         }
 
-        public void ProductImageScaled(int id, int maxDimension)
+        public MemoryStream ScaleImage(Bitmap image, int maxDimension)
         {
-            Bitmap image = null;
-            using (ZamovStorage context = new ZamovStorage())
-            {
-                ProductImage productImage = context.ProductImages.Select(pi => pi).Where(pi => pi.Id == id).First();
-                MemoryStream stream = new MemoryStream(productImage.Image);
-                image = new Bitmap(stream);
-                stream.Close();
-                stream.Dispose();
-            }
-
             int width;
             int height;
             if (image.Width > image.Height)
@@ -101,11 +91,48 @@ namespace Zamov.Controllers
             graphics.DrawImage(image, 0, 0, thumbnailImage.Width, thumbnailImage.Height);
             MemoryStream imageStream = new MemoryStream();
             thumbnailImage.Save(imageStream, System.Drawing.Imaging.ImageFormat.Jpeg);
-            byte[] imageContent = new Byte[imageStream.Length];
             imageStream.Position = 0;
+            return imageStream;
+        }
+
+        public void ProductImageScaled(int id, int maxDimension)
+        {
+            Bitmap image = null;
+            using (ZamovStorage context = new ZamovStorage())
+            {
+                ProductImage productImage = context.ProductImages.Select(pi => pi).Where(pi => pi.Id == id).First();
+                MemoryStream stream = new MemoryStream(productImage.Image);
+                image = new Bitmap(stream);
+                stream.Close();
+                stream.Dispose();
+            }
+
+            MemoryStream imageStream = ScaleImage(image, maxDimension);
+            byte[] imageContent = new Byte[imageStream.Length];
             imageStream.Read(imageContent, 0, (int)imageStream.Length);
             Response.ContentType = "image/jpeg";
             Response.BinaryWrite(imageContent);
+            imageStream.Close();
+        }
+
+        public void ProductImageDefault(int id, int maxDimension)
+        {
+            Bitmap image = null;
+            using (ZamovStorage context = new ZamovStorage())
+            {
+                ProductImage productImage = context.ProductImages.Select(pi => pi).Where(pi => pi.Product.Id == id).First();
+                MemoryStream stream = new MemoryStream(productImage.Image);
+                image = new Bitmap(stream);
+                stream.Close();
+                stream.Dispose();
+            }
+
+            MemoryStream imageStream = ScaleImage(image, maxDimension);
+            byte[] imageContent = new Byte[imageStream.Length];
+            imageStream.Read(imageContent, 0, (int)imageStream.Length);
+            Response.ContentType = "image/jpeg";
+            Response.BinaryWrite(imageContent);
+            imageStream.Close();
         }
 
         public void CategoryImage(int id)

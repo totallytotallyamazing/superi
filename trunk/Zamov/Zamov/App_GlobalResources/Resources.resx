@@ -696,4 +696,7 @@
   <data name="StartText" xml:space="preserve">
     <value>Текст на головнiй</value>
   </data>
+  <data name="TopProducts" xml:space="preserve">
+    <value>Топ товарів</value>
+  </data>
 </root>

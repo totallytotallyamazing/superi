@@ -1,5 +1,6 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<List<Zamov.Models.Product>>" %>
 <%@ Import Namespace="Zamov.Helpers" %>
+<%@ Import Namespace="Zamov.Models" %>
 <%@ Import Namespace="Zamov.Controllers" %>
 <%@ Import Namespace="Microsoft.Web.Mvc" %>
 <%@ Import Namespace="AjaxControlToolkitMvc" %>
@@ -40,6 +41,8 @@
         
     </script>
     
+    <% Html.RenderPartial("TopProducts"); %>
+        
     <%if(Model.Count>0){ %>
         <%using (Html.BeginForm("AddToCart", "Products", FormMethod.Post, new { id="addToCart", style="margin-bottom:20px;" }))
           { %>
@@ -49,18 +52,27 @@
     <table class="commonTable" style="margin:35px 0 10px; width:100%;">
         <tr>
             <th><%= Html.ResourceString("Name") %></th>
-            <th><%= Html.ResourceString("Description") %></th>
-            <th><%= Html.ResourceString("MeassureUnit") %></th>
-            <th><%= Html.ResourceString("Price") %>, грн.</th>
-            <th><%= Html.ResourceString("Quantity") %></th>
-            <th><%= Html.ResourceString("ToOrder") %></th>
+            <th style="width:20px;"><%= Html.ResourceString("Description") %></th>
+            <th style="width:20px;"><%= Html.ResourceString("MeassureUnit") %></th>
+            <th style="width:20px;"><%= Html.ResourceString("Price") %>, грн.</th>
+            <th style="width:20px;"><%= Html.ResourceString("Quantity") %></th>
+            <th style="width:20px;"><%= Html.ResourceString("ToOrder") %></th>
         </tr>
 <%
 foreach (var item in Model)
     {
+        string trClass = "";
+        if (item.Action && item.New)
+            trClass = "actionNew";
+        else if (item.Action)
+            trClass = "action";
+        else if (item.New)
+            trClass = "new";
+        string classAttribute = (!string.IsNullOrEmpty(trClass)) ? "class=\"" + trClass + "\"" : "";
+            
     %>
         <tr>
-            <td>
+            <td <%= classAttribute %>>
                 <%= item.Name %>
             </td>
             <td align="center">

@@ -296,11 +296,14 @@
     <Content Include="Content\images\treeview-gray.gif" />
     <Content Include="Content\images\treeview-red-line.gif" />
     <Content Include="Content\images\treeview-red.gif" />
+    <Content Include="Content\img\action.jpg" />
+    <Content Include="Content\img\actionNew.jpg" />
     <Content Include="Content\img\cart.jpg" />
     <Content Include="Content\img\cartActive.jpg" />
     <Content Include="Content\img\cartBg.jpg" />
     <Content Include="Content\img\cartShadow.jpg" />
     <Content Include="Content\img\crossMark.jpg" />
+    <Content Include="Content\img\new.jpg" />
     <Content Include="Content\img\newsSplitter.jpg" />
     <Content Include="Content\img\online.png" />
     <Content Include="Content\img\productImage.JPG" />
@@ -311,6 +314,7 @@
     <None Include="Content\MailTemplates\newOrder" />
     <Content Include="Views\Admin\StartText.aspx" />
     <Content Include="Views\Dealer\DealerInfo.aspx" />
+    <Content Include="Views\Shared\TopProducts.ascx" />
     <Content Include="Views\UserCabinet\UserCabinet.Master" />
     <Content Include="Content\News.css" />
     <Content Include="Content\redmond\images\ui-bg_flat_0_aaaaaa_40x100.png" />

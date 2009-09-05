@@ -30,6 +30,18 @@ function collectChanges(dictionary, hiddenId) {
 }
 
 function failureCallback(error) {
-    debugger;
     alert('Error occured during Ajax call');
+}
+
+var lastCorrectQuantityValues = {};
+
+function validateQuantity(el) {
+    var rExp = /^\d{1,4}$/;
+    if (!rExp.test(el.value)) {
+        if (el.value.length > 0)
+            el.value = (lastCorrectQuantityValues[el.id]) ? lastCorrectQuantityValues[el.id] : "";
+    }
+    else {
+        lastCorrectQuantityValues[el.id] = el.value;
+    }
 }

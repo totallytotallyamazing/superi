@@ -14,7 +14,7 @@
         <%= Html.ResourceString("TopProducts").ToUpper() %>
     </span>
     <table class="topProducts" cellspacing="15">
-        <tr class="topProduct">
+        <tr class="topProduct" align="center">
             <%foreach (Product item in topProducts)
               {%>
               <td>

@@ -27,14 +27,12 @@
                 var input = $get("quantity_" + id);
                 if (input.value == "") {
                     input.value = 1;
-                    tableChanged(items, input);
                 }
             }
             else {
                 var checkbox = $get("order_" + id);
                 if (!checkbox.checked) {
                     checkbox.checked = true;
-                    tableChanged(items, checkbox);
                 }
             }
         }
@@ -92,8 +90,8 @@ foreach (var item in Model)
    // if (item.Unit == "êã." || item.Unit == "êã" || item.Unit == "ë" || item.Unit == "ë.")
      //   mask = "99.99";
 %>
-                <%= Html.TextBox("quantity_" + item.Id, null, new { style = "width:24px; font-size:10px; text-align:center", onkeyup = "order(this)" })%>
-                <%= Ajax.MaskEdit("", MaskTypes.Number, mask, false, true, "quantity_" + item.Id)%>
+                <%= Html.TextBox("quantity_" + item.Id, null, new { style = "width:24px; font-size:10px; text-align:center", onkeyup = "validateQuantity(this); order(this)" })%>
+                <%--<%= Ajax.MaskEdit("", MaskTypes.Number, mask, false, true, "quantity_" + item.Id)%>--%>
             </td>
             <td align="center" valign="middle">
                 <%= Html.CheckBox("order_" + item.Id, false, new {onclick="order(this)" })%>

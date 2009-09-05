@@ -27,8 +27,20 @@ namespace Zamov.Controllers
                 {
                     ObjectQuery<Product> productsQuery = new ObjectQuery<Product>(
                         "SELECT VALUE P FROM Products AS P WHERE P.Name LIKE '%" + searchContext + "%'", context);
-                    List<Product> products = productsQuery.ToList();
-                    products.ForEach(p => p.DealerReference.Load());
+                    List<ProductSearchPresentation> products = (from product in productsQuery
+                                                                join dealerName in context.Translations on product.Dealer.Id equals dealerName.ItemId
+                                                                where dealerName.TranslationItemTypeId == (int)ItemTypes.DealerName
+                                                                && dealerName.Language == SystemSettings.CurrentLanguage
+                                                                select new ProductSearchPresentation
+                                                                {
+                                                                    DealerId = product.Dealer.Id,
+                                                                    DealerName = dealerName.Text,
+                                                                    Name = product.Name,
+                                                                    Price = product.Price,
+                                                                    Id = product.Id,
+                                                                    Unit = product.Unit
+                                                                }
+                                                                    ).ToList();
                     return View(products);
                 }
             }
@@ -45,7 +57,7 @@ namespace Zamov.Controllers
                 var orderItemList =
                    (from oi in orderItems
                     where oi.Value["order"].ToLowerInvariant().Contains("true")
-                    select new { Id = int.Parse(oi.Key), Dealer = int.Parse(oi.Value["dealer"]) })
+                    select new { Id = int.Parse(oi.Key), Dealer = int.Parse(oi.Value["dealer"]), Quantity = int.Parse(oi.Value["quantity"]) })
                     .ToList();
 
                 Dictionary<int, Product> products = null;
@@ -80,7 +92,7 @@ namespace Zamov.Controllers
                         item.Name = product.Name;
                         item.Price = product.Price;
                         item.ProductId = product.Id;
-                        item.Quantity = 1;
+                        item.Quantity = orderItem.Quantity;
                         IEnumerable<KeyValuePair<string, object>> unitKeyValues = new KeyValuePair<string, object>[] { new KeyValuePair<string, object>("Id", 1) };
                         EntityKey unit = new EntityKey("OrderStorage.Units", unitKeyValues);
                         item.UnitReference.EntityKey = unit;
@@ -88,7 +100,7 @@ namespace Zamov.Controllers
                     }
                 }
             }
-            int totalCartItems = cart.Orders.Sum(o => o.OrderItems.Count);
+            int totalCartItems = cart.Orders.Sum(o => o.OrderItems.Sum(oi=>oi.Quantity));
             decimal totalCartPrice = cart.Orders.Sum(o => o.OrderItems.Sum(oi => oi.Quantity * oi.Price));
             return Json(new { TotalCartPrice = totalCartPrice, TotalCartItems = totalCartItems });
         }

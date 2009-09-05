@@ -3,8 +3,8 @@
 
 <div class="logOnProperties">
     <div class="logOnName">
-        <%= Html.ResourceString("Welcome") %><br />
-        <%= Profile.FirstName %> <%= Profile.LastName %>
+        <%= Html.ResourceString("Welcome") %>,<br />
+        <%= Profile.FirstName %> <%= Profile.LastName %>!
     </div>
     <%= Html.ResourceActionLink("ChangePassword", "ChangePassword","Account") %>
     &nbsp;

@@ -38,3 +38,9 @@
         </div>
     <% } %>
 </asp:Content>
+
+<asp:Content ContentPlaceHolderID="includes" runat="server">
+    <style type="text/css">
+        #leftSide{border:none !important;}
+    </style>
+</asp:Content>

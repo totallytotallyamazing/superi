@@ -45,4 +45,5 @@ margin-right:40px;
 .startText{width:auto; margin:20px 40px 0px 40px; }
 .headerSelect{background-color:#092d45; border:1px solid Teal; color:Teal; padding:0 5px; font-weight:bold;}
 
-.logOnProperties{padding:10px; float:right}
+.logOnProperties{padding:10px;}
+#dealerOrdersInfo{padding-left:10px;}

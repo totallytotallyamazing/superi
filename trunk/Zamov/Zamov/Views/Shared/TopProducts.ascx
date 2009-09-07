@@ -23,8 +23,7 @@
                 <%= Html.Hidden("groupId", ViewData["groupId"])%>             
                 <%= Html.CheckBox("order_" + item.Id, true, new { style="margin-left:-8000px" })%>
                 <%= Html.Hidden("quantity_" + item.Id, 1)%>
-                <img alt='<%= item.Name %>' src='/Image/ProductImageDefault/<%= item.Id %>/50' />
-                <br />
+                <img style="display:block;" alt='<%= item.Name %>' src='/Image/ProductImageDefault/<%= item.Id %>/50' />
                 <%= item.Name %><br />
                 <span>
                     <%= item.Price.ToString("F") %> грн.

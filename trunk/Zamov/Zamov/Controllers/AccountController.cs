@@ -102,6 +102,7 @@ namespace Zamov.Controllers
                 ViewData["deliveryAddress"] = SystemSettings.MemberProperties.DeliveryAddress;
                 ViewData["mobilePhone"] = SystemSettings.MemberProperties.MobilePhone;
                 ViewData["phone"] = SystemSettings.MemberProperties.Phone;
+                ViewData["city"] = SystemSettings.MemberProperties.City;
             }
             return View();
         }
@@ -118,6 +119,7 @@ namespace Zamov.Controllers
             string deliveryAddress, 
             string mobilePhone, 
             string phone, 
+            string city,
             bool rememberMe, 
             bool captchaValid
             )
@@ -137,6 +139,7 @@ namespace Zamov.Controllers
                     profile.Phone = phone;
                     profile.MobilePhone = mobilePhone;
                     profile.DeliveryAddress = deliveryAddress;
+                    profile.City = city;
                     profile.Save();
                     Roles.AddUserToRole(email, "Customers");
                     FormsAuth.SignIn(email, rememberMe);

@@ -26,8 +26,8 @@ margin-right:40px;
 .logonInput{width:135px;}
 
 #mainMenu{margin-top:0px;}
-#mainMenu .outer{float:right; position:relative; padding:10px; height:30px;}
-#mainMenu .outer .inner{padding:5px; color:#969696; font-size:13px; height:20px;}
+#mainMenu .outer{float:right; position:relative; padding:0px 10px; height:20px;}
+#mainMenu .outer .inner{padding:0px 5px; color:#969696; font-size:13px; height:20px;}
 #mainMenu .outer .inner a{color:#969696;font-size:13px; text-decoration:none;}
 #mainMenu .outer .inner a:hover{text-decoration:underline;}
 
@@ -161,7 +161,7 @@ iframe{padding:0; margin:0; border:none;}
 .groupLevel1{background-color:Silver;}
 .groupLevel2{background-color:Gray;}
 
-div.topProducts{border:1px solid #dbdbdb; padding:10px; background:#F4F4F4; height:163px; text-align:center; width:auto; margin-bottom:10px;}
+div.topProducts{border:1px solid #dbdbdb; padding:10px; background:#F4F4F4; height:183px; text-align:center; width:auto; margin-bottom:10px;}
 div.topProducts span.header{color:#FE1F1F; font-size:14px;}
 table.topProducts tr td{border:1px solid #A0ADB6; width:130px; height:90px; padding:10px 0 }
 tr.topProduct td span{color:#FE1F1F;}

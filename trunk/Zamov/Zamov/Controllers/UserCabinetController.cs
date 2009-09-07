@@ -20,7 +20,7 @@ namespace Zamov.Controllers
                                          from order in
                                              context.Orders.Include("Dealer").Include("Cart").Include("OrderItems")
                                          where order.UserId == SystemSettings.CurrentUserId
-                                         orderby order.Cart.Date ascending, order.Cart.Id descending
+                                         orderby order.Cart.Date descending, order.Cart.Id ascending
                                          select order).ToList();
                 return View(orders);
             }
@@ -56,11 +56,12 @@ namespace Zamov.Controllers
             ViewData["deliveryAddress"] = profile.DeliveryAddress;
             ViewData["mobilePhone"] = profile.MobilePhone;
             ViewData["phone"] = profile.Phone;
+            ViewData["city"] = profile.City;
             return View();
         }
         
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult UserDetails(string firstName, string lastName, string deliveryAddress, string mobilePhone, string phone)
+        public ActionResult UserDetails(string firstName, string lastName, string deliveryAddress, string city, string mobilePhone, string phone)
         {
             if (ValidateDetails(firstName, lastName, mobilePhone, phone))
             {
@@ -71,6 +72,7 @@ namespace Zamov.Controllers
                 profile.DeliveryAddress = deliveryAddress;
                 profile.MobilePhone = mobilePhone;
                 profile.Phone = phone;
+                profile.City = city;
                 profile.Save();
             }
             return View();

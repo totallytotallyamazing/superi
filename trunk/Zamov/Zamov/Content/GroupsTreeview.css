@@ -1,6 +1,6 @@
 ﻿.menuItem a{ font-weight:normal;}
 .subMenuItem a{color:#324d62; text-decoration:none;}
-
+.subMenuItem{padding-bottom:4px !important;}
 li ul li .subMenuItem a{color:Highlight; text-decoration:underline;}
 
 .active{font-weight:bold !important;}
@@ -32,7 +32,7 @@ li ul li .subMenuItem a{color:Highlight; text-decoration:underline;}
 
 .treeview li { 
 	margin: 0;
-	padding: 3px 0pt 3px 16px;
+	padding: 1px 0pt 1px 16px;
 }
 
 .treeview a.selected {

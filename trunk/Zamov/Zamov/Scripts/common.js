@@ -30,7 +30,6 @@ function collectChanges(dictionary, hiddenId) {
 }
 
 function failureCallback(error) {
-    alert('Error occured during Ajax call');
 }
 
 var lastCorrectQuantityValues = {};

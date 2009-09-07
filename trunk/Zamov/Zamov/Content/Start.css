@@ -24,8 +24,8 @@ margin-right:40px;
 .logonInput{width:135px;}
 
 #mainMenu{margin-top:0px;}
-#mainMenu .outer{float:right; position:relative; padding:10px; height:30px;}
-#mainMenu .outer .inner{padding:5px; color:#969696; font-size:13px; height:20px;}
+#mainMenu .outer{float:right; position:relative; padding:0 10px; height:20px;}
+#mainMenu .outer .inner{padding:0 5px; color:#969696; font-size:13px; height:20px;}
 #mainMenu .outer .inner a{color:#969696;font-size:13px; text-decoration:none;}
 #mainMenu .outer .inner a:hover{text-decoration:underline;}
 

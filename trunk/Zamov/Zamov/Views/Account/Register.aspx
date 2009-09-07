@@ -77,6 +77,16 @@
                 </tr>
                 <tr>
                     <td>
+                        <label for="city">
+                            <%= Html.ResourceString("City") %>:</label>
+                        <%= Html.ValidationMessage("city", "*", new { @class = "validationError" })%>
+                    </td>
+                    <td>
+                        <%= Html.TextBox("city")%>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
                         <label for="deliveryAddress">
                             <%= Html.ResourceString("DeliveryAddress") %>:</label>
                         <%= Html.ValidationMessage("deliveryAddress", "*", new { @class = "validationError" })%>

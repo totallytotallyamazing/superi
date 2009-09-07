@@ -1,12 +1,18 @@
 <%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<IEnumerable<Zamov.Models.Product>>" %>
 <%@ Import Namespace="Zamov.Models" %>
 <%@ Import Namespace="Zamov.Helpers" %>
+<%@ Import Namespace="Microsoft.Web.Mvc" %>
 <% 
     List<Product> topProducts = ViewData["topProducts"] as List<Product>;
     if (topProducts.Count > 0)
     {
 %>
-    
+
+<script type="text/javascript">
+    $(function() {
+        $(".topProductLink").fancybox({ width: 700, hideOnContentClick: false });
+    })
+</script>
 
 <div class="topProducts">
     <center>
@@ -23,7 +29,10 @@
                 <%= Html.Hidden("groupId", ViewData["groupId"])%>             
                 <%= Html.CheckBox("order_" + item.Id, true, new { style="margin-left:-8000px" })%>
                 <%= Html.Hidden("quantity_" + item.Id, 1)%>
-                <img style="display:block;" alt='<%= item.Name %>' src='/Image/ProductImageDefault/<%= item.Id %>/50' />
+                <a href="/Products/Description/<%= item.Id %>" class="topProductLink">
+                    <%= Html.Image("~/Image/ProductImageDefault/" + item.Id + "/50", item.Name, new { style = "display:block; border:none;" })%>
+                </a>
+                
                 <%= item.Name %><br />
                 <span>
                     <%= item.Price.ToString("F") %> грн.

@@ -1,9 +1,6 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Admin/Admin.Master" Inherits="System.Web.Mvc.ViewPage" %>
 <%@ Import Namespace="Zamov.Helpers" %>
 <%@ Import Namespace="Microsoft.Web.Mvc" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-    <%= Html.ResourceString("Categories") %>
-</asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
     <script type="text/javascript">

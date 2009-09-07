@@ -699,4 +699,7 @@
   <data name="TopProducts" xml:space="preserve">
     <value>Топ товарів</value>
   </data>
+  <data name="PageTitle" xml:space="preserve">
+    <value>Zamov - сайт онлайн замовлень</value>
+  </data>
 </root>

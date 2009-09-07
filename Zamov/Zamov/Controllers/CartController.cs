@@ -176,6 +176,7 @@ namespace Zamov.Controllers
             SystemSettings.MemberProperties.LastName = lastName;
             SystemSettings.MemberProperties.MobilePhone = contactPhone;
             SystemSettings.MemberProperties.Phone = contactPhone;
+            SystemSettings.MemberProperties.City = city;
             if (user != null)
                 userId = (Guid)user.ProviderUserKey;
             using (OrderStorage context = new OrderStorage())

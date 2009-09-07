@@ -39,7 +39,11 @@
         }
 </script>
 
-<div id="dealerOrdersInfo">
+<div id="dealerOrdersInfo">]
+    <a href="/DealerCabinet/Orders">
     <%= Html.ResourceString("YouHaveNewOrders") + ":" %>
-    <%= Html.ActionLink(newOrdersCount.ToString(), "Orders", "DealerCabinet", null, new { id = "dealerOrdersCount" }) %>
+    <span id="dealerOrdersCount">
+        <%= newOrdersCount %>
+    </span>
+    </a>
 </div>

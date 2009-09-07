@@ -66,6 +66,12 @@ namespace Zamov.Models
             set { profile.SetPropertyValue("DealerId", value); }
         }
 
+        public virtual string City
+        {
+            get { return (string)profile.GetPropertyValue("City"); }
+            set { profile.SetPropertyValue("City", value); }
+        }
+
         protected ProfileCommon(ProfileBase profile)
         {
             this.profile = profile;

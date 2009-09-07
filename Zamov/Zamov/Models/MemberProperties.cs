@@ -13,5 +13,6 @@ namespace Zamov.Models
         public string MobilePhone { get; set; }
         public string Phone { get; set; }
         public string DeliveryAddress { get; set; }
+        public string City { get; set; }
     }
 }

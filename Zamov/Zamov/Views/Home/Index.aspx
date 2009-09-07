@@ -11,6 +11,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
     <title>
+        <%= Html.ResourceString("PageTitle") %>
     </title>
     <link href="../../Content/Start.css" rel="stylesheet" type="text/css" />
     <%= Html.RegisterJS("MicrosoftAjax.js")%>

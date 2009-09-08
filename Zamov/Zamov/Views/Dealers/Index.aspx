@@ -7,6 +7,8 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
     <script type="text/javascript">
+        var intervalId = 0;
+        var intervalCount = 0;
         $(function() {
             applyDropShadows(".dealerLogo a", "shadow3");
             if ($.browser.msie && $.browser.version !== "8.0") {
@@ -16,15 +18,22 @@
             else {
                 $(".topDealers").css({ width: "97%", float: "left" });
             }
+            intervalId = setInterval(alignDealerOnline, 100);
+        })
 
+        function alignDealerOnline() {
             $(".dalerOnline").each(function() {
                 var top = $(this.parentNode).offset().top + 5;
                 var left = $(this.parentNode).offset().left + $(this.parentNode).width() + 10;
                 this.style.left = left + "px";
                 this.style.top = top + "px";
+                intervalCount++;
+                if (intervalCount == 100) {
+                    clearInterval(intervalId);
+                }
             }
-            )
-        })
+            );
+        }
     </script>
 
     <%

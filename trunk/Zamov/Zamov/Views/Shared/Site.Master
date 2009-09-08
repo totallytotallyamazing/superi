@@ -30,7 +30,24 @@
         $(function() {
             $("#header").corner("top");
             $("#mainMenu .outer .inner").corner("bottom").parent().css('padding', '1px').corner("bottom");
+
+            $(window).scroll(
+                function() {
+                    //                    if ($(window).scrollTop() > 576) {
+                    //                        var topPadding = $(window).scrollTop() - 576;
+                    //                        if (topPadding > 0 && ($(window).scrollTop() + 301 + 326) < $("#handEye").position().top) {
+                    //                            $("#tagCloud").css("padding-top", topPadding);
+                    //                        }
+                    //                    }
+                    //                    else {
+                    //                        $("#tagCloud").css("padding-top", 0)
+                    //                    }
+                    $(".menu").css("margin-top", $(window).scrollTop());
+                });
         })
+
+
+        
     </script>
 
 </head>

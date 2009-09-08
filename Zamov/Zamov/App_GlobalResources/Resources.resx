@@ -691,7 +691,7 @@
     <value>Статус останнього замовлення</value>
   </data>
   <data name="YouHaveNewOrders" xml:space="preserve">
-    <value>У вас нових заказiв</value>
+    <value>У вас нових замовлень</value>
   </data>
   <data name="StartText" xml:space="preserve">
     <value>Текст на головнiй</value>

@@ -1780,7 +1780,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to У вас нових заказiв.
+        ///   Looks up a localized string similar to У вас нових замовлень.
         /// </summary>
         internal static string YouHaveNewOrders {
             get {

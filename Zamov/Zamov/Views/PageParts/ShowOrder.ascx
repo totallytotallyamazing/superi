@@ -5,8 +5,8 @@
 <%@ Import Namespace="Zamov.Helpers" %>
 <%
     bool cartMode = (ViewData["cartMode"] != null);
-    //bool requestFromUsercabinet = (ViewData["requestFromUsercabinet"] != null);
-    bool requestFromUsercabinet = true;
+    bool requestFromUsercabinet = (ViewData["caller"] != null);
+    //bool requestFromUsercabinet = true;
 %>
 
 <script type="text/javascript">

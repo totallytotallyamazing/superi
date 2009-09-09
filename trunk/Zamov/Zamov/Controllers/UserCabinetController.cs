@@ -123,8 +123,6 @@ namespace Zamov.Controllers
                         products = productsQuery.Where(p=>!p.Deleted).ToDictionary(pr => pr.Id);
                     }
                 }
-
-
                 
                 if (products != null && products.Count > 0)
                 {

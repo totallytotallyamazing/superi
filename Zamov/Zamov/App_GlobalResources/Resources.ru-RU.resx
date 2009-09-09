@@ -699,4 +699,7 @@
   <data name="PageTitle" xml:space="preserve">
     <value>Zamov - сайт онлайн заказов</value>
   </data>
+  <data name="Photo" xml:space="preserve">
+    <value>Фото</value>
+  </data>
 </root>

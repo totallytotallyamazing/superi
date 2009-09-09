@@ -50,7 +50,7 @@
             <%=Html.ResourceString("Title")%>
         </th>
         <th>
-            Фото
+            <%=Html.ResourceString("Photo")%>
         </th>
         <th>
             <%=Html.ResourceString("Unit")%>

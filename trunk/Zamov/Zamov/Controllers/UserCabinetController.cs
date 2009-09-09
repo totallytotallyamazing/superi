@@ -97,18 +97,17 @@ namespace Zamov.Controllers
         public ActionResult AddToCart(FormCollection items)
         {
             Cart cart = SystemSettings.Cart;
-            PostData orderItems = items.ProcessPostData("X-Requested-With");
+            PostData orders = items.ProcessPostData("X-Requested-With");
 
-           
-            if (orderItems.Count > 0)
+            if (orders.Count > 0)
             {
                 
                 var orderItemList =
-                   (from oi in orderItems
+                   (from oi in orders
                     where oi.Value["order"].ToLowerInvariant().Contains("true")
                     select new { Id = int.Parse(oi.Key), Quantity = int.Parse(oi.Value["quantity"]) })
                     .ToList();
-
+                
                 /*
                 Dictionary<int, Product> products = null;
                 using (ZamovStorage context = new ZamovStorage())

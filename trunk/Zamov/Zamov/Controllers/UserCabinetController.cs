@@ -29,12 +29,12 @@ namespace Zamov.Controllers
             }
         }
 
-        public ActionResult ShowCart(int id)
+        public ActionResult ShowCart(int id, string caller)
         {
             using (OrderStorage context = new OrderStorage())
             {
                 List<Order> orders = (from order in context.Orders.Include("OrderItems").Include("Dealer").Include("OrderItems.Unit") where order.Cart.Id == id select order).ToList();
-                ViewData["requestFromUsercabinet"] = true;
+                ViewData["caller"] = caller;
                 return View(orders);
             }
         }

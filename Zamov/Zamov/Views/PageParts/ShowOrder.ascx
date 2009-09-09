@@ -5,7 +5,7 @@
 <%@ Import Namespace="Zamov.Helpers" %>
 <%
     bool cartMode = (ViewData["cartMode"] != null);
-    bool requestFromUsercabinet = (ViewData["caller"] != null);
+    string caller = ViewData["caller"].ToString();
     //bool requestFromUsercabinet = true;
 %>
 
@@ -69,7 +69,8 @@
         <%if (cartMode){ %>
         <th></th>
         <%} %>
-        <%if (requestFromUsercabinet){ %>
+        <%if (caller == "userCabinet")
+          { %>
         <th><%=Html.ResourceString("Quantity")%>/<%=Html.ResourceString("ToOrder")%></th>
         <%} %>
         
@@ -110,7 +111,7 @@
             <%= Html.ResourceActionLink<CartController>("Delete", ac=>ac.RemoveOrderItem(orderItem.GetHashCode()))%>
           </td>
         <%} %>
-        <%if (requestFromUsercabinet)
+        <%if (caller == "userCabinet")
           { %>
           <td>
           <%= Html.TextBox("quantity_" + orderItem.ProductId, null, new { style = "width:24px; font-size:10px; text-align:center", onkeyup = "validateQuantity(this); order(this)" })%>
@@ -137,14 +138,16 @@
         <%if (cartMode){ %>
         <td></td>
         <%} %>
-        <%if (requestFromUsercabinet){ %>
+        <%if (caller == "userCabinet")
+          { %>
         <td></td>
         <%} %>
         
         
     </tr>
 </table>
- <%if (requestFromUsercabinet){ %>
+ <%if (caller == "userCabinet")
+   { %>
  <input type="submit" value="<%=Html.ResourceString("AddToCart") %>" /> 
  <%} %>
 

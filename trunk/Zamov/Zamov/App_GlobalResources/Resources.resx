@@ -705,4 +705,7 @@
   <data name="Photo" xml:space="preserve">
     <value>Фото</value>
   </data>
+  <data name="RepeatOrder" xml:space="preserve">
+    <value>Повторити замовлення</value>
+  </data>
 </root>

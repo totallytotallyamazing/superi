@@ -109,6 +109,7 @@ namespace Zamov.Controllers
                     select new { Id = int.Parse(oi.Key), Quantity = int.Parse(oi.Value["quantity"]) })
                     .ToList();
 
+                /*
                 Dictionary<int, Product> products = null;
                 using (ZamovStorage context = new ZamovStorage())
                 {
@@ -118,9 +119,9 @@ namespace Zamov.Controllers
                                     context);
                     products = productsQuery.ToDictionary(pr => pr.Id);
                 }
-
+                */
                 
-
+                
                 
                 /* 
                 if (products != null && products.Count > 0)

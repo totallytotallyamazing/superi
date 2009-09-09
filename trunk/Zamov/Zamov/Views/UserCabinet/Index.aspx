@@ -19,7 +19,7 @@
         })
 
 
-/*
+
         function order(element) {
             var fieldSegments = element.name.split("_");
 
@@ -38,11 +38,11 @@
                 }
             }
         }
-  */      
+       
     </script>
     <%=Html.ResourceString("OrdersHistory") %>
     
-    
+    <%using(Html.BeginForm("AddToCart","UserCabinet",FormMethod.Post)){ %>
     <table class="commonTable">
         <tr>
 <%--            <th>№ <%=Html.ResourceString("OfCart")%></th>--%>
@@ -52,6 +52,7 @@
             <th><%=Html.ResourceString("Cost")%>, грн</th>
             <th><%=Html.ResourceString("OrderStatus")%></th>
             <th></th>
+            <th><%=Html.ResourceString("Quantity")%>/<%=Html.ResourceString("ToOrder")%></th>
         </tr>
     <%
 
@@ -69,8 +70,10 @@
             <td><%=Html.Encode(order.Id)%></td>
             <td><%=Html.Encode(order.Dealer.GetName(SystemSettings.CurrentLanguage))%></td>
             <td><%=Html.Encode(order.OrderItems.Sum(oi => oi.Price*oi.Quantity))%></td>
-            <td><%=Html.ActionLink(Html.ResourceString("Status" + (Statuses)order.Status), "ShowCart", new { id = order.Cart.Id, caller = "userCabinet" }, new { @class = "cartDescription" })%></td>
+            <td><%=Html.ActionLink(Html.ResourceString("Status" + (Statuses)order.Status), "ShowCart", new { id = order.Cart.Id/*, caller = "userCabinet"*/ }, new { @class = "cartDescription" })%></td>
             <td rowspan="<%=Html.Encode(c)%>"><%=Html.ActionLink(Html.ResourceString("Delete"), "DeleteCart", new { id = order.Cart.Id }, new { onclick = "return confirm('" + Html.ResourceString("AreYouSure") + "?')" })%></td>
+            <td> <%= Html.TextBox("quantity_" + order.Id, null, new { style = "width:24px; font-size:10px; text-align:center", onkeyup = "validateQuantity(this); order(this)" })%>
+          <%= Html.CheckBox("order_" + order.Id, false, new { @class = "orderCb", onclick = "order(this)" })%></td>
         </tr>
         <%
         }
@@ -81,7 +84,9 @@
                 <td><%=Html.Encode(order.Id)%></td>
                 <td><%=Html.Encode(order.Dealer.GetName(SystemSettings.CurrentLanguage))%></td>
                 <td><%=Html.Encode(order.OrderItems.Sum(oi => oi.Price * oi.Quantity))%></td>
-                <td><%=Html.ActionLink(Html.ResourceString("Status" + (Statuses)order.Status), "ShowCart", new { id = order.Cart.Id, caller = "userCabinet" }, new { @class = "cartDescription" })%></td>
+                <td><%=Html.ActionLink(Html.ResourceString("Status" + (Statuses)order.Status), "ShowCart", new { id = order.Cart.Id/*, caller = "userCabinet"*/ }, new { @class = "cartDescription" })%></td>
+                <td> <%= Html.TextBox("quantity_" + order.Id, null, new { style = "width:24px; font-size:10px; text-align:center", onkeyup = "validateQuantity(this); order(this)" })%>
+          <%= Html.CheckBox("order_" + order.Id, false, new { @class = "orderCb", onclick = "order(this)" })%></td>
             </tr>
             
             <%
@@ -89,7 +94,12 @@
             PrevId = NextId;
     }   %>
     </table>
-    
+ <%
+   { %>
+ <input type="submit" value="<%=Html.ResourceString("RepeatOrder") %>" /> 
+ <%} %>
+
+<%} %>     
     
 </asp:Content>
 

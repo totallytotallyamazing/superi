@@ -5,7 +5,7 @@
 <%@ Import Namespace="Zamov.Helpers" %>
 <%
     bool cartMode = (ViewData["cartMode"] != null);
-    string caller = ViewData["caller"].ToString();
+    //string caller = ViewData["caller"].ToString();
 %>
 
 <script type="text/javascript">
@@ -42,7 +42,7 @@
 <%--<%= Html.Image("~/Image/ShowLogo/" + Model.DealerReference.EntityKey.EntityKeyValues[0].Value, new { style="border:1px solid #ccc;", @class="dealerImageLogo" })%>--%>
 </div>
 
-<%using(Html.BeginForm("AddToCart","UserCabinet",FormMethod.Post)){ %>
+<%//using(Html.BeginForm("AddToCart","UserCabinet",FormMethod.Post)){ %>
 <table class="commonTable">
     <tr>
         <th>
@@ -68,10 +68,11 @@
         <%if (cartMode){ %>
         <th></th>
         <%} %>
-        <%if (caller == "userCabinet")
-          { %>
-        <th><%=Html.ResourceString("Quantity")%>/<%=Html.ResourceString("ToOrder")%></th>
-        <%} %>
+        
+        <%//if (caller == "userCabinet")
+          //{ %>
+        <!--<th><%=//Html.ResourceString("Quantity")%>/<%=//Html.ResourceString("ToOrder")%></th>-->
+        <%//} %>
         
         
     </tr>
@@ -137,17 +138,17 @@
         <%if (cartMode){ %>
         <td></td>
         <%} %>
-        <%if (caller == "userCabinet")
-          { %>
+        <%//if (caller == "userCabinet")
+          //{ %>
         <td></td>
-        <%} %>
+        <%//} %>
         
         
     </tr>
 </table>
- <%if (caller == "userCabinet")
-   { %>
- <input type="submit" value="<%=Html.ResourceString("AddToCart") %>" /> 
- <%} %>
+ <%//if (caller == "userCabinet")
+   //{ %>
+ <!--<input type="submit" value="<%=Html.ResourceString("AddToCart") %>" /> -->
+ <%//} %>
 
-<%} %> 
+<%//} %> 

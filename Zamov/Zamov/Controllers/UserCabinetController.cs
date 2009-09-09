@@ -94,11 +94,11 @@ namespace Zamov.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult AddToCart(FormCollection items)
+        public ActionResult AddToCart(int id)
         {
             Cart cart = SystemSettings.Cart;
-            PostData orders = items.ProcessPostData("X-Requested-With");
-
+            //PostData orders = items.ProcessPostData("X-Requested-With");
+            /*
             if (orders.Count > 0)
             {
                 
@@ -108,7 +108,7 @@ namespace Zamov.Controllers
                     select new { Id = int.Parse(oi.Key), Quantity = int.Parse(oi.Value["quantity"]) })
                     .ToList();
                 
-                /*
+                
                 Dictionary<int, Product> products = null;
                 using (ZamovStorage context = new ZamovStorage())
                 {
@@ -118,11 +118,11 @@ namespace Zamov.Controllers
                                     context);
                     products = productsQuery.ToDictionary(pr => pr.Id);
                 }
-                */
                 
                 
                 
-                /* 
+                
+                
                 if (products != null && products.Count > 0)
                 {
                     foreach (var orderItem in orderItemList)
@@ -153,9 +153,9 @@ namespace Zamov.Controllers
                         order.OrderItems.Add(item);
                     }
                 }
-                 */
+                 
             }
-            
+            */
 
             return RedirectToAction("Index", "UserCabinet");
         }

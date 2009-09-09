@@ -5,7 +5,6 @@
 <%@ Import Namespace="Zamov.Helpers" %>
 <%
     bool cartMode = (ViewData["cartMode"] != null);
-    //string caller = ViewData["caller"].ToString();
 %>
 
 <script type="text/javascript">
@@ -42,7 +41,6 @@
 <%--<%= Html.Image("~/Image/ShowLogo/" + Model.DealerReference.EntityKey.EntityKeyValues[0].Value, new { style="border:1px solid #ccc;", @class="dealerImageLogo" })%>--%>
 </div>
 
-<%//using(Html.BeginForm("AddToCart","UserCabinet",FormMethod.Post)){ %>
 <table class="commonTable">
     <tr>
         <th>
@@ -68,13 +66,6 @@
         <%if (cartMode){ %>
         <th></th>
         <%} %>
-        
-        <%//if (caller == "userCabinet")
-          //{ %>
-        <!--<th><%=//Html.ResourceString("Quantity")%>/<%=//Html.ResourceString("ToOrder")%></th>-->
-        <%//} %>
-        
-        
     </tr>
     <%
         
@@ -111,13 +102,6 @@
             <%= Html.ResourceActionLink<CartController>("Delete", ac=>ac.RemoveOrderItem(orderItem.GetHashCode()))%>
           </td>
         <%} %>
-        <%if (caller == "userCabinet")
-          { %>
-          <td>
-          <%= Html.TextBox("quantity_" + orderItem.ProductId, null, new { style = "width:24px; font-size:10px; text-align:center", onkeyup = "validateQuantity(this); order(this)" })%>
-          <%= Html.CheckBox("order_" + orderItem.ProductId, false, new { @class = "orderCb", onclick = "order(this)" })%>
-          </td>
-        <%} %>
     </tr>
     <%
         }
@@ -138,17 +122,5 @@
         <%if (cartMode){ %>
         <td></td>
         <%} %>
-        <%//if (caller == "userCabinet")
-          //{ %>
-        <td></td>
-        <%//} %>
-        
-        
     </tr>
 </table>
- <%//if (caller == "userCabinet")
-   //{ %>
- <!--<input type="submit" value="<%=Html.ResourceString("AddToCart") %>" /> -->
- <%//} %>
-
-<%//} %> 

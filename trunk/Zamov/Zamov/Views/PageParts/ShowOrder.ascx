@@ -5,6 +5,7 @@
 <%@ Import Namespace="Zamov.Helpers" %>
 <%
     bool cartMode = (ViewData["cartMode"] != null);
+    bool requestFromUsercabinet = (ViewData["requestFromUsercabinet"] != null);
 %>
 
 <script type="text/javascript">
@@ -45,6 +46,11 @@
         <%if (cartMode){ %>
         <th></th>
         <%} %>
+        <%if (requestFromUsercabinet){ %>
+        <th><%=Html.ResourceString("ToOrder")%></th>
+        <%} %>
+        
+        
     </tr>
     <%
         
@@ -79,6 +85,12 @@
           { %>
           <td>
             <%= Html.ResourceActionLink<CartController>("Delete", ac=>ac.RemoveOrderItem(orderItem.GetHashCode()))%>
+          </td>
+        <%} %>
+        <%if (requestFromUsercabinet)
+          { %>
+          <td>
+            <%= Html.CheckBox("order_" + orderItem.ProductId, false, new { @class = "orderCb", onclick = "order(this)" })%>
           </td>
         <%} %>
     </tr>

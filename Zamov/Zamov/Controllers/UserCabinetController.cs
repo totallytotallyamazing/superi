@@ -23,6 +23,7 @@ namespace Zamov.Controllers
                                          from order in
                                              context.Orders.Include("Dealer").Include("Cart").Include("OrderItems")
                                          where order.UserId == SystemSettings.CurrentUserId
+                                         && order.Cart.Deleted == 0
                                          orderby order.Cart.Date descending, order.Cart.Id ascending
                                          select order).ToList();
                 return View(orders);
@@ -97,46 +98,48 @@ namespace Zamov.Controllers
         public ActionResult AddToCart(int id)
         {
             Cart cart = SystemSettings.Cart;
-            //PostData orders = items.ProcessPostData("X-Requested-With");
-            /*
-            if (orders.Count > 0)
+            Dictionary<int, Product> products = null;
+            int dealerId = int.MinValue;
+            using(OrderStorage context = new OrderStorage())
             {
-                
-                var orderItemList =
-                   (from oi in orders
-                    where oi.Value["order"].ToLowerInvariant().Contains("true")
-                    select new { Id = int.Parse(oi.Key), Quantity = int.Parse(oi.Value["quantity"]) })
-                    .ToList();
-                
-                
-                Dictionary<int, Product> products = null;
-                using (ZamovStorage context = new ZamovStorage())
+                var orderItems = (from oi in context.OrderItems where oi.Order.Id == id select new 
                 {
-                    string productIds = string.Join(",", orderItemList.Select(oil => oil.Id.ToString()).ToArray());
-                    ObjectQuery<Product> productsQuery = new ObjectQuery<Product>(
-                                    "SELECT VALUE P FROM Products AS P WHERE P.Id IN {" + productIds + "}",
-                                    context);
-                    products = productsQuery.ToDictionary(pr => pr.Id);
+                    ProductId = oi.ProductId,
+                    Quantity = oi.Quantity
+                }).ToList();
+
+                string[] productIds = orderItems.Select(oi=>oi.ProductId.ToString()).ToArray();
+
+                dealerId = (from order in context.Orders where order.Id == id select order.Dealer.Id).First();
+                
+                using (ZamovStorage zamovContext = new ZamovStorage())
+                {
+                    string productIdsCondition = string.Join(",", productIds);
+                    if (!string.IsNullOrEmpty(productIdsCondition))
+                    {
+                        ObjectQuery<Product> productsQuery = new ObjectQuery<Product>(
+                                        "SELECT VALUE P FROM Products AS P WHERE P.Id IN {" + productIdsCondition + "}",
+                                        zamovContext);
+                        products = productsQuery.Where(p=>!p.Deleted).ToDictionary(pr => pr.Id);
+                    }
                 }
-                
-                
-                
-                
+
+
                 
                 if (products != null && products.Count > 0)
                 {
-                    foreach (var orderItem in orderItemList)
+                    foreach (var orderItem in orderItems)
                     {
-                        Order order = (from o in cart.Orders where o.DealerReference.EntityKey != null && (int)o.DealerReference.EntityKey.EntityKeyValues[0].Value == orderItem.Dealer select o).SingleOrDefault();
+                        Order order = (from o in cart.Orders where o.DealerReference.EntityKey != null && (int)o.DealerReference.EntityKey.EntityKeyValues[0].Value == dealerId select o).SingleOrDefault();
                         if (order == null)
                         {
                             order = new Order();
-                            IEnumerable<KeyValuePair<string, object>> dealerKeyValues = new KeyValuePair<string, object>[] { new KeyValuePair<string, object>("Id", orderItem.Dealer) };
+                            IEnumerable<KeyValuePair<string, object>> dealerKeyValues = new KeyValuePair<string, object>[] { new KeyValuePair<string, object>("Id", dealerId) };
                             EntityKey dealer = new EntityKey("OrderStorage.OrderDealers", dealerKeyValues);
                             order.DealerReference.EntityKey = dealer;
                             cart.Orders.Add(order);
                         }
-                        Product product = products[orderItem.Id];
+                        Product product = products[orderItem.ProductId.Value];
                         OrderItem item = null;
                         if (order.OrderItems != null && order.OrderItems.Count > 0)
                             item = (from i in order.OrderItems where i.PartNumber == product.PartNumber select i).SingleOrDefault();
@@ -153,10 +156,8 @@ namespace Zamov.Controllers
                         order.OrderItems.Add(item);
                     }
                 }
-                 
             }
-            */
-
+            
             return RedirectToAction("Index", "UserCabinet");
         }
         

@@ -1,5 +1,4 @@
 ﻿<%@ Master Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewMasterPage" %>
-
 <%@ Import Namespace="Microsoft.Web.Mvc" %>
 <%@ Import Namespace="Zamov.Helpers" %>
 <asp:Content ContentPlaceHolderID="leftMenu" runat="server">
@@ -43,6 +42,14 @@
           Html.RenderPartial("SelectDealer");
       }
     %>
+    <center>
+    <table style="width:80%">
+        <tr>
+            <td align="left" valign="top"><%= Html.Image("~/Image/ShowLogo/" + Zamov.Controllers.SystemSettings.CurrentDealer)%></td>
+            <td align="right" valign="top"><%= Html.ResourceString("Manager") + ": " +  Profile.FirstName + " " + Profile.LastName %></td>
+        </tr>
+    </table>
+    </center>
     <asp:ContentPlaceHolder ID="mainContent" runat="server">
     </asp:ContentPlaceHolder>
 </asp:Content>

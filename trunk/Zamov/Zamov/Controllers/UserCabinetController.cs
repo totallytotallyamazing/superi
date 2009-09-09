@@ -98,13 +98,17 @@ namespace Zamov.Controllers
         {
             Cart cart = SystemSettings.Cart;
             PostData orderItems = items.ProcessPostData("X-Requested-With");
-            /*
+
+           
             if (orderItems.Count > 0)
             {
+
+
+
                 var orderItemList =
                    (from oi in orderItems
                     where oi.Value["order"].ToLowerInvariant().Contains("true")
-                    select new { Id = int.Parse(oi.Key), Dealer = int.Parse(oi.Value["dealer"]), Quantity = int.Parse(oi.Value["quantity"]) })
+                    select new { Id = int.Parse(oi.Key), Quantity = int.Parse(oi.Value["quantity"]) })
                     .ToList();
 
                 Dictionary<int, Product> products = null;
@@ -112,10 +116,15 @@ namespace Zamov.Controllers
                 {
                     string productIds = string.Join(",", orderItemList.Select(oil => oil.Id.ToString()).ToArray());
                     ObjectQuery<Product> productsQuery = new ObjectQuery<Product>(
-                                "SELECT VALUE P FROM Products AS P WHERE P.Id IN {" + productIds + "}",
-                                context);
+                                    "SELECT VALUE P FROM Products AS P WHERE P.Id IN {" + productIds + "}",
+                                    context);
                     products = productsQuery.ToDictionary(pr => pr.Id);
                 }
+
+                
+
+                
+                /* 
                 if (products != null && products.Count > 0)
                 {
                     foreach (var orderItem in orderItemList)
@@ -146,8 +155,9 @@ namespace Zamov.Controllers
                         order.OrderItems.Add(item);
                     }
                 }
+                 */
             }
-            */
+            
 
             return RedirectToAction("Index", "UserCabinet");
         }

@@ -5,7 +5,8 @@
 <%@ Import Namespace="Zamov.Helpers" %>
 <%
     bool cartMode = (ViewData["cartMode"] != null);
-    bool requestFromUsercabinet = (ViewData["requestFromUsercabinet"] != null);
+    //bool requestFromUsercabinet = (ViewData["requestFromUsercabinet"] != null);
+    bool requestFromUsercabinet = true;
 %>
 
 <script type="text/javascript">
@@ -16,11 +17,33 @@
         })
         showOrdershadowsDeclared = true;
     }
+
+    function order(element) {
+        var fieldSegments = element.name.split("_");
+
+        var id = fieldSegments[1];
+
+        if (element.type == "checkbox") {
+            var input = $get("quantity_" + id);
+            if (input.value == "") {
+                input.value = 1;
+            }
+        }
+        else {
+            var checkbox = $get("order_" + id);
+            if (!checkbox.checked) {
+                checkbox.checked = true;
+            }
+        }
+    }
+    
 </script>
 <div style="height:120px;">
     <% Html.RenderAction<PagePartsController>(ac => ac.CurrentDealer((int)Model.DealerReference.EntityKey.EntityKeyValues[0].Value)); %>
 <%--<%= Html.Image("~/Image/ShowLogo/" + Model.DealerReference.EntityKey.EntityKeyValues[0].Value, new { style="border:1px solid #ccc;", @class="dealerImageLogo" })%>--%>
 </div>
+
+<%using(Html.BeginForm("AddToCart","UserCabinet",FormMethod.Post)){ %>
 <table class="commonTable">
     <tr>
         <th>
@@ -47,7 +70,7 @@
         <th></th>
         <%} %>
         <%if (requestFromUsercabinet){ %>
-        <th><%=Html.ResourceString("ToOrder")%></th>
+        <th><%=Html.ResourceString("Quantity")%>/<%=Html.ResourceString("ToOrder")%></th>
         <%} %>
         
         
@@ -90,7 +113,8 @@
         <%if (requestFromUsercabinet)
           { %>
           <td>
-            <%= Html.CheckBox("order_" + orderItem.ProductId, false, new { @class = "orderCb", onclick = "order(this)" })%>
+          <%= Html.TextBox("quantity_" + orderItem.ProductId, null, new { style = "width:24px; font-size:10px; text-align:center", onkeyup = "validateQuantity(this); order(this)" })%>
+          <%= Html.CheckBox("order_" + orderItem.ProductId, false, new { @class = "orderCb", onclick = "order(this)" })%>
           </td>
         <%} %>
     </tr>
@@ -113,5 +137,15 @@
         <%if (cartMode){ %>
         <td></td>
         <%} %>
+        <%if (requestFromUsercabinet){ %>
+        <td></td>
+        <%} %>
+        
+        
     </tr>
 </table>
+ <%if (requestFromUsercabinet){ %>
+ <input type="submit" value="<%=Html.ResourceString("AddToCart") %>" /> 
+ <%} %>
+
+<%} %> 

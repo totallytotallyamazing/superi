@@ -42,7 +42,7 @@
     </script>
     <%=Html.ResourceString("OrdersHistory") %>
     
-    <%using(Html.BeginForm("AddToCart","UserCabinet",FormMethod.Post)){ %>
+    
     <table class="commonTable">
         <tr>
 <%--            <th>¹ <%=Html.ResourceString("OfCart")%></th>--%>
@@ -90,8 +90,7 @@
     }   %>
     </table>
     
-    <input type="submit" value="<%=Html.ResourceString("AddToCart") %>" /> 
-    <%} %> 
+    
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="includes" runat="server">

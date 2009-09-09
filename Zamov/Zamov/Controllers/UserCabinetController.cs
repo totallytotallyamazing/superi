@@ -102,9 +102,7 @@ namespace Zamov.Controllers
            
             if (orderItems.Count > 0)
             {
-
-
-
+                
                 var orderItemList =
                    (from oi in orderItems
                     where oi.Value["order"].ToLowerInvariant().Contains("true")

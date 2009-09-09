@@ -64,14 +64,14 @@
         if (PrevId != NextId)
         {
         %>
-        <tr>
+        <tr class="status<%=((Statuses)order.Status) %>">
             <%--<td rowspan="<%=Html.Encode(c)%>"><%=Html.Encode(order.Cart.Id)%></td>--%>
             <td rowspan="<%=Html.Encode(c)%>"><%=Html.Encode(String.Format("{0:dd.MM.yyyy HH:mm}", order.Cart.Date))%></td>
             <td><%=Html.Encode(order.Id)%></td>
             <td><%=Html.Encode(order.Dealer.GetName(SystemSettings.CurrentLanguage))%></td>
             <td><%=Html.Encode(order.OrderItems.Sum(oi => oi.Price*oi.Quantity))%></td>
             <td><%=Html.ActionLink(Html.ResourceString("Status" + (Statuses)order.Status), "ShowCart", new { id = order.Cart.Id/*, caller = "userCabinet"*/ }, new { @class = "cartDescription" })%></td>
-            <td rowspan="<%=Html.Encode(c)%>"><%=Html.ActionLink(Html.ResourceString("Delete"), "DeleteCart", new { id = order.Cart.Id }, new { onclick = "return confirm('" + Html.ResourceString("AreYouSure") + "?')" })%></td>
+            <td rowspan="<%=Html.Encode(c)%>"><%=Html.ActionLink(Html.ResourceString("Delete"), "DeleteCart", new { id = order.Cart.Id }, new {@class="redLink", onclick = "return confirm('" + Html.ResourceString("AreYouSure") + "?')" })%></td>
             <td><%=Html.ActionLink(Html.ResourceString("RepeatOrder"), "AddToCart", new { id = order.Id})%></td>
         </tr>
         <%

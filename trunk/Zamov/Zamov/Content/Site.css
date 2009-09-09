@@ -143,11 +143,11 @@ iframe{padding:0; margin:0; border:none;}
 .productDescriptionImage{float:left; margin-right:10px; margin-bottom:5px;}
 
 
-.statusNew{font-weight:bold;}
-.statusAccepted{ background-color:#ddafff;}
-.statusComplited{ background-color:Olive;}
-.statusCanceled{ color:Silver;}
-
+.statusNew a{color:#ff40ff;}
+.statusAccepted a{ color:#fe0101;}
+.statusComplited a{ background-color:#1c902a;}
+.statusCanceled a{ color:#2d06d5;}
+a.redLink{color:#fe0101 !important;}
 
 .logOnProperties{padding:10px;}
 #dealerOrdersInfo{padding:0 10px;}

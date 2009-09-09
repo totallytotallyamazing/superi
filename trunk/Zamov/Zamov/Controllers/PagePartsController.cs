@@ -75,10 +75,11 @@ namespace Zamov.Controllers
                 return Json(context.GetCategories(id));
         }
 
-        public ActionResult ShowOrder(Order order, bool cartMode)
+        public ActionResult ShowOrder(Order order, bool cartMode, string caller)
         {
             if (cartMode)
                 ViewData["cartMode"] = cartMode;
+            ViewData["caller"] = caller;
             return View(order);
         }
 

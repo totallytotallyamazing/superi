@@ -93,7 +93,7 @@ namespace Zamov.Controllers
             return ModelState.IsValid;
         }
 
-        [AcceptVerbs(HttpVerbs.Post)]
+        
         public ActionResult AddToCart(int id)
         {
             Cart cart = SystemSettings.Cart;

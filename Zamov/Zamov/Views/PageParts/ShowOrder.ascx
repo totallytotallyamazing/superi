@@ -6,7 +6,6 @@
 <%
     bool cartMode = (ViewData["cartMode"] != null);
     string caller = ViewData["caller"].ToString();
-    //bool requestFromUsercabinet = true;
 %>
 
 <script type="text/javascript">

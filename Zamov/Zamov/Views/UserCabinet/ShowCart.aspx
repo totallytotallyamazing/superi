@@ -7,7 +7,7 @@
     <% foreach (Order order in Model) {
     %>
     <tr>
-        <td><%Html.RenderAction<PagePartsController>(ac=>ac.ShowOrder(order, false));%></td>            
+        <td><%Html.RenderAction<PagePartsController>(ac => ac.ShowOrder(order, false, ViewData["caller"].ToString()));%></td>            
     </tr>            
     <tr>
         <td style="padding-top:10px;">&nbsp;</td>            

@@ -18,6 +18,7 @@ namespace Zamov.Controllers
 {
     [Authorize(Roles = "Administrators, Dealers")]
     [BreadCrumb( ResourceName="DealerCabinet", Url="/DealerCabinet")]
+    [UpdateCurrentDealer]
     public class DealerCabinetController : Controller
     {
         public ActionResult Index()

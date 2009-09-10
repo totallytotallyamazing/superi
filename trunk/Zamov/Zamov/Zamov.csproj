@@ -105,6 +105,7 @@
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\Securirty.cs" />
     <Compile Include="Controllers\SystemSettings.cs" />
+    <Compile Include="Controllers\UpdateCurrentDealerAttribute.cs" />
     <Compile Include="Controllers\UserCabinetController.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>

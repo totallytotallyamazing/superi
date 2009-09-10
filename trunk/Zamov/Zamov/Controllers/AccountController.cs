@@ -15,7 +15,6 @@ namespace Zamov.Controllers
 {
 
     [HandleError]
-    [BreadCrumb(ResourceName = "Account", Url = "/Account")]
     public class AccountController : Controller
     {
 
@@ -65,11 +64,7 @@ namespace Zamov.Controllers
             }
 
             FormsAuth.SignIn(userName, rememberMe);
-            if (Roles.IsUserInRole(userName, "Dealers"))
-            {
-                ProfileCommon profile = ProfileCommon.Create(userName);
-                SystemSettings.CurrentDealer = profile.DealerId;
-            }
+
             if (!String.IsNullOrEmpty(returnUrl))
             {
                 return Redirect(returnUrl);

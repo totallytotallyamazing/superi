@@ -705,4 +705,16 @@
   <data name="RepeatOrder" xml:space="preserve">
     <value>Повторить заказ</value>
   </data>
+  <data name="Attention" xml:space="preserve">
+    <value>Внимание</value>
+  </data>
+  <data name="PageExpired" xml:space="preserve">
+    <value>Страница устарела</value>
+  </data>
+  <data name="PageExpiredText" xml:space="preserve">
+    <value>Эта страница устарела для продолжения работы вернитесь</value>
+  </data>
+  <data name="ToTheMainPage" xml:space="preserve">
+    <value>На главную</value>
+  </data>
 </root>

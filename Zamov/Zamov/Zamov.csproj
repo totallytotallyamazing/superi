@@ -314,7 +314,9 @@
     <Content Include="Content\img\truck.jpg" />
     <Content Include="Content\jquery.treeview.css" />
     <None Include="Content\MailTemplates\newOrder" />
+    <Content Include="Scripts\jquery.cookie.js" />
     <Content Include="Views\Admin\StartText.aspx" />
+    <Content Include="Views\Cart\Expired.aspx" />
     <Content Include="Views\Dealer\DealerInfo.aspx" />
     <Content Include="Views\Shared\TopProducts.ascx" />
     <Content Include="Views\UserCabinet\UserCabinet.Master" />

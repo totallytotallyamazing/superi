@@ -708,4 +708,16 @@
   <data name="RepeatOrder" xml:space="preserve">
     <value>Повторити замовлення</value>
   </data>
+  <data name="Attention" xml:space="preserve">
+    <value>Увага</value>
+  </data>
+  <data name="PageExpired" xml:space="preserve">
+    <value>Сторiнка не актуальна</value>
+  </data>
+  <data name="PageExpiredText" xml:space="preserve">
+    <value>Ця сторiнка бiльше не актуальна. Для продровження роботи повернiться </value>
+  </data>
+  <data name="ToTheMainPage" xml:space="preserve">
+    <value>На головну</value>
+  </data>
 </root>

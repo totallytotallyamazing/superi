@@ -223,6 +223,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Увага.
+        /// </summary>
+        internal static string Attention {
+            get {
+                return ResourceManager.GetString("Attention", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Вiдмiна.
         /// </summary>
         internal static string Cancel {
@@ -1231,6 +1240,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Сторiнка не актуальна.
+        /// </summary>
+        internal static string PageExpired {
+            get {
+                return ResourceManager.GetString("PageExpired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ця сторiнка бiльше не актуальна. Для продровження роботи повернiться .
+        /// </summary>
+        internal static string PageExpiredText {
+            get {
+                return ResourceManager.GetString("PageExpiredText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Zamov - сайт онлайн замовлень.
         /// </summary>
         internal static string PageTitle {
@@ -1668,6 +1695,15 @@ namespace Resources {
         internal static string Total {
             get {
                 return ResourceManager.GetString("Total", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to На головну.
+        /// </summary>
+        internal static string ToTheMainPage {
+            get {
+                return ResourceManager.GetString("ToTheMainPage", resourceCulture);
             }
         }
         

@@ -22,7 +22,8 @@ namespace Zamov.Controllers
 
         public ActionResult Index()
         {
-
+            if (SystemSettings.Cart.Orders.Count == 0)
+                return RedirectToAction("Index", "Home");
             using (ZamovStorage context = new ZamovStorage())
             {
                 List<Dealer> dealers = (from dealer in context.Dealers.Include("Cities").Include("Categories")
@@ -111,6 +112,11 @@ namespace Zamov.Controllers
 
         public ActionResult MakeOrder()
         {
+            if (SystemSettings.Cart.Orders.Count == 0)
+                return RedirectToAction("Expired");
+            HttpCookie cookie = new HttpCookie("makeOrder", "true");
+            cookie.Path = "/";
+            Response.AppendCookie(cookie);
             using (ZamovStorage context = new ZamovStorage())
             {
                 string city = (from c in context.Cities
@@ -133,6 +139,13 @@ namespace Zamov.Controllers
             }
 
             return View(SystemSettings.Cart.Orders);
+        }
+
+        [BreadCrumb(ResourceName = "PageExpired", Url = "")]
+        public ActionResult Expired()
+        {
+            SystemSettings.EmptyCart();
+            return View();
         }
 
         [AcceptVerbs(HttpVerbs.Post)]

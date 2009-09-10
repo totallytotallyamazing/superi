@@ -23,11 +23,19 @@
             $("#deliveryDate").datepicker($.datepicker.regional["<%= pickerLocale %>"]);
             $("#deliveryDate").datepicker("setDate", new Date());
             $("#agreementLink").fancybox({ frameWidth: 700, hideOnContentClick: false });
+            checkCookie();
         })
 
         function setOrderTime() {
             var date = $("#deliveryDate").datepicker("getDate");
             $get("deliveryDateTime").value = $get("deliveryDate").value + " " + $get("deliveryTime").value;
+        }
+
+        function checkCookie() {
+            debugger;
+            var cookieValue = $.cookie("makeOrder");
+            if (!cookieValue || cookieValue != "true")
+                location.href = "/Cart/Expired";
         }
     </script>
 
@@ -135,6 +143,7 @@
     <%= Html.RegisterJS("ui.datepicker-uk.js")%>
     <%= Html.RegisterCss("~/Content/redmond/jquery.ui.css")%>
     <%= Html.RegisterJS("jquery.ui.js")%>
+    <%= Html.RegisterJS("jquery.cookie.js")%>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="leftMenu" runat="server">
     <% using (Html.BeginForm("MakeOrder", "Cart", FormMethod.Post, new { id = "makeOrder" }))

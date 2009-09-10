@@ -5,7 +5,11 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-
+<script type="text/javascript">
+    $(function() {
+        $.cookie("makeOrder", "false");
+    })
+</script>
     <h2><%=Html.ResourceString("ThankYou")%></h2>
     <center>
     
@@ -58,6 +62,7 @@
     <style type="text/css">
         #leftSide{border:none !important;}
     </style>
+    <%= Html.RegisterJS("jquery.cookie.js") %>
 </asp:Content>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="leftMenu" runat="server">

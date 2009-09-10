@@ -22,6 +22,7 @@
             applyDropShadows(".orderDetails .logo img", "shadow3");
             $("#deliveryDate").datepicker($.datepicker.regional["<%= pickerLocale %>"]);
             $("#deliveryDate").datepicker("setDate", new Date());
+            $("#deliveryDate").datepicker('option', 'minDate', new Date());
             $("#agreementLink").fancybox({ frameWidth: 700, hideOnContentClick: false });
             checkCookie();
         })
@@ -32,7 +33,6 @@
         }
 
         function checkCookie() {
-            debugger;
             var cookieValue = $.cookie("makeOrder");
             if (!cookieValue || cookieValue != "true")
                 location.href = "/Cart/Expired";

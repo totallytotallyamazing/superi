@@ -10,6 +10,7 @@
         fadeScreenOut();
         $("#fancy_ajax").load("/DealerCabinet/ShowOrder/" + orderId, null, function() { fadeScreenIn(); });
         $("#orderStatus" + orderId).html(orderStatus);
+        $("#orderStatus" + orderId).parent().parent().attr("class", "statusAccepted");
     }
     
 </script>

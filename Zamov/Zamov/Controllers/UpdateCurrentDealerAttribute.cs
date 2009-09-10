@@ -14,10 +14,10 @@ namespace Zamov.Controllers
         {
             if (filterContext.HttpContext.Request.IsAuthenticated)
             {
-                MembershipUser user = Membership.GetUser(false);
-                if (Roles.IsUserInRole(user.UserName, "Dealers"))
+                string userName = filterContext.HttpContext.User.Identity.Name;
+                if (Roles.IsUserInRole(userName, "Dealers"))
                 {
-                    ProfileCommon profile = ProfileCommon.Create(user.UserName);
+                    ProfileCommon profile = ProfileCommon.Create(userName);
                     SystemSettings.CurrentDealer = profile.DealerId;
                 }
             }

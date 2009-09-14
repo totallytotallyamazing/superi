@@ -12,7 +12,9 @@
     <%= Html.ValidationSummary() %>
     <%
         string pickerLocale = (SystemSettings.CurrentLanguage == "uk-UA") ? "uk" : "ru";
-        string coookie = Response.Cookies["makeOrder"].Value.ToString();
+        string coookie = "true";
+        if (Response.Cookies["makeOrder"] != null)
+            coookie = Response.Cookies["makeOrder"].Value.ToString();
     %>
 
     <script type="text/javascript">

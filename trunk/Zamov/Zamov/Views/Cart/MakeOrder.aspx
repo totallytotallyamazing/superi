@@ -32,10 +32,14 @@
             $get("deliveryDateTime").value = $get("deliveryDate").value + " " + $get("deliveryTime").value;
         }
 
-        function checkCookie() {
-            var cookieValue = $.cookie("makeOrder");
-            if (!cookieValue || cookieValue != "true")
-                location.href = "/Cart/Expired";
+        function checkCookie() 
+        {
+            var cookieValue =  $.cookie("makeOrder");
+            
+            //alert(cookieValue);
+            
+            //if (!cookieValue || cookieValue != "true")
+                //location.href = "/Cart/Expired";
         }
     </script>
 

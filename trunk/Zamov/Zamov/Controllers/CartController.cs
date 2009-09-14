@@ -115,16 +115,11 @@ namespace Zamov.Controllers
             if (SystemSettings.Cart.Orders.Count == 0)
                 return RedirectToAction("Expired");
 
-            DateTime curdate = DateTime.Now;
 
             HttpCookie cookie = new HttpCookie("makeOrder", "true");
-
-            //if (Response.Cookies["makeOrder"] != null)
-                //Response.Cookies["makeOrder"].Value = null;
-            //HttpCookie cookie = new HttpCookie("makeOrder", curdate.ToLongTimeString());
-
             cookie.Path = "/";
             Response.AppendCookie(cookie);
+
             using (ZamovStorage context = new ZamovStorage())
             {
                 string city = (from c in context.Cities

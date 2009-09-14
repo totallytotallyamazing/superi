@@ -12,6 +12,7 @@
     <%= Html.ValidationSummary() %>
     <%
         string pickerLocale = (SystemSettings.CurrentLanguage == "uk-UA") ? "uk" : "ru";
+        string coookie = Response.Cookies["makeOrder"].Value.ToString();
     %>
 
     <script type="text/javascript">
@@ -32,14 +33,12 @@
             $get("deliveryDateTime").value = $get("deliveryDate").value + " " + $get("deliveryTime").value;
         }
 
-        function checkCookie() 
-        {
-            var cookieValue =  $.cookie("makeOrder");
-            
+        function checkCookie() {
+            //var cookieValue = $.cookie("makeOrder");
+            var cookieValue = "<%=coookie %>";
             //alert(cookieValue);
-            
-            //if (!cookieValue || cookieValue != "true")
-                //location.href = "/Cart/Expired";
+            if (!cookieValue || cookieValue != "true")
+                location.href = "/Cart/Expired";
         }
     </script>
 

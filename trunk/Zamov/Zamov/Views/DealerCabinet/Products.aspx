@@ -142,6 +142,9 @@
             <th>
                 <%= Html.ResourceString("ActiveM")%>
             </th>
+            <th>
+                
+            </th>
         </tr>
         <%foreach (var item in Model)
           {%>
@@ -178,6 +181,9 @@
             </td>
             <td align="center">
                 <%= Html.CheckBox("active_" + item.Id, item.Enabled, new { onblur = "tableChanged(updates, this)" })%>
+            </td>
+            <td>
+                <%=Html.ActionLink("x", "DeleteProduct", new { productId = item.Id, groupId = ViewData["groupId"] }, new { onclick = "return confirm('" + Html.ResourceString("AreYouSure") + "?')" })%>
             </td>
         </tr>
         <%	} %>

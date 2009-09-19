@@ -37,7 +37,7 @@ namespace Zamov.Controllers
                     CollectProducts(products, currentGroup);
                 }
                 else
-                    products = (from product in context.Products where ((groupId == null) || product.Group.Id == groupId) && product.Dealer.Id == dealerId select product).ToList();
+                    products = (from product in context.Products where ((groupId == null) || product.Group.Id == groupId) && product.Dealer.Id == dealerId && !product.Deleted select product).ToList();
 
                 ViewData["topProducts"] = GetTopProducts(products);
 

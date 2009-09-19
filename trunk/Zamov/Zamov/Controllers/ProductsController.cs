@@ -35,6 +35,7 @@ namespace Zamov.Controllers
                 {
                     Group currentGroup = groups.Where(g => g.Id == groupId.Value).Select(g => g).SingleOrDefault();
                     CollectProducts(products, currentGroup);
+                    products = products.Where(p => !p.Deleted).ToList();
                 }
                 else
                     products = (from product in context.Products where ((groupId == null) || product.Group.Id == groupId) && product.Dealer.Id == dealerId && !product.Deleted select product).ToList();

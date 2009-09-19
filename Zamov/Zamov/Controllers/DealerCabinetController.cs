@@ -242,7 +242,7 @@ namespace Zamov.Controllers
             if (id != null)
             {
                 products = (from product in context.Products
-                            where product.Group.Id == id.Value && product.Dealer.Id == dealerId
+                            where product.Group.Id == id.Value && product.Dealer.Id == dealerId && !product.Deleted
                             select product).ToList();
             }
             List<SelectListItem> items = new List<SelectListItem>();
@@ -271,6 +271,18 @@ namespace Zamov.Controllers
                 product.Enabled = active;
                 product.Unit = unit;
                 context.AddToProducts(product);
+                context.SaveChanges();
+            }
+            string url = Url.Action("Products", "DealerCabinet", new { id = groupId });
+            return Redirect(url);
+        }
+
+        public ActionResult DeleteProduct(int productId, int groupId)
+        {
+            using (ZamovStorage context = new ZamovStorage())
+            {
+                Product currentProduct = (from product in context.Products where product.Id == productId select product).First();
+                currentProduct.Deleted = true;
                 context.SaveChanges();
             }
             string url = Url.Action("Products", "DealerCabinet", new { id = groupId });

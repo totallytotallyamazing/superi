@@ -113,7 +113,7 @@
       { %>
     <table class="adminTable">
         <tr>
-            <th>
+            <th style="width:100px;">
                 <%= Html.ResourceString("PartNumber")%>
             </th>
             <th>
@@ -124,10 +124,10 @@
                 /
                 <%= Html.ResourceString("Description") %>
             </th>
-            <th>
+            <th style="width:50px;">
                 <%= Html.ResourceString("Price")%>
             </th>
-            <th>
+            <th style="width:50px;">
                 <%= Html.ResourceString("Unit")%>
             </th>
             <th>
@@ -150,7 +150,7 @@
           {%>
         <tr>
             <td>
-                <%= Html.TextBox("partNumber_" + item.Id, item.PartNumber)%>
+                <%= Html.TextBox("partNumber_" + item.Id, item.PartNumber, new { style = "width:100px;" })%>
             </td>
             <td>
                 <%= Html.TextBox("name_" + item.Id, item.Name)%>
@@ -165,10 +165,10 @@
             </td>
             <td>
                 <% CultureInfo enUs = CultureInfo.GetCultureInfo("en-US"); %>
-                <%= Html.TextBox("price_" + item.Id, item.Price.ToString(enUs))%>
+                <%= Html.TextBox("price_" + item.Id, item.Price.ToString(enUs), new { style = "width:50px;" })%>
             </td>
             <td>
-                <%= Html.TextBox("unit_" + item.Id, item.Unit)%>
+                <%= Html.TextBox("unit_" + item.Id, item.Unit, new { style = "width:100%;" })%>
             </td>
             <td>
                 <%= Html.CheckBox("new_" + item.Id, item.New) %>

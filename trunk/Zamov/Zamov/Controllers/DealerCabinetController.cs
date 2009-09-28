@@ -58,6 +58,8 @@ namespace Zamov.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult InsertGroup(string groupName, string groupUkrName, string groupRusName, bool enabled, int parentId)
         {
+            ClearGroupCache();
+
             using (ZamovStorage context = new ZamovStorage())
             {
                 int dealerId = Security.GetCurentDealerId(User.Identity.Name);
@@ -83,6 +85,8 @@ namespace Zamov.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult UpdateGroups(FormCollection form)
         {
+            ClearGroupCache();
+
             JavaScriptSerializer serializer = new JavaScriptSerializer();
             if (!string.IsNullOrEmpty(form["updates"]))
             {
@@ -117,6 +121,20 @@ namespace Zamov.Controllers
                 }
             }
             return RedirectToAction("Groups");
+        }
+
+        private void ClearGroupCache()
+        {
+            string cacheKey = "dId_" + SystemSettings.CurrentDealer;
+            List<string> cacheKeys = new List<string>();
+            IDictionaryEnumerator enumerator = HttpContext.Cache.GetEnumerator();
+            while (enumerator.MoveNext())
+            {
+                if (enumerator.Key.ToString().StartsWith(cacheKey))
+                    cacheKeys.Add(enumerator.Key.ToString());
+            }
+            foreach (string key in cacheKeys)
+                HttpContext.Cache.Remove(key);
         }
 
         public ActionResult DeleteGroup(int id)

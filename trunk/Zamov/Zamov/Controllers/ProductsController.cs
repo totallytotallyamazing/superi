@@ -35,10 +35,10 @@ namespace Zamov.Controllers
                 {
                     Group currentGroup = groups.Where(g => g.Id == groupId.Value).Select(g => g).SingleOrDefault();
                     CollectProducts(products, currentGroup);
-                    products = products.Where(p => !p.Deleted).ToList();
+                    products = products.Where(p => !p.Deleted && p.Group.Enabled && p.Enabled).ToList();
                 }
                 else
-                    products = (from product in context.Products where ((groupId == null) || product.Group.Id == groupId) && product.Dealer.Id == dealerId && !product.Deleted select product).ToList();
+                    products = (from product in context.Products where ((groupId == null) || product.Group.Id == groupId) && product.Dealer.Id == dealerId && !product.Deleted && product.Group.Enabled && product.Enabled select product).ToList();
 
                 ViewData["topProducts"] = GetTopProducts(products);
 

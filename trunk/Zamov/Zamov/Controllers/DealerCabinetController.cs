@@ -433,6 +433,7 @@ namespace Zamov.Controllers
                 graphics.DrawImage(uploadedImage, 0, 0, width, height);
                 MemoryStream stream = new MemoryStream();
                 bitmap.Save(stream, ImageFormat.Jpeg);
+                stream.Seek(0, SeekOrigin.Begin);
                 BinaryReader reader = new BinaryReader(stream);
                 image.Image = reader.ReadBytes((int)file.InputStream.Length);
                 using (ZamovStorage context = new ZamovStorage())

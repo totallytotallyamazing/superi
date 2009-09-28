@@ -9,6 +9,16 @@
         function updateCityMappings() {
             document.getElementById("form1").submit();
         }
+
+        function cityChecked(el) {
+            var checked = el.checked;
+            var checks = document.getElementsByTagName("input");
+            var length = checks.length;
+            for (var i = 0; i < length;  i++) {
+                checks[i].checked = false;
+            }
+            el.checked = checked;
+        }
     </script>
 </head>
 <body>
@@ -18,7 +28,7 @@
             List<SelectListItem> items = (List<SelectListItem>)ViewData["items"];
             foreach (var item in items)
             {
-                Response.Write(Html.CheckBox(item.Value, item.Selected));
+                Response.Write(Html.CheckBox(item.Value, item.Selected, new { onclick = "cityChecked(this)"}));
                 Response.Write(item.Text);
                 Response.Write("&nbsp;&nbsp;");
             }

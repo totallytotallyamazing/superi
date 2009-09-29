@@ -355,7 +355,7 @@
     <value>Дата та час доставки</value>
   </data>
   <data name="OrderInfo" xml:space="preserve">
-    <value>Інформація про клієнта, замовлення та доставку</value>
+    <value>Інформація про адресу доставки та клієнта</value>
   </data>
   <data name="Status" xml:space="preserve">
     <value>Статус</value>

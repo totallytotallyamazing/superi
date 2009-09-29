@@ -1204,7 +1204,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Інформація про клієнта, замовлення та доставку.
+        ///   Looks up a localized string similar to Інформація про адресу доставки та клієнта.
         /// </summary>
         internal static string OrderInfo {
             get {

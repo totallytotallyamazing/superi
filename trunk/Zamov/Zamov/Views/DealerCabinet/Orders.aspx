@@ -34,8 +34,12 @@
                 row.appendChild(col2);
 
                 var col3 = document.createElement("td");
-                col3.innerHTML = response[i].ClientName + " " + response[i].Address;
+                col3.innerHTML = response[i].Address + " " + response[i].ClientName;
                 row.appendChild(col3);
+
+                var col7 = document.createElement("td");
+                col7.innerHTML = response[i].Comments;
+                row.appendChild(col7);
 
                 var col4 = document.createElement("td");
                 col4.innerHTML = response[i].TotalPrice;
@@ -80,6 +84,9 @@
                 <%=Html.ResourceString("OrderInfo")%>
             </th>
             <th>
+                <%=Html.ResourceString("Comments")%>
+            </th>
+            <th>
                 <%=Html.ResourceString("Price")%>, грн.
             </th>
             <th>
@@ -101,6 +108,9 @@
             
             <%if (item.Status == (int)Statuses.Accepted) { Html.Encode(", " + item.ClientName); } %>
             
+            </td>
+            <td>
+            <%=Html.Encode(item.Comments)%>
             </td>
             <td align="right">
                 <%= Html.Encode(((decimal)item.OrderItems.Sum(oi=>oi.Quantity * oi.Price)).ToString("N"))%>

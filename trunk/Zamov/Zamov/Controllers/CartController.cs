@@ -166,7 +166,7 @@ namespace Zamov.Controllers
             string deliveryDateTime,
             string orderSettings,
             bool agreed,
-            bool captchaValid, //FormCollection form
+            bool captchaValid//, FormCollection form
             )
         {
             if (!ValidateMakeOrder(firstName, city, deliveryAddress, contactPhone, deliveryDate, deliveryTime, agreed, captchaValid))

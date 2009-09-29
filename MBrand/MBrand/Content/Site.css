@@ -23,5 +23,5 @@ img{border:none;}
 .mainMenuItem{margin-top:10px; float:left; clear:both; padding:0px 5px 2px;}
 .mainMenuItem a{text-decoration:none; font-size:12px;}
 .bold {font-weight:bold;}
-.inactiveBw{font-size:12px;}
+.inactiveBw{font-size:12px; font-weight:bold;}
 a{font-size:12px;}

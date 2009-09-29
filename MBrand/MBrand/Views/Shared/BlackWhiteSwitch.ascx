@@ -7,7 +7,7 @@
 
 <% if (black)
    { %>
-    <%= Html.ActionLink<HomeController>(hc=>hc.White(Request.Url.AbsolutePath), "на белом") %>
+    <%= Html.ActionLink<HomeController>(hc=>hc.White(Request.Url.AbsolutePath), "на белом", new { @class="switch"} ) %>
     &nbsp;|&nbsp;
     <span class="inactiveBw">
         на черном
@@ -19,6 +19,6 @@
         на белом
     </span>
     &nbsp;|&nbsp;
-    <%= Html.ActionLink<HomeController>(hc => hc.Black(Request.Url.AbsolutePath), "на черном")%>
+    <%= Html.ActionLink<HomeController>(hc => hc.Black(Request.Url.AbsolutePath), "на черном", new { @class="switch"} )%>
 
 <%} %>

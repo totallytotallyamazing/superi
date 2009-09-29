@@ -5,14 +5,13 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <asp:LoginView runat="server">
-        <AnonymousTemplate></AnonymousTemplate>
-        <LoggedInTemplate>
-            <%= Html.ActionLink("Редактировать", "Clients", "Admin") %>
-        </LoggedInTemplate>
-    </asp:LoginView>
+    <% using (Html.BeginForm())
+       { %>
+       <%= Html.TextArea("content") %>
+    <%} %>
+    
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="HeaderTitle" runat="server">
-	Клиенты
+    Клиенты
 </asp:Content>

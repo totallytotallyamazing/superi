@@ -96,6 +96,7 @@
     <Content Include="Scripts\fcktools.js" />
     <Content Include="Scripts\jquery.fancybox.js" />
     <Content Include="Scripts\jquery.FCKEditor.js" />
+    <Content Include="Views\Admin\Clients.aspx" />
     <Content Include="Views\Clients\Index.aspx" />
     <Content Include="Views\Contacts\Index.aspx" />
     <Content Include="Views\Eugene\Index.aspx" />

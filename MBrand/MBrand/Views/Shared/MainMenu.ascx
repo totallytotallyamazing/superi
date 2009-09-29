@@ -1,11 +1,15 @@
 <%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl" %>
 <%
-    string controller = ViewContext.RouteData.Values["controller"].ToString();
+    
+    string chapter = ViewContext.RouteData.Values["controller"].ToString();
+    
+    if(chapter == "Admin")
+        chapter = ViewContext.RouteData.Values["action"].ToString();
 
     string eugeneClass, seeClass, clientsClass, notesClass, contactsClass;
     eugeneClass = seeClass = clientsClass = notesClass = contactsClass = "mainMenuItem";
-    
-    switch (controller)
+
+    switch (chapter)
     {
         case "Eugene":
             eugeneClass += " bold";

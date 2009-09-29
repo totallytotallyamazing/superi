@@ -96,8 +96,11 @@
                 <%= Html.Encode(String.Format("{0:g}", item.DeliveryDate)) %>
             </td>
             <td>
-            <%if (item.Status == (int)Statuses.Accepted) { Html.Encode(item.ClientName + ", "); } %>
+            
             <%=Html.Encode(item.Address)%>
+            
+            <%if (item.Status == (int)Statuses.Accepted) { Html.Encode(", " + item.ClientName); } %>
+            
             </td>
             <td align="right">
                 <%= Html.Encode(((decimal)item.OrderItems.Sum(oi=>oi.Quantity * oi.Price)).ToString("N"))%>

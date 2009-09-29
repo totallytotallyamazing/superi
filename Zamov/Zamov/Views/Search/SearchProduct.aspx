@@ -43,11 +43,11 @@
         <% Html.RenderPartial("Cart");  %>
     </div>--%>
     <%
-        
-        using (Ajax.BeginForm("AddToCart", "Search", new AjaxOptions { HttpMethod = "POST", OnSuccess = "AddToCartSuccess" }, new { id = "addToCart" }))
-        {%>
-
-    <table class="commonTable">
+    using (Ajax.BeginForm("AddToCart", "Search", new AjaxOptions { HttpMethod = "POST", OnSuccess = "AddToCartSuccess" }, new { id = "addToCart" }))
+    {%>
+    <div style="text-align:right">
+    <input style="margin-bottom:5px" type="submit" value="<%=Html.ResourceString("AddToCart") %>" />  
+    <table class="commonTable" width="100%">
         <tr>
             <th><%= Html.ResourceString("Name") %></th>
             <th style="width:20px;"><%= Html.ResourceString("Dealer") %></th>
@@ -63,35 +63,33 @@
                 { %>
     
         <tr>
-            <td>
+            <td align="left">
                 <%= Html.Encode(item.Name)%>
             </td>
-            <td>
+            <td align="left">
                 <%= Html.Encode(item.DealerName)%>
                 <%=Html.Hidden("dealer_"+ item.Id,item.DealerId)%>
             </td>
-            <td>
-                
+            <td  align="center">
+                <%=Html.Encode(!string.IsNullOrEmpty(item.Unit) ? item.Unit : "רע.")%>
             </td>
-            <td>
+            <td  align="right">
                 <%= Html.Encode(String.Format("{0:F}", item.Price))%>
             </td>
             <td align="center">
                 <%= Html.TextBox("quantity_" + item.Id, null, new { style = "width:24px; font-size:10px; text-align:center", onkeyup = "validateQuantity(this); order(this)" })%>
             </td>
-            <td>
+            <td align="center">
               <%= Html.CheckBox("order_" + item.Id, false, new { @class = "orderCb", onclick = "order(this)" })%>
             </td>
             
         </tr>
     
     <% }
-            %>
-          
-
+    %>
     </table>            
-    <input type="submit" value="<%=Html.ResourceString("AddToCart") %>" />  
-
+    <input style="margin-top:5px" type="submit" value="<%=Html.ResourceString("AddToCart") %>" />  
+</div>
     <%
         } %>
 </asp:Content>

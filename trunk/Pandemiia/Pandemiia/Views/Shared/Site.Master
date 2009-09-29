@@ -92,7 +92,9 @@
             </div>
         </div>
         <div id="handEye">
-            <%= Html.Image("~/Content/img/handEye.jpg") %>
+            <a href="/">
+                <%= Html.Image("~/Content/img/handEye.jpg") %>
+            </a>
         </div>
     </div>
     <script type="text/javascript">

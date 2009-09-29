@@ -2,7 +2,11 @@
 <%@ Import Namespace="Microsoft.Web.Mvc" %>
 
 <%
-    HttpCookie blackCookie = ViewContext.HttpContext.Request.Cookies.Get("black");
+    HttpCookie allowPass = Request.Cookies.Get("allow");
+    if (allowPass == null)
+        Response.Redirect("index.html");
+        
+    HttpCookie blackCookie = Request.Cookies.Get("black");
     bool black = true;
     if(blackCookie!=null)
         black = bool.Parse(blackCookie.Value);

@@ -41,5 +41,13 @@ namespace MBrand.Controllers
                 Response.SetCookie(newCookie);
             return Redirect(redirectUrl);
         }
+
+        public ActionResult SetCookie()
+        {
+            HttpCookie allow = new HttpCookie("allow");
+            allow.Expires = DateTime.Now.AddYears(1);
+            Response.AppendCookie(allow);
+            return RedirectToAction("Index");
+        }
     }
 }

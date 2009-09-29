@@ -208,6 +208,7 @@ namespace Zamov.Controllers
                     order.UserId = userId;
                     order.PaymentType = (int)PaymentTypes.Encash;
                     order.City = city;
+                    order.Comments = comments;
                     foreach (var option in systemSettingsList)
                     {
                         if (option.Id == order.GetHashCode())

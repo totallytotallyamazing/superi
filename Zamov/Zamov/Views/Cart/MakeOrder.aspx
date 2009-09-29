@@ -43,6 +43,25 @@
             if (!cookieValue || cookieValue != "true")
                 location.href = "/Cart/Expired";
         }
+
+        function checkComments(e, len) {
+            e = e || window.event;
+            var target = e.target || e.srcElement;
+            var code = e.keyCode ? e.keyCode : (e.which ? e.which : e.charCode)
+
+            switch (code) {
+                case 13:
+                case 8:
+                case 9:
+                case 46:
+                case 37:
+                case 38:
+                case 39:
+                case 40:
+                    return true;
+            }
+            return target.value.length <= len;
+        }
     </script>
 
     <% foreach (var order in Model)
@@ -218,7 +237,7 @@
                     <%= Html.ResourceString("Comments") %>
                 </td>
                 <td class="parameterValue">
-                    <%= Html.TextArea("comments")%>
+                    <%= Html.TextArea("comments", new { onkeypress = "return checkComments(event,250)" })%>
                 </td>
             </tr>
         </table>

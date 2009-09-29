@@ -166,7 +166,7 @@ namespace Zamov.Controllers
             string deliveryDateTime,
             string orderSettings,
             bool agreed,
-            bool captchaValid
+            bool captchaValid, //FormCollection form
             )
         {
             if (!ValidateMakeOrder(firstName, city, deliveryAddress, contactPhone, deliveryDate, deliveryTime, agreed, captchaValid))
@@ -199,6 +199,9 @@ namespace Zamov.Controllers
             {
                 foreach (var order in cart.Orders)
                 {
+
+                    //string voucherCode = form["voucherCode_" + order.GetHashCode()];
+
                     order.Address = deliveryAddress;
                     order.ClientName = firstName + " " + lastName;
                     order.Date = DateTime.Now;

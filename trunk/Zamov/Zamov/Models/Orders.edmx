@@ -85,6 +85,7 @@
           <Property Name="DiscountCardNumber" Type="varchar" MaxLength="50" />
           <Property Name="Email" Type="nvarchar" MaxLength="100" />
           <Property Name="City" Type="nvarchar" MaxLength="50" />
+          <Property Name="Comments" Type="nvarchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="Unit">
           <Key>
@@ -205,7 +206,8 @@
           <Property Name="PaymentType" Type="Int32" Nullable="false" />
           <Property Name="DiscountCardNumber" Type="String" Nullable="true" />
           <Property Name="Email" Type="String" Nullable="true" />
-          <Property Name="City" Type="String" Nullable="true" /></EntityType>
+          <Property Name="City" Type="String" Nullable="true" />
+          <Property Name="Comments" Type="String" Nullable="true" /></EntityType>
         <Association Name="FK_Orders_Carts">
           <End Role="Carts" Type="OrderEntities.Cart" Multiplicity="1" />
           <End Role="Orders" Type="OrderEntities.Order" Multiplicity="*" />
@@ -272,6 +274,7 @@
           <EntitySetMapping Name="Orders">
             <EntityTypeMapping TypeName="IsTypeOf(OrderEntities.Order)">
               <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
                 <ScalarProperty Name="City" ColumnName="City" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="DiscountCardNumber" ColumnName="DiscountCardNumber" />

@@ -1,0 +1,50 @@
+<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
+<%@ Import Namespace="Microsoft.Web.Mvc" %>
+
+<%
+    HttpCookie blackCookie = ViewContext.HttpContext.Request.Cookies.Get("black");
+    bool black = true;
+    if(blackCookie!=null)
+        black = bool.Parse(blackCookie.Value);
+    ViewData["black"] = black;
+    
+    string color = (black) ? "Black" : "White";
+%>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title><asp:ContentPlaceHolder ID="TitleContent" runat="server" /></title>
+    <link href="/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/<%= color %>.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <div id="main">
+        <div id="header">
+            <div id="logo">
+                <a href="/">
+                    <%= Html.Image("~/Content/img/logo" + color + ".jpg", new { id="logoImage"})%>
+                </a>
+            </div>
+            <div id="headerRight">
+                <asp:ContentPlaceHolder runat="server" ID="HeaderTitle"></asp:ContentPlaceHolder>
+            </div>
+            <div class="blackWhiteSwitch">
+                <% Html.RenderPartial("BlackWhiteSwitch"); %>
+            </div>
+        </div>
+        <div id="middle">
+            <div id="left">
+                <% Html.RenderPartial("MainMenu"); %>
+            </div>
+            <div id="content">
+                <asp:ContentPlaceHolder runat="server" ID="MainContent"></asp:ContentPlaceHolder>
+            </div>
+        </div>
+        <div id="footer">
+        
+        </div>
+    </div>     
+</body>
+</html>

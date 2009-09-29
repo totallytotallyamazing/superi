@@ -1,0 +1,27 @@
+﻿*{margin:0; padding:0;}
+body{font-family:Tahoma;}
+img{border:none;}
+#main{width:998px; position:relative; margin:60px auto 0px;}
+#header{width:100%; height:77px;}
+#logo{float:left; width:74px;}
+#headerRight
+{
+    width:auto; 
+    margin-left:90px; 
+    border-left:3px solid; 
+    padding-left:16px; 
+    text-transform:uppercase; 
+    padding-bottom:2px; 
+    font-size:30px;
+    margin-top:20px;
+}
+.blackWhiteSwitch{margin-left:111px;}
+
+#left{float:left; width:215px; padding-top:370px; border-left-width:1px; border-left-style:solid;}
+#content{width:auto; margin-left:215px;}
+#mainMenu{}
+.mainMenuItem{margin-top:10px; float:left; clear:both; padding:0px 5px 2px;}
+.mainMenuItem a{text-decoration:none; font-size:12px;}
+.bold {font-weight:bold;}
+.inactiveBw{font-size:12px;}
+a{font-size:12px;}

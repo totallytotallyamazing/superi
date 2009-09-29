@@ -1,0 +1,13 @@
+﻿body
+{
+    background:White;
+    color:Black;
+}
+
+#left{border-left-color:Black;}
+.mainMenuItem{background:black;}
+.mainMenuItem a{color:White;}
+
+a{color:Black;}
+.inactiveBw{color:Black;}
+#headerRight{border-left-color:Black;}

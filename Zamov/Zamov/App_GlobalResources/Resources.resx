@@ -385,16 +385,16 @@
     <value>Статус замовлення</value>
   </data>
   <data name="StatusAccepted" xml:space="preserve">
-    <value>Прийнятий</value>
+    <value>Прийняте</value>
   </data>
   <data name="StatusCanceled" xml:space="preserve">
-    <value>Скасований</value>
+    <value>Скасоване</value>
   </data>
   <data name="StatusComplited" xml:space="preserve">
-    <value>Виконаний</value>
+    <value>Виконане</value>
   </data>
   <data name="StatusNew" xml:space="preserve">
-    <value>Новий</value>
+    <value>Нове</value>
   </data>
   <data name="Total" xml:space="preserve">
     <value>Всього</value>

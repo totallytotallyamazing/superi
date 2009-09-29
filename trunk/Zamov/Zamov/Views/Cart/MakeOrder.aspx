@@ -95,7 +95,14 @@
         </div>
     </div>
     <%} %>
-    <div style="color: Red; font-weight: bold" class="orderValidation">
+    <div style="text-align: center; ">
+        <%= Html.CheckBox("agreedPresentation", false, new { onclick = "$get('agreed').checked = this.checked;"})%>
+        <span id="agreedSpan">
+            <%= Html.ResourceActionLink("Agreed", "Agreement", "Home", null, new {id="agreementLink"}) %>
+        </span>
+        <%= HttpUtility.HtmlDecode(Html.ValidationMessage("agreed", "<script type='text/javascript'>$('#agreedSpan a').css('color', 'red');</script>")) %>
+    </div>
+    <div style="color: Red; font-weight: bold; margin-top: 20px; margin-bottom:30px;" class="orderValidation">
 
         <script type="text/javascript">
             $(function() {
@@ -112,17 +119,11 @@
         <%=Html.ResourceString("EnterCode")%>
         <%= Html.ValidationMessage("captchaInvalid", "*", new { @class="validationError"})%>
         <br />
-        <%= Html.CaptchaImage(40, 100)%><br />
+        <%= Html.CaptchaImage(50, 160)%><br />
         <%= Html.TextBox("validation-value", "", new { onkeyup = "copyValues()" })%>
         <br />
     </div>
-    <div style="text-align: center; margin-top: 50px;">
-        <%= Html.CheckBox("agreedPresentation", false, new { onclick = "$get('agreed').checked = this.checked;"})%>
-        <span id="agreedSpan">
-            <%= Html.ResourceActionLink("Agreed", "Agreement", "Home", null, new {id="agreementLink"}) %>
-        </span>
-        <%= HttpUtility.HtmlDecode(Html.ValidationMessage("agreed", "<script type='text/javascript'>$('#agreedSpan a').css('color', 'red');</script>")) %>
-    </div>
+    
     <div class="orderDone">
         <center>
             <table>

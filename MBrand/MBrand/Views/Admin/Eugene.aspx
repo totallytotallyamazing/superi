@@ -1,7 +1,6 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage" %>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Клиенты
+	Евгений Миллер
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
@@ -9,7 +8,7 @@
     <script type="text/javascript">
         $(function() {
             $.fck.config = { path: '<%= VirtualPathUtility.ToAbsolute("~/Controls/fckeditor/") %>', config: {DefaultLanguage:"ru", AutoDetectLanguage:false, SkinPath: "/Controls/fckeditor/editor/skins/office2003/"} };
-            $("#text").fck({ height: 500, width: 700 });
+            $("#text").fck({ height: 500, width: 700});
         })
     </script>
     <% using (Html.BeginForm())
@@ -20,7 +19,7 @@
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="HeaderTitle" runat="server">
-    Клиенты
+    Евгений Миллер
 </asp:Content>
 
 <asp:Content runat="server" ContentPlaceHolderID="Includes">

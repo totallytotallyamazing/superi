@@ -8,6 +8,7 @@
 .mainMenuItem{background:White;}
 .mainMenuItem a{color:Black;}
 
+textarea{background:Black;}
 a{color:White;}
 .inactiveBw{color:White;}
 #headerRight{border-left-color:White;}

@@ -65,13 +65,25 @@ namespace MBrand.Controllers
             return RedirectToAction("Index", "Clients");
         }
 
-        public ActionResult Notes(int? id)
+        public ActionResult AddEditNote(int? id)
         {
+            ViewData["id"] = id;
+            if (id > 0)
+            {
+                using (DataStorage context = new DataStorage())
+                {
+                    Note note = context.Notes.Where(n => n.Id == id).Select(n => n).FirstOrDefault();
+                    ViewData["title"] = note.Title;
+                    ViewData["description"] = note.Description;
+                    ViewData["text"] = note.Text;
+                    ViewData["date"] = note.Date.ToString("dd.MM.yyyy HH:mm");
+                }
+            }
             return View();
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult AddNote(string title, string shortText, string longText, int currentPage)
+        public ActionResult AddEditNote(int? id, string title, string date, string description, string longText, int currentPage)
         {
             return RedirectToAction("Index", "Notes", new { id = currentPage });
         }

@@ -97,10 +97,26 @@ namespace Zamov.Controllers
 
         public void ProductImageScaled(int id, int maxDimension)
         {
+            //Bitmap image = null;
+            //using (ZamovStorage context = new ZamovStorage())
+            //{
+            //    ProductImage productImage = context.ProductImages.Select(pi => pi).Where(pi => pi.Id == id).First();
+            //    MemoryStream stream = new MemoryStream(productImage.Image);
+            //    image = new Bitmap(stream);
+            //    stream.Close();
+            //    stream.Dispose();
+            //}
+
+            //MemoryStream imageStream = ScaleImage(image, maxDimension);
+            //byte[] imageContent = new Byte[imageStream.Length];
+            //imageStream.Read(imageContent, 0, (int)imageStream.Length);
+            //Response.ContentType = "image/jpeg";
+            //Response.BinaryWrite(imageContent);
+            //imageStream.Close();
             Bitmap image = null;
             using (ZamovStorage context = new ZamovStorage())
             {
-                ProductImage productImage = context.ProductImages.Select(pi => pi).Where(pi => pi.Id == id).First();
+                ProductImage productImage = context.ProductImages.Select(pi => pi).Where(pi => pi.Product.Id == id).First();
                 MemoryStream stream = new MemoryStream(productImage.Image);
                 image = new Bitmap(stream);
                 stream.Close();

@@ -8,7 +8,7 @@
         if (Model.HasImage)
         {%>
             <div class="productDescriptionImage">
-                <%= Html.Image("~/Image/ProductImageScaled/" + Model.ImageId + "/300")%>
+                <%= Html.Image("~/Image/ProductImageDefault/" + Model.Id + "/300")%>
             </div>
             <%
         }

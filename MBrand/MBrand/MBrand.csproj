@@ -87,6 +87,22 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Black.css" />
+    <Content Include="Content\fancy\fancy_closebox.png" />
+    <Content Include="Content\fancy\fancy_left.png" />
+    <Content Include="Content\fancy\fancy_progress.png" />
+    <Content Include="Content\fancy\fancy_right.png" />
+    <Content Include="Content\fancy\fancy_shadow_e.png" />
+    <Content Include="Content\fancy\fancy_shadow_n.png" />
+    <Content Include="Content\fancy\fancy_shadow_ne.png" />
+    <Content Include="Content\fancy\fancy_shadow_nw.png" />
+    <Content Include="Content\fancy\fancy_shadow_s.png" />
+    <Content Include="Content\fancy\fancy_shadow_se.png" />
+    <Content Include="Content\fancy\fancy_shadow_sw.png" />
+    <Content Include="Content\fancy\fancy_shadow_w.png" />
+    <Content Include="Content\fancy\fancy_title_left.png" />
+    <Content Include="Content\fancy\fancy_title_main.png" />
+    <Content Include="Content\fancy\fancy_title_right.png" />
+    <Content Include="Content\fancy\jquery.fancybox.css" />
     <Content Include="Content\img\logoBlack.jpg" />
     <Content Include="Content\img\logoWhite.jpg" />
     <Content Include="Content\White.css" />
@@ -97,6 +113,7 @@
     <Content Include="Scripts\fcktools.js" />
     <Content Include="Scripts\jquery.fancybox.js" />
     <Content Include="Scripts\jquery.FCKEditor.js" />
+    <Content Include="Views\Admin\AddEditNote.aspx" />
     <Content Include="Views\Admin\Clients.aspx" />
     <Content Include="Views\Admin\Contacts.aspx" />
     <Content Include="Views\Admin\Eugene.aspx" />

@@ -6,6 +6,9 @@
 </asp:Content>
 
 <asp:Content ID="indexContent" ContentPlaceHolderID="MainContent" runat="server">
+    <script type="text/javascript">
+        $("#logo a").css("cursor", "default").click(function() { return false; });
+    </script>
     <asp:LoginView ID="LoginView1" runat="server">
         <AnonymousTemplate></AnonymousTemplate>
         <LoggedInTemplate>

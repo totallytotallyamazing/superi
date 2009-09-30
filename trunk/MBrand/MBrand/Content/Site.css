@@ -1,5 +1,5 @@
 ﻿*{margin:0; padding:0;}
-body{font-family:Tahoma;}
+body{font-family:Tahoma; font-size:12px;}
 img{border:none;}
 #main{width:998px; position:relative; margin:60px auto 0px;}
 #header{width:100%; height:77px;}
@@ -18,7 +18,7 @@ img{border:none;}
 .blackWhiteSwitch{margin-left:111px;}
 
 #left{float:left; width:215px; padding-top:370px; border-left-width:1px; border-left-style:solid;}
-#content{width:auto; margin-left:215px;}
+#content{width:auto; margin-left:215px; padding-top:40px;}
 #mainMenu{}
 .mainMenuItem{margin-top:10px; float:left; clear:both; padding:0px 5px 2px;}
 .mainMenuItem a{text-decoration:none; font-size:12px;}

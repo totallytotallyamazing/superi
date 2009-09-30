@@ -94,7 +94,9 @@
             </th>
         </tr>
 
-    <% foreach (var item in Model) { %>
+    <% foreach (var item in Model) 
+       { 
+           %>
       <tr class="status<%=(Statuses)item.Status%>">
             <td>
                 <%= Html.Encode(item.Id) %>
@@ -106,7 +108,9 @@
             
             <%=Html.Encode(item.Address)%>
             
-            <%if (item.Status == (int)Statuses.Accepted) { Html.Encode(", " + item.ClientName); } %>
+            <%if (item.Status == (int)Statuses.Accepted) { %>
+             <%=Html.Encode(", " + item.ClientName)%>
+             <% } %>
             
             </td>
             <td>

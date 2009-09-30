@@ -46,17 +46,21 @@
                 $(col4).attr("align", "right");
                 row.appendChild(col4);
 
+
+                var url = '<a href="<%= showOrderUrl%>/{0}" class="orderDescription">{1}</a>';
+                var urlLayout = String.format(url, response[i].Id, response[i].Status);
                 var col5 = document.createElement("td");
-                col5.innerHTML = response[i].Status;
+                $(urlLayout).appendTo(col5).fancybox({ frameWidth: 700, hideOnContentClick: false });
+                //col5.innerHTML = response[i].Status;
                 row.appendChild(col5);
 
-
+/*
                 var url = '<a href="<%= showOrderUrl%>/{0}" class="orderDescription">{1}</a>';
                 var urlLayout = String.format(url, response[i].Id, '<%= Html.ResourceString("View")%>');
                 var col6 = document.createElement("td");
                 $(urlLayout).appendTo(col6).fancybox({ frameWidth: 700, hideOnContentClick: false });
                 row.appendChild(col6);
-
+*/
 
 
                 var tableHeader = $get('orderTable').getElementsByTagName("tr")[0];

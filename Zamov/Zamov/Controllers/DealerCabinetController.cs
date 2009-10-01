@@ -162,6 +162,7 @@ namespace Zamov.Controllers
                 {
                     Dealer dealer = context.Dealers.Select(d => d).Where(d => d.Id == id).First();
                     ViewData["dealer"] = dealer;
+                    ViewData["hasDiscounts"] = dealer.HasDiscounts;
                 }
             }
             return View();
@@ -183,6 +184,7 @@ namespace Zamov.Controllers
                 dealer.Names["uk-UA"] = form["uName"];
                 dealer.Descriptions["ru-RU"] = Server.HtmlDecode(form["rDescription"]);
                 dealer.Descriptions["uk-UA"] = Server.HtmlDecode(form["uDescription"]);
+                dealer.HasDiscounts = form["hasDiscounts"].Contains("true");
                 if (!string.IsNullOrEmpty(Request.Files["logoImage"].FileName))
                 {
                     HttpPostedFileBase file = Request.Files["logoImage"];

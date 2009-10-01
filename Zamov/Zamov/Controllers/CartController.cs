@@ -166,7 +166,8 @@ namespace Zamov.Controllers
             string deliveryDateTime,
             string orderSettings,
             bool agreed,
-            bool captchaValid
+            bool captchaValid,
+            FormCollection form
             )
         {
             if (!ValidateMakeOrder(firstName, city, deliveryAddress, contactPhone, deliveryDate, deliveryTime, agreed, captchaValid))
@@ -218,6 +219,8 @@ namespace Zamov.Controllers
                             order.DiscountCardNumber = option.VoucherCode;
                         }
                     }
+                    order.DiscountCardNumber = form["voucherCode_" + order.GetHashCode()];
+                    order.PaymentType = int.Parse(form["paymentType_" + order.GetHashCode()]);
                 }
                 cart.Date = DateTime.Now;
                 context.AddToCarts(cart);

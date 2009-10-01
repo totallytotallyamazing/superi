@@ -112,6 +112,7 @@ namespace Zamov.Controllers
 
         public ActionResult MakeOrder()
         {
+            ViewData["deliveryDate"] = DateTime.Now.ToString("dd.MM.yyyy");
             if (SystemSettings.Cart.Orders.Count == 0)
                 return RedirectToAction("Expired");
 
@@ -170,6 +171,11 @@ namespace Zamov.Controllers
             FormCollection form
             )
         {
+            foreach (string key in form)
+            {
+                if (key.StartsWith("paymentType") || key.StartsWith("voucherCode"))
+                    ViewData[key] = form[key];
+            }
             if (!ValidateMakeOrder(firstName, city, deliveryAddress, contactPhone, deliveryDate, deliveryTime, agreed, captchaValid))
                 return View(SystemSettings.Cart.Orders);
             Cart cart = SystemSettings.Cart;

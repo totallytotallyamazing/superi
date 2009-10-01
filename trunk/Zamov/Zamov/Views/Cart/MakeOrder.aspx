@@ -24,7 +24,7 @@
             $.datepicker.setDefaults($.extend({ showMonthAfterYear: false }, $.datepicker.regional['']));
             applyDropShadows(".orderDetails .logo img", "shadow3");
             $("#deliveryDate").datepicker($.datepicker.regional["<%= pickerLocale %>"]);
-            $("#deliveryDate").datepicker("setDate", new Date());
+            //$("#deliveryDate").datepicker("setDate", new Date());
             $("#deliveryDate").datepicker('option', 'minDate', new Date());
             $("#agreementLink").fancybox({ frameWidth: 700, hideOnContentClick: false });
             checkCookie();
@@ -88,13 +88,18 @@
             <center>
                 <table>
                     <% 
+                        int currentPaymentType = (int)PaymentTypes.Encash;
+                        if (ViewData["paymentType_" + order.GetHashCode()] != null)
+                        {
+                            currentPaymentType = Convert.ToInt32(ViewData["paymentType_" + order.GetHashCode()]);
+                        }
                         List<SelectListItem> paymentTypes = new List<SelectListItem>();
                         if (presentation.Cash)
-                            paymentTypes.Add(new SelectListItem { Text = Html.ResourceString("Encash"), Value = ((int)PaymentTypes.Encash).ToString(), Selected = true });
+                            paymentTypes.Add(new SelectListItem { Text = Html.ResourceString("Encash"), Value = ((int)PaymentTypes.Encash).ToString(), Selected = currentPaymentType == (int)PaymentTypes.Encash });
                         if (presentation.Card)
-                            paymentTypes.Add(new SelectListItem { Text = Html.ResourceString("Card"), Value = ((int)PaymentTypes.Card).ToString() });
+                            paymentTypes.Add(new SelectListItem { Text = Html.ResourceString("Card"), Value = ((int)PaymentTypes.Card).ToString(), Selected = currentPaymentType == (int)PaymentTypes.Card });
                         if (presentation.Noncash)
-                            paymentTypes.Add(new SelectListItem { Text = Html.ResourceString("Noncash"), Value = ((int)PaymentTypes.Noncash).ToString() });
+                            paymentTypes.Add(new SelectListItem { Text = Html.ResourceString("Noncash"), Value = ((int)PaymentTypes.Noncash).ToString(), Selected = currentPaymentType == (int)PaymentTypes.Noncash });
                         string[] options = Html.RadioButtonList("paymentType_" + order.GetHashCode(), paymentTypes);
                         for (int i = 0; i < options.Length; i++)
                         {%>

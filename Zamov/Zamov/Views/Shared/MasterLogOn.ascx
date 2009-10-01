@@ -8,6 +8,7 @@
         </a>
     </center>
     <% using (Html.BeginForm("LogOn", "Account", FormMethod.Post)){ %>
+    <%= Html.Hidden("returnUrl", Request.Url.AbsoluteUri)%>
     <table cellspacing="5">
         <tr>
             <td>

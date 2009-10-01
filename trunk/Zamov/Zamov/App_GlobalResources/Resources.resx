@@ -720,4 +720,7 @@
   <data name="ToTheMainPage" xml:space="preserve">
     <value>На головну</value>
   </data>
+  <data name="CardNumber" xml:space="preserve">
+    <value>Номер картки</value>
+  </data>
 </root>

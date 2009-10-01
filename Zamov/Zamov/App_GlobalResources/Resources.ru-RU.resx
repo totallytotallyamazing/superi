@@ -720,4 +720,7 @@
   <data name="DealerCabinet" xml:space="preserve">
     <value>Личный кабинет продавца</value>
   </data>
+  <data name="CardNumber" xml:space="preserve">
+    <value>Номер карточки</value>
+  </data>
 </root>

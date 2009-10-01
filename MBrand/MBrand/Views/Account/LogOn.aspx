@@ -4,7 +4,7 @@
     Админка    
 </asp:Content>
 
-<asp:Content ContentPlaceHolderID="HeaderTitle">
+<asp:Content ContentPlaceHolderID="HeaderTitle" runat="server">
     Админка
 </asp:Content>
 

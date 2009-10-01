@@ -6,7 +6,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <script type="text/javascript">
-        $(function() { $("#addNote").fancybox({ frameWidth: 750, frameHeight:630, hideOnContentClick: false }) });
+        $(function() { $("#addNote").fancybox({ frameWidth: 750, frameHeight:670, hideOnContentClick: false }) });
     </script>
 
     <asp:LoginView runat="server">

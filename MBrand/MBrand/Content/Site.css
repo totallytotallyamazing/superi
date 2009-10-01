@@ -1,4 +1,6 @@
-﻿*{margin:0; padding:0;}
+﻿.shader{}
+
+*{margin:0; padding:0;}
 body{font-family:Tahoma; font-size:12px;}
 img{border:none;}
 #main{width:998px; position:relative; margin:60px auto 0px;}
@@ -27,3 +29,7 @@ img{border:none;}
 a{font-size:12px;}
 .switch{text-decoration:none;}
 .switch:hover{text-decoration:underline;}
+
+.watermark{color:#aaa;}
+.addEditNote{width:700px; padding:10px;}
+.addEditNote input{width:300px; margin-bottom:5px;}

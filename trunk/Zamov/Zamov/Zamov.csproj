@@ -316,6 +316,7 @@
     <None Include="Content\MailTemplates\newOrder" />
     <None Include="Content\MailTemplates\passwordReminder" />
     <Content Include="Scripts\jquery.cookie.js" />
+    <Content Include="Views\Admin\RemoveDealers.aspx" />
     <Content Include="Views\Admin\StartText.aspx" />
     <Content Include="Views\Cart\Expired.aspx" />
     <Content Include="Views\Dealer\DealerInfo.aspx" />

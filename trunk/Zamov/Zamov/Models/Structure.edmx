@@ -413,6 +413,9 @@
           <Parameter Name="enabled" Type="bit" Mode="In" />
           <Parameter Name="translations" Type="varchar(max)" Mode="In" />
         </Function>
+        <Function Name="deleteDealer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="dealerId" Type="int" Mode="In" />
+        </Function>
         <Function Name="DeleteTranslations" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ItemId" Type="int" Mode="In" />
           <Parameter Name="TranslationItemTypeId" Type="int" Mode="In" />

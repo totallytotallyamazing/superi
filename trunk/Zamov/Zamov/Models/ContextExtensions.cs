@@ -39,6 +39,16 @@ namespace Zamov.Models
             return command.ExecuteReader(CommandBehavior.SequentialAccess);
         }
 
+        public static void RemoveDealer(this ZamovStorage context, int id)
+        {
+            EntityParameter parameter = new EntityParameter();
+            parameter.ParameterName = "productId";
+            parameter.IsNullable = false;
+            parameter.Value = id;
+            parameter.DbType = System.Data.DbType.Int32;
+            ExecuteNonQuery(context, "ZamovStorage.deleteDealer", parameter);
+        }
+
         public static void CleanupProductImages(this ZamovStorage context, int productId)
         {
             EntityParameter parameter = new EntityParameter();

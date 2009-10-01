@@ -622,5 +622,25 @@ namespace Zamov.Controllers
         }
         #endregion
 
+        #region StartupTools
+        public ActionResult RemoveDealers()
+        {
+            using (ZamovStorage context = new ZamovStorage())
+            {
+                List<Dealer> dealers = context.Dealers.Select(d => d).ToList();
+                return View(dealers);
+            }
+        }
+
+        public ActionResult RemoveDealer(int id)
+        {
+            using (ZamovStorage context = new ZamovStorage())
+            {
+                context.RemoveDealer(id);
+            }
+            return RedirectToAction("RemoveDealers");
+        }
+        #endregion
+
     }
 }

@@ -55,12 +55,14 @@ namespace Zamov.Controllers
 
             List<Product> result = new List<Product>();
             Random random = new Random();
+            
             int topCount = allTops.Count;
             for (int i = 0; i < MaxTopProductsNumber; i++)
             {
                 Product item = allTops[random.Next(topCount)];
                 result.Add(item);
                 allTops.Remove(item);
+                topCount--;
             }
             return result;
         }

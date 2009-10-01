@@ -103,6 +103,7 @@
     <div id="breadCrumbs">
         <%= Html.BreadCrumbs()%></div>
     <div id="content">
+        <asp:ContentPlaceHolder runat="server" ID="ContentTop"></asp:ContentPlaceHolder>
         <div id="leftSide">
             <asp:ContentPlaceHolder ID="leftMenu" runat="server">
             </asp:ContentPlaceHolder>
@@ -118,6 +119,7 @@
             <asp:ContentPlaceHolder ID="mainContent" runat="server">
             </asp:ContentPlaceHolder>
         </div>
+        <asp:ContentPlaceHolder runat="server" ID="ContentBottom"></asp:ContentPlaceHolder>
     </div>
     <div id="rightBanner">
     </div>

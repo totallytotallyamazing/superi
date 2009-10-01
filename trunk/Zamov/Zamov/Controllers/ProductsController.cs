@@ -57,7 +57,11 @@ namespace Zamov.Controllers
             Random random = new Random();
             int topCount = allTops.Count;
             for (int i = 0; i < MaxTopProductsNumber; i++)
-                result.Add(allTops[random.Next(topCount)]);
+            {
+                Product item = allTops[random.Next(topCount)];
+                result.Add(item);
+                allTops.Remove(item);
+            }
             return result;
         }
 

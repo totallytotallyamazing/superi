@@ -19,7 +19,6 @@
     %>
 
     <script type="text/javascript">
-        var settings = {};
 
         $(function() {
             $.datepicker.setDefaults($.extend({ showMonthAfterYear: false }, $.datepicker.regional['']));
@@ -96,7 +95,7 @@
                             paymentTypes.Add(new SelectListItem { Text = Html.ResourceString("Card"), Value = ((int)PaymentTypes.Card).ToString() });
                         if (presentation.Noncash)
                             paymentTypes.Add(new SelectListItem { Text = Html.ResourceString("Noncash"), Value = ((int)PaymentTypes.Noncash).ToString() });
-                        string[] options = Html.RadioButtonList("paymentType_" + order.GetHashCode(), paymentTypes, new { onblur = "tableChanged(settings, this)" });
+                        string[] options = Html.RadioButtonList("paymentType_" + order.GetHashCode(), paymentTypes);
                         for (int i = 0; i < options.Length; i++)
                         {%>
                     <tr>
@@ -123,15 +122,6 @@
     </div>
     <div style="color: Red; font-weight: bold; margin-top: 20px; margin-bottom:30px;" class="orderValidation">
 
-        <script type="text/javascript">
-            $(function() {
-                $("input[name='captcha-guid']").appendTo("#makeOrder");
-            })
-
-            function copyValues() {
-                $get('captcha').value = $get('validation-value').value;
-            }
-        </script>
 
         <label for="captcha">
         </label>
@@ -139,7 +129,7 @@
         <%= Html.ValidationMessage("captchaInvalid", "*", new { @class="validationError"})%>
         <br />
         <%= Html.CaptchaImage(50, 160)%><br />
-        <%= Html.TextBox("validation-value", "", new { onkeyup = "copyValues()" })%>
+        <%= Html.TextBox("captcha", "")%>
         <br />
     </div>
     
@@ -151,7 +141,7 @@
                         <%= Html.ResourceString("Done") %>!
                     </td>
                     <td>
-                        <%= Html.SubmitImage("", "~/Content/img/tickMark.jpg", new { onclick = "collectChanges(settings, 'orderSettings'); setOrderTime(); $get('makeOrder').submit();" })%>
+                        <%= Html.SubmitImage("", "~/Content/img/tickMark.jpg")%>
                     </td>
                 </tr>
             </table>
@@ -171,10 +161,16 @@
     <%= Html.RegisterJS("jquery.ui.js")%>
     <%= Html.RegisterJS("jquery.cookie.js")%>
 </asp:Content>
+
+<asp:Content ContentPlaceHolderID="ContentTop" runat="server">
+    <form method="post" action="/Cart/MakeOrder">
+</asp:Content>
+
+<asp:Content ContentPlaceHolderID="ContentBottom" runat="server">
+    </form>
+</asp:Content>
+
 <asp:Content ID="Content4" ContentPlaceHolderID="leftMenu" runat="server">
-    <% using (Html.BeginForm("MakeOrder", "Cart", FormMethod.Post, new { id = "makeOrder" }))
-       { %>
-    <%= Html.Hidden("orderSettings")%>
     <div class="yourDetails">
         <div class="menuHeader centered">
             <%= Html.ResourceString("YourDetails") %>
@@ -241,7 +237,6 @@
                 </td>
             </tr>
         </table>
-        <%=Html.Hidden("captcha")%>
         <div class="menuFooter">
         </div>
     </div>
@@ -262,5 +257,5 @@
         <div class="menuFooter">
         </div>
     </div>
-    <%} %>
+    
 </asp:Content>

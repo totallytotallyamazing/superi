@@ -57,11 +57,9 @@
         </tr>
         <tr>
             <td>
-                <% using (Html.BeginForm("EmptyCart", "Cart", FormMethod.Post)){ %>
-                    <%= Html.Hidden("dealerId", ViewData["dealerId"])%>
-                    <%= Html.Hidden("groupId", ViewData["groupId"])%>
-                    <%= Html.SubmitImage("emptyCart", "~/Content/img/crossMark.jpg", new { onclick = "return confirm('" + Html.ResourceString("AreYouSure") + "')" })%>
-                <%} %>
+                <a href="/Cart/EmptyCart/?dealerId=<%= ViewData["dealerId"] %>&groupId=<%= ViewData["groupId"]%>" onclick="return confirm('<%= Html.ResourceString("AreYouSure")%>')" >
+                    <img style="border:none" alt="emptyCart" src="/Content/img/crossMark.jpg" />
+                </a>
             </td>
             <td style="padding-top:0px;">
                 <div id="orderItemsCount" onclick="<%= (hostAction == CartHostActions.Cart)?"return false; " : "" %>location.href = '<%= cartUrl %>'" style="margin:0 auto" <%= (hostAction == CartHostActions.Cart)?"class=\"cartDisabled\"":""%>>

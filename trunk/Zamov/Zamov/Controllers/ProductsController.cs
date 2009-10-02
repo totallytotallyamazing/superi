@@ -187,6 +187,7 @@ namespace Zamov.Controllers
                     CollectProducts(products, g);
         }
 
+        [OutputCache(NoStore = true, VaryByParam = "*", Duration = 1)]
         public ActionResult Description(int id)
         {
             using (ZamovStorage context = new ZamovStorage())

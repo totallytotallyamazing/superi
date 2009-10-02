@@ -8,20 +8,40 @@ using System.Web.Mvc.Ajax;
 using Zamov.Models;
 using System.Data;
 using Zamov.Helpers;
+using System.Collections;
 
 namespace Zamov.Controllers
 {
+    public class SortProduct : IComparer<ProductSearchPresentation>
+    {
+        public int Compare(ProductSearchPresentation x, ProductSearchPresentation y)
+        {
+            if (x == null)
+            {
+                if (y == null)
+                    return 0;
+                else
+                    return -1;
+            }
+            else if (y == null)
+                return 1;
+            else
+                return x.Name.CompareTo(y.Name);
+        }
+    }
+
+
     public class SearchController : Controller
     {
         public ActionResult Index()
         {
             if (!string.IsNullOrEmpty(SystemSettings.SearchContext))
-                SearchProduct(SystemSettings.SearchContext);
+                SearchProduct(SystemSettings.SearchContext, null, null);
             return View();
         }
 
         [BreadCrumb( ResourceName = "Search", Url = "/Search")]
-        public ActionResult SearchProduct(string searchContext)
+        public ActionResult SearchProduct(string searchContext, string sortFieldName, string sortDirection)
         {
             if (string.IsNullOrEmpty(searchContext))
                 searchContext = SystemSettings.SearchContext;
@@ -46,6 +66,7 @@ namespace Zamov.Controllers
                                                                     Unit = product.Unit
                                                                 }
                                                                     ).ToList();
+                    products.Sort(new SortProduct());
                     return View(products);
                 }
             }

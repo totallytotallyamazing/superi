@@ -49,8 +49,12 @@
     <input style="margin-bottom:5px" type="submit" value="<%=Html.ResourceString("AddToCart") %>" />  
     <table class="commonTable" width="100%">
         <tr>
-            <th><%= Html.ResourceString("Name") %></th>
-            <th style="width:20px;"><%= Html.ResourceString("Dealer") %></th>
+            <th>
+            <%=Html.ActionLink(" ", "SearchProduct", new { sortFieldName = "Name", sortDirection = "ASC" })%>
+            <%=Html.ResourceString("Name")%>
+            <%=Html.ActionLink(" ", "SearchProduct", new { sortFieldName = "Name", sortDirection = "DESC" })%>
+            </th>
+            <th style="width:20px;"> <%= Html.ResourceString("Dealer") %></th>
             <th style="width:20px;"><%= Html.ResourceString("MeassureUnit") %></th>
             <th style="width:20px;"><%= Html.ResourceString("Price") %>, грн.</th>
             <th style="width:20px;"><%= Html.ResourceString("Quantity") %></th>

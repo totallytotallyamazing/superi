@@ -6,10 +6,24 @@
     int dealerId = Convert.ToInt32(ViewData["dealerId"]);
     int groupToExpand = Convert.ToInt32(ViewData["groupToExpand"]);
     int groupId = (ViewData["groupId"] != null) ? Convert.ToInt32(ViewData["groupId"]) : int.MinValue;
+
+    string menuHeader = Html.ResourceString("Groups");
+
+    string dealerGroupName = "";
+    using (ZamovStorage context = new ZamovStorage())
+    {
+        dealerGroupName = (from dealer in context.Dealers
+                           join groupName in context.Translations on dealer.Id equals groupName.ItemId
+                           where groupName.Language == SystemSettings.CurrentLanguage && groupName.TranslationItemTypeId == (int)ItemTypes.GroupName
+                           select groupName.Text).FirstOrDefault();
+    }
+    if (!string.IsNullOrEmpty(dealerGroupName))
+        menuHeader = dealerGroupName;
+    
 %>
 <div class="menu">
     <div class="menuHeader">
-        <%= Html.ResourceString("Groups") %>
+        <%= menuHeader%>
     </div>
     <div class="menuItems">
         <% foreach (GroupResentation item in Model)

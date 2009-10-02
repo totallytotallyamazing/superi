@@ -27,6 +27,8 @@
     string ukrainianName = "";
     string russianDescription = "";
     string ukrainianDescription = "";
+    string russianGroupName = "";
+    string ukrainianGroupName = "";
     bool enabled = true;
     int dealerId = int.MinValue;
         
@@ -39,13 +41,16 @@
         ukrainianName = dealer.GetName("uk-UA");
         russianDescription = dealer.GetDescription("ru-RU");
         ukrainianDescription = dealer.GetDescription("uk-UA");
+        russianGroupName = dealer.GetGroupName("ru-RU");
+        ukrainianGroupName = dealer.GetGroupName("uk-UA");
+        
         dealerId = dealer.Id;
         enabled = dealer.Enabled;
         this.Title = pageTitle;
     }
 %>
     <h2><%= pageTitle %></h2>
-    <% using (Html.BeginForm("AddUpdateDealer", "Admin", FormMethod.Post, new{enctype="multipart/form-data"})) {%>
+    <% using (Html.BeginForm("AddUpdateDealer", "DealerCabinet", FormMethod.Post, new{enctype="multipart/form-data"})) {%>
         ID<br />
         <%= Html.TextBox("name", dealerName) %><br />
         Логотип<br />
@@ -66,6 +71,11 @@
                 <td><%= Html.ResourceString("Description") %></td>
                 <td><%= Html.TextArea("uDescription", ukrainianDescription) %></td>
                 <td><%= Html.TextArea("rDescription", russianDescription) %></td>                
+            </tr>
+            <tr>
+                <td><%= Html.ResourceString("DealerGroupName") %></td>
+                <td><%= Html.TextBox("uGroupName", ukrainianGroupName, new { style = "width:430px;" })%></td>
+                <td><%= Html.TextBox("rGroupName", russianGroupName, new { style = "width:430px;" })%></td>
             </tr>
         </table>
         <br />

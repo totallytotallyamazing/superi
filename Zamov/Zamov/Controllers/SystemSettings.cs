@@ -52,6 +52,18 @@ namespace Zamov.Controllers
             set { Session["lasttime"] = value; }
         }
 
+        public static string SearchContext
+        {
+            get
+            {
+                return Session["searchContext"].ToString();
+            }
+            set
+            {
+                Session["searchContext"] = value;
+            }
+        }
+
         public static int? CurrentDealer
         {
             get

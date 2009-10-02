@@ -12,7 +12,13 @@
             SelectListItem listItem = new SelectListItem { Text = item.Text, Value = "/Categories/SelectCategory/" + item.Value };
             items.Add(listItem);
         }
-        Html.RenderAction<Zamov.Controllers.PagePartsController>(ac => ac.LeftMenu(Html.ResourceString("SubCategories"), items)); 
+
+        string menuHeader = "";
+        if (!string.IsNullOrEmpty(ApplicationData.SubCategoryText))
+            menuHeader = ApplicationData.SubCategoryText;
+        else
+            menuHeader = Html.ResourceString("SubCategories");
+        Html.RenderAction<Zamov.Controllers.PagePartsController>(ac => ac.LeftMenu(menuHeader, items)); 
     %>
 </asp:Content>
 

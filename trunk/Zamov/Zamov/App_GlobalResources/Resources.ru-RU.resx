@@ -729,6 +729,9 @@
   <data name="YourCartIsEmpty" xml:space="preserve">
     <value>Ваша корзина пуста. Выберите, пожалуйста, товар и добавьте его в корзину</value>
   </data>
+  <data name="DealerGroupName" xml:space="preserve">
+    <value>Название группы</value>
+  </data>
   <data name="SubCategoryText" xml:space="preserve">
     <value>Подкатегории</value>
   </data>

@@ -529,6 +529,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Назва групи.
+        /// </summary>
+        internal static string DealerGroupName {
+            get {
+                return ResourceManager.GetString("DealerGroupName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Iнформацiя про фiрму.
         /// </summary>
         internal static string DealerInformation {

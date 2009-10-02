@@ -42,7 +42,7 @@
             <th>
                 <%= Html.ResourceString("ActiveM")%>
             </th>
-            <th></th>
+            <%--<th></th>--%>
             <th></th>
             <th></th>
         </tr>
@@ -67,9 +67,9 @@
                         Response.Write(Html.ResourceActionLink("Off", "DisableDealer", new { id = item.Id }));
                 %>--%>
             </td>
-            <td>
+<%--            <td>
                 <%=Html.ResourceActionLink<AdminController>("Edit", ac => ac.AddUpdateDealer(item.Id))%>
-            </td>
+            </td>--%>
             <td>
                 <a href="javascript:feedback(<%= item.Id %>)">
                     <%= Html.ResourceString("Feedback")%>

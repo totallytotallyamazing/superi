@@ -184,6 +184,8 @@ namespace Zamov.Controllers
                 dealer.Names["uk-UA"] = form["uName"];
                 dealer.Descriptions["ru-RU"] = Server.HtmlDecode(form["rDescription"]);
                 dealer.Descriptions["uk-UA"] = Server.HtmlDecode(form["uDescription"]);
+                dealer.GroupNames["ru-RU"] = form["rGroupName"];
+                dealer.GroupNames["uk-UA"] = form["uGroupName"];
                 dealer.HasDiscounts = form["hasDiscounts"].Contains("true");
                 if (!string.IsNullOrEmpty(Request.Files["logoImage"].FileName))
                 {
@@ -197,8 +199,9 @@ namespace Zamov.Controllers
                 context.SaveChanges();
                 context.UpdateTranslations(dealer.NamesXml);
                 context.UpdateTranslations(dealer.DescriptionsXml);
+                context.UpdateTranslations(dealer.GroupNamesXml);
             }
-            return RedirectToAction("Dealers");
+            return RedirectToAction("Index");
         }
 
         public ActionResult DeliveryInfo()

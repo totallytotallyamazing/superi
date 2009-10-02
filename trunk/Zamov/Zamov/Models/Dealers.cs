@@ -109,6 +109,12 @@ namespace Zamov.Models
 
         private Dictionary<string, string> names = new Dictionary<string, string>();
         private Dictionary<string, string> descriptions = new Dictionary<string, string>();
+        private Dictionary<string, string> groupNames = new Dictionary<string, string>();
+
+        public Dictionary<string, string> GroupNames
+        {
+            get { return groupNames; }
+        }
 
         public Dictionary<string, string> Descriptions
         {
@@ -119,6 +125,8 @@ namespace Zamov.Models
         {
             get { return names; }
         }
+
+        
 
         public string NamesXml
         {
@@ -133,6 +141,14 @@ namespace Zamov.Models
             get
             {
                 return Utils.CreateTranslationXml(this.Id, ItemTypes.DealerDescription, Descriptions);
+            }
+        }
+
+        public string GroupNamesXml
+        {
+            get
+            {
+                return Utils.CreateTranslationXml(this.Id, ItemTypes.GroupName, GroupNames);
             }
         }
 
@@ -151,6 +167,15 @@ namespace Zamov.Models
                 descriptions = (from translation in context.Translations
                          where (translation.ItemId == this.Id && translation.TranslationItemTypeId == (int)ItemTypes.DealerDescription)
                          select new { lang = translation.Language, val = translation.Text })
+                    .ToDictionary(k => k.lang, v => v.val);
+        }
+
+        public void LoadGroupNames()
+        {
+            using (ZamovStorage context = new ZamovStorage())
+                groupNames = (from translation in context.Translations
+                                where (translation.ItemId == this.Id && translation.TranslationItemTypeId == (int)ItemTypes.GroupName)
+                                select new { lang = translation.Language, val = translation.Text })
                     .ToDictionary(k => k.lang, v => v.val);
         }
 
@@ -176,6 +201,16 @@ namespace Zamov.Models
             string result = "";
             if (Descriptions.Keys.Contains(language))
                 result = Descriptions[language];
+            return result;
+        }
+
+        public string GetGroupName(string language)
+        {
+            if (GroupNames.Count == 0)
+                LoadGroupNames();
+            string result = "";
+            if (GroupNames.Keys.Contains(language))
+                result = GroupNames[language];
             return result;
         }
     }

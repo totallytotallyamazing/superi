@@ -11,7 +11,6 @@
 
     string emptyCartUrl = Url.Action("EmptyCart", "Cart");
     string makeOrderUrl = Url.Action("MakeOrder", "Cart");
-    string cartUrl = Url.Action("Index", "Cart", new { id = ViewData["dealerId"] });
     string action = (string)ViewContext.RouteData.Values["action"];
     string controller = (string)ViewContext.RouteData.Values["controller"];
     CartHostActions hostAction = CartHostActions.Other;
@@ -28,10 +27,35 @@
     else
         hostAction = CartHostActions.Other;
 
+    
     bool displayCartContainer = (orderItemsCount > 0 && cart.Id == 0) || hostAction != CartHostActions.Other;
+
+    string redirectUrl = Request.Url.AbsoluteUri;
+    if (hostAction == CartHostActions.Cart)
+        redirectUrl = Request.Headers["Referer"];
 
 %>
 
+<%if(orderItemsCount == 0){ %>
+<script type="text/javascript">
+    var yourCartIsEmpty = '<%= Html.ResourceString("YourCartIsEmpty") %>';
+    var cannotMakeOrder = '<%= Html.ResourceString("CannotMakeOrder") %>';
+    $(function() {
+        $("#emptyCart").click(function() { return false; });
+        $("#makeOrderLink").click(function() { alert(cannotMakeOrder); return false; });
+        $("#orderItemsCount").click(function() { alert(yourCartIsEmpty); });
+    })
+</script>
+<%} %>
+<%else if (hostAction == CartHostActions.Cart){ %>
+<%} %>
+<%else{ %>
+<script type="text/javascript">
+    $(function() {
+        $("#orderItemsCount").click(function() { location.href = '/Cart'; });
+    });
+</script>
+<%} %>
 <%if(!displayCartContainer){ %>
 <script type="text/javascript">
     $(function() { $(".subHeader").css("display", "none"); });
@@ -57,12 +81,12 @@
         </tr>
         <tr>
             <td>
-                <a href="/Cart/EmptyCart/?dealerId=<%= ViewData["dealerId"] %>&groupId=<%= ViewData["groupId"]%>" onclick="return confirm('<%= Html.ResourceString("AreYouSure")%>')" >
+                <a id="emptyCart" href="/Cart/EmptyCart/?redirectUrl=<%= redirectUrl %>" onclick="return confirm('<%= Html.ResourceString("AreYouSure")%>')" >
                     <img style="border:none" alt="emptyCart" src="/Content/img/crossMark.jpg" />
                 </a>
             </td>
             <td style="padding-top:0px;">
-                <div id="orderItemsCount" onclick="<%= (hostAction == CartHostActions.Cart)?"return false; " : "" %>location.href = '<%= cartUrl %>'" style="margin:0 auto" <%= (hostAction == CartHostActions.Cart)?"class=\"cartDisabled\"":""%>>
+                <div id="orderItemsCount" style="margin:0 auto" <%= (hostAction == CartHostActions.Cart)?"class=\"cartDisabled\"":""%>>
                     <%= orderItemsCount%>
                 </div>
             </td>
@@ -71,7 +95,7 @@
             </td>
             <%if(hostAction!= CartHostActions.MakeOrder){ %>
             <td>
-                <a href="<%= makeOrderUrl %>">
+                <a id="makeOrderLink" href="<%= makeOrderUrl %>">
                     <%= Html.Image("~/Content/img/tickMark.jpg", new { style = "border:none" })%>
                 </a>
             </td>

@@ -143,13 +143,12 @@ namespace Zamov.Controllers
                         Cart cart = SystemSettings.Cart;
                         using (OrderStorage context = new OrderStorage())
                         {
+                            Cart loadedCart = context.Carts.Where(c => c.Id == cart.Id).Select(c => c).First();
+                            loadedCart.Orders.Load();
                             Guid userId = (Guid)Membership.GetUser(email).ProviderUserKey;
-                            context.Attach(cart);
                             context.AcceptAllChanges();
-                            cart.Orders.Load();
-                            foreach (Order item in cart.Orders)
+                            foreach (Order item in loadedCart.Orders)
                                 item.UserId = userId;
-                            context.ApplyPropertyChanges("OrderStorage.Carts", cart);
                             context.SaveChanges();
                         }
                         SystemSettings.EmptyCart();

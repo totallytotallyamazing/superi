@@ -723,4 +723,10 @@
   <data name="CardNumber" xml:space="preserve">
     <value>Номер карточки</value>
   </data>
+  <data name="CannotMakeOrder" xml:space="preserve">
+    <value>Вы не можете оформить заказ, поскольку Ваша корзина пуста. Выберите, пожалуйста, товар и добавьте его в корзину.</value>
+  </data>
+  <data name="YourCartIsEmpty" xml:space="preserve">
+    <value>Ваша корзина пуста. Выберите, пожалуйста, товар и добавьте его в корзину</value>
+  </data>
 </root>

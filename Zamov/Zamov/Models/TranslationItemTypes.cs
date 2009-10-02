@@ -16,6 +16,7 @@ namespace Zamov.Models
         DealerDeliveryInfo = 7,
         NewsTitle = 8,
         NewsDescription = 9,
-        NewsText = 10
+        NewsText = 10,
+        GroupName = 11
     }
 }

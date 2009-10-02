@@ -33,3 +33,6 @@ a{font-size:12px;}
 .watermark{color:#aaa;}
 .addEditNote{width:700px; padding:10px;}
 .addEditNote input{width:300px; margin-bottom:5px;}
+
+.note{border-bottom:1px solid #898989; width:auto; padding-bottom:10px; margin-bottom:10px;}
+.note img{float:left; margin-right:20px;}

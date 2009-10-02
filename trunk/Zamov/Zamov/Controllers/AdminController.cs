@@ -456,6 +456,22 @@ namespace Zamov.Controllers
             Response.Write(Helpers.Helpers.CloseParentScript("Agreement"));
         }
 
+        public ActionResult SubCategoryText()
+        {
+            ViewData["ruText"] = ApplicationData.GetSubCategoryText("ru-RU");
+            ViewData["uaText"] = ApplicationData.GetSubCategoryText("uk-UA");
+            return View();
+        }
+
+        public void UpdateSubCategoryText(string ruText, string uaText)
+        {
+            Dictionary<string, string> values = new Dictionary<string, string>();
+            values["ru-RU"] = HttpUtility.HtmlDecode(ruText);
+            values["uk-UA"] = HttpUtility.HtmlDecode(uaText);
+            ApplicationData.UpdateSubCategoryText(values);
+            Response.Write(Helpers.Helpers.CloseParentScript("SubCategoryText"));
+        }
+
         public ActionResult ContactsHeader()
         {
             ViewData["ruText"] = ApplicationData.GetContactsHeader("ru-RU");

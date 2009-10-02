@@ -1627,6 +1627,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Пiдкатегорiї.
+        /// </summary>
+        internal static string SubCategoryText {
+            get {
+                return ResourceManager.GetString("SubCategoryText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Дякуємо.
         /// </summary>
         internal static string ThankYou {

@@ -13,6 +13,7 @@
         SelectListItem agreement = new SelectListItem { Text = Html.ResourceString("UserAgreement"), Value = "javascript:userAgreement();" };
         SelectListItem contacts = new SelectListItem { Text = Html.ResourceString("Contacts"), Value = "javascript:contacts();" };
         SelectListItem startText = new SelectListItem { Text = Html.ResourceString("StartText"), Value = "javascript:startText();" };
+        SelectListItem subCategoryText = new SelectListItem { Text = Html.ResourceString("SubCategoryText"), Value = "javascript:subCategoryText();" };
         items.Add(cities);
         items.Add(dealers);
         items.Add(categories);
@@ -21,6 +22,7 @@
         items.Add(agreement);
         items.Add(contacts);
         items.Add(startText);
+        items.Add(subCategoryText);
         Html.RenderAction<Zamov.Controllers.PagePartsController>(ac => ac.LeftMenu(Html.ResourceString("Administration"), items)); 
     %>
 </asp:Content>
@@ -70,6 +72,19 @@
                         '<%= Html.ResourceString("Save") %>': function() { $get("startTextFrame").contentWindow.updateData(); }
                     }
                 });
+
+                $("#subCategoryText")
+                .dialog({
+                    autoOpen: false,
+                    width: 700,
+                    height: 500,
+                    minHeight: 360,
+                    resizable: false,
+                    buttons: {
+                        '<%= Html.ResourceString("Cancel") %>': function() { closeStartText(); },
+                        '<%= Html.ResourceString("Save") %>': function() { $get("subCategoryTextFrame").contentWindow.updateData(); }
+                    }
+                });
         })
 
         function contacts() {
@@ -88,7 +103,12 @@
             $("#startText")
                 .html('<iframe frameborder="0" name="startTextFrame" id="startTextFrame" hidefocus="true" style="width:660px; height:500px;" src="/Admin/StartText"></iframe>');
             $("#startText").dialog('open');
+        }
 
+        function subCategoryText() {
+            $("#subCategoryText")
+                .html('<iframe frameborder="0" name="startTextFrame" id="subCategoryTextFrame" hidefocus="true" style="width:660px; height:500px;" src="/Admin/SubCategoryText"></iframe>');
+            $("#subCategoryText").dialog('open');
         }
 
         function closeContacts() {
@@ -102,6 +122,10 @@
         function closeStartText() {
             $("#startText").dialog('close');
         }
+
+        function closeSubCategoryText() {
+            $("#subCategoryText").dialog('close');
+        }
     </script>
 
     <div id="contacts" title='<%= Html.ResourceString("Contacts") %>'>
@@ -110,6 +134,9 @@
     </div>
     <div id="startText" title='<%= Html.ResourceString("StartText") %>'>
     </div>
+    <div id="subCategoryText" title="<%= Html.ResourceString("SubCategoryText") %>" >
+    </div>
+    
     <asp:ContentPlaceHolder ID="mainContent" runat="server">
     </asp:ContentPlaceHolder>
 </asp:Content>

@@ -47,7 +47,10 @@ public static class ApplicationData
         }
     }
 
-
+    public static string SubCategoryText
+    {
+        get { return GetApplicationData("SubCategoryText", SystemSettings.CurrentLanguage); }
+    }
 
     public static void UpdateAgreement(Dictionary<string, string> values)
     {
@@ -64,6 +67,11 @@ public static class ApplicationData
         UpdateApplicationData("StartText", values);
     }
 
+    public static void UpdateSubCategoryText(Dictionary<string, string> values)
+    {
+        UpdateApplicationData("SubCategoryText", values);
+    }
+
     public static string GetStartText(string language)
     {
         return GetApplicationData("StartText", language);
@@ -77,6 +85,11 @@ public static class ApplicationData
     public static string GetContactsHeader(string language)
     {
         return GetApplicationData("ContactsHeader", language);
+    }
+
+    public static string GetSubCategoryText(string language)
+    {
+        return GetApplicationData("SubCategoryText", language);
     }
 
     private static string GetApplicationData(string name, string language)

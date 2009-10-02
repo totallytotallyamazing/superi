@@ -194,6 +194,7 @@ namespace Zamov.Controllers
                 ProductPresentation product = (from item in context.Products.Include("ProductImages")
                                                join description in context.Translations on item.Id equals description.ItemId
                                                where description.TranslationItemTypeId == (int)ItemTypes.ProductDescription
+                                               && description.Language == SystemSettings.CurrentLanguage
                                                && item.Id == id
                                                let hasImage = item.ProductImages.Count > 0
                                                let imageId = (hasImage) ? item.ProductImages.FirstOrDefault().Id : 0

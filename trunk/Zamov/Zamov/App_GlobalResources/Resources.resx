@@ -723,4 +723,10 @@
   <data name="CardNumber" xml:space="preserve">
     <value>Номер картки</value>
   </data>
+  <data name="CannotMakeOrder" xml:space="preserve">
+    <value>Ви не можете оформити замовлення, тому що ваш кошик порожнiй. Будьласка виберiть товар i покладiть його до кошику.</value>
+  </data>
+  <data name="YourCartIsEmpty" xml:space="preserve">
+    <value>Ваш кошик порожнiй. Будьласка виберiть товар i покладiть його до кошику.</value>
+  </data>
 </root>

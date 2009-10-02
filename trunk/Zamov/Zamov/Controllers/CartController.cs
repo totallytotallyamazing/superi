@@ -35,10 +35,10 @@ namespace Zamov.Controllers
             return View(SystemSettings.Cart.Orders);
         }
 
-        public ActionResult EmptyCart()
+        public ActionResult EmptyCart(string redirectUrl)
         {
             SystemSettings.EmptyCart();
-            return RedirectToAction("Index", "Categories");
+            return Redirect(redirectUrl);
         }
 
         public ActionResult RemoveOrderItem(int id)
@@ -180,8 +180,8 @@ namespace Zamov.Controllers
                 return View(SystemSettings.Cart.Orders);
             Cart cart = SystemSettings.Cart;
             JavaScriptSerializer serializer = new JavaScriptSerializer();
-            Dictionary<string, Dictionary<string, string>> orderSettingsDictionary =
-                serializer.Deserialize<Dictionary<string, Dictionary<string, string>>>(orderSettings);
+            Dictionary<string, Dictionary<string, string>> orderSettingsDictionary = form.ProcessPostData("firstName", "x", "y", "email", "comments", "lastName", "city", "deliveryAddress", "contactPhone", "deliveryDate", "deliveryTime", "agreedPresentation", "deliveryTimeClientState", "deliveryDateTime", "agreed", "captcha", "captchaValid", "captcha-guid");
+                
             var systemSettingsList = (from os in orderSettingsDictionary
                                       select new
                                       {

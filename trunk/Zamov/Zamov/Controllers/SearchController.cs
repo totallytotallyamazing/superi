@@ -15,14 +15,19 @@ namespace Zamov.Controllers
     {
         public ActionResult Index()
         {
+            if (!string.IsNullOrEmpty(SystemSettings.SearchContext))
+                SearchProduct(SystemSettings.SearchContext);
             return View();
         }
 
         [BreadCrumb( ResourceName = "Search", Url = "/Search")]
         public ActionResult SearchProduct(string searchContext)
         {
+            if (string.IsNullOrEmpty(searchContext))
+                searchContext = SystemSettings.SearchContext;
             if (!string.IsNullOrEmpty(searchContext))
             {
+                SystemSettings.SearchContext = searchContext;
                 using (ZamovStorage context = new ZamovStorage())
                 {
                     ObjectQuery<Product> productsQuery = new ObjectQuery<Product>(

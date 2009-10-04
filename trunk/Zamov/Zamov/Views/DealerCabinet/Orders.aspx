@@ -34,11 +34,14 @@
                 row.appendChild(col2);
 
                 var col3 = document.createElement("td");
-                col3.innerHTML = response[i].Address + " " + response[i].ClientName;
+                if (response[i].Status == "Accepted")
+                    col3.innerHTML = response[i].Address + ", " + response[i].ClientName;
+                else
+                    col3.innerHTML = response[i].Address;
                 row.appendChild(col3);
 
                 var col7 = document.createElement("td");
-                col7.innerHTML = response[i].Comments;
+                col7.innerHTML = response[i].Comments + " " + response[i].DiscountCardNumber;
                 row.appendChild(col7);
 
                 var col4 = document.createElement("td");

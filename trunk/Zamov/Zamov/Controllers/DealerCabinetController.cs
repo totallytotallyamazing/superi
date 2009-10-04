@@ -749,6 +749,7 @@ namespace Zamov.Controllers
         }
 
         [Authorize(Roles = "Administrators, Dealers")]
+        [OutputCache(NoStore = true, VaryByParam = "*", Duration = 1)]
         public ActionResult ShowOrder(int id)
         {
             using (OrderStorage context = new OrderStorage())

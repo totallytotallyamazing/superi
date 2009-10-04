@@ -12,25 +12,6 @@ using System.Collections;
 
 namespace Zamov.Controllers
 {
-    public class SortProduct : IComparer<ProductSearchPresentation>
-    {
-        public int Compare(ProductSearchPresentation x, ProductSearchPresentation y)
-        {
-            if (x == null)
-            {
-                if (y == null)
-                    return 0;
-                else
-                    return -1;
-            }
-            else if (y == null)
-                return 1;
-            else
-                return x.Name.CompareTo(y.Name);
-        }
-    }
-
-
     public class SearchController : Controller
     {
         public ActionResult Index()
@@ -56,6 +37,7 @@ namespace Zamov.Controllers
                                                                 join dealerName in context.Translations on product.Dealer.Id equals dealerName.ItemId
                                                                 where dealerName.TranslationItemTypeId == (int)ItemTypes.DealerName
                                                                 && dealerName.Language == SystemSettings.CurrentLanguage
+                                                                //orderby product.Name ascending
                                                                 select new ProductSearchPresentation
                                                                 {
                                                                     DealerId = product.Dealer.Id,
@@ -66,7 +48,30 @@ namespace Zamov.Controllers
                                                                     Unit = product.Unit
                                                                 }
                                                                     ).ToList();
-                    products.Sort(new SortProduct());
+                    if(sortFieldName!=null&&sortDirection!=null)
+                    switch (sortFieldName.ToLower())
+                    {
+                        case "name":
+                            if (sortDirection.ToLower() == "asc")
+                                products.Sort(new SortByProductNameAsc());
+                            else
+                                products.Sort(new SortByProductNameDesc());
+                            break;
+                        case "price":
+                            if (sortDirection.ToLower() == "asc")
+                                products.Sort(new SortByPriceAsc());
+                            else
+                                products.Sort(new SortByPriceDesc());
+                            break;
+                        case "dealer":
+                            if (sortDirection.ToLower() == "asc")
+                                products.Sort(new SortByDealerNameAsc());
+                            else
+                                products.Sort(new SortByDealerNameDesc());
+                            break;
+                    }
+                    
+                    
                     return View(products);
                 }
             }

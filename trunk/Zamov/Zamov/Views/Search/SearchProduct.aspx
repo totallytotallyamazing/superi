@@ -50,20 +50,20 @@
     <table class="commonTable" width="100%">
         <tr>
             <th>
-            <%=Html.ActionLink("+", "SearchProduct", new { sortFieldName = "Name", sortDirection = "ASC" })%>
+            <%=Html.ActionLink("+", "SearchProduct", new { sortFieldName = "Name", sortDirectionDescenging = false })%>
             <%=Html.ResourceString("Name")%>
-            <%=Html.ActionLink("-", "SearchProduct", new { sortFieldName = "Name", sortDirection = "DESC" })%>
+            <%=Html.ActionLink("-", "SearchProduct", new { sortFieldName = "Name", sortDirectionDescenging = true })%>
             </th>
             <th style="width:20px;">
-            <%=Html.ActionLink("+", "SearchProduct", new { sortFieldName = "Dealer", sortDirection = "ASC" })%>
+            <%=Html.ActionLink("+", "SearchProduct", new { sortFieldName = "Dealer", sortDirectionDescenging = false })%>
             <%= Html.ResourceString("Dealer") %>
-            <%=Html.ActionLink("-", "SearchProduct", new { sortFieldName = "Dealer", sortDirection = "DESC" })%>
+            <%=Html.ActionLink("-", "SearchProduct", new { sortFieldName = "Dealer", sortDirectionDescenging = true })%>
             </th>
             <th style="width:20px;"><%= Html.ResourceString("MeassureUnit") %></th>
             <th style="width:20px;">
-            <%=Html.ActionLink("+", "SearchProduct", new { sortFieldName = "Price", sortDirection = "ASC" })%>
+            <%=Html.ActionLink("+", "SearchProduct", new { sortFieldName = "Price", sortDirectionDescenging = false })%>
             <%= Html.ResourceString("Price") %>, грн.
-            <%=Html.ActionLink("-", "SearchProduct", new { sortFieldName = "Price", sortDirection = "DESC" })%>
+            <%=Html.ActionLink("-", "SearchProduct", new { sortFieldName = "Price", sortDirectionDescenging = true })%>
             </th>
             <th style="width:20px;"><%= Html.ResourceString("Quantity") %></th>
             <th style="width:20px;"><%= Html.ResourceString("ToOrder") %></th>

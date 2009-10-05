@@ -17,13 +17,22 @@ namespace Zamov.Controllers
         public ActionResult Index()
         {
             if (!string.IsNullOrEmpty(SystemSettings.SearchContext))
-                SearchProduct(SystemSettings.SearchContext, null, null);
+                SearchProduct(SystemSettings.SearchContext, null, false);
             return View();
         }
 
         [BreadCrumb( ResourceName = "Search", Url = "/Search")]
-        public ActionResult SearchProduct(string searchContext, string sortFieldName, string sortDirection)
+        public ActionResult SearchProduct(string searchContext, string sortFieldName, bool? sortDirectionDescenging)
         {
+
+            //bool sortDirectionDesc = sortDirectionDescenging != null ? sortDirectionDescenging : false;
+
+            bool sortDirectionDesc = false;
+            if (sortDirectionDescenging != null && sortDirectionDescenging == true)
+                sortDirectionDesc = true;
+            
+            
+
             if (string.IsNullOrEmpty(searchContext))
                 searchContext = SystemSettings.SearchContext;
             if (!string.IsNullOrEmpty(searchContext))
@@ -48,6 +57,24 @@ namespace Zamov.Controllers
                                                                     Unit = product.Unit
                                                                 }
                                                                     ).ToList();
+
+
+                    if (sortFieldName != null)
+                        switch (sortFieldName.ToLower())
+                        {
+                            case "name":
+                                products.OrderByWithDirection(x => x.Name, sortDirectionDesc);
+                                break;
+                            case "price":
+                                products.OrderByWithDirection(x => x.Price, sortDirectionDesc);
+                                break;
+                            case "dealer":
+                                products.OrderByWithDirection(x => x.DealerName, sortDirectionDesc);
+                                break;
+                        }
+
+
+                    /*
                     if(sortFieldName!=null&&sortDirection!=null)
                     switch (sortFieldName.ToLower())
                     {
@@ -70,7 +97,7 @@ namespace Zamov.Controllers
                                 products.Sort(new SortByDealerNameDesc());
                             break;
                     }
-                    
+                    */
                     
                     return View(products);
                 }

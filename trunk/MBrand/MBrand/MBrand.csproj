@@ -111,8 +111,11 @@
     <Content Include="Content\fancy\fancy_title_main.png" />
     <Content Include="Content\fancy\fancy_title_right.png" />
     <Content Include="Content\fancy\jquery.fancybox.css" />
+    <Content Include="Content\img\back.png" />
     <Content Include="Content\img\logoBlack.jpg" />
     <Content Include="Content\img\logoWhite.jpg" />
+    <Content Include="Content\img\next.png" />
+    <Content Include="Content\img\zoom.png" />
     <Content Include="Content\theme\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\theme\images\ui-bg_flat_55_fbec88_40x100.png" />
     <Content Include="Content\theme\images\ui-bg_glass_75_d0e5f5_1x400.png" />
@@ -257,6 +260,7 @@
     <Content Include="Views\Notes\Pages.ascx" />
     <Content Include="Views\See\Logos.aspx" />
     <Content Include="Views\See\Poly.aspx" />
+    <Content Include="Views\See\RandomImage.ascx" />
     <Content Include="Views\Shared\SeeMenu.ascx" />
     <Content Include="Views\See\Sites.aspx" />
     <Content Include="Views\See\Text.aspx" />

@@ -15,6 +15,8 @@
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="Includes" runat="server">
+    <script type="text/javascript" src="/Scripts/jquery.fancybox.js"></script>
+    <link rel="Stylesheet" href="/Content/fancy/jquery.fancybox.css" />
 </asp:Content>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="HeaderTitle" runat="server">

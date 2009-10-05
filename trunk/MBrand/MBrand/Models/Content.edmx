@@ -137,6 +137,6 @@
       <Diagram Name="Content">
         <EntityTypeShape EntityType="Model.Note" Width="1.5" PointX="0.75" PointY="0.75" Height="1.9210009765625" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.Text" Width="1.5" PointX="2.75" PointY="0.75" Height="1.427958984375" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.Work" Width="1.5" PointX="0.75" PointY="3.75" Height="1.7566536458333335" IsExpanded="true" /></Diagram></edmx:Diagrams>
+        <EntityTypeShape EntityType="Model.Work" Width="1.5" PointX="5.125" PointY="1" Height="1.9802864583333326" IsExpanded="true" /></Diagram></edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

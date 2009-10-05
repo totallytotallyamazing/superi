@@ -30,15 +30,15 @@
                     <%= Ajax.TextBoxWatermark("title", "Заголовок", "watermark")%>
                     <%= Html.TextBox("date")%><br />
                     <%= Ajax.TextBoxWatermark("date", "Дата", "watermark")%>
-                    <span style="color:Black">Привью:</span>
+                    <span style="color:Black">Превью:</span>
                     <input name="image" type="file" />
                 </td>
                 <td id="imageCell">
                     <%= ViewData["imageLayout"] %>
                     <%if (ViewData["imageLayout"] != null)
                       { %>
-                        <br />
-                        <%= Ajax.ActionLink("Удалить картинку", "DeleteNoteImage", "Admin", new AjaxOptions{ LoadingElementId = "shader", OnSuccess="imageDeleted"}) %>
+<%--                        <br />
+                        <%= Ajax.ActionLink("Удалить картинку", "DeleteNoteImage", "Admin", new AjaxOptions{ LoadingElementId = "shader", OnSuccess="imageDeleted"}) %>--%>
                     <%} %>
                 </td>
             </tr>

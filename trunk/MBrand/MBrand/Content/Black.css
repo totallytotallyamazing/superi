@@ -5,10 +5,12 @@
 }
 
 #left{border-left-color:White;}
-.mainMenuItem{background:White;}
-.mainMenuItem a{color:Black;}
+.mainMenuItem, .seeMenuItem{background:White;}
+.mainMenuItem a, .seeMenuItem a{color:Black;}
 
 textarea{background:Black;}
 a{color:White;}
 .inactiveBw{color:White;}
 #headerRight{border-left-color:White;}
+
+#seeMenu{border-bottom-color:White;}

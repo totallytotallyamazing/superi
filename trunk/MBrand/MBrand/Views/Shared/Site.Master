@@ -34,11 +34,7 @@
     <div id="shader"></div>
     <div id="main">
         <div id="header">
-            <div id="logo">
-                <a href="/">
-                    <%= Html.Image("~/Content/img/logo" + color + ".jpg", new { id="logoImage"})%>
-                </a>
-            </div>
+            <div id="logo"><a href="/" style="font-size:0px"><%= Html.Image("~/Content/img/logo" + color + ".jpg", new { id="logoImage"})%></a></div>
             <div id="headerRight">
                 <asp:ContentPlaceHolder runat="server" ID="HeaderTitle"></asp:ContentPlaceHolder>
             </div>

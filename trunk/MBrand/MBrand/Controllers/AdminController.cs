@@ -49,10 +49,6 @@ namespace MBrand.Controllers
             return RedirectToAction("Index", "Eugene");
         }
 
-        public ActionResult See()
-        {
-            return View();
-        }
 
         public ActionResult Clients()
         {
@@ -67,6 +63,7 @@ namespace MBrand.Controllers
             return RedirectToAction("Index", "Clients");
         }
 
+        [OutputCache(VaryByParam = "*", NoStore = true, Duration = 1)]
         public ActionResult AddEditNote(int id)
         {
             ViewData["id"] = id;
@@ -78,11 +75,12 @@ namespace MBrand.Controllers
                     ViewData["title"] = note.Title;
                     ViewData["description"] = note.Description;
                     ViewData["text"] = note.Text;
-                    ViewData["date"] = note.Date.ToString("dd.MM.yyyy HH:mm");
+                    ViewData["date"] = note.Date.ToString("dd.MM.yyyy");
                     if (!string.IsNullOrEmpty(note.Image))
-                        ViewData["imageLayout"] = string.Format("<img alt=\"{0}\" src=\"/Content/images/notes/{1}\"/>", note.Title, note.Image);
+                        ViewData["imageLayout"] = string.Format("<img style=\"height:50px;\" alt=\"{0}\" src=\"/Content/images/notes/{1}\"/>", note.Title, note.Image);
                 }
             }
+            else ViewData["date"] = DateTime.Now.ToString("dd.MM.yyyy");
             return View();
         }
 
@@ -100,12 +98,12 @@ namespace MBrand.Controllers
                 string fileName = Request.Files["image"].FileName;
                 if (!string.IsNullOrEmpty(fileName))
                 {
+                    if (id > 0)
+                        DeleteImage("~/Content/images/notes", note.Image);
                     fileName = Path.GetFileName(fileName);
                     string filePath = Server.MapPath("~/Content/images/notes/" + fileName);
                     Request.Files["image"].SaveAs(filePath);
                     note.Image = fileName;
-                    if (id > 0)
-                        DeleteImage("~/Content/images/notes", note.Image);
                 }
                 note.Title = title;
                 note.Description = HttpUtility.HtmlDecode(description);
@@ -137,10 +135,17 @@ namespace MBrand.Controllers
                 System.IO.File.Delete(Server.MapPath(imageFolder + "/" + fileName));
         }
 
-        [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult DeleteNote(int id, int currentPage)
+        public ActionResult DeleteNote(int id)
         {
-            return RedirectToAction("Index", "Notes", new { id = currentPage });
+            using (DataStorage context = new DataStorage())
+            {
+                Note note = context.Notes.Where(n => n.Id == id).Select(n => n).FirstOrDefault();
+                if (!string.IsNullOrEmpty(note.Image))
+                    DeleteImage("~/Content/images/notes", note.Image);
+                context.DeleteObject(note);
+                context.SaveChanges();
+            }
+            return RedirectToAction("Index", "Notes");
         }
 
         public ActionResult Contacts()
@@ -157,6 +162,83 @@ namespace MBrand.Controllers
         }
 
 
+        public ActionResult See(WorkType type)
+        {
+            ViewData["baseFolder"] = "~/Content/Images/" + type.ToString().ToLower() + "/";
+            ViewData["type"] = type;
+            using (DataStorage context = new DataStorage())
+            {
+                int typeId = (int)type;
+                List<Work> works = context.Works.Where(w => w.Type == typeId).Select(w => w).ToList();
+                return View(works);
+            }
+        }
 
+        [OutputCache(VaryByParam="*", NoStore=true, Duration=1)]
+        public ActionResult AddEditWork(int? id, WorkType? type)
+        {
+            ViewData["type"] = type.ToString();
+            if (id != null)
+            {
+                using (DataStorage context = new DataStorage())
+                {
+                    Work work = context.Works.Where(w => w.Id == id).Select(w => w).FirstOrDefault();
+                    ViewData["id"] = id;
+                    ViewData["description"] = work.Description;
+                }
+            }
+            return View();
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult AddEditWork(int? id, string description, WorkType type)
+        {
+            using (DataStorage context = new DataStorage())
+            {
+                Work work = new Work();
+                if (id != null)
+                    work = context.Works.Where(w => w.Id == id.Value).Select(w => w).FirstOrDefault();
+                work.Description = HttpUtility.HtmlDecode(description);
+                work.Type = (int)type;
+                string image = Request.Files["image"].FileName;
+                if (!string.IsNullOrEmpty(image))
+                {
+                    if (id > 0)
+                        DeleteImage("~/Content/images/"+type.ToString().ToLower() +"/", work.Image);
+                    image = Path.GetFileName(image); 
+                    string imagePath = Server.MapPath("~/Content/images/"+type.ToString().ToLower()+"/" + image);
+                    Request.Files["image"].SaveAs(imagePath);
+                    work.Image = image;
+                }
+                string preview = Request.Files["preview"].FileName;
+                if (!string.IsNullOrEmpty(image))
+                {
+                    if (id > 0)
+                        DeleteImage("~/Content/images/"+type.ToString().ToLower() +"/preview/", work.Preview);
+                    preview = Path.GetFileName(preview); 
+                    string previewPath = Server.MapPath("~/Content/images/"+type.ToString().ToLower()+"/preview/" + preview);
+                    Request.Files["preview"].SaveAs(previewPath);
+                    work.Preview = preview;
+                }
+                if(id == null)
+                    context.AddToWorks(work);
+                context.SaveChanges();
+                return RedirectToAction("See", new { type = type });
+            }
+        }
+
+        public ActionResult DeleteWork(int id)
+        {
+            using (DataStorage context = new DataStorage())
+            {
+                Work work = context.Works.Where(w => w.Id == id).Select(w => w).FirstOrDefault();
+                WorkType type = (WorkType)work.Type;
+                DeleteImage("~/Content/images/"+type.ToString().ToLower()+"/preview", work.Preview);
+                DeleteImage("~/Content/images/"+type.ToString().ToLower(), work.Image);
+                context.DeleteObject(work);
+                context.SaveChanges();
+                return RedirectToAction("See", new { type = type });
+            }
+        }
     }
 }

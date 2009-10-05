@@ -21,6 +21,7 @@
             clientsClass += " bold";
             break;
         case "Notes":
+        case "Note":
             notesClass += " bold";
             break;
         case "Contacts":

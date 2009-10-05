@@ -1,11 +1,11 @@
 ﻿.shader{}
 
 *{margin:0; padding:0;}
-body{font-family:Tahoma; font-size:12px;}
+body{font-family:Arial; font-size:12px;}
 img{border:none;}
 #main{width:998px; position:relative; margin:60px auto 0px;}
 #header{width:100%; height:77px;}
-#logo{float:left; width:74px;}
+#logo{float:left; width:74px; font-size:0px;}
 #headerRight
 {
     width:auto; 
@@ -19,11 +19,11 @@ img{border:none;}
 }
 .blackWhiteSwitch{margin-left:111px;}
 
-#left{float:left; width:215px; padding-top:370px; border-left-width:1px; border-left-style:solid;}
-#content{width:auto; margin-left:215px; padding-top:40px;}
+#left{float:left; width:215px; padding-top:370px; border-left-width:1px; border-left-style:solid; clear:both;}
+#content{width:auto; padding-top:40px; float:left; width:782px;}
 #mainMenu{}
-.mainMenuItem{margin-top:10px; float:left; clear:both; padding:0px 5px 2px;}
-.mainMenuItem a{text-decoration:none; font-size:12px;}
+.mainMenuItem{margin-top:10px; float:left; clear:both; padding:2px 5px 2px;}
+.mainMenuItem a, .seeMenuItem a{text-decoration:none; font-size:12px;}
 .bold {font-weight:bold;}
 .inactiveBw{font-size:12px; font-weight:bold;}
 a{font-size:12px;}
@@ -34,5 +34,18 @@ a{font-size:12px;}
 .addEditNote{width:700px; padding:10px;}
 .addEditNote input{width:300px; margin-bottom:5px;}
 
-.note{border-bottom:1px solid #898989; width:auto; padding-bottom:10px; margin-bottom:10px;}
+.note{border-bottom:1px solid #808080; width:auto; padding-bottom:10px; margin-bottom:10px;}
 .note img{float:left; margin-right:20px;}
+#notesHolder{height:450px; overflow:auto;}
+#pager{text-align:center;}
+#pager span{text-decoration:underline;}
+.pageLink{text-decoration:none;}
+.pageLink:hover{text-decoration:underline;}
+.pagesArrow{text-decoration:none !important;}
+.pagerDate{text-decoration:none !important; color:#808080; font-size:10px;}
+#noteHeader{font-size:14px; border-bottom:1px solid #808080; padding-bottom:10px; margin-bottom:10px;}
+#noteHeader .date{font-size:12px; color:#808080;}
+
+#seeContainer{height:368px;}
+#seeMenu{padding-left:130px; margin-left:-136px; float:left; border-bottom-style:solid; border-bottom-width:1px;}
+.seeMenuItem{float:left; margin-left:10px; padding: 2px 5px;}

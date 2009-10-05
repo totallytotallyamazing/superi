@@ -16,11 +16,24 @@ namespace MBrand
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+
+            routes.MapRoute(
+                "See",
+                "Admin/{action}/{type}",
+                new { controller = "Admin", action = "See", type = "Site" }
+            );
+
             routes.MapRoute(
                 "Default",                                              // Route name
                 "{controller}/{action}/{id}",                           // URL with parameters
                 new { controller = "Home", action = "Index", id = "" }  // Parameter defaults
             );
+
+            routes.MapRoute(
+                "Paged",
+                "{controller}/{action}/{id}/{currentPage}",
+                new { controller = "Notes", action = "Index", id = "", currentPage = "" }
+             );
 
         }
 

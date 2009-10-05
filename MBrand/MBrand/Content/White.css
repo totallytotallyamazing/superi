@@ -5,9 +5,11 @@
 }
 
 #left{border-left-color:Black;}
-.mainMenuItem{background:black;}
-.mainMenuItem a{color:White;}
+.mainMenuItem, .seeMenuItem{background:black;}
+.mainMenuItem a, .seeMenuItem a{color:White;}
 
 a{color:Black;}
 .inactiveBw{color:Black;}
 #headerRight{border-left-color:Black;}
+
+#seeMenu{border-bottom-color:Black;}

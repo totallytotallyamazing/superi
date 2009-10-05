@@ -6,27 +6,44 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <script type="text/javascript">
-        $(function() { $("#addNote").fancybox({ frameWidth: 750, frameHeight:670, hideOnContentClick: false }) });
+        $(function() 
+        {
+            $("#addNote").fancybox({ frameWidth: 750, frameHeight: 670, hideOnContentClick: false })
+            $(".editNote").fancybox({ frameWidth: 750, frameHeight: 670, hideOnContentClick: false }) 
+        });
     </script>
-
-    <asp:LoginView runat="server">
-        <AnonymousTemplate></AnonymousTemplate>
-        <LoggedInTemplate>
-            <%= Html.ActionLink("Добавить", "AddEditNote", "Admin", new {id = int.MinValue}, new {id = "addNote"}) %>
-        </LoggedInTemplate>
-    </asp:LoginView>
-    
-    <%foreach (MBrand.Models.Note item in Model){%>
-        <div class="note">
-            <%if (!string.IsNullOrEmpty(item.Image)){ %>
-                <img alt="" src="/Content/images/notes/<%= item.Image %>" />
-            <%} %>
-            <%= item.Date.ToString("dd.MM.yyyy") %>
-            <br />
-            <%= Html.ActionLink(item.Title, "Note", new {id=item.Id })%>
-        </div>
-      <%} %>
-    
+    <div id="notesHolder">
+        <asp:LoginView runat="server">
+            <AnonymousTemplate></AnonymousTemplate>
+            <LoggedInTemplate>
+                <%= Html.ActionLink("Добавить", "AddEditNote", "Admin", new {id = int.MinValue}, new {id = "addNote"}) %>
+                <br /><br />
+            </LoggedInTemplate>
+        </asp:LoginView>
+        
+        <%foreach (MBrand.Models.Note item in Model){%>
+            <div class="note">
+                <%if (Request.IsAuthenticated){ %>
+                    <div style="float:right;">
+                        <%= Html.ActionLink("Редактировать", "AddEditNote", "Admin", new { id = item.Id }, new { @class = "editNote" })%>
+                        &nbsp;
+                        <%= Html.ActionLink("Удалить", "DeleteNote", "Admin", new { id = item.Id }, new { onclick = "return confirm('Ты уверен?')" })%>
+                    </div>
+                <%} %>
+            
+                <%if (!string.IsNullOrEmpty(item.Image)){ %>
+                    <img alt="" src="/Content/images/notes/<%= item.Image %>" />
+                <%} %>
+                <%= item.Date.ToString("dd.MM.yyyy") %>
+                <br />
+                <%= Html.ActionLink(item.Title, "Note", new {id=item.Id, currentPage=ViewData["currentPage"] })%>
+                <br /><br />
+                <%= item.Description %>
+                <div style="clear:both"></div>
+            </div>
+          <%} %>
+      </div>
+    <% Html.RenderPartial("Pages"); %>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="HeaderTitle" runat="server">

@@ -26,7 +26,7 @@
     </div>--%>
     
     <% Html.RenderPartial("SeeMenu"); %>
-    <div style="clear:both;></div>
+    <div style="clear:both;"></div>
         
     <%= Html.ActionLink("Добавить", "AddEditWork", new { type = ViewData["type"]}, new { @class = "addEditLink" })%>
     <div id="works">

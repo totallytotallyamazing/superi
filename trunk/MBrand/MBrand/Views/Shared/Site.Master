@@ -59,7 +59,10 @@
                 </asp:ContentPlaceHolder>
             </div>
         </div>
+        <div style="clear:both;"></div>
         <div id="footer">
+            © 2009 Бренд Евгения Миллера<br />
+            <a href="mailto:M@M-brand.com.ua">M@M-brand.com.ua</a> 
         </div>
     </div>
 

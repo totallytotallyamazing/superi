@@ -19,14 +19,17 @@
     {
         if (i == currentPage)
         {
-            Response.Write("<span>" + i + "</span>");
             if (ViewContext.RouteData.Values["action"].ToString() == "Note")
             {
+                Response.Write(Html.ActionLink(i.ToString(), "Index", "Notes", new { id = i }, new { @class = "pageLink" }));   
                 Response.Write("&nbsp;");
                 Response.Write("<span class=\"pagesArrow\">»</span>");
                 Response.Write("&nbsp;");
                 Response.Write("<span class=\"pagerDate\">" + ViewData["date"] + "</span>");
             }
+            else
+                Response.Write("<span>" + i + "</span>");
+                
         }
         else
         {

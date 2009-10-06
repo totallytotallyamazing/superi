@@ -55,3 +55,7 @@ a{font-size:12px;}
 #randomImageHolder #forward{position:absolute; left:435px; top:300px;}
 #randomImageHolder #back{position:absolute; left:2px; top:300px;}
 #randomImageHolder #zoom{position:absolute; left:427px; top:3px;}
+
+#description{padding-top:10px;}
+
+.adminLink{color:Red;}

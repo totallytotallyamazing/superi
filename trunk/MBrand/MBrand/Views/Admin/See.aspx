@@ -28,15 +28,15 @@
     <% Html.RenderPartial("SeeMenu"); %>
     <div style="clear:both;"></div>
         
-    <%= Html.ActionLink("Добавить", "AddEditWork", new { type = ViewData["type"]}, new { @class = "addEditLink" })%>
+    <%= Html.ActionLink("Добавить", "AddEditWork", new { type = ViewData["type"]}, new { @class = "addEditLink adminLink" })%>
     <div id="works">
     <%foreach (Work item in Model)
       {%>
           <div class="workItem">
             <%= Html.Image(ViewData["baseFolder"] + "preview/" + item.Preview, new { style="width:100px;"})%><br />
-            <%= Html.ActionLink("Редактировать", "AddEditWork", new { id = item.Id, type = ViewData["type"] }, new { @class = "addEditLink" })%> 
+            <%= Html.ActionLink("Редактировать", "AddEditWork", new { id = item.Id, type = ViewData["type"] }, new { @class = "addEditLink adminLink" })%> 
             &nbsp;
-            <%= Html.ActionLink("Удалить", "DeleteWork", new { id = item.Id}, new { onclick = "return confirm('Ты уверен?')" })%>
+            <%= Html.ActionLink("Удалить", "DeleteWork", new { id = item.Id }, new { onclick = "return confirm('Ты уверен?')", @class = "adminLink" })%>
           </div>
     <%} %>
     </div>

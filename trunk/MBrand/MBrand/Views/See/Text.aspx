@@ -7,7 +7,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div id="seeContainer">
         <% if(Request.IsAuthenticated){ %>
-            <%= Html.ActionLink("Редактировать", "See", "Admin", new { type="Text"}, null)%>
+            <%= Html.ActionLink("Редактировать", "See", "Admin", new { type = "Text" }, new { @class = "adminLink" })%>
         <%} %>
         <% Html.RenderPartial("RandomImage"); %>
     </div>

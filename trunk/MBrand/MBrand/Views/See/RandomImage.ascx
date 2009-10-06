@@ -99,8 +99,7 @@
             <%= Html.Image("~/Content/img/zoom.png", new { id="preview", style="border:none;"})%>
         </a>
     </div>
-    <%= Html.Image(ViewData["baseFolder"] + "preview/" + ViewData["firstPreview"], new { id = "mainImage" })%>
+    <%= Html.Image("b", new { id = "mainImage" })%>
 </div>
 <div id="description">
-    <%= ViewData["firstDescription"] %>
 </div>

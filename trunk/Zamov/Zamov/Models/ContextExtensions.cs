@@ -42,7 +42,7 @@ namespace Zamov.Models
         public static void RemoveDealer(this ZamovStorage context, int id)
         {
             EntityParameter parameter = new EntityParameter();
-            parameter.ParameterName = "productId";
+            parameter.ParameterName = "dealerId";
             parameter.IsNullable = false;
             parameter.Value = id;
             parameter.DbType = System.Data.DbType.Int32;

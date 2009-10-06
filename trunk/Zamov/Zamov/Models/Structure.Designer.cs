@@ -22,7 +22,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("BaseEntities", "FK_DealerFeedback_Dealers", "Dealer", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Zamov.Models.Dealer), "DealerFeedback", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Zamov.Models.DealerFeedback))]
 
 // Original file name:
-// Generation date: 06.10.2009 11:40:37
+// Generation date: 06.10.2009 21:47:48
 namespace Zamov.Models
 {
     
@@ -976,6 +976,29 @@ namespace Zamov.Models
         private bool _Card;
         partial void OnCardChanging(bool value);
         partial void OnCardChanged();
+        /// <summary>
+        /// There are no comments for Property OrderLifeTime in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Nullable<int> OrderLifeTime
+        {
+            get
+            {
+                return this._OrderLifeTime;
+            }
+            set
+            {
+                this.OnOrderLifeTimeChanging(value);
+                this.ReportPropertyChanging("OrderLifeTime");
+                this._OrderLifeTime = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("OrderLifeTime");
+                this.OnOrderLifeTimeChanged();
+            }
+        }
+        private global::System.Nullable<int> _OrderLifeTime;
+        partial void OnOrderLifeTimeChanging(global::System.Nullable<int> value);
+        partial void OnOrderLifeTimeChanged();
         /// <summary>
         /// There are no comments for Products in the schema.
         /// </summary>

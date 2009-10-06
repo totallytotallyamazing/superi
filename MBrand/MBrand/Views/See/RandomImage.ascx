@@ -5,7 +5,7 @@
     var workIds = <%= ViewData["workIds"] %>
     var baseFolder = '<%= ViewData["baseFolder"] %>';
     
-    var currentArrayIndex = 0;
+    var currentArrayIndex = -1;
 
     $(function() {
         $("#zoomLink").fancybox()
@@ -16,6 +16,8 @@
         })
         .mouseout(function() { $(this).fadeTo("fast", 0.2); });
         updateNavigation();
+        if($("#forwardLink").css("display")!="none")
+            $("#forwardLink").click();
 
     });
 
@@ -23,9 +25,15 @@
         if (currentArrayIndex == 0) {
             $("#backLink").css("display", "none");
         }
+        else {
+            $("#backLink").css("display", "inline");
+        }
 
-        if (currentArrayIndex >= workIds.length) {
+        if (currentArrayIndex + 1 >= workIds.length) {
             $("#forwardLink").css("display", "none");
+        }
+        else {
+            $("#forwardLink").css("display", "inline");
         }
         
         $("#forwardLink").attr("href", "/See/ShowWork/" + workIds[+currentArrayIndex + 1]);
@@ -33,7 +41,6 @@
     }
 
     function forwardSuccess(response) {
-        debugger;
         currentArrayIndex++;
         updateNavigation();
         updateContent(response);
@@ -52,9 +59,15 @@
         var preview = item.Preview;
         var description = item.Description;
         
-        $("#preview").attr("src", baseFolder + "preview/" + preview);
-        $("#zoomLink").arrt("href", baseFolder + image);
+        $("#mainImage").attr("src", baseFolder + "preview/" + preview);
+        $get("zoomLink").href = baseFolder + image;
         $("#description").html(description);
+        
+        try{
+            $get("forwardLink").href = "/See/ShowWork/" + workIds[1*currentArrayIndex + 1];
+            $get("backLink").href = "/See/ShowWork/" + workIds[currentArrayIndex-1];
+        }
+        catch(ex){}
     }
  
 </script>
@@ -86,7 +99,7 @@
             <%= Html.Image("~/Content/img/zoom.png", new { id="preview", style="border:none;"})%>
         </a>
     </div>
-    <%= Html.Image(ViewData["baseFolder"] + "preview/" + ViewData["firstPreview"])%>
+    <%= Html.Image(ViewData["baseFolder"] + "preview/" + ViewData["firstPreview"], new { id = "mainImage" })%>
 </div>
 <div id="description">
     <%= ViewData["firstDescription"] %>

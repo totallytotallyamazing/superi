@@ -117,9 +117,18 @@ namespace MBrand.Controllers
                           select work
                           ).ToList();
                 Work[] randomized = works.Select(w => w).OrderBy(w => randomizer.Next()).ToArray();
-                firstImage = randomized[0].Image;
-                firstPreview = randomized[0].Preview;
-                firstDescription = randomized[0].Description;
+                if (randomized.Length > 0)
+                {
+                    firstImage = randomized[0].Image;
+                    firstPreview = randomized[0].Preview;
+                    firstDescription = randomized[0].Description;
+                }
+                else
+                {
+                    firstImage = string.Empty;
+                    firstPreview = string.Empty;
+                    firstDescription = string.Empty;
+                }
                 result = randomized.Select(i => i.Id.ToString()).OrderBy(i => randomizer.Next()).ToArray();
             }
             return result;

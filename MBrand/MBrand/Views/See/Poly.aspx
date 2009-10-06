@@ -10,6 +10,7 @@
         <% if(Request.IsAuthenticated){ %>
             <%= Html.ActionLink("Редактировать", "See", "Admin", new { type="Poly" }, null)%>
         <%} %>
+        <% Html.RenderPartial("RandomImage"); %>
     </div>
     <% Html.RenderPartial("SeeMenu"); %>
 </asp:Content>

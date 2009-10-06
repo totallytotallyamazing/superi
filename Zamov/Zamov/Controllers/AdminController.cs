@@ -668,5 +668,11 @@ namespace Zamov.Controllers
         }
         #endregion
 
+        #region Orders
+        public ActionResult ExpireOrders()
+        {
+            return View();
+        }
+        #endregion
     }
 }

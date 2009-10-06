@@ -16,7 +16,7 @@
         <asp:LoginView runat="server">
             <AnonymousTemplate></AnonymousTemplate>
             <LoggedInTemplate>
-                <%= Html.ActionLink("Добавить", "AddEditNote", "Admin", new {id = int.MinValue}, new {id = "addNote"}) %>
+                <%= Html.ActionLink("Добавить", "AddEditNote", "Admin", new {id = int.MinValue}, new {id = "addNote", @class="adminLink"}) %>
                 <br /><br />
             </LoggedInTemplate>
         </asp:LoginView>
@@ -25,9 +25,9 @@
             <div class="note">
                 <%if (Request.IsAuthenticated){ %>
                     <div style="float:right;">
-                        <%= Html.ActionLink("Редактировать", "AddEditNote", "Admin", new { id = item.Id }, new { @class = "editNote" })%>
+                        <%= Html.ActionLink("Редактировать", "AddEditNote", "Admin", new { id = item.Id }, new { @class = "editNote adminLink" })%>
                         &nbsp;
-                        <%= Html.ActionLink("Удалить", "DeleteNote", "Admin", new { id = item.Id }, new { onclick = "return confirm('Ты уверен?')" })%>
+                        <%= Html.ActionLink("Удалить", "DeleteNote", "Admin", new { id = item.Id }, new { onclick = "return confirm('Ты уверен?')", @class="adminLink" })%>
                     </div>
                 <%} %>
             

@@ -23,6 +23,7 @@
 <div style="padding: 20px;" class="addEditNote">
     <%using (Html.BeginForm("AddEditNote", "Admin", FormMethod.Post, new { enctype="multipart/form-data"}))
       { %>
+        <%= Html.Hidden("id") %>
         <table>
             <tr>
                 <td>

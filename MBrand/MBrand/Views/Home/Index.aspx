@@ -12,7 +12,7 @@
     <asp:LoginView ID="LoginView1" runat="server">
         <AnonymousTemplate></AnonymousTemplate>
         <LoggedInTemplate>
-            <%= Html.ActionLink("Редактировать", "Index", "Admin")%>
+            <%= Html.ActionLink("Редактировать", "Index", "Admin", new { @class = "adminLink" })%>
             <br /><br />
         </LoggedInTemplate>
     </asp:LoginView>

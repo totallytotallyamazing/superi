@@ -512,7 +512,8 @@
             <End Role="Dealer" EntitySet="Dealers" />
             <End Role="DealerFeedback" EntitySet="DealerFeedback" /></AssociationSet>
           <EntitySet Name="MeassureUnits" EntityType="BaseEntities.MeassureUnit" />
-          </EntityContainer>
+          <FunctionImport Name="deleteDealer">
+            <Parameter Name="dealerId" Mode="In" Type="Int32" /></FunctionImport></EntityContainer>
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="Id" />
@@ -861,7 +862,7 @@
               <MappingFragment StoreEntitySet="Unit">
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" /></MappingFragment></EntityTypeMapping></EntitySetMapping>
-          </EntityContainerMapping>
+          <FunctionImportMapping FunctionImportName="deleteDealer" FunctionName="BaseEntities.Store.deleteDealer" /></EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

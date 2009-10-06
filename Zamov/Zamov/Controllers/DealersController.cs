@@ -24,7 +24,7 @@ namespace Zamov.Controllers
                 var dealers = (from dealer in context.Dealers.Include("Cities").Include("Categories")
                                join trn in context.Translations on dealer.Id equals trn.ItemId
                                where dealer.Cities.Where(c => c.Id == SystemSettings.CityId).Count() > 0
-                                   && dealer.Categories.Where(c => c.Id == SystemSettings.CategoryId).Count() > 0
+                                   && dealer.Categories.Where(c => c.Id == SystemSettings.SubCategoryId).Count() > 0
                                    && trn.TranslationItemTypeId == (int)ItemTypes.DealerName
                                    && trn.Language == SystemSettings.CurrentLanguage
                                    && dealer.Enabled

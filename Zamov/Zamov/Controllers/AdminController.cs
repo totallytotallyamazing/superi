@@ -643,7 +643,17 @@ namespace Zamov.Controllers
         {
             using (ZamovStorage context = new ZamovStorage())
             {
-                List<Dealer> dealers = context.Dealers.Select(d => d).ToList();
+                List<DealerPresentation> dealers = (from dealer in context.Dealers
+                                                    join name in context.Translations on dealer.Id equals name.ItemId
+                                                    where name.TranslationItemTypeId == (int)ItemTypes.DealerName
+                                                    && name.Language == SystemSettings.CurrentLanguage
+                                                    select new DealerPresentation
+                                                    {
+                                                        Name = name.Text,
+                                                        Id = dealer.Id,
+                                                        Enabled = dealer.Enabled
+                                                    }
+                                                    ).ToList();
                 return View(dealers);
             }
         }

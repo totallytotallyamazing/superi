@@ -35,7 +35,7 @@
                 function() {
                     //                    if ($(window).scrollTop() > 576) {
                     //                        var topPadding = $(window).scrollTop() - 576;
-                    //                        if (topPadding > 0 && ($(window).scrollTop() + 301 + 326) < $("#handEye").position().top) {
+                    //                        if (to5pPadding > 0 && ($(window).scrollTop() + 301 + 326) < $("#handEye").position().top) {
                     //                            $("#tagCloud").css("padding-top", topPadding);
                     //                        }
                     //                    }
@@ -123,5 +123,17 @@
     </div>
     <div id="rightBanner">
     </div>
+    
+    <script type="text/javascript">
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+
+    <script type="text/javascript">
+        try {
+            var pageTracker = _gat._getTracker("UA-10840182-1");
+            pageTracker._trackPageview();
+        } catch (err) { }
+    </script>
 </body>
 </html>

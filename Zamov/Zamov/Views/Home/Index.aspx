@@ -19,8 +19,7 @@
     <%= Html.RegisterJS("jquery.js")%>
     <%= Html.RegisterJS("common.js")%>
     <%= Html.RegisterJS("jquery.corner.js")%>
-    
-    
+
     <script type="text/javascript">
         $(function() {
             $("#header").corner("top");
@@ -28,12 +27,12 @@
         }
         )
     </script>
-    
+
 </head>
 <body>
-<map id="logoLink">
-    <area shape="rect" coords="0,40,233, 90" href="/" />
-</map>
+    <map id="logoLink">
+        <area shape="rect" coords="0,40,233, 90" href="/" />
+    </map>
     <div class="shader">
     </div>
     <div id="header">
@@ -41,16 +40,15 @@
             <div id="languageSelector">
                 <% Html.RenderPartial("LanguageSelector"); %>
             </div>
-
         </div>
         <div id="masterLogin">
-        <% Html.RenderPartial("LogonStatus"); %>
-        <%if (SystemSettings.CurrentDealer != null) Html.RenderPartial("DealerOrdersInfo"); %>
+            <% Html.RenderPartial("LogonStatus"); %>
+            <%if (SystemSettings.CurrentDealer != null) Html.RenderPartial("DealerOrdersInfo"); %>
         </div>
         <center>
-        <div id="logo">
-            <%= Html.Image("~/Content/img/logo.jpg", "Zamov.net", new { usemap="#logoLink", style="border:none"})%>
-        </div>
+            <div id="logo">
+                <%= Html.Image("~/Content/img/logo.jpg", "Zamov.net", new { usemap="#logoLink", style="border:none"})%>
+            </div>
         </center>
     </div>
     <div id="mainMenu">
@@ -61,15 +59,27 @@
         </div>
     </div>
     <div id="content">
-    <div id="headerSelectors">
-        <center>
+        <div id="headerSelectors">
+            <center>
                 <% Html.RenderAction<PagePartsController>(ppc => ppc.HeaderSelectors()); %>
-        </center>
+            </center>
+        </div>
     </div>
-    </div>
-    
     <div class="startText">
         <%= ApplicationData.StartText %>
     </div>
+
+    <script type="text/javascript">
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+
+    <script type="text/javascript">
+        try {
+            var pageTracker = _gat._getTracker("UA-10840182-1");
+            pageTracker._trackPageview();
+        } catch (err) { }
+    </script>
+
 </body>
 </html>

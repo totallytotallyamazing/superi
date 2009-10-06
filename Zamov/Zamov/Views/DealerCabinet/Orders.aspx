@@ -34,7 +34,7 @@
                 row.appendChild(col2);
 
                 var col3 = document.createElement("td");
-                if (response[i].Status == "Accepted")
+                if (response[i].StatusName == "Accepted")
                     col3.innerHTML = response[i].Address + ", " + response[i].ClientName;
                 else
                     col3.innerHTML = response[i].Address;

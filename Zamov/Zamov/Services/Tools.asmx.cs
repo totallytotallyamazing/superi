@@ -59,7 +59,8 @@ namespace Zamov.Services
                                           Comments = order.Comments,
                                           DiscountCardNumber = order.DiscountCardNumber,
                                           TotalPrice = ((decimal)order.OrderItems.Sum(oi => oi.Quantity * oi.Price)).ToString("N"),
-                                          Status = Controllers.ResourcesHelper.GetResourceString("Status" + (Statuses)order.Status)
+                                          Status = Controllers.ResourcesHelper.GetResourceString("Status" + (Statuses)order.Status),
+                                          StatusName = (Statuses)order.Status
                                       });
                 var result = new
                 {

@@ -211,7 +211,7 @@ namespace MBrand.Controllers
                     work.Image = image;
                 }
                 string preview = Request.Files["preview"].FileName;
-                if (!string.IsNullOrEmpty(image))
+                if (!string.IsNullOrEmpty(preview))
                 {
                     if (id > 0)
                         DeleteImage("~/Content/images/"+type.ToString().ToLower() +"/preview/", work.Preview);

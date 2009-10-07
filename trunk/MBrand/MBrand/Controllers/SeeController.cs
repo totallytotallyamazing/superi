@@ -102,7 +102,7 @@ namespace MBrand.Controllers
         private string MakeArray(string[] ids)
         {
             string array = string.Join(",", ids);
-            return "new Array(" + array + ");";
+            return "[" + array + "];";
         }
 
         private string[] GetWorks(WorkType type, out string firstImage, out string firstDescription, out string firstPreview)

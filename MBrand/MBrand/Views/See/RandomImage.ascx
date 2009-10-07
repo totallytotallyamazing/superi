@@ -10,13 +10,13 @@
     $(function() {
         $("#zoomLink").fancybox()
 
-        $("#randomImageHolder div img").fadeTo(0, 0.2);
+        $("#randomImageHolder div img").fadeTo(0, 0.5);
         $("#randomImageHolder div img").mouseover(function() {
             $(this).fadeTo("fast", 1);
         })
-        .mouseout(function() { $(this).fadeTo("fast", 0.2); });
+        .mouseout(function() { $(this).fadeTo("fast", 0.5); });
         updateNavigation();
-        if($("#forwardLink").css("display")!="none")
+        if(workIds.length > 0)
             $("#forwardLink").click();
 
     });
@@ -60,7 +60,13 @@
         var description = item.Description;
         
         $("#mainImage").attr("src", baseFolder + "preview/" + preview);
-        $get("zoomLink").href = baseFolder + image;
+        if(image == null || image == ''){
+           $get("zoomLink").style.display='none';
+        }
+        else{
+            $get("zoomLink").href = baseFolder + image;
+            $get("zoomLink").style.display='inline';
+        }
         $("#description").html(description);
         
         try{

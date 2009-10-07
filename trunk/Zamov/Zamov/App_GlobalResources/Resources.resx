@@ -439,7 +439,7 @@
     <value>Введіть символи з картинки</value>
   </data>
   <data name="InputVoucher" xml:space="preserve">
-    <value>Номер вашої дисконтної карки (якщо є)</value>
+    <value>Номер вашої дисконтної картки (якщо є)</value>
   </data>
   <data name="SelectPaymentType" xml:space="preserve">
     <value>Оберіть форму оплати</value>
@@ -734,5 +734,11 @@
   </data>
   <data name="SubCategoryText" xml:space="preserve">
     <value>Пiдкатегорiї</value>
+  </data>
+  <data name="PaymentType" xml:space="preserve">
+    <value>Вид оплати</value>
+  </data>
+  <data name="VoucherNumber" xml:space="preserve">
+    <value>Номер дисконтної картки</value>
   </data>
 </root>

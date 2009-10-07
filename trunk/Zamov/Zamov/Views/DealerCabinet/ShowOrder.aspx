@@ -34,6 +34,17 @@
             <%=Html.Encode(Model.Email)%>
         </p>
 <%} %>
+        <%if (!string.IsNullOrEmpty(Model.DiscountCardNumber))
+          { %>
+        <p>
+            <%=Html.ResourceString("VoucherNumber")%>:
+            <%=Html.Encode(Model.DiscountCardNumber)%>
+        </p>
+        <%} %>
+        <p>
+            <%=Html.ResourceString("PaymentType")%>:
+            <%=Html.ResourceString(((PaymentTypes)Model.PaymentType).ToString())%>
+        </p>
         <p>
             <%=Html.ResourceString("OrderDeliveryDateTime") %>:
             <%= Html.Encode(String.Format("{0:g}", Model.DeliveryDate)) %>

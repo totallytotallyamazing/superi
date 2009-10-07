@@ -735,4 +735,10 @@
   <data name="SubCategoryText" xml:space="preserve">
     <value>Подкатегории</value>
   </data>
+  <data name="PaymentType" xml:space="preserve">
+    <value>Вид оплаты</value>
+  </data>
+  <data name="VoucherNumber" xml:space="preserve">
+    <value>Номер дисконтной карточки</value>
+  </data>
 </root>

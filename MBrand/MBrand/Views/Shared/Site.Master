@@ -49,6 +49,7 @@
             <div class="blackWhiteSwitch">
                 <% Html.RenderPartial("BlackWhiteSwitch"); %>
             </div>
+            <% Html.RenderPartial("LanguageSelector"); %>
         </div>
         <div id="middle">
             <div id="left">

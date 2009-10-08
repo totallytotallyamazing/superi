@@ -49,5 +49,12 @@ namespace MBrand.Controllers
             Response.AppendCookie(allow);
             return RedirectToAction("Index");
         }
+
+        public ActionResult English(string redirectUrl)
+        {
+            ViewData["redirectUrl"] = redirectUrl;
+            ViewData["english"] = true;
+            return View();
+        }
     }
 }

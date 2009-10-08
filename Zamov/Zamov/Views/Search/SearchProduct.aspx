@@ -1,5 +1,7 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<Zamov.Models.ProductSearchPresentation>>" %>
 <%@ Import Namespace="Zamov.Helpers" %>
+<%@ Import Namespace="Zamov.Models" %>
+<%@ Import Namespace="Microsoft.Web.Mvc" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	SearchProduct
@@ -50,20 +52,26 @@
     <table class="commonTable" width="100%">
         <tr>
             <th>
-            <%=Html.ActionLink("+", "SearchProduct", new { sortFieldName = "Name", sortDirectionDescenging = false })%>
+            <%=Html.ActionLink("[replace]", "SearchProduct", new { sortFieldName = "Name", sortDirectionDescenging = false }).Replace("[replace]", Html.Image("~/Content/images/sort_up.gif", new { style = "border-style:none" }))%>
+            <br />
             <%=Html.ResourceString("Name")%>
-            <%=Html.ActionLink("-", "SearchProduct", new { sortFieldName = "Name", sortDirectionDescenging = true })%>
+            <br />
+            <%=Html.ActionLink("[replace]", "SearchProduct", new { sortFieldName = "Name", sortDirectionDescenging = true }).Replace("[replace]", Html.Image("~/Content/images/sort_down.gif", new { style = "border-style:none" }))%>
             </th>
             <th style="width:20px;">
-            <%=Html.ActionLink("+", "SearchProduct", new { sortFieldName = "Dealer", sortDirectionDescenging = false })%>
+            <%=Html.ActionLink("[replace]", "SearchProduct", new { sortFieldName = "Dealer", sortDirectionDescenging = false }).Replace("[replace]", Html.Image("~/Content/images/sort_up.gif", new { style = "border-style:none" }))%>
+            <br />
             <%= Html.ResourceString("Dealer") %>
-            <%=Html.ActionLink("-", "SearchProduct", new { sortFieldName = "Dealer", sortDirectionDescenging = true })%>
+            <br />
+            <%=Html.ActionLink("[replace]", "SearchProduct", new { sortFieldName = "Dealer", sortDirectionDescenging = true }).Replace("[replace]", Html.Image("~/Content/images/sort_down.gif", new { style = "border-style:none" }))%>
             </th>
             <th style="width:20px;"><%= Html.ResourceString("MeassureUnit") %></th>
             <th style="width:20px;">
-            <%=Html.ActionLink("+", "SearchProduct", new { sortFieldName = "Price", sortDirectionDescenging = false })%>
+            <%=Html.ActionLink("[replace]", "SearchProduct", new { sortFieldName = "Price", sortDirectionDescenging = false }).Replace("[replace]", Html.Image("~/Content/images/sort_up.gif", new { style = "border-style:none" }))%>
+            <br />
             <%= Html.ResourceString("Price") %>, грн.
-            <%=Html.ActionLink("-", "SearchProduct", new { sortFieldName = "Price", sortDirectionDescenging = true })%>
+            <br />
+            <%=Html.ActionLink("[replace]", "SearchProduct", new { sortFieldName = "Price", sortDirectionDescenging = true }).Replace("[replace]", Html.Image("~/Content/images/sort_down.gif", new { style = "border-style:none" }))%>
             </th>
             <th style="width:20px;"><%= Html.ResourceString("Quantity") %></th>
             <th style="width:20px;"><%= Html.ResourceString("ToOrder") %></th>

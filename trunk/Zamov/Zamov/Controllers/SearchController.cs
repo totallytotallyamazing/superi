@@ -58,7 +58,7 @@ namespace Zamov.Controllers
                                                                 }
                                                                     ).ToList();
 
-
+                    /*
                     if (sortFieldName != null)
                         switch (sortFieldName.ToLower())
                         {
@@ -72,32 +72,32 @@ namespace Zamov.Controllers
                                 products.OrderByWithDirection(x => x.DealerName, sortDirectionDesc);
                                 break;
                         }
+                    */
 
 
-                    /*
-                    if(sortFieldName!=null&&sortDirection!=null)
+                    if (sortFieldName != null && sortDirectionDescenging != null)
                     switch (sortFieldName.ToLower())
                     {
                         case "name":
-                            if (sortDirection.ToLower() == "asc")
+                            if (!sortDirectionDesc)
                                 products.Sort(new SortByProductNameAsc());
                             else
                                 products.Sort(new SortByProductNameDesc());
                             break;
                         case "price":
-                            if (sortDirection.ToLower() == "asc")
+                            if (!sortDirectionDesc)
                                 products.Sort(new SortByPriceAsc());
                             else
                                 products.Sort(new SortByPriceDesc());
                             break;
                         case "dealer":
-                            if (sortDirection.ToLower() == "asc")
+                            if (!sortDirectionDesc)
                                 products.Sort(new SortByDealerNameAsc());
                             else
                                 products.Sort(new SortByDealerNameDesc());
                             break;
                     }
-                    */
+                    
                     
                     return View(products);
                 }

@@ -289,6 +289,8 @@
     <Content Include="Content\images\folder.gif" />
     <Content Include="Content\images\minus.gif" />
     <Content Include="Content\images\plus.gif" />
+    <Content Include="Content\images\sort_down.gif" />
+    <Content Include="Content\images\sort_up.gif" />
     <Content Include="Content\images\treeview-black-line.gif" />
     <Content Include="Content\images\treeview-black.gif" />
     <Content Include="Content\images\treeview-default-line.gif" />

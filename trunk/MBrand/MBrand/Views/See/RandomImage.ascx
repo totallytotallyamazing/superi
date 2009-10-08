@@ -26,7 +26,7 @@
         });
         
         if(workIds.length > 0)
-            $("#forwardLink").click();
+        $("#forwardLink").click();
 
     });
 
@@ -94,14 +94,7 @@
             $get("zoomLink").style.display='inline';
         }
         $("#description").html(description);
-        
-        
-        
-//        try{
-//            $get("forwardLink").href = "/See/ShowWork/" + workIds[1*currentArrayIndex + 1];
-//            $get("backLink").href = "/See/ShowWork/" + workIds[currentArrayIndex-1];
-//        }
-//        catch(ex){}
+
     }
  
 </script>

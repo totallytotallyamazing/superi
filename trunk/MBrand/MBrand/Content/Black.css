@@ -7,6 +7,7 @@
 #left{border-left-color:White;}
 .mainMenuItem, .seeMenuItem{background:White;}
 .mainMenuItem a, .seeMenuItem a{color:Black;}
+.mainMenuItem a:visited, .seeMenuItem a:visited{color:Black;}
 
 textarea{background:Black;}
 a{color:White;}

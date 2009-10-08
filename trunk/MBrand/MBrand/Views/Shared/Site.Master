@@ -2,10 +2,6 @@
 
 <%@ Import Namespace="Microsoft.Web.Mvc" %>
 <%
-    HttpCookie allowPass = Request.Cookies.Get("allow");
-    if (allowPass == null)
-        Response.Redirect("index.html");
-
     HttpCookie blackCookie = Request.Cookies.Get("black");
     bool black = true;
     if (blackCookie != null)

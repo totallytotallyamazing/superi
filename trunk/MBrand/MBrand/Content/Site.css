@@ -62,3 +62,9 @@ a{font-size:12px;}
 
 #footer{float:right; text-align:right; color:#808080; border-top-width:1px; border-top-style:solid; margin-top:10px; padding-top:5px;}
 #footer a{color:#808080;}
+
+#languageSwitch{color:#808080; float:right;}
+#languageSwitch a{text-decoration:none; color:#808080;}
+#languageSwitch a:hover{text-decoration:underline;}
+
+#languageSwitch span{font-weight:bold;}

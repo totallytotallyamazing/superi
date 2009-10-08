@@ -255,12 +255,14 @@
     <Content Include="Views\Clients\Index.aspx" />
     <Content Include="Views\Contacts\Index.aspx" />
     <Content Include="Views\Eugene\Index.aspx" />
+    <Content Include="Views\Home\English.aspx" />
     <Content Include="Views\Notes\Index.aspx" />
     <Content Include="Views\Notes\Note.aspx" />
     <Content Include="Views\Notes\Pages.ascx" />
     <Content Include="Views\See\Logos.aspx" />
     <Content Include="Views\See\Poly.aspx" />
     <Content Include="Views\See\RandomImage.ascx" />
+    <Content Include="Views\Shared\LanguageSelector.ascx" />
     <Content Include="Views\Shared\SeeMenu.ascx" />
     <Content Include="Views\See\Sites.aspx" />
     <Content Include="Views\See\Text.aspx" />

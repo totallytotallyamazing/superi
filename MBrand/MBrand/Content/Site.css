@@ -27,6 +27,8 @@ img{border:none;}
 .bold {font-weight:bold;}
 .inactiveBw{font-size:12px; font-weight:bold;}
 a{font-size:12px;}
+a:visited{color:#808080;}
+
 .switch{text-decoration:none;}
 .switch:hover{text-decoration:underline;}
 

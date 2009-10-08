@@ -95,7 +95,7 @@ namespace MBrand.Controllers
                         Description = w.Description
                     }
                 ).First();
-            return Json(result);
+                return Json(result, "application/javascript");
             }
         }
 

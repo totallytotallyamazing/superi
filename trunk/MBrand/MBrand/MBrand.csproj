@@ -66,6 +66,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\ClientsController.cs" />
     <Compile Include="Controllers\ContactsController.cs" />
+    <Compile Include="Controllers\ErrorsController.cs" />
     <Compile Include="Controllers\EugeneController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NotesController.cs" />
@@ -254,6 +255,8 @@
     <Content Include="Views\Admin\See.aspx" />
     <Content Include="Views\Clients\Index.aspx" />
     <Content Include="Views\Contacts\Index.aspx" />
+    <Content Include="Views\Errors\Default.aspx" />
+    <Content Include="Views\Errors\NotFound.aspx" />
     <Content Include="Views\Eugene\Index.aspx" />
     <Content Include="Views\Home\English.aspx" />
     <Content Include="Views\Notes\Index.aspx" />

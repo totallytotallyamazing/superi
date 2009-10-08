@@ -1,24 +1,30 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Engish
+	Такой страницы нет
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-
-    <div class="english">
-        <span>LEAЯИ ЯUSSIAИ</span><br />
+    <div id="txt">
+        <p>
+            Стоп.
+        </p>
+        <span>
+            Такой страницы нет.
+        </span><br />
+        Попробуйте нажать на одну из ссылок внизу слева.
     </div>
 
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="Includes" runat="server">
     <style type="text/css">
-        .english{text-align:center; float:left; padding-top:150px;}
-        .english span{font-size:70px;}
+        #txt{font-size:18px; padding-top:130px;}
+        #txt span{font-size:50px;}
+        #txt p{font-size:75px;}
     </style>
 </asp:Content>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="HeaderTitle" runat="server">
-    Ага, щас
+    404
 </asp:Content>

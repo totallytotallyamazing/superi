@@ -51,8 +51,10 @@
 %>
     <h2><%= pageTitle %></h2>
     <% using (Html.BeginForm("AddUpdateDealer", "DealerCabinet", FormMethod.Post, new{enctype="multipart/form-data"})) {%>
-        ID<br />
-        <%= Html.TextBox("name", dealerName) %><br />
+        <div id="dealerIdDiv">
+            ID<br />
+            <%= Html.TextBox("name", dealerName) %><br />
+        </div>
         Логотип<br />
         <%= Html.Image(logoUrl) %><br />
         <input type="file" name="logoImage" />
@@ -94,4 +96,15 @@
     <%= Html.RegisterJS("fckeditor.js") %>
     <%= Html.RegisterJS("fcktools.js") %>
     <%= Html.RegisterJS("jquery.FCKeditor.js") %>
+    
+    <%if(User.IsInRole("Administrators")){ %>
+        <style type="text/css">
+            #dealerIdDiv{display:block;}
+        </style>
+    <%} %>
+    <%else{ %>
+        <style type="text/css">
+            #dealerIdDiv{display:none;}
+        </style>
+    <%} %>
 </asp:Content>

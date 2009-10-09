@@ -76,9 +76,6 @@
         <table class="adminTable">
             <tr>
                 <th>
-                    ID
-                </th>
-                <th>
                     Óêð
                 </th>
                 <th>
@@ -89,9 +86,6 @@
                 </th>
             </tr>
             <tr>
-                <td>
-                    <%= Html.TextBox("groupName") %>
-                </td>
                 <td>
                     <%= Html.TextBox("groupUkrName")%>
                 </td>

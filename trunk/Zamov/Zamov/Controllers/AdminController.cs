@@ -121,12 +121,21 @@ namespace Zamov.Controllers
         public ActionResult Dealers(FormCollection form)
         {
             PostData postData = form.ProcessPostData();
+
+            Func<string, int?> getNullableInt = (str=>
+            {
+                if(string.IsNullOrEmpty(str))
+                    return null;
+                return int.Parse(str);
+            });
+
             var dealerUpdates = (from pd in postData
                                  select new
                                  {
                                      Id = int.Parse(pd.Key),
                                      Top = pd.Value["top"].Contains("true"),
-                                     Enabled = pd.Value["enabled"].Contains("true")
+                                     Enabled = pd.Value["enabled"].Contains("true"),
+                                     OrderLifeTime = getNullableInt(pd.Value["orderLifeTime"])
                                  });
 
             using (ZamovStorage context = new ZamovStorage())
@@ -136,6 +145,7 @@ namespace Zamov.Controllers
                 {
                     d.TopDealer = (from du in dealerUpdates where du.Id == d.Id select du.Top).First();
                     d.Enabled = (from du in dealerUpdates where du.Id == d.Id select du.Enabled).First();
+                    d.OrderLifeTime = (from du in dealerUpdates where du.Id == d.Id select du.OrderLifeTime).First();
                 });
                 context.SaveChanges();
             }
@@ -262,6 +272,7 @@ namespace Zamov.Controllers
                     context.SaveChanges(true);
                 }
             }
+            HttpContext.Cache.ClearCategoriesCache();
             return RedirectToAction("Categories");
         }
 
@@ -285,6 +296,7 @@ namespace Zamov.Controllers
                 context.SaveChanges();
                 context.UpdateTranslations(category.NamesXml);
             }
+            HttpContext.Cache.ClearCategoriesCache();
             return RedirectToAction("Categories");
         }
 
@@ -671,7 +683,9 @@ namespace Zamov.Controllers
         #region Orders
         public ActionResult ExpireOrders()
         {
-            return View();
+            using (ZamovStorage context = new ZamovStorage())
+                context.ExpireOrders();
+            return RedirectToAction("Index");
         }
         #endregion
     }

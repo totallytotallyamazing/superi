@@ -735,6 +735,12 @@
   <data name="SubCategoryText" xml:space="preserve">
     <value>Подкатегории</value>
   </data>
+  <data name="ExpireOrders" xml:space="preserve">
+    <value>Почистить заказы</value>
+  </data>
+  <data name="OrderLifeTime" xml:space="preserve">
+    <value>Заказ новый в течении</value>
+  </data>
   <data name="PaymentType" xml:space="preserve">
     <value>Вид оплаты</value>
   </data>

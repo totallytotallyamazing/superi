@@ -8,7 +8,6 @@
 %>
 
 <script type="text/javascript">
-    var showOrdershadowsDeclared = false;
     if (!showOrdershadowsDeclared) {
         $(function() {
             applyDropShadows(".dealerImageLogo", "shadow3");

@@ -107,6 +107,11 @@ namespace Zamov.Models
             ExecuteNonQuery(context, "ZamovStorage.UpdateImportedProducts", updatesXmlParameter);
         }
 
+        public static void ExpireOrders(this ZamovStorage context)
+        {
+            ExecuteNonQuery(context, "ZamovStorage.ExpireOrders");
+        }
+
         public static bool MatchesPath(this Group g, string[] path)
         {
             bool result = false;

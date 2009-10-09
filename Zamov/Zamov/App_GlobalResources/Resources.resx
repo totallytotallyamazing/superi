@@ -574,10 +574,10 @@
     <value>Ви не погодилися з умовами надання послуги</value>
   </data>
   <data name="ErrDuplicateEmail" xml:space="preserve">
-    <value>Користувач з такою Email-адресою вже зареєстрований. Будь ласка введіть іншу Email-адресу.</value>
+    <value>Користувач з такою Email-адресою вже зареєстрований. Будь-ласка введіть іншу Email-адресу.</value>
   </data>
   <data name="ErrDuplicateUserName" xml:space="preserve">
-    <value>Користувач з таким ім'ям вже зареєстрований. Будь ласка введіть інше ім'я.</value>
+    <value>Користувач з таким ім'ям вже зареєстрований. Будь-ласка введіть інше ім'я.</value>
   </data>
   <data name="ErrInvalidEmail" xml:space="preserve">
     <value>Невірно введена Email-адреса.</value>
@@ -724,7 +724,7 @@
     <value>Номер картки</value>
   </data>
   <data name="CannotMakeOrder" xml:space="preserve">
-    <value>Ви не можете оформити замовлення, тому що ваш кошик порожнiй. Будьласка виберiть товар i покладiть його до кошику.</value>
+    <value>Ви не можете оформити замовлення, тому що ваш кошик порожнiй. Будь-ласка, виберiть товар i покладiть його до кошику.</value>
   </data>
   <data name="YourCartIsEmpty" xml:space="preserve">
     <value>Ваш кошик порожнiй. Будьласка виберiть товар i покладiть його до кошику.</value>
@@ -734,6 +734,12 @@
   </data>
   <data name="SubCategoryText" xml:space="preserve">
     <value>Пiдкатегорiї</value>
+  </data>
+  <data name="ExpireOrders" xml:space="preserve">
+    <value>Почистити замовлення</value>
+  </data>
+  <data name="OrderLifeTime" xml:space="preserve">
+    <value>Замовлення нове протягом</value>
   </data>
   <data name="PaymentType" xml:space="preserve">
     <value>Вид оплати</value>

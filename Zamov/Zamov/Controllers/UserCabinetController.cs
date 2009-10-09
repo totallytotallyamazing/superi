@@ -148,9 +148,7 @@ namespace Zamov.Controllers
                         item.Price = product.Price;
                         item.ProductId = product.Id;
                         item.Quantity = orderItem.Quantity;
-                        IEnumerable<KeyValuePair<string, object>> unitKeyValues = new KeyValuePair<string, object>[] { new KeyValuePair<string, object>("Id", 1) };
-                        EntityKey unit = new EntityKey("OrderStorage.Units", unitKeyValues);
-                        item.UnitReference.EntityKey = unit;
+                        item.Unit = product.Unit;
                         order.OrderItems.Add(item);
                     }
                 }

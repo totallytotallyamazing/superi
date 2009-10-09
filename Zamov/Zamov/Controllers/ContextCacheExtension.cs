@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using Zamov.Models;
 using System.Web.Caching;
+using System.Collections;
 
 namespace Zamov.Controllers
 {
@@ -18,9 +19,10 @@ namespace Zamov.Controllers
                 result = (List<Category>)Cache["CityCategories_" + cityId];
             else
             {
-                result = (from category in context.Categories.Include("Parent").Include("Dealers")
+                result = (from category in context.Categories.Include("Parent").Include("Dealers").Include("Categories")
                           where category.Parent == null && category.Enabled
-                          && category.Dealers.Where(d => d.Cities.Where(c => c.Id == cityId).Count() > 0).Count() > 0
+                          && category.Categories.Where(c=>c
+                          .Dealers.Where(d => d.Cities.Where(sub => sub.Id == cityId).Count() > 0).Count() > 0).Count()>0
                           select category).ToList();
                 Cache["CityCategories_" + cityId] = result;
             }
@@ -38,6 +40,22 @@ namespace Zamov.Controllers
                 Cache["Units"] = result;
             }
             return result;
+        }
+
+        public static void ClearCategoriesCache(this Cache cache)
+        {
+            List<string> keysToClear = new List<string>();
+
+            IDictionaryEnumerator enumerator = cache.GetEnumerator();
+            while (enumerator.MoveNext())
+            {
+                if (enumerator.Key.ToString().StartsWith("CityCategories_"))
+                    keysToClear.Add(enumerator.Key.ToString());
+            }
+            foreach (string key in keysToClear)
+            {
+                cache.Remove(key);
+            }
         }
 
         /// <summary>

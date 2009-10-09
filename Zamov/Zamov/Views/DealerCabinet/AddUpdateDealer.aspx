@@ -64,8 +64,8 @@
             </tr>
             <tr>
                 <td><%= Html.ResourceString("Name") %></td>
-                <td><%= Html.TextBox("uName", ukrainianName, new { style = "width:430px;" })%></td>
-                <td><%= Html.TextBox("rName", russianName, new { style="width:430px;"})%></td>
+                <td><%= Html.TextBox("uName", ukrainianName, new { style = "width:400px;" })%></td>
+                <td><%= Html.TextBox("rName", russianName, new { style="width:400px;"})%></td>
             </tr>
             <tr>
                 <td><%= Html.ResourceString("Description") %></td>
@@ -74,8 +74,8 @@
             </tr>
             <tr>
                 <td><%= Html.ResourceString("DealerGroupName") %></td>
-                <td><%= Html.TextBox("uGroupName", ukrainianGroupName, new { style = "width:430px;" })%></td>
-                <td><%= Html.TextBox("rGroupName", russianGroupName, new { style = "width:430px;" })%></td>
+                <td><%= Html.TextBox("uGroupName", ukrainianGroupName, new { style = "width:400px;" })%></td>
+                <td><%= Html.TextBox("rGroupName", russianGroupName, new { style = "width:400px;" })%></td>
             </tr>
         </table>
         <br />

@@ -42,7 +42,9 @@
             <th>
                 <%= Html.ResourceString("ActiveM")%>
             </th>
-            <%--<th></th>--%>
+            <th>
+                <%= Html.ResourceString("OrderLifeTime")%>
+            </th>
             <th></th>
             <th></th>
         </tr>
@@ -66,6 +68,9 @@
                     else
                         Response.Write(Html.ResourceActionLink("Off", "DisableDealer", new { id = item.Id }));
                 %>--%>
+            </td>
+            <td>
+                <%= Html.TextBox("orderLifeTime_" + item.Id, item.OrderLifeTime) %>
             </td>
 <%--            <td>
                 <%=Html.ResourceActionLink<AdminController>("Edit", ac => ac.AddUpdateDealer(item.Id))%>

@@ -687,6 +687,7 @@ namespace Zamov.Controllers
                 }
                 context.SaveChanges();
             }
+            HttpContext.Cache.ClearCategoriesCache();
             Response.Write(Helpers.Helpers.CloseParentScript("CategoryMappings"));
         }
 

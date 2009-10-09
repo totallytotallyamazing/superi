@@ -17,9 +17,15 @@ namespace PolialClean
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                "Contacts",                                              // Route name
+                    "Contacts",                           // URL with parameters
+                    new { controller = "Contacts", action = "Index", contentName = "Контакты" }  // Parameter defaults
+            );
+
+            routes.MapRoute(
                 "Default",                                              // Route name
-                "{controller}/{action}/{id}",                           // URL with parameters
-                new { controller = "Home", action = "Index", id = "" }  // Parameter defaults
+                "{controller}/{action}/{contentName}",                           // URL with parameters
+                new { controller = "Home", action = "Index", contentName = "Миссия" }  // Parameter defaults
             );
 
         }

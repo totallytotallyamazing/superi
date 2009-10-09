@@ -42,11 +42,11 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="DataStorage" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
-        <EntityContainer Name="drozd_polialcleanEntities">
-          <EntitySet Name="Clients" EntityType="DataStorage.Clients" />
-          <EntitySet Name="Recomendations" EntityType="DataStorage.Recomendations" />
-          <EntitySet Name="SiteContent" EntityType="DataStorage.SiteContent" />
+      <Schema Namespace="Model" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
+        <EntityContainer Name="DataStorage">
+          <EntitySet Name="Clients" EntityType="Model.Clients" />
+          <EntitySet Name="Recomendations" EntityType="Model.Recomendations" />
+          <EntitySet Name="SiteContent" EntityType="Model.SiteContent" />
         </EntityContainer>
         <EntityType Name="Clients">
           <Key>
@@ -81,9 +81,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="urn:schemas-microsoft-com:windows:storage:mapping:CS">
-        <EntityContainerMapping StorageEntityContainer="DataStorageStoreContainer" CdmEntityContainer="drozd_polialcleanEntities">
+        <EntityContainerMapping StorageEntityContainer="DataStorageStoreContainer" CdmEntityContainer="DataStorage">
           <EntitySetMapping Name="Clients">
-            <EntityTypeMapping TypeName="IsTypeOf(DataStorage.Clients)">
+            <EntityTypeMapping TypeName="IsTypeOf(Model.Clients)">
               <MappingFragment StoreEntitySet="Clients">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -93,7 +93,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Recomendations">
-            <EntityTypeMapping TypeName="IsTypeOf(DataStorage.Recomendations)">
+            <EntityTypeMapping TypeName="IsTypeOf(Model.Recomendations)">
               <MappingFragment StoreEntitySet="Recomendations">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Image" ColumnName="Image" />
@@ -104,7 +104,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SiteContent">
-            <EntityTypeMapping TypeName="IsTypeOf(DataStorage.SiteContent)">
+            <EntityTypeMapping TypeName="IsTypeOf(Model.SiteContent)">
               <MappingFragment StoreEntitySet="SiteContent">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Content" ColumnName="Content" />
@@ -132,8 +132,8 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram Name="Structure">
-        <EntityTypeShape EntityType="DataStorage.Clients" Width="1.5" PointX="0.75" PointY="0.75" Height="1.5923063151041665" IsExpanded="true" />
-        <EntityTypeShape EntityType="DataStorage.Recomendations" Width="1.5" PointX="2.75" PointY="0.75" Height="1.7566536458333331" IsExpanded="true" />
-        <EntityTypeShape EntityType="DataStorage.SiteContent" Width="1.5" PointX="4.75" PointY="0.875" Height="1.592306315104167" IsExpanded="true" /></Diagram></edmx:Diagrams>
+        <EntityTypeShape EntityType="Model.Clients" Width="1.5" PointX="0.75" PointY="0.75" Height="1.5923063151041665" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Recomendations" Width="1.5" PointX="2.75" PointY="0.75" Height="1.7566536458333331" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.SiteContent" Width="1.5" PointX="4.75" PointY="0.875" Height="1.592306315104167" IsExpanded="true" /></Diagram></edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

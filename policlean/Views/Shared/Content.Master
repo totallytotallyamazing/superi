@@ -1,0 +1,26 @@
+﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" MasterPageFile="~/Views/Shared/Site.Master" %>
+
+<asp:Content ContentPlaceHolderID="MainContent" runat="server">
+    <%if(Request.IsAuthenticated){ %>
+        <div class="adminEditLink">
+            <a href="/Admin/EditText/<%= ViewData["textName"] %>">
+                Редактировать
+            </a>
+        </div>
+    <%} %>
+    <%= ViewData["text"]%>
+    
+    <asp:ContentPlaceHolder ID="MainContent" runat="server"></asp:ContentPlaceHolder>
+</asp:Content>
+
+<asp:Content ContentPlaceHolderID="TitleContent" runat="server">
+    <asp:ContentPlaceHolder ID="TitleContent" runat="server"></asp:ContentPlaceHolder>
+</asp:Content>
+
+<asp:Content ContentPlaceHolderID="ContentTitle" runat="server">
+    <asp:ContentPlaceHolder ID="ContentTitle" runat="server"></asp:ContentPlaceHolder>
+</asp:Content>
+
+<asp:Content ContentPlaceHolderID="Includes" runat="server">
+    <asp:ContentPlaceHolder runat="server" ID="Includes"></asp:ContentPlaceHolder>
+</asp:Content>

@@ -11,36 +11,36 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmSchemaAttribute()]
 
 // Original file name:
-// Generation date: 09/10/2009 14:25:15
+// Generation date: 09/10/2009 16:22:06
 namespace PolialClean.Models
 {
     
     /// <summary>
-    /// There are no comments for drozd_polialcleanEntities in the schema.
+    /// There are no comments for DataStorage in the schema.
     /// </summary>
-    public partial class drozd_polialcleanEntities : global::System.Data.Objects.ObjectContext
+    public partial class DataStorage : global::System.Data.Objects.ObjectContext
     {
         /// <summary>
-        /// Initializes a new drozd_polialcleanEntities object using the connection string found in the 'drozd_polialcleanEntities' section of the application configuration file.
+        /// Initializes a new DataStorage object using the connection string found in the 'DataStorage' section of the application configuration file.
         /// </summary>
-        public drozd_polialcleanEntities() : 
-                base("name=drozd_polialcleanEntities", "drozd_polialcleanEntities")
+        public DataStorage() : 
+                base("name=DataStorage", "DataStorage")
         {
             this.OnContextCreated();
         }
         /// <summary>
-        /// Initialize a new drozd_polialcleanEntities object.
+        /// Initialize a new DataStorage object.
         /// </summary>
-        public drozd_polialcleanEntities(string connectionString) : 
-                base(connectionString, "drozd_polialcleanEntities")
+        public DataStorage(string connectionString) : 
+                base(connectionString, "DataStorage")
         {
             this.OnContextCreated();
         }
         /// <summary>
-        /// Initialize a new drozd_polialcleanEntities object.
+        /// Initialize a new DataStorage object.
         /// </summary>
-        public drozd_polialcleanEntities(global::System.Data.EntityClient.EntityConnection connection) : 
-                base(connection, "drozd_polialcleanEntities")
+        public DataStorage(global::System.Data.EntityClient.EntityConnection connection) : 
+                base(connection, "DataStorage")
         {
             this.OnContextCreated();
         }
@@ -113,12 +113,12 @@ namespace PolialClean.Models
         }
     }
     /// <summary>
-    /// There are no comments for DataStorage.Clients in the schema.
+    /// There are no comments for Model.Clients in the schema.
     /// </summary>
     /// <KeyProperties>
     /// Id
     /// </KeyProperties>
-    [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="DataStorage", Name="Clients")]
+    [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="Model", Name="Clients")]
     [global::System.Runtime.Serialization.DataContractAttribute(IsReference=true)]
     [global::System.Serializable()]
     public partial class Clients : global::System.Data.Objects.DataClasses.EntityObject
@@ -227,12 +227,12 @@ namespace PolialClean.Models
         partial void OnLogoChanged();
     }
     /// <summary>
-    /// There are no comments for DataStorage.Recomendations in the schema.
+    /// There are no comments for Model.Recomendations in the schema.
     /// </summary>
     /// <KeyProperties>
     /// Id
     /// </KeyProperties>
-    [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="DataStorage", Name="Recomendations")]
+    [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="Model", Name="Recomendations")]
     [global::System.Runtime.Serialization.DataContractAttribute(IsReference=true)]
     [global::System.Serializable()]
     public partial class Recomendations : global::System.Data.Objects.DataClasses.EntityObject
@@ -364,12 +364,12 @@ namespace PolialClean.Models
         partial void OnNameChanged();
     }
     /// <summary>
-    /// There are no comments for DataStorage.SiteContent in the schema.
+    /// There are no comments for Model.SiteContent in the schema.
     /// </summary>
     /// <KeyProperties>
     /// Id
     /// </KeyProperties>
-    [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="DataStorage", Name="SiteContent")]
+    [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="Model", Name="SiteContent")]
     [global::System.Runtime.Serialization.DataContractAttribute(IsReference=true)]
     [global::System.Serializable()]
     public partial class SiteContent : global::System.Data.Objects.DataClasses.EntityObject

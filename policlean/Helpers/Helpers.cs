@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using PolialClean.Models;
+using System.Web.Mvc;
+using PolialClean.Controllers;
 
 namespace PolialClean.Helpers
 {
@@ -20,6 +23,17 @@ namespace PolialClean.Helpers
             string scriptRoot = VirtualPathUtility.ToAbsolute("~/Scripts");
             string scriptFormat = "<script src=\"{0}/{1}\" type=\"text/javascript\"></script>\r\n";
             return string.Format(scriptFormat, scriptRoot, scriptLib);
+        }
+
+
+        public static string WriteText(this HtmlHelper helper, string textName)
+        {
+            return Utils.GetText(textName);
+        }
+
+        public static string WriteText(this HtmlHelper helper, int id)
+        {
+            return Utils.GetText(id);
         }
     }
 }

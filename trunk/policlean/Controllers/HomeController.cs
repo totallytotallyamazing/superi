@@ -7,18 +7,8 @@ using System.Web.Mvc;
 namespace PolialClean.Controllers
 {
     [HandleError]
-    public class HomeController : Controller
+    public class HomeController : BaseContentController
     {
-        public ActionResult Index()
-        {
-            ViewData["Message"] = "Welcome to ASP.NET MVC!";
 
-            return View();
-        }
-
-        public ActionResult About()
-        {
-            return View();
-        }
     }
 }

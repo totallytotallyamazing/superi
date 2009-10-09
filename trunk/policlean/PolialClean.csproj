@@ -63,10 +63,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\BaseContentController.cs" />
     <Compile Include="Controllers\ClientsController.cs" />
     <Compile Include="Controllers\ContactsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ServicesController.cs" />
+    <Compile Include="Controllers\Utils.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -90,6 +93,8 @@
     <Content Include="Content\img\menuBg.png" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\jquery.fancybox.js" />
+    <Content Include="Scripts\jquery.FCKEditor.js" />
     <Content Include="Views\Clients\Index.aspx" />
     <Content Include="Views\Contacts\Index.aspx" />
     <Content Include="Views\Services\Index.aspx" />
@@ -119,6 +124,12 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Structure.Designer.cs</LastGenOutput>
     </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\Content.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Admin\ContentAdmin.Master" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

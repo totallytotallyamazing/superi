@@ -24,6 +24,7 @@
             );
         })
     </script>
+    <asp:ContentPlaceHolder runat="server" ID="Includes"></asp:ContentPlaceHolder>
 
 </head>
 <body>

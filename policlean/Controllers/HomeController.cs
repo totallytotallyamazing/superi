@@ -9,6 +9,5 @@ namespace PolialClean.Controllers
     [HandleError]
     public class HomeController : BaseContentController
     {
-
     }
 }

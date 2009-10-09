@@ -3,7 +3,7 @@
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
     <%if(Request.IsAuthenticated){ %>
         <div class="adminEditLink">
-            <a href="/Admin/EditText/<%= ViewData["textName"] %>">
+            <a href="/Admin/EditText/<%= ViewData["textName"] %>?controllerName=<%= ViewContext.RouteData.Values["controller"] %>">
                 Редактировать
             </a>
         </div>

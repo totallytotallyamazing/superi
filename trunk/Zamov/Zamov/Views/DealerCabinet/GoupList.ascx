@@ -15,9 +15,6 @@
               %>
         <tr>
                 <th>
-                    ID
-                </th>
-                <th>
                     Óêð
                 </th>
                 <th>
@@ -34,11 +31,6 @@
             <td style="display:none">
                 <%= Html.Hidden("itemId_" + item.Id, item.Id)%>
             </td>  
-            <td>
-                <div style="width:200px;">
-                    <%= Html.Encode(item.Name) %>
-                </div>
-            </td>
             <td>
                 <%= Html.TextBox("uk-UA_" + item.Id, item.GetName("uk-UA", false), new { onblur = "tableChanged(changes, this)", style="width:200px;" })%>
             </td>

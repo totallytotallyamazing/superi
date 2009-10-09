@@ -70,7 +70,7 @@ namespace Zamov.Controllers
                 Group group = new Group();
                 group.Parent = parent;
                 group.Dealer = dealer;
-                group.Name = groupName;
+                group.Name = groupUkrName;
                 group.Names.Clear();
                 group.Names["ru-RU"] = groupRusName;
                 group.Names["uk-UA"] = groupUkrName;

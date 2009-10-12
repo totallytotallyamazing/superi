@@ -18,7 +18,17 @@ namespace PolialClean.Controllers
 
         public ActionResult EditText(string contentName, string controllerName)
         {
+            ViewData["controllerName"] = controllerName;
+            ViewData["text"] = Utils.GetText(contentName);
+            ViewData["contentName"] = controllerName;
             return View();
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult EditText(string text, string controllerName, string contentName)
+        {
+            Utils.SetText(contentName, HttpUtility.HtmlDecode(text));
+            return RedirectToAction("Index", controllerName, new { contentName = contentName });
         }
 
     }

@@ -1087,11 +1087,29 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Перемiстити.
+        /// </summary>
+        internal static string Move {
+            get {
+                return ResourceManager.GetString("Move", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Перемiстити в новi.
         /// </summary>
         internal static string MoveCheckedToNew {
             get {
                 return ResourceManager.GetString("MoveCheckedToNew", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Перемiстити в.
+        /// </summary>
+        internal static string MoveTo {
+            get {
+                return ResourceManager.GetString("MoveTo", resourceCulture);
             }
         }
         
@@ -1672,7 +1690,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Дякуємо.
+        ///   Looks up a localized string similar to Дякуємо за Ваше замовлення!.
         /// </summary>
         internal static string ThankYou {
             get {

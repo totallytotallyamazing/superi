@@ -111,8 +111,11 @@
     %>
         <%using (Html.BeginForm("UpdateProducts", "DealerCabinet", FormMethod.Post))
       { %>
+      <%= Html.ResourceString("MoveTo") %>
+      <%= Html.DropDownList("groups", (List<SelectListItem>)ViewData["groups"])%>
     <table class="adminTable">
         <tr>
+            <th><%= Html.ResourceString("Move") %></th>
             <th style="width:100px;">
                 <%= Html.ResourceString("PartNumber")%>
             </th>
@@ -149,6 +152,9 @@
         <%foreach (var item in Model)
           {%>
         <tr>
+            <td>
+                <%= Html.CheckBox("moveTo_" + item.Id) %>
+            </td>
             <td>
                 <%= Html.TextBox("partNumber_" + item.Id, item.PartNumber, new { style = "width:100px;" })%>
             </td>

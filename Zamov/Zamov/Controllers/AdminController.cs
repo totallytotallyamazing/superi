@@ -239,6 +239,7 @@ namespace Zamov.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult UpdateCategories(FormCollection form)
         {
+            
             JavaScriptSerializer serializer = new JavaScriptSerializer();
             if (!string.IsNullOrEmpty(form["updates"]))
             {

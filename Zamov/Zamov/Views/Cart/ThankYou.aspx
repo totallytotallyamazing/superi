@@ -10,9 +10,9 @@
         $.cookie("makeOrder", "false");
     })
 </script>
-    <h2><%=Html.ResourceString("ThankYou")%></h2>
     <center>
     
+    <h2><%=Html.ResourceString("ThankYou")%></h2>
     
     <%
         if (!Request.IsAuthenticated)

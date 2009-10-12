@@ -25,6 +25,12 @@
             <th align="center" style="width:85px;">
                 <%= Html.ResourceString("Image") %>
             </th>
+            <th>
+                <%= Html.ResourceString("SubCategoryText") %>
+            </th>
+            <th>
+                <%= Html.ResourceString("SubCategoryText") %>
+            </th>
             <th align="center">
                 <%= Html.ResourceString("Show") %>
             </th>
@@ -47,6 +53,12 @@
                 <a href="javascript:openImageIframe(<%= item.Id %>)" style="text-decoration:none;">
                     <%= Html.Image("~/Content/img/productImage.jpg", new {style="border:none" })%>
                 </a>
+            </td>
+            <td>
+                <%= Html.TextBox("subRu_" + item.Id)%>
+            </td>
+            <td>
+                <%= Html.TextBox("subUa_" + item.Id)%>
             </td>
             <td align="center" style="width:75px;">
                 <%= Html.CheckBox("Enabled_" + item.Id, item.Enabled, new { onblur = "updateEnables(this, " + item.Id + ")" })%>

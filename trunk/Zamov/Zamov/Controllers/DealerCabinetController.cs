@@ -13,6 +13,7 @@ using System.Data;
 using System.Collections;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.Data.Objects;
 
 namespace Zamov.Controllers
 {
@@ -453,10 +454,41 @@ namespace Zamov.Controllers
 
         public ActionResult UpdateProducts(FormCollection form)
         {
-            PostData updates = form.ProcessPostData("groupId");
+            PostData postData = form.ProcessPostData("groupId", "groups");
+            PostData updates = new PostData();
+            foreach (var item in postData)
+                updates.Add(item.Key, item.Value.Where(v=>v.Key != "moveTo").ToDictionary(v=>v.Key, v=>v.Value));
             int groupId = int.Parse(form["groupId"]);
+
+            int moveToGroup = 0;
             using (ZamovStorage context = new ZamovStorage())
+            {
                 context.UpdateProducts(updates.CreateUpdatesXml());
+                
+                if (int.TryParse(form["groups"], out moveToGroup))
+                {
+                    List<int> moverProducts = new List<int>();
+                    foreach (var item in postData)
+                    {
+                        if (item.Value["moveTo"] == "true")
+                            moverProducts.Add(int.Parse(item.Key));
+                    }
+                    if (moverProducts.Count > 0)
+                    {
+                        string[] movedProductsArray = moverProducts.Select(i=>i.ToString()).ToArray();
+                        string productIds = string.Join(",", movedProductsArray);
+
+                        ObjectQuery<Product> productsQuery = new ObjectQuery<Product>(
+                                    "SELECT VALUE P FROM Products AS P WHERE P.Id IN {" + productIds + "}",
+                                    context);
+                        Group group = context.Groups.Where(g => g.Id == moveToGroup).Select(g => g).First();
+
+                        foreach (Product product in productsQuery)
+                            product.Group = group;
+                        context.SaveChanges();
+                    }
+                }
+            }
             return Redirect("~/DealerCabinet/Products/" + groupId);
         }
         #endregion

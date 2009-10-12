@@ -631,7 +631,7 @@
     <value>Так</value>
   </data>
   <data name="ThankYou" xml:space="preserve">
-    <value>Дякуємо</value>
+    <value>Дякуємо за Ваше замовлення!</value>
   </data>
   <data name="ToMainPage" xml:space="preserve">
     <value>На головну</value>
@@ -746,5 +746,11 @@
   </data>
   <data name="VoucherNumber" xml:space="preserve">
     <value>Номер дисконтної картки</value>
+  </data>
+  <data name="Move" xml:space="preserve">
+    <value>Перемiстити</value>
+  </data>
+  <data name="MoveTo" xml:space="preserve">
+    <value>Перемiстити в</value>
   </data>
 </root>

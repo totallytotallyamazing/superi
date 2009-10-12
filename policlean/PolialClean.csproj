@@ -130,6 +130,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Admin\ContentAdmin.Master" />
+    <Content Include="Views\Admin\EditText.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

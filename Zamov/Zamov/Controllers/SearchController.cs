@@ -9,29 +9,38 @@ using Zamov.Models;
 using System.Data;
 using Zamov.Helpers;
 using System.Collections;
+using System.Web.UI.WebControls;
 
 namespace Zamov.Controllers
 {
+    public enum SortFieldNames
+    {
+        Name,
+        Price,
+        Dealer
+    }
+    /*
+    public enum SortDirection
+    {
+        Ascending,
+        Descending
+    }
+    */
     public class SearchController : Controller
     {
         public ActionResult Index()
         {
             if (!string.IsNullOrEmpty(SystemSettings.SearchContext))
-                SearchProduct(SystemSettings.SearchContext, null, false);
+                SearchProduct(SystemSettings.SearchContext, null, null);
             return View();
         }
 
         [BreadCrumb( ResourceName = "Search", Url = "/Search")]
-        public ActionResult SearchProduct(string searchContext, string sortFieldName, bool? sortDirectionDescenging)
+        public ActionResult SearchProduct(string searchContext, SortFieldNames? sortFieldName, SortDirection? sortDirection)
         {
 
-            //bool sortDirectionDesc = sortDirectionDescenging != null ? sortDirectionDescenging : false;
-
-            bool sortDirectionDesc = false;
-            if (sortDirectionDescenging != null && sortDirectionDescenging == true)
-                sortDirectionDesc = true;
-            
-            
+            ViewData["sortDirection"] = sortDirection;
+            ViewData["sortFieldName"] = sortFieldName;
 
             if (string.IsNullOrEmpty(searchContext))
                 searchContext = SystemSettings.SearchContext;
@@ -75,29 +84,28 @@ namespace Zamov.Controllers
                     */
 
 
-                    if (sortFieldName != null && sortDirectionDescenging != null)
-                    switch (sortFieldName.ToLower())
+                    if (sortFieldName != null && sortDirection != null)
+                    switch (sortFieldName)
                     {
-                        case "name":
-                            if (!sortDirectionDesc)
+                        case SortFieldNames.Name:
+                            if (sortDirection==SortDirection.Ascending)
                                 products.Sort(new SortByProductNameAsc());
                             else
                                 products.Sort(new SortByProductNameDesc());
                             break;
-                        case "price":
-                            if (!sortDirectionDesc)
+                        case SortFieldNames.Price:
+                            if (sortDirection == SortDirection.Ascending)
                                 products.Sort(new SortByPriceAsc());
                             else
                                 products.Sort(new SortByPriceDesc());
                             break;
-                        case "dealer":
-                            if (!sortDirectionDesc)
+                        case SortFieldNames.Dealer:
+                            if (sortDirection == SortDirection.Ascending)
                                 products.Sort(new SortByDealerNameAsc());
                             else
                                 products.Sort(new SortByDealerNameDesc());
                             break;
                     }
-                    
                     
                     return View(products);
                 }

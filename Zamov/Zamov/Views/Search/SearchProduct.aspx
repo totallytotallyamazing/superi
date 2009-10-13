@@ -1,6 +1,7 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<Zamov.Models.ProductSearchPresentation>>" %>
 <%@ Import Namespace="Zamov.Helpers" %>
 <%@ Import Namespace="Zamov.Models" %>
+<%@ Import Namespace="Zamov.Controllers" %>
 <%@ Import Namespace="Microsoft.Web.Mvc" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
@@ -44,34 +45,128 @@
         %>
         <% Html.RenderPartial("Cart");  %>
     </div>--%>
+    
+    <%
+
+        SortFieldNames? sortFieldName = null;
+        SortDirection? sortDirection = null;
+        SortDirection? invertSortDirection = null;
+
+        if (ViewData["sortFieldName"] != null && ViewData["sortDirection"] != null)
+        {
+            sortFieldName = (SortFieldNames)ViewData["sortFieldName"];
+            sortDirection = (SortDirection)ViewData["sortDirection"];
+
+            if (sortDirection == SortDirection.Ascending)
+                invertSortDirection = SortDirection.Descending;
+            else
+                invertSortDirection = SortDirection.Ascending;
+        }
+        
+       
+    %>
+    
     <%
     using (Ajax.BeginForm("AddToCart", "Search", new AjaxOptions { HttpMethod = "POST", OnSuccess = "AddToCartSuccess" }, new { id = "addToCart" }))
     {%>
     <div style="text-align:right">
     <input style="margin-bottom:5px" type="submit" value="<%=Html.ResourceString("AddToCart") %>" />  
+    
     <table class="commonTable" width="100%">
         <tr>
             <th>
-            <%=Html.ActionLink("[replace]", "SearchProduct", new { sortFieldName = "Name", sortDirectionDescenging = false }).Replace("[replace]", Html.Image("~/Content/images/sort_up.gif", new { style = "border-style:none" }))%>
-            <br />
-            <%=Html.ResourceString("Name")%>
-            <br />
-            <%=Html.ActionLink("[replace]", "SearchProduct", new { sortFieldName = "Name", sortDirectionDescenging = true }).Replace("[replace]", Html.Image("~/Content/images/sort_down.gif", new { style = "border-style:none" }))%>
+                <table class="searchTableIneerHeader">
+                <tr>
+                    <td>
+                        <%
+                          if (sortFieldName == null)
+                          {    
+                        %>
+                        <%=Html.ResourceActionLink("Name", "SearchProduct", new { sortFieldName = SortFieldNames.Name, sortDirection = SortDirection.Ascending })%>
+                        <%}
+                          else
+                          {%>
+                          <%=Html.ResourceActionLink("Name", "SearchProduct", new { sortFieldName = SortFieldNames.Name, sortDirection = invertSortDirection })%>
+                        <%} %>
+                    </td>
+                    <td>
+                       <%if (sortFieldName == SortFieldNames.Name)
+                         { if (sortDirection == SortDirection.Ascending)
+                          {%>
+                        <%=Html.Image("~/Content/images/sort_up.gif", new { style = "border-style:none" })%>
+                        <%}
+                          else
+                          { %>
+                        <%=Html.Image("~/Content/images/sort_down.gif", new { style = "border-style:none" })%>
+                        
+                        <%}
+                         } %>
+                    </td>
+                </tr>
+                </table>
             </th>
             <th style="width:20px;">
-            <%=Html.ActionLink("[replace]", "SearchProduct", new { sortFieldName = "Dealer", sortDirectionDescenging = false }).Replace("[replace]", Html.Image("~/Content/images/sort_up.gif", new { style = "border-style:none" }))%>
-            <br />
-            <%= Html.ResourceString("Dealer") %>
-            <br />
-            <%=Html.ActionLink("[replace]", "SearchProduct", new { sortFieldName = "Dealer", sortDirectionDescenging = true }).Replace("[replace]", Html.Image("~/Content/images/sort_down.gif", new { style = "border-style:none" }))%>
+                <table class="searchTableIneerHeader">
+                <tr>
+                    <td>
+                        <%
+                          if (sortFieldName == null)
+                          {    
+                        %>
+                        <%=Html.ResourceActionLink("Dealer", "SearchProduct", new { sortFieldName = SortFieldNames.Dealer, sortDirection = SortDirection.Ascending })%>
+                        <%}
+                          else
+                          {%>
+                          <%=Html.ResourceActionLink("Dealer", "SearchProduct", new { sortFieldName = SortFieldNames.Dealer, sortDirection = invertSortDirection })%>
+                        <%} %>
+                    </td>
+                    <td>
+                       <%if (sortFieldName == SortFieldNames.Dealer)
+                         { if (sortDirection == SortDirection.Ascending)
+                          {%>
+                        <%=Html.Image("~/Content/images/sort_up.gif", new { style = "border-style:none" })%>
+                        <%}
+                          else
+                          { %>
+                        <%=Html.Image("~/Content/images/sort_down.gif", new { style = "border-style:none" })%>
+                        
+                        <%}
+                         } %>
+                    </td>
+                </tr>
+                </table>
             </th>
             <th style="width:20px;"><%= Html.ResourceString("MeassureUnit") %></th>
             <th style="width:20px;">
-            <%=Html.ActionLink("[replace]", "SearchProduct", new { sortFieldName = "Price", sortDirectionDescenging = false }).Replace("[replace]", Html.Image("~/Content/images/sort_up.gif", new { style = "border-style:none" }))%>
-            <br />
-            <%= Html.ResourceString("Price") %>, грн.
-            <br />
-            <%=Html.ActionLink("[replace]", "SearchProduct", new { sortFieldName = "Price", sortDirectionDescenging = true }).Replace("[replace]", Html.Image("~/Content/images/sort_down.gif", new { style = "border-style:none" }))%>
+                <table class="searchTableIneerHeader">
+                <tr>
+                    <td>
+                        <%
+                          if (sortFieldName == null)
+                          {    
+                        %>
+                        <%=Html.ResourceActionLink("Price", "SearchProduct", new { sortFieldName = SortFieldNames.Price, sortDirection = SortDirection.Ascending })%>, грн.
+                        <%}
+                          else
+                          {%>
+                          <%=Html.ResourceActionLink("Price", "SearchProduct", new { sortFieldName = SortFieldNames.Price, sortDirection = invertSortDirection })%>, грн.
+                        <%} %>
+                    </td>
+                    <td>
+                       <%if (sortFieldName == SortFieldNames.Price)
+                         { if (sortDirection == SortDirection.Ascending)
+                          {%>
+                        <%=Html.Image("~/Content/images/sort_up.gif", new { style = "border-style:none" })%>
+                        <%}
+                          else
+                          { %>
+                        <%=Html.Image("~/Content/images/sort_down.gif", new { style = "border-style:none" })%>
+                        
+                        <%}
+                         } %>
+                    </td>
+                </tr>
+                </table>
             </th>
             <th style="width:20px;"><%= Html.ResourceString("Quantity") %></th>
             <th style="width:20px;"><%= Html.ResourceString("ToOrder") %></th>

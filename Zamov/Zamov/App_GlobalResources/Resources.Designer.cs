@@ -1681,7 +1681,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Пiдкатегорiї.
+        ///   Looks up a localized string similar to Текст пiдкатегорiï.
         /// </summary>
         internal static string SubCategoryText {
             get {

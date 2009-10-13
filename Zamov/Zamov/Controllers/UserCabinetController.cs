@@ -34,7 +34,7 @@ namespace Zamov.Controllers
         {
             using (OrderStorage context = new OrderStorage())
             {
-                List<Order> orders = (from order in context.Orders.Include("OrderItems").Include("Dealer").Include("OrderItems.Unit") where order.Cart.Id == id select order).ToList();
+                List<Order> orders = (from order in context.Orders.Include("OrderItems").Include("Dealer") where order.Cart.Id == id select order).ToList();
                 //ViewData["caller"] = caller;
                 return View(orders);
             }

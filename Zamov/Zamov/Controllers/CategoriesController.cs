@@ -15,6 +15,20 @@ namespace Zamov.Controllers
         [BreadCrumb(CategoryId=true)]
         public ActionResult Index()
         {
+            string menuHeader = null;
+            using (ZamovStorage context = new ZamovStorage())
+            {
+                menuHeader = (from name in context.Translations
+                              where name.ItemId == SystemSettings.CategoryId
+                              && name.Language == SystemSettings.CurrentLanguage
+                              && name.TranslationItemTypeId == (int)ItemTypes.SubCategoriesName
+                              select name.Text).FirstOrDefault();
+            }
+            if(string.IsNullOrEmpty(menuHeader))
+                menuHeader = ResourcesHelper.GetResourceString("SubCategories");
+
+            ViewData["menuHeader"] = menuHeader;
+            
             List<Category> subCategories = ContextCache.GetSubCategories(SystemSettings.CategoryId, false);
             List<SelectListItem> leftMenuItems = (from category in subCategories
                                                   select new SelectListItem

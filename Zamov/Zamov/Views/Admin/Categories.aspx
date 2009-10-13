@@ -4,7 +4,6 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
     <script type="text/javascript">
-        var changes = {};
         var enables = {};
         function updateEnables(check, id) {
             if (check.checked) {
@@ -16,7 +15,6 @@
         }
 
         function collectCategoryChanges() {
-            collectChanges(changes, 'updates');
             var enablities = $get("enablities");
             enablities.value = Sys.Serialization.JavaScriptSerializer.serialize(enables);
             return true;
@@ -71,7 +69,6 @@
         <%= Html.ResourceString("Categories") %></h2>
     <% using (Html.BeginForm("UpdateCategories", "Admin", FormMethod.Post)){ %>
     <% Html.RenderAction<Zamov.Controllers.AdminController>(a => a.CategoriesList(null, 0)); %>
-    <%= Html.Hidden("updates") %>
     <%= Html.Hidden("enablities") %>
     <input type="submit" value="<%= Html.ResourceString("Save") %>" onclick="return collectCategoryChanges();" />
     <%} %>

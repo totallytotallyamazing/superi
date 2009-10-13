@@ -25,6 +25,12 @@
             <th align="center" style="width:85px;">
                 <%= Html.ResourceString("Image") %>
             </th>
+            <th>
+                <%= Html.ResourceString("SubCategoryText") %>
+            </th>
+            <th>
+                <%= Html.ResourceString("SubCategoryText") %>
+            </th>
             <th align="center">
                 <%= Html.ResourceString("Show") %>
             </th>
@@ -38,15 +44,21 @@
                 <%= Html.Hidden("itemId_" + item.Id, item.Id)%>
             </td>
             <td>
-                <%= Html.TextBox("uk-UA_" + item.Id, item.GetName("uk-UA", false), new { onblur = "tableChanged(changes, this)", style="width:120px;" })%>
+                <%= Html.TextBox("uk-UA_" + item.Id, item.GetName("uk-UA", false), new { style="width:120px;" })%>
             </td>
             <td>
-                <%= Html.TextBox("ru-RU_" + item.Id, item.GetName("ru-RU", false), new { onblur = "tableChanged(changes, this)", style = "width:120px;" })%>
+                <%= Html.TextBox("ru-RU_" + item.Id, item.GetName("ru-RU", false), new { style = "width:120px;" })%>
             </td>
             <td align="center" style="width:85px;">
                 <a href="javascript:openImageIframe(<%= item.Id %>)" style="text-decoration:none;">
                     <%= Html.Image("~/Content/img/productImage.jpg", new {style="border:none" })%>
                 </a>
+            </td>
+            <td>
+                <%= Html.TextBox("subuk-UA_" + item.Id, item.GetSubCategoryName("uk-UA"), new { style = "width:120px;" })%>
+            </td>
+            <td>
+                <%= Html.TextBox("subru-RU_" + item.Id, item.GetSubCategoryName("ru-RU"), new { style = "width:120px;" })%>
             </td>
             <td align="center" style="width:75px;">
                 <%= Html.CheckBox("Enabled_" + item.Id, item.Enabled, new { onblur = "updateEnables(this, " + item.Id + ")" })%>

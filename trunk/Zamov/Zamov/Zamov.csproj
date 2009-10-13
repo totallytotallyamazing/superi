@@ -174,7 +174,6 @@
     </Compile>
     <Compile Include="Models\TranslationItem.cs" />
     <Compile Include="Models\TranslationItemTypes.cs" />
-    <Compile Include="Models\UnitPresentation.cs" />
     <Compile Include="Models\Utils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Tools.asmx.cs">

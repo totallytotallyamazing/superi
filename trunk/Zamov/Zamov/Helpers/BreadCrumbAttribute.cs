@@ -105,11 +105,12 @@ namespace Zamov.Helpers
                                            where name.TranslationItemTypeId == (int)ItemTypes.Category
                                            && name.Language == SystemSettings.CurrentLanguage
                                            && category.Id == categoryId
-                                           select name.Text).First();
-                    HttpContext.Current.Cache["categoryName_" + categoryId] = categoryName;
+                                           select name.Text).FirstOrDefault();
+                    if (categoryName != null)
+                        HttpContext.Current.Cache["categoryName_" + categoryId] = categoryName;
                 }
             }
-            return HttpContext.Current.Cache["categoryName_" + categoryId].ToString();
+            return (string)HttpContext.Current.Cache["categoryName_" + categoryId];
         }
 
         public static string DealerName(int dealerId)
@@ -127,7 +128,7 @@ namespace Zamov.Helpers
                     HttpContext.Current.Cache["dealerName_" + dealerId] = dealerName;
                 }
             }
-            return HttpContext.Current.Cache["dealerName_" + dealerId].ToString();
+            return (string)HttpContext.Current.Cache["dealerName_" + dealerId];
         }
     }
 }

@@ -29,19 +29,6 @@ namespace Zamov.Controllers
             return result;
         }
 
-        public static List<UnitPresentation> GetCachedUnitPresentations(this ZamovStorage context, bool reload)
-        {
-            List<UnitPresentation> result = new List<UnitPresentation>();
-            if (Cache["Units"] != null && !reload)
-                result = (List<UnitPresentation>)Cache["Units"];
-            else
-            {
-                result = (from unit in context.MeassureUnits select new UnitPresentation { Id = unit.Id, Name = unit.Name }).ToList();
-                Cache["Units"] = result;
-            }
-            return result;
-        }
-
         public static void ClearCategoriesCache(this Cache cache)
         {
             List<string> keysToClear = new List<string>();

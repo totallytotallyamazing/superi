@@ -733,7 +733,7 @@
     <value>Назва групи</value>
   </data>
   <data name="SubCategoryText" xml:space="preserve">
-    <value>Пiдкатегорiї</value>
+    <value>Текст пiдкатегорiï</value>
   </data>
   <data name="ExpireOrders" xml:space="preserve">
     <value>Почистити замовлення</value>

@@ -85,7 +85,7 @@
             </a>
         </td>
         <td>
-            <%=Html.Encode((orderItem.Unit != null) ? orderItem.Unit.Name: "" )%>
+            <%=Html.Encode(orderItem.Unit)%>
         </td>
         <td align="right">
             <%=Html.Encode(orderItem.Price.ToString("N"))%>

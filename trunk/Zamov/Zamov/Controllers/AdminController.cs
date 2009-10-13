@@ -122,9 +122,9 @@ namespace Zamov.Controllers
         {
             PostData postData = form.ProcessPostData();
 
-            Func<string, int?> getNullableInt = (str=>
+            Func<string, int?> getNullableInt = (str =>
             {
-                if(string.IsNullOrEmpty(str))
+                if (string.IsNullOrEmpty(str))
                     return null;
                 return int.Parse(str);
             });
@@ -239,28 +239,27 @@ namespace Zamov.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult UpdateCategories(FormCollection form)
         {
-            
-            JavaScriptSerializer serializer = new JavaScriptSerializer();
-            if (!string.IsNullOrEmpty(form["updates"]))
+
+            Dictionary<string, Dictionary<string, string>> updates = form.ProcessPostData("enablities");// serializer.Deserialize<Dictionary<string, Dictionary<string, string>>>(
+
+            foreach (string key in updates.Keys)
             {
-                Dictionary<string, Dictionary<string, string>> updates = serializer.Deserialize<Dictionary<string, Dictionary<string, string>>>(
-                    form["updates"]
-                    );
-                foreach (string key in updates.Keys)
+                int itemId = int.Parse(key);
+                Dictionary<string, string> translations = updates[key];
+                List<TranslationItem> translationItems = new List<TranslationItem>();
+                translationItems = (from tr in translations where !tr.Key.StartsWith("sub") select new TranslationItem { ItemId = itemId, ItemType = ItemTypes.Category, Language = tr.Key, Translation = tr.Value }).ToList();
+                List<TranslationItem> subcategoryNames = (from tr in translations where tr.Key.StartsWith("sub") select new TranslationItem { ItemId = itemId, ItemType = ItemTypes.SubCategoriesName, Language = tr.Key.Replace("sub", ""), Translation = tr.Value }).ToList();
+                translationItems.AddRange(subcategoryNames);
+                string translationXml = Utils.CreateTranslationXml(translationItems);
+                using (ZamovStorage context = new ZamovStorage())
                 {
-                    int itemId = int.Parse(key);
-                    Dictionary<string, string> translations = updates[key];
-                    List<TranslationItem> translationItems = new List<TranslationItem>();
-                    translationItems = (from tr in translations select new TranslationItem { ItemId = itemId, ItemType = ItemTypes.Category, Language = tr.Key, Translation = tr.Value }).ToList();
-                    string translationXml = Utils.CreateTranslationXml(translationItems);
-                    using (ZamovStorage context = new ZamovStorage())
-                    {
-                        context.UpdateTranslations(translationXml);
-                    }
+                    context.UpdateTranslations(translationXml);
                 }
             }
+
             if (!string.IsNullOrEmpty(form["enablities"]))
             {
+                JavaScriptSerializer serializer = new JavaScriptSerializer();
                 Dictionary<string, string> enables = serializer.Deserialize<Dictionary<string, string>>(form["enablities"]);
                 using (ZamovStorage context = new ZamovStorage())
                 {
@@ -512,10 +511,10 @@ namespace Zamov.Controllers
                                                where title.TranslationItemTypeId == (int)ItemTypes.NewsTitle
                                                && title.Language == SystemSettings.CurrentLanguage
                                                orderby newsItem.Date descending
-                                               select new NewsPresentation 
-                                               { 
-                                                   Id = newsItem.Id, 
-                                                   Enabled = newsItem.Enabled, 
+                                               select new NewsPresentation
+                                               {
+                                                   Id = newsItem.Id,
+                                                   Enabled = newsItem.Enabled,
                                                    Date = newsItem.Date,
                                                    Title = title.Translation
                                                }).ToList();
@@ -604,7 +603,7 @@ namespace Zamov.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult AddEditNews(int? id, string uaTitle, string ruTitle, string date, string uaShortText, string ruShortText, string uaLongText, string ruLongText, bool enabled)
         {
-            if(ValidateNewsAdd(uaTitle, ruTitle, uaShortText, ruShortText, uaLongText, ruLongText))
+            if (ValidateNewsAdd(uaTitle, ruTitle, uaShortText, ruShortText, uaLongText, ruLongText))
             {
                 News news = null;
                 using (NewsStorage context = new NewsStorage())

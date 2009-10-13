@@ -13,11 +13,7 @@
             items.Add(listItem);
         }
 
-        string menuHeader = "";
-        if (!string.IsNullOrEmpty(ApplicationData.SubCategoryText))
-            menuHeader = ApplicationData.SubCategoryText;
-        else
-            menuHeader = Html.ResourceString("SubCategories");
+        string menuHeader = (string)ViewData["menuHeader"];
         Html.RenderAction<Zamov.Controllers.PagePartsController>(ac => ac.LeftMenu(menuHeader, items)); 
     %>
 </asp:Content>

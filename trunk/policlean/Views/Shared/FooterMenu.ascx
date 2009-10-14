@@ -3,7 +3,11 @@
 <%
     string[] menuClasses = { "footerLink", "footerLink", "footerLink", "footerLink" };
 
-    switch (ViewContext.RouteData.Values["controller"].ToString().ToUpperInvariant())
+    string controllerName = ViewContext.RouteData.Values["controller"].ToString().ToUpperInvariant();
+    if (controllerName == "ADMIN")
+        controllerName = ViewData["controllerName"].ToString().ToUpperInvariant();
+
+    switch (controllerName)
     { 
         case "HOME":
             menuClasses[0] = "footerLinkActive";

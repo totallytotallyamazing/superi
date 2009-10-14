@@ -34,6 +34,11 @@ namespace PolialClean
                 new { controller = "Account", action = "LogOn" }  // Parameter defaults
             );
 
+            routes.MapRoute(
+                "Admin",                                              // Route name
+                "Admin/AddUpdateClient/{id}",                           // URL with parameters
+                new { controller = "Admin", action = "AddUpdateClient", id="" }  // Parameter defaults
+            );
 
             routes.MapRoute(
                 "Content",                                              // Route name

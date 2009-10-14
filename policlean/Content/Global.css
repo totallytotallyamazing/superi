@@ -98,3 +98,5 @@
 .subMenu{color:#c3a184; text-align:left; padding-bottom:10px; margin-bottom:10px; border-bottom:2px solid #b6a686; width:600px;}
 .subMenu a{color:#c3a184; text-decoration:none; font-size:12px; white-space:nowrap;}
 .subMenu a.subMenuActive{color:Black;}
+
+.clientName{color:#C3A184; padding-left:5px; font-size:22px;}

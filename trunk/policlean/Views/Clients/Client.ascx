@@ -23,7 +23,6 @@
         <%= Html.ActionLink("Добавить отзыв", "AddRecomendation", "Admin", new {id = Model.Id}, new { @class="adminLink fancy" }) %><br />
     <%} %>
     <% 
-        Model.Recomendations.Load();
         int i = 1;
         foreach (Recomendations item in Model.Recomendations)
         {
@@ -38,7 +37,6 @@
         <%= Html.ActionLink("Добавить объект", "AddObject", "Admin", new {id = Model.Id}, new { @class="adminLink fancy" }) %><br />
     <%} %>
     <% 
-        Model.Objects.Load();
         foreach (Objects item in Model.Objects)
         {
             Html.RenderAction<ClientsController>(cc => cc.Object(item));

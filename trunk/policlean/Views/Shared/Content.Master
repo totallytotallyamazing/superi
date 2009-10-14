@@ -57,5 +57,8 @@
 </asp:Content>
 
 <asp:Content ContentPlaceHolderID="Includes" runat="server">
+    <%if(Request.IsAuthenticated){ %>
+        <link rel="Stylesheet" href="/Content/Admin.css" />
+    <%} %>
     <asp:ContentPlaceHolder runat="server" ID="Includes"></asp:ContentPlaceHolder>
 </asp:Content>

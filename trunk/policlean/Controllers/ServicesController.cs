@@ -7,15 +7,8 @@ using System.Web.Mvc.Ajax;
 
 namespace PolialClean.Controllers
 {
-    public class ServicesController : Controller
+    public class ServicesController : BaseContentController
     {
-        //
-        // GET: /Services/
-
-        public ActionResult Index()
-        {
-            return View();
-        }
 
     }
 }

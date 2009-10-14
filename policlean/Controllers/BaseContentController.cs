@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
+using PolialClean.Models;
 
 namespace PolialClean.Controllers
 {
@@ -12,7 +13,9 @@ namespace PolialClean.Controllers
         public ActionResult Index(string contentName)
         {
             ViewData["textName"] = contentName;
-            ViewData["text"] = Utils.GetText(contentName);
+            SiteContent content = Utils.GetText(contentName);
+            ViewData["text"] = content.Content;
+            ViewData["contentId"] = content.Id;
             return View();
         }
     }

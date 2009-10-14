@@ -19,7 +19,7 @@ namespace PolialClean.Controllers
         public ActionResult EditText(string contentName, string controllerName)
         {
             ViewData["controllerName"] = controllerName;
-            ViewData["text"] = Utils.GetText(contentName);
+            ViewData["text"] = Utils.GetText(contentName).Content;
             ViewData["contentName"] = controllerName;
             return View();
         }

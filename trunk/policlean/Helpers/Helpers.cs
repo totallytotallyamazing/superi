@@ -28,12 +28,12 @@ namespace PolialClean.Helpers
 
         public static string WriteText(this HtmlHelper helper, string textName)
         {
-            return Utils.GetText(textName);
+            return Utils.GetText(textName).Content;
         }
 
         public static string WriteText(this HtmlHelper helper, int id)
         {
-            return Utils.GetText(id);
+            return Utils.GetText(id).Content;
         }
     }
 }

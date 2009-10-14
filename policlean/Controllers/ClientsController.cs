@@ -17,7 +17,7 @@ namespace PolialClean.Controllers
         {
             using (DataStorage context = new DataStorage())
             {
-                List<Clients> clients = context.Clients.Select(c => c).ToList();
+                List<Clients> clients = context.Clients.Include("Objects").Include("Recomendations").Select(c => c).ToList();
                 return View(clients);
             }
         }

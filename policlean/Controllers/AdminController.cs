@@ -173,9 +173,9 @@ namespace PolialClean.Controllers
                 string imagePath = Server.MapPath("~/Content/Objects/" + imageName);
                 Request.Files["image"].SaveAs(imagePath);
 
-                imageName = Path.GetFileName(previewName);
-                string previewPath = Server.MapPath("~/Content/Objects/" + previewName);
-                Request.Files["preview"].SaveAs(previewName);
+                previewName = Path.GetFileName(previewName);
+                string previewPath = Server.MapPath("~/Content/Objects/Previews/" + previewName);
+                Request.Files["preview"].SaveAs(previewPath);
 
                 using (DataStorage context = new DataStorage())
                 {

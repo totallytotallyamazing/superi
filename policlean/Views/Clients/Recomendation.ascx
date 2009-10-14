@@ -8,7 +8,7 @@
     if (count > 1)
         linkText += index;
 %>
-<a href="/Content/Recomendations/<%= Model.Image %>">
+<a href="/Content/Recomendations/<%= Model.Image %>" class="recomendationLink">
     <%= linkText %>
 </a>
 <%if(Request.IsAuthenticated){ %>

@@ -33,4 +33,10 @@
             })
         </script>
     <%} %>
+    
+    <script type="text/javascript">
+        $(function() {
+            $(".thumbnail, .recomendationLink").fancybox();
+        })
+    </script>
 </asp:Content>

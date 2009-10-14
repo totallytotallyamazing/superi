@@ -4,11 +4,20 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DataStorage.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
-        <EntityContainer Name="DataStorageStoreContainer">
-          <EntitySet Name="Clients" EntityType="DataStorage.Store.Clients" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Recomendations" EntityType="DataStorage.Store.Recomendations" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="SiteContent" EntityType="DataStorage.Store.SiteContent" store:Type="Tables" Schema="dbo" />
+    <Schema Namespace="Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="Clients" EntityType="Model.Store.Clients" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Objects" EntityType="Model.Store.Objects" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Recomendations" EntityType="Model.Store.Recomendations" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SiteContent" EntityType="Model.Store.SiteContent" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Objects_Clients" Association="Model.Store.FK_Objects_Clients">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="Objects" EntitySet="Objects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Recomendations_Clients" Association="Model.Store.FK_Recomendations_Clients">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="Recomendations" EntitySet="Recomendations" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Clients">
           <Key>
@@ -19,6 +28,15 @@
           <Property Name="Description" Type="nvarchar(max)" />
           <Property Name="Logo" Type="nvarchar" MaxLength="1000" />
         </EntityType>
+        <EntityType Name="Objects">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Image" Type="nvarchar" MaxLength="500" />
+          <Property Name="Preview" Type="nvarchar" MaxLength="500" />
+          <Property Name="ClientId" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Recomendations">
           <Key>
             <PropertyRef Name="Id" />
@@ -28,6 +46,7 @@
           <Property Name="Preview" Type="nvarchar" MaxLength="500" />
           <Property Name="Description" Type="nvarchar(max)" />
           <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="ClientId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="SiteContent">
           <Key>
@@ -38,8 +57,31 @@
           <Property Name="ParentId" Type="int" />
           <Property Name="Name" Type="nvarchar" MaxLength="500" />
         </EntityType>
-      </Schema>
-    </edmx:StorageModels>
+        <Association Name="FK_Objects_Clients">
+          <End Role="Clients" Type="Model.Store.Clients" Multiplicity="1" />
+          <End Role="Objects" Type="Model.Store.Objects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Objects">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Recomendations_Clients">
+          <End Role="Clients" Type="Model.Store.Clients" Multiplicity="1" />
+          <End Role="Recomendations" Type="Model.Store.Recomendations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Recomendations">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Model" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
@@ -47,7 +89,13 @@
           <EntitySet Name="Clients" EntityType="Model.Clients" />
           <EntitySet Name="Recomendations" EntityType="Model.Recomendations" />
           <EntitySet Name="SiteContent" EntityType="Model.SiteContent" />
-        </EntityContainer>
+          <EntitySet Name="Objects" EntityType="Model.Objects" />
+          <AssociationSet Name="FK_Objects_Clients" Association="Model.FK_Objects_Clients">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="Objects" EntitySet="Objects" /></AssociationSet>
+          <AssociationSet Name="FK_Recomendations_Clients" Association="Model.FK_Recomendations_Clients">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="Recomendations" EntitySet="Recomendations" /></AssociationSet></EntityContainer>
         <EntityType Name="Clients">
           <Key>
             <PropertyRef Name="Id" />
@@ -56,7 +104,8 @@
           <Property Name="Name" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
           <Property Name="Description" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="Logo" Type="String" MaxLength="1000" Unicode="true" FixedLength="false" />
-        </EntityType>
+          <NavigationProperty Name="Objects" Relationship="Model.FK_Objects_Clients" FromRole="Clients" ToRole="Objects" />
+          <NavigationProperty Name="Recomendations" Relationship="Model.FK_Recomendations_Clients" FromRole="Clients" ToRole="Recomendations" /></EntityType>
         <EntityType Name="Recomendations">
           <Key>
             <PropertyRef Name="Id" />
@@ -66,7 +115,7 @@
           <Property Name="Preview" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
           <Property Name="Description" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="Name" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-        </EntityType>
+          <NavigationProperty Name="Clients" Relationship="Model.FK_Recomendations_Clients" FromRole="Recomendations" ToRole="Clients" /></EntityType>
         <EntityType Name="SiteContent">
           <Key>
             <PropertyRef Name="Id" />
@@ -76,12 +125,24 @@
           <Property Name="ParentId" Type="Int32" />
           <Property Name="Name" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
         </EntityType>
-      </Schema>
+        <EntityType Name="Objects">
+          <Key>
+            <PropertyRef Name="Id" /></Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Image" Type="String" Nullable="true" />
+          <Property Name="Preview" Type="String" Nullable="true" />
+          <NavigationProperty Name="Clients" Relationship="Model.FK_Objects_Clients" FromRole="Objects" ToRole="Clients" /></EntityType>
+        <Association Name="FK_Objects_Clients">
+          <End Type="Model.Clients" Role="Clients" Multiplicity="1" />
+          <End Type="Model.Objects" Role="Objects" Multiplicity="*" /></Association>
+        <Association Name="FK_Recomendations_Clients">
+          <End Type="Model.Clients" Role="Clients" Multiplicity="1" />
+          <End Type="Model.Recomendations" Role="Recomendations" Multiplicity="*" /></Association></Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="urn:schemas-microsoft-com:windows:storage:mapping:CS">
-        <EntityContainerMapping StorageEntityContainer="DataStorageStoreContainer" CdmEntityContainer="DataStorage">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="DataStorage">
           <EntitySetMapping Name="Clients">
             <EntityTypeMapping TypeName="IsTypeOf(Model.Clients)">
               <MappingFragment StoreEntitySet="Clients">
@@ -113,7 +174,22 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-        </EntityContainerMapping>
+          <EntitySetMapping Name="Objects">
+            <EntityTypeMapping TypeName="IsTypeOf(Model.Objects)">
+              <MappingFragment StoreEntitySet="Objects">
+                <ScalarProperty Name="Preview" ColumnName="Preview" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Id" ColumnName="Id" /></MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <AssociationSetMapping Name="FK_Objects_Clients" TypeName="Model.FK_Objects_Clients" StoreEntitySet="Objects">
+            <EndProperty Name="Objects">
+              <ScalarProperty Name="Id" ColumnName="Id" /></EndProperty>
+            <EndProperty Name="Clients">
+              <ScalarProperty Name="Id" ColumnName="ClientId" /></EndProperty></AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Recomendations_Clients" TypeName="Model.FK_Recomendations_Clients" StoreEntitySet="Recomendations">
+            <EndProperty Name="Recomendations">
+              <ScalarProperty Name="Id" ColumnName="Id" /></EndProperty>
+            <EndProperty Name="Clients">
+              <ScalarProperty Name="Id" ColumnName="ClientId" /></EndProperty></AssociationSetMapping></EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>
@@ -133,7 +209,15 @@
     <edmx:Diagrams>
       <Diagram Name="Structure">
         <EntityTypeShape EntityType="Model.Clients" Width="1.5" PointX="0.75" PointY="0.75" Height="1.5923063151041665" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.Recomendations" Width="1.5" PointX="2.75" PointY="0.75" Height="1.7566536458333331" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.SiteContent" Width="1.5" PointX="4.75" PointY="0.875" Height="1.592306315104167" IsExpanded="true" /></Diagram></edmx:Diagrams>
+        <EntityTypeShape EntityType="Model.Recomendations" Width="1.5" PointX="3" PointY="0.5" Height="1.9210009765625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.SiteContent" Width="1.5" PointX="6.625" PointY="1" Height="1.592306315104167" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Objects" Width="1.5" PointX="3" PointY="3.875" Height="1.5923063151041674" />
+        <AssociationConnector Association="Model.FK_Objects_Clients" >
+          <ConnectorPoint PointX="1.5" PointY="2.6710009765625" />
+          <ConnectorPoint PointX="1.5" PointY="4.6711531575520837" />
+          <ConnectorPoint PointX="3" PointY="4.6711531575520837" /></AssociationConnector>
+        <AssociationConnector Association="Model.FK_Recomendations_Clients" >
+          <ConnectorPoint PointX="2.25" PointY="1.5855004882812498" />
+          <ConnectorPoint PointX="3" PointY="1.5855004882812498" /></AssociationConnector></Diagram></edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

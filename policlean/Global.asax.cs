@@ -29,6 +29,13 @@ namespace PolialClean
             );
 
             routes.MapRoute(
+                "Account",                                              // Route name
+                "Account/{action}",                           // URL with parameters
+                new { controller = "Account", action = "LogOn" }  // Parameter defaults
+            );
+
+
+            routes.MapRoute(
                 "Content",                                              // Route name
                 "{controller}/{contentName}",                           // URL with parameters
                 new { controller = "Home", action = "Index", contentName = "Миссия" }  // Parameter defaults

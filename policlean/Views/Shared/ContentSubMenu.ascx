@@ -21,7 +21,7 @@
                             new { @class = (content.Id == contentId) ? "subMenuActive" : "" })).ToArray();
     }
 
-    string itemsHtml = string.Join("&nbsp;|&nbsp;", subMenuItems);
+    string itemsHtml = string.Join("&nbsp;| ", subMenuItems);
 %>
 <div class="subMenu">
     <%= itemsHtml %>

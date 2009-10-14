@@ -16,9 +16,43 @@
 
 <asp:Content ContentPlaceHolderID="TitleContent" runat="server">
     <asp:ContentPlaceHolder ID="TitleContent" runat="server"></asp:ContentPlaceHolder>
+    <% 
+        switch (ViewContext.RouteData.Values["controller"].ToString().ToUpperInvariant())
+        {
+            case "HOME":
+                Response.Write("О компании");
+                break;
+            case "CLIENTS":
+                Response.Write("Клиенты");
+                break;
+            case "SERVICES":
+                Response.Write("Услуги");
+                break;
+            case "CONTACTS":
+                Response.Write("Контакты");
+                break;
+        }    
+    %>
 </asp:Content>
 
 <asp:Content ContentPlaceHolderID="ContentTitle" runat="server">
+    <% 
+        switch (ViewContext.RouteData.Values["controller"].ToString().ToUpperInvariant())
+        {
+            case "HOME":
+                Response.Write("О компании");
+                break;
+            case "CLIENTS":
+                Response.Write("Клиенты");
+                break;
+            case "SERVICES":
+                Response.Write("Услуги");
+                break;
+            case "CONTACTS":
+                Response.Write("Контакты");
+                break;
+        }    
+    %>
     <asp:ContentPlaceHolder ID="ContentTitle" runat="server"></asp:ContentPlaceHolder>
 </asp:Content>
 

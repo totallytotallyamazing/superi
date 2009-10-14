@@ -35,9 +35,39 @@ namespace PolialClean
             );
 
             routes.MapRoute(
+                "DeleteClient",                                              // Route name
+                "Admin/DeleteClient/{id}",                           // URL with parameters
+                new { controller = "Admin", action = "DeleteClient", id = "" }  // Parameter defaults
+            );
+
+            routes.MapRoute(
                 "Admin",                                              // Route name
                 "Admin/AddUpdateClient/{id}",                           // URL with parameters
                 new { controller = "Admin", action = "AddUpdateClient", id="" }  // Parameter defaults
+            );
+
+            routes.MapRoute(
+                "AddRecomendation",                                              // Route name
+                "Admin/AddRecomendation/{id}",                           // URL with parameters
+                new { controller = "Admin", action = "AddRecomendation", id = "" }  // Parameter defaults
+            );
+
+            routes.MapRoute(
+                "AddObject",                                              // Route name
+                "Admin/AddObject/{id}",                           // URL with parameters
+                new { controller = "Admin", action = "AddObject", id = "" }  // Parameter defaults
+            );
+
+            routes.MapRoute(
+                "DeleteObject",                                              // Route name
+                "Admin/DeleteObject/{id}",                           // URL with parameters
+                new { controller = "Admin", action = "DeleteObject", id = "" }  // Parameter defaults
+            );
+
+            routes.MapRoute(
+                "DeleteRecomendation",                                              // Route name
+                "Admin/DeleteRecomendation/{id}",                           // URL with parameters
+                new { controller = "Admin", action = "DeleteRecomendation", id = "" }  // Parameter defaults
             );
 
             routes.MapRoute(

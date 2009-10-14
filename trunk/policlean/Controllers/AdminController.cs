@@ -18,6 +18,7 @@ namespace PolialClean.Controllers
             return View();
         }
 
+        [OutputCache(NoStore = true, Duration = 1, VaryByParam = "*")]
         public ActionResult EditText(string contentName, string controllerName)
         {
             ViewData["controllerName"] = controllerName;
@@ -39,7 +40,7 @@ namespace PolialClean.Controllers
                 System.IO.File.Delete(Server.MapPath(imageFolder + "/" + fileName));
         }
 
-        [AcceptVerbs(HttpVerbs.Post)]
+        [OutputCache(NoStore=true, Duration=1, VaryByParam="*")]
         public ActionResult AddUpdateClient(int? id)
         {
             ViewData["id"] = id;
@@ -53,7 +54,8 @@ namespace PolialClean.Controllers
             }
             return View();
         }
-
+        
+        [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult AddUpdateClient(int? id, string name)
         {
             using (DataStorage context = new DataStorage())
@@ -71,16 +73,44 @@ namespace PolialClean.Controllers
                         DeleteImage("~/Content/Logos/", client.Logo);
                     fileName = Path.GetFileName(fileName);
                     string filePath = Server.MapPath("~/Content/Logos/" + fileName);
-                    Request.Files["image"].SaveAs(filePath);
+                    Request.Files["logo"].SaveAs(filePath);
                     client.Logo = fileName;
                     if (id == null)
                         context.AddToClients(client);
-                    context.SaveChanges();
                 }
+                context.SaveChanges();
             }
             return RedirectToAction("Index", "Clients");
         }
 
+        public ActionResult DeleteClient(int id)
+        {
+            using (DataStorage context = new DataStorage())
+            {
+                Clients client = context.Clients.Where(c => c.Id == id).Select(c => c).FirstOrDefault();
+                client.Objects.Load();
+                foreach (Objects item in client.Objects)
+                {
+                    DeleteImage("~/Content/Objects", item.Image);
+                    DeleteImage("~/Content/Object/Previews", item.Preview);
+                    context.DeleteObject(item);
+                }
+
+                client.Recomendations.Load();
+                foreach (Recomendations item in client.Recomendations)
+                {
+                    DeleteImage("~/Content/Recomendations/", item.Image);
+                    context.DeleteObject(item);
+                }
+
+                DeleteImage("~/Content/Logos", client.Logo);
+                context.DeleteObject(client);
+                context.SaveChanges();
+            }
+            return RedirectToAction("Index", "Clients");
+        }
+
+        [OutputCache(NoStore = true, Duration = 1, VaryByParam = "*")]
         public ActionResult AddRecomendation(int id)
         {
             ViewData["id"] = id;
@@ -88,7 +118,7 @@ namespace PolialClean.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult AddRecomendation(int id)
+        public ActionResult AddRecomendation(int id, string image)
         {
 
             string fileName = Request.Files["image"].FileName;
@@ -125,6 +155,7 @@ namespace PolialClean.Controllers
             return RedirectToAction("Index", "Clients");
         }
 
+        [OutputCache(NoStore = true, Duration = 1, VaryByParam = "*")]
         public ActionResult AddObject(int id)
         {
             ViewData["id"] = id;
@@ -132,7 +163,7 @@ namespace PolialClean.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult AddObject(int id)
+        public ActionResult AddObject(int id, string image, string preview)
         {
             string imageName = Request.Files["image"].FileName;
             string previewName = Request.Files["preview"].FileName;

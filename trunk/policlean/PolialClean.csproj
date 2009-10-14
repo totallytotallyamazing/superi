@@ -95,7 +95,6 @@
     <Content Include="Global.asax" />
     <Content Include="Scripts\jquery.fancybox.js" />
     <Content Include="Scripts\jquery.FCKEditor.js" />
-    <Content Include="Views\Clients\Index.aspx" />
     <Content Include="Views\Shared\FooterMenu.ascx" />
     <Content Include="Views\Shared\LeftMenu.ascx" />
     <Content Include="Views\Shared\MainMenu.ascx" />
@@ -146,6 +145,10 @@
     <Content Include="Views\Admin\AddUpdateClient.aspx" />
     <Content Include="Views\Admin\ContentAdmin.Master" />
     <Content Include="Views\Admin\EditText.aspx" />
+    <Content Include="Views\Clients\Client.ascx" />
+    <Content Include="Views\Clients\Index.aspx" />
+    <Content Include="Views\Clients\Object.ascx" />
+    <Content Include="Views\Clients\Recomendation.ascx" />
     <Content Include="Views\Shared\Index.aspx" />
     <Content Include="Views\Shared\ContentSubMenu.ascx" />
   </ItemGroup>

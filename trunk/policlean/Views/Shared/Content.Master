@@ -1,6 +1,7 @@
 ﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" MasterPageFile="~/Views/Shared/Site.Master" %>
 
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
+    <% Html.RenderPartial("ContentSubMenu"); %>
     <%if(Request.IsAuthenticated){ %>
         <div class="adminEditLink">
             <a href="/Admin/EditText/<%= ViewData["textName"] %>?controllerName=<%= ViewContext.RouteData.Values["controller"] %>">

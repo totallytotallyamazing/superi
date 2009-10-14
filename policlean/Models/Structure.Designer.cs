@@ -9,9 +9,11 @@
 //------------------------------------------------------------------------------
 
 [assembly: global::System.Data.Objects.DataClasses.EdmSchemaAttribute()]
+[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("Model", "FK_Objects_Clients", "Clients", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(PolialClean.Models.Clients), "Objects", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(PolialClean.Models.Objects))]
+[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("Model", "FK_Recomendations_Clients", "Clients", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(PolialClean.Models.Clients), "Recomendations", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(PolialClean.Models.Recomendations))]
 
 // Original file name:
-// Generation date: 09/10/2009 16:22:06
+// Generation date: 14/10/2009 14:46:28
 namespace PolialClean.Models
 {
     
@@ -91,6 +93,21 @@ namespace PolialClean.Models
         }
         private global::System.Data.Objects.ObjectQuery<SiteContent> _SiteContent;
         /// <summary>
+        /// There are no comments for Objects in the schema.
+        /// </summary>
+        public global::System.Data.Objects.ObjectQuery<Objects> Objects
+        {
+            get
+            {
+                if ((this._Objects == null))
+                {
+                    this._Objects = base.CreateQuery<Objects>("[Objects]");
+                }
+                return this._Objects;
+            }
+        }
+        private global::System.Data.Objects.ObjectQuery<Objects> _Objects;
+        /// <summary>
         /// There are no comments for Clients in the schema.
         /// </summary>
         public void AddToClients(Clients clients)
@@ -110,6 +127,13 @@ namespace PolialClean.Models
         public void AddToSiteContent(SiteContent siteContent)
         {
             base.AddObject("SiteContent", siteContent);
+        }
+        /// <summary>
+        /// There are no comments for Objects in the schema.
+        /// </summary>
+        public void AddToObjects(Objects objects)
+        {
+            base.AddObject("Objects", objects);
         }
     }
     /// <summary>
@@ -225,6 +249,48 @@ namespace PolialClean.Models
         private string _Logo;
         partial void OnLogoChanging(string value);
         partial void OnLogoChanged();
+        /// <summary>
+        /// There are no comments for Objects in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("Model", "FK_Objects_Clients", "Objects")]
+        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
+        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Data.Objects.DataClasses.EntityCollection<Objects> Objects
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<Objects>("Model.FK_Objects_Clients", "Objects");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<Objects>("Model.FK_Objects_Clients", "Objects", value);
+                }
+            }
+        }
+        /// <summary>
+        /// There are no comments for Recomendations in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("Model", "FK_Recomendations_Clients", "Recomendations")]
+        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
+        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Data.Objects.DataClasses.EntityCollection<Recomendations> Recomendations
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<Recomendations>("Model.FK_Recomendations_Clients", "Recomendations");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<Recomendations>("Model.FK_Recomendations_Clients", "Recomendations", value);
+                }
+            }
+        }
     }
     /// <summary>
     /// There are no comments for Model.Recomendations in the schema.
@@ -362,6 +428,43 @@ namespace PolialClean.Models
         private string _Name;
         partial void OnNameChanging(string value);
         partial void OnNameChanged();
+        /// <summary>
+        /// There are no comments for Clients in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("Model", "FK_Recomendations_Clients", "Clients")]
+        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
+        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public Clients Clients
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Clients>("Model.FK_Recomendations_Clients", "Clients").Value;
+            }
+            set
+            {
+                ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Clients>("Model.FK_Recomendations_Clients", "Clients").Value = value;
+            }
+        }
+        /// <summary>
+        /// There are no comments for Clients in the schema.
+        /// </summary>
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Data.Objects.DataClasses.EntityReference<Clients> ClientsReference
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Clients>("Model.FK_Recomendations_Clients", "Clients");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<Clients>("Model.FK_Recomendations_Clients", "Clients", value);
+                }
+            }
+        }
     }
     /// <summary>
     /// There are no comments for Model.SiteContent in the schema.
@@ -476,5 +579,133 @@ namespace PolialClean.Models
         private string _Name;
         partial void OnNameChanging(string value);
         partial void OnNameChanged();
+    }
+    /// <summary>
+    /// There are no comments for Model.Objects in the schema.
+    /// </summary>
+    /// <KeyProperties>
+    /// Id
+    /// </KeyProperties>
+    [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="Model", Name="Objects")]
+    [global::System.Runtime.Serialization.DataContractAttribute(IsReference=true)]
+    [global::System.Serializable()]
+    public partial class Objects : global::System.Data.Objects.DataClasses.EntityObject
+    {
+        /// <summary>
+        /// Create a new Objects object.
+        /// </summary>
+        /// <param name="id">Initial value of Id.</param>
+        public static Objects CreateObjects(int id)
+        {
+            Objects objects = new Objects();
+            objects.Id = id;
+            return objects;
+        }
+        /// <summary>
+        /// There are no comments for Property Id in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id
+        {
+            get
+            {
+                return this._Id;
+            }
+            set
+            {
+                this.OnIdChanging(value);
+                this.ReportPropertyChanging("Id");
+                this._Id = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("Id");
+                this.OnIdChanged();
+            }
+        }
+        private int _Id;
+        partial void OnIdChanging(int value);
+        partial void OnIdChanged();
+        /// <summary>
+        /// There are no comments for Property Image in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string Image
+        {
+            get
+            {
+                return this._Image;
+            }
+            set
+            {
+                this.OnImageChanging(value);
+                this.ReportPropertyChanging("Image");
+                this._Image = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
+                this.ReportPropertyChanged("Image");
+                this.OnImageChanged();
+            }
+        }
+        private string _Image;
+        partial void OnImageChanging(string value);
+        partial void OnImageChanged();
+        /// <summary>
+        /// There are no comments for Property Preview in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string Preview
+        {
+            get
+            {
+                return this._Preview;
+            }
+            set
+            {
+                this.OnPreviewChanging(value);
+                this.ReportPropertyChanging("Preview");
+                this._Preview = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
+                this.ReportPropertyChanged("Preview");
+                this.OnPreviewChanged();
+            }
+        }
+        private string _Preview;
+        partial void OnPreviewChanging(string value);
+        partial void OnPreviewChanged();
+        /// <summary>
+        /// There are no comments for Clients in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("Model", "FK_Objects_Clients", "Clients")]
+        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
+        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public Clients Clients
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Clients>("Model.FK_Objects_Clients", "Clients").Value;
+            }
+            set
+            {
+                ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Clients>("Model.FK_Objects_Clients", "Clients").Value = value;
+            }
+        }
+        /// <summary>
+        /// There are no comments for Clients in the schema.
+        /// </summary>
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Data.Objects.DataClasses.EntityReference<Clients> ClientsReference
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Clients>("Model.FK_Objects_Clients", "Clients");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<Clients>("Model.FK_Objects_Clients", "Clients", value);
+                }
+            }
+        }
     }
 }

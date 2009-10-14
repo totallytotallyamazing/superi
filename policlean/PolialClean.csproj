@@ -125,6 +125,8 @@
     <Content Include="Views\Shared\Content.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Views\Admin\AddObject.aspx" />
+    <Content Include="Views\Admin\AddRecomendation.aspx" />
     <Content Include="Views\Admin\AddUpdateClient.aspx" />
     <Content Include="Views\Admin\ContentAdmin.Master" />
     <Content Include="Views\Admin\EditText.aspx" />

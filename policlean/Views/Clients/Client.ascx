@@ -24,9 +24,11 @@
     <%} %>
     <% 
         Model.Recomendations.Load();
+        int i = 1;
         foreach (Recomendations item in Model.Recomendations)
         {
-            Html.RenderAction<ClientsController>(cc => cc.Recomendation(item));
+            Html.RenderAction<ClientsController>(cc => cc.Recomendation(item, Model.Recomendations.Count, i));
+            i++;
         }
     %>
 </div>

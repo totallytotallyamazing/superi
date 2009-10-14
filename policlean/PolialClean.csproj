@@ -96,8 +96,6 @@
     <Content Include="Scripts\jquery.fancybox.js" />
     <Content Include="Scripts\jquery.FCKEditor.js" />
     <Content Include="Views\Clients\Index.aspx" />
-    <Content Include="Views\Contacts\Index.aspx" />
-    <Content Include="Views\Services\Index.aspx" />
     <Content Include="Views\Shared\FooterMenu.ascx" />
     <Content Include="Views\Shared\LeftMenu.ascx" />
     <Content Include="Views\Shared\MainMenu.ascx" />
@@ -112,8 +110,6 @@
     <Content Include="Views\Account\ChangePasswordSuccess.aspx" />
     <Content Include="Views\Account\LogOn.aspx" />
     <Content Include="Views\Account\Register.aspx" />
-    <Content Include="Views\Home\About.aspx" />
-    <Content Include="Views\Home\Index.aspx" />
     <Content Include="Views\Shared\Error.aspx" />
     <Content Include="Views\Shared\LogOnUserControl.ascx" />
     <Content Include="Views\Shared\Site.Master" />
@@ -131,6 +127,8 @@
   <ItemGroup>
     <Content Include="Views\Admin\ContentAdmin.Master" />
     <Content Include="Views\Admin\EditText.aspx" />
+    <Content Include="Views\Shared\Index.aspx" />
+    <Content Include="Views\Shared\ContentSubMenu.ascx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

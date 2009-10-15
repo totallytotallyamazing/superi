@@ -9,9 +9,22 @@
 %>
 
 <script type="text/javascript">
+    var i = 1;
+    var intervalId = null;
     $(function() {
         $(".topProductLink").fancybox({ width: 700, hideOnContentClick: false });
+        intervalId = window.setInterval(alignImages, 200);
     })
+
+    function alignImages() {
+        $("table.topProducts tr td div img").each(function() {
+            this.style.marginTop = (98 - $(this).height()) / 2 + "px";
+        })
+        i++;
+        if (i == 100) {
+            window.clearInterval(intervalId);
+        }
+    }
 </script>
 
 <div class="topProducts">
@@ -19,7 +32,7 @@
     <span class="header">
         <%= Html.ResourceString("TopProducts").ToUpper() %>
     </span>
-    <table class="topProducts" cellspacing="15">
+    <table class="topProducts">
         <tr class="topProduct" align="center">
             <%foreach (Product item in topProducts)
               {%>
@@ -27,12 +40,13 @@
 <%using (Html.BeginForm("AddToCart", "Products", FormMethod.Post)){%>
                 <%= Html.Hidden("dealerId", ViewData["dealerId"])%>
                 <%= Html.Hidden("groupId", ViewData["groupId"])%>             
-                <%= Html.CheckBox("order_" + item.Id, true, new { style="margin-left:-8000px" })%>
+                <%= Html.CheckBox("order_" + item.Id, true, new { style="margin-left:-8000px; position:absolute;" })%>
                 <%= Html.Hidden("quantity_" + item.Id, 1)%>
+                <div>
                 <a href="/Products/Description/<%= item.Id %>" class="topProductLink">
-                    <%= Html.Image("~/Image/ProductImageDefault/" + item.Id + "/50", item.Name, new { style = "display:block; border:none;" })%>
+                    <%= Html.Image("~/Image/ProductImageDefault/" + item.Id + "/98", item.Name, new { style = "display:block; border:none;" })%>
                 </a>
-                
+                </div>
                 <%= item.Name %><br />
                 <span>
                     <%= item.Price.ToString("F") %> грн.

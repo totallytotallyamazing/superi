@@ -11,9 +11,10 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmSchemaAttribute()]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("Model", "FK_Objects_Clients", "Clients", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(PolialClean.Models.Clients), "Objects", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(PolialClean.Models.Objects))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("Model", "FK_Recomendations_Clients", "Clients", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(PolialClean.Models.Clients), "Recomendations", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(PolialClean.Models.Recomendations))]
+[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("Model", "FK_SiteContent_SiteContent", "SiteContent", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(PolialClean.Models.SiteContent), "SiteContent1", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(PolialClean.Models.SiteContent))]
 
 // Original file name:
-// Generation date: 14/10/2009 14:46:28
+// Generation date: 15/10/2009 16:08:26
 namespace PolialClean.Models
 {
     
@@ -534,29 +535,6 @@ namespace PolialClean.Models
         partial void OnContentChanging(string value);
         partial void OnContentChanged();
         /// <summary>
-        /// There are no comments for Property ParentId in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Nullable<int> ParentId
-        {
-            get
-            {
-                return this._ParentId;
-            }
-            set
-            {
-                this.OnParentIdChanging(value);
-                this.ReportPropertyChanging("ParentId");
-                this._ParentId = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
-                this.ReportPropertyChanged("ParentId");
-                this.OnParentIdChanged();
-            }
-        }
-        private global::System.Nullable<int> _ParentId;
-        partial void OnParentIdChanging(global::System.Nullable<int> value);
-        partial void OnParentIdChanged();
-        /// <summary>
         /// There are no comments for Property Name in the schema.
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
@@ -579,6 +557,64 @@ namespace PolialClean.Models
         private string _Name;
         partial void OnNameChanging(string value);
         partial void OnNameChanged();
+        /// <summary>
+        /// There are no comments for Children in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("Model", "FK_SiteContent_SiteContent", "SiteContent1")]
+        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
+        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Data.Objects.DataClasses.EntityCollection<SiteContent> Children
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<SiteContent>("Model.FK_SiteContent_SiteContent", "SiteContent1");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<SiteContent>("Model.FK_SiteContent_SiteContent", "SiteContent1", value);
+                }
+            }
+        }
+        /// <summary>
+        /// There are no comments for Parent in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("Model", "FK_SiteContent_SiteContent", "SiteContent")]
+        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
+        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public SiteContent Parent
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<SiteContent>("Model.FK_SiteContent_SiteContent", "SiteContent").Value;
+            }
+            set
+            {
+                ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<SiteContent>("Model.FK_SiteContent_SiteContent", "SiteContent").Value = value;
+            }
+        }
+        /// <summary>
+        /// There are no comments for Parent in the schema.
+        /// </summary>
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Data.Objects.DataClasses.EntityReference<SiteContent> ParentReference
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<SiteContent>("Model.FK_SiteContent_SiteContent", "SiteContent");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<SiteContent>("Model.FK_SiteContent_SiteContent", "SiteContent", value);
+                }
+            }
+        }
     }
     /// <summary>
     /// There are no comments for Model.Objects in the schema.

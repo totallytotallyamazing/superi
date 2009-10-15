@@ -56,8 +56,8 @@
         }
     </script>
 <%
-    List<Dictionary<string, string>> updatedItems = (List<Dictionary<string, string>>)ViewData["updatedItems"];
-    List<Dictionary<string, string>> newItems = (List<Dictionary<string, string>>)ViewData["newItems"];
+    Dictionary<string, Dictionary<string, string>> updatedItems = (Dictionary<string, Dictionary<string, string>>)ViewData["updatedItems"];
+    Dictionary<string, Dictionary<string, string>> newItems = (Dictionary<string, Dictionary<string, string>>)ViewData["newItems"];
 %>
     
     <h2><%= Html.ResourceString("ImportedProducts") %></h2>
@@ -91,7 +91,7 @@
                 </tr>
                 <%
                 foreach (var item in newItems)
-                    Html.RenderAction<Zamov.Controllers.DealerCabinetController>(ac => ac.ImportedProduct(item, true));
+                    Html.RenderAction<Zamov.Controllers.DealerCabinetController>(ac => ac.ImportedProduct(item.Value, true));
                 %>
             </table>
             <%} %>
@@ -113,7 +113,7 @@
                 </tr>
                 <%
                 foreach (var item in updatedItems)
-                    Html.RenderAction<Zamov.Controllers.DealerCabinetController>(ac => ac.ImportedProduct(item, false));
+                    Html.RenderAction<Zamov.Controllers.DealerCabinetController>(ac => ac.ImportedProduct(item.Value, false));
                 %>
             </table>
             <%} %>

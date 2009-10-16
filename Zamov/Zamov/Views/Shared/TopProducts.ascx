@@ -33,7 +33,7 @@
         <%= Html.ResourceString("TopProducts").ToUpper() %>
     </span>
     <table class="topProducts">
-        <tr class="topProduct" align="center">
+        <tr class="topProduct" align="center" valign="top">
             <%foreach (Product item in topProducts)
               {%>
               <td>
@@ -42,17 +42,20 @@
                 <%= Html.Hidden("groupId", ViewData["groupId"])%>             
                 <%= Html.CheckBox("order_" + item.Id, true, new { style="margin-left:-8000px; position:absolute;" })%>
                 <%= Html.Hidden("quantity_" + item.Id, 1)%>
-                <div>
-                <a href="/Products/Description/<%= item.Id %>" class="topProductLink">
-                    <%= Html.Image("~/Image/ProductImageDefault/" + item.Id + "/98", item.Name, new { style = "display:block; border:none;" })%>
-                </a>
+                <div class="topImage">
+                    <a href="/Products/Description/<%= item.Id %>" class="topProductLink">
+                        <%= Html.Image("~/Image/ProductImageDefault/" + item.Id + "/98", item.Name, new { style = "display:block; border:none;" })%>
+                    </a>
                 </div>
-                <%= item.Name %><br />
+                <div class="topText" title="<%= item.Name %>">
+                    <%= item.Name %><br />
+
+                </div>
                 <span>
-                    <%= item.Price.ToString("F") %> грн.
+                        <%= item.Price.ToString("F") %> грн.
                 </span>
-<br />
-                <input type="submit" value="<%= Html.ResourceString("ToOrder") %>" /><%} %>
+                <br />
+                <input style="font-size:0.9em" type="submit" value="<%= Html.ResourceString("ToOrder") %>" /><%} %>
               </td>
             <%
                 } %>

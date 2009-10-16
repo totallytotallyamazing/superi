@@ -79,9 +79,9 @@ img{border:none;}
 
 #content{margin-left:280px; font-size:0.8em; padding-top:30px; margin-right:110px; text-align:justify;}
 
-.leftMenuItem{width:174px; height:95px; margin-bottom:10px; background:transparent url(img/leftMenuBg.png); padding-left:20px;}
-.leftMenuItem div{position:relative; margin:auto 0;}
-.leftMenuItem div a{color:White; text-decoration:none; font-size:1.3em; font-weight:bold;}
+.leftMenuItem{width:180px; height:38px; margin-bottom:10px; background:transparent url(img/leftMenuBg.png); padding-left:13px;}
+.leftMenuItem div{padding-top:7px;}
+.leftMenuItem div a{color:White; text-decoration:none; font-size:0.7em; font-weight:bold;}
 
 #footer{clear:both; padding-top:40px;}
 #footerMenu{width:auto; margin:0 20px; border-bottom:1px solid #aaa5a5;}

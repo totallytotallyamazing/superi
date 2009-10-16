@@ -153,6 +153,7 @@
     <Content Include="Views\Shared\ContentSubMenu.ascx" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="bin\" />
     <Folder Include="Content\Logos\" />
     <Folder Include="Content\Objects\Previews\" />
     <Folder Include="Content\Recomendations\" />

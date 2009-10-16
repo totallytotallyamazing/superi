@@ -15,13 +15,6 @@
             $(".mainMenuItem a")
                 .mouseover(function(el) { $(this.parentNode).addClass("mainMenuItemHover"); })
                 .mouseout(function(el) { $(this.parentNode).removeClass("mainMenuItemHover"); })
-
-            $(".leftMenuItem div").each(
-                function() {
-                    var padding = (this.parentNode.clientHeight - $(this).height()) / 2;
-                    this.style.paddingTop = padding + "px";
-                }
-            );
         })
     </script>
     <asp:ContentPlaceHolder runat="server" ID="Includes"></asp:ContentPlaceHolder>

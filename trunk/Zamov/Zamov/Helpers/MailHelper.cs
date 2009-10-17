@@ -13,7 +13,7 @@ namespace Zamov.Helpers
         private static SmtpClient PrepareClient()
         {
             SmtpClient client = new SmtpClient(ApplicationData.ZamovSmtpHost);
-            client.Credentials = new NetworkCredential("info@zamov.net", "cde32wsx");
+            client.Credentials = new NetworkCredential("no-reply@zamov.net", "cde32wsx");
             return client;
         }
 
@@ -38,13 +38,22 @@ namespace Zamov.Helpers
         }
 
         public static bool SendTemplate(string from, List<MailAddress> to, string template ,bool isBodyHtml)
-        { 
-            string filePath = HttpContext.Current.Server.MapPath("~/Content/MailTemplates/" + template);
+        {
+
+            return SendTemplate(from, to, template, string.Empty, isBodyHtml, null);
+        }
+
+
+        public static bool SendTemplate(string from, List<MailAddress> to, string template, string Language, bool isBodyHtml, params object[] replacements)
+        {
+            string languageFolder = (string.IsNullOrEmpty(Language)) ? string.Empty : Language + "/";  
+            string filePath = HttpContext.Current.Server.MapPath("~/Content/MailTemplates/" + languageFolder + template);
             FileStream file = new FileStream(filePath, FileMode.Open);
             StreamReader reader = new StreamReader(file);
             string body = reader.ReadToEnd();
+            string formattedBody = (replacements!=null && replacements.Length>0) ? string.Format(body, replacements) : body;
             reader.Close();
-            return SendMessage(from, to, body, isBodyHtml);
+            return SendMessage(from, to, formattedBody, isBodyHtml);
         }
     }
 }

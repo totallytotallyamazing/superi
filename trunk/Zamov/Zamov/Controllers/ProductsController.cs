@@ -18,17 +18,18 @@ namespace Zamov.Controllers
         private const int MaxTopProductsNumber = 5;
 
         [BreadCrumb(SubCategoryId = true)]
-        public ActionResult Index(int dealerId, int? groupId)
+        public ActionResult Index(string dealerId, int? groupId)
         {
-            BreadCrumbsExtensions.AddBreadCrumb(HttpContext, BreadCrumbAttribute.DealerName(dealerId), "/Dealers/SelectDealer/" + dealerId);
+            using (ZamovStorage context = new ZamovStorage())
+            {
+                int dealer = context.Dealers.Where(d => d.Name == dealerId).Select(d => d.Id).First();
+                BreadCrumbsExtensions.AddBreadCrumb(HttpContext, BreadCrumbAttribute.DealerName(dealer), "/Dealers/SelectDealer/" + dealer);
             if (groupId != null)
                 BreadCrumbAttribute.ProcessGroup(groupId.Value, HttpContext);
 
-            using (ZamovStorage context = new ZamovStorage())
-            {
-                List<Group> groups = (from g in context.Groups.Include("Groups") where g.Dealer.Id == dealerId select g).ToList();
+            List<Group> groups = (from g in context.Groups.Include("Groups") where g.Dealer.Id == dealer select g).ToList();
                 ViewData["groups"] = groups;
-                ViewData["dealerId"] = dealerId;
+                ViewData["dealerId"] = dealer;
                 ViewData["groupId"] = groupId;
                 List<Product> products = new List<Product>();
                 if (groupId != null)
@@ -38,7 +39,7 @@ namespace Zamov.Controllers
                     products = products.Where(p => !p.Deleted && p.Group.Enabled && p.Enabled).ToList();
                 }
                 else
-                    products = (from product in context.Products where ((groupId == null) || product.Group.Id == groupId) && product.Dealer.Id == dealerId && !product.Deleted && product.Group.Enabled && product.Enabled select product).ToList();
+                    products = (from product in context.Products where ((groupId == null) || product.Group.Id == groupId) && product.Dealer.Id == dealer && !product.Deleted && product.Group.Enabled && product.Enabled select product).ToList();
 
                 ViewData["topProducts"] = GetTopProducts(products);
 

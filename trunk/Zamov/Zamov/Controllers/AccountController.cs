@@ -10,6 +10,7 @@ using System.Web.UI;
 using Zamov.Models;
 using System.Text.RegularExpressions;
 using Zamov.Helpers;
+using System.Net.Mail;
 
 namespace Zamov.Controllers
 {
@@ -115,7 +116,6 @@ namespace Zamov.Controllers
             string mobilePhone, 
             string phone, 
             string city,
-            bool rememberMe, 
             bool captchaValid
             )
         {
@@ -128,6 +128,9 @@ namespace Zamov.Controllers
                 MembershipCreateStatus createStatus = MembershipService.CreateUser(email, password, email);
                 if (createStatus == MembershipCreateStatus.Success)
                 {
+                    MembershipUser user = Membership.GetUser(email);
+                    user.IsApproved = false;
+                    Membership.UpdateUser(user);
                     ProfileCommon profile = ProfileCommon.Create(email) as ProfileCommon;
                     profile.FirstName = firstName;
                     profile.LastName = lastName;
@@ -137,7 +140,6 @@ namespace Zamov.Controllers
                     profile.City = city;
                     profile.Save();
                     Roles.AddUserToRole(email, "Customers");
-                    FormsAuth.SignIn(email, rememberMe);
                     if (SystemSettings.Cart.Id > 0)
                     {
                         Cart cart = SystemSettings.Cart;
@@ -153,8 +155,15 @@ namespace Zamov.Controllers
                         }
                         SystemSettings.EmptyCart();
                     }
+                    string linkBase = (Request.Url.AbsolutePath.StartsWith("http://zamov.net")) ? "http://zamov.net" : "http://dev.zamov.net";
 
-                    return RedirectToAction("Index", "Home");
+                    MailHelper.SendTemplate("no-reply@zamov.net",
+                        new List<MailAddress> { new MailAddress(email) }, 
+                        "activateAccount", 
+                        SystemSettings.CurrentLanguage,
+                        false,
+                        linkBase + "/Account/UserEmailVerified?guid=" + user.ProviderUserKey);
+                    return RedirectToAction("UserEmailVerification");
                 }
                 else
                 {
@@ -164,6 +173,19 @@ namespace Zamov.Controllers
 
             // If we got this far, something failed, redisplay form
             return View();
+        }
+
+        public ActionResult UserEmailVerification()
+        { 
+            return View("UserEmailVerification" + SystemSettings.CurrentLanguage);
+        }
+
+        public ActionResult UserEmailVerified(string guid)
+        {
+            MembershipUser user = Membership.GetUser(new Guid(guid));
+            user.IsApproved = true;
+            Membership.UpdateUser(user);
+            return View("UserEmailVerified" + SystemSettings.CurrentLanguage);
         }
 
         [Authorize]

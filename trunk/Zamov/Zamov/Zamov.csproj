@@ -317,7 +317,13 @@
     <Content Include="Content\jquery.treeview.css" />
     <None Include="Content\MailTemplates\newOrder" />
     <None Include="Content\MailTemplates\passwordReminder" />
+    <None Include="Content\MailTemplates\ru-RU\activateAccount" />
+    <None Include="Content\MailTemplates\uk-UA\activateAccount" />
     <Content Include="Scripts\jquery.cookie.js" />
+    <Content Include="Views\Account\UserEmailVerificationru-RU.aspx" />
+    <Content Include="Views\Account\UserEmailVerificationuk-UA.aspx" />
+    <Content Include="Views\Account\UserEmailVerifiedru-RU.aspx" />
+    <Content Include="Views\Account\UserEmailVerifieduk-UA.aspx" />
     <Content Include="Views\Admin\RemoveDealers.aspx" />
     <Content Include="Views\Admin\StartText.aspx" />
     <Content Include="Views\Admin\SubCategoryText.aspx" />

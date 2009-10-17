@@ -42,6 +42,7 @@ namespace Zamov.Controllers
         {
             int? groupId = null;
             SystemSettings.SelectedDealer = id;
+            string dealerName = "";
             using (ZamovStorage context = new ZamovStorage())
             {
                 Dealer currentDealer = context.Dealers.Include("Groups").Select(d => d).Where(d => d.Id == id).First();
@@ -52,6 +53,7 @@ namespace Zamov.Controllers
                               trr.Language == "ru-RU" && tru.Language == "uk-UA"
                               && trr.TranslationItemTypeId == (int)ItemTypes.Group && tru.TranslationItemTypeId == (int)ItemTypes.Group
                          select new { Id = gr.Id, NameUa = tru.Text, NameRu = trr.Text });
+                dealerName = currentDealer.Name;
                 foreach (var item in g)
                 {
                     if (item.NameRu == SystemSettings.CategoryName || item.NameUa == SystemSettings.CategoryName)
@@ -61,7 +63,7 @@ namespace Zamov.Controllers
                     }
                 }
             }
-            return RedirectToAction("Index", "Products", new { dealerId = id, groupId = groupId });
+            return RedirectToAction("Index", "Products", new { dealerId = dealerName, groupId = groupId });
         }
     }
 }

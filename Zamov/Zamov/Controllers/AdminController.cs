@@ -12,6 +12,8 @@ using System.Data;
 using Zamov.Helpers;
 using System;
 using System.Globalization;
+using System.Web.Profile;
+using System.Configuration;
 
 namespace Zamov.Controllers
 {

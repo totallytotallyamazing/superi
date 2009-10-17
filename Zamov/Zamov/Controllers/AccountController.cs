@@ -1,4 +1,4 @@
-﻿    using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -48,7 +48,7 @@ namespace Zamov.Controllers
             private set;
         }
 
-        [BreadCrumb( ResourceName = "LogOn", Url = "/LogOn")]
+        [BreadCrumb(ResourceName = "LogOn", Url = "/LogOn")]
         public ActionResult LogOn()
         {
             return View();
@@ -84,6 +84,56 @@ namespace Zamov.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        public ActionResult ResetPassword()
+        {
+            return View();
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult ResetPassword(string email)
+        {
+            MembershipUser user = ValidateResetPassword(email);
+            if (user != null)
+            {
+                string newPassword = user.ResetPassword();
+                
+                MailHelper.SendTemplate("no-reply@zamov.net", 
+                    new List<MailAddress> { new MailAddress(email) }, 
+                    "resetPassword", 
+                    SystemSettings.CurrentLanguage, 
+                    false, 
+                    newPassword);
+                
+                return RedirectToAction("PasswordReseted");
+            }
+            return View();
+        }
+
+        public ActionResult PasswordReseted()
+        {
+            return View("PasswordReseted" + SystemSettings.CurrentLanguage);
+        }
+
+        private MembershipUser ValidateResetPassword(string email)
+        {
+            MembershipUser user = null;
+            if (string.IsNullOrEmpty(email))
+                ModelState.AddModelError("email", ResourcesHelper.GetResourceString("EmailRequired"));
+            Regex regex = new Regex("^(?:[a-zA-Z0-9_'^&amp;/+-])+(?:\\.(?:[a-zA-Z0-9_'^&amp;/+-])+)*@(?:(?:\\[?(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?))\\.){3}(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\]?)|(?:[a-zA-Z0-9-]+\\.)+(?:[a-zA-Z]){2,}\\.?)$");
+            if (!regex.IsMatch(email))
+                ModelState.AddModelError("email", ResourcesHelper.GetResourceString("EmailIncorrect"));
+            if (ModelState.IsValid)
+            {
+                user = Membership.GetUser(email);
+                if (user == null || !user.IsApproved)
+                {
+                    ModelState.AddModelError("_FOORM", ResourcesHelper.GetResourceString("NoUserMatchesEmail"));
+                    user = null;
+                }
+            }
+            return user;
+        }
+
         [BreadCrumb(ResourceName = "Register", Url = "/LogOn")]
         public ActionResult Register()
         {
@@ -106,15 +156,15 @@ namespace Zamov.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         [CaptchaValidation("captcha")]
         public ActionResult Register(
-            string userName, 
-            string email, 
-            string password, 
-            string confirmPassword, 
-            string firstName, 
-            string lastName, 
-            string deliveryAddress, 
-            string mobilePhone, 
-            string phone, 
+            string userName,
+            string email,
+            string password,
+            string confirmPassword,
+            string firstName,
+            string lastName,
+            string deliveryAddress,
+            string mobilePhone,
+            string phone,
             string city,
             bool captchaValid
             )
@@ -122,7 +172,7 @@ namespace Zamov.Controllers
 
             ViewData["PasswordLength"] = MembershipService.MinPasswordLength;
 
-            if (ValidateRegistration(email, password, confirmPassword, firstName, lastName, mobilePhone, phone,  captchaValid))
+            if (ValidateRegistration(email, password, confirmPassword, firstName, lastName, mobilePhone, phone, captchaValid))
             {
                 // Attempt to register the user
                 MembershipCreateStatus createStatus = MembershipService.CreateUser(email, password, email);
@@ -158,8 +208,8 @@ namespace Zamov.Controllers
                     string linkBase = (Request.Url.AbsolutePath.StartsWith("http://zamov.net")) ? "http://zamov.net" : "http://dev.zamov.net";
 
                     MailHelper.SendTemplate("no-reply@zamov.net",
-                        new List<MailAddress> { new MailAddress(email) }, 
-                        "activateAccount", 
+                        new List<MailAddress> { new MailAddress(email) },
+                        "activateAccount",
                         SystemSettings.CurrentLanguage,
                         false,
                         linkBase + "/Account/UserEmailVerified?guid=" + user.ProviderUserKey);
@@ -176,7 +226,7 @@ namespace Zamov.Controllers
         }
 
         public ActionResult UserEmailVerification()
-        { 
+        {
             return View("UserEmailVerification" + SystemSettings.CurrentLanguage);
         }
 
@@ -286,7 +336,7 @@ namespace Zamov.Controllers
             return ModelState.IsValid;
         }
 
-        private bool ValidateRegistration(string email, string password, string confirmPassword, string firstName, string lastName, string mobilePhone, string phone,  bool captchaValid)
+        private bool ValidateRegistration(string email, string password, string confirmPassword, string firstName, string lastName, string mobilePhone, string phone, bool captchaValid)
         {
             if (!captchaValid)
             {
@@ -299,7 +349,7 @@ namespace Zamov.Controllers
             else
             {
                 Regex regex = new Regex("^(?:[a-zA-Z0-9_'^&amp;/+-])+(?:\\.(?:[a-zA-Z0-9_'^&amp;/+-])+)*@(?:(?:\\[?(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?))\\.){3}(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\]?)|(?:[a-zA-Z0-9-]+\\.)+(?:[a-zA-Z]){2,}\\.?)$");
-                if(!regex.IsMatch(email))
+                if (!regex.IsMatch(email))
                     ModelState.AddModelError("email", ResourcesHelper.GetResourceString("EmailIncorrect"));
             }
 
@@ -314,11 +364,11 @@ namespace Zamov.Controllers
             {
                 ModelState.AddModelError("_FORM", ResourcesHelper.GetResourceString("PasswordAndConfirmationShouldMatch"));
             }
-            if(string.IsNullOrEmpty(firstName))
+            if (string.IsNullOrEmpty(firstName))
                 ModelState.AddModelError("firstName", ResourcesHelper.GetResourceString("FirstNameRequired"));
-            if(string.IsNullOrEmpty(lastName))
+            if (string.IsNullOrEmpty(lastName))
                 ModelState.AddModelError("lastName", ResourcesHelper.GetResourceString("LastNameRequired"));
-            if(string.IsNullOrEmpty(mobilePhone))
+            if (string.IsNullOrEmpty(mobilePhone))
                 ModelState.AddModelError("mobilePhone", ResourcesHelper.GetResourceString("PhoneRequired"));
             return ModelState.IsValid;
         }

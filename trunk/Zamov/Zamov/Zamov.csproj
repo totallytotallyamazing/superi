@@ -320,7 +320,12 @@
     <None Include="Content\MailTemplates\passwordReminder" />
     <None Include="Content\MailTemplates\ru-RU\activateAccount" />
     <None Include="Content\MailTemplates\uk-UA\activateAccount" />
+    <None Include="Content\MailTemplates\ru-RU\resetPassword" />
+    <None Include="Content\MailTemplates\uk-UA\resetPassword" />
     <Content Include="Scripts\jquery.cookie.js" />
+    <Content Include="Views\Account\PasswordResetedru-RU.aspx" />
+    <Content Include="Views\Account\PasswordReseteduk-UA.aspx" />
+    <Content Include="Views\Account\ResetPassword.aspx" />
     <Content Include="Views\Account\UserEmailVerificationru-RU.aspx" />
     <Content Include="Views\Account\UserEmailVerificationuk-UA.aspx" />
     <Content Include="Views\Account\UserEmailVerifiedru-RU.aspx" />

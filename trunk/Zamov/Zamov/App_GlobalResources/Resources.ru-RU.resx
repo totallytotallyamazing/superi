@@ -753,4 +753,7 @@
   <data name="MoveTo" xml:space="preserve">
     <value>Переместить в</value>
   </data>
+  <data name="NoUserMatchesEmail" xml:space="preserve">
+    <value>Не существует пользователя с таким Email</value>
+  </data>
 </root>

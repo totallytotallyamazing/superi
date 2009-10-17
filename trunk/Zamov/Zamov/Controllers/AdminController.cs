@@ -377,6 +377,12 @@ namespace Zamov.Controllers
         [BreadCrumb(ResourceName = "Users", Url = "/Admin/Users")]
         public ActionResult Users(int? pageIndex)
         {
+            //List<UserPresentation> userPresentations = null;
+            //using (MembershipStorage context = new MembershipStorage())
+            //{
+            //    userPresentations = context.GetAllUsers();
+            //}
+
             int totalRecords;
             MembershipUserCollection users;
             if (SystemSettings.UsersPageSize > 0)

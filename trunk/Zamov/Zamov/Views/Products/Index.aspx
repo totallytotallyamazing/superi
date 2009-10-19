@@ -39,6 +39,33 @@
         
     </script>
     
+    <%
+
+        SortFieldNames? sortFieldName = null;
+        SortDirection? sortDirection = null;
+        SortDirection? invertSortDirection = null;
+
+        if (ViewData["sortFieldName"] != null && ViewData["sortDirection"] != null)
+        {
+            sortFieldName = (SortFieldNames)ViewData["sortFieldName"];
+            sortDirection = (SortDirection)ViewData["sortDirection"];
+
+            if (sortDirection == SortDirection.Ascending)
+                invertSortDirection = SortDirection.Descending;
+            else
+                invertSortDirection = SortDirection.Ascending;
+        }
+
+
+        string sortDealerId = ViewData["sortDealerId"].ToString();
+        int? groupId = (int)ViewData["groupId"];
+
+
+        //int dealerId = (int)ViewData["dealerId"];
+       
+    %>
+    
+    
     <% Html.RenderPartial("TopProducts"); %>
         
     <%if(Model.Count>0){ %>
@@ -50,10 +77,72 @@
             <%= Html.Hidden("groupId", ViewData["groupId"])%>
     <table class="commonTable" style="margin:35px 0 10px; width:100%;">
         <tr>
-            <th><%= Html.ResourceString("Name") %></th>
+            <th>
+            <table class="searchTableIneerHeader">
+                <tr>
+                    <td>
+                         <%
+                          if (sortFieldName == null)
+                          {    
+                        %>
+                        <%=Html.ResourceActionLink("Name", "Index", new { dealerId = sortDealerId, groupId = groupId, sortFieldName = SortFieldNames.Name, sortDirection = SortDirection.Ascending })%>
+                        <%}
+                          else
+                          {%>
+                          <%=Html.ResourceActionLink("Name", "Index", new { dealerId = sortDealerId, groupId = groupId, sortFieldName = SortFieldNames.Name, sortDirection = invertSortDirection })%>
+                        <%} %>
+                    </td>
+                    <td>
+                       <%if (sortFieldName == SortFieldNames.Name)
+                         { if (sortDirection == SortDirection.Ascending)
+                          {%>
+                        <%=Html.Image("~/Content/images/sort_up.gif", new { style = "border-style:none" })%>
+                        <%}
+                          else
+                          { %>
+                        <%=Html.Image("~/Content/images/sort_down.gif", new { style = "border-style:none" })%>
+                        
+                        <%}
+                         } %>
+                    </td>
+                </tr>
+                </table> 
+                        
+            </th>
             <th style="width:20px;"><%= Html.ResourceString("Description") %></th>
             <th style="width:20px;"><%= Html.ResourceString("MeassureUnit") %></th>
-            <th style="width:20px;"><%= Html.ResourceString("Price") %>, грн.</th>
+            <th style="width:20px;">
+            <table class="searchTableIneerHeader">
+                <tr>
+                    <td>
+                        <%
+                          if (sortFieldName == null)
+                          {    
+                        %>
+                        <%=Html.ResourceActionLink("Price", "Index", new { sortFieldName = SortFieldNames.Price, sortDirection = SortDirection.Ascending })%>, грн.
+                        <%}
+                          else
+                          {%>
+                          <%=Html.ResourceActionLink("Price", "Index", new { sortFieldName = SortFieldNames.Price, sortDirection = invertSortDirection })%>, грн.
+                        <%} %>
+                    </td>
+                    <td>
+                       <%if (sortFieldName == SortFieldNames.Price)
+                         { if (sortDirection == SortDirection.Ascending)
+                          {%>
+                        <%=Html.Image("~/Content/images/sort_up.gif", new { style = "border-style:none" })%>
+                        <%}
+                          else
+                          { %>
+                        <%=Html.Image("~/Content/images/sort_down.gif", new { style = "border-style:none" })%>
+                        
+                        <%}
+                         } %>
+                    </td>
+                </tr>
+                </table>
+            
+            </th>
             <th style="width:20px;"><%= Html.ResourceString("Quantity") %></th>
             <th style="width:20px;"><%= Html.ResourceString("ToOrder") %></th>
         </tr>

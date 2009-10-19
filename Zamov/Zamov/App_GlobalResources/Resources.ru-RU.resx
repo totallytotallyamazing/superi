@@ -756,4 +756,10 @@
   <data name="NoUserMatchesEmail" xml:space="preserve">
     <value>Не существует пользователя с таким Email</value>
   </data>
+  <data name="EnterEmail" xml:space="preserve">
+    <value>Введите адресс своего почтового ящика:</value>
+  </data>
+  <data name="ForgotPassword" xml:space="preserve">
+    <value>Забыли пароль?</value>
+  </data>
 </root>

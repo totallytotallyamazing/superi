@@ -10,3 +10,9 @@
         <%=Html.ResourceString("PasswordHasBeenChanged")%>
     </p>
 </asp:Content>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="includes" runat="server">
+    <style type="text/css">
+        #leftSide{border:none !important;}
+    </style>
+</asp:Content>

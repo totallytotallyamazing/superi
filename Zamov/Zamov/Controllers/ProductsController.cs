@@ -6,6 +6,7 @@ using System.Data.Objects;
 using System.Data;
 using Zamov.Helpers;
 using System;
+using System.Web.UI.WebControls;
 
 namespace Zamov.Controllers
 {
@@ -18,8 +19,13 @@ namespace Zamov.Controllers
         private const int MaxTopProductsNumber = 5;
 
         [BreadCrumb(SubCategoryId = true)]
-        public ActionResult Index(string dealerId, int? groupId)
+        public ActionResult Index(string dealerId, int? groupId, SortFieldNames? sortFieldName, SortDirection? sortDirection)
         {
+            
+            ViewData["sortDirection"] = sortDirection;
+            ViewData["sortFieldName"] = sortFieldName;
+            ViewData["sortDealerId"] = dealerId;
+            
             using (ZamovStorage context = new ZamovStorage())
             {
                 int dealer = context.Dealers.Where(d => d.Name == dealerId).Select(d => d.Id).First();
@@ -43,7 +49,30 @@ namespace Zamov.Controllers
 
                 ViewData["topProducts"] = GetTopProducts(products);
 
-                return View(RemoveTopProducts(products));
+                
+                
+                //return View(RemoveTopProducts(products));
+
+                products = RemoveTopProducts(products);
+
+                
+                if (sortFieldName != null && sortDirection != null)
+                    switch (sortFieldName)
+                    {
+                        case SortFieldNames.Name:
+                            if (sortDirection == SortDirection.Ascending)
+                                products.Sort(new PSortByProductNameAsc());
+                            else
+                                products.Sort(new PSortByProductNameDesc());
+                            break;
+                        case SortFieldNames.Price:
+                            if (sortDirection == SortDirection.Ascending)
+                                products.Sort(new PSortByPriceAsc());
+                            else
+                                products.Sort(new PSortByPriceDesc());
+                            break;
+                    }
+                return View(products);
             }
         }
 

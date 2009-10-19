@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     
-    ¬аш обл≥ковий запис успiшно активовано. ¬вед≥ть ваш Email ≥ пароль щаб ув≥йти до системи.
+    ¬аш обл≥ковий запис успiшно активовано. ¬вед≥ть ваш e-mail ≥ пароль, щоб ув≥йти до системи.
 
 </asp:Content>
 

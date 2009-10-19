@@ -17,7 +17,7 @@ namespace Zamov.Helpers
             return client;
         }
 
-        public static bool SendMessage(string from, List<MailAddress> to, string body, bool isBodyHtml)
+        public static bool SendMessage(string from, List<MailAddress> to, string body, string subject, bool isBodyHtml)
         {
             SmtpClient client = PrepareClient();
             bool result = true;
@@ -25,6 +25,7 @@ namespace Zamov.Helpers
             {
                 MailMessage message = new MailMessage();
                 message.Body = body;
+                message.Subject = subject;
                 to.ForEach(t => message.To.Add(t));
                 message.From = new MailAddress(from);
                 message.IsBodyHtml = isBodyHtml;
@@ -40,11 +41,11 @@ namespace Zamov.Helpers
         public static bool SendTemplate(string from, List<MailAddress> to, string template ,bool isBodyHtml)
         {
 
-            return SendTemplate(from, to, template, string.Empty, isBodyHtml, null);
+            return SendTemplate(from, to, string.Empty, template, string.Empty, isBodyHtml, null);
         }
 
 
-        public static bool SendTemplate(string from, List<MailAddress> to, string template, string Language, bool isBodyHtml, params object[] replacements)
+        public static bool SendTemplate(string from, List<MailAddress> to, string subject, string template, string Language, bool isBodyHtml, params object[] replacements)
         {
             string languageFolder = (string.IsNullOrEmpty(Language)) ? string.Empty : Language + "/";  
             string filePath = HttpContext.Current.Server.MapPath("~/Content/MailTemplates/" + languageFolder + template);
@@ -53,7 +54,7 @@ namespace Zamov.Helpers
             string body = reader.ReadToEnd();
             string formattedBody = (replacements!=null && replacements.Length>0) ? string.Format(body, replacements) : body;
             reader.Close();
-            return SendMessage(from, to, formattedBody, isBodyHtml);
+            return SendMessage(from, to, formattedBody, subject, isBodyHtml);
         }
     }
 }

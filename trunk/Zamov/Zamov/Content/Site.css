@@ -177,3 +177,5 @@ td.action{background-image: url(img/action.jpg)}
 td.new{background-image: url(img/new.jpg)}
 
 .searchTableIneerHeader td{ border:none; border-style:none}
+
+#logonCell a{font-size:x-small;}

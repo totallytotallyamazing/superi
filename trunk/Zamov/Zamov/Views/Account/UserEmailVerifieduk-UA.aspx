@@ -1,26 +1,13 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	UserEmailVerifieduk-UA
-</asp:Content>
-
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-
-    <h2>UserEmailVerifieduk-UA</h2>
+    
+    ¬аш обл≥ковий запис успiшно активовано. ¬вед≥ть ваш Email ≥ пароль щаб ув≥йти до системи.
 
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="includes" runat="server">
-</asp:Content>
-
-<asp:Content ID="Content4" ContentPlaceHolderID="ContentTop" runat="server">
-</asp:Content>
-
-<asp:Content ID="Content5" ContentPlaceHolderID="leftMenu" runat="server">
-</asp:Content>
-
-<asp:Content ID="Content6" ContentPlaceHolderID="dealerLogo" runat="server">
-</asp:Content>
-
-<asp:Content ID="Content7" ContentPlaceHolderID="ContentBottom" runat="server">
+    <style type="text/css">
+        #leftSide{border:none !important;}
+    </style>
 </asp:Content>

@@ -47,3 +47,7 @@ margin-right:40px;
 
 .logOnProperties{padding:10px;}
 #dealerOrdersInfo{padding-left:10px;}
+
+#logonCell a{font-size:x-small;}
+
+.validationError{color:Red;}

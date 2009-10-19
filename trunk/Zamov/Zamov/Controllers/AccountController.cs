@@ -90,9 +90,10 @@ namespace Zamov.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult ResetPassword(string email)
+        [CaptchaValidation("captcha")]
+        public ActionResult ResetPassword(string email, bool captchaValid)
         {
-            MembershipUser user = ValidateResetPassword(email);
+            MembershipUser user = ValidateResetPassword(email, captchaValid);
             if (user != null)
             {
                 string newPassword = user.ResetPassword();
@@ -115,7 +116,7 @@ namespace Zamov.Controllers
             return View("PasswordReseted" + SystemSettings.CurrentLanguage);
         }
 
-        private MembershipUser ValidateResetPassword(string email)
+        private MembershipUser ValidateResetPassword(string email, bool captchaValid)
         {
             MembershipUser user = null;
             if (string.IsNullOrEmpty(email))
@@ -123,6 +124,8 @@ namespace Zamov.Controllers
             Regex regex = new Regex("^(?:[a-zA-Z0-9_'^&amp;/+-])+(?:\\.(?:[a-zA-Z0-9_'^&amp;/+-])+)*@(?:(?:\\[?(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?))\\.){3}(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\]?)|(?:[a-zA-Z0-9-]+\\.)+(?:[a-zA-Z]){2,}\\.?)$");
             if (!regex.IsMatch(email))
                 ModelState.AddModelError("email", ResourcesHelper.GetResourceString("EmailIncorrect"));
+            if (!captchaValid)
+                ModelState.AddModelError("captchaCheck", ResourcesHelper.GetResourceString("IncorrectCaptcha"));
             if (ModelState.IsValid)
             {
                 user = Membership.GetUser(email);
@@ -210,8 +213,8 @@ namespace Zamov.Controllers
 
                     MailHelper.SendTemplate("no-reply@zamov.net",
                         new List<MailAddress> { new MailAddress(email) },
-                        "activateAccount",
                         "Zamov.net",
+                        "activateAccount",
                         SystemSettings.CurrentLanguage,
                         false,
                         linkBase + "/Account/UserEmailVerified?guid=" + user.ProviderUserKey);

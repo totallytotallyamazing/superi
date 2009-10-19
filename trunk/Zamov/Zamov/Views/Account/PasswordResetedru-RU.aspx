@@ -1,26 +1,12 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	PasswordResetedru-RU
-</asp:Content>
-
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-
-    <h2>PasswordResetedru-RU</h2>
-
+    <h2>Пароль успешно сброшен</h2>
+    Воспользуйтесь новым паролем, который был выслан на указанный почтовый ящик.
 </asp:Content>
 
-<asp:Content ID="Content3" ContentPlaceHolderID="includes" runat="server">
-</asp:Content>
-
-<asp:Content ID="Content4" ContentPlaceHolderID="ContentTop" runat="server">
-</asp:Content>
-
-<asp:Content ID="Content5" ContentPlaceHolderID="leftMenu" runat="server">
-</asp:Content>
-
-<asp:Content ID="Content6" ContentPlaceHolderID="dealerLogo" runat="server">
-</asp:Content>
-
-<asp:Content ID="Content7" ContentPlaceHolderID="ContentBottom" runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="includes" runat="server">
+    <style type="text/css">
+        #leftSide{border:none !important;}
+    </style>
 </asp:Content>

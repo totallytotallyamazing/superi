@@ -6,21 +6,12 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>UserEmailVerifiedru-RU</h2>
+    ¬аша учетна€ запись успешно активированна. ¬ведите ван емейл и пароль чтобы войти в систему.
 
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="includes" runat="server">
-</asp:Content>
-
-<asp:Content ID="Content4" ContentPlaceHolderID="ContentTop" runat="server">
-</asp:Content>
-
-<asp:Content ID="Content5" ContentPlaceHolderID="leftMenu" runat="server">
-</asp:Content>
-
-<asp:Content ID="Content6" ContentPlaceHolderID="dealerLogo" runat="server">
-</asp:Content>
-
-<asp:Content ID="Content7" ContentPlaceHolderID="ContentBottom" runat="server">
+    <style type="text/css">
+        #leftSide{border:none !important;}
+    </style>
 </asp:Content>

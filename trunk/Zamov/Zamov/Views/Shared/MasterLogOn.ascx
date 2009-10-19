@@ -12,7 +12,7 @@
     <table cellspacing="5">
         <tr>
             <td>
-                <%= Html.ResourceString("Login")%>:
+                Email:<%--<%= Html.ResourceString("Login")%>:--%>
             </td>
             <td>
                 <input type="text" id="userName" name="userName" class="logonInput" name="" />
@@ -34,8 +34,8 @@
         </tr>
         <tr>
             <td></td>
-            <td>
-                <input type="submit" value="<%= Html.ResourceString("LogOn") %>" />
+            <td valign="middle" id="logonCell">
+                <input type="submit" value="<%= Html.ResourceString("LogOn") %>" /> <%= Html.ResourceActionLink("ForgotPassword", "ResetPassword", "Account") %>
             </td>
         </tr>
     </table>

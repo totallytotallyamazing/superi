@@ -1,28 +1,32 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage" %>
-
-<asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-</asp:Content>
-
-<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">]
+<%@ Import Namespace="Zamov.Helpers" %>
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+    <p>
+        <%= Html.ResourceString("EnterEmail") %>
+    </p>
     <% using(Html.BeginForm()){ %>
     <%= Html.ValidationSummary() %>
     <%= Html.TextBox("email") %>
-    <%= Html.ValidationMessage("email") %>
-    <input type=submit value="Go" />
+    <%= Html.ValidationMessage("email", "*", new { @class = "validationError" })%>
+    <br />
+    <table>
+        <tr valign="middle">
+            <td>
+                <%= Html.TextBox("captcha") %>
+                <%= Html.ValidationMessage("captchaCheck", "*", new { @class = "validationError" })%>
+            </td>
+            <td>
+                <%= Html.CaptchaImage(50, 150)%><br />
+            </td>
+        </tr>
+    </table>
+    <br />
+    <input type="submit" value="<%= Html.ResourceString("Send") %>" />
     <%} %>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="includes" runat="server">
-</asp:Content>
-
-<asp:Content ID="Content4" ContentPlaceHolderID="ContentTop" runat="server">
-</asp:Content>
-
-<asp:Content ID="Content5" ContentPlaceHolderID="leftMenu" runat="server">
-</asp:Content>
-
-<asp:Content ID="Content6" ContentPlaceHolderID="dealerLogo" runat="server">
-</asp:Content>
-
-<asp:Content ID="Content7" ContentPlaceHolderID="ContentBottom" runat="server">
+    <style type="text/css">
+        #leftSide{border:none !important;}
+    </style>
 </asp:Content>

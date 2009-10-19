@@ -99,6 +99,7 @@ namespace Zamov.Controllers
                 
                 MailHelper.SendTemplate("no-reply@zamov.net", 
                     new List<MailAddress> { new MailAddress(email) }, 
+                    "Zamov.net",
                     "resetPassword", 
                     SystemSettings.CurrentLanguage, 
                     false, 
@@ -210,23 +211,24 @@ namespace Zamov.Controllers
                     MailHelper.SendTemplate("no-reply@zamov.net",
                         new List<MailAddress> { new MailAddress(email) },
                         "activateAccount",
+                        "Zamov.net",
                         SystemSettings.CurrentLanguage,
                         false,
                         linkBase + "/Account/UserEmailVerified?guid=" + user.ProviderUserKey);
-                    return RedirectToAction("UserEmailVerification");
+                    return RedirectToAction("UserEmailVerification", new { email = email });
                 }
                 else
                 {
                     ModelState.AddModelError("_FORM", ErrorCodeToString(createStatus));
                 }
             }
-
             // If we got this far, something failed, redisplay form
             return View();
         }
 
-        public ActionResult UserEmailVerification()
+        public ActionResult UserEmailVerification(string email)
         {
+            ViewData["email"] = email;
             return View("UserEmailVerification" + SystemSettings.CurrentLanguage);
         }
 

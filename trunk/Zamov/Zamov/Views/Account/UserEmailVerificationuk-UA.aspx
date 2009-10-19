@@ -1,26 +1,8 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	UserEmailVerificationuk-UA
-</asp:Content>
-
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-
-    <h2>UserEmailVerificationuk-UA</h2>
-
-</asp:Content>
-
-<asp:Content ID="Content3" ContentPlaceHolderID="includes" runat="server">
-</asp:Content>
-
-<asp:Content ID="Content4" ContentPlaceHolderID="ContentTop" runat="server">
-</asp:Content>
-
-<asp:Content ID="Content5" ContentPlaceHolderID="leftMenu" runat="server">
-</asp:Content>
-
-<asp:Content ID="Content6" ContentPlaceHolderID="dealerLogo" runat="server">
-</asp:Content>
-
-<asp:Content ID="Content7" ContentPlaceHolderID="ContentBottom" runat="server">
+    <h2>Вітаємо!</h2>
+    Реєстрація майже завершена.<br />
+    Будь ласка, перевірте Вашу поштову скриньку <%= ViewData["email"] %> і пройдіть по лінку, який вказаний в листі. <br />
+    В більшості випадків листи приходять протягом однієї хвилини, але інколи для цього потрібно до 10 хвилин.
 </asp:Content>

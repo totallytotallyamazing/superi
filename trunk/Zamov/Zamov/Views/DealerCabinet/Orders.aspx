@@ -81,22 +81,22 @@
 
     <table class="commonTable" id="orderTable">
         <tr>
-            <th>
+            <th style="width:20px;">
                 № <%=Html.ResourceString("OfOrder")%>
             </th>
-            <th>
+            <th style="width:40px;">
                 <%=Html.ResourceString("OrderDeliveryDateTime")%>
             </th>
-            <th>
+            <th style="width:40px;">
                 <%=Html.ResourceString("OrderInfo")%>
             </th>
-            <th>
+            <th style="width:330px;">
                 <%=Html.ResourceString("Comments")%>
             </th>
-            <th>
+            <th style="width:20px;">
                 <%=Html.ResourceString("Price")%>, грн.
             </th>
-            <th>
+            <th style="width:20px;">
                 <%=Html.ResourceString("Status")%>
             </th>
         </tr>
@@ -121,19 +121,21 @@
             
             </td>
             <td>
-            <%=Html.Encode(item.Comments+" ")%>
-            <%if (!string.IsNullOrEmpty(item.DiscountCardNumber))
-              {
-                  if (item.Status == (int)Statuses.Accepted)
+                <div style="width:330px; overflow:hidden; text-overflow:ellipsis;">
+                <%=Html.Encode(item.Comments+" ")%>
+                <%if (!string.IsNullOrEmpty(item.DiscountCardNumber))
                   {
-                  %>
-              <%=Html.ResourceString("CardNumber")%>: <%=Html.Encode(item.DiscountCardNumber)%>
-              
-            <%}
-                  else { %>
-                      <%=Html.ResourceString("CardNumber")%>: ******
-                 <% }
-              } %>
+                      if (item.Status == (int)Statuses.Accepted)
+                      {
+                      %>
+                  <%=Html.ResourceString("CardNumber")%>: <%=Html.Encode(item.DiscountCardNumber)%>
+                  
+                <%}
+                      else { %>
+                          <%=Html.ResourceString("CardNumber")%>: ******
+                     <% }
+                  } %>
+                </div>
             </td>
             <td align="right">
                 <%= Html.Encode(((decimal)item.OrderItems.Sum(oi=>oi.Quantity * oi.Price)).ToString("N"))%>

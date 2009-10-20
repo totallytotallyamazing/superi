@@ -55,7 +55,6 @@ namespace Zamov.Controllers
                                                                 join dealerName in context.Translations on product.Dealer.Id equals dealerName.ItemId
                                                                 where dealerName.TranslationItemTypeId == (int)ItemTypes.DealerName
                                                                 && dealerName.Language == SystemSettings.CurrentLanguage
-                                                                //orderby product.Name ascending
                                                                 select new ProductSearchPresentation
                                                                 {
                                                                     DealerId = product.Dealer.Id,
@@ -66,23 +65,6 @@ namespace Zamov.Controllers
                                                                     Unit = product.Unit
                                                                 }
                                                                     ).ToList();
-
-                    /*
-                    if (sortFieldName != null)
-                        switch (sortFieldName.ToLower())
-                        {
-                            case "name":
-                                products.OrderByWithDirection(x => x.Name, sortDirectionDesc);
-                                break;
-                            case "price":
-                                products.OrderByWithDirection(x => x.Price, sortDirectionDesc);
-                                break;
-                            case "dealer":
-                                products.OrderByWithDirection(x => x.DealerName, sortDirectionDesc);
-                                break;
-                        }
-                    */
-
 
                     if (sortFieldName != null && sortDirection != null)
                     switch (sortFieldName)

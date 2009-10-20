@@ -14,6 +14,8 @@ using System;
 using System.Globalization;
 using System.Web.Profile;
 using System.Configuration;
+using System.Reflection;
+using System.Web.UI.WebControls;
 
 namespace Zamov.Controllers
 {
@@ -375,46 +377,62 @@ namespace Zamov.Controllers
 
         #region Users
         [BreadCrumb(ResourceName = "Users", Url = "/Admin/Users")]
-        public ActionResult Users(int? pageIndex)
+        public ActionResult Users(int? pageIndex, string userType, string sortField, SortDirection? sortOrder)
         {
-            //List<UserPresentation> userPresentations = null;
-            //using (MembershipStorage context = new MembershipStorage())
-            //{
-            //    userPresentations = context.GetAllUsers();
-            //}
+            ViewData["sortField"] = sortField;
+            SortDirection sortDirection = (sortOrder == SortDirection.Ascending || sortOrder == null) ? SortDirection.Ascending : SortDirection.Descending;
+            ViewData["sortDirection"] = sortDirection;
 
-            int totalRecords;
-            MembershipUserCollection users;
-            if (SystemSettings.UsersPageSize > 0)
+            ViewData["userType"] = userType;
+            List<UserPresentation> users = null;
+            using (MembershipStorage context = new MembershipStorage())
             {
-                int index = pageIndex ?? 0;
-                users = Membership.GetAllUsers(index, SystemSettings.UsersPageSize, out totalRecords);
+                users = context.GetAllUsers();
             }
-            else
+
+            HttpContext.Items["Dealers"] = Dealer.GetDealerPresentations(SystemSettings.CurrentLanguage);
+
+            switch (userType)
             {
-                users = Membership.GetAllUsers();
-                totalRecords = users.Count;
+                case "dealers":
+                    users = users.Where(u => u.DealerEmployee).Select(u => u).ToList();
+                    break;
+                case "custmers":
+                    users = users.Where(u => !u.DealerEmployee).Select(u => u).ToList();
+                    break;
+                default:
+                    users = users.Where(u => !u.DealerEmployee).Select(u => u).ToList();
+                    break;
             }
+
+
+            if (!string.IsNullOrEmpty(sortField))
+            {
+                int direction = (sortOrder == SortDirection.Ascending || sortOrder == null) ? direction = 1 : direction = -1;
+
+                users.Sort(delegate(UserPresentation a, UserPresentation b)
+                        {
+                            return ((IComparable)a.GetType().GetProperty(sortField).GetValue(a, null)).CompareTo(
+                                (IComparable)a.GetType().GetProperty(sortField).GetValue(b, null)) * direction;
+                        }
+                    );
+            }
+
             return View(users);
         }
 
-        public ActionResult UserDetails(MembershipUser user)
+        public ActionResult UserDetails(UserPresentation user)
         {
-            using (ZamovStorage context = new ZamovStorage())
-            {
-                ProfileCommon profile = ProfileCommon.Create(user.UserName);
-                int dealerId = profile.DealerId;
-                var dealers = (from dealer in context.Dealers select dealer).ToList();
-                List<SelectListItem> dealerItems = (from dealer in dealers
-                                                    select new SelectListItem
-                                                    {
-                                                        Text = dealer.GetName(SystemSettings.CurrentLanguage),
-                                                        Value = dealer.Id.ToString(),
-                                                        Selected = dealer.Id == dealerId
-                                                    }).ToList();
-                ViewData["dealerId"] = dealerItems;
-                return View(user);
-            }
+            List<DealerPresentation> dealers = (List<DealerPresentation>)HttpContext.Items["Dealers"];
+            List<SelectListItem> dealerItems = (from dealer in dealers
+                                                select new SelectListItem
+                                                {
+                                                    Text = dealer.Name,
+                                                    Value = dealer.Id.ToString(),
+                                                    Selected = dealer.Id == user.DealerId
+                                                }).ToList();
+            ViewData["dealerId"] = dealerItems;
+            return View(user);
         }
 
         [AcceptVerbs(HttpVerbs.Post)]

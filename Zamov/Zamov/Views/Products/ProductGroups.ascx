@@ -47,7 +47,7 @@
                                     sg.Name, 
                                     "Index", new 
                                     { 
-                                        dealerId = dealerId, 
+                                        dealerId = sg.DealerName, 
                                         groupId = sg.Id 
                                     }, 
                                     new 

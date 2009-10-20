@@ -36,7 +36,8 @@ namespace Zamov.Controllers
                 return View(news);
             }
         }
-
+        
+        [OutputCache(NoStore = true, VaryByParam = "*", Duration = 1)]
         public ActionResult Details(int id)
         {
             using (NewsStorage context = new NewsStorage())

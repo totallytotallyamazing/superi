@@ -1321,7 +1321,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to История Ваших покупок/сохраненные Вами корзины.
+        ///   Looks up a localized string similar to Історія Ваших придбань/збережені Вами кошики.
         /// </summary>
         internal static string OrdersHistory {
             get {

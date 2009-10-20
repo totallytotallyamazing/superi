@@ -400,7 +400,7 @@
     <value>Всього</value>
   </data>
   <data name="OrdersHistory" xml:space="preserve">
-    <value>История Ваших покупок/сохраненные Вами корзины</value>
+    <value>Історія Ваших придбань/збережені Вами кошики</value>
   </data>
   <data name="CartItemsCount" xml:space="preserve">
     <value>В кошику товарiв</value>

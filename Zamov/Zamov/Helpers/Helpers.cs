@@ -107,7 +107,7 @@ namespace Zamov.Helpers
             return helper.ActionLink(linkText, actionName, routeValues);
         }
 
-        public static string ResourceSortHeader(this System.Web.Mvc.HtmlHelper helper, string resourceName, string targetUrl, string sortField)
+        public static string ResourceSortHeader(this System.Web.Mvc.HtmlHelper helper, string resourceName, string targetUrl, string sortField, string additionalParams)
         {
             string text = ResourcesHelper.GetResourceString(resourceName);
             string linkFormat = "<a href=\"{0}\">{1}</a>{2}";
@@ -123,7 +123,7 @@ namespace Zamov.Helpers
                 imageLayout = String.Format(imageFormat, sortDirection.ToString().ToLower());
             }
 
-            string link = String.Format("{0}?sortField={1}&sortOrder={2}", targetUrl, sortField, sortOrder);
+            string link = String.Format("{0}?sortField={1}&sortOrder={2}&{3}", targetUrl, sortField, sortOrder, additionalParams);
             string linkLayout = String.Format(linkFormat, link, text, imageLayout);
 
             return linkLayout;

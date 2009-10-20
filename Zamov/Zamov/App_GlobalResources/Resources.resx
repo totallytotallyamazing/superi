@@ -762,4 +762,7 @@
   <data name="ForgotPassword" xml:space="preserve">
     <value>Забули пароль?</value>
   </data>
+  <data name="Customers" xml:space="preserve">
+    <value>Покупцi</value>
+  </data>
 </root>

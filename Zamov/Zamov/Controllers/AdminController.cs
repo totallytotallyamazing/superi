@@ -379,23 +379,23 @@ namespace Zamov.Controllers
         [BreadCrumb(ResourceName = "Users", Url = "/Admin/Users")]
         public ActionResult Users(int? pageIndex, string userType, string sortField, SortDirection? sortOrder)
         {
-            ViewData["sortField"] = sortField;
-            SortDirection sortDirection = (sortOrder == SortDirection.Ascending || sortOrder == null) ? SortDirection.Ascending : SortDirection.Descending;
-            ViewData["sortDirection"] = sortDirection;
 
-            ViewData["userType"] = userType;
+            HttpContext.Items["sortField"] = ViewData["sortField"] = sortField;
+            SortDirection sortDirection = (sortOrder == SortDirection.Ascending || sortOrder == null) ? SortDirection.Ascending : SortDirection.Descending;
+            HttpContext.Items["sortDirection"] = ViewData["sortDirection"] = sortDirection;
+
+            HttpContext.Items["userType"] = ViewData["userType"] = userType;
             List<UserPresentation> users = null;
             using (MembershipStorage context = new MembershipStorage())
             {
                 users = context.GetAllUsers();
             }
 
-            HttpContext.Items["Dealers"] = Dealer.GetDealerPresentations(SystemSettings.CurrentLanguage);
-
             switch (userType)
             {
                 case "dealers":
                     users = users.Where(u => u.DealerEmployee).Select(u => u).ToList();
+                    users.ForEach(u => { u.DealerName = BreadCrumbAttribute.DealerName(u.DealerId); });
                     break;
                 case "custmers":
                     users = users.Where(u => !u.DealerEmployee).Select(u => u).ToList();
@@ -416,11 +416,11 @@ namespace Zamov.Controllers
                             IComparable valueB = (IComparable)a.GetType().GetProperty(sortField).GetValue(b, null);
 
                             int result = 0;
-                            if(valueA == null && valueB==null)
+                            if (valueA == null && valueB == null)
                                 result = 0;
-                            else if(valueA == null)
+                            else if (valueA == null)
                                 result = -1;
-                            else if(valueB == null)
+                            else if (valueB == null)
                                 result = 1;
                             else
                                 result = valueA.CompareTo(valueB);
@@ -435,7 +435,28 @@ namespace Zamov.Controllers
 
         public ActionResult UserDetails(UserPresentation user)
         {
-            List<DealerPresentation> dealers = (List<DealerPresentation>)HttpContext.Items["Dealers"];
+            return View(user);
+        }
+
+        [OutputCache(Duration = 1, VaryByParam = "*", NoStore = true)]
+        public ActionResult UpdateUser(string id, string userType, string sortField, SortDirection? sortOrder)
+        {
+            ViewData["userType"] = userType;
+            ViewData["sortField"] = sortField;
+            ViewData["sortOrder"] = sortOrder;
+
+            UserPresentation user = MembershipExtensions.GetUserPresentation(id);
+
+            ViewData["email"] = user.Email;
+            ViewData["dealerEmployee"] = user.DealerEmployee;
+            ViewData["city"] = user.City;
+            ViewData["deliveryAddress"] = user.DeliveryAddress;
+            ViewData["firstName"] = user.FirstName;
+            ViewData["lastName"] = user.LastName;
+            ViewData["mobilePhone"] = user.MobilePhone;
+            ViewData["phone"] = user.Phone;
+
+            List<DealerPresentation> dealers = Dealer.GetDealerPresentations(SystemSettings.CurrentLanguage);
             List<SelectListItem> dealerItems = (from dealer in dealers
                                                 select new SelectListItem
                                                 {
@@ -444,32 +465,58 @@ namespace Zamov.Controllers
                                                     Selected = dealer.Id == user.DealerId
                                                 }).ToList();
             ViewData["dealerId"] = dealerItems;
-            return View(user);
+
+            return View();
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult UpdateUser(string userName, string firstName, string lastName, bool dealerEmployee, int dealerId)
+        public ActionResult UpdateUser(
+            string userType, 
+            string sortField, 
+            SortDirection? sortOrder,
+            string email,
+            string firstName,
+            string lastName,
+            string city,
+            string deliveryAddress, 
+            string phone,
+            string mobilePhone,
+            bool dealerEmployee,
+            int dealerId
+        )
         {
-            ProfileCommon profile = ProfileCommon.Create(userName) as ProfileCommon;
+            ProfileCommon profile = ProfileCommon.Create(email) as ProfileCommon;
             profile.FirstName = firstName;
             profile.LastName = lastName;
+            profile.DeliveryAddress = deliveryAddress;
+            profile.Phone = phone;
+            profile.MobilePhone = mobilePhone;
+            profile.City = city;
 
             if (dealerEmployee)
             {
                 profile.DealerEmployee = true;
                 profile.DealerId = dealerId;
-                if (!Roles.IsUserInRole(userName, "Dealers"))
-                    Roles.AddUserToRole(userName, "Dealers");
+                if (!Roles.IsUserInRole(email, "Dealers"))
+                    Roles.AddUserToRole(email, "Dealers");
             }
             else
             {
-                if (Roles.IsUserInRole(userName, "Dealers"))
-                    Roles.RemoveUserFromRole(userName, "Dealers");
+                if (Roles.IsUserInRole(email, "Dealers"))
+                    Roles.RemoveUserFromRole(email, "Dealers");
                 profile.DealerId = int.MinValue;
                 profile.DealerEmployee = false;
             }
+
             profile.Save();
-            return RedirectToAction("Users");
+
+            return RedirectToAction("Users", new { userType = userType, sortField = sortField, sortOrtder = sortOrder });
+        }
+
+        public ActionResult DeleteUser(string id, string userType, string sortField, SortDirection? sortOrder)
+        {
+            Membership.DeleteUser(id, true);
+            return RedirectToAction("Users", new { userType = userType, sortField = sortField, sortOrtder = sortOrder });
         }
         #endregion
 

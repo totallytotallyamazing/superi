@@ -308,6 +308,8 @@
     <Content Include="Content\img\cartBg.jpg" />
     <Content Include="Content\img\cartShadow.jpg" />
     <Content Include="Content\img\crossMark.jpg" />
+    <Content Include="Content\img\delete.png" />
+    <Content Include="Content\img\edit.png" />
     <Content Include="Content\img\new.jpg" />
     <Content Include="Content\img\newsSplitter.jpg" />
     <Content Include="Content\img\online.png" />
@@ -335,6 +337,8 @@
     <Content Include="Views\Admin\RemoveDealers.aspx" />
     <Content Include="Views\Admin\StartText.aspx" />
     <Content Include="Views\Admin\SubCategoryText.aspx" />
+    <Content Include="Views\Admin\UpdateUser.aspx" />
+    <Content Include="Views\Admin\UserTypeSelector.ascx" />
     <Content Include="Views\Cart\Expired.aspx" />
     <Content Include="Views\Dealer\DealerInfo.aspx" />
     <Content Include="Views\Shared\TopProducts.ascx" />

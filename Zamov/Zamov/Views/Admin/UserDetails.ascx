@@ -1,34 +1,80 @@
 <%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<UserPresentation>" %>
 <%@ Import Namespace="System.Web.Security" %>
 <%@ Import Namespace="System.Web.Profile" %>
+<%@ Import Namespace="Microsoft.Web.Mvc" %>
 <%@ Import Namespace="Zamov.Helpers" %>
 <%@ Import Namespace="Zamov.Models" %>
+    
+<% 
+    string userType = "customers";
+    if (!string.IsNullOrEmpty((string)ViewContext.HttpContext.Items["userType"]))
+        userType = (string)ViewContext.HttpContext.Items["userType"];
+%>
 
-
-<% using(Html.BeginForm("UpdateUser", "Admin", FormMethod.Post)){%>
 <tr>
     <td>
         <%= Model.Email%>
         <%= Html.Hidden("userName", Model.Email) %>
     </td>
     <td>
-        <%= Html.TextBox("firstName", Model.FirstName) %>
+        <%= Model.FirstName %>
     </td>
     <td>
-        <%= Html.TextBox("lastName", Model.LastName)%>
+        <%= Model.LastName %>
     </td>
-    <td align="center">
-        <%= Html.CheckBox("dealerEmployee", Model.DealerEmployee, new { rel = Model.Email })%>
+    <%if(userType=="dealers"){ %>
+    <td>
+        <%= Model.DealerName %>
+    </td>
+    <%} %>
+    <td>
+        <%= Ajax.ActionLink("[img]", 
+            "UpdateUser", 
+            new 
+            { 
+                id = Model.Email,
+                userType = ViewContext.HttpContext.Items["userType"],
+                sortField = ViewContext.HttpContext.Items["sortField"],
+                sortOrder = ViewContext.HttpContext.Items["sortOrder"] 
+            }, 
+            new AjaxOptions 
+            { 
+                InsertionMode = InsertionMode.Replace ,
+                UpdateTargetId = Model.GetHashCode().ToString(),
+                OnSuccess = "userUpdateLoaded",
+                OnBegin = "updateUserBegin",
+                OnComplete = "fadeScreenIn",
+                HttpMethod = "GET",
+                OnFailure = "failure"
+            }).Replace("[img]", Html.Image("~/Content/img/edit.png"))%>
     </td>
     <td>
-       <%= Html.DropDownList("dealerId")%>
+        <%= Html.ActionLink("[img]", "DeleteUser", new 
+        { 
+            id = Model.Email, 
+            userType = ViewContext.HttpContext.Items["userType"],
+            sortField = ViewContext.HttpContext.Items["sortField"],
+            sortOrder = ViewContext.HttpContext.Items["sortOrder"] 
+        }, 
+        new { onclick = "return confirm('" + Html.ResourceString("AreYouSure") + "?')" })
+        .Replace("[img]", Html.Image("~/Content/img/delete.png"))%>
     </td>
-    <td><input type="submit" value="<%= Html.ResourceString("Save") %>" /></td>
 </tr>
-<%} %>
+<tr>
+    <td colspan="5" class="updateUser" id="<%= Model.GetHashCode()%>"></td>
+</tr>
 
 <script type="text/javascript">
-    $(function() { 
-        
-    })
+    function updateUserBegin() {
+        $(".updateUser").html("").css("display", "none");
+        fadeScreenOut();
+    }
+
+    function userUpdateLoaded(response) {
+        var updateTarget = response.get_updateTarget();
+        $(updateTarget).slideDown("fast");
+    }
+
+    function failure(attr) {
+    }
 </script>

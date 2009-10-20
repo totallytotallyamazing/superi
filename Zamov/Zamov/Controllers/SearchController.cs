@@ -55,6 +55,7 @@ namespace Zamov.Controllers
                                                                 join dealerName in context.Translations on product.Dealer.Id equals dealerName.ItemId
                                                                 where dealerName.TranslationItemTypeId == (int)ItemTypes.DealerName
                                                                 && dealerName.Language == SystemSettings.CurrentLanguage
+                                                                && product.Group.Enabled && !product.Group.Deleted
                                                                 select new ProductSearchPresentation
                                                                 {
                                                                     DealerId = product.Dealer.Id,

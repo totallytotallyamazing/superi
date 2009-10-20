@@ -72,6 +72,43 @@
         <div class="logo">
             <%= Html.Image("~/Image/ShowLogo/" + order.DealerReference.EntityKey.EntityKeyValues[0].Value) %>
         </div>
+        <div>
+            <div class="paymentTypesHeader">
+                <%= Html.ResourceString("SelectPaymentType") %>
+            </div>
+            <div class="paymentTypes">
+                <center>
+                    <table>
+                        <% 
+                            int currentPaymentType = (int)PaymentTypes.Encash;
+                            if (ViewData["paymentType_" + order.GetHashCode()] != null)
+                            {
+                                currentPaymentType = Convert.ToInt32(ViewData["paymentType_" + order.GetHashCode()]);
+                            }
+                            List<SelectListItem> paymentTypes = new List<SelectListItem>();
+                            if (presentation.Cash)
+                                paymentTypes.Add(new SelectListItem { Text = Html.ResourceString("Encash"), Value = ((int)PaymentTypes.Encash).ToString(), Selected = currentPaymentType == (int)PaymentTypes.Encash });
+                            if (presentation.Card)
+                                paymentTypes.Add(new SelectListItem { Text = Html.ResourceString("Card"), Value = ((int)PaymentTypes.Card).ToString(), Selected = currentPaymentType == (int)PaymentTypes.Card });
+                            if (presentation.Noncash)
+                                paymentTypes.Add(new SelectListItem { Text = Html.ResourceString("Noncash"), Value = ((int)PaymentTypes.Noncash).ToString(), Selected = currentPaymentType == (int)PaymentTypes.Noncash });
+                            string[] options = Html.RadioButtonList("paymentType_" + order.GetHashCode(), paymentTypes);
+                            for (int i = 0; i < options.Length; i++)
+                            {%>
+                        <tr>
+                            <td>
+                                <%= paymentTypes[i].Text %>
+                            </td>
+                            <td>
+                                <%= options[i] %>
+                            </td>
+                        </tr>
+                        <%}
+                        %>
+                    </table>
+                </center>
+            </div>
+        </div>
         <%if (presentation.HasDiscounts){ %>
         <div class="discount">
             <%= Html.ResourceString("InputVoucher")%>
@@ -81,41 +118,7 @@
             </div>
         </div>
         <%} %>
-        <div class="paymentTypesHeader">
-            <%= Html.ResourceString("SelectPaymentType") %>
-        </div>
-        <div class="paymentTypes">
-            <center>
-                <table>
-                    <% 
-                        int currentPaymentType = (int)PaymentTypes.Encash;
-                        if (ViewData["paymentType_" + order.GetHashCode()] != null)
-                        {
-                            currentPaymentType = Convert.ToInt32(ViewData["paymentType_" + order.GetHashCode()]);
-                        }
-                        List<SelectListItem> paymentTypes = new List<SelectListItem>();
-                        if (presentation.Cash)
-                            paymentTypes.Add(new SelectListItem { Text = Html.ResourceString("Encash"), Value = ((int)PaymentTypes.Encash).ToString(), Selected = currentPaymentType == (int)PaymentTypes.Encash });
-                        if (presentation.Card)
-                            paymentTypes.Add(new SelectListItem { Text = Html.ResourceString("Card"), Value = ((int)PaymentTypes.Card).ToString(), Selected = currentPaymentType == (int)PaymentTypes.Card });
-                        if (presentation.Noncash)
-                            paymentTypes.Add(new SelectListItem { Text = Html.ResourceString("Noncash"), Value = ((int)PaymentTypes.Noncash).ToString(), Selected = currentPaymentType == (int)PaymentTypes.Noncash });
-                        string[] options = Html.RadioButtonList("paymentType_" + order.GetHashCode(), paymentTypes);
-                        for (int i = 0; i < options.Length; i++)
-                        {%>
-                    <tr>
-                        <td>
-                            <%= paymentTypes[i].Text %>
-                        </td>
-                        <td>
-                            <%= options[i] %>
-                        </td>
-                    </tr>
-                    <%}
-                    %>
-                </table>
-            </center>
-        </div>
+
     </div>
     <%} %>
     <div style="text-align: center; ">

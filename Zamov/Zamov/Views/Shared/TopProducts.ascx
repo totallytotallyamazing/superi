@@ -37,9 +37,11 @@
             <%foreach (Product item in topProducts)
               {%>
               <td>
-<%using (Html.BeginForm("AddToCart", "Products", FormMethod.Post)){%>
-                <%= Html.Hidden("dealerId", ViewData["dealerId"])%>
-                <%= Html.Hidden("groupId", ViewData["groupId"])%>             
+<%using (Html.BeginForm("AddToCart", "Products", FormMethod.Post)){
+      int dealerId = (int)ViewData["dealerId"];
+      %>
+                <input type="hidden" name="dealerId" value="<%= dealerId %>" />
+                <%= Html.Hidden("groupId")%>             
                 <%= Html.CheckBox("order_" + item.Id, true, new { style="margin-left:-8000px; position:absolute;" })%>
                 <%= Html.Hidden("quantity_" + item.Id, 1)%>
                 <div class="topImage">

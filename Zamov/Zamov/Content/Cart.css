@@ -1,11 +1,11 @@
 ﻿.orderDetails{ width:auto; text-align:center; padding-top:5px;margin-bottom:10px; }
 .orderDetails .logo{float:left; padding:0 10px;}
 .orderDetails .logo img{border:none;}
-.orderDetails .discount{float:left;}
+.orderDetails .discount{ margin-top:40px;}
 .orderDetails .discount .respectDiscount{color:Blue;}
 .orderDetails .paymentTypes{}
 .paymentTypes table td{padding:0 5px; text-align:left;}
-.orderDetails .paymentTypesHeader{margin-top:110px; font-size:1.2em; text-transform:uppercase; text-align:center;}
+.orderDetails .paymentTypesHeader{font-size:1.2em; text-transform:uppercase; text-align:center;}
 .orderDone{vertical-align:top; height:30px; text-align:center;}
 .orderValidation{vertical-align:top; height:60px; text-align:center;width:auto;}
 .orderDone table td{padding:5px;}

@@ -131,6 +131,7 @@ namespace Zamov.Models
             List<UserPresentation> result = new List<UserPresentation>();
 
             var users = (from user in context.aspnet_Users.Include("aspnet_Profile")
+                         where user.UserName != "root"
                          select new
                              {
                                  email = user.UserName,

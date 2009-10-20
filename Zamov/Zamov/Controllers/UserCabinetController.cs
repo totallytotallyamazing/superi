@@ -120,7 +120,7 @@ namespace Zamov.Controllers
                         ObjectQuery<Product> productsQuery = new ObjectQuery<Product>(
                                         "SELECT VALUE P FROM Products AS P WHERE P.Id IN {" + productIdsCondition + "}",
                                         zamovContext);
-                        products = productsQuery.Where(p=>!p.Deleted).ToDictionary(pr => pr.Id);
+                        products = productsQuery.Where(p=>!p.Deleted && !p.Group.Deleted).ToDictionary(pr => pr.Id);
                     }
                 }
                 

@@ -14,6 +14,7 @@ namespace Zamov.Models
         public string Phone { get; set; }
         public bool DealerEmployee { get; set; }
         public int DealerId { get; set; }
+        public string DealerName { get; set; }
         public string DeliveryAddress { get; set; }
         public string City { get; set; }
 

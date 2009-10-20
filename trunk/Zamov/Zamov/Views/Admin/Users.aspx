@@ -9,16 +9,26 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
+    <% 
+        string userType = "customers";
+        if (!string.IsNullOrEmpty((string)ViewData["userType"]))
+            userType = (string)ViewData["userType"];
+    %>
+
     <h2><%= Html.ResourceString("Users") %></h2>
     <br />
     
+    <% Html.RenderPartial("UserTypeSelector"); %>
+    
     <table class="adminTable">
         <tr>
-            <th><%= Html.ResourceSortHeader("Username", "/Admin/Users/", "Email") %></th>
-            <th><%= Html.ResourceSortHeader("FirstName", "/Admin/Users/", "FirstName")%></th>
-            <th><%= Html.ResourceSortHeader("LastName", "/Admin/Users/", "LastName")%></th>
-            <th><%= Html.ResourceString("Manager") %></th>
-            <th><%= Html.ResourceString("Dealer") %></th>
+            <th><%= Html.ResourceSortHeader("Username", "/Admin/Users/", "Email", "userType=" + ViewData["userType"]) %></th>
+            <th><%= Html.ResourceSortHeader("FirstName", "/Admin/Users/", "FirstName", "userType=" + ViewData["userType"])%></th>
+            <th><%= Html.ResourceSortHeader("LastName", "/Admin/Users/", "LastName", "userType=" + ViewData["userType"])%></th>
+            <%if(userType == "dealers"){ %>
+            <th><%= Html.ResourceSortHeader("Dealer", "/Admin/Users/", "DealerName", "userType=" + ViewData["userType"])%></th>
+            <%} %>
+            <th></th>
             <th></th>
         </tr>
         <tr>

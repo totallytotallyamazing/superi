@@ -73,6 +73,29 @@ namespace Zamov.Models
             return result;
         }
 
+        public static UserPresentation GetUserPresentation(string userId)
+        {
+            UserPresentation result = new UserPresentation();
+            using (MembershipStorage context = new MembershipStorage())
+            {
+
+                var userRecord = (from user in context.aspnet_Users.Include("aspnet_Profile")
+                             where user.UserName == userId
+                             select new
+                             {
+                                 email = user.UserName,
+                                 profileProperties = user.aspnet_Profile.PropertyNames,
+                                 profileValues = user.aspnet_Profile.PropertyValuesString
+                             }).FirstOrDefault();
+
+                Dictionary<string, string> profileProperties = GetProfileProperties(userRecord.profileProperties.Split(':'), userRecord.profileValues);
+                result = GetUserPresentation(profileProperties);
+                if (result != null)
+                    result.Email = userId;
+            }
+            return result;
+        }
+
         private static UserPresentation GetUserPresentation(Dictionary<string, string> profileProperties)
         {
             UserPresentation result = null;
@@ -119,7 +142,7 @@ namespace Zamov.Models
             {
                 Dictionary<string,string> profileProperties = GetProfileProperties(item.profileProperties.Split(':'), item.profileValues);
                 UserPresentation user = GetUserPresentation(profileProperties);
-                if (users != null)
+                if (user != null)
                 {
                     user.Email = item.email;
                     result.Add(user);

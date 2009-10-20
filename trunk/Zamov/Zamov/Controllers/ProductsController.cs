@@ -33,7 +33,7 @@ namespace Zamov.Controllers
             if (groupId != null)
                 BreadCrumbAttribute.ProcessGroup(groupId.Value, HttpContext);
 
-            List<Group> groups = (from g in context.Groups.Include("Groups") where g.Dealer.Id == dealer select g).ToList();
+                List<Group> groups = (from g in context.Groups.Include("Groups").Include("Dealer") where g.Dealer.Id == dealer select g).ToList();
                 ViewData["groups"] = groups;
                 ViewData["dealerId"] = dealer;
                 ViewData["groupId"] = groupId;
@@ -117,7 +117,8 @@ namespace Zamov.Controllers
                               {
                                   Id = gr.Id,
                                   Name = translation.Text,
-                                  ParentId = (gr.Parent != null) ? (int?)gr.Parent.Id : null
+                                  ParentId = (gr.Parent != null) ? (int?)gr.Parent.Id : null,
+                                  DealerName = gr.Dealer.Name
                               }
                               ).ToList();
             }

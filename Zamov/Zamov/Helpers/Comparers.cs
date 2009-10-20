@@ -6,6 +6,10 @@ using Zamov.Models;
 
 namespace Zamov.Helpers
 {
+
+    //TODO: http://social.msdn.microsoft.com/Forums/en-US/adodotnetentityframework/thread/22011e56-1269-44ec-947c-6b6fe2ad42cb
+
+
     public class PSortByProductNameAsc : IComparer<Product>
     {
         public int Compare(Product x, Product y)

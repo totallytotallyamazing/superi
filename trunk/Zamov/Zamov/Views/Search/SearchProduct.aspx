@@ -193,7 +193,7 @@
                 <%= Html.Encode(String.Format("{0:F}", item.Price))%>
             </td>
             <td align="left">
-                
+                <%= Html.Encode(item.Description)%>
             </td>
             <td align="center">
                 <%= Html.TextBox("quantity_" + item.Id, null, new { style = "width:24px; font-size:10px; text-align:center", onkeyup = "validateQuantity(this); order(this)" })%>

@@ -168,6 +168,7 @@
                 </tr>
                 </table>
             </th>
+            <th style="width:20px;"><%= Html.ResourceString("Description") %></th>
             <th style="width:20px;"><%= Html.ResourceString("Quantity") %></th>
             <th style="width:20px;"><%= Html.ResourceString("ToOrder") %></th>
         </tr>
@@ -190,6 +191,9 @@
             </td>
             <td  align="right">
                 <%= Html.Encode(String.Format("{0:F}", item.Price))%>
+            </td>
+            <td align="left">
+                
             </td>
             <td align="center">
                 <%= Html.TextBox("quantity_" + item.Id, null, new { style = "width:24px; font-size:10px; text-align:center", onkeyup = "validateQuantity(this); order(this)" })%>

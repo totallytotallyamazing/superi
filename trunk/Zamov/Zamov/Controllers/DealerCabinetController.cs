@@ -48,9 +48,9 @@ namespace Zamov.Controllers
                 ViewData["dealerId"] = dealerId;
                 List<Group> groups = context.Groups.Select(g => g).Where(g => g.Dealer.Id == dealerId).ToList();
                 if (id == null)
-                    groups = groups.Select(g => g).Where(g => g.Parent == null).ToList();
+                    groups = groups.Select(g => g).Where(g => g.Parent == null && !g.Deleted).ToList();
                 else
-                    groups = groups.Select(g => g).Where(g => g.Parent != null && g.Parent.Id == id.Value).ToList();
+                    groups = groups.Select(g => g).Where(g => g.Parent != null && g.Parent.Id == id.Value && !g.Deleted).ToList();
                 ViewData["level"] = level;
                 return View(groups);
             }
@@ -140,12 +140,13 @@ namespace Zamov.Controllers
 
         public ActionResult DeleteGroup(int id)
         {
+            ClearGroupCache();
+
             using (ZamovStorage context = new ZamovStorage())
             {
                 Group group = context.Groups.Select(g => g).Where(g => g.Id == id).First();
-                context.DeleteObject(group);
+                group.Deleted = true;
                 context.SaveChanges();
-                context.DeleteTranslations(id, (int)ItemTypes.Group);
             }
             return RedirectToAction("Groups");
         }
@@ -327,9 +328,9 @@ namespace Zamov.Controllers
                 else
                 {
                     if (groupId > 0)
-                        groups = (from g in context.Groups where g.Dealer.Id == dealerId && g.Parent.Id == groupId select g).ToList();
+                        groups = (from g in context.Groups where g.Dealer.Id == dealerId && g.Parent.Id == groupId && !g.Deleted select g).ToList();
                     else
-                        groups = (from g in context.Groups where g.Dealer.Id == dealerId && g.Parent == null select g).ToList();
+                        groups = (from g in context.Groups where g.Dealer.Id == dealerId && g.Parent == null && !g.Deleted select g).ToList();
                     HttpContext.Cache[cacheKey] = groups;
                 }
                 foreach (var g in groups)

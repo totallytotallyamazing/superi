@@ -61,7 +61,7 @@
         int? groupId = (int)ViewData["groupId"];
 
 
-        //int dealerId = (int)ViewData["dealerId"];
+        int dealerId = (int)ViewData["dealerId"];
        
     %>
     
@@ -72,9 +72,9 @@
         <%using (Html.BeginForm("AddToCart", "Products", FormMethod.Post, new { id="addToCart", style="margin-bottom:20px;" }))
           { %>
             <%= Html.ResourceActionLink("PickAnotherDealer", "Index", "Dealers")%>
+            <input type="hidden" name="dealerId" value="<%= dealerId %>" />
+            <%= Html.Hidden("groupId")%>
             <input type="submit" style="float:right" value="<%= Html.ResourceString("AddToCart") %>" />
-            <%= Html.Hidden("dealerId", ViewData["dealerId"])%>
-            <%= Html.Hidden("groupId", ViewData["groupId"])%>
     <table class="commonTable" style="margin:35px 0 10px; width:100%;">
         <tr>
             <th>
@@ -109,7 +109,7 @@
                 </table> 
                         
             </th>
-            <th style="width:20px;"><%= Html.ResourceString("Description") %></th>
+            <th style="width:20px;"><%= Html.ResourceString("Photo") %> / <%= Html.ResourceString("Description") %></th>
             <th style="width:20px;"><%= Html.ResourceString("MeassureUnit") %></th>
             <th style="width:20px;">
             <table class="searchTableIneerHeader">

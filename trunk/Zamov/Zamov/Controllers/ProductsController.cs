@@ -21,19 +21,19 @@ namespace Zamov.Controllers
         [BreadCrumb(SubCategoryId = true)]
         public ActionResult Index(string dealerId, int? groupId, SortFieldNames? sortFieldName, SortDirection? sortDirection)
         {
-            
+
             ViewData["sortDirection"] = sortDirection;
             ViewData["sortFieldName"] = sortFieldName;
             ViewData["sortDealerId"] = dealerId;
-            
+
             using (ZamovStorage context = new ZamovStorage())
             {
                 int dealer = context.Dealers.Where(d => d.Name == dealerId).Select(d => d.Id).First();
                 BreadCrumbsExtensions.AddBreadCrumb(HttpContext, BreadCrumbAttribute.DealerName(dealer), "/Dealers/SelectDealer/" + dealer);
-            if (groupId != null)
-                BreadCrumbAttribute.ProcessGroup(groupId.Value, HttpContext);
+                if (groupId != null)
+                    BreadCrumbAttribute.ProcessGroup(groupId.Value, HttpContext);
 
-                List<Group> groups = (from g in context.Groups.Include("Groups").Include("Dealer") where g.Dealer.Id == dealer select g).ToList();
+                List<Group> groups = (from g in context.Groups.Include("Groups").Include("Dealer") where g.Dealer.Id == dealer && !g.Deleted && g.Enabled select g).ToList();
                 ViewData["groups"] = groups;
                 ViewData["dealerId"] = dealer;
                 ViewData["groupId"] = groupId;
@@ -42,20 +42,16 @@ namespace Zamov.Controllers
                 {
                     Group currentGroup = groups.Where(g => g.Id == groupId.Value).Select(g => g).SingleOrDefault();
                     CollectProducts(products, currentGroup);
-                    products = products.Where(p => !p.Deleted && p.Group.Enabled && p.Enabled).ToList();
+                    products = products.Where(p => !p.Deleted && p.Group.Enabled && p.Enabled && !p.Group.Deleted).ToList();
                 }
                 else
-                    products = (from product in context.Products where ((groupId == null) || product.Group.Id == groupId) && product.Dealer.Id == dealer && !product.Deleted && product.Group.Enabled && product.Enabled select product).ToList();
+                    products = (from product in context.Products where ((groupId == null) || product.Group.Id == groupId) && product.Dealer.Id == dealer && !product.Deleted && product.Group.Enabled && !product.Group.Deleted && product.Enabled select product).ToList();
 
                 ViewData["topProducts"] = GetTopProducts(products);
 
-                
-                
-                //return View(RemoveTopProducts(products));
-
                 products = RemoveTopProducts(products);
 
-                
+
                 if (sortFieldName != null && sortDirection != null)
                     switch (sortFieldName)
                     {
@@ -85,7 +81,7 @@ namespace Zamov.Controllers
 
             List<Product> result = new List<Product>();
             Random random = new Random();
-            
+
             int topCount = allTops.Count;
             for (int i = 0; i < MaxTopProductsNumber; i++)
             {
@@ -112,6 +108,7 @@ namespace Zamov.Controllers
                           where translation.TranslationItemTypeId == (int)ItemTypes.Group
                              && translation.Language == SystemSettings.CurrentLanguage
                              && gr.Enabled
+                             && !gr.Deleted
                              && gr.Dealer.Id == dealerId
                           select new GroupResentation
                               {
@@ -143,6 +140,13 @@ namespace Zamov.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult AddToCart(int dealerId, int? groupId, FormCollection items)
         {
+
+            string dealerName = "";
+            using (ZamovStorage str = new ZamovStorage())
+            {
+                dealerName = str.Dealers.Where(d => d.Id == dealerId).Select(d => d.Name).FirstOrDefault();
+            }
+
             Cart cart = SystemSettings.Cart;
             PostData orderItems = items.ProcessPostData("dealerId", "groupId");
             if (orderItems.Count > 0)
@@ -201,7 +205,7 @@ namespace Zamov.Controllers
                     }
                 }
             }
-            return RedirectToAction("Index", new { dealerId = dealerId, groupId = groupId });
+            return RedirectToAction("Index", new { dealerId = dealerName, groupId = groupId });
         }
 
         private void CollectProducts(List<Product> products, Group currentGroup)

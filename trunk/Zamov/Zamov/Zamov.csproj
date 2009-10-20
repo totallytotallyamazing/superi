@@ -312,6 +312,8 @@
     <Content Include="Content\img\newsSplitter.jpg" />
     <Content Include="Content\img\online.png" />
     <Content Include="Content\img\productImage.JPG" />
+    <Content Include="Content\img\descending.gif" />
+    <Content Include="Content\img\ascending.gif" />
     <Content Include="Content\img\tickMark.jpg" />
     <Content Include="Content\img\treeArrows.jpg" />
     <Content Include="Content\img\truck.jpg" />

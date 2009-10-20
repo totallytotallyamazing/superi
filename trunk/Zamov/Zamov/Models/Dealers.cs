@@ -86,6 +86,27 @@ namespace Zamov.Models
 
     public partial class Dealer
     {
+        public static List<DealerPresentation> GetDealerPresentations(string language)
+        {
+            using (ZamovStorage context = new ZamovStorage())
+            {
+                return (from dealer in context.Dealers
+                        join tr in context.Translations on dealer.Id equals tr.ItemId
+                        where tr.TranslationItemTypeId == (int)ItemTypes.DealerName
+                        && tr.Language == language
+                        select new DealerPresentation
+                        {
+                            Name = tr.Text,
+                            Card = dealer.Card,
+                            Cash = dealer.Cash,
+                            HasDiscounts = dealer.HasDiscounts,
+                            Id = dealer.Id,
+                            Noncash = dealer.Noncash,
+                        }).ToList();
+            }
+
+        }
+
         public static DealerPresentation GetPresentation(int dealerId) 
         {
             using (ZamovStorage context = new ZamovStorage())

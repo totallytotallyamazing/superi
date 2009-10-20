@@ -8,7 +8,7 @@
         SelectListItem cities = new SelectListItem { Text = Html.ResourceString("Cities"), Value = VirtualPathUtility.ToAbsolute("~/Admin/Cities") };
         SelectListItem dealers = new SelectListItem { Text = Html.ResourceString("Dealers"), Value = VirtualPathUtility.ToAbsolute("~/Admin/Dealers") };
         SelectListItem categories = new SelectListItem { Text = Html.ResourceString("Categories"), Value = VirtualPathUtility.ToAbsolute("~/Admin/Categories") };
-        SelectListItem users = new SelectListItem { Text = Html.ResourceString("Users"), Value = VirtualPathUtility.ToAbsolute("~/Admin/Users") };
+        SelectListItem users = new SelectListItem { Text = Html.ResourceString("Users"), Value = "/Admin/Users?userType=customers" };
         SelectListItem news = new SelectListItem { Text = Html.ResourceString("News"), Value = VirtualPathUtility.ToAbsolute("~/Admin/News") };
         SelectListItem agreement = new SelectListItem { Text = Html.ResourceString("UserAgreement"), Value = "javascript:userAgreement();" };
         SelectListItem contacts = new SelectListItem { Text = Html.ResourceString("Contacts"), Value = "javascript:contacts();" };

@@ -1,24 +1,24 @@
-<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<MembershipUser>" %>
+<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<UserPresentation>" %>
 <%@ Import Namespace="System.Web.Security" %>
 <%@ Import Namespace="System.Web.Profile" %>
 <%@ Import Namespace="Zamov.Helpers" %>
-<%
-    Zamov.Models.ProfileCommon profile = Zamov.Models.ProfileCommon.Create(Model.UserName) as Zamov.Models.ProfileCommon;
-%>
+<%@ Import Namespace="Zamov.Models" %>
+
+
 <% using(Html.BeginForm("UpdateUser", "Admin", FormMethod.Post)){%>
 <tr>
     <td>
-        <%= Model.UserName %>
-        <%= Html.Hidden("userName", Model.UserName) %>
+        <%= Model.Email%>
+        <%= Html.Hidden("userName", Model.Email) %>
     </td>
     <td>
-        <%= Html.TextBox("firstName", profile.FirstName) %>
+        <%= Html.TextBox("firstName", Model.FirstName) %>
     </td>
     <td>
-        <%= Html.TextBox("lastName", profile.LastName) %>
+        <%= Html.TextBox("lastName", Model.LastName)%>
     </td>
     <td align="center">
-        <%= Html.CheckBox("dealerEmployee", profile.DealerEmployee, new {rel=Model.UserName })%>
+        <%= Html.CheckBox("dealerEmployee", Model.DealerEmployee, new { rel = Model.Email })%>
     </td>
     <td>
        <%= Html.DropDownList("dealerId")%>

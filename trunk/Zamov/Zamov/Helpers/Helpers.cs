@@ -12,6 +12,7 @@ using System.Linq.Expressions;
 using System.Web.Mvc;
 using Zamov.Models;
 using Zamov.Controllers;
+using System.Web.UI.WebControls;
 
 namespace Zamov.Helpers
 {
@@ -95,7 +96,6 @@ namespace Zamov.Helpers
             return helper.ActionLink(linkText, actionName, routeValues, htmlAttributes);
         }
 
-
         public static string ResourceActionLink(this System.Web.Mvc.HtmlHelper helper, string resourceName, string actionName)
         {
             string linkText = Controllers.ResourcesHelper.GetResourceString(resourceName);
@@ -106,6 +106,28 @@ namespace Zamov.Helpers
         {
             string linkText = Controllers.ResourcesHelper.GetResourceString(resourceName);
             return helper.ActionLink(linkText, actionName, routeValues);
+        }
+
+        public static string ResourceSortHeader(this System.Web.Mvc.HtmlHelper helper, string resourceName, string targetUrl, string sortField)
+        {
+            string text = ResourcesHelper.GetResourceString(resourceName);
+            string linkFormat = "<a href=\"{0}\">{1}</a>{2}";
+            string sortFieldName = (string)helper.ViewData["sortField"];
+            string imageLayout = "";
+            string sortOrder = "Ascending";
+            if(sortFieldName == sortField)
+            {
+                SortDirection sortDirection = (SortDirection)helper.ViewData["sortDirection"];
+                if (sortDirection == SortDirection.Ascending)
+                    sortOrder = "Descending";
+                string imageFormat = "&nbsp;<img alt=\"\" src=\"/Content/img/{0}.gif\">";
+                imageLayout = String.Format(imageFormat, sortDirection.ToString().ToLower());
+            }
+
+            string link = String.Format("{0}?sortField={1}&sortOrder={2}", targetUrl, sortField, sortOrder);
+            string linkLayout = String.Format(linkFormat, link, text, imageLayout);
+
+            return linkLayout;
         }
 
         public static string ResourceActionLink<TController>(this System.Web.Mvc.HtmlHelper helper, string resourceName, Expression<Action<TController>> action) where TController : Controller

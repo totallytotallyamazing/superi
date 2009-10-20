@@ -412,8 +412,20 @@ namespace Zamov.Controllers
 
                 users.Sort(delegate(UserPresentation a, UserPresentation b)
                         {
-                            return ((IComparable)a.GetType().GetProperty(sortField).GetValue(a, null)).CompareTo(
-                                (IComparable)a.GetType().GetProperty(sortField).GetValue(b, null)) * direction;
+                            IComparable valueA = (IComparable)a.GetType().GetProperty(sortField).GetValue(a, null);
+                            IComparable valueB = (IComparable)a.GetType().GetProperty(sortField).GetValue(b, null);
+
+                            int result = 0;
+                            if(valueA == null && valueB==null)
+                                result = 0;
+                            else if(valueA == null)
+                                result = -1;
+                            else if(valueB == null)
+                                result = 1;
+                            else
+                                result = valueA.CompareTo(valueB);
+
+                            return result * direction;
                         }
                     );
             }

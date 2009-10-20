@@ -83,7 +83,6 @@ namespace Zamov.Helpers
             return helper.ActionLink(linkText, actionName, conrollerName, routeValues, htmlAttributes);
         }
 
-
         public static string ResourceActionLink(this System.Web.Mvc.HtmlHelper helper, string resourceName, string actionName, object routeValues)
         {
             string linkText = Controllers.ResourcesHelper.GetResourceString(resourceName);

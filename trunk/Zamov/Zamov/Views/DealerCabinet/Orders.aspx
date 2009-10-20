@@ -123,9 +123,17 @@
             <td>
             <%=Html.Encode(item.Comments+" ")%>
             <%if (!string.IsNullOrEmpty(item.DiscountCardNumber))
-              { %>
+              {
+                  if (item.Status == (int)Statuses.Accepted)
+                  {
+                  %>
               <%=Html.ResourceString("CardNumber")%>: <%=Html.Encode(item.DiscountCardNumber)%>
-            <%} %>
+              
+            <%}
+                  else { %>
+                      <%=Html.ResourceString("CardNumber")%>: ******
+                 <% }
+              } %>
             </td>
             <td align="right">
                 <%= Html.Encode(((decimal)item.OrderItems.Sum(oi=>oi.Quantity * oi.Price)).ToString("N"))%>

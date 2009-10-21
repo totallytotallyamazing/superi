@@ -266,6 +266,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Cart.css" />
+    <Content Include="Content\DealerCabinet.css" />
     <Content Include="Content\DelaerCabinet.css" />
     <Content Include="Content\fancy\fancy_closebox.png" />
     <Content Include="Content\fancy\fancy_left.png" />

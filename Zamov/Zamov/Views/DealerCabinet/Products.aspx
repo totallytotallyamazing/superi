@@ -112,7 +112,7 @@
         <%using (Html.BeginForm("UpdateProducts", "DealerCabinet", FormMethod.Post))
       { %>
       <%= Html.ResourceString("MoveTo") %>
-      <%= Html.DropDownList("groups", (List<SelectListItem>)ViewData["groups"])%>
+      <%= Html.DropDownList("groups", (List<SelectListItem>)ViewData["groups"])%> <input type="submit" value="->" />
     <table class="adminTable">
         <tr>
             <th><%= Html.ResourceString("Move") %></th>

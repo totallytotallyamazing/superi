@@ -23,8 +23,8 @@
 	        $('textarea#uaShortText').fck({ toolbar: "Basic", height: 150 });
 	        $('textarea#ruShortText').fck({ toolbar: "Basic", height: 150 });
 
-	        $('textarea#uaLongText').fck({ toolbar: "Basic", height: 500 });
-	        $('textarea#ruLongText').fck({ toolbar: "Basic", height: 500 });
+	        $('textarea#uaLongText').fck({ toolbar: "Common", height: 500 });
+	        $('textarea#ruLongText').fck({ toolbar: "Common", height: 500 });
 	    });
 	</script>
 

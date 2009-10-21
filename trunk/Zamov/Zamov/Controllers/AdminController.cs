@@ -251,8 +251,8 @@ namespace Zamov.Controllers
                 int itemId = int.Parse(key);
                 Dictionary<string, string> translations = updates[key];
                 List<TranslationItem> translationItems = new List<TranslationItem>();
-                translationItems = (from tr in translations where !tr.Key.StartsWith("sub") select new TranslationItem { ItemId = itemId, ItemType = ItemTypes.Category, Language = tr.Key, Translation = tr.Value }).ToList();
-                List<TranslationItem> subcategoryNames = (from tr in translations where tr.Key.StartsWith("sub") select new TranslationItem { ItemId = itemId, ItemType = ItemTypes.SubCategoriesName, Language = tr.Key.Replace("sub", ""), Translation = tr.Value }).ToList();
+                translationItems = (from tr in translations where !tr.Key.StartsWith("sub") && tr.Key != "Enabled" select new TranslationItem { ItemId = itemId, ItemType = ItemTypes.Category, Language = tr.Key, Translation = tr.Value }).ToList();
+                List<TranslationItem> subcategoryNames = (from tr in translations where tr.Key.StartsWith("sub") && tr.Key != "Enabled" select new TranslationItem { ItemId = itemId, ItemType = ItemTypes.SubCategoriesName, Language = tr.Key.Replace("sub", ""), Translation = tr.Value }).ToList();
                 translationItems.AddRange(subcategoryNames);
                 string translationXml = Utils.CreateTranslationXml(translationItems);
                 using (ZamovStorage context = new ZamovStorage())
@@ -471,14 +471,14 @@ namespace Zamov.Controllers
 
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult UpdateUser(
-            string userType, 
-            string sortField, 
+            string userType,
+            string sortField,
             SortDirection? sortOrder,
             string email,
             string firstName,
             string lastName,
             string city,
-            string deliveryAddress, 
+            string deliveryAddress,
             string phone,
             string mobilePhone,
             bool dealerEmployee,

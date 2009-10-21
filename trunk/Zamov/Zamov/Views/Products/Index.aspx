@@ -65,13 +65,14 @@
        
     %>
     
+    <%= Html.ResourceActionLink("PickAnotherDealer", "Index", "Dealers")%><br />
+    <br />
     
     <% Html.RenderPartial("TopProducts"); %>
         
     <%if(Model.Count>0){ %>
         <%using (Html.BeginForm("AddToCart", "Products", FormMethod.Post, new { id="addToCart", style="margin-bottom:20px;" }))
           { %>
-            <%= Html.ResourceActionLink("PickAnotherDealer", "Index", "Dealers")%>
             <input type="hidden" name="dealerId" value="<%= dealerId %>" />
             <%= Html.Hidden("groupId")%>
             <input type="submit" style="float:right" value="<%= Html.ResourceString("AddToCart") %>" />

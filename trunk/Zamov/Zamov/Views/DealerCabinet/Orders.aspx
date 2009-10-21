@@ -90,7 +90,7 @@
             <th style="width:40px;">
                 <%=Html.ResourceString("OrderInfo")%>
             </th>
-            <th style="width:330px;">
+            <th style="width:290px;">
                 <%=Html.ResourceString("Comments")%>
             </th>
             <th style="width:20px;">
@@ -121,7 +121,7 @@
             
             </td>
             <td>
-                <div style="width:330px; overflow:hidden; text-overflow:ellipsis;">
+                <div style="width:290px; overflow:hidden; text-overflow:ellipsis;">
                 <%=Html.Encode(item.Comments+" ")%>
                 <%if (!string.IsNullOrEmpty(item.DiscountCardNumber))
                   {

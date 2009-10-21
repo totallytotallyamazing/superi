@@ -69,47 +69,54 @@
            DealerPresentation presentation = Dealer.GetPresentation(dealerId);
     %>
     <div class="orderDetails">
-        <div class="logo">
-            <%= Html.Image("~/Image/ShowLogo/" + order.DealerReference.EntityKey.EntityKeyValues[0].Value) %>
-        </div>
-        <div>
-            <div class="paymentTypesHeader">
-                <%= Html.ResourceString("SelectPaymentType") %>
-            </div>
-            <div class="paymentTypes">
-                <center>
-                    <table>
-                        <% 
-                            int currentPaymentType = (int)PaymentTypes.Encash;
-                            if (ViewData["paymentType_" + order.GetHashCode()] != null)
-                            {
-                                currentPaymentType = Convert.ToInt32(ViewData["paymentType_" + order.GetHashCode()]);
-                            }
-                            List<SelectListItem> paymentTypes = new List<SelectListItem>();
-                            if (presentation.Cash)
-                                paymentTypes.Add(new SelectListItem { Text = Html.ResourceString("Encash"), Value = ((int)PaymentTypes.Encash).ToString(), Selected = currentPaymentType == (int)PaymentTypes.Encash });
-                            if (presentation.Card)
-                                paymentTypes.Add(new SelectListItem { Text = Html.ResourceString("Card"), Value = ((int)PaymentTypes.Card).ToString(), Selected = currentPaymentType == (int)PaymentTypes.Card });
-                            if (presentation.Noncash)
-                                paymentTypes.Add(new SelectListItem { Text = Html.ResourceString("Noncash"), Value = ((int)PaymentTypes.Noncash).ToString(), Selected = currentPaymentType == (int)PaymentTypes.Noncash });
-                            string[] options = Html.RadioButtonList("paymentType_" + order.GetHashCode(), paymentTypes);
-                            for (int i = 0; i < options.Length; i++)
-                            {%>
-                        <tr>
-                            <td>
-                                <%= paymentTypes[i].Text %>
-                            </td>
-                            <td>
-                                <%= options[i] %>
-                            </td>
-                        </tr>
-                        <%}
-                        %>
-                    </table>
-                </center>
-            </div>
-        </div>
-        <%if (presentation.HasDiscounts){ %>
+        <center>
+        <table>
+            <tr>
+                <td>
+                    <div class="logo">
+                        <%= Html.Image("~/Image/ShowLogo/" + order.DealerReference.EntityKey.EntityKeyValues[0].Value) %>
+                    </div>
+                </td>
+                <td align="center">
+                    <div class="paymentTypesHeader">
+                        <%= Html.ResourceString("SelectPaymentType") %>
+                    </div>
+                    <div class="paymentTypes">
+                        <table>
+                            <% 
+                                int currentPaymentType = (int)PaymentTypes.Encash;
+                                if (ViewData["paymentType_" + order.GetHashCode()] != null)
+                                {
+                                    currentPaymentType = Convert.ToInt32(ViewData["paymentType_" + order.GetHashCode()]);
+                                }
+                                List<SelectListItem> paymentTypes = new List<SelectListItem>();
+                                if (presentation.Cash)
+                                    paymentTypes.Add(new SelectListItem { Text = Html.ResourceString("Encash"), Value = ((int)PaymentTypes.Encash).ToString(), Selected = currentPaymentType == (int)PaymentTypes.Encash });
+                                if (presentation.Card)
+                                    paymentTypes.Add(new SelectListItem { Text = Html.ResourceString("Card"), Value = ((int)PaymentTypes.Card).ToString(), Selected = currentPaymentType == (int)PaymentTypes.Card });
+                                if (presentation.Noncash)
+                                    paymentTypes.Add(new SelectListItem { Text = Html.ResourceString("Noncash"), Value = ((int)PaymentTypes.Noncash).ToString(), Selected = currentPaymentType == (int)PaymentTypes.Noncash });
+                                string[] options = Html.RadioButtonList("paymentType_" + order.GetHashCode(), paymentTypes);
+                                for (int i = 0; i < options.Length; i++)
+                                {%>
+                            <tr>
+                                <td>
+                                    <%= paymentTypes[i].Text %>
+                                </td>
+                                <td>
+                                    <%= options[i] %>
+                                </td>
+                            </tr>
+                            <%}
+                            %>
+                        </table>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        </center>
+        <%if (presentation.HasDiscounts)
+          { %>
         <div class="discount">
             <%= Html.ResourceString("InputVoucher")%>
             <%= Html.TextBox("voucherCode_" + order.GetHashCode())%>
@@ -118,19 +125,17 @@
             </div>
         </div>
         <%} %>
-
     </div>
     <%} %>
-    <div style="text-align: center; ">
+    <div style="text-align: center; margin-top: 30px;">
         <%= Html.CheckBox("agreedPresentation", false, new { onclick = "$get('agreed').checked = this.checked;"})%>
         <span id="agreedSpan">
             <%= Html.ResourceActionLink("Agreed", "Agreement", "Home", null, new {id="agreementLink"}) %>
         </span>
         <%= HttpUtility.HtmlDecode(Html.ValidationMessage("agreed", "<script type='text/javascript'>$('#agreedSpan a').css('color', 'red');</script>")) %>
     </div>
-    <div style="color: Red; font-weight: bold; margin-top: 20px; margin-bottom:30px;" class="orderValidation">
-
-
+    <div style="color: Red; font-weight: bold; margin-top: 20px; margin-bottom: 30px;"
+        class="orderValidation">
         <label for="captcha">
         </label>
         <%=Html.ResourceString("EnterCode")%>
@@ -140,7 +145,6 @@
         <%= Html.TextBox("captcha", "")%>
         <br />
     </div>
-    
     <div class="orderDone">
         <center>
             <table>
@@ -169,15 +173,12 @@
     <%= Html.RegisterJS("jquery.ui.js")%>
     <%= Html.RegisterJS("jquery.cookie.js")%>
 </asp:Content>
-
 <asp:Content ContentPlaceHolderID="ContentTop" runat="server">
     <form method="post" action="/Cart/MakeOrder">
 </asp:Content>
-
 <asp:Content ContentPlaceHolderID="ContentBottom" runat="server">
     </form>
 </asp:Content>
-
 <asp:Content ID="Content4" ContentPlaceHolderID="leftMenu" runat="server">
     <div class="yourDetails">
         <div class="menuHeader centered">
@@ -265,5 +266,4 @@
         <div class="menuFooter">
         </div>
     </div>
-    
 </asp:Content>

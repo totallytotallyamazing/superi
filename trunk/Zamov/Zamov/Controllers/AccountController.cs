@@ -240,6 +240,7 @@ namespace Zamov.Controllers
             MembershipUser user = Membership.GetUser(new Guid(guid));
             user.IsApproved = true;
             Membership.UpdateUser(user);
+            FormsAuth.SignOut();
             return View("UserEmailVerified" + SystemSettings.CurrentLanguage);
         }
 

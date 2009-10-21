@@ -36,7 +36,7 @@
                     <%= Html.Image("~/Image/CategoryImageByCategoryId/" + subCategory.Id, new { style = "border:none;" })%>
                 </a>
             </div>
-            <%= Html.ActionLink(subCategory.Name, "SelectCategory", new { id = subCategory.Id }, new { @class = "categoryLink" })%>
+            <%= Html.ActionLink(subCategory.Names[Zamov.Controllers.SystemSettings.CurrentLanguage], "SelectCategory", new { id = subCategory.Id }, new { @class = "categoryLink" })%>
     <%
         
         if (subCategory.Categories != null)

@@ -38,6 +38,19 @@
           { %>
         <p>
             <%=Html.ResourceString("VoucherNumber")%>:
+            <%
+                if (Model.Status == (int)Statuses.Accepted)
+                {
+            %>
+                <%=Html.Encode(Model.DiscountCardNumber)%>
+                  
+            <%  }
+                else
+                { 
+                    %>******<% 
+                }
+            %>
+            
             <%=Html.Encode(Model.DiscountCardNumber)%>
         </p>
         <%} %>

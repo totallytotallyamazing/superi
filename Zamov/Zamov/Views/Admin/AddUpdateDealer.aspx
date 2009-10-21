@@ -59,18 +59,18 @@
         <table class="adminTable">
             <tr>
                 <th></th>
-                <td>Рус</td>
                 <td>Укр</td>
+                <td>Рус</td>
             </tr>
             <tr>
                 <td><%= Html.ResourceString("Name") %></td>
-                <td><%= Html.TextBox("rName", russianName, new { style="width:430px;"})%></td>
                 <td><%= Html.TextBox("uName", ukrainianName, new { style = "width:430px;" })%></td>
+                <td><%= Html.TextBox("rName", russianName, new { style="width:430px;"})%></td>
             </tr>
             <tr>
                 <td><%= Html.ResourceString("Description") %></td>
-                <td><%= Html.TextArea("rDescription", russianDescription) %></td>
                 <td><%= Html.TextArea("uDescription", ukrainianDescription) %></td>
+                <td><%= Html.TextArea("rDescription", russianDescription) %></td>
             </tr>
         </table>
         <br />

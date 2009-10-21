@@ -51,6 +51,23 @@
     <div id="mainMenu">
         <div class="outer greyBg">
             <div class="inner whiteBg">
+                <table cellspacing="0" cellspacing="0">
+                    <tr>
+                        <td valign="top">
+                            <%=Html.ResourceString("Search")%>:
+                        </td>
+                        <td valign="top">
+                            <%using (Html.BeginForm("SearchProduct", "Search", FormMethod.Post))
+                              {%><%=Html.TextBox("searchContext", null, new { style="height:13px; font-size:10px;"})%>
+                            <%
+                                } %>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="outer greyBg">
+            <div class="inner whiteBg">
                 <% Html.RenderAction<PagePartsController>(ac => ac.MainMenu()); %>
             </div>
         </div>

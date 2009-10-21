@@ -13,6 +13,7 @@
        {%>
     <div class="feedbackItem">
         <div class="itemHeader">
+            <%=item.Date.ToShortDateString() %>&nbsp;
             <a href="mailto:<%= item.Email %>">
                 <%= item.FirstName %>
             </a>

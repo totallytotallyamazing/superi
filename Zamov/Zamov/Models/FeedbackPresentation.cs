@@ -11,5 +11,6 @@ namespace Zamov.Models
         public string Email { get; set; }
         public string Text { get; set; }
         public string FirstName { get; set; }
+        public DateTime Date { get; set; }
     }
 }

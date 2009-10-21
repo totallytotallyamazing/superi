@@ -27,7 +27,9 @@ namespace Zamov.Controllers
                                                             Text = feedback.Text,
                                                             Email = feedback.Email,
                                                             FirstName = feedback.FirstName,
-                                                            Id = feedback.Id
+                                                            Id = feedback.Id,
+                                                            Date = feedback.Date
+                                                            
                                                         }).ToList();
                 return feedbacks;
             }

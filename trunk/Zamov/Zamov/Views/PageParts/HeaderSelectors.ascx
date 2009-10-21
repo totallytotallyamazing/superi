@@ -66,12 +66,12 @@
     <tr>
         <td>
             <%= Html.ResourceString("City") %><br />
-            <%= Html.DropDownList("currentCity", (List<SelectListItem>)ViewData["citiesList"], new { onchange = "cityChanged()" })%>
+            <%= Html.DropDownList("currentCity", (List<SelectListItem>)ViewData["citiesList"], new { onchange = "cityChanged()", @class = "currentCity" })%>
         </td>
         <td>
             <%= Html.ResourceString("Category") %><br />
             <div style="padding:2px;">
-                <%= Html.DropDownList("currentCategory", (List<SelectListItem>)ViewData["categoriesList"], new { onkeydown = "keydownSelectCategory(this.form)" })%>
+                <%= Html.DropDownList("currentCategory", (List<SelectListItem>)ViewData["categoriesList"], new { onkeydown = "keydownSelectCategory(this.form)", @class = "currentCategory" })%>
             </div>
         </td>
         <td>

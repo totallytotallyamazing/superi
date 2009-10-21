@@ -35,6 +35,11 @@
             }
         }
     }
+
+    $(function() {
+        $(".productDescription").fancybox({ width: "700px", hideOnContentClick: false });
+    })
+
        
 </script>
 
@@ -193,7 +198,9 @@
                 <%= Html.Encode(String.Format("{0:F}", item.Price))%>
             </td>
             <td align="left">
-                <%= Html.Encode(item.Description)%>
+                <a class="productDescription" style="text-decoration:none" href="/Products/Description/<%= item.Id %>">
+                    <%= Html.Image("~/Content/img/productImage.JPG", new { style="border:none;" })%> / <span class="productDescriptionLink">i</span>
+                </a>
             </td>
             <td align="center">
                 <%= Html.TextBox("quantity_" + item.Id, null, new { style = "width:24px; font-size:10px; text-align:center", onkeyup = "validateQuantity(this); order(this)" })%>
@@ -214,6 +221,9 @@
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="includes" runat="server">
+    <%= Html.RegisterJS("jquery.easing.js")%>
+    <%= Html.RegisterJS("jquery.fancybox.js")%>
+    <%= Html.RegisterCss("~/Content/fancy/jquery.fancybox.css")%>
     <style type="text/css">
         #leftSide{border:none !important;}
     </style>

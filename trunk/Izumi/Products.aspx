@@ -14,12 +14,12 @@
                                     <td align="right" valign="middle">
                                         <div class="productBottomPrice">
                                             <%# ((Product) Container.DataItem).Price.ToString("0.00") %>
-                                            <%--switch (WebSession.Language) { case "EN": Response.Write("uah"); break; case "RU":Response.Write("грн"); break; case "UA":
-                                            Response.Write("грн");break; } --%>
+                                            <%switch (WebSession.Language) { case "EN": Response.Write("uah"); break; case "RU":Response.Write("грн"); break; case "UA":
+                                            Response.Write("грн");break; } %>
                                         </div>
                                         <div class="productBottomWeight">
-                                            (<%# ((Product) Container.DataItem).Weight.ToString("0") %><%switch (WebSession.Language) { case "EN": Response.Write("g"); break; case "RU":Response.Write("гр"); break; case "UA":
-                                            Response.Write("гр");break; } %>)
+                                            (<%# ((Product) Container.DataItem).Weight.ToString("0") %><%switch (WebSession.Language) { case "EN": Response.Write("g"); break; case "RU":Response.Write("г"); break; case "UA":
+                                            Response.Write("г");break; } %>)
                                         </div>
                                     </td>
                                 </tr>
@@ -106,9 +106,10 @@
                 <ItemTemplate>
                     <tr>
                         <td class="alcoBlack" align="left"><asp:Literal ID="lAlcoName" runat="server"></asp:Literal></td>
-                        <td class="alcoBlack" align="center"><%# ((Product) Container.DataItem).Weight.ToString("0") %><%switch (WebSession.Language) { case "EN": Response.Write("g"); break; case "RU":Response.Write("гр"); break; case "UA":
-                                            Response.Write("гр");break; } %></td>
-                        <td class="alcoRed" align="center"><%# ((Product) Container.DataItem).Price.ToString("0.00") %></td>
+                        <td class="alcoBlack" align="center"><%# ((Product) Container.DataItem).Weight.ToString("0") %><%switch (WebSession.Language) { case "EN": Response.Write("g"); break; case "RU":Response.Write("г"); break; case "UA":
+                                            Response.Write("г");break; } %></td>
+                        <td class="alcoRed" align="center"><%# ((Product) Container.DataItem).Price.ToString("0.00") %><%switch (WebSession.Language) { case "EN": Response.Write("uah"); break; case "RU":Response.Write("грн"); break; case "UA":
+                                            Response.Write("грн");break; } %></td>
                     </tr>                
                 </ItemTemplate>
             </asp:Repeater>

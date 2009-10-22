@@ -72,7 +72,7 @@ public partial class ApplicationForm : System.Web.UI.Page
 
     private void SendMail(string body)
     {
-        MailMessage message = new MailMessage("webmaster@izumi.com.ua", "superi@inbox.ru");
+        MailMessage message = new MailMessage("franchising@ukrmore.com.ua", "superi@inbox.ru");
         message.Body = body;
         message.Subject = "Franchise";
         message.IsBodyHtml = true;

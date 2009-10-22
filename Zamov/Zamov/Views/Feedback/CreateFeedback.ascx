@@ -8,9 +8,9 @@
             $("#fancy_ajax").load('/Feedback/<%= ViewData["dealerId"] %>')
         }
         else {
-            var feedbackText = 
+            var feedbackText = $get("text").value;
             alert('<%= Html.ResourceString("IncorrectCaptcha") %>');
-            $("#fancy_ajax").load('/Feedback/<%= ViewData["dealerId"] %>')
+            $("#fancy_ajax").load('/Feedback/<%= ViewData["dealerId"] %>', function() { $get("text").value = feedbackText; });
         }
     }
 </script>

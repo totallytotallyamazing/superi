@@ -26,6 +26,7 @@
             function(response) {
                 updateNewOrdersCount(response.NewOrdersCount);
                 if (response.NewOrders && response.NewOrders.length > 0) {
+                    self.focus();
                     alert('<%= Html.ResourceString("YouHaveNewOrder") %>');
                 }
                 if (typeof (updateOrdersTable) !== "undefined")

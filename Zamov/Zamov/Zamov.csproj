@@ -507,9 +507,6 @@
     <Content Include="Scripts\ui.datepicker-ru.js" />
     <Content Include="Scripts\ui.datepicker-uk.js" />
     <Content Include="Services\Tools.asmx" />
-    <Content Include="SetCookie.aspx" />
-    <Content Include="Soon.htm" />
-    <Content Include="stub.jpg" />
     <Content Include="Views\Admin\AddEditNews.aspx" />
     <Content Include="Views\Admin\AddUpdateDealer.aspx" />
     <Content Include="Views\Admin\Agreement.aspx" />

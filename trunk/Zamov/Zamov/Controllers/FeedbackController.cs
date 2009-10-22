@@ -36,6 +36,7 @@ namespace Zamov.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Get)]
+        [OutputCache(NoStore=true, VaryByParam="*", Duration=1)]
         public ActionResult Index(int id)
         {
             List<FeedbackPresentation> feedbacks = GetFeedbacks(id);
@@ -44,6 +45,7 @@ namespace Zamov.Controllers
         }
 
         [Authorize(Roles = "Administrators")]
+        [OutputCache(NoStore = true, VaryByParam = "*", Duration = 1)]
         public ActionResult ModifyFeedback(int id)
         {
             List<FeedbackPresentation> feedbacks = GetFeedbacks(id);
@@ -53,6 +55,7 @@ namespace Zamov.Controllers
 
         [Authorize(Roles = "Administrators, Customers, Dealers")]
         [AcceptVerbs(HttpVerbs.Get)]
+        [OutputCache(NoStore = true, VaryByParam = "*", Duration = 1)]
         public ActionResult CreateFeedback(int id)
         {
             ViewData["dealerId"] = id;

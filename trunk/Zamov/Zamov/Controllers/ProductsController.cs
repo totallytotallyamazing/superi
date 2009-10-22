@@ -98,7 +98,7 @@ namespace Zamov.Controllers
             return source.Where(p => !p.TopProduct).Select(p => p).ToList();
         }
 
-        public ActionResult ProductGroups(int dealerId, int? groupId)
+        public ActionResult ProductGroups(string dealerId, int? groupId)
         {
             List<GroupResentation> groups = null;
             using (ZamovStorage context = new ZamovStorage())
@@ -109,7 +109,7 @@ namespace Zamov.Controllers
                              && translation.Language == SystemSettings.CurrentLanguage
                              && gr.Enabled
                              && !gr.Deleted
-                             && gr.Dealer.Id == dealerId
+                             && gr.Dealer.Name == dealerId
                           select new GroupResentation
                               {
                                   Id = gr.Id,

@@ -15,6 +15,8 @@
         $get("orderItemsCount").innerHTML = response.get_response().get_object().TotalCartItems;
         $(".orderCb").attr("checked", "");
         $(".subHeader").css("display", "block");
+
+        enableCart();
     }
 
     function order(element) {
@@ -75,6 +77,7 @@
     using (Ajax.BeginForm("AddToCart", "Search", new AjaxOptions { HttpMethod = "POST", OnSuccess = "AddToCartSuccess" }, new { id = "addToCart" }))
     {%>
     <div style="text-align:right">
+    
     <input style="margin-bottom:5px" type="submit" value="<%=Html.ResourceString("AddToCart") %>" />  
     
     <table class="commonTable" width="100%">

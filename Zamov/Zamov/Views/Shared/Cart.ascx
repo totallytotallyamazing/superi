@@ -36,6 +36,17 @@
 
 %>
 
+
+<script type="text/javascript">
+    function enableCart() {
+        $("#emptyCart").unbind("click");
+        $("#makeOrderLink").unbind("click");
+        $("#orderItemsCount").unbind("click");
+
+        $("#orderItemsCount").click(function() { location.href = '/Cart'; });
+    }
+</script>
+
 <%if(orderItemsCount == 0){ %>
 <script type="text/javascript">
     var yourCartIsEmpty = '<%= Html.ResourceString("YourCartIsEmpty") %>';

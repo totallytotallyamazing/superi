@@ -3,7 +3,7 @@
 <asp:Content ID="loginTitle" ContentPlaceHolderID="TitleContent" runat="server">
     <%= Html.ResourceString("LogOn") %>
 </asp:Content>
-<asp:Content ID="Content1" ContentPlaceHolderID="includes" runat="server">
+<asp:Content ContentPlaceHolderID="includes" runat="server">
     <%= Html.RegisterCss("~/Content/register.css") %>
 </asp:Content>
 <asp:Content ID="loginContent" ContentPlaceHolderID="MainContent" runat="server">

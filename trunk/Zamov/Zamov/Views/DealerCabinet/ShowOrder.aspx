@@ -50,8 +50,6 @@
                     %>******<% 
                 }
             %>
-            
-            <%=Html.Encode(Model.DiscountCardNumber)%>
         </p>
         <%} %>
         <p>

@@ -80,13 +80,13 @@ namespace Zamov.Models
             {
 
                 var userRecord = (from user in context.aspnet_Users.Include("aspnet_Profile")
-                             where user.UserName == userId
-                             select new
-                             {
-                                 email = user.UserName,
-                                 profileProperties = user.aspnet_Profile.PropertyNames,
-                                 profileValues = user.aspnet_Profile.PropertyValuesString
-                             }).FirstOrDefault();
+                                  where user.UserName == userId
+                                  select new
+                                  {
+                                      email = user.UserName,
+                                      profileProperties = user.aspnet_Profile.PropertyNames,
+                                      profileValues = user.aspnet_Profile.PropertyValuesString
+                                  }).FirstOrDefault();
 
                 Dictionary<string, string> profileProperties = GetProfileProperties(userRecord.profileProperties.Split(':'), userRecord.profileValues);
                 result = GetUserPresentation(profileProperties);
@@ -123,7 +123,7 @@ namespace Zamov.Models
                     }
                 }
             }
-                return result;
+            return result;
         }
 
         public static List<UserPresentation> GetAllUsers(this MembershipStorage context)
@@ -131,7 +131,7 @@ namespace Zamov.Models
             List<UserPresentation> result = new List<UserPresentation>();
 
             var users = (from user in context.aspnet_Users.Include("aspnet_Profile")
-                         where user.UserName != "root"
+                         where user.UserName != "root" && user.UserName != "root2"
                          select new
                              {
                                  email = user.UserName,
@@ -141,7 +141,7 @@ namespace Zamov.Models
 
             foreach (var item in users)
             {
-                Dictionary<string,string> profileProperties = GetProfileProperties(item.profileProperties.Split(':'), item.profileValues);
+                Dictionary<string, string> profileProperties = GetProfileProperties(item.profileProperties.Split(':'), item.profileValues);
                 UserPresentation user = GetUserPresentation(profileProperties);
                 if (user != null)
                 {

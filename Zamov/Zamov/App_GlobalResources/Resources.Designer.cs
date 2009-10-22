@@ -961,6 +961,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Невірно введене ім&apos;я користувача або пароль.
+        /// </summary>
+        internal static string IncorrectUserNameOrPassword {
+            get {
+                return ResourceManager.GetString("IncorrectUserNameOrPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Введіть символи з картинки.
         /// </summary>
         internal static string InputCaptcha {
@@ -1438,6 +1447,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Введіть пароль.
+        /// </summary>
+        internal static string PasswordRequired {
+            get {
+                return ResourceManager.GetString("PasswordRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Довжина паролю не повинна бути меньшою чим.
         /// </summary>
         internal static string PasswordShouldContain {
@@ -1902,6 +1920,15 @@ namespace Resources {
         internal static string Username {
             get {
                 return ResourceManager.GetString("Username", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Введіть ім&apos;я користувача.
+        /// </summary>
+        internal static string UserNameRequired {
+            get {
+                return ResourceManager.GetString("UserNameRequired", resourceCulture);
             }
         }
         

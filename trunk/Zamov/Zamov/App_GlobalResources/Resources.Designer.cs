@@ -637,6 +637,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Опис / Фото.
+        /// </summary>
+        internal static string DescriptionPhoto {
+            get {
+                return ResourceManager.GetString("DescriptionPhoto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Далі &amp;gt;&amp;gt;.
         /// </summary>
         internal static string Details {

@@ -765,4 +765,7 @@
   <data name="Customers" xml:space="preserve">
     <value>Покупцi</value>
   </data>
+  <data name="DescriptionPhoto" xml:space="preserve">
+    <value>Опис / Фото</value>
+  </data>
 </root>

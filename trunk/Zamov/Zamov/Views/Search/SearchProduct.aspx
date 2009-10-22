@@ -173,7 +173,7 @@
                 </tr>
                 </table>
             </th>
-            <th style="width:20px;"><%= Html.ResourceString("Description") %></th>
+            <th style="width:20px;"><%= Html.ResourceString("DescriptionPhoto") %></th>
             <th style="width:20px;"><%= Html.ResourceString("Quantity") %></th>
             <th style="width:20px;"><%= Html.ResourceString("ToOrder") %></th>
         </tr>

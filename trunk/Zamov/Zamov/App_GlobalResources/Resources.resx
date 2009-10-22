@@ -768,6 +768,15 @@
   <data name="DescriptionPhoto" xml:space="preserve">
     <value>Фото / опис</value>
   </data>
+  <data name="IncorrectUserNameOrPassword" xml:space="preserve">
+    <value>Невірно введене ім'я користувача або пароль</value>
+  </data>
+  <data name="PasswordRequired" xml:space="preserve">
+    <value>Введіть пароль</value>
+  </data>
+  <data name="UserNameRequired" xml:space="preserve">
+    <value>Введіть ім'я користувача</value>
+  </data>
   <data name="AllProducts" xml:space="preserve">
     <value>Усi товари</value>
   </data>

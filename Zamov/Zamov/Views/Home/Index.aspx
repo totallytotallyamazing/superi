@@ -40,7 +40,8 @@
         </div>
         <div id="masterLogin">
             <% Html.RenderPartial("LogonStatus"); %>
-            <%if (SystemSettings.CurrentDealer != null) Html.RenderPartial("DealerOrdersInfo"); %>
+            <%if (Roles.IsUserInRole("Administrators")) Html.RenderPartial("AdminOrdersInfo"); %>
+            <%if (Roles.IsUserInRole("Dealers")) Html.RenderPartial("DealerOrdersInfo"); %>
         </div>
         <center>
             <div id="logo">

@@ -3,7 +3,7 @@
 <%@ Import Namespace="Zamov.Helpers" %>
 <%@ Import Namespace="Zamov.Controllers" %>
 <% 
-    int dealerId = Convert.ToInt32(ViewData["dealerId"]);
+    string dealerId = (string)ViewData["dealerId"];
     int groupToExpand = Convert.ToInt32(ViewData["groupToExpand"]);
     int groupId = (ViewData["groupId"] != null) ? Convert.ToInt32(ViewData["groupId"]) : int.MinValue;
 
@@ -15,7 +15,7 @@
         dealerGroupName = (from dealer in context.Dealers
                            join groupName in context.Translations on dealer.Id equals groupName.ItemId
                            where groupName.Language == SystemSettings.CurrentLanguage && groupName.TranslationItemTypeId == (int)ItemTypes.GroupName
-                           && dealer.Id == dealerId
+                           && dealer.Name == dealerId
                            select groupName.Text).FirstOrDefault();
     }
     if (!string.IsNullOrEmpty(dealerGroupName))

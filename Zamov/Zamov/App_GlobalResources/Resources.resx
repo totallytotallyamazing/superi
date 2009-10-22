@@ -768,4 +768,7 @@
   <data name="DescriptionPhoto" xml:space="preserve">
     <value>Фото / опис</value>
   </data>
+  <data name="AllProducts" xml:space="preserve">
+    <value>Усi товари</value>
+  </data>
 </root>

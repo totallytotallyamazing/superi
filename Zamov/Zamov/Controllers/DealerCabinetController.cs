@@ -215,7 +215,7 @@ namespace Zamov.Controllers
                 {
                     var deliveryInfo = (from ruTran in context.Translations
                                         from uaTran in context.Translations
-                                        where ruTran.ItemId == 1 && uaTran.ItemId == 1
+                                        where ruTran.ItemId == id && uaTran.ItemId == id
                                         && ruTran.Language == "ru-RU" && uaTran.Language == "uk-UA"
                                         && ruTran.TranslationItemTypeId == (int)ItemTypes.DealerDeliveryInfo
                                         && uaTran.TranslationItemTypeId == (int)ItemTypes.DealerDeliveryInfo
@@ -264,16 +264,27 @@ namespace Zamov.Controllers
             ZamovStorage context = new ZamovStorage();
             int dealerId = Security.GetCurentDealerId(User.Identity.Name);
             List<Product> products = new List<Product>();
-            if (id != null)
+            if (id != null && id>0)
             {
                 products = (from product in context.Products
                             where product.Group.Id == id.Value && product.Dealer.Id == dealerId && !product.Deleted
                             select product).ToList();
             }
+            else if (id == 0)
+            {
+                products = (from product in context.Products
+                            where product.Dealer.Id == dealerId && !product.Deleted
+                            select product).ToList();
+            }
             List<SelectListItem> items = new List<SelectListItem>();
+            List<SelectListItem> moveToItems = new List<SelectListItem>();
             int currentGroupId = (id) ?? int.MinValue;
             GetGroupItems(items, dealerId, int.MinValue, "", currentGroupId);
+            GetGroupItems(moveToItems, dealerId, int.MinValue, "", currentGroupId);
+            moveToItems.RemoveAt(0);
+            items.Insert(1, new SelectListItem { Value = "0", Text = ResourcesHelper.GetResourceString("AllProducts") });
             ViewData["groups"] = items;
+            ViewData["moveToGroups"] = moveToItems;
             ViewData["groupId"] = currentGroupId;
             return View(products);
         }

@@ -58,7 +58,9 @@
 
 
         string sortDealerId = (string)ViewData["sortDealerId"];
-        int? groupId = (int)ViewData["groupId"];
+        int? groupId = null;
+        if (ViewData["groupId"] != null)
+            groupId = (int)ViewData["groupId"];
 
 
         int dealerId = (int)ViewData["dealerId"];
@@ -213,5 +215,5 @@ foreach (var item in Model)
 </asp:Content>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="leftMenu" runat="server">
-    <% Html.RenderAction<ProductsController>(c=> c.ProductGroups((int)ViewData["dealerId"], (int?)ViewData["groupId"])); %>
+    <% Html.RenderAction<ProductsController>(c => c.ProductGroups((string)ViewData["sortDealerId"], (int?)ViewData["groupId"])); %>
 </asp:Content>

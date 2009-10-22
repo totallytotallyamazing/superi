@@ -164,7 +164,6 @@ namespace Zamov.Controllers
             string comments,
             string deliveryDate,
             string deliveryTime,
-            string deliveryDateTime,
             string orderSettings,
             bool agreed,
             bool captchaValid,
@@ -190,7 +189,7 @@ namespace Zamov.Controllers
                                           PaymentType = GetPaymentType(os.Value)
                                       }).ToList();
             CultureInfo cultureInfo = CultureInfo.GetCultureInfo("ru-RU");
-            DateTime date = DateTime.Parse(deliveryDateTime, cultureInfo);
+            DateTime date = DateTime.Parse(deliveryDate + " " + deliveryTime, cultureInfo);
             MembershipUser user = Membership.GetUser(true);
             Guid? userId = null;
             SystemSettings.MemberProperties.DeliveryAddress = deliveryAddress;

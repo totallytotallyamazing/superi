@@ -766,6 +766,6 @@
     <value>Покупатели</value>
   </data>
   <data name="DescriptionPhoto" xml:space="preserve">
-    <value>Описание / Фото</value>
+    <value>Фото / описание </value>
   </data>
 </root>

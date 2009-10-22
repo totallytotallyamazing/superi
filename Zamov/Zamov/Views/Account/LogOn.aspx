@@ -3,35 +3,48 @@
 <asp:Content ID="loginTitle" ContentPlaceHolderID="TitleContent" runat="server">
     <%= Html.ResourceString("LogOn") %>
 </asp:Content>
-
+<asp:Content ID="Content1" ContentPlaceHolderID="includes" runat="server">
+    <%= Html.RegisterCss("~/Content/register.css") %>
+</asp:Content>
 <asp:Content ID="loginContent" ContentPlaceHolderID="MainContent" runat="server">
     <h2><%= Html.ResourceString("LogOn") %></h2>
-    <p>
-        <%= Html.ResourceString("LoginHeader") %>
-    </p>
-    <%= Html.ValidationSummary(Html.ResourceString("LoginUnsucsessful"))%>
+     <% using (Html.BeginForm()) { %>
+    
+    <%= Html.ResourceString("LoginHeader") %>
+    <div>
+        <%= Html.ValidationSummary(Html.ResourceString("LoginUnsucsessful"))%>
+        <fieldset>
+        <legend>
+            <%= Html.ResourceString("AccountInfo") %>
+        </legend>
+         <table class="registrationTable">
+         <tr>
+            <td>
+                <label style="width: 300px" for="username">
+                    <%= Html.ResourceString("Username")%>:</label>
+                <%= Html.ValidationMessage("username", "*", new { @class = "validationError" })%>
+            </td>
+            <td>
+                <%= Html.TextBox("username")%>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="password">
+                    <%= Html.ResourceString("Password") %>:</label>
+                <%= Html.ValidationMessage("password", "*", new { @class = "validationError" })%>
+            </td>
+            <td>
+                <%= Html.Password("password") %>
+            </td>
+        </tr>
+         </table>
+        </fieldset>
+        
+    </div>
+<br />
 
-    <% using (Html.BeginForm()) { %>
-        <div>
-            <fieldset>
-                <legend><%= Html.ResourceString("AccountInfo") %></legend>
-                <p>
-                    <label for="username"><%= Html.ResourceString("Username") %>:</label>
-                    <%= Html.TextBox("username") %>
-                    <%= Html.ValidationMessage("username") %>
-                </p>
-                <p>
-                    <label for="password"><%= Html.ResourceString("Password") %>:</label>
-                    <%= Html.Password("password") %>
-                    <%= Html.ValidationMessage("password") %>
-                </p>
-                <p>
-                    <%= Html.CheckBox("rememberMe") %> <label class="inline" for="rememberMe"><%= Html.ResourceString("RememberMe") %>?</label>
-                </p>
-                <p>
-                    <input type="submit" value="<%= Html.ResourceString("LogOn") %>" />
-                </p>
-            </fieldset>
-        </div>
+   <%= Html.CheckBox("rememberMe") %> <label class="inline" for="rememberMe"><%= Html.ResourceString("RememberMe") %></label><br />
+   <input type="submit" value="<%= Html.ResourceString("LogOn") %>" />
     <% } %>
 </asp:Content>

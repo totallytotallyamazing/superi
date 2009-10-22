@@ -57,7 +57,7 @@
         }
 
 
-        string sortDealerId = ViewData["sortDealerId"].ToString();
+        string sortDealerId = (string)ViewData["sortDealerId"];
         int? groupId = (int)ViewData["groupId"];
 
 
@@ -75,8 +75,10 @@
           { %>
             <input type="hidden" name="dealerId" value="<%= dealerId %>" />
             <%= Html.Hidden("groupId")%>
-            <input type="submit" style="float:right" value="<%= Html.ResourceString("AddToCart") %>" />
-    <table class="commonTable" style="margin:35px 0 10px; width:100%;">
+            <div style="text-align:right;">
+                <input type="submit" value="<%= Html.ResourceString("AddToCart") %>" />
+            </div>
+    <table class="commonTable" style="width:100%; margin:5px 0;">
         <tr>
             <th>
             <table class="searchTableIneerHeader">
@@ -192,7 +194,9 @@ foreach (var item in Model)
     }     
 %>
     </table>
+      <div>
     <input type="submit" style="float:right" value="<%= Html.ResourceString("AddToCart") %>" />
+      </div>
    <%} %>
 
     <%} %>

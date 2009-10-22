@@ -3,12 +3,12 @@
 <%@ Import Namespace="Microsoft.Web.Mvc" %>
 <script type="text/javascript">
     function feedbackResponse(response) {
-        debugger;
         var result = response.get_response().get_object();
         if (result) {
             $("#fancy_ajax").load('/Feedback/<%= ViewData["dealerId"] %>')
         }
         else {
+            var feedbackText = 
             alert('<%= Html.ResourceString("IncorrectCaptcha") %>');
             $("#fancy_ajax").load('/Feedback/<%= ViewData["dealerId"] %>')
         }

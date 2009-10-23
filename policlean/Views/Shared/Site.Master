@@ -1,14 +1,30 @@
 <%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
+
 <%@ Import Namespace="Microsoft.Web.Mvc" %>
 <%@ Import Namespace="PolialClean.Helpers" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>
-        Polial Clean - <asp:ContentPlaceHolder ID="TitleContent" runat="server" />
+    <title>Polial Clean -
+        <asp:ContentPlaceHolder ID="TitleContent" runat="server" />
     </title>
     <link href="../../Content/Global.css" rel="stylesheet" type="text/css" />
     <%= Html.RegisterJS("jquery.js")%>
+    <link rel="Stylesheet" href="/Content/fancy/jquery.fancybox.css" />
+
+    <script type="text/javascript" src="/Scripts/jquery.fancybox.js"></script>
+
+    <script type="text/javascript">
+        $(function() {
+            $(".fancy").fancybox({ hideOnContentClick: false, frameHeight: 80, frameWidth: 310 });
+            $(".fancyNoScale").fancybox({ hideOnContentClick: false, imageScale: false, centerOnScroll: false });
+        })
+    </script>
+
+    <%if (Request.IsAuthenticated)
+      { %>
+    <link rel="Stylesheet" href="/Content/Admin.css" />
+    <%} %>
 
     <script type="text/javascript">
         $(function() {
@@ -17,8 +33,9 @@
                 .mouseout(function(el) { $(this.parentNode).removeClass("mainMenuItemHover"); })
         })
     </script>
-    <asp:ContentPlaceHolder runat="server" ID="Includes"></asp:ContentPlaceHolder>
 
+    <asp:ContentPlaceHolder runat="server" ID="Includes">
+    </asp:ContentPlaceHolder>
 </head>
 <body>
     <div id="main">

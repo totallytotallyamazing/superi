@@ -23,9 +23,4 @@
 </asp:Content>
 
 <asp:Content ContentPlaceHolderID="Includes" runat="server">
-    <script type="text/javascript">
-        $(function() {
-            $(".thumbnail, .recomendationLink").fancybox();
-        })
-    </script>
 </asp:Content>

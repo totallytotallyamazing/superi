@@ -6,9 +6,9 @@
     
     string linkText = "Îòçûâ";
     if (count > 1)
-        linkText += index;
+        linkText += " " + index;
 %>
-<a href="/Content/Recomendations/<%= Model.Image %>" class="recomendationLink">
+<a href="/Content/Recomendations/<%= Model.Image %>" class="fancyNoScale">
     <%= linkText %>
 </a>
 <%if(Request.IsAuthenticated){ %>

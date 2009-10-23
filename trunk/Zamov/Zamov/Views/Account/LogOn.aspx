@@ -5,6 +5,9 @@
 </asp:Content>
 <asp:Content ContentPlaceHolderID="includes" runat="server">
     <%= Html.RegisterCss("~/Content/register.css") %>
+    <style type="text/css">
+        #leftSide{border:none !important;}
+    </style>
 </asp:Content>
 <asp:Content ID="loginContent" ContentPlaceHolderID="MainContent" runat="server">
     <h2><%= Html.ResourceString("LogOn") %></h2>

@@ -42,5 +42,8 @@
             Html.RenderAction<ClientsController>(cc => cc.Object(item));
         }
     %>
+    <div style="clear:both;">
+    
+    </div>
 </div>
 

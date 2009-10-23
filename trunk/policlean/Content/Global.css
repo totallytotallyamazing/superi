@@ -77,7 +77,7 @@ img{border:none;}
 
 #leftMenu{float:left; width:280px; padding-top:160px; padding-left:20px;}
 
-#content{margin-left:280px; font-size:0.8em; padding-top:30px; margin-right:110px; text-align:justify;}
+#content{float:left; font-size:0.8em; padding-top:30px; text-align:justify; width:704px;}
 
 .leftMenuItem{width:180px; height:38px; margin-bottom:10px; background:transparent url(img/leftMenuBg.png); padding-left:13px;}
 .leftMenuItem div{padding-top:7px;}
@@ -99,3 +99,9 @@ img{border:none;}
 .thirdLevelMenu a.thirdLevelMenuActive{color:Black;}
 
 .clientName{color:#C3A184; padding-left:5px; font-size:22px;}
+
+.objectImage{float:left; margin-right:10px;}
+
+.objectImage a img{border:1px solid black;}
+
+.clientObjects{clear:both; padding-bottom:10px; border-bottom:2px solid #b6a686;}

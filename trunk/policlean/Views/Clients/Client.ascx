@@ -32,7 +32,9 @@
     %>
 </div>
 <div class="clientObjects">
+<%if (Model.Objects.Count>0){ %>
     фотографии объекта:<br />
+    <%} %>
     <%if(Request.IsAuthenticated){ %>
         <%= Html.ActionLink("Добавить объект", "AddObject", "Admin", new {id = Model.Id}, new { @class="adminLink fancy" }) %><br />
     <%} %>

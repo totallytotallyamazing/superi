@@ -104,4 +104,4 @@ img{border:none;}
 
 .objectImage a img{border:1px solid black;}
 
-.clientObjects{clear:both; padding-bottom:10px; border-bottom:2px solid #b6a686;}
+.clientObjects{clear:both; padding-bottom:10px; border-bottom:2px solid #b6a686; font-size:16px;}

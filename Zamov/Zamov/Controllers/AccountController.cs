@@ -209,7 +209,7 @@ namespace Zamov.Controllers
                         }
                         SystemSettings.EmptyCart();
                     }
-                    string linkBase = (Request.Url.AbsolutePath.StartsWith("http://zamov.net")) ? "http://zamov.net" : "http://dev.zamov.net";
+                    string linkBase = (Request.Url.AbsoluteUri.StartsWith("http://zamov.net")) ? "http://zamov.net" : "http://dev.zamov.net";
 
                     MailHelper.SendTemplate("no-reply@zamov.net",
                         new List<MailAddress> { new MailAddress(email) },

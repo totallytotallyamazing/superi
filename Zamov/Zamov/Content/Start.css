@@ -55,3 +55,5 @@ margin-right:40px;
 
 .currentCategory{color:Black;}
 .currentCity{color:Black;}
+
+.startText{width:auto; height:530px; background:transparent url(img/startTextBg.jpg) no-repeat; background-position:center; color:White !important;}

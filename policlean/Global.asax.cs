@@ -41,6 +41,13 @@ namespace PolialClean
             );
 
             routes.MapRoute(
+                "TooManyObjects",                                              // Route name
+                "Admin/TooManyObjects",                           // URL with parameters
+                new { controller = "Admin", action = "TooManyObjects" }  // Parameter defaults
+            );
+
+
+            routes.MapRoute(
                 "Admin",                                              // Route name
                 "Admin/AddUpdateClient/{id}",                           // URL with parameters
                 new { controller = "Admin", action = "AddUpdateClient", id="" }  // Parameter defaults

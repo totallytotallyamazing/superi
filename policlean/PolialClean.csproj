@@ -151,12 +151,13 @@
     <Content Include="Views\Clients\Recomendation.ascx" />
     <Content Include="Views\Shared\Index.aspx" />
     <Content Include="Views\Shared\ContentSubMenu.ascx" />
+    <Content Include="Views\Admin\TooManyObjects.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\" />
     <Folder Include="Content\Logos\" />
     <Folder Include="Content\Objects\Previews\" />
-    <Folder Include="Content\Recomendations\" />
+    <Folder Include="Content\Recomendations\Preview\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />

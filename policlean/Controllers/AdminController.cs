@@ -110,6 +110,11 @@ namespace PolialClean.Controllers
             return RedirectToAction("Index", "Clients");
         }
 
+        public ActionResult TooManyObjects()
+        {
+            return View();
+        }
+
         [OutputCache(NoStore = true, Duration = 1, VaryByParam = "*")]
         public ActionResult AddRecomendation(int id)
         {
@@ -118,21 +123,27 @@ namespace PolialClean.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult AddRecomendation(int id, string image)
+        public ActionResult AddRecomendation(int id, string image, string preview)
         {
-
             string fileName = Request.Files["image"].FileName;
-            if (!string.IsNullOrEmpty(fileName))
+            string previewName = Request.Files["preview"].FileName;
+            if (!string.IsNullOrEmpty(fileName) && !string.IsNullOrEmpty(previewName))
             {
                 fileName = Path.GetFileName(fileName);
                 string filePath = Server.MapPath("~/Content/Recomendations/" + fileName);
                 Request.Files["image"].SaveAs(filePath);
+                
+                previewName = Path.GetFileName(previewName);
+                string previewPath = Server.MapPath("~/Content/Recomendations/Previews/" + previewName);
+                Request.Files["preview"].SaveAs(previewPath);
+
                 using (DataStorage context = new DataStorage())
                 {
                     Recomendations item = new Recomendations();
                     EntityKey key = new EntityKey("DataStorage.Clients", "Id", id);
                     item.ClientsReference.EntityKey = key;
                     item.Image = fileName;
+                    item.Preview = previewName;
                     context.AddToRecomendations(item);
                     context.SaveChanges();
                 }
@@ -148,6 +159,7 @@ namespace PolialClean.Controllers
                 if (item != null)
                 {
                     DeleteImage("~/Content/Recomendations", item.Image);
+                    DeleteImage("~/Content/Recomendations/Preview", item.Preview);
                     context.DeleteObject(item);
                     context.SaveChanges();
                 }

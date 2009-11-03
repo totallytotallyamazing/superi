@@ -27,10 +27,8 @@ namespace PolialClean.Controllers
             return View(client);
         }
 
-        public ActionResult Recomendation(Recomendations recomendation, int count, int index)
+        public ActionResult Recomendation(Recomendations recomendation)
         {
-            ViewData["count"] = count;
-            ViewData["index"] = index;
             return View(recomendation);
         }
 

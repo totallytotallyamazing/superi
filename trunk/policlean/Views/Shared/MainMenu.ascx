@@ -1,13 +1,16 @@
 <%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl" %>
 <%
     string[] menuClasses = { "mainMenuItem", "mainMenuItem", "mainMenuItem", "mainMenuItem" };
-    
+
     string controllerName = ViewContext.RouteData.Values["controller"].ToString().ToUpperInvariant();
-    if(controllerName == "ADMIN")
-        controllerName = ViewData["controllerName"].ToString().ToUpperInvariant();
+    if (controllerName == "ADMIN")
+    {
+        if (ViewData["controllerName"] != null)
+            controllerName = ViewData["controllerName"].ToString().ToUpperInvariant();
+    }
 
     switch (controllerName)
-    { 
+    {
         case "HOME":
             menuClasses[0] += " mainMenuItemActive";
             break;

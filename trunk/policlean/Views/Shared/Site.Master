@@ -16,7 +16,7 @@
 
     <script type="text/javascript">
         $(function() {
-            $(".fancy").fancybox({ hideOnContentClick: false, frameHeight: 80, frameWidth: 310 });
+            $(".fancy").fancybox({ hideOnContentClick: false, frameHeight: 80, frameWidth: 350 });
             $(".fancyNoScale").fancybox({ hideOnContentClick: false, imageScale: false, centerOnScroll: false });
         })
     </script>

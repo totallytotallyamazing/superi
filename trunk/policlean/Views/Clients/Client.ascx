@@ -18,34 +18,55 @@
         <%} %>
     </tr>
 </table>
-<div class="clientRecomendations">
-    <%if(Request.IsAuthenticated){ %>
-        <%= Html.ActionLink("Добавить отзыв", "AddRecomendation", "Admin", new {id = Model.Id}, new { @class="adminLink fancy" }) %><br />
+<div class="clientMedia">
+    <div class="clientObjects">
+        <%if (Model.Objects.Count>0){ %>
+            фотографии объекта:<br />
+        <%} %>
+        <%if(Request.IsAuthenticated){ %>
+            <%if(Model.Objects.Count + Model.Recomendations.Count >=4 ){ %>
+                <%= Html.ActionLink("Добавить объект", "TooManyObjects", "Admin", null, new { @class = "adminLink fancy" })%><br />
+            <%} %>
+            <%else{ %>
+                <%= Html.ActionLink("Добавить объект", "AddObject", "Admin", new {id = Model.Id}, new { @class="adminLink fancy" }) %>&nbsp;&nbsp;<br />
+            <%} %>
+            
+        <%} %>
+        <% 
+            foreach (Objects item in Model.Objects)
+            {
+                Html.RenderAction<ClientsController>(cc => cc.Object(item));
+            }
+        %>
+    </div>
+    <% if(Model.Recomendations.Count>0 && Model.Objects.Count>0){ %>
+        <div class="objectRecomendationSeparator"></div>
     <%} %>
-    <% 
-        int i = 1;
-        foreach (Recomendations item in Model.Recomendations)
-        {
-            Html.RenderAction<ClientsController>(cc => cc.Recomendation(item, Model.Recomendations.Count, i));
-            i++;
-        }
-    %>
-</div>
-<div class="clientObjects">
-<%if (Model.Objects.Count>0){ %>
-    фотографии объекта:<br />
-    <%} %>
-    <%if(Request.IsAuthenticated){ %>
-        <%= Html.ActionLink("Добавить объект", "AddObject", "Admin", new {id = Model.Id}, new { @class="adminLink fancy" }) %><br />
-    <%} %>
-    <% 
-        foreach (Objects item in Model.Objects)
-        {
-            Html.RenderAction<ClientsController>(cc => cc.Object(item));
-        }
-    %>
+    <div class="clientRecomendations">
+        <%if(Request.IsAuthenticated){ %>
+            <%if(Model.Objects.Count + Model.Recomendations.Count >=4 ){ %>
+                <%= Html.ActionLink("Добавить отзыв", "TooManyObjects", "Admin", null, new { @class = "adminLink fancy" })%><br />
+            <%} %>
+            <%else{ %>
+                <%= Html.ActionLink("Добавить отзыв", "AddRecomendation", "Admin", new {id = Model.Id}, new { @class="adminLink fancy" }) %><br />
+            <%} %>
+        <%} %>
+        
+        <%if (Model.Recomendations.Count>0){ %>
+            отзывы:<br />
+        <%} %>
+        
+        <% 
+            foreach (Recomendations item in Model.Recomendations)
+            {
+                Html.RenderAction<ClientsController>(cc => cc.Recomendation(item));
+            }
+        %>
+    </div>
+
     <div style="clear:both;">
     
     </div>
 </div>
+
 

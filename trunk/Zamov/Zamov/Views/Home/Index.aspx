@@ -10,6 +10,7 @@
     <title>
         <%= Html.ResourceString("PageTitle") %>
     </title>
+    <link rel="shortcut icon" type="image/ico" href="/favicon.ico" />
      <meta name="KeyWords" content="Заказ онлайн, онлайн заказ, заказ еды, заказ пиццы, заказ суши, доставка пиццы, доставка суши, заказ подарков, подарок заказать" />
 
      <meta name="Description" content="Zamov.net - Первый в Украине супермаркет онлайн заказа пиццы, суши, подарков, електроники, автотоваров." />

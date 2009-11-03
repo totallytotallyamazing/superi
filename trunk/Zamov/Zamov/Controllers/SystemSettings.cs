@@ -35,7 +35,7 @@ namespace Zamov.Controllers
             get
             {
                 if (Session["lang"] == null)
-                    Session["lang"] = "uk-UA";
+                    Session["lang"] = "ru-RU";
                 return (string)Session["lang"];
             }
             set { System.Web.HttpContext.Current.Session["lang"] = value; }

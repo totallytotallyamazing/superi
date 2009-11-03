@@ -18,6 +18,7 @@ namespace Zamov
             
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             routes.IgnoreRoute("captcha.ashx");
+            routes.IgnoreRoute("favicon.ico");
 
             routes.MapRoute(
             "ProductImageDefault",                                              // Route name

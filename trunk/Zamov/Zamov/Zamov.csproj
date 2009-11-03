@@ -328,6 +328,7 @@
     <None Include="Content\MailTemplates\uk-UA\activateAccount" />
     <None Include="Content\MailTemplates\ru-RU\resetPassword" />
     <None Include="Content\MailTemplates\uk-UA\resetPassword" />
+    <Content Include="favicon.ico" />
     <Content Include="Scripts\jquery.cookie.js" />
     <Content Include="Views\Account\PasswordResetedru-RU.aspx" />
     <Content Include="Views\Account\PasswordReseteduk-UA.aspx" />

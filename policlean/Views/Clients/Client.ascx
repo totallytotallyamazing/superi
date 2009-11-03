@@ -8,7 +8,7 @@
             <%= Html.Image("~/Content/Logos/" + Model.Logo) %>
         </td>
         <td valign="middle" class="clientName">
-            <%= Html.Encode(Model.Name) %>
+            | <%= Html.Encode(Model.Name) %>
         </td>
         <%if(Request.IsAuthenticated){ %>
             <td style="padding-left:5px;">

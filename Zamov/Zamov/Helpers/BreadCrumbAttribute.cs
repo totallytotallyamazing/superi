@@ -61,12 +61,14 @@ namespace Zamov.Helpers
             
             using(ZamovStorage context = new ZamovStorage())
             {
-                Group item = (from g in context.Groups.Include("Parent") where g.Id == groupId select g).First();
-                groups.Add("/Products/" + SystemSettings.SelectedDealer + "/" + item.Id, GroupName(item.Id));
+                Group item = (from g in context.Groups.Include("Parent").Include("Dealer") where g.Id == groupId select g).First();
+                int dealerId = item.Dealer.Id;
+                string dealerName = item.Dealer.Name;
+                groups.Add("/Products/" + dealerName + "/" + item.Id, GroupName(item.Id));
                 Group parent = item.Parent;
                 while (parent != null)
                 {
-                    groups.Add("/Products/" + SystemSettings.SelectedDealer + "/" + parent.Id, GroupName(parent.Id));
+                    groups.Add("/Products/" + dealerName + "/" + parent.Id, GroupName(parent.Id));
                     parent.ParentReference.Load();
                     parent = parent.Parent;
                 }
@@ -78,7 +80,8 @@ namespace Zamov.Helpers
 
         private static string GroupName(int groupId)
         {
-            if (HttpContext.Current.Cache["groupName_" + groupId] == null)
+            string cacheKey = "dealerName_" + groupId + SystemSettings.CurrentLanguage;
+            if (HttpContext.Current.Cache[cacheKey] == null)
             {
                 using (ZamovStorage context = new ZamovStorage())
                 {
@@ -88,15 +91,17 @@ namespace Zamov.Helpers
                                         && name.Language == SystemSettings.CurrentLanguage
                                         && g.Id == groupId
                                         select name.Text).First();
-                    HttpContext.Current.Cache["groupName_" + groupId] = groupName;
+                    HttpContext.Current.Cache[cacheKey] = groupName;
                 }
             }
-            return HttpContext.Current.Cache["groupName_" + groupId].ToString();
+            return HttpContext.Current.Cache[cacheKey].ToString();
         }
 
         private string CategoryName(int categoryId)
         {
-            if (HttpContext.Current.Cache["categoryName_" + categoryId] == null)
+            string cacheKey = "dealerName_" + categoryId + SystemSettings.CurrentLanguage;
+
+            if (HttpContext.Current.Cache[cacheKey] == null)
             {
                 using (ZamovStorage context = new ZamovStorage())
                 {
@@ -107,15 +112,16 @@ namespace Zamov.Helpers
                                            && category.Id == categoryId
                                            select name.Text).FirstOrDefault();
                     if (categoryName != null)
-                        HttpContext.Current.Cache["categoryName_" + categoryId] = categoryName;
+                        HttpContext.Current.Cache[cacheKey] = categoryName;
                 }
             }
-            return (string)HttpContext.Current.Cache["categoryName_" + categoryId];
+            return (string)HttpContext.Current.Cache[cacheKey];
         }
 
         public static string DealerName(int dealerId)
         {
-            if (HttpContext.Current.Cache["dealerName_" + dealerId] == null)
+            string cacheKey = "dealerName_" + dealerId + SystemSettings.CurrentLanguage;
+            if (HttpContext.Current.Cache[cacheKey] == null)
             {
                 using (ZamovStorage context = new ZamovStorage())
                 {
@@ -125,10 +131,10 @@ namespace Zamov.Helpers
                                          && name.Language == SystemSettings.CurrentLanguage
                                          && dealer.Id == dealerId
                                          select name.Text).First();
-                    HttpContext.Current.Cache["dealerName_" + dealerId] = dealerName;
+                    HttpContext.Current.Cache[cacheKey] = dealerName;
                 }
             }
-            return (string)HttpContext.Current.Cache["dealerName_" + dealerId];
+            return (string)HttpContext.Current.Cache[cacheKey];
         }
     }
 }

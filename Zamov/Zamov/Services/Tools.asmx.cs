@@ -54,6 +54,7 @@ namespace Zamov.Services
                                       {
                                           Id = order.Id,
                                           DeliveryDate = String.Format("{0:g}", order.DeliveryDate),
+                                          OrderDate = String.Format("{0:g}", order.Date),
                                           ClientName = order.ClientName,
                                           Address = order.Address,
                                           Comments = order.Comments,

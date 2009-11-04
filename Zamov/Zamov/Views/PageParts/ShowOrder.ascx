@@ -49,7 +49,7 @@
         <th>
             <%=Html.ResourceString("Photo")%>
         </th>
-        <th>
+        <th style="width:10px; padding-left:2px; padding-right:2px;">
             <%=Html.ResourceString("Unit")%>
         </th>
         <th>
@@ -79,21 +79,21 @@
         <td>
             <%=Html.Encode(orderItem.Name)%>
         </td>
-        <td>
+        <td align="center">
             <a class="productDescription" style="text-decoration:none" href="/Products/Description/<%= orderItem.ProductId %>" <%= (orderItem.ProductId==null)?"disabled":"" %>>
                 <%= Html.Image("~/Content/img/productImage.JPG", new { style="border:none;" })%> / <span class="productDescriptionLink">i</span>
             </a>
         </td>
-        <td>
+        <td align="center">
             <%=Html.Encode(orderItem.Unit)%>
         </td>
-        <td align="right">
+        <td align="center">
             <%=Html.Encode(orderItem.Price.ToString("N"))%>
         </td>
         <td <%= (cartMode) ? "align=\"center\"" : "align=\"right\""%>>
             <%= (cartMode) ? Html.TextBox("quantity_" + orderItem.GetHashCode(), orderItem.Quantity, new { style= "width:12px; font-size:10px;", onblur="tableChanged(items, this)" }) : Html.Encode(orderItem.Quantity.ToString("N"))%>
         </td>
-        <td align="right">
+        <td  align="center">
             <%=Html.Encode(sum.ToString("N"))%>
         </td>
         <%if (cartMode)

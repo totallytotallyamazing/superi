@@ -13,7 +13,6 @@
         SelectListItem agreement = new SelectListItem { Text = Html.ResourceString("UserAgreement"), Value = "javascript:userAgreement();" };
         SelectListItem contacts = new SelectListItem { Text = Html.ResourceString("Contacts"), Value = "javascript:contacts();" };
         SelectListItem startText = new SelectListItem { Text = Html.ResourceString("StartText"), Value = "javascript:startText();" };
-        SelectListItem subCategoryText = new SelectListItem { Text = Html.ResourceString("SubCategoryText"), Value = "javascript:subCategoryText();" };
         SelectListItem expireOrders = new SelectListItem { Text = Html.ResourceString("ExpireOrders"), Value = "/Admin/ExpireOrders" };
         items.Add(cities);
         items.Add(dealers);
@@ -23,7 +22,6 @@
         items.Add(agreement);
         items.Add(contacts);
         items.Add(startText);
-        items.Add(subCategoryText);
         items.Add(expireOrders);
         Html.RenderAction<Zamov.Controllers.PagePartsController>(ac => ac.LeftMenu(Html.ResourceString("Administration"), items)); 
     %>

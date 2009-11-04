@@ -131,7 +131,6 @@
                 </td>
             </tr>
         </table>
-        <%= Html.CheckBox("rememberMe") %>&nbsp;<%= Html.ResourceString("RememberMe") %><br />
         <input type="submit" value="<%= Html.ResourceString("Register") %>" />
     </div>
     <% } %>

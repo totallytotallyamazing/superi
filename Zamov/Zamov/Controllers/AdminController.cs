@@ -674,7 +674,7 @@ namespace Zamov.Controllers
                     ViewData["ruShortText"] = item.ruShortText;
                     ViewData["uaShortText"] = item.uaShortText;
                     ViewData["ruLongText"] = item.ruLongText;
-                    ViewData["uaLongText"] = item.ruLongText;
+                    ViewData["uaLongText"] = item.uaLongText;
                     ViewData["date"] = item.date.ToString("dd.MM.yyyy");
                     ViewData["enabled"] = item.enabled;
                 }

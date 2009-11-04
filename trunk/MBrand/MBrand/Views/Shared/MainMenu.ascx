@@ -32,19 +32,53 @@
     }
 %>
 
+<script type="text/javascript">
+    $(function() {
+        <%if (chapter == "See"){ %>
+        $("#seeLink").click(hideSeeMenu);
+        $("#seeMenuReplacer").css("display", "none");
+        $("#seeMenu").css("display", "block");
+        <%} %>
+        <%else{ %>
+        $("#seeLink").click(showSeeMenu);
+        <%} %>
+    })
+
+    function showSeeMenu() {
+        $("#seeLink").unbind("click").click(hideSeeMenu);
+        $("#seeMenuReplacer").css("display", "none");
+        $("#seeMenu").slideDown("slow");
+    }
+
+    function hideSeeMenu() {
+        $("#seeLink").unbind("click").click(showSeeMenu);
+        $("#seeMenu").css("display", "none");
+        $("#seeMenuReplacer").css("display", "block");
+    }
+    
+</script>
+
 <div id="mainMenu">
     <div class="<%= eugeneClass %>">
         <%= Html.ActionLink("Евгений Миллер", "Index", "Eugene") %>
     </div>
+    <div class="mainMenuItemSplitter"></div>
     <div class="<%= seeClass %>">
-        <%= Html.ActionLink("Посмотреть", "Index", "See")%>
+        <a id="seeLink" href="#">
+            Посмотреть
+        </a>
+        <%--<%= Html.ActionLink("Посмотреть", "Index", "See")%>--%>
     </div>
+    <div class="mainMenuItemSplitter" id="seeMenuReplacer"></div>
+    <% Html.RenderPartial("SeeMenu"); %>
     <div class="<%= clientsClass %>">
         <%= Html.ActionLink("Клиенты", "Index", "Clients")%>
     </div>
+    <div class="mainMenuItemSplitter"></div>
     <div class="<%= notesClass %>">
         <%= Html.ActionLink("Заметки", "Index", "Notes")%>
     </div>
+    <div class="mainMenuItemSplitter"></div>
     <div class="<%= contactsClass %>">
         <%= Html.ActionLink("Контакты", "Index", "Contacts")%>
     </div>

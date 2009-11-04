@@ -262,14 +262,14 @@
     <Content Include="Views\Notes\Index.aspx" />
     <Content Include="Views\Notes\Note.aspx" />
     <Content Include="Views\Notes\Pages.ascx" />
-    <Content Include="Views\See\Logos.aspx" />
+    <Content Include="Views\See\Logo.aspx" />
     <Content Include="Views\See\Poly.aspx" />
     <Content Include="Views\See\RandomImage.ascx" />
     <Content Include="Views\Shared\LanguageSelector.ascx" />
     <Content Include="Views\Shared\SeeMenu.ascx" />
-    <Content Include="Views\See\Sites.aspx" />
+    <Content Include="Views\See\Site.aspx" />
     <Content Include="Views\See\Text.aspx" />
-    <Content Include="Views\See\Vcards.aspx" />
+    <Content Include="Views\See\Vcard.aspx" />
     <Content Include="Views\Shared\BlackWhiteSwitch.ascx" />
     <Content Include="Views\Shared\MainMenu.ascx" />
     <Content Include="Web.config" />

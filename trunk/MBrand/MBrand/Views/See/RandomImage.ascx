@@ -118,14 +118,6 @@
         <a href="#" id="backLink">
             <%=Html.Image("~/Content/img/back.png") %>
         </a>
- <%--       <%= Ajax.ActionLink("[replace]", "ShowWork", new { id = 0 }, 
-                new AjaxOptions 
-                { 
-                    OnSuccess = "backSuccess" 
-                }, 
-                new { id="backLink"}
-            )
-            .Replace("[replace]",Html.Image("~/Content/img/back.png") )%>--%>
     </div>
     <div id="zoom">
         <a id="zoomLink" href="<%= ViewData["baseFolder"] + "" + ViewData["firstImage"]  %>">

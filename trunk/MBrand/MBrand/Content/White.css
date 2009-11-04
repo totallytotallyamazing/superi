@@ -4,7 +4,6 @@
     color:Black;
 }
 
-#left{border-left-color:Black;}
 .mainMenuItem, .seeMenuItem{background:black;}
 .mainMenuItem a, .seeMenuItem a{color:White;}
 .mainMenuItem a:visited, .seeMenuItem a:visited{color:White;}
@@ -13,7 +12,9 @@ a{color:Black;}
 .inactiveBw{color:Black;}
 #headerRight{border-left-color:Black;}
 
-#seeMenu{border-bottom-color:Black;}
+.mainMenuItemSplitter{border-left-color:Black;}
+
+.seeMenuItemSplitter{border-left-color:Black;}
 
 #footer{border-top-color:Black;}
 

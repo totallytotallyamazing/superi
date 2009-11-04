@@ -18,7 +18,9 @@ namespace MBrand.Controllers
             return RedirectToAction("Sites");
         }
 
-        public ActionResult Sites()
+
+
+        public ActionResult Site(int? id)
         {
             string firstDescription;
             string firstImage;
@@ -31,7 +33,7 @@ namespace MBrand.Controllers
             return View();
         }
 
-        public ActionResult Vcards()
+        public ActionResult Vcard(int? id)
         {
             string firstDescription;
             string firstImage;
@@ -44,7 +46,7 @@ namespace MBrand.Controllers
             return View();
         }
 
-        public ActionResult Logos()
+        public ActionResult Logo(int? id)
         {
             string firstDescription;
             string firstImage;
@@ -57,7 +59,7 @@ namespace MBrand.Controllers
             return View();
         }
 
-        public ActionResult Poly()
+        public ActionResult Poly(int? id)
         {
             string firstDescription;
             string firstImage;
@@ -70,7 +72,7 @@ namespace MBrand.Controllers
             return View();
         }
 
-        public ActionResult Text()
+        public ActionResult Text(int? id)
         {
             string firstDescription;
             string firstImage;

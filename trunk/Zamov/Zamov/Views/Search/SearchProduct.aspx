@@ -176,7 +176,9 @@
                 </tr>
                 </table>
             </th>
-            <th style="width:20px;"><%= Html.ResourceString("DescriptionPhoto") %></th>
+            <th style="width:20px;"><%= Html.ResourceString("Photo") %>
+            <br /> / <br /><%= Html.ResourceString("Description") %>
+            </th>
             <th style="width:20px;"><%= Html.ResourceString("Quantity") %></th>
             <th style="width:20px;"><%= Html.ResourceString("ToOrder") %></th>
         </tr>
@@ -197,10 +199,10 @@
             <td  align="center">
                 <%=Html.Encode(!string.IsNullOrEmpty(item.Unit) ? item.Unit : "רע.")%>
             </td>
-            <td  align="right">
+            <td  align="center">
                 <%= Html.Encode(String.Format("{0:F}", item.Price))%>
             </td>
-            <td align="left">
+            <td align="center">
                 <a class="productDescription" style="text-decoration:none" href="/Products/Description/<%= item.Id %>">
                     <%= Html.Image("~/Content/img/productImage.JPG", new { style="border:none;" })%> / <span class="productDescriptionLink">i</span>
                 </a>

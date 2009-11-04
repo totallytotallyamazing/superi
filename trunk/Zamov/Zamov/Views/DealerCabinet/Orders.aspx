@@ -29,6 +29,11 @@
                 col1.innerHTML = response[i].Id;
                 row.appendChild(col1);
 
+                var col22 = document.createElement("td");
+                col22.innerHTML = response[i].OrderDate;
+                row.appendChild(col22);
+
+
                 var col2 = document.createElement("td");
                 col2.innerHTML = response[i].DeliveryDate;
                 row.appendChild(col2);
@@ -85,6 +90,9 @@
                 № <%=Html.ResourceString("OfOrder")%>
             </th>
             <th style="width:40px;">
+                <%=Html.ResourceString("OrderDate")%>
+            </th>
+            <th style="width:40px;">
                 <%=Html.ResourceString("OrderDeliveryDateTime")%>
             </th>
             <th style="width:40px;">
@@ -94,7 +102,7 @@
                 <%=Html.ResourceString("Comments")%>
             </th>
             <th style="width:20px;">
-                <%=Html.ResourceString("Price")%>, грн.
+                <%=Html.ResourceString("Value")%>, грн.
             </th>
             <th style="width:20px;">
                 <%=Html.ResourceString("Status")%>
@@ -107,6 +115,9 @@
       <tr class="status<%=(Statuses)item.Status%>">
             <td>
                 <%= Html.Encode(item.Id) %>
+            </td>
+            <td>
+                <%= Html.Encode(String.Format("{0:g}", item.Date)) %>
             </td>
             <td>
                 <%= Html.Encode(String.Format("{0:g}", item.DeliveryDate)) %>

@@ -120,7 +120,7 @@
                 <%= Html.ResourceString("PartNumber")%>
             </th>
             <th>
-                <%= Html.ResourceString("Name")%>
+                <%= Html.ResourceString("Title")%>
             </th>
             <th>
                 <%= Html.ResourceString("Image") %>
@@ -128,7 +128,7 @@
                 <%= Html.ResourceString("Description") %>
             </th>
             <th style="width:50px;">
-                <%= Html.ResourceString("Price")%>
+                <%= Html.ResourceString("Price")%>, грн.
             </th>
             <th style="width:50px;">
                 <%= Html.ResourceString("Unit")%>
@@ -212,7 +212,7 @@
                     <%= Html.ResourceString("PartNumber")%>
                 </th>
                 <th>
-                    <%= Html.ResourceString("Name")%>
+                    <%= Html.ResourceString("Title")%>
                 </th>
                 <%--                <th>
                     <%= Html.ResourceString("Description") %>
@@ -220,7 +220,7 @@
                     <%= Html.ResourceString("Image") %>
                 </th>--%>
                 <th>
-                    <%= Html.ResourceString("Price")%>
+                    <%= Html.ResourceString("Price")%>, грн.
                 </th>
                 <th>
                     <%= Html.ResourceString("Unit")%>

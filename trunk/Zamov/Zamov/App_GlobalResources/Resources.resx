@@ -780,4 +780,7 @@
   <data name="AllProducts" xml:space="preserve">
     <value>Усi товари</value>
   </data>
+  <data name="OrderDate" xml:space="preserve">
+    <value>Дата оформлення заказу</value>
+  </data>
 </root>

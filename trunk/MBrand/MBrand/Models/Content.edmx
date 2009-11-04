@@ -194,8 +194,8 @@
       <Diagram Name="Content">
         <EntityTypeShape EntityType="Model.Note" Width="1.5" PointX="0.75" PointY="0.75" Height="1.9210009765625" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.Text" Width="1.5" PointX="2.75" PointY="0.75" Height="1.427958984375" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.Work" Width="1.5" PointX="5.125" PointY="1" Height="1.9802864583333326" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.WorkGroup" Width="1.5" PointX="7.5" PointY="1" Height="2.1725878906249996" />
+        <EntityTypeShape EntityType="Model.Work" Width="1.5" PointX="5.125" PointY="1" Height="2.172587890625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.WorkGroup" Width="1.5" PointX="7.5" PointY="1" Height="2.364889322916667" />
         <AssociationConnector Association="Model.FK_Works_WorkGroups" >
           <ConnectorPoint PointX="7.5" PointY="2.0862939453125" />
           <ConnectorPoint PointX="6.625" PointY="2.0862939453125" />

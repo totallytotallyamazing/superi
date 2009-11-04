@@ -8,6 +8,8 @@
 .mainMenuItem a, .seeMenuItem a{color:White;}
 .mainMenuItem a:visited, .seeMenuItem a:visited{color:White;}
 
+h2 a{color:Black !important;}
+
 a{color:Black;}
 .inactiveBw{color:Black;}
 #headerRight{border-left-color:Black;}
@@ -15,6 +17,7 @@ a{color:Black;}
 .mainMenuItemSplitter{border-left-color:Black;}
 
 .seeMenuItemSplitter{border-left-color:Black;}
+.seeMenuItemSplitter a{color:Black;}
 
 #footer{border-top-color:Black;}
 

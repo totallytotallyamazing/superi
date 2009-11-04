@@ -18,122 +18,135 @@ namespace MBrand.Controllers
             return RedirectToAction("Sites");
         }
 
-
+        private ActionResult ShowGroupContent(int id)
+        {
+            using (DataStorage context = new DataStorage())
+            {
+                WorkGroup group = context.WorkGroups.Include("Works").Where(wg => wg.Id == id).Select(wg => wg).FirstOrDefault();
+                ViewData["workGroupName"] = group.Name;
+                return View("WorkGroupContents", group.Works);
+            }
+        }
 
         public ActionResult Site(int? id)
         {
-            string firstDescription;
-            string firstImage;
-            string firstPreview;
-            ViewData["workIds"] = MakeArray(GetWorks(WorkType.Site, out firstImage, out firstDescription, out firstPreview));
-            ViewData["firstImage"] = firstImage;
-            ViewData["firstDescription"] = firstDescription;
-            ViewData["firstPreview"] = firstPreview;
-            ViewData["baseFolder"] = "/Content/Images/site/";
-            return View();
+            ViewData["workType"] = WorkType.Site;
+
+            if (id == null)
+            {
+                return View();
+            }
+            else
+            {
+                return ShowGroupContent(id.Value);
+            }
         }
 
         public ActionResult Vcard(int? id)
         {
-            string firstDescription;
-            string firstImage;
-            string firstPreview;
-            ViewData["workIds"] = MakeArray(GetWorks(WorkType.Vcard, out firstImage, out firstDescription, out firstPreview));
-            ViewData["firstImage"] = firstImage;
-            ViewData["firstDescription"] = firstDescription;
-            ViewData["firstPreview"] = firstPreview;
-            ViewData["baseFolder"] = "/Content/Images/vcard/";
-            return View();
+            ViewData["workType"] = WorkType.Vcard;
+
+            if (id == null)
+            {
+                return View();
+            }
+            else
+            {
+                return ShowGroupContent(id.Value);
+            }
         }
 
         public ActionResult Logo(int? id)
         {
-            string firstDescription;
-            string firstImage;
-            string firstPreview;
-            ViewData["workIds"] = MakeArray(GetWorks(WorkType.Logo, out firstImage, out firstDescription, out firstPreview));
-            ViewData["firstImage"] = firstImage;
-            ViewData["firstDescription"] = firstDescription;
-            ViewData["firstPreview"] = firstPreview;
-            ViewData["baseFolder"] = "/Content/Images/logo/";
-            return View();
+            ViewData["workType"] = WorkType.Logo;
+
+            if (id == null)
+            {
+                return View();
+            }
+            else
+            {
+                return ShowGroupContent(id.Value);
+            }
         }
 
         public ActionResult Poly(int? id)
         {
-            string firstDescription;
-            string firstImage;
-            string firstPreview;
-            ViewData["workIds"] = MakeArray(GetWorks(WorkType.Poly, out firstImage, out firstDescription, out firstPreview));
-            ViewData["firstImage"] = firstImage;
-            ViewData["firstDescription"] = firstDescription;
-            ViewData["firstPreview"] = firstPreview;
-            ViewData["baseFolder"] = "/Content/Images/poly/";
-            return View();
+            ViewData["workType"] = WorkType.Poly;
+
+            if (id == null)
+            {
+                return View();
+            }
+            else
+            {
+                return ShowGroupContent(id.Value);
+            }
         }
 
         public ActionResult Text(int? id)
         {
-            string firstDescription;
-            string firstImage;
-            string firstPreview;
-            ViewData["workIds"] = MakeArray(GetWorks(WorkType.Text, out firstImage, out firstDescription, out firstPreview));
-            ViewData["firstImage"] = firstImage;
-            ViewData["firstDescription"] = firstDescription;
-            ViewData["firstPreview"] = firstPreview;
-            ViewData["baseFolder"] = "/Content/Images/text/";
-            return View();
-        }
+            ViewData["workType"] = WorkType.Text;
 
-        public ActionResult ShowWork(int id) 
-        {
-            using(DataStorage context = new DataStorage())
+            if (id == null)
             {
-                var result = context.Works.Where(w => w.Id == id).Select(
-                    w => new
-                    {
-                        Image = w.Image,
-                        Preview = w.Preview,
-                        Description = w.Description
-                    }
-                ).First();
-                return Json(result, "application/javascript");
+                return View();
+            }
+            else
+            {
+                return ShowGroupContent(id.Value);
             }
         }
 
-        private string MakeArray(string[] ids)
-        {
-            string array = string.Join(",", ids);
-            return "[" + array + "];";
-        }
+        //public ActionResult ShowWork(int id) 
+        //{
+        //    using(DataStorage context = new DataStorage())
+        //    {
+        //        var result = context.Works.Where(w => w.Id == id).Select(
+        //            w => new
+        //            {
+        //                Image = w.Image,
+        //                Preview = w.Preview,
+        //                Description = w.Description
+        //            }
+        //        ).First();
+        //        return Json(result, "application/javascript");
+        //    }
+        //}
 
-        private string[] GetWorks(WorkType type, out string firstImage, out string firstDescription, out string firstPreview)
-        {
-            string[] result = null;
-            using (DataStorage context = new DataStorage())
-            {
-                int typeId = (int)type;
-                var randomizer = new Random();
-                List<Work> works = (from work in context.Works
-                          where work.Type == typeId
-                          select work
-                          ).ToList();
-                Work[] randomized = works.Select(w => w).OrderBy(w => randomizer.Next()).ToArray();
-                if (randomized.Length > 0)
-                {
-                    firstImage = randomized[0].Image;
-                    firstPreview = randomized[0].Preview;
-                    firstDescription = randomized[0].Description;
-                }
-                else
-                {
-                    firstImage = string.Empty;
-                    firstPreview = string.Empty;
-                    firstDescription = string.Empty;
-                }
-                result = randomized.Select(i => i.Id.ToString()).OrderBy(i => randomizer.Next()).ToArray();
-            }
-            return result;
-        }
+        //private string MakeArray(string[] ids)
+        //{
+        //    string array = string.Join(",", ids);
+        //    return "[" + array + "];";
+        //}
+
+        //private string[] GetWorks(WorkType type, out string firstImage, out string firstDescription, out string firstPreview)
+        //{
+        //    string[] result = null;
+        //    using (DataStorage context = new DataStorage())
+        //    {
+        //        int typeId = (int)type;
+        //        var randomizer = new Random();
+        //        List<Work> works = (from work in context.Works
+        //                  where work.Type == typeId
+        //                  select work
+        //                  ).ToList();
+        //        Work[] randomized = works.Select(w => w).OrderBy(w => randomizer.Next()).ToArray();
+        //        if (randomized.Length > 0)
+        //        {
+        //            firstImage = randomized[0].Image;
+        //            firstPreview = randomized[0].Preview;
+        //            firstDescription = randomized[0].Description;
+        //        }
+        //        else
+        //        {
+        //            firstImage = string.Empty;
+        //            firstPreview = string.Empty;
+        //            firstDescription = string.Empty;
+        //        }
+        //        result = randomized.Select(i => i.Id.ToString()).OrderBy(i => randomizer.Next()).ToArray();
+        //    }
+        //    return result;
+        //}
     }
 }

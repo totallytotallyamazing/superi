@@ -113,6 +113,8 @@
     <Content Include="Content\fancy\fancy_title_right.png" />
     <Content Include="Content\fancy\jquery.fancybox.css" />
     <Content Include="Content\img\back.png" />
+    <Content Include="Content\img\delete.png" />
+    <Content Include="Content\img\Edit.png" />
     <Content Include="Content\img\logoBlack.jpg" />
     <Content Include="Content\img\logoWhite.jpg" />
     <Content Include="Content\img\next.png" />
@@ -248,6 +250,7 @@
     <Content Include="Scripts\ui.datepicker-ru.js" />
     <Content Include="Views\Admin\AddEditNote.aspx" />
     <Content Include="Views\Admin\AddEditWork.aspx" />
+    <Content Include="Views\Admin\AddEditWorkGroup.aspx" />
     <Content Include="Views\Admin\Clients.aspx" />
     <Content Include="Views\Admin\Contacts.aspx" />
     <Content Include="Views\Admin\Eugene.aspx" />
@@ -265,6 +268,8 @@
     <Content Include="Views\See\Logo.aspx" />
     <Content Include="Views\See\Poly.aspx" />
     <Content Include="Views\See\RandomImage.ascx" />
+    <Content Include="Views\See\Thumbnails.ascx" />
+    <Content Include="Views\See\WorkGroupContents.aspx" />
     <Content Include="Views\Shared\LanguageSelector.ascx" />
     <Content Include="Views\Shared\SeeMenu.ascx" />
     <Content Include="Views\See\Site.aspx" />

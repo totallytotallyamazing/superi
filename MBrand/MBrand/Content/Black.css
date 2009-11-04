@@ -4,7 +4,6 @@
     color:White;
 }
 
-#left{border-left-color:White;}
 .mainMenuItem, .seeMenuItem{background:White;}
 .mainMenuItem a, .seeMenuItem a{color:Black;}
 .mainMenuItem a:visited, .seeMenuItem a:visited{color:Black;}
@@ -14,7 +13,9 @@ a{color:White;}
 .inactiveBw{color:White;}
 #headerRight{border-left-color:White;}
 
-#seeMenu{border-bottom-color:White;}
+.mainMenuItemSplitter{border-left-color:White;}
+
+.seeMenuItemSplitter{border-left-color:White;}
 
 #footer{border-top-color:White;}
 

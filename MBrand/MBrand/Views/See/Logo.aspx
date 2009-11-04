@@ -11,7 +11,6 @@
         <%} %>
         <% Html.RenderPartial("RandomImage"); %>
     </div>
-    <% Html.RenderPartial("SeeMenu"); %>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="Includes" runat="server">

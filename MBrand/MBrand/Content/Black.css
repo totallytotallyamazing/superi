@@ -4,6 +4,8 @@
     color:White;
 }
 
+h2 a{color:White !important;}
+
 .mainMenuItem, .seeMenuItem{background:White;}
 .mainMenuItem a, .seeMenuItem a{color:Black;}
 .mainMenuItem a:visited, .seeMenuItem a:visited{color:Black;}
@@ -16,6 +18,7 @@ a{color:White;}
 .mainMenuItemSplitter{border-left-color:White;}
 
 .seeMenuItemSplitter{border-left-color:White;}
+.seeMenuItemSplitter a{color:White;}
 
 #footer{border-top-color:White;}
 

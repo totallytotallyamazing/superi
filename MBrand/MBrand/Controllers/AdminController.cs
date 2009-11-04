@@ -161,6 +161,73 @@ namespace MBrand.Controllers
             return RedirectToAction("Index", "Contacts");
         }
 
+        [OutputCache(VaryByParam = "*", NoStore = true, Duration = 1)]
+        public ActionResult AddEditWorkGroup(WorkType workType, int? id)
+        {
+            ViewData["workType"] = workType;
+            ViewData["id"] = id;
+            if (id != null)
+            {
+                using (DataStorage context = new DataStorage())
+                {
+                    WorkGroup workGroup = context.WorkGroups.Where(wg => id == id.Value).Select(wg => wg).FirstOrDefault();
+                    ViewData["name"] = workGroup.Name;
+                    ViewData["date"] = workGroup.Date.ToString("dd.MM.yyyy");
+                    ViewData["description"] = workGroup.Description;
+                }
+            }
+            return View();            
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult AddEditWorkGroup(WorkType workType, int? id, string name, string date, string description) 
+        {
+            using (DataStorage context = new DataStorage())
+            {
+                WorkGroup workGroup = new WorkGroup();
+                if (id != null)
+                {
+                    workGroup = context.WorkGroups.Where(wg => wg.Id == id.Value).Select(wg => wg).FirstOrDefault();
+                }
+                else
+                {
+                    workGroup.Type = (int)workType;
+                }
+                CultureInfo cultureInfo = CultureInfo.GetCultureInfo("ru-RU");
+                workGroup.Date = DateTime.Parse(date, cultureInfo);
+                workGroup.Name = name;
+                workGroup.Description = description;
+                string previewName = Request.Files["preview"].FileName;
+                if (!string.IsNullOrEmpty(previewName))
+                {
+                    if (id != null)
+                    {
+                        DeleteImage("~/Content/images/" + workType.ToString().ToLower() + "/preview", workGroup.Image);
+                    }
+                    previewName = Path.GetFileName(previewName);
+                    string filePath = Server.MapPath("~/Content/images/" + workType.ToString().ToLower() + "/preview/" + previewName);
+                    Request.Files["preview"].SaveAs(filePath);
+                    workGroup.Image = previewName;
+                }
+                if (id == null)
+                    context.AddToWorkGroups(workGroup);
+                context.SaveChanges();
+            }
+            return RedirectToAction(workType.ToString(), "See");
+        }
+
+        public ActionResult DeleteWorkGroup(int id)
+        {
+            WorkType workType;
+            using (DataStorage context = new DataStorage())
+            {
+                WorkGroup workGroup = context.WorkGroups.Where(wg => wg.Id == id).Select(wg => wg).FirstOrDefault();
+                workType = (WorkType)(workGroup.Type);
+                context.DeleteObject(workGroup);
+                context.SaveChanges();
+                return RedirectToAction(workType.ToString(), "See");
+            }
+        }
 
         public ActionResult See(WorkType type)
         {

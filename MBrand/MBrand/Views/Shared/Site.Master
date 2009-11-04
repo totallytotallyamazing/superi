@@ -26,7 +26,12 @@
 
     <script type="text/javascript" src="/Scripts/MicrosoftMvcAjax.js"></script>
 
-    <%--<script type="text/javascript" src="/Scripts/jquery.ui.js"></script>--%>
+    <%if(Request.IsAuthenticated){ %>
+    <script type="text/javascript" src="/Scripts/jquery.fancybox.js"></script>
+    <link rel="Stylesheet" href="/Content/fancy/jquery.fancybox.css" />
+    <link rel="Stylesheet" href="/Content/Admin.css" />
+    <%} %>
+    
     <asp:ContentPlaceHolder ID="Includes" runat="server">
     </asp:ContentPlaceHolder>
 </head>
@@ -44,8 +49,9 @@
             </div>
             <div class="blackWhiteSwitch">
                 <% Html.RenderPartial("BlackWhiteSwitch"); %>
-            </div>
             <% Html.RenderPartial("LanguageSelector"); %>
+                
+            </div>
         </div>
         <div id="middle">
             <div id="left">

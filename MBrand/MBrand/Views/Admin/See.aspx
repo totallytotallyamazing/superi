@@ -43,9 +43,6 @@
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="Includes" runat="server">
-    <link rel="Stylesheet" href="/Content/Admin.css" />
-    <link rel="Stylesheet" href="/Content/fancy/jquery.fancybox.css" />
-    <script type="text/javascript" src="/Scripts/jquery.fancybox.js"></script>
 </asp:Content>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="HeaderTitle" runat="server">

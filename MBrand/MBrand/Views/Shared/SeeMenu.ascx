@@ -16,18 +16,25 @@
     Func<WorkType, string> CreateContent = delegate(WorkType workType)
     {
         StringBuilder sb = new StringBuilder();
+        int workGroupId = int.MinValue;
+        if (ViewContext.RouteData.Values["id"] != null && !string.IsNullOrEmpty(ViewContext.RouteData.Values["id"].ToString()))
+            workGroupId = Convert.ToInt32(ViewContext.RouteData.Values["id"]);
         using (DataStorage context = new DataStorage())
         {
-            var items = context.WorkGroups.Where(wg => wg.Type == (int)workType).Select(wg => new { Id = wg.Id, Name = wg.Name });
+            int workTypeId = (int)workType;
+            var items = context.WorkGroups.Where(wg => wg.Type == workTypeId).Select(wg => new { Id = wg.Id, Name = wg.Name });
+            string linkFormat = "<a href=\"/{0}/{1}/{2}\" {4}>{3}</a>";
+            string linkClass = "class=\"current\"";
             foreach (var item in items)
             {
-                sb.Append(Html.ActionLink(item.Name, workType.ToString(), "See", new { id = item.Id }));
+                string finalLinkClass = (item.Id == workGroupId) ? linkClass : string.Empty;
+                sb.AppendFormat(linkFormat, "See", workType.ToString(), item.Id, item.Name, finalLinkClass);
                 sb.Append("<br />");
             }
         }
         if (Request.IsAuthenticated)
-        { 
-            sb.Append(Html.ActionLink)
+        {
+            sb.Append(Html.ActionLink("Добавить", "AddEditWorkGroup", "Admin", new { workType = workType }, new { @class="adminLink", id = "addWorkGroup" }));
         }
         return sb.ToString();
     };
@@ -61,23 +68,32 @@
             break;
     }
 %>
+<%if(Request.IsAuthenticated){ %>
+
+<script type="text/javascript">
+    $(function() {
+        $("#addWorkGroup").fancybox({ hideOnContentClick: false, frameWidth: 400, frameHeight: 150 });
+    })    
+</script>
+
+<%} %>
 <div id="seeMenu">
     <div class="seeMenuItemSplitter">
     </div>
     <div class="<%= sitesClass %>">
-        <%= Html.ActionLink("Сайты", "Sites", "See")%>
+        <%= Html.ActionLink("Сайты", "Site", "See")%>
     </div>
     <div class="seeMenuItemSplitter">
         <%= sitesContent %>
     </div>
     <div class="<%= vcardsClass %>">
-        <%= Html.ActionLink("Визитки", "Vcards", "See")%>
+        <%= Html.ActionLink("Визитки", "Vcard", "See")%>
     </div>
     <div class="seeMenuItemSplitter">
         <%= vcardsContent %>
     </div>
     <div class="<%= logoClass %>">
-        <%= Html.ActionLink("Логотипы", "Logos", "See")%>
+        <%= Html.ActionLink("Логотипы", "Logo", "See")%>
     </div>
     <div class="seeMenuItemSplitter">
         <%= logosContent %>

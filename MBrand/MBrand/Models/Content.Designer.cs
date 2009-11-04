@@ -12,7 +12,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("Model", "FK_Works_WorkGroups", "WorkGroups", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MBrand.Models.WorkGroup), "Work", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MBrand.Models.Work))]
 
 // Original file name:
-// Generation date: 04.11.2009 15:59:18
+// Generation date: 04.11.2009 16:24:39
 namespace MBrand.Models
 {
     

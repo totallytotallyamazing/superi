@@ -7,6 +7,7 @@ using System.Web.Mvc.Ajax;
 using MBrand.Models;
 using System.Globalization;
 using System.IO;
+using System.Data;
 
 namespace MBrand.Controllers
 {
@@ -258,13 +259,20 @@ namespace MBrand.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult AddEditWork(int? id, string description, WorkType type)
+        public ActionResult AddEditWork(int? id, string description, WorkType type, int groupId)
         {
             using (DataStorage context = new DataStorage())
             {
                 Work work = new Work();
                 if (id != null)
+                {
                     work = context.Works.Where(w => w.Id == id.Value).Select(w => w).FirstOrDefault();
+                }
+                else
+                {
+                    EntityKey key = new EntityKey("DataStorage.WorkGroups", "Id", groupId);
+                    work.EntityKey = key;
+                }
                 work.Description = HttpUtility.HtmlDecode(description);
                 work.Type = (int)type;
                 string image = Request.Files["image"].FileName;

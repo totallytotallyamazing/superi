@@ -264,7 +264,7 @@ namespace Zamov.Controllers
             ZamovStorage context = new ZamovStorage();
             int dealerId = Security.GetCurentDealerId(User.Identity.Name);
             List<Product> products = new List<Product>();
-            if (id != null && id>0)
+            if (id != null && id > 0)
             {
                 products = (from product in context.Products
                             where product.Group.Id == id.Value && product.Dealer.Id == dealerId && !product.Deleted
@@ -453,7 +453,8 @@ namespace Zamov.Controllers
                 bitmap.Save(stream, ImageFormat.Jpeg);
                 stream.Seek(0, SeekOrigin.Begin);
                 BinaryReader reader = new BinaryReader(stream);
-                image.Image = reader.ReadBytes((int)file.InputStream.Length);
+                image.Image = reader.ReadBytes((int)stream.Length);
+
                 using (ZamovStorage context = new ZamovStorage())
                 {
                     context.CleanupProductImages(productId);
@@ -532,7 +533,7 @@ namespace Zamov.Controllers
 
                 processData = true;
             }
-            else if (Session["updatedItems"] != null || Session["newItems"]!=null)
+            else if (Session["updatedItems"] != null || Session["newItems"] != null)
             {
                 updatedItemsDictionary = (Dictionary<string, Dictionary<string, string>>)Session["updatedItems"];
                 newItemsDictionary = (Dictionary<string, Dictionary<string, string>>)Session["newItems"];

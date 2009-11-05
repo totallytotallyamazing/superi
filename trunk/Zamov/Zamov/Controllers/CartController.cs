@@ -20,8 +20,9 @@ namespace Zamov.Controllers
         //
         // GET: /Cart/
 
-        public ActionResult Index()
+        public ActionResult Index(string redirectUrl)
         {
+            ViewData["redirectUrl"] = redirectUrl;
             if (SystemSettings.Cart.Orders.Count == 0)
                 return RedirectToAction("Index", "Home");
             using (ZamovStorage context = new ZamovStorage())
@@ -41,7 +42,7 @@ namespace Zamov.Controllers
             return Redirect(redirectUrl);
         }
 
-        public ActionResult RemoveOrderItem(int id)
+        public ActionResult RemoveOrderItem(int id, string redirectUrl)
         {
             Cart cart = SystemSettings.Cart;
             foreach (var order in cart.Orders)
@@ -67,8 +68,11 @@ namespace Zamov.Controllers
 
             int orderItemsCount = cart.Orders.Sum(o => o.OrderItems.Sum(oi => oi.Quantity));
             if (orderItemsCount == 0)
+            {
                 SystemSettings.EmptyCart();
-            return RedirectToAction("Index", new { id = id });
+                return Redirect(redirectUrl);
+            }
+            return RedirectToAction("Index", new { redirectUrl = redirectUrl });
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
@@ -104,11 +108,11 @@ namespace Zamov.Controllers
         }
 
 
-        public ActionResult ClearCart()
-        {
-            SystemSettings.EmptyCart();
-            return RedirectToAction("Index", "Home");
-        }
+        //public ActionResult ClearCart()
+        //{
+        //    SystemSettings.EmptyCart();
+        //    return RedirectToAction("Index", "Home");
+        //}
 
         public ActionResult MakeOrder()
         {

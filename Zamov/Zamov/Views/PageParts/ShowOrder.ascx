@@ -99,7 +99,7 @@
         <%if (cartMode)
           { %>
           <td>
-            <%= Html.ResourceActionLink<CartController>("Delete", ac=>ac.RemoveOrderItem(orderItem.GetHashCode()))%>
+            <%= Html.ResourceActionLink<CartController>("Delete", ac => ac.RemoveOrderItem(orderItem.GetHashCode(), (string)ViewData["redirectUrl"]))%>
           </td>
         <%} %>
     </tr>

@@ -16,7 +16,7 @@
     if (Model != null)
     {
         foreach (var order in Model)
-            Html.RenderAction<PagePartsController>(ac => ac.ShowOrder(order, true));
+            Html.RenderAction<PagePartsController>(ac => ac.ShowOrder(order, true, (string)ViewData["redirectUrl"]));
     }
 %>    
 <center>

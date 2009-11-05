@@ -63,7 +63,7 @@
 <%else{ %>
 <script type="text/javascript">
     $(function() {
-        $("#orderItemsCount").click(function() { location.href = '/Cart'; });
+    $("#orderItemsCount").click(function() { location.href = '/Cart?redirectUrl=<%= redirectUrl %>'; });
     });
 </script>
 <%} %>

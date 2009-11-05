@@ -37,6 +37,7 @@ margin-right:40px;
 #languageSelector{padding-top:16px; margin-left:26px;}
 #headerSelectors{padding-top:50px; padding-left:16px;}
 #headerSelectors table tr td{padding-left:10px;}
+#headerSelectors table tr td span{font-family:Verdana; font-style:italic; color:#003366;}
 #headerSelectors table tr td select{width:160px;}
 #headerRight{position:absolute;}
 #logo{padding-left:200px;}

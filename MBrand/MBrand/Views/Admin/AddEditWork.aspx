@@ -11,8 +11,9 @@
 
 <% using(Html.BeginForm("AddEditWork", "Admin", FormMethod.Post, new {enctype="multipart/form-data"})){ %>
     <%= Html.Hidden("id") %>
-    <span style="color:Black">Превью:</span> <input type="file" name="preview" /> &nbsp; <span style="color:Black">Изображение:</span> <input type="file" name="image" />
-    <br />
+    <%= Html.Hidden("groupId") %>
     <%= Html.TextArea("description") %>
+    <br />
+    <span style="color:Black">Изображение:</span> <input type="file" name="image" />
     <input type="submit" value="Сохранить" />
 <%} %>

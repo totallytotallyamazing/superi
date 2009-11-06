@@ -53,8 +53,8 @@ a:visited{color:#808080;}
 #noteHeader .date{font-size:12px; color:#808080;}
 
 #seeContainer{height:418px;}
-#seeMenu{padding-left:20px; clear:both; display:none;}
-.seeMenuItem{margin-left:10px; padding: 2px 5px; float:left; clear:both;}
+#seeMenu{padding-left:20px; clear:both; display:none; float:left;}
+.seeMenuItem{margin-left:10px; padding: 2px 5px; float:left; clear:both; white-space:nowrap;}
 .seeMenuItemSplitter
 {
 	margin-left:10px; 
@@ -64,6 +64,8 @@ a:visited{color:#808080;}
 	border-left-style:solid; 
 	border-left-width:1px;
 	padding-left:20px;
+	font-size:0px;
+	white-space:nowrap;
 }
 
 .seeMenuItemSplitter a{margin-top:10px; display:block; text-decoration:none;}

@@ -700,7 +700,7 @@
     <value>Топ товарів</value>
   </data>
   <data name="PageTitle" xml:space="preserve">
-    <value>Zamov - сайт онлайн замовлень</value>
+    <value>Zamov - сайт онлайн замовлень. Замовлення піци, замовлення суші, замовлення обідів та доставка їжі</value>
   </data>
   <data name="Photo" xml:space="preserve">
     <value>Фото</value>
@@ -779,8 +779,5 @@
   </data>
   <data name="AllProducts" xml:space="preserve">
     <value>Усi товари</value>
-  </data>
-  <data name="OrderDate" xml:space="preserve">
-    <value>Дата оформлення заказу</value>
   </data>
 </root>

@@ -243,9 +243,9 @@ namespace MBrand.Controllers
         }
 
         [OutputCache(VaryByParam="*", NoStore=true, Duration=1)]
-        public ActionResult AddEditWork(int? id, WorkType? type)
+        public ActionResult AddEditWork(int? id, int groupId)
         {
-            ViewData["type"] = type.ToString();
+            ViewData["groupId"] = groupId;
             if (id != null)
             {
                 using (DataStorage context = new DataStorage())
@@ -259,10 +259,12 @@ namespace MBrand.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult AddEditWork(int? id, string description, WorkType type, int groupId)
+        public ActionResult AddEditWork(int? id, string description, int groupId)
         {
             using (DataStorage context = new DataStorage())
             {
+                WorkGroup workGroup = context.WorkGroups.Where(wg => wg.Id == groupId).Select(wg => wg).First();
+                WorkType type = (WorkType)workGroup.Type;
                 Work work = new Work();
                 if (id != null)
                 {
@@ -274,7 +276,6 @@ namespace MBrand.Controllers
                     work.EntityKey = key;
                 }
                 work.Description = HttpUtility.HtmlDecode(description);
-                work.Type = (int)type;
                 string image = Request.Files["image"].FileName;
                 if (!string.IsNullOrEmpty(image))
                 {
@@ -284,16 +285,6 @@ namespace MBrand.Controllers
                     string imagePath = Server.MapPath("~/Content/images/"+type.ToString().ToLower()+"/" + image);
                     Request.Files["image"].SaveAs(imagePath);
                     work.Image = image;
-                }
-                string preview = Request.Files["preview"].FileName;
-                if (!string.IsNullOrEmpty(preview))
-                {
-                    if (id > 0)
-                        DeleteImage("~/Content/images/"+type.ToString().ToLower() +"/preview/", work.Preview);
-                    preview = Path.GetFileName(preview); 
-                    string previewPath = Server.MapPath("~/Content/images/"+type.ToString().ToLower()+"/preview/" + preview);
-                    Request.Files["preview"].SaveAs(previewPath);
-                    work.Preview = preview;
                 }
                 if(id == null)
                     context.AddToWorks(work);

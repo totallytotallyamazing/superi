@@ -31,6 +31,7 @@
        » <a href="/See/<%= workType.ToString() %>"><%= chapterName %></a> » <%= ViewData["workGroupName"] %>
     </h2>
     <div style="padding-left:17px;">
+        <a href="/Admin/AddEdtWork?groupId=<%= ViewData["groupId"] %>" class="addEditWork">Добавить</a>
         
     </div>
     

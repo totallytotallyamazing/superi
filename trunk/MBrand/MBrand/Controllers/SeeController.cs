@@ -24,6 +24,7 @@ namespace MBrand.Controllers
             {
                 WorkGroup group = context.WorkGroups.Include("Works").Where(wg => wg.Id == id).Select(wg => wg).FirstOrDefault();
                 ViewData["workGroupName"] = group.Name;
+                ViewData["groupId"] = id;
                 return View("WorkGroupContents", group.Works);
             }
         }

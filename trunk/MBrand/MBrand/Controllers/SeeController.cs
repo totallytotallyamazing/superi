@@ -99,55 +99,5 @@ namespace MBrand.Controllers
             }
         }
 
-        //public ActionResult ShowWork(int id) 
-        //{
-        //    using(DataStorage context = new DataStorage())
-        //    {
-        //        var result = context.Works.Where(w => w.Id == id).Select(
-        //            w => new
-        //            {
-        //                Image = w.Image,
-        //                Preview = w.Preview,
-        //                Description = w.Description
-        //            }
-        //        ).First();
-        //        return Json(result, "application/javascript");
-        //    }
-        //}
-
-        //private string MakeArray(string[] ids)
-        //{
-        //    string array = string.Join(",", ids);
-        //    return "[" + array + "];";
-        //}
-
-        //private string[] GetWorks(WorkType type, out string firstImage, out string firstDescription, out string firstPreview)
-        //{
-        //    string[] result = null;
-        //    using (DataStorage context = new DataStorage())
-        //    {
-        //        int typeId = (int)type;
-        //        var randomizer = new Random();
-        //        List<Work> works = (from work in context.Works
-        //                  where work.Type == typeId
-        //                  select work
-        //                  ).ToList();
-        //        Work[] randomized = works.Select(w => w).OrderBy(w => randomizer.Next()).ToArray();
-        //        if (randomized.Length > 0)
-        //        {
-        //            firstImage = randomized[0].Image;
-        //            firstPreview = randomized[0].Preview;
-        //            firstDescription = randomized[0].Description;
-        //        }
-        //        else
-        //        {
-        //            firstImage = string.Empty;
-        //            firstPreview = string.Empty;
-        //            firstDescription = string.Empty;
-        //        }
-        //        result = randomized.Select(i => i.Id.ToString()).OrderBy(i => randomizer.Next()).ToArray();
-        //    }
-        //    return result;
-        //}
     }
 }

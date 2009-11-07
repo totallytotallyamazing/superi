@@ -81,31 +81,41 @@
     <div class="seeMenuItemSplitter">
     </div>
     <div class="<%= sitesClass %>">
-        <%= Html.ActionLink("Сайты", "Site", "See")%>
+        <a href="/See/Site">
+            Сайты
+        </a>
     </div>
     <div class="seeMenuItemSplitter">
         <%= sitesContent %>
     </div>
     <div class="<%= vcardsClass %>">
-        <%= Html.ActionLink("Визитки", "Vcard", "See")%>
+        <a href="/See/Vcard">
+            Визитки
+        </a>
     </div>
     <div class="seeMenuItemSplitter">
         <%= vcardsContent %>
     </div>
     <div class="<%= logoClass %>">
-        <%= Html.ActionLink("Логотипы", "Logo", "See")%>
+        <a href="/See/Logo">
+            Логотипы
+        </a>
     </div>
     <div class="seeMenuItemSplitter">
         <%= logosContent %>
     </div>
     <div class="<%= polyClass %>">
-        <%= Html.ActionLink("Полиграфия", "Poly", "See")%>
+        <a href="/See/Poly">
+            Полиграфия
+        </a>
     </div>
     <div class="seeMenuItemSplitter">
         <%= polyContent %>
     </div>
     <div class="<%= textClass %>">
-        <%= Html.ActionLink("Работа с текстом", "Text", "See")%>
+        <a href="/See/Text">
+            Работа с текстом
+        </a>
     </div>
     <div class="seeMenuItemSplitter">
         <%= textContent %>

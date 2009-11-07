@@ -296,13 +296,14 @@ namespace MBrand.Controllers
         {
             using (DataStorage context = new DataStorage())
             {
-                Work work = context.Works.Where(w => w.Id == id).Select(w => w).FirstOrDefault();
-                WorkType type = (WorkType)work.Type;
-                DeleteImage("~/Content/images/"+type.ToString().ToLower()+"/preview", work.Preview);
-                DeleteImage("~/Content/images/"+type.ToString().ToLower(), work.Image);
+                Work work = context.Works.Include("WorkGroup").Where(w => w.Id == id).Select(w => w).FirstOrDefault();
+                WorkType type = (WorkType)work.WorkGroup.Type;
+                int groupId = work.WorkGroup.Id;
+                DeleteImage("~/Content/images/" + type.ToString().ToLower() + "/preview", work.Preview);
+                DeleteImage("~/Content/images/" + type.ToString().ToLower(), work.Image);
                 context.DeleteObject(work);
                 context.SaveChanges();
-                return RedirectToAction("See", new { type = type });
+                return RedirectToAction(type.ToString(), "See", new { id = groupId });
             }
         }
     }

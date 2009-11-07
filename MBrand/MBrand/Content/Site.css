@@ -68,7 +68,8 @@ a:visited{color:#808080;}
 	white-space:nowrap;
 }
 
-.seeMenuItemSplitter a{margin-top:10px; display:block; text-decoration:none;}
+
+.seeMenuItemSplitter a{margin-top:10px; display:block; text-decoration:none; white-space:normal !important;}
 .seeMenuItemSplitter a:hover{text-decoration:underline;}
 .seeMenuItemSplitter a.current{text-decoration:underline; font-weight:bold;}
 

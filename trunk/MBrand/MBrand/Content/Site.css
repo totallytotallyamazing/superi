@@ -69,6 +69,7 @@ a:visited{color:#808080;}
 }
 
 
+.seeMenuItemSplitter{width:180px;}
 .seeMenuItemSplitter a{margin-top:10px; display:block; text-decoration:none; white-space:normal !important;}
 .seeMenuItemSplitter a:hover{text-decoration:underline;}
 .seeMenuItemSplitter a.current{text-decoration:underline; font-weight:bold;}
@@ -96,7 +97,7 @@ a:visited{color:#808080;}
 
 .adminLink{color:Red !important;}
 
-#footer{float:right; text-align:right; color:#808080; border-top-width:1px; border-top-style:solid; margin-top:10px; padding-top:5px;}
+#footer{float:right; padding-bottom:30px; text-align:right; color:#808080; border-top-width:1px; border-top-style:solid; margin-top:10px; padding-top:5px;}
 #footer a{color:#808080;}
 
 #languageSwitch{color:#808080; float:right;}

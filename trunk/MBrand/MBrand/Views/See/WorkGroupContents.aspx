@@ -49,7 +49,7 @@
                     <a class="addEditWork" href="/Admin/AddEditWork?groupId=<%= ViewData["groupId"]%>&id=<%= item.Id %>">
                         <%= Html.Image("~/Content/img/edit.png") %>
                     </a>
-                    <a href="/Admin/DeleteWork/<%= item.Id %>" onclick="return confirm('Ты уверен?')">
+                    <a href="/Admin/DeleteWork?id=<%= item.Id %>" onclick="return confirm('Ты уверен?')">
                         <%= Html.Image("~/Content/img/delete.png") %>
                     </a>
                 </div>

@@ -272,8 +272,7 @@ namespace MBrand.Controllers
                 }
                 else
                 {
-                    EntityKey key = new EntityKey("DataStorage.WorkGroups", "Id", groupId);
-                    work.EntityKey = key;
+                    work.WorkGroup = workGroup;
                 }
                 work.Description = HttpUtility.HtmlDecode(description);
                 string image = Request.Files["image"].FileName;
@@ -289,7 +288,7 @@ namespace MBrand.Controllers
                 if(id == null)
                     context.AddToWorks(work);
                 context.SaveChanges();
-                return RedirectToAction("See", new { type = type });
+                return RedirectToAction(type.ToString(), "See", new { id = groupId });
             }
         }
 

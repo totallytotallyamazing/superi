@@ -5,7 +5,7 @@
 <script type="text/javascript">
     $(function() {
         $.fck.config = { path: '<%= VirtualPathUtility.ToAbsolute("~/Controls/fckeditor/") %>', config: { DefaultLanguage: "ru", AutoDetectLanguage: false, SkinPath: "/Controls/fckeditor/editor/skins/office2003/"} };
-        $("#description").fck({ height: 230, width: 700, toolbar: "Basic" });
+        $("#description").fck({ height: 230, width: 450, toolbar: "Basic" });
     });
 </script>
 
@@ -15,5 +15,6 @@
     <%= Html.TextArea("description") %>
     <br />
     <span style="color:Black">Изображение:</span> <input type="file" name="image" />
+    <br />
     <input type="submit" value="Сохранить" />
 <%} %>

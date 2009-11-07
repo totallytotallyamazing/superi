@@ -22,7 +22,7 @@ h2 a:hover{text-decoration:underline !important;}
 }
 .blackWhiteSwitch{margin-left:111px;}
 
-#left{float:left; width:245px; padding-top:100px; clear:both;}
+#left{float:left; width:245px; padding-top:100px; clear:both; min-height:400px;}
 #content{width:auto; padding-top:30px; float:left; width:752px;}
 #mainMenu{}
 .mainMenuItem{float:left; clear:both; padding:2px 5px 2px;}
@@ -81,7 +81,8 @@ a:visited{color:#808080;}
 .workGroupItem div.adminLinks{float:right; padding:0; margin:0; width:40px !important; padding-right:40px;}
 .workGroupItem div.adminLinks img{display:inline !important; margin:0 !important;}
 
-
+.workDescription{padding-top:40px;}
+.workImage{padding-top:10px;}
 /*
 #randomImageHolder{background:#E6E7E2; width:465px; height:330px; position:relative; text-align:center;}
 #randomImageHolder div img{z-index:100;}

@@ -1,5 +1,6 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<MBrand.Models.Work>>" %>
 <%@ Import Namespace="MBrand.Models" %>
+<%@ Import Namespace="Microsoft.Web.Mvc" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
     <%= ViewData["workGroupName"] %>
 </asp:Content>
@@ -27,12 +28,36 @@
                 break;
         }
     %>
+    <script type="text/javascript">
+        $(function() {
+            $(".addEditWork").fancybox({hideOnContentClick:false, frameHeight:300, frameWidth: 450});
+        })
+    </script>
     <h2>
        » <a href="/See/<%= workType.ToString() %>"><%= chapterName %></a> » <%= ViewData["workGroupName"] %>
     </h2>
     <div style="padding-left:17px;">
-        <a href="/Admin/AddEdtWork?groupId=<%= ViewData["groupId"] %>" class="addEditWork">Добавить</a>
+        <a href="/Admin/AddEditWork?groupId=<%= ViewData["groupId"] %>" class="adminLink addEditWork">Добавить</a>
         
+        <%foreach (Work item in Model)
+          {%>
+              <%if(Request.IsAuthenticated){ %>
+                <div>
+                    <a class="addEditWork" href="/Admin/AddEditWork?groupId=<%= ViewData["groupId"]%>&id=<%= item.Id %>">
+                        <%= Html.Image("~/Content/img/edit.png") %>
+                    </a>
+                    <a href="/Admin/DeleteWork/<%= item.Id %>" onclick="return confirm('Ты уверен?')">
+                        <%= Html.Image("~/Content/img/delete.png") %>
+                    </a>
+                </div>
+              <%} %>
+              <div class="workDescription">
+                <%= item.Description %>
+              </div>
+              <div class="workImage">
+                <%= Html.Image("~/Content/Images/" + workType.ToString() + "/" + item.Image) %>
+              </div>
+       <% } %>
     </div>
     
     

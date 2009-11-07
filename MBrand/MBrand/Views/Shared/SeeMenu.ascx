@@ -90,19 +90,11 @@
     </div>
     <div class="<%= vcardsClass %>">
         <a href="/See/Vcard">
-            Визитки
+            Фирменный стиль
         </a>
     </div>
     <div class="seeMenuItemSplitter">
         <%= vcardsContent %>
-    </div>
-    <div class="<%= logoClass %>">
-        <a href="/See/Logo">
-            Логотипы
-        </a>
-    </div>
-    <div class="seeMenuItemSplitter">
-        <%= logosContent %>
     </div>
     <div class="<%= polyClass %>">
         <a href="/See/Poly">

@@ -15,7 +15,7 @@
                 chapterName = "Сайты";
                 break;
             case WorkType.Vcard:
-                chapterName = "Визитки";
+                chapterName = "Фирменный стиль";
                 break;
             case WorkType.Logo:
                 chapterName = "Логотипы";

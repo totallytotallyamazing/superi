@@ -28,17 +28,20 @@
                 break;
         }
     %>
+    <%if(Request.IsAuthenticated){ %>
     <script type="text/javascript">
         $(function() {
             $(".addEditWork").fancybox({hideOnContentClick:false, frameHeight:300, frameWidth: 450});
         })
     </script>
+    <%} %>
     <h2>
        » <a href="/See/<%= workType.ToString() %>"><%= chapterName %></a> » <%= ViewData["workGroupName"] %>
     </h2>
     <div style="padding-left:17px;">
+        <%if(Request.IsAuthenticated){ %>
         <a href="/Admin/AddEditWork?groupId=<%= ViewData["groupId"] %>" class="adminLink addEditWork">Добавить</a>
-        
+        <%} %>
         <%foreach (Work item in Model)
           {%>
               <%if(Request.IsAuthenticated){ %>

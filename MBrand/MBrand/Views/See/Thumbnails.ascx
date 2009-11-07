@@ -15,7 +15,7 @@
 
     using (DataStorage context = new DataStorage())
     {
-        var workGroups = context.WorkGroups.Where(wg => wg.Type == workTypeId).Select(wg => wg);
+        var workGroups = context.WorkGroups.OrderByDescending(wg=>wg.Date).Where(wg => wg.Type == workTypeId).Select(wg => wg);
         foreach (var item in workGroups)
         {%>
             <div class="workGroupItem">

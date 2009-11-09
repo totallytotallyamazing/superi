@@ -57,9 +57,11 @@
               <div class="workDescription">
                 <%= item.Description %>
               </div>
+              <% if(!string.IsNullOrEmpty(item.Image)){ %>
               <div class="workImage">
                 <%= Html.Image("~/Content/Images/" + workType.ToString() + "/" + item.Image) %>
               </div>
+              <%} %>
        <% } %>
     </div>
     

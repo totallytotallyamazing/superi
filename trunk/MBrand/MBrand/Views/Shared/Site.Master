@@ -2,13 +2,13 @@
 
 <%@ Import Namespace="Microsoft.Web.Mvc" %>
 <%
-    HttpCookie blackCookie = Request.Cookies.Get("black");
-    bool black = true;
-    if (blackCookie != null)
-        black = bool.Parse(blackCookie.Value);
-    ViewData["black"] = black;
+    //HttpCookie blackCookie = Request.Cookies.Get("black");
+    //bool black = false;
+    //if (blackCookie != null)
+    //    black = bool.Parse(blackCookie.Value);
+    //ViewData["black"] = black;
 
-    string color = (black) ? "Black" : "White";
+    string color = "White";//(black) ? "Black" : "White";
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">

@@ -61,3 +61,12 @@ input{color:Black;}
 .mail{position:absolute; right:26px; bottom:35px;}
 
 #tagCloud{padding-left:51px;}
+
+.pagerTable{left:-30px; position:relative;}
+
+.goTopContainer, .goBottomContainer{width:100%; text-align:center; position:relative; z-index:1000;}
+.goBottom, .goTop{width:27px; height:27px; display:block; background-position: 0 27px; position:relative; left:-30px;}
+.goBottom:hover, .goTop:hover{background-position:0 0;}
+.goBottomContainer{margin-top:-27px; height:27px; padding-bottom:10px;}
+.goBottom{background-image:url(img/goBottom.jpg)}
+.goTop{background-image:url(img/goTop.jpg)}

@@ -39,7 +39,7 @@
     </div>
 </div>
 <center>
-<table>
+<table class="pagerTable">
     <tr>
         <td>
         </td>

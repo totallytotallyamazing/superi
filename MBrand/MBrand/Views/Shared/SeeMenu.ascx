@@ -22,7 +22,7 @@
         using (DataStorage context = new DataStorage())
         {
             int workTypeId = (int)workType;
-            var items = context.WorkGroups.Where(wg => wg.Type == workTypeId).Select(wg => new { Id = wg.Id, Name = wg.Name });
+            var items = context.WorkGroups.Where(wg => wg.Type == workTypeId).OrderByDescending(wg=>wg.Date).Select(wg => new { Id = wg.Id, Name = wg.Name });
             string linkFormat = "<a href=\"/{0}/{1}/{2}\" {4}>{3}</a>";
             string linkClass = "class=\"current\"";
             foreach (var item in items)

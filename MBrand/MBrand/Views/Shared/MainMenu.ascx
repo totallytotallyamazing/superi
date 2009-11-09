@@ -65,9 +65,8 @@
     <div class="mainMenuItemSplitter"></div>
     <div class="<%= seeClass %>">
         <a id="seeLink" href="#">
-            Посмотреть
+            Портфолио
         </a>
-        <%--<%= Html.ActionLink("Посмотреть", "Index", "See")%>--%>
     </div>
     <div class="mainMenuItemSplitter" id="seeMenuReplacer"></div>
     <% Html.RenderPartial("SeeMenu"); %>

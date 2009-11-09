@@ -1,7 +1,7 @@
 <%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl" %>
 <%@ Import Namespace="Microsoft.Web.Mvc" %>
 <%@ Import Namespace="MBrand.Controllers" %>
-<%
+<%--<%
     bool black = Convert.ToBoolean(ViewData["black"]);
 %>
 
@@ -21,4 +21,4 @@
     &nbsp;|&nbsp;
     <%= Html.ActionLink<HomeController>(hc => hc.Black(Request.Url.AbsolutePath), "на черном", new { @class="switch"} )%>
 
-<%} %>
+<%} %>--%>

@@ -299,6 +299,9 @@
     </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="Content\images\logo\preview\" />
     <Folder Include="Content\images\notes\" />
     <Folder Include="Content\images\poly\preview\" />

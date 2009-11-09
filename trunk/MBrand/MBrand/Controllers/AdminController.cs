@@ -171,7 +171,7 @@ namespace MBrand.Controllers
             {
                 using (DataStorage context = new DataStorage())
                 {
-                    WorkGroup workGroup = context.WorkGroups.Where(wg => id == id.Value).Select(wg => wg).FirstOrDefault();
+                    WorkGroup workGroup = context.WorkGroups.Where(wg => wg.Id == id.Value).Select(wg => wg).First();
                     ViewData["name"] = workGroup.Name;
                     ViewData["date"] = workGroup.Date.ToString("dd.MM.yyyy");
                     ViewData["description"] = workGroup.Description;

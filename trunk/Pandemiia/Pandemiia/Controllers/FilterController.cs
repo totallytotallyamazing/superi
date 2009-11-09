@@ -79,7 +79,7 @@ namespace Pandemiia.Controllers
             startIndex *= Settings.PageSize;
             int entitiesCount = Settings.PageSize;
             EntitiesDataContext context = new EntitiesDataContext();
-            List<Entity> entities = (from etm in context.EntityTagMappings where etm.Tag.TagName.ToLower() == typeName.ToLower() select etm.Entity).ToList();
+            List<Entity> entities = (from etm in context.EntityTagMappings where etm.Tag.TagName.ToLower() == typeName.ToLower() orderby etm.Entity.Date descending select etm.Entity).ToList();
             ViewData["entityCount"] = entities.Count;
             entities = entities.Skip(startIndex).Take(entitiesCount).ToList();
             ViewData["source"] = "All";

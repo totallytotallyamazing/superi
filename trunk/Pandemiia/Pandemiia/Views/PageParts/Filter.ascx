@@ -130,6 +130,24 @@
         </a>
         <%} %>
     </div>
+        <div class="filterIcon">
+        <a href="<%= Utils.GetFilterPath(source, "Reading") %>">
+            <%= Html.Image("~/Content/img/musicFilter.jpg", "чтиво")%>
+        </a>
+    </div>
+    <div class="filterLabel">
+        <%if (typeName == "Music")
+          {
+              Response.Write("музыка");
+          }
+          else
+          {%>
+        <a href="<%= Utils.GetFilterPath(source, "Music") %>">
+            музыка
+        </a>
+        <%} %>
+    </div>
+
     <div class="filterIcon">
         <a href="<%= Utils.GetFilterPath(source, "Other") %>">
             <%= Html.Image("~/Content/img/miscFilter.jpg", "разное")%>

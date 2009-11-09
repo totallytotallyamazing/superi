@@ -199,6 +199,8 @@
     <Content Include="Content\img\circle.jpg" />
     <Content Include="Content\img\fatalError.jpg" />
     <Content Include="Content\img\fly.jpg" />
+    <Content Include="Content\img\goBottom.jpg" />
+    <Content Include="Content\img\goTop.jpg" />
     <Content Include="Content\img\handEye.jpg" />
     <Content Include="Content\img\header.jpg" />
     <Content Include="Content\img\here.jpg" />
@@ -209,6 +211,7 @@
     <Content Include="Content\img\mail.jpg" />
     <Content Include="Content\img\miscFilter.jpg" />
     <Content Include="Content\img\miscFilterActive.jpg" />
+    <Content Include="Content\img\musicFilter.jpg" />
     <Content Include="Content\img\otherFinger.jpg" />
     <Content Include="Content\img\ours.jpg" />
     <Content Include="Content\img\oursBg.jpg" />

@@ -302,6 +302,9 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Views\Shared\Common.Master" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="Content\images\logo\preview\" />
     <Folder Include="Content\images\notes\" />
     <Folder Include="Content\images\poly\preview\" />

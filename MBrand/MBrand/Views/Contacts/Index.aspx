@@ -1,4 +1,4 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Common.Master" Inherits="System.Web.Mvc.ViewPage" %>
 <%@ Import Namespace="MBrand.Helpers" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
@@ -15,7 +15,6 @@
     </asp:LoginView>
     
     <%= Html.WriteText("Contacts")%>
-    
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="HeaderTitle" runat="server">

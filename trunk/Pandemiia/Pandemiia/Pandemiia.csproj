@@ -49,6 +49,9 @@
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel.Web">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
     <Reference Include="System.Web.Mvc, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <Private>True</Private>
@@ -74,6 +77,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PagePartsController.cs" />
+    <Compile Include="Controllers\RssController.cs" />
     <Compile Include="Controllers\ToolsController.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -83,6 +87,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\PandemicHelpers.cs" />
+    <Compile Include="Helpers\RssActionResult.cs" />
     <Compile Include="Models\Entities.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

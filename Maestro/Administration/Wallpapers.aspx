@@ -20,7 +20,7 @@
     </asp:ObjectDataSource>
     
     <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" 
-        DataSourceID="ObjectDataSource1">
+        DataSourceID="ObjectDataSource1" DataKeyNames="ID">
         <Columns>
             <asp:BoundField DataField="ID" HeaderText="#" ReadOnly="True" 
                 SortExpression="ID" />

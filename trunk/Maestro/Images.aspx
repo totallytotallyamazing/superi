@@ -13,7 +13,7 @@
         onitemdatabound="rPictures_ItemDataBound">
     <ItemTemplate>
         <div class="imageSeq">
-            <asp:HyperLink runat="server" ID="hlPicture"></asp:HyperLink><br />
+            <asp:HyperLink runat="server" CssClass="mediaPicture" ID="hlPicture"></asp:HyperLink><br />
             <asp:HyperLink runat="server" ID="hlTitle"></asp:HyperLink>
         </div>
     </ItemTemplate>
@@ -25,7 +25,7 @@
     <maestro:MediaMenu ID="MediaMenu1" CurrentIndex="1" runat="server" />
 </div>  
 <script type="text/javascript">
-    $(document).ready(function() { $(".imageSeq a").fancybox({ 'overlayShow': true }) });
+    $(document).ready(function() { $(".imageSeq a.mediaPicture").fancybox({ 'overlayShow': true }) });
 </script>
 </asp:Content>
 

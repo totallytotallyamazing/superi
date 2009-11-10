@@ -101,9 +101,9 @@ public partial class Controls_Match : System.Web.UI.UserControl
             lTeam.Text = new Resource(TeamTextId)[WebSession.Language];
         lDate.Text = MatchDate.ToString("dd.MM.yyyy");
         lMaestro.Text = "Маестро";
-        if (HostCount > 0)
+        if (HostCount >= 0)
             lHostCount.Text = HostCount.ToString();
-        if (TeamCount > 0)
+        if (TeamCount >= 0)
             lTeamCount.Text = TeamCount.ToString();
         if (!string.IsNullOrEmpty(ImageUrl))
             iTeam.ImageUrl = WebSession.BaseImageUrl + "logos/" + ImageUrl;

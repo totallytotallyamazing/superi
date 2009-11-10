@@ -89,7 +89,10 @@ public partial class Images : System.Web.UI.Page
         GalleryItem item = (GalleryItem)e.Item.DataItem;
         HyperLink hlPicture = (HyperLink)e.Item.FindControl("hlPicture");
         HyperLink hlTitle = (HyperLink)e.Item.FindControl("hlTitle");
-
+        if (GalleryId > 0)
+            hlTitle.CssClass = "mediaPicture";
+        else
+            hlTitle.Target = "_blank";
         hlTitle.NavigateUrl = hlPicture.NavigateUrl = WebSession.GalleryImagesFolder.Replace("~/", WebSession.BaseUrl) + item.Picture;
         hlPicture.ImageUrl = WebSession.GalleryImagesFolder.Replace("~/", WebSession.BaseUrl) + item.Preview;
         hlTitle.ToolTip = hlPicture.ToolTip = hlTitle.Text = item.Titles[WebSession.Language];

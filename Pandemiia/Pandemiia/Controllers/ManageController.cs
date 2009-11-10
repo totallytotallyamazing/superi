@@ -79,7 +79,11 @@ namespace Pandemiia.Controllers
             entity.Description = Server.HtmlDecode(frm["Description"]);
             entity.Title = frm["Title"];
             CultureInfo info = CultureInfo.GetCultureInfo("ru-RU");
-            entity.Date = DateTime.Parse(frm["Date"], info);
+            DateTime date = DateTime.Parse(frm["Date"], info);
+            if (entity.Date.Value.Date != date.Date)
+            {
+                entity.Date = date.Add(DateTime.Now.TimeOfDay);
+            }
             entity.SourceID = int.Parse(frm["SourceID"]);
             entity.TypeID = int.Parse(frm["TypeID"]);
             if (Request.Files.Count > 0 && !string.IsNullOrEmpty(Request.Files["image"].FileName))
@@ -187,7 +191,7 @@ namespace Pandemiia.Controllers
             entity.Title = frm["Title"];
             CultureInfo info = CultureInfo.GetCultureInfo("ru-RU");
             DateTime date = DateTime.Parse(frm["Date"], info);
-            date.Add(DateTime.Now.TimeOfDay);
+            date = date.Add(DateTime.Now.TimeOfDay);
             entity.Date = date;
             entity.SourceID = int.Parse(frm["SourceID"]);
             entity.TypeID = int.Parse(frm["TypeID"]);

@@ -1312,7 +1312,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Дата оформлення заказу.
+        ///   Looks up a localized string similar to Дата замовлення.
         /// </summary>
         internal static string OrderDate {
             get {
@@ -1393,7 +1393,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Zamov - сайт онлайн замовлень.
+        ///   Looks up a localized string similar to Zamov - сайт онлайн замовлень. Замовлення піци, замовлення суші, замовлення обідів та доставка їжі.
         /// </summary>
         internal static string PageTitle {
             get {

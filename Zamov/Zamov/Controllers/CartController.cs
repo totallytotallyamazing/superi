@@ -39,6 +39,8 @@ namespace Zamov.Controllers
         public ActionResult EmptyCart(string redirectUrl)
         {
             SystemSettings.EmptyCart();
+            if (string.IsNullOrEmpty(redirectUrl))
+                return RedirectToAction("Index", "Home");
             return Redirect(redirectUrl);
         }
 
@@ -107,12 +109,6 @@ namespace Zamov.Controllers
             return RedirectToAction("Index");
         }
 
-
-        //public ActionResult ClearCart()
-        //{
-        //    SystemSettings.EmptyCart();
-        //    return RedirectToAction("Index", "Home");
-        //}
 
         public ActionResult MakeOrder()
         {

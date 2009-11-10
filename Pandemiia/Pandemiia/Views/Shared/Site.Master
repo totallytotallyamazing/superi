@@ -58,6 +58,7 @@
 <body>
     <map name="home" id="home">
         <area shape="rect" coords="50,350,301,410" href="<%= VirtualPathUtility.ToAbsolute("~/") %>" alt="pandemic" />
+        <area shape="rect" coords="280, 20 301, 70" href="/Rss/Feed" alt="rss" />
     </map>
     <map name="mail" id="mail">
         <area shape="rect" coords="0,0,18,18" href="mailto:in@pandemic.com.ua" alt="pandemic" />

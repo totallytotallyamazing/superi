@@ -32,7 +32,7 @@
      
         </td>
         <td align="left">
-        <%using (Html.BeginForm("ClearCart", "Cart", FormMethod.Get))
+        <%using (Html.BeginForm("EmptyCart", "Cart", FormMethod.Get))
           {%>
             <input style="width:50px;" type="submit" value="<%=Html.ResourceString("No")%>" />
         <%}%>

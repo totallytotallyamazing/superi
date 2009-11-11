@@ -302,6 +302,7 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="favicon.ico" />
     <Content Include="Views\Shared\Common.Master" />
   </ItemGroup>
   <ItemGroup>

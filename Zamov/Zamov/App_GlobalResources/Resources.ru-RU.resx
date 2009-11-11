@@ -783,4 +783,7 @@
   <data name="OrderDate" xml:space="preserve">
     <value>Дата заказа</value>
   </data>
+  <data name="Images" xml:space="preserve">
+    <value>Изображения</value>
+  </data>
 </root>

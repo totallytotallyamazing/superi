@@ -17,7 +17,6 @@
           <EntitySet Name="ProductCityMappings" EntityType="BaseEntities.Store.ProductCityMappings" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ProductImages" EntityType="BaseEntities.Store.ProductImages" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Products" EntityType="BaseEntities.Store.Products" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="sysdiagrams" EntityType="BaseEntities.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="TranslationItemsTypes" EntityType="BaseEntities.Store.TranslationItemsTypes" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Translations" EntityType="BaseEntities.Store.Translations" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Unit" EntityType="BaseEntities.Store.Unit" store:Type="Tables" Schema="dbo" />
@@ -159,6 +158,7 @@
           <Property Name="Enabled" Type="bit" Nullable="false" />
           <Property Name="DealerId" Type="int" Nullable="false" />
           <Property Name="Deleted" Type="bit" Nullable="false" />
+          <Property Name="DisplayProductImages" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="ProductCityMappings">
           <Key>
@@ -194,16 +194,6 @@
           <Property Name="New" Type="bit" Nullable="false" />
           <Property Name="TopProduct" Type="bit" Nullable="false" />
           <Property Name="Action" Type="bit" Nullable="false" />
-        </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="TranslationItemsTypes">
           <Key>
@@ -571,7 +561,8 @@
           <NavigationProperty Name="Dealer" Relationship="BaseEntities.FK_Groups_Dealers" FromRole="Group" ToRole="Dealer" />
           <Property Name="Deleted" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Groups" Relationship="BaseEntities.FK_Groups_Groups" FromRole="Group" ToRole="Group1" />
-          <NavigationProperty Name="Parent" Relationship="BaseEntities.FK_Groups_Groups" FromRole="Group1" ToRole="Group" /></EntityType>
+          <NavigationProperty Name="Parent" Relationship="BaseEntities.FK_Groups_Groups" FromRole="Group1" ToRole="Group" />
+          <Property Name="DisplayProductImages" Type="Boolean" Nullable="false" /></EntityType>
         <EntityType Name="Product">
           <Key>
             <PropertyRef Name="Id" />
@@ -720,6 +711,7 @@
           <EntitySetMapping Name="Groups">
             <EntityTypeMapping TypeName="IsTypeOf(BaseEntities.Group)">
               <MappingFragment StoreEntitySet="Groups">
+                <ScalarProperty Name="DisplayProductImages" ColumnName="DisplayProductImages" />
                 <ScalarProperty Name="Deleted" ColumnName="Deleted" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -890,22 +882,23 @@
         <EntityTypeShape EntityType="BaseEntities.Category" Width="1.5" PointX="5.125" PointY="1.75" Height="2.085348307291667" IsExpanded="true" />
         <EntityTypeShape EntityType="BaseEntities.City" Width="1.5" PointX="0.75" PointY="1.125" Height="1.7566536458333331" IsExpanded="true" />
         <EntityTypeShape EntityType="BaseEntities.Dealer" PointX="9.625" PointY="0.5" Width="1.5" Height="4.2879036458333326" IsExpanded="true" />
-        <EntityTypeShape EntityType="BaseEntities.Group" Width="1.5" PointX="3" PointY="1.75" Height="2.2496956380208335" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaseEntities.Group" Width="1.5" PointX="3" PointY="1.625" Height="2.4140429687499996" IsExpanded="true" />
         <EntityTypeShape EntityType="BaseEntities.Product" Width="1.5" PointX="0.75" PointY="3.75" Height="2.5783902994791665" IsExpanded="true" />
         <EntityTypeShape EntityType="BaseEntities.TranslationItemsType" Width="1.5" PointX="11.25" PointY="2.625" Height="1.4033821614583331" IsExpanded="true" />
         <EntityTypeShape EntityType="BaseEntities.Translation" Width="1.5" PointX="11.25" PointY="0.5" Height="1.7566536458333335" IsExpanded="true" />
         <AssociationConnector ManuallyRouted="false" Association="BaseEntities.FK_Products_Dealers">
-          <ConnectorPoint PointX="9.625" PointY="4.1979166666666661" />
-          <ConnectorPoint PointX="2.25" PointY="4.1979166666666661" />
+          <ConnectorPoint PointX="9.625" PointY="4.21875" />
+          <ConnectorPoint PointX="2.25" PointY="4.21875" />
           </AssociationConnector>
         <AssociationConnector Association="BaseEntities.FK_Products_Groups" ManuallyRouted="false">
-          <ConnectorPoint PointX="3" PointY="3.46875" />
-          <ConnectorPoint PointX="1.96875" PointY="3.46875" />
-          <ConnectorPoint PointX="1.96875" PointY="3.75" />
+          <ConnectorPoint PointX="3" PointY="3.4375" />
+          <ConnectorPoint PointX="2.625" PointY="3.4375" />
+          <ConnectorPoint PointX="2.625" PointY="3.8541666666666665" />
+          <ConnectorPoint PointX="2.25" PointY="3.8541666666666665" />
           </AssociationConnector>
         <AssociationConnector ManuallyRouted="false" Association="BaseEntities.DealerCityMappings">
-          <ConnectorPoint PointX="2.25" PointY="1.40625" />
-          <ConnectorPoint PointX="9.625" PointY="1.40625" />
+          <ConnectorPoint PointX="2.25" PointY="1.2395833333333333" />
+          <ConnectorPoint PointX="9.625" PointY="1.2395833333333333" />
           </AssociationConnector>
         <AssociationConnector Association="BaseEntities.ProductCityMappings" ManuallyRouted="false">
           <ConnectorPoint PointX="1.5" PointY="2.8816536458333331" />
@@ -920,8 +913,8 @@
           <ConnectorPoint PointX="6.625" PointY="1.96875" />
           <ConnectorPoint PointX="9.625" PointY="1.96875" /></AssociationConnector>
         <AssociationConnector Association="BaseEntities.FK_Groups_Dealers" >
-          <ConnectorPoint PointX="9.625" PointY="4.2422900390625" />
-          <ConnectorPoint PointX="4.5" PointY="4.2422900390625" />
+          <ConnectorPoint PointX="9.625" PointY="3.9166666666666661" />
+          <ConnectorPoint PointX="4.5" PointY="3.9166666666666661" />
           </AssociationConnector>
         <AssociationConnector Association="BaseEntities.FK_Categories_Categories" ManuallyRouted="true" >
           <ConnectorPoint PointX="5.71875" PointY="1.75" />
@@ -929,10 +922,10 @@
           <ConnectorPoint PointX="6.0729166666666661" PointY="1.5" />
           <ConnectorPoint PointX="6.0729166666666661" PointY="1.75" /></AssociationConnector>
         <AssociationConnector Association="BaseEntities.FK_Groups_Groups" >
-          <ConnectorPoint PointX="3.75" PointY="1.75" />
-          <ConnectorPoint PointX="3.75" PointY="1.6249999999999998" />
-          <ConnectorPoint PointX="3.46875" PointY="1.6249999999999998" />
-          <ConnectorPoint PointX="3.46875" PointY="1.75" /></AssociationConnector>
+          <ConnectorPoint PointX="3.5319230769230767" PointY="1.625" />
+          <ConnectorPoint PointX="3.5319230769230767" PointY="1.375" />
+          <ConnectorPoint PointX="3.9784615384615383" PointY="1.375" />
+          <ConnectorPoint PointX="3.9784615384615383" PointY="1.625" /></AssociationConnector>
         <EntityTypeShape EntityType="BaseEntities.CategoryImage" Width="1.875" PointX="7.25" PointY="2.25" Height="1.5923063151041665" />
         <AssociationConnector Association="BaseEntities.FK_CategoryImages_Categories" >
           <ConnectorPoint PointX="6.625" PointY="3.0426741536458337" />

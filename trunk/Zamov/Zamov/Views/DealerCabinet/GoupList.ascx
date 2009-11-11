@@ -21,9 +21,11 @@
                     Рус
                 </th>
                 <th>
-                    <%= Html.ResourceString("ActiveF") %>
+                    <%= Html.ResourceString("Images") %>
                 </th>
-            <th></th>
+            <th>
+                    <%= Html.ResourceString("ActiveF") %>
+            </th>
             <th></th>
         </tr>
         <%} %>
@@ -32,13 +34,16 @@
                 <%= Html.Hidden("itemId_" + item.Id, item.Id)%>
             </td>  
             <td>
-                <%= Html.TextBox("uk-UA_" + item.Id, item.GetName("uk-UA", false), new { onblur = "tableChanged(changes, this)", style="width:200px;" })%>
+                <%= Html.TextBox("uk-UA_" + item.Id, item.GetName("uk-UA", false), new { style="width:200px;" })%>
             </td>
             <td>
-                <%= Html.TextBox("ru-RU_" + item.Id, item.GetName("ru-RU", false), new { onblur = "tableChanged(changes, this)", style = "width:200px;" })%>
+                <%= Html.TextBox("ru-RU_" + item.Id, item.GetName("ru-RU", false), new { style = "width:200px;" })%>
             </td>
             <td align="center">
-                <input type="checkbox" name="enabled_<%= item.Id %>" <%= (item.Enabled) ? "checked=\"checked\"" : "" %>" onclick="updateEnables(this, <%= item.Id %>)" />
+                <input type="checkbox" name="displayImages_<%= item.Id %>" <%= (item.DisplayProductImages) ? "checked=\"checked\"" : "" %>" />
+            </td>
+            <td align="center">
+                <input type="checkbox" name="enabled_<%= item.Id %>" <%= (item.Enabled) ? "checked=\"checked\"" : "" %>" />
             </td>
             <td>
                 <a href="#" onclick="insertGroup(this, <%= item.Id %>)">

@@ -57,7 +57,7 @@ namespace Zamov.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult InsertGroup(string groupName, string groupUkrName, string groupRusName, bool enabled, int parentId)
+        public ActionResult InsertGroup(string groupName, string groupUkrName, string groupRusName, bool displayImages, bool enabled, int parentId)
         {
             ClearGroupCache();
 
@@ -76,6 +76,7 @@ namespace Zamov.Controllers
                 group.Names["ru-RU"] = groupRusName;
                 group.Names["uk-UA"] = groupUkrName;
                 group.Enabled = enabled;
+                group.DisplayProductImages = displayImages;
                 context.AddToGroups(group);
                 context.SaveChanges();
                 context.UpdateTranslations(group.NamesXml);
@@ -88,38 +89,26 @@ namespace Zamov.Controllers
         {
             ClearGroupCache();
 
-            JavaScriptSerializer serializer = new JavaScriptSerializer();
-            if (!string.IsNullOrEmpty(form["updates"]))
+            Dictionary<string, Dictionary<string, string>> updates = form.ProcessPostData();
+            List<TranslationItem> translationItems = new List<TranslationItem>();
+            using (ZamovStorage context = new ZamovStorage())
             {
-                Dictionary<string, Dictionary<string, string>> updates = serializer.Deserialize<Dictionary<string, Dictionary<string, string>>>(
-                    form["updates"]
-                    );
                 foreach (string key in updates.Keys)
                 {
                     int itemId = int.Parse(key);
-                    Dictionary<string, string> translations = updates[key];
-                    List<TranslationItem> translationItems = new List<TranslationItem>();
-                    translationItems = (from tr in translations select new TranslationItem { ItemId = itemId, ItemType = ItemTypes.Group, Language = tr.Key, Translation = tr.Value }).ToList();
-                    string translationXml = Utils.CreateTranslationXml(translationItems);
-                    using (ZamovStorage context = new ZamovStorage())
-                    {
-                        context.UpdateTranslations(translationXml);
-                    }
+                    Dictionary<string, string> translations = (from item in updates[key] where item.Key != "itemId" && item.Key != "enabled" select item).ToDictionary(i => i.Key, i => i.Value);
+                    translationItems.AddRange((from tr in translations select new TranslationItem { ItemId = itemId, ItemType = ItemTypes.Group, Language = tr.Key, Translation = tr.Value }).ToList());
+
+                    bool enabled = (updates[key].ContainsKey("enabled") && (updates[key]["enabled"].Contains("true") || updates[key]["enabled"] == "on"));
+                    bool displayImages = (updates[key].ContainsKey("displayImages") && (updates[key]["displayImages"].Contains("true") || updates[key]["displayImages"] == "on"));
+
+                    Group group = context.Groups.Select(g => g).Where(g => g.Id == itemId).First();
+                    group.Enabled = enabled;
+                    group.DisplayProductImages = displayImages;
                 }
-                if (!string.IsNullOrEmpty(form["enablities"]))
-                {
-                    Dictionary<string, string> enables = serializer.Deserialize<Dictionary<string, string>>(form["enablities"]);
-                    using (ZamovStorage context = new ZamovStorage())
-                    {
-                        foreach (string key in enables.Keys)
-                        {
-                            int id = int.Parse(key);
-                            Group group = context.Groups.Select(g => g).Where(g => g.Id == id).First();
-                            group.Enabled = bool.Parse(enables[key]);
-                        }
-                        context.SaveChanges(true);
-                    }
-                }
+                string translationXml = Utils.CreateTranslationXml(translationItems);
+                context.SaveChanges();
+                context.UpdateTranslations(translationXml);
             }
             return RedirectToAction("Groups");
         }

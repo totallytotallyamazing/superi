@@ -934,6 +934,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Зображення.
+        /// </summary>
+        internal static string Images {
+            get {
+                return ResourceManager.GetString("Images", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Iмпортованi товари.
         /// </summary>
         internal static string ImportedProducts {

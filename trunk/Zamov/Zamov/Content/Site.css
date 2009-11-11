@@ -99,9 +99,6 @@ iframe{padding:0; margin:0; border:none;}
 }
 
 
-.commonTable{ border-collapse:collapse; }
-.commonTable th{background-color:#f4fef5; border:1px solid black; border-collapse:collapse; padding:15px; font-size:12px;}
-.commonTable td{border:1px solid black; border-collapse:collapse; padding: 0px 5px}
 
 .productDescription{}
 .orderDescription{}
@@ -179,3 +176,20 @@ td.new{background-image: url(img/new.jpg)}
 .searchTableIneerHeader td{ border:none; border-style:none}
 
 #logonCell a{font-size:x-small;}
+
+.commonTable{ border-collapse:collapse; }
+.commonTable th{background-color:#f4fef5; border:1px solid black; border-collapse:collapse; padding:15px; font-size:12px;}
+.commonTable td{border:1px solid black; border-collapse:collapse; padding: 0px 5px}
+
+.blueHeaderedTable tr th {color:White; padding-top:4px; padding:0 5px; font-family:Arial; font-size:10px; font-weight:bolder;}
+.blueHeaderedTable tr td{border-left: 1px dotted #D5D7D6; border-right: 1px dotted #D5D7D6; border-bottom:1px solid #d5d7d6; border-collapse:collapse;}
+
+.blueHeaderedTable tr.even{background-color:White;}
+.blueHeaderedTable tr.odd{background-color:#F6F8FA;}
+
+.blueHeader
+{
+	background: #66859A url(img/tableHeaderBg.jpg) repeat-x;
+}
+
+.blueHeader th{background-color: transparent}

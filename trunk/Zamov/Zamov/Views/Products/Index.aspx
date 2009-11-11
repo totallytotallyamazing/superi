@@ -80,8 +80,8 @@
             <div style="text-align:right;">
                 <input type="submit" value="<%= Html.ResourceString("AddToCart") %>" />
             </div>
-    <table class="commonTable" style="width:100%; margin:5px 0;">
-        <tr>
+    <table class="blueHeaderedTable" style="width:100%; margin:5px 0;" cellpadding="0" cellspacing="0">
+        <tr class="blueHeader">
             <th>
             <table class="searchTableIneerHeader">
                 <tr>
@@ -152,6 +152,7 @@
             <th style="width:20px;"><%= Html.ResourceString("ToOrder") %></th>
         </tr>
 <%
+    int i = 0;
 foreach (var item in Model)
     {
         string trClass = "";
@@ -162,9 +163,10 @@ foreach (var item in Model)
         else if (item.New)
             trClass = "new";
         string classAttribute = (!string.IsNullOrEmpty(trClass)) ? "class=\"" + trClass + "\"" : "";
-            
+        string rowClass = ((i % 2 > 0) ? "odd" : "even");
+        i++; 
     %>
-        <tr>
+        <tr class=<%= rowClass %>>
             <td <%= classAttribute %>>
                 <%= item.Name %>
             </td>

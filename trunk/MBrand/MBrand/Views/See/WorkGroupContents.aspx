@@ -72,5 +72,5 @@
 </asp:Content>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="HeaderTitle" runat="server">
-	Посмотреть
+	Портфолио
 </asp:Content>

@@ -317,8 +317,11 @@
     <Content Include="Content\img\productImage.JPG" />
     <Content Include="Content\img\descending.gif" />
     <Content Include="Content\img\ascending.gif" />
+    <Content Include="Content\img\sortAsc.png" />
+    <Content Include="Content\img\sortDesc.png" />
     <Content Include="Content\img\startTextBg.jpg" />
     <Content Include="Content\img\tableHeaderBg.jpg" />
+    <Content Include="Content\img\thHover.jpg" />
     <Content Include="Content\img\tickMark.jpg" />
     <Content Include="Content\img\treeArrows.jpg" />
     <Content Include="Content\img\truck.jpg" />

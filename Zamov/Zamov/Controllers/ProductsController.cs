@@ -19,11 +19,11 @@ namespace Zamov.Controllers
         private const int MaxTopProductsNumber = 5;
 
         [BreadCrumb(SubCategoryId = true)]
-        public ActionResult Index(string dealerId, int? groupId, SortFieldNames? sortFieldName, SortDirection? sortDirection)
+        public ActionResult Index(string dealerId, int? groupId, SortFieldNames? sortField, SortDirection? sortOrder)
         {
 
-            ViewData["sortDirection"] = sortDirection;
-            ViewData["sortFieldName"] = sortFieldName;
+            ViewData["sortDirection"] = sortOrder;
+            ViewData["sortField"] = (sortField!=null) ? sortField.ToString() : null;
             ViewData["sortDealerId"] = dealerId;
 
             using (ZamovStorage context = new ZamovStorage())
@@ -52,17 +52,17 @@ namespace Zamov.Controllers
                 products = RemoveTopProducts(products);
 
 
-                if (sortFieldName != null && sortDirection != null)
-                    switch (sortFieldName)
+                if (sortField != null && sortOrder != null)
+                    switch (sortField)
                     {
                         case SortFieldNames.Name:
-                            if (sortDirection == SortDirection.Ascending)
+                            if (sortOrder == SortDirection.Ascending)
                                 products.Sort(new PSortByProductNameAsc());
                             else
                                 products.Sort(new PSortByProductNameDesc());
                             break;
                         case SortFieldNames.Price:
-                            if (sortDirection == SortDirection.Ascending)
+                            if (sortOrder == SortDirection.Ascending)
                                 products.Sort(new PSortByPriceAsc());
                             else
                                 products.Sort(new PSortByPriceDesc());

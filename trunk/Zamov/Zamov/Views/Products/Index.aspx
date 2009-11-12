@@ -94,13 +94,11 @@
     <table class="blueHeaderedTable" style="width: 100%; margin: 5px 0;" cellpadding="0"
         cellspacing="0">
         <tr class="blueHeader">
-            <th class="sortable">
-                <%= Html.SortHeader("Name", "/Products/" + sortDealerId + "/" + groupId, "Name", "", "") %>
-            </th>
             <th style="width: 20px;">
                 <%= Html.ResourceString("Photo") %>
-                /
-                <%= Html.ResourceString("Description") %>
+            </th>
+            <th class="sortable">
+                <%= Html.SortHeader("Name", "/Products/" + sortDealerId + "/" + groupId, "Name", "", "") %>
             </th>
             <th style="width: 20px;">
                 <%= Html.ResourceString("MeassureUnit") %>
@@ -131,13 +129,25 @@
                 i++; 
         %>
         <tr class="<%= rowClass %>">
+            <td align="center">
+                <table class="noBorder">
+                    <tr>
+                        <td style="height:80px" valign="middle" align="center">
+                            <img src="~/Image/ProductImageDefault/<%= item.Id %>/80" />
+                            <% Html.Image("~/Image/ProductImageDefault/" + item.Id + "/80"); %>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a class="productDescription" style="text-decoration: none" href="/Products/Description/<%= item.Id %>">
+                                <%= Html.ResourceString("Details") %>
+                            </a>
+                        </td>   
+                    </tr>
+                </table>
+            </td>
             <td <%= classAttribute %>>
                 <%= item.Name %>
-            </td>
-            <td align="center">
-                <a class="productDescription" style="text-decoration: none" href="/Products/Description/<%= item.Id %>">
-                    <%= Html.Image("~/Content/img/productImage.JPG", new { style="border:none;" })%>
-                    / <span class="productDescriptionLink">i</span> </a>
             </td>
             <td align="center">
                 <%= item.Unit %>

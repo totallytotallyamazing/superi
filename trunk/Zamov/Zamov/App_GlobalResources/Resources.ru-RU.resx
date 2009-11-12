@@ -667,7 +667,7 @@
     <value>Краткий текст</value>
   </data>
   <data name="Details" xml:space="preserve">
-    <value>Подробнее &amp;gt;&amp;gt;</value>
+    <value>Подробнее</value>
   </data>
   <data name="CheckedSaveTo" xml:space="preserve">
     <value>Отмеченные сохранить в</value>

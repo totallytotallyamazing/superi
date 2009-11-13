@@ -7,25 +7,24 @@ using System.Data;
 using Zamov.Helpers;
 using System;
 using System.Web.UI.WebControls;
+using System.Web.Caching;
 
 namespace Zamov.Controllers
 {
     [BreadCrumb(CategoryId = true)]
     public class ProductsController : Controller
     {
-        //
-        // GET: /Products/
 
         private const int MaxTopProductsNumber = 5;
-
+        //TODO: тут пиздец с быстродейтвием
         [BreadCrumb(SubCategoryId = true)]
         public ActionResult Index(string dealerId, int? groupId, SortFieldNames? sortField, SortDirection? sortOrder)
         {
 
             ViewData["sortDirection"] = sortOrder;
-            ViewData["sortField"] = (sortField!=null) ? sortField.ToString() : null;
+            ViewData["sortField"] = (sortField != null) ? sortField.ToString() : null;
             ViewData["sortDealerId"] = dealerId;
-
+            string productsCacheKey = "ProductsPage_" + dealerId + "_" + groupId + "_" + sortField ?? "NoSort" + "_" + sortOrder ?? "NoSort";
             using (ZamovStorage context = new ZamovStorage())
             {
                 int dealer = context.Dealers.Where(d => d.Name == dealerId).Select(d => d.Id).First();
@@ -37,39 +36,50 @@ namespace Zamov.Controllers
                 ViewData["groups"] = groups;
                 ViewData["dealerId"] = dealer;
                 ViewData["groupId"] = groupId;
-                List<Product> products = new List<Product>();
-                if (groupId != null)
+
+
+                if (HttpContext.Cache[productsCacheKey] == null)
                 {
-                    Group currentGroup = groups.Where(g => g.Id == groupId.Value).Select(g => g).SingleOrDefault();
-                    CollectProducts(products, currentGroup);
-                    products = products.Where(p => !p.Deleted && p.Group.Enabled && p.Enabled && !p.Group.Deleted).ToList();
-                }
-                else
-                    products = (from product in context.Products where ((groupId == null) || product.Group.Id == groupId) && product.Dealer.Id == dealer && !product.Deleted && product.Group.Enabled && !product.Group.Deleted && product.Enabled select product).ToList();
-
-                ViewData["topProducts"] = GetTopProducts(products);
-
-                products = RemoveTopProducts(products);
-
-
-                if (sortField != null && sortOrder != null)
-                    switch (sortField)
+                    List<Product> products = new List<Product>();
+                    if (groupId != null)
                     {
-                        case SortFieldNames.Name:
-                            if (sortOrder == SortDirection.Ascending)
-                                products.Sort(new PSortByProductNameAsc());
-                            else
-                                products.Sort(new PSortByProductNameDesc());
-                            break;
-                        case SortFieldNames.Price:
-                            if (sortOrder == SortDirection.Ascending)
-                                products.Sort(new PSortByPriceAsc());
-                            else
-                                products.Sort(new PSortByPriceDesc());
-                            break;
+                        Group currentGroup = groups.Where(g => g.Id == groupId.Value).Select(g => g).SingleOrDefault();
+                        CollectProducts(products, currentGroup);
+                        products = products.Where(p => !p.Deleted && p.Group.Enabled && p.Enabled && !p.Group.Deleted).ToList();
                     }
-                return View(products);
+                    else
+                        products = (from product in context.Products where ((groupId == null) || product.Group.Id == groupId) && product.Dealer.Id == dealer && !product.Deleted && product.Group.Enabled && !product.Group.Deleted && product.Enabled select product).ToList();
+
+                    
+                    products.ForEach(p => p.LoadDescriptions());
+
+
+
+                    if (sortField != null && sortOrder != null)
+                        switch (sortField)
+                        {
+                            case SortFieldNames.Name:
+                                if (sortOrder == SortDirection.Ascending)
+                                    products.Sort(new PSortByProductNameAsc());
+                                else
+                                    products.Sort(new PSortByProductNameDesc());
+                                break;
+                            case SortFieldNames.Price:
+                                if (sortOrder == SortDirection.Ascending)
+                                    products.Sort(new PSortByPriceAsc());
+                                else
+                                    products.Sort(new PSortByPriceDesc());
+                                break;
+                        }
+                    HttpContext.Cache.Add(productsCacheKey, products, null, Cache.NoAbsoluteExpiration, new TimeSpan(0, 30, 0), CacheItemPriority.Default, null);
+                }
             }
+
+            List<Product> result = (List<Product>)HttpContext.Cache[productsCacheKey];
+            ViewData["topProducts"] = GetTopProducts(result);
+            result = RemoveTopProducts(result);
+
+            return View(result);
         }
 
         private List<Product> GetTopProducts(List<Product> source)

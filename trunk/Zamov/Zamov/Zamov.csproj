@@ -313,6 +313,7 @@
     <Content Include="Content\img\edit.png" />
     <Content Include="Content\img\new.jpg" />
     <Content Include="Content\img\newsSplitter.jpg" />
+    <Content Include="Content\img\noImage.png" />
     <Content Include="Content\img\online.png" />
     <Content Include="Content\img\productImage.JPG" />
     <Content Include="Content\img\descending.gif" />
@@ -348,6 +349,7 @@
     <Content Include="Views\Admin\UserTypeSelector.ascx" />
     <Content Include="Views\Cart\Expired.aspx" />
     <Content Include="Views\Dealer\DealerInfo.aspx" />
+    <Content Include="Views\Products\ProductImageThumbnail.ascx" />
     <Content Include="Views\Shared\AdminOrdersInfo.ascx" />
     <Content Include="Views\Shared\TopProducts.ascx" />
     <Content Include="Views\UserCabinet\UserCabinet.Master" />

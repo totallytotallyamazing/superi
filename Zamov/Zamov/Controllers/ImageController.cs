@@ -119,22 +119,28 @@ namespace Zamov.Controllers
 
         public void ProductImageDefault(int id, int maxDimension)
         {
-            Bitmap image = null;
-            using (ZamovStorage context = new ZamovStorage())
+            byte[] imageContent = null;
+            string productImageCacheKey = "ProductImage_" + id + "_" + maxDimension;
+            if (HttpContext.Cache[productImageCacheKey] == null)
             {
-                ProductImage productImage = context.ProductImages.Select(pi => pi).Where(pi => pi.Product.Id == id).First();
-                MemoryStream stream = new MemoryStream(productImage.Image);
-                image = new Bitmap(stream);
-                stream.Close();
-                stream.Dispose();
-            }
+                Bitmap image = null;
+                using (ZamovStorage context = new ZamovStorage())
+                {
+                    ProductImage productImage = context.ProductImages.Select(pi => pi).Where(pi => pi.Product.Id == id).First();
+                    MemoryStream stream = new MemoryStream(productImage.Image);
+                    image = new Bitmap(stream);
+                    stream.Close();
+                    stream.Dispose();
+                }
 
-            MemoryStream imageStream = ScaleImage(image, maxDimension);
-            byte[] imageContent = new Byte[imageStream.Length];
-            imageStream.Read(imageContent, 0, (int)imageStream.Length);
+                MemoryStream imageStream = ScaleImage(image, maxDimension);
+                imageContent = new Byte[imageStream.Length];
+                imageStream.Read(imageContent, 0, (int)imageStream.Length);
+                HttpContext.Cache.Add(productImageCacheKey, imageContent, null, DateTime.Now.AddHours(1), System.Web.Caching.Cache.NoSlidingExpiration, System.Web.Caching.CacheItemPriority.Default, null);
+                imageStream.Close();
+            }
             Response.ContentType = "image/jpeg";
-            Response.BinaryWrite(imageContent);
-            imageStream.Close();
+            Response.BinaryWrite((byte[])HttpContext.Cache[productImageCacheKey]);
         }
 
         public void CategoryImage(int id)

@@ -12,5 +12,7 @@ namespace Zamov.Models
         public string Description { get; set; }
         public string Name { get; set; }
         public int ImageId { get; set; }
+        public bool TopProduct { get; set; }
+        public int GroupId { get; set; }
     }
 }

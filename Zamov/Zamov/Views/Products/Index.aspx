@@ -133,8 +133,10 @@
                 <table class="noBorder">
                     <tr>
                         <td style="height:80px" valign="middle" align="center">
-                            <img src="~/Image/ProductImageDefault/<%= item.Id %>/80" />
-                            <% Html.Image("~/Image/ProductImageDefault/" + item.Id + "/80"); %>
+                            <%
+                                ViewData["productId"] = item.Id;
+                                Html.RenderPartial("ProductImageThumbnail");
+                            %>
                         </td>
                     </tr>
                     <tr>
@@ -146,8 +148,11 @@
                     </tr>
                 </table>
             </td>
-            <td <%= classAttribute %>>
-                <%= item.Name %>
+            <td <%= classAttribute %> valign="top">
+                <%= item.Name %><br />
+                <div class="productDescription">
+                    <%= item.Descriptions[SystemSettings.CurrentLanguage] %>
+                </div>
             </td>
             <td align="center">
                 <%= item.Unit %>

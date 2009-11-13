@@ -98,8 +98,8 @@ img{border:none;}
 .thirdLevelMenu a{color:#c3a184;}
 .thirdLevelMenu a.thirdLevelMenuActive{color:Black;}
 
-.clientName{color:#7C7878; padding-left:5px; font-size:26px; font-weight:normal; font-style:italic;}
-.clientName span{font-style:normal;}
+.clientName{color:#b48a65; padding-left:5px; font-size:26px; font-weight:normal;}
+.clientName span{font-style:normal;color:#b48a65;}
 .objectImage{float:left; margin-right:10px;}
 
 .objectImage a img{border:1px solid black;}

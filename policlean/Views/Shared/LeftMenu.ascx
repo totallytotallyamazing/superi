@@ -24,6 +24,11 @@
         <%= Html.ActionLink("Спецуслуги", "Index", "Services", new { contentName = "Спецуслуги" }, null)%>
     </div>
 </div>
+<div class="leftMenuItem" >
+    <div>
+        <%= Html.ActionLink("Промышленный клининг", "Index", "Services", new { contentName = "Промышленный клининг" }, null)%>
+    </div>
+</div>
 <script type="text/javascript">
 
 </script>

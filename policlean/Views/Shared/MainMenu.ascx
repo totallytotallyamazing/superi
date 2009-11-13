@@ -26,7 +26,9 @@
     }
 %>
 <div class="<%= menuClasses[0] %>">
-    <%= Html.ActionLink("О компании", "Index", "Home") %>
+    <a href="/">
+        О компании  
+    </a>
 </div>
 <div class="<%= menuClasses[1] %>">
     <%= Html.ActionLink("Клиенты", "Index", "Clients")%>

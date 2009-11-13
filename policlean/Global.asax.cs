@@ -80,13 +80,13 @@ namespace PolialClean
             routes.MapRoute(
                 "Content",                                              // Route name
                 "{controller}/{contentName}",                           // URL with parameters
-                new { controller = "Home", action = "Index", contentName = "Миссия" }  // Parameter defaults
+                new { controller = "Home", action = "Index", contentName = "О компании" }  // Parameter defaults
             );
 
             routes.MapRoute(
                 "Default",                                              // Route name
                 "{controller}/{action}/{contentName}",                           // URL with parameters
-                new { controller = "Home", action = "Index", contentName = "Миссия" }  // Parameter defaults
+                new { controller = "Home", action = "Index", contentName = "О компании" }  // Parameter defaults
             );
 
         }

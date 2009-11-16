@@ -17,7 +17,7 @@ namespace Zamov.Controllers
         {
             List<CategoryPresentation> result = new List<CategoryPresentation>();
             if (Cache["CityCategoriesPresentation_" + cityId] != null && !reload)
-                result = (List<CategoryPresentation>)Cache["CityCategories_" + cityId];
+                result = (List<CategoryPresentation>)Cache["CityCategoriesPresentation_" + cityId];
             else
             {
                 result = (from category in context.Categories.Include("Parent").Include("Dealers").Include("Categories")
@@ -29,7 +29,7 @@ namespace Zamov.Controllers
                           && name.TranslationItemTypeId == (int)ItemTypes.Category
                           select new CategoryPresentation 
                           { 
-                              Id = category.Id
+                              Id = category.Id,
                               Name = name.Text
                           }).ToList();
                 Cache["CityCategoriesPresentation_" + cityId] = result;
@@ -62,7 +62,8 @@ namespace Zamov.Controllers
             IDictionaryEnumerator enumerator = cache.GetEnumerator();
             while (enumerator.MoveNext())
             {
-                if (enumerator.Key.ToString().StartsWith("CityCategories_"))
+                if (enumerator.Key.ToString().StartsWith("CityCategories_") 
+                    || enumerator.Key.ToString().StartsWith("CityCategoriesPresentation_"))
                     keysToClear.Add(enumerator.Key.ToString());
             }
             foreach (string key in keysToClear)

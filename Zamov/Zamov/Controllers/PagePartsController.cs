@@ -30,7 +30,6 @@ namespace Zamov.Controllers
             {
                 string currentLanguage = SystemSettings.CurrentLanguage;
                 List<City> cities = context.Cities.Select(c => c).ToList();
-                //List<Category> categories = context.Categories.Select(c => c).ToList();
                 List<SelectListItem> citiesList = (from city in cities where city.Enabled select new SelectListItem { Selected = city.Id == SystemSettings.CityId, Text = city.GetName(currentLanguage), Value = city.Id.ToString() }).ToList();
                 int cityId = int.MinValue;
                 if (cities.Count > 0)
@@ -40,10 +39,10 @@ namespace Zamov.Controllers
                         citiesList[0].Selected = true;
                     cityId = (from cl in citiesList where cl.Selected select int.Parse(cl.Value)).First();
                 }
-                List<SelectListItem> categoriesList = context.GetCachedCategories(cityId, false)
+                List<SelectListItem> categoriesList = context.GetCachedCategoryPresentation(cityId, false, SystemSettings.CurrentLanguage)
                     .Select(c => new SelectListItem
                     {
-                        Text = c.GetName(SystemSettings.CurrentLanguage),
+                        Text = c.Name,
                         Value = c.Id.ToString(),
                         Selected = c.Id == SystemSettings.CategoryId
                     })

@@ -12,6 +12,32 @@ namespace Zamov.Controllers
     {
         private static Cache Cache { get { return HttpContext.Current.Cache; } }
 
+
+        public static List<CategoryPresentation> GetCachedCategoryPresentation(this ZamovStorage context, int cityId, bool reload, string language)
+        {
+            List<CategoryPresentation> result = new List<CategoryPresentation>();
+            if (Cache["CityCategoriesPresentation_" + cityId] != null && !reload)
+                result = (List<CategoryPresentation>)Cache["CityCategories_" + cityId];
+            else
+            {
+                result = (from category in context.Categories.Include("Parent").Include("Dealers").Include("Categories")
+                          join name in context.Translations on category.Id equals name.ItemId
+                          where category.Parent == null && category.Enabled
+                          && category.Categories.Where(c => c
+                          .Dealers.Where(d => d.Cities.Where(sub => sub.Id == cityId).Count() > 0).Count() > 0).Count() > 0
+                          && name.Language == language
+                          && name.TranslationItemTypeId == (int)ItemTypes.Category
+                          select new CategoryPresentation 
+                          { 
+                              Id = category.Id
+                              Name = name.Text
+                          }).ToList();
+                Cache["CityCategoriesPresentation_" + cityId] = result;
+            }
+            return result;
+
+        }
+        
         public static List<Category> GetCachedCategories(this ZamovStorage context, int cityId, bool reload)
         {
             List<Category> result = new List<Category>();

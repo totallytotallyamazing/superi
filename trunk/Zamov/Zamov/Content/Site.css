@@ -202,3 +202,8 @@ td.new{background-image: url(img/new.jpg)}
 .blueHeader th a.Descending{ background:transparent url(img/sortDesc.png) no-repeat right;}
 
 .noBorder tr td{border:none;}
+
+.orderCheckLink{display:block; width:59px; height:21px; background-position: 0 0;}
+.orderCheckLink.ru-RU{ background:transparent url(img/order_ru-RU.png) no-repeat;}
+.orderCheckLink.uk-UA{ background:transparent url(img/order_uk-UA.png) no-repeat;}
+.orderCheckLink.ordered{background-position: 0 -21px !important;}

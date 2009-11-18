@@ -20,7 +20,6 @@ namespace Zamov.Controllers
         [BreadCrumb(SubCategoryId = true)]
         public ActionResult Index(string dealerId, int? groupId, SortFieldNames? sortField, SortDirection? sortOrder)
         {
-
             ViewData["sortDirection"] = sortOrder;
             ViewData["sortField"] = (sortField != null) ? sortField.ToString() : null;
             ViewData["sortDealerId"] = dealerId;
@@ -38,7 +37,6 @@ namespace Zamov.Controllers
                 ViewData["groups"] = groups;
                 ViewData["dealerId"] = dealer;
                 ViewData["groupId"] = groupId;
-
 
                 if (HttpContext.Cache[productsCacheKey] == null)
                 {

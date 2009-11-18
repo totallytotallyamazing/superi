@@ -24,7 +24,9 @@ namespace Zamov.Controllers
             ViewData["sortDirection"] = sortOrder;
             ViewData["sortField"] = (sortField != null) ? sortField.ToString() : null;
             ViewData["sortDealerId"] = dealerId;
-            string productsCacheKey = "ProductsPage_" + dealerId + "_" + groupId + "_" + sortField ?? "NoSort" + "_" + sortOrder ?? "NoSort";
+            string sortFieldPart = (sortField!=null) ? sortField.ToString() : "NoSort";
+            string sortOrderPart = (sortOrder != null) ? sortOrder.ToString() : "NoSort";
+            string productsCacheKey = "ProductsPage_" + dealerId + "_" + groupId + "_" + sortFieldPart + "_" + sortOrderPart;
             using (ZamovStorage context = new ZamovStorage())
             {
                 int dealer = context.Dealers.Where(d => d.Name == dealerId).Select(d => d.Id).First();

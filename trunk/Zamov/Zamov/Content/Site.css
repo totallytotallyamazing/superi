@@ -181,8 +181,8 @@ td.new{background-image: url(img/new.jpg)}
 .commonTable th{background-color:#f4fef5; border:1px solid black; border-collapse:collapse; padding:15px; font-size:12px;}
 .commonTable td{border:1px solid black; border-collapse:collapse; padding: 0px 5px}
 
-.blueHeaderedTable tr th {color:White; padding-top:4px; padding:0 5px; font-family:Arial; font-size:10px; font-weight:bolder;}
-.blueHeaderedTable tr td{border-left: 1px dotted #D5D7D6; border-right: 1px dotted #D5D7D6; border-bottom:1px solid #d5d7d6; border-collapse:collapse;}
+.blueHeaderedTable tr th {color:White; padding-top:4px; padding:0 10px; font-family:Arial; font-size:10px; font-weight:bolder;}
+.blueHeaderedTable tr td{border-left: 1px dotted #D5D7D6; padding:10px; border-right: 1px dotted #D5D7D6; border-bottom:1px solid #d5d7d6; border-collapse:collapse;}
 
 .blueHeaderedTable tr.even{background-color:White;}
 .blueHeaderedTable tr.odd{background-color:#F6F8FA;}
@@ -200,10 +200,15 @@ td.new{background-image: url(img/new.jpg)}
 .blueHeader th a{text-decoration:none; color:White; padding-right:15px;}
 .blueHeader th a.Ascending{ background:transparent url(img/sortAsc.png) no-repeat right;}
 .blueHeader th a.Descending{ background:transparent url(img/sortDesc.png) no-repeat right;}
+.blueHeader tr td{padding:10px;}
 
-.noBorder tr td{border:none;}
+
+.noBorder tr td{border:none; padding:0;}
 
 .orderCheckLink{display:block; width:59px; height:21px; background-position: 0 0;}
 .orderCheckLink.ru-RU{ background:transparent url(img/order_ru-RU.png) no-repeat;}
 .orderCheckLink.uk-UA{ background:transparent url(img/order_uk-UA.png) no-repeat;}
 .orderCheckLink.ordered{background-position: 0 -21px !important;}
+
+a.productDescription{color:#265B7D;}
+div.productDescription{padding-top:5px;}

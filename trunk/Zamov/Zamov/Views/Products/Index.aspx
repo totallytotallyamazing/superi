@@ -14,6 +14,11 @@
 
     <script type="text/javascript">
         $(function() {
+            $(".sortable a").click(function(e) {
+                e.stopPropagation();
+            }
+            );
+
             $(".productDescription").fancybox({ width: "700px", hideOnContentClick: false });
 
             $(".sortable")
@@ -103,22 +108,22 @@
     <table class="blueHeaderedTable" style="width: 100%; margin: 5px 0;" cellpadding="0"
         cellspacing="0">
         <tr class="blueHeader">
-            <th style="width: 20px;">
+            <th style="width: 20px;" align="center">
                 <%= Html.ResourceString("Photo") %>
             </th>
-            <th class="sortable">
+            <th class="sortable" align="left">
                 <%= Html.SortHeader("Name", "/Products/" + sortDealerId + "/" + groupId, "Name", "", "") %>
             </th>
             <th style="width: 20px;">
                 <%= Html.ResourceString("MeassureUnit") %>
             </th>
-            <th style="width: 20px;" class="sortable">
+            <th style="width: 20px;" class="sortable"  align="center">
                 <%= Html.SortHeader("Price", "/Products/" + sortDealerId + "/" + groupId, "Price", "", "") %>
             </th>
-            <th style="width: 20px;">
+            <th style="width: 20px;"  align="center">
                 <%= Html.ResourceString("Quantity") %>
             </th>
-            <th style="width: 20px;">
+            <th style="width: 20px;"  align="center">
                 <%= Html.ResourceString("ToOrder") %>
             </th>
         </tr>
@@ -150,7 +155,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <a class="productDescription" style="text-decoration: none" href="/Products/Description/<%= item.Id %>">
+                            <a class="productDescription" href="/Products/Description/<%= item.Id %>">
                                 <%= Html.ResourceString("Details") %>
                             </a>
                         </td>
@@ -158,7 +163,9 @@
                 </table>
             </td>
             <td <%= classAttribute %> valign="top">
-                <%= item.Name %><br />
+                <a class="productDescription" href="/Products/Description/<%= item.Id %>">
+                    <%= item.Name %><br />
+                </a>
                 <div class="productDescription">
                     <%= item.Descriptions[SystemSettings.CurrentLanguage] %>
                 </div>

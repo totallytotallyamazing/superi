@@ -28,6 +28,14 @@
             .click(function() {
                 location.href = this.firstChild.href;
             })
+
+            $(".orderCheckLink").click(function() {
+                Sys.UI.DomElement.toggleCssClass(this, "ordered");
+                var check = $get("order_" + this.getAttribute("rel"));
+                check.checked = !check.checked;
+                order(check);
+            }
+            )
         })
 
         var items = {};
@@ -45,6 +53,7 @@
             else {
                 var checkbox = $get("order_" + id);
                 if (!checkbox.checked) {
+                    Sys.UI.DomElement.addCssClass($get("orderLink_" + id), "ordered");
                     checkbox.checked = true;
                 }
             }
@@ -132,7 +141,7 @@
             <td align="center">
                 <table class="noBorder">
                     <tr>
-                        <td style="height:80px" valign="middle" align="center">
+                        <td style="height: 80px" valign="middle" align="center">
                             <%
                                 ViewData["productId"] = item.Id;
                                 Html.RenderPartial("ProductImageThumbnail");
@@ -144,7 +153,7 @@
                             <a class="productDescription" style="text-decoration: none" href="/Products/Description/<%= item.Id %>">
                                 <%= Html.ResourceString("Details") %>
                             </a>
-                        </td>   
+                        </td>
                     </tr>
                 </table>
             </td>
@@ -170,7 +179,8 @@
                 <%--<%= Ajax.MaskEdit("", MaskTypes.Number, mask, false, true, "quantity_" + item.Id)%>--%>
             </td>
             <td align="center" valign="middle">
-                <%= Html.CheckBox("order_" + item.Id, false, new {onclick="order(this)" })%>
+                <a id="orderLink_<%= item.Id %>" class="orderCheckLink <%= SystemSettings.CurrentLanguage %>" rel="<%= item.Id %>"></a>
+                <%= Html.CheckBox("order_" + item.Id, false, new { onclick = "order(this)", style = "visibility:hidden; display: block; height: 0px; font-size: 0px;" })%>
             </td>
         </tr>
         <%   

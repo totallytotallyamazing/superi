@@ -11,9 +11,9 @@
 %>
 
 <script type="text/javascript">
-        $(function() {
-            setInterval(queryOrders, 10000);
-        });
+//        $(function() {
+//            setInterval(queryOrders, 10000);
+//        });
 
 
 

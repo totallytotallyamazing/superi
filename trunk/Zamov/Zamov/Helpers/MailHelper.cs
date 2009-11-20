@@ -12,8 +12,8 @@ namespace Zamov.Helpers
     {
         private static SmtpClient PrepareClient()
         {
-            SmtpClient client = new SmtpClient(ApplicationData.ZamovSmtpHost);
-            client.Credentials = new NetworkCredential("no-reply@zamov.net", "cde32wsx");
+            SmtpClient client = new SmtpClient("smtp.inbox.ru"/*ApplicationData.ZamovSmtpHost*/);
+            client.Credentials = new NetworkCredential("superi", "zxcvb56");
             return client;
         }
 
@@ -27,7 +27,7 @@ namespace Zamov.Helpers
                 message.Body = body;
                 message.Subject = subject;
                 to.ForEach(t => message.To.Add(t));
-                message.From = new MailAddress(from);
+                message.From = new MailAddress("superi@inbox.ru");
                 message.IsBodyHtml = isBodyHtml;
                 client.Send(message);
             }

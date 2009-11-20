@@ -167,7 +167,8 @@
                     <%= item.Name %><br />
                 </a>
                 <div class="productDescription">
-                    <%= item.Descriptions[SystemSettings.CurrentLanguage] %>
+                    <%if (item.Descriptions.ContainsKey(SystemSettings.CurrentLanguage)) %>
+                        <%= item.Descriptions[SystemSettings.CurrentLanguage] %>
                 </div>
             </td>
             <td align="center">

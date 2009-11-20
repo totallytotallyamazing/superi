@@ -236,16 +236,19 @@ namespace Zamov.Controllers
             using (ZamovStorage context = new ZamovStorage())
             {
                 ProductPresentation product = (from item in context.Products.Include("ProductImages")
-                                               join description in context.Translations on item.Id equals description.ItemId
-                                               where description.TranslationItemTypeId == (int)ItemTypes.ProductDescription
-                                               && description.Language == SystemSettings.CurrentLanguage
-                                               && item.Id == id
+                                               where 
+                                               item.Id == id
                                                let hasImage = item.ProductImages.Count > 0
                                                let imageId = (hasImage) ? item.ProductImages.FirstOrDefault().Id : 0
+                                               let description = 
+                                                (from d in context.Translations where d.Language == SystemSettings.CurrentLanguage 
+                                                     && d.TranslationItemTypeId == (int)ItemTypes.ProductDescription 
+                                                     && d.ItemId == item.Id
+                                                     select d.Text).FirstOrDefault()
                                                select new ProductPresentation
                                                {
                                                    Name = item.Name,
-                                                   Description = description.Text,
+                                                   Description = description,
                                                    HasImage = hasImage,
                                                    ImageId = imageId,
                                                    Id = item.Id

@@ -22,7 +22,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("BaseEntities", "FK_DealerFeedback_Dealers", "Dealer", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Zamov.Models.Dealer), "DealerFeedback", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Zamov.Models.DealerFeedback))]
 
 // Original file name:
-// Generation date: 11/11/2009 17:50:59
+// Generation date: 20/11/2009 17:32:59
 namespace Zamov.Models
 {
     
@@ -1123,15 +1123,13 @@ namespace Zamov.Models
         /// <param name="name">Initial value of Name.</param>
         /// <param name="enabled">Initial value of Enabled.</param>
         /// <param name="deleted">Initial value of Deleted.</param>
-        /// <param name="displayProductImages">Initial value of DisplayProductImages.</param>
-        public static Group CreateGroup(int id, string name, bool enabled, bool deleted, bool displayProductImages)
+        public static Group CreateGroup(int id, string name, bool enabled, bool deleted)
         {
             Group group = new Group();
             group.Id = id;
             group.Name = name;
             group.Enabled = enabled;
             group.Deleted = deleted;
-            group.DisplayProductImages = displayProductImages;
             return group;
         }
         /// <summary>
@@ -1229,9 +1227,9 @@ namespace Zamov.Models
         /// <summary>
         /// There are no comments for Property DisplayProductImages in the schema.
         /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public bool DisplayProductImages
+        public global::System.Nullable<bool> DisplayProductImages
         {
             get
             {
@@ -1246,8 +1244,8 @@ namespace Zamov.Models
                 this.OnDisplayProductImagesChanged();
             }
         }
-        private bool _DisplayProductImages;
-        partial void OnDisplayProductImagesChanging(bool value);
+        private global::System.Nullable<bool> _DisplayProductImages;
+        partial void OnDisplayProductImagesChanging(global::System.Nullable<bool> value);
         partial void OnDisplayProductImagesChanged();
         /// <summary>
         /// There are no comments for Products in the schema.

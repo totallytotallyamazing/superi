@@ -14,6 +14,7 @@ using System.Collections;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Data.Objects;
+using System.Globalization;
 
 namespace Zamov.Controllers
 {
@@ -553,9 +554,9 @@ namespace Zamov.Controllers
             ViewData["partNumber"] = partNumber;
             ViewData["name"] = name;
             decimal decimalPrice = 0;
-            if (!decimal.TryParse(price, out decimalPrice))
+            if (!decimal.TryParse(price, System.Globalization.NumberStyles.Float, CultureInfo.GetCultureInfo("en-US"), out decimalPrice))
                 decimalPrice = 0M;
-            ViewData["price"] = decimalPrice;
+            ViewData["price"] = decimalPrice.ToString(CultureInfo.GetCultureInfo("en-US"));
             ViewData["ukDescription"] = ukDescription;
             ViewData["ruDescription"] = ruDescription;
             ViewData["unit"] = unit;

@@ -111,14 +111,14 @@
             <th style="width: 20px;" align="center">
                 <%= Html.ResourceString("Photo") %>
             </th>
-            <th class="sortable" align="left">
+            <th class="sortable" align="center">
                 <%= Html.SortHeader("Name", "/Products/" + sortDealerId + "/" + groupId, "Name", "", "") %>
             </th>
             <th style="width: 20px;">
                 <%= Html.ResourceString("MeassureUnit") %>
             </th>
-            <th style="width: 20px;" class="sortable"  align="center">
-                <%= Html.SortHeader("Price", "/Products/" + sortDealerId + "/" + groupId, "Price", "", "") %>
+            <th class="sortable"  align="center">
+                <%= Html.SortHeader("PriceHrn", "/Products/" + sortDealerId + "/" + groupId, "Price", "", "") %>
             </th>
             <th style="width: 20px;"  align="center">
                 <%= Html.ResourceString("Quantity") %>
@@ -154,7 +154,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>
+                        <td align="center">
                             <a class="productDescription" href="/Products/Description/<%= item.Id %>">
                                 <%= Html.ResourceString("Details") %>
                             </a>
@@ -174,7 +174,7 @@
             <td align="center">
                 <%= item.Unit %>
             </td>
-            <td align="right">
+            <td align="center">
                 <%= item.Price.ToString("#.00#") %>
             </td>
             <td align="center" valign="middle">

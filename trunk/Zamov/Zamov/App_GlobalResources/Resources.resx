@@ -670,7 +670,7 @@
     <value>Короткий текст</value>
   </data>
   <data name="Details" xml:space="preserve">
-    <value>Далі</value>
+    <value>Детальніше</value>
   </data>
   <data name="CheckedSaveTo" xml:space="preserve">
     <value>Вiдмiченi зберегти в</value>
@@ -785,5 +785,8 @@
   </data>
   <data name="Images" xml:space="preserve">
     <value>Зображення</value>
+  </data>
+  <data name="PriceHrn" xml:space="preserve">
+    <value>Цена, грн.</value>
   </data>
 </root>

@@ -786,4 +786,7 @@
   <data name="Images" xml:space="preserve">
     <value>Изображения</value>
   </data>
+  <data name="PriceHrn" xml:space="preserve">
+    <value>Ціна, грн.</value>
+  </data>
 </root>

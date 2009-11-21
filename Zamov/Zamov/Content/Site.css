@@ -181,7 +181,15 @@ td.new{background-image: url(img/new.jpg)}
 .commonTable th{background-color:#f4fef5; border:1px solid black; border-collapse:collapse; padding:15px; font-size:12px;}
 .commonTable td{border:1px solid black; border-collapse:collapse; padding: 0px 5px}
 
-.blueHeaderedTable tr th {color:White; padding-top:4px; padding:0 10px; font-family:Arial; font-size:10px; font-weight:bolder;}
+.blueHeaderedTable tr th 
+{
+    color:White; 
+    padding-top:4px; 
+    padding:0 10px; 
+    font-family:Arial; 
+    font-size:12px; 
+    font-weight:bolder;
+}
 .blueHeaderedTable tr td{border-left: 1px dotted #D5D7D6; padding:10px; border-right: 1px dotted #D5D7D6; border-bottom:1px solid #d5d7d6; border-collapse:collapse;}
 
 .blueHeaderedTable tr.even{background-color:White;}
@@ -197,7 +205,17 @@ td.new{background-image: url(img/new.jpg)}
     background: #506879 url(img/thHover.jpg) repeat-x !important;
 }
 
-.blueHeader th a{text-decoration:none; color:White; padding-right:15px;}
+.blueHeader th a
+{
+    text-decoration:none; 
+    color:White; 
+    padding-right:15px;
+    background:transparent url(img/ascDesc.png) no-repeat right;
+    display:block;
+    height:20px;
+    line-height:20px;
+    white-space:nowrap;
+}
 .blueHeader th a.Ascending{ background:transparent url(img/sortAsc.png) no-repeat right;}
 .blueHeader th a.Descending{ background:transparent url(img/sortDesc.png) no-repeat right;}
 .blueHeader tr td{padding:10px;}

@@ -304,6 +304,7 @@
     <Content Include="Content\images\treeview-red.gif" />
     <Content Include="Content\img\action.jpg" />
     <Content Include="Content\img\actionNew.jpg" />
+    <Content Include="Content\img\ascDesc.png" />
     <Content Include="Content\img\cart.jpg" />
     <Content Include="Content\img\cartActive.jpg" />
     <Content Include="Content\img\cartBg.jpg" />
@@ -315,7 +316,7 @@
     <Content Include="Content\img\newsSplitter.jpg" />
     <Content Include="Content\img\noImage.png" />
     <Content Include="Content\img\online.png" />
-    <Content Include="Content\img\order-uk-UA.png" />
+    <Content Include="Content\img\order_uk-UA.png" />
     <Content Include="Content\img\order_ru-RU.png" />
     <Content Include="Content\img\productImage.JPG" />
     <Content Include="Content\img\descending.gif" />

@@ -27,7 +27,7 @@
     }
 </script>
 
-<div class="topProducts">
+<div class="topProducts" style="margin-bottom:25px;>
     <center>
     <span class="header">
         <%= Html.ResourceString("TopProducts").ToUpper() %>

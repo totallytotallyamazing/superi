@@ -93,16 +93,16 @@
         int dealerId = (int)ViewData["dealerId"];
        
     %>
-    <%= Html.ResourceActionLink("PickAnotherDealer", "Index", "Dealers")%><br />
-    <br />
     <% Html.RenderPartial("TopProducts"); %>
     <%if (Model.Count > 0)
       { %>
     <%using (Html.BeginForm("AddToCart", "Products", FormMethod.Post, new { id = "addToCart", style = "margin-bottom:20px;" }))
       { %>
+          <%= Html.ResourceActionLink("PickAnotherDealer", "Index", "Dealers")%><br />
+
     <input type="hidden" name="dealerId" value="<%= dealerId %>" />
     <%= Html.Hidden("groupId")%>
-    <div style="text-align: right;">
+    <div style="text-align: right; margin-top:-20px;">
         <input type="submit" value="<%= Html.ResourceString("AddToCart") %>" />
     </div>
     <table class="blueHeaderedTable" style="width: 100%; margin: 5px 0;" cellpadding="0"
@@ -145,6 +145,7 @@
         <tr class="<%= rowClass %>">
             <td align="center">
                 <table class="noBorder">
+                    <% if ((bool)ViewData["displayGroupImages"]){ %>
                     <tr>
                         <td style="height: 80px" valign="middle" align="center">
                             <%
@@ -153,6 +154,7 @@
                             %>
                         </td>
                     </tr>
+                    <%} %>
                     <tr>
                         <td align="center">
                             <a class="productDescription" href="/Products/Description/<%= item.Id %>">
@@ -166,7 +168,7 @@
                 <a class="productDescription" href="/Products/Description/<%= item.Id %>">
                     <%= item.Name %><br />
                 </a>
-                <div class="productDescription">
+                <div class="productDescription <%= ((bool)ViewData["displayGroupImages"]).ToString() %>">
                     <%if (item.Descriptions.ContainsKey(SystemSettings.CurrentLanguage)) %>
                         <%= item.Descriptions[SystemSettings.CurrentLanguage] %>
                 </div>

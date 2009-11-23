@@ -38,12 +38,26 @@ namespace Zamov.Controllers
                 ViewData["dealerId"] = dealer;
                 ViewData["groupId"] = groupId;
 
+                bool displayGroupImages = false;
+                
+                Group currentGroup = null;
+                if (groupId != null)
+                {
+                    currentGroup = groups.Where(g => g.Id == groupId.Value).Select(g => g).SingleOrDefault();
+                    displayGroupImages = currentGroup.DisplayProductImages;
+                }
+                else
+                {
+                    displayGroupImages = false;
+                }
+
+                ViewData["displayGroupImages"] = displayGroupImages;
+
                 if (HttpContext.Cache[productsCacheKey] == null)
                 {
                     List<Product> products = new List<Product>();
                     if (groupId != null)
                     {
-                        Group currentGroup = groups.Where(g => g.Id == groupId.Value).Select(g => g).SingleOrDefault();
                         CollectProducts(products, currentGroup);
                         products = products.Where(p => !p.Deleted && p.Group.Enabled && p.Enabled && !p.Group.Deleted).ToList();
                     }

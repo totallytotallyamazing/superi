@@ -463,6 +463,11 @@ namespace Zamov.Controllers
                 updates.Add(item.Key, item.Value.Where(v => v.Key != "moveTo").ToDictionary(v => v.Key, v => v.Value));
             int groupId = int.Parse(form["groupId"]);
 
+            foreach (var item in updates)
+            {
+                item.Value["price"] = item.Value["price"].Replace(",", ".");
+            }
+
             int moveToGroup = 0;
             using (ZamovStorage context = new ZamovStorage())
             {

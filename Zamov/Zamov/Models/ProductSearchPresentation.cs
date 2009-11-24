@@ -12,6 +12,7 @@ namespace Zamov.Models
         public string DealerName { get; set; }
         public decimal Price { get; set; }
         public string Unit { get; set; }
-        public int DealerId { get; set; }
+        public string DealerId { get; set; }
+        public string Description { get; set; }
     }
 }

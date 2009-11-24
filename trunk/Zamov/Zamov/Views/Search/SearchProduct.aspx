@@ -79,8 +79,89 @@
     <div style="text-align:right">
     
     <input style="margin-bottom:5px" type="submit" value="<%=Html.ResourceString("AddToCart") %>" />  
-    
-    <table class="commonTable" width="100%">
+        <table class="blueHeaderedTable" style="width: 100%; margin: 5px 0;" cellpadding="0"
+        cellspacing="0">
+        <tr class="blueHeader">
+            <th style="width: 20px;" align="center">
+                <%= Html.ResourceString("Photo") %>
+            </th>
+            <th class="sortable" align="center">
+                <%= Html.SortHeader("Name", "/SearchProduct", "Name", "", "") %>
+            </th>
+            <th style="width: 20px;">
+                <%= Html.ResourceString("MeassureUnit") %>
+            </th>
+            <th class="sortable"  align="center">
+                <%= Html.SortHeader("PriceHrn", "/SearchProduct", "Price", "", "")%>
+            </th>
+            <th style="width: 20px;"  align="center">
+                <%= Html.ResourceString("Quantity") %>
+            </th>
+            <th style="width: 20px;"  align="center">
+                <%= Html.ResourceString("ToOrder") %>
+            </th>
+        </tr>
+        <%
+            int i = 0;
+            foreach (var item in Model)
+            {
+                string rowClass = ((i % 2 > 0) ? "odd" : "even");
+                i++; 
+        %>
+        <tr class="<%= rowClass %>">
+            <td align="center">
+                <table class="noBorder">
+                    <tr>
+                        <td style="height: 80px" valign="middle" align="center">
+                            <%
+                                ViewData["productId"] = item.Id;
+                                Html.RenderPartial("ProductImageThumbnail");
+                            %>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center">
+                            <a class="productDescription" href="/Products/Description/<%= item.Id %>">
+                                <%= Html.ResourceString("Details") %>
+                            </a>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td valign="top">
+                <a class="productDescription" href="/Products/Description/<%= item.Id %>">
+                    <%= item.Name %><br />
+                </a>
+                <div class="productDescription true">
+                    <%= item.Description %>
+                </div>
+            </td>
+            <td align="center">
+                <%= item.Unit %>
+            </td>
+            <td align="center">
+                <%= item.Price.ToString("#.00#") %>
+            </td>
+            <td align="center" valign="middle">
+                <%
+                    string mask = "9{4}";
+                    // if (item.Unit == "êã." || item.Unit == "êã" || item.Unit == "ë" || item.Unit == "ë.")
+                    //   mask = "99.99";
+                %>
+                <%= Html.TextBox("quantity_" + item.Id, null, new { style = "width:24px; font-size:10px; text-align:center", onkeyup = "validateQuantity(this); order(this)" })%>
+                <%--<%= Ajax.MaskEdit("", MaskTypes.Number, mask, false, true, "quantity_" + item.Id)%>--%>
+            </td>
+            <td align="center" valign="middle">
+                <a id="orderLink_<%= item.Id %>" class="orderCheckLink <%= SystemSettings.CurrentLanguage %>" rel="<%= item.Id %>"></a>
+                <%= Html.CheckBox("order_" + item.Id, false, new { onclick = "order(this)", style = "visibility:hidden; display: block; height: 0px; font-size: 0px;" })%>
+            </td>
+        </tr>
+        <%   
+            }     
+        %>
+    </table>
+
+<%--    <table class="commonTable" width="100%">
         <tr>
             <th>
                 <table class="searchTableIneerHeader">
@@ -144,7 +225,9 @@
                 </tr>
                 </table>
             </th>
-            <th style="width:20px;"><%= Html.ResourceString("MeassureUnit") %></th>
+            <th style="width:20px;">
+                <%= Html.ResourceString("MeassureUnit") %>
+            </th>
             <th style="width:20px;">
                 <table class="searchTableIneerHeader">
                 <tr>
@@ -218,7 +301,7 @@
     
     <% }
     %>
-    </table>            
+    </table>  --%>          
     <input style="margin-top:5px" type="submit" value="<%=Html.ResourceString("AddToCart") %>" />  
 </div>
     <%

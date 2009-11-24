@@ -72,7 +72,7 @@ namespace Zamov.Controllers
 
         private List<SelectListItem> GetLeftMenuItems()
         {
-            if (HttpContext.Cache["categoryItems"] == null)
+            if (HttpContext.Cache["categoryItems_" + SystemSettings.CategoryId] == null)
             {
                 List<Category> subCategories = ContextCache.GetSubCategories(SystemSettings.CategoryId, false);
 
@@ -83,9 +83,9 @@ namespace Zamov.Controllers
                                                           Value = category.Id.ToString()
                                                       }).ToList();
 
-                HttpContext.Cache["categoryItems"] = leftMenuItems;
+                HttpContext.Cache["categoryItems_" + SystemSettings.CategoryId] = leftMenuItems;
             }
-            return ((List<SelectListItem>)HttpContext.Cache["categoryItems"]);
+            return ((List<SelectListItem>)HttpContext.Cache["categoryItems_" + SystemSettings.CategoryId]);
         }
     }
 }

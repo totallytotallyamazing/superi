@@ -56,14 +56,21 @@ namespace Zamov.Controllers
                                                                 where dealerName.TranslationItemTypeId == (int)ItemTypes.DealerName
                                                                 && dealerName.Language == SystemSettings.CurrentLanguage
                                                                 && product.Group.Enabled && !product.Group.Deleted
+                                                                let description =
+                                                                    (from d in context.Translations
+                                                                     where d.Language == SystemSettings.CurrentLanguage
+                                                                         && d.TranslationItemTypeId == (int)ItemTypes.ProductDescription
+                                                                         && d.ItemId == product.Id
+                                                                     select d.Text).FirstOrDefault()
                                                                 select new ProductSearchPresentation
                                                                 {
-                                                                    DealerId = product.Dealer.Id,
+                                                                    DealerId = product.Dealer.Name,
                                                                     DealerName = dealerName.Text,
                                                                     Name = product.Name,
                                                                     Price = product.Price,
                                                                     Id = product.Id,
-                                                                    Unit = product.Unit
+                                                                    Unit = product.Unit,
+                                                                    Description = description
                                                                 }
                                                                     ).ToList();
 

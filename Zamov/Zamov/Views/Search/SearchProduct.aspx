@@ -118,16 +118,16 @@
                 <%= Html.ResourceString("Photo") %>
             </th>
             <th class="sortable" align="center">
-                <%= Html.SortHeader("Name", "/Search/SearchProduct", "Name", "", "") %>
+                <%= Html.SortHeader("Name", "/Search/SearchProduct", "Name", "searchContext=" + ViewData["searchContext"], "")%>
             </th>
             <th class="sortable" align="center">
-                <%= Html.SortHeader("Dealer", "/Search/SearchProduct", "Dealer", "", "")%>
+                <%= Html.SortHeader("Dealer", "/Search/SearchProduct", "Dealer", "searchContext=" + ViewData["searchContext"], "")%>
             </th>
             <th style="width: 20px;">
                 <%= Html.ResourceString("MeassureUnit") %>
             </th>
             <th class="sortable"  align="center">
-                <%= Html.SortHeader("PriceHrn", "/Search/SearchProduct", "Price", "", "")%>
+                <%= Html.SortHeader("PriceHrn", "/Search/SearchProduct", "Price", "searchContext=" + ViewData["searchContext"], "")%>
             </th>
             <th style="width: 20px;"  align="center">
                 <%= Html.ResourceString("Quantity") %>
@@ -163,7 +163,7 @@
                     </tr>
                 </table>
             </td>
-            <td valign="top">
+            <td valign="top" align="left">
                 <a class="productDescription" href="/Products/Description/<%= item.Id %>">
                     <%= item.Name %><br />
                 </a>

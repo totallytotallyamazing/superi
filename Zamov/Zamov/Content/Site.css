@@ -1,5 +1,6 @@
 ﻿*{margin:0; padding:0;}
 .centered{text-align:center;}
+a{color:#003366;}
 h2{font-size:16px;}
 body{font-family: Tahoma, Sans-Serif, Helvetica, Tahoma; font-size:0.8em;}
 select
@@ -110,7 +111,7 @@ div.productDescription.false{height:25px;}
 .subHeaderCurrentDealer{float:left;}
 
 .cartContainer{}
-.cartTable tr th,.cartTable tr td {text-align:center; padding:5px; padding-bottom:0; white-space:nowrap;}
+.cartTable tr th,.cartTable tr td {text-align:center; padding:5px; padding-bottom:0; white-space:nowrap; color:#003366;}
 .cartTable tr th {font-size:10px; font-weight:bold;}
 .cartTable tr td{ font-weight:bold; color:#b62727; }
 .cartTable tr td div{cursor:pointer; width:29px; height:50px; background: transparent url(img/cartActive.jpg) no-repeat 0 100%; padding-right:10px;}

@@ -42,7 +42,7 @@ a:visited{color:#808080;}
 
 .note{border-bottom:1px solid #808080; width:auto; padding-bottom:10px; margin-bottom:10px;}
 .note img{float:left; margin-right:20px;}
-#notesHolder{height:450px; overflow:auto;}
+#notesHolder{padding-bottom:30px;}
 #pager{text-align:center;}
 #pager span{text-decoration:underline;}
 .pageLink{text-decoration:none;}

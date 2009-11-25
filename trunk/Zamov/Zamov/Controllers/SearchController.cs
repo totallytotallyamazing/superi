@@ -36,12 +36,11 @@ namespace Zamov.Controllers
         }
 
         [BreadCrumb( ResourceName = "Search", Url = "/Search")]
-        public ActionResult SearchProduct(string searchContext, SortFieldNames? sortFieldName, SortDirection? sortDirection)
+        public ActionResult SearchProduct(string searchContext, SortFieldNames? sortField, SortDirection? sortOrder)
         {
 
-            ViewData["sortDirection"] = sortDirection;
-            ViewData["sortFieldName"] = sortFieldName;
-
+            ViewData["sortDirection"] = sortOrder;
+            ViewData["sortField"] = (sortField != null) ? sortField.ToString() : null;
             if (string.IsNullOrEmpty(searchContext))
                 searchContext = SystemSettings.SearchContext;
             if (!string.IsNullOrEmpty(searchContext))
@@ -64,7 +63,8 @@ namespace Zamov.Controllers
                                                                      select d.Text).FirstOrDefault()
                                                                 select new ProductSearchPresentation
                                                                 {
-                                                                    DealerId = product.Dealer.Name,
+                                                                    DealerNameId = product.Dealer.Name,
+                                                                    DealerId = product.Dealer.Id,
                                                                     DealerName = dealerName.Text,
                                                                     Name = product.Name,
                                                                     Price = product.Price,
@@ -74,28 +74,28 @@ namespace Zamov.Controllers
                                                                 }
                                                                     ).ToList();
 
-                    if (sortFieldName != null && sortDirection != null)
-                    switch (sortFieldName)
-                    {
-                        case SortFieldNames.Name:
-                            if (sortDirection==SortDirection.Ascending)
-                                products.Sort(new SortByProductNameAsc());
-                            else
-                                products.Sort(new SortByProductNameDesc());
-                            break;
-                        case SortFieldNames.Price:
-                            if (sortDirection == SortDirection.Ascending)
-                                products.Sort(new SortByPriceAsc());
-                            else
-                                products.Sort(new SortByPriceDesc());
-                            break;
-                        case SortFieldNames.Dealer:
-                            if (sortDirection == SortDirection.Ascending)
-                                products.Sort(new SortByDealerNameAsc());
-                            else
-                                products.Sort(new SortByDealerNameDesc());
-                            break;
-                    }
+                    if (sortField != null && sortOrder != null)
+                        switch (sortField)
+                        {
+                            case SortFieldNames.Name:
+                                if (sortOrder == SortDirection.Ascending)
+                                    products.Sort(new SortByProductNameAsc());
+                                else
+                                    products.Sort(new SortByProductNameDesc());
+                                break;
+                            case SortFieldNames.Price:
+                                if (sortOrder == SortDirection.Ascending)
+                                    products.Sort(new SortByPriceAsc());
+                                else
+                                    products.Sort(new SortByPriceDesc());
+                                break;
+                            case SortFieldNames.Dealer:
+                                if (sortOrder == SortDirection.Ascending)
+                                    products.Sort(new SortByDealerNameAsc());
+                                else
+                                    products.Sort(new SortByDealerNameDesc());
+                                break;
+                        }
                     
                     return View(products);
                 }

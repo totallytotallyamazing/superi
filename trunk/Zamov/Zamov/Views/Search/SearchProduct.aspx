@@ -19,6 +19,37 @@
         enableCart();
     }
 
+    $(function() {
+        $(".sortable a").click(function(e) {
+            e.stopPropagation();
+        }
+            );
+
+        $(".productDescription").fancybox({ width: "700px", hideOnContentClick: false });
+
+        $(".sortable")
+            .mouseover(function() {
+                //this.style.backgroundImage = "url(img/logo.jpg)";
+                this.className = "thHover";
+                //this.style.border= "1px solid lime";
+            })
+            .mouseout(function() {
+                this.className = "";
+            })
+            .click(function() {
+                location.href = this.firstChild.href;
+            })
+
+        $(".orderCheckLink").click(function() {
+            Sys.UI.DomElement.toggleCssClass(this, "ordered");
+            var check = $get("order_" + this.getAttribute("rel"));
+            check.checked = !check.checked;
+            order(check);
+        }
+            )
+    })
+
+    var items = {};
     function order(element) {
         var fieldSegments = element.name.split("_");
 
@@ -33,6 +64,7 @@
         else {
             var checkbox = $get("order_" + id);
             if (!checkbox.checked) {
+                Sys.UI.DomElement.addCssClass($get("orderLink_" + id), "ordered");
                 checkbox.checked = true;
             }
         }
@@ -86,13 +118,16 @@
                 <%= Html.ResourceString("Photo") %>
             </th>
             <th class="sortable" align="center">
-                <%= Html.SortHeader("Name", "/SearchProduct", "Name", "", "") %>
+                <%= Html.SortHeader("Name", "/Search/SearchProduct", "Name", "", "") %>
+            </th>
+            <th class="sortable" align="center">
+                <%= Html.SortHeader("Dealer", "/Search/SearchProduct", "Dealer", "", "")%>
             </th>
             <th style="width: 20px;">
                 <%= Html.ResourceString("MeassureUnit") %>
             </th>
             <th class="sortable"  align="center">
-                <%= Html.SortHeader("PriceHrn", "/SearchProduct", "Price", "", "")%>
+                <%= Html.SortHeader("PriceHrn", "/Search/SearchProduct", "Price", "", "")%>
             </th>
             <th style="width: 20px;"  align="center">
                 <%= Html.ResourceString("Quantity") %>
@@ -135,6 +170,10 @@
                 <div class="productDescription true">
                     <%= item.Description %>
                 </div>
+            </td>
+           <td align="left">
+                <%= Html.Encode(item.DealerName)%>
+                <%=Html.Hidden("dealer_"+ item.Id,item.DealerId)%>
             </td>
             <td align="center">
                 <%= item.Unit %>

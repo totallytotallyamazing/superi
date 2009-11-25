@@ -56,7 +56,7 @@ namespace Zamov.Controllers
         {
             get
             {
-                return Session["searchContext"].ToString();
+                return (string)Session["searchContext"];
             }
             set
             {

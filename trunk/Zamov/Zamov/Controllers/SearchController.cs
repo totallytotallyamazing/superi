@@ -41,6 +41,7 @@ namespace Zamov.Controllers
 
             ViewData["sortDirection"] = sortOrder;
             ViewData["sortField"] = (sortField != null) ? sortField.ToString() : null;
+            ViewData["searchContext"] = HttpUtility.UrlPathEncode(searchContext);
             if (string.IsNullOrEmpty(searchContext))
                 searchContext = SystemSettings.SearchContext;
             if (!string.IsNullOrEmpty(searchContext))

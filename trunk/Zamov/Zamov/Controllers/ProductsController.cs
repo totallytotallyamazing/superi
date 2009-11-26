@@ -184,6 +184,7 @@ namespace Zamov.Controllers
                 if (order == null)
                 {
                     order = new Order();
+                    order.HashCode = order.GetHashCode();
                     IEnumerable<KeyValuePair<string, object>> dealerKeyValues = new KeyValuePair<string, object>[] { new KeyValuePair<string, object>("Id", dealerId) };
                     EntityKey dealer = new EntityKey("OrderStorage.OrderDealers", dealerKeyValues);
                     order.DealerReference.EntityKey = dealer;

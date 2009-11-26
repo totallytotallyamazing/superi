@@ -85,9 +85,9 @@
                         <table>
                             <% 
                                 int currentPaymentType = (int)PaymentTypes.Encash;
-                                if (ViewData["paymentType_" + order.GetHashCode()] != null)
+                                if (ViewData["paymentType_" + order.HashCode] != null)
                                 {
-                                    currentPaymentType = Convert.ToInt32(ViewData["paymentType_" + order.GetHashCode()]);
+                                    currentPaymentType = Convert.ToInt32(ViewData["paymentType_" + order.HashCode]);
                                 }
                                 List<SelectListItem> paymentTypes = new List<SelectListItem>();
                                 if (presentation.Cash)
@@ -96,7 +96,7 @@
                                     paymentTypes.Add(new SelectListItem { Text = Html.ResourceString("Card"), Value = ((int)PaymentTypes.Card).ToString(), Selected = currentPaymentType == (int)PaymentTypes.Card });
                                 if (presentation.Noncash)
                                     paymentTypes.Add(new SelectListItem { Text = Html.ResourceString("Noncash"), Value = ((int)PaymentTypes.Noncash).ToString(), Selected = currentPaymentType == (int)PaymentTypes.Noncash });
-                                string[] options = Html.RadioButtonList("paymentType_" + order.GetHashCode(), paymentTypes);
+                                string[] options = Html.RadioButtonList("paymentType_" + order.HashCode, paymentTypes);
                                 for (int i = 0; i < options.Length; i++)
                                 {%>
                             <tr>
@@ -119,7 +119,7 @@
           { %>
         <div class="discount">
             <%= Html.ResourceString("InputVoucher")%>
-            <%= Html.TextBox("voucherCode_" + order.GetHashCode())%>
+            <%= Html.TextBox("voucherCode_" + order.HashCode)%>
             <div class="respectDiscount">
                 <%= Html.ResourceString("DiscountWillBeRespected")%>
             </div>

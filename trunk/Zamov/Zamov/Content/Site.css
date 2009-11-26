@@ -163,6 +163,7 @@ a.redLink{color:#fe0101 !important;}
 
 div.topProducts{border:1px solid #dbdbdb; padding:10px; background:#F4F4F4; height:183px; text-align:center; width:auto; margin-bottom:10px;}
 div.topProducts span.header{color:#FE1F1F; font-size:14px;}
+table.topProducts{position:relative; margin:0 auto;}
 table.topProducts tr td{ width:130px; height:90px; font-size:11px;}
 table.topProducts tr td div.topImage{border:1px solid #A0ADB6; margin-top:5px; padding:1px; margin-right:10px; width:98px; height:100px;}
 table.topProducts tr td div.topText{height:28px; overflow:hidden; text-overflow:ellipsis;}

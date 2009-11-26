@@ -28,41 +28,39 @@
 </script>
 
 <div class="topProducts" style="margin-bottom:25px;>
-    <center>
-    <span class="header">
-        <%= Html.ResourceString("TopProducts").ToUpper() %>
-    </span>
-    <table class="topProducts">
-        <tr class="topProduct" align="center" valign="top">
-            <%foreach (Product item in topProducts)
-              {%>
-              <td>
-<%using (Html.BeginForm("AddToCart", "Products", FormMethod.Post)){
-      int dealerId = (int)ViewData["dealerId"];
-      %>
-                <input type="hidden" name="dealerId" value="<%= dealerId %>" />
-                <%= Html.Hidden("groupId")%>             
-                <%= Html.CheckBox("order_" + item.Id, true, new { style="margin-left:-8000px; position:absolute;" })%>
-                <%= Html.Hidden("quantity_" + item.Id, 1)%>
-                <div class="topImage">
-                    <a href="/Products/Description/<%= item.Id %>" class="topProductLink">
-                        <%= Html.Image("~/Image/ProductImageDefault/" + item.Id + "/98", item.Name, new { style = "display:block; border:none;" })%>
-                    </a>
-                </div>
-                <div class="topText" title="<%= item.Name %>">
-                    <%= item.Name %><br />
+        <span class="header">
+            <%= Html.ResourceString("TopProducts").ToUpper() %>
+        </span>
+        <table class="topProducts">
+            <tr class="topProduct" align="center" valign="top">
+                <%foreach (Product item in topProducts)
+                  {%>
+                  <td>
+    <%using (Html.BeginForm("AddToCart", "Products", FormMethod.Post)){
+          int dealerId = (int)ViewData["dealerId"];
+          %>
+                    <input type="hidden" name="dealerId" value="<%= dealerId %>" />
+                    <%= Html.Hidden("groupId")%>             
+                    <%= Html.CheckBox("order_" + item.Id, true, new { style="margin-left:-8000px; position:absolute;" })%>
+                    <%= Html.Hidden("quantity_" + item.Id, 1)%>
+                    <div class="topImage">
+                        <a href="/Products/Description/<%= item.Id %>" class="topProductLink">
+                            <%= Html.Image("~/Image/ProductImageDefault/" + item.Id + "/98", item.Name, new { style = "display:block; border:none;" })%>
+                        </a>
+                    </div>
+                    <div class="topText" title="<%= item.Name %>">
+                        <%= item.Name %><br />
 
-                </div>
-                <span>
-                        <%= item.Price.ToString("F") %> грн.
-                </span>
-                <br />
-                <input style="font-size:0.9em" type="submit" value="<%= Html.ResourceString("ToOrder") %>" /><%} %>
-              </td>
-            <%
-                } %>
-        </tr>
-    </table>
-    </center>
+                    </div>
+                    <span>
+                            <%= item.Price.ToString("F") %> грн.
+                    </span>
+                    <br />
+                    <input style="font-size:0.9em" type="submit" value="<%= Html.ResourceString("ToOrder") %>" /><%} %>
+                  </td>
+                <%
+                    } %>
+            </tr>
+        </table>
 </div>
 <%} %>

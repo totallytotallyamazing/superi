@@ -5,6 +5,7 @@ using System.Web;
 
 namespace Zamov.Models
 {
+    [Serializable]
     public class MemberProperties
     {
         public string Email { get; set; }

@@ -151,6 +151,7 @@
       <DependentUpon>News.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\NewsPresentation.cs" />
+    <Compile Include="Models\Order.cs" />
     <Compile Include="Models\Orders.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -608,7 +609,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>52928</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

@@ -224,8 +224,8 @@ namespace Zamov.Controllers
                             order.DiscountCardNumber = option.VoucherCode;
                         }
                     }
-                    order.DiscountCardNumber = form["voucherCode_" + order.GetHashCode()];
-                    order.PaymentType = int.Parse(form["paymentType_" + order.GetHashCode()]);
+                    order.DiscountCardNumber = form["voucherCode_" + order.HashCode];
+                    order.PaymentType = int.Parse(form["paymentType_" + order.HashCode]);
                 }
                 cart.Date = DateTime.Now;
                 context.AddToCarts(cart);

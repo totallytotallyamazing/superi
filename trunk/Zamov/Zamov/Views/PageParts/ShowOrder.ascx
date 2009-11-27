@@ -91,7 +91,7 @@
             <%=Html.Encode(orderItem.Price.ToString("N"))%>
         </td>
         <td <%= (cartMode) ? "align=\"center\"" : "align=\"right\""%>>
-            <%= (cartMode) ? Html.TextBox("quantity_" + orderItem.GetHashCode(), orderItem.Quantity, new { style= "width:12px; font-size:10px;", onblur="tableChanged(items, this)" }) : Html.Encode(orderItem.Quantity.ToString("N"))%>
+            <%= (cartMode) ? Html.TextBox("quantity_" + orderItem.HashCode, orderItem.Quantity, new { style= "width:12px; font-size:10px;", onblur="tableChanged(items, this)" }) : Html.Encode(orderItem.Quantity.ToString("N"))%>
         </td>
         <td  align="center">
             <%=Html.Encode(sum.ToString("N"))%>
@@ -99,7 +99,7 @@
         <%if (cartMode)
           { %>
           <td>
-            <%= Html.ResourceActionLink<CartController>("Delete", ac => ac.RemoveOrderItem(orderItem.GetHashCode(), (string)ViewData["redirectUrl"]))%>
+            <%= Html.ResourceActionLink<CartController>("Delete", ac => ac.RemoveOrderItem(orderItem.HashCode, (string)ViewData["redirectUrl"]))%>
           </td>
         <%} %>
     </tr>

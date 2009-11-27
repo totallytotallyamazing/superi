@@ -152,6 +152,7 @@
     </Compile>
     <Compile Include="Models\NewsPresentation.cs" />
     <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\OrderItem.cs" />
     <Compile Include="Models\Orders.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

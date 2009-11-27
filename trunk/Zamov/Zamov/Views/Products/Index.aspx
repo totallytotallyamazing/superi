@@ -50,9 +50,14 @@
             var id = fieldSegments[1];
 
             if (element.type == "checkbox") {
-                var input = $get("quantity_" + id);
-                if (input.value == "") {
-                    input.value = 1;
+                if (element.checked) {
+                    var input = $get("quantity_" + id);
+                    if (input.value == "") {
+                        input.value = 1;
+                    }
+                }
+                else { 
+                    
                 }
             }
             else {
@@ -70,17 +75,11 @@
 
         SortFieldNames? sortFieldName = null;
         SortDirection? sortDirection = null;
-        SortDirection? invertSortDirection = null;
 
         if (ViewData["sortFieldName"] != null && ViewData["sortDirection"] != null)
         {
             sortFieldName = (SortFieldNames)ViewData["sortFieldName"];
             sortDirection = (SortDirection)ViewData["sortDirection"];
-
-            if (sortDirection == SortDirection.Ascending)
-                invertSortDirection = SortDirection.Descending;
-            else
-                invertSortDirection = SortDirection.Ascending;
         }
 
 
@@ -93,12 +92,12 @@
         int dealerId = (int)ViewData["dealerId"];
        
     %>
+    <%= Html.ResourceActionLink("PickAnotherDealer", "Index", "Dealers")%><br />
     <% Html.RenderPartial("TopProducts"); %>
     <%if (Model.Count > 0)
       { %>
     <%using (Html.BeginForm("AddToCart", "Products", FormMethod.Post, new { id = "addToCart", style = "margin-bottom:20px;" }))
       { %>
-          <%= Html.ResourceActionLink("PickAnotherDealer", "Index", "Dealers")%><br />
 
     <input type="hidden" name="dealerId" value="<%= dealerId %>" />
     <%= Html.Hidden("groupId")%>

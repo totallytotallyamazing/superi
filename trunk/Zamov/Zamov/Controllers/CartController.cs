@@ -54,7 +54,7 @@ namespace Zamov.Controllers
                     for (int i = order.OrderItems.Count - 1; i >= 0; i--)
                     {
                         OrderItem orderItem = order.OrderItems.ElementAt(i);
-                        if (orderItem.GetHashCode() == id)
+                        if (orderItem.HashCode == id)
                             order.OrderItems.Remove(orderItem);
                     }
                 }
@@ -98,7 +98,7 @@ namespace Zamov.Controllers
                         {
                             foreach (var item in orderItemList)
                             {
-                                if (orderItem.GetHashCode() == item.Id)
+                                if (orderItem.HashCode == item.Id)
                                     orderItem.Quantity = item.Quantity;
                             }
                         }

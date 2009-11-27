@@ -210,7 +210,10 @@ namespace Zamov.Controllers
                             if (order.OrderItems != null && order.OrderItems.Count > 0)
                                 item = (from i in order.OrderItems where i.PartNumber == product.PartNumber select i).SingleOrDefault();
                             if (item == null)
+                            {
                                 item = new OrderItem();
+                                item.HashCode = item.GetHashCode();
+                            }
                             else
                                 hasItem = true;
                             if (!hasItem)

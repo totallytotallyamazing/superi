@@ -37,6 +37,7 @@
        <%= Html.Hidden("uploadFolder", "EntityImages")%>
        <%= Html.Hidden("fileKey", "picture")%>
        <%= Html.Hidden("previewKey", "preview")%>
+       <div style="clear:both;"></div>
     <center>
         <table>
             <tr>
@@ -80,6 +81,54 @@
                 </td>
             </tr>
             <tr>
+                <td>
+                    <input type="file" name="picture5" />
+                </td>
+                <td>
+                    <input type="file" name="preview5" />
+                </td>
+            </tr>
+                        <tr>
+                <td>
+                    <input type="file" name="picture6" />
+                </td>
+                <td>
+                    <input type="file" name="preview6" />
+                </td>
+            </tr>
+                        <tr>
+                <td>
+                    <input type="file" name="picture7" />
+                </td>
+                <td>
+                    <input type="file" name="preview7" />
+                </td>
+            </tr>
+                        <tr>
+                <td>
+                    <input type="file" name="picture8" />
+                </td>
+                <td>
+                    <input type="file" name="preview8" />
+                </td>
+            </tr>
+                        <tr>
+                <td>
+                    <input type="file" name="picture9" />
+                </td>
+                <td>
+                    <input type="file" name="preview9" />
+                </td>
+            </tr>
+                        <tr>
+                <td>
+                    <input type="file" name="picture10" />
+                </td>
+                <td>
+                    <input type="file" name="preview10" />
+                </td>
+            </tr>
+                        <tr>
                 <td>
                     <input type="file" name="picture5" />
                 </td>

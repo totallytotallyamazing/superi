@@ -26,6 +26,9 @@
             case WorkType.Text:
                 chapterName = "Работа с текстом";
                 break;
+            case WorkType.Video:
+                chapterName = "Видеодизайн";
+                break;
         }
     %>
     <%if(Request.IsAuthenticated){ %>

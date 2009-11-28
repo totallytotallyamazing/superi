@@ -7,11 +7,11 @@
     if (chapter == "See")
         chapter = ViewContext.RouteData.Values["type"].ToString();
 
-    string sitesClass, vcardsClass, logoClass, polyClass, textClass;
-    sitesClass = vcardsClass = logoClass = polyClass = textClass = "seeMenuItem";
+    string sitesClass, vcardsClass, logoClass, polyClass, textClass, videoClass;
+    sitesClass = vcardsClass = logoClass = polyClass = textClass = videoClass = "seeMenuItem";
 
-    string sitesContent, vcardsContent, logosContent, polyContent, textContent;
-    sitesContent = vcardsContent = logosContent = polyContent = textContent = "";
+    string sitesContent, vcardsContent, logosContent, polyContent, textContent, videoContent;
+    sitesContent = vcardsContent = logosContent = polyContent = textContent = videoContent = "";
 
     Func<WorkType, string> CreateContent = delegate(WorkType workType)
     {
@@ -64,6 +64,10 @@
             textClass += " bold";
             textContent = CreateContent(WorkType.Text);
             break;
+        case "Video":
+            videoClass += " bold";
+            videoContent = CreateContent(WorkType.Video);
+            break;
         default:
             break;
     }
@@ -111,5 +115,13 @@
     </div>
     <div class="seeMenuItemSplitter">
         <%= textContent %>
+    </div>
+    <div class="<%= videoClass %>">
+        <a href="/See/Video">
+            Видеодизайн
+        </a>
+    </div>
+    <div class="seeMenuItemSplitter">
+        <%= videoContent %>
     </div>
 </div>

@@ -6,6 +6,7 @@
         Vcard = 2,
         Logo = 3,
         Poly = 4,
-        Text = 5
+        Text = 5,
+        Video = 6
     }
 }

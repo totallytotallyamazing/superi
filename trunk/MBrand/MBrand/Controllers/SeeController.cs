@@ -99,5 +99,19 @@ namespace MBrand.Controllers
             }
         }
 
+        public ActionResult Video(int? id)
+        {
+            ViewData["workType"] = WorkType.Video;
+
+            if (id == null)
+            {
+                return View();
+            }
+            else
+            {
+                return ShowGroupContent(id.Value);
+            }
+        }
+
     }
 }

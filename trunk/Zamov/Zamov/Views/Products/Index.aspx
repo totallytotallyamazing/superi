@@ -50,14 +50,14 @@
             var id = fieldSegments[1];
 
             if (element.type == "checkbox") {
+                var input = $get("quantity_" + id);
                 if (element.checked) {
-                    var input = $get("quantity_" + id);
                     if (input.value == "") {
                         input.value = 1;
                     }
                 }
-                else { 
-                    
+                else {
+                    input.value = "";        
                 }
             }
             else {

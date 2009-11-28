@@ -14,6 +14,8 @@ namespace MBrand
     {
         public static void RegisterRoutes(RouteCollection routes)
         {
+            routes.IgnoreRoute("{folder}/{*pathInfo}", new { folder = "storage" });
+            routes.IgnoreRoute("{folder}/{*pathInfo}", new { folder = "lj" });
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             routes.IgnoreRoute("favicon.ico");
 

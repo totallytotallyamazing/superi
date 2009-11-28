@@ -13,9 +13,11 @@
     function AddToCartSuccess(response) {
         $get("totalPrice").innerHTML = response.get_response().get_object().TotalCartPrice;
         $get("orderItemsCount").innerHTML = response.get_response().get_object().TotalCartItems;
-        $(".orderCb").attr("checked", "");
+        $(".orderCb").each(function() { this.checked = false; })
+        $(".orderQuantity").val("");
+        $(".orderCheckLink").removeClass("ordered");
         $(".subHeader").css("display", "block");
-
+        
         enableCart();
     }
 
@@ -57,8 +59,13 @@
 
         if (element.type == "checkbox") {
             var input = $get("quantity_" + id);
-            if (input.value == "") {
-                input.value = 1;
+            if (element.checked) {
+                if (input.value == "") {
+                    input.value = 1;
+                }
+            }
+            else {
+                input.value = "";
             }
         }
         else {
@@ -76,17 +83,7 @@
 
        
 </script>
-
-<%--    <div class="subHeader">
-        <%
-            if (ViewData["TotalCartPrice"] != null)
-                Html.Encode(ViewData["TotalCartPrice"].ToString());
-        %>
-        <% Html.RenderPartial("Cart");  %>
-    </div>--%>
-    
     <%
-
         SortFieldNames? sortFieldName = null;
         SortDirection? sortDirection = null;
         SortDirection? invertSortDirection = null;
@@ -101,8 +98,6 @@
             else
                 invertSortDirection = SortDirection.Ascending;
         }
-        
-       
     %>
     
     <%
@@ -187,160 +182,19 @@
                     // if (item.Unit == "êã." || item.Unit == "êã" || item.Unit == "ë" || item.Unit == "ë.")
                     //   mask = "99.99";
                 %>
-                <%= Html.TextBox("quantity_" + item.Id, null, new { style = "width:24px; font-size:10px; text-align:center", onkeyup = "validateQuantity(this); order(this)" })%>
+                <%= Html.TextBox("quantity_" + item.Id, null, new { @class="orderQuantity", style = "width:24px; font-size:10px; text-align:center", onkeyup = "validateQuantity(this); order(this)" })%>
                 <%--<%= Ajax.MaskEdit("", MaskTypes.Number, mask, false, true, "quantity_" + item.Id)%>--%>
             </td>
             <td align="center" valign="middle">
                 <a id="orderLink_<%= item.Id %>" class="orderCheckLink <%= SystemSettings.CurrentLanguage %>" rel="<%= item.Id %>"></a>
-                <%= Html.CheckBox("order_" + item.Id, false, new { onclick = "order(this)", style = "visibility:hidden; display: block; height: 0px; font-size: 0px;" })%>
+                <%= Html.CheckBox("order_" + item.Id, false, new { @class = "orderCb", onclick = "order(this)", style = "visibility:hidden; display: block; height: 0px; font-size: 0px;" })%>
             </td>
         </tr>
         <%   
             }     
         %>
     </table>
-
-<%--    <table class="commonTable" width="100%">
-        <tr>
-            <th>
-                <table class="searchTableIneerHeader">
-                <tr>
-                    <td>
-                        <%
-                          if (sortFieldName == null)
-                          {    
-                        %>
-                        <%=Html.ResourceActionLink("Name", "SearchProduct", new { sortFieldName = SortFieldNames.Name, sortDirection = SortDirection.Ascending })%>
-                        <%}
-                          else
-                          {%>
-                          <%=Html.ResourceActionLink("Name", "SearchProduct", new { sortFieldName = SortFieldNames.Name, sortDirection = invertSortDirection })%>
-                        <%} %>
-                    </td>
-                    <td>
-                       <%if (sortFieldName == SortFieldNames.Name)
-                         { if (sortDirection == SortDirection.Ascending)
-                          {%>
-                        <%=Html.Image("~/Content/images/sort_up.gif", new { style = "border-style:none" })%>
-                        <%}
-                          else
-                          { %>
-                        <%=Html.Image("~/Content/images/sort_down.gif", new { style = "border-style:none" })%>
-                        
-                        <%}
-                         } %>
-                    </td>
-                </tr>
-                </table>
-            </th>
-            <th style="width:20px;">
-                <table class="searchTableIneerHeader">
-                <tr>
-                    <td>
-                        <%
-                          if (sortFieldName == null)
-                          {    
-                        %>
-                        <%=Html.ResourceActionLink("Dealer", "SearchProduct", new { sortFieldName = SortFieldNames.Dealer, sortDirection = SortDirection.Ascending })%>
-                        <%}
-                          else
-                          {%>
-                          <%=Html.ResourceActionLink("Dealer", "SearchProduct", new { sortFieldName = SortFieldNames.Dealer, sortDirection = invertSortDirection })%>
-                        <%} %>
-                    </td>
-                    <td>
-                       <%if (sortFieldName == SortFieldNames.Dealer)
-                         { if (sortDirection == SortDirection.Ascending)
-                          {%>
-                        <%=Html.Image("~/Content/images/sort_up.gif", new { style = "border-style:none" })%>
-                        <%}
-                          else
-                          { %>
-                        <%=Html.Image("~/Content/images/sort_down.gif", new { style = "border-style:none" })%>
-                        
-                        <%}
-                         } %>
-                    </td>
-                </tr>
-                </table>
-            </th>
-            <th style="width:20px;">
-                <%= Html.ResourceString("MeassureUnit") %>
-            </th>
-            <th style="width:20px;">
-                <table class="searchTableIneerHeader">
-                <tr>
-                    <td>
-                        <%
-                          if (sortFieldName == null)
-                          {    
-                        %>
-                        <%=Html.ResourceActionLink("Price", "SearchProduct", new { sortFieldName = SortFieldNames.Price, sortDirection = SortDirection.Ascending })%>, ãðí.
-                        <%}
-                          else
-                          {%>
-                          <%=Html.ResourceActionLink("Price", "SearchProduct", new { sortFieldName = SortFieldNames.Price, sortDirection = invertSortDirection })%>, ãðí.
-                        <%} %>
-                    </td>
-                    <td>
-                       <%if (sortFieldName == SortFieldNames.Price)
-                         { if (sortDirection == SortDirection.Ascending)
-                          {%>
-                        <%=Html.Image("~/Content/images/sort_up.gif", new { style = "border-style:none" })%>
-                        <%}
-                          else
-                          { %>
-                        <%=Html.Image("~/Content/images/sort_down.gif", new { style = "border-style:none" })%>
-                        
-                        <%}
-                         } %>
-                    </td>
-                </tr>
-                </table>
-            </th>
-            <th style="width:20px;"><%= Html.ResourceString("Photo") %>
-            <br /> / <br /><%= Html.ResourceString("Description") %>
-            </th>
-            <th style="width:20px;"><%= Html.ResourceString("Quantity") %></th>
-            <th style="width:20px;"><%= Html.ResourceString("ToOrder") %></th>
-        </tr>
-
-
-       <%     if (Model != null)
-                foreach (var item in Model)
-                { %>
-    
-        <tr>
-            <td align="left">
-                <%= Html.Encode(item.Name)%>
-            </td>
-            <td align="left">
-                <%= Html.Encode(item.DealerName)%>
-                <%=Html.Hidden("dealer_"+ item.Id,item.DealerId)%>
-            </td>
-            <td  align="center">
-                <%=Html.Encode(!string.IsNullOrEmpty(item.Unit) ? item.Unit : "øò.")%>
-            </td>
-            <td  align="center">
-                <%= Html.Encode(String.Format("{0:F}", item.Price))%>
-            </td>
-            <td align="center">
-                <a class="productDescription" style="text-decoration:none" href="/Products/Description/<%= item.Id %>">
-                    <%= Html.Image("~/Content/img/productImage.JPG", new { style="border:none;" })%> / <span class="productDescriptionLink">i</span>
-                </a>
-            </td>
-            <td align="center">
-                <%= Html.TextBox("quantity_" + item.Id, null, new { style = "width:24px; font-size:10px; text-align:center", onkeyup = "validateQuantity(this); order(this)" })%>
-            </td>
-            <td align="center">
-              <%= Html.CheckBox("order_" + item.Id, false, new { @class = "orderCb", onclick = "order(this)" })%>
-            </td>
-            
-        </tr>
-    
-    <% }
-    %>
-    </table>  --%>          
+          
     <input style="margin-top:5px" type="submit" value="<%=Html.ResourceString("AddToCart") %>" />  
 </div>
     <%

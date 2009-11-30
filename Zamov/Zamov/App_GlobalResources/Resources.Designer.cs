@@ -1582,7 +1582,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Вартiсть покупки грн..
+        ///   Looks up a localized string similar to Вартiсть покупки, грн..
         /// </summary>
         internal static string PurchaseTotalPrice {
             get {

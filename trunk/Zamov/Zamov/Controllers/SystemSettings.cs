@@ -16,6 +16,18 @@ namespace Zamov.Controllers
             get { return HttpContext.Current.Session; }
         }
 
+        public static string CurrentDomain
+        {
+            get 
+            { 
+                string result = "Com";
+                string host = HttpContext.Current.Request.Url.Host;
+                if(host.EndsWith(".net"))
+                    result = "Net";
+                return result;
+            }
+        }
+
         public static int UsersPageSize
         {
             get

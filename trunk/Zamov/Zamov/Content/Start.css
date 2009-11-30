@@ -10,7 +10,7 @@ select
 .greyBg{background:#CFDAD7}
 .whiteBg{background:white;}
 
-#header{height:142px; background:#092D45; border:1px solid #5F798A;}
+#header{height:142px; background:#092D45 url(img/headerBg.png) no-repeat left bottom; border:1px solid #5F798A;}
 #header .headerContent{width:100%;}
 #header .leftBorder, #header .rightBorder{ width:7px; height:142px;}
 #header .rightBorder{float:right; background: transparent url(img/headerRight.jpg)}

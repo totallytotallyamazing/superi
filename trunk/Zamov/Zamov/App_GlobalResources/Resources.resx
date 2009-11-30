@@ -412,7 +412,7 @@
     <value>Оформити замовлення</value>
   </data>
   <data name="PurchaseTotalPrice" xml:space="preserve">
-    <value>Вартiсть покупки грн.</value>
+    <value>Вартiсть покупки, грн.</value>
   </data>
   <data name="Recalculate" xml:space="preserve">
     <value>Перерахувати</value>

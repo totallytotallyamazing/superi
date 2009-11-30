@@ -406,7 +406,7 @@
     <value>Товаров в корзине</value>
   </data>
   <data name="EmptyCart" xml:space="preserve">
-    <value>Очиистить корзину</value>
+    <value>Очистить корзину</value>
   </data>
   <data name="MakeOrder" xml:space="preserve">
     <value>Оформить заказ</value>

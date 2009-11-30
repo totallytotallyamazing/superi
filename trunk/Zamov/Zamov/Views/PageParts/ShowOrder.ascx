@@ -47,21 +47,19 @@
             <%=Html.ResourceString("Title")%>
         </th>
         <th>
-            <%=Html.ResourceString("Photo")%>
+            <%=Html.ResourceString("Photo")%> / <%=Html.ResourceString("Description")%>
         </th>
         <th style="width:10px; padding-left:2px; padding-right:2px;">
             <%=Html.ResourceString("Unit")%>
         </th>
         <th>
-            <%=Html.ResourceString("Price")%>
-            грн.
+            <%=Html.ResourceString("Price")%>, грн.
         </th>
         <th>
             <%=Html.ResourceString("Quantity")%>
         </th>
         <th>
-            <%=Html.ResourceString("Cost")%>
-            грн.
+            <%=Html.ResourceString("Cost")%>, грн.
         </th>
         <%if (cartMode){ %>
         <th></th>

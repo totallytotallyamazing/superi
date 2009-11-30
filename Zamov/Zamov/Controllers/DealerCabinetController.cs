@@ -621,6 +621,7 @@ namespace Zamov.Controllers
             foreach (string key in itemsToMove.Keys)
             {
                 itemsToMove[key]["groupId"] = groupItems.ToString();
+                itemsToMove[key]["price"] = itemsToMove[key]["price"].Replace(",", ".");
                 newItemsDictionary.Remove(key);
             }
 

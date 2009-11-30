@@ -290,6 +290,7 @@
     <Content Include="Content\images\file.gif" />
     <Content Include="Content\images\folder-closed.gif" />
     <Content Include="Content\images\folder.gif" />
+    <Content Include="Content\img\headerBg.png" />
     <Content Include="Content\images\minus.gif" />
     <Content Include="Content\images\plus.gif" />
     <Content Include="Content\images\sort_down.gif" />
@@ -314,6 +315,8 @@
     <Content Include="Content\img\crossMark.jpg" />
     <Content Include="Content\img\delete.png" />
     <Content Include="Content\img\edit.png" />
+    <Content Include="Content\img\logoCom.jpg" />
+    <Content Include="Content\img\logoNet.jpg" />
     <Content Include="Content\img\new.jpg" />
     <Content Include="Content\img\newsSplitter.jpg" />
     <Content Include="Content\img\noImage.png" />

@@ -72,6 +72,8 @@ namespace Zamov.Controllers
             if (orderItemsCount == 0)
             {
                 SystemSettings.EmptyCart();
+                if(string.IsNullOrEmpty(redirectUrl))
+                    return RedirectToAction("Index", "Home");
                 return Redirect(redirectUrl);
             }
             return RedirectToAction("Index", new { redirectUrl = redirectUrl });
@@ -175,7 +177,7 @@ namespace Zamov.Controllers
                 if (key.StartsWith("paymentType") || key.StartsWith("voucherCode"))
                     ViewData[key] = form[key];
             }
-            if (!ValidateMakeOrder(firstName, city, deliveryAddress, contactPhone, deliveryDate, deliveryTime, agreed, captchaValid))
+            if (!ValidateMakeOrder(firstName, city, deliveryAddress, contactPhone, deliveryDate, deliveryTime, email, agreed, captchaValid))
                 return View(SystemSettings.Cart.Orders);
             Cart cart = SystemSettings.Cart;
             JavaScriptSerializer serializer = new JavaScriptSerializer();
@@ -275,15 +277,16 @@ namespace Zamov.Controllers
             string contactPhone,
             string deliveryDate,
             string deliveryTime,
+            string email,
             bool agreed,
             bool captchaValid
             )
         {
-            if (string.IsNullOrEmpty(firstName))
+            if (string.IsNullOrEmpty(firstName.Replace(" ", "")))
                 ModelState.AddModelError("firstName", ResourcesHelper.GetResourceString("FirstNameRequired"));
-            if (string.IsNullOrEmpty(city))
+            if (string.IsNullOrEmpty(city.Replace(" ", "")))
                 ModelState.AddModelError("city", ResourcesHelper.GetResourceString("CityRequired"));
-            if (string.IsNullOrEmpty(deliveryAddress))
+            if (string.IsNullOrEmpty(deliveryAddress.Replace(" ", "")))
                 ModelState.AddModelError("deliveryAddress", ResourcesHelper.GetResourceString("DeliveryAddressRequired"));
             if (string.IsNullOrEmpty(contactPhone))
                 ModelState.AddModelError("contactPhone", ResourcesHelper.GetResourceString("PhoneRequired"));
@@ -298,6 +301,12 @@ namespace Zamov.Controllers
                 ModelState.AddModelError("agreed", ResourcesHelper.GetResourceString("YouMustAgree"));
             if (!captchaValid)
                 ModelState.AddModelError("captchaInvalid", ResourcesHelper.GetResourceString("IncorrectCaptcha"));
+            Regex emailCheck = new Regex(@"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$");
+            if(!string.IsNullOrEmpty(email) && !emailCheck.IsMatch(email))
+                ModelState.AddModelError("email", ResourcesHelper.GetResourceString("EmailIncorrect"));
+            Regex phoneCheck = new Regex(@"^\+?\d{1}\(?(\d|\s)+\)?\d+$");
+            if(!string.IsNullOrEmpty(contactPhone) && !phoneCheck.IsMatch(contactPhone))
+                ModelState.AddModelError("contactPhone", ResourcesHelper.GetResourceString("PhoneIncorrect"));
             return ModelState.IsValid;
         }
 

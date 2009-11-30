@@ -232,6 +232,7 @@
             <tr>
                 <td class="parameterName">
                     <nowrap>E-mail</nowrap>
+                    <%= Html.ValidationMessage("email", "*", new { @class="validationError"})%>
                 </td>
                 <td class="parameterValue">
                     <%= Html.TextBox("email")%>

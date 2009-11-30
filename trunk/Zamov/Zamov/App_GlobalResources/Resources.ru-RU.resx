@@ -789,4 +789,7 @@
   <data name="PriceHrn" xml:space="preserve">
     <value>Цена, грн.</value>
   </data>
+  <data name="PhoneIncorrect" xml:space="preserve">
+    <value>Формат телефона не правильный</value>
+  </data>
 </root>

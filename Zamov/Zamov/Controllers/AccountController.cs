@@ -354,7 +354,7 @@ namespace Zamov.Controllers
             }
             else
             {
-                Regex regex = new Regex("^(?:[a-zA-Z0-9_'^&amp;/+-])+(?:\\.(?:[a-zA-Z0-9_'^&amp;/+-])+)*@(?:(?:\\[?(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?))\\.){3}(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\]?)|(?:[a-zA-Z0-9-]+\\.)+(?:[a-zA-Z]){2,}\\.?)$");
+                Regex regex = new Regex(@"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$");
                 if (!regex.IsMatch(email))
                     ModelState.AddModelError("email", ResourcesHelper.GetResourceString("EmailIncorrect"));
             }
@@ -376,6 +376,9 @@ namespace Zamov.Controllers
                 ModelState.AddModelError("lastName", ResourcesHelper.GetResourceString("LastNameRequired"));
             if (string.IsNullOrEmpty(mobilePhone))
                 ModelState.AddModelError("mobilePhone", ResourcesHelper.GetResourceString("PhoneRequired"));
+            Regex phoneCheck = new Regex(@"^\+?\d{1}\(?\d+\)?\d+$");
+            if((!string.IsNullOrEmpty(mobilePhone) && !phoneCheck.IsMatch(mobilePhone)) || (!string.IsNullOrEmpty(phone) && !phoneCheck.IsMatch(phone)))
+                ModelState.AddModelError("_FORM", ResourcesHelper.GetResourceString("PhoneIncorrect"));
             return ModelState.IsValid;
         }
 

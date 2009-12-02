@@ -102,8 +102,8 @@ iframe{padding:0; margin:0; border:none;}
 
 
 div.productDescription{ overflow:hidden; text-overflow:ellipsis;}
-div.productDescription.True{height:85px;}
-div.productDescription.False{height:25px;}
+div.productDescription.True{height:80px;}
+div.productDescription.False{height:15px;}
 .orderDescription{}
 .cartDescription{}
 

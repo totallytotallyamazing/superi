@@ -20,6 +20,13 @@ namespace MBrand
             routes.IgnoreRoute("favicon.ico");
 
             routes.MapRoute(
+                "DeleteWorkGroup",
+                "Admin/DeleteWorkGroup/{id}",
+                new { controller = "Admin", action = "DeleteWorkGroup", id = "" }
+            );
+
+
+            routes.MapRoute(
                 "See",
                 "Admin/{action}/{type}",
                 new { controller = "Admin", action = "See", type = "Site" }

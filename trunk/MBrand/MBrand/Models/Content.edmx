@@ -51,13 +51,15 @@
           </Key>
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Type" Type="int" />
-          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="Description" Type="nvarchar(max)" />
           <Property Name="Preview" Type="nvarchar" MaxLength="500" />
           <Property Name="Image" Type="nvarchar" MaxLength="500" />
           <Property Name="GroupId" Type="int" />
         </EntityType>
         <Association Name="FK_Works_WorkGroups">
-          <End Role="WorkGroups" Type="Model.Store.WorkGroups" Multiplicity="0..1" />
+          <End Role="WorkGroups" Type="Model.Store.WorkGroups" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Works" Type="Model.Store.Works" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="WorkGroups">

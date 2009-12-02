@@ -189,7 +189,9 @@
             </td>
             <td align="center" valign="middle">
                 <a id="orderLink_<%= item.Id %>" class="orderCheckLink <%= SystemSettings.CurrentLanguage %>" rel="<%= item.Id %>"></a>
-                <%= Html.CheckBox("order_" + item.Id, false, new { onclick = "order(this)", style = "visibility:hidden; display: block; height: 0px; font-size: 0px;" })%>
+                <div style="overflow:hidden; width:0; height:0;">
+                    <%= Html.CheckBox("order_" + item.Id, false, new { onclick = "order(this)", style = "visibility:hidden; display: block; height: 0px; font-size: 0px;" })%>
+                </div>
             </td>
         </tr>
         <%   

@@ -13,7 +13,7 @@
     <link rel="shortcut icon" type="image/ico" href="/favicon.ico" />
      <meta name="KeyWords" content="Замов, заказ пиццы, заказ суши, заказ обеда, доставка пиццы, доставка еды, доставка суши, заказ подарков, подарок заказать, заказ онлайн, онлайн заказ" />
 
-     <meta name="Description" content="Zamov - Первый в Украине супермаркет онлайн заказа пиццы, суши, подарков, електроники, автотоваров." />
+     <meta name="Description" content="Zamov - Первый в Украине портал онлайн заказа пиццы, суши, подарков, електроники, автотоваров." />
 
     <link href="../../Content/Start.css" rel="stylesheet" type="text/css" />
     <%= Html.RegisterJS("MicrosoftAjax.js")%>

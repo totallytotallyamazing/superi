@@ -52,7 +52,7 @@ margin-right:40px;
     border-bottom: 1px solid #dbdbdb;
     padding:18px 6px 35px 18px;
 }
-#content{width:auto; margin:0px 215px 0px 40px; border-top:6px solid #99B6BA;}
+#content{margin:0px 40px 0 40px !important; min-width:1095px !important;border-top:6px solid #99B6BA;}
 
 #mainContent{padding:20px; margin-left:212px; border:2px solid #dbdbdb; border-top:none;}
 

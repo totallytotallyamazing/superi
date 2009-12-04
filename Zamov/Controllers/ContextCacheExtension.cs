@@ -12,7 +12,6 @@ namespace Zamov.Controllers
     {
         private static Cache Cache { get { return HttpContext.Current.Cache; } }
 
-
         public static List<CategoryPresentation> GetCachedCategoryPresentation(this ZamovStorage context, int cityId, bool reload, string language)
         {
             List<CategoryPresentation> result = new List<CategoryPresentation>();
@@ -32,7 +31,7 @@ namespace Zamov.Controllers
                               Id = category.Id,
                               Name = name.Text
                           }).ToList();
-                Cache["CityCategoriesPresentation_" + cityId] = result;
+                Cache.Add("CityCategoriesPresentation_" + cityId, result, null, DateTime.Now.AddMinutes(30), Cache.NoSlidingExpiration, CacheItemPriority.Default, null);
             }
             return result;
 

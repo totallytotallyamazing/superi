@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Data.Common;
 using System.Data.EntityClient;
 using System.Data;
+using System.Data.Objects;
 
 namespace Zamov.Models
 {
@@ -37,6 +38,21 @@ namespace Zamov.Models
             if (context.Connection.State != System.Data.ConnectionState.Open)
                 context.Connection.Open();
             return command.ExecuteReader(CommandBehavior.SequentialAccess);
+        }
+
+        public static IQueryable<CategoryPresentation> GetLocalizedCategories(this ZamovStorage context, string language)
+        {
+            IQueryable<CategoryPresentation> result = (from category in context.Categories.Include("Parent").Include("Dealers").Include("Categories")
+                                                        join name in context.Translations on category.Id equals name.ItemId
+                                                        where category.Enabled
+                                                        && name.Language == language
+                                                        && name.TranslationItemTypeId == (int)ItemTypes.Category
+                                                        select new CategoryPresentation
+                                                        {
+                                                            Id = category.Id,
+                                                            Name = name.Text
+                                                        });
+            return result;
         }
 
         public static void RemoveDealer(this ZamovStorage context, int id)

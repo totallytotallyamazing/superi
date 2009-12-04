@@ -1,7 +1,7 @@
 ﻿.detailsHeader{	width: 455px; border-bottom: 2px solid white;}
 .entityTitle{font-size:28px}
 .topContent{margin-bottom: 20px;}
-.topContent .content{width: 455px; min-height: 500px; border-bottom: 2px solid white; padding-top:10px; font-size:12px; padding-bottom:40px;}
+.topContent .content{width: 455px; min-height: 500px; border-bottom: 2px solid white; padding-top:10px; font-size:12px; padding-bottom:100px;}
 .finger{float: right; height:0px;}
 .finger img{position: relative;	top: -169px;}
 .bottomContent{font-size:12px; width:455px;}

@@ -128,14 +128,6 @@
                     <input type="file" name="preview10" />
                 </td>
             </tr>
-                        <tr>
-                <td>
-                    <input type="file" name="picture5" />
-                </td>
-                <td>
-                    <input type="file" name="preview5" />
-                </td>
-            </tr>
         </table>
         <input type="submit" value="Сохранить" style="margin-top:5px;" />
     </center>

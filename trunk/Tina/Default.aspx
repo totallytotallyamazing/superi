@@ -149,7 +149,6 @@
                 <a href="mailto:ogir@tinakarol.com.ua">ogir@tinakarol.ua</a>
                 <br /><br />
                 <span>администратор:</span><br />
-                Дарья Новикова<br />
                 8 (067) 659 44 44<br />
                 <a href="mailto:darya@tinakarol.com.ua">darya@tinakarol.ua</a>
                 <br /><br />

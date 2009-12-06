@@ -54,7 +54,7 @@ margin-right:40px;
 }
 #content{margin:0px 40px 0 40px !important; min-width:1095px !important;border-top:6px solid #99B6BA;}
 
-#mainContent{padding:20px; margin-left:212px; border:2px solid #dbdbdb; border-top:none;}
+#mainContent{padding:20px; float:left; position:absolute; left:262px; right:40px; width:auto; min-width:829px; border:2px solid #dbdbdb; border-top:none;}
 
 
 

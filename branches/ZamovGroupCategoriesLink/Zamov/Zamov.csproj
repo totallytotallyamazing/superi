@@ -292,6 +292,10 @@
     <Content Include="Content\images\file.gif" />
     <Content Include="Content\images\folder-closed.gif" />
     <Content Include="Content\images\folder.gif" />
+    <Content Include="Content\img\categoryBg.gif" />
+    <Content Include="Content\img\greenButtonBg.gif" />
+    <Content Include="Content\img\greenButtonLeft.png" />
+    <Content Include="Content\img\greenButtonRight.png" />
     <Content Include="Content\img\headerBg.png" />
     <Content Include="Content\images\minus.gif" />
     <Content Include="Content\images\plus.gif" />

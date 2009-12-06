@@ -23,7 +23,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("BaseEntities", "FK_Groups_Categories", "Category", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Zamov.Models.Category), "Group", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Zamov.Models.Group))]
 
 // Original file name:
-// Generation date: 02.12.2009 20:39:55
+// Generation date: 06.12.2009 21:27:22
 namespace Zamov.Models
 {
     
@@ -1388,13 +1388,13 @@ namespace Zamov.Models
             }
         }
         /// <summary>
-        /// There are no comments for Categories in the schema.
+        /// There are no comments for Category in the schema.
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("BaseEntities", "FK_Groups_Categories", "Category")]
         [global::System.Xml.Serialization.XmlIgnoreAttribute()]
         [global::System.Xml.Serialization.SoapIgnoreAttribute()]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public Category Categories
+        public Category Category
         {
             get
             {
@@ -1406,11 +1406,11 @@ namespace Zamov.Models
             }
         }
         /// <summary>
-        /// There are no comments for Categories in the schema.
+        /// There are no comments for Category in the schema.
         /// </summary>
         [global::System.ComponentModel.BrowsableAttribute(false)]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Data.Objects.DataClasses.EntityReference<Category> CategoriesReference
+        public global::System.Data.Objects.DataClasses.EntityReference<Category> CategoryReference
         {
             get
             {

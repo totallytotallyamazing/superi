@@ -37,6 +37,16 @@ namespace Zamov.Controllers
                 int dealerId = int.MinValue;
                 dealerId = Security.GetCurentDealerId(User.Identity.Name);
                 ViewData["dealerId"] = dealerId;
+                List<CategoryPresentation> categories = context.GetTranslatedCategories(SystemSettings.CurrentLanguage, true, null, false)
+                    .Select(c => new CategoryPresentation 
+                    { 
+                        Id = c.Entity.Id, 
+                        Name = c.Translation.Text, 
+                        ParentId = c.Entity.Parent.Id 
+                    }).ToList();
+                categories.ForEach(c => c.PickChildren(categories));
+                categories = categories.Where(c => c.ParentId == null).ToList();
+                ViewData["categories"] = categories;
                 return View();
             }
         }
@@ -58,7 +68,7 @@ namespace Zamov.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult InsertGroup(string groupName, string groupUkrName, string groupRusName, bool displayImages, bool enabled, int parentId)
+        public ActionResult InsertGroup(string groupName, string groupUkrName, string groupRusName, bool displayImages, bool enabled, int parentId,  int categoryId)
         {
             ClearGroupCache();
 
@@ -78,6 +88,7 @@ namespace Zamov.Controllers
                 group.Names["uk-UA"] = groupUkrName;
                 group.Enabled = enabled;
                 group.DisplayProductImages = displayImages;
+                group.CategoryReference.EntityKey = new EntityKey("ZamovStorage.Categories", "Id", categoryId);
                 context.AddToGroups(group);
                 context.SaveChanges();
                 context.UpdateTranslations(group.NamesXml);

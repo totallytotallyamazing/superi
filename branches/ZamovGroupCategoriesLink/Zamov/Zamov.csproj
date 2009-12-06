@@ -120,6 +120,7 @@
     <Compile Include="Helpers\Comparers.cs" />
     <Compile Include="Helpers\FormCollectionExtender.cs" />
     <Compile Include="Helpers\Helpers.cs" />
+    <Compile Include="Helpers\HierarchicalDropDownHelper.cs" />
     <Compile Include="Helpers\MailHelper.cs" />
     <Compile Include="Helpers\MaskEditExtensions.cs" />
     <Compile Include="Helpers\ModalPopUpExtensions.cs" />
@@ -135,6 +136,7 @@
     <Compile Include="Models\ContextExtensions.cs" />
     <Compile Include="Models\DealerPresentation.cs" />
     <Compile Include="Models\Dealers.cs" />
+    <Compile Include="Models\EntityTranslationPair.cs" />
     <Compile Include="Models\FeedbackPresentation.cs" />
     <Compile Include="Models\Group.cs" />
     <Compile Include="Models\GroupResentation.cs" />

@@ -26,17 +26,53 @@ namespace Zamov.Controllers
                           .Dealers.Where(d => d.Cities.Where(sub => sub.Id == cityId).Count() > 0).Count() > 0).Count() > 0
                           && name.Language == language
                           && name.TranslationItemTypeId == (int)ItemTypes.Category
-                          select new CategoryPresentation 
-                          { 
+                          select new CategoryPresentation
+                          {
                               Id = category.Id,
                               Name = name.Text
                           }).ToList();
                 Cache.Add("CityCategoriesPresentation_" + cityId, result, null, DateTime.Now.AddMinutes(30), Cache.NoSlidingExpiration, CacheItemPriority.Default, null);
             }
             return result;
-
         }
-        
+
+        public static IQueryable<EntityTranslationPair<Category>> GetTranslatedCategories(
+            this ZamovStorage context,
+            string language,
+            bool enabledOnly,
+            int? cityId,
+            bool roots
+            )
+        {
+            IQueryable<EntityTranslationPair<Category>> result = context
+                .Categories.Include("Parent").Include("Dealers").Include("Categories").Include("Groups")
+                .Join
+                (
+                    context.Translations.Where(t => t.Language == language && t.TranslationItemTypeId == (int)ItemTypes.Category),
+                    c => c.Id,
+                    t => t.ItemId, (c, i) => new EntityTranslationPair<Category>
+                    {
+                        Entity = c,
+                        Language = language,
+                        Translation = i
+                    }
+            );
+
+            if (enabledOnly)
+            {
+                result = result.Where(c => c.Entity.Enabled);
+            }
+            if (roots)
+            {
+                result = result.Where(c => c.Entity.ParentReference.EntityKey == null);
+            }
+            if (cityId != null)
+            {
+                result.Where(c => c.Entity.Groups.Where(g => g.Dealer.Cities.Where(city => city.Id == cityId).Count() > 0).Count() > 0);
+            }
+            return result;
+        }
+
         public static List<Category> GetCachedCategories(this ZamovStorage context, int cityId, bool reload)
         {
             List<Category> result = new List<Category>();
@@ -46,8 +82,8 @@ namespace Zamov.Controllers
             {
                 result = (from category in context.Categories.Include("Parent").Include("Dealers").Include("Categories")
                           where category.Parent == null && category.Enabled
-                          && category.Categories.Where(c=>c
-                          .Dealers.Where(d => d.Cities.Where(sub => sub.Id == cityId).Count() > 0).Count() > 0).Count()>0
+                          && category.Categories.Where(c => c
+                          .Dealers.Where(d => d.Cities.Where(sub => sub.Id == cityId).Count() > 0).Count() > 0).Count() > 0
                           select category).ToList();
                 Cache["CityCategories_" + cityId] = result;
             }
@@ -61,7 +97,7 @@ namespace Zamov.Controllers
             IDictionaryEnumerator enumerator = cache.GetEnumerator();
             while (enumerator.MoveNext())
             {
-                if (enumerator.Key.ToString().StartsWith("CityCategories_") 
+                if (enumerator.Key.ToString().StartsWith("CityCategories_")
                     || enumerator.Key.ToString().StartsWith("CityCategoriesPresentation_"))
                     keysToClear.Add(enumerator.Key.ToString());
             }
@@ -84,15 +120,15 @@ namespace Zamov.Controllers
             //    result = (List<Category>)Cache["SubCategories_" + categoryId];
             //else
             //{
-                using (ZamovStorage context = new ZamovStorage())
-                {
-                    result = (from category in context.Categories.Include("Categories") 
-                              where category.Parent.Id == categoryId 
-                              && category.Dealers.Count > 0 
-                              && category.Enabled 
-                              select category).ToList();
-                }
-               // Cache["SubCategories_" + categoryId] = result;
+            using (ZamovStorage context = new ZamovStorage())
+            {
+                result = (from category in context.Categories.Include("Categories")
+                          where category.Parent.Id == categoryId
+                          && category.Dealers.Count > 0
+                          && category.Enabled
+                          select category).ToList();
+            }
+            // Cache["SubCategories_" + categoryId] = result;
             //}
             return result;
         }

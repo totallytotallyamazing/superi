@@ -583,7 +583,7 @@
           <NavigationProperty Name="Groups" Relationship="BaseEntities.FK_Groups_Groups" FromRole="Group" ToRole="Group1" />
           <NavigationProperty Name="Parent" Relationship="BaseEntities.FK_Groups_Groups" FromRole="Group1" ToRole="Group" />
           <Property Name="DisplayProductImages" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Categories" Relationship="BaseEntities.FK_Groups_Categories" FromRole="Group" ToRole="Category" /></EntityType>
+          <NavigationProperty Name="Category" Relationship="BaseEntities.FK_Groups_Categories" FromRole="Group" ToRole="Category" /></EntityType>
         <EntityType Name="Product">
           <Key>
             <PropertyRef Name="Id" />

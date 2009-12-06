@@ -1,6 +1,7 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/DealerCabinet/Cabinet.Master" Inherits="System.Web.Mvc.ViewPage" %>
 <%@ Import Namespace="Zamov.Helpers" %>
 <%@ Import Namespace="Microsoft.Web.Mvc" %>
+<%@ Import Namespace="Zamov.Models" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	<%= Html.ResourceString("Groups") %>
 </asp:Content>
@@ -12,9 +13,11 @@
             if (parentId >= 0) {
                 $("#parentId").val(parentId);
                 pos.left = pos.left - $("#insertGroup").width();
+                $(".categoryCol").hide();
             }
             else {
                 pos.left = pos.left + $(link).width();
+                $(".categoryCol").show();
             }
             $("#insertGroup").css("top", pos.top).css("left", pos.left).slideDown("fast");
             window.setTimeout(bindBodyClick, 50);
@@ -49,11 +52,17 @@
         <%= Html.ResourceString("AddGroup") %>
     </a>
     
+        <%
+            List<CategoryPresentation> categories = (List<CategoryPresentation>)ViewData["categories"];
+        %>
         <div id="insertGroup" class="greyBorderBox popUpBox">
         <% using (Html.BeginForm("InsertGroup", "DealerCabinet"))
            { %>
-        <table class="adminTable">
+        <table class="adminTable">            
             <tr>
+                <th class="categoryCol">
+                    <%= Html.ResourceString("Category") %>
+                </th>
                 <th>
                     Óêð
                 </th>
@@ -68,6 +77,9 @@
                 </th>
             </tr>
             <tr>
+                <td class="categoryCol">
+                    <%= Html.HierarchicalDropDown("categoryId", categories, ri=>ri.Children, ri=>ri.Name, ri=>ri.Id.ToString(), null)  %>
+                </td>
                 <td>
                     <%= Html.TextBox("groupUkrName")%>
                 </td>

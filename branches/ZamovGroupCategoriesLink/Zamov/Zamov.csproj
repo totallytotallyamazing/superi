@@ -359,6 +359,7 @@
     <Content Include="Views\Admin\UserTypeSelector.ascx" />
     <Content Include="Views\Cart\Expired.aspx" />
     <Content Include="Views\Dealer\DealerInfo.aspx" />
+    <Content Include="Views\Home\Index.aspx" />
     <Content Include="Views\Shared\ProductImageThumbnail.ascx" />
     <Content Include="Views\Shared\AdminOrdersInfo.ascx" />
     <Content Include="Views\Shared\TopProducts.ascx" />

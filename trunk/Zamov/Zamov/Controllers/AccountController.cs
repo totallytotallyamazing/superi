@@ -209,7 +209,11 @@ namespace Zamov.Controllers
                         }
                         SystemSettings.EmptyCart();
                     }
-                    string linkBase = (Request.Url.AbsoluteUri.StartsWith("http://zamov.net")) ? "http://zamov.net" : "http://dev.zamov.net";
+                    string linkBase = "http://dev.zamov.net";
+                    if (Request.Url.AbsoluteUri.StartsWith("http://zamov.net") || Request.Url.AbsoluteUri.StartsWith("http://www.zamov.net"))
+                        linkBase = "http://zamov.net";
+                    else if (Request.Url.AbsoluteUri.StartsWith("http://zamov.com") || Request.Url.AbsoluteUri.StartsWith("http://www.zamov.com"))
+                        linkBase = "http://zamov.com";
 
                     MailHelper.SendTemplate("no-reply@zamov.net",
                         new List<MailAddress> { new MailAddress(email) },

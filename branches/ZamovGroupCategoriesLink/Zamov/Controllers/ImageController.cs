@@ -157,9 +157,12 @@ namespace Zamov.Controllers
         {
             using (ZamovStorage context = new ZamovStorage())
             {
-                CategoryImage image = context.CategoryImages.Select(ci => ci).Where(ci => ci.Category.Id == id).First();
-                Response.ContentType = image.ImageType;
-                Response.BinaryWrite(image.Image);
+                CategoryImage image = context.CategoryImages.Select(ci => ci).Where(ci => ci.Category.Id == id).FirstOrDefault();
+                if (image != null)
+                {
+                    Response.ContentType = image.ImageType;
+                    Response.BinaryWrite(image.Image);
+                }
             }
         }
 

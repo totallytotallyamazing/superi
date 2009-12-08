@@ -9,10 +9,16 @@
     <%foreach (var item in Model)
       {%>
         <div class="mainCategory">
-            <div class="categoryButton">
-                <%= item.Name %>
-            </div>
-            <div>
+            <table class="categoryButton" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td class="left"></td>
+                    <td class="middle">
+                        <%= item.Name %>
+                    </td>
+                    <td class="right"></td>
+                </tr>
+            </table>
+            <div class="categoryImage">
                 <%= Html.Image("~/Image/CategoryImageByCategoryId/" + item.Id) %>
             </div>
         </div>

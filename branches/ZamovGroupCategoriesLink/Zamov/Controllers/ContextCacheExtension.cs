@@ -45,7 +45,11 @@ namespace Zamov.Controllers
             )
         {
             IQueryable<EntityTranslationPair<Category>> result = context
-                .Categories.Include("Parent").Include("Dealers").Include("Categories").Include("Groups")
+                .Categories.Include("Parent")
+                .Include("Categories")
+                .Include("Groups")
+                .Include("Groups.Dealer")
+                .Include("Groups.Dealer.Cities")
                 .Join
                 (
                     context.Translations.Where(t => t.Language == language && t.TranslationItemTypeId == (int)ItemTypes.Category),
@@ -68,7 +72,10 @@ namespace Zamov.Controllers
             }
             if (cityId != null)
             {
-                result.Where(c => c.Entity.Groups.Where(g => g.Dealer.Cities.Where(city => city.Id == cityId).Count() > 0).Count() > 0);
+                IQueryable<Dealer> dealers = context.Dealers.Include("Cities").Include("Groups").Where(d => d.Cities.Where(c => c.Id == cityId).Count() > 0);
+                IQueryable<Group> groups = context.Groups.Include("Dealer").Where(c=>dealers.Where(d=>d.Id == c.Dealer.Id).Count()>0);
+                result = result.Where(c => c.Entity.Groups.Intersect(groups).Count() > 0);
+                //result = result.Where(c => c.Entity.Groups.Where(g => g.Dealer.Cities.Where(city => city.Id == cityId).Count() > 0).Count() > 0);
             }
             return result;
         }

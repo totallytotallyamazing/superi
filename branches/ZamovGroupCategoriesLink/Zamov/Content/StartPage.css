@@ -1,0 +1,9 @@
+﻿.mainCategory
+{
+    float: left;
+    width: 171px;
+    height: 215px;
+    background: transparent url(img/categoryBg.gif) no-repeat;
+    padding-right:40px;
+    padding-bottom:40px;
+}

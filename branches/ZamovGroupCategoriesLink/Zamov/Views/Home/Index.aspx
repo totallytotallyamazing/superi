@@ -1,45 +1,25 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<CategoryPresentation>>" %>
-
 <%@ Import Namespace="Zamov.Helpers" %>
 <%@ Import Namespace="Zamov.Models" %>
+<%@ Import Namespace="Microsoft.Web.Mvc" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
     <%= Html.ResourceString("Title") %>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+    <%foreach (var item in Model)
+      {%>
         <div class="mainCategory">
+            <div class="categoryButton">
+                <%= item.Name %>
+            </div>
+            <div>
+                <%= Html.Image("~/Image/CategoryImageByCategoryId/" + item.Id) %>
+            </div>
         </div>
-        <div class="mainCategory">
-        </div>
-        <div class="mainCategory">
-        </div>
-        <div class="mainCategory">
-        </div>
-        <div class="mainCategory">
-        </div>
-        <div class="mainCategory">
-        </div>
-        <div class="mainCategory">
-        </div>
-        <div class="mainCategory">
-        </div>
-        <div class="mainCategory">
-        </div>
-        <div class="mainCategory">
-        </div>
-        <div class="mainCategory">
-        </div>
+    <%} %>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="includes" runat="server">
-    <style type="text/css">
-        .mainCategory
-        {
-            float: left;
-            width: 171px;
-            height: 215px;
-            background: transparent url(/img/categoryBg.gif);
-            border:1px solid lime;
-        }
-    </style>
+    <%= Html.RegisterCss("~/Content/StartPage.css") %>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentTop" runat="server">
 </asp:Content>

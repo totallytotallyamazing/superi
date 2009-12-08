@@ -20,11 +20,18 @@ namespace Zamov.Controllers
     {
         public ActionResult Index()
         {
-            ViewData["Message"] = "Welcome to ASP.NET MVC!";
-
-
-
-            return View();
+            using (ZamovStorage context = new ZamovStorage())
+            {
+                List<CategoryPresentation> categories = context.GetTranslatedCategories(SystemSettings.CurrentLanguage, true, SystemSettings.CityId, false)
+                    .Select(tc => new CategoryPresentation 
+                    { 
+                        Id = tc.Entity.Id, Name = tc.Translation.Text, ParentId = tc.Entity.Parent.Id
+                    })
+                    .ToList();
+                categories.ForEach(c => c.PickChildren(categories));
+                categories = categories.Where(c => c.ParentId == null).ToList();
+                return View(categories);
+            }
         }
 
         [AcceptVerbs(HttpVerbs.Post)]

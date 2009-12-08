@@ -1,4 +1,4 @@
-﻿.mainCategory
+﻿div.mainCategory
 {
     float: left;
     width: 171px;
@@ -6,4 +6,31 @@
     background: transparent url(img/categoryBg.gif) no-repeat;
     padding-right:40px;
     padding-bottom:40px;
+    text-align:center;
+    padding-left:15px;
 }
+
+.categoryButton{height:20px;}
+
+.categoryButton td.middle
+{
+    background:transparent url(img/greenButtonBg.gif) repeat-x;        
+    padding: 0 5px;
+    white-space:nowrap;
+    color:White; 
+    font-size:11px;
+}
+
+.categoryButton td.left
+{
+    background:transparent url(img/greenButtonLeft.png) repeat-x;        
+    width:2px;
+}
+
+.categoryButton td.right
+{
+    background:transparent url(img/greenButtonRight.png) repeat-x;        
+    width:2px;
+}
+
+.categoryImage{padding-top:10px;}

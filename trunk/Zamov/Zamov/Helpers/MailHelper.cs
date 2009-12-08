@@ -10,16 +10,9 @@ namespace Zamov.Helpers
 {
     public static class MailHelper
     {
-        private static SmtpClient PrepareClient()
-        {
-            SmtpClient client = new SmtpClient(ApplicationData.ZamovSmtpHost);
-            client.Credentials = new NetworkCredential("no-reply@zamov.net", "cde32wsx");
-            return client;
-        }
-
         public static bool SendMessage(string from, List<MailAddress> to, string body, string subject, bool isBodyHtml)
         {
-            SmtpClient client = PrepareClient();
+            SmtpClient client = new SmtpClient();
             bool result = true;
             try
             {

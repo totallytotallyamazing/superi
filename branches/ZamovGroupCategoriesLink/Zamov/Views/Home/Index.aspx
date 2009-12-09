@@ -1,6 +1,7 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<CategoryPresentation>>" %>
 <%@ Import Namespace="Zamov.Helpers" %>
 <%@ Import Namespace="Zamov.Models" %>
+<%@ Import Namespace="Zamov.Controllers" %>
 <%@ Import Namespace="Microsoft.Web.Mvc" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
     <%= Html.ResourceString("Title") %>
@@ -30,47 +31,8 @@
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentTop" runat="server">
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="leftMenu" runat="server">
-<pre>
-fsldkjf
-s df
-sdf
- sd
- f sd
- f
- sd
- f
- sd
- fsd
- f
- s
- df
- sd
- fsd
- f
- sd
- fsdddddddf
- sd
-  fsd
-   f
-   sd
-   fsd
-   fsd
-   f
-   sdf
-   sd
-   fsd
-   f
-   sdf
-   sd
-   fs
-   df
-   sd
-   fsd
-   f
-   sd
-   fsd
-   f
-   </pre>
+    <% IEnumerable<SelectListItem> cities = (IEnumerable<SelectListItem>)ViewData["cities"]; %>
+    <% Html.RenderAction<PagePartsController>(ac => ac.LeftMenu(Html.ResourceString("City"), cities)); %>
 </asp:Content>
 <asp:Content ID="Content6" ContentPlaceHolderID="dealerLogo" runat="server">
 </asp:Content>

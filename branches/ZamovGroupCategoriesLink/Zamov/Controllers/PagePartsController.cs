@@ -29,12 +29,11 @@ namespace Zamov.Controllers
             using (ZamovStorage context = new ZamovStorage())
             {
                 string currentLanguage = SystemSettings.CurrentLanguage;
-                List<City> cities = context.Cities.Select(c => c).ToList();
-                List<SelectListItem> citiesList = (from city in cities where city.Enabled select new SelectListItem { Selected = city.Id == SystemSettings.CityId, Text = city.GetName(currentLanguage), Value = city.Id.ToString() }).ToList();
+                List<SelectListItem> citiesList = context.GetCitiesFromContext(SystemSettings.CurrentLanguage);
                 int cityId = int.MinValue;
-                if (cities.Count > 0)
+                if (citiesList.Count > 0)
                 {
-                    InitializeCity(cities[0].Id);
+                    SystemSettings.InitializeCity(int.Parse(citiesList[0].Value));
                     if (citiesList.Where(cl => cl.Selected).Count() == 0)
                         citiesList[0].Selected = true;
                     cityId = (from cl in citiesList where cl.Selected select int.Parse(cl.Value)).First();
@@ -51,35 +50,6 @@ namespace Zamov.Controllers
                 ViewData["citiesList"] = citiesList;
                 ViewData["categoriesList"] = categoriesList;
                 return View();
-            }
-        }
-
-        private void InitializeCity(int defaultValue)
-        {
-            if (SystemSettings.CityId < 0)
-            {
-                int? cityId = null;
-                if (Request.IsAuthenticated)
-                {
-                    string cityName = ProfileCommon.Create(User.Identity.Name).City;
-                    if (!string.IsNullOrEmpty(cityName))
-                    {
-                        using (ZamovStorage context = new ZamovStorage())
-                        {
-                            cityId = (from city in context.Cities
-                                      join ruName in context.Translations on city.Id equals ruName.ItemId
-                                      join uaName in context.Translations on city.Id equals uaName.ItemId
-                                      where ruName.Language == "ru-RU" && uaName.Language == "uk-UA"
-                                      && ruName.TranslationItemTypeId == (int)ItemTypes.City && uaName.TranslationItemTypeId == (int)ItemTypes.City
-                                      && (ruName.Text == cityName || uaName.Text == cityName)
-                                      select city.Id).SingleOrDefault();
-                        }
-                    }
-                }
-                if (cityId == null)
-                    cityId = defaultValue;
-
-                SystemSettings.CityId = cityId.Value;
             }
         }
 

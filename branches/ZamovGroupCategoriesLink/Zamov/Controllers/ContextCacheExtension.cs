@@ -5,6 +5,7 @@ using System.Web;
 using Zamov.Models;
 using System.Web.Caching;
 using System.Collections;
+using System.Web.Mvc;
 
 namespace Zamov.Controllers
 {
@@ -36,48 +37,15 @@ namespace Zamov.Controllers
             return result;
         }
 
-        public static IQueryable<EntityTranslationPair<Category>> GetTranslatedCategories(
-            this ZamovStorage context,
-            string language,
-            bool enabledOnly,
-            int? cityId,
-            bool roots
-            )
-        {
-            IQueryable<EntityTranslationPair<Category>> result = context
-                .Categories.Include("Parent")
-                .Include("Categories")
-                .Include("Groups")
-                .Include("Groups.Dealer")
-                .Include("Groups.Dealer.Cities")
-                .Join
-                (
-                    context.Translations.Where(t => t.Language == language && t.TranslationItemTypeId == (int)ItemTypes.Category),
-                    c => c.Id,
-                    t => t.ItemId, (c, i) => new EntityTranslationPair<Category>
-                    {
-                        Entity = c,
-                        Language = language,
-                        Translation = i
-                    }
-            );
-
-            if (enabledOnly)
+        public static List<SelectListItem> GetCitiesFromContext(this ZamovStorage context, string language)
+        { 
+            if(HttpContext.Current.Items["Cities_" + language] == null)
             {
-                result = result.Where(c => c.Entity.Enabled);
+                HttpContext.Current.Items["Cities_" + language] =
+                     context.Cities.Where(c => c.Enabled).Join(context.Translations.Where(t => t.TranslationItemTypeId == (int)ItemTypes.City && t.Language == language),
+                         c => c.Id, t => t.ItemId, (c, i) => new { Id = c.Id, Text = i.Text }).ToList().Select(kvp => new SelectListItem { Value = kvp.Id.ToString(), Text = kvp.Text }).ToList();
             }
-            if (roots)
-            {
-                result = result.Where(c => c.Entity.ParentReference.EntityKey == null);
-            }
-            if (cityId != null)
-            {
-                IQueryable<Dealer> dealers = context.Dealers.Include("Cities").Include("Groups").Where(d => d.Cities.Where(c => c.Id == cityId).Count() > 0);
-                IQueryable<Group> groups = context.Groups.Include("Dealer").Where(c=>dealers.Where(d=>d.Id == c.Dealer.Id).Count()>0);
-                result = result.Where(c => c.Entity.Groups.Intersect(groups).Count() > 0);
-                //result = result.Where(c => c.Entity.Groups.Where(g => g.Dealer.Cities.Where(city => city.Id == cityId).Count() > 0).Count() > 0);
-            }
-            return result;
+            return (List<SelectListItem>)HttpContext.Current.Items["Cities_" + language];
         }
 
         public static List<Category> GetCachedCategories(this ZamovStorage context, int cityId, bool reload)

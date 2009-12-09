@@ -30,6 +30,13 @@ namespace Zamov.Controllers
                     .ToList();
                 categories.ForEach(c => c.PickChildren(categories));
                 categories = categories.Where(c => c.ParentId == null).ToList();
+                List<SelectListItem> citiesList = context.GetCitiesFromContext(SystemSettings.CurrentLanguage);
+                if (citiesList.Count > 0)
+                {
+                    SystemSettings.InitializeCity(int.Parse(citiesList[0].Value));
+                    citiesList.ForEach(cl => { cl.Selected = (cl.Value == SystemSettings.CityId.ToString()); });
+                }
+                ViewData["cities"] = citiesList;
                 return View(categories);
             }
         }

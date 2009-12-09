@@ -29,6 +29,47 @@ namespace Zamov.Models
                 context.Connection.Close();
         }
 
+        public static IQueryable<EntityTranslationPair<Category>> GetTranslatedCategories(
+            this ZamovStorage context,
+            string language,
+            bool enabledOnly,
+            int? cityId,
+            bool roots
+        )
+        {
+            IQueryable<EntityTranslationPair<Category>> result = context
+                .Categories.Include("Parent")
+                .Include("Categories")
+                .Include("Groups")
+                .Include("Groups.Dealer")
+                .Include("Groups.Dealer.Cities")
+                .Join
+                (
+                    context.Translations.Where(t => t.Language == language && t.TranslationItemTypeId == (int)ItemTypes.Category),
+                    c => c.Id,
+                    t => t.ItemId, (c, i) => new EntityTranslationPair<Category>
+                    {
+                        Entity = c,
+                        Language = language,
+                        Translation = i
+                    }
+            );
+
+            if (enabledOnly)
+            {
+                result = result.Where(c => c.Entity.Enabled);
+            }
+            if (roots)
+            {
+                result = result.Where(c => c.Entity.ParentReference.EntityKey == null);
+            }
+            if (cityId != null)
+            {
+                result = result.Where(c => c.Entity.Groups.Where(g => g.Dealer.Cities.Where(city => city.Id == cityId).Count() > 0).Count() > 0);
+            }
+            return result;
+        }
+
         private static DbDataReader ExecuteReader(ZamovStorage context, string storedProcedureName, params EntityParameter[] parameters)
         {
             DbCommand command = context.Connection.CreateCommand();
@@ -43,15 +84,15 @@ namespace Zamov.Models
         public static IQueryable<CategoryPresentation> GetLocalizedCategories(this ZamovStorage context, string language)
         {
             IQueryable<CategoryPresentation> result = (from category in context.Categories.Include("Parent").Include("Dealers").Include("Categories")
-                                                        join name in context.Translations on category.Id equals name.ItemId
-                                                        where category.Enabled
-                                                        && name.Language == language
-                                                        && name.TranslationItemTypeId == (int)ItemTypes.Category
-                                                        select new CategoryPresentation
-                                                        {
-                                                            Id = category.Id,
-                                                            Name = name.Text
-                                                        });
+                                                       join name in context.Translations on category.Id equals name.ItemId
+                                                       where category.Enabled
+                                                       && name.Language == language
+                                                       && name.TranslationItemTypeId == (int)ItemTypes.Category
+                                                       select new CategoryPresentation
+                                                       {
+                                                           Id = category.Id,
+                                                           Name = name.Text
+                                                       });
             return result;
         }
 
@@ -74,7 +115,7 @@ namespace Zamov.Models
             parameter.DbType = System.Data.DbType.Int32;
             ExecuteNonQuery(context, "ZamovStorage.ProductImages_Cleanup", parameter);
         }
-        
+
         public static void CleanupCategoryImages(this ZamovStorage context, int categoryId)
         {
             EntityParameter parameter = new EntityParameter();
@@ -143,12 +184,12 @@ namespace Zamov.Models
         }
 
         public static IOrderedEnumerable<TSource> OrderByWithDirection<TSource, TKey>
-            (this IEnumerable<TSource> source, 
-            Func<TSource, TKey> keySelector, 
-            bool descending) 
-        { 
-            return descending ? source.OrderByDescending(keySelector) 
-                              : source.OrderBy(keySelector); 
+            (this IEnumerable<TSource> source,
+            Func<TSource, TKey> keySelector,
+            bool descending)
+        {
+            return descending ? source.OrderByDescending(keySelector)
+                              : source.OrderBy(keySelector);
         }
         /*
         public static IOrderedQueryable<TSource> OrderByWithDirection<TSource, TKey>

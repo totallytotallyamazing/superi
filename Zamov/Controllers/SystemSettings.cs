@@ -183,5 +183,35 @@ namespace Zamov.Controllers
         {
             Session["Cart"] = null;
         }
+
+
+        public static void InitializeCity(int defaultValue)
+        {
+            if (SystemSettings.CityId < 0)
+            {
+                int? cityId = null;
+                if (HttpContext.Current.Request.IsAuthenticated)
+                {
+                    string cityName = ProfileCommon.Create(HttpContext.Current.User.Identity.Name).City;
+                    if (!string.IsNullOrEmpty(cityName))
+                    {
+                        using (ZamovStorage context = new ZamovStorage())
+                        {
+                            cityId = (from city in context.Cities
+                                      join ruName in context.Translations on city.Id equals ruName.ItemId
+                                      join uaName in context.Translations on city.Id equals uaName.ItemId
+                                      where ruName.Language == "ru-RU" && uaName.Language == "uk-UA"
+                                      && ruName.TranslationItemTypeId == (int)ItemTypes.City && uaName.TranslationItemTypeId == (int)ItemTypes.City
+                                      && (ruName.Text == cityName || uaName.Text == cityName)
+                                      select city.Id).SingleOrDefault();
+                        }
+                    }
+                }
+                if (cityId == null)
+                    cityId = defaultValue;
+
+                SystemSettings.CityId = cityId.Value;
+            }
+        }
     }
 }

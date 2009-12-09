@@ -47,13 +47,13 @@
     function showSeeMenu() {
         $("#seeLink").unbind("click").click(hideSeeMenu);
         $("#seeMenuReplacer").css("display", "none");
-        $("#seeMenu").slideDown("slow");
+        $("#seeMenu").show(500);
     }
 
     function hideSeeMenu() {
         $("#seeLink").unbind("click").click(showSeeMenu);
-        $("#seeMenu").css("display", "none");
-        $("#seeMenuReplacer").css("display", "block");
+        $("#seeMenu").hide(500);
+        window.setTimeout( function(){$("#seeMenuReplacer").css("display", "block");}, 430);
     }
     
 </script>

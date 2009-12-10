@@ -8,8 +8,11 @@
            {
                string url = item.Value;
                string text = item.Text;
+               string selected = "";
+               if (item.Selected)
+                   selected = " selected";
                %>
-            <div class="menuItem">
+            <div class="menuItem<%= selected %>">
                 <a href="<%= url %>">
                     <%= text %>
                 </a>

@@ -68,12 +68,19 @@ namespace Zamov
                 "Feedback/{id}",
                 new { controller = "Feedback", action = "Index", id = "" }  // Parameter defaults
             );
+
+            routes.MapRoute(
+                "CityIdSelection",                                              // Route name
+                "Home/{id}",                           // URL with parameters
+                new { controller = "Home", action = "Index", id = "" }  // Parameter defaults
+            ); 
             
             routes.MapRoute(
                 "Default",                                              // Route name
                 "{controller}/{action}/{id}",                           // URL with parameters
                 new { controller = "Home", action = "Index", id = "" }  // Parameter defaults
             );
+
 
 
         }

@@ -34,6 +34,10 @@ namespace Zamov.Controllers
                                select new { Id = dealer.Id, Name = trn.Text, TopDealer = dealer.TopDealer });
                 int[] onlineDealers = MembershipExtensions.GetOnlineDealers();
 
+                List<CategoryPresentation> categories = context.GetCachedCategories(SystemSettings.CityId, SystemSettings.CurrentLanguage);
+
+                ViewData["categories"] = categories;
+
                 List<DealerPresentation> result = new List<DealerPresentation>();
                 foreach (var item in dealers)
                     result.Add(new DealerPresentation { Id = item.Id, Name = item.Name, OnLine = onlineDealers.Contains(item.Id), TopDealer = item.TopDealer });

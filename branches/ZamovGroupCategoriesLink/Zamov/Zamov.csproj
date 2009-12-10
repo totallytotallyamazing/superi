@@ -293,6 +293,7 @@
     <Content Include="Content\images\folder-closed.gif" />
     <Content Include="Content\images\folder.gif" />
     <Content Include="Content\img\categoryBg.gif" />
+    <Content Include="Content\img\categoryBgSingle.gif" />
     <Content Include="Content\img\greenButtonBg.gif" />
     <Content Include="Content\img\greenButtonLeft.png" />
     <Content Include="Content\img\greenButtonRight.png" />

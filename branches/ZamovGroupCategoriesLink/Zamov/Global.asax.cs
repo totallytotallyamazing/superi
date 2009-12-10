@@ -52,6 +52,12 @@ namespace Zamov
             );
 
             routes.MapRoute(
+                "Dealers",                                              // Route name
+                "Dealers/{id}",
+                new { controller = "Dealers", action = "Index", id = "" }  // Parameter defaults
+            );
+
+            routes.MapRoute(
                 "Dealer",                                              // Route name
                 "Dealer/{id}",
                 new { controller = "Dealer", action = "Index", id = "" }  // Parameter defaults

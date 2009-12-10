@@ -26,8 +26,8 @@ namespace Zamov.Services
         {
             using (ZamovStorage context = new ZamovStorage())
             {
-                List<Category> categories = context.GetCachedCategories(id, false);
-                var result = (from category in categories select new {Selected = category.Id == SystemSettings.CategoryId, Text = category.GetName(SystemSettings.CurrentLanguage), Value = category.Id });
+                List<CategoryPresentation> categories = context.GetCachedCategories(id, SystemSettings.CurrentLanguage);
+                var result = (from category in categories select new {Selected = category.Id == SystemSettings.CategoryId, Text = category.Name, Value = category.Id });
                 return result;
             }
         }

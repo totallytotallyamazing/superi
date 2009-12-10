@@ -11,69 +11,56 @@ namespace Zamov.Controllers
 {
     public static class ContextCache
     {
+        public const string CategoriesCachePrefix = "CityCategoriesPresentation_";
+        public const string CitiesCachePrefix = "Cities_";
+
         private static Cache Cache { get { return HttpContext.Current.Cache; } }
 
-        public static List<CategoryPresentation> GetCachedCategoryPresentation(this ZamovStorage context, int cityId, bool reload, string language)
+        public static List<CategoryPresentation> GetCachedCategories(this ZamovStorage context, int cityId, string language)
         {
-            List<CategoryPresentation> result = new List<CategoryPresentation>();
-            if (Cache["CityCategoriesPresentation_" + cityId] != null && !reload)
-                result = (List<CategoryPresentation>)Cache["CityCategoriesPresentation_" + cityId];
-            else
+            string cacheKey = CategoriesCachePrefix + cityId + "_" + language;
+            if (HttpContext.Current.Cache[cacheKey] == null)
             {
-                result = (from category in context.Categories.Include("Parent").Include("Dealers").Include("Categories")
-                          join name in context.Translations on category.Id equals name.ItemId
-                          where category.Parent == null && category.Enabled
-                          && category.Categories.Where(c => c
-                          .Dealers.Where(d => d.Cities.Where(sub => sub.Id == cityId).Count() > 0).Count() > 0).Count() > 0
-                          && name.Language == language
-                          && name.TranslationItemTypeId == (int)ItemTypes.Category
-                          select new CategoryPresentation
-                          {
-                              Id = category.Id,
-                              Name = name.Text
-                          }).ToList();
-                Cache.Add("CityCategoriesPresentation_" + cityId, result, null, DateTime.Now.AddMinutes(30), Cache.NoSlidingExpiration, CacheItemPriority.Default, null);
+                List<CategoryPresentation> categories = context.GetTranslatedCategories(language, true, cityId, false)
+                        .Select(tc => new CategoryPresentation
+                        {
+                            Id = tc.Entity.Id,
+                            Name = tc.Translation.Text,
+                            ParentId = tc.Entity.Parent.Id
+                        })
+                        .ToList();
+                categories.ForEach(c => c.PickChildren(categories));
+                categories = categories.Where(c => c.ParentId == null).ToList();
+                HttpContext.Current.Cache.Add(cacheKey, categories, null, DateTime.Now.AddMinutes(30), Cache.NoSlidingExpiration, CacheItemPriority.Default, null);
             }
-            return result;
+            return (List<CategoryPresentation>)HttpContext.Current.Cache[cacheKey];
         }
 
         public static List<SelectListItem> GetCitiesFromContext(this ZamovStorage context, string language)
-        { 
-            if(HttpContext.Current.Items["Cities_" + language] == null)
+        {
+            if (HttpContext.Current.Items[CitiesCachePrefix + language] == null)
             {
-                HttpContext.Current.Items["Cities_" + language] =
+                HttpContext.Current.Items[CitiesCachePrefix + language] =
                      context.Cities.Where(c => c.Enabled).Join(context.Translations.Where(t => t.TranslationItemTypeId == (int)ItemTypes.City && t.Language == language),
                          c => c.Id, t => t.ItemId, (c, i) => new { Id = c.Id, Text = i.Text }).ToList().Select(kvp => new SelectListItem { Value = kvp.Id.ToString(), Text = kvp.Text }).ToList();
             }
-            return (List<SelectListItem>)HttpContext.Current.Items["Cities_" + language];
+            return (List<SelectListItem>)HttpContext.Current.Items[CitiesCachePrefix + language];
         }
 
-        public static List<Category> GetCachedCategories(this ZamovStorage context, int cityId, bool reload)
-        {
-            List<Category> result = new List<Category>();
-            if (Cache["CityCategories_" + cityId] != null && !reload)
-                result = (List<Category>)Cache["CityCategories_" + cityId];
-            else
-            {
-                result = (from category in context.Categories.Include("Parent").Include("Dealers").Include("Categories")
-                          where category.Parent == null && category.Enabled
-                          && category.Categories.Where(c => c
-                          .Dealers.Where(d => d.Cities.Where(sub => sub.Id == cityId).Count() > 0).Count() > 0).Count() > 0
-                          select category).ToList();
-                Cache["CityCategories_" + cityId] = result;
-            }
-            return result;
-        }
 
         public static void ClearCategoriesCache(this Cache cache)
+        {
+            cache.ClearCache(key => key.StartsWith(CategoriesCachePrefix));
+        }
+
+        private static void ClearCache(this Cache cache, Func<string, bool> cacheKeyCondition)
         {
             List<string> keysToClear = new List<string>();
 
             IDictionaryEnumerator enumerator = cache.GetEnumerator();
             while (enumerator.MoveNext())
             {
-                if (enumerator.Key.ToString().StartsWith("CityCategories_")
-                    || enumerator.Key.ToString().StartsWith("CityCategoriesPresentation_"))
+                if (cacheKeyCondition(enumerator.Key.ToString()))
                     keysToClear.Add(enumerator.Key.ToString());
             }
             foreach (string key in keysToClear)
@@ -81,33 +68,5 @@ namespace Zamov.Controllers
                 cache.Remove(key);
             }
         }
-
-        /// <summary>
-        /// Retrieves list of subcategories from cache and, in not cached, from context
-        /// </summary>
-        /// <param name="categoryId">The Id of the parent category</param>
-        /// <param name="reload">True if the cache should be reloaded</param>
-        /// <returns></returns>
-        public static List<Category> GetSubCategories(int categoryId, bool reload)
-        {
-            List<Category> result = new List<Category>();
-            //if (Cache["SubCategories_" + categoryId] != null && !reload)
-            //    result = (List<Category>)Cache["SubCategories_" + categoryId];
-            //else
-            //{
-            using (ZamovStorage context = new ZamovStorage())
-            {
-                result = (from category in context.Categories.Include("Categories")
-                          where category.Parent.Id == categoryId
-                          && category.Dealers.Count > 0
-                          && category.Enabled
-                          select category).ToList();
-            }
-            // Cache["SubCategories_" + categoryId] = result;
-            //}
-            return result;
-        }
-
-
     }
 }

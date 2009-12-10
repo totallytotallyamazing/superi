@@ -38,7 +38,7 @@ namespace Zamov.Controllers
                         citiesList[0].Selected = true;
                     cityId = (from cl in citiesList where cl.Selected select int.Parse(cl.Value)).First();
                 }
-                List<SelectListItem> categoriesList = context.GetCachedCategoryPresentation(cityId, false, SystemSettings.CurrentLanguage)
+                List<SelectListItem> categoriesList = context.GetCachedCategories(cityId, SystemSettings.CurrentLanguage)
                     .Select(c => new SelectListItem
                     {
                         Text = c.Name,

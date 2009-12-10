@@ -33,14 +33,7 @@ namespace Zamov.Controllers
                 List<SelectListItem> cities = citiesList.Select(c => new SelectListItem { Text = c.Text, Selected = c.Selected, Value = "/Home/" + c.Value }).ToList();
                 ViewData["cities"] = cities;
 
-                List<CategoryPresentation> categories = context.GetTranslatedCategories(SystemSettings.CurrentLanguage, true, SystemSettings.CityId, false)
-                    .Select(tc => new CategoryPresentation 
-                    { 
-                        Id = tc.Entity.Id, Name = tc.Translation.Text, ParentId = tc.Entity.Parent.Id
-                    })
-                    .ToList();
-                categories.ForEach(c => c.PickChildren(categories));
-                categories = categories.Where(c => c.ParentId == null).ToList();
+                List<CategoryPresentation> categories = context.GetCachedCategories(SystemSettings.CityId, SystemSettings.CurrentLanguage);
                 return View(categories);
             }
         }

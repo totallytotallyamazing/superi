@@ -17,8 +17,11 @@ namespace Zamov.Controllers
         //
         // GET: /Dealers/
         [BreadCrumb( SubCategoryId = true )]
-        public ActionResult Index()
+        public ActionResult Index(int? id)
         {
+            if (!id.HasValue)
+                throw new HttpException(404, "Article not found");
+
             using (ZamovStorage context = new ZamovStorage())
             {
                 var dealers = (from dealer in context.Dealers.Include("Cities").Include("Categories")
@@ -28,7 +31,7 @@ namespace Zamov.Controllers
                                    && trn.TranslationItemTypeId == (int)ItemTypes.DealerName
                                    && trn.Language == SystemSettings.CurrentLanguage
                                    && dealer.Enabled
-                               select new { Id = dealer.Id, Name = trn.Text,  TopDealer = dealer.TopDealer });
+                               select new { Id = dealer.Id, Name = trn.Text, TopDealer = dealer.TopDealer });
                 int[] onlineDealers = MembershipExtensions.GetOnlineDealers();
 
                 List<DealerPresentation> result = new List<DealerPresentation>();

@@ -8,26 +8,24 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <%foreach (var item in Model)
-      {%>
-        <div class="mainCategory">
-            <table class="categoryButton" cellpadding="0" cellspacing="0">
-                <tr>
-                    <td class="left"></td>
-                    <td class="middle">
-                        <%= item.Name %>
-                    </td>
-                    <td class="right"></td>
-                </tr>
-            </table>
+      {
+          string single = (item.Children.Count == 0) ? " single" : "";
+          %>
+        <div class="mainCategory<%= single %>">
+            <div class="categoryButton">
+                 <%= Html.ActionLink(item.Name, "Index", "Dealers", new { id = item.Id }, null)%>
+            </div>
             <div class="categoryImage">
-                <%= Html.Image("~/Image/CategoryImageByCategoryId/" + item.Id) %>
+                <%= Html.ActionLink("IMAGE", "Index", "Dealers", new { id = item.Id }, null).Replace("IMAGE",
+                    Html.Image("~/Image/CategoryImageByCategoryId/" + item.Id)) %>
             </div>
             <div class="subCategories">
-                <% int i = 0;
+                <% bool first = true;
                    foreach (var subCategory in item.Children.Take(5))
                    {%>
+                    <%if (!first)Response.Write("&nbsp;/&nbsp;"); first = false;%>
                     <%= Html.ActionLink(subCategory.Name, "Index", "Dealers", new {id=subCategory.Id }, null)%>
-                    <%if (i < 4) { Response.Write("&nbsp;/&nbsp;"); i++; }%>
+                    
                  <%} %>
             </div>
         </div>

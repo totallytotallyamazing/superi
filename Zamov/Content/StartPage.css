@@ -1,4 +1,6 @@
-﻿div.mainCategory
+﻿img{border:none;}
+
+div.mainCategory
 {
     float: left;
     width: 171px;
@@ -10,27 +12,27 @@
     padding-left:13px;
 }
 
-.categoryButton{height:20px;}
+div.mainCategory.single{background: transparent url(img/categoryBgSingle.gif) no-repeat !important;}
 
-.categoryButton td.middle
+.categoryButton
 {
-    background:transparent url(img/greenButtonBg.gif) repeat-x;        
-    padding: 0 5px;
+    padding-top:2px;
     white-space:nowrap;
     color:White; 
     font-size:11px;
+    height:20px;
 }
 
-.categoryButton td.left
-{
-    background:transparent url(img/greenButtonLeft.png) repeat-x;        
-    width:2px;
-}
-
-.categoryButton td.right
-{
-    background:transparent url(img/greenButtonRight.png) repeat-x;        
-    width:2px;
-}
+.categoryButton a{color:White; text-decoration:none;}
+.categoryButton a:hover{text-decoration:underline;}
 
 .categoryImage{padding-top:10px;}
+
+.subCategories
+{
+	text-align:left;
+	padding-top:20px;
+	padding-left:25px;	
+}
+
+.subCategories a{color:#687177;}

@@ -18,10 +18,21 @@ namespace Zamov.Controllers
     [HandleError]
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        public ActionResult Index(int? id)
         {
             using (ZamovStorage context = new ZamovStorage())
             {
+                List<SelectListItem> citiesList = context.GetCitiesFromContext(SystemSettings.CurrentLanguage);
+                if (id.HasValue)
+                    SystemSettings.CityId = id.Value;
+                if (citiesList.Count > 0)
+                {
+                    SystemSettings.InitializeCity(int.Parse(citiesList[0].Value));
+                    citiesList.ForEach(cl => { cl.Selected = (cl.Value == SystemSettings.CityId.ToString()); });
+                }
+                List<SelectListItem> cities = citiesList.Select(c => new SelectListItem { Text = c.Text, Selected = c.Selected, Value = "/Home/" + c.Value }).ToList();
+                ViewData["cities"] = cities;
+
                 List<CategoryPresentation> categories = context.GetTranslatedCategories(SystemSettings.CurrentLanguage, true, SystemSettings.CityId, false)
                     .Select(tc => new CategoryPresentation 
                     { 
@@ -30,13 +41,6 @@ namespace Zamov.Controllers
                     .ToList();
                 categories.ForEach(c => c.PickChildren(categories));
                 categories = categories.Where(c => c.ParentId == null).ToList();
-                List<SelectListItem> citiesList = context.GetCitiesFromContext(SystemSettings.CurrentLanguage);
-                if (citiesList.Count > 0)
-                {
-                    SystemSettings.InitializeCity(int.Parse(citiesList[0].Value));
-                    citiesList.ForEach(cl => { cl.Selected = (cl.Value == SystemSettings.CityId.ToString()); });
-                }
-                ViewData["cities"] = citiesList;
                 return View(categories);
             }
         }

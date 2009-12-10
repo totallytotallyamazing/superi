@@ -22,6 +22,14 @@
             <div class="categoryImage">
                 <%= Html.Image("~/Image/CategoryImageByCategoryId/" + item.Id) %>
             </div>
+            <div class="subCategories">
+                <% int i = 0;
+                   foreach (var subCategory in item.Children.Take(5))
+                   {%>
+                    <%= Html.ActionLink(subCategory.Name, "Index", "Dealers", new {id=subCategory.Id }, null)%>
+                    <%if (i < 4) { Response.Write("&nbsp;/&nbsp;"); i++; }%>
+                 <%} %>
+            </div>
         </div>
     <%} %>
 </asp:Content>

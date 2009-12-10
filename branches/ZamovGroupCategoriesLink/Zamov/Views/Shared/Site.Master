@@ -59,7 +59,8 @@
                 <% Html.RenderPartial("LanguageSelector"); %>
             </div>
             <div id="headerSelectors">
-                <% Html.RenderAction<PagePartsController>(ppc => ppc.HeaderSelectors()); %>
+                <% if (!(ViewContext.RouteData.Values["controller"] == "Home" && ViewContext.RouteData.Values["action"] == "Index"))  %>
+                    <% Html.RenderAction<PagePartsController>(ppc => ppc.HeaderSelectors()); %>
             </div>
         </div>
         <div id="masterLogin">

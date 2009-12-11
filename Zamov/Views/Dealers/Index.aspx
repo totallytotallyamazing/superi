@@ -81,14 +81,38 @@
     <%= Html.RegisterJS("dropshadow.js")%>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="leftMenu" runat="server">
-    <%
-        List<SelectListItem> items = new List<SelectListItem>();
-        foreach (var item in Model)
-        {
-            SelectListItem listItem = new SelectListItem { Text = item.Name, Value = "/Dealers/SelectDealer/" + item.Id };
-            items.Add(listItem);
-        }
-        Html.RenderAction<PagePartsController>(ac => ac.LeftMenu(Html.ResourceString("Dealers"), items));
-         
-    %>
+    <% int expandedGroup = (int)ViewData["expandedGroup"]; %>
+    <% int currentCategory = Convert.ToInt32(ViewContext.RouteData.Values["id"]); %>
+    <% List<CategoryPresentation> categories = (List<CategoryPresentation>)ViewData["categories"]; %>
+    <% Func<int, int, string> selectedStyle = (categoryId, id) =>
+       {
+           string result = "";
+           if (categoryId == id)
+               result = " selected";
+           return result;
+           
+       }; %>
+    <div class="menu">
+        <div class="menuHeader">
+            <%= Html.ResourceString("Categories") %>
+        </div>
+        <div class="menuItems">
+            <% foreach (var menuItem in categories)
+               {%>
+               <div class="menuItem<%= selectedStyle(currentCategory, menuItem.Id) %>">
+                <%= Html.ActionLink(menuItem.Name, "Index", "Dealers", new { id=menuItem.Id })%>
+               </div>    
+                 <%if(menuItem.Id == expandedGroup && menuItem.Children.Count>0){
+                       foreach (var subItem in menuItem.Children)
+                       {%>
+                           
+                   <div class="subMenuItem<%= selectedStyle(currentCategory, subItem.Id) %>">
+                        <%= Html.ActionLink(subItem.Name, "Index", "Dealers", new { id = menuItem.Id })%>
+                   </div>    
+                  <%   }%>  
+                   
+                 <%} %>
+             <%} %>
+        </div>
+    </div>
 </asp:Content>

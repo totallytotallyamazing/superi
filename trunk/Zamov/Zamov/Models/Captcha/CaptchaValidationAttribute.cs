@@ -59,7 +59,7 @@ namespace Zamov
             string expectedValue = image == null ? String.Empty : image.Text;
 
             // removes the captch from cache so it cannot be used again
-            filterContext.HttpContext.Cache.Remove(guid);
+            filterContext.HttpContext.Session.Remove(guid);
 
             // validate the captch
             filterContext.ActionParameters["captchaValid"] =

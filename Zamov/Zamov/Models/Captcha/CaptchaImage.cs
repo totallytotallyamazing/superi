@@ -106,7 +106,7 @@ namespace Zamov
 			if (String.IsNullOrEmpty(guid))
 				return null;
 
-			return (CaptchaImage)HttpRuntime.Cache.Get(guid);
+            return (CaptchaImage)HttpContext.Current.Session[guid];
 		}
 
 		/// <summary>

@@ -92,6 +92,7 @@ namespace Zamov
 	/// CAPTCHA Image
 	/// </summary>
 	/// <seealso href="http://www.codinghorror.com">Original By Jeff Atwood</seealso>
+    [Serializable]
 	public class CaptchaImage
 	{
 		#region Static

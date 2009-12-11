@@ -8,6 +8,7 @@ using System.Web.Security;
 using Zamov.Models;
 using System.Web.Profile;
 using Zamov.Helpers;
+using System.Data.Objects;
 
 namespace Zamov.Controllers
 {
@@ -16,7 +17,7 @@ namespace Zamov.Controllers
     {
         //
         // GET: /Dealers/
-        [BreadCrumb( SubCategoryId = true )]
+        [BreadCrumb(SubCategoryId = true)]
         public ActionResult Index(int? id)
         {
             if (!id.HasValue)
@@ -24,24 +25,35 @@ namespace Zamov.Controllers
 
             using (ZamovStorage context = new ZamovStorage())
             {
-                var dealers = (from dealer in context.Dealers.Include("Cities").Include("Categories")
-                               join trn in context.Translations on dealer.Id equals trn.ItemId
-                               where dealer.Cities.Where(c => c.Id == SystemSettings.CityId).Count() > 0
-                                   && dealer.Categories.Where(c => c.Id == SystemSettings.SubCategoryId).Count() > 0
-                                   && trn.TranslationItemTypeId == (int)ItemTypes.DealerName
-                                   && trn.Language == SystemSettings.CurrentLanguage
-                                   && dealer.Enabled
-                               select new { Id = dealer.Id, Name = trn.Text, TopDealer = dealer.TopDealer });
-                int[] onlineDealers = MembershipExtensions.GetOnlineDealers();
-
                 List<CategoryPresentation> categories = context.GetCachedCategories(SystemSettings.CityId, SystemSettings.CurrentLanguage);
 
-                ViewData["categories"] = categories;
+                IEnumerable<CategoryPresentation> flattentCategories = categories.SelectMany(c => c.Children).Union(categories);
 
-                List<DealerPresentation> result = new List<DealerPresentation>();
-                foreach (var item in dealers)
-                    result.Add(new DealerPresentation { Id = item.Id, Name = item.Name, OnLine = onlineDealers.Contains(item.Id), TopDealer = item.TopDealer });
-                return View(result);
+                string[] categoryIds = flattentCategories.Where(c => c.Id == id || c.ParentId == id).Select(c => c.Id.ToString()).ToArray();
+
+                string categoryIdsString = string.Join(",", categoryIds);
+
+                ObjectQuery<Group> groups = new ObjectQuery<Group>("SELECT VALUE G FROM Groups as G WHERE G.Id IN{" + categoryIdsString + "}", context);
+
+                List<DealerPresentation> dealers = groups.Where(g => g.Dealer.Enabled).Join(context.Translations
+                    .Where(tr => tr.Language == SystemSettings.CurrentLanguage)
+                    .Where(tr => tr.TranslationItemTypeId == (int)ItemTypes.DealerName),
+                    g => g.Dealer.Id, tr => tr.ItemId,
+                    (g, tr) => new DealerPresentation
+                        {
+                            Id = g.Dealer.Id,
+                            Name = tr.Text,
+                            TopDealer = g.Dealer.TopDealer,
+                        }
+                    )
+                .Distinct().ToList();
+
+                ViewData["categories"] = categories;
+                ViewData["expandedGroup"] = categories
+                    .Where(c => c.ParentId == null)
+                    .Where(c => c.Id == id || (c.Children.Count > 0 && c.Children.Where(ch => ch.Id == id).Count() > 0))
+                    .Select(c => c.Id).First();
+                return View(dealers);
             }
         }
 

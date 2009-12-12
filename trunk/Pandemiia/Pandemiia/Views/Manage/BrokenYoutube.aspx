@@ -1,4 +1,4 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Manage/Manage.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<Pandemiia.Models.EntityVideo>>" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Manage/Manage.Master" Inherits="System.Web.Mvc.ViewPage" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	Удаленное видео
@@ -6,13 +6,22 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <script type="text/javascript">
+        function queryService() { 
+        }
+    
+        $(function() { 
+            
+        })
+    
         function htmlEncode() {
             var src = $('#source').attr('value');
             $('#source').attr('value', escape(src));
         }
     </script>
     <h2>Удаленное видео</h2>
-
+    
+    
+<%--
     <% foreach (var item in Model) {
            using (Html.BeginForm("UpdateVideoSource", "Manage", FormMethod.Post))
            {
@@ -24,7 +33,7 @@
         <%= Html.TextArea("source", item.Source, new { style = "width:270px;" })%><br />
         <input type="submit" value="Обновить" onclick="htmlEncode()" />
     <% }
-       } %>
+       } %>--%>
 
 </asp:Content>
 

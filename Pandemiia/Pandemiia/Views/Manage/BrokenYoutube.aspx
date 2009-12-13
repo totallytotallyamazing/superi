@@ -6,7 +6,10 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <script type="text/javascript">
-        function queryService() { 
+        function queryService() {
+            Sys.Net.WebServiceProxy.invoke("/Services/Tools.asmx",
+            "YoutubeProgress", false, {}, OnSucceeded,
+            OnFailed, "User Context", 1000000);
         }
     
         $(function() { 

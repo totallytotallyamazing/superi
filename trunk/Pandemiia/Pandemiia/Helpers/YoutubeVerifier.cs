@@ -51,7 +51,7 @@ namespace Pandemiia.Helpers
                 if (!CheckVideo(videos[i].Source))
                     Result.Add(videos[i]);
                 Status = (i/length)*100;
-                Thread.Sleep(1000);
+                Thread.Sleep(5000);
             }
             Queried = true;
         }

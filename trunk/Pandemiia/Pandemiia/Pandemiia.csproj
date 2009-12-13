@@ -95,6 +95,7 @@
       <DependentUpon>Entities.dbml</DependentUpon>
     </Compile>
     <Compile Include="Models\Entity.cs" />
+    <Compile Include="Models\EntityVideoPresentation.cs" />
     <Compile Include="Models\Settings.cs" />
     <Compile Include="Models\TagExtention.cs" />
     <Compile Include="Models\Utils.cs" />

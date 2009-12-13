@@ -16,9 +16,9 @@ namespace Pandemiia.Helpers
 
         public static int Status { get; set; }
 
-        public static List<EntityVideo> Result { get; set; }
+        public static List<EntityVideoPresentation> Result { get; set; }
 
-        private static YoutubeVerifier()
+        static YoutubeVerifier()
         {
             Initialize();
         }
@@ -26,7 +26,7 @@ namespace Pandemiia.Helpers
         private static void Initialize()
         {
             Queried = false;
-            Result = new List<EntityVideo>();
+            Result = new List<EntityVideoPresentation>();
             Status = 0;
         }
 
@@ -39,10 +39,16 @@ namespace Pandemiia.Helpers
 
         private static void VerificationProcess()
         {
-            List<EntityVideo> videos = new List<EntityVideo>();
+            List<EntityVideoPresentation> videos = new List<EntityVideoPresentation>();
             using (EntitiesDataContext context = new EntitiesDataContext())
             {
-                videos = context.EntityVideos.Select(v => v).ToList();
+                videos = context.EntityVideos.Select(v => new EntityVideoPresentation 
+                { 
+                    Id = v.ID,
+                    EntityName = v.Entity.Title,
+                    Name = v.Name,
+                    Source = v.Source
+                }).ToList();
             }
 
             int length = videos.Count;
@@ -50,10 +56,12 @@ namespace Pandemiia.Helpers
             {
                 if (!CheckVideo(videos[i].Source))
                     Result.Add(videos[i]);
-                Status = (i/length)*100;
+                double part = ((double)i / (double)length);
+                Status = (int)Math.Floor(part * 100);
                 Thread.Sleep(5000);
             }
             Queried = true;
+            Thread.CurrentThread.Abort();
         }
 
         private static bool CheckVideo(string objectTag)

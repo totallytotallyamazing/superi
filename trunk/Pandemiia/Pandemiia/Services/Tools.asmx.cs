@@ -14,9 +14,10 @@ namespace Pandemiia.Services
     [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
     [System.ComponentModel.ToolboxItem(false)]
     // To allow this Web Service to be called from script, using ASP.NET AJAX, uncomment the following line. 
-    // [System.Web.Script.Services.ScriptService]
+    [System.Web.Script.Services.ScriptService]
     public class Tools : System.Web.Services.WebService
     {
+        [WebMethod]
         public object YoutubeProgress()
         {
             object result = null;
@@ -27,9 +28,9 @@ namespace Pandemiia.Services
                     queried = YoutubeVerifier.Queried,
                     items = YoutubeVerifier.Result.Select(r => new
                     {
-                        entityTitle = r.Entity.Title,
+                        entityTitle = r.EntityName,
                         title = r.Name,
-                        id = r.ID
+                        id = r.Id
                     }
                     )
                 };

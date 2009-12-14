@@ -47,8 +47,8 @@ namespace Zamov
 
             routes.MapRoute(
                 "Products",                                              // Route name
-                "Products/{dealerId}/{groupId}",                           // URL with parameters
-                new { controller = "Products", action = "Index", dealerId = "", groupId = "" }  // Parameter defaults
+                "Products/{dealerId}/{categoryId}/{groupId}",                           // URL with parameters
+                new { controller = "Products", action = "Index", dealerId = "", categoryId = "", groupId = "" }  // Parameter defaults
             );
 
             routes.MapRoute(

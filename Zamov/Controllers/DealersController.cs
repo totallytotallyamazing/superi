@@ -44,6 +44,7 @@ namespace Zamov.Controllers
                             Id = g.Dealer.Id,
                             Name = tr.Text,
                             TopDealer = g.Dealer.TopDealer,
+                            StringId = g.Dealer.Name
                         }
                     )
                 .Distinct().ToList();
@@ -55,34 +56,6 @@ namespace Zamov.Controllers
                     .Select(c => c.Id).First();
                 return View(dealers);
             }
-        }
-
-        public ActionResult SelectDealer(int id)
-        {
-            int? groupId = null;
-            SystemSettings.SelectedDealer = id;
-            string dealerName = "";
-            using (ZamovStorage context = new ZamovStorage())
-            {
-                Dealer currentDealer = context.Dealers.Include("Groups").Select(d => d).Where(d => d.Id == id).First();
-                var g = (from gr in currentDealer.Groups
-                         join trr in context.Translations on gr.Id equals trr.ItemId
-                         join tru in context.Translations on gr.Id equals tru.ItemId
-                         where
-                              trr.Language == "ru-RU" && tru.Language == "uk-UA"
-                              && trr.TranslationItemTypeId == (int)ItemTypes.Group && tru.TranslationItemTypeId == (int)ItemTypes.Group
-                         select new { Id = gr.Id, NameUa = tru.Text, NameRu = trr.Text });
-                dealerName = currentDealer.Name;
-                foreach (var item in g)
-                {
-                    if (item.NameRu == SystemSettings.CategoryName || item.NameUa == SystemSettings.CategoryName)
-                    {
-                        groupId = item.Id;
-                        break;
-                    }
-                }
-            }
-            return RedirectToAction("Index", "Products", new { dealerId = dealerName, groupId = groupId });
         }
     }
 }

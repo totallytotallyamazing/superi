@@ -8,6 +8,7 @@ namespace Zamov.Models
     public class DealerPresentation
     {
         public int Id { get; set; }
+        public string StringId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public bool OnLine { get; set; }

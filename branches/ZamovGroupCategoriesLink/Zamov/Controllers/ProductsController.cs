@@ -18,7 +18,7 @@ namespace Zamov.Controllers
         private const int MaxTopProductsNumber = 5;
         //TODO: тут пиздец с быстродейтвием
         [BreadCrumb(SubCategoryId = true)]
-        public ActionResult Index(string dealerId, int? groupId, SortFieldNames? sortField, SortDirection? sortOrder)
+        public ActionResult Index(string dealerId, int categoryId, int? groupId, SortFieldNames? sortField, SortDirection? sortOrder)
         {
             ViewData["sortDirection"] = sortOrder;
             ViewData["sortField"] = (sortField != null) ? sortField.ToString() : null;
@@ -48,6 +48,9 @@ namespace Zamov.Controllers
                 }
                 else
                 {
+                    currentGroup = groups
+                        .Where(g => g.Category!=null && g.Category.Id == categoryId && g.Dealer.Name == dealerId)
+                        .Select(g => g).First();
                     displayGroupImages = false;
                 }
 
@@ -56,13 +59,21 @@ namespace Zamov.Controllers
                 if (HttpContext.Cache[productsCacheKey] == null)
                 {
                     List<Product> products = new List<Product>();
-                    if (groupId != null)
+                    if (currentGroup != null)
                     {
                         CollectProducts(products, currentGroup);
                         products = products.Where(p => !p.Deleted && p.Group.Enabled && p.Enabled && !p.Group.Deleted).ToList();
                     }
                     else
-                        products = (from product in context.Products where ((groupId == null) || product.Group.Id == groupId) && product.Dealer.Id == dealer && !product.Deleted && product.Group.Enabled && !product.Group.Deleted && product.Enabled select product).ToList();
+                        products = 
+                            (from product in context.Products 
+                             where ((groupId == null) || product.Group.Id == groupId) 
+                             && product.Dealer.Id == dealer 
+                             && !product.Deleted 
+                             && product.Group.Enabled 
+                             && !product.Group.Deleted 
+                             && product.Enabled select product)
+                             .ToList();
 
                     
                     products.ForEach(p => p.LoadDescriptions());

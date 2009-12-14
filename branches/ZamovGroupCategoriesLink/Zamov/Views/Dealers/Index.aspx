@@ -5,7 +5,7 @@
 <%@ Import Namespace="Zamov.Models" %>
 <%@ Import Namespace="Zamov.Helpers" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-
+<% int currentCategory = Convert.ToInt32(ViewContext.RouteData.Values["id"]); %>
     <script type="text/javascript">
         var intervalId = 0;
         var intervalCount = 0;
@@ -51,7 +51,7 @@
             <div class="dalerOnline">
             </div>
             <%} %>
-            <a href="/Dealers/SelectDealer/<%= item.Id %>">
+            <a href="/Products/<%= item.StringId %>/<%= currentCategory %>">
                 <%= Html.Image("~/Image/ShowLogo/" + item.Id, new { style="border:1px solid #ccc;" })%>
             </a>
         </div>
@@ -67,7 +67,7 @@
         <div class="dalerOnline">
         </div>
         <%} %>
-        <a href="/Dealers/SelectDealer/<%= item.Id %>">
+        <a href="/Products/<%= item.StringId + "/" + currentCategory  %>">
             <%= Html.Image("~/Image/ShowLogo/" + item.Id, new { style="border:1px solid #ccc;" })%>
         </a>
     </div>
@@ -100,7 +100,7 @@
             <% foreach (var menuItem in categories)
                {%>
                <div class="menuItem<%= selectedStyle(currentCategory, menuItem.Id) %>">
-                <%= Html.ActionLink(menuItem.Name, "Index", "Dealers", new { id=menuItem.Id })%>
+                <%= Html.ActionLink(menuItem.Name, "Index", "Dealers", new { id = menuItem.Id })%>
                </div>    
                  <%if(menuItem.Id == expandedGroup && menuItem.Children.Count>0){
                        foreach (var subItem in menuItem.Children)

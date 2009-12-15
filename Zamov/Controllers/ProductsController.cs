@@ -33,7 +33,7 @@ namespace Zamov.Controllers
                 if (groupId != null)
                     BreadCrumbAttribute.ProcessGroup(groupId.Value, HttpContext);
 
-                List<Group> groups = (from g in context.Groups.Include("Groups").Include("Dealer") where g.Dealer.Id == dealer && !g.Deleted && g.Enabled select g).ToList();
+                List<Group> groups = (from g in context.Groups.Include("Groups").Include("Dealer").Include("Category") where g.Dealer.Id == dealer && !g.Deleted && g.Enabled select g).ToList();
                 ViewData["groups"] = groups;
                 ViewData["dealerId"] = dealer;
                 ViewData["groupId"] = groupId;
@@ -48,10 +48,15 @@ namespace Zamov.Controllers
                 }
                 else
                 {
-                    currentGroup = groups
-                        .Where(g => g.Category!=null && g.Category.Id == categoryId && g.Dealer.Name == dealerId)
-                        .Select(g => g).First();
-                    displayGroupImages = false;
+                    Category category = context.Categories.Include("Categories").Where(c => c.Id == categoryId).Select(c => c).First();
+                    currentGroup = category.Groups.Where(g => g.Dealer.Id == dealer).Select(g => g).FirstOrDefault();
+
+                    if (currentGroup == null)
+                        currentGroup = category.Categories.SelectMany(c => c.Groups).Where(g => g.Dealer.Id == dealer).First();
+
+                    ViewData["groupId"] = currentGroup.Id;
+
+                    displayGroupImages = currentGroup.DisplayProductImages;
                 }
 
                 ViewData["displayGroupImages"] = displayGroupImages;
@@ -133,7 +138,7 @@ namespace Zamov.Controllers
             return source.Where(p => !p.TopProduct).Select(p => p).ToList();
         }
 
-        public ActionResult ProductGroups(string dealerId, int? groupId)
+        public ActionResult ProductGroups(string dealerId, int categoryId, int? groupId)
         {
             List<GroupResentation> groups = null;
             using (ZamovStorage context = new ZamovStorage())

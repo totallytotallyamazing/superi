@@ -25,7 +25,6 @@ namespace Dev.Controllers
                     if (content == null)
                         throw new HttpException(404, "NotFound");
 
-                    
                     if (content.Language != DevSession.Language)
                     {
                         DevSession.Language = content.Language;
@@ -38,7 +37,6 @@ namespace Dev.Controllers
                     ViewData["description"] = content.Description;
                     ViewData["contentName"] = content.Name;
                 }
-
             }
             base.OnActionExecuting(filterContext);
         }

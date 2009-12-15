@@ -214,5 +214,6 @@
     <%= Html.RegisterCss("~/Content/GroupsTreeview.css") %>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="leftMenu" runat="server">
-    <% Html.RenderAction<ProductsController>(c => c.ProductGroups((string)ViewData["sortDealerId"], (int?)ViewData["groupId"])); %>
+    <%int categoryId = Convert.ToInt32(ViewContext.RouteData.Values["categoryId"]); %>
+    <% Html.RenderAction<ProductsController>(c => c.ProductGroups((string)ViewData["sortDealerId"], categoryId, (int?)ViewData["groupId"])); %>
 </asp:Content>

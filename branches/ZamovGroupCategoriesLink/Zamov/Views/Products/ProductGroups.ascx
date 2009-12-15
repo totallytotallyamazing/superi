@@ -6,7 +6,7 @@
     string dealerId = (string)ViewData["dealerId"];
     int groupToExpand = Convert.ToInt32(ViewData["groupToExpand"]);
     int groupId = (ViewData["groupId"] != null) ? Convert.ToInt32(ViewData["groupId"]) : int.MinValue;
-
+    int categoryId = (int)ViewContext.RouteData.Values["categoryId"];
     string menuHeader = Html.ResourceString("Groups");
 
     string dealerGroupName = "";
@@ -30,7 +30,7 @@
         <% foreach (GroupResentation item in Model)
            {%>
         <div class="menuItem">
-            <%= Html.ActionLink(item.Name, "Index", new { dealerId = dealerId, groupId = item.Id }, new { @class = (item.Id == groupId || item.Id == groupToExpand) ? "active" : string.Empty })%>
+            <%= Html.ActionLink(item.Name, "Index", new { dealerId = dealerId, categoryId = categoryId, groupId = item.Id }, new { @class = (item.Id == groupId || item.Id == groupToExpand) ? "active" : string.Empty })%>
         </div>
         <%      if (item.Id == groupToExpand)
                 {

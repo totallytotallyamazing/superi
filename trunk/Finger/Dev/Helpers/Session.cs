@@ -9,17 +9,5 @@ namespace Dev.Helpers
     public static class DevSession
     {
         private static HttpSessionState session = HttpContext.Current.Session;
-
-        public static string Language
-        {
-            get
-            {
-                return (string)session["Language"];
-            }
-            set 
-            {
-                session["Language"] = value;
-            }
-        }
     }
 }

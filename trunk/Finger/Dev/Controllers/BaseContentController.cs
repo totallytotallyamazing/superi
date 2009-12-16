@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 using Dev.Models;
 using Dev.Helpers;
+using System.Globalization;
 
 namespace Dev.Controllers
 {
@@ -25,9 +26,9 @@ namespace Dev.Controllers
                     if (content == null)
                         throw new HttpException(404, "NotFound");
 
-                    if (content.Language != DevSession.Language)
+                    if (content.Language != LocaleHelper.GetCultureName())
                     {
-                        DevSession.Language = content.Language;
+                        LocaleHelper.SetCulture(content.Language);
                     }
                     ViewData["text"] = content.Text;
                     ViewData["contentUrl"] = contentUrl;

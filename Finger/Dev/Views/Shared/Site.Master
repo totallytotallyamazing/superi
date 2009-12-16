@@ -22,7 +22,7 @@
             </div> 
             
             <div id="menucontainer">
-                <% Html.RenderPartial("MainMenu") %>            
+                <% Html.RenderPartial("MainMenu"); %>            
             </div>
         </div>
 

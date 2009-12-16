@@ -9,10 +9,10 @@
 //------------------------------------------------------------------------------
 
 [assembly: global::System.Data.Objects.DataClasses.EdmSchemaAttribute()]
-[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("gbua_superiModel", "FK_SiteContent_SiteContent", "SiteContent", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Dev.Models.SiteContent), "SiteContent1", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Dev.Models.SiteContent))]
+[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("gbua_superiModel", "FK_SiteContent_SiteContent", "SiteContent", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Dev.Models.SiteContent), "SiteContent1", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Dev.Models.SiteContent))]
 
 // Original file name:
-// Generation date: 14/12/2009 18:31:53
+// Generation date: 16/12/2009 17:55:02
 namespace Dev.Models
 {
     
@@ -523,13 +523,13 @@ namespace Dev.Models
         partial void OnUrlChanging(string value);
         partial void OnUrlChanged();
         /// <summary>
-        /// There are no comments for SiteContent1 in the schema.
+        /// There are no comments for Children in the schema.
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("gbua_superiModel", "FK_SiteContent_SiteContent", "SiteContent1")]
         [global::System.Xml.Serialization.XmlIgnoreAttribute()]
         [global::System.Xml.Serialization.SoapIgnoreAttribute()]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Data.Objects.DataClasses.EntityCollection<SiteContent> SiteContent1
+        public global::System.Data.Objects.DataClasses.EntityCollection<SiteContent> Children
         {
             get
             {
@@ -544,13 +544,13 @@ namespace Dev.Models
             }
         }
         /// <summary>
-        /// There are no comments for SiteContent2 in the schema.
+        /// There are no comments for Parent in the schema.
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("gbua_superiModel", "FK_SiteContent_SiteContent", "SiteContent")]
         [global::System.Xml.Serialization.XmlIgnoreAttribute()]
         [global::System.Xml.Serialization.SoapIgnoreAttribute()]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public SiteContent SiteContent2
+        public SiteContent Parent
         {
             get
             {
@@ -562,11 +562,11 @@ namespace Dev.Models
             }
         }
         /// <summary>
-        /// There are no comments for SiteContent2 in the schema.
+        /// There are no comments for Parent in the schema.
         /// </summary>
         [global::System.ComponentModel.BrowsableAttribute(false)]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Data.Objects.DataClasses.EntityReference<SiteContent> SiteContent2Reference
+        public global::System.Data.Objects.DataClasses.EntityReference<SiteContent> ParentReference
         {
             get
             {

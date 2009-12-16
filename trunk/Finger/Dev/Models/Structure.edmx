@@ -34,14 +34,14 @@
           <Property Name="Keywords" Type="text" />
           <Property Name="Language" Type="char" Nullable="false" MaxLength="5" />
           <Property Name="Name" Type="varchar" Nullable="false" MaxLength="255" />
-          <Property Name="ParentId" Type="uint" Nullable="false" />
+          <Property Name="ParentId" Type="uint" />
           <Property Name="SortOrder" Type="uint" />
           <Property Name="Text" Type="text" />
           <Property Name="Title" Type="varchar" Nullable="false" MaxLength="500" />
           <Property Name="Url" Type="varchar" Nullable="false" MaxLength="255" />
         </EntityType>
         <Association Name="FK_SiteContent_SiteContent">
-          <End Role="SiteContent" Type="gbua_superiModel.Store.SiteContent" Multiplicity="1" />
+          <End Role="SiteContent" Type="gbua_superiModel.Store.SiteContent" Multiplicity="0..1" />
           <End Role="SiteContent1" Type="gbua_superiModel.Store.SiteContent" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="SiteContent">

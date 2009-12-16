@@ -8,7 +8,7 @@ namespace Dev.Helpers
 {
     public static class Settings
     {
-        public bool AllowMainMenuEdit { 
+        public static bool AllowMainMenuEdit { 
             get
             {
                 bool result = false;

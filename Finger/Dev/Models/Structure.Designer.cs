@@ -12,7 +12,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("gbua_superiModel", "FK_SiteContent_SiteContent", "SiteContent", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Dev.Models.SiteContent), "SiteContent1", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Dev.Models.SiteContent))]
 
 // Original file name:
-// Generation date: 16/12/2009 17:55:02
+// Generation date: 16/12/2009 18:43:56
 namespace Dev.Models
 {
     

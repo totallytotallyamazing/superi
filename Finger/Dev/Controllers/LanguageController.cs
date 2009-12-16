@@ -6,6 +6,8 @@ using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 using Dev.Models;
 using Dev.Helpers;
+using System.Globalization;
+using System.Threading;
 
 namespace Dev.Controllers
 {
@@ -13,7 +15,7 @@ namespace Dev.Controllers
     {
         public ActionResult SetLanguage(string language, string contentController, string contentUrl)
         {
-            DevSession.Language = language;
+            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo(language);
             string newUrl = contentUrl;
             if (!string.IsNullOrEmpty(contentUrl))
             {

@@ -8,11 +8,23 @@ using System.Web.Mvc;
 using Microsoft.Web.Mvc;
 using System.Web.Routing;
 using System.Linq.Expressions;
+using System.Threading;
 
 namespace Dev.Helpers
 {
     public static class LocaleHelper
     {
+        public static string GetCultureName()
+        {
+            return CultureInfo.CurrentCulture.Name;
+        }
+
+        public static void SetCulture(string cultureName)
+        {
+            CultureInfo cultureInfo = CultureInfo.GetCultureInfo(cultureName);
+            Thread.CurrentThread.CurrentCulture = cultureInfo;
+        }
+
         public static CultureInfo GetSelectedCulture()
         {
             CultureInfo info = null;
@@ -22,7 +34,7 @@ namespace Dev.Helpers
                 info = CultureInfo.GetCultureInfo(lang);
             }
             else
-                info = CultureInfo.GetCultureInfo("uk-UA");
+                info = CultureInfo.GetCultureInfo("ru-RU");
             return info;
         }
 

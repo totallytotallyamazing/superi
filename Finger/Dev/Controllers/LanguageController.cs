@@ -15,7 +15,7 @@ namespace Dev.Controllers
     {
         public ActionResult SetLanguage(string language, string contentController, string contentUrl)
         {
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo(language);
+            LocaleHelper.SetCulture(language);
             string newUrl = contentUrl;
             if (!string.IsNullOrEmpty(contentUrl))
             {

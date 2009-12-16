@@ -16,13 +16,13 @@ namespace Dev.Helpers
     {
         public static string GetCultureName()
         {
-            return CultureInfo.CurrentCulture.Name;
+            return CultureInfo.CurrentUICulture.Name;
         }
 
         public static void SetCulture(string cultureName)
         {
             CultureInfo cultureInfo = CultureInfo.GetCultureInfo(cultureName);
-            Thread.CurrentThread.CurrentCulture = cultureInfo;
+            Thread.CurrentThread.CurrentUICulture = cultureInfo;
         }
 
         public static CultureInfo GetSelectedCulture()

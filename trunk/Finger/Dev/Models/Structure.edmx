@@ -84,10 +84,10 @@
           <Property Name="Text" Type="String" Nullable="true" />
           <Property Name="Title" Type="String" Nullable="false" />
           <Property Name="Url" Type="String" Nullable="false" />
-          <NavigationProperty Name="SiteContent1" Relationship="gbua_superiModel.FK_SiteContent_SiteContent" FromRole="SiteContent" ToRole="SiteContent1" />
-          <NavigationProperty Name="SiteContent2" Relationship="gbua_superiModel.FK_SiteContent_SiteContent" FromRole="SiteContent1" ToRole="SiteContent" /></EntityType>
+          <NavigationProperty Name="Children" Relationship="gbua_superiModel.FK_SiteContent_SiteContent" FromRole="SiteContent" ToRole="SiteContent1" />
+          <NavigationProperty Name="Parent" Relationship="gbua_superiModel.FK_SiteContent_SiteContent" FromRole="SiteContent1" ToRole="SiteContent" /></EntityType>
         <Association Name="FK_SiteContent_SiteContent">
-          <End Type="gbua_superiModel.SiteContent" Role="SiteContent" Multiplicity="1" />
+          <End Type="gbua_superiModel.SiteContent" Role="SiteContent" Multiplicity="0..1" />
           <End Type="gbua_superiModel.SiteContent" Role="SiteContent1" Multiplicity="*" /></Association></Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -120,7 +120,8 @@
             <EndProperty Name="SiteContent1">
               <ScalarProperty Name="Id" ColumnName="Id" /></EndProperty>
             <EndProperty Name="SiteContent">
-              <ScalarProperty Name="Id" ColumnName="ParentId" /></EndProperty></AssociationSetMapping></EntityContainerMapping>
+              <ScalarProperty Name="Id" ColumnName="ParentId" /></EndProperty>
+            <Condition ColumnName="ParentId" IsNull="false" /></AssociationSetMapping></EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

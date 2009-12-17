@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
+using Dev.Models;
 
 namespace Dev.Controllers
 {
@@ -11,6 +12,10 @@ namespace Dev.Controllers
     {
         public ActionResult Index(string language)
         {
+            using (DataStorage context = new DataStorage())
+            { 
+                
+            }
             return View();
         }
     }

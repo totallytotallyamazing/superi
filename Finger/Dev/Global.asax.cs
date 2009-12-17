@@ -17,6 +17,12 @@ namespace Dev
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                "Account",                                              // Route name
+                "Account/{action}",                           // URL with parameters
+                new { controller = "Account", action = "Index" }  // Parameter defaults
+             );
+
+            routes.MapRoute(
                 "Content",                                              // Route name
                 "{controller}/{contentUrl}",                           // URL with parameters
                 new { controller = "Home", action = "Index", contentUrl = "О компании" }  // Parameter defaults

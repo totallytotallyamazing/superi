@@ -15,7 +15,7 @@ namespace Dev.Helpers
                 if(ConfigurationManager.AppSettings["AllowMainMenuEdit"] == null)
                 {
                     if (!bool.TryParse(ConfigurationManager.AppSettings["AllowMainMenuEdit"], out result))
-                        throw new ConfigurationException("AllowMainMenuEdit can be only \"True\" or \"False\"");
+                        throw new ArgumentException("AllowMainMenuEdit can be only \"True\" or \"False\"");
                 }
                 return result;
             }

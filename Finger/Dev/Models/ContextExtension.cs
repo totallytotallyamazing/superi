@@ -7,9 +7,14 @@ namespace Dev.Models
 {
     public static class ContextExtension
     {
-        public static SiteContent GetContent(this DataStorage context, string contextUrl)
+        public static SiteContent GetContent(this DataStorage context, string contentUrl)
         {
-            return context.SiteContent.Where(sc => sc.Url == contextUrl).Select(sc => sc).FirstOrDefault();
+            return context.SiteContent.Where(sc => sc.Url == contentUrl).Select(sc => sc).FirstOrDefault();
+        }
+
+        public static SiteContent GetContent(this DataStorage context, string contentName, string Culture)
+        {
+            return context.SiteContent.Where(sc => sc.Name == contentName && sc.Language == Culture).Select(sc => sc).FirstOrDefault();
         }
 
         public static void UpdateContext(this DataStorage context, string contentUrl, string text, string title, string keywords, string description)

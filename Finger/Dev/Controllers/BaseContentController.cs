@@ -10,10 +10,11 @@ using System.Globalization;
 
 namespace Dev.Controllers
 {
-    public class BaseContentController : Controller
+    public class BaseContentController : LocalizedController
     {
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
+            base.OnActionExecuting(filterContext);
             string contentUrl = filterContext.RouteData.Values["contentUrl"].ToString();
 
             if (contentUrl != null)
@@ -21,7 +22,7 @@ namespace Dev.Controllers
 
                 using (DataStorage context = new DataStorage())
                 {
-                    SiteContent content = context.GetContent(contentUrl);
+                    SiteContent content = context.GetContent(contentUrl, LocaleHelper.GetCultureName());
 
                     if (content == null)
                         throw new HttpException(404, "NotFound");
@@ -39,7 +40,6 @@ namespace Dev.Controllers
                     ViewData["contentName"] = content.Name;
                 }
             }
-            base.OnActionExecuting(filterContext);
         }
 
         public ActionResult Index(string contentUrl)

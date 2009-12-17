@@ -12,7 +12,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("gbua_superiModel", "FK_SiteContent_SiteContent", "SiteContent", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Dev.Models.SiteContent), "SiteContent1", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Dev.Models.SiteContent))]
 
 // Original file name:
-// Generation date: 16/12/2009 18:43:56
+// Generation date: 17/12/2009 12:15:02
 namespace Dev.Models
 {
     
@@ -47,20 +47,20 @@ namespace Dev.Models
         }
         partial void OnContextCreated();
         /// <summary>
-        /// There are no comments for Notes in the schema.
+        /// There are no comments for Articles in the schema.
         /// </summary>
-        public global::System.Data.Objects.ObjectQuery<Notes> Notes
+        public global::System.Data.Objects.ObjectQuery<Article> Articles
         {
             get
             {
-                if ((this._Notes == null))
+                if ((this._Articles == null))
                 {
-                    this._Notes = base.CreateQuery<Notes>("[Notes]");
+                    this._Articles = base.CreateQuery<Article>("[Articles]");
                 }
-                return this._Notes;
+                return this._Articles;
             }
         }
-        private global::System.Data.Objects.ObjectQuery<Notes> _Notes;
+        private global::System.Data.Objects.ObjectQuery<Article> _Articles;
         /// <summary>
         /// There are no comments for SiteContent in the schema.
         /// </summary>
@@ -77,11 +77,11 @@ namespace Dev.Models
         }
         private global::System.Data.Objects.ObjectQuery<SiteContent> _SiteContent;
         /// <summary>
-        /// There are no comments for Notes in the schema.
+        /// There are no comments for Articles in the schema.
         /// </summary>
-        public void AddToNotes(Notes notes)
+        public void AddToArticles(Article article)
         {
-            base.AddObject("Notes", notes);
+            base.AddObject("Articles", article);
         }
         /// <summary>
         /// There are no comments for SiteContent in the schema.
@@ -92,18 +92,18 @@ namespace Dev.Models
         }
     }
     /// <summary>
-    /// There are no comments for gbua_superiModel.Notes in the schema.
+    /// There are no comments for gbua_superiModel.Article in the schema.
     /// </summary>
     /// <KeyProperties>
     /// Id
     /// </KeyProperties>
-    [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="gbua_superiModel", Name="Notes")]
+    [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="gbua_superiModel", Name="Article")]
     [global::System.Runtime.Serialization.DataContractAttribute(IsReference=true)]
     [global::System.Serializable()]
-    public partial class Notes : global::System.Data.Objects.DataClasses.EntityObject
+    public partial class Article : global::System.Data.Objects.DataClasses.EntityObject
     {
         /// <summary>
-        /// Create a new Notes object.
+        /// Create a new Article object.
         /// </summary>
         /// <param name="date">Initial value of Date.</param>
         /// <param name="description">Initial value of Description.</param>
@@ -112,17 +112,17 @@ namespace Dev.Models
         /// <param name="language">Initial value of Language.</param>
         /// <param name="text">Initial value of Text.</param>
         /// <param name="title">Initial value of Title.</param>
-        public static Notes CreateNotes(global::System.DateTime date, string description, long id, string image, string language, string text, string title)
+        public static Article CreateArticle(global::System.DateTime date, string description, long id, string image, string language, string text, string title)
         {
-            Notes notes = new Notes();
-            notes.Date = date;
-            notes.Description = description;
-            notes.Id = id;
-            notes.Image = image;
-            notes.Language = language;
-            notes.Text = text;
-            notes.Title = title;
-            return notes;
+            Article article = new Article();
+            article.Date = date;
+            article.Description = description;
+            article.Id = id;
+            article.Image = image;
+            article.Language = language;
+            article.Text = text;
+            article.Title = title;
+            return article;
         }
         /// <summary>
         /// There are no comments for Property Date in the schema.

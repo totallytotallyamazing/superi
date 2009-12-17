@@ -31,8 +31,21 @@ namespace Dev.Controllers
         {
             using (DataStorage context = new DataStorage())
                 context.UpdateContext(contentUrl, HttpUtility.HtmlDecode(text), editTitle, keywords, description); ;
-            
+
             return RedirectToAction("Index", controllerName, new { contentUrl = contentUrl });
+        }
+
+        public ActionResult Article(string name)
+        {
+            if (!string.IsNullOrEmpty(name))
+            {
+                using (DataStorage context = new DataStorage())
+                {
+                    List<Article> articles = context.Articles.Where(a => a.Name == name).OrderByDescending(a => a.Language).Select(a => a).ToList();
+                    
+                }
+            }
+            return View();
         }
     }
 }

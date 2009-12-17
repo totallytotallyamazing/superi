@@ -12,7 +12,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("gbua_superiModel", "FK_SiteContent_SiteContent", "SiteContent", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Dev.Models.SiteContent), "SiteContent1", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Dev.Models.SiteContent))]
 
 // Original file name:
-// Generation date: 17/12/2009 12:15:02
+// Generation date: 17/12/2009 16:54:18
 namespace Dev.Models
 {
     
@@ -77,6 +77,21 @@ namespace Dev.Models
         }
         private global::System.Data.Objects.ObjectQuery<SiteContent> _SiteContent;
         /// <summary>
+        /// There are no comments for Languages in the schema.
+        /// </summary>
+        public global::System.Data.Objects.ObjectQuery<Languages> Languages
+        {
+            get
+            {
+                if ((this._Languages == null))
+                {
+                    this._Languages = base.CreateQuery<Languages>("[Languages]");
+                }
+                return this._Languages;
+            }
+        }
+        private global::System.Data.Objects.ObjectQuery<Languages> _Languages;
+        /// <summary>
         /// There are no comments for Articles in the schema.
         /// </summary>
         public void AddToArticles(Article article)
@@ -89,6 +104,13 @@ namespace Dev.Models
         public void AddToSiteContent(SiteContent siteContent)
         {
             base.AddObject("SiteContent", siteContent);
+        }
+        /// <summary>
+        /// There are no comments for Languages in the schema.
+        /// </summary>
+        public void AddToLanguages(Languages languages)
+        {
+            base.AddObject("Languages", languages);
         }
     }
     /// <summary>
@@ -112,7 +134,8 @@ namespace Dev.Models
         /// <param name="language">Initial value of Language.</param>
         /// <param name="text">Initial value of Text.</param>
         /// <param name="title">Initial value of Title.</param>
-        public static Article CreateArticle(global::System.DateTime date, string description, long id, string image, string language, string text, string title)
+        /// <param name="name">Initial value of Name.</param>
+        public static Article CreateArticle(global::System.DateTime date, string description, long id, string image, string language, string text, string title, string name)
         {
             Article article = new Article();
             article.Date = date;
@@ -122,6 +145,7 @@ namespace Dev.Models
             article.Language = language;
             article.Text = text;
             article.Title = title;
+            article.Name = name;
             return article;
         }
         /// <summary>
@@ -285,6 +309,29 @@ namespace Dev.Models
         private string _Title;
         partial void OnTitleChanging(string value);
         partial void OnTitleChanged();
+        /// <summary>
+        /// There are no comments for Property Name in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name
+        {
+            get
+            {
+                return this._Name;
+            }
+            set
+            {
+                this.OnNameChanging(value);
+                this.ReportPropertyChanging("Name");
+                this._Name = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
+                this.ReportPropertyChanged("Name");
+                this.OnNameChanged();
+            }
+        }
+        private string _Name;
+        partial void OnNameChanging(string value);
+        partial void OnNameChanged();
     }
     /// <summary>
     /// There are no comments for gbua_superiModel.SiteContent in the schema.
@@ -580,5 +627,100 @@ namespace Dev.Models
                 }
             }
         }
+    }
+    /// <summary>
+    /// There are no comments for gbua_superiModel.Languages in the schema.
+    /// </summary>
+    /// <KeyProperties>
+    /// CultureName
+    /// </KeyProperties>
+    [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="gbua_superiModel", Name="Languages")]
+    [global::System.Runtime.Serialization.DataContractAttribute(IsReference=true)]
+    [global::System.Serializable()]
+    public partial class Languages : global::System.Data.Objects.DataClasses.EntityObject
+    {
+        /// <summary>
+        /// Create a new Languages object.
+        /// </summary>
+        /// <param name="cultureName">Initial value of CultureName.</param>
+        /// <param name="icon">Initial value of Icon.</param>
+        /// <param name="name">Initial value of Name.</param>
+        public static Languages CreateLanguages(string cultureName, string icon, string name)
+        {
+            Languages languages = new Languages();
+            languages.CultureName = cultureName;
+            languages.Icon = icon;
+            languages.Name = name;
+            return languages;
+        }
+        /// <summary>
+        /// There are no comments for Property CultureName in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string CultureName
+        {
+            get
+            {
+                return this._CultureName;
+            }
+            set
+            {
+                this.OnCultureNameChanging(value);
+                this.ReportPropertyChanging("CultureName");
+                this._CultureName = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
+                this.ReportPropertyChanged("CultureName");
+                this.OnCultureNameChanged();
+            }
+        }
+        private string _CultureName;
+        partial void OnCultureNameChanging(string value);
+        partial void OnCultureNameChanged();
+        /// <summary>
+        /// There are no comments for Property Icon in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string Icon
+        {
+            get
+            {
+                return this._Icon;
+            }
+            set
+            {
+                this.OnIconChanging(value);
+                this.ReportPropertyChanging("Icon");
+                this._Icon = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
+                this.ReportPropertyChanged("Icon");
+                this.OnIconChanged();
+            }
+        }
+        private string _Icon;
+        partial void OnIconChanging(string value);
+        partial void OnIconChanged();
+        /// <summary>
+        /// There are no comments for Property Name in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name
+        {
+            get
+            {
+                return this._Name;
+            }
+            set
+            {
+                this.OnNameChanging(value);
+                this.ReportPropertyChanging("Name");
+                this._Name = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
+                this.ReportPropertyChanged("Name");
+                this.OnNameChanged();
+            }
+        }
+        private string _Name;
+        partial void OnNameChanging(string value);
+        partial void OnNameChanged();
     }
 }

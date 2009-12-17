@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Dev.Models;
 
 namespace Dev
 {
@@ -23,20 +24,52 @@ namespace Dev
              );
 
             routes.MapRoute(
+                "ArticleDetailsLocalized",                                              // Route name
+                "{culture}/Notes/Show/{name}",                           // URL with parameters
+                new { culture = "ru-RU", controller = "Articles", action = "Show", id = "" }  // Parameter defaults
+             );
+
+            routes.MapRoute(
+                "ArticleDetails",                                              // Route name
+                "Notes/Show/{name}",                           // URL with parameters
+                new { culture = "ru-RU", controller = "Articles", action = "Show", id = "" }  // Parameter defaults
+             );
+
+
+            routes.MapRoute(
+                "Articles",                                              // Route name
+                "Notes/page",                           // URL with parameters
+                new { culture = "ru-RU", controller = "Articles", action = "Index",  page = "" }  // Parameter defaults
+             );
+
+            routes.MapRoute(
+                "LocalizedArticles",                                              // Route name
+                "{culture}/Notes/page",                           // URL with parameters
+                new { culture = "ru-RU", controller = "Articles", action = "Index", page = "" }  // Parameter defaults
+             );
+
+            routes.MapRoute(
                 "Content",                                              // Route name
-                "{controller}/{contentUrl}",                           // URL with parameters
-                new { controller = "Home", action = "Index", contentUrl = "О компании" }  // Parameter defaults
+                "{culture}/{contentUrl}",                           // URL with parameters
+                new { culture = "ru-RU", controller = "Home", action = "Index", contentUrl = "LifeStyle" }  // Parameter defaults
+            );
+
+            routes.MapRoute(
+                "ControllerContent",                                              // Route name
+                "{culture}/{controller}/{contentUrl}",                           // URL with parameters
+                new { culture = "ru-RU", controller = "Home", action = "Index", contentUrl = "LifeStyle" }  // Parameter defaults
             );
 
             routes.MapRoute(
                 "Default",                                              // Route name
-                "{controller}/{action}/{contentUrl}",                           // URL with parameters
-                new { controller = "{controller}", action = "{action}", contentUrl = "" }  // Parameter defaults
+                "{culture}/{controller}/{action}/{contentUrl}",                           // URL with parameters
+                new { culture = "ru-RU", controller = "{controller}", action = "{action}", contentUrl = "LifeStyle" }  // Parameter defaults
             );
         }
 
         protected void Application_Start()
         {
+            System.Web.Mvc.ModelBinders.Binders[typeof(ArticleTranslations)] = new ModelBinders.ArticleTranslationsBinder();
             RegisterRoutes(RouteTable.Routes);
         }
     }

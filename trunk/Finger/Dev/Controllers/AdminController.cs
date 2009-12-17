@@ -41,11 +41,42 @@ namespace Dev.Controllers
             {
                 using (DataStorage context = new DataStorage())
                 {
-                    List<Article> articles = context.Articles.Where(a => a.Name == name).OrderByDescending(a => a.Language).Select(a => a).ToList();
-                    
+                    var articles = context.Articles.Where(a => a.Name == name).OrderByDescending(a => a.Language).Select(a => a);
+                    foreach (var item in articles)
+                    {
+                        ViewData["id_" + item.Language] = item.Id;
+                        ViewData["name_" + item.Language] = item.Name;
+                        ViewData["title_" + item.Language] = item.Title;
+                        ViewData["date_" + item.Language] = item.Date;
+                        ViewData["description_" + item.Language] = item.Description;
+                        ViewData["text_" + item.Language] = item.Text;
+                        ViewData["image_" + item.Language] = item.Image;
+                    }
                 }
             }
             return View();
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public void Article(ArticleTranslations articleTranslations)
+        {
+            using (DataStorage context = new DataStorage())
+            {
+                foreach (string key in articleTranslations.Keys)
+                {
+                    if (articleTranslations[key].Id > 0)
+                    {
+                        context.Attach(articleTranslations[key]);
+                    }
+                    else
+                    {
+                        context.AddToArticles(articleTranslations[key]);
+                    }
+                    context.AcceptAllChanges();
+                    context.SaveChanges();
+                }
+            }
+            Response.Write("blabla");
         }
     }
 }

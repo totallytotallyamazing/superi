@@ -9,24 +9,30 @@ namespace Zamov.Helpers
 {
     public static class HierarchicalDropDownHelper
     {
-        public static string HierarchicalDropDown<T>(this HtmlHelper html, string name, IEnumerable<T> rootItems, Func<T, IEnumerable<T>> childrenProperty, Func<T, string> itemText, Func<T, string> itemValue, object htmlAttributes)
+        public static string HierarchicalDropDown<T>(this HtmlHelper html, string name, IEnumerable<T> rootItems, Func<T, IEnumerable<T>> childrenProperty, Func<T, string> itemText, Func<T, string> itemValue, Func<T, bool> selectedCheck, object htmlAttributes)
         {
             List<SelectListItem> items = new List<SelectListItem>();
             foreach (var item in rootItems)
             {
-                items.Add(new SelectListItem { Text = itemText(item), Value = itemValue(item) });
-                AppendChildren(items, item, childrenProperty, itemText, itemValue, 1);
+                bool selected = false;
+                if (selectedCheck != null)
+                    selected = selectedCheck(item);
+                items.Add(new SelectListItem { Text = itemText(item), Value = itemValue(item), Selected = selected });
+                AppendChildren(items, item, childrenProperty, itemText, itemValue, selectedCheck, 1);
             }
             return html.DropDownList(name, items, htmlAttributes);
         }
-        
-        private static void AppendChildren<T>(List<SelectListItem> items, T root, Func<T, IEnumerable<T>> childrenProperty, Func<T, string> itemText, Func<T, string> itemValue, int level)
+
+        private static void AppendChildren<T>(List<SelectListItem> items, T root, Func<T, IEnumerable<T>> childrenProperty, Func<T, string> itemText, Func<T, string> itemValue, Func<T, bool> selectedCheck, int level)
         {
             var children = childrenProperty(root);
             foreach (T item in children)
             {
-                items.Add(new SelectListItem { Text = GetPrefix(level) + itemText(item), Value = itemValue(item) });
-                AppendChildren(items, item, childrenProperty, itemText, itemValue, level + 1);
+                bool selected = false;
+                if (selectedCheck != null)
+                    selected = selectedCheck(item);
+                items.Add(new SelectListItem { Text = GetPrefix(level) + itemText(item), Value = itemValue(item), Selected = selected });
+                AppendChildren(items, item, childrenProperty, itemText, itemValue, selectedCheck, level + 1);
             }
         }
 

@@ -1,10 +1,12 @@
 <%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<IEnumerable<Zamov.Models.Group>>" %>
 <%@ Import Namespace="Microsoft.Web.Mvc" %>
 <%@ Import Namespace="Zamov.Helpers" %>
+<%@ Import Namespace="Zamov.Models" %>
 <%
     int level = Convert.ToInt32(ViewData["level"]);
     string marginLeft = level * 20 + "px";
     int dealerId = Convert.ToInt32(ViewData["dealerId"]);
+    List<CategoryPresentation> categories = (List<CategoryPresentation>)ViewData["categories"];
 %>
     <% foreach (var item in Model) {
            item.LoadNames();
@@ -13,7 +15,10 @@
         <%if (level == 0 && ViewData["firstDisplayed"]==null){
               ViewData["firstDisplayed"] = true;
               %>
-        <tr>
+        <tr>    
+                <th>
+                    <%= Html.ResourceString("Category") %>
+                </th>
                 <th>
                     Óêð
                 </th>
@@ -33,6 +38,20 @@
             <td style="display:none">
                 <%= Html.Hidden("itemId_" + item.Id, item.Id)%>
             </td>  
+            <% if (level == 0){%>
+            <td>
+                <%= Html.HierarchicalDropDown("categoryId_" + item.Id, categories, ri=>ri.Children, ri=>ri.Name, ri=>ri.Id.ToString(), ri=>
+                {
+                    bool result = false;
+                    if (item.CategoryReference.EntityKey != null)
+                    {
+                        int entityKey = Convert.ToInt32(item.CategoryReference.EntityKey.EntityKeyValues[0].Value);
+                        result = ri.Id == entityKey;
+                    }
+                    return result;
+                }, null)  %>
+            </td>
+            <%} %>
             <td>
                 <%= Html.TextBox("uk-UA_" + item.Id, item.GetName("uk-UA", false), new { style="width:200px;" })%>
             </td>
@@ -57,6 +76,6 @@
         </table>
                 <% 
        if (item.Groups.Count > 0)
-           Html.RenderAction<Zamov.Controllers.DealerCabinetController>(a => a.GoupList(dealerId, item.Id, level + 1));
+           Html.RenderAction<Zamov.Controllers.DealerCabinetController>(a => a.GoupList(dealerId, item.Id, level + 1, categories));
        
        } %>

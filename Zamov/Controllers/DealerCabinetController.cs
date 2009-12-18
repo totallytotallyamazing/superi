@@ -51,7 +51,7 @@ namespace Zamov.Controllers
             }
         }
 
-        public ActionResult GoupList(int dealerId, int? id, int level)
+        public ActionResult GoupList(int dealerId, int? id, int level, List<CategoryPresentation> categories)
         {
             using (ZamovStorage context = new ZamovStorage())
             {
@@ -63,6 +63,7 @@ namespace Zamov.Controllers
                 else
                     groups = groups.Select(g => g).Where(g => g.Parent != null && g.Parent.Id == id.Value && !g.Deleted).ToList();
                 ViewData["level"] = level;
+                ViewData["categories"] = categories;
                 return View(groups);
             }
         }
@@ -108,15 +109,22 @@ namespace Zamov.Controllers
                 foreach (string key in updates.Keys)
                 {
                     int itemId = int.Parse(key);
-                    Dictionary<string, string> translations = (from item in updates[key] where item.Key != "itemId" && item.Key != "enabled" select item).ToDictionary(i => i.Key, i => i.Value);
+                    Dictionary<string, string> translations = (from item in updates[key] where item.Key != "itemId" && item.Key != "enabled" && item.Key != "categoryId" select item).ToDictionary(i => i.Key, i => i.Value);
                     translationItems.AddRange((from tr in translations select new TranslationItem { ItemId = itemId, ItemType = ItemTypes.Group, Language = tr.Key, Translation = tr.Value }).ToList());
 
                     bool enabled = (updates[key].ContainsKey("enabled") && (updates[key]["enabled"].Contains("true") || updates[key]["enabled"] == "on"));
                     bool displayImages = (updates[key].ContainsKey("displayImages") && (updates[key]["displayImages"].Contains("true") || updates[key]["displayImages"] == "on"));
+                    int? categoryId = null;
+                    if (updates[key].ContainsKey("categoryId"))
+                        categoryId = Convert.ToInt32(updates[key]["categoryId"]);
 
                     Group group = context.Groups.Select(g => g).Where(g => g.Id == itemId).First();
                     group.Enabled = enabled;
                     group.DisplayProductImages = displayImages;
+                    if (categoryId != null)
+                    {
+                        group.CategoryReference.EntityKey = new EntityKey("ZamovStorage.Categories", "Id", categoryId);
+                    }
                 }
                 string translationXml = Utils.CreateTranslationXml(translationItems);
                 context.SaveChanges();

@@ -9,6 +9,10 @@ namespace Zamov.Helpers
 {
     public static class FormCollectionExtender
     {
+        class PostData : Dictionary<string, Dictionary<string, string>>
+        {
+        }
+
         public static PostData ProcessPostData(this FormCollection form, params string[] excludeFields)
         {
             PostData result = new PostData();

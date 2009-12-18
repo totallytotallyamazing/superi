@@ -37,13 +37,15 @@
         }
         );
     </script>
-    
+    <%
+        List<CategoryPresentation> categories = (List<CategoryPresentation>)ViewData["categories"];
+    %>
     <h2><%= Html.ResourceString("Groups") %></h2>
     <% 
         using (Html.BeginForm("UpdateGroups", "DealerCabinet", FormMethod.Post))
         {
             int dealerId = Convert.ToInt32(ViewData["dealerId"]);
-            Html.RenderAction<Zamov.Controllers.DealerCabinetController>(ac => ac.GoupList(dealerId, null, 0));
+            Html.RenderAction<Zamov.Controllers.DealerCabinetController>(ac => ac.GoupList(dealerId, null, 0, categories));
             Response.Write("<input type=\"submit\" value=\"" + Html.ResourceString("Save") + "\" /> ");
         }
     %>
@@ -52,9 +54,7 @@
         <%= Html.ResourceString("AddGroup") %>
     </a>
     
-        <%
-            List<CategoryPresentation> categories = (List<CategoryPresentation>)ViewData["categories"];
-        %>
+
         <div id="insertGroup" class="greyBorderBox popUpBox">
         <% using (Html.BeginForm("InsertGroup", "DealerCabinet"))
            { %>
@@ -78,7 +78,7 @@
             </tr>
             <tr>
                 <td class="categoryCol">
-                    <%= Html.HierarchicalDropDown("categoryId", categories, ri=>ri.Children, ri=>ri.Name, ri=>ri.Id.ToString(), null)  %>
+                    <%= Html.HierarchicalDropDown("categoryId", categories, ri=>ri.Children, ri=>ri.Name, ri=>ri.Id.ToString(), null, null)  %>
                 </td>
                 <td>
                     <%= Html.TextBox("groupUkrName")%>

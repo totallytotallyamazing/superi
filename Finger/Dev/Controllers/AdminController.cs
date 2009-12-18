@@ -13,16 +13,16 @@ namespace Dev.Controllers
         [OutputCache(NoStore = true, Duration = 1, VaryByParam = "*")]
         public ActionResult EditText(string contentUrl, string controllerName)
         {
-            using (DataStorage context = new DataStorage())
-            {
-                SiteContent content = context.GetContent(contentUrl);
-                ViewData["controllerName"] = controllerName;
-                ViewData["text"] = content.Text;
-                ViewData["editTitle"] = content.Title;
-                ViewData["keywords"] = content.Keywords;
-                ViewData["description"] = content.Description;
-                ViewData["contentUrl"] = contentUrl;
-            }
+            //using (DataStorage context = new DataStorage())
+            //{
+            //    SiteContent content = context.GetContent(contentUrl);
+            //    ViewData["controllerName"] = controllerName;
+            //    ViewData["text"] = content.Text;
+            //    ViewData["editTitle"] = content.Title;
+            //    ViewData["keywords"] = content.Keywords;
+            //    ViewData["description"] = content.Description;
+            //    ViewData["contentUrl"] = contentUrl;
+            //}
             return View();
         }
 

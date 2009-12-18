@@ -16,6 +16,13 @@ namespace Dev
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+            routes.IgnoreRoute("favicon.ico");
+
+            routes.MapRoute(
+                "Admin",                                              // Route name
+                "Admin/{action}",                           // URL with parameters
+                new { controller = "Admin", action = "Index" }  // Parameter defaults
+             );
 
             routes.MapRoute(
                 "Account",                                              // Route name

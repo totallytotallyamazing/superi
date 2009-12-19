@@ -3,16 +3,69 @@ body{background:#F2F2E6;}
 #main{ background:url(img/mainBg.jpg) no-repeat; width:1000px; position:relative; margin:0 auto;}
 
 #left{width:287px; float:left;}
-#title{margin-top:15px; margin-left:3px; color:#ccc; font-size:19px; height:26px; line-height:26px; background-color:#BA2719; padding-left:77px; padding-right:5px; float:left;}
+#languageBar{float:right; font-size:0.56em; text-align:center; margin-right:100px; margin-top:50px;}
+#languageBar td{padding: 0 5px;}
+
+.languageSwitch{background: transparent url(img/languages.jpg); width:22px; height:22px; display:block;}
+span.languageSwitch.en-US{background-position:0px -22px;}
+span.languageSwitch.ru-RU{background-position:0px 0px;}
+a.languageSwitch.ru-RU:hover{background-position:22px 0px;}
+a.languageSwitch.en-US:hover{background-position:22px -22px;}
+a.languageSwitch.ru-RU{background-position:52px 0px;}
+a.languageSwitch.en-US{background-position:52px -22px;}
+
+
+#titleContainer
+{
+	color:#ccc; 
+	font-weight:bold; 
+	width:100%; 
+	float:left;
+	margin-top:15px;
+	margin-left:3px;
+	font-size:19px; 
+	height:26px; 
+	line-height:26px;
+	margin-bottom:30px;
+}
+#title{ padding-left:77px; padding-right:5px; float:left; background-color:#BA2719;}
+#subTitle{padding-left:5px; float:left; font-size:15px;}
 #left #tv{margin-left:110px; margin-top:53px;}
 #stick{width:3px; background:url(img/stick.jpg); position:absolute;  left:206px; top:712px; bottom:240px;}
 #right{margin-left:287px;}
 
-#mainMenu{padding-top:94px;}
 
-#contentFrame{margin-left:48px; margin-top:64px; width:559px; margin-bottom:93px;}
+#mainMenu{padding-top:99px; margin-left:30px;}
+.mainMenuItem{float:left; margin-left:40px;}
+.mainMenuItem *{height:20px; float:left;}
+#lifeStyle{width:125px;}
+#elena{width:115px;}
+#notes{width:69px;}
+#contacts{width:79px;}
+
+#lifeStyle.ru-RU{background:transparent url(img/ru-RU/lifeStyle.png);}
+#lifeStyle.en-US{background:transparent url(img/en-US/lifeStyle.png);}
+#elena.ru-RU{background:transparent url(img/ru-RU/elena.png);}
+#elena.en-US{background:transparent url(img/en-US/elena.png);}
+#notes.ru-RU{background:transparent url(img/ru-RU/notes.png);}
+#notes.en-US{background:transparent url(img/en-US/notes.png);}
+#contacts.ru-RU{background:transparent url(img/ru-RU/contacts.png);}
+#contacts.en-US{background:transparent url(img/en-US/contacts.png);}
+
+.mainMenuItem span{background-position:0 0 !important; display:block;}
+.mainMenuItem a{background-position:0 -40px !important; display:block;}
+.mainMenuItem a:hover{background-position:0 -20px !important;}
+
+#contentFrame{margin-left:48px; margin-top:64px; width:459px; margin-bottom:93px;}
 #contentFrame #top{ height:58px; width:559px; background-image:url(img/frameTop.jpg)}
-#contentFrame #content{ width:559px; padding:15px 45px 15px 55px;  min-height:569px; background:transparent url(img/frameBg.jpg) repeat-y;}
+#contentFrame #content
+{ 
+	width:459px; 
+	padding:15px 45px 15px 55px;  
+	min-height:569px; 
+	background:transparent url(img/frameBg.jpg) repeat-y;
+	font-size:0.8em;
+}
 
 #contentFrame #bottom{ height:75px; width:559px; background-image:url(img/frameBottom.jpg)}
 

@@ -38,6 +38,7 @@ namespace Dev.Controllers
                     ViewData["keywords"] = content.Keywords;
                     ViewData["description"] = content.Description;
                     ViewData["contentName"] = content.Name;
+                    ViewData["subTitle"] = content.SubTitle;
                 }
             }
         }

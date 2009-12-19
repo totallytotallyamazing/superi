@@ -25,8 +25,13 @@
         <% Html.RenderPartial("MainMenu"); %>
         <div id="contentFrame">
             <div id="top"></div>
-            <div id="title">
-                <asp:ContentPlaceHolder ID="HeadTitle" runat="server"></asp:ContentPlaceHolder>
+            <div id="titleContainer">
+                <div id="title">
+                    <asp:ContentPlaceHolder ID="HeadTitle" runat="server"></asp:ContentPlaceHolder>
+                </div>
+                <div id="subTitle">
+                    <asp:ContentPlaceHolder ID="HeaderSubTitle" runat="server"></asp:ContentPlaceHolder>
+                </div>
             </div>
             <div id="content">
                 <asp:ContentPlaceHolder ID="MainContent" runat="server" />

@@ -46,6 +46,7 @@
           <Property Name="Name" Type="varchar" Nullable="false" MaxLength="255" />
           <Property Name="ParentId" Type="uint" />
           <Property Name="SortOrder" Type="uint" />
+          <Property Name="SubTitle" Type="varchar" Nullable="false" MaxLength="500" />
           <Property Name="Text" Type="text" />
           <Property Name="Title" Type="varchar" Nullable="false" MaxLength="500" />
           <Property Name="Url" Type="varchar" Nullable="false" MaxLength="255" />
@@ -98,7 +99,8 @@
           <Property Name="Title" Type="String" Nullable="false" />
           <Property Name="Url" Type="String" Nullable="false" />
           <NavigationProperty Name="Children" Relationship="gbua_superiModel.FK_SiteContent_SiteContent" FromRole="SiteContent" ToRole="SiteContent1" />
-          <NavigationProperty Name="Parent" Relationship="gbua_superiModel.FK_SiteContent_SiteContent" FromRole="SiteContent1" ToRole="SiteContent" /></EntityType>
+          <NavigationProperty Name="Parent" Relationship="gbua_superiModel.FK_SiteContent_SiteContent" FromRole="SiteContent1" ToRole="SiteContent" />
+          <Property Name="SubTitle" Type="String" Nullable="false" /></EntityType>
         <Association Name="FK_SiteContent_SiteContent">
           <End Type="gbua_superiModel.SiteContent" Role="SiteContent" Multiplicity="0..1" />
           <End Type="gbua_superiModel.SiteContent" Role="SiteContent1" Multiplicity="*" /></Association>
@@ -117,6 +119,7 @@
           <EntitySetMapping Name="SiteContent">
             <EntityTypeMapping TypeName="IsTypeOf(gbua_superiModel.SiteContent)">
               <MappingFragment StoreEntitySet="SiteContent">
+                <ScalarProperty Name="SubTitle" ColumnName="SubTitle" />
                 <ScalarProperty Name="Url" ColumnName="Url" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="Text" ColumnName="Text" />
@@ -168,12 +171,12 @@
     <edmx:Diagrams>
       <Diagram Name="Structure" >
         <EntityTypeShape EntityType="gbua_superiModel.Article" Width="1.5" PointX="3.75" PointY="1.375" Height="2.2496956380208331" />
-        <EntityTypeShape EntityType="gbua_superiModel.SiteContent" Width="1.5" PointX="0.75" PointY="0.75" Height="2.7427376302083335" />
+        <EntityTypeShape EntityType="gbua_superiModel.SiteContent" Width="1.5" PointX="0.75" PointY="0.625" Height="3.3263964843749996" />
         <AssociationConnector Association="gbua_superiModel.FK_SiteContent_SiteContent" >
-          <ConnectorPoint PointX="1.2819230769230767" PointY="3.4927376302083335" />
-          <ConnectorPoint PointX="1.2819230769230767" PointY="3.7427376302083335" />
-          <ConnectorPoint PointX="1.7284615384615383" PointY="3.7427376302083335" />
-          <ConnectorPoint PointX="1.7284615384615383" PointY="3.4927376302083335" /></AssociationConnector>
+          <ConnectorPoint PointX="1.2819230769230767" PointY="3.9513964843749996" />
+          <ConnectorPoint PointX="1.2819230769230767" PointY="4.201396484375" />
+          <ConnectorPoint PointX="1.7284615384615383" PointY="4.201396484375" />
+          <ConnectorPoint PointX="1.7284615384615383" PointY="3.9513964843749996" /></AssociationConnector>
         <EntityTypeShape EntityType="gbua_superiModel.Languages" Width="1.5" PointX="6.5" PointY="1.875" Height="1.4279589843749996" />
         </Diagram></edmx:Diagrams>
   </edmx:Designer>

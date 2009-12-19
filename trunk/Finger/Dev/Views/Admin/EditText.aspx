@@ -30,21 +30,11 @@
         <tr>
             <td colspan="2">
                 <%= Html.TextArea("text")%>
-                <%= Ajax.CkEditor("text", true, new { toolbar = "Full", language = "ru-RU", HtmlEncodeOutput = "true" })%>
-                <script type="text/javascript">
-                    $(function() {
-                        $("#smbt").click(function() {
-                            debugger;
-                            $("#text").val(CKEDITOR.tools.htmlEncode(editor_text.getData()));
-                        })
-
-                    })
-                </script>
-                
+                <%= Ajax.CkEditor("text", true, new { toolbar = "Full", language = "ru-RU", htmlEncodeOutput = true })%>                
             </td>
         </tr>
         </table>
-        <input type="submit" id="smbt" value="Сохранить" />
+        <input type="submit" value="Сохранить" />
     <%} %>>
 
 </asp:Content>

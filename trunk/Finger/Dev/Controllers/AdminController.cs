@@ -5,34 +5,35 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 using Dev.Models;
+using Dev.Helpers;
 
 namespace Dev.Controllers
 {
-    public class AdminController : Controller
+    public class AdminController : LocalizedController
     {
         [OutputCache(NoStore = true, Duration = 1, VaryByParam = "*")]
-        public ActionResult EditText(string contentUrl, string controllerName)
+        public ActionResult EditText(string contentName, string controllerName)
         {
-            //using (DataStorage context = new DataStorage())
-            //{
-            //    SiteContent content = context.GetContent(contentUrl);
-            //    ViewData["controllerName"] = controllerName;
-            //    ViewData["text"] = content.Text;
-            //    ViewData["editTitle"] = content.Title;
-            //    ViewData["keywords"] = content.Keywords;
-            //    ViewData["description"] = content.Description;
-            //    ViewData["contentUrl"] = contentUrl;
-            //}
+            using (DataStorage context = new DataStorage())
+            {
+                SiteContent content = context.GetContent(contentName, LocaleHelper.GetCultureName());
+                ViewData["controllerName"] = controllerName;
+                ViewData["text"] = content.Text;
+                ViewData["editTitle"] = content.Title;
+                ViewData["keywords"] = content.Keywords;
+                ViewData["description"] = content.Description;
+                ViewData["contentName"] = contentName;
+            }
             return View();
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult EditText(string text, string editTitle, string keywords, string description, string controllerName, string contentUrl)
+        public ActionResult EditText(string text, string editTitle, string keywords, string description, string controllerName, string contentName)
         {
             using (DataStorage context = new DataStorage())
-                context.UpdateContext(contentUrl, HttpUtility.HtmlDecode(text), editTitle, keywords, description); ;
+                context.UpdateContext(contentName, LocaleHelper.GetCultureName(), HttpUtility.HtmlDecode(text), editTitle, keywords, description); ;
 
-            return RedirectToAction("Index", controllerName, new { contentUrl = contentUrl });
+            return RedirectToAction("Index", controllerName, new { contentUrl = contentName, culture = LocaleHelper.GetCultureName() });
         }
 
         public ActionResult Article(string name)

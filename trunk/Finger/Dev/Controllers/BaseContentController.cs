@@ -15,14 +15,14 @@ namespace Dev.Controllers
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             base.OnActionExecuting(filterContext);
-            string contentUrl = filterContext.RouteData.Values["contentUrl"].ToString();
+            string contentName = filterContext.RouteData.Values["contentName"].ToString();
 
-            if (contentUrl != null)
+            if (contentName != null)
             {
 
                 using (DataStorage context = new DataStorage())
                 {
-                    SiteContent content = context.GetContent(contentUrl, LocaleHelper.GetCultureName());
+                    SiteContent content = context.GetContent(contentName, LocaleHelper.GetCultureName());
 
                     if (content == null)
                         throw new HttpException(404, "NotFound");
@@ -32,7 +32,7 @@ namespace Dev.Controllers
                         LocaleHelper.SetCulture(content.Language);
                     }
                     ViewData["text"] = content.Text;
-                    ViewData["contentUrl"] = contentUrl;
+                    ViewData["contentName"] = contentName;
                     ViewData["text"] = content.Text;
                     ViewData["title"] = content.Title;
                     ViewData["keywords"] = content.Keywords;

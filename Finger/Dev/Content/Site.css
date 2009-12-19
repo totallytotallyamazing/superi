@@ -1,9 +1,23 @@
-﻿*{margin:0; padding:0; border:none;}
+﻿*{margin:0; padding:0; border:none; font-family: Verdana;}
 body{background:#F2F2E6;}
-#main{ background:url(img/mainBg.jpg) center no-repeat; position:relative; margin:0 auto;}
+#main{ background:url(img/mainBg.jpg) no-repeat; width:1000px; position:relative; margin:0 auto;}
 
 #left{width:287px; float:left;}
-
+#title{margin-top:15px; margin-left:3px; color:#ccc; font-size:19px; height:26px; line-height:26px; background-color:#BA2719; padding-left:77px; padding-right:5px; float:left;}
+#left #tv{margin-left:110px; margin-top:53px;}
+#stick{width:3px; background:url(img/stick.jpg); position:absolute;  left:206px; top:712px; bottom:240px;}
 #right{margin-left:287px;}
 
-#contentFrame{margin-left:48px; margin-top:33px; height:71px; width:558px;}
+#mainMenu{padding-top:94px;}
+
+#contentFrame{margin-left:48px; margin-top:64px; width:559px; margin-bottom:93px;}
+#contentFrame #top{ height:58px; width:559px; background-image:url(img/frameTop.jpg)}
+#contentFrame #content{ width:559px; padding:15px 45px 15px 55px;  min-height:569px; background:transparent url(img/frameBg.jpg) repeat-y;}
+
+#contentFrame #bottom{ height:75px; width:559px; background-image:url(img/frameBottom.jpg)}
+
+#footer{margin-bottom:30px;}
+#bonus{ float:right; margin-top:-143px; margin-right:70px;}
+
+#shtativLeg{background:transparent url(img/shtativLeg.jpg); width:308px; height:203px; margin-left:24px; margin-top:-148px;}
+#copyright{border-top:1px solid black; border-bottom:1px solid black; width:793px; height:50px; margin-left:99px; margin-top:30px;  }

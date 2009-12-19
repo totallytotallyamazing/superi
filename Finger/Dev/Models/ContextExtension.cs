@@ -26,5 +26,15 @@ namespace Dev.Models
             content.Description = description;
             context.SaveChanges();
         }
+
+        public static void UpdateContext(this DataStorage context, string contentName, string language, string text, string title, string keywords, string description)
+        {
+            SiteContent content = context.SiteContent.Where(sc => sc.Name == contentName && sc.Language == language).Select(sc => sc).First();
+            content.Text = text;
+            content.Title = title;
+            content.Keywords = keywords;
+            content.Description = description;
+            context.SaveChanges();
+        }
     }
 }

@@ -18,11 +18,11 @@ namespace Dev
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             routes.IgnoreRoute("favicon.ico");
 
-            routes.MapRoute(
-                "Admin",                                              // Route name
-                "Admin/{action}",                           // URL with parameters
-                new { controller = "Admin", action = "Index" }  // Parameter defaults
-             );
+            //routes.MapRoute(
+            //    "Admin",                                              // Route name
+            //    "Admin/{action}",                           // URL with parameters
+            //    new { controller = "Admin", action = "Index" }  // Parameter defaults
+            // );
 
             routes.MapRoute(
                 "Account",                                              // Route name
@@ -57,20 +57,20 @@ namespace Dev
 
             routes.MapRoute(
                 "Content",                                              // Route name
-                "{culture}/{contentUrl}",                           // URL with parameters
-                new { culture = "ru-RU", controller = "Home", action = "Index", contentUrl = "LifeStyle" }  // Parameter defaults
+                "{culture}/{contentName}",                           // URL with parameters
+                new { culture = "ru-RU", controller = "Home", action = "Index", contentName = "LifeStyle" }  // Parameter defaults
             );
 
             routes.MapRoute(
                 "ControllerContent",                                              // Route name
-                "{culture}/{controller}/{contentUrl}",                           // URL with parameters
-                new { culture = "ru-RU", controller = "Home", action = "Index", contentUrl = "LifeStyle" }  // Parameter defaults
+                "{culture}/{controller}/{contentName}",                           // URL with parameters
+                new { culture = "ru-RU", controller = "Home", action = "Index", contentName = "LifeStyle" }  // Parameter defaults
             );
 
             routes.MapRoute(
                 "Default",                                              // Route name
-                "{culture}/{controller}/{action}/{contentUrl}",                           // URL with parameters
-                new { culture = "ru-RU", controller = "{controller}", action = "{action}", contentUrl = "LifeStyle" }  // Parameter defaults
+                "{culture}/{controller}/{action}/{contentName}",                           // URL with parameters
+                new { culture = "ru-RU", controller = "Home", action = "Index", contentName = "LifeStyle" }  // Parameter defaults
             );
         }
 

@@ -158,6 +158,7 @@
     <Content Include="Content\pepper-grinder\images\ui-icons_fbdb93_256x240.png" />
     <Content Include="Content\pepper-grinder\images\ui-icons_ffffff_256x240.png" />
     <Content Include="Content\pepper-grinder\jquery.ui.css" />
+    <Content Include="Scripts\ck.extensions.js" />
     <Content Include="Scripts\jquery.ui.js" />
     <Content Include="Views\Admin\EditText.aspx" />
     <Content Include="Views\Shared\Index.aspx" />

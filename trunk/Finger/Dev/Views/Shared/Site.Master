@@ -1,5 +1,5 @@
 <%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
-
+<%@ Import Namespace="Microsoft.Web.Mvc" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
@@ -12,28 +12,21 @@
 </head>
 
 <body>
-    <div class="page">
-
-        <div id="header">
-            <div id="title">
-                <h1>My MVC Application</h1>
-            </div>
-              
-            <div id="logindisplay">
-                <% Html.RenderPartial("LogOnUserControl"); %>
-            </div> 
-            
-            <div id="menucontainer">
-                <% Html.RenderPartial("MainMenu"); %>            
-            </div>
-        </div>
-
-        <div id="main">
-            <asp:ContentPlaceHolder ID="MainContent" runat="server" />
-
-            <div id="footer">
-            </div>
+<div id="main">
+    <div id="left">
+        <div id="tv">
+            <%= Html.Image("~/Content/img/tv.gif") %>
         </div>
     </div>
+    <div id="right">
+        <% Html.RenderPartial("LanguageBar"); %>
+        <% Html.RenderPartial("MainMenu"); %>
+        <div id="contentFrame">
+            <div id="top"></div>
+            <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+            <div id="bottom"></div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

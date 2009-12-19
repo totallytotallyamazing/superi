@@ -5,7 +5,6 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-
        <% using(Html.BeginForm()){ %>  
         <%= Html.Hidden("controllerName") %>
         <%= Html.Hidden("contentUrl") %>
@@ -14,27 +13,26 @@
         <tr>
             <td valign="middle" align="right">Title:</td>
             <td align="left">
-                <%= Html.TextArea("editTitle", new { cols="50", rows="2" })%>
+                <%= Html.TextArea("editTitle", new { cols="40", rows="2" })%>
             </td>
         </tr>
         <tr>
             <td valign="middle" align="right">Keywords:</td>
             <td align="left">
-                <%= Html.TextArea("keywords", new { cols = "50", rows = "5" })%>
+                <%= Html.TextArea("keywords", new { cols = "40", rows = "5" })%>
             </td>
         </tr>
         <tr>
             <td valign="middle" align="right">Description:</td>
-            <td align="left"><%= Html.TextArea("description", new { cols = "50", rows = "5" })%></td>
+            <td align="left"><%= Html.TextArea("description", new { cols = "40", rows = "5" })%></td>
         </tr>
         <tr>
             <td colspan="2">
                 <%= Html.TextArea("text")%>
-                <%= Ajax.CkEditor("text", true, new { toolbar = "Full", language = "ru-RU", htmlEncodeOutput = true })%>                
+                <%= Ajax.CkEditor("text", true, new { toolbar = "Media", language = "ru-RU", width = 400 })%>                
             </td>
         </tr>
         </table>
         <input type="submit" value="Сохранить" />
-    <%} %>>
-
+    <%} %>
 </asp:Content>

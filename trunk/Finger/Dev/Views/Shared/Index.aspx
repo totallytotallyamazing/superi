@@ -12,3 +12,6 @@
     <%= ViewData["text"]%>
 
 </asp:Content>
+
+<asp:Content ContentPlaceHolderID="TitleContent" runat="server"><%= ViewData["title"] %></asp:Content>
+<asp:Content ContentPlaceHolderID="HeadTitle" runat="server"><%= ViewData["title"] %></asp:Content>

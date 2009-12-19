@@ -27,13 +27,14 @@ namespace Dev.Models
             context.SaveChanges();
         }
 
-        public static void UpdateContext(this DataStorage context, string contentName, string language, string text, string title, string keywords, string description)
+        public static void UpdateContent(this DataStorage context, string contentName, string language, string text, string title, string subTitle, string keywords, string description)
         {
             SiteContent content = context.SiteContent.Where(sc => sc.Name == contentName && sc.Language == language).Select(sc => sc).First();
             content.Text = text;
             content.Title = title;
             content.Keywords = keywords;
             content.Description = description;
+            content.SubTitle = subTitle;
             context.SaveChanges();
         }
     }

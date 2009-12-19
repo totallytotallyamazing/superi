@@ -30,30 +30,36 @@ namespace Dev
                 new { controller = "Account", action = "Index" }  // Parameter defaults
              );
 
-            routes.MapRoute(
-                "ArticleDetailsLocalized",                                              // Route name
-                "{culture}/Notes/Show/{name}",                           // URL with parameters
-                new { culture = "ru-RU", controller = "Articles", action = "Show", id = "" }  // Parameter defaults
-             );
+            //routes.MapRoute(
+            //    "ArticleDetailsLocalized",                                              // Route name
+            //    "{culture}/Notes/Show/{name}",                           // URL with parameters
+            //    new { culture = "ru-RU", controller = "Articles", action = "Show", id = "" }  // Parameter defaults
+            // );
+
+            //routes.MapRoute(
+            //    "ArticleDetails",                                              // Route name
+            //    "Notes/Show/{name}",                           // URL with parameters
+            //    new { culture = "ru-RU", controller = "Articles", action = "Show", id = "" }  // Parameter defaults
+            // );
+
+
+            //routes.MapRoute(
+            //    "Articles",                                              // Route name
+            //    "Notes/page",                           // URL with parameters
+            //    new { culture = "ru-RU", controller = "Articles", action = "Index",  page = "" }  // Parameter defaults
+            // );
+
+            //routes.MapRoute(
+            //    "LocalizedArticles",                                              // Route name
+            //    "{culture}/Notes/page",                           // URL with parameters
+            //    new { culture = "ru-RU", controller = "Articles", action = "Index", page = "" }  // Parameter defaults
+            // );
 
             routes.MapRoute(
-                "ArticleDetails",                                              // Route name
-                "Notes/Show/{name}",                           // URL with parameters
-                new { culture = "ru-RU", controller = "Articles", action = "Show", id = "" }  // Parameter defaults
-             );
-
-
-            routes.MapRoute(
-                "Articles",                                              // Route name
-                "Notes/page",                           // URL with parameters
-                new { culture = "ru-RU", controller = "Articles", action = "Index",  page = "" }  // Parameter defaults
-             );
-
-            routes.MapRoute(
-                "LocalizedArticles",                                              // Route name
-                "{culture}/Notes/page",                           // URL with parameters
-                new { culture = "ru-RU", controller = "Articles", action = "Index", page = "" }  // Parameter defaults
-             );
+                "Home",                                              // Route name
+                "Home",                           // URL with parameters
+                new { culture = "ru-RU", controller = "Home", action = "Index", contentName = "LifeStyle" }  // Parameter defaults
+            );
 
             routes.MapRoute(
                 "Content",                                              // Route name

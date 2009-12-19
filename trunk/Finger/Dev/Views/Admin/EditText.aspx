@@ -11,9 +11,15 @@
         
         <table>
         <tr>
-            <td valign="middle" align="right">Title:</td>
+            <td valign="middle" align="right">Заголовок:</td>
             <td align="left">
                 <%= Html.TextArea("editTitle", new { cols="40", rows="2" })%>
+            </td>
+        </tr>
+        <tr>
+            <td valign="middle" align="right">Подзаголовок:</td>
+            <td align="left">
+                <%= Html.TextArea("subTitle", new { cols="40", rows="2" })%>
             </td>
         </tr>
         <tr>

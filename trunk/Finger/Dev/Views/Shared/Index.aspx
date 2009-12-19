@@ -4,7 +4,7 @@
            <%if (Request.IsAuthenticated)
              { %>
                 <div class="adminEditLink">
-                    <a href="<%= LocaleHelper.GetCultureName() %>/Admin/EditText/<%=ViewData["contentName"] %>?controllerName=<%= ViewContext.RouteData.Values["controller"]%>">
+                    <a href="/<%= LocaleHelper.GetCultureName() %>/Admin/EditText/<%=ViewData["contentName"] %>?controllerName=<%= ViewContext.RouteData.Values["controller"]%>">
                         Редактировать
                     </a>
                 </div>
@@ -15,3 +15,4 @@
 
 <asp:Content ContentPlaceHolderID="TitleContent" runat="server"><%= ViewData["title"] %></asp:Content>
 <asp:Content ContentPlaceHolderID="HeadTitle" runat="server"><%= ViewData["title"] %></asp:Content>
+<asp:Content ContentPlaceHolderID="HeaderSubTitle" runat="server"><%= ViewData["subTitle"] %></asp:Content>

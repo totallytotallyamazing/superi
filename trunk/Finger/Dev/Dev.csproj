@@ -143,13 +143,22 @@
       <LastGenOutput>Resource.en-US.designer.cs</LastGenOutput>
     </Content>
     <Content Include="Content\img\adds\flowers.jpg" />
+    <Content Include="Content\img\en-US\contacts.png" />
+    <Content Include="Content\img\en-US\elena.png" />
+    <Content Include="Content\img\en-US\lifeStyle.png" />
+    <Content Include="Content\img\en-US\notes.png" />
     <Content Include="Content\img\frameBg.jpg" />
     <Content Include="Content\img\frameBottom.jpg" />
     <Content Include="Content\img\frameTop.jpg" />
     <Content Include="Content\img\mainBg.jpg" />
+    <Content Include="Content\img\ru-RU\contacts.png" />
+    <Content Include="Content\img\ru-RU\elena.png" />
+    <Content Include="Content\img\ru-RU\lifeStyle.png" />
+    <Content Include="Content\img\ru-RU\notes.png" />
     <Content Include="Content\img\shtativLeg.jpg" />
     <Content Include="Content\img\stick.jpg" />
     <Content Include="Content\img\tv.gif" />
+    <Content Include="Content\img\languages.jpg" />
     <Content Include="Content\pepper-grinder\images\ui-bg_diagonal-maze_20_6e4f1c_10x10.png" />
     <Content Include="Content\pepper-grinder\images\ui-bg_diagonal-maze_40_000000_10x10.png" />
     <Content Include="Content\pepper-grinder\images\ui-bg_fine-grain_10_eceadf_60x60.png" />

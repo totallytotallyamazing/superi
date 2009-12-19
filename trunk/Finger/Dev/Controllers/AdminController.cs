@@ -20,6 +20,7 @@ namespace Dev.Controllers
                 ViewData["controllerName"] = controllerName;
                 ViewData["text"] = content.Text;
                 ViewData["editTitle"] = content.Title;
+                ViewData["subTitle"] = content.SubTitle;
                 ViewData["keywords"] = content.Keywords;
                 ViewData["description"] = content.Description;
                 ViewData["contentName"] = contentName;
@@ -28,10 +29,10 @@ namespace Dev.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult EditText(string text, string editTitle, string keywords, string description, string controllerName, string contentName)
+        public ActionResult EditText(string text, string editTitle, string subTitle, string keywords, string description, string controllerName, string contentName)
         {
             using (DataStorage context = new DataStorage())
-                context.UpdateContext(contentName, LocaleHelper.GetCultureName(), HttpUtility.HtmlDecode(text), editTitle, keywords, description); ;
+                context.UpdateContent(contentName, LocaleHelper.GetCultureName(), HttpUtility.HtmlDecode(text), editTitle, subTitle, keywords, description); ;
 
             return RedirectToAction("Index", controllerName, new { contentUrl = contentName, culture = LocaleHelper.GetCultureName() });
         }

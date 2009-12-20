@@ -104,6 +104,13 @@
       <DependentUpon>Structure.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SetCookie.aspx.cs">
+      <DependentUpon>SetCookie.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SetCookie.aspx.designer.cs">
+      <DependentUpon>SetCookie.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Default.aspx" />
@@ -157,6 +164,7 @@
     <Content Include="Content\img\ru-RU\notes.png" />
     <Content Include="Content\img\shtativLeg.jpg" />
     <Content Include="Content\img\stick.jpg" />
+    <Content Include="Content\img\stub.jpg" />
     <Content Include="Content\img\tv.gif" />
     <Content Include="Content\img\languages.jpg" />
     <Content Include="Content\pepper-grinder\images\ui-bg_diagonal-maze_20_6e4f1c_10x10.png" />
@@ -175,8 +183,10 @@
     <Content Include="Content\pepper-grinder\images\ui-icons_fbdb93_256x240.png" />
     <Content Include="Content\pepper-grinder\images\ui-icons_ffffff_256x240.png" />
     <Content Include="Content\pepper-grinder\jquery.ui.css" />
+    <Content Include="index.html" />
     <Content Include="Scripts\ck.extensions.js" />
     <Content Include="Scripts\jquery.ui.js" />
+    <Content Include="SetCookie.aspx" />
     <Content Include="Views\Admin\EditText.aspx" />
     <Content Include="Views\Shared\Index.aspx" />
     <Content Include="Views\Shared\LanguageBar.ascx" />

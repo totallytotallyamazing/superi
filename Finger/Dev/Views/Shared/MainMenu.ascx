@@ -2,6 +2,9 @@
 <%@ Import Namespace="Dev.Helpers" %>
 
 <%
+    string controller = ViewContext.RouteData.Values["controller"].ToString();
+    if(controller.ToLower()!="account")
+    {
     string contentName = ViewContext.RouteData.Values["contentName"].ToString();
     
     string culture = LocaleHelper.GetCultureName();
@@ -43,3 +46,4 @@
         <%= contactsText %>
     </div>
 </div>
+<%} %>

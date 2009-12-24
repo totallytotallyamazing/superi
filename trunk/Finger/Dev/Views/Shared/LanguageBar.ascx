@@ -10,6 +10,8 @@
     RouteValueDictionary routeValues = ViewContext.RouteData.Values;
     string action = routeValues["action"].ToString();
     string controller = routeValues["controller"].ToString();
+    if(controller.ToLower()!="account")
+    {
     string contentName = routeValues["contentName"].ToString();
     string culture = LocaleHelper.GetCultureName();
     switch (culture)
@@ -42,3 +44,4 @@
         </tr>
     </table>
 </div>
+<%} %>

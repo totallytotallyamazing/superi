@@ -22,15 +22,15 @@
 	    {
             case "ru-RU":
                 if(!string.IsNullOrEmpty(controllerName))
-                    enLink = Html.ActionLink("[empty]", action, controller, new { culture = "en-US", contentName = contentName, controllerName = controllerName }, new { @class = ruClass }).Replace("[empty]", string.Empty);
+                    enLink = Html.ActionLink("[empty]", action, controller, new { culture = "en-US", contentName = contentName, controllerName = controllerName }, new { @class = enClass }).Replace("[empty]", string.Empty);
                 else
-                    enLink = Html.ActionLink("[empty]", action, controller, new { culture = "en-US", contentName = contentName }, new { @class = ruClass }).Replace("[empty]", string.Empty);
+                    enLink = Html.ActionLink("[empty]", action, controller, new { culture = "en-US", contentName = contentName }, new { @class = enClass }).Replace("[empty]", string.Empty);
                 break;
             case "en-US":
                 if (!string.IsNullOrEmpty(controllerName))
-                    ruLink = Html.ActionLink("[empty]", action, controller, new { culture = "ru-RU", contentName = contentName, controllerName = controllerName }, new { @class = enClass }).Replace("[empty]", string.Empty);
+                    ruLink = Html.ActionLink("[empty]", action, controller, new { culture = "ru-RU", contentName = contentName, controllerName = controllerName }, new { @class = ruClass }).Replace("[empty]", string.Empty);
                 else
-                    ruLink = Html.ActionLink("[empty]", action, controller, new { culture = "ru-RU", contentName = contentName }, new { @class = enClass }).Replace("[empty]", string.Empty);
+                    ruLink = Html.ActionLink("[empty]", action, controller, new { culture = "ru-RU", contentName = contentName }, new { @class = ruClass }).Replace("[empty]", string.Empty);
                 break;
 	    } 
 %>

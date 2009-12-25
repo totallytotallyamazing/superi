@@ -12,7 +12,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("gbua_superiModel", "FK_SiteContent_SiteContent", "SiteContent", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Dev.Models.SiteContent), "SiteContent1", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Dev.Models.SiteContent))]
 
 // Original file name:
-// Generation date: 19.12.2009 21:02:00
+// Generation date: 25.12.2009 14:54:32
 namespace Dev.Models
 {
     
@@ -332,6 +332,29 @@ namespace Dev.Models
         private string _Name;
         partial void OnNameChanging(string value);
         partial void OnNameChanged();
+        /// <summary>
+        /// There are no comments for Property SubTitle in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string SubTitle
+        {
+            get
+            {
+                return this._SubTitle;
+            }
+            set
+            {
+                this.OnSubTitleChanging(value);
+                this.ReportPropertyChanging("SubTitle");
+                this._SubTitle = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
+                this.ReportPropertyChanged("SubTitle");
+                this.OnSubTitleChanged();
+            }
+        }
+        private string _SubTitle;
+        partial void OnSubTitleChanging(string value);
+        partial void OnSubTitleChanged();
     }
     /// <summary>
     /// There are no comments for gbua_superiModel.SiteContent in the schema.

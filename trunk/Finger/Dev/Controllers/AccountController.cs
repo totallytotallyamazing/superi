@@ -80,6 +80,7 @@ namespace Dev.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        [Authorize]
         public ActionResult Register()
         {
 

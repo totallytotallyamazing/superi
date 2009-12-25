@@ -35,13 +35,13 @@ a.languageSwitch.en-US{background-position:52px -22px;}
 #right{margin-left:287px;}
 
 
-#mainMenu{padding-top:99px; margin-left:30px;}
+#mainMenu{padding-top:99px; margin-left:20px;}
 .mainMenuItem{float:left; margin-left:40px;}
 .mainMenuItem *{height:20px; float:left;}
 #lifeStyle{width:125px;}
 #elena{width:115px;}
-#notes{width:69px;}
-#contacts{width:79px;}
+#notes{width:77px;}
+#contacts{width:90px;}
 
 #lifeStyle.ru-RU{background:transparent url(img/ru-RU/lifeStyle.png);}
 #lifeStyle.en-US{background:transparent url(img/en-US/lifeStyle.png);}
@@ -52,12 +52,12 @@ a.languageSwitch.en-US{background-position:52px -22px;}
 #contacts.ru-RU{background:transparent url(img/ru-RU/contacts.png);}
 #contacts.en-US{background:transparent url(img/en-US/contacts.png);}
 
-.mainMenuItem span{background-position:0 0 !important; display:block;}
-.mainMenuItem a{background-position:0 -40px !important; display:block;}
-.mainMenuItem a:hover{background-position:0 -20px !important;}
+.mainMenuItem span{background-position:0px -25px !important; display:block;}
+.mainMenuItem a{background-position:0px -80px !important; display:block;}
+.mainMenuItem a:hover{background-position:0px -52px !important;}
 
 #contentFrame{margin-left:48px; margin-top:64px; width:459px; margin-bottom:93px;}
-#contentFrame #top{ height:58px; width:559px; background-image:url(img/frameTop.jpg)}
+#contentFrame #top{ height:57px; width:559px; background-image:url(img/frameTop.jpg)}
 #contentFrame #content
 { 
 	width:459px; 
@@ -67,7 +67,7 @@ a.languageSwitch.en-US{background-position:52px -22px;}
 	font-size:0.8em;
 }
 
-#contentFrame #bottom{ height:75px; width:559px; background-image:url(img/frameBottom.jpg)}
+#contentFrame #bottom{ height:74px; width:559px; background-image:url(img/frameBottom.jpg)}
 
 #footer{margin-bottom:30px;}
 #bonus{ float:right; margin-top:-143px; margin-right:70px;}

@@ -9,6 +9,7 @@ using Dev.Helpers;
 
 namespace Dev.Controllers
 {
+    [Authorize]
     public class AdminController : LocalizedController
     {
         [OutputCache(NoStore = true, Duration = 1, VaryByParam = "*")]
@@ -37,18 +38,19 @@ namespace Dev.Controllers
             return RedirectToAction("Index", controllerName, new { contentUrl = contentName, culture = LocaleHelper.GetCultureName() });
         }
 
-        public ActionResult Article(string name)
+        public ActionResult Article(string contentName)
         {
-            if (!string.IsNullOrEmpty(name))
+            if (!string.IsNullOrEmpty(contentName))
             {
                 using (DataStorage context = new DataStorage())
                 {
-                    var articles = context.Articles.Where(a => a.Name == name).OrderByDescending(a => a.Language).Select(a => a);
+                    var articles = context.Articles.Where(a => a.Name == contentName).OrderByDescending(a => a.Language).Select(a => a);
                     foreach (var item in articles)
                     {
                         ViewData["id_" + item.Language] = item.Id;
-                        ViewData["name_" + item.Language] = item.Name;
+                        ViewData["name"] = item.Name;
                         ViewData["title_" + item.Language] = item.Title;
+                        ViewData["subTitle_" + item.Language] = item.SubTitle;
                         ViewData["date_" + item.Language] = item.Date;
                         ViewData["description_" + item.Language] = item.Description;
                         ViewData["text_" + item.Language] = item.Text;
@@ -60,7 +62,7 @@ namespace Dev.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public void Article(ArticleTranslations articleTranslations)
+        public void Article(ArticleTranslations articleTranslations, string name)
         {
             using (DataStorage context = new DataStorage())
             {
@@ -74,6 +76,7 @@ namespace Dev.Controllers
                     {
                         context.AddToArticles(articleTranslations[key]);
                     }
+                    articleTranslations[key].Name = name;
                     context.AcceptAllChanges();
                     context.SaveChanges();
                 }

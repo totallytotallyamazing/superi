@@ -39,7 +39,7 @@ namespace Dev.ModelBinders
             ArticleTranslations result = new ArticleTranslations();
             
             NameValueCollection form = controllerContext.HttpContext.Request.Form;
-            PostData postData = ProcessPostData(form);
+            PostData postData = ProcessPostData(form, "name");
             foreach (string key in postData.Keys)
             {
                 Dictionary<string, string> item = postData[key];
@@ -47,7 +47,7 @@ namespace Dev.ModelBinders
                 if (!string.IsNullOrEmpty(item["id"]))
                     article.Id = int.Parse(item["id"]);
                 article.Language = key;
-                article.Name = item["name"];
+                //article.Name = item["name"];
                 article.Date = DateTime.Parse(item["date"], CultureInfo.CurrentUICulture);
                 article.Description = HttpUtility.HtmlDecode(item["description"]);
                 article.Image = item["image"];

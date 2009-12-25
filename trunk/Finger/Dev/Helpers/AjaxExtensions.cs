@@ -73,13 +73,10 @@ namespace Dev.Mvc.Ajax
             return sb.ToString();
         }
 
-
-
         public static string Create(this AjaxHelper helper, string clientType, string elementId)
         {
             return Create(helper, String.Empty, clientType, elementId);
         }
-
 
         public static string Create(this AjaxHelper helper, string clientType, object props, string elementId)
         {

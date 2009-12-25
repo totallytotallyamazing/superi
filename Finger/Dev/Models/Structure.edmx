@@ -24,15 +24,16 @@
           <Property Name="Image" Type="varchar" MaxLength="500" />
           <Property Name="Language" Type="char" Nullable="false" MaxLength="5" />
           <Property Name="Name" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="SubTitle" Type="varchar" MaxLength="500" />
           <Property Name="Text" Type="text" />
-          <Property Name="Title" Type="varchar" Nullable="false" MaxLength="500" />
+          <Property Name="Title" Type="varchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="Languages">
           <Key>
             <PropertyRef Name="CultureName" />
           </Key>
           <Property Name="CultureName" Type="char" Nullable="false" MaxLength="5" />
-          <Property Name="Icon" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="Icon" Type="varchar" MaxLength="255" />
           <Property Name="Name" Type="varchar" Nullable="false" MaxLength="150" />
         </EntityType>
         <EntityType Name="SiteContent">
@@ -46,7 +47,7 @@
           <Property Name="Name" Type="varchar" Nullable="false" MaxLength="255" />
           <Property Name="ParentId" Type="uint" />
           <Property Name="SortOrder" Type="uint" />
-          <Property Name="SubTitle" Type="varchar" Nullable="false" MaxLength="500" />
+          <Property Name="SubTitle" Type="varchar" MaxLength="500" />
           <Property Name="Text" Type="text" />
           <Property Name="Title" Type="varchar" Nullable="false" MaxLength="500" />
           <Property Name="Url" Type="varchar" Nullable="false" MaxLength="255" />
@@ -85,7 +86,8 @@
           <Property Name="Language" Type="String" Nullable="false" />
           <Property Name="Text" Type="String" Nullable="false" />
           <Property Name="Title" Type="String" Nullable="false" />
-          <Property Name="Name" Type="String" Nullable="false" /></EntityType>
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="SubTitle" Type="String" Nullable="true" /></EntityType>
         <EntityType Name="SiteContent">
           <Key>
             <PropertyRef Name="Id" /></Key>
@@ -144,6 +146,7 @@
           <EntitySetMapping Name="Articles">
             <EntityTypeMapping TypeName="IsTypeOf(gbua_superiModel.Article)">
               <MappingFragment StoreEntitySet="Articles">
+                <ScalarProperty Name="SubTitle" ColumnName="SubTitle" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="Text" ColumnName="Text" />

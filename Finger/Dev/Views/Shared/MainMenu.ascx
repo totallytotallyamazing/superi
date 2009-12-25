@@ -5,32 +5,38 @@
     string controller = ViewContext.RouteData.Values["controller"].ToString();
     if(controller.ToLower()!="account")
     {
-    string contentName = ViewContext.RouteData.Values["contentName"].ToString();
-    
-    string culture = LocaleHelper.GetCultureName();
+        string contentName = ViewContext.RouteData.Values["contentName"].ToString();
+        
+        string culture = LocaleHelper.GetCultureName();
 
-    string span = Html.ActionLink("[empty]", "Index", new { culture = "myCulture", contentName = "myName" }, new { id="myId", @class = "myCulture" }).Replace("[empty]", string.Empty); 
-    string lsText, elenaText, notesText, contactsText;
-    lsText = span.Replace("myCulture", culture).Replace("myName", "LifeStyle").Replace("myId", "lifeStyle");
-    elenaText = span.Replace("myCulture", culture).Replace("myName", "Elena").Replace("myId", "elena");
-    notesText = span.Replace("myCulture", culture).Replace("myName", "Notes").Replace("myId", "notes");
-    contactsText = span.Replace("myCulture", culture).Replace("myName", "Contacts").Replace("myId", "contacts");
+        string span = Html.ActionLink("[empty]", "Index", new { culture = "myCulture", contentName = "myName" }, new { id = "myId", @class = "myCulture" }).Replace("[empty]", string.Empty); 
 
-    switch (contentName)
-	{
-        case "LifeStyle":
-            lsText = "<span id=\"lifeStyle\" class=\"" + culture + "\"></span>";
-            break;
-        case "Elena":
-            elenaText = "<span id=\"elena\" class=\"" + culture + "\"></span>";
-            break;
-        case "Notes":
-            notesText = "<span id=\"notes\" class=\"" + culture + "\"></span>";
-            break;
-        case "Contacts":
-            contactsText = "<span id=\"contacts\" class=\"" + culture + "\"></span>";
-            break;
-    }   
+        if (controller.ToLower() == "admin")
+        {
+            span = Html.ActionLink("[empty]", "EditText", new { culture = "myCulture", contentName = "myName", controllerName = Request["controllerName"] }, new { id = "myId", @class = "myCulture" }).Replace("[empty]", string.Empty); 
+        }
+        
+        string lsText, elenaText, notesText, contactsText;
+        lsText = span.Replace("myCulture", culture).Replace("myName", "LifeStyle").Replace("myId", "lifeStyle");
+        elenaText = span.Replace("myCulture", culture).Replace("myName", "Elena").Replace("myId", "elena");
+        notesText = span.Replace("myCulture", culture).Replace("myName", "Notes").Replace("myId", "notes");
+        contactsText = span.Replace("myCulture", culture).Replace("myName", "Contacts").Replace("myId", "contacts");
+
+        switch (contentName)
+	    {
+            case "LifeStyle":
+                lsText = "<span id=\"lifeStyle\" class=\"" + culture + "\"></span>";
+                break;
+            case "Elena":
+                elenaText = "<span id=\"elena\" class=\"" + culture + "\"></span>";
+                break;
+            case "Notes":
+                notesText = "<span id=\"notes\" class=\"" + culture + "\"></span>";
+                break;
+            case "Contacts":
+                contactsText = "<span id=\"contacts\" class=\"" + culture + "\"></span>";
+                break;
+        }   
 %>
 <div id="mainMenu">
     <div class="mainMenuItem">

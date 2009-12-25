@@ -8,7 +8,7 @@
        <% using(Html.BeginForm()){ %>  
         <%= Html.Hidden("controllerName") %>
         <%= Html.Hidden("contentUrl") %>
-        
+        <div style="float:left">
         <table>
         <tr>
             <td valign="middle" align="right">Заголовок:</td>
@@ -40,5 +40,7 @@
         </tr>
         </table>
         <input type="submit" value="Сохранить" />
+        </div>
+        <div style="clear:both"></div>
     <%} %>
 </asp:Content>

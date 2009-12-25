@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 using Dev.Models;
 using Dev.Helpers;
+using System.Globalization;
 
 namespace Dev.Controllers
 {
@@ -62,24 +63,25 @@ namespace Dev.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public void Article(ArticleTranslations articleTranslations, string name)
+        public void Article(ArticleTranslations articleTranslations, string name, string date)
         {
             using (DataStorage context = new DataStorage())
             {
                 foreach (string key in articleTranslations.Keys)
                 {
+                    articleTranslations[key].Name = name;
+                    articleTranslations[key].Date = DateTime.Parse(date, CultureInfo.GetCultureInfo("ru-RU"));
                     if (articleTranslations[key].Id > 0)
                     {
                         context.Attach(articleTranslations[key]);
+                        context.AcceptAllChanges();
                     }
                     else
                     {
                         context.AddToArticles(articleTranslations[key]);
                     }
-                    articleTranslations[key].Name = name;
-                    context.AcceptAllChanges();
-                    context.SaveChanges();
                 }
+                context.SaveChanges();
             }
             Response.Write("blabla");
         }

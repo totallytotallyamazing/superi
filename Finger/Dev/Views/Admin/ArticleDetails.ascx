@@ -2,7 +2,7 @@
 <%@ Import Namespace="Dev.Mvc.Ajax" %>
 
 <div class="articleDetails">
-        <%= Html.Hidden("Id_" + Model.ToString()) %>
+        <%= Html.Hidden("id_" + Model.ToString()) %>
         <table>
             <tr>
                 <td valign="middle" align="right">Заголовок:</td>
@@ -16,12 +16,12 @@
                     <%= Html.TextArea("subTitle_" + Model.ToString(), new { cols = "40", rows = "2" })%>
                 </td>
             </tr>
-            <tr>
+<%--            <tr>
                 <td valign="middle" align="right">Дата:</td>
                 <td align="left">
                     <%= Html.DatePicker("date_" + Model.ToString(), ViewData["date_" + Model.ToString()], null, new {dateFormat = "dd.mm.yy"}) %>
                 </td>
-            </tr>
+            </tr>--%>
             <tr>
                 <td valign="middle" align="right">Кратко:</td>
                 <td align="left">

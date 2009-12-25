@@ -23,9 +23,13 @@
             tabs[i] = item.Name;
             content[i] = Html.GetPartialOutput("ArticleDetails", item.CultureName);
         }
-
-        Response.Write(Ajax.Tabs("tabs", tabs, content, new { }));
     %>
+    <% using (Html.BeginForm()){ %>
+        Адрессная строка: <%= Html.TextBox("name") %>
+        Дата: <%= Html.DatePicker("date", ViewData["date"], null, new {dateFormat = "dd.mm.yy"}) %>
+        <%= Ajax.Tabs("tabs", tabs, content, new { })%>
+        <input type="submit" value="Сохранить" />
+    <%} %>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="Includes" runat="server">

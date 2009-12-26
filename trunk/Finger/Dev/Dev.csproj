@@ -180,6 +180,7 @@
     <Content Include="Views\Admin\Article.aspx" />
     <Content Include="Views\Admin\ArticleDetails.ascx" />
     <Content Include="Views\Admin\EditText.aspx" />
+    <Content Include="Views\Articles\Show.aspx" />
     <Content Include="Views\Shared\Index.aspx" />
     <Content Include="Views\Shared\LanguageBar.ascx" />
   </ItemGroup>

@@ -29,6 +29,13 @@
             <div class="description">
                 <%= Html.ActionLink("{0} »", "Show", new { name = item.Name }).Replace("{0}", item.Description)%>
             </div>
+            <%if(Request.IsAuthenticated){ %>
+                <div class="adminLink">
+                    <a href="/Admin/Article/<%= item.Name %>">Редактировать</a>
+                    /
+                    <a href="/Admin/DeleteArticle/<%= item.Name %>">Удалить</a>
+                </div>
+            <%} %>
         </div>
     <% } %>
 

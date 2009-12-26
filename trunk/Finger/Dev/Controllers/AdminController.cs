@@ -7,6 +7,7 @@ using System.Web.Mvc.Ajax;
 using Dev.Models;
 using Dev.Helpers;
 using System.Globalization;
+using System.Data;
 
 namespace Dev.Controllers
 {
@@ -51,7 +52,7 @@ namespace Dev.Controllers
                         ViewData["name"] = item.Name;
                         ViewData["title_" + item.Language] = item.Title;
                         ViewData["subTitle_" + item.Language] = item.SubTitle;
-                        ViewData["date_" + item.Language] = item.Date;
+                        ViewData["date"] = item.Date.ToString("dd.MM.yyyy");
                         ViewData["description_" + item.Language] = item.Description;
                         ViewData["text_" + item.Language] = item.Text;
                         ViewData["image_" + item.Language] = item.Image;
@@ -72,13 +73,31 @@ namespace Dev.Controllers
                     articleTranslations[key].Date = DateTime.Parse(date, CultureInfo.GetCultureInfo("ru-RU"));
                     if (articleTranslations[key].Id > 0)
                     {
-                        context.Attach(articleTranslations[key]);
-                        context.AcceptAllChanges();
+                        object originalItem;
+                        EntityKey entityKey = context.CreateEntityKey("Articles", articleTranslations[key]);
+                        if (context.TryGetObjectByKey(entityKey, out originalItem))
+                        {
+                            context.ApplyPropertyChanges(entityKey.EntitySetName, articleTranslations[key]);
+                        }
                     }
                     else
                     {
                         context.AddToArticles(articleTranslations[key]);
                     }
+                }
+                context.SaveChanges();
+            }
+            return RedirectToAction("Index", "Articles");
+        }
+
+        public ActionResult DeleteArticle(string contentName)
+        {
+            using (DataStorage context = new DataStorage())
+            {
+                var articles = context.Articles.Where(a => a.Name == contentName).OrderByDescending(a => a.Language).Select(a => a);
+                foreach (var item in articles)
+                {
+                    context.DeleteObject(item);
                 }
                 context.SaveChanges();
             }

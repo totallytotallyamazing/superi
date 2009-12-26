@@ -16,17 +16,10 @@
                     <%= Html.TextArea("subTitle_" + Model.ToString(), new { cols = "40", rows = "2" })%>
                 </td>
             </tr>
-<%--            <tr>
-                <td valign="middle" align="right">Дата:</td>
-                <td align="left">
-                    <%= Html.DatePicker("date_" + Model.ToString(), ViewData["date_" + Model.ToString()], null, new {dateFormat = "dd.mm.yy"}) %>
-                </td>
-            </tr>--%>
             <tr>
                 <td valign="middle" align="right">Кратко:</td>
                 <td align="left">
-                    <%= Html.TextArea("description_" + Model.ToString())%>
-                    <%= Ajax.CkEditor("description_" + Model.ToString(), true, new { toolbar = "Basic", language = "ru-RU", width = 300 })%>   
+                    <%= Html.TextArea("description_" + Model.ToString(), ViewData["description_" + Model.ToString()].ToString(),  new { style="width:300px;" })%>
                 </td>
             </tr>
             <tr>

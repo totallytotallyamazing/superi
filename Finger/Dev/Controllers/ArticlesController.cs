@@ -16,7 +16,7 @@ namespace Dev.Controllers
             using (DataStorage context = new DataStorage())
             {
                 string cultureName = LocaleHelper.GetCultureName();
-                List<Article> articles = context.Articles.Where(a => a.Language == cultureName).OrderByDescending(a => a.Date).Select(a => a).ToList();
+                List<Article> articles = context.Articles.Where(a => a.Language == cultureName && a.Type == (int)ArticleType.Note).OrderByDescending(a => a.Date).Select(a => a).ToList();
                 return View(articles);
             }
         }
@@ -26,7 +26,7 @@ namespace Dev.Controllers
             using (DataStorage context = new DataStorage())
             {
                 string cultureName = LocaleHelper.GetCultureName();
-                Article article = context.Articles.Where(a => a.Language == cultureName).Select(a => a).First();
+                Article article = context.Articles.Where(a => a.Language == cultureName && a.Type == (int)ArticleType.Note).Select(a => a).First();
                 return View(article);
             }
         }

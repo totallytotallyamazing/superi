@@ -39,13 +39,13 @@ namespace Dev.Controllers
             return RedirectToAction("Index", controllerName, new { contentName = contentName, culture = LocaleHelper.GetCultureName() });
         }
 
-        public ActionResult Article(string contentName)
+        public ActionResult Article(string contentName, ArticleType type)
         {
             if (!string.IsNullOrEmpty(contentName))
             {
                 using (DataStorage context = new DataStorage())
                 {
-                    var articles = context.Articles.Where(a => a.Name == contentName).OrderByDescending(a => a.Language).Select(a => a);
+                    var articles = context.Articles.Where(a => a.Name == contentName && a.Type == (int)type).OrderByDescending(a => a.Language).Select(a => a);
                     foreach (var item in articles)
                     {
                         ViewData["id_" + item.Language] = item.Id;
@@ -63,7 +63,7 @@ namespace Dev.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Article(ArticleTranslations articleTranslations, string name, string date)
+        public ActionResult Article(ArticleTranslations articleTranslations, string name, string date, ArticleType type)
         {
             using (DataStorage context = new DataStorage())
             {
@@ -71,6 +71,7 @@ namespace Dev.Controllers
                 {
                     articleTranslations[key].Name = name;
                     articleTranslations[key].Date = DateTime.Parse(date, CultureInfo.GetCultureInfo("ru-RU"));
+                    articleTranslations[key].Type = (int)type;
                     if (articleTranslations[key].Id > 0)
                     {
                         object originalItem;
@@ -90,11 +91,11 @@ namespace Dev.Controllers
             return RedirectToAction("Index", "Articles");
         }
 
-        public ActionResult DeleteArticle(string contentName)
+        public ActionResult DeleteArticle(string contentName, ArticleType type)
         {
             using (DataStorage context = new DataStorage())
             {
-                var articles = context.Articles.Where(a => a.Name == contentName).OrderByDescending(a => a.Language).Select(a => a);
+                var articles = context.Articles.Where(a => a.Name == contentName && a.Type == (int)type).OrderByDescending(a => a.Language).Select(a => a);
                 foreach (var item in articles)
                 {
                     context.DeleteObject(item);

@@ -27,6 +27,7 @@
           <Property Name="SubTitle" Type="varchar" MaxLength="500" />
           <Property Name="Text" Type="text" />
           <Property Name="Title" Type="varchar" MaxLength="500" />
+          <Property Name="Type" Type="uint" Nullable="false" />
         </EntityType>
         <EntityType Name="Languages">
           <Key>
@@ -87,7 +88,8 @@
           <Property Name="Text" Type="String" Nullable="false" />
           <Property Name="Title" Type="String" Nullable="false" />
           <Property Name="Name" Type="String" Nullable="false" />
-          <Property Name="SubTitle" Type="String" Nullable="true" /></EntityType>
+          <Property Name="SubTitle" Type="String" Nullable="true" />
+          <Property Name="Type" Type="Int64" Nullable="false" /></EntityType>
         <EntityType Name="SiteContent">
           <Key>
             <PropertyRef Name="Id" /></Key>
@@ -146,6 +148,7 @@
           <EntitySetMapping Name="Articles">
             <EntityTypeMapping TypeName="IsTypeOf(gbua_superiModel.Article)">
               <MappingFragment StoreEntitySet="Articles">
+                <ScalarProperty Name="Type" ColumnName="Type" />
                 <ScalarProperty Name="SubTitle" ColumnName="SubTitle" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Title" ColumnName="Title" />

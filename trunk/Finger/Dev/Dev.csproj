@@ -93,6 +93,7 @@
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="ModelBinders\ArticleTranslationsBinder.cs" />
     <Compile Include="Models\ArticleTranslations.cs" />
+    <Compile Include="Models\ArticleType.cs" />
     <Compile Include="Models\ContextExtension.cs" />
     <Compile Include="Models\Structure.Designer.cs">
       <AutoGen>True</AutoGen>

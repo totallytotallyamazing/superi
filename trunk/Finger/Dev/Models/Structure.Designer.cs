@@ -12,7 +12,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("gbua_superiModel", "FK_SiteContent_SiteContent", "SiteContent", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Dev.Models.SiteContent), "SiteContent1", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Dev.Models.SiteContent))]
 
 // Original file name:
-// Generation date: 26.12.2009 14:07:01
+// Generation date: 26.12.2009 16:42:40
 namespace Dev.Models
 {
     
@@ -134,7 +134,8 @@ namespace Dev.Models
         /// <param name="text">Initial value of Text.</param>
         /// <param name="title">Initial value of Title.</param>
         /// <param name="name">Initial value of Name.</param>
-        public static Article CreateArticle(global::System.DateTime date, string description, long id, string language, string text, string title, string name)
+        /// <param name="type">Initial value of Type.</param>
+        public static Article CreateArticle(global::System.DateTime date, string description, long id, string language, string text, string title, string name, long type)
         {
             Article article = new Article();
             article.Date = date;
@@ -144,6 +145,7 @@ namespace Dev.Models
             article.Text = text;
             article.Title = title;
             article.Name = name;
+            article.Type = type;
             return article;
         }
         /// <summary>
@@ -353,6 +355,29 @@ namespace Dev.Models
         private string _SubTitle;
         partial void OnSubTitleChanging(string value);
         partial void OnSubTitleChanged();
+        /// <summary>
+        /// There are no comments for Property Type in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public long Type
+        {
+            get
+            {
+                return this._Type;
+            }
+            set
+            {
+                this.OnTypeChanging(value);
+                this.ReportPropertyChanging("Type");
+                this._Type = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("Type");
+                this.OnTypeChanged();
+            }
+        }
+        private long _Type;
+        partial void OnTypeChanging(long value);
+        partial void OnTypeChanged();
     }
     /// <summary>
     /// There are no comments for gbua_superiModel.SiteContent in the schema.

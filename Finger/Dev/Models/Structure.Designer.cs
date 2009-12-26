@@ -12,7 +12,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("gbua_superiModel", "FK_SiteContent_SiteContent", "SiteContent", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Dev.Models.SiteContent), "SiteContent1", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Dev.Models.SiteContent))]
 
 // Original file name:
-// Generation date: 25.12.2009 14:54:32
+// Generation date: 26.12.2009 14:07:01
 namespace Dev.Models
 {
     
@@ -130,18 +130,16 @@ namespace Dev.Models
         /// <param name="date">Initial value of Date.</param>
         /// <param name="description">Initial value of Description.</param>
         /// <param name="id">Initial value of Id.</param>
-        /// <param name="image">Initial value of Image.</param>
         /// <param name="language">Initial value of Language.</param>
         /// <param name="text">Initial value of Text.</param>
         /// <param name="title">Initial value of Title.</param>
         /// <param name="name">Initial value of Name.</param>
-        public static Article CreateArticle(global::System.DateTime date, string description, long id, string image, string language, string text, string title, string name)
+        public static Article CreateArticle(global::System.DateTime date, string description, long id, string language, string text, string title, string name)
         {
             Article article = new Article();
             article.Date = date;
             article.Description = description;
             article.Id = id;
-            article.Image = image;
             article.Language = language;
             article.Text = text;
             article.Title = title;
@@ -220,7 +218,7 @@ namespace Dev.Models
         /// <summary>
         /// There are no comments for Property Image in the schema.
         /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
         public string Image
         {
@@ -232,7 +230,7 @@ namespace Dev.Models
             {
                 this.OnImageChanging(value);
                 this.ReportPropertyChanging("Image");
-                this._Image = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
+                this._Image = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
                 this.ReportPropertyChanged("Image");
                 this.OnImageChanged();
             }

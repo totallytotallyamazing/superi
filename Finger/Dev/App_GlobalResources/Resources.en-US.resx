@@ -120,4 +120,7 @@
   <data name="Articles" xml:space="preserve">
     <value>Notes</value>
   </data>
+  <data name="Thoughts" xml:space="preserve">
+    <value>thoughts and conclusions</value>
+  </data>
 </root>

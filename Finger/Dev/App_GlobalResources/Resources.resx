@@ -120,4 +120,7 @@
   <data name="Articles" xml:space="preserve">
     <value>Заметки</value>
   </data>
+  <data name="Thoughts" xml:space="preserve">
+    <value>мымысли и умозаключения</value>
+  </data>
 </root>

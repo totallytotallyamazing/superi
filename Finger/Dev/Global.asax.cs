@@ -52,14 +52,14 @@ namespace Dev
 
             routes.MapRoute(
                 "Articles",                                              // Route name
-                "Notes/page",                           // URL with parameters
-                new { culture = "ru-RU", controller = "Articles", action = "Index", page = "" }  // Parameter defaults
+                "Notes/{page}",                           // URL with parameters
+                new { culture = "ru-RU", controller = "Articles", action = "Index", page = 0 }  // Parameter defaults
              );
 
             routes.MapRoute(
                 "LocalizedArticles",                                              // Route name
-                "{culture}/Notes/page",                           // URL with parameters
-                new { culture = "ru-RU", controller = "Articles", action = "Index", page = "" }  // Parameter defaults
+                "{culture}/Notes/{page}",                           // URL with parameters
+                new { culture = "ru-RU", controller = "Articles", action = "Index", page = 0 }  // Parameter defaults
              );
 
             routes.MapRoute(
@@ -73,12 +73,6 @@ namespace Dev
                 "{culture}/{contentName}",                           // URL with parameters
                 new { culture = "ru-RU", controller = "Home", action = "Index", contentName = "LifeStyle" }  // Parameter defaults
             );
-
-            //routes.MapRoute(
-            //    "ControllerContent",                                              // Route name
-            //    "{culture}/{controller}/{contentName}",                           // URL with parameters
-            //    new { culture = "ru-RU", controller = "Home", action = "Index", contentName = "LifeStyle" }  // Parameter defaults
-            //);
 
             routes.MapRoute(
                 "Default",                                              // Route name

@@ -62,7 +62,7 @@ namespace Dev.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public void Article(ArticleTranslations articleTranslations, string name, string date)
+        public ActionResult Article(ArticleTranslations articleTranslations, string name, string date)
         {
             using (DataStorage context = new DataStorage())
             {
@@ -82,7 +82,7 @@ namespace Dev.Controllers
                 }
                 context.SaveChanges();
             }
-            Response.Write("blabla");
+            return RedirectToAction("Index", "Articles");
         }
     }
 }

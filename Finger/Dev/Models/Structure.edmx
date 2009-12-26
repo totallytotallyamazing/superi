@@ -82,7 +82,7 @@
           <Property Name="Date" Type="DateTime" Nullable="false" />
           <Property Name="Description" Type="String" Nullable="false" />
           <Property Name="Id" Type="Int64" Nullable="false" />
-          <Property Name="Image" Type="String" Nullable="false" />
+          <Property Name="Image" Type="String" Nullable="true" />
           <Property Name="Language" Type="String" Nullable="false" />
           <Property Name="Text" Type="String" Nullable="false" />
           <Property Name="Title" Type="String" Nullable="false" />

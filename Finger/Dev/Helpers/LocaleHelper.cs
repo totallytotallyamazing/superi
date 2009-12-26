@@ -27,14 +27,7 @@ namespace Dev.Helpers
 
         public static CultureInfo GetSelectedCulture()
         {
-            CultureInfo info = Thread.CurrentThread.CurrentUICulture;// CultureInfo.CurrentUICulture;
-            //if (HttpContext.Current.Session["lang"] != null)
-            //{
-            //    string lang = HttpContext.Current.Session["lang"].ToString();
-            //    info = CultureInfo.GetCultureInfo(lang);
-            //}
-            //else
-            //    info = CultureInfo.GetCultureInfo("ru-RU");
+            CultureInfo info = CultureInfo.CurrentUICulture;
             return info;
         }
 

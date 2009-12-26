@@ -70,7 +70,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to мымысли и умозаключения.
+        ///   Looks up a localized string similar to мысли и умозаключения.
         /// </summary>
         internal static string Thoughts {
             get {

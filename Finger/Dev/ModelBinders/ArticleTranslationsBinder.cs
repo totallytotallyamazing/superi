@@ -45,7 +45,10 @@ namespace Dev.ModelBinders
                 Dictionary<string, string> item = postData[key];
                 Article article = new Article();
                 if (!string.IsNullOrEmpty(item["id"]))
+                {
+                    article.EntityKey = new System.Data.EntityKey("DataStorage.Articles", "Id", Int64.Parse(item["id"]));
                     article.Id = int.Parse(item["id"]);
+                }
                 article.Language = key;
                 if(item.ContainsKey("date"))
                     article.Date = DateTime.Parse(item["date"], CultureInfo.GetCultureInfo("ru-RU"));
@@ -53,6 +56,7 @@ namespace Dev.ModelBinders
                 if(item.ContainsKey("image"))
                     article.Image = item["image"];
                 article.Title = item["title"];
+                article.SubTitle = item["subTitle"];
                 article.Text = HttpUtility.HtmlDecode(item["text"]);
                 result.Add(key, article);
             }

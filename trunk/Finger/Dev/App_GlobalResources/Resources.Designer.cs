@@ -68,5 +68,14 @@ namespace Resources {
                 return ResourceManager.GetString("Articles", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to мымысли и умозаключения.
+        /// </summary>
+        internal static string Thoughts {
+            get {
+                return ResourceManager.GetString("Thoughts", resourceCulture);
+            }
+        }
     }
 }

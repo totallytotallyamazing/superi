@@ -5,11 +5,17 @@
     string controller = ViewContext.RouteData.Values["controller"].ToString();
     if(controller.ToLower()!="account")
     {
-        string contentName = ViewContext.RouteData.Values["contentName"].ToString();
+        RouteValueDictionary routeValues = ViewContext.RouteData.Values;
         
+        string contentName = string.Empty;
+        if (routeValues.ContainsKey("contentName"))
+            contentName = routeValues["contentName"].ToString();
+        if (controller.ToLower() == "Articles")
+            contentName = "Notes";
+
         string culture = LocaleHelper.GetCultureName();
 
-        string span = Html.ActionLink("[empty]", "Index", new { culture = "myCulture", contentName = "myName" }, new { id = "myId", @class = "myCulture" }).Replace("[empty]", string.Empty); 
+        string span = Html.ActionLink("[empty]", "Index", new { culture = "myCulture", contentName = "myName"}, new { id = "myId", @class = "myCulture" }).Replace("[empty]", string.Empty); 
 
         if (controller.ToLower() == "admin")
         {

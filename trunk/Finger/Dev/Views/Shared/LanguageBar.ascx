@@ -15,22 +15,28 @@
         string controllerName = string.Empty;
         if (controller.ToLower() == "admin")
             controllerName = Request["controllerName"];
-            
-        string contentName = routeValues["contentName"].ToString();
+
+        string contentName = string.Empty;
+        if(routeValues.ContainsKey("contentName"))
+            contentName = routeValues["contentName"].ToString();
+        int page = 0;
+        if (routeValues.ContainsKey("page"))
+            page = Convert.ToInt32(routeValues["page"]);
+        
         string culture = LocaleHelper.GetCultureName();
         switch (culture)
 	    {
             case "ru-RU":
                 if(!string.IsNullOrEmpty(controllerName))
-                    enLink = Html.ActionLink("[empty]", action, controller, new { culture = "en-US", contentName = contentName, controllerName = controllerName }, new { @class = enClass }).Replace("[empty]", string.Empty);
+                    enLink = Html.ActionLink("[empty]", action, controller, new { culture = "en-US", contentName = contentName, controllerName = controllerName, page = page }, new { @class = enClass }).Replace("[empty]", string.Empty);
                 else
-                    enLink = Html.ActionLink("[empty]", action, controller, new { culture = "en-US", contentName = contentName }, new { @class = enClass }).Replace("[empty]", string.Empty);
+                    enLink = Html.ActionLink("[empty]", action, controller, new { culture = "en-US", contentName = contentName, page = page }, new { @class = enClass }).Replace("[empty]", string.Empty);
                 break;
             case "en-US":
                 if (!string.IsNullOrEmpty(controllerName))
-                    ruLink = Html.ActionLink("[empty]", action, controller, new { culture = "ru-RU", contentName = contentName, controllerName = controllerName }, new { @class = ruClass }).Replace("[empty]", string.Empty);
+                    ruLink = Html.ActionLink("[empty]", action, controller, new { culture = "ru-RU", contentName = contentName, controllerName = controllerName, page = page }, new { @class = ruClass }).Replace("[empty]", string.Empty);
                 else
-                    ruLink = Html.ActionLink("[empty]", action, controller, new { culture = "ru-RU", contentName = contentName }, new { @class = ruClass }).Replace("[empty]", string.Empty);
+                    ruLink = Html.ActionLink("[empty]", action, controller, new { culture = "ru-RU", contentName = contentName, page = page }, new { @class = ruClass }).Replace("[empty]", string.Empty);
                 break;
 	    } 
 %>

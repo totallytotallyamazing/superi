@@ -35,8 +35,7 @@ namespace Dev.Controllers
         {
             using (DataStorage context = new DataStorage())
                 context.UpdateContent(contentName, LocaleHelper.GetCultureName(), HttpUtility.HtmlDecode(text), editTitle, subTitle, keywords, description); ;
-
-            return RedirectToAction("Index", controllerName, new { contentUrl = contentName, culture = LocaleHelper.GetCultureName() });
+            return RedirectToAction("Index", controllerName, new { contentName = contentName, culture = LocaleHelper.GetCultureName() });
         }
 
         public ActionResult Article(string contentName)

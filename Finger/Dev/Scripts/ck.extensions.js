@@ -1,6 +1,6 @@
 ﻿var ckExtender = new Object();
 
-ckExtender.enableHtmlEncodeOutput = function(editor) {
+ckExtender.enableHtmlEncodeOutput = function(editor, textId) {
     $(function() {
         $("input[type='submit']").click(function() {
             var data = editor.getData();
@@ -9,6 +9,7 @@ ckExtender.enableHtmlEncodeOutput = function(editor) {
                 editor.getData();
             }
             catch (ex) { }
+            $("#" + textId).val(CKEDITOR.tools.htmlEncode(data));
         })
     })
 };

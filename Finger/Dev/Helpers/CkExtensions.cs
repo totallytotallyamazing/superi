@@ -23,7 +23,7 @@ namespace Dev.Mvc.Ajax
             script.Append("<script type=\"text/javascript\">");
             script.Append("$(function(){");
             script.AppendFormat(editorScript, name, settings.ObjectToString(), name.Replace("-", "_"));
-            script.AppendFormat("ckExtender.enableHtmlEncodeOutput(editor_{0});", name.Replace("-", "_"));
+            script.AppendFormat("ckExtender.enableHtmlEncodeOutput(editor_{0}, '{1}');", name.Replace("-", "_"), name.Replace("-", "_"));
             if (useCkFinder)
                 script.AppendFormat("CKFinder.SetupCKEditor( editor_{0}, '/Controls/ckfinder/' );", name.Replace("-", "_"));
             script.Append("});");

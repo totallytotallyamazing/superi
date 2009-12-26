@@ -1,5 +1,6 @@
-﻿*{margin:0; padding:0; border:none; font-family: Verdana;}
+﻿*{margin:0; padding:0; font-family: Verdana;}
 body{background:#F2F2E6;}
+table, tr, td{border:none;}
 #main{ background:url(img/mainBg.jpg) no-repeat; width:1000px; position:relative; margin:0 auto;}
 
 #left{width:287px; float:left;}

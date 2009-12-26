@@ -10,7 +10,7 @@
         string contentName = string.Empty;
         if (routeValues.ContainsKey("contentName"))
             contentName = routeValues["contentName"].ToString();
-        if (controller.ToLower() == "Articles")
+        if (controller.ToLower() == "articles")
             contentName = "Notes";
 
         string culture = LocaleHelper.GetCultureName();

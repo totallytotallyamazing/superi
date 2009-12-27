@@ -10,7 +10,7 @@
         var intervalId = 0;
         var intervalCount = 0;
         $(function() {
-            applyDropShadows(".dealerLogo a", "shadow3");
+            applyDropShadows(".dealerLogoLink", "shadow3");
             if ($.browser.msie && $.browser.version !== "8.0") {
                 $(".topDealers").width($(mainContent).width() - 30);
                 $(window).resize(function() { $(".topDealers").width($(mainContent).width() - 30); });
@@ -51,8 +51,12 @@
             <div class="dalerOnline">
             </div>
             <%} %>
-            <a href="/Products/<%= item.StringId %>/<%= currentCategory %>">
+            <a class="dealerLogoLink" href="/Products/<%= item.StringId %>/<%= currentCategory %>">
                 <%= Html.Image("~/Image/ShowLogo/" + item.Id, new { style="border:1px solid #ccc;" })%>
+            </a>
+            <br />
+            <a style="clear:both; display:block;" href="/Products/<%= item.StringId %>/<%= currentCategory %>">
+                <%= item.Name %>
             </a>
         </div>
     <%}%>
@@ -67,8 +71,12 @@
         <div class="dalerOnline">
         </div>
         <%} %>
-        <a href="/Products/<%= item.StringId + "/" + currentCategory  %>">
+        <a class="dealerLogoLink" href="/Products/<%= item.StringId + "/" + currentCategory  %>">
             <%= Html.Image("~/Image/ShowLogo/" + item.Id, new { style="border:1px solid #ccc;" })%>
+        </a>
+        <br />
+        <a style="clear:both; display:block;" href="/Products/<%= item.StringId %>/<%= currentCategory %>">
+            <%= item.Name %>
         </a>
     </div>
     <%}
@@ -100,14 +108,14 @@
             <% foreach (var menuItem in categories)
                {%>
                <div class="menuItem<%= selectedStyle(currentCategory, menuItem.Id) %>">
-                <%= Html.ActionLink(menuItem.Name, "Index", "Dealers", new { id = menuItem.Id })%>
+                <a href="/Dealers/Index/<%= menuItem.Id %>"><%= menuItem.Name %></a>
                </div>    
                  <%if(menuItem.Id == expandedGroup && menuItem.Children.Count>0){
                        foreach (var subItem in menuItem.Children)
                        {%>
                            
                    <div class="subMenuItem<%= selectedStyle(currentCategory, subItem.Id) %>">
-                        <%= Html.ActionLink(subItem.Name, "Index", "Dealers", new { id = menuItem.Id })%>
+                        <a href="/Dealers/Index/<%= menuItem.Id %>"><%= subItem.Name%></a>
                    </div>    
                   <%   }%>  
                    

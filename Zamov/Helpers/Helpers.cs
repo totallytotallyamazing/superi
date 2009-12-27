@@ -46,7 +46,7 @@ namespace Zamov.Helpers
                 Width = width,
             };
 
-            HttpContext.Current.Session[image.UniqueId] = image;
+            HttpContext.Current.Cache.Add(image.UniqueId, image, null, DateTime.Now.AddMinutes(30), Cache.NoSlidingExpiration, CacheItemPriority.Default, null);
 
             StringBuilder stringBuilder = new StringBuilder(256);
             stringBuilder.Append("<input type=\"hidden\" name=\"captcha-guid\" value=\"");

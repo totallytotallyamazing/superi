@@ -92,6 +92,7 @@ namespace Zamov
 	/// CAPTCHA Image
 	/// </summary>
 	/// <seealso href="http://www.codinghorror.com">Original By Jeff Atwood</seealso>
+    [Serializable]
 	public class CaptchaImage
 	{
 		#region Static
@@ -106,7 +107,7 @@ namespace Zamov
 			if (String.IsNullOrEmpty(guid))
 				return null;
 
-            return (CaptchaImage)HttpContext.Current.Session[guid];
+            return (CaptchaImage)HttpContext.Current.Cache[guid];
 		}
 
 		/// <summary>

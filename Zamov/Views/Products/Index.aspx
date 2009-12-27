@@ -101,6 +101,7 @@
 
     <input type="hidden" name="dealerId" value="<%= dealerId %>" />
     <%= Html.Hidden("groupId")%>
+    <%= Html.Hidden("categoryId") %>
     <div style="text-align: right; margin-top:-20px;">
         <input type="submit" value="<%= Html.ResourceString("AddToCart") %>" />
     </div>

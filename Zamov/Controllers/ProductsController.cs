@@ -37,6 +37,7 @@ namespace Zamov.Controllers
                 ViewData["groups"] = groups;
                 ViewData["dealerId"] = dealer;
                 ViewData["groupId"] = groupId;
+                ViewData["categoryId"] = categoryId;
 
                 bool displayGroupImages = false;
                 
@@ -178,7 +179,7 @@ namespace Zamov.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult AddToCart(int dealerId, int? groupId, FormCollection items)
+        public ActionResult AddToCart(int dealerId, int categoryId, int? groupId, FormCollection items)
         {
 
             string dealerName = "";
@@ -188,7 +189,7 @@ namespace Zamov.Controllers
             }
 
             Cart cart = SystemSettings.Cart;
-            PostData orderItems = items.ProcessPostData("dealerId", "groupId");
+            PostData orderItems = items.ProcessPostData("dealerId", "groupId", "categoryId");
             if (orderItems.Count > 0)
             {
                 Order order = (from o in cart.Orders where o.DealerReference.EntityKey != null && (int)o.DealerReference.EntityKey.EntityKeyValues[0].Value == dealerId select o).SingleOrDefault();
@@ -249,7 +250,7 @@ namespace Zamov.Controllers
                     }
                 }
             }
-            return RedirectToAction("Index", new { dealerId = dealerName, groupId = groupId });
+            return RedirectToAction("Index", new { dealerId = dealerName, categoryId = categoryId, groupId = groupId });
         }
 
         private void CollectProducts(List<Product> products, Group currentGroup)

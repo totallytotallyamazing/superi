@@ -76,12 +76,12 @@ a.languageSwitch.en-US{background-position:52px -22px;}
 }
 
 #leftMenu div.year{ padding-top:20px; padding-bottom:20px;}
-#leftMenu a.year {font-size:15px; color:Black;}
-#leftMenu a.year.current{ font-weight:bold; }
+#leftMenu a.year { font-size:15px; color:Black; }
+#leftMenu a.year.current{ font-weight:bold; text-decoration:none; }
 #leftMenu div.month{}
 #leftMenu a.month {font-size:13px; font-weight:normal;}
 #leftMenu .broadcast{ padding:5px 0 5px 5px;}
-#leftMenu .broadcast, #leftMenu .broadcast a{font-size:10px; font-weight:bold;}
+#leftMenu .broadcast, #leftMenu .broadcast a{font-size:10px; font-weight:bold; color:Black;}
 
 #lifeStyle.ru-RU{background:transparent url(img/ru-RU/lifeStyle.png);}
 #lifeStyle.en-US{background:transparent url(img/en-US/lifeStyle.png);}

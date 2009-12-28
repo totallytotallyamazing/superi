@@ -50,6 +50,7 @@
     var currentYearControl = null;
     var currentMonth = <%= DateTime.Now.Month %>;
     var currentMonthControl = null;
+    var broadcast = <%= broadcast.ToString().ToLower() %>;
     
     function initializeLinks() { 
         currentYearControl = $("a.year").eq(0);
@@ -58,15 +59,35 @@
         $("a.year").not(currentYearControl).attr("href", "#")
         .click(yearClick);
         
-        function yearClick()
-        {
-            currentYearControl.removeClass("current").attr("href",  "#")
-            .click(yearClick)
-            .next().next().slideUp()
-            
-            currentYearControl = $(this);
-            currentYearControl.addClass("current").unbind("click").next().next().slideDown();
+        if(broadcast){
+            currentMonthControl = currentYearControl.next().next().children().eq(0);
+            currentMonthControl.addClass("current");
+            $("div.broadcast").not(currentMonthControl.next().next()).hide(0);
+            $("a.month").not(currentMonthControl).attr("href", "#")
+            .click(monthClick);
         }
+    }
+    
+    function monthClick(){
+        if(broadcast){
+            currentMonthControl.removeClass("current").attr("href",  "#")
+            .click(monthClick)
+            .next().next().slideUp();
+            
+            currentMonthControl = $(this);
+            currentMonthControl.addClass("current")
+            .unbind("click").next().next().slideDown();
+        }
+    }
+        
+    function yearClick(){
+        currentYearControl.removeClass("current").attr("href",  "#")
+        .click(yearClick)
+        .next().next().slideUp();
+        
+        currentYearControl = $(this);
+        currentYearControl.addClass("current")
+        .unbind("click").next().next().slideDown();
     }
 </script>
 <div id="leftMenu">
@@ -83,9 +104,31 @@
 
         <% 
             foreach (int year in years)
-            {
-                
-            }
+            {%>
+                <a class="year"><%= year %></a><br /> 
+                <div class="year">
+                    <% 
+                        foreach (int month in yearMonths[year])
+                        {%>
+                        <a class="month">
+                            <%= getMonthName(month) %>
+                        </a>
+                        <br />
+                        <%if(broadcast){ %>
+                            <div class="broadcast">
+                                <%foreach (Article item in monthArticles[year + "-" + month])
+                                  {%>
+                                    <%= item.Title %><br />
+                                    <a href="/<%= currentCulture %>/Home/Broadcast/<%= item.Name %>">
+                                        <%= item.SubTitle %>
+                                    </a>
+                                <%} %>
+                            </div>
+                        <%} %>
+                      <%}
+                    %>
+                </div>
+          <%}
         %>
     </div>
     <div id="menuBottom">

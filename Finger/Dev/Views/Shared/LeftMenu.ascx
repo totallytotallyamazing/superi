@@ -6,64 +6,89 @@
     Dictionary<string, string[]> months = new Dictionary<string, string[]> { { "ru-RU", ruMonths }, { "en-US", enMonths } };
     using (DataStorage context = new DataStorage())
     {
-        bool broadcast = (ViewContext.RouteData.Values.ContainsKey("contentName") && ViewContext.RouteData.Values["contentName"].ToString().ToLower() == "lifestyle");
-
+        string action = ViewContext.RouteData.Values["action"].ToString();
+        bool broadcast = ((ViewContext.RouteData.Values.ContainsKey("contentName") && ViewContext.RouteData.Values["contentName"].ToString().ToLower() == "lifestyle") || action == "Broadcast");
+        
+        string currentCulture = Dev.Helpers.LocaleHelper.GetCultureName();
+        
         List<Article> articles = context.Articles.Where
             (
                 a => (broadcast) ? a.Type == (int)ArticleType.LifeStyle
                     : a.Type == (int)ArticleType.Note
-            ).OrderByDescending(a => a.Date).ToList();
-    
-%>
-<div id="leftMenu">
-    <div id="top">
-    </div>
-    <div id="content">
-        <% 
-            int year = 0;
-            int month = 0;
-            foreach (var item in articles)
+            )
+            .Where(a => a.Language == currentCulture)
+            .OrderByDescending(a => a.Date).ToList();
+        List<int> years = articles.Select(a => a.Date.Year).Distinct().ToList();
+
+        Dictionary<int, int[]> yearMonths = new Dictionary<int, int[]>();
+        foreach (int year in years)
+        {
+            yearMonths.Add(year, articles.Where(a => a.Date.Year == year).OrderByDescending(a => a.Date).Select(a => a.Date.Month).ToArray());
+        }
+        Dictionary<string, Article[]> monthArticles = new Dictionary<string, Article[]>();
+        if (broadcast)
+        {
+            foreach (var year in years)
             {
-                if (item.Date.Year != year)
+                foreach (var month in yearMonths[year])
                 {
-                    %>
-                    <div class="year">
-                        <a class="year">
-                            <%= item.Date.Year%>
-                        </a>
-              <%}
-                if (item.Date.Month != month)
-                {
-                    month = item.Date.Month;
-                    %>
-                    <div class="month">
-                        <a class="month">
-                            <%= item.Date.Month %>
-                        </a>
-              <%}
-                if (broadcast)
-                { %>
-                    <div class="broadcast">
-                        <%= item.Title %>
-                        <%= Html.ActionLink(item.SubTitle, "Broadcast", new {culture = System.Globalization.CultureInfo.CurrentUICulture, contentName = item.Name}) %>
-                    </div>    
-              <%}
-                if (item.Date.Month != month)
-                {
-                    month = item.Date.Month;
-                    %>
-                   </div>                     
-              <%}
-                if (item.Date.Year != year)
-                {
-                    year = item.Date.Year;
-                    %>
-                   </div>                     
-              <%}
+                    monthArticles.Add(year + "-" + month, articles.Where(a => a.Date.Year == year && a.Date.Month == month).Select(a => a).ToArray());
+                }
+            }
+        }
+        
+        Func<int, string> getMonthName = (monthNumber) => months[currentCulture][monthNumber - 1];
+%>
+
+<script type="text/javascript">
+    $(function() {
+        initializeLinks();
+        $("#menuContent").slideDown();
+    })
+
+    var currentYear = <%= DateTime.Now.Year %>;
+    var currentYearControl = null;
+    var currentMonth = <%= DateTime.Now.Month %>;
+    var currentMonthControl = null;
+    
+    function initializeLinks() { 
+        currentYearControl = $("a.year").eq(0);
+        currentYearControl.addClass("current");
+        $("div.year").not(currentYearControl.next().next()).hide(0);
+        $("a.year").not(currentYearControl).attr("href", "#")
+        .click(yearClick);
+        
+        function yearClick()
+        {
+            currentYearControl.removeClass("current").attr("href",  "#")
+            .click(yearClick)
+            .next().next().slideUp()
+            
+            currentYearControl = $(this);
+            currentYearControl.addClass("current").unbind("click").next().next().slideDown();
+        }
+    }
+</script>
+<div id="leftMenu">
+    <div id="menuTop">
+    </div>
+    <div id="menuContent">
+        <%if(Request.IsAuthenticated){ %>
+            <div class="adminLink">
+                <a href="/Admin/Article/?type=<%= (broadcast) ? ArticleType.LifeStyle  :ArticleType.Note %>">
+                    Добавить
+                </a>
+            </div>
+        <%} %>
+
+        <% 
+            foreach (int year in years)
+            {
+                
             }
         %>
     </div>
-    <div id="bottom">
+    <div id="menuBottom">
     </div>
 </div>
 <%} %>

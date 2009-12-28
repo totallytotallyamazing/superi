@@ -19,7 +19,7 @@
             <tr>
                 <td valign="middle" align="right">Кратко:</td>
                 <td align="left">
-                    <%= Html.TextArea("description_" + Model.ToString(), ViewData["description_" + Model.ToString()].ToString(),  new { style="width:300px;" })%>
+                    <%= Html.TextArea("description_" + Model.ToString(), (string)ViewData["description_" + Model.ToString()],  new { style="width:300px;" })%>
                 </td>
             </tr>
             <tr>

@@ -71,7 +71,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\ArticlesController.cs" />
-    <Compile Include="Controllers\BaseContentController.cs" />
+    <Compile Include="Controllers\ContentMethodAttribute.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LanguageController.cs" />
     <Compile Include="Controllers\LocalizedController.cs" />

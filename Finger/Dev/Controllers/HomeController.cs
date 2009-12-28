@@ -9,9 +9,15 @@ using Dev.Helpers;
 
 namespace Dev.Controllers
 {
-    public class HomeController : BaseContentController
+    public class HomeController : LocalizedController
     {
-        public ActionResult Broadcast(string name)
+        [ContentMethod]
+        public ActionResult Index()
+        {
+            return View();
+        }
+
+        public ActionResult Broadcast(string contentName)
         {
             using (DataStorage context = new DataStorage())
             {

@@ -5,6 +5,16 @@
 <%
     if (Request.Cookies["mooo"] == null)
         Response.Redirect("~/index.html");
+
+    bool showMenu = false;
+    string controller = ViewContext.RouteData.Values["controller"].ToString();
+    string contentName = string.Empty;
+    string action = ViewContext.RouteData.Values["action"].ToString();
+    if (ViewContext.RouteData.Values.ContainsKey("contentName"))
+    { 
+        contentName = ViewContext.RouteData.Values["contentName"].ToString();
+    }
+    showMenu = (controller == "Articles" || contentName == "LifeStyle" || action == "Broadcast");
 %>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -23,6 +33,9 @@
         <div id="tv">
             <%= Html.Image("~/Content/img/tv.gif") %>
         </div>
+        <% if(showMenu){
+               Html.RenderPartial("LeftMenu");
+        } %>
         <div id="stick">
         </div>
     </div>

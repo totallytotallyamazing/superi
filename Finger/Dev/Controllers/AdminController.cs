@@ -45,7 +45,8 @@ namespace Dev.Controllers
             {
                 using (DataStorage context = new DataStorage())
                 {
-                    var articles = context.Articles.Where(a => a.Name == contentName && a.Type == (int)type).OrderByDescending(a => a.Language).Select(a => a);
+                    int typeId = (int)type;
+                    var articles = context.Articles.Where(a => a.Name == contentName && a.Type == typeId).OrderByDescending(a => a.Language).Select(a => a);
                     foreach (var item in articles)
                     {
                         ViewData["id_" + item.Language] = item.Id;
@@ -88,7 +89,10 @@ namespace Dev.Controllers
                 }
                 context.SaveChanges();
             }
-            return RedirectToAction("Index", "Articles");
+            if(type == ArticleType.Note)
+                return RedirectToAction("Index", "Articles");
+            else
+                return RedirectToAction("Index", "Home");
         }
 
         public ActionResult DeleteArticle(string contentName, ArticleType type)

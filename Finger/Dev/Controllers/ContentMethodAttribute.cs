@@ -10,11 +10,11 @@ using System.Globalization;
 
 namespace Dev.Controllers
 {
-    public class BaseContentController : LocalizedController
+    public class ContentMethodAttribute : FilterAttribute, IActionFilter
     {
-        protected override void OnActionExecuting(ActionExecutingContext filterContext)
+
+        public void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            base.OnActionExecuting(filterContext);
             string contentName = filterContext.RouteData.Values["contentName"].ToString();
 
             if (contentName != null)
@@ -31,21 +31,23 @@ namespace Dev.Controllers
                     {
                         LocaleHelper.SetCulture(content.Language);
                     }
-                    ViewData["text"] = content.Text;
-                    ViewData["contentName"] = contentName;
-                    ViewData["text"] = content.Text;
-                    ViewData["title"] = content.Title;
-                    ViewData["keywords"] = content.Keywords;
-                    ViewData["description"] = content.Description;
-                    ViewData["contentName"] = content.Name;
-                    ViewData["subTitle"] = content.SubTitle;
+
+                    ViewDataDictionary viewData = filterContext.Controller.ViewData;
+                    viewData["text"] = content.Text;
+                    viewData["contentName"] = contentName;
+                    viewData["text"] = content.Text;
+                    viewData["title"] = content.Title;
+                    viewData["keywords"] = content.Keywords;
+                    viewData["description"] = content.Description;
+                    viewData["contentName"] = content.Name;
+                    viewData["subTitle"] = content.SubTitle;
                 }
             }
         }
 
-        public ActionResult Index(string contentUrl)
-        {
-            return View();
+        public void OnActionExecuted(ActionExecutedContext filterContext)
+        { 
+        
         }
     }
 }

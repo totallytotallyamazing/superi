@@ -27,13 +27,13 @@ namespace Zamov.Controllers
             {
                 List<CategoryPresentation> categories = context.GetCachedCategories(SystemSettings.CityId, SystemSettings.CurrentLanguage);
 
-                IEnumerable<CategoryPresentation> flattentCategories = categories.SelectMany(c => c.Children).Union(categories);
+                IEnumerable<CategoryPresentation> flattenCategories = categories.SelectMany(c => c.Children).Union(categories);
 
-                string[] categoryIds = flattentCategories.Where(c => c.Id == id || c.ParentId == id).Select(c => c.Id.ToString()).ToArray();
+                string[] categoryIds = flattenCategories.Where(c => c.Id == id || c.ParentId == id).Select(c => c.Id.ToString()).ToArray();
 
                 string categoryIdsString = string.Join(",", categoryIds);
 
-                ObjectQuery<Group> groups = new ObjectQuery<Group>("SELECT VALUE G FROM Groups as G WHERE G.Id IN{" + categoryIdsString + "}", context);
+                ObjectQuery<Group> groups = new ObjectQuery<Group>("SELECT VALUE G FROM Groups as G WHERE G.Category.Id IN{" + categoryIdsString + "}", context);
 
                 List<DealerPresentation> dealers = groups.Where(g => g.Dealer.Enabled).Join(context.Translations
                     .Where(tr => tr.Language == SystemSettings.CurrentLanguage)

@@ -115,7 +115,7 @@
                        {%>
                            
                    <div class="subMenuItem<%= selectedStyle(currentCategory, subItem.Id) %>">
-                        <a href="/Dealers/Index/<%= menuItem.Id %>"><%= subItem.Name%></a>
+                        <a href="/Dealers/Index/<%= subItem.Id %>"><%= subItem.Name%></a>
                    </div>    
                   <%   }%>  
                    

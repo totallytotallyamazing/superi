@@ -46,7 +46,7 @@
 
         function checkSelectedCategory() {
             if ($get("currentCategory").value) {
-                return true;
+                window.location.href = "/Dealers/" + $get("currentCategory").value;
             }
             else {
                 $("#currentCategory").parent().css("border", "1px solid red").css("padding", "1px;");
@@ -61,7 +61,6 @@
             }
         }
 </script>
-<% using(Html.BeginForm("Index", "Home")){ %>
 <table>
     <tr>
         <td>
@@ -75,8 +74,7 @@
             </div>
         </td>
         <td>
-            <input type="submit" onclick="return checkSelectedCategory()" value=">" class="headerSelect" style="margin-top:14px;" />
+            <input type="button" onclick="return checkSelectedCategory()" value=">" class="headerSelect" style="margin-top:14px;" />
         </td>
     </tr>
 </table>
-<%} %>

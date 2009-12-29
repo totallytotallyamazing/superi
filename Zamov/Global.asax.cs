@@ -76,6 +76,18 @@ namespace Zamov
             );
 
             routes.MapRoute(
+                "Ukrainian",                                              // Route name
+                "Home/SetUkrainian",                           // URL with parameters
+                new { controller = "Home", action = "SetUkrainian" }  // Parameter defaults
+            );
+
+            routes.MapRoute(
+                "Russian",                                              // Route name
+                "Home/SetRussian",                           // URL with parameters
+                new { controller = "Home", action = "SetRussian" }  // Parameter defaults
+            ); 
+
+            routes.MapRoute(
                 "CityIdSelection",                                              // Route name
                 "Home/{id}",                           // URL with parameters
                 new { controller = "Home", action = "Index", id = "" }  // Parameter defaults

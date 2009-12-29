@@ -1,5 +1,6 @@
 <%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
 <%@ Import Namespace="Microsoft.Web.Mvc" %>
+<%@ Import Namespace="Dev.Helpers" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
 <%
@@ -21,7 +22,7 @@
 <head runat="server">
     <meta name="Description" content="<%=ViewData["description"]%>"/>
     <meta name="Keywords" content="<%=ViewData["keywords"]%>"/>
-    <title><asp:ContentPlaceHolder ID="TitleContent" runat="server" /></title>
+    <title><%= Html.ResourceString("Elena") %> &mdash; <asp:ContentPlaceHolder ID="TitleContent" runat="server" /></title>
     <link href="../../Content/Site.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="/Scripts/jquery.js"></script>
     <asp:ContentPlaceHolder ID="Includes" runat="server"></asp:ContentPlaceHolder>
@@ -33,9 +34,10 @@
         <div id="tv">
             <%= Html.Image("~/Content/img/tv.gif") %>
         </div>
-        <% if(showMenu){
+        <% if (showMenu)
                Html.RenderPartial("LeftMenu");
-        } %>
+           else
+               Html.RenderPartial("LeftMenuCollapsed");    %>
         <div id="stick">
         </div>
     </div>
@@ -65,7 +67,12 @@
             <%= Html.Image("~/Content/img/adds/flowers.jpg") %>
         </div>
         <div id="copyright">
-        
+            <div style="float:left;">
+                <%= Html.ResourceString("Copyright") %>
+            </div>
+            <div style="float:right;">
+                <%= Html.ResourceString("MBrand") %>
+            </div>
         </div>
         
     </div>

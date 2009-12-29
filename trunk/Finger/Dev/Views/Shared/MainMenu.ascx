@@ -15,7 +15,9 @@
 
         string culture = LocaleHelper.GetCultureName();
 
-        string span = Html.ActionLink("[empty]", "Index", new { culture = "myCulture", contentName = "myName"}, new { id = "myId", @class = "myCulture" }).Replace("[empty]", string.Empty); 
+        string newController = "Home";
+
+        string span = Html.ActionLink("[empty]", "Index", newController, new { culture = "myCulture", contentName = "myName"}, new { id = "myId", @class = "myCulture" }).Replace("[empty]", string.Empty); 
 
         if (controller.ToLower() == "admin")
         {

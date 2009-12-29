@@ -1,7 +1,7 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<Dev.Models.Article>>" %>
 <%@ Import Namespace="Dev.Helpers" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	
+	<%= Html.ResourceString("Articles") %>
 </asp:Content>
 <asp:Content ContentPlaceHolderID="HeaderSubTitle" runat="server">
     <%= Html.ResourceString("Thoughts") %>

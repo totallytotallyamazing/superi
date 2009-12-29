@@ -120,6 +120,15 @@
   <data name="Articles" xml:space="preserve">
     <value>Notes</value>
   </data>
+  <data name="Copyright" xml:space="preserve">
+    <value>© 2009 “Life Style” with Elena Finger</value>
+  </data>
+  <data name="Elena" xml:space="preserve">
+    <value>Elena Finger</value>
+  </data>
+  <data name="MBrand" xml:space="preserve">
+    <value>М.бренд | &lt;a class="design" href="http://m-brand.com.ua"&gt;дизайн&lt;/a&gt;</value>
+  </data>
   <data name="Thoughts" xml:space="preserve">
     <value>thoughts and conclusions</value>
   </data>

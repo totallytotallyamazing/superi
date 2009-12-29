@@ -60,6 +60,8 @@ namespace Dev.Controllers
                     }
                 }
             }
+            else
+                ViewData["date"] = DateTime.Now.ToString("dd.MM.yyyy");
             return View();
         }
 
@@ -99,14 +101,19 @@ namespace Dev.Controllers
         {
             using (DataStorage context = new DataStorage())
             {
-                var articles = context.Articles.Where(a => a.Name == contentName && a.Type == (int)type).OrderByDescending(a => a.Language).Select(a => a);
+                int typeId = (int)type;
+                var articles = context.Articles.Where(a => a.Name == contentName && a.Type == typeId).OrderByDescending(a => a.Language).Select(a => a);
                 foreach (var item in articles)
                 {
                     context.DeleteObject(item);
                 }
                 context.SaveChanges();
             }
-            return RedirectToAction("Index", "Articles");
+            if (type == ArticleType.Note)
+                return RedirectToAction("Index", "Articles");
+            else
+                return RedirectToAction("Index", "Home");
+
         }
     }
 }

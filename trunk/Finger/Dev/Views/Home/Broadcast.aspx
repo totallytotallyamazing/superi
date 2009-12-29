@@ -8,6 +8,8 @@
     <%if(Request.IsAuthenticated){ %>
         <div class="adminLink">
             <a href="/Admin/Article/<%= Model.Name %>/?type=<%= ArticleType.LifeStyle %>">Изменить</a>
+            / 
+            <a href="/Admin/DeleteArticle/<%= Model.Name %>/?type=<%= ArticleType.LifeStyle %>">Удалить</a>  
         </div>
     <%} %>
     <%= Model.Text %>

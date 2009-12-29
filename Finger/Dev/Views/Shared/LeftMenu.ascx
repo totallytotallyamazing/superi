@@ -3,6 +3,9 @@
 <% 
     string[] ruMonths = { "Январь", "Фавраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь" };
     string[] enMonths = { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
+
+    bool expand = (ViewData["expand"] != null) ? (bool)ViewData["expand"] : true;
+    
     Dictionary<string, string[]> months = new Dictionary<string, string[]> { { "ru-RU", ruMonths }, { "en-US", enMonths } };
     using (DataStorage context = new DataStorage())
     {
@@ -23,7 +26,7 @@
         Dictionary<int, int[]> yearMonths = new Dictionary<int, int[]>();
         foreach (int year in years)
         {
-            yearMonths.Add(year, articles.Where(a => a.Date.Year == year).OrderByDescending(a => a.Date).Select(a => a.Date.Month).ToArray());
+            yearMonths.Add(year, articles.Where(a => a.Date.Year == year).OrderByDescending(a => a.Date).Select(a => a.Date.Month).Distinct().ToArray());
         }
         Dictionary<string, Article[]> monthArticles = new Dictionary<string, Article[]>();
         if (broadcast)
@@ -41,30 +44,46 @@
 %>
 
 <script type="text/javascript">
+    var expand = <%= expand.ToString().ToLower() %>;
+    var slideDownSpeed = 700;
+    
+    if(!expand)
+        slideDownSpeed = 0;
+    
     $(function() {
         initializeLinks();
-        $("#menuContent").slideDown();
+        $("#menuContent").slideDown(slideDownSpeed);
     })
 
-    var currentYear = <%= DateTime.Now.Year %>;
+    var currentCulture = "<%= currentCulture %>";
+    var currentYear = <%= ViewData["year"] %>;
     var currentYearControl = null;
-    var currentMonth = <%= DateTime.Now.Month %>;
+    var currentMonth = <%= ViewData["month"] %>;
     var currentMonthControl = null;
     var broadcast = <%= broadcast.ToString().ToLower() %>;
     
+    
     function initializeLinks() { 
-        currentYearControl = $("a.year").eq(0);
+        currentYearControl = $("a.year[rel='" + currentYear + "']").eq(0);
         currentYearControl.addClass("current");
         $("div.year").not(currentYearControl.next().next()).hide(0);
         $("a.year").not(currentYearControl).attr("href", "#")
         .click(yearClick);
         
+        var rel = currentYear + "-" + currentMonth;
+        currentMonthControl = $("a.month[rel='" + rel + "']").eq(0);
+        currentMonthControl.addClass("current");
+
         if(broadcast){
-            currentMonthControl = currentYearControl.next().next().children().eq(0);
-            currentMonthControl.addClass("current");
             $("div.broadcast").not(currentMonthControl.next().next()).hide(0);
             $("a.month").not(currentMonthControl).attr("href", "#")
             .click(monthClick);
+        }
+        else{
+            $("a.month").not(currentMonthControl).each(function(){
+                var href = "/"+currentCulture+"/Notes/" + $(this).attr("rel");
+                this.href = href;
+            })
         }
     }
     
@@ -105,12 +124,12 @@
         <% 
             foreach (int year in years)
             {%>
-                <a class="year"><%= year %></a><br /> 
+                <a class="year" rel="<%= year %>"><%= year %></a><br /> 
                 <div class="year">
                     <% 
                         foreach (int month in yearMonths[year])
                         {%>
-                        <a class="month">
+                        <a class="month" rel="<%= year + "-" + month %>">
                             <%= getMonthName(month) %>
                         </a>
                         <br />
@@ -122,6 +141,8 @@
                                     <a href="/<%= currentCulture %>/Home/Broadcast/<%= item.Name %>">
                                         <%= item.SubTitle %>
                                     </a>
+                                    <div>
+                                    </div>
                                 <%} %>
                             </div>
                         <%} %>

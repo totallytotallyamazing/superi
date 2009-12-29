@@ -68,6 +68,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="App_GlobalResources\Resources.en-US.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.en-US.resx</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\ArticlesController.cs" />
@@ -188,6 +193,7 @@
     <Content Include="Views\Shared\Index.aspx" />
     <Content Include="Views\Shared\LanguageBar.ascx" />
     <Content Include="Views\Shared\LeftMenu.ascx" />
+    <Content Include="Views\Shared\LeftMenuCollapsed.ascx" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />

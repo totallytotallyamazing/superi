@@ -26,6 +26,12 @@ namespace Dev
             // );
 
             routes.MapRoute(
+                "DeleteArticle",                                              // Route name
+                "Admin/DeleteArticle/{contentName}",                           // URL with parameters
+                new { controller = "Admin", action = "DeleteArticle", contentName = "" }  // Parameter defaults
+             );
+
+            routes.MapRoute(
                 "Admin",                                              // Route name
                 "Admin/Article/{contentName}",                           // URL with parameters
                 new { controller = "Admin", action = "Article", contentName = "" }  // Parameter defaults
@@ -52,14 +58,14 @@ namespace Dev
 
             routes.MapRoute(
                 "Articles",                                              // Route name
-                "Notes/{page}",                           // URL with parameters
-                new { culture = "ru-RU", controller = "Articles", action = "Index", page = 0 }  // Parameter defaults
+                "Notes/{date}",                           // URL with parameters
+                new { culture = "ru-RU", controller = "Articles", action = "Index", date = "" }  // Parameter defaults
              );
 
             routes.MapRoute(
                 "LocalizedArticles",                                              // Route name
-                "{culture}/Notes/{page}",                           // URL with parameters
-                new { culture = "ru-RU", controller = "Articles", action = "Index", page = 0 }  // Parameter defaults
+                "{culture}/Notes/{date}",                           // URL with parameters
+                new { culture = "ru-RU", controller = "Articles", action = "Index", date = "" }  // Parameter defaults
              );
 
             routes.MapRoute(

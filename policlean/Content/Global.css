@@ -30,8 +30,7 @@ img{border:none;}
     line-height: 62px;
     position: absolute;
     width: 914px;
-    padding-left: 580px;
-    text-align: left;
+    text-align: right;
 }
 #title:first-letter
 {

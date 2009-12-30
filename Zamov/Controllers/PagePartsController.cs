@@ -35,7 +35,16 @@ namespace Zamov.Controllers
                 {
                     SystemSettings.InitializeCity(int.Parse(citiesList[0].Value));
                     if (citiesList.Where(cl => cl.Selected).Count() == 0)
-                        citiesList[0].Selected = true;
+                    {
+                        if (SystemSettings.CityId > 0)
+                        {
+                            citiesList.ForEach(c => c.Selected = c.Value == SystemSettings.CityId.ToString());
+                        }
+                        else
+                        {
+                            citiesList[0].Selected = true;
+                        }
+                    }
                     cityId = (from cl in citiesList where cl.Selected select int.Parse(cl.Value)).First();
                 }
                 List<SelectListItem> categoriesList = context.GetCachedCategories(cityId, SystemSettings.CurrentLanguage)
@@ -43,7 +52,6 @@ namespace Zamov.Controllers
                     {
                         Text = c.Name,
                         Value = c.Id.ToString(),
-                        Selected = c.Id == SystemSettings.CategoryId
                     })
                     .ToList();
                 categoriesList.Insert(0, new SelectListItem { Selected = true, Text = "--" + ResourcesHelper.GetResourceString("SelectCategory") + "--", Value = "" });

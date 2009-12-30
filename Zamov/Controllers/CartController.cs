@@ -29,7 +29,7 @@ namespace Zamov.Controllers
             {
                 List<Dealer> dealers = (from dealer in context.Dealers.Include("Cities").Include("Categories")
                                         where dealer.Cities.Where(c => c.Id == SystemSettings.CityId).Count() > 0
-                                        && dealer.Categories.Where(c => c.Id == SystemSettings.CategoryId).Count() > 0
+//                                        && dealer.Categories.Where(c => c.Id == SystemSettings.CategoryId).Count() > 0
                                         select dealer).ToList();
                 ViewData["dealers"] = dealers;
             }

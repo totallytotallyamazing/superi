@@ -46,7 +46,7 @@
 
         function checkSelectedCategory() {
             if ($get("currentCategory").value) {
-                window.location.href = "/Dealers/" + $get("currentCategory").value;
+                window.location.href = "/Dealers/" + $get("currentCategory").value + "/?cityId=" + $get("currentCity").value;
             }
             else {
                 $("#currentCategory").parent().css("border", "1px solid red").css("padding", "1px;");

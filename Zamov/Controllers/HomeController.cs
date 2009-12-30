@@ -43,7 +43,6 @@ namespace Zamov.Controllers
         public ActionResult Index(int currentCity, int currentCategory)
         {
             SystemSettings.CityId = currentCity;
-            SystemSettings.CategoryId = currentCategory;
             return Redirect("~/Categories");
         }
 

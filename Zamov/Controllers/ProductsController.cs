@@ -11,15 +11,15 @@ using System.Web.Caching;
 
 namespace Zamov.Controllers
 {
-    [BreadCrumb(CategoryId = true)]
     public class ProductsController : Controller
     {
 
         private const int MaxTopProductsNumber = 5;
         //TODO: тут пиздец с быстродейтвием
-        [BreadCrumb(SubCategoryId = true)]
         public ActionResult Index(string dealerId, int categoryId, int? groupId, SortFieldNames? sortField, SortDirection? sortOrder)
         {
+           // BreadCrumbAttribute.ProcessCategory(categoryId, HttpContext);
+
             ViewData["sortDirection"] = sortOrder;
             ViewData["sortField"] = (sortField != null) ? sortField.ToString() : null;
             ViewData["sortDealerId"] = dealerId;
@@ -30,8 +30,6 @@ namespace Zamov.Controllers
             {
                 int dealer = context.Dealers.Where(d => d.Name == dealerId).Select(d => d.Id).First();
                 BreadCrumbsExtensions.AddBreadCrumb(HttpContext, BreadCrumbAttribute.DealerName(dealer), "/Dealers/SelectDealer/" + dealer);
-                if (groupId != null)
-                    BreadCrumbAttribute.ProcessGroup(groupId.Value, HttpContext);
 
                 List<Group> groups = (from g in context.Groups.Include("Groups").Include("Dealer").Include("Category") where g.Dealer.Id == dealer && !g.Deleted && g.Enabled select g).ToList();
                 ViewData["groups"] = groups;
@@ -59,6 +57,8 @@ namespace Zamov.Controllers
 
                     displayGroupImages = currentGroup.DisplayProductImages;
                 }
+                
+                BreadCrumbAttribute.ProcessGroup(currentGroup.Id, HttpContext);
 
                 ViewData["displayGroupImages"] = displayGroupImages;
 

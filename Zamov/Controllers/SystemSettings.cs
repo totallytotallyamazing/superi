@@ -123,41 +123,6 @@ namespace Zamov.Controllers
             set { Session["CityId"] = value; }
         }
 
-        public static int CategoryId
-        {
-            get
-            {
-                int result = int.MinValue;
-                if (Session["CategoryId"] != null)
-                    result = Convert.ToInt32(Session["CategoryId"]);
-                return result;
-            }
-            set { Session["CategoryId"] = value; }
-        }
-
-        public static string CategoryName
-        {
-            get 
-            {
-                if (Session["categoryName"] == null)
-                    return null;
-                return Session["categoryName"].ToString();
-            }
-            set { Session["categoryName"] = value; }
-        }
-
-        public static int SubCategoryId
-        {
-            get
-            {
-                int result = int.MinValue;
-                if (Session["SubCategoryId"] != null)
-                    result = Convert.ToInt32(Session["SubCategoryId"]);
-                return result;
-            }
-            set { Session["SubCategoryId"] = value; }
-        }
-
         public static Cart Cart
         {
             get 

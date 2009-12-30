@@ -12,16 +12,19 @@ using System.Data.Objects;
 
 namespace Zamov.Controllers
 {
-    [BreadCrumb(CategoryId = true)]
     public class DealersController : Controller
     {
         //
         // GET: /Dealers/
-        [BreadCrumb(SubCategoryId = true)]
-        public ActionResult Index(int? id)
+        public ActionResult Index(int? id, int? cityId)
         {
             if (!id.HasValue)
                 throw new HttpException(404, "Article not found");
+
+            if (cityId.HasValue)
+                SystemSettings.CityId = cityId.Value;
+
+            BreadCrumbAttribute.ProcessCategory(id.Value, HttpContext);
 
             using (ZamovStorage context = new ZamovStorage())
             {

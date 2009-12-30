@@ -35,19 +35,21 @@ namespace Zamov.Controllers
 
                 ObjectQuery<Group> groups = new ObjectQuery<Group>("SELECT VALUE G FROM Groups as G WHERE G.Category.Id IN{" + categoryIdsString + "}", context);
 
-                List<DealerPresentation> dealers = groups.Where(g => g.Dealer.Enabled).Join(context.Translations
-                    .Where(tr => tr.Language == SystemSettings.CurrentLanguage)
-                    .Where(tr => tr.TranslationItemTypeId == (int)ItemTypes.DealerName),
-                    g => g.Dealer.Id, tr => tr.ItemId,
-                    (g, tr) => new DealerPresentation
-                        {
-                            Id = g.Dealer.Id,
-                            Name = tr.Text,
-                            TopDealer = g.Dealer.TopDealer,
-                            StringId = g.Dealer.Name
-                        }
-                    )
-                .Distinct().ToList();
+                List<DealerPresentation> dealers = groups.Where(g => g.Dealer.Enabled)
+                    .Where(g=>g.Dealer.Cities.Where(city=>city.Id == SystemSettings.CityId).Count()>0)
+                    .Join(context.Translations
+                        .Where(tr => tr.Language == SystemSettings.CurrentLanguage)
+                        .Where(tr => tr.TranslationItemTypeId == (int)ItemTypes.DealerName),
+                        g => g.Dealer.Id, tr => tr.ItemId,
+                        (g, tr) => new DealerPresentation
+                            {
+                                Id = g.Dealer.Id,
+                                Name = tr.Text,
+                                TopDealer = g.Dealer.TopDealer,
+                                StringId = g.Dealer.Name
+                            }
+                        )
+                   .Distinct().ToList();
 
                 ViewData["categories"] = categories;
                 ViewData["expandedGroup"] = categories

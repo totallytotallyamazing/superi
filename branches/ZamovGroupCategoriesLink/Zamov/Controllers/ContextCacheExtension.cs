@@ -12,9 +12,33 @@ namespace Zamov.Controllers
     public static class ContextCache
     {
         public const string CategoriesCachePrefix = "CityCategoriesPresentation_";
+        public const string CategoryChainCachePrefix = "CategoriesChain_";
         public const string CitiesCachePrefix = "Cities_";
 
         private static Cache Cache { get { return HttpContext.Current.Cache; } }
+
+        public static List<CategoryPresentation> GetCachedCategoryChain(this ZamovStorage context, int categoryId, string language)
+        {
+            string cacheKey = CategoryChainCachePrefix + categoryId + "_" + language;
+
+            if (HttpContext.Current.Cache[cacheKey] == null)
+            {
+                var initialCategories = context.GetTranslatedCategories(language, true, null, false);
+                List<CategoryPresentation> categories = initialCategories
+                    .Where(item => item.Entity.Id == categoryId)
+                    .Union(
+                        initialCategories.Where(c=>c.Entity.Categories.Where(cat=>cat.Id == categoryId).Count()>0)
+                    )
+                    .Select(tc => new CategoryPresentation
+                    {
+                        Id = tc.Entity.Id,
+                        Name = tc.Translation.Text,
+                        ParentId = tc.Entity.Parent.Id
+                    }).ToList();
+                HttpContext.Current.Cache[cacheKey] = categories;
+            } 
+            return (List<CategoryPresentation>)HttpContext.Current.Cache[cacheKey];
+        }
 
         public static List<CategoryPresentation> GetCachedCategories(this ZamovStorage context, int cityId, string language)
         {

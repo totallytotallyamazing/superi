@@ -15,7 +15,7 @@ namespace Zamov.Helpers
         public string Text { get; set; }
         public string Url { get; set; }
         public string ResourceName { get; set; }
-        public bool CategoryId { get; set; }
+        public int CategoryId { get; set; }
         public bool SubCategoryId { get; set; }
         public bool DealerId { get; set; }
         public int GroupId { get; set; }
@@ -25,15 +25,10 @@ namespace Zamov.Helpers
             string url = string.Empty;
             string text = string.Empty;
 
-            if (CategoryId)
+            if (CategoryId != 0)
             {
                 url = "/Categories";
-                text = CategoryName(SystemSettings.CategoryId);
-            }
-            else if (SubCategoryId)
-            {
-                url = "/Dealers";
-                text = CategoryName(SystemSettings.SubCategoryId);
+                text = CategoryName(CategoryId);
             }
             else if (DealerId)
             {
@@ -53,6 +48,18 @@ namespace Zamov.Helpers
                 url = Url;
             BreadCrumbsExtensions.AddBreadCrumb(filterContext.HttpContext, text, url);
             base.OnActionExecuting(filterContext);
+        }
+
+        public static void ProcessCategory(int categoryId, HttpContextBase httpContext)
+        {
+            using (ZamovStorage context = new ZamovStorage())
+            {
+                var chain = context.GetCachedCategoryChain(categoryId, SystemSettings.CurrentLanguage);
+                foreach (var item in chain)
+                {
+                    BreadCrumbsExtensions.AddBreadCrumb(httpContext, item.Name, "/Dealers/" + item.Id);
+                }
+            }
         }
 
         public static void ProcessGroup(int groupId, HttpContextBase httpContext)

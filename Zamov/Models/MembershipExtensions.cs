@@ -141,6 +141,7 @@ namespace Zamov.Models
 
             foreach (var item in users)
             {
+
                 Dictionary<string, string> profileProperties = GetProfileProperties(item.profileProperties.Split(':'), item.profileValues);
                 UserPresentation user = GetUserPresentation(profileProperties);
                 if (user != null)

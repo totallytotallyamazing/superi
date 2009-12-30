@@ -350,7 +350,7 @@ namespace Zamov.Controllers
         {
             if (!captchaValid)
             {
-                ModelState.AddModelError("captchaCheck", ResourcesHelper.GetResourceString("IncorrectCaptcha"));
+               // ModelState.AddModelError("captchaCheck", ResourcesHelper.GetResourceString("IncorrectCaptcha"));
             }
             if (String.IsNullOrEmpty(email))
             {

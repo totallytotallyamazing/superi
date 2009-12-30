@@ -26,6 +26,7 @@
         List<SiteContent> items = (from content in context.SiteContent.Include("Parent")
                                    where (rootElement && content.Parent.Id == contentId)
                                    || (secondLevel && content.Parent.Id == parentId)
+                                   orderby content.SortOrder
                                    select content).ToList();
         
         if(thirdLevel)

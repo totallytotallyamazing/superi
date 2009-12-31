@@ -30,7 +30,19 @@
         <% foreach (GroupResentation item in Model)
            {%>
         <div class="menuItem">
-            <%= Html.ActionLink(item.Name, "Index", new { dealerId = dealerId, categoryId = categoryId, groupId = item.Id }, new { @class = (item.Id == groupId || item.Id == groupToExpand) ? "active" : string.Empty })%>
+            <%
+                int newCategoryId = item.CategoryId;
+                if (newCategoryId == 0)
+               {
+                    GroupResentation groupResentation = item.Parent;
+                    while (groupResentation!=null)
+                    {
+                        newCategoryId = groupResentation.CategoryId;
+                        groupResentation = groupResentation.Parent;
+                    }
+                }
+            %>
+            <%= Html.ActionLink(item.Name, "Index", new { dealerId = dealerId, categoryId = newCategoryId, groupId = item.Id }, new { @class = (item.Id == groupId || item.Id == groupToExpand) ? "active" : string.Empty })%>
         </div>
         <%      if (item.Id == groupToExpand)
                 {

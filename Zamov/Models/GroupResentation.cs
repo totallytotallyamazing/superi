@@ -16,6 +16,7 @@ namespace Zamov.Models
         public List<GroupResentation> Children { get { return children; } }
         public GroupResentation Parent{get; private set;}
         public string DealerName { get; set; }
+        public int CategoryId { get; set; }
 
         public void PickChildren(List<GroupResentation> source)
         {

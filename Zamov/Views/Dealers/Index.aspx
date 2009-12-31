@@ -11,28 +11,24 @@
         var intervalCount = 0;
         $(function() {
             applyDropShadows(".dealerLogoLink", "shadow3");
-            if ($.browser.msie && $.browser.version !== "8.0") {
-                $(".topDealers").width($(mainContent).width() - 30);
-                $(window).resize(function() { $(".topDealers").width($(mainContent).width() - 30); });
-            }
-            else {
+//            if ($.browser.msie && $.browser.version !== "8.0") {
+//                $(".topDealers").width($(mainContent).width() - 30);
+//                $(window).resize(function() { $(".topDealers").width($(mainContent).width() - 30); });
+//            }
+//            else {
                 $(".topDealers").css({ width: "97%", float: "left" });
-            }
-            intervalId = setInterval(alignDealerOnline, 100);
+            //}
         })
 
         function alignDealerOnline() {
             $(".dalerOnline").each(function() {
-                var top = $(this.parentNode).offset().top + 5;
-                var left = $(this.parentNode).offset().left + $(this.parentNode).width() + 10;
-                this.style.left = left + "px";
-                this.style.top = top + "px";
-                intervalCount++;
-                if (intervalCount == 100) {
-                    clearInterval(intervalId);
-                }
+                var dealerImage = this.nextSibling;
+                this.style.marginLeft = $(dealerImage.firstChild).width();
+            })
+            if (intervalCount > 100) {
+                window.clearInterval(intervalId);
             }
-            );
+            intervalCount++;
         }
     </script>
 

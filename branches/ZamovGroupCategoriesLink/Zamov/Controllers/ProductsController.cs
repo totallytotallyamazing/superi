@@ -18,18 +18,18 @@ namespace Zamov.Controllers
         //TODO: тут пиздец с быстродейтвием
         public ActionResult Index(string dealerId, int categoryId, int? groupId, SortFieldNames? sortField, SortDirection? sortOrder)
         {
-           // BreadCrumbAttribute.ProcessCategory(categoryId, HttpContext);
+            BreadCrumbAttribute.ProcessCategory(categoryId, HttpContext);
 
             ViewData["sortDirection"] = sortOrder;
             ViewData["sortField"] = (sortField != null) ? sortField.ToString() : null;
             ViewData["sortDealerId"] = dealerId;
-            string sortFieldPart = (sortField!=null) ? sortField.ToString() : "NoSort";
+            string sortFieldPart = (sortField != null) ? sortField.ToString() : "NoSort";
             string sortOrderPart = (sortOrder != null) ? sortOrder.ToString() : "NoSort";
             string productsCacheKey = "ProductsPage_" + dealerId + "_" + groupId + "_" + sortFieldPart + "_" + sortOrderPart;
             using (ZamovStorage context = new ZamovStorage())
             {
                 int dealer = context.Dealers.Where(d => d.Name == dealerId).Select(d => d.Id).First();
-                BreadCrumbsExtensions.AddBreadCrumb(HttpContext, BreadCrumbAttribute.DealerName(dealer), "/Dealers/SelectDealer/" + dealer);
+                BreadCrumbsExtensions.AddBreadCrumb(HttpContext, BreadCrumbAttribute.DealerName(dealer), "/Products/" + dealer + "/" + categoryId);
 
                 List<Group> groups = (from g in context.Groups.Include("Groups").Include("Dealer").Include("Category") where g.Dealer.Id == dealer && !g.Deleted && g.Enabled select g).ToList();
                 ViewData["groups"] = groups;
@@ -38,7 +38,7 @@ namespace Zamov.Controllers
                 ViewData["categoryId"] = categoryId;
 
                 bool displayGroupImages = false;
-                
+
                 Group currentGroup = null;
                 if (groupId != null)
                 {
@@ -57,7 +57,7 @@ namespace Zamov.Controllers
 
                     displayGroupImages = currentGroup.DisplayProductImages;
                 }
-                
+
                 BreadCrumbAttribute.ProcessGroup(currentGroup.Id, HttpContext);
 
                 ViewData["displayGroupImages"] = displayGroupImages;
@@ -71,17 +71,18 @@ namespace Zamov.Controllers
                         products = products.Where(p => !p.Deleted && p.Group.Enabled && p.Enabled && !p.Group.Deleted).ToList();
                     }
                     else
-                        products = 
-                            (from product in context.Products 
-                             where ((groupId == null) || product.Group.Id == groupId) 
-                             && product.Dealer.Id == dealer 
-                             && !product.Deleted 
-                             && product.Group.Enabled 
-                             && !product.Group.Deleted 
-                             && product.Enabled select product)
+                        products =
+                            (from product in context.Products
+                             where ((groupId == null) || product.Group.Id == groupId)
+                             && product.Dealer.Id == dealer
+                             && !product.Deleted
+                             && product.Group.Enabled
+                             && !product.Group.Deleted
+                             && product.Enabled
+                             select product)
                              .ToList();
 
-                    
+
                     products.ForEach(p => p.LoadDescriptions());
 
 
@@ -156,7 +157,8 @@ namespace Zamov.Controllers
                                   Id = gr.Id,
                                   Name = translation.Text,
                                   ParentId = (gr.Parent != null) ? (int?)gr.Parent.Id : null,
-                                  DealerName = gr.Dealer.Name
+                                  DealerName = gr.Dealer.Name,
+                                  CategoryId = (gr.Category != null) ? gr.Category.Id : 0
                               }
                               ).ToList();
             }
@@ -271,15 +273,16 @@ namespace Zamov.Controllers
             using (ZamovStorage context = new ZamovStorage())
             {
                 ProductPresentation product = (from item in context.Products.Include("ProductImages")
-                                               where 
+                                               where
                                                item.Id == id
                                                let hasImage = item.ProductImages.Count > 0
                                                let imageId = (hasImage) ? item.ProductImages.FirstOrDefault().Id : 0
-                                               let description = 
-                                                (from d in context.Translations where d.Language == SystemSettings.CurrentLanguage 
-                                                     && d.TranslationItemTypeId == (int)ItemTypes.ProductDescription 
+                                               let description =
+                                                (from d in context.Translations
+                                                 where d.Language == SystemSettings.CurrentLanguage
+                                                     && d.TranslationItemTypeId == (int)ItemTypes.ProductDescription
                                                      && d.ItemId == item.Id
-                                                     select d.Text).FirstOrDefault()
+                                                 select d.Text).FirstOrDefault()
                                                select new ProductPresentation
                                                {
                                                    Name = item.Name,

@@ -14,8 +14,6 @@ namespace Zamov.Controllers
 {
     public class DealersController : Controller
     {
-        //
-        // GET: /Dealers/
         public ActionResult Index(int? id, int? cityId)
         {
             if (!id.HasValue)

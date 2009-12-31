@@ -11,11 +11,9 @@
 %>
 
 <script type="text/javascript">
-//        $(function() {
-//            setInterval(queryOrders, 10000);
-//        });
-
-
+    $(function() {
+        setInterval(queryOrders, 180000);
+    });
 
         function queryOrders() {
             var webRequest = Sys.Net.WebServiceProxy.invoke(

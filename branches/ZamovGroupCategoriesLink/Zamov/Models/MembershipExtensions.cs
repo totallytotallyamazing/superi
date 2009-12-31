@@ -15,7 +15,7 @@ namespace Zamov.Models
             int[] result = null;
             using (MembershipStorage context = new MembershipStorage())
             {
-                DateTime verificationTime = DateTime.Now.ToUniversalTime().AddSeconds(-30);
+                DateTime verificationTime = DateTime.Now.ToUniversalTime().AddMinutes(-3);
                 var profiles = (from
                                     user in context.aspnet_Users.Include("aspnet_Roles").Include("aspnet_Profile")
                                 where

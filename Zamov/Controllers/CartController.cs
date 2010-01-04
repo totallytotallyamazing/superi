@@ -41,7 +41,8 @@ namespace Zamov.Controllers
             SystemSettings.EmptyCart();
             if (string.IsNullOrEmpty(redirectUrl))
                 return RedirectToAction("Index", "Home");
-            return Redirect(redirectUrl);
+            string decodedUrl = HttpUtility.UrlDecode(redirectUrl);
+            return Redirect(decodedUrl);
         }
 
         public ActionResult RemoveOrderItem(int id, string redirectUrl)

@@ -18,6 +18,8 @@ namespace Zamov.Controllers
         //TODO: тут пиздец с быстродейтвием
         public ActionResult Index(string dealerId, int categoryId, int? groupId, SortFieldNames? sortField, SortDirection? sortOrder)
         {
+            HttpContext.Items["categoryId"] = categoryId;
+
             BreadCrumbAttribute.ProcessCategory(categoryId, HttpContext);
 
             ViewData["sortDirection"] = sortOrder;

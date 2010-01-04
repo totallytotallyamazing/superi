@@ -15,10 +15,6 @@
                 $(".topDealers").width($(mainContent).width() - 30);
                 $(window).resize(function() { $(".topDealers").width($(mainContent).width() - 30); });
             }
-            debugger;
-//            else if ($.browser.msie && $.browser.version !== "7.0") {
-//                $(".dalerOnline").css("margin-left", "-40px");
-//            }
             else {
                 $(".topDealers").css({ width: "97%", float: "left" });
             }

@@ -149,6 +149,7 @@ namespace Zamov.Controllers
                         item.ProductId = product.Id;
                         item.Quantity = orderItem.Quantity;
                         item.Unit = product.Unit;
+                        item.HashCode = item.GetHashCode();
                         order.OrderItems.Add(item);
                     }
                 }

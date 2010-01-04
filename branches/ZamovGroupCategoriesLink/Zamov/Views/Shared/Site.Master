@@ -83,7 +83,7 @@
                             <%=Html.ResourceString("Search")%>:
                         </td>
                         <td valign="top">
-                            <%using (Html.BeginForm("SearchProduct", "Search", FormMethod.Post))
+                            <%using (Html.BeginForm("SearchProduct", "Search", FormMethod.Get))
                               {%><%=Html.TextBox("searchContext", null, new { style="height:13px; font-size:10px;"})%>
                             <%
                                 } %>

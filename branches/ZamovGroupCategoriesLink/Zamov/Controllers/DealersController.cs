@@ -22,6 +22,8 @@ namespace Zamov.Controllers
             if (cityId.HasValue)
                 SystemSettings.CityId = cityId.Value;
 
+            HttpContext.Items["categoryId"] = id;
+
             BreadCrumbAttribute.ProcessCategory(id.Value, HttpContext);
 
             using (ZamovStorage context = new ZamovStorage())

@@ -30,9 +30,9 @@
     
     bool displayCartContainer = (orderItemsCount > 0 && cart.Id == 0) || hostAction != CartHostActions.Other;
 
-    string redirectUrl = Request.Url.AbsoluteUri;
+    string redirectUrl = HttpUtility.UrlEncode(Request.Url.AbsoluteUri);
     if (hostAction == CartHostActions.Cart)
-        redirectUrl = Request.Headers["Referer"];
+        redirectUrl = HttpUtility.UrlEncode(Request.Headers["Referer"]);
 
 %>
 

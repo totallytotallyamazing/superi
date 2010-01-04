@@ -25,6 +25,7 @@ namespace Zamov.Controllers
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
         public ActionResult HeaderSelectors()
         {
+            int categoryId = Convert.ToInt32(HttpContext.Items["categoryId"]);
 
             using (ZamovStorage context = new ZamovStorage())
             {
@@ -52,6 +53,7 @@ namespace Zamov.Controllers
                     {
                         Text = c.Name,
                         Value = c.Id.ToString(),
+                        Selected = c.Id == categoryId || c.Children.Where(ch => ch.Id == categoryId).Count() > 0
                     })
                     .ToList();
                 categoriesList.Insert(0, new SelectListItem { Selected = true, Text = "--" + ResourcesHelper.GetResourceString("SelectCategory") + "--", Value = "" });

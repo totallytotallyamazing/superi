@@ -17,7 +17,7 @@ namespace Zamov.Controllers
                 info = CultureInfo.GetCultureInfo(lang);
             }
             else
-                info = CultureInfo.GetCultureInfo("uk-UA");
+                info = CultureInfo.GetCultureInfo("ru-RU");
             return info;
         }
 

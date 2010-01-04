@@ -10,6 +10,8 @@
     <%foreach (var item in Model)
       {
           string single = (item.Children.Count == 0) ? " single" : "";
+          if (item.Name.Length > 20)
+              single += " long";
           %>
         <div class="mainCategory<%= single %>">
             <div class="categoryButton">

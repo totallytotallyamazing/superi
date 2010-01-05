@@ -92,7 +92,7 @@
         int dealerId = (int)ViewData["dealerId"];
        
     %>
-    <%= Html.ResourceActionLink("PickAnotherDealer", "Index", "Dealers")%><br />
+    <%= Html.ResourceActionLink("PickAnotherDealer", "Index", "Dealers", new { id = ViewContext.HttpContext.Items["categoryId"] }, null)%><br />
     <% Html.RenderPartial("TopProducts"); %>
     <%if (Model.Count > 0)
       { %>

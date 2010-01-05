@@ -87,7 +87,7 @@ namespace Zamov.Helpers
 
         private static string GroupName(int groupId)
         {
-            string cacheKey = "dealerName_" + groupId + SystemSettings.CurrentLanguage;
+            string cacheKey = "groupName_" + groupId + SystemSettings.CurrentLanguage;
             if (HttpContext.Current.Cache[cacheKey] == null)
             {
                 using (ZamovStorage context = new ZamovStorage())
@@ -106,7 +106,7 @@ namespace Zamov.Helpers
 
         private string CategoryName(int categoryId)
         {
-            string cacheKey = "dealerName_" + categoryId + SystemSettings.CurrentLanguage;
+            string cacheKey = "categoryName_" + categoryId + SystemSettings.CurrentLanguage;
 
             if (HttpContext.Current.Cache[cacheKey] == null)
             {

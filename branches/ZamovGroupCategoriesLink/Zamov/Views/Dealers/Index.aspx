@@ -88,10 +88,10 @@
     <% int expandedGroup = (int)ViewData["expandedGroup"]; %>
     <% int currentCategory = Convert.ToInt32(ViewContext.RouteData.Values["id"]); %>
     <% List<CategoryPresentation> categories = (List<CategoryPresentation>)ViewData["categories"]; %>
-    <% Func<int, int, string> selectedStyle = (categoryId, id) =>
+    <% Func<CategoryPresentation, int, string> selectedStyle = (category, id) =>
        {
            string result = "";
-           if (categoryId == id)
+           if (category.Id == id || (category.Children.Where(c=>c.Id == id).Count()>0))
                result = " selected";
            return result;
            
@@ -103,14 +103,14 @@
         <div class="menuItems">
             <% foreach (var menuItem in categories)
                {%>
-               <div class="menuItem<%= selectedStyle(currentCategory, menuItem.Id) %>">
+               <div class="menuItem<%= selectedStyle(menuItem, currentCategory) %>">
                 <a href="/Dealers/Index/<%= menuItem.Id %>"><%= menuItem.Name %></a>
                </div>    
                  <%if(menuItem.Id == expandedGroup && menuItem.Children.Count>0){
                        foreach (var subItem in menuItem.Children)
                        {%>
                            
-                   <div class="subMenuItem<%= selectedStyle(currentCategory, subItem.Id) %>">
+                   <div class="subMenuItem<%= selectedStyle(subItem, currentCategory) %>">
                         <a href="/Dealers/Index/<%= subItem.Id %>"><%= subItem.Name%></a>
                    </div>    
                   <%   }%>  

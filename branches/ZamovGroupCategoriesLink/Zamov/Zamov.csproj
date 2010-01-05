@@ -88,7 +88,6 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\CartHostActions.cs" />
-    <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\ContextCacheExtension.cs" />
     <Compile Include="Controllers\DealerCabinetController.cs" />
     <Compile Include="Controllers\DealerController.cs" />
@@ -544,7 +543,6 @@
     <Content Include="Views\Cart\Index.aspx" />
     <Content Include="Views\Cart\MakeOrder.aspx" />
     <Content Include="Views\Cart\ThankYou.aspx" />
-    <Content Include="Views\Categories\Index.aspx" />
     <Content Include="Views\DealerCabinet\Cabinet.Master" />
     <Content Include="Views\DealerCabinet\DealerCategoryMappings.aspx" />
     <Content Include="Views\DealerCabinet\DealerCityMappings.aspx" />

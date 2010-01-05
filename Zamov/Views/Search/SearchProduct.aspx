@@ -27,7 +27,7 @@
         }
             );
 
-        $(".productDescription").fancybox({ width: "700px", hideOnContentClick: false });
+        $("a.productDescription").fancybox({ width: "700px", hideOnContentClick: false });
 
         $(".sortable")
             .mouseover(function() {

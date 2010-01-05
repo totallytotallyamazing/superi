@@ -31,7 +31,8 @@ namespace Zamov.Controllers
             using (ZamovStorage context = new ZamovStorage())
             {
                 int dealer = context.Dealers.Where(d => d.Name == dealerId).Select(d => d.Id).First();
-                BreadCrumbsExtensions.AddBreadCrumb(HttpContext, BreadCrumbAttribute.DealerName(dealer), "/Products/" + dealer + "/" + categoryId);
+                
+                BreadCrumbsExtensions.AddBreadCrumb(HttpContext, BreadCrumbAttribute.DealerName(dealer), "/Products/" + dealerId + "/" + categoryId);
 
                 List<Group> groups = (from g in context.Groups.Include("Groups").Include("Dealer").Include("Category") where g.Dealer.Id == dealer && !g.Deleted && g.Enabled select g).ToList();
                 ViewData["groups"] = groups;

@@ -8,7 +8,7 @@
         SelectListItem payment = new SelectListItem { Text = Html.ResourceString("Payment"), Value = "javascript:openPaymentDetails()" };
         SelectListItem delivery = new SelectListItem { Text = Html.ResourceString("Delivery"), Value = "javascript:openDeliveryDetails()" };
         SelectListItem cities = new SelectListItem { Text = Html.ResourceString("Cities"), Value = "javascript:openCityMappings()" };
-        SelectListItem categories = new SelectListItem { Text = Html.ResourceString("Categories"), Value = "javascript:openCategoryMappings()" };
+        //SelectListItem categories = new SelectListItem { Text = Html.ResourceString("Categories"), Value = "javascript:openCategoryMappings()" };
         SelectListItem groups = new SelectListItem { Text = Html.ResourceString("Groups"), Value = VirtualPathUtility.ToAbsolute("~/DealerCabinet/Groups") };
         SelectListItem products = new SelectListItem { Text = Html.ResourceString("Products"), Value = VirtualPathUtility.ToAbsolute("~/DealerCabinet/Products") };
         SelectListItem orders = new SelectListItem { Text = Html.ResourceString("Orders"), Value = VirtualPathUtility.ToAbsolute("~/DealerCabinet/Orders") };
@@ -16,7 +16,7 @@
         items.Add(payment);
         items.Add(delivery);
         items.Add(cities);
-        items.Add(categories);
+        //items.Add(categories);
         items.Add(groups);
         items.Add(products);
         items.Add(orders);

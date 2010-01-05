@@ -23,6 +23,7 @@ namespace Zamov.Controllers
                 SystemSettings.CityId = cityId.Value;
 
             HttpContext.Items["categoryId"] = id;
+            
 
             BreadCrumbAttribute.ProcessCategory(id.Value, HttpContext);
 

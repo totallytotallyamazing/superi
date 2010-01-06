@@ -146,6 +146,9 @@
     </Content>
     <Content Include="Content\Articles.css" />
     <Content Include="Content\img\adds\flowers.jpg" />
+    <Content Include="Content\img\adds\hairdryer.png" />
+    <Content Include="Content\img\adds\lacquer.png" />
+    <Content Include="Content\img\adds\scissors.png" />
     <Content Include="Content\img\en-US\contacts.png" />
     <Content Include="Content\img\en-US\elena.png" />
     <Content Include="Content\img\en-US\lifeStyle.png" />

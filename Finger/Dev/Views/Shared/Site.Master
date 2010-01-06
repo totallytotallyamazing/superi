@@ -64,7 +64,12 @@
         <div id="shtativLeg">
         </div>
         <div id="bonus">
-            <%= Html.Image("~/Content/img/adds/flowers.jpg") %>
+            <%
+                string[] ads = { "flowers.jpg", "hairdryer.png", "lacquer.png", "scissors.png" };
+                Random rnd = new Random();
+                string image = ads[rnd.Next(4)];
+            %>
+            <%= Html.Image("~/Content/img/adds/" + image)%>
         </div>
         <div id="copyright">
             <div style="float:left;">

@@ -64,9 +64,14 @@ namespace Zamov.Models
             }
             if (cityId != null)
             {
-                result = result.Where(c => c.Entity.Groups
+                result = result.Where(c => (c.Entity.Groups
                     .Where(g => !g.Deleted && g.Enabled)
-                    .Where(g => g.Dealer.Cities.Where(city => city.Id == cityId).Count() > 0).Count() > 0);
+                    .Where(g => g.Dealer.Cities.Where(city => city.Id == cityId).Count() > 0).Count() > 0)
+                    ||
+                    (c.Entity.Categories.SelectMany(cat=>cat.Groups)
+                    .Where(g => !g.Deleted && g.Enabled)
+                    .Where(g => g.Dealer.Cities.Where(city => city.Id == cityId).Count() > 0).Count() > 0)
+                    );
             }
             return result;
         }

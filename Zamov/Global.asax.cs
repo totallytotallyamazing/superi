@@ -88,6 +88,13 @@ namespace Zamov
             );
 
             routes.MapRoute(
+                "Agreement",                                              // Route name
+                "Home/Agreement",                           // URL with parameters
+                new { controller = "Home", action = "Agreement" }  // Parameter defaults
+            ); 
+
+
+            routes.MapRoute(
                 "Contacts",                                              // Route name
                 "Home/Contacts",                           // URL with parameters
                 new { controller = "Home", action = "Contacts" }  // Parameter defaults

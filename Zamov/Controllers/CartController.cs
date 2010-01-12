@@ -27,11 +27,8 @@ namespace Zamov.Controllers
                 return RedirectToAction("Index", "Home");
             using (ZamovStorage context = new ZamovStorage())
             {
-                List<Dealer> dealers = (from dealer in context.Dealers.Include("Cities").Include("Categories")
-                                        where dealer.Cities.Where(c => c.Id == SystemSettings.CityId).Count() > 0
-//                                        && dealer.Categories.Where(c => c.Id == SystemSettings.CategoryId).Count() > 0
-                                        select dealer).ToList();
-                ViewData["dealers"] = dealers;
+                List<CategoryPresentation> categories = context.GetCachedCategories(SystemSettings.CityId, SystemSettings.CurrentLanguage);
+                ViewData["categories"] = categories;
             }
             return View(SystemSettings.Cart.Orders);
         }

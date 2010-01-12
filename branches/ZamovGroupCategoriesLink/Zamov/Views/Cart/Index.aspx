@@ -38,14 +38,14 @@
 
 <asp:Content ID="Content4" ContentPlaceHolderID="leftMenu" runat="server">
  <%
-     List<Dealer> dealers = (List<Dealer>)ViewData["dealers"];
+     List<CategoryPresentation> categories = (List<CategoryPresentation>)ViewData["categories"];
      List<SelectListItem> items = new List<SelectListItem>();
-     foreach (var item in dealers)
+     foreach (var item in categories)
      {
-         SelectListItem listItem = new SelectListItem { Text = item.GetName(SystemSettings.CurrentLanguage), Value = "/Products/" + item.Id };
+         SelectListItem listItem = new SelectListItem { Text = item.Name, Value = "/Dealers/" + item.Id };
          items.Add(listItem);
      }
-     Html.RenderAction<PagePartsController>(ac => ac.LeftMenu(Html.ResourceString("Dealers"), items));
+     Html.RenderAction<PagePartsController>(ac => ac.LeftMenu(Html.ResourceString("Categories"), items));
  %>
 
 </asp:Content>

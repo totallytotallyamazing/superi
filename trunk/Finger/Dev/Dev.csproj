@@ -96,7 +96,7 @@
     <Compile Include="Helpers\GetOutputExtensions.cs" />
     <Compile Include="Helpers\JqueryUiExtensions.cs" />
     <Compile Include="Helpers\LocaleHelper.cs" />
-    <Compile Include="Helpers\MailHelpers.cs" />
+    <Compile Include="Helpers\MailHelper.cs" />
     <Compile Include="Helpers\ResourceTracker.cs" />
     <Compile Include="Helpers\ScriptExtensions.cs" />
     <Compile Include="Helpers\Session.cs" />

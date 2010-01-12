@@ -88,10 +88,15 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\AjaxExtensions.cs" />
+    <Compile Include="Helpers\Captcha\CaptchaExtensions.cs" />
+    <Compile Include="Helpers\Captcha\CaptchaImage.cs" />
+    <Compile Include="Helpers\Captcha\CaptchaImageHandler.cs" />
+    <Compile Include="Helpers\Captcha\CaptchaValidationAttribute.cs" />
     <Compile Include="Helpers\CkExtensions.cs" />
     <Compile Include="Helpers\GetOutputExtensions.cs" />
     <Compile Include="Helpers\JqueryUiExtensions.cs" />
     <Compile Include="Helpers\LocaleHelper.cs" />
+    <Compile Include="Helpers\MailHelpers.cs" />
     <Compile Include="Helpers\ResourceTracker.cs" />
     <Compile Include="Helpers\ScriptExtensions.cs" />
     <Compile Include="Helpers\Session.cs" />
@@ -193,6 +198,7 @@
     <Content Include="Views\Admin\EditText.aspx" />
     <Content Include="Views\Articles\Show.aspx" />
     <Content Include="Views\Home\Broadcast.aspx" />
+    <Content Include="Views\Shared\FeedbackForm.ascx" />
     <Content Include="Views\Shared\Index.aspx" />
     <Content Include="Views\Shared\LanguageBar.ascx" />
     <Content Include="Views\Shared\LeftMenu.ascx" />

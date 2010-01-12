@@ -18,6 +18,7 @@ namespace Dev
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             routes.IgnoreRoute("favicon.ico");
             routes.IgnoreRoute("index.html");
+            routes.IgnoreRoute("captcha.ashx");
 
             //routes.MapRoute(
             //    "Admin",                                              // Route name

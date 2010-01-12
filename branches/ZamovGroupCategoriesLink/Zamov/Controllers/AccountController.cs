@@ -241,7 +241,14 @@ namespace Zamov.Controllers
 
         public ActionResult UserEmailVerified(string guid)
         {
+            if (string.IsNullOrEmpty(guid))
+                return RedirectToAction("Index", "Home");
+
             MembershipUser user = Membership.GetUser(new Guid(guid));
+            
+            if(user == null)
+                return RedirectToAction("Index", "Home");
+
             user.IsApproved = true;
             Membership.UpdateUser(user);
             FormsAuth.SignOut();

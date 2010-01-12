@@ -120,16 +120,46 @@
   <data name="Articles" xml:space="preserve">
     <value>Заметки</value>
   </data>
+  <data name="CaptchaInvalid" xml:space="preserve">
+    <value>Неверный код</value>
+  </data>
   <data name="Copyright" xml:space="preserve">
     <value>© 2009 “Стиль Жизни” с Еленой Фингер</value>
   </data>
   <data name="Elena" xml:space="preserve">
     <value>Елена Фингер</value>
   </data>
+  <data name="Email" xml:space="preserve">
+    <value>Электропочта</value>
+  </data>
   <data name="MBrand" xml:space="preserve">
     <value>М.бренд | &lt;a class="design" href="http://m-brand.com.ua"&gt;дизайн&lt;/a&gt;</value>
   </data>
+  <data name="PleaseFill" xml:space="preserve">
+    <value>заполните это поле</value>
+  </data>
+  <data name="Send" xml:space="preserve">
+    <value>Отправить</value>
+  </data>
   <data name="Thoughts" xml:space="preserve">
     <value>мысли и умозаключения</value>
+  </data>
+  <data name="YourName" xml:space="preserve">
+    <value>Ваше имя</value>
+  </data>
+  <data name="YouWhantToSay" xml:space="preserve">
+    <value>Что хотите сказать</value>
+  </data>
+  <data name="Contacts" xml:space="preserve">
+    <value>Котакты</value>
+  </data>
+  <data name="EnterCaptcha" xml:space="preserve">
+    <value>Веедите код</value>
+  </data>
+  <data name="MessageSent" xml:space="preserve">
+    <value>Сообщение отправленно</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Ошибка</value>
   </data>
 </root>

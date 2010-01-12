@@ -10,6 +10,9 @@
                 </div>
            <%} %>
     <%= ViewData["text"]%>
+    <% if(ViewContext.RouteData.Values["contentName"].ToString() == "Contacts"){ %> 
+        <% Html.RenderPartial("FeedbackForm"); %>
+    <%} %>
 
 </asp:Content>
 

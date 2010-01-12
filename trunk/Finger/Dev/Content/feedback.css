@@ -1,0 +1,3 @@
+﻿.label {color:Black; font-weight:bold; font-size:14px; width:180px;}
+
+label.error { float: none; color: red;  vertical-align: top; }

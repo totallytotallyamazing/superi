@@ -52,5 +52,22 @@ namespace Dev.Mvc.Ajax
             builder.Append("</script>");
             return builder.ToString();
         }
+
+        public static string Dialog(this AjaxHelper helper, string selector, object settings, Dictionary<string, string> buttons)
+        {
+            StringBuilder builder = new StringBuilder();
+            builder.Append("<script type=\"text/javascript\">");
+            builder.Append("$(function(){");
+            builder.AppendFormat("$(\"{0}\").dialog({1});", selector, settings.ObjectToString());
+            if (buttons != null)
+            {
+                string[] buttonScript = buttons.Select(kvp => "'" + kvp.Key + "': " + kvp.Value).ToArray();
+                string btns = "{" + string.Join(",", buttonScript) + "}";
+                builder.AppendFormat("$(\"{0}\").dialog('option', 'buttons', {1});", selector, btns);
+            }
+            builder.Append("});");
+            builder.Append("</script>");
+            return builder.ToString();
+        }
     }
 }

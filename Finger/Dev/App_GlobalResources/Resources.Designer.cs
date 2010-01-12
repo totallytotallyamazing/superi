@@ -70,6 +70,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Неверный код.
+        /// </summary>
+        internal static string CaptchaInvalid {
+            get {
+                return ResourceManager.GetString("CaptchaInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Котакты.
+        /// </summary>
+        internal static string Contacts {
+            get {
+                return ResourceManager.GetString("Contacts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to © 2009 “Стиль Жизни” с Еленой Фингер.
         /// </summary>
         internal static string Copyright {
@@ -88,6 +106,33 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Электропочта.
+        /// </summary>
+        internal static string Email {
+            get {
+                return ResourceManager.GetString("Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Веедите код.
+        /// </summary>
+        internal static string EnterCaptcha {
+            get {
+                return ResourceManager.GetString("EnterCaptcha", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ошибка.
+        /// </summary>
+        internal static string Error {
+            get {
+                return ResourceManager.GetString("Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to М.бренд | &lt;a class=&quot;design&quot; href=&quot;http://m-brand.com.ua&quot;&gt;дизайн&lt;/a&gt;.
         /// </summary>
         internal static string MBrand {
@@ -97,11 +142,56 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Сообщение отправленно.
+        /// </summary>
+        internal static string MessageSent {
+            get {
+                return ResourceManager.GetString("MessageSent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to заполните это поле.
+        /// </summary>
+        internal static string PleaseFill {
+            get {
+                return ResourceManager.GetString("PleaseFill", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Отправить.
+        /// </summary>
+        internal static string Send {
+            get {
+                return ResourceManager.GetString("Send", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to мысли и умозаключения.
         /// </summary>
         internal static string Thoughts {
             get {
                 return ResourceManager.GetString("Thoughts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ваше имя.
+        /// </summary>
+        internal static string YourName {
+            get {
+                return ResourceManager.GetString("YourName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Что хотите сказать.
+        /// </summary>
+        internal static string YouWhantToSay {
+            get {
+                return ResourceManager.GetString("YouWhantToSay", resourceCulture);
             }
         }
     }

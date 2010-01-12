@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 using Dev.Models;
 using Dev.Helpers;
+using System.Net.Mail;
 
 namespace Dev.Controllers
 {

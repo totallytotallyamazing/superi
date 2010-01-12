@@ -80,6 +80,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LanguageController.cs" />
     <Compile Include="Controllers\LocalizedController.cs" />
+    <Compile Include="Controllers\ToolsController.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -150,6 +151,7 @@
       <LastGenOutput>Resources.en-US.designer.cs</LastGenOutput>
     </Content>
     <Content Include="Content\Articles.css" />
+    <Content Include="Content\feedback.css" />
     <Content Include="Content\img\adds\flowers.jpg" />
     <Content Include="Content\img\adds\hairdryer.png" />
     <Content Include="Content\img\adds\lacquer.png" />
@@ -192,6 +194,7 @@
     <Content Include="index.html" />
     <Content Include="Scripts\ck.extensions.js" />
     <Content Include="Scripts\jquery.ui.js" />
+    <Content Include="Scripts\jquery.validate.js" />
     <Content Include="SetCookie.aspx" />
     <Content Include="Views\Admin\Article.aspx" />
     <Content Include="Views\Admin\ArticleDetails.ascx" />

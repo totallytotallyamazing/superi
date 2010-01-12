@@ -26,6 +26,14 @@ namespace Dev
             //    new { controller = "Admin", action = "Index" }  // Parameter defaults
             // );
 
+
+           routes.MapRoute(
+                "SendMessage",                                              // Route name
+                "Tools/SendMail",                           // URL with parameters
+                new { controller = "Tools", action = "SendMail" }  // Parameter defaults
+            );
+
+
             routes.MapRoute(
                 "DeleteArticle",                                              // Route name
                 "Admin/DeleteArticle/{contentName}",                           // URL with parameters

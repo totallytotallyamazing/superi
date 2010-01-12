@@ -22,5 +22,18 @@ namespace Dev.Mvc.Ajax
             return sb.ToString();
         }
 
+        public static string IncludeAjax(this AjaxHelper helper, string scriptFolder)
+        {
+            return helper.ScriptInclude(scriptFolder + "/MicrosoftAjax.js");
+        }
+
+        public static string IncludeMvcAjax(this AjaxHelper helper, string scriptFolder)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append(helper.IncludeAjax(scriptFolder));
+            sb.Append(helper.ScriptInclude(scriptFolder + "/MicrosoftMvcAjax.js"));
+            return sb.ToString();
+        }
+
     }
 }

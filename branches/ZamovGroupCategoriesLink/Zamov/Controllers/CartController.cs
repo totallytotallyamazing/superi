@@ -140,6 +140,7 @@ namespace Zamov.Controllers
                 ViewData["deliveryAddress"] = profile.DeliveryAddress;
                 ViewData["contactPhone"] = profile.MobilePhone;
                 ViewData["phone"] = profile.Phone;
+                ViewData["email"] = user.UserName;
             }
 
             return View(SystemSettings.Cart.Orders);

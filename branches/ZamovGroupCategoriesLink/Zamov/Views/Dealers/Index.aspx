@@ -14,6 +14,8 @@
             if ($.browser.msie && $.browser.version !== "8.0") {
                 $(".topDealers").width($(mainContent).width() - 30);
                 $(window).resize(function() { $(".topDealers").width($(mainContent).width() - 30); });
+                $(".dalerOnline").css("margin-left", -40);
+                
             }
             else {
                 $(".topDealers").css({ width: "97%", float: "left" });

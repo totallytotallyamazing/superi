@@ -39,13 +39,17 @@ namespace Zamov.Services
             using (OrderStorage context = new OrderStorage())
             {
                 DateTime lasttime = SystemSettings.LastTime;
+                MembershipUser user = Membership.GetUser(true);
+
+                ProfileCommon profile = ProfileCommon.Create(user.UserName);
+                int dealerId = profile.DealerId;
                 SystemSettings.LastTime = DateTime.Now;
-                int ordersCount = context.Orders.Where(o => o.Dealer.Id == SystemSettings.CurrentDealer.Value && o.Status == (int)Statuses.New).Count();
+                int ordersCount = context.Orders.Where(o => o.Dealer.Id == dealerId && o.Status == (int)Statuses.New).Count();
 
                 List<Order> orders = (
                                          from order in
                                              context.Orders.Include("Dealer").Include("OrderItems")
-                                         where order.Dealer.Id == SystemSettings.CurrentDealer && order.Date > lasttime
+                                         where order.Dealer.Id == dealerId && order.Date > lasttime
                                          select order).ToList();
 
                 var newOrders = (from order in orders
@@ -69,7 +73,6 @@ namespace Zamov.Services
                     NewOrders = newOrders
                 };
                 //needed to update LastActivityTime of user
-                Membership.GetUser(true);
                 return result;
             }
         }

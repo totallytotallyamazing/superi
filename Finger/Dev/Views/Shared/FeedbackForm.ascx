@@ -10,13 +10,19 @@
                 if (element[0].id == "captchaBox") {
                     error.appendTo($("#captchaLabel"));
                 }
-                else {
-                    error.appendTo(element.parent().parent().children().eq(0));
+                else if (element[0].id == "message") {
+                error.appendTo(element.parent().parent().children().eq(0));
                 }
+                else {
+                    error.appendTo(element.parent().next());
+                }
+            },
+            rules: {
+                email: { required: true, email: true }
             },
             messages: {
                 "name": "*",
-                "email": "*",
+                email: { required: "*", email: '<%= Html.ResourceString("InvalidEmail")%>' },
                 "message": "*",
                 "captchaBox": "*"
             }
@@ -71,6 +77,7 @@
         <td>
             <%= Html.TextBox("name", null, new { @class = "required" })%>    
         </td>
+        <td></td>
     </tr>
     <tr>
         <td class="label">
@@ -79,6 +86,7 @@
         <td>
             <%= Html.TextBox("email", null, new { @class = "required" })%>    
         </td>
+        <td></td>
     </tr>    
 </table>
 

@@ -1,3 +1,6 @@
 ﻿.label {color:Black; font-weight:bold; font-size:14px; width:180px;}
+td.label{height:35px;}
+div.label{margin-top:10px;}
+label.error { float: none; color: red;  vertical-align: top; font-size:12px; font-weight:normal; }
 
-label.error { float: none; color: red;  vertical-align: top; }
+#captchaLabel{margin-top:15px !important;}

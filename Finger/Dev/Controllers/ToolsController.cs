@@ -20,7 +20,7 @@ namespace Dev.Controllers
             else
             {
                 string body = message + Environment.NewLine + Environment.NewLine + name + Environment.NewLine + email;
-                    MailHelper.SendMessage("no-reply@elena-finger.com", new List<System.Net.Mail.MailAddress> { new MailAddress("production@elena-finger.com") }, body, "Ќа сайте elena-finger.com была заполнена форма обратной св€зи", false);
+                MailHelper.SendMessage("production@elena-finger.com", new List<System.Net.Mail.MailAddress> { new MailAddress("production@elena-finger.com") }, body, "Ќа сайте elena-finger.com была заполнена форма обратной св€зи", false);
                 return Json(true);
             }
         }

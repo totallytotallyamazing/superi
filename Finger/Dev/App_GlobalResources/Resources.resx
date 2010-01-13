@@ -154,12 +154,15 @@
     <value>Котакты</value>
   </data>
   <data name="EnterCaptcha" xml:space="preserve">
-    <value>Веедите код</value>
+    <value>Введите код</value>
   </data>
   <data name="MessageSent" xml:space="preserve">
     <value>Сообщение отправленно</value>
   </data>
   <data name="Error" xml:space="preserve">
     <value>Ошибка</value>
+  </data>
+  <data name="InvalidEmail" xml:space="preserve">
+    <value>Неправильная электропочта</value>
   </data>
 </root>

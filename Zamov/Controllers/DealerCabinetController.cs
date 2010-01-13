@@ -89,7 +89,8 @@ namespace Zamov.Controllers
                 group.Names["uk-UA"] = groupUkrName;
                 group.Enabled = enabled;
                 group.DisplayProductImages = displayImages;
-                group.CategoryReference.EntityKey = new EntityKey("ZamovStorage.Categories", "Id", categoryId);
+                if(parentId < 0)
+                    group.CategoryReference.EntityKey = new EntityKey("ZamovStorage.Categories", "Id", categoryId);
                 context.AddToGroups(group);
                 context.SaveChanges();
                 context.UpdateTranslations(group.NamesXml);

@@ -139,7 +139,8 @@
         <label for="captcha">
         </label>
         <%=Html.ResourceString("EnterCode")%>
-        <%= Html.ValidationMessage("captchaInvalid", "*", new { @class="validationError"})%>
+        <span class="validationError">*</span>
+        <%= Html.ValidationMessage("captchaInvalid", " ")%>
         <br />
         <%= Html.CaptchaImage(50, 160)%><br />
         <%= Html.TextBox("captcha", "")%>
@@ -188,7 +189,8 @@
             <tr>
                 <td class="parameterName">
                     <%= Html.ResourceString("FirstName") %>
-                    <%= Html.ValidationMessage("firstName", "*", new { @class="validationError"})%>
+                    <span class="validationError">*</span>
+                    <%= Html.ValidationMessage("firstName", " ")%>
                 </td>
                 <td class="parameterValue">
                     <%= Html.TextBox("firstName") %>
@@ -205,7 +207,8 @@
             <tr>
                 <td class="parameterName">
                     <%= Html.ResourceString("City") %>
-                    <%= Html.ValidationMessage("city", "*", new { @class="validationError"})%>
+                    <span class="validationError">*</span>
+                    <%= Html.ValidationMessage("city", " ")%>
                 </td>
                 <td class="parameterValue">
                     <%= Html.TextBox("city") %>
@@ -214,7 +217,8 @@
             <tr>
                 <td class="parameterName">
                     <%= Html.ResourceString("DeliveryAddress")%>
-                    <%= Html.ValidationMessage("deliveryAddress", "*", new { @class="validationError"})%>
+                    <span class="validationError">*</span>
+                    <%= Html.ValidationMessage("deliveryAddress", " ")%>
                 </td>
                 <td class="parameterValue">
                     <%= Html.TextArea("deliveryAddress")%>
@@ -223,7 +227,8 @@
             <tr>
                 <td class="parameterName">
                     <%= Html.ResourceString("ContactPhone") %>
-                    <%= Html.ValidationMessage("contactPhone", "*", new { @class="validationError"})%>
+                    <span class="validationError">*</span>
+                    <%= Html.ValidationMessage("contactPhone", " ")%>
                 </td>
                 <td class="parameterValue">
                     <%= Html.TextBox("contactPhone")%>

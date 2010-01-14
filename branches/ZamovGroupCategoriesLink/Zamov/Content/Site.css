@@ -16,6 +16,8 @@ select
 #header .rightBorder{float:right; background: transparent url(img/headerRight.jpg)}
 #header .leftBorder{float:left; background: transparent url(img/headerLeft.jpg)}
 
+.subCategories a{font-size:10px; font-family:Arial;}
+
 #masterLogin{border-left:1px solid #234256;
 float:right;
 height:142px;
@@ -29,8 +31,14 @@ margin-right:40px;
 #mainMenu{margin-top:0px;}
 #mainMenu .outer{float:right; position:relative; padding:0px 10px; height:20px;}
 #mainMenu .outer .inner{padding:0px 5px; color:#969696; font-size:13px; height:20px;}
-#mainMenu .outer .inner a{color:#969696;font-size:13px; text-decoration:none;}
+#mainMenu .outer .inner a{color:#969696;font-size:13px; text-decoration:none; font-weight:bold;}
 #mainMenu .outer .inner a:hover{text-decoration:underline;}
+
+#mainMenu table{float:right; margin-top:2px; }
+#mainMenu table td.searchCell{border:1px solid #d1dcd9; height:18px;}
+#mainMenu table td{padding:0 3px;}
+#mainMenu table td input{border:0; font-size:12px;}
+#mainMenu table{font-size:13px; font-weight:bold;color:#969696;}
 
 #breadCrumbs{height:20px; padding-top:10px;}
 

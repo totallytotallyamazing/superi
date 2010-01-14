@@ -217,7 +217,7 @@ namespace Zamov.Controllers
 
                     MailHelper.SendTemplate("no-reply@zamov.net",
                         new List<MailAddress> { new MailAddress(email) },
-                        "Zamov.net",
+                        "Zamov",
                         "activateAccount",
                         SystemSettings.CurrentLanguage,
                         false,

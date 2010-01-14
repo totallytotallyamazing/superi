@@ -65,7 +65,7 @@
                 <input type="checkbox" name="enabled_<%= item.Id %>" <%= (item.Enabled) ? "checked=\"checked\"" : "" %>" />
             </td>
             <td>
-                <a href="#" onclick="insertGroup(this, <%= item.Id %>)">
+                <a href="#" onclick="insertGroup(event, this, <%= item.Id %>)">
                     <%= Html.ResourceString("AddSubGroup") %>
                 </a>
             </td>

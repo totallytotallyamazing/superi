@@ -92,7 +92,7 @@
         </tr>
         <tr>
             <td>
-                <a id="emptyCart" href="/Cart/EmptyCart/?redirectUrl=<%= redirectUrl %>" onclick="return confirm('<%= Html.ResourceString("AreYouSure")%>')" >
+                <a id="emptyCart" href="/Cart/EmptyCart/?redirectUrl=<%= redirectUrl %>" onclick="return confirm('<%= Html.ResourceString("AreYouSure")%>?')" >
                     <img style="border:none" alt="emptyCart" src="/Content/img/crossMark.jpg" />
                 </a>
             </td>

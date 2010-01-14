@@ -8,11 +8,19 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <script type="text/javascript">
-        function insertGroup(link, parentId) {
+        function insertGroup(evt, link, parentId) {
+            var y = 0;
+            
+            if (window.event) {
+                y = window.event.clientY;
+            }
+            else {
+                y = evt.clientY;
+            }
             var pos = $(link).offset();
             if (parentId >= 0) {
                 $("#parentId").val(parentId);
-                pos.left = pos.left - $("#insertGroup").width();
+                //pos.left = pos.left - $("#insertGroup").width();
                 $(".categoryCol").hide();
             }
             else {
@@ -33,7 +41,8 @@
         }
 
         $(function() {
-            $("#insertGroup").click(function(e) { e.stopPropagation(); if (window.event) { window.event.cancelBubbling = true; } });
+            
+            $("#insertGroup").appendTo($(document.body)).click(function(e) { e.stopPropagation(); if (window.event) { window.event.cancelBubbling = true; } });
         }
         );
     </script>

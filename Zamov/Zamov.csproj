@@ -342,6 +342,7 @@
     <Content Include="Content\img\tickMark.jpg" />
     <Content Include="Content\img\treeArrows.jpg" />
     <Content Include="Content\img\truck.jpg" />
+    <Content Include="Content\img\zoom.jpg" />
     <Content Include="Content\jquery.treeview.css" />
     <None Include="Content\MailTemplates\newOrder" />
     <None Include="Content\MailTemplates\passwordReminder" />

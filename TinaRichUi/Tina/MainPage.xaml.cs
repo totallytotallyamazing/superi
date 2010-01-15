@@ -38,6 +38,8 @@ namespace Tina
                     }
                 }
             }
+            VisualStateManager.GoToState(ContentFrame, "Navigated", true);
+			
         }
 
         // If an error occurs during navigation, show an error window
@@ -46,6 +48,11 @@ namespace Tina
             e.Handled = true;
             ChildWindow errorWin = new ErrorWindow(e.Uri);
             errorWin.Show();
+        }
+
+        private void ContentFrame_Navigating(object sender, System.Windows.Navigation.NavigatingCancelEventArgs e)
+        {
+        	VisualStateManager.GoToState(ContentFrame, "Navigating", true);
         }
     }
 }

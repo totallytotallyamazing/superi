@@ -9,9 +9,12 @@
 	Title="Night Page"
 	d:DesignWidth="640" d:DesignHeight="480">
 	
-	<Grid x:Name="LayoutRoot" Margin="0" Width="1000" >
-		<ScrollViewer>
-		<Image Margin="0,0,0,0" Source="/Tina;Component/Assets/nightHead.jpg" Stretch="None" d:LayoutOverrides="Width"/>
+	<Grid x:Name="LayoutRoot" Margin="0">
+		<ScrollViewer Style="{StaticResource PageScrollViewerStyle}" MouseWheel="ScrollViewer_MouseWheel" MouseMove="ScrollViewer_MouseMove" MouseLeftButtonDown="ScrollViewer_MouseLeftButtonDown" MouseLeftButtonUp="ScrollViewer_MouseLeftButtonUp">
+		<StackPanel>
+			<Image Margin="0,0,0,0" Source="/Tina;Component/Assets/nightHead.jpg" Stretch="None" d:LayoutOverrides="Width"/>
+			<Image Margin="0,0,0,0" Source="/Tina;Component/Assets/nightBottom.jpg" Stretch="None" d:LayoutOverrides="Width"/>
+		</StackPanel>
 		</ScrollViewer>
 	</Grid>
 </navigation:Page>

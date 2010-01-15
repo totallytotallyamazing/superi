@@ -46,7 +46,7 @@
   <!-- Navigation Grid Style -->
   <Style x:Key="NavigationGridStyle" TargetType="Grid">
     <Setter Property="Background" Value="{StaticResource NavigationBackgroundColorBrush}"/>
-    <Setter Property="Height" Value="42"/>
+    <Setter Property="Height" Value="100"/>
     <Setter Property="Margin" Value="0"/>
     <Setter Property="VerticalAlignment" Value="Top"/>
   </Style>
@@ -290,8 +290,8 @@
   <Style x:Key="PageScrollViewerStyle" TargetType="ScrollViewer">
     <Setter Property="BorderBrush" Value="Transparent"/>
     <Setter Property="BorderThickness" Value="0,1,0,1"/>
-    <Setter Property="Margin" Value="-58,-15,-58,-15"/>
-    <Setter Property="Padding" Value="58,0,58,0"/>
+    <Setter Property="Margin" Value="0"/>
+    <Setter Property="Padding" Value="0"/>
     <Setter Property="VerticalScrollBarVisibility" Value="Auto"/>
     <Setter Property="HorizontalScrollBarVisibility" Value="Auto"/>
   </Style>
@@ -324,5 +324,24 @@
     <Setter Property="FontSize" Value="12"/>
     <Setter Property="VerticalAlignment" Value="Center"/>
   </Style>
+  
+  <!-- Page HyperlinkButton Style -->
+  <ControlTemplate x:Key="HyperlinkButtonControlTemplate1" TargetType="HyperlinkButton">
+  	<Grid>
+  		<VisualStateManager.VisualStateGroups>
+  			<VisualStateGroup x:Name="CommonStates">
+  				<VisualState x:Name="Pressed"/>
+  				<VisualState x:Name="MouseOver"/>
+  				<VisualState x:Name="Disabled"/>
+  				<VisualState x:Name="Normal"/>
+  			</VisualStateGroup>
+  			<VisualStateGroup x:Name="FocusStates">
+  				<VisualState x:Name="Focused"/>
+  				<VisualState x:Name="Unfocused"/>
+  			</VisualStateGroup>
+  		</VisualStateManager.VisualStateGroups>
+  		<Image Margin="0" Stretch="None" Source="{Binding Image}"/>
+  	</Grid>
+  </ControlTemplate>
 
 </ResourceDictionary>

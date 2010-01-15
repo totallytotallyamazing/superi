@@ -1,18 +1,32 @@
 ﻿<UserControl
-    x:Class="Tina.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation" 
     xmlns:uriMapper="clr-namespace:System.Windows.Navigation;assembly=System.Windows.Controls.Navigation"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-    mc:Ignorable="d" d:DesignWidth="640" d:DesignHeight="480" Background="Black">
+	xmlns:local="clr-namespace:Tina"
+    mc:Ignorable="d" xmlns:layoutToolkit="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Layout.Toolkit"
+    x:Class="Tina.MainPage"
+    d:DesignWidth="640" d:DesignHeight="480" Background="Black">
+
+	<UserControl.Resources>
+		<ControlTemplate x:Key="FrameControlTemplate1" TargetType="navigation:Frame">
+			<Border Background="{TemplateBinding Background}"
+				BorderBrush="{TemplateBinding BorderBrush}"
+				BorderThickness="{TemplateBinding BorderThickness}"
+				HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+				VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+				<layoutToolkit:TransitioningContentControl Content="{TemplateBinding Content}" RenderTransformOrigin="0,0"/>
+			</Border>
+		</ControlTemplate>
+	</UserControl.Resources>
 
     <Grid x:Name="LayoutRoot" Style="{StaticResource LayoutRootGridStyle}" Background="Black">
 
         <Border x:Name="ContentBorder" Style="{StaticResource ContentBorderStyle}">
 
             <navigation:Frame x:Name="ContentFrame" Style="{StaticResource ContentFrameStyle}" 
-                              Source="/Home" Navigated="ContentFrame_Navigated" NavigationFailed="ContentFrame_NavigationFailed" Margin="0,-45,0,0">
+                              Source="/Home" Navigated="ContentFrame_Navigated" NavigationFailed="ContentFrame_NavigationFailed" Margin="0" Template="{StaticResource FrameControlTemplate1}" Navigating="ContentFrame_Navigating">
             	<navigation:Frame.Background>
             		<SolidColorBrush/>
             	</navigation:Frame.Background>
@@ -22,28 +36,34 @@
                     <uriMapper:UriMapping Uri="/{pageName}" MappedUri="/Views/{pageName}.xaml"/>
                   </uriMapper:UriMapper>
                 </navigation:Frame.UriMapper>
+            	<navigation:Frame.Projection>
+            		<PlaneProjection/>
+            	</navigation:Frame.Projection>
             </navigation:Frame>
         </Border>
 
-        <Grid x:Name="NavigationGrid" Style="{StaticResource NavigationGridStyle}" Background="{x:Null}" RenderTransformOrigin="0.54,0.524">
+        <Grid x:Name="NavigationGrid" Style="{StaticResource NavigationGridStyle}" Background="{x:Null}" RenderTransformOrigin="0.54,0.524" Height="100" Margin="0" VerticalAlignment="Top">
 
-            <Border x:Name="LinksBorder" Style="{StaticResource LinksBorderStyle}">
-                <StackPanel x:Name="LinksStackPanel" Style="{StaticResource LinksStackPanelStyle}">
+            <Border x:Name="LinksBorder" Style="{StaticResource LinksBorderStyle}" Height="Auto" Margin="0,0,0,-8">
+            	<StackPanel x:Name="LinksStackPanel" Style="{StaticResource LinksStackPanelStyle}" Height="100">
+				
+            		<HyperlinkButton NavigateUri="/Polus" TargetName="ContentFrame">
+            			<Image Source="Assets/polusThumb.jpg" Margin="0"/>
+            		</HyperlinkButton>
 
-                    <HyperlinkButton x:Name="Link1" Style="{StaticResource LinkStyle}" 
-                                     NavigateUri="/Home" TargetName="ContentFrame" Content="home"/>
+            		<HyperlinkButton x:Name="Link1" Style="{StaticResource LinkStyle}" 
+            			NavigateUri="/Home" TargetName="ContentFrame"/>
 									 
-                    <Rectangle x:Name="Divider1" Style="{StaticResource DividerStyle}"/>
-					
-                    <HyperlinkButton x:Name="Link2" Style="{StaticResource LinkStyle}" 
-                                     NavigateUri="/About" TargetName="ContentFrame" Content="about"/>
+            		<Rectangle x:Name="Divider1" Style="{StaticResource DividerStyle}"/>
+            		<HyperlinkButton x:Name="Link2" Style="{StaticResource LinkStyle}" 
+            			NavigateUri="/About" TargetName="ContentFrame" Content="about"/>
 
-                    <Rectangle x:Name="Divider2" Style="{StaticResource DividerStyle}"/>
+            		<Rectangle x:Name="Divider2" Style="{StaticResource DividerStyle}"/>
 					
-                    <HyperlinkButton x:Name="Link3" Style="{StaticResource LinkStyle}" 
-                                     NavigateUri="/Night" TargetName="ContentFrame" Content="night"/>
+            		<HyperlinkButton x:Name="Link3" Style="{StaticResource LinkStyle}" 
+            			NavigateUri="/Night" TargetName="ContentFrame" Content="night"/>
 
-                </StackPanel>
+            	</StackPanel>
             </Border>
 
         </Grid>

@@ -60,7 +60,7 @@
     <form id="form1" runat="server" style="height:100%">
     <div id="silverlightControlHost">
         <object data="data:application/x-silverlight-2," type="application/x-silverlight-2" width="100%" height="100%">
-		  <param name="source" value="ClientBin/Tina.xap"/>
+		  <param name="source" value="/richui/ClientBin/Tina.xap"/>
 		  <param name="onError" value="onSilverlightError" />
 		  <param name="background" value="white" />
 		  <param name="minRuntimeVersion" value="3.0.40624.0" />

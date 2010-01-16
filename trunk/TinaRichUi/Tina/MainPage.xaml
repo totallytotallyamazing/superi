@@ -9,24 +9,36 @@
     x:Class="Tina.MainPage"
     d:DesignWidth="640" d:DesignHeight="480" Background="Black">
 
-	<UserControl.Resources>
-		<ControlTemplate x:Key="FrameControlTemplate1" TargetType="navigation:Frame">
-			<Border Background="{TemplateBinding Background}"
-				BorderBrush="{TemplateBinding BorderBrush}"
-				BorderThickness="{TemplateBinding BorderThickness}"
-				HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-				VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
-				<layoutToolkit:TransitioningContentControl Content="{TemplateBinding Content}" RenderTransformOrigin="0,0"/>
-			</Border>
-		</ControlTemplate>
-	</UserControl.Resources>
+
 
     <Grid x:Name="LayoutRoot" Style="{StaticResource LayoutRootGridStyle}" Background="Black">
+    	<VisualStateManager.VisualStateGroups>
+    		<VisualStateGroup x:Name="Common">
+    			<VisualState x:Name="Navigating">
+    				<Storyboard>
+    					<DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="ContentFrame" Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.RotationX)">
+    						<EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+    						<EasingDoubleKeyFrame KeyTime="00:00:00.3000000" Value="90"/>
+    						<EasingDoubleKeyFrame KeyTime="00:00:00.6000000" Value="180"/>
+    					</DoubleAnimationUsingKeyFrames>
+    				</Storyboard>
+    			</VisualState>
+    			<VisualState x:Name="Navigated">
+    				<Storyboard>
+    					<DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="ContentFrame" Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.RotationX)">
+    						<EasingDoubleKeyFrame KeyTime="00:00:00" Value="90"/>
+    						<EasingDoubleKeyFrame KeyTime="00:00:00.3000000" Value="45"/>
+    						<EasingDoubleKeyFrame KeyTime="00:00:00.6000000" Value="0"/>
+    					</DoubleAnimationUsingKeyFrames>
+    				</Storyboard>
+    			</VisualState>
+    		</VisualStateGroup>
+    	</VisualStateManager.VisualStateGroups>
 
         <Border x:Name="ContentBorder" Style="{StaticResource ContentBorderStyle}">
 
             <navigation:Frame x:Name="ContentFrame" Style="{StaticResource ContentFrameStyle}" 
-                              Source="/Home" Navigated="ContentFrame_Navigated" NavigationFailed="ContentFrame_NavigationFailed" Margin="0" Template="{StaticResource FrameControlTemplate1}" Navigating="ContentFrame_Navigating">
+                              Source="/Home" Navigated="ContentFrame_Navigated" NavigationFailed="ContentFrame_NavigationFailed" Margin="0"  Navigating="ContentFrame_Navigating">
             	<navigation:Frame.Background>
             		<SolidColorBrush/>
             	</navigation:Frame.Background>
@@ -52,16 +64,16 @@
             		</HyperlinkButton>
 
             		<HyperlinkButton x:Name="Link1" Style="{StaticResource LinkStyle}" 
-            			NavigateUri="/Home" TargetName="ContentFrame"/>
+            			NavigateUri="/Home" TargetName="ContentFrame" Click="Link3_Click"/>
 									 
             		<Rectangle x:Name="Divider1" Style="{StaticResource DividerStyle}"/>
             		<HyperlinkButton x:Name="Link2" Style="{StaticResource LinkStyle}" 
-            			NavigateUri="/About" TargetName="ContentFrame" Content="about"/>
+            			NavigateUri="/About" TargetName="ContentFrame" Content="about" Click="Link3_Click"/>
 
             		<Rectangle x:Name="Divider2" Style="{StaticResource DividerStyle}"/>
 					
             		<HyperlinkButton x:Name="Link3" Style="{StaticResource LinkStyle}" 
-            			NavigateUri="/Night" TargetName="ContentFrame" Content="night"/>
+            			NavigateUri="/Night" TargetName="ContentFrame" Content="night" Click="Link3_Click"/>
 
             	</StackPanel>
             </Border>

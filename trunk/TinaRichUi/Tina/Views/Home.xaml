@@ -16,6 +16,7 @@
                                    Text="Home"/>
                 <TextBlock x:Name="ContentText" Style="{StaticResource ContentTextStyle}" 
                                    Text="Home page content"/>
+                <Image Height="588" Width="1024" Source="/Tina;Component/Assets/music.jpg" Stretch="Fill"/>
 
             </StackPanel>
 

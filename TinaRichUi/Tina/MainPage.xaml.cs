@@ -38,7 +38,7 @@ namespace Tina
                     }
                 }
             }
-            VisualStateManager.GoToState(ContentFrame, "Navigated", true);
+            VisualStateManager.GoToState(this, "Navigated", true);
 			
         }
 
@@ -52,7 +52,11 @@ namespace Tina
 
         private void ContentFrame_Navigating(object sender, System.Windows.Navigation.NavigatingCancelEventArgs e)
         {
-        	VisualStateManager.GoToState(ContentFrame, "Navigating", true);
+            VisualStateManager.GoToState(this, "Navigating", true);
+        }
+
+        private void Link3_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
         }
     }
 }

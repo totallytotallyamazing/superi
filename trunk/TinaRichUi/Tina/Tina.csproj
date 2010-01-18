@@ -92,12 +92,9 @@
       <Generator>MSBuild:MarkupCompilePass1</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Resource Include="Assets\music.jpg" />
-    <Resource Include="Assets\nightBottom.jpg" />
-    <Resource Include="Assets\nightHead.jpg" />
-    <Resource Include="Assets\nightThumb.jpg" />
-    <Resource Include="Assets\polusThumb.jpg" />
-    <Resource Include="Assets\smylThumb.jpg" />
+    <Resource Include="Assets\nightBg.jpg" />
+    <Resource Include="Assets\polusBg.jpg" />
+    <Resource Include="Assets\smylBg.jpg" />
     <Resource Include="Assets\Styles.xaml">
       <Generator>MSBuild:MarkupCompilePass1</Generator>
       <SubType>Designer</SubType>

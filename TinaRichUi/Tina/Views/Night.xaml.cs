@@ -18,10 +18,6 @@ namespace Tina
 {
     public partial class Night : Page
     {
-        private bool mouseDown = false;
-		private bool startDrag = false;
-        int mouseY = 0;
-
         public Night()
         {
             InitializeComponent();
@@ -51,25 +47,6 @@ namespace Tina
 					scrollingAutomationProvider.Scroll(ScrollAmount.NoAmount, ScrollAmount.LargeIncrement);
 				}
 			}
-
-        }
-
-        private void ScrollViewer_MouseMove(object sender, System.Windows.Input.MouseEventArgs e)
-        {
-        	ScrollViewerAutomationPeer svAutomation = (ScrollViewerAutomationPeer)ScrollViewerAutomationPeer.CreatePeerForElement((ScrollViewer)sender);
-			IScrollProvider scrollingAutomationProvider = (IScrollProvider)svAutomation.GetPattern(PatternInterface.Scroll); 
-
-        }
-
-        private void ScrollViewer_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-        	mouseDown = true;
-            
-        }
-
-        private void ScrollViewer_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-        	mouseDown = false;
         }
     }
 }

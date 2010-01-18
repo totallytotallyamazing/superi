@@ -41,7 +41,7 @@
 
 
 
-    <Grid x:Name="LayoutRoot" Style="{StaticResource LayoutRootGridStyle}" Background="Black">
+    <Grid x:Name="LayoutRoot" Style="{StaticResource LayoutRootGridStyle}" Background="Black" Margin="0">
     	<VisualStateManager.VisualStateGroups>
     		<VisualStateGroup x:Name="Common">
     			<VisualState x:Name="Navigating">
@@ -56,16 +56,35 @@
     			<VisualState x:Name="Navigated">
     				<Storyboard>
     					<DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="ContentFrame" Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.RotationX)">
-    						<EasingDoubleKeyFrame KeyTime="00:00:00" Value="180"/>
-    						<EasingDoubleKeyFrame KeyTime="00:00:00.3000000" Value="270"/>
-    						<EasingDoubleKeyFrame KeyTime="00:00:00.6000000" Value="360"/>
+    						<EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+    						<EasingDoubleKeyFrame KeyTime="00:00:00.5000000" Value="0"/>
     					</DoubleAnimationUsingKeyFrames>
+    					<DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="ContentFrame" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)">
+    						<EasingDoubleKeyFrame KeyTime="00:00:00" Value="-70"/>
+    						<EasingDoubleKeyFrame KeyTime="00:00:00.5000000" Value="0"/>
+    					</DoubleAnimationUsingKeyFrames>
+    					<DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="ContentFrame" Storyboard.TargetProperty="(UIElement.Opacity)">
+    						<EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+    						<EasingDoubleKeyFrame KeyTime="00:00:00.5000000" Value="1"/>
+    					</DoubleAnimationUsingKeyFrames>
+    					<ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="ContentFrame" Storyboard.TargetProperty="(FrameworkElement.Margin)">
+    						<DiscreteObjectKeyFrame KeyTime="00:00:00">
+    							<DiscreteObjectKeyFrame.Value>
+    								<Thickness>0,0,-360,0</Thickness>
+    							</DiscreteObjectKeyFrame.Value>
+    						</DiscreteObjectKeyFrame>
+    						<DiscreteObjectKeyFrame KeyTime="00:00:00.5000000">
+    							<DiscreteObjectKeyFrame.Value>
+    								<Thickness>0</Thickness>
+    							</DiscreteObjectKeyFrame.Value>
+    						</DiscreteObjectKeyFrame>
+    					</ObjectAnimationUsingKeyFrames>
     				</Storyboard>
     			</VisualState>
     		</VisualStateGroup>
     	</VisualStateManager.VisualStateGroups>
 
-        <Border x:Name="ContentBorder" Style="{StaticResource ContentBorderStyle}">
+        <Border x:Name="ContentBorder" Style="{StaticResource ContentBorderStyle}" Margin="0" Background="Black">
 
             <navigation:Frame x:Name="ContentFrame" Style="{StaticResource ContentFrameStyle}" 
                               Source="/Home" Navigated="ContentFrame_Navigated" NavigationFailed="ContentFrame_NavigationFailed" Margin="0"  Navigating="ContentFrame_Navigating" RenderTransformOrigin="0.5,0.5">
@@ -91,26 +110,18 @@
             	</navigation:Frame.Projection>
             </navigation:Frame>
         </Border>
-
-        <Grid x:Name="NavigationGrid" Style="{StaticResource NavigationGridStyle}" Background="{x:Null}" RenderTransformOrigin="0.54,0.524" Height="100" Margin="0" VerticalAlignment="Top">
-
-            <Border x:Name="LinksBorder" Style="{StaticResource LinksBorderStyle}" Height="Auto" Margin="0,0,0,-8">
-            	<StackPanel x:Name="LinksStackPanel" Style="{StaticResource LinksStackPanelStyle}" Height="100">
-				
-            		<HyperlinkButton NavigateUri="/Polus" TargetName="ContentFrame"/>
-
-            		<HyperlinkButton x:Name="Link1" Style="{StaticResource LinkStyle}" 
-            			NavigateUri="/Home" TargetName="ContentFrame" Click="Link3_Click"/>
-									 
-            		<Rectangle x:Name="Divider1" Style="{StaticResource DividerStyle}"/>
-            		<HyperlinkButton x:Name="Link2" Style="{StaticResource LinkStyle}" 
-            			NavigateUri="/About" TargetName="ContentFrame" Content="about" Click="Link3_Click"/>
-
-            		<Rectangle x:Name="Divider2" Style="{StaticResource DividerStyle}"/>
-
-            	</StackPanel>
-            </Border>
-
+        <Grid x:Name="NavigationGrid" Style="{StaticResource NavigationGridStyle}" Background="{x:Null}" RenderTransformOrigin="0.54,0.524" Height="Auto" Margin="0" VerticalAlignment="Top" Width="800" HorizontalAlignment="Center">
+        	<StackPanel x:Name="LinksStackPanel" Style="{StaticResource LinksStackPanelStyle}" HorizontalAlignment="Left">
+        		<HyperlinkButton TargetName="ContentFrame" NavigateUri="/Night" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Top">
+        			<Image Stretch="Fill" Height="40" Width="40" Source="Assets/nightThumb.jpg"/>
+        		</HyperlinkButton>
+        		<HyperlinkButton TargetName="ContentFrame" NavigateUri="/Polus" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Top">
+        			<Image Stretch="Fill" Height="40" Width="40" Source="Assets/polusThumb.jpg"/>
+        		</HyperlinkButton>
+        		<HyperlinkButton TargetName="ContentFrame" NavigateUri="/Show" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Top">
+        			<Image Stretch="Fill" Height="40" Width="40" Source="Assets/smylThumb.jpg"/>
+        		</HyperlinkButton>
+        	</StackPanel>
         </Grid>
 
     </Grid>

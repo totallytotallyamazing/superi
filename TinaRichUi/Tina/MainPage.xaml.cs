@@ -15,9 +15,51 @@ namespace Tina
 {
     public partial class MainPage : UserControl
     {
+        string prevPage = "/Home";
+        Dictionary<string, Color> pageColor = new Dictionary<string, Color>();
+        Dictionary<string, Storyboard> pageBoard = new Dictionary<string, Storyboard>();
+
         public MainPage()
         {
             InitializeComponent();
+            pageColor["/Home"] = Colors.Black;
+            pageColor["/Night"] = Colors.Black;
+            pageColor["/Show"] = Color.FromArgb(255, 115, 115, 115);
+            pageColor["/Polus"] = Colors.White;
+
+        }
+
+        private Storyboard PrepareStoryboard(string from, string to)
+        {
+            string boardKey = from.Replace("/", "") + "_" + to.Replace("/", "");
+
+            if (!pageBoard.ContainsKey(boardKey))
+            {
+                Storyboard storyboard = new Storyboard();
+                Duration duration = new Duration(TimeSpan.FromMilliseconds(300));
+
+                ColorAnimationUsingKeyFrames animation = new ColorAnimationUsingKeyFrames();
+
+                EasingColorKeyFrame frameFrom = new EasingColorKeyFrame();
+                frameFrom.KeyTime = KeyTime.FromTimeSpan(TimeSpan.Zero);
+                frameFrom.Value = pageColor[from];
+                EasingColorKeyFrame frameTo = new EasingColorKeyFrame();
+                frameTo.KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromMilliseconds(300));
+                frameTo.Value = pageColor[to];
+
+                animation.KeyFrames.Add(frameFrom);
+                animation.KeyFrames.Add(frameTo);
+                animation.BeginTime = TimeSpan.Zero;
+
+                storyboard.Children.Add(animation);
+                Storyboard.SetTarget(animation, ContentBorder);
+                Storyboard.SetTargetProperty(animation, new PropertyPath("(Border.Background).(SolidColorBrush.Color)"));
+
+                pageBoard[boardKey] = storyboard;
+
+                LayoutRoot.Resources.Add(boardKey, storyboard);
+            }
+            return pageBoard[boardKey];
         }
 
         // After the Frame navigates, ensure the HyperlinkButton representing the current page is selected
@@ -31,16 +73,18 @@ namespace Tina
                     if (hb.NavigateUri.ToString().Equals(e.Uri.ToString()))
                     {
                         VisualStateManager.GoToState(hb, "ActiveLink", true);
+                        hb.IsEnabled = false;
                     }
                     else
                     {
                         VisualStateManager.GoToState(hb, "InactiveLink", true);
-						hb.IsEnabled = false;
+                        hb.IsEnabled = true;
                     }
                 }
             }
-            VisualStateManager.GoToState(this, "Navigated", true);
-            //NavigatedBoard.Begin();
+            NavigatedBoard.Begin();
+            PrepareStoryboard(prevPage, e.Uri.ToString()).Begin();
+            prevPage = e.Uri.ToString();
 			
         }
 
@@ -64,12 +108,12 @@ namespace Tina
 
         private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            string path = ((Button)sender).Tag.ToString();
-            Uri uri = new Uri(path, UriKind.Relative);
-            NavigatingBoard.Completed += (board, eventArgs) => {
-                ContentFrame.Navigate(uri);
-            };
-            NavigatingBoard.Begin();
+          //  string path = ((Button)sender).Tag.ToString();
+    //        Uri uri = new Uri(path, UriKind.Relative);
+//            NavigatingBoard.Completed += (board, eventArgs) => {
+      //          ContentFrame.Navigate(uri);
+        //    };
+  //          NavigatingBoard.Begin();
         }
     }
 }

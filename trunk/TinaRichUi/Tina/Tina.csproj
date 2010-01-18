@@ -70,6 +70,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ImageLink.xaml.cs">
+      <DependentUpon>ImageLink.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ErrorWindow.xaml.cs">
       <DependentUpon>ErrorWindow.xaml</DependentUpon>
     </Compile>
@@ -86,6 +89,12 @@
     <Compile Include="Views\Night.xaml.cs">
       <DependentUpon>Night.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Polus.xaml.cs">
+      <DependentUpon>Polus.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Show.xaml.cs">
+      <DependentUpon>Show.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -93,12 +102,19 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Resource Include="Assets\nightBg.jpg" />
+    <Resource Include="Assets\nightThumb.jpg" />
     <Resource Include="Assets\polusBg.jpg" />
+    <Resource Include="Assets\polusThumb.jpg" />
     <Resource Include="Assets\smylBg.jpg" />
+    <Resource Include="Assets\smylThumb.jpg" />
     <Resource Include="Assets\Styles.xaml">
       <Generator>MSBuild:MarkupCompilePass1</Generator>
       <SubType>Designer</SubType>
     </Resource>
+    <Page Include="Controls\ImageLink.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\ErrorWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:MarkupCompilePass1</Generator>
@@ -119,12 +135,17 @@
       <Generator>MSBuild:MarkupCompilePass1</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\Polus.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Show.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AppManifest.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controls\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\v3.0\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

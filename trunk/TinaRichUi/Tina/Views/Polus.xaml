@@ -5,15 +5,15 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	mc:Ignorable="d"
 	xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
-	x:Class="Tina.Night" 
-	Title="Night Page"
+	x:Class="Tina.Polus" 
+	Title="Polus Page"
 	d:DesignWidth="640" d:DesignHeight="480">
-	
-	<Grid x:Name="LayoutRoot" Margin="0">
-		<ScrollViewer Style="{StaticResource PageScrollViewerStyle}" MouseWheel="ScrollViewer_MouseWheel">
-		<StackPanel Width="800">
-			<Image Margin="0,0,0,0" Source="/Tina;Component/Assets/nightBg.jpg" Stretch="Fill" Width="800" Height="1542"/>
-		</StackPanel>
-		</ScrollViewer>
-	</Grid>
+
+    <Grid x:Name="LayoutRoot" Margin="0">
+        <ScrollViewer Style="{StaticResource PageScrollViewerStyle}" MouseWheel="ScrollViewer_MouseWheel">
+            <StackPanel Width="800">
+                <Image Margin="0,0,0,0" Source="/Tina;Component/Assets/polusBg.jpg" Stretch="Fill" Width="800" Height="1814"/>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
 </navigation:Page>

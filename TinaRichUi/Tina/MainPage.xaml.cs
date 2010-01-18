@@ -35,10 +35,12 @@ namespace Tina
                     else
                     {
                         VisualStateManager.GoToState(hb, "InactiveLink", true);
+						hb.IsEnabled = false;
                     }
                 }
             }
             VisualStateManager.GoToState(this, "Navigated", true);
+            //NavigatedBoard.Begin();
 			
         }
 
@@ -52,11 +54,22 @@ namespace Tina
 
         private void ContentFrame_Navigating(object sender, System.Windows.Navigation.NavigatingCancelEventArgs e)
         {
-            VisualStateManager.GoToState(this, "Navigating", true);
+//            VisualStateManager.GoToState(this, "Navigating", true);
         }
 
         private void Link3_Click(object sender, System.Windows.RoutedEventArgs e)
         {
+
+        }
+
+        private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            string path = ((Button)sender).Tag.ToString();
+            Uri uri = new Uri(path, UriKind.Relative);
+            NavigatingBoard.Completed += (board, eventArgs) => {
+                ContentFrame.Navigate(uri);
+            };
+            NavigatingBoard.Begin();
         }
     }
 }

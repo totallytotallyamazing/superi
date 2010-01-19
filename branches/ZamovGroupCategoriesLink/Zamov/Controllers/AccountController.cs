@@ -66,11 +66,16 @@ namespace Zamov.Controllers
 
             FormsAuth.SignIn(userName, rememberMe);
 
+            ProfileCommon profile = ProfileCommon.Create(userName);
+            if (profile.DealerEmployee)
+            {
+                return RedirectToAction("Orders",  "DealerCabinet");
+            }
             if (!String.IsNullOrEmpty(returnUrl))
             {
                 return Redirect(returnUrl);
             }
-            else
+            else 
             {
                 return RedirectToAction("Index", "Home");
             }

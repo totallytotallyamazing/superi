@@ -727,7 +727,7 @@
     <value>Ви не можете оформити замовлення, тому що ваш кошик порожнiй. Будь-ласка, виберiть товар i покладiть його до кошику.</value>
   </data>
   <data name="YourCartIsEmpty" xml:space="preserve">
-    <value>Ваш кошик порожнiй. Будьласка виберiть товар i покладiть його до кошику.</value>
+    <value>Ваш кошик порожній. Будь-ласка, виберіть товар і покладіть його до кошику.</value>
   </data>
   <data name="DealerGroupName" xml:space="preserve">
     <value>Назва групи</value>

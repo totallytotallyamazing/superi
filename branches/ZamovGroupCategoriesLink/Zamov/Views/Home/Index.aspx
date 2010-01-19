@@ -22,13 +22,20 @@
                     Html.Image("~/Image/CategoryImageByCategoryId/" + item.Id)) %>
             </div>
             <div class="subCategories">
-                <% bool first = true;
+                <% bool last = true;
+                   int i = 0;
                    foreach (var subCategory in item.Children.Take(5))
-                   {%>
-                    <%if (!first)Response.Write("&nbsp;/&nbsp;"); first = false;%>
+                   {
+                       last = (i == 4 || i==item.Children.Count - 1);
+                       %>
+                       <span>
                     <%= Html.ActionLink(subCategory.Name, "Index", "Dealers", new {id=subCategory.Id }, null)%>
-                    
-                 <%} %>
+                    <%if (!last)Response.Write(" / ");%>
+                    </span>
+                 <%
+                    i++;
+                 
+                 } %>
             </div>
         </div>
     <%} %>

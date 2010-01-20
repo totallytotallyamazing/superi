@@ -13,11 +13,17 @@ using System.Windows.Navigation;
 using System.Windows.Automation.Peers;
 using System.Windows.Automation.Provider;
 using System.Windows.Automation;
+using Tina.Controls;
 
 namespace Tina
 {
     public partial class Polus : Page
     {
+        PolusSong currentControl = null;
+        string currentSong = null;
+        bool eventBinded = false;
+
+
         public Polus()
         {
             InitializeComponent();
@@ -45,6 +51,31 @@ namespace Tina
                     // content goes up:
                     scrollingAutomationProvider.Scroll(ScrollAmount.NoAmount, ScrollAmount.LargeIncrement);
                 }
+            }
+        }
+		
+        private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            string url = (sender as Button).Tag.ToString();
+            night.Stop();
+            if (currentControl != null)
+                currentControl.Deactivate();
+            currentControl = ControlFinder.FindParent<PolusSong>((sender as Button));
+            
+            if (url != currentSong)
+            {
+                night.SetValue(MediaElement.SourceProperty, new Uri(url, UriKind.Absolute));
+                if (!eventBinded)
+                {
+                    night.MediaOpened += (source, ev) => { night.Play(); };
+                    eventBinded = true;
+                }
+                currentControl.Activate();
+                currentSong = url;
+            }
+            else
+            {
+                currentSong = null;
             }
         }
     }

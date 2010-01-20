@@ -11,24 +11,70 @@
 	Title="Night Page"
 	d:DesignWidth="640" d:DesignHeight="480">
 	
+    
 	<Grid x:Name="LayoutRoot" Margin="0">
 		<ScrollViewer Style="{StaticResource PageScrollViewerStyle}" MouseWheel="ScrollViewer_MouseWheel">
 			<Grid Width="800" Height="1542">
 				<Grid.Background>
 					<ImageBrush ImageSource="/Tina;Component/Assets/nightBg.jpg" Stretch="Fill"/>
 				</Grid.Background>
-				<MediaElement x:Name="night" Height="0" AutoPlay="False" HorizontalAlignment="Left" VerticalAlignment="Top" Width="0" Source="/Music/Night/night.mp3" Stretch="Fill"/>
-				<MediaElement x:Name="high" Height="0" AutoPlay="False" HorizontalAlignment="Left" VerticalAlignment="Top" Width="0" Source="/Music/Night/high.mp3" Stretch="Fill"/>
-				<MediaElement x:Name="draw" Height="0" AutoPlay="False" HorizontalAlignment="Left" VerticalAlignment="Top" Width="0" Source="/Music/Night/draw.mp3" Stretch="Fill"/>
-				<MediaElement x:Name="pups" Height="0" AutoPlay="False" HorizontalAlignment="Left" VerticalAlignment="Top" Width="0" Source="/Music/Night/pups.mp3" Stretch="Fill"/>
-				<MediaElement x:Name="let" Height="0" AutoPlay="False" HorizontalAlignment="Left" VerticalAlignment="Top" Width="0" Source="/Music/Night/let.mp3" Stretch="Fill"/>
-				<MediaElement x:Name="highr" Height="0" AutoPlay="False" HorizontalAlignment="Left" VerticalAlignment="Top" Width="0" Source="/Music/Night/highr.mp3" Stretch="Fill"/>
+				<MediaElement x:Name="night" Height="0" AutoPlay="False" HorizontalAlignment="Left" VerticalAlignment="Top" Width="0" Stretch="Fill"/>
 				<StackPanel Orientation="Vertical" Margin="42,240,0,0">
-					<local:SongControl x:Name="nightSong" Height="22" HorizontalAlignment="Left" Width="200">
-						<Button Content="Ноченька" Click="Button_Click">
+					<local:SongControl Height="22" HorizontalAlignment="Left" Width="200">
+						<Button Content="Ноченька" Click="Button_Click" Tag="http://tinakarol.ua/Albums/Night/night.mp3" Margin="5,5,0,0">
 							<Button.Template>
 								<ControlTemplate TargetType="Button">
-									<ContentControl Content="{TemplateBinding Content}" Foreground="White">
+									<ContentControl Content="{TemplateBinding Content}" Foreground="White" FontFamily="Times New Roman">
+									</ContentControl>
+								</ControlTemplate>
+							</Button.Template>
+						</Button>
+					</local:SongControl>
+					<local:SongControl Height="22" HorizontalAlignment="Left" Width="200">
+						<Button Content="Выше облаков" Click="Button_Click" Tag="http://tinakarol.ua/Albums/Night/high.mp3" Margin="5,5,0,0">
+							<Button.Template>
+								<ControlTemplate TargetType="Button">
+									<ContentControl Content="{TemplateBinding Content}" Foreground="White" FontFamily="Times New Roman">
+									</ContentControl>
+								</ControlTemplate>
+							</Button.Template>
+						</Button>
+					</local:SongControl>
+					<local:SongControl Height="22" HorizontalAlignment="Left" Width="200">
+						<Button Content="Намалюю тобi" Click="Button_Click" Tag="http://tinakarol.ua/Albums/Night/draw.mp3" Margin="5,5,0,0">
+							<Button.Template>
+								<ControlTemplate TargetType="Button">
+									<ContentControl Content="{TemplateBinding Content}" Foreground="White" FontFamily="Times New Roman">
+									</ContentControl>
+								</ControlTemplate>
+							</Button.Template>
+						</Button>
+					</local:SongControl>
+					<local:SongControl Height="22" HorizontalAlignment="Left" Width="200">
+						<Button Content="Пупсик" Click="Button_Click" Tag="http://tinakarol.ua/Albums/Night/pups.mp3" Margin="5,5,0,0">
+							<Button.Template>
+								<ControlTemplate TargetType="Button">
+									<ContentControl Content="{TemplateBinding Content}" Foreground="White" FontFamily="Times New Roman">
+									</ContentControl>
+								</ControlTemplate>
+							</Button.Template>
+						</Button>
+					</local:SongControl>
+					<local:SongControl Height="22" HorizontalAlignment="Left" Width="200">
+						<Button Content="Ты отпусти" Click="Button_Click" Tag="http://tinakarol.ua/Albums/Night/let.mp3" Margin="5,5,0,0">
+							<Button.Template>
+								<ControlTemplate TargetType="Button">
+									<ContentControl Content="{TemplateBinding Content}" Foreground="White" FontFamily="Times New Roman">
+									</ContentControl>
+								</ControlTemplate>
+							</Button.Template>
+						</Button>
+					</local:SongControl>
+					<local:SongControl Height="22" HorizontalAlignment="Left" Width="200">
+						<Button Content="Выше облаков (remix)" Click="Button_Click" Tag="http://tinakarol.ua/Albums/Night/highr.mp3" Margin="5,5,0,0">
+							<Button.Template>
+								<ControlTemplate TargetType="Button">
+									<ContentControl Content="{TemplateBinding Content}" Foreground="White" FontFamily="Times New Roman">
 									</ContentControl>
 								</ControlTemplate>
 							</Button.Template>

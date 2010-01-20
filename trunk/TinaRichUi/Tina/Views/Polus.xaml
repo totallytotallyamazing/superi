@@ -5,17 +5,31 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	mc:Ignorable="d"
 	xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
+    xmlns:local="clr-namespace:Tina"
 	x:Class="Tina.Polus" 
 	Title="Polus Page"
 	d:DesignWidth="640" d:DesignHeight="480">
 
     <Grid x:Name="LayoutRoot" Margin="0">
         <ScrollViewer Style="{StaticResource PageScrollViewerStyle}" MouseWheel="ScrollViewer_MouseWheel">
-            <StackPanel Width="800" Height="1814">
-				<StackPanel.Background>
+            <Grid Width="800" Height="1814">
+				<Grid.Background>
 					<ImageBrush ImageSource="/Tina;Component/Assets/polusBg.jpg" Stretch="Fill"></ImageBrush>
-				</StackPanel.Background>
-            </StackPanel>
+				</Grid.Background>
+                <MediaElement x:Name="night" Height="0" AutoPlay="False" HorizontalAlignment="Left" VerticalAlignment="Top" Width="0" Stretch="Fill"/>
+                <StackPanel Orientation="Vertical" Margin="42,240,0,0">
+                    <local:PolusSong Height="22" HorizontalAlignment="Left" Width="200">
+                        <Button Content="Ноченька" Click="Button_Click" Tag="http://tinakarol.ua/Albums/Polus/polus.mp3" Margin="5,5,0,0">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <ContentControl Content="{TemplateBinding Content}" Foreground="#FF492E14" FontFamily="Times New Roman">
+                                    </ContentControl>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </local:PolusSong>
+                </StackPanel>
+            </Grid>
         </ScrollViewer>
     </Grid>
 </navigation:Page>

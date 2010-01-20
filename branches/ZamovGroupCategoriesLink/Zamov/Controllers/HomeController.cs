@@ -51,6 +51,7 @@ namespace Zamov.Controllers
             return View();
         }
 
+        [OutputCache(NoStore = true, VaryByParam = "*", Duration = 1)]
         public ActionResult Agreement()
         {
             return View();

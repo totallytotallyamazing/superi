@@ -16,7 +16,8 @@ select
 #header .rightBorder{float:right; background: transparent url(img/headerRight.jpg)}
 #header .leftBorder{float:left; background: transparent url(img/headerLeft.jpg)}
 
-.subCategories span, .subCategories a{font-size:10px; font-family:Arial; color:#ccc;}
+.subCategories a{font-size:10px; font-family:Tahoma;}
+
 #masterLogin{border-left:1px solid #234256;
 float:right;
 height:142px;

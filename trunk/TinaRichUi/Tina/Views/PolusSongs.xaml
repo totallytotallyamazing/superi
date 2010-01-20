@@ -36,7 +36,7 @@
 							</DiscreteObjectKeyFrame>
 							<DiscreteObjectKeyFrame KeyTime="00:00:00.3000000">
 								<DiscreteObjectKeyFrame.Value>
-									<Visibility>Collapsed</Visibility>
+									<Visibility>Visible</Visibility>
 								</DiscreteObjectKeyFrame.Value>
 							</DiscreteObjectKeyFrame>
 						</ObjectAnimationUsingKeyFrames>
@@ -46,7 +46,7 @@
 						</ColorAnimationUsingKeyFrames>
 						<DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="path" Storyboard.TargetProperty="(FrameworkElement.Height)">
 							<EasingDoubleKeyFrame KeyTime="00:00:00" Value="5"/>
-							<EasingDoubleKeyFrame KeyTime="00:00:00.3000000" Value="0"/>
+							<EasingDoubleKeyFrame KeyTime="00:00:00.3000000" Value="1"/>
 						</DoubleAnimationUsingKeyFrames>
 					</Storyboard>
 				</VisualState>
@@ -71,7 +71,7 @@
 							</DiscreteObjectKeyFrame>
 							<DiscreteObjectKeyFrame KeyTime="00:00:00.3000000">
 								<DiscreteObjectKeyFrame.Value>
-									<Visibility>Collapsed</Visibility>
+									<Visibility>Visible</Visibility>
 								</DiscreteObjectKeyFrame.Value>
 							</DiscreteObjectKeyFrame>
 						</ObjectAnimationUsingKeyFrames>
@@ -81,7 +81,7 @@
 		</VisualStateManager.VisualStateGroups>
 		<StackPanel Orientation="Horizontal" Margin="0" d:LayoutOverrides="Height">
 			<Border Height="22" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="20">
-	        <Polygon x:Name="polygon" Stroke="White" Fill="White" Visibility="Collapsed" >
+	        <Polygon x:Name="polygon" Stroke="#FF492E14" Fill="#FF492E14" Visibility="Collapsed" >
             <Polygon.Points>
                 <Point X="5" Y="6" />
                 <Point X="15" Y="11" />
@@ -96,7 +96,7 @@
 					<Path x:Name="path" Stretch="Fill" Height="0" Margin="2,0,8,5" VerticalAlignment="Bottom" UseLayoutRounding="False" Data="M4,14 L172,14" Width="170" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Stroke="#FF492E14" Fill="#FF492E14">
 						<Path.RenderTransform>
 							<TransformGroup>
-								<ScaleTransform/>
+								<ScaleTransform ScaleX="0"/>
 								<SkewTransform/>
 								<RotateTransform/>
 								<TranslateTransform/>

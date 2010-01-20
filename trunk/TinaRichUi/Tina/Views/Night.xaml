@@ -5,15 +5,37 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	mc:Ignorable="d"
 	xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
+	xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" xmlns:im="clr-namespace:Microsoft.Expression.Interactivity.Media;assembly=Microsoft.Expression.Interactions"
+	xmlns:local="clr-namespace:Tina"
 	x:Class="Tina.Night" 
 	Title="Night Page"
 	d:DesignWidth="640" d:DesignHeight="480">
 	
 	<Grid x:Name="LayoutRoot" Margin="0">
 		<ScrollViewer Style="{StaticResource PageScrollViewerStyle}" MouseWheel="ScrollViewer_MouseWheel">
-		<StackPanel Width="800">
-			<Image Margin="0,0,0,0" Source="/Tina;Component/Assets/nightBg.jpg" Stretch="Fill" Width="800" Height="1542"/>
-		</StackPanel>
+			<Grid Width="800" Height="1542">
+				<Grid.Background>
+					<ImageBrush ImageSource="/Tina;Component/Assets/nightBg.jpg" Stretch="Fill"/>
+				</Grid.Background>
+				<MediaElement x:Name="night" Height="0" AutoPlay="False" HorizontalAlignment="Left" VerticalAlignment="Top" Width="0" Source="/Music/Night/night.mp3" Stretch="Fill"/>
+				<MediaElement x:Name="high" Height="0" AutoPlay="False" HorizontalAlignment="Left" VerticalAlignment="Top" Width="0" Source="/Music/Night/high.mp3" Stretch="Fill"/>
+				<MediaElement x:Name="draw" Height="0" AutoPlay="False" HorizontalAlignment="Left" VerticalAlignment="Top" Width="0" Source="/Music/Night/draw.mp3" Stretch="Fill"/>
+				<MediaElement x:Name="pups" Height="0" AutoPlay="False" HorizontalAlignment="Left" VerticalAlignment="Top" Width="0" Source="/Music/Night/pups.mp3" Stretch="Fill"/>
+				<MediaElement x:Name="let" Height="0" AutoPlay="False" HorizontalAlignment="Left" VerticalAlignment="Top" Width="0" Source="/Music/Night/let.mp3" Stretch="Fill"/>
+				<MediaElement x:Name="highr" Height="0" AutoPlay="False" HorizontalAlignment="Left" VerticalAlignment="Top" Width="0" Source="/Music/Night/highr.mp3" Stretch="Fill"/>
+				<StackPanel Orientation="Vertical" Margin="42,240,0,0">
+					<local:SongControl x:Name="nightSong" Height="22" HorizontalAlignment="Left" Width="200">
+						<Button Content="Ноченька" Click="Button_Click">
+							<Button.Template>
+								<ControlTemplate TargetType="Button">
+									<ContentControl Content="{TemplateBinding Content}" Foreground="White">
+									</ContentControl>
+								</ControlTemplate>
+							</Button.Template>
+						</Button>
+					</local:SongControl>
+				</StackPanel>
+			</Grid>
 		</ScrollViewer>
 	</Grid>
 </navigation:Page>

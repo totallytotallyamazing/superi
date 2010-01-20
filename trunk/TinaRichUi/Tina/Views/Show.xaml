@@ -11,8 +11,10 @@
 
     <Grid x:Name="LayoutRoot" Margin="0">
         <ScrollViewer Style="{StaticResource PageScrollViewerStyle}" MouseWheel="ScrollViewer_MouseWheel">
-            <StackPanel Width="800">
-                <Image Margin="0,0,0,0" Source="/Tina;Component/Assets/smylBg.jpg" Stretch="Fill" Width="800" Height="1580"/>
+            <StackPanel Width="800" Height="1580">
+				<StackPanel.Background>
+					<ImageBrush ImageSource="/Tina;Component/Assets/smylBg.jpg" Stretch="Fill"></ImageBrush>
+				</StackPanel.Background>
             </StackPanel>
         </ScrollViewer>
     </Grid>

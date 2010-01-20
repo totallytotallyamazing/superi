@@ -108,6 +108,7 @@
             	<navigation:Frame.Projection>
             		<PlaneProjection/>
             	</navigation:Frame.Projection>
+            	<MediaElement Source="draw.mp3"/>
             </navigation:Frame>
         </Border>
         <Grid x:Name="NavigationGrid" Style="{StaticResource NavigationGridStyle}" Background="{x:Null}" RenderTransformOrigin="0.54,0.524" Height="Auto" Margin="0" VerticalAlignment="Top" Width="800" HorizontalAlignment="Center">

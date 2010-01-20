@@ -18,6 +18,9 @@ namespace Tina
 {
     public partial class Night : Page
     {
+		SongControl currentControl = null;
+		MediaElement currentElement = null;
+		
         public Night()
         {
             InitializeComponent();
@@ -46,6 +49,29 @@ namespace Tina
 					// content goes up:
 					scrollingAutomationProvider.Scroll(ScrollAmount.NoAmount, ScrollAmount.LargeIncrement);
 				}
+			}
+        }
+
+        private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+			if(currentElement != null)
+			{
+				currentElement.Stop();
+				currentControl.Deactivate();
+			}
+			if(currentControl == nightSong && currentElement != null)
+			{
+				currentElement = null;
+				currentControl = null;
+			}
+			
+			else
+			{
+				currentElement = night;
+				currentControl = nightSong;
+				
+				currentElement.Play();
+				currentControl.Activate();
 			}
         }
     }

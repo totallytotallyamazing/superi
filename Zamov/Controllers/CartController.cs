@@ -261,12 +261,15 @@ namespace Zamov.Controllers
 
         private bool NeedsToBeMailed(Order order)
         {
+            return true;
+            /*
             if (HttpContext.Items["onlineDealers"] == null)
                 HttpContext.Items["onlineDealers"] = MembershipExtensions.GetOnlineDealers();
             int[] onlineDealers = (int[])HttpContext.Items["onlineDealers"];
             if (!onlineDealers.Contains((int)order.DealerReference.EntityKey.EntityKeyValues[0].Value))
                 return true;
             return false;
+            */
         }
 
         private bool ValidateMakeOrder(

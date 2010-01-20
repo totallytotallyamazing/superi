@@ -72,8 +72,13 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Class1.cs" />
     <Compile Include="Controls\ImageLink.xaml.cs">
       <DependentUpon>ImageLink.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SongLink.cs" />
+    <Compile Include="Views\PolusSongs.xaml.cs">
+      <DependentUpon>PolusSongs.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ErrorWindow.xaml.cs">
       <DependentUpon>ErrorWindow.xaml</DependentUpon>
@@ -118,6 +123,14 @@
       <SubType>Designer</SubType>
     </Resource>
     <Page Include="Controls\ImageLink.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PolusSongs.xaml">
       <Generator>MSBuild:MarkupCompilePass1</Generator>
       <SubType>Designer</SubType>
     </Page>

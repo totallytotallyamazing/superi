@@ -14,7 +14,7 @@ namespace Tina
     [ContentProperty("Child")]
 	public partial class PolusSong : UserControl 
 	{
-        public static readonly DependencyProperty ChildProperty = DependencyProperty.Register("Child", typeof(UIElement), typeof(SongControl), null); 
+        public static readonly DependencyProperty ChildProperty = DependencyProperty.Register("Child", typeof(UIElement), typeof(PolusSong), null); 
  
         public UIElement Child
         {

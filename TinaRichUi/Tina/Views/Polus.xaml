@@ -19,7 +19,97 @@
                 <MediaElement x:Name="night" Height="0" AutoPlay="False" HorizontalAlignment="Left" VerticalAlignment="Top" Width="0" Stretch="Fill"/>
                 <StackPanel Orientation="Vertical" Margin="42,240,0,0">
                     <local:PolusSong Height="22" HorizontalAlignment="Left" Width="200">
-                        <Button Content="Ноченька" Click="Button_Click" Tag="http://tinakarol.ua/Albums/Polus/polus.mp3" Margin="5,5,0,0">
+                        <Button Content="Полюс притяжения" Click="Button_Click" Tag="http://tinakarol.ua/Albums/Polus/polus.mp3" Margin="5,5,0,0">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <ContentControl Content="{TemplateBinding Content}" Foreground="#FF492E14" FontFamily="Times New Roman">
+                                    </ContentControl>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </local:PolusSong>
+                    <local:PolusSong Height="22" HorizontalAlignment="Left" Width="200">
+                        <Button Content="Белое небо" Click="Button_Click" Tag="http://tinakarol.ua/Albums/Polus/skyw.mp3" Margin="5,5,0,0">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <ContentControl Content="{TemplateBinding Content}" Foreground="#FF492E14" FontFamily="Times New Roman">
+                                    </ContentControl>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </local:PolusSong>
+                    <local:PolusSong Height="22" HorizontalAlignment="Left" Width="200">
+                        <Button Content="Люблю его" Click="Button_Click" Tag="http://tinakarol.ua/Albums/Polus/love.mp3" Margin="5,5,0,0">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <ContentControl Content="{TemplateBinding Content}" Foreground="#FF492E14" FontFamily="Times New Roman">
+                                    </ContentControl>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </local:PolusSong>
+                    <local:PolusSong Height="22" HorizontalAlignment="Left" Width="200">
+                        <Button Content="Ни к чему" Click="Button_Click" Tag="http://tinakarol.ua/Albums/Polus/nothing.mp3" Margin="5,5,0,0">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <ContentControl Content="{TemplateBinding Content}" Foreground="#FF492E14" FontFamily="Times New Roman">
+                                    </ContentControl>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </local:PolusSong>
+                    <local:PolusSong Height="22" HorizontalAlignment="Left" Width="200">
+                        <Button Content="Ключик" Click="Button_Click" Tag="http://tinakarol.ua/Albums/Polus/key.mp3" Margin="5,5,0,0">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <ContentControl Content="{TemplateBinding Content}" Foreground="#FF492E14" FontFamily="Times New Roman">
+                                    </ContentControl>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </local:PolusSong>
+                    <local:PolusSong Height="22" HorizontalAlignment="Left" Width="200">
+                        <Button Content="У неба попросим" Click="Button_Click" Tag="http://tinakarol.ua/Albums/Polus/asksky.mp3" Margin="5,5,0,0">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <ContentControl Content="{TemplateBinding Content}" Foreground="#FF492E14" FontFamily="Times New Roman">
+                                    </ContentControl>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </local:PolusSong>
+                    <local:PolusSong Height="22" HorizontalAlignment="Left" Width="200">
+                        <Button Content="Время как вода" Click="Button_Click" Tag="http://tinakarol.ua/Albums/Polus/time.mp3" Margin="5,5,0,0">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <ContentControl Content="{TemplateBinding Content}" Foreground="#FF492E14" FontFamily="Times New Roman">
+                                    </ContentControl>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </local:PolusSong>
+                    <local:PolusSong Height="22" HorizontalAlignment="Left" Width="200">
+                        <Button Content="Losing my way" Click="Button_Click" Tag="http://tinakarol.ua/Albums/Polus/losing.mp3" Margin="5,5,0,0">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <ContentControl Content="{TemplateBinding Content}" Foreground="#FF492E14" FontFamily="Times New Roman">
+                                    </ContentControl>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </local:PolusSong>
+                    <local:PolusSong Height="22" HorizontalAlignment="Left" Width="200">
+                        <Button Content="Come on" Click="Button_Click" Tag="http://tinakarol.ua/Albums/Polus/comeon.mp3" Margin="5,5,0,0">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <ContentControl Content="{TemplateBinding Content}" Foreground="#FF492E14" FontFamily="Times New Roman">
+                                    </ContentControl>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </local:PolusSong>
+                    <local:PolusSong Height="22" HorizontalAlignment="Left" Width="200">
+                        <Button Content="Время как вода (remake)" Click="Button_Click" Tag="http://tinakarol.ua/Albums/Polus/timer.mp3" Margin="5,5,0,0">
                             <Button.Template>
                                 <ControlTemplate TargetType="Button">
                                     <ContentControl Content="{TemplateBinding Content}" Foreground="#FF492E14" FontFamily="Times New Roman">

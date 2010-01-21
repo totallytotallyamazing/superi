@@ -52,7 +52,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MediaPlayer.dll">
+      <HintPath>..\..\..\..\..\Program Files\Microsoft Expression\Encoder 3\BlendMediaPlayer\MediaPlayer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Expression.Interactions, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+    <Reference Include="PlugInMssCtrl.dll">
+      <HintPath>..\..\..\..\..\Program Files\Microsoft Expression\Encoder 3\BlendMediaPlayer\PlugInMssCtrl.dll</HintPath>
+    </Reference>
     <Reference Include="System.Reactive, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1b331ac6720247d9" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Windows" />
@@ -138,8 +144,8 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\ShowVideo.xaml">
-      <Generator>MSBuild:MarkupCompilePass1</Generator>
       <SubType>Designer</SubType>
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
     </Page>
     <Page Include="Views\SmylSong.xaml">
       <Generator>MSBuild:MarkupCompilePass1</Generator>

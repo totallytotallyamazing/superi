@@ -78,5 +78,11 @@ namespace Tina
                 currentSong = null;
             }
         }
+
+        private void Video_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+        	ChildWindow videoDilog = new ShowVideo((sender as Button).Tag.ToString());
+            videoDilog.Show();
+        }
     }
 }

@@ -77,6 +77,9 @@
       <DependentUpon>ImageLink.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\SongLink.cs" />
+    <Compile Include="Views\ShowVideo.xaml.cs">
+      <DependentUpon>ShowVideo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SmylSong.xaml.cs">
       <DependentUpon>SmylSong.xaml</DependentUpon>
     </Compile>
@@ -125,11 +128,16 @@
       <Generator>MSBuild:MarkupCompilePass1</Generator>
       <SubType>Designer</SubType>
     </Resource>
+    <Resource Include="Views\nightBg.jpg" />
     <Page Include="Controls\ImageLink.xaml">
       <Generator>MSBuild:MarkupCompilePass1</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ShowVideo.xaml">
       <Generator>MSBuild:MarkupCompilePass1</Generator>
       <SubType>Designer</SubType>
     </Page>

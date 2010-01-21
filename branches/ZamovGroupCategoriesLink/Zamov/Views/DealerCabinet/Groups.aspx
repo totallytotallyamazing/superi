@@ -59,7 +59,7 @@
         }
     %>
     
-    <a href="#" onclick="insertGroup(this, <%= int.MinValue %>)">
+    <a href="#" onclick="insertGroup(event, this, <%= int.MinValue %>)">
         <%= Html.ResourceString("AddGroup") %>
     </a>
     

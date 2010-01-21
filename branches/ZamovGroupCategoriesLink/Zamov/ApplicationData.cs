@@ -17,7 +17,7 @@ public static class ApplicationData
 
     public static string Agreement
     {
-        get { return GetApplicationData("Agreement", SystemSettings.CurrentLanguage); }
+        get { return GetAgreement(SystemSettings.CurrentLanguage); }
     }
 
     public static string StartText

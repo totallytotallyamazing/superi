@@ -77,6 +77,9 @@
       <DependentUpon>ImageLink.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\SongLink.cs" />
+    <Compile Include="Views\SmylSong.xaml.cs">
+      <DependentUpon>SmylSong.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\PolusSongs.xaml.cs">
       <DependentUpon>PolusSongs.xaml</DependentUpon>
     </Compile>
@@ -127,6 +130,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\SmylSong.xaml">
       <Generator>MSBuild:MarkupCompilePass1</Generator>
       <SubType>Designer</SubType>
     </Page>

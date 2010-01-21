@@ -200,6 +200,12 @@ namespace Zamov.Controllers
                 dealer.Descriptions["ru-RU"] = Server.HtmlDecode(form["rDescription"]);
                 dealer.Descriptions["uk-UA"] = Server.HtmlDecode(form["uDescription"]);
                 dealer.Enabled = form["enabled"].Contains("true");
+                Group deleted = new Group();
+                deleted.Enabled = false;
+                dealer.Groups.Add(deleted);
+                deleted.Name = "TRASH";
+                deleted.Names["uk-UA"] = HttpContext.GetGlobalResourceObject("Resources", "Deleted", CultureInfo.GetCultureInfo("uk-UA")).ToString();
+                deleted.Names["ru-RU"] = HttpContext.GetGlobalResourceObject("Resources", "Deleted", CultureInfo.GetCultureInfo("ru-RU")).ToString();
                 if (!string.IsNullOrEmpty(Request.Files["logoImage"].FileName))
                 {
                     HttpPostedFileBase file = Request.Files["logoImage"];
@@ -212,6 +218,7 @@ namespace Zamov.Controllers
                 context.SaveChanges();
                 context.UpdateTranslations(dealer.NamesXml);
                 context.UpdateTranslations(dealer.DescriptionsXml);
+                context.UpdateTranslations(deleted.NamesXml);
             }
             return RedirectToAction("Dealers");
         }

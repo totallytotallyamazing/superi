@@ -656,7 +656,8 @@ namespace Zamov.Controllers
             return RedirectToAction("ImportedProducts", new { groupId = groupItems });
         }
 
-        private ActionResult SaveUpdated(int? groupId)
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult SaveUpdated(FormCollection form)
         {
             Dictionary<string, Dictionary<string, string>> updatedItemsDictionary = (Dictionary<string, Dictionary<string, string>>)Session["updatedItems"];
             Dictionary<string, Dictionary<string, string>> newItemsDictionary = (Dictionary<string, Dictionary<string, string>>)Session["newItems"];
@@ -668,9 +669,9 @@ namespace Zamov.Controllers
             ((Dictionary<string, Dictionary<string, string>>)Session["updatedItems"]).Clear();
 
             if (updatedItemsDictionary.Count == 0 && newItemsDictionary.Count == 0)
-                return RedirectToAction("Products", new { groupId = groupId });
+                return RedirectToAction("Products", new { groupId = form["groupId"] });
 
-            return RedirectToAction("ImportedProducts", new { groupId = groupId });
+            return RedirectToAction("ImportedProducts", new { groupId = form["groupId"]});
         }
         #endregion
 

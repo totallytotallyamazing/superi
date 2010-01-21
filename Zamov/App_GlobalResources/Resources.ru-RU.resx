@@ -792,4 +792,7 @@
   <data name="PhoneIncorrect" xml:space="preserve">
     <value>Формат телефона не правильный</value>
   </data>
+  <data name="Deleted" xml:space="preserve">
+    <value>Удаленные</value>
+  </data>
 </root>

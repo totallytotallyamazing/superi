@@ -9,14 +9,14 @@
 	xmlns:local="clr-namespace:Tina"
 	x:Class="Tina.Night" 
 	Title="Night Page"
-	d:DesignWidth="640" d:DesignHeight="480">
+	d:DesignWidth="800" d:DesignHeight="1520">
 	
     
 	<Grid x:Name="LayoutRoot" Margin="0">
 		<ScrollViewer Style="{StaticResource PageScrollViewerStyle}" MouseWheel="ScrollViewer_MouseWheel">
 			<Grid Width="800" Height="1542">
 				<Grid.Background>
-					<ImageBrush ImageSource="/Tina;Component/Assets/nightBg.jpg" Stretch="Fill"/>
+					<ImageBrush ImageSource="nightBg.jpg" Stretch="Fill"/>
 				</Grid.Background>
 				<MediaElement x:Name="night" Height="0" AutoPlay="False" HorizontalAlignment="Left" VerticalAlignment="Top" Width="0" Stretch="Fill"/>
 				<StackPanel Orientation="Vertical" Margin="42,240,0,0">
@@ -24,8 +24,7 @@
 						<Button Content="Ноченька" Click="Button_Click" Tag="http://tinakarol.ua/Albums/Night/night.mp3" Margin="5,5,0,0">
 							<Button.Template>
 								<ControlTemplate TargetType="Button">
-									<ContentControl Content="{TemplateBinding Content}" Foreground="White" FontFamily="Times New Roman">
-									</ContentControl>
+									<ContentControl Content="{TemplateBinding Content}" Foreground="White" FontFamily="Times New Roman"/>
 								</ControlTemplate>
 							</Button.Template>
 						</Button>
@@ -34,8 +33,7 @@
 						<Button Content="Выше облаков" Click="Button_Click" Tag="http://tinakarol.ua/Albums/Night/high.mp3" Margin="5,5,0,0">
 							<Button.Template>
 								<ControlTemplate TargetType="Button">
-									<ContentControl Content="{TemplateBinding Content}" Foreground="White" FontFamily="Times New Roman">
-									</ContentControl>
+									<ContentControl Content="{TemplateBinding Content}" Foreground="White" FontFamily="Times New Roman"/>
 								</ControlTemplate>
 							</Button.Template>
 						</Button>
@@ -44,8 +42,7 @@
 						<Button Content="Намалюю тобi" Click="Button_Click" Tag="http://tinakarol.ua/Albums/Night/draw.mp3" Margin="5,5,0,0">
 							<Button.Template>
 								<ControlTemplate TargetType="Button">
-									<ContentControl Content="{TemplateBinding Content}" Foreground="White" FontFamily="Times New Roman">
-									</ContentControl>
+									<ContentControl Content="{TemplateBinding Content}" Foreground="White" FontFamily="Times New Roman"/>
 								</ControlTemplate>
 							</Button.Template>
 						</Button>
@@ -54,8 +51,7 @@
 						<Button Content="Пупсик" Click="Button_Click" Tag="http://tinakarol.ua/Albums/Night/pups.mp3" Margin="5,5,0,0">
 							<Button.Template>
 								<ControlTemplate TargetType="Button">
-									<ContentControl Content="{TemplateBinding Content}" Foreground="White" FontFamily="Times New Roman">
-									</ContentControl>
+									<ContentControl Content="{TemplateBinding Content}" Foreground="White" FontFamily="Times New Roman"/>
 								</ControlTemplate>
 							</Button.Template>
 						</Button>
@@ -64,8 +60,7 @@
 						<Button Content="Ты отпусти" Click="Button_Click" Tag="http://tinakarol.ua/Albums/Night/let.mp3" Margin="5,5,0,0">
 							<Button.Template>
 								<ControlTemplate TargetType="Button">
-									<ContentControl Content="{TemplateBinding Content}" Foreground="White" FontFamily="Times New Roman">
-									</ContentControl>
+									<ContentControl Content="{TemplateBinding Content}" Foreground="White" FontFamily="Times New Roman"/>
 								</ControlTemplate>
 							</Button.Template>
 						</Button>
@@ -74,13 +69,14 @@
 						<Button Content="Выше облаков (remix)" Click="Button_Click" Tag="http://tinakarol.ua/Albums/Night/highr.mp3" Margin="5,5,0,0">
 							<Button.Template>
 								<ControlTemplate TargetType="Button">
-									<ContentControl Content="{TemplateBinding Content}" Foreground="White" FontFamily="Times New Roman">
-									</ContentControl>
+									<ContentControl Content="{TemplateBinding Content}" Foreground="White" FontFamily="Times New Roman"/>
 								</ControlTemplate>
 							</Button.Template>
 						</Button>
 					</local:SongControl>
 				</StackPanel>
+				<Button Margin="327,564,110,727" Content="Button" Tag="http://tinakarol.ua/Clips/04.wmv" Click="Video_Click" />
+				<Button Margin="328,0,109,399" Content="Button" Height="251" VerticalAlignment="Bottom"/>
 			</Grid>
 		</ScrollViewer>
 	</Grid>

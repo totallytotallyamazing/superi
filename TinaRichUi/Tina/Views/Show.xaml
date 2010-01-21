@@ -5,17 +5,141 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	mc:Ignorable="d"
 	xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
+    xmlns:local="clr-namespace:Tina"
 	x:Class="Tina.Show" 
 	Title="Show Page"
 	d:DesignWidth="640" d:DesignHeight="480">
 
     <Grid x:Name="LayoutRoot" Margin="0">
         <ScrollViewer Style="{StaticResource PageScrollViewerStyle}" MouseWheel="ScrollViewer_MouseWheel">
-            <StackPanel Width="800" Height="1580">
-				<StackPanel.Background>
+            <Grid Width="800" Height="1580">
+				<Grid.Background>
 					<ImageBrush ImageSource="/Tina;Component/Assets/smylBg.jpg" Stretch="Fill"></ImageBrush>
-				</StackPanel.Background>
-            </StackPanel>
+				</Grid.Background>
+                <MediaElement x:Name="night" Height="0" AutoPlay="False" HorizontalAlignment="Left" VerticalAlignment="Top" Width="0" Stretch="Fill"/>
+                <StackPanel Orientation="Vertical" Margin="42,240,0,0">
+                    <local:SmylSong Height="22" HorizontalAlignment="Left" Width="200">
+                        <Button Content="Money Doesn't Matter" Click="Button_Click" Tag="http://tinakarol.ua/Albums/Smyl/money.mp3" Margin="5,5,0,0">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <ContentControl Content="{TemplateBinding Content}" Foreground="White" FontFamily="Times New Roman">
+                                    </ContentControl>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </local:SmylSong>
+                    <local:SmylSong Height="22" HorizontalAlignment="Left" Width="200">
+                        <Button Content="Russian Boy" Click="Button_Click" Tag="http://tinakarol.ua/Albums/Smyl/rboy.mp3" Margin="5,5,0,0">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <ContentControl Content="{TemplateBinding Content}" Foreground="White" FontFamily="Times New Roman">
+                                    </ContentControl>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </local:SmylSong>
+                    <local:SmylSong Height="22" HorizontalAlignment="Left" Width="200">
+                        <Button Content="Life Is Not Enough" Click="Button_Click" Tag="http://tinakarol.ua/Albums/Smyl/notenough.mp3" Margin="5,5,0,0">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <ContentControl Content="{TemplateBinding Content}" Foreground="White" FontFamily="Times New Roman">
+                                    </ContentControl>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </local:SmylSong>
+                    <local:SmylSong Height="22" HorizontalAlignment="Left" Width="200">
+                        <Button Content="Honey" Click="Button_Click" Tag="http://tinakarol.ua/Albums/Smyl/honey.mp3" Margin="5,5,0,0">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <ContentControl Content="{TemplateBinding Content}" Foreground="White" FontFamily="Times New Roman">
+                                    </ContentControl>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </local:SmylSong>
+                    <local:SmylSong Height="22" HorizontalAlignment="Left" Width="200">
+                        <Button Content="Love Of My Life" Click="Button_Click" Tag="http://tinakarol.ua/Albums/Smyl/loml.mp3" Margin="5,5,0,0">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <ContentControl Content="{TemplateBinding Content}" Foreground="White" FontFamily="Times New Roman">
+                                    </ContentControl>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </local:SmylSong>
+                    <local:SmylSong Height="22" HorizontalAlignment="Left" Width="200">
+                        <Button Content="Show Me Your Love" Click="Button_Click" Tag="http://tinakarol.ua/Albums/Smyl/show.mp3" Margin="5,5,0,0">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <ContentControl Content="{TemplateBinding Content}" Foreground="White" FontFamily="Times New Roman">
+                                    </ContentControl>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </local:SmylSong>
+                    <local:SmylSong Height="22" HorizontalAlignment="Left" Width="200">
+                        <Button Content="Silent Night ukrainian version" Click="Button_Click" Tag="http://tinakarol.ua/Albums/Smyl/silent.mp3" Margin="5,5,0,0">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <ContentControl Content="{TemplateBinding Content}" Foreground="White" FontFamily="Times New Roman">
+                                    </ContentControl>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </local:SmylSong>
+                    <local:SmylSong Height="22" HorizontalAlignment="Left" Width="200">
+                        <Button Content="Honey fiesta edit" Click="Button_Click" Tag="http://tinakarol.ua/Albums/Smyl/honeyf.mp3" Margin="5,5,0,0">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <ContentControl Content="{TemplateBinding Content}" Foreground="White" FontFamily="Times New Roman">
+                                    </ContentControl>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </local:SmylSong>
+                    <local:SmylSong Height="22" HorizontalAlignment="Left" Width="200">
+                        <Button Content="Money Doesn't Metter remake" Click="Button_Click" Tag="http://tinakarol.ua/Albums/Smyl/moneyr.mp3" Margin="5,5,0,0">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <ContentControl Content="{TemplateBinding Content}" Foreground="White" FontFamily="Times New Roman">
+                                    </ContentControl>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </local:SmylSong>
+                    <local:SmylSong Height="22" HorizontalAlignment="Left" Width="200">
+                        <Button Content="Show Me Your Love REMIX radio edit" Click="Button_Click" Tag="http://tinakarol.ua/Albums/Smyl/showr.mp3" Margin="5,5,0,0">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <ContentControl Content="{TemplateBinding Content}" Foreground="White" FontFamily="Times New Roman">
+                                    </ContentControl>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </local:SmylSong>
+                    <local:SmylSong Height="22" HorizontalAlignment="Left" Width="200">
+                        <Button Content="Show Me Your Love REMIX club edit" Click="Button_Click" Tag="http://tinakarol.ua/Albums/Smyl/moneyc.mp3" Margin="5,5,0,0">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <ContentControl Content="{TemplateBinding Content}" Foreground="White" FontFamily="Times New Roman">
+                                    </ContentControl>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </local:SmylSong>
+                    <local:SmylSong Height="22" HorizontalAlignment="Left" Width="200">
+                        <Button Content="Above the clouds" Click="Button_Click" Tag="http://tinakarol.ua/Albums/Smyl/above.mp3" Margin="5,5,0,0">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <ContentControl Content="{TemplateBinding Content}" Foreground="White" FontFamily="Times New Roman">
+                                    </ContentControl>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </local:SmylSong>
+                </StackPanel>
+            </Grid>
         </ScrollViewer>
     </Grid>
 </navigation:Page>

@@ -73,16 +73,31 @@
     <Reference Include="System.Windows.Browser" />
     <Reference Include="System.Windows.Controls" />
     <Reference Include="System.Windows.Controls.Navigation" />
+    <Reference Include="System.Xml.Linq, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Program Files\Microsoft SDKs\Silverlight\v2.0\Libraries\Client\System.Xml.Linq.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Class1.cs" />
+    <Compile Include="Controls\ControlFinder.cs" />
+    <Compile Include="Controls\CustomSlider.cs" />
     <Compile Include="Controls\ImageLink.xaml.cs">
       <DependentUpon>ImageLink.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Pages\NavigationManager.cs" />
+    <Compile Include="Controls\Pages\Page.xaml.cs">
+      <DependentUpon>Page.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Pages\PageBrowserButton.cs" />
+    <Compile Include="Controls\Pages\PageBrowserControl.cs" />
+    <Compile Include="Controls\Pages\PageGenerator.cs" />
+    <Compile Include="Controls\Pages\PageInfo.cs" />
+    <Compile Include="Controls\Pages\Thumbnail.cs" />
     <Compile Include="Controls\SongLink.cs" />
+    <Compile Include="Controls\Utils.cs" />
     <Compile Include="Views\ShowVideo.xaml.cs">
       <DependentUpon>ShowVideo.xaml</DependentUpon>
     </Compile>
@@ -139,6 +154,10 @@
       <Generator>MSBuild:MarkupCompilePass1</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Controls\Pages\Page.xaml">
+      <SubType>Page</SubType>
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+    </Page>
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:MarkupCompilePass1</Generator>
       <SubType>Designer</SubType>
@@ -190,6 +209,19 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AppManifest.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\pageFold\pb01.png" />
+    <Resource Include="Assets\pageFold\pb02.png" />
+    <Resource Include="Assets\pageFold\pb03.png" />
+    <Resource Include="Assets\pageFold\pwline.png" />
+    <Resource Include="Assets\pageFold\px01.png" />
+    <Resource Include="Assets\pageFold\px02.png" />
+    <Resource Include="Assets\pageFold\px03.png" />
+    <Resource Include="Assets\pageFold\shadowPage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\v3.0\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -9,12 +9,15 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
+using Tina.Controls;
 
 namespace Tina
 {
     public partial class ShowVideo : ChildWindow
     {
         string url = "";
+        bool paused = false;
+
         public ShowVideo()
         {
             InitializeComponent();
@@ -33,18 +36,21 @@ namespace Tina
 
         private void mediaElement_MediaOpened(object sender, System.Windows.RoutedEventArgs e)
         {
-        	mediaElement.Play();
-			slider.Maximum = mediaElement.NaturalDuration.TimeSpan.TotalMilliseconds;
+            mediaElement.Play();
+            slider.Maximum = mediaElement.NaturalDuration.TimeSpan.TotalMilliseconds;
+            slider.SmallChange = slider.Maximum / 10;
         }
 
         private void slider_ValueChanged(object sender, System.Windows.RoutedPropertyChangedEventArgs<double> e)
         {
-        	mediaElement.Position = TimeSpan.FromMilliseconds(slider.Value);
+            mediaElement.Position = TimeSpan.FromMilliseconds(slider.Value);
         }
 
         private void maximize_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-        	VisualStateManager.GoToState(this, "Large", true);
+            Maximize.Begin();
+            maximize.Visibility = Visibility.Collapsed;
+            minimize.Visibility = Visibility.Visible;
         }
 
         private void close_Click(object sender, RoutedEventArgs e)
@@ -54,27 +60,53 @@ namespace Tina
 
         private void mediaElement_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
         {
-            MouseOver.Begin();
-            //grid.SetValue(Grid.OpacityProperty, (double)1);
-        	//VisualStateManager.GoToState(this, "MouseOver", true);
+            if (!paused)
+                MouseOver.Begin();
         }
 
         private void mediaElement_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
         {
-            //MoueLeave.Begin();
-            //grid.SetValue(Grid.OpacityProperty, (double)1);
-            //VisualStateManager.GoToState(this, "MouseOver", true);
+            if (!paused)
+                MoueLeave.Begin();
         }
 
-        private void play_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
+        private void minimize_Click(object sender, RoutedEventArgs e)
         {
-
+            Minimize.Begin();
+            minimize.Visibility = Visibility.Collapsed;
+            maximize.Visibility = Visibility.Visible;
         }
 
-        private void grid_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
+        private void pauseBottom_Click(object sender, RoutedEventArgs e)
         {
-        	MoueLeave.Begin();
-			// TODO: Add event handler implementation here.
+            mediaElement.Pause();
+            pauseBottom.Visibility = Visibility.Collapsed;
+            play.Visibility = Visibility.Visible;
+            playBottom.Visibility = Visibility.Visible;
+            grid.Opacity = 1;
+            paused = true;
+        }
+
+        private void play_Click(object sender, RoutedEventArgs e)
+        {
+            mediaElement.Play();
+            pauseBottom.Visibility = Visibility.Visible;
+            play.Visibility = Visibility.Collapsed;
+            playBottom.Visibility = Visibility.Collapsed;
+            paused = false;
+        }
+
+        private void slider_MyClickEvent(object sender, PositionEventArgs e)
+        {
+            double progress = slider.Maximum * e.Position.X / slider.ActualWidth;
+            slider.Value = progress;
+        }
+
+        private void slider_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            Point position = e.GetPosition(slider);
+            double progress = slider.Maximum * position.X / slider.ActualWidth;
+            slider.Value = progress;
         }
     }
 }

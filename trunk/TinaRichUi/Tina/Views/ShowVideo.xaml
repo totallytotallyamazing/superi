@@ -3,7 +3,8 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:basics="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	mc:Ignorable="d" x:Name="childWindow" xmlns:ic="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions" xmlns:ExpressionMediaPlayer="clr-namespace:ExpressionMediaPlayer;assembly=MediaPlayer"
+	xmlns:tina="clr-namespace:Tina.Controls"
+	mc:Ignorable="d" x:Name="childWindow"  
 	x:Class="Tina.ShowVideo"
 	Title="ShowVideo"
 	Width="400" Height="300" Loaded="ChildWindow_Loaded">
@@ -158,55 +159,97 @@
 				<EasingDoubleKeyFrame KeyTime="00:00:00.5000000" Value="0"/>
 			</DoubleAnimationUsingKeyFrames>
 		</Storyboard>
+		<Storyboard x:Name="Maximize">
+			<DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="mediaElement" Storyboard.TargetProperty="(FrameworkElement.Width)">
+				<EasingDoubleKeyFrame KeyTime="00:00:00" Value="400"/>
+				<EasingDoubleKeyFrame KeyTime="00:00:00.5000000" Value="800"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="mediaElement" Storyboard.TargetProperty="(FrameworkElement.Height)">
+				<EasingDoubleKeyFrame KeyTime="00:00:00" Value="300"/>
+				<EasingDoubleKeyFrame KeyTime="00:00:00.5000000" Value="600"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="grid" Storyboard.TargetProperty="(FrameworkElement.Width)">
+				<EasingDoubleKeyFrame KeyTime="00:00:00" Value="400"/>
+				<EasingDoubleKeyFrame KeyTime="00:00:00.5000000" Value="800"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="grid" Storyboard.TargetProperty="(FrameworkElement.Height)">
+				<EasingDoubleKeyFrame KeyTime="00:00:00" Value="300"/>
+				<EasingDoubleKeyFrame KeyTime="00:00:00.5000000" Value="600"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="childWindow" Storyboard.TargetProperty="(FrameworkElement.Width)">
+				<EasingDoubleKeyFrame KeyTime="00:00:00" Value="400"/>
+				<EasingDoubleKeyFrame KeyTime="00:00:00.5000000" Value="800"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="childWindow" Storyboard.TargetProperty="(FrameworkElement.Height)">
+				<EasingDoubleKeyFrame KeyTime="00:00:00" Value="300"/>
+				<EasingDoubleKeyFrame KeyTime="00:00:00.5000000" Value="600"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="slider" Storyboard.TargetProperty="(FrameworkElement.Width)">
+				<EasingDoubleKeyFrame KeyTime="00:00:00" Value="246"/>
+				<EasingDoubleKeyFrame KeyTime="00:00:00.5000000" Value="617"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rectangle" Storyboard.TargetProperty="(FrameworkElement.Width)">
+				<EasingDoubleKeyFrame KeyTime="00:00:00" Value="400"/>
+				<EasingDoubleKeyFrame KeyTime="00:00:00.5000000" Value="800"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rectangle" Storyboard.TargetProperty="(FrameworkElement.Height)">
+				<EasingDoubleKeyFrame KeyTime="00:00:00" Value="300"/>
+				<EasingDoubleKeyFrame KeyTime="00:00:00.5000000" Value="600"/>
+			</DoubleAnimationUsingKeyFrames>
+		</Storyboard>
+		<Storyboard x:Name="Minimize">
+			<DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="childWindow" Storyboard.TargetProperty="(FrameworkElement.Width)">
+				<EasingDoubleKeyFrame KeyTime="00:00:00" Value="800"/>
+				<EasingDoubleKeyFrame KeyTime="00:00:00.5000000" Value="400"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="childWindow" Storyboard.TargetProperty="(FrameworkElement.Height)">
+				<EasingDoubleKeyFrame KeyTime="00:00:00" Value="600"/>
+				<EasingDoubleKeyFrame KeyTime="00:00:00.5000000" Value="300"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="mediaElement" Storyboard.TargetProperty="(FrameworkElement.Width)">
+				<EasingDoubleKeyFrame KeyTime="00:00:00" Value="800"/>
+				<EasingDoubleKeyFrame KeyTime="00:00:00.5000000" Value="400"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="mediaElement" Storyboard.TargetProperty="(FrameworkElement.Height)">
+				<EasingDoubleKeyFrame KeyTime="00:00:00" Value="600"/>
+				<EasingDoubleKeyFrame KeyTime="00:00:00.5000000" Value="300"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="grid" Storyboard.TargetProperty="(FrameworkElement.Width)">
+				<EasingDoubleKeyFrame KeyTime="00:00:00" Value="800"/>
+				<EasingDoubleKeyFrame KeyTime="00:00:00.5000000" Value="400"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="grid" Storyboard.TargetProperty="(FrameworkElement.Height)">
+				<EasingDoubleKeyFrame KeyTime="00:00:00" Value="600"/>
+				<EasingDoubleKeyFrame KeyTime="00:00:00.5000000" Value="300"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="slider" Storyboard.TargetProperty="(FrameworkElement.Width)">
+				<EasingDoubleKeyFrame KeyTime="00:00:00" Value="617"/>
+				<EasingDoubleKeyFrame KeyTime="00:00:00.5000000" Value="246"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rectangle" Storyboard.TargetProperty="(FrameworkElement.Width)">
+				<EasingDoubleKeyFrame KeyTime="00:00:00" Value="800"/>
+				<EasingDoubleKeyFrame KeyTime="00:00:00.5000000" Value="400"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rectangle" Storyboard.TargetProperty="(FrameworkElement.Height)">
+				<EasingDoubleKeyFrame KeyTime="00:00:00" Value="600"/>
+				<EasingDoubleKeyFrame KeyTime="00:00:00.5000000" Value="300"/>
+			</DoubleAnimationUsingKeyFrames>
+		</Storyboard>
 	</basics:ChildWindow.Resources>
 	<basics:ChildWindow.Style>
 		<StaticResource ResourceKey="ChildWindowStyle1"/>
 	</basics:ChildWindow.Style>
         <Grid x:Name="LayoutRoot" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center">
-        	<VisualStateManager.VisualStateGroups>
-        		<VisualStateGroup x:Name="Common">
-        			<VisualState x:Name="Large">
-        				<Storyboard>
-        					<DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="childWindow" Storyboard.TargetProperty="(FrameworkElement.Width)">
-        						<EasingDoubleKeyFrame KeyTime="00:00:00" Value="400"/>
-        						<EasingDoubleKeyFrame KeyTime="00:00:00.5000000" Value="800"/>
-        					</DoubleAnimationUsingKeyFrames>
-        					<DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="childWindow" Storyboard.TargetProperty="(FrameworkElement.Height)">
-        						<EasingDoubleKeyFrame KeyTime="00:00:00" Value="300"/>
-        						<EasingDoubleKeyFrame KeyTime="00:00:00.5000000" Value="600"/>
-        					</DoubleAnimationUsingKeyFrames>
-        					<DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="mediaElement" Storyboard.TargetProperty="(FrameworkElement.Width)">
-        						<EasingDoubleKeyFrame KeyTime="00:00:00" Value="400"/>
-        						<EasingDoubleKeyFrame KeyTime="00:00:00.5000000" Value="800"/>
-        					</DoubleAnimationUsingKeyFrames>
-        					<DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="mediaElement" Storyboard.TargetProperty="(FrameworkElement.Height)">
-        						<EasingDoubleKeyFrame KeyTime="00:00:00" Value="300"/>
-        						<EasingDoubleKeyFrame KeyTime="00:00:00.5000000" Value="600"/>
-        					</DoubleAnimationUsingKeyFrames>
-        					<DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="grid" Storyboard.TargetProperty="(FrameworkElement.Width)">
-        						<EasingDoubleKeyFrame KeyTime="00:00:00" Value="400"/>
-        						<EasingDoubleKeyFrame KeyTime="00:00:00.5000000" Value="800"/>
-        					</DoubleAnimationUsingKeyFrames>
-        					<DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="grid" Storyboard.TargetProperty="(FrameworkElement.Height)">
-        						<EasingDoubleKeyFrame KeyTime="00:00:00" Value="300"/>
-        						<EasingDoubleKeyFrame KeyTime="00:00:00.5000000" Value="600"/>
-        					</DoubleAnimationUsingKeyFrames>
-        				</Storyboard>
-        			</VisualState>
-        			<VisualState x:Name="Default"/>
-        		</VisualStateGroup>
-        	</VisualStateManager.VisualStateGroups>
-        	<VisualStateManager.CustomVisualStateManager>
-        		<ic:ExtendedVisualStateManager/>
-        	</VisualStateManager.CustomVisualStateManager>
-		<MediaElement Height="300" x:Name="mediaElement" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1" Width="400" d:IsHidden="True" MouseLeave="mediaElement_MouseLeave" MediaOpened="mediaElement_MediaOpened" MouseEnter="mediaElement_MouseEnter"/>
-        	<Grid x:Name="grid" Height="300" HorizontalAlignment="Left" VerticalAlignment="Top" Width="400" Opacity="0" MouseLeave="grid_MouseLeave">
-        		<Button x:Name="play" HorizontalAlignment="Center" VerticalAlignment="Center" Width="75" Content="Button" Visibility="Collapsed" MouseEnter="play_MouseEnter"/>
-        		<Button x:Name="close" Click="close_Click" HorizontalAlignment="Right" VerticalAlignment="Top" Width="75" Content="Button" MouseEnter="play_MouseEnter"/>
-        		<Button x:Name="maximize" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="75" Click="maximize_Click" Content="Button" MouseEnter="play_MouseEnter"/>
-        		<Button x:Name="playBottom" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="75" Content="Button" Visibility="Collapsed" MouseEnter="play_MouseEnter"/>
-        		<Slider x:Name="slider" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="246" ValueChanged="slider_ValueChanged" MouseEnter="play_MouseEnter"/>
-        		<Button x:Name="pauseBottom" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="75" Content="Button" MouseEnter="play_MouseEnter"/>
+		<MediaElement Height="300" x:Name="mediaElement" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1" Width="400" d:IsHidden="True" MediaOpened="mediaElement_MediaOpened"/>
+        	<Grid x:Name="grid" Height="300" HorizontalAlignment="Left" VerticalAlignment="Top" Width="400" Opacity="0" MouseEnter="mediaElement_MouseEnter" MouseLeave="mediaElement_MouseLeave">
+        		<Rectangle x:Name="rectangle" Fill="White" Height="300" HorizontalAlignment="Left" VerticalAlignment="Top" Width="400" Opacity="0.01"/>
+        		<Button x:Name="play" Click="play_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Width="75" Content="Button" Visibility="Collapsed"/>
+        		<Button x:Name="close" Click="close_Click" HorizontalAlignment="Right" VerticalAlignment="Top" Width="75" Content="Button"/>
+        		<Button x:Name="maximize" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="75" Click="maximize_Click" Content="Button"/>
+                <Button x:Name="minimize" Visibility="Collapsed" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="75" Click="minimize_Click" Content="Button"/>
+        		<Button x:Name="playBottom" Click="play_Click" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="75" Content="Button" Visibility="Collapsed"/>
+        		<Slider x:Name="slider" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="246" ValueChanged="slider_ValueChanged" MouseLeftButtonDown="slider_MouseLeftButtonDown"/>
+        		<Button x:Name="pauseBottom" Click="pauseBottom_Click" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="75" Content="Button"/>
         	</Grid>
 	</Grid>
 </basics:ChildWindow>

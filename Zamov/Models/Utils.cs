@@ -175,8 +175,9 @@ namespace Zamov.Models
             {
                 products = (from product in context.Products
                             where product.Deleted == false && product.Dealer.Id == dealerId
-                            && (groupId == null || product.Group.Id == groupId.Value)
-                            select product).ToDictionary(p=>p.PartNumber, p=>p);
+                            && !product.Deleted && product.Group.Name != "TRASH"
+                            //&& (groupId == null || product.Group.Id == groupId.Value)
+                            select product).ToDictionary(p => p.PartNumber, p => p);
             }
 
             foreach (var item in importedItems)

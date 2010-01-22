@@ -15,11 +15,11 @@
             $("#imagePopUp").dialog({ autoOpen: false, width: 440, height: 360, minHeight: 360, resizable: false });
             $("#importProducts")
                 .dialog({
-                    autoOpen: false, 
+                    autoOpen: false,
                     resizable: false,
                     modal: true,
-                    buttons: { '<%= Html.ResourceString("Upload") %>': function(){ $get("xlsForm").submit(); } }
-                 });
+                    buttons: { '<%= Html.ResourceString("Upload") %>': function() { $get("xlsForm").submit(); } }
+                });
             $("#descriptionPopUp")
                 .dialog({
                     autoOpen: false,
@@ -28,10 +28,14 @@
                     minHeight: 360,
                     resizable: false,
                     buttons: {
-                        '<%= Html.ResourceString("Cancel") %>': function(){closeDescriptionDialog();},
+                        '<%= Html.ResourceString("Cancel") %>': function() { closeDescriptionDialog(); },
                         '<%= Html.ResourceString("Save") %>': function() { $get("descriptionsFrame").contentWindow.updateDescription(); }
                     }
                 });
+
+            $("#productsHeader input[type='checkbox']").click(function() {
+                $("." + this.id).attr("checked", this.checked);
+            })
         })
 
         function groupSelected() {
@@ -114,8 +118,10 @@
       <%= Html.ResourceString("MoveTo") %>
       <%= Html.DropDownList("groups", (List<SelectListItem>)ViewData["moveToGroups"])%> <input type="submit" value="->" />
     <table class="adminTable">
-        <tr>
-            <th><%= Html.ResourceString("Move") %></th>
+        <tr id="productsHeader">
+            <th><%= Html.ResourceString("Move") %>
+                <input type="checkbox" id="moveToBox" />
+            </th>
             <th style="width:100px;">
                 <%= Html.ResourceString("PartNumber")%>
             </th>
@@ -135,15 +141,19 @@
             </th>
             <th>
                 <%= Html.ResourceString("New") %>
+                <input type="checkbox" id="newBox" />
             </th>
             <th>
                 <%= Html.ResourceString("Action") %>
+                <input type="checkbox" id="actionBox" />
             </th>
             <th>
                 <%= Html.ResourceString("Top") %>
+                <input type="checkbox" id="topBox" />
             </th>
             <th>
                 <%= Html.ResourceString("ActiveM")%>
+                <input type="checkbox" id="activeBox" />
             </th>
             <th>
                 
@@ -153,7 +163,7 @@
           {%>
         <tr>
             <td>
-                <%= Html.CheckBox("moveTo_" + item.Id) %>
+                <%= Html.CheckBox("moveTo_" + item.Id, false, new { @class = "moveToBox" })%>
             </td>
             <td>
                 <%= Html.TextBox("partNumber_" + item.Id, item.PartNumber, new { style = "width:100px;" })%>
@@ -177,16 +187,16 @@
                 <%= Html.TextBox("unit_" + item.Id, item.Unit, new { style = "width:100%;" })%>
             </td>
             <td>
-                <%= Html.CheckBox("new_" + item.Id, item.New) %>
+                <%= Html.CheckBox("new_" + item.Id, item.New, new { @class = "newBox" })%>
             </td>
             <td>
-                <%= Html.CheckBox("action_" + item.Id, item.Action) %>
+                <%= Html.CheckBox("action_" + item.Id, item.Action, new { @class = "actionBox" })%>
             </td>
             <td>
-                <%= Html.CheckBox("topProduct_" + item.Id, item.TopProduct) %>
+                <%= Html.CheckBox("topProduct_" + item.Id, item.TopProduct, new { @class = "topBox" })%>
             </td>
             <td align="center">
-                <%= Html.CheckBox("active_" + item.Id, item.Enabled, new { onblur = "tableChanged(updates, this)" })%>
+                <%= Html.CheckBox("active_" + item.Id, item.Enabled, new { onblur = "tableChanged(updates, this)", @class = "activeBox" })%>
             </td>
             <td>
                 <%=Html.ActionLink("x", "DeleteProduct", new { productId = item.Id, groupId = ViewData["groupId"] }, new { onclick = "return confirm('" + Html.ResourceString("AreYouSure") + "?')" })%>

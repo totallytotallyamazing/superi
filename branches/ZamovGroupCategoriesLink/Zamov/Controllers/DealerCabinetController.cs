@@ -57,11 +57,11 @@ namespace Zamov.Controllers
             {
                 dealerId = Security.GetCurentDealerId(User.Identity.Name);
                 ViewData["dealerId"] = dealerId;
-                List<Group> groups = context.Groups.Select(g => g).Where(g => g.Dealer.Id == dealerId).ToList();
+                List<Group> groups = context.Groups.Select(g => g).Where(g => g.Dealer.Id == dealerId && !g.Deleted && g.Name != "TRASH").ToList();
                 if (id == null)
-                    groups = groups.Select(g => g).Where(g => g.Parent == null && !g.Deleted).ToList();
+                    groups = groups.Select(g => g).Where(g => g.Parent == null).ToList();
                 else
-                    groups = groups.Select(g => g).Where(g => g.Parent != null && g.Parent.Id == id.Value && !g.Deleted).ToList();
+                    groups = groups.Select(g => g).Where(g => g.Parent != null && g.Parent.Id == id.Value).ToList();
                 ViewData["level"] = level;
                 ViewData["categories"] = categories;
                 return View(groups);
@@ -277,13 +277,13 @@ namespace Zamov.Controllers
             if (id != null && id > 0)
             {
                 products = (from product in context.Products
-                            where product.Group.Id == id.Value && product.Dealer.Id == dealerId && !product.Deleted
+                            where product.Group.Id == id.Value && product.Dealer.Id == dealerId && !product.Deleted && !product.Group.Deleted
                             select product).ToList();
             }
             else if (id == 0)
             {
                 products = (from product in context.Products
-                            where product.Dealer.Id == dealerId && !product.Deleted
+                            where product.Dealer.Id == dealerId && !product.Deleted && product.Group.Name!="TRASH" && !product.Group.Deleted
                             select product).ToList();
             }
             List<SelectListItem> items = new List<SelectListItem>();

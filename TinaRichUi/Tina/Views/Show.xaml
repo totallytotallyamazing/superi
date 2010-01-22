@@ -17,7 +17,7 @@
 					<ImageBrush ImageSource="/Tina;Component/Assets/smylBg.jpg" Stretch="Fill"></ImageBrush>
 				</Grid.Background>
                 <MediaElement x:Name="night" Height="0" AutoPlay="False" HorizontalAlignment="Left" VerticalAlignment="Top" Width="0" Stretch="Fill"/>
-                <StackPanel Orientation="Vertical" Margin="42,240,0,0">
+                <StackPanel Orientation="Vertical" Margin="134,248,0,0">
                     <local:SmylSong Height="22" HorizontalAlignment="Left" Width="200">
                         <Button Content="Money Doesn't Matter" Click="Button_Click" Tag="http://tinakarol.ua/Albums/Smyl/money.mp3" Margin="5,5,0,0">
                             <Button.Template>

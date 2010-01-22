@@ -17,7 +17,7 @@
 					<ImageBrush ImageSource="/Tina;Component/Assets/polusBg.jpg" Stretch="Fill"></ImageBrush>
 				</Grid.Background>
                 <MediaElement x:Name="night" Height="0" AutoPlay="False" HorizontalAlignment="Left" VerticalAlignment="Top" Width="0" Stretch="Fill"/>
-                <StackPanel Orientation="Vertical" Margin="42,240,0,0">
+                <StackPanel Orientation="Vertical" Margin="42,257,0,0">
                     <local:PolusSong Height="22" HorizontalAlignment="Left" Width="200">
                         <Button Content="Полюс притяжения" Click="Button_Click" Tag="http://tinakarol.ua/Albums/Polus/polus.mp3" Margin="5,5,0,0">
                             <Button.Template>

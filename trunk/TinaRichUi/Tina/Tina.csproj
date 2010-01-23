@@ -55,9 +55,15 @@
     <Reference Include="MediaPlayer.dll">
       <HintPath>..\..\..\..\..\Program Files\Microsoft Expression\Encoder 3\BlendMediaPlayer\MediaPlayer.dll</HintPath>
     </Reference>
+    <Reference Include="MediaPlayer.dll">
+      <HintPath>C:\Program Files\Microsoft Expression\Encoder 3\BlendMediaPlayer\MediaPlayer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Expression.Interactions, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
     <Reference Include="PlugInMssCtrl.dll">
       <HintPath>..\..\..\..\..\Program Files\Microsoft Expression\Encoder 3\BlendMediaPlayer\PlugInMssCtrl.dll</HintPath>
+    </Reference>
+    <Reference Include="PlugInMssCtrl.dll">
+      <HintPath>C:\Program Files\Microsoft Expression\Encoder 3\BlendMediaPlayer\PlugInMssCtrl.dll</HintPath>
     </Reference>
     <Reference Include="System.Reactive, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1b331ac6720247d9" />
     <Reference Include="System.Runtime.Serialization" />
@@ -83,7 +89,6 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\ControlFinder.cs" />
-    <Compile Include="Controls\CustomSlider.cs" />
     <Compile Include="Controls\ImageLink.xaml.cs">
       <DependentUpon>ImageLink.xaml</DependentUpon>
     </Compile>
@@ -98,6 +103,9 @@
     <Compile Include="Controls\Pages\Thumbnail.cs" />
     <Compile Include="Controls\SongLink.cs" />
     <Compile Include="Controls\Utils.cs" />
+    <Compile Include="Views\showClip.xaml.cs">
+      <DependentUpon>showClip.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ShowVideo.xaml.cs">
       <DependentUpon>ShowVideo.xaml</DependentUpon>
     </Compile>
@@ -159,6 +167,10 @@
       <Generator>MSBuild:MarkupCompilePass1</Generator>
     </Page>
     <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\showClip.xaml">
       <Generator>MSBuild:MarkupCompilePass1</Generator>
       <SubType>Designer</SubType>
     </Page>

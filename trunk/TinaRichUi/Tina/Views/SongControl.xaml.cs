@@ -14,8 +14,10 @@ namespace Tina
     [ContentProperty("Child")]
 	public partial class SongControl : UserControl 
 	{
-        public static readonly DependencyProperty ChildProperty = DependencyProperty.Register("Child", typeof(UIElement), typeof(SongControl), null); 
- 
+        public static readonly DependencyProperty ChildProperty = DependencyProperty.Register("Child", typeof(UIElement), typeof(SongControl), null);
+
+        public event EventHandler Stop;
+
         public UIElement Child
         {
             get { return (UIElement)this.GetValue(ChildProperty); }
@@ -41,6 +43,13 @@ namespace Tina
 		public void Deactivate()
 		{
 			VisualStateManager.GoToState(this, "Passive", true);
+		}
+
+		private void polygon_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+		{
+			e.Handled = true;
+            if (Stop != null)
+                Stop(this, new EventArgs());
 		}
 	}
 }

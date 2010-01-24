@@ -49,19 +49,16 @@
 		</VisualStateManager.VisualStateGroups>
 		<StackPanel Orientation="Horizontal" Margin="0" d:LayoutOverrides="Height">
 			<Border Height="22" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="20">
-	        <Polygon x:Name="polygon" Stroke="White" Fill="White" Visibility="Collapsed" >
-            <Polygon.Points>
-                <Point X="5" Y="6" />
-                <Point X="15" Y="11" />
-                <Point X="5" Y="16" />
-            </Polygon.Points>
-        </Polygon>
+	        <Rectangle  x:Name="polygon" Stroke="White" Fill="White" Margin="0" Width="8" Height="8" Visibility="Collapsed" Cursor="Hand" MouseLeftButtonDown="polygon_MouseLeftButtonDown" />
 			</Border>
 			<Border x:Name="border" Height="22" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="180" Margin="0">
 				<Grid>
 					<Rectangle x:Name="rectangle" Width="0" Height="20" Margin="0" HorizontalAlignment="Left">
 						<Rectangle.Fill>
-							<ImageBrush ImageSource="/Tina;Component/Assets/Opacity.png"/>
+							<LinearGradientBrush EndPoint="1, 0.5" StartPoint="0, 0.5">
+								<GradientStop Color="#AAFFFFFF" Offset="0"/>
+								<GradientStop Offset="1" Color="#22000000"/>
+							</LinearGradientBrush>
 						</Rectangle.Fill>
 					</Rectangle>
 					<ContentControl x:Name="content" HorizontalAlignment="Left">

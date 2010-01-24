@@ -14,8 +14,8 @@ namespace Tina
     [ContentProperty("Child")]
 	public partial class SmylSong : UserControl 
 	{
-        public static readonly DependencyProperty ChildProperty = DependencyProperty.Register("Child", typeof(UIElement), typeof(SmylSong), null); 
- 
+        public static readonly DependencyProperty ChildProperty = DependencyProperty.Register("Child", typeof(UIElement), typeof(SmylSong), null);
+
         public UIElement Child
         {
             get { return (UIElement)this.GetValue(ChildProperty); }
@@ -26,6 +26,7 @@ namespace Tina
             }
         }
 
+        public event EventHandler Stop;
 
         public SmylSong()
 		{
@@ -42,5 +43,12 @@ namespace Tina
 		{
 			VisualStateManager.GoToState(this, "Passive", true);
 		}
+
+        private void polygon_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            e.Handled = true;
+            if (Stop != null)
+                Stop(this, new EventArgs());
+        }
 	}
 }

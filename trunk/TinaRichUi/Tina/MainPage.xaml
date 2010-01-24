@@ -9,7 +9,36 @@
     x:Class="Tina.MainPage"
     d:DesignWidth="640" d:DesignHeight="480" Background="Black">
 	<UserControl.Resources>
-		<Storyboard x:Name="NavigatingBoard">
+        <!-- Links StackPanel Style -->
+        <Style x:Key="LinksStackPanelStyle" TargetType="StackPanel">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Orientation" Value="Horizontal"/>
+        </Style>
+
+        <Style x:Key="NightNavigationStyle" TargetType="StackPanel">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="Orientation" Value="Horizontal"/>
+            <Setter Property="Margin" Value="0,10,10,0"/>
+        </Style>
+
+        <Style x:Key="ShowNavigationStyle" TargetType="StackPanel">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="Orientation" Value="Horizontal"/>
+            <Setter Property="Margin" Value="0,10,10,0"/>
+        </Style>
+
+        <Style x:Key="PolusNavigationStyle" TargetType="StackPanel">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Orientation" Value="Horizontal"/>
+            <Setter Property="Margin" Value="56,10,0,0"/>
+        </Style>
+
+
+        <Storyboard x:Name="NavigatingBoard">
 			<DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="ContentFrame" Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.RotationX)">
 				<EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
 				<EasingDoubleKeyFrame KeyTime="00:00:00.3000000" Value="0"/>
@@ -38,8 +67,6 @@
 			</DoubleAnimationUsingKeyFrames>
 		</Storyboard>
 	</UserControl.Resources>
-
-
 
     <Grid x:Name="LayoutRoot" Style="{StaticResource LayoutRootGridStyle}" Background="Black" Margin="0">
     	<VisualStateManager.VisualStateGroups>
@@ -84,45 +111,49 @@
     		</VisualStateGroup>
     	</VisualStateManager.VisualStateGroups>
 
-        <Border x:Name="ContentBorder" Style="{StaticResource ContentBorderStyle}" Margin="0" Background="Black">
-
-            <navigation:Frame x:Name="ContentFrame" Style="{StaticResource ContentFrameStyle}" 
-                              Source="/Home" Navigated="ContentFrame_Navigated" NavigationFailed="ContentFrame_NavigationFailed" Margin="0"  Navigating="ContentFrame_Navigating" RenderTransformOrigin="0.5,0.5">
-            	<navigation:Frame.RenderTransform>
-            		<TransformGroup>
-            			<ScaleTransform/>
-            			<SkewTransform/>
-            			<RotateTransform/>
-            			<TranslateTransform/>
-            		</TransformGroup>
-            	</navigation:Frame.RenderTransform>
-            	<navigation:Frame.Background>
-            		<SolidColorBrush/>
-            	</navigation:Frame.Background>
-                <navigation:Frame.UriMapper>
-                  <uriMapper:UriMapper>
-                    <uriMapper:UriMapping Uri="" MappedUri="/Views/Home.xaml"/>
-                    <uriMapper:UriMapping Uri="/{pageName}" MappedUri="/Views/{pageName}.xaml"/>
-                  </uriMapper:UriMapper>
-                </navigation:Frame.UriMapper>
-            	<navigation:Frame.Projection>
-            		<PlaneProjection/>
-            	</navigation:Frame.Projection>
-            </navigation:Frame>
+        <Border x:Name="ContentBorder" Style="{StaticResource ContentBorderStyle}" Margin="0" Background="Black" BorderThickness="0">
+            <ScrollViewer Style="{StaticResource PageScrollViewerStyle}" MouseWheel="ScrollViewer_MouseWheel" BorderThickness="0">
+                <Grid>
+                    <Grid Canvas.ZIndex="99" x:Name="NavigationGrid" Style="{StaticResource NavigationGridStyle}" Background="{x:Null}" RenderTransformOrigin="0.54,0.524" Height="Auto" Margin="0" VerticalAlignment="Top" Width="800" HorizontalAlignment="Center">
+                        <StackPanel x:Name="LinksStackPanel" Style="{StaticResource LinksStackPanelStyle}">
+                            <HyperlinkButton TargetName="ContentFrame" NavigateUri="/Night" HorizontalAlignment="Left" Margin="3,0,0,0" VerticalAlignment="Top" Style="{StaticResource AlbumHyperLink}" Width="42" BorderBrush="White">
+                                <Image Stretch="Fill" Height="40" Width="40" Source="Assets/nightThumb.jpg"/>
+                            </HyperlinkButton>
+                            <HyperlinkButton TargetName="ContentFrame" NavigateUri="/Polus" HorizontalAlignment="Left" Margin="3,0,0,0" VerticalAlignment="Top" Style="{StaticResource AlbumHyperLink}" Width="42" Background="#FF868686">
+                                <Image Stretch="Fill" Height="40" Width="40" Source="Assets/polusThumb.jpg"/>
+                            </HyperlinkButton>
+                            <HyperlinkButton TargetName="ContentFrame" NavigateUri="/Show" HorizontalAlignment="Left" Margin="3,0,0,0" VerticalAlignment="Top" Style="{StaticResource AlbumHyperLink}" Width="42" Background="Transparent" BorderBrush="White">
+                                <Image Stretch="Fill" Height="40" Width="40" Source="Assets/smylThumb.jpg"/>
+                            </HyperlinkButton>
+                        </StackPanel>
+                    </Grid>
+                    <navigation:Frame x:Name="ContentFrame" Style="{StaticResource ContentFrameStyle}" 
+                              Source="/Home" Navigated="ContentFrame_Navigated" NavigationFailed="ContentFrame_NavigationFailed" Margin="0"  Navigating="ContentFrame_Navigating" RenderTransformOrigin="0.5,0.5" BorderThickness="0">
+                        <navigation:Frame.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </navigation:Frame.RenderTransform>
+                        <navigation:Frame.Background>
+                            <SolidColorBrush/>
+                        </navigation:Frame.Background>
+                        <navigation:Frame.UriMapper>
+                            <uriMapper:UriMapper>
+                                <uriMapper:UriMapping Uri="" MappedUri="/Views/Home.xaml"/>
+                                <uriMapper:UriMapping Uri="/{pageName}" MappedUri="/Views/{pageName}.xaml"/>
+                            </uriMapper:UriMapper>
+                        </navigation:Frame.UriMapper>
+                        <navigation:Frame.Projection>
+                            <PlaneProjection/>
+                        </navigation:Frame.Projection>
+                    </navigation:Frame>
+                </Grid>
+            </ScrollViewer>
         </Border>
-        <Grid x:Name="NavigationGrid" Style="{StaticResource NavigationGridStyle}" Background="{x:Null}" RenderTransformOrigin="0.54,0.524" Height="Auto" Margin="0" VerticalAlignment="Top" Width="800" HorizontalAlignment="Center">
-        	<StackPanel x:Name="LinksStackPanel" Style="{StaticResource LinksStackPanelStyle}" HorizontalAlignment="Left">
-        		<HyperlinkButton TargetName="ContentFrame" NavigateUri="/Night" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Top">
-        			<Image Stretch="Fill" Height="40" Width="40" Source="Assets/nightThumb.jpg"/>
-        		</HyperlinkButton>
-        		<HyperlinkButton TargetName="ContentFrame" NavigateUri="/Polus" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Top">
-        			<Image Stretch="Fill" Height="40" Width="40" Source="Assets/polusThumb.jpg"/>
-        		</HyperlinkButton>
-        		<HyperlinkButton TargetName="ContentFrame" NavigateUri="/Show" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Top">
-        			<Image Stretch="Fill" Height="40" Width="40" Source="Assets/smylThumb.jpg"/>
-        		</HyperlinkButton>
-        	</StackPanel>
-        </Grid>
+
 
     </Grid>
 

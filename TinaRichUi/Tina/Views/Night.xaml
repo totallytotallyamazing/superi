@@ -10,72 +10,178 @@
 	x:Class="Tina.Night" 
 	Title="Night Page"
 	d:DesignWidth="800" d:DesignHeight="1520">
-	
-    
-	<Grid x:Name="LayoutRoot">
-			<Grid Width="800" Height="1542">
-				<Grid.Background>
-					<ImageBrush ImageSource="nightBg.jpg" Stretch="Fill"/>
-				</Grid.Background>
-				<MediaElement x:Name="night" Height="0" AutoPlay="False" HorizontalAlignment="Left" VerticalAlignment="Top" Width="0" Stretch="Fill"/>
-				<StackPanel Orientation="Vertical" Margin="42,240,0,0">
-					<local:SongControl Height="22" HorizontalAlignment="Left" Width="200">
-						<Button Content="Ноченька" Click="Button_Click" Tag="http://tinakarol.ua/Albums/Night/night.mp3" Margin="5,5,0,0">
-							<Button.Template>
-								<ControlTemplate TargetType="Button">
-									<ContentControl Content="{TemplateBinding Content}" Foreground="White" FontFamily="Times New Roman"/>
-								</ControlTemplate>
-							</Button.Template>
-						</Button>
-					</local:SongControl>
-					<local:SongControl Height="22" HorizontalAlignment="Left" Width="200">
-						<Button Content="Выше облаков" Click="Button_Click" Tag="http://tinakarol.ua/Albums/Night/high.mp3" Margin="5,5,0,0">
-							<Button.Template>
-								<ControlTemplate TargetType="Button">
-									<ContentControl Content="{TemplateBinding Content}" Foreground="White" FontFamily="Times New Roman"/>
-								</ControlTemplate>
-							</Button.Template>
-						</Button>
-					</local:SongControl>
-					<local:SongControl Height="22" HorizontalAlignment="Left" Width="200">
-						<Button Content="Намалюю тобi" Click="Button_Click" Tag="http://tinakarol.ua/Albums/Night/draw.mp3" Margin="5,5,0,0">
-							<Button.Template>
-								<ControlTemplate TargetType="Button">
-									<ContentControl Content="{TemplateBinding Content}" Foreground="White" FontFamily="Times New Roman"/>
-								</ControlTemplate>
-							</Button.Template>
-						</Button>
-					</local:SongControl>
-					<local:SongControl Height="22" HorizontalAlignment="Left" Width="200">
-						<Button Content="Пупсик" Click="Button_Click" Tag="http://tinakarol.ua/Albums/Night/pups.mp3" Margin="5,5,0,0">
-							<Button.Template>
-								<ControlTemplate TargetType="Button">
-									<ContentControl Content="{TemplateBinding Content}" Foreground="White" FontFamily="Times New Roman"/>
-								</ControlTemplate>
-							</Button.Template>
-						</Button>
-					</local:SongControl>
-					<local:SongControl Height="22" HorizontalAlignment="Left" Width="200">
-						<Button Content="Ты отпусти" Click="Button_Click" Tag="http://tinakarol.ua/Albums/Night/let.mp3" Margin="5,5,0,0">
-							<Button.Template>
-								<ControlTemplate TargetType="Button">
-									<ContentControl Content="{TemplateBinding Content}" Foreground="White" FontFamily="Times New Roman"/>
-								</ControlTemplate>
-							</Button.Template>
-						</Button>
-					</local:SongControl>
-					<local:SongControl Height="22" HorizontalAlignment="Left" Width="200">
-						<Button Content="Выше облаков (remix)" Click="Button_Click" Tag="http://tinakarol.ua/Albums/Night/highr.mp3" Margin="5,5,0,0">
-							<Button.Template>
-								<ControlTemplate TargetType="Button">
-									<ContentControl Content="{TemplateBinding Content}" Foreground="White" FontFamily="Times New Roman"/>
-								</ControlTemplate>
-							</Button.Template>
-						</Button>
-					</local:SongControl>
-				</StackPanel>
-				<Button Margin="327,564,110,727" Content="Button" Tag="http://tinakarol.ua/Clips/04.wmv" Click="Video_Click" />
-				<Button Margin="328,0,109,399" Content="Button" Height="251" VerticalAlignment="Bottom"/>
-			</Grid>
-	</Grid>
+    <navigation:Page.Resources>
+        <Style x:Key="NightSliderStyle" TargetType="Slider">
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Maximum" Value="10"/>
+            <Setter Property="Minimum" Value="0"/>
+            <Setter Property="Value" Value="0"/>
+            <Setter Property="BorderBrush">
+                <Setter.Value>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFA3AEB9" Offset="0"/>
+                        <GradientStop Color="#FF8399A9" Offset="0.375"/>
+                        <GradientStop Color="#FF718597" Offset="0.375"/>
+                        <GradientStop Color="#FF617584" Offset="1"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="IsTabStop" Value="False"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Slider">
+                        <Grid x:Name="Root">
+                            <Grid.Resources>
+                                <ControlTemplate x:Key="RepeatButtonTemplate">
+                                    <Grid x:Name="Root" Opacity="0" Background="Transparent"/>
+                                </ControlTemplate>
+                            </Grid.Resources>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal"/>
+                                    <VisualState x:Name="MouseOver"/>
+                                    <VisualState x:Name="Disabled">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="HorizontalTrackRectangleDisabledOverlay" Storyboard.TargetProperty="Visibility">
+                                                <DiscreteObjectKeyFrame KeyTime="0">
+                                                    <DiscreteObjectKeyFrame.Value>
+                                                        <Visibility>Visible</Visibility>
+                                                    </DiscreteObjectKeyFrame.Value>
+                                                </DiscreteObjectKeyFrame>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="ThumbDisabledOverlay" Storyboard.TargetProperty="Visibility">
+                                                <DiscreteObjectKeyFrame KeyTime="0">
+                                                    <DiscreteObjectKeyFrame.Value>
+                                                        <Visibility>Visible</Visibility>
+                                                    </DiscreteObjectKeyFrame.Value>
+                                                </DiscreteObjectKeyFrame>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="VerticalTrackRectangleDisabledOverlay" Storyboard.TargetProperty="Visibility">
+                                                <DiscreteObjectKeyFrame KeyTime="0">
+                                                    <DiscreteObjectKeyFrame.Value>
+                                                        <Visibility>Visible</Visibility>
+                                                    </DiscreteObjectKeyFrame.Value>
+                                                </DiscreteObjectKeyFrame>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Grid x:Name="HorizontalTemplate" Background="{TemplateBinding Background}">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Rectangle x:Name="TrackRectangle" Fill="#FFE6EFF7" Stroke="#FFA3AEB9" StrokeThickness="{TemplateBinding BorderThickness}" RadiusX="1" RadiusY="1" Height="3" Margin="5,0,5,0" Grid.Column="0" Grid.ColumnSpan="3" Opacity="0"/>
+                                <Rectangle x:Name="HorizontalTrackRectangleDisabledOverlay" Fill="White" RadiusX="1" RadiusY="1" Height="3" Margin="5,0,5,0" Opacity=".55" Visibility="Collapsed" Grid.Column="0" Grid.ColumnSpan="3"/>
+                                <RepeatButton x:Name="HorizontalTrackLargeChangeDecreaseRepeatButton" IsTabStop="False" Template="{StaticResource RepeatButtonTemplate}" Height="18" Grid.Column="0"/>
+                                <Thumb x:Name="HorizontalThumb" IsTabStop="True" Height="20" Width="2" Grid.Column="1" BorderThickness="0" Background="White" BorderBrush="White" Opacity="0.7" Margin="0,1,0,0"/>
+                                <Rectangle x:Name="ThumbDisabledOverlay" Fill="White" RadiusX="2" RadiusY="2" Width="11" Opacity=".55" Visibility="Collapsed" Grid.Column="1"/>
+                                <RepeatButton x:Name="HorizontalTrackLargeChangeIncreaseRepeatButton" IsTabStop="False" Template="{StaticResource RepeatButtonTemplate}" Height="18" Grid.Column="2"/>
+                            </Grid>
+                            <Grid x:Name="VerticalTemplate" Visibility="Collapsed" Background="{TemplateBinding Background}">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Rectangle Fill="#FFE6EFF7" Stroke="#FFA3AEB9" StrokeThickness="{TemplateBinding BorderThickness}" RadiusX="1" RadiusY="1" Margin="0,5,0,5" Width="3" Grid.Row="0" Grid.RowSpan="3"/>
+                                <Rectangle x:Name="VerticalTrackRectangleDisabledOverlay" Fill="White" RadiusX="1" RadiusY="1" Margin="0,5,0,5" Width="3" Opacity=".55" Visibility="Collapsed" Grid.Row="0" Grid.RowSpan="3"/>
+                                <RepeatButton x:Name="VerticalTrackLargeChangeDecreaseRepeatButton" IsTabStop="False" Template="{StaticResource RepeatButtonTemplate}" Width="18" Grid.Row="2"/>
+                                <Thumb x:Name="VerticalThumb" IsTabStop="True" Height="11" Width="18" Grid.Row="1"/>
+                                <RepeatButton x:Name="VerticalTrackLargeChangeIncreaseRepeatButton" IsTabStop="False" Template="{StaticResource RepeatButtonTemplate}" Width="18" Grid.Row="0"/>
+                            </Grid>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </navigation:Page.Resources>
+
+
+    <Grid x:Name="LayoutRoot">
+        <Grid Width="800" Height="1542">
+            <Grid.Background>
+                <ImageBrush ImageSource="nightBg.jpg" Stretch="Fill"/>
+            </Grid.Background>
+            <MediaElement MediaEnded="night_MediaEnded" x:Name="night" Height="0" AutoPlay="False" HorizontalAlignment="Left" VerticalAlignment="Top" Width="0" Stretch="Fill"/>
+            <StackPanel Orientation="Vertical" Margin="42,240,0,0" x:Name="SongsPanel">
+                <local:SongControl Stop="SongControl_Stop" Height="22" HorizontalAlignment="Left" Width="200">
+                    <Grid>
+                        <Button Content="Ноченька" Click="Button_Click" Tag="1" Margin="5,5,0,0">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <ContentControl Content="{TemplateBinding Content}" Foreground="White" FontFamily="Times New Roman" Cursor="Hand"/>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                        <Slider Width="180" Style="{StaticResource NightSliderStyle}" Margin="0,0,0,0" Visibility="Collapsed"/>
+                    </Grid>
+                </local:SongControl>
+                <local:SongControl Stop="SongControl_Stop" Height="22" HorizontalAlignment="Left" Width="200">
+                    <Grid>
+                        <Button Content="Выше облаков" Click="Button_Click" Tag="2" Margin="5,5,0,0">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <ContentControl Content="{TemplateBinding Content}" Foreground="White" FontFamily="Times New Roman"/>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                        <Slider Width="180" Style="{StaticResource NightSliderStyle}" Margin="0,0,0,0" Visibility="Collapsed"/>
+                    </Grid>
+                </local:SongControl>
+                <local:SongControl Stop="SongControl_Stop" Height="22" HorizontalAlignment="Left" Width="200">
+                    <Grid>
+                        <Button Content="Намалюю тобi" Click="Button_Click" Tag="3" Margin="5,5,0,0">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <ContentControl Content="{TemplateBinding Content}" Foreground="White" FontFamily="Times New Roman"/>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                        <Slider Width="180" Style="{StaticResource NightSliderStyle}" Margin="0,0,0,0" Visibility="Collapsed"/>
+                    </Grid>
+                </local:SongControl>
+                <local:SongControl Stop="SongControl_Stop" Height="22" HorizontalAlignment="Left" Width="200">
+                    <Grid>
+                        <Button Content="Пупсик" Click="Button_Click" Tag="4" Margin="5,5,0,0">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <ContentControl Content="{TemplateBinding Content}" Foreground="White" FontFamily="Times New Roman"/>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                        <Slider Width="180" Style="{StaticResource NightSliderStyle}" Margin="0,0,0,0" Visibility="Collapsed"/>
+                    </Grid>
+                </local:SongControl>
+                <local:SongControl Stop="SongControl_Stop" Height="22" HorizontalAlignment="Left" Width="200">
+                    <Grid>
+                        <Button Content="Ты отпусти" Click="Button_Click" Tag="5" Margin="5,5,0,0">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <ContentControl Content="{TemplateBinding Content}" Foreground="White" FontFamily="Times New Roman"/>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                        <Slider Width="180" Style="{StaticResource NightSliderStyle}" Margin="0,0,0,0" Visibility="Collapsed"/>
+                    </Grid>
+                </local:SongControl>
+                <local:SongControl Stop="SongControl_Stop" Height="22" HorizontalAlignment="Left" Width="200">
+                    <Grid>
+                        <Button Content="Выше облаков (remix)" Click="Button_Click" Tag="6" Margin="5,5,0,0">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <ContentControl Content="{TemplateBinding Content}" Foreground="White" FontFamily="Times New Roman"/>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                        <Slider Width="180" Style="{StaticResource NightSliderStyle}" Margin="0,0,0,0" Visibility="Collapsed"/>
+                    </Grid>
+                </local:SongControl>
+            </StackPanel>
+            <Button Margin="327,564,110,727" Content="Button" Tag="http://tinakarol.ua/Clips/04.wmv" Click="Video_Click" />
+            <Button Margin="328,0,109,399" Content="Button" Height="251" VerticalAlignment="Bottom"/>
+        </Grid>
+    </Grid>
 </navigation:Page>

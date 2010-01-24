@@ -89,9 +89,6 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\ControlFinder.cs" />
-    <Compile Include="Controls\ImageLink.xaml.cs">
-      <DependentUpon>ImageLink.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Controls\Pages\NavigationManager.cs" />
     <Compile Include="Controls\Pages\Page.xaml.cs">
       <DependentUpon>Page.xaml</DependentUpon>
@@ -103,6 +100,9 @@
     <Compile Include="Controls\Pages\Thumbnail.cs" />
     <Compile Include="Controls\SongLink.cs" />
     <Compile Include="Controls\Utils.cs" />
+    <Compile Include="Views\AlbumSlideshow.xaml.cs">
+      <DependentUpon>AlbumSlideshow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\showClip.xaml.cs">
       <DependentUpon>showClip.xaml</DependentUpon>
     </Compile>
@@ -158,10 +158,6 @@
       <SubType>Designer</SubType>
     </Resource>
     <Resource Include="Views\nightBg.jpg" />
-    <Page Include="Controls\ImageLink.xaml">
-      <Generator>MSBuild:MarkupCompilePass1</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Controls\Pages\Page.xaml">
       <SubType>Page</SubType>
       <Generator>MSBuild:MarkupCompilePass1</Generator>
@@ -169,6 +165,10 @@
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:MarkupCompilePass1</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AlbumSlideshow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
     </Page>
     <Page Include="Views\showClip.xaml">
       <Generator>MSBuild:MarkupCompilePass1</Generator>
@@ -223,6 +223,8 @@
     <None Include="Properties\AppManifest.xml" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Assets\homeTop.jpg" />
+    <Resource Include="Assets\homeTopBg.jpg" />
     <Resource Include="Assets\pageFold\pb01.png" />
     <Resource Include="Assets\pageFold\pb02.png" />
     <Resource Include="Assets\pageFold\pb03.png" />

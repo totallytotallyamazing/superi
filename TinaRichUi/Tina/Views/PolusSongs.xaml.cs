@@ -26,6 +26,7 @@ namespace Tina
             }
         }
 
+        public event EventHandler Stop;
 
         public PolusSong()
 		{
@@ -42,5 +43,12 @@ namespace Tina
 		{
 			VisualStateManager.GoToState(this, "Passive", true);
 		}
+
+        private void polygon_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            e.Handled = true;
+            if (Stop != null)
+                Stop(this, new EventArgs());
+        }
 	}
 }

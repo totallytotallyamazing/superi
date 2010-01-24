@@ -6,106 +6,66 @@
 	mc:Ignorable="d"
 	x:Class="Tina.SmylSong"
 	d:DesignWidth="200" d:DesignHeight="22">
+    
+    <Grid x:Name="LayoutRoot">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="Common">
+                <VisualStateGroup.Transitions>
+                    <VisualTransition From="Active" GeneratedDuration="00:00:00" To="Passive"/>
+                    <VisualTransition GeneratedDuration="00:00:00"/>
+                    <VisualTransition From="Passive" GeneratedDuration="00:00:00" To="Active"/>
+                </VisualStateGroup.Transitions>
+                <VisualState x:Name="Active">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="polygon" Storyboard.TargetProperty="(UIElement.Visibility)">
+                            <DiscreteObjectKeyFrame KeyTime="00:00:00">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <Visibility>Visible</Visibility>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rectangle" Storyboard.TargetProperty="(FrameworkElement.Width)">
+                            <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                            <EasingDoubleKeyFrame KeyTime="00:00:00.3000000" Value="180"/>
+                        </DoubleAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="Passive">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="polygon" Storyboard.TargetProperty="(UIElement.Visibility)">
+                            <DiscreteObjectKeyFrame KeyTime="00:00:00">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <Visibility>Collapsed</Visibility>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rectangle" Storyboard.TargetProperty="(FrameworkElement.Width)">
+                            <EasingDoubleKeyFrame KeyTime="00:00:00" Value="180"/>
+                            <EasingDoubleKeyFrame KeyTime="00:00:00.3000000" Value="0"/>
+                        </DoubleAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        <StackPanel Orientation="Horizontal" Margin="0" d:LayoutOverrides="Height">
+            <Border Height="22" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="20">
+                <Rectangle  x:Name="polygon" Stroke="White" Fill="White" Margin="0" Width="8" Height="8" Visibility="Collapsed" Cursor="Hand" MouseLeftButtonDown="polygon_MouseLeftButtonDown" />
+            </Border>
+            <Border x:Name="border" Height="22" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="180" Margin="0">
+                <Grid>
+                    <Rectangle x:Name="rectangle" Width="0" Height="20" Margin="0" HorizontalAlignment="Left">
+                        <Rectangle.Fill>
+                            <LinearGradientBrush EndPoint="1, 0.5" StartPoint="0, 0.5">
+                                <GradientStop Color="#AAFFFFFF" Offset="0"/>
+                                <GradientStop Offset="1" Color="#22000000"/>
+                            </LinearGradientBrush>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <ContentControl x:Name="content" HorizontalAlignment="Left">
+                    </ContentControl>
+                </Grid>
+            </Border>
 
-	<Grid x:Name="LayoutRoot">
-		<VisualStateManager.VisualStateGroups>
-			<VisualStateGroup x:Name="Common">
-				<VisualStateGroup.Transitions>
-					<VisualTransition From="Active" GeneratedDuration="00:00:00" To="Passive"/>
-					<VisualTransition GeneratedDuration="00:00:00"/>
-					<VisualTransition From="Passive" GeneratedDuration="00:00:00" To="Active"/>
-				</VisualStateGroup.Transitions>
-				<VisualState x:Name="Active">
-					<Storyboard>
-						<ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="polygon" Storyboard.TargetProperty="(UIElement.Visibility)">
-							<DiscreteObjectKeyFrame KeyTime="00:00:00">
-								<DiscreteObjectKeyFrame.Value>
-									<Visibility>Visible</Visibility>
-								</DiscreteObjectKeyFrame.Value>
-							</DiscreteObjectKeyFrame>
-						</ObjectAnimationUsingKeyFrames>
-						<DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="path" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)">
-							<EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
-							<EasingDoubleKeyFrame KeyTime="00:00:00.3000000" Value="1"/>
-						</DoubleAnimationUsingKeyFrames>
-						<ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="path" Storyboard.TargetProperty="(UIElement.Visibility)">
-							<DiscreteObjectKeyFrame KeyTime="00:00:00">
-								<DiscreteObjectKeyFrame.Value>
-									<Visibility>Visible</Visibility>
-								</DiscreteObjectKeyFrame.Value>
-							</DiscreteObjectKeyFrame>
-							<DiscreteObjectKeyFrame KeyTime="00:00:00.3000000">
-								<DiscreteObjectKeyFrame.Value>
-									<Visibility>Visible</Visibility>
-								</DiscreteObjectKeyFrame.Value>
-							</DiscreteObjectKeyFrame>
-						</ObjectAnimationUsingKeyFrames>
-						<ColorAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="path" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)">
-							<EasingColorKeyFrame KeyTime="00:00:00" Value="#FF492E14"/>
-							<EasingColorKeyFrame KeyTime="00:00:00.3000000" Value="Black"/>
-						</ColorAnimationUsingKeyFrames>
-						<DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="path" Storyboard.TargetProperty="(FrameworkElement.Height)">
-							<EasingDoubleKeyFrame KeyTime="00:00:00" Value="5"/>
-							<EasingDoubleKeyFrame KeyTime="00:00:00.3000000" Value="1"/>
-						</DoubleAnimationUsingKeyFrames>
-					</Storyboard>
-				</VisualState>
-				<VisualState x:Name="Passive">
-					<Storyboard>
-						<ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="polygon" Storyboard.TargetProperty="(UIElement.Visibility)">
-							<DiscreteObjectKeyFrame KeyTime="00:00:00">
-								<DiscreteObjectKeyFrame.Value>
-									<Visibility>Collapsed</Visibility>
-								</DiscreteObjectKeyFrame.Value>
-							</DiscreteObjectKeyFrame>
-						</ObjectAnimationUsingKeyFrames>
-						<DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="path" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)">
-							<EasingDoubleKeyFrame KeyTime="00:00:00" Value="1"/>
-							<EasingDoubleKeyFrame KeyTime="00:00:00.3000000" Value="0"/>
-						</DoubleAnimationUsingKeyFrames>
-						<ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="path" Storyboard.TargetProperty="(UIElement.Visibility)">
-							<DiscreteObjectKeyFrame KeyTime="00:00:00">
-								<DiscreteObjectKeyFrame.Value>
-									<Visibility>Visible</Visibility>
-								</DiscreteObjectKeyFrame.Value>
-							</DiscreteObjectKeyFrame>
-							<DiscreteObjectKeyFrame KeyTime="00:00:00.3000000">
-								<DiscreteObjectKeyFrame.Value>
-									<Visibility>Visible</Visibility>
-								</DiscreteObjectKeyFrame.Value>
-							</DiscreteObjectKeyFrame>
-						</ObjectAnimationUsingKeyFrames>
-					</Storyboard>
-				</VisualState>
-			</VisualStateGroup>
-		</VisualStateManager.VisualStateGroups>
-		<StackPanel Orientation="Horizontal" Margin="0" d:LayoutOverrides="Height">
-			<Border Height="22" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="20">
-	        <Polygon x:Name="polygon" Stroke="White" Fill="White" Visibility="Collapsed" >
-            <Polygon.Points>
-                <Point X="5" Y="6" />
-                <Point X="15" Y="11" />
-                <Point X="5" Y="16" />
-            </Polygon.Points>
-        </Polygon>
-			</Border>
-			<Border x:Name="border" Height="22" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="180" Margin="0">
-				<Grid>
-					<ContentControl x:Name="content" HorizontalAlignment="Left">
-					</ContentControl>
-					<Path x:Name="path" Stretch="Fill" Height="0" Margin="2,0,8,5" VerticalAlignment="Bottom" UseLayoutRounding="False" Data="M4,14 L172,14" Width="170" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Stroke="White" Fill="White">
-						<Path.RenderTransform>
-							<TransformGroup>
-								<ScaleTransform ScaleX="0"/>
-								<SkewTransform/>
-								<RotateTransform/>
-								<TranslateTransform/>
-							</TransformGroup>
-						</Path.RenderTransform>
-					</Path>
-				</Grid>
-			</Border>
-
-		</StackPanel>
-	</Grid>
+        </StackPanel>
+    </Grid>
 </UserControl>

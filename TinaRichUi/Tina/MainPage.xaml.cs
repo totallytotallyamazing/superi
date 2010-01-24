@@ -22,19 +22,25 @@ namespace Tina
         Dictionary<string, Color> pageColor = new Dictionary<string, Color>();
         Dictionary<string, Storyboard> pageBoard = new Dictionary<string, Storyboard>();
         Dictionary<string, string> navigationStyles = new Dictionary<string, string>();
+        Dictionary<string, int> width = new Dictionary<string, int>();
 
         public MainPage()
         {
             InitializeComponent();
-            pageColor["/Home"] = Colors.Black;
+            pageColor["/Home"] = Color.FromArgb(255, 194, 205, 209);
             pageColor["/Night"] = Colors.Black;
             pageColor["/Show"] = Color.FromArgb(255, 115, 115, 115);
             pageColor["/Polus"] = Colors.White;
 
-            navigationStyles["/Home"] = "LinksStackPanelStyle";
+            navigationStyles["/Home"] = "HomeNavigationStyle";
             navigationStyles["/Night"] = "NightNavigationStyle";
             navigationStyles["/Show"] = "ShowNavigationStyle";
             navigationStyles["/Polus"] = "PolusNavigationStyle";
+
+            width["/Home"] = 992;
+            width["/Night"] = 800;
+            width["/Show"] = 800;
+            width["/Polus"] = 800;
         }
 
 
@@ -139,7 +145,7 @@ namespace Tina
         private void ContentFrame_Navigating(object sender, System.Windows.Navigation.NavigatingCancelEventArgs e)
         {
             LinksStackPanel.Style = (Style)Resources[navigationStyles[e.Uri.ToString()]];
-//            VisualStateManager.GoToState(this, "Navigating", true);
+            NavigationGrid.Width = width[e.Uri.ToString()];
         }
 
         private void Link3_Click(object sender, System.Windows.RoutedEventArgs e)
@@ -149,12 +155,7 @@ namespace Tina
 
         private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-          //  string path = ((Button)sender).Tag.ToString();
-    //        Uri uri = new Uri(path, UriKind.Relative);
-//            NavigatingBoard.Completed += (board, eventArgs) => {
-      //          ContentFrame.Navigate(uri);
-        //    };
-  //          NavigatingBoard.Begin();
+
         }
     }
 }

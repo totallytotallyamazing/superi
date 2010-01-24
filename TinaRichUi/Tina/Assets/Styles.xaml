@@ -72,13 +72,6 @@
     <Setter Property="HorizontalAlignment" Value="Right"/>
   </Style>
 
-  <!-- Links StackPanel Style -->
-  <Style x:Key="LinksStackPanelStyle" TargetType="StackPanel">
-    <Setter Property="VerticalAlignment" Value="Center"/>
-    <Setter Property="HorizontalAlignment" Value="Left"/>
-    <Setter Property="Orientation" Value="Horizontal"/>
-  </Style>
-
   <!-- Link Style -->
   <Style x:Key="LinkStyle" TargetType="HyperlinkButton">
     <Setter Property="Background" Value="{StaticResource HighLightColorBrush}"/>
@@ -359,6 +352,94 @@
   					<Image Margin="0,0,8,0" Source="/Tina;Component/Assets/nightThumb.jpg" Stretch="Fill"/>
   					<Rectangle x:Name="DisabledVisualElement" Fill="#FFFFFFFF" RadiusX="3" RadiusY="3" IsHitTestVisible="false" Opacity="0"/>
   					<Rectangle x:Name="FocusVisualElement" Stroke="#FF6DBDD1" StrokeThickness="1" RadiusX="2" RadiusY="2" Margin="0" IsHitTestVisible="false" Opacity="0" Height="100" Width="100"/>
+  				</Grid>
+  			</ControlTemplate>
+  		</Setter.Value>
+  	</Setter>
+  </Style>
+  <Style x:Key="AlbumHyperLink" TargetType="HyperlinkButton">
+  	<Setter Property="Foreground" Value="#FF73A9D8"/>
+  	<Setter Property="Padding" Value="2,0,2,0"/>
+  	<Setter Property="Cursor" Value="Hand"/>
+  	<Setter Property="HorizontalContentAlignment" Value="Left"/>
+  	<Setter Property="VerticalContentAlignment" Value="Top"/>
+  	<Setter Property="Background" Value="Transparent"/>
+  	<Setter Property="Template">
+  		<Setter.Value>
+  			<ControlTemplate TargetType="HyperlinkButton">
+  				<Grid Cursor="{TemplateBinding Cursor}" Background="{TemplateBinding Background}">
+  					<VisualStateManager.VisualStateGroups>
+  						<VisualStateGroup x:Name="CommonStates">
+  							<VisualState x:Name="Normal"/>
+  							<VisualState x:Name="MouseOver">
+  								<Storyboard RepeatBehavior="Forever" AutoReverse="False">
+  									<ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="MouseOverOverlay" Storyboard.TargetProperty="(UIElement.Visibility)">
+  										<DiscreteObjectKeyFrame KeyTime="00:00:00">
+  											<DiscreteObjectKeyFrame.Value>
+  												<Visibility>Visible</Visibility>
+  											</DiscreteObjectKeyFrame.Value>
+  										</DiscreteObjectKeyFrame>
+  										<DiscreteObjectKeyFrame KeyTime="00:00:00.4000000">
+  											<DiscreteObjectKeyFrame.Value>
+  												<Visibility>Visible</Visibility>
+  											</DiscreteObjectKeyFrame.Value>
+  										</DiscreteObjectKeyFrame>
+  										<DiscreteObjectKeyFrame KeyTime="00:00:00.8000000">
+  											<DiscreteObjectKeyFrame.Value>
+  												<Visibility>Visible</Visibility>
+  											</DiscreteObjectKeyFrame.Value>
+  										</DiscreteObjectKeyFrame>
+  									</ObjectAnimationUsingKeyFrames>
+  									<DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="MouseOverOverlay" Storyboard.TargetProperty="(UIElement.Opacity)">
+  										<EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+  										<EasingDoubleKeyFrame KeyTime="00:00:00.4000000" Value="0.5"/>
+  										<EasingDoubleKeyFrame KeyTime="00:00:00.8000000" Value="0"/>
+  									</DoubleAnimationUsingKeyFrames>
+  									<ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="NormalOverlay" Storyboard.TargetProperty="(UIElement.Visibility)">
+  										<DiscreteObjectKeyFrame KeyTime="00:00:00">
+  											<DiscreteObjectKeyFrame.Value>
+  												<Visibility>Collapsed</Visibility>
+  											</DiscreteObjectKeyFrame.Value>
+  										</DiscreteObjectKeyFrame>
+  									</ObjectAnimationUsingKeyFrames>
+  								</Storyboard>
+  							</VisualState>
+  							<VisualState x:Name="Pressed"/>
+  							<VisualState x:Name="Disabled">
+  								<Storyboard>
+  									<ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="DisabledOverlay" Storyboard.TargetProperty="(UIElement.Visibility)">
+  										<DiscreteObjectKeyFrame KeyTime="00:00:00">
+  											<DiscreteObjectKeyFrame.Value>
+  												<Visibility>Visible</Visibility>
+  											</DiscreteObjectKeyFrame.Value>
+  										</DiscreteObjectKeyFrame>
+  									</ObjectAnimationUsingKeyFrames>
+  									<ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="NormalOverlay" Storyboard.TargetProperty="(UIElement.Visibility)">
+  										<DiscreteObjectKeyFrame KeyTime="00:00:00">
+  											<DiscreteObjectKeyFrame.Value>
+  												<Visibility>Collapsed</Visibility>
+  											</DiscreteObjectKeyFrame.Value>
+  										</DiscreteObjectKeyFrame>
+  									</ObjectAnimationUsingKeyFrames>
+  								</Storyboard>
+  							</VisualState>
+  						</VisualStateGroup>
+  						<VisualStateGroup x:Name="FocusStates">
+  							<VisualState x:Name="Focused">
+  								<Storyboard>
+  									<DoubleAnimationUsingKeyFrames Storyboard.TargetName="FocusVisualElement" Storyboard.TargetProperty="Opacity">
+  										<SplineDoubleKeyFrame KeyTime="0" Value="1"/>
+  									</DoubleAnimationUsingKeyFrames>
+  								</Storyboard>
+  							</VisualState>
+  							<VisualState x:Name="Unfocused"/>
+  						</VisualStateGroup>
+  					</VisualStateManager.VisualStateGroups>
+  					<ContentPresenter x:Name="contentPresenter" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Margin="1"/>
+  					<Rectangle x:Name="FocusVisualElement" Stroke="#FF6DBDD1" StrokeThickness="1" IsHitTestVisible="false" Opacity="0" Visibility="Collapsed"/>
+  					<Border x:Name="DisabledOverlay" Margin="0" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1" Visibility="Collapsed"/>
+  					<Rectangle x:Name="MouseOverOverlay" Fill="White" Margin="1" Visibility="Collapsed"/>
+  					<Rectangle x:Name="NormalOverlay" Fill="Black" Margin="1" Opacity="0.4"/>
   				</Grid>
   			</ControlTemplate>
   		</Setter.Value>

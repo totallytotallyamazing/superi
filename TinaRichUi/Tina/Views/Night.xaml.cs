@@ -34,26 +34,6 @@ namespace Tina
 
         }
 
-        private void ScrollViewer_MouseWheel(object sender, System.Windows.Input.MouseWheelEventArgs e)
-        {
-            
-        	ScrollViewerAutomationPeer svAutomation = (ScrollViewerAutomationPeer)ScrollViewerAutomationPeer.CreatePeerForElement((ScrollViewer)sender);
-			IScrollProvider scrollingAutomationProvider = (IScrollProvider)svAutomation.GetPattern(PatternInterface.Scroll); 
-			if (scrollingAutomationProvider.VerticallyScrollable)
-			{
-				if (e.Delta > 0)
-				{
-					// content goes down:
-					scrollingAutomationProvider.Scroll(ScrollAmount.NoAmount, ScrollAmount.LargeDecrement);
-				}
-				else
-				{
-					// content goes up:
-					scrollingAutomationProvider.Scroll(ScrollAmount.NoAmount, ScrollAmount.LargeIncrement);
-				}
-			}
-        }
-
         private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             string url = (sender as Button).Tag.ToString();

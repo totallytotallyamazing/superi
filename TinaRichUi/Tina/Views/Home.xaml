@@ -1047,7 +1047,7 @@
         							</VisualState>
         						</VisualStateGroup>
         					</VisualStateManager.VisualStateGroups>
-        					<Border x:Name="Background" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="1,1,1,1" Padding="{TemplateBinding Padding}">
+        					<Border x:Name="Background" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="1,1,1,1" Padding="{TemplateBinding Padding}" BorderBrush="{TemplateBinding BorderBrush}">
         						<Grid>
         							<Grid.ColumnDefinitions>
         								<ColumnDefinition x:Name="cd0" Width="*"/>
@@ -1210,7 +1210,7 @@
         																			<EasingDoubleKeyFrame KeyTime="00:00:00" Value="26"/>
         																		</DoubleAnimationUsingKeyFrames>
         																		<DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="icon" Storyboard.TargetProperty="(FrameworkElement.Height)">
-        																			<EasingDoubleKeyFrame KeyTime="00:00:00" Value="22"/>
+        																			<EasingDoubleKeyFrame KeyTime="00:00:00" Value="26"/>
         																		</DoubleAnimationUsingKeyFrames>
         																	</Storyboard>
         																</VisualState>
@@ -1337,7 +1337,7 @@
 			<Grid VerticalAlignment="Top" Margin="0,-61,0,0" Width="992">
 				<Image HorizontalAlignment="Center" VerticalAlignment="Top" Source="/Tina;Component/Assets/homeTop.jpg" Stretch="None"/>
 				<StackPanel Margin="307,387,8,0" Orientation="Vertical" d:LayoutOverrides="Height">
-					<ExpressionMediaPlayer:MediaPlayer Height="385" Margin="8,0,0,0" Style="{StaticResource MPlayerStyle}" VerticalAlignment="Bottom" Width="640" HorizontalAlignment="Left" Volume="-68">
+					<ExpressionMediaPlayer:MediaPlayer Height="385" Margin="8,0,0,0" Style="{StaticResource MPlayerStyle}" VerticalAlignment="Bottom" Width="640" HorizontalAlignment="Left" Volume="-68" TabIndex="2147483646">
 						<ExpressionMediaPlayer:MediaPlayer.Playlist>
 							<ExpressionMediaPlayer:Playlist EnableCaptions="False" EnableOffline="False" EnablePopOut="False" StretchMode="Uniform" AutoPlay="False">
 								<ExpressionMediaPlayer:Playlist.Items>
@@ -1351,10 +1351,10 @@
 							<Border BorderThickness="5,5,5,0" BorderBrush="#7C586165">
 								<Rectangle Fill="White" Opacity="0.31"/>
 							</Border>
-							<TextBlock FontFamily="Times New Roman" VerticalAlignment="Center" FontSize="45.333" Foreground="White" HorizontalAlignment="Left" Margin="10,0,0,0"><Run Text="НОВОСТИ"/></TextBlock>
+							<TextBlock FontFamily="Times New Roman" FontSize="44" Foreground="White" HorizontalAlignment="Left" Margin="10,0,0,0"><Run Text="НОВОСТИ"/></TextBlock>
 						</Grid>
-						<layoutToolkit:Accordion HorizontalAlignment="Stretch">
-							<layoutToolkit:AccordionItem Style="{StaticResource AccordionItemStyle}" Header="С новым годом" Background="#FF889FA8" >
+						<layoutToolkit:Accordion HorizontalAlignment="Stretch" BorderThickness="5,0,5,5" BorderBrush="#7C586165">
+							<layoutToolkit:AccordionItem Style="{StaticResource AccordionItemStyle}" Header="С новым годом" Background="#FF889FA8" BorderBrush="#00ECECEC" IsSelected="True" >
 								<Grid Margin="0" Width="649">
 									<Rectangle Fill="#FFB8C5CA"/>
 									<TextBlock TextWrapping="Wrap">
@@ -1368,7 +1368,7 @@
 							</layoutToolkit:AccordionItem>
 							<layoutToolkit:AccordionItem Style="{StaticResource AccordionItemStyle}" Header="С новым годом" Content="lasdjfaskldjfal;ksdj" Background="#FF889FA8" BorderThickness="0,2,0,0" BorderBrush="#FFCED7DA" />
 						</layoutToolkit:Accordion>
-						<layoutToolkit:AccordionItem Header="sjkldfhas" Style="{StaticResource AccordionItemStyle}" Background="#FF889FA8"/>
+						<layoutToolkit:AccordionItem Header="sjkldfhas" Style="{StaticResource AccordionItemStyle}" Background="#FF889FA8" Visibility="Collapsed"/>
 						
 					</StackPanel>
                 </StackPanel>

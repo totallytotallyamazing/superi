@@ -98,6 +98,9 @@
     <Compile Include="Controls\Pages\PageGenerator.cs" />
     <Compile Include="Controls\Pages\PageInfo.cs" />
     <Compile Include="Controls\Pages\Thumbnail.cs" />
+    <Compile Include="Controls\SlideShowControl.xaml.cs">
+      <DependentUpon>SlideShowControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\SongLink.cs" />
     <Compile Include="Controls\Utils.cs" />
     <Compile Include="Views\AlbumSlideshow.xaml.cs">
@@ -157,10 +160,13 @@
       <Generator>MSBuild:MarkupCompilePass1</Generator>
       <SubType>Designer</SubType>
     </Resource>
-    <Resource Include="Views\nightBg.jpg" />
     <Page Include="Controls\Pages\Page.xaml">
       <SubType>Page</SubType>
       <Generator>MSBuild:MarkupCompilePass1</Generator>
+    </Page>
+    <Page Include="Controls\SlideShowControl.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:MarkupCompilePass1</Generator>

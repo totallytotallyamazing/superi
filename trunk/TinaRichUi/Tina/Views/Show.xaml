@@ -118,7 +118,7 @@
                         <Slider Width="180" Style="{StaticResource ShowSliderStyle}" Margin="0,0,0,0" Visibility="Collapsed"/>
                     </Grid>
                 </local:SmylSong>
-                <local:SmylSong Height="22" HorizontalAlignment="Left" Width="200">
+                <local:SmylSong Stop="SmylSong_Stop" Height="22" HorizontalAlignment="Left" Width="200">
                     <Grid>
                         <Button Content="Russian Boy" Click="Button_Click" Tag="2" Margin="5,5,0,0">
                             <Button.Template>
@@ -131,7 +131,7 @@
                         <Slider Width="180" Style="{StaticResource ShowSliderStyle}" Margin="0,0,0,0" Visibility="Collapsed"/>
                     </Grid>
                 </local:SmylSong>
-                <local:SmylSong Height="22" HorizontalAlignment="Left" Width="200">
+                <local:SmylSong Stop="SmylSong_Stop" Height="22" HorizontalAlignment="Left" Width="200">
                     <Grid>
                         <Button Content="Life Is Not Enough" Click="Button_Click" Tag="3" Margin="5,5,0,0">
                             <Button.Template>
@@ -144,7 +144,7 @@
                         <Slider Width="180" Style="{StaticResource ShowSliderStyle}" Margin="0,0,0,0" Visibility="Collapsed"/>
                     </Grid>
                 </local:SmylSong>
-                <local:SmylSong Height="22" HorizontalAlignment="Left" Width="200">
+                <local:SmylSong Stop="SmylSong_Stop" Height="22" HorizontalAlignment="Left" Width="200">
                     <Grid>
                         <Button Content="Honey" Click="Button_Click" Tag="4" Margin="5,5,0,0">
                             <Button.Template>
@@ -157,7 +157,7 @@
                         <Slider Width="180" Style="{StaticResource ShowSliderStyle}" Margin="0,0,0,0" Visibility="Collapsed"/>
                     </Grid>
                 </local:SmylSong>
-                <local:SmylSong Height="22" HorizontalAlignment="Left" Width="200">
+                <local:SmylSong Stop="SmylSong_Stop" Height="22" HorizontalAlignment="Left" Width="200">
                     <Grid>
                         <Button Content="Love Of My Life" Click="Button_Click" Tag="5" Margin="5,5,0,0">
                             <Button.Template>
@@ -170,7 +170,7 @@
                         <Slider Width="180" Style="{StaticResource ShowSliderStyle}" Margin="0,0,0,0" Visibility="Collapsed"/>
                     </Grid>
                 </local:SmylSong>
-                <local:SmylSong Height="22" HorizontalAlignment="Left" Width="200">
+                <local:SmylSong Stop="SmylSong_Stop" Height="22" HorizontalAlignment="Left" Width="200">
                     <Grid>
                         <Button Content="Show Me Your Love" Click="Button_Click" Tag="6" Margin="5,5,0,0">
                             <Button.Template>
@@ -183,7 +183,7 @@
                         <Slider Width="180" Style="{StaticResource ShowSliderStyle}" Margin="0,0,0,0" Visibility="Collapsed"/>
                     </Grid>
                 </local:SmylSong>
-                <local:SmylSong Height="22" HorizontalAlignment="Left" Width="200">
+                <local:SmylSong Stop="SmylSong_Stop" Height="22" HorizontalAlignment="Left" Width="200">
                     <Grid>
                         <Button Content="Silent Night ukrainian version" Click="Button_Click" Tag="7" Margin="5,5,0,0">
                             <Button.Template>
@@ -196,7 +196,7 @@
                         <Slider Width="180" Style="{StaticResource ShowSliderStyle}" Margin="0,0,0,0" Visibility="Collapsed"/>
                     </Grid>
                 </local:SmylSong>
-                <local:SmylSong Height="22" HorizontalAlignment="Left" Width="200">
+                <local:SmylSong Stop="SmylSong_Stop" Height="22" HorizontalAlignment="Left" Width="200">
                     <Grid>
                         <Button Content="Honey fiesta edit" Click="Button_Click" Tag="8" Margin="5,5,0,0">
                             <Button.Template>
@@ -209,7 +209,7 @@
                         <Slider Width="180" Style="{StaticResource ShowSliderStyle}" Margin="0,0,0,0" Visibility="Collapsed"/>
                     </Grid>
                 </local:SmylSong>
-                <local:SmylSong Height="22" HorizontalAlignment="Left" Width="200">
+                <local:SmylSong Stop="SmylSong_Stop" Height="22" HorizontalAlignment="Left" Width="200">
                     <Grid>
                         <Button Content="Money Doesn't Metter remake" Click="Button_Click" Tag="9" Margin="5,5,0,0">
                             <Button.Template>
@@ -222,7 +222,7 @@
                         <Slider Width="180" Style="{StaticResource ShowSliderStyle}" Margin="0,0,0,0" Visibility="Collapsed"/>
                     </Grid>
                 </local:SmylSong>
-                <local:SmylSong Height="22" HorizontalAlignment="Left" Width="200">
+                <local:SmylSong Stop="SmylSong_Stop" Height="22" HorizontalAlignment="Left" Width="200">
                     <Grid>
                         <Button Content="Show Me Your Love REMIX radio edit" Click="Button_Click" Tag="10" Margin="5,5,0,0">
                             <Button.Template>
@@ -235,7 +235,7 @@
                         <Slider Width="180" Style="{StaticResource ShowSliderStyle}" Margin="0,0,0,0" Visibility="Collapsed"/>
                     </Grid>
                 </local:SmylSong>
-                <local:SmylSong Height="22" HorizontalAlignment="Left" Width="200">
+                <local:SmylSong Stop="SmylSong_Stop" Height="22" HorizontalAlignment="Left" Width="200">
                     <Grid>
                         <Button Content="Show Me Your Love REMIX club edit" Click="Button_Click" Tag="11" Margin="5,5,0,0">
                             <Button.Template>
@@ -248,7 +248,7 @@
                         <Slider Width="180" Style="{StaticResource ShowSliderStyle}" Margin="0,0,0,0" Visibility="Collapsed"/>
                     </Grid>
                 </local:SmylSong>
-                <local:SmylSong Height="22" HorizontalAlignment="Left" Width="200">
+                <local:SmylSong Stop="SmylSong_Stop" Height="22" HorizontalAlignment="Left" Width="200">
                     <Grid>
                         <Button Content="Above the clouds" Click="Button_Click" Tag="12" Margin="5,5,0,0">
                             <Button.Template>

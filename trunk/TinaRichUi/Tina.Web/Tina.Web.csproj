@@ -62,22 +62,15 @@
     <Reference Include="System.Web.Mobile" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="clientaccesspolicy.xml" />
     <Content Include="ClientBin\Tina.xap" />
-    <Content Include="Default.aspx" />
     <Content Include="RichService.asmx" />
     <Content Include="Silverlight.js" />
-    <Content Include="TinaTestPage.aspx" />
+    <Content Include="Default.aspx" />
     <Content Include="TinaTestPage.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Default.aspx.cs">
-      <SubType>ASPXCodeBehind</SubType>
-      <DependentUpon>Default.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Default.aspx.designer.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Models\GalleryImagePresentation.cs" />
     <Compile Include="Models\Tina.Designer.cs">
       <AutoGen>True</AutoGen>

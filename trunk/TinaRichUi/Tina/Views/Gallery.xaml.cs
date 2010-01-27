@@ -11,6 +11,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.Windows.Navigation;
 using Tina.RichServiceReference;
+using System.Windows.Media.Imaging;
 
 namespace Tina
 {
@@ -22,24 +23,26 @@ namespace Tina
         {
             InitializeComponent();
 
-            RichServiceSoapClient client = new RichServiceSoapClient();
+            RichServiceSoapClient client = new RichServiceSoapClient("RichServiceTest", "http://test.tinakarol.ua/RichService.asmx");
+            //RichServiceSoapClient client = new RichServiceSoapClient("RichServiceSoap", "http://localhost:49516/RichService.asmx");
             client.GetGalleryCompleted += new EventHandler<Tina.RichServiceReference.GetGalleryCompletedEventArgs>(client_GetGalleryCompleted);
-            client.GetGalleryAsync(-1);
+            client.GetGalleryAsync(0);
 
         }
 
         void client_GetGalleryCompleted(object sender, Tina.RichServiceReference.GetGalleryCompletedEventArgs e)
         {
             gallery = e.Result.ToList();
-            StackPanel panel = new StackPanel();
             foreach (var item in gallery)
             {
-                TextBlock textBlock = new TextBlock();
-                textBlock.Foreground = new SolidColorBrush(Colors.White);
-                textBlock.Text = item.Picture;
-                panel.Children.Add(textBlock);
+                Image image = new Image();
+                image.Width = 80;
+                image.Height = 80;
+                image.Margin = new Thickness(0, 0, 16, 16);
+                image.HorizontalAlignment = HorizontalAlignment.Center;
+                image.Source = new BitmapImage(new Uri("http://tinakarol.ua/Images/Gallery/"+item.Thumbnail, UriKind.Absolute));
+                panel.Children.Add(image);
             }
-            LayoutRoot.Children.Add(panel);
         }
 
         // Executes when the user navigates to this page.

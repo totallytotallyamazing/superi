@@ -11,6 +11,9 @@
             <endpoint address="http://localhost:49516/RichService.asmx" binding="basicHttpBinding"
                 bindingConfiguration="RichServiceSoap" contract="RichServiceReference.RichServiceSoap"
                 name="RichServiceSoap" />
+          <endpoint address="http://test.tinakarol.ua/RichService.asmx" binding="basicHttpBinding"
+              bindingConfiguration="RichServiceSoap" contract="RichServiceReference.RichServiceSoap"
+              name="RichServiceTest" />
         </client>
     </system.serviceModel>
 </configuration>

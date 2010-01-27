@@ -5,10 +5,14 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	mc:Ignorable="d"
 	xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
+	xmlns:controlsToolkit="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Toolkit"
 	x:Class="Tina.Gallery" 
 	Title="Gallery Page"
-	d:DesignWidth="800" d:DesignHeight="480">
-		<Grid x:Name="LayoutRoot">
-		
+	d:DesignWidth="800" d:DesignHeight="1580">
+		<Grid x:Name="LayoutRoot" Height="1580" Width="800">
+			<Grid.Background>
+				<ImageBrush Stretch="Fill" ImageSource="/Tina;Component/Assets/galleryBg.jpg"/>
+			</Grid.Background>
+			<controlsToolkit:WrapPanel x:Name="panel" HorizontalAlignment="Center" Margin="0,110,0,0" VerticalAlignment="Top" Width="576"/>
 		</Grid>
 	</navigation:Page>

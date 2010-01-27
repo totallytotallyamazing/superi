@@ -54,15 +54,17 @@ namespace Tina
             IScrollProvider scrollingAutomationProvider = (IScrollProvider)svAutomation.GetPattern(PatternInterface.Scroll);
             if (scrollingAutomationProvider.VerticallyScrollable)
             {
-                if (e.Delta > 0)
+                if (e.Delta < 0)
                 {
                     // content goes down:
-                    scrollingAutomationProvider.Scroll(ScrollAmount.NoAmount, ScrollAmount.LargeDecrement);
+                    if (scrollingAutomationProvider.VerticalScrollPercent <= 90)
+                        scrollingAutomationProvider.SetScrollPercent(scrollingAutomationProvider.HorizontalScrollPercent, scrollingAutomationProvider.VerticalScrollPercent + 10);
                 }
                 else
                 {
+                    if (scrollingAutomationProvider.VerticalScrollPercent >= 10)
+                        scrollingAutomationProvider.SetScrollPercent(scrollingAutomationProvider.HorizontalScrollPercent, scrollingAutomationProvider.VerticalScrollPercent - 10);
                     // content goes up:
-                    scrollingAutomationProvider.Scroll(ScrollAmount.NoAmount, ScrollAmount.LargeIncrement);
                 }
             }
         }

@@ -31,16 +31,19 @@ namespace Tina
             pageColor["/Night"] = Colors.Black;
             pageColor["/Show"] = Color.FromArgb(255, 115, 115, 115);
             pageColor["/Polus"] = Colors.White;
+            pageColor["Default"] = Colors.Black;
 
             navigationStyles["/Home"] = "HomeNavigationStyle";
             navigationStyles["/Night"] = "NightNavigationStyle";
             navigationStyles["/Show"] = "ShowNavigationStyle";
             navigationStyles["/Polus"] = "PolusNavigationStyle";
+            navigationStyles["Default"] = "PolusNavigationStyle";
 
             width["/Home"] = 992;
             width["/Night"] = 800;
             width["/Show"] = 800;
             width["/Polus"] = 800;
+            width["Default"] = 800;
         }
 
 
@@ -77,10 +80,12 @@ namespace Tina
 
                 EasingColorKeyFrame frameFrom = new EasingColorKeyFrame();
                 frameFrom.KeyTime = KeyTime.FromTimeSpan(TimeSpan.Zero);
-                frameFrom.Value = pageColor[from];
+                Color fromColor = (pageColor.ContainsKey(from)) ? pageColor[from] : pageColor["Default"];
+                frameFrom.Value = fromColor;
                 EasingColorKeyFrame frameTo = new EasingColorKeyFrame();
                 frameTo.KeyTime = KeyTime.FromTimeSpan(TimeSpan.FromMilliseconds(300));
-                frameTo.Value = pageColor[to];
+                Color toColor = (pageColor.ContainsKey(to)) ? pageColor[to] : pageColor["Default"];
+                frameTo.Value = toColor;
 
                 animation.KeyFrames.Add(frameFrom);
                 animation.KeyFrames.Add(frameTo);
@@ -144,18 +149,10 @@ namespace Tina
 
         private void ContentFrame_Navigating(object sender, System.Windows.Navigation.NavigatingCancelEventArgs e)
         {
-            LinksStackPanel.Style = (Style)Resources[navigationStyles[e.Uri.ToString()]];
-            NavigationGrid.Width = width[e.Uri.ToString()];
-        }
-
-        private void Link3_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-
-        }
-
-        private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-
+            string styleKey = navigationStyles.ContainsKey(e.Uri.ToString()) ? navigationStyles[e.Uri.ToString()] : "Default";
+            LinksStackPanel.Style = (Style)Resources[styleKey];
+            int pageWidth = (width.ContainsKey(e.Uri.ToString())) ? width[e.Uri.ToString()] : width["Default"];
+            NavigationGrid.Width = pageWidth;
         }
     }
 }

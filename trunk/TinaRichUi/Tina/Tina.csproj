@@ -67,6 +67,9 @@
     </Reference>
     <Reference Include="System.Reactive, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1b331ac6720247d9" />
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Windows" />
     <Reference Include="mscorlib" />
     <Reference Include="system" />
@@ -103,19 +106,27 @@
     </Compile>
     <Compile Include="Controls\SongLink.cs" />
     <Compile Include="Controls\Utils.cs" />
-    <Compile Include="Views\AlbumSlideshow.xaml.cs">
+    <Compile Include="Controls\AlbumSlideshow.xaml.cs">
       <DependentUpon>AlbumSlideshow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\showClip.xaml.cs">
+    <Compile Include="Controls\showClip.xaml.cs">
       <DependentUpon>showClip.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\RichServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Gallery.xaml.cs">
+      <DependentUpon>Gallery.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ShowVideo.xaml.cs">
       <DependentUpon>ShowVideo.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\SmylSong.xaml.cs">
+    <Compile Include="Controls\SmylSong.xaml.cs">
       <DependentUpon>SmylSong.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\PolusSongs.xaml.cs">
+    <Compile Include="Controls\PolusSongs.xaml.cs">
       <DependentUpon>PolusSongs.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ErrorWindow.xaml.cs">
@@ -140,7 +151,7 @@
     <Compile Include="Views\Show.xaml.cs">
       <DependentUpon>Show.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\SongControl.xaml.cs">
+    <Compile Include="Controls\SongControl.xaml.cs">
       <DependentUpon>SongControl.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -172,11 +183,15 @@
       <Generator>MSBuild:MarkupCompilePass1</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\AlbumSlideshow.xaml">
+    <Page Include="Controls\AlbumSlideshow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:MarkupCompilePass1</Generator>
     </Page>
-    <Page Include="Views\showClip.xaml">
+    <Page Include="Controls\showClip.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Gallery.xaml">
       <Generator>MSBuild:MarkupCompilePass1</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -184,11 +199,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:MarkupCompilePass1</Generator>
     </Page>
-    <Page Include="Views\SmylSong.xaml">
+    <Page Include="Controls\SmylSong.xaml">
       <Generator>MSBuild:MarkupCompilePass1</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\PolusSongs.xaml">
+    <Page Include="Controls\PolusSongs.xaml">
       <Generator>MSBuild:MarkupCompilePass1</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -220,13 +235,14 @@
       <Generator>MSBuild:MarkupCompilePass1</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\SongControl.xaml">
+    <Page Include="Controls\SongControl.xaml">
       <Generator>MSBuild:MarkupCompilePass1</Generator>
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AppManifest.xml" />
+    <Content Include="ServiceReferences.ClientConfig" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\homeTop.jpg" />
@@ -242,6 +258,28 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\RichServiceReference\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\RichServiceReference\RichService.disco" />
+    <None Include="Service References\RichServiceReference\RichService.wsdl" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\RichServiceReference\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\RichServiceReference\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\RichServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\RichServiceReference\Tina.RichServiceReference.GetGalleryResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\v3.0\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

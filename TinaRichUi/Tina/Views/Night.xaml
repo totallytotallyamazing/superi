@@ -103,7 +103,7 @@
     <Grid x:Name="LayoutRoot">
         <Grid Width="800" Height="1542">
             <Grid.Background>
-                <ImageBrush ImageSource="nightBg.jpg" Stretch="Fill"/>
+                <ImageBrush ImageSource="/Tina;Component/Assets/nightBg.jpg" Stretch="Fill"/>
             </Grid.Background>
             <MediaElement MediaEnded="night_MediaEnded" x:Name="night" Height="0" AutoPlay="False" HorizontalAlignment="Left" VerticalAlignment="Top" Width="0" Stretch="Fill"/>
             <StackPanel Orientation="Vertical" Margin="42,240,0,0" x:Name="SongsPanel">

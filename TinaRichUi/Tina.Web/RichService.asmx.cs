@@ -21,28 +21,28 @@ namespace Tina.Web
         [WebMethod]
         public List<GalleryImagePresentation> GetGallery(int albumId)
         {
-            //using (TinaDataContext context = new TinaDataContext())
-            //{
-            //    return context.Gallery
-            //        .Where(gi => gi.AlbumId == albumId)
-            //        .OrderBy(gi => gi.SortOrder)
-            //        .Select(gi => new GalleryImagePresentation
-            //        {
-            //            AlbumId = gi.AlbumId,
-            //            Id = gi.Id,
-            //            Picture = gi.Picture,
-            //            Thumbnail = gi.Thumbnail,
-            //            Title = gi.Title
-            //        }).ToList();
-            //}
-            return new List<GalleryImagePresentation>
+            using (TinaDataContext context = new TinaDataContext())
             {
-                new GalleryImagePresentation{ Picture="one"},
-                new GalleryImagePresentation{ Picture="two"},
-                new GalleryImagePresentation{ Picture="three"},
-                new GalleryImagePresentation{ Picture="four"},
-                new GalleryImagePresentation{ Picture="five"}
-            };
+                return context.Gallery
+                    .Where(gi => gi.AlbumId == albumId)
+                    .OrderBy(gi => gi.SortOrder)
+                    .Select(gi => new GalleryImagePresentation
+                    {
+                        AlbumId = gi.AlbumId,
+                        Id = gi.Id,
+                        Picture = gi.Picture,
+                        Thumbnail = gi.Thumbnail,
+                        Title = gi.Title
+                    }).ToList();
+            }
+            //return new List<GalleryImagePresentation>
+            //{
+            //    new GalleryImagePresentation{ Picture="one"},
+            //    new GalleryImagePresentation{ Picture="two"},
+            //    new GalleryImagePresentation{ Picture="three"},
+            //    new GalleryImagePresentation{ Picture="four"},
+            //    new GalleryImagePresentation{ Picture="five"}
+            //};
         }
     }
 }

@@ -245,6 +245,7 @@
     <Content Include="ServiceReferences.ClientConfig" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Assets\galleryBg.jpg" />
     <Resource Include="Assets\homeTop.jpg" />
     <Resource Include="Assets\homeTopBg.jpg" />
     <Resource Include="Assets\pageFold\pb01.png" />

@@ -84,6 +84,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.ru-RU.resx</DependentUpon>
     </Compile>
+    <Compile Include="captcha.ashx.cs">
+      <DependentUpon>captcha.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CartController.cs" />
@@ -346,6 +349,7 @@
     <Content Include="Content\img\truck.jpg" />
     <Content Include="Content\img\zoom.jpg" />
     <Content Include="Content\jquery.treeview.css" />
+    <Content Include="captcha.ashx" />
     <None Include="Content\MailTemplates\newOrder" />
     <None Include="Content\MailTemplates\passwordReminder" />
     <None Include="Content\MailTemplates\ru-RU\activateAccount" />

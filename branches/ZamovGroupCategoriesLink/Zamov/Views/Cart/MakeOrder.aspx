@@ -134,17 +134,17 @@
         </span>
         <%= HttpUtility.HtmlDecode(Html.ValidationMessage("agreed", "<script type='text/javascript'>$('#agreedSpan a').css('color', 'red');</script>")) %>
     </div>
-    <div style="color: Red; font-weight: bold; margin-top: 20px; margin-bottom: 30px;"
-        class="orderValidation">
+    <div style="color: Red; font-weight: bold; margin-top: 20px; margin-bottom: 30px; height:100px;" class="orderValidation">
         <label for="captcha">
         </label>
         <%=Html.ResourceString("EnterCode")%>
         <span class="validationError">*</span>
         <%= Html.ValidationMessage("captchaInvalid", " ")%>
         <br />
-        <%= Html.CaptchaImage(50, 160)%><br />
-        <%= Html.TextBox("captcha", "")%>
-        <br />
+        <div style="font-weight:normal; color:Black;">
+            <%= Html.CaptchaImage(50, 160)%><br />
+            <%= Html.TextBox("captcha", "")%>
+        </div>
     </div>
     <div class="orderDone">
         <center>

@@ -71,9 +71,9 @@
 
     <br />
 </div>    
-    <table class="commonTable">
+    <table class="commonTable" style="width:650px;">
         <tr>
-            <th></th>
+            <th>¹ ï.ï.</th>
             <th><%=Html.ResourceString("PartNumber") %></th>
             <th><%=Html.ResourceString("Title") %></th>
             <th><%=Html.ResourceString("Quantity") %></th>

@@ -1618,6 +1618,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Оновити зображення.
+        /// </summary>
+        internal static string RefreshCaptcha {
+            get {
+                return ResourceManager.GetString("RefreshCaptcha", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Реєстрація.
         /// </summary>
         internal static string Register {

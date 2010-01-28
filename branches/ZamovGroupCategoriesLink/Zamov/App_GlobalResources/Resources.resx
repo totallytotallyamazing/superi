@@ -795,4 +795,7 @@
   <data name="Deleted" xml:space="preserve">
     <value>Видаленi</value>
   </data>
+  <data name="RefreshCaptcha" xml:space="preserve">
+    <value>Оновити зображення</value>
+  </data>
 </root>

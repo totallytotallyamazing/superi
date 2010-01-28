@@ -70,7 +70,7 @@
         </div>
         <center>
             <div id="logo">
-                <%= Html.Image("~/Content/img/logo" + SystemSettings.CurrentDomain + ".jpg", "Zamov.net", new { usemap="#logoLink", style="border:none"})%>
+                <%= Html.Image("~/Content/img/logo.jpg", "Zamov.net", new { usemap="#logoLink", style="border:none"})%>
             </div>
         </center>
     </div>

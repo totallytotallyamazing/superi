@@ -60,7 +60,10 @@ namespace Zamov.Helpers
             stringBuilder.Append("\" height=\"");
             stringBuilder.Append(height);
             stringBuilder.Append("\" />");
-            stringBuilder.Append("<br /><img src=\"/Content/Img/reload.jpg\" style=\"cursor:pointer;\" onclick=\"$(this).prev().prev()[0].src = $(this).prev().prev()[0].src + '&n=' + (new Date()).getTime()\"");
+            stringBuilder.Append("<div style=\"padding-top:2px;\"><img src=\"/Content/Img/reload.jpg\" style=\"cursor:pointer;\" onclick=\"$(this).parent().prev()[0].src = $(this).parent().prev()[0].src + '&n=' + (new Date()).getTime()\" />");
+            stringBuilder.Append("&nbsp;");
+            stringBuilder.Append(ResourcesHelper.GetResourceString("RefreshCaptcha"));
+            stringBuilder.Append("</div>");
 
             return stringBuilder.ToString();
         }

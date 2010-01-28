@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Security;
 using System.Configuration;
 using System.Globalization;
+using System.Data.Objects;
 
 namespace Zamov.Models
 {
@@ -92,6 +93,38 @@ namespace Zamov.Models
                 result = GetUserPresentation(profileProperties);
                 if (result != null)
                     result.Email = userId;
+            }
+            return result;
+        }
+
+        public static List<UserPresentation> GetUserPresentations(string[] userId)
+        {
+            List<UserPresentation> result = new List<UserPresentation>();
+            using (MembershipStorage context = new MembershipStorage())
+            {
+                string aspnet_Users = string.Join(",", userId);
+                ObjectQuery<aspnet_Users> query = new ObjectQuery<aspnet_Users>(
+                    "SELECT VALUE user from aspnet_Users as user WHERE user.UserName IN {" + aspnet_Users + "}", 
+                    context);
+
+                var userRecords = (from user in query.Include("aspnet_Profile")
+                                  select new
+                                  {
+                                      email = user.UserName,
+                                      profileProperties = user.aspnet_Profile.PropertyNames,
+                                      profileValues = user.aspnet_Profile.PropertyValuesString
+                                  });
+
+                foreach (var userRecord in userRecords)
+                {
+                    Dictionary<string, string> profileProperties = GetProfileProperties(userRecord.profileProperties.Split(':'), userRecord.profileValues);
+                    UserPresentation item = GetUserPresentation(profileProperties);
+                    if (item != null)
+                    {
+                        item.Email = userRecord.email;
+                        result.Add(item);
+                    }
+                }
             }
             return result;
         }

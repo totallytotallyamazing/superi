@@ -191,5 +191,24 @@ namespace Zamov.Models
             }
         }
 
+        public static int CompareObjectFields<T>(T a, T b, string fieldName, int direction)
+        {
+            IComparable valueA = (IComparable)a.GetType().GetProperty(fieldName).GetValue(a, null);
+            IComparable valueB = (IComparable)a.GetType().GetProperty(fieldName).GetValue(b, null);
+
+            int result = 0;
+            if (valueA == null && valueB == null)
+                result = 0;
+            else if (valueA == null)
+                result = -1;
+            else if (valueB == null)
+                result = 1;
+            else
+                result = valueA.CompareTo(valueB);
+
+            return result * direction;
+
+        }
+
     }
 }

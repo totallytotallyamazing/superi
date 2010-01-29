@@ -1285,6 +1285,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to № п/п.
+        /// </summary>
+        internal static string NumberIndex {
+            get {
+                return ResourceManager.GetString("NumberIndex", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Кошика.
         /// </summary>
         internal static string OfCart {

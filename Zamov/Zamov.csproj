@@ -168,6 +168,11 @@
     <Compile Include="Models\ProductPresentation.cs" />
     <Compile Include="Models\ProductSearchPresentation.cs" />
     <Compile Include="Models\ProfileCommon.cs" />
+    <Compile Include="Models\Reports.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reports.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\SetingsStorage.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -356,6 +361,11 @@
     <None Include="Content\MailTemplates\uk-UA\activateAccount" />
     <None Include="Content\MailTemplates\ru-RU\resetPassword" />
     <None Include="Content\MailTemplates\uk-UA\resetPassword" />
+    <EntityDeploy Include="Models\Reports.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Reports.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Content\Orders.css" />
     <Content Include="Content\StartPage.css" />
     <Content Include="favicon.ico" />
     <Content Include="Scripts\jquery.cookie.js" />

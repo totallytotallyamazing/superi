@@ -798,4 +798,7 @@
   <data name="RefreshCaptcha" xml:space="preserve">
     <value>Оновити зображення</value>
   </data>
+  <data name="NumberIndex" xml:space="preserve">
+    <value>№ п/п</value>
+  </data>
 </root>

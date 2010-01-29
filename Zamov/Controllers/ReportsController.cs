@@ -30,7 +30,7 @@ namespace Zamov.Controllers
             using (Reports context = new Reports())
             {
                 int? orderStatus = (orderState.HasValue) ? (int)orderState.Value : (int?)null;
-                var orders = context.SalesReport
+                var orders = context.SalesReport.OrderBy(o=>o.OrderId)
                     .Where(o => (dealerId == null || o.DealerId == dealerId))
                     .Where(o => (userName == null || o.UserName == userName))
                     .Where(o => (city == null || o.City == city))

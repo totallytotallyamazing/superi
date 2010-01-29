@@ -29,12 +29,11 @@
       -->
         <EntityType Name="SalesReport">
           <Key>
-            <PropertyRef Name="UserName" />
-            <PropertyRef Name="Email" />
+            <PropertyRef Name="OrderId"/>
           </Key>
           <Property Name="DealerId" Type="int" />
           <Property Name="DealerName" Type="nvarchar(max)" />
-          <Property Name="OrderId" Type="int" />
+          <Property Name="OrderId" Type="int" Nullable="false"/>
           <Property Name="TotalPrice" Type="money" />
           <Property Name="OrderDate" Type="datetime" />
           <Property Name="DeliveryDate" Type="datetime" />
@@ -56,12 +55,10 @@
         </EntityContainer>
         <EntityType Name="SalesReportItem">
           <Key>
-            <PropertyRef Name="UserName" />
-            <PropertyRef Name="Email" />
-          </Key>
+            <PropertyRef Name="OrderId" /></Key>
           <Property Name="DealerId" Type="Int32" />
           <Property Name="DealerName" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="OrderId" Type="Int32" />
+          <Property Name="OrderId" Type="Int32" Nullable="false" />
           <Property Name="TotalPrice" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="OrderDate" Type="DateTime" />
           <Property Name="DeliveryDate" Type="DateTime" />

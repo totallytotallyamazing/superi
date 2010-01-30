@@ -14,6 +14,8 @@ namespace Tina
 {
     public partial class App : Application
     {
+
+
         public App()
         {
             this.Startup += this.Application_Startup;

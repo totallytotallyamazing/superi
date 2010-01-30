@@ -6,13 +6,15 @@
 	mc:Ignorable="d"
 	xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
 	xmlns:controlsToolkit="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Toolkit"
+	xmlns:System="clr-namespace:System;assembly=mscorlib"
 	x:Class="Tina.Gallery" 
 	Title="Gallery Page"
-	d:DesignWidth="800" d:DesignHeight="1580">
+	d:DesignWidth="800" d:DesignHeight="1580" Loaded="Page_Loaded">
 		<Grid x:Name="LayoutRoot" Height="1580" Width="800">
 			<Grid.Background>
 				<ImageBrush Stretch="Fill" ImageSource="/Tina;Component/Assets/galleryBg.jpg"/>
 			</Grid.Background>
 			<controlsToolkit:WrapPanel x:Name="panel" HorizontalAlignment="Center" Margin="0,110,0,0" VerticalAlignment="Top" Width="576"/>
+			<controlsToolkit:BusyIndicator x:Name="Busy" HorizontalAlignment="Center" Margin="0,325,0,0"  VerticalAlignment="Top" Content="BusyIndicator" BusyContent="Загружается галарея" Visibility="Collapsed"/>
 		</Grid>
 	</navigation:Page>

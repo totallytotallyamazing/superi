@@ -4,7 +4,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	mc:Ignorable="d"
-	d:DesignWidth="200" d:DesignHeight="200" >
+	d:DesignWidth="1000" d:DesignHeight="1000" >
 
 
 	<UserControl.Resources>
@@ -38,16 +38,16 @@
 			<!-- *****  CHANGE THE COLUMN WIDTH AND ***** -->
 			<!-- *****  CHANGE THE ROW WIDTH ***** -->
 			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="400" />
+				<ColumnDefinition Width="*" />
 			</Grid.ColumnDefinitions>
 			
 			<Grid.RowDefinitions>
-				<RowDefinition Height="300" />
+				<RowDefinition Height="*" />
 			</Grid.RowDefinitions>
 
 			<Image x:Name="mainImage" 
 				   Grid.Row="0" Grid.Column="0" 
-				   Stretch="Fill" />
+				   Stretch="None" />
 			
 			
 			<Grid Background="Gray" Opacity="0" 

@@ -366,6 +366,7 @@
       <LastGenOutput>Reports.Designer.cs</LastGenOutput>
     </EntityDeploy>
     <Content Include="Content\Orders.css" />
+    <Content Include="Content\reports.css" />
     <Content Include="Content\StartPage.css" />
     <Content Include="favicon.ico" />
     <Content Include="Scripts\jquery.cookie.js" />

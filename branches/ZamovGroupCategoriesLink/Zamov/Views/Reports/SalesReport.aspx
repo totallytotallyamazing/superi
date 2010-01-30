@@ -6,8 +6,11 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <table border="1">
-        <tr>
+    <table>
+    
+    </table>
+    <table class="blueHeaderedTable">
+        <tr class="blueHeader">
             <th><%= Html.SortHeader("NumberIndex", "/Reports/SalesReport", "OrderId", null, null) %></th>
             <th><%= Html.SortHeader("Dealer", "/Reports/SalesReport", "DealerName", null, null) %></th>
             <th><%= Html.SortHeader("Price", "/Reports/SalesReport", "TotalPrice", null, null) %>, грн.</th>
@@ -36,6 +39,7 @@
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="includes" runat="server">
+    <link rel="Stylesheet" type="text/css" href="/Content/reports.css" />
 </asp:Content>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentTop" runat="server">

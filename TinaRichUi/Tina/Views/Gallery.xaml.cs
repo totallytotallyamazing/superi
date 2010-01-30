@@ -48,12 +48,14 @@ namespace Tina
 
         private void CreateThumbnails()
         {
+            int i = 0;
             foreach (var item in gallery)
             {
                 GalleryThumbnail thumbnail = new GalleryThumbnail();
                 thumbnail.Margin = new Thickness(0, 0, 16, 16);
                 thumbnail.ImageSource = new BitmapImage(new Uri("http://tinakarol.ua/Images/Gallery/" + item.Thumbnail, UriKind.Absolute));
-                //thumbnail.Click += new EventHandler(thumbnail_Click);
+                thumbnail.Tag = i;
+                i++;
                 thumbnail.AddHandler(FrameworkElement.MouseLeftButtonDownEvent, new MouseButtonEventHandler(thumbnail_Click), true);
                 panel.Children.Add(thumbnail);
             }
@@ -61,7 +63,8 @@ namespace Tina
 
         void thumbnail_Click(object sender, MouseButtonEventArgs e)
         {
-            GallerySlideShow childWindow = new GallerySlideShow();
+            int index = (int)(sender as GalleryThumbnail).Tag;
+            GallerySlideShow childWindow = new GallerySlideShow(index);
             childWindow.Show();
         }
 

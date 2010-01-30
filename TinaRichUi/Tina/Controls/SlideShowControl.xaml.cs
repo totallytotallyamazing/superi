@@ -13,25 +13,25 @@ namespace Tina
     public partial class SlideShowControl : UserControl
     {
 
-        public static readonly DependencyProperty ImagesProperty = DependencyProperty.Register("Images", typeof(string[]), typeof(SlideShowControl), new PropertyMetadata(new PropertyChangedCallback(ImagesPropertyChanged)));
+        //public static readonly DependencyProperty ImagesProperty = DependencyProperty.Register("Images", typeof(string[]), typeof(SlideShowControl), new PropertyMetadata(new PropertyChangedCallback(ImagesPropertyChanged)));
 
-        public string[] Images
-        {
-            get
-            {
-                return (string[])GetValue(ImagesProperty);
-            }
-            set
-            {
-                SetValue(ImagesProperty, value);
-            }
-        }
+        //public string[] Images
+        //{
+        //    get
+        //    {
+        //        return (string[])GetValue(ImagesProperty);
+        //    }
+        //    set
+        //    {
+        //        SetValue(ImagesProperty, value);
+        //    }
+        //}
 
-        private static void ImagesPropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
-        {
-            (sender as SlideShowControl).ImageList = ((string[])e.NewValue).ToList();
-            (sender as SlideShowControl).RefreshNavigationImages(true);
-        }
+        //private static void ImagesPropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
+        //{
+        //    (sender as SlideShowControl).ImageList = ((string[])e.NewValue).ToList();
+        //    (sender as SlideShowControl).RefreshNavigationImages(true);
+        //}
 
         #region '" Constructor and SlideShowControl events"'
 
@@ -45,11 +45,20 @@ namespace Tina
 
             InitializeComponent();
 
-            //AddImages();
+            AddImages();
 
-           // RefreshNavigationImages(true);
+            RefreshNavigationImages(true);
+        }
 
+        public void AddImages()
+        {
+            ImageList = new List<string>();
 
+            foreach (var item in Gallery.gallery)
+            {
+                string imageUrl = "http://tinakarol.ua/Images/Gallery/" + item.Picture;
+                ImageList.Add(imageUrl);
+            }
         }
 
 
@@ -233,7 +242,7 @@ namespace Tina
                             startIndex = ImageList.IndexOf(url);
                             imageIndex = startIndex;
 
-                            break; 
+                            break;
 
                         }
 

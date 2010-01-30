@@ -13,12 +13,7 @@ namespace Tina
 {
     public partial class showClip : UserControl
     {
-
-        string url = "";
         bool paused = false;
-        int left = 0;
-        int top = 0;
-
 
         public event EventHandler Maximizing;
         public event EventHandler Minimizing;

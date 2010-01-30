@@ -12,26 +12,13 @@ namespace Tina
 {
     public partial class SlideShowControl : UserControl
     {
+        public static readonly DependencyProperty StartIndexProperty = DependencyProperty.Register("StartIndex", typeof(int), typeof(SlideShowControl), null);
 
-        //public static readonly DependencyProperty ImagesProperty = DependencyProperty.Register("Images", typeof(string[]), typeof(SlideShowControl), new PropertyMetadata(new PropertyChangedCallback(ImagesPropertyChanged)));
-
-        //public string[] Images
-        //{
-        //    get
-        //    {
-        //        return (string[])GetValue(ImagesProperty);
-        //    }
-        //    set
-        //    {
-        //        SetValue(ImagesProperty, value);
-        //    }
-        //}
-
-        //private static void ImagesPropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
-        //{
-        //    (sender as SlideShowControl).ImageList = ((string[])e.NewValue).ToList();
-        //    (sender as SlideShowControl).RefreshNavigationImages(true);
-        //}
+        public int StartIndex
+        {
+            get { return (int)GetValue(StartIndexProperty); }
+            set { SetValue(StartIndexProperty, value); }
+        }
 
         #region '" Constructor and SlideShowControl events"'
 
@@ -40,14 +27,15 @@ namespace Tina
         private System.Windows.Threading.DispatcherTimer mTimer = new System.Windows.Threading.DispatcherTimer();
 
 
-        public SlideShowControl()
+        public SlideShowControl(int startIndex)
         {
+            StartIndex = startIndex;
 
             InitializeComponent();
 
             AddImages();
 
-            RefreshNavigationImages(true);
+            RefreshNavigationImages(true, startIndex);
         }
 
         public void AddImages()
@@ -70,7 +58,7 @@ namespace Tina
                 return;
             }
 
-            mTimer.Interval = new TimeSpan(0, 0, 4);
+            mTimer.Interval = TimeSpan.FromSeconds(4);
             mTimer.Tick += mTimer_Tick;
             mTimer.Start();
 
@@ -221,7 +209,7 @@ namespace Tina
             string url = string.Empty;
             Image img = null;
             Border imgBorder = null;
-            int imageIndex = 0;
+            int imageIndex = startIndex;
 
             if (startIndex == 0)
             {
@@ -360,7 +348,7 @@ namespace Tina
             //Show the image
             Storyboard sb = new Storyboard();
 
-            Duration duration = new Duration(TimeSpan.FromSeconds(2));
+            Duration duration = new Duration(TimeSpan.FromMilliseconds(800));
 
             DoubleAnimation myDoubleAnimation1 = new DoubleAnimation();
 

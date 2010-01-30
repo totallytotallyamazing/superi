@@ -14,7 +14,7 @@
 			<Grid.Background>
 				<ImageBrush Stretch="Fill" ImageSource="/Tina;Component/Assets/galleryBg.jpg"/>
 			</Grid.Background>
-			<controlsToolkit:WrapPanel x:Name="panel" HorizontalAlignment="Center" Margin="0,110,0,0" VerticalAlignment="Top" Width="576"/>
+			<controlsToolkit:WrapPanel x:Name="panel" HorizontalAlignment="Center" Margin="0,110,0,0" VerticalAlignment="Top" Width="600"/>
 			<controlsToolkit:BusyIndicator x:Name="Busy" HorizontalAlignment="Center" Margin="0,325,0,0"  VerticalAlignment="Top" Content="BusyIndicator" BusyContent="Загружается галарея" Visibility="Collapsed"/>
 		</Grid>
 	</navigation:Page>

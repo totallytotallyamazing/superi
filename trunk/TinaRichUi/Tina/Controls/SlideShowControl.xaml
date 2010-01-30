@@ -27,11 +27,10 @@
 	</UserControl.Resources>
 	
 	
-	<Border BorderBrush="Navy" BorderThickness="1" Margin="10">
+	<Border BorderThickness="1" Margin="10">
 		
 		<!-- Main grid to display complete SlideShow control -->
-		<Grid x:Name="LayoutRoot" 
-			  Background="White" >
+		<Grid x:Name="LayoutRoot" >
 			
 			
 			<!-- *****  TO CHANGE THE SIZE OF THE SLIDESHOW ***** -->

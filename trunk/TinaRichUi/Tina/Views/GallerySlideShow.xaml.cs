@@ -19,14 +19,16 @@ namespace Tina
             InitializeComponent();
         }
 
-        private void OKButton_Click(object sender, RoutedEventArgs e)
+        public GallerySlideShow(int startIndex)
         {
-            this.DialogResult = true;
+            InitializeComponent();
+            SlideShowControl slideShow = new SlideShowControl(startIndex);
+            LayoutRoot.Children.Add(slideShow);
         }
 
-        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            this.DialogResult = false;
+        	this.DialogResult = true;
         }
     }
 }

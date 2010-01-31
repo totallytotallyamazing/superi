@@ -1,0 +1,12 @@
+﻿*{margin:0; padding:0; border:0; font-family:Times New Roman;}
+body{background:black url(img/bodyBg.jpg) repeat-x;}
+#main{width:837px; position:relative; margin:0 auto;}
+
+#player{width:auto; height:45px; border-right:1px solid white; background:black;}
+#header{width:835px; height:406px; border:1px solid white; background:transparent url(img/headBg.jpg) no-repeat}
+
+#logo{position:absolute; width:261px; height:101px; left:570px; top:380px;}
+
+#menuContainer{width:auto; height:48px; margin-top:1px; background:black;}
+
+#content{background:#C6C6C6; padding:6px; width:auto;}

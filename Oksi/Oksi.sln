@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oksi", "Oksi.csproj", "{DA759D23-3E00-45E3-9550-51AA7F82F6E4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientLibrary", "..\ClientLibrary\ClientLibrary.csproj", "{74865320-78E6-4B54-8795-BD5940251A71}"
+EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
@@ -17,6 +19,10 @@ Global
 		{DA759D23-3E00-45E3-9550-51AA7F82F6E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DA759D23-3E00-45E3-9550-51AA7F82F6E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DA759D23-3E00-45E3-9550-51AA7F82F6E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74865320-78E6-4B54-8795-BD5940251A71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74865320-78E6-4B54-8795-BD5940251A71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74865320-78E6-4B54-8795-BD5940251A71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74865320-78E6-4B54-8795-BD5940251A71}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

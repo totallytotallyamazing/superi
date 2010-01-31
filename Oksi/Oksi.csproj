@@ -181,6 +181,7 @@
     <Content Include="Content\pepper-grinder\jquery.ui.css" />
     <Content Include="Content\StartPage.css" />
     <Content Include="Scripts\ck.extensions.js" />
+    <Content Include="Scripts\ClientLibrary.js" />
     <Content Include="Scripts\jquery.fancybox.js" />
     <Content Include="Scripts\jquery.ui.js" />
     <Content Include="Views\Admin\EditText.aspx" />

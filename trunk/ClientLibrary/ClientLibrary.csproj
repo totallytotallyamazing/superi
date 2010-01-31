@@ -38,7 +38,7 @@
     <SccProvider>SubversionScc</SccProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\Oksi\Scripts\</OutputPath>
     <DefineConstants>DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -90,6 +90,12 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Script#\Superi.Ajax.Mvc\Superi.Ajax.Mvc.csproj">
+      <Project>{4B155D99-55AF-4880-8B09-DB8544131742}</Project>
+      <Name>Superi.Ajax.Mvc</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(ProgramFiles)\nStuff\ScriptSharp\v1.0\nStuff.ScriptSharp.targets" />
 </Project>

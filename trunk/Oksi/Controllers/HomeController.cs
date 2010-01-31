@@ -23,5 +23,20 @@ namespace Oksi.Controllers
         {
             return View();
         }
+
+        public ActionResult LatestNews()
+        { 
+            return View();
+        }
+
+        public ActionResult RecentNews()
+        {
+            return View();
+        }
+
+        public ActionResult PhotoSession()
+        {
+            return View();
+        }
     }
 }

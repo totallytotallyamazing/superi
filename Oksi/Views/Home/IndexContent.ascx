@@ -3,3 +3,6 @@
 <%= Ajax.DynamicCssInclude("/Content/StartPage.css")%>
 
 <% Html.RenderPartial("LatestVideo"); %>
+<% Html.RenderPartial("LatestNews"); %>
+<% Html.RenderPartial("PhotoSession"); %>
+<% Html.RenderPartial("RecentNews"); %>

@@ -57,12 +57,9 @@
   <ItemGroup>
     <Content Include="Properties\Project.FxCop" />
     <Content Include="Properties\Script.jst" />
+    <Compile Include="AjaxOptions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PageManager.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="aacorlib, Version=0.5.5.0, Culture=neutral, PublicKeyToken=8fc0e3af5abcb6c4, processorArchitecture=MSIL" />
-    <Reference Include="MicrosoftAjax, Version=0.5.5.0, Culture=neutral, PublicKeyToken=8fc0e3af5abcb6c4, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -96,6 +93,10 @@
       <Project>{4B155D99-55AF-4880-8B09-DB8544131742}</Project>
       <Name>Superi.Ajax.Mvc</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="aacorlib, Version=0.5.1.0, Culture=neutral, PublicKeyToken=8fc0e3af5abcb6c4, processorArchitecture=MSIL" />
+    <Reference Include="MicrosoftAjax, Version=0.5.1.0, Culture=neutral, PublicKeyToken=8fc0e3af5abcb6c4, processorArchitecture=MSIL" />
   </ItemGroup>
   <Import Project="$(ProgramFiles)\nStuff\ScriptSharp\v1.0\nStuff.ScriptSharp.targets" />
 </Project>

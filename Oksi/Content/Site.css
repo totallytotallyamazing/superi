@@ -8,5 +8,6 @@ body{background:black url(img/bodyBg.jpg) repeat-x;}
 #logo{position:absolute; width:261px; height:101px; left:570px; top:380px;}
 
 #menuContainer{width:auto; height:48px; margin-top:1px; background:black;}
+#menuContainer div {}
 
 #content{background:#C6C6C6; padding:6px; width:auto;}

@@ -13,11 +13,25 @@ namespace Tina
     public partial class SlideShowControl : UserControl
     {
         public static readonly DependencyProperty StartIndexProperty = DependencyProperty.Register("StartIndex", typeof(int), typeof(SlideShowControl), null);
+        public static readonly DependencyProperty IntervalProprty = DependencyProperty.Register("Interval", typeof(int), typeof(SlideShowControl), new PropertyMetadata(4));
+        public static readonly DependencyProperty EnableNavigationProprty = DependencyProperty.Register("EnableNavigation", typeof(bool), typeof(SlideShowControl), new PropertyMetadata(true));
 
         public int StartIndex
         {
             get { return (int)GetValue(StartIndexProperty); }
             set { SetValue(StartIndexProperty, value); }
+        }
+
+        public int Interval
+        {
+            get { return (int)GetValue(IntervalProprty); }
+            set { SetValue(IntervalProprty, value); }
+        }
+
+        public bool EnableNavigation
+        {
+            get { return (bool)GetValue(EnableNavigationProprty); }
+            set { SetValue(EnableNavigationProprty, value); }
         }
 
         #region '" Constructor and SlideShowControl events"'
@@ -26,16 +40,32 @@ namespace Tina
 
         private System.Windows.Threading.DispatcherTimer mTimer = new System.Windows.Threading.DispatcherTimer();
 
+        public SlideShowControl()
+        {
+            Initialize();
+        }
+
 
         public SlideShowControl(int startIndex)
         {
             StartIndex = startIndex;
+            Initialize();
+        }
 
+        public SlideShowControl(int startIndex, int interval)
+        {
+            StartIndex = startIndex;
+            Interval = interval;
+            Initialize();
+        }
+
+        public void Initialize()
+        {
             InitializeComponent();
 
             AddImages();
 
-            RefreshNavigationImages(true, startIndex);
+            RefreshNavigationImages(true, StartIndex);
         }
 
         public void AddImages()
@@ -58,7 +88,7 @@ namespace Tina
                 return;
             }
 
-            mTimer.Interval = TimeSpan.FromSeconds(4);
+            mTimer.Interval = TimeSpan.FromSeconds(Interval);
             mTimer.Tick += mTimer_Tick;
             mTimer.Start();
 
@@ -201,7 +231,7 @@ namespace Tina
         #endregion
 
 
-        #region '" Custom Methods"'
+        #region " Custom Methods"'
 
         private void RefreshNavigationImages(bool bForward, int startIndex)
         {
@@ -211,16 +241,37 @@ namespace Tina
             Border imgBorder = null;
             int imageIndex = startIndex;
 
-            if (startIndex == 0)
+            if (EnableNavigation)
             {
-
-                if (bForward == true)
+                if (startIndex == 0)
                 {
 
-                    for (int i = 6; i >= 1; i += -1)
+                    if (bForward == true)
                     {
 
-                        img = ((System.Windows.Controls.Image)(this.FindName("Image" + i)));
+                        for (int i = 6; i >= 1; i += -1)
+                        {
+
+                            img = ((System.Windows.Controls.Image)(this.FindName("Image" + i)));
+
+                            if ((img.Tag + "").Trim() != "")
+                            {
+
+                                url = System.Convert.ToString(img.Tag);
+
+                                startIndex = ImageList.IndexOf(url);
+                                imageIndex = startIndex;
+
+                                break;
+
+                            }
+
+                        }
+
+                    }
+                    else
+                    {
+                        img = ((System.Windows.Controls.Image)(this.FindName("Image1")));
 
                         if ((img.Tag + "").Trim() != "")
                         {
@@ -230,7 +281,10 @@ namespace Tina
                             startIndex = ImageList.IndexOf(url);
                             imageIndex = startIndex;
 
-                            break;
+                            if ((startIndex - 5) >= 0)
+                            {
+                                startIndex -= 5;
+                            }
 
                         }
 
@@ -239,71 +293,49 @@ namespace Tina
                 }
                 else
                 {
-                    img = ((System.Windows.Controls.Image)(this.FindName("Image1")));
+                    if (startIndex == -1)
+                    {
+                        startIndex = 0;
+                    }
 
-                    if ((img.Tag + "").Trim() != "")
+                }
+
+
+                for (int i = 1; i <= 6; i++)
+                {
+
+                    img = ((System.Windows.Controls.Image)(this.FindName("Image" + i)));
+                    imgBorder = ((System.Windows.Controls.Border)(this.FindName("Image" + i + "Border")));
+
+                    if (((i - 1) + startIndex) >= ImageList.Count)
                     {
 
-                        url = System.Convert.ToString(img.Tag);
+                        img.Source = null;
+                        img.Tag = "";
+                        img.Opacity = 0;
+                        imgBorder.Opacity = 0;
 
-                        startIndex = ImageList.IndexOf(url);
-                        imageIndex = startIndex;
+                        btnNext.IsEnabled = false;
 
-                        if ((startIndex - 5) >= 0)
-                        {
-                            startIndex -= 5;
-                        }
+                        continue;
+                    }
+                    else
+                    {
+                        img.Opacity = 1;
+                        imgBorder.Opacity = 1;
 
+                        btnNext.IsEnabled = true;
                     }
 
-                }
+                    url = ImageList[(i - 1) + startIndex];
 
+                    System.Windows.Media.Imaging.BitmapImage bi = new System.Windows.Media.Imaging.BitmapImage(new Uri(url, UriKind.RelativeOrAbsolute));
+
+                    img.Source = bi;
+                    img.Tag = url;
+
+                }
             }
-            else
-            {
-                if (startIndex == -1)
-                {
-                    startIndex = 0;
-                }
-
-            }
-
-
-            for (int i = 1; i <= 6; i++)
-            {
-
-                img = ((System.Windows.Controls.Image)(this.FindName("Image" + i)));
-                imgBorder = ((System.Windows.Controls.Border)(this.FindName("Image" + i + "Border")));
-
-                if (((i - 1) + startIndex) >= ImageList.Count)
-                {
-
-                    img.Source = null;
-                    img.Tag = "";
-                    img.Opacity = 0;
-                    imgBorder.Opacity = 0;
-
-                    btnNext.IsEnabled = false;
-
-                    continue;
-                }
-                else
-                {
-                    img.Opacity = 1;
-                    imgBorder.Opacity = 1;
-
-                    btnNext.IsEnabled = true;
-                }
-
-                url = ImageList[(i - 1) + startIndex];
-
-                System.Windows.Media.Imaging.BitmapImage bi = new System.Windows.Media.Imaging.BitmapImage(new Uri(url, UriKind.RelativeOrAbsolute));
-
-                img.Source = bi;
-                img.Tag = url;
-
-            }
-
             ShowImage(ImageList[imageIndex]);
 
         }

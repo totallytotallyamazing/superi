@@ -15,6 +15,18 @@ namespace ClientLibrary
         private bool linkNavigation = false;
         AsyncRequestHandler asyncRequestHandler = null;
 
+        public event EventHandler ContentUpdated
+        {
+            add { this.Events.AddHandler("contentUpdated", value); }
+            remove { this.Events.RemoveHandler("contentUpdated", value); }
+        }
+
+        public event EventHandler ContentUpdating
+        {
+            add { this.Events.AddHandler("contentUpdating", value); }
+            remove { this.Events.RemoveHandler("contentUpdating", value); }
+        }
+
         public static PageManager Current
         {
             get { return instanse; }
@@ -39,6 +51,7 @@ namespace ClientLibrary
         void Application_Load(object sender, ApplicationLoadEventArgs e)
         {
             InitializeAsyncAnchors();
+            InvokeUpdated();
         }
 
         void Application_Navigate(object sender, HistoryEventArgs e)
@@ -80,13 +93,17 @@ namespace ClientLibrary
                 AnchorElement anchor = (AnchorElement)anchors[i];
                 DomEvent.AddHandler(anchor, "click", new DomEventHandler(MenuItemClicked));
             }
-
+            
             AnchorElement logoLink = (AnchorElement)Document.GetElementById("logo").FirstChild;
             DomEvent.AddHandler(logoLink, "click", new DomEventHandler(MenuItemClicked));
         }
 
         void MenuItemClicked(DomEvent e)
         {
+            EventHandler handler = (EventHandler)this.Events.GetHandler("contentUpdating");
+            if (handler != null)
+                handler(this, new EventArgs());
+
             AjaxOptions options = new AjaxOptions();
             options.UpdateTargetId = "content";
             options.InsertionMode = InsertionMode.Replace;
@@ -112,6 +129,25 @@ namespace ClientLibrary
         public void AsyncRequestCompleted(AjaxContext param)
         {
             linkNavigation = false;
+            Window.SetTimeout(CreatePageExtenders, 200);
+            Window.SetTimeout(InvokeUpdated,400);
+            //InvokeUpdated();
+        }
+
+        void CreatePageExtenders()
+        {
+            ScriptElement script = (ScriptElement)Document.GetElementById("pageExtender");
+            if (script != null)
+            {
+                Script.Eval(script.InnerHTML);
+            }
+        }
+
+        void InvokeUpdated()
+        {
+            EventHandler handler = (EventHandler)this.Events.GetHandler("contentUpdated");
+            if (handler != null)
+                handler(this, new EventArgs());
         }
     }
 }

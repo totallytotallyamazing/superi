@@ -59,6 +59,7 @@
     <Content Include="Properties\Script.jst" />
     <Compile Include="AjaxEventStub.cs" />
     <Compile Include="AjaxOptions.cs" />
+    <Compile Include="PhotoSessionExtender.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PageManager.cs" />
   </ItemGroup>

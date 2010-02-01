@@ -14,6 +14,12 @@ namespace Oksi.Controllers
             return View();
         }
 
+        [Content]
+        public ActionResult Content(string contentName)
+        {
+            return View();
+        }
+
         public ActionResult IndexContent()
         {
             return View();

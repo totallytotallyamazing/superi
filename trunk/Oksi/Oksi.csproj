@@ -106,7 +106,6 @@
   <ItemGroup>
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
-    <Content Include="Views\Articles\Index.aspx" />
     <Content Include="Views\Shared\MainMenu.ascx" />
     <Content Include="Views\Shared\SubMenu.ascx" />
     <Content Include="Web.config" />
@@ -184,6 +183,7 @@
     <Content Include="Scripts\jquery.fancybox.js" />
     <Content Include="Scripts\jquery.ui.js" />
     <Content Include="Views\Admin\EditText.aspx" />
+    <Content Include="Views\Articles\Index.ascx" />
     <Content Include="Views\Home\Index.aspx" />
     <Content Include="Views\Home\IndexContent.ascx" />
     <Content Include="Views\Home\LatestNews.ascx" />

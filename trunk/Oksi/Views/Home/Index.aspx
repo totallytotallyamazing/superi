@@ -5,8 +5,6 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <%= Ajax.ScriptInclude("/Scripts/ClientLibrary.js") %>
-    <%= Ajax.Create("ClientLibrary.PageManager", null, null) %>
     <% Html.RenderPartial("IndexContent"); %>
 </asp:Content>
 

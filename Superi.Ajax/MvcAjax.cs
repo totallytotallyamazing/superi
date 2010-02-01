@@ -8,6 +8,9 @@ using Sys.UI;
 namespace Sys.Mvc
 {
     [Imported]
+    public delegate void AsyncRequestHandler(AjaxContext context);
+
+    [Imported]
     public enum InsertionMode
     {
         Replace = 0,
@@ -26,33 +29,11 @@ namespace Sys.Mvc
         public DOMElement UpdateTarget { get { return null; } }
     }
 
-    [Imported]
-    public class AjaxOptions
-    {
-        [IntrinsicProperty]
-        public string Confirm { get{return null;} set{} }
-        [IntrinsicProperty]
-        public string Url { get{return null;} set{} }
-        [IntrinsicProperty]
-        public string HttpMethod { get{return null;} set{} }
-        [IntrinsicProperty]
-        public string UpdateTargetId { get{return null;} set{} }
-        [IntrinsicProperty]
-        public string LoadingElementId { get{return null;} set{} }
-        [IntrinsicProperty]
-        public string OnBegin { get{return null;} set{} }
-        [IntrinsicProperty]
-        public string OnComplete { get{return null;} set{} }
-        [IntrinsicProperty]
-        public string OnSuccess { get{return null;} set{} }
-        [IntrinsicProperty]
-        public string OnFailure { get{return null;} set{} }
-    }
     
     [Imported]
     public class AsyncHyperlink
     {
-        public static void HandleClick(AnchorElement anchor, DomEvent evt, AjaxOptions ajaxOptions)
+        public static void HandleClick(AnchorElement anchor, DomEvent evt, object ajaxOptions)
         { 
         
         }
@@ -70,7 +51,7 @@ namespace Sys.Mvc
     [Imported]
     public class AsyncForm
     {
-        public static void HandleSubmit(FormElement form, DomEvent evt, AjaxOptions ajaxOptions)
+        public static void HandleSubmit(FormElement form, DomEvent evt, Object ajaxOptions)
         {
         
         }

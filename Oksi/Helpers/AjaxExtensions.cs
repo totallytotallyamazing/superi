@@ -86,15 +86,20 @@ namespace Oksi.Mvc.Ajax
 
         public static string Create(this AjaxHelper helper, string clientType, string elementId)
         {
-            return Create(helper, String.Empty, clientType, elementId);
+            return helper.Create(clientType, String.Empty, elementId, String.Empty);
         }
-
 
         public static string Create(this AjaxHelper helper, string clientType, object props, string elementId)
         {
+            return helper.Create(clientType, props, elementId, string.Empty);
+        }
+
+
+        public static string Create(this AjaxHelper helper, string clientType, object props, string elementId, string scriptKey)
+        {
             var strProps = props.ObjectToString();
             var sb = new StringBuilder();
-            sb.AppendLine("<script type='text/javascript'>");
+            sb.AppendLine("<script type='text/javascript' id=\"" + scriptKey + "\">");
             sb.AppendLine("Sys.Application.add_init(function(){");
             sb.AppendFormat("$create({0},{1},null,null,$get('{2}'))", clientType, strProps, elementId);
             sb.AppendLine("});");

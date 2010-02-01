@@ -2,12 +2,7 @@
 <%@ Import Namespace="Oksi.Mvc.Ajax" %>
 <%= Ajax.DynamicCssInclude("/Content/fancybox/jquery.fancybox.css")%>
 <%= Ajax.ScriptInclude("/Scripts/jquery.fancybox.js") %>
-
-<script type="text/javascript">
-    $(function() {
-        $("a.photoSession").fancybox();
-    })
-</script>
+<%= Ajax.Create("ClientLibrary.PhotoSessionExtender", new { id = "PageManager" }, null, "pageExtender")%>
 
 <div id="photoSession">
     <div id="sessionTitle">
@@ -26,3 +21,7 @@
         <img src="/Content/img/photo3.jpg" />
     </a>
 </div>
+
+<script type="text/javascript">
+
+</script>

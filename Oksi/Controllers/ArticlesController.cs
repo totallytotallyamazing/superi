@@ -13,11 +13,18 @@ namespace Oksi.Controllers
     {
         public ActionResult Index(int? page)
         {
-            using (DataStorage context = new DataStorage())
-            {
-                List<Article> articles = context.Articles.OrderByDescending(a => a.Date).Select(a => a).ToList();
-                return View(articles);
-            }
+            ViewData["text"] = "Новости";
+            //using (DataStorage context = new DataStorage())
+            //{
+                //List<Article> articles = context.Articles.OrderByDescending(a => a.Date).Select(a => a).ToList();
+                return View("Index");
+           // }
+        }
+
+        public ActionResult Press(int? page)
+        {
+            ViewData["text"] = "Пресса";
+            return View("Index");
         }
 
         public ActionResult Show(string name)

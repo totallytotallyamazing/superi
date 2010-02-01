@@ -57,6 +57,7 @@
   <ItemGroup>
     <Content Include="Properties\Project.FxCop" />
     <Content Include="Properties\Script.jst" />
+    <Compile Include="AjaxEventStub.cs" />
     <Compile Include="AjaxOptions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PageManager.cs" />
@@ -95,8 +96,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="aacorlib, Version=0.5.1.0, Culture=neutral, PublicKeyToken=8fc0e3af5abcb6c4, processorArchitecture=MSIL" />
-    <Reference Include="MicrosoftAjax, Version=0.5.1.0, Culture=neutral, PublicKeyToken=8fc0e3af5abcb6c4, processorArchitecture=MSIL" />
+    <Reference Include="aacorlib, Version=0.5.5.0, Culture=neutral, PublicKeyToken=8fc0e3af5abcb6c4, processorArchitecture=MSIL" />
+    <Reference Include="MicrosoftAjax, Version=0.5.5.0, Culture=neutral, PublicKeyToken=8fc0e3af5abcb6c4, processorArchitecture=MSIL" />
   </ItemGroup>
   <Import Project="$(ProgramFiles)\nStuff\ScriptSharp\v1.0\nStuff.ScriptSharp.targets" />
 </Project>

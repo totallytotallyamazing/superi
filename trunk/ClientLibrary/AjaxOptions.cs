@@ -14,5 +14,6 @@ namespace ClientLibrary
         public AsyncRequestHandler OnComplete;
         public string OnSuccess;
         public string OnFailure;
+        public InsertionMode InsertionMode;
     }
 }

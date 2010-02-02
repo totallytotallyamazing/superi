@@ -103,7 +103,7 @@ namespace Zamov.Controllers
             {
                 string newPassword = user.ResetPassword();
                 
-                MailHelper.SendTemplate("no-reply@zamov.net", 
+                MailHelper.SendTemplate("no-reply@zamov.com", 
                     new List<MailAddress> { new MailAddress(email) }, 
                     "Zamov.net",
                     "resetPassword", 
@@ -220,7 +220,7 @@ namespace Zamov.Controllers
                     else if (Request.Url.AbsoluteUri.StartsWith("http://zamov.com") || Request.Url.AbsoluteUri.StartsWith("http://www.zamov.com"))
                         linkBase = "http://zamov.com";
 
-                    MailHelper.SendTemplate("no-reply@zamov.net",
+                    MailHelper.SendTemplate("no-reply@zamov.com",
                         new List<MailAddress> { new MailAddress(email) },
                         "Zamov",
                         "activateAccount",

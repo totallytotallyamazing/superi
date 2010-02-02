@@ -99,10 +99,10 @@ namespace Oksi.Mvc.Ajax
         {
             var strProps = props.ObjectToString();
             var sb = new StringBuilder();
-            sb.AppendLine("<script type='text/javascript' id=\"" + scriptKey + "\">");
-            sb.AppendLine("Sys.Application.add_init(function(){");
+            sb.AppendLine("<script type='text/javascript' rel=\"" + scriptKey + "\">");
+            sb.AppendLine("Sys.Application.add_init(function(){try{");
             sb.AppendFormat("$create({0},{1},null,null,$get('{2}'))", clientType, strProps, elementId);
-            sb.AppendLine("});");
+            sb.AppendLine("}catch(e){}});");
             sb.AppendLine("</script>");
             return sb.ToString();
         }

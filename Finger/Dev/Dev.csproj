@@ -167,7 +167,6 @@
     <Content Include="Content\img\frameBottom.jpg" />
     <Content Include="Content\img\frameTop.jpg" />
     <Content Include="Content\img\mainBg.jpg" />
-    <Content Include="Content\img\menuBottom.jpg" />
     <Content Include="Content\img\menuTop.jpg" />
     <Content Include="Content\img\ru-RU\contacts.png" />
     <Content Include="Content\img\ru-RU\elena.png" />
@@ -212,6 +211,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="captcha.ashx" />
+    <Content Include="Content\img\menuBottom.png" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />

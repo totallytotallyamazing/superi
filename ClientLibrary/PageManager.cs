@@ -6,7 +6,7 @@ using System.DHTML;
 using Sys;
 using Sys.UI;
 using Sys.Mvc;
-using System.Jquery;
+using Jquery;
 
 namespace ClientLibrary
 {
@@ -47,43 +47,10 @@ namespace ClientLibrary
             Application.Load += new ApplicationLoadEventHandler(Application_Load);
         }
 
-        void InitializePlayer()
-        {
-            Dictionary flashVars = new Dictionary();
-            flashVars["listener"] = "ClientLibrary.PlayerListener";
-            Dictionary flashOptions = new Dictionary();
-            flashOptions["AllowScriptAccess"] = "always";
-            flashOptions["src"] = "/Content/player_mp3_js.swf";
-            JQueryProxy.jQuery("#playerObject").flash(flashOptions);
-        }
-
-        ObjectElement GetPlayer()
-        {
-            return (ObjectElement)Document.GetElementById("myFlash");
-        }
-
-
-        void ChangeSong(string url)
-        {
-            GetPlayer().SetVariable("method:setUrl", url);
-        }
-
-        void Play()
-        {
-            GetPlayer().SetVariable("method:play", "");
-        }
-
-        void Stop()
-        {
-            GetPlayer().SetVariable("method:stop", "");
-        }
-
         void Application_Load(object sender, ApplicationLoadEventArgs e)
         {
             InitializeAsyncAnchors();
             InvokeUpdated();
-            ChangeSong("/Songs/v.mp3");
-            Play();
         }
 
         void Application_Navigate(object sender, HistoryEventArgs e)

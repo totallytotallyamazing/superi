@@ -16,3 +16,6 @@ body{background:black url(img/bodyBg.jpg) repeat-x;}
 .menuItem.current a:hover{text-decoration:none !important;}
 
 #content{background:#C6C6C6; padding:6px; width:auto;}
+
+#footer1{margin-top:5px; background:#5c5c5c; width:auto; height:82px;}
+#footer2{margin-top:5px; width:auto; border:1px solid white; height:60px;}

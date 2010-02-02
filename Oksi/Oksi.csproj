@@ -178,9 +178,11 @@
     <Content Include="Content\pepper-grinder\images\ui-icons_fbdb93_256x240.png" />
     <Content Include="Content\pepper-grinder\images\ui-icons_ffffff_256x240.png" />
     <Content Include="Content\pepper-grinder\jquery.ui.css" />
+    <Content Include="Content\player_mp3_js.swf" />
     <Content Include="Content\StartPage.css" />
     <Content Include="Scripts\ck.extensions.js" />
     <Content Include="Scripts\jquery.fancybox.js" />
+    <Content Include="Scripts\jquery.flash.js" />
     <Content Include="Scripts\jquery.ui.js" />
     <Content Include="Views\Admin\EditText.aspx" />
     <Content Include="Views\Articles\Index.ascx" />
@@ -191,6 +193,9 @@
     <Content Include="Views\Home\PhotoSession.ascx" />
     <Content Include="Views\Home\RecentNews.ascx" />
     <Content Include="Views\Shared\Index.aspx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Songs\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />

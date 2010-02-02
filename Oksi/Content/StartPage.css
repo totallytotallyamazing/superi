@@ -8,7 +8,7 @@
 #latestNews img{float:left; margin-right:4px;}
 #latestNews #newsHeader{color:White; font-size:14px; font-weight:bold;}
 #latestNews #newsDate{color:#B85959; font-size:11px;}
-#latestNews #newsText{color:White; font-size:11px; height:230px;}
+#latestNews #newsText{color:White; font-size:11px; height:210px;}
 
 #newsDate hr{ height:1px; width:auto; background:white; margin:2px 0; }
 #newsDetailLink{text-align:right;}
@@ -17,3 +17,12 @@
 #photoSession{height:195px; padding-bottom:0px; clear:both; margin-top:5px;}
 a.photoSession img{border:1px solid white;}
 a.photoSession{text-decoration:none;}
+
+#recentNews{width:377px; margin-left:447px; margin-top:5px;}
+#recentNews div{width:auto; margin-bottom:4px; background-color:#939393; padding:4px; min-height:20px;}
+
+#recentNews div p.title{ color:White; font-size:14px;}
+#recentNews div p.date{ color:#ded9d9; font-size:11px;}
+#recentNews div p.date a{ color:White; font-size:10px; line-height:8px; font-style:italic; text-decoration:underline;}
+#recentNews #allNews{ text-align:right; background:transparent; height:10px; min-height:1px; }
+#recentNews #allNews a{ color:#747171; font-size:12px; }

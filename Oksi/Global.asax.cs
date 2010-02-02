@@ -30,30 +30,30 @@ namespace Oksi
                 new { controller = "Account", action = "Index" }  // Parameter defaults
              );
 
-            routes.MapRoute(
-                "ArticleDetailsLocalized",                                              // Route name
-                "Notes/Show/{name}",                           // URL with parameters
-                new { controller = "Articles", action = "Show", id = "" }  // Parameter defaults
-             );
+            //routes.MapRoute(
+            //    "ArticleDetailsLocalized",                                              // Route name
+            //    "Notes/Show/{name}",                           // URL with parameters
+            //    new { controller = "Articles", action = "Show", id = "" }  // Parameter defaults
+            // );
 
-            routes.MapRoute(
-                "ArticleDetails",                                              // Route name
-                "Notes/Show/{name}",                           // URL with parameters
-                new { controller = "Articles", action = "Show", id = "" }  // Parameter defaults
-             );
+            //routes.MapRoute(
+            //    "ArticleDetails",                                              // Route name
+            //    "Notes/Show/{name}",                           // URL with parameters
+            //    new { controller = "Articles", action = "Show", id = "" }  // Parameter defaults
+            // );
 
 
-            routes.MapRoute(
-                "Articles",                                              // Route name
-                "Notes/page",                           // URL with parameters
-                new { controller = "Articles", action = "Index", page = "" }  // Parameter defaults
-             );
+            //routes.MapRoute(
+            //    "Articles",                                              // Route name
+            //    "Notes/page",                           // URL with parameters
+            //    new { controller = "Articles", action = "Index", page = "" }  // Parameter defaults
+            // );
 
-            routes.MapRoute(
-                "LocalizedArticles",                                              // Route name
-                "Notes/page",                           // URL with parameters
-                new { controller = "Articles", action = "Index", page = "" }  // Parameter defaults
-             );
+            //routes.MapRoute(
+            //    "LocalizedArticles",                                              // Route name
+            //    "Notes/page",                           // URL with parameters
+            //    new { controller = "Articles", action = "Index", page = "" }  // Parameter defaults
+            // );
 
             //routes.MapRoute(
             //    "Content",                                              // Route name

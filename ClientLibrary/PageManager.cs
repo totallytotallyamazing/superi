@@ -6,6 +6,7 @@ using System.DHTML;
 using Sys;
 using Sys.UI;
 using Sys.Mvc;
+using System.Jquery;
 
 namespace ClientLibrary
 {
@@ -42,16 +43,47 @@ namespace ClientLibrary
             instanse = this;
             base.Initialize();
             Application.EnableHistory = true;
-
             Application.Navigate += new HistoryEventHandler(Application_Navigate);
             Application.Load += new ApplicationLoadEventHandler(Application_Load);
-            
+        }
+
+        void InitializePlayer()
+        {
+            Dictionary flashVars = new Dictionary();
+            flashVars["listener"] = "ClientLibrary.PlayerListener";
+            Dictionary flashOptions = new Dictionary();
+            flashOptions["AllowScriptAccess"] = "always";
+            flashOptions["src"] = "/Content/player_mp3_js.swf";
+            JQueryProxy.jQuery("#playerObject").flash(flashOptions);
+        }
+
+        ObjectElement GetPlayer()
+        {
+            return (ObjectElement)Document.GetElementById("myFlash");
+        }
+
+
+        void ChangeSong(string url)
+        {
+            GetPlayer().SetVariable("method:setUrl", url);
+        }
+
+        void Play()
+        {
+            GetPlayer().SetVariable("method:play", "");
+        }
+
+        void Stop()
+        {
+            GetPlayer().SetVariable("method:stop", "");
         }
 
         void Application_Load(object sender, ApplicationLoadEventArgs e)
         {
             InitializeAsyncAnchors();
             InvokeUpdated();
+            ChangeSong("/Songs/v.mp3");
+            Play();
         }
 
         void Application_Navigate(object sender, HistoryEventArgs e)
@@ -72,10 +104,12 @@ namespace ClientLibrary
             {
                 string url = (string)state["url"];
                 AsyncRequest(url, "post", "", null, options);
+                UpdateMenuSelection(url);
             }
             else
             {
                 AsyncRequest("/Home/IndexContent", "post", "", null, options);
+                UpdateMenuSelection("*");
             }
         }
 
@@ -102,7 +136,9 @@ namespace ClientLibrary
         {
             EventHandler handler = (EventHandler)this.Events.GetHandler("contentUpdating");
             if (handler != null)
+            {
                 handler(this, new EventArgs());
+            }
 
             AjaxOptions options = new AjaxOptions();
             options.UpdateTargetId = "content";
@@ -113,10 +149,24 @@ namespace ClientLibrary
             }
             options.OnComplete = asyncRequestHandler;
             AnchorElement target = (e.Target.TagName == "A") ? (AnchorElement)e.Target : (AnchorElement)e.Target.ParentNode;
+            UpdateMenuSelection(target.Href);
             linkNavigation = true;
             CreateHistoryPoint(target, options);
-
             AsyncHyperlink.HandleClick(target, e, options);
+        }
+
+        void UpdateMenuSelection(string url)
+        {
+            DOMElement target = (DOMElement)Utils.GetElementsByAttribute(Document.GetElementById("menuContainer"), "a", "href", url, null)[0] ;
+            if (target != null)
+                target = target.ParentNode;
+            JQuery items = JQueryProxy.jQuery("#menuContainer div");
+            if (target != null)
+            {
+                items = items.not(target);
+                DomElement.AddCssClass(target, "current");
+            }
+            items.removeClass("current");
         }
 
         void CreateHistoryPoint(AnchorElement target, AjaxOptions options)
@@ -131,15 +181,18 @@ namespace ClientLibrary
             linkNavigation = false;
             Window.SetTimeout(CreatePageExtenders, 200);
             Window.SetTimeout(InvokeUpdated,400);
-            //InvokeUpdated();
         }
 
         void CreatePageExtenders()
         {
-            ScriptElement script = (ScriptElement)Document.GetElementById("pageExtender");
-            if (script != null)
+            Array scripts = Utils.GetElementsByAttribute(null, "script", "rel", "pageExtender", null);
+            for (int i = 0; i < scripts.Length; i++)
             {
-                Script.Eval(script.InnerHTML);
+                ScriptElement script = (ScriptElement)scripts[i];
+                if (script != null)
+                {
+                    Script.Eval(script.InnerHTML);
+                }
             }
         }
 

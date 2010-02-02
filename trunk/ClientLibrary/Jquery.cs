@@ -4,7 +4,7 @@ using System.DHTML;
 ///<summary>
 ///Automatically generated jquery to script# code by Bjarte Djuvik Næss, www.bjarte.com
 ///<summary>
-namespace System.Jquery
+namespace Jquery
 {
     [Imported]
     [IgnoreNamespace]
@@ -34,7 +34,7 @@ namespace System.Jquery
 
 
     [Imported]
-    public class JQuery
+    public partial class JQuery
     {
         [PreserveCase]
         public JQuery flash(Dictionary options) { return null; }

@@ -181,9 +181,12 @@
     <Content Include="Content\player_mp3_js.swf" />
     <Content Include="Content\StartPage.css" />
     <Content Include="Scripts\ck.extensions.js" />
+    <Content Include="Scripts\Jplayer.swf" />
     <Content Include="Scripts\jquery.fancybox.js" />
     <Content Include="Scripts\jquery.flash.js" />
+    <Content Include="Scripts\jquery.jplayer.js" />
     <Content Include="Scripts\jquery.ui.js" />
+    <Content Include="Scripts\swfobject.js" />
     <Content Include="Views\Admin\EditText.aspx" />
     <Content Include="Views\Articles\Index.ascx" />
     <Content Include="Views\Home\Index.aspx" />

@@ -47,7 +47,7 @@
 
 			<Image x:Name="mainImage" 
 				   Grid.Row="0" Grid.Column="0" 
-				   Stretch="None" />
+				   Stretch="Uniform" />
 			
 			
 			<Grid Background="Gray" Opacity="0" 

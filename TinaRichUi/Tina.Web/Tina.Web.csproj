@@ -64,6 +64,22 @@
   <ItemGroup>
     <Content Include="clientaccesspolicy.xml" />
     <Content Include="ClientBin\Tina.xap" />
+    <Content Include="Images\SlideShow\night\noch01.jpg" />
+    <Content Include="Images\SlideShow\night\noch02.jpg" />
+    <Content Include="Images\SlideShow\night\noch03.jpg" />
+    <Content Include="Images\SlideShow\night\noch04.jpg" />
+    <Content Include="Images\SlideShow\night\noch05.jpg" />
+    <Content Include="Images\SlideShow\night\noch06.jpg" />
+    <Content Include="Images\SlideShow\night\noch07.jpg" />
+    <Content Include="Images\SlideShow\night\noch08.jpg" />
+    <Content Include="Images\SlideShow\pupsik\pupsik01.jpg" />
+    <Content Include="Images\SlideShow\pupsik\pupsik02.jpg" />
+    <Content Include="Images\SlideShow\pupsik\pupsik03.jpg" />
+    <Content Include="Images\SlideShow\pupsik\pupsik04.jpg" />
+    <Content Include="Images\SlideShow\pupsik\pupsik05.jpg" />
+    <Content Include="Images\SlideShow\pupsik\pupsik06.jpg" />
+    <Content Include="Images\SlideShow\pupsik\pupsik07.jpg" />
+    <Content Include="Images\SlideShow\pupsik\pupsik08.jpg" />
     <Content Include="RichService.asmx" />
     <Content Include="Silverlight.js" />
     <Content Include="Default.aspx" />

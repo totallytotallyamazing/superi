@@ -24,7 +24,7 @@ namespace ClientLibrary
 
         void Application_Load(object sender, ApplicationLoadEventArgs e)
         {
-            Window.SetTimeout(InitializePlayer, 4000);
+            InitializePlayer();
 
   //          ChangeSong("http://localhost:1719/Songs/f.mp3");
           //  Window.SetTimeout(Play, 4000);
@@ -32,14 +32,6 @@ namespace ClientLibrary
 
         void InitializePlayer()
         {
-            Script.Literal(@"
-            $(document).ready(function(){
-        $('#audioPlayer').jPlayer({
-        ready: function() { $(this).setFile('http://localhost:1719/Songs/f.mp3').play(); },
-            swfPath:'/Scripts'
-        })
-     })
-            ");
             JPlayerOptions options = new JPlayerOptions();
             options.Ready = PlayerReady;
             options.Volume = 100;
@@ -50,7 +42,7 @@ namespace ClientLibrary
 
         void PlayerReady()
         {
-            ((JPlayer)(Object)JQueryProxy.jQuery((DOMElement)(object)this)).SetFile("http://localhost:1719/Songs/f.mp3").Play();
+            ((JPlayer)(Object)JQueryProxy.jQuery(Element)).SetFile("http://localhost:1719/Songs/f.mp3").Play();
         }
 
         ObjectElement GetPlayer()

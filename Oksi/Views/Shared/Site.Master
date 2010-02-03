@@ -23,7 +23,8 @@
     <script type="text/javascript">
     $(document).ready(function(){
         $("#audioPlayer").jPlayer({
-            ready: function() {$(this).setFile('http://www.miaowmusic.com/mp3/Miaow-05-The-separation.mp3').play();}
+        ready: function() { $(this).setFile('/Songs/f.mp3').play(); },
+            swfPath:"/Scripts"
         })
      })
     </script>

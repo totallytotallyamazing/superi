@@ -3,6 +3,12 @@ body{background:black url(img/bodyBg.jpg) repeat-x;}
 #main{width:837px; position:relative; margin:0 auto;}
 
 #player{width:auto; height:45px; border-right:1px solid white; background:black;}
+#playerPresentation{height:100%; width:264px; background:#c6c6c6; text-align:center; font-size:12px;}
+#playerPresentation div{float:left; line-height:45px; padding-left:10px;}
+#playerPresentation div.song{line-height:43px;}
+#playerPresentation .controls a{cursor:pointer;}
+#playerPresentation .controls a.disabled{cursor:default;}
+#playerPresentation .controls a.disabled img{opacity:0.5; filter: alpha(opacity=50);  moz-opacity:0.5;}
 #header{width:835px; height:406px; border:1px solid white; background:transparent url(img/headBg.jpg) no-repeat}
 
 #logo{position:absolute; width:261px; height:101px; left:570px; top:380px;}

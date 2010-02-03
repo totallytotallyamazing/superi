@@ -15,6 +15,14 @@
 </head>
 
 <body>  
+    <script type="text/javascript">
+        
+        var songs = new Array();
+        songs[0] = { url: "/Songs/oksi_-_podruga_luna.mp3", name: "Подруга луна", album: "альбом" };
+        songs[1] = { url: "/Songs/oksi_-_pustie_slova.mp3", name: "Пустые слова", album: "альбом" };
+
+        function getSongs() {return songs;}
+    </script>
     <form runat="server">
         <asp:ScriptManager runat="server" EnablePartialRendering="false" EnableHistory="true"></asp:ScriptManager>
         <%=  Ajax.ScriptInclude(true, "/Scripts/MicrosoftAjax.js") %>
@@ -26,14 +34,32 @@
     <%= Ajax.Create("ClientLibrary.AudioPlayer", null, "audioPlayer") %>
     
     <script src="/Scripts/MicrosoftMvcAjax.js" type="text/javascript"></script>
-    <%= Ajax.Create("ClientLibrary.PageManager", new {id = "OksiManager"}, null) %>
+    <%= Ajax.Create("ClientLibrary.PageManager", new { id = "OksiManager"}, null)%>
     <div id="main">
         <div id="player">
-            <div id="playerPresentation">
-                <div id="prev"></div>
-                <div id="pause"></div>
-                <div id="play"></div>
-                <div id="next"></div>
+            <div id="playerPresentation">   
+                <div class="controls">
+                    <a rel="prev">
+                        <img src="/Content/img/prev.gif" />
+                    </a>
+                    <a rel="pause">
+                        <img src="/Content/img/pause.gif" />
+                    </a>
+                    <a rel="play"> 
+                        <img src="/Content/img/play.gif" />
+                    </a>
+                    <a rel="next">
+                        <img src="/Content/img/next.gif" />
+                    </a>
+                </div>
+                <div class="song">
+                    <span id="playerSongName">
+                        Подруга луна
+                    </span>
+                    <span id="playerSongName">
+                        (название альбома)
+                    </span>
+                </div>
             </div>
         </div>
         <div id="header">

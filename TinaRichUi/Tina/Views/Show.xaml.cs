@@ -52,6 +52,15 @@ namespace Tina
         {
         }
 
+
+        private void Video_Click(object sender, MouseButtonEventArgs e)
+        {
+            AlbumSlideshow slideShow = (sender as AlbumSlideshow);
+            slideShow.ResetSlideShow();
+            ChildWindow videoDilog = new ShowVideo(slideShow.Tag.ToString());
+            videoDilog.Show();
+        }
+
         private void StartSong(int index)
         {
             int currentIndex = index;

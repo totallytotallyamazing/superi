@@ -64,6 +64,36 @@
   <ItemGroup>
     <Content Include="clientaccesspolicy.xml" />
     <Content Include="ClientBin\Tina.xap" />
+    <Content Include="Images\SlideShow\high\high1.jpg" />
+    <Content Include="Images\SlideShow\high\high2.jpg" />
+    <Content Include="Images\SlideShow\high\high3.jpg" />
+    <Content Include="Images\SlideShow\high\high4.jpg" />
+    <Content Include="Images\SlideShow\high\high5.jpg" />
+    <Content Include="Images\SlideShow\key\kliuchik1.jpg" />
+    <Content Include="Images\SlideShow\key\kliuchik2.jpg" />
+    <Content Include="Images\SlideShow\key\kliuchik3.jpg" />
+    <Content Include="Images\SlideShow\key\kliuchik4.jpg" />
+    <Content Include="Images\SlideShow\key\kliuchik5.jpg" />
+    <Content Include="Images\SlideShow\key\kliuchik6.jpg" />
+    <Content Include="Images\SlideShow\key\kliuchik7.jpg" />
+    <Content Include="Images\SlideShow\key\kliuchik8.jpg" />
+    <Content Include="Images\SlideShow\key\kliuchik9.jpg" />
+    <Content Include="Images\SlideShow\love\love01.jpg" />
+    <Content Include="Images\SlideShow\love\love02.jpg" />
+    <Content Include="Images\SlideShow\love\love03.jpg" />
+    <Content Include="Images\SlideShow\love\love04.jpg" />
+    <Content Include="Images\SlideShow\love\love05.jpg" />
+    <Content Include="Images\SlideShow\love\love06.jpg" />
+    <Content Include="Images\SlideShow\love\love07.jpg" />
+    <Content Include="Images\SlideShow\love\love08.jpg" />
+    <Content Include="Images\SlideShow\love\love09.jpg" />
+    <Content Include="Images\SlideShow\love\love10.jpg" />
+    <Content Include="Images\SlideShow\love\love11.jpg" />
+    <Content Include="Images\SlideShow\love\love12.jpg" />
+    <Content Include="Images\SlideShow\love\love13.jpg" />
+    <Content Include="Images\SlideShow\love\love14.jpg" />
+    <Content Include="Images\SlideShow\love\love15.jpg" />
+    <Content Include="Images\SlideShow\love\love16.jpg" />
     <Content Include="Images\SlideShow\night\noch01.jpg" />
     <Content Include="Images\SlideShow\night\noch02.jpg" />
     <Content Include="Images\SlideShow\night\noch03.jpg" />
@@ -107,6 +137,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Images\SlideShow\show\" />
     <Folder Include="Music\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

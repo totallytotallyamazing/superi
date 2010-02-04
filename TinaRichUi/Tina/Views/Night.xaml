@@ -180,8 +180,8 @@
                     </Grid>
                 </local:SongControl>
             </StackPanel>
-            <local:AlbumSlideshow Margin="328,564,109,727" Album="night" />
-            <local:AlbumSlideshow Margin="328,0,109,399" Album="pupsik" Height="251" VerticalAlignment="Bottom"/>
+            <local:AlbumSlideshow Margin="328,564,109,727" Album="night" MouseLeftButtonDown="Video_Click" Tag="http://tinakarol.ua/Clips/04.wmv"/>
+            <local:AlbumSlideshow Margin="328,0,109,399" Album="pupsik" Height="251" VerticalAlignment="Bottom" Tag="http://tinakarol.ua/Clips/07.wmv" MouseLeftButtonDown="Video_Click" />
         </Grid>
     </Grid>
 </navigation:Page>

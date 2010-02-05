@@ -6,20 +6,40 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <table>
-    
-    </table>
+    <form method="get">
+        <table>
+            <tr>
+                <td>
+                    Продавець:
+                </td>
+                <td><%= Html.DropDownList("dealerId") %></td>
+                <td style="width:100px;"></td>
+                <td>Замовник</td>
+                <td><%= Html.TextBox("userName") %></td>
+            </tr>
+            <tr>
+                <td>
+                    Мiсто:
+                </td>
+                <td><%= Html.TextBox("city") %></td>
+                <td></td>
+                <td>Статус замовлення</td>
+                <td><%= Html.DropDownList("orderState")%></td>
+            </tr>
+        </table>
+        <input type="submit" value="Фiльтрувати" />
+    </form>
     <table class="blueHeaderedTable">
         <tr class="blueHeader">
-            <th><%= Html.SortHeader("NumberIndex", "/Reports/SalesReport", "OrderId", null, null) %></th>
-            <th><%= Html.SortHeader("Dealer", "/Reports/SalesReport", "DealerName", null, null) %></th>
-            <th><%= Html.SortHeader("Price", "/Reports/SalesReport", "TotalPrice", null, null) %>, грн.</th>
-            <th><%= Html.SortHeader("Date", "/Reports/SalesReport", "OrderDate", null, null) %></th>
-            <th><%= Html.SortHeader("DeliveryDateTime", "/Reports/SalesReport", "DeliveryDate", null, null)%></th>
-            <th><%= Html.SortHeader("Login", "/Reports/SalesReport", "UserName", null, null)%></th>
-            <th><%= Html.SortHeader("Client", "/Reports/SalesReport", "ClientName", null, null)%></th>
-            <th><%= Html.SortHeader("City", "/Reports/SalesReport", "City", null, null)%></th>
-            <th><%= Html.SortHeader("DeliveryAddress", "/Reports/SalesReport", "Address", null, null)%></th>
+            <th><%= Html.SortHeader("NumberIndex", "/Reports/SalesReport", "OrderId", (string)ViewData["filterString"], null) %></th>
+            <th><%= Html.SortHeader("Dealer", "/Reports/SalesReport", "DealerName", (string)ViewData["filterString"], null)%></th>
+            <th><%= Html.SortHeader("Price", "/Reports/SalesReport", "TotalPrice", (string)ViewData["filterString"], null)%>, грн.</th>
+            <th><%= Html.SortHeader("Date", "/Reports/SalesReport", "OrderDate", (string)ViewData["filterString"], null)%></th>
+            <th><%= Html.SortHeader("DeliveryDateTime", "/Reports/SalesReport", "DeliveryDate", (string)ViewData["filterString"], null)%></th>
+            <th><%= Html.SortHeader("Login", "/Reports/SalesReport", "UserName", (string)ViewData["filterString"], null)%></th>
+            <th><%= Html.SortHeader("Client", "/Reports/SalesReport", "ClientName", (string)ViewData["filterString"], null)%></th>
+            <th><%= Html.SortHeader("City", "/Reports/SalesReport", "City", (string)ViewData["filterString"], null)%></th>
+            <th><%= Html.SortHeader("DeliveryAddress", "/Reports/SalesReport", "Address", (string)ViewData["filterString"], null)%></th>
         </tr>
         <% foreach (var item in Model)
            {%>

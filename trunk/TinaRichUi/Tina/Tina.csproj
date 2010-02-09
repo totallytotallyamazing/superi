@@ -91,6 +91,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\AllVideo.xaml.cs">
+      <DependentUpon>AllVideo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\ControlFinder.cs" />
     <Compile Include="Controls\GalleryThumbnail.xaml.cs">
       <DependentUpon>GalleryThumbnail.xaml</DependentUpon>
@@ -104,10 +107,10 @@
     <Compile Include="Controls\Pages\PageGenerator.cs" />
     <Compile Include="Controls\Pages\PageInfo.cs" />
     <Compile Include="Controls\Pages\Thumbnail.cs" />
+    <Compile Include="Controls\RotatePanel.cs" />
     <Compile Include="Controls\SlideShowControl.xaml.cs">
       <DependentUpon>SlideShowControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\SongLink.cs" />
     <Compile Include="Controls\Utils.cs" />
     <Compile Include="Controls\AlbumSlideshow.xaml.cs">
       <DependentUpon>AlbumSlideshow.xaml</DependentUpon>
@@ -177,6 +180,10 @@
       <Generator>MSBuild:MarkupCompilePass1</Generator>
       <SubType>Designer</SubType>
     </Resource>
+    <Page Include="Controls\AllVideo.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Controls\GalleryThumbnail.xaml">
       <Generator>MSBuild:MarkupCompilePass1</Generator>
       <SubType>Designer</SubType>
@@ -256,6 +263,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AppManifest.xml" />
+    <Resource Include="Assets\playerBg.jpg" />
     <Content Include="ServiceReferences.ClientConfig" />
   </ItemGroup>
   <ItemGroup>

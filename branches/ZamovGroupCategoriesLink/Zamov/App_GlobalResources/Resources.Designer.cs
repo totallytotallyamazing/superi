@@ -61,6 +61,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Про нас.
+        /// </summary>
+        internal static string AboutUs {
+            get {
+                return ResourceManager.GetString("AboutUs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Прийняти замовлення.
         /// </summary>
         internal static string AcceptOrder {
@@ -1420,7 +1429,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Zamov - сайт онлайн замовлень. Замовлення піци, замовлення суші, замовлення обідів та доставка їжі.
+        ///   Looks up a localized string similar to Zamov - портал онлайн замовлень. Замовлення піци, замовлення суші, замовлення обідів та доставка їжі.
         /// </summary>
         internal static string PageTitle {
             get {

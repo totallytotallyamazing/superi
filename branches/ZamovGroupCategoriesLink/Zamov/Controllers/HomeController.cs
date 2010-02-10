@@ -18,6 +18,8 @@ namespace Zamov.Controllers
     [HandleError]
     public class HomeController : Controller
     {
+
+        #region Get Actions
         public ActionResult Index(int? id)
         {
             using (ZamovStorage context = new ZamovStorage())
@@ -38,16 +40,10 @@ namespace Zamov.Controllers
             }
         }
 
-        [AcceptVerbs(HttpVerbs.Post)]
-        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
-        public ActionResult Index(int currentCity, int currentCategory)
-        {
-            SystemSettings.CityId = currentCity;
-            return Redirect("~/Categories");
-        }
-
+        [BreadCrumb(ResourceName = "AboutUs", Url = "/Home/About")]
         public ActionResult About()
         {
+            ViewData["content"] = ApplicationData.StartText;
             return View();
         }
 
@@ -57,36 +53,21 @@ namespace Zamov.Controllers
             return View();
         }
 
-        public ActionResult SetUkrainian(string returnUrl)
-        {
-            SystemSettings.CurrentLanguage = "uk-UA";
-            if (!String.IsNullOrEmpty(returnUrl))
-            {
-                return Redirect(returnUrl);
-            }
-            else
-            {
-                return RedirectToAction("Index", "Home");
-            }
-        }
-
-        public ActionResult SetRussian(string returnUrl)
-        {
-            SystemSettings.CurrentLanguage = "ru-RU";
-            if (!String.IsNullOrEmpty(returnUrl))
-            {
-                return Redirect(returnUrl);
-            }
-            else
-            {
-                return RedirectToAction("Index", "Home");
-            }
-        }
-
         [BreadCrumb(ResourceName = "Contacts", Url = "/Home/Contacts")]
         public ActionResult Contacts()
         {
             return View();
+        }
+
+        #endregion
+
+        #region Post Actions
+        [AcceptVerbs(HttpVerbs.Post)]
+        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
+        public ActionResult Index(int currentCity, int currentCategory)
+        {
+            SystemSettings.CityId = currentCity;
+            return Redirect("~/Categories");
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
@@ -112,7 +93,37 @@ namespace Zamov.Controllers
             }
             return View();
         }
+        #endregion
 
+        #region Language Actions
+        public ActionResult SetUkrainian(string returnUrl)
+        {
+            SystemSettings.CurrentLanguage = "uk-UA";
+            if (!String.IsNullOrEmpty(returnUrl))
+            {
+                return Redirect(returnUrl);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+        public ActionResult SetRussian(string returnUrl)
+        {
+            SystemSettings.CurrentLanguage = "ru-RU";
+            if (!String.IsNullOrEmpty(returnUrl))
+            {
+                return Redirect(returnUrl);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
+        #endregion
+
+        #region Validation  
         private bool Validate(string email, string messageBody)
         {
             Regex regex = new Regex("^(?:[a-zA-Z0-9_'^&amp;/+-])+(?:\\.(?:[a-zA-Z0-9_'^&amp;/+-])+)*@(?:(?:\\[?(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?))\\.){3}(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\]?)|(?:[a-zA-Z0-9-]+\\.)+(?:[a-zA-Z]){2,}\\.?)$");
@@ -123,6 +134,6 @@ namespace Zamov.Controllers
                 ModelState.AddModelError("messageBody", ResourcesHelper.GetResourceString("MessageRequired"));
             return ModelState.IsValid;
         }
-
+        #endregion
     }
 }

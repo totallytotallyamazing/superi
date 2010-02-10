@@ -365,6 +365,7 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Reports.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <Content Include="Content\noLeftMenu.css" />
     <Content Include="Content\Orders.css" />
     <Content Include="Content\reports.css" />
     <Content Include="Content\StartPage.css" />

@@ -22,3 +22,5 @@
                     <%= Html.ResourceActionLink("News", "Index", "News").ToLower()%>
                 |
                 <%= Html.ResourceActionLink("Contacts","Contacts","Home").ToLower()%>
+                |
+                <%= Html.ResourceActionLink("AboutUs","About","Home").ToLower()%>

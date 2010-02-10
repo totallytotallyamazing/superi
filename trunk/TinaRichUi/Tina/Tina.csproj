@@ -95,6 +95,8 @@
       <DependentUpon>AllVideo.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\ControlFinder.cs" />
+    <Compile Include="Controls\CustomEffect.cs" />
+    <Compile Include="Controls\DistanceEffect.cs" />
     <Compile Include="Controls\GalleryThumbnail.xaml.cs">
       <DependentUpon>GalleryThumbnail.xaml</DependentUpon>
     </Compile>
@@ -296,6 +298,12 @@
     <None Include="Service References\RichServiceReference\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Distance.ps">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Distance.ps">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <None Include="Service References\RichServiceReference\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>

@@ -21,6 +21,8 @@ namespace Zamov.Controllers
 
             if (cityId.HasValue)
                 SystemSettings.CityId = cityId.Value;
+            else
+                SystemSettings.InitializeCity(1);
 
             HttpContext.Items["categoryId"] = id;
             

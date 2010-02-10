@@ -392,7 +392,7 @@ namespace Zamov.Controllers
                 ModelState.AddModelError("lastName", ResourcesHelper.GetResourceString("LastNameRequired"));
             if (string.IsNullOrEmpty(mobilePhone))
                 ModelState.AddModelError("mobilePhone", ResourcesHelper.GetResourceString("PhoneRequired"));
-            Regex phoneCheck = new Regex(@"^\+?\d{1}\(?\d+\)?\d+$");
+            Regex phoneCheck = new Regex(@"^(\+?\d+(-|\s))?(\(?\d+\)?(-|\s)?)?\d+(-|\s)?\d+(-|\s)?\d+$");
             if((!string.IsNullOrEmpty(mobilePhone) && !phoneCheck.IsMatch(mobilePhone)) || (!string.IsNullOrEmpty(phone) && !phoneCheck.IsMatch(phone)))
                 ModelState.AddModelError("_FORM", ResourcesHelper.GetResourceString("PhoneIncorrect"));
             return ModelState.IsValid;

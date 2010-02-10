@@ -1,12 +1,13 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage" %>
-
+<%@ Import Namespace="Zamov.Helpers" %>
 <asp:Content ID="aboutTitle" ContentPlaceHolderID="TitleContent" runat="server">
-    About Us
+    <%= Html.ResourceString("AboutUs") %>
 </asp:Content>
 
 <asp:Content ID="aboutContent" ContentPlaceHolderID="MainContent" runat="server">
-    <h2>About</h2>
-    <p>
-        Put content here.
-    </p>
+    <%= ViewData["content"] %>
+</asp:Content>
+
+<asp:Content runat="server" ContentPlaceHolderID="includes">
+    <%= Html.RegisterCss("/Content/noLeftMenu.css")%>
 </asp:Content>

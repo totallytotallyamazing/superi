@@ -801,4 +801,7 @@
   <data name="NumberIndex" xml:space="preserve">
     <value>№ п/п</value>
   </data>
+  <data name="AboutUs" xml:space="preserve">
+    <value>О нас</value>
+  </data>
 </root>

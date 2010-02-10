@@ -7,21 +7,24 @@
       <Schema Namespace="gb_zamovModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
         <EntityContainer Name="gb_zamovModelStoreContainer">
           <EntitySet Name="SalesReport" EntityType="gb_zamovModel.Store.SalesReport" store:Type="Views" store:Schema="dbo" store:Name="SalesReport">
-            <DefiningQuery>SELECT 
-      [SalesReport].[DealerId] AS [DealerId], 
-      [SalesReport].[DealerName] AS [DealerName], 
-      [SalesReport].[OrderId] AS [OrderId], 
-      [SalesReport].[TotalPrice] AS [TotalPrice], 
-      [SalesReport].[OrderDate] AS [OrderDate], 
-      [SalesReport].[DeliveryDate] AS [DeliveryDate], 
-      [SalesReport].[UserName] AS [UserName], 
-      [SalesReport].[ClientName] AS [ClientName], 
-      [SalesReport].[City] AS [City], 
-      [SalesReport].[Address] AS [Address], 
-      [SalesReport].[Phone] AS [Phone], 
-      [SalesReport].[Email] AS [Email], 
-      [SalesReport].[Status] AS [Status]
-      FROM [dbo].[SalesReport] AS [SalesReport]</DefiningQuery>
+            <DefiningQuery>
+                SELECT
+                [SalesReport].[DealerId] AS [DealerId],
+                [SalesReport].[DealerName] AS [DealerName],
+                [SalesReport].[OrderId] AS [OrderId],
+                [SalesReport].[TotalPrice] AS [TotalPrice],
+                [SalesReport].[OrderDate] AS [OrderDate],
+                [SalesReport].[DeliveryDate] AS [DeliveryDate],
+                [SalesReport].[UserName] AS [UserName],
+                [SalesReport].[ClientName] AS [ClientName],
+                [SalesReport].[City] AS [City],
+                [SalesReport].[Address] AS [Address],
+                [SalesReport].[Phone] AS [Phone],
+                [SalesReport].[Email] AS [Email],
+                [SalesReport].[Status] AS [Status],
+                [SalesReport].[DiscountCardNumber] AS [DiscountCardNumber],
+                [SalesReport].[Comments] AS [Comments]
+                FROM [dbo].[SalesReport] AS [SalesReport]</DefiningQuery>
           </EntitySet>
         </EntityContainer>
         <!--Errors Found During Generation:
@@ -44,6 +47,8 @@
           <Property Name="Phone" Type="nvarchar" MaxLength="50" />
           <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="100" />
           <Property Name="Status" Type="int" />
+          <Property Name="DiscountCardNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="Comments" Type="nvarchar" MaxLength="255" />
         </EntityType>
       </Schema>
     </edmx:StorageModels>
@@ -69,6 +74,8 @@
           <Property Name="Phone" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="Email" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
           <Property Name="Status" Type="Int32" />
+          <Property Name="DiscountCardNumber" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Comments" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -92,6 +99,8 @@
                 <ScalarProperty Name="Phone" ColumnName="Phone" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="DiscountCardNumber" ColumnName="DiscountCardNumber" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

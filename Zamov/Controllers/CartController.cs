@@ -306,7 +306,7 @@ namespace Zamov.Controllers
             Regex emailCheck = new Regex(@"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$");
             if(!string.IsNullOrEmpty(email) && !emailCheck.IsMatch(email))
                 ModelState.AddModelError("email", ResourcesHelper.GetResourceString("EmailIncorrect"));
-            Regex phoneCheck = new Regex(@"^\+?\d{1}\(?(\d|\s)+\)?\d+$");
+            Regex phoneCheck = new Regex(@"^(\+?\d+(-|\s))?(\(?\d+\)?(-|\s)?)?\d+(-|\s)?\d+(-|\s)?\d+$");
             if(!string.IsNullOrEmpty(contactPhone) && !phoneCheck.IsMatch(contactPhone))
                 ModelState.AddModelError("contactPhone", ResourcesHelper.GetResourceString("PhoneIncorrect"));
             return ModelState.IsValid;

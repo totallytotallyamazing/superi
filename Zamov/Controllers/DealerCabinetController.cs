@@ -831,7 +831,7 @@ namespace Zamov.Controllers
             }
         }
 
-        [Authorize(Roles = "Administrators, Dealers")]
+        [Authorize(Roles = "Administrators, Dealers, Managers")]
         [OutputCache(NoStore = true, VaryByParam = "*", Duration = 1)]
         public ActionResult ShowOrder(int id)
         {

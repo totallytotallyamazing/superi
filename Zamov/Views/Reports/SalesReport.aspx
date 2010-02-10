@@ -6,6 +6,16 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+    <script type="text/javascript">
+        $(function() {
+            $(".orderDescription")     
+            .fancybox(
+            {
+                frameWidth: 700,
+                hideOnContentClick: false
+            });
+        });
+    </script>
     <form method="get">
         <table>
             <tr>
@@ -40,6 +50,11 @@
             <th><%= Html.SortHeader("Client", "/Reports/SalesReport", "ClientName", (string)ViewData["filterString"], null)%></th>
             <th><%= Html.SortHeader("City", "/Reports/SalesReport", "City", (string)ViewData["filterString"], null)%></th>
             <th><%= Html.SortHeader("DeliveryAddress", "/Reports/SalesReport", "Address", (string)ViewData["filterString"], null)%></th>
+            <th><%= Html.SortHeader("Phone", "/Reports/SalesReport", "Phone", (string)ViewData["filterString"], null)%></th>
+            <th><%= Html.SortHeader("Email", "/Reports/SalesReport", "Email", (string)ViewData["filterString"], null)%></th>
+            <th><%= Html.SortHeader("Comments", "/Reports/SalesReport", "Comments", (string)ViewData["filterString"], null)%></th>
+            <th><%= Html.SortHeader("VoucherNumber", "/Reports/SalesReport", "DiscountCardNumber", (string)ViewData["filterString"], null)%></th>
+            <th><%= Html.SortHeader("Status", "/Reports/SalesReport", "Status", (string)ViewData["filterString"], null)%></th>
         </tr>
         <% foreach (var item in Model)
            {%>
@@ -53,6 +68,13 @@
                     <td><%= item.ClientName %></td>
                     <td><%= item.City %></td>
                     <td><%= item.Address %></td>
+                    <td><%= item.Phone %></td>
+                    <td><%= item.Email %></td>
+                    <td><%= item.Comments %></td>
+                    <td><%= item.DiscountCardNumber %></td>
+                    <td>
+                        <%=Html.ActionLink(Html.ResourceString("Status" + (Statuses)item.Status), "ShowOrder", "DealerCabinet" ,new { id = item.OrderId }, new { @class = "orderDescription", id = "orderStatus" + item.OrderId })%>
+                    </td>
                 </tr>      
          <%} %>
     </table>
@@ -60,6 +82,9 @@
 
 <asp:Content ID="Content3" ContentPlaceHolderID="includes" runat="server">
     <link rel="Stylesheet" type="text/css" href="/Content/reports.css" />
+    <%= Html.RegisterJS("jquery.easing.js")%>
+    <%= Html.RegisterJS("jquery.fancybox.js")%>
+    <%= Html.RegisterCss("~/Content/fancy/jquery.fancybox.css")%>
 </asp:Content>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentTop" runat="server">

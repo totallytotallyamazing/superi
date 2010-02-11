@@ -15,7 +15,7 @@ namespace Tina
     {
         public static readonly DependencyProperty OffsetProperty = DependencyProperty.Register("Offset", typeof(double), typeof(RotatePanel), new PropertyMetadata(0.0, new PropertyChangedCallback(RotatePanel.offsetChanged)));
         public static readonly DependencyProperty SpacingProperty = DependencyProperty.Register("Spacing", typeof(int), typeof(RotatePanel), new PropertyMetadata(0, new PropertyChangedCallback(RotatePanel.offsetChanged)));
-
+        public static readonly DependencyProperty SegmentLengthProperty = DependencyProperty.Register("SegmentLength", typeof(int), typeof(RotatePanel), new PropertyMetadata(0, new PropertyChangedCallback(RotatePanel.offsetChanged)));
 
         private static void offsetChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
@@ -46,16 +46,50 @@ namespace Tina
             }
         }
 
+        public int SegmentLength
+        {
+            get
+            {
+                return (int)base.GetValue(SegmentLengthProperty);
+            }
+            set
+            {
+                base.SetValue(SegmentLengthProperty, value);
+            }
+        }
+
+        private double GetDegrees(double radians)
+        {
+            double result = radians*180/Math.PI;
+            return result;
+        }
+
+        private double GetRadians(double degrees)
+        {
+            double result = degrees * Math.PI / 180;
+            return result;
+        }
+
+        double EvaluateRadius(int width, int count)
+        {
+            double radians = (180.0 * (count - 2.0)) / (2.0 * count);
+            double circumcircle = width / (2.0 * Math.Cos(GetRadians(radians)));
+            double radius = circumcircle * Math.Sin(GetRadians(radians));
+            return radius;
+        }
+
         protected override Size ArrangeOverride(Size finalSize)
         {
-            int num = 0;
-            double num2 = 360.0 / base.Children.Count;
-            double num3 = -(331.5 + (10 * this.Spacing));
-            double num4 = Math.Abs(this.Offset);
-            if (num4 > 360.0)
+            int itemsCount = base.Children.Count;
+            int currentIndex = 0;
+            double itemAngle = 360.0 / itemsCount;
+            double incircle = EvaluateRadius(SegmentLength, itemsCount);
+            double zRadius = -(incircle + (10 * this.Spacing));
+            double absoluteOffset = Math.Abs(this.Offset);
+            if (absoluteOffset > 360.0)
             {
-                int num5 = ((int)num4) / 360;
-                num4 = this.Offset - ((num5 - 1) * 360);
+                int num5 = ((int)absoluteOffset) / 360;
+                absoluteOffset = this.Offset - ((num5 - 1) * 360);
             }
             foreach (UIElement element in base.Children)
             {
@@ -64,12 +98,12 @@ namespace Tina
                 Size size = new Size(element.DesiredSize.Width, element.DesiredSize.Height);
                 Rect finalRect = new Rect(new Point(x, y), size);
                 PlaneProjection projection = new PlaneProjection();
-                double num8 = (num * num2) + num4;
+                double num8 = (currentIndex * itemAngle) + absoluteOffset;
                 if (num8 > 360.0)
                 {
                     num8 -= 360.0;
                 }
-                projection.CenterOfRotationZ = num3;
+                projection.CenterOfRotationZ = zRadius;
                 projection.CenterOfRotationX = 0.5;
                 projection.RotationY = num8;
                 element.Projection = projection;
@@ -81,7 +115,7 @@ namespace Tina
                 effect.MinOpacity = 0.25;
                 element.Effect = effect;
                 element.Arrange(finalRect);
-                num++;
+                currentIndex++;
             }
             return finalSize;
         }
@@ -94,8 +128,5 @@ namespace Tina
             }
             return new Size(double.IsPositiveInfinity(availableSize.Width) ? Application.Current.Host.Content.ActualWidth : availableSize.Width, double.IsPositiveInfinity(availableSize.Height) ? Application.Current.Host.Content.ActualHeight : availableSize.Height);
         }
-
-
-
     }
 }

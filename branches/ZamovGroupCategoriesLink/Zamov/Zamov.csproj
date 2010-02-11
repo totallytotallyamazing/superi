@@ -386,6 +386,8 @@
     <Content Include="Views\Cart\Expired.aspx" />
     <Content Include="Views\Dealer\DealerInfo.aspx" />
     <Content Include="Views\Home\Index.aspx" />
+    <Content Include="Views\Reports\Index.aspx" />
+    <Content Include="Views\Reports\ReportsNavigation.ascx" />
     <Content Include="Views\Reports\SalesReport.aspx" />
     <Content Include="Views\Shared\ProductImageThumbnail.ascx" />
     <Content Include="Views\Shared\AdminOrdersInfo.ascx" />

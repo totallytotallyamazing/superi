@@ -19,7 +19,7 @@
     			</Rectangle.Fill>
     		</Rectangle>
     		<Rectangle Fill="#FFA4B9BE" Stroke="#FF96AAAE" HorizontalAlignment="Stretch" Margin="3" VerticalAlignment="Stretch" StrokeThickness="2"/>
-            <local:RotatePanel Offset="30" Spacing="5">
+            <local:RotatePanel x:Name="rotatePanel" Spacing="5" SegmentLength="132">
                 <Image Source="/Tina;Component/Assets/playerBg.jpg"></Image>
 				<Image Source="/Tina;Component/Assets/playerBg.jpg"></Image>
 				<Image Source="/Tina;Component/Assets/playerBg.jpg"></Image>
@@ -54,6 +54,14 @@
 					</LinearGradientBrush>
 				</Rectangle.Fill>
 			</Rectangle>
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="0.5*"/>
+					<ColumnDefinition Width="0.5*"/>
+				</Grid.ColumnDefinitions>
+				<Grid x:Name="LeftScrollOverlay"/>
+				<Grid x:Name="RightScrollOverlay" Grid.Column="1"/>
+			</Grid>
     	</Grid>
         
     </Grid>

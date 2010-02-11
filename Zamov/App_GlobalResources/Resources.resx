@@ -804,4 +804,7 @@
   <data name="AboutUs" xml:space="preserve">
     <value>Про нас</value>
   </data>
+  <data name="Reports" xml:space="preserve">
+    <value>Звiти</value>
+  </data>
 </root>

@@ -6,6 +6,8 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+<% Html.RenderPartial("ReportsNavigation"); %>
+    
     <script type="text/javascript">
         $(function() {
             $(".orderDescription")     

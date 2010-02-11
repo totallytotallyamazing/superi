@@ -1681,6 +1681,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Звiти.
+        /// </summary>
+        internal static string Reports {
+            get {
+                return ResourceManager.GetString("Reports", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to рус.
         /// </summary>
         internal static string Rus {

@@ -5,13 +5,16 @@
     bool dealer = false;
     bool admin = false;
     bool customer = false;
+    bool manager = false;
     if (authenticated)
     {
         dealer = (bool)ViewData["dealer"];
         admin = (bool)ViewData["admin"];
         customer = (bool)ViewData["customer"];
+        manager = (bool)ViewData["manager"];
     }
-
+    if (authenticated && (manager || admin))
+        Response.Write(Html.ResourceActionLink("Reports", "Index", "Reports").ToLower() + "&nbsp;|&nbsp;");
     if (authenticated && admin)
         Response.Write(Html.ResourceActionLink("Administration", "Index", "Admin").ToLower() + "&nbsp;|&nbsp;");
     if ((authenticated && dealer) || (authenticated && admin))

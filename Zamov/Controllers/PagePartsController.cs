@@ -71,6 +71,7 @@ namespace Zamov.Controllers
                 ViewData["dealer"] = Roles.IsUserInRole("Dealers");
                 ViewData["admin"] = Roles.IsUserInRole("Administrators");
                 ViewData["customer"] = Roles.IsUserInRole("Customers");
+                ViewData["manager"] = Roles.IsUserInRole("Managers");
             }
             return View();
         }

@@ -43,15 +43,25 @@ namespace Zamov.Services
 
                 ProfileCommon profile = ProfileCommon.Create(user.UserName);
                 int dealerId = profile.DealerId;
+                List<Order> orders = new List<Order>();
                 SystemSettings.LastTime = DateTime.Now;
                 int ordersCount = context.Orders.Where(o => o.Dealer.Id == dealerId && o.Status == (int)Statuses.New).Count();
-
-                List<Order> orders = (
-                                         from order in
-                                             context.Orders.Include("Dealer").Include("OrderItems")
-                                         where order.Dealer.Id == dealerId && order.Date > lasttime
-                                         select order).ToList();
-
+                if (!Roles.IsUserInRole(user.UserName, "Managers"))
+                {
+                    orders = (
+                                             from order in
+                                                 context.Orders.Include("Dealer").Include("OrderItems")
+                                             where order.Dealer.Id == dealerId && order.Date > lasttime
+                                             select order).ToList();
+                }
+                else
+                {
+                    orders = (
+                                             from order in
+                                                 context.Orders.Include("Dealer").Include("OrderItems")
+                                             where order.Date > lasttime
+                                             select order).ToList();                
+                }
                 var newOrders = (from order in orders
                               select
                                   new

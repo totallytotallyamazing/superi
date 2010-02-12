@@ -389,6 +389,7 @@
     <Content Include="Views\Reports\Index.aspx" />
     <Content Include="Views\Reports\ReportsNavigation.ascx" />
     <Content Include="Views\Reports\SalesReport.aspx" />
+    <Content Include="Views\Shared\ManagerOrdersInfo.ascx" />
     <Content Include="Views\Shared\ProductImageThumbnail.ascx" />
     <Content Include="Views\Shared\AdminOrdersInfo.ascx" />
     <Content Include="Views\Shared\TopProducts.ascx" />

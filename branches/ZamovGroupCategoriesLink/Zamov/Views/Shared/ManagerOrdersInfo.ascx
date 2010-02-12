@@ -39,7 +39,7 @@
 </script>
 
 <div id="dealerOrdersInfo">
-    <a href="/Reports/SalesReport">
+    <a href="/DealerCabinet/Orders">
     <%= Html.ResourceString("YouHaveNewOrders") + ":" %>
     <span id="dealerOrdersCount">
         <%= newOrdersCount %>

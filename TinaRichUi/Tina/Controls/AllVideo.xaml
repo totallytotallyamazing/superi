@@ -6,7 +6,15 @@
     xmlns:local="clr-namespace:Tina"
 	mc:Ignorable="d"
 	x:Class="Tina.AllVideo"
-	d:DesignWidth="640" d:DesignHeight="480">
+	d:DesignWidth="640" d:DesignHeight="480" Loaded="UserControl_Loaded">
+	<UserControl.Resources>
+		<Storyboard x:Name="Storyboard1">
+			<DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rotatePanel" Storyboard.TargetProperty="(RotatePanel.Offset)">
+				<EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+				<EasingDoubleKeyFrame KeyTime="00:00:05" Value="360"/>
+			</DoubleAnimationUsingKeyFrames>
+		</Storyboard>
+	</UserControl.Resources>
 
     <Grid x:Name="LayoutRoot">
     	<Grid Height="80" VerticalAlignment="Bottom">

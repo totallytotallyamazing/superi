@@ -68,5 +68,10 @@ namespace Tina
             InitializeComponent();
             CreateStoryboards();
         }
+
+        private void UserControl_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+        	Storyboard1.Begin();
+        }
     }
 }

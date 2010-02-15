@@ -17,7 +17,7 @@
                     $("#processing").hide();
                     $("#results").show();
                     window.clearInterval(intervalId);
-                    showResults();
+                    showResults(response.items);
                 }
                 else {
                     $('#progressbar').progressbar('option', 'value', response.status);

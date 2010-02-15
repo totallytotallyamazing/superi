@@ -49,25 +49,30 @@ namespace Tina
             (sender as RotatePanel).InvalidateArrange();
             int itemsCount = rotatePanel.Children.Count;
 
-            double itemAngle = 360.0 / itemsCount;
-
-            double a = ((int)e.NewValue) / itemAngle;
-
-            int currentItemIndex = (int)a;
-
-            if (Math.Floor(a) < a)
-                currentItemIndex++;
-
-            UIElement element = rotatePanel.Children[currentItemIndex];
-            if (element != rotatePanel.CurrentControl)
+            if (itemsCount > 0)
             {
-                if (rotatePanel.Rotate != null)
+                double itemAngle = 360.0 / itemsCount;
+
+                double a = ((double)e.NewValue) / itemAngle;
+
+                int currentItemIndex = (int)a;
+
+                if (Math.Floor(a) < a)
+                    currentItemIndex++;
+
+                currentItemIndex = currentItemIndex % itemsCount;
+
+                UIElement element = rotatePanel.Children[currentItemIndex];
+                if (element != rotatePanel.CurrentControl)
                 {
-                    RotatePanelItemChangedEventArgs eventArgs = new RotatePanelItemChangedEventArgs();
-                    eventArgs.FromControl = rotatePanel.CurrentControl;
-                    eventArgs.ToControl = element;
-                    rotatePanel.CurrentControl = element;
-                    rotatePanel.Rotate(rotatePanel, eventArgs);
+                    if (rotatePanel.Rotate != null)
+                    {
+                        RotatePanelItemChangedEventArgs eventArgs = new RotatePanelItemChangedEventArgs();
+                        eventArgs.FromControl = rotatePanel.CurrentControl;
+                        eventArgs.ToControl = element;
+                        rotatePanel.CurrentControl = element;
+                        rotatePanel.Rotate(rotatePanel, eventArgs);
+                    }
                 }
             }
         }
@@ -110,7 +115,7 @@ namespace Tina
 
         private double GetDegrees(double radians)
         {
-            double result = radians*180/Math.PI;
+            double result = radians * 180 / Math.PI;
             return result;
         }
 

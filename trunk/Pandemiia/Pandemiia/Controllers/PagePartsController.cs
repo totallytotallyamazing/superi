@@ -18,6 +18,12 @@ namespace Pandemiia.Controllers
             int[] pages = new int[pagesCount];
             for (int i = 1; i <= pagesCount; i++)
                 pages[i - 1] = i;
+            int skip = pageNumber - 10;
+            if (skip < 0)
+                skip = 0;
+
+            pages = pages.Skip(skip).Take(20).ToArray();
+
             ViewData["source"] = source;
             ViewData["typeName"] = typeName;
             ViewData["pagesCount"] = pagesCount;

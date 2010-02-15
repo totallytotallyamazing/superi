@@ -26,6 +26,7 @@
                 if (response.NewOrders && response.NewOrders.length > 0) {
                     self.focus();
                     alert('<%= Html.ResourceString("YouHaveNewOrder") %>');
+                    location.href = "/DealerCabinet/Orders";
                 }
                 if (typeof (updateOrdersTable) !== "undefined")
                     updateOrdersTable(response.NewOrders);
@@ -39,7 +40,7 @@
 </script>
 
 <div id="dealerOrdersInfo">
-    <a href="/Reports/SalesReport">
+    <a href="/DealerCabinet/Orders">
     <%= Html.ResourceString("YouHaveNewOrders") + ":" %>
     <span id="dealerOrdersCount">
         <%= newOrdersCount %>

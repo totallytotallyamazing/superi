@@ -94,6 +94,7 @@
     <Compile Include="Controls\AllVideo.xaml.cs">
       <DependentUpon>AllVideo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ClipThumb.cs" />
     <Compile Include="Controls\ControlFinder.cs" />
     <Compile Include="Controls\CustomEffect.cs" />
     <Compile Include="Controls\DistanceEffect.cs" />

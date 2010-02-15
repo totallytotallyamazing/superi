@@ -4,9 +4,9 @@
 <%@ Import Namespace="Zamov.Controllers" %>
 <%
     int newOrdersCount = 0;
-    using(OrderStorage context = new OrderStorage())
+    using (OrderStorage context = new OrderStorage())
     {
-        newOrdersCount = context.Orders.Where(o => o.Dealer.Id == SystemSettings.CurrentDealer.Value && o.Status == (int)Statuses.New).Count();
+        newOrdersCount = context.Orders.Where(o => o.Status == (int)Statuses.New).Count();
     }
 %>
 
@@ -26,6 +26,7 @@
                 if (response.NewOrders && response.NewOrders.length > 0) {
                     self.focus();
                     alert('<%= Html.ResourceString("YouHaveNewOrder") %>');
+                    location.href = "/Reports/SalesReport";
                 }
                 if (typeof (updateOrdersTable) !== "undefined")
                     updateOrdersTable(response.NewOrders);
@@ -39,7 +40,7 @@
 </script>
 
 <div id="dealerOrdersInfo">
-    <a href="/DealerCabinet/Orders">
+    <a href="/Reports/SalesReport">
     <%= Html.ResourceString("YouHaveNewOrders") + ":" %>
     <span id="dealerOrdersCount">
         <%= newOrdersCount %>

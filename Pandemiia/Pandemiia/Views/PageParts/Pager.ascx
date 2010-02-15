@@ -60,7 +60,7 @@
                        bottomDivClass = "pageNumberSecond";
                }
         %>
-        <td>
+        <td align="center">
             <div class="<%= topDivClass %>">
             </div>
             <div class="<%= bottomDivClass %>">

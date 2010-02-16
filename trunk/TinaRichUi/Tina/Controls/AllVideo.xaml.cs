@@ -98,6 +98,7 @@ namespace Tina
                 Storyboard.SetTarget(shrinkY, e.FromControl);
                 e.FromControl.SetValue(Canvas.ZIndexProperty, 0);
                 shrinkCurrent.Begin();
+                (e.FromControl as ClipThumb).HideCaption();
             }
 
             DoubleAnimation zoomX = zoomCurrent.Children[0] as DoubleAnimation;
@@ -107,6 +108,7 @@ namespace Tina
             Storyboard.SetTarget(zoomY, e.ToControl);
             zoomCurrent.Begin();
             e.ToControl.SetValue(Canvas.ZIndexProperty, 999);
+            (e.ToControl as ClipThumb).ShowCaption();
         }
     }
 }

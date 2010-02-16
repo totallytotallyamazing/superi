@@ -21,13 +21,26 @@ namespace Tina
         Image image = new Image();
         TextBlock caption = new TextBlock();
 
+        public void ShowCaption()
+        {
+            caption.Visibility = Visibility.Visible;
+        }
+
+        public void HideCaption()
+        {
+            caption.Visibility = Visibility.Collapsed;
+        }
+
         public ClipThumb()
         {
             this.Content = panel;
             panel.Orientation = Orientation.Vertical;
             panel.Children.Add(image);
             panel.Children.Add(caption);
-            caption.Foreground = new SolidColorBrush(Colors.Green);
+            caption.Foreground = new SolidColorBrush(Colors.White);
+            caption.TextAlignment = TextAlignment.Center;
+            caption.HorizontalAlignment = HorizontalAlignment.Stretch;
+            caption.Visibility = Visibility.Collapsed;
         }
         public string ImageUrl 
         { 

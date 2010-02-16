@@ -191,6 +191,7 @@
     <Content Include="Scripts\jquery.jplayer.js" />
     <Content Include="Scripts\jquery.ui.js" />
     <Content Include="Scripts\swfobject.js" />
+    <Content Include="Scripts\webkit.js" />
     <Content Include="Views\Admin\EditText.aspx" />
     <Content Include="Views\Articles\Index.ascx" />
     <Content Include="Views\Home\Index.aspx" />

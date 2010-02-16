@@ -18,11 +18,12 @@ using System.Globalization;
 
 namespace Zamov.Controllers
 {
-    [Authorize(Roles = "Administrators, Dealers")]
+    [Authorize(Roles = "Administrators, Dealers, Managers")]
     [BreadCrumb(ResourceName = "DealerCabinet", Url = "/DealerCabinet")]
     [UpdateCurrentDealer]
     public class DealerCabinetController : Controller
     {
+        [Authorize(Roles = "Administrators, Dealers")]
         public ActionResult Index()
         {
             return View();
@@ -30,6 +31,7 @@ namespace Zamov.Controllers
 
         #region Groups
         [BreadCrumb(ResourceName = "Groups", Url = "/DealerCabinet/Groups")]
+        [Authorize(Roles = "Administrators, Dealers")]
         public ActionResult Groups()
         {
             using (ZamovStorage context = new ZamovStorage())
@@ -51,6 +53,7 @@ namespace Zamov.Controllers
             }
         }
 
+        [Authorize(Roles = "Administrators, Dealers")]
         public ActionResult GoupList(int dealerId, int? id, int level, List<CategoryPresentation> categories)
         {
             using (ZamovStorage context = new ZamovStorage())
@@ -69,6 +72,7 @@ namespace Zamov.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
+        [Authorize(Roles = "Administrators, Dealers")]
         public ActionResult InsertGroup(string groupName, string groupUkrName, string groupRusName, bool displayImages, bool enabled, int parentId,  int categoryId)
         {
             ClearGroupCache();
@@ -99,6 +103,7 @@ namespace Zamov.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
+        [Authorize(Roles = "Administrators, Dealers")]
         public ActionResult UpdateGroups(FormCollection form)
         {
             ClearGroupCache();
@@ -148,6 +153,7 @@ namespace Zamov.Controllers
                 HttpContext.Cache.Remove(key);
         }
 
+        [Authorize(Roles = "Administrators, Dealers")]
         public ActionResult DeleteGroup(int id)
         {
             ClearGroupCache();
@@ -163,6 +169,7 @@ namespace Zamov.Controllers
         #endregion
 
         #region Dealer
+        [Authorize(Roles = "Administrators, Dealers")]
         [BreadCrumb(ResourceName = "EditDealer", Url = "/DealerCabinet/AddUpdateDealer")]
         public ActionResult AddUpdateDealer()
         {
@@ -181,6 +188,7 @@ namespace Zamov.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
+        [Authorize(Roles = "Administrators, Dealers")]
         public ActionResult AddUpdateDealer(FormCollection form)
         {
             int dealerId = Security.GetCurentDealerId(User.Identity.Name);
@@ -216,6 +224,7 @@ namespace Zamov.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize(Roles = "Administrators, Dealers")]
         public ActionResult DeliveryInfo()
         {
             int id = Security.GetCurentDealerId(User.Identity.Name);
@@ -240,6 +249,7 @@ namespace Zamov.Controllers
             return View();
         }
 
+        [Authorize(Roles = "Administrators, Dealers")]
         public void UpdateDeliveryDetails(string deliveryDetailsUkr, string deliveryDetailsRus)
         {
             TranslationItem ukrItem = new TranslationItem
@@ -268,6 +278,7 @@ namespace Zamov.Controllers
         #endregion
 
         #region Products
+        [Authorize(Roles = "Administrators, Dealers")]
         [BreadCrumb(ResourceName = "Products", Url = "/DealerCabinet/Products")]
         public ActionResult Products(int? id)
         {
@@ -299,6 +310,7 @@ namespace Zamov.Controllers
             return View(products);
         }
 
+        [Authorize(Roles = "Administrators, Dealers")]
         public ActionResult AddProduct(string partNumber, string name, decimal price, bool active, int groupId, string unit)
         {
             using (ZamovStorage context = new ZamovStorage())
@@ -323,6 +335,7 @@ namespace Zamov.Controllers
             return Redirect(url);
         }
 
+        [Authorize(Roles = "Administrators, Dealers")]
         public ActionResult DeleteProduct(int productId, int groupId)
         {
             using (ZamovStorage context = new ZamovStorage())
@@ -372,6 +385,7 @@ namespace Zamov.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Get)]
+        [Authorize(Roles = "Administrators, Dealers")]
         public ActionResult UpdateProductDescription(int id)
         {
             using (ZamovStorage context = new ZamovStorage())
@@ -386,6 +400,7 @@ namespace Zamov.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
+        [Authorize(Roles = "Administrators, Dealers")]
         public void UpdateProductDescription(int productId, string descroptionUkr, string descroptionRus)
         {
             TranslationItem ukrItem = new TranslationItem
@@ -413,6 +428,7 @@ namespace Zamov.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Get)]
+        [Authorize(Roles = "Administrators, Dealers")]
         public ActionResult UpdateProductImage(int id)
         {
             using (ZamovStorage context = new ZamovStorage())
@@ -426,6 +442,7 @@ namespace Zamov.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
+        [Authorize(Roles = "Administrators, Dealers")]
         public void UpdateProductImage(int id, int productId)
         {
             if (!string.IsNullOrEmpty(Request.Files["newImage"].FileName))
@@ -475,6 +492,7 @@ namespace Zamov.Controllers
             Response.Write("<script type=\"text/javascript\">top.closeImageDialog();</script>");
         }
 
+        [Authorize(Roles = "Administrators, Dealers")]
         public ActionResult UpdateProducts(FormCollection form)
         {
             PostData postData = form.ProcessPostData("groupId", "groups");
@@ -524,6 +542,7 @@ namespace Zamov.Controllers
         #region Products import
 
         [BreadCrumb(ResourceName = "ImportedProducts", Url = "/DealerCabinet/ImportedProducts")]
+        [Authorize(Roles = "Administrators, Dealers")]
         public ActionResult ImportedProducts(int? groupId)
         {
             bool processData = false;
@@ -566,6 +585,7 @@ namespace Zamov.Controllers
             return View();
         }
 
+        [Authorize(Roles = "Administrators, Dealers")]
         public ActionResult ImportedProduct(Dictionary<string, string> product, bool isNew)
         {
             int productId = int.Parse(product["productId"]);
@@ -590,6 +610,7 @@ namespace Zamov.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
+        [Authorize(Roles = "Administrators, Dealers")]
         public ActionResult UploadXls(int? groupId)
         {
             if (!string.IsNullOrEmpty(Request.Files["xls"].FileName))
@@ -608,6 +629,7 @@ namespace Zamov.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
+        [Authorize(Roles = "Administrators, Dealers")]
         public ActionResult MoveToNew(FormCollection form, int? groupId)
         {
             PostData postData = form.ProcessPostData("groupId");
@@ -627,6 +649,7 @@ namespace Zamov.Controllers
             return RedirectToAction("ImportedProducts", new { groupId = groupId });
         }
 
+        [Authorize(Roles = "Administrators, Dealers")]
         public ActionResult SaveSelectedTo(FormCollection form, int groupItems)
         {
             PostData postData = form.ProcessPostData("groupItems");
@@ -657,6 +680,7 @@ namespace Zamov.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
+        [Authorize(Roles = "Administrators, Dealers")]
         public ActionResult SaveUpdated(FormCollection form)
         {
             Dictionary<string, Dictionary<string, string>> updatedItemsDictionary = (Dictionary<string, Dictionary<string, string>>)Session["updatedItems"];
@@ -676,6 +700,7 @@ namespace Zamov.Controllers
         #endregion
 
         #region DealerMappings
+        [Authorize(Roles = "Administrators, Dealers")]
         public ActionResult DealerCityMappings()
         {
             int dealerId = SystemSettings.CurrentDealer.Value;
@@ -699,6 +724,7 @@ namespace Zamov.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
+        [Authorize(Roles = "Administrators, Dealers")]
         public void DealerCityMappings(FormCollection form)
         {
             using (ZamovStorage context = new ZamovStorage())
@@ -720,6 +746,7 @@ namespace Zamov.Controllers
             Response.Write(Helpers.Helpers.CloseParentScript("CityMappings"));
         }
 
+        [Authorize(Roles = "Administrators, Dealers")]
         public ActionResult DealerCategoryMappings()
         {
             int dealerId = SystemSettings.CurrentDealer.Value;
@@ -751,6 +778,7 @@ namespace Zamov.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
+        [Authorize(Roles = "Administrators, Dealers")]
         public void DealerCategoryMappings(FormCollection form)
         {
             using (ZamovStorage context = new ZamovStorage())
@@ -815,6 +843,7 @@ namespace Zamov.Controllers
         #region Ordering
         [Authorize(Roles = "Administrators, Dealers")]
         [BreadCrumb(ResourceName = "Orders", Url = "/DealerCabinet/Orders")]
+        [Authorize(Roles = "Administrators, Dealers")]
         public ActionResult Orders()
         {
             SystemSettings.LastTime = DateTime.Now;
@@ -831,7 +860,6 @@ namespace Zamov.Controllers
             }
         }
 
-        [Authorize(Roles = "Administrators, Dealers, Managers")]
         [OutputCache(NoStore = true, VaryByParam = "*", Duration = 1)]
         public ActionResult ShowOrder(int id)
         {
@@ -846,6 +874,7 @@ namespace Zamov.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
+        [Authorize(Roles = "Administrators, Dealers")]
         public void AcceptOrder(int orderId)
         {
             using (OrderStorage context = new OrderStorage())
@@ -858,6 +887,7 @@ namespace Zamov.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
+        [Authorize(Roles = "Administrators, Dealers")]
         public ActionResult CancelOrder(int orderId)
         {
             using (OrderStorage context = new OrderStorage())

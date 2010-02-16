@@ -18,8 +18,8 @@
     <script type="text/javascript">
         
         var songs = new Array();
-        songs[0] = { url: "/Songs/oksi_-_podruga_luna.mp3", name: "Подруга луна", album: "альбом" };
-        songs[1] = { url: "/Songs/oksi_-_pustie_slova.mp3", name: "Пустые слова", album: "альбом" };
+        songs[0] = { url: "http://localhost:1719/Songs/oksi_-_podruga_luna.mp3", name: "Подруга луна", album: "альбом" };
+        songs[1] = { url: "http://localhost:1719/Songs/oksi_-_pustie_slova.mp3", name: "Пустые слова", album: "альбом" };
 
         function getSongs() {return songs;}
     </script>
@@ -27,6 +27,7 @@
         <asp:ScriptManager runat="server" EnablePartialRendering="false" EnableHistory="true"></asp:ScriptManager>
         <%=  Ajax.ScriptInclude(true, "/Scripts/MicrosoftAjax.js") %>
     </form>
+    <%=  Ajax.ScriptInclude("/Scripts/webkit.js") %>
     <%=  Ajax.ScriptInclude("/Scripts/jquery.jplayer.js")%>
     <%= Ajax.ScriptInclude("/Scripts/ClientLibrary.debug.js") %>
     <div id="audioPlayer">
@@ -80,7 +81,6 @@
         <div id="footer2">
         </div>
     </div>
+<%= Ajax.Create("ClientLibrary.ComponentLoader", new { id = "OksiComponentLoader"}, null)%>
 </body>
 </html>
-<script type="text/javascript">
-</script>

@@ -10,7 +10,7 @@ using Jquery;
 
 namespace ClientLibrary
 {
-    public class PageManager : Component
+    public class PageManager : Component, ILoadableComponent
     {
         private static PageManager instanse;
         private bool linkNavigation = false;
@@ -35,7 +35,6 @@ namespace ClientLibrary
 
         public PageManager() : base()
         {
-
         }
 
         public override void Initialize()
@@ -44,10 +43,10 @@ namespace ClientLibrary
             base.Initialize();
             Application.EnableHistory = true;
             Application.Navigate += new HistoryEventHandler(Application_Navigate);
-            Application.Load += new ApplicationLoadEventHandler(Application_Load);
+            
         }
 
-        void Application_Load(object sender, ApplicationLoadEventArgs e)
+        public void OnLoad()
         {
             InitializeAsyncAnchors();
             InvokeUpdated();
@@ -95,7 +94,7 @@ namespace ClientLibrary
                 DomEvent.AddHandler(anchor, "click", new DomEventHandler(MenuItemClicked));
             }
             
-            AnchorElement logoLink = (AnchorElement)Document.GetElementById("logo").FirstChild;
+            AnchorElement logoLink = (AnchorElement)Document.GetElementById("logo").GetElementsByTagName("a")[0];
             DomEvent.AddHandler(logoLink, "click", new DomEventHandler(MenuItemClicked));
         }
 
@@ -116,7 +115,8 @@ namespace ClientLibrary
             }
             options.OnComplete = asyncRequestHandler;
             AnchorElement target = (e.Target.TagName == "A") ? (AnchorElement)e.Target : (AnchorElement)e.Target.ParentNode;
-            UpdateMenuSelection(target.Href);
+            string url = (string)target.GetAttribute("href");
+            UpdateMenuSelection(url);
             linkNavigation = true;
             CreateHistoryPoint(target, options);
             AsyncHyperlink.HandleClick(target, e, options);
@@ -139,7 +139,7 @@ namespace ClientLibrary
         void CreateHistoryPoint(AnchorElement target, AjaxOptions options)
         {
             Dictionary result = new Dictionary();
-            result["url"] = target.Href;
+            result["url"] = target.GetAttribute("href");
             Application.AddHistoryPoint(result);
         }
 

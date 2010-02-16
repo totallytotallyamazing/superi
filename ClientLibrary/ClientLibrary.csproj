@@ -60,8 +60,10 @@
     <Compile Include="AjaxEventStub.cs" />
     <Compile Include="AjaxOptions.cs" />
     <Compile Include="AudioPlayer.cs" />
+    <Compile Include="CompnentLoader.cs" />
     <Compile Include="Jplayer.cs" />
     <Compile Include="Jquery.cs" />
+    <Compile Include="ILoadableComponent.cs" />
     <Compile Include="ObjectElement.cs" />
     <Compile Include="PhotoSessionExtender.cs" />
     <Compile Include="PlayerListener.cs" />
@@ -104,8 +106,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="aacorlib, Version=0.5.1.0, Culture=neutral, PublicKeyToken=8fc0e3af5abcb6c4, processorArchitecture=MSIL" />
-    <Reference Include="MicrosoftAjax, Version=0.5.1.0, Culture=neutral, PublicKeyToken=8fc0e3af5abcb6c4, processorArchitecture=MSIL" />
+    <Reference Include="aacorlib, Version=0.5.5.0, Culture=neutral, PublicKeyToken=8fc0e3af5abcb6c4, processorArchitecture=MSIL" />
+    <Reference Include="MicrosoftAjax, Version=0.5.5.0, Culture=neutral, PublicKeyToken=8fc0e3af5abcb6c4, processorArchitecture=MSIL" />
   </ItemGroup>
   <Import Project="$(ProgramFiles)\nStuff\ScriptSharp\v1.0\nStuff.ScriptSharp.targets" />
 </Project>

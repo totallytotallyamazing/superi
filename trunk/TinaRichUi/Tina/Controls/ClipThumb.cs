@@ -8,21 +8,27 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
+using System.Windows.Media.Imaging;
 
-namespace Tina.Controls
+namespace Tina
 {
     public class ClipThumb : ContentControl
     {
-        public static readonly DependencyProperty ImageUrlProperty = DependencyProperty.Register("ImageUrl", typeof(string), typeof(ClipThumb), new PropertyMetadata(PropertyChangedCallback(ImageUrlPropertyChanged)));
-        public static readonly DependencyProperty TitleProperty = DependencyProperty.Register("ImageUrl", typeof(string), typeof(ClipThumb), null);
+        public static readonly DependencyProperty ImageUrlProperty = DependencyProperty.Register("ImageUrl", typeof(string), typeof(ClipThumb), new PropertyMetadata(ImageUrlPropertyChanged));
+        public static readonly DependencyProperty TitleProperty = DependencyProperty.Register("ImageUrl", typeof(string), typeof(ClipThumb), new PropertyMetadata(TitlePropertyChanged));
 
         StackPanel panel = new StackPanel();
+        Image image = new Image();
+        TextBlock caption = new TextBlock();
 
         public ClipThumb()
         {
             this.Content = panel;
+            panel.Orientation = Orientation.Vertical;
+            panel.Children.Add(image);
+            panel.Children.Add(caption);
+            caption.Foreground = new SolidColorBrush(Colors.Green);
         }
-
         public string ImageUrl 
         { 
             get{return (string)GetValue(ImageUrlProperty);}
@@ -34,14 +40,19 @@ namespace Tina.Controls
             set { SetValue(TitleProperty, value); } 
         }
 
-        private void ImageUrlPropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
+        private static void ImageUrlPropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         { 
-            (sender as ClipThumb)
+            Uri uri = new Uri((string)e.NewValue, UriKind.RelativeOrAbsolute);
+            (sender as ClipThumb).image.Source = new BitmapImage(uri);
         }
 
-        private void TitlePropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
-        { 
-            
+        private static void TitlePropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
+        {
+            (sender as ClipThumb).caption.Text = (string)e.NewValue;
+            (sender as ClipThumb).caption.Width = 200;
+            (sender as ClipThumb).caption.Height = 30;
+            (sender as ClipThumb).caption.HorizontalAlignment = HorizontalAlignment.Center;
         }
     }
 }
+

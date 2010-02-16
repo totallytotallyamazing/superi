@@ -29,8 +29,8 @@ namespace Tina
         {
             get
             {
-                if (currentControl == null)
-                    currentControl = this.Children[0];
+                //if (currentControl == null)
+                //    currentControl = this.Children[0];
                 return currentControl;
             }
             set
@@ -53,14 +53,17 @@ namespace Tina
             {
                 double itemAngle = 360.0 / itemsCount;
 
-                double a = ((double)e.NewValue) / itemAngle;
+                double a = ((double)e.NewValue - itemAngle/2) / itemAngle;
 
                 int currentItemIndex = (int)a;
 
                 if (Math.Floor(a) < a)
                     currentItemIndex++;
 
-                currentItemIndex = currentItemIndex % itemsCount;
+                currentItemIndex = itemsCount - currentItemIndex % itemsCount;
+
+                if (currentItemIndex == itemsCount)
+                    currentItemIndex = 0;
 
                 UIElement element = rotatePanel.Children[currentItemIndex];
                 if (element != rotatePanel.CurrentControl)

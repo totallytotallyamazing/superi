@@ -11,7 +11,7 @@
 		<Storyboard x:Name="Storyboard1">
 			<DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rotatePanel" Storyboard.TargetProperty="(RotatePanel.Offset)">
 				<EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
-				<EasingDoubleKeyFrame KeyTime="00:00:05" Value="360"/>
+				<EasingDoubleKeyFrame KeyTime="00:00:20" Value="360"/>
 			</DoubleAnimationUsingKeyFrames>
 		</Storyboard>
 	</UserControl.Resources>
@@ -27,23 +27,92 @@
     			</Rectangle.Fill>
     		</Rectangle>
     		<Rectangle Fill="#FFA4B9BE" Stroke="#FF96AAAE" HorizontalAlignment="Stretch" Margin="3" VerticalAlignment="Stretch" StrokeThickness="2"/>
-            <local:RotatePanel x:Name="rotatePanel" Spacing="5" SegmentLength="132">
-                <Image Source="/Tina;Component/Assets/playerBg.jpg"></Image>
-				<Image Source="/Tina;Component/Assets/playerBg.jpg"></Image>
-				<Image Source="/Tina;Component/Assets/playerBg.jpg"></Image>
-				<Image Source="/Tina;Component/Assets/playerBg.jpg"></Image>
-				<Image Source="/Tina;Component/Assets/playerBg.jpg"></Image>
-				<Image Source="/Tina;Component/Assets/playerBg.jpg"></Image>
-				<Image Source="/Tina;Component/Assets/playerBg.jpg"></Image>
-				<Image Source="/Tina;Component/Assets/playerBg.jpg"></Image>
-                <Image Source="/Tina;Component/Assets/playerBg.jpg"></Image>
-                <Image Source="/Tina;Component/Assets/playerBg.jpg"></Image>
-                <Image Source="/Tina;Component/Assets/playerBg.jpg"></Image>
-                <Image Source="/Tina;Component/Assets/playerBg.jpg"></Image>
-                <Image Source="/Tina;Component/Assets/playerBg.jpg"></Image>
-                <Image Source="/Tina;Component/Assets/playerBg.jpg"></Image>
-                <Image Source="/Tina;Component/Assets/playerBg.jpg"></Image>
-                <Image Source="/Tina;Component/Assets/playerBg.jpg"></Image>
+            <local:RotatePanel x:Name="rotatePanel" Spacing="5" SegmentLength="132" Rotate="rotatePanel_Rotate">
+				<local:ClipThumb ImageUrl="/Tina;Component/Assets/polusThumb.jpg" Title="Ключик" Width="132">
+                    <local:ClipThumb.RenderTransform>
+                        <ScaleTransform/>
+                    </local:ClipThumb.RenderTransform>
+                </local:ClipThumb>
+                <local:ClipThumb ImageUrl="/Tina;Component/Assets/smylThumb.jpg" Title="Ключик" Width="132">
+                    <local:ClipThumb.RenderTransform>
+                        <ScaleTransform/>
+                    </local:ClipThumb.RenderTransform>
+                </local:ClipThumb>
+                <local:ClipThumb ImageUrl="/Tina;Component/Assets/playerBg.jpg" Title="Ключик" Width="132">
+                    <local:ClipThumb.RenderTransform>
+                        <ScaleTransform/>
+                    </local:ClipThumb.RenderTransform>
+                </local:ClipThumb>
+                <local:ClipThumb ImageUrl="/Tina;Component/Assets/playerBg.jpg" Title="Ключик" Width="132">
+                    <local:ClipThumb.RenderTransform>
+                        <ScaleTransform/>
+                    </local:ClipThumb.RenderTransform>
+                </local:ClipThumb>
+                <local:ClipThumb ImageUrl="/Tina;Component/Assets/playerBg.jpg" Title="Ключик" Width="132">
+                    <local:ClipThumb.RenderTransform>
+                        <ScaleTransform/>
+                    </local:ClipThumb.RenderTransform>
+                </local:ClipThumb>
+                <local:ClipThumb ImageUrl="/Tina;Component/Assets/playerBg.jpg" Title="Ключик" Width="132">
+                    <local:ClipThumb.RenderTransform>
+                        <ScaleTransform/>
+                    </local:ClipThumb.RenderTransform>
+                </local:ClipThumb>
+                <local:ClipThumb ImageUrl="/Tina;Component/Assets/playerBg.jpg" Title="Ключик" Width="132">
+                    <local:ClipThumb.RenderTransform>
+                        <ScaleTransform/>
+                    </local:ClipThumb.RenderTransform>
+                </local:ClipThumb>
+                <local:ClipThumb ImageUrl="/Tina;Component/Assets/playerBg.jpg" Title="Ключик" Width="132">
+                    <local:ClipThumb.RenderTransform>
+                        <ScaleTransform/>
+                    </local:ClipThumb.RenderTransform>
+                </local:ClipThumb>
+                <local:ClipThumb ImageUrl="/Tina;Component/Assets/playerBg.jpg" Title="Ключик" Width="132">
+                    <local:ClipThumb.RenderTransform>
+                        <ScaleTransform/>
+                    </local:ClipThumb.RenderTransform>
+                </local:ClipThumb>
+                <local:ClipThumb ImageUrl="/Tina;Component/Assets/playerBg.jpg" Title="Ключик" Width="132">
+                    <local:ClipThumb.RenderTransform>
+                        <ScaleTransform/>
+                    </local:ClipThumb.RenderTransform>
+                </local:ClipThumb>
+                <local:ClipThumb ImageUrl="/Tina;Component/Assets/playerBg.jpg" Title="Ключик" Width="132">
+                    <local:ClipThumb.RenderTransform>
+                        <ScaleTransform/>
+                    </local:ClipThumb.RenderTransform>
+                </local:ClipThumb>
+                <local:ClipThumb ImageUrl="/Tina;Component/Assets/playerBg.jpg" Title="Ключик" Width="132">
+                    <local:ClipThumb.RenderTransform>
+                        <ScaleTransform/>
+                    </local:ClipThumb.RenderTransform>
+                </local:ClipThumb>
+                <local:ClipThumb ImageUrl="/Tina;Component/Assets/playerBg.jpg" Title="Ключик" Width="132">
+                    <local:ClipThumb.RenderTransform>
+                        <ScaleTransform/>
+                    </local:ClipThumb.RenderTransform>
+                </local:ClipThumb>
+                <local:ClipThumb ImageUrl="/Tina;Component/Assets/playerBg.jpg" Title="Ключик" Width="132">
+                    <local:ClipThumb.RenderTransform>
+                        <ScaleTransform/>
+                    </local:ClipThumb.RenderTransform>
+                </local:ClipThumb>
+                <local:ClipThumb ImageUrl="/Tina;Component/Assets/playerBg.jpg" Title="Ключик" Width="132">
+                    <local:ClipThumb.RenderTransform>
+                        <ScaleTransform/>
+                    </local:ClipThumb.RenderTransform>
+                </local:ClipThumb>
+                <local:ClipThumb ImageUrl="/Tina;Component/Assets/playerBg.jpg" Title="Ключик" Width="132">
+                    <local:ClipThumb.RenderTransform>
+                        <ScaleTransform/>
+                    </local:ClipThumb.RenderTransform>
+                </local:ClipThumb>
+                <local:ClipThumb ImageUrl="/Tina;Component/Assets/playerBg.jpg" Title="Ключик" Width="132">
+                    <local:ClipThumb.RenderTransform>
+                        <ScaleTransform/>
+                    </local:ClipThumb.RenderTransform>
+                </local:ClipThumb>
             </local:RotatePanel>
 			<Rectangle x:Name="rectangle" Margin="3" RenderTransformOrigin="0.5,0.5">
 				<Rectangle.RenderTransform>

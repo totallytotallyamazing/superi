@@ -14,7 +14,7 @@ namespace ClientLibrary
         public static Array GetSongs() { return null; }
     }
 
-    public class AudioPlayer : Control
+    public class AudioPlayer : Control, ILoadableComponent
     {
         int currentSong = 0;
 
@@ -32,10 +32,9 @@ namespace ClientLibrary
         {
             base.Initialize();
             this.Element.Style.Height = "0px";
-            Application.Load += new ApplicationLoadEventHandler(Application_Load);
         }
 
-        void Application_Load(object sender, ApplicationLoadEventArgs e)
+        public void OnLoad()
         {
             InitializePlayer();
             InitializeControls();

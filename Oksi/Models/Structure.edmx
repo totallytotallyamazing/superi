@@ -4,14 +4,13 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="gbua_superiModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.0" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
+    <Schema xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl" Alias="Self" Namespace="gbua_superiModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.0">
         <EntityContainer Name="gbua_superiModelStoreContainer">
-          <EntitySet Name="Articles" EntityType="gbua_superiModel.Store.Articles" store:Type="Tables" Schema="gbua_finger" />
-          <EntitySet Name="Languages" EntityType="gbua_superiModel.Store.Languages" store:Type="Tables" Schema="gbua_finger" />
-          <EntitySet Name="SiteContent" EntityType="gbua_superiModel.Store.SiteContent" store:Type="Tables" Schema="gbua_finger" />
+          <EntitySet Name="Articles" EntityType="gbua_superiModel.Store.Articles" Schema="gbua_oksitest" store:Type="Tables" />
+          <EntitySet Name="SiteContent" EntityType="gbua_superiModel.Store.SiteContent" Schema="gbua_oksitest" store:Type="Tables" />
           <AssociationSet Name="FK_SiteContent_SiteContent" Association="gbua_superiModel.Store.FK_SiteContent_SiteContent">
-            <End Role="SiteContent" EntitySet="SiteContent" />
-            <End Role="SiteContent1" EntitySet="SiteContent" />
+            <End EntitySet="SiteContent" Role="SiteContent" />
+            <End EntitySet="SiteContent" Role="SiteContent1" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Articles">
@@ -20,39 +19,34 @@
           </Key>
           <Property Name="Date" Type="datetime" Nullable="false" />
           <Property Name="Description" Type="varchar" MaxLength="1000" />
-          <Property Name="Id" Type="uint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property StoreGeneratedPattern="Identity" Name="Id" Type="uint" Nullable="false" />
           <Property Name="Image" Type="varchar" MaxLength="500" />
           <Property Name="Language" Type="char" Nullable="false" MaxLength="5" />
           <Property Name="Name" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="SubTitle" Type="varchar" MaxLength="500" />
           <Property Name="Text" Type="text" />
-          <Property Name="Title" Type="varchar" Nullable="false" MaxLength="500" />
-        </EntityType>
-        <EntityType Name="Languages">
-          <Key>
-            <PropertyRef Name="CultureName" />
-          </Key>
-          <Property Name="CultureName" Type="char" Nullable="false" MaxLength="5" />
-          <Property Name="Icon" Type="varchar" Nullable="false" MaxLength="255" />
-          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="150" />
+          <Property Name="Title" Type="varchar" MaxLength="500" />
+          <Property Name="Type" Type="uint" Nullable="false" />
         </EntityType>
         <EntityType Name="SiteContent">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Description" Type="text" />
-          <Property Name="Id" Type="uint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property StoreGeneratedPattern="Identity" Name="Id" Type="uint" Nullable="false" />
           <Property Name="Keywords" Type="text" />
           <Property Name="Language" Type="char" Nullable="false" MaxLength="5" />
           <Property Name="Name" Type="varchar" Nullable="false" MaxLength="255" />
           <Property Name="ParentId" Type="uint" />
           <Property Name="SortOrder" Type="uint" />
+          <Property Name="SubTitle" Type="varchar" MaxLength="500" />
           <Property Name="Text" Type="text" />
           <Property Name="Title" Type="varchar" Nullable="false" MaxLength="500" />
           <Property Name="Url" Type="varchar" Nullable="false" MaxLength="255" />
         </EntityType>
         <Association Name="FK_SiteContent_SiteContent">
-          <End Role="SiteContent" Type="gbua_superiModel.Store.SiteContent" Multiplicity="0..1" />
-          <End Role="SiteContent1" Type="gbua_superiModel.Store.SiteContent" Multiplicity="*" />
+          <End Type="gbua_superiModel.Store.SiteContent" Multiplicity="0..1" Role="SiteContent" />
+          <End Type="gbua_superiModel.Store.SiteContent" Multiplicity="*" Role="SiteContent1" />
           <ReferentialConstraint>
             <Principal Role="SiteContent">
               <PropertyRef Name="Id" />
@@ -67,24 +61,12 @@
     <edmx:ConceptualModels>
       <Schema Namespace="gbua_superiModel" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
         <EntityContainer Name="DataStorage" >
-          <EntitySet Name="Articles" EntityType="gbua_superiModel.Article" />
           <EntitySet Name="SiteContent" EntityType="gbua_superiModel.SiteContent" />
           <AssociationSet Name="FK_SiteContent_SiteContent" Association="gbua_superiModel.FK_SiteContent_SiteContent">
             <End Role="SiteContent" EntitySet="SiteContent" />
             <End Role="SiteContent1" EntitySet="SiteContent" /></AssociationSet>
-          <EntitySet Name="Languages" EntityType="gbua_superiModel.Languages" />
+          <EntitySet Name="Articles" EntityType="gbua_superiModel.Article" />
           </EntityContainer>
-        <EntityType Name="Article">
-          <Key>
-            <PropertyRef Name="Id" /></Key>
-          <Property Name="Date" Type="DateTime" Nullable="false" />
-          <Property Name="Description" Type="String" Nullable="false" />
-          <Property Name="Id" Type="Int64" Nullable="false" />
-          <Property Name="Image" Type="String" Nullable="false" />
-          <Property Name="Language" Type="String" Nullable="false" />
-          <Property Name="Text" Type="String" Nullable="false" />
-          <Property Name="Title" Type="String" Nullable="false" />
-          <Property Name="Name" Type="String" Nullable="false" /></EntityType>
         <EntityType Name="SiteContent">
           <Key>
             <PropertyRef Name="Id" /></Key>
@@ -102,12 +84,19 @@
         <Association Name="FK_SiteContent_SiteContent">
           <End Type="gbua_superiModel.SiteContent" Role="SiteContent" Multiplicity="0..1" />
           <End Type="gbua_superiModel.SiteContent" Role="SiteContent1" Multiplicity="*" /></Association>
-        <EntityType Name="Languages">
+        <EntityType Name="Article">
           <Key>
-            <PropertyRef Name="CultureName" /></Key>
-          <Property Name="CultureName" Type="String" Nullable="false" />
-          <Property Name="Icon" Type="String" Nullable="false" />
-          <Property Name="Name" Type="String" Nullable="false" /></EntityType>
+            <PropertyRef Name="Id" /></Key>
+          <Property Name="Date" Type="DateTime" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="true" />
+          <Property Name="Id" Type="Int64" Nullable="false" />
+          <Property Name="Image" Type="String" Nullable="true" />
+          <Property Name="Language" Type="String" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="SubTitle" Type="String" Nullable="true" />
+          <Property Name="Text" Type="String" Nullable="true" />
+          <Property Name="Title" Type="String" Nullable="true" />
+          <Property Name="Type" Type="Int64" Nullable="false" /></EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -132,23 +121,20 @@
             <EndProperty Name="SiteContent">
               <ScalarProperty Name="Id" ColumnName="ParentId" /></EndProperty>
             <Condition ColumnName="ParentId" IsNull="false" /></AssociationSetMapping>
-          <EntitySetMapping Name="Languages">
-            <EntityTypeMapping TypeName="IsTypeOf(gbua_superiModel.Languages)">
-              <MappingFragment StoreEntitySet="Languages">
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Icon" ColumnName="Icon" />
-                <ScalarProperty Name="CultureName" ColumnName="CultureName" /></MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="Articles">
             <EntityTypeMapping TypeName="IsTypeOf(gbua_superiModel.Article)">
               <MappingFragment StoreEntitySet="Articles">
-                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="SubTitle" ColumnName="SubTitle" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Language" ColumnName="Language" />
                 <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Date" ColumnName="Date" /></MappingFragment></EntityTypeMapping></EntitySetMapping></EntityContainerMapping>
+                <ScalarProperty Name="Date" ColumnName="Date" /></MappingFragment></EntityTypeMapping></EntitySetMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>
@@ -167,14 +153,13 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram Name="Structure" >
-        <EntityTypeShape EntityType="gbua_superiModel.Article" Width="1.5" PointX="3.75" PointY="1.375" Height="2.2496956380208331" />
         <EntityTypeShape EntityType="gbua_superiModel.SiteContent" Width="1.5" PointX="0.75" PointY="0.75" Height="2.7427376302083335" />
         <AssociationConnector Association="gbua_superiModel.FK_SiteContent_SiteContent" >
           <ConnectorPoint PointX="1.2819230769230767" PointY="3.4927376302083335" />
           <ConnectorPoint PointX="1.2819230769230767" PointY="3.7427376302083335" />
           <ConnectorPoint PointX="1.7284615384615383" PointY="3.7427376302083335" />
           <ConnectorPoint PointX="1.7284615384615383" PointY="3.4927376302083335" /></AssociationConnector>
-        <EntityTypeShape EntityType="gbua_superiModel.Languages" Width="1.5" PointX="6.5" PointY="1.875" Height="1.4279589843749996" />
+        <EntityTypeShape EntityType="gbua_superiModel.Article" PointX="3.375" PointY="0.875" Width="1.5" Height="2.5783902994791674" />
         </Diagram></edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

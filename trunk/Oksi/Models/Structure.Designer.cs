@@ -12,7 +12,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("gbua_superiModel", "FK_SiteContent_SiteContent", "SiteContent", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Oksi.Models.SiteContent), "SiteContent1", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Oksi.Models.SiteContent))]
 
 // Original file name:
-// Generation date: 17.02.2010 21:04:01
+// Generation date: 17.02.2010 22:19:22
 namespace Oksi.Models
 {
     
@@ -79,33 +79,33 @@ namespace Oksi.Models
         /// <summary>
         /// There are no comments for Galleries in the schema.
         /// </summary>
-        public global::System.Data.Objects.ObjectQuery<Galleries> Galleries
+        public global::System.Data.Objects.ObjectQuery<Gallery> Galleries
         {
             get
             {
                 if ((this._Galleries == null))
                 {
-                    this._Galleries = base.CreateQuery<Galleries>("[Galleries]");
+                    this._Galleries = base.CreateQuery<Gallery>("[Galleries]");
                 }
                 return this._Galleries;
             }
         }
-        private global::System.Data.Objects.ObjectQuery<Galleries> _Galleries;
+        private global::System.Data.Objects.ObjectQuery<Gallery> _Galleries;
         /// <summary>
         /// There are no comments for Images in the schema.
         /// </summary>
-        public global::System.Data.Objects.ObjectQuery<Images> Images
+        public global::System.Data.Objects.ObjectQuery<Image> Images
         {
             get
             {
                 if ((this._Images == null))
                 {
-                    this._Images = base.CreateQuery<Images>("[Images]");
+                    this._Images = base.CreateQuery<Image>("[Images]");
                 }
                 return this._Images;
             }
         }
-        private global::System.Data.Objects.ObjectQuery<Images> _Images;
+        private global::System.Data.Objects.ObjectQuery<Image> _Images;
         /// <summary>
         /// There are no comments for SiteContent in the schema.
         /// </summary>
@@ -123,16 +123,16 @@ namespace Oksi.Models
         /// <summary>
         /// There are no comments for Galleries in the schema.
         /// </summary>
-        public void AddToGalleries(Galleries galleries)
+        public void AddToGalleries(Gallery gallery)
         {
-            base.AddObject("Galleries", galleries);
+            base.AddObject("Galleries", gallery);
         }
         /// <summary>
         /// There are no comments for Images in the schema.
         /// </summary>
-        public void AddToImages(Images images)
+        public void AddToImages(Image image)
         {
-            base.AddObject("Images", images);
+            base.AddObject("Images", image);
         }
     }
     /// <summary>
@@ -691,27 +691,27 @@ namespace Oksi.Models
         partial void OnTypeChanged();
     }
     /// <summary>
-    /// There are no comments for gbua_superiModel.Galleries in the schema.
+    /// There are no comments for gbua_superiModel.Gallery in the schema.
     /// </summary>
     /// <KeyProperties>
     /// Id
     /// </KeyProperties>
-    [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="gbua_superiModel", Name="Galleries")]
+    [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="gbua_superiModel", Name="Gallery")]
     [global::System.Runtime.Serialization.DataContractAttribute(IsReference=true)]
     [global::System.Serializable()]
-    public partial class Galleries : global::System.Data.Objects.DataClasses.EntityObject
+    public partial class Gallery : global::System.Data.Objects.DataClasses.EntityObject
     {
         /// <summary>
-        /// Create a new Galleries object.
+        /// Create a new Gallery object.
         /// </summary>
         /// <param name="id">Initial value of Id.</param>
         /// <param name="name">Initial value of Name.</param>
-        public static Galleries CreateGalleries(long id, string name)
+        public static Gallery CreateGallery(long id, string name)
         {
-            Galleries galleries = new Galleries();
-            galleries.Id = id;
-            galleries.Name = name;
-            return galleries;
+            Gallery gallery = new Gallery();
+            gallery.Id = id;
+            gallery.Name = name;
+            return gallery;
         }
         /// <summary>
         /// There are no comments for Property Comments in the schema.
@@ -784,36 +784,38 @@ namespace Oksi.Models
         partial void OnNameChanged();
     }
     /// <summary>
-    /// There are no comments for gbua_superiModel.Images in the schema.
+    /// There are no comments for gbua_superiModel.Image in the schema.
     /// </summary>
     /// <KeyProperties>
     /// Id
     /// </KeyProperties>
-    [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="gbua_superiModel", Name="Images")]
+    [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="gbua_superiModel", Name="Image")]
     [global::System.Runtime.Serialization.DataContractAttribute(IsReference=true)]
     [global::System.Serializable()]
-    public partial class Images : global::System.Data.Objects.DataClasses.EntityObject
+    public partial class Image : global::System.Data.Objects.DataClasses.EntityObject
     {
         /// <summary>
-        /// Create a new Images object.
+        /// Create a new Image object.
         /// </summary>
+        /// <param name="galleryId">Initial value of GalleryId.</param>
         /// <param name="id">Initial value of Id.</param>
-        /// <param name="image">Initial value of Image.</param>
         /// <param name="preview">Initial value of Preview.</param>
-        public static Images CreateImages(long id, string image, string preview)
+        /// <param name="picture">Initial value of Picture.</param>
+        public static Image CreateImage(long galleryId, long id, string preview, string picture)
         {
-            Images images = new Images();
-            images.Id = id;
-            images.Image = image;
-            images.Preview = preview;
-            return images;
+            Image image = new Image();
+            image.GalleryId = galleryId;
+            image.Id = id;
+            image.Preview = preview;
+            image.Picture = picture;
+            return image;
         }
         /// <summary>
         /// There are no comments for Property GalleryId in the schema.
         /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Nullable<long> GalleryId
+        public long GalleryId
         {
             get
             {
@@ -828,8 +830,8 @@ namespace Oksi.Models
                 this.OnGalleryIdChanged();
             }
         }
-        private global::System.Nullable<long> _GalleryId;
-        partial void OnGalleryIdChanging(global::System.Nullable<long> value);
+        private long _GalleryId;
+        partial void OnGalleryIdChanging(long value);
         partial void OnGalleryIdChanged();
         /// <summary>
         /// There are no comments for Property Id in the schema.
@@ -855,29 +857,6 @@ namespace Oksi.Models
         partial void OnIdChanging(long value);
         partial void OnIdChanged();
         /// <summary>
-        /// There are no comments for Property Image in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public string Image
-        {
-            get
-            {
-                return this._Image;
-            }
-            set
-            {
-                this.OnImageChanging(value);
-                this.ReportPropertyChanging("Image");
-                this._Image = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
-                this.ReportPropertyChanged("Image");
-                this.OnImageChanged();
-            }
-        }
-        private string _Image;
-        partial void OnImageChanging(string value);
-        partial void OnImageChanged();
-        /// <summary>
         /// There are no comments for Property Preview in the schema.
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
@@ -900,5 +879,28 @@ namespace Oksi.Models
         private string _Preview;
         partial void OnPreviewChanging(string value);
         partial void OnPreviewChanged();
+        /// <summary>
+        /// There are no comments for Property Picture in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string Picture
+        {
+            get
+            {
+                return this._Picture;
+            }
+            set
+            {
+                this.OnPictureChanging(value);
+                this.ReportPropertyChanging("Picture");
+                this._Picture = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
+                this.ReportPropertyChanged("Picture");
+                this.OnPictureChanged();
+            }
+        }
+        private string _Picture;
+        partial void OnPictureChanging(string value);
+        partial void OnPictureChanged();
     }
 }

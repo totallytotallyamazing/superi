@@ -44,7 +44,7 @@
           </Key>
           <Property Name="GalleryId" Type="uint" />
           <Property Name="Id" Type="uint" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Image" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="Picture" Type="varchar" Nullable="false" MaxLength="255" />
           <Property Name="Preview" Type="varchar" Nullable="false" MaxLength="255" />
         </EntityType>
         <EntityType Name="SiteContent">
@@ -85,8 +85,8 @@
             <End Role="SiteContent" EntitySet="SiteContent" />
             <End Role="SiteContent1" EntitySet="SiteContent" /></AssociationSet>
           <EntitySet Name="Articles" EntityType="gbua_superiModel.Article" />
-          <EntitySet Name="Galleries" EntityType="gbua_superiModel.Galleries" />
-          <EntitySet Name="Images" EntityType="gbua_superiModel.Images" /></EntityContainer>
+          <EntitySet Name="Galleries" EntityType="gbua_superiModel.Gallery" />
+          <EntitySet Name="Images" EntityType="gbua_superiModel.Image" /></EntityContainer>
         <EntityType Name="SiteContent">
           <Key>
             <PropertyRef Name="Id" /></Key>
@@ -117,19 +117,19 @@
           <Property Name="Text" Type="String" Nullable="true" />
           <Property Name="Title" Type="String" Nullable="true" />
           <Property Name="Type" Type="Int64" Nullable="false" /></EntityType>
-        <EntityType Name="Galleries">
+        <EntityType Name="Gallery">
           <Key>
             <PropertyRef Name="Id" /></Key>
           <Property Name="Comments" Type="String" Nullable="true" />
           <Property Name="Id" Type="Int64" Nullable="false" />
           <Property Name="Name" Type="String" Nullable="false" /></EntityType>
-        <EntityType Name="Images">
+        <EntityType Name="Image">
           <Key>
             <PropertyRef Name="Id" /></Key>
-          <Property Name="GalleryId" Type="Int64" Nullable="true" />
+          <Property Name="GalleryId" Type="Int64" Nullable="false" />
           <Property Name="Id" Type="Int64" Nullable="false" />
-          <Property Name="Image" Type="String" Nullable="false" />
-          <Property Name="Preview" Type="String" Nullable="false" /></EntityType></Schema>
+          <Property Name="Preview" Type="String" Nullable="false" />
+          <Property Name="Picture" Type="String" Nullable="false" /></EntityType></Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -167,16 +167,16 @@
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Date" ColumnName="Date" /></MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="Galleries">
-            <EntityTypeMapping TypeName="IsTypeOf(gbua_superiModel.Galleries)">
+            <EntityTypeMapping TypeName="IsTypeOf(gbua_superiModel.Gallery)">
               <MappingFragment StoreEntitySet="Galleries">
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Comments" ColumnName="Comments" /></MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="Images">
-            <EntityTypeMapping TypeName="IsTypeOf(gbua_superiModel.Images)">
+            <EntityTypeMapping TypeName="IsTypeOf(gbua_superiModel.Image)">
               <MappingFragment StoreEntitySet="Images">
+                <ScalarProperty Name="Picture" ColumnName="Picture" />
                 <ScalarProperty Name="Preview" ColumnName="Preview" />
-                <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="GalleryId" ColumnName="GalleryId" /></MappingFragment></EntityTypeMapping></EntitySetMapping></EntityContainerMapping>
       </Mapping>
@@ -197,14 +197,14 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram Name="Structure" >
-        <EntityTypeShape EntityType="gbua_superiModel.SiteContent" Width="1.5" PointX="0.75" PointY="0.75" Height="2.7427376302083335" />
+        <EntityTypeShape EntityType="gbua_superiModel.SiteContent" Width="1.5" PointX="0.875" PointY="0.75" Height="3.1340950520833331" />
         <AssociationConnector Association="gbua_superiModel.FK_SiteContent_SiteContent" >
-          <ConnectorPoint PointX="1.2819230769230767" PointY="3.4927376302083335" />
-          <ConnectorPoint PointX="1.2819230769230767" PointY="3.7427376302083335" />
-          <ConnectorPoint PointX="1.7284615384615383" PointY="3.7427376302083335" />
-          <ConnectorPoint PointX="1.7284615384615383" PointY="3.4927376302083335" /></AssociationConnector>
+          <ConnectorPoint PointX="1.4069230769230767" PointY="3.8840950520833331" />
+          <ConnectorPoint PointX="1.4069230769230767" PointY="4.1340950520833335" />
+          <ConnectorPoint PointX="1.8534615384615383" PointY="4.1340950520833335" />
+          <ConnectorPoint PointX="1.8534615384615383" PointY="3.8840950520833331" /></AssociationConnector>
         <EntityTypeShape EntityType="gbua_superiModel.Article" PointX="3.375" PointY="0.875" Width="1.5" Height="2.5783902994791674" />
-        <EntityTypeShape EntityType="gbua_superiModel.Galleries" Width="1.5" PointX="0.75" PointY="4.75" Height="1.5956835937499996" />
-        <EntityTypeShape EntityType="gbua_superiModel.Images" Width="1.5" PointX="2.75" PointY="4.75" Height="1.7879850260416674" /></Diagram></edmx:Diagrams>
+        <EntityTypeShape EntityType="gbua_superiModel.Gallery" Width="1.5" PointX="0.75" PointY="4.75" Height="1.5956835937499996" />
+        <EntityTypeShape EntityType="gbua_superiModel.Image" Width="1.5" PointX="2.75" PointY="4.75" Height="1.7879850260416665" /></Diagram></edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

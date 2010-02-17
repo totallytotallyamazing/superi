@@ -4,13 +4,15 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl" Alias="Self" Namespace="gbua_superiModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.0">
+    <Schema Namespace="gbua_superiModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.0" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
         <EntityContainer Name="gbua_superiModelStoreContainer">
-          <EntitySet Name="Articles" EntityType="gbua_superiModel.Store.Articles" Schema="gbua_oksitest" store:Type="Tables" />
-          <EntitySet Name="SiteContent" EntityType="gbua_superiModel.Store.SiteContent" Schema="gbua_oksitest" store:Type="Tables" />
+          <EntitySet Name="Articles" EntityType="gbua_superiModel.Store.Articles" store:Type="Tables" Schema="gbua_oksitest" />
+          <EntitySet Name="Galleries" EntityType="gbua_superiModel.Store.Galleries" store:Type="Tables" Schema="gbua_oksitest" />
+          <EntitySet Name="Images" EntityType="gbua_superiModel.Store.Images" store:Type="Tables" Schema="gbua_oksitest" />
+          <EntitySet Name="SiteContent" EntityType="gbua_superiModel.Store.SiteContent" store:Type="Tables" Schema="gbua_oksitest" />
           <AssociationSet Name="FK_SiteContent_SiteContent" Association="gbua_superiModel.Store.FK_SiteContent_SiteContent">
-            <End EntitySet="SiteContent" Role="SiteContent" />
-            <End EntitySet="SiteContent" Role="SiteContent1" />
+            <End Role="SiteContent" EntitySet="SiteContent" />
+            <End Role="SiteContent1" EntitySet="SiteContent" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Articles">
@@ -19,7 +21,7 @@
           </Key>
           <Property Name="Date" Type="datetime" Nullable="false" />
           <Property Name="Description" Type="varchar" MaxLength="1000" />
-          <Property StoreGeneratedPattern="Identity" Name="Id" Type="uint" Nullable="false" />
+          <Property Name="Id" Type="uint" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Image" Type="varchar" MaxLength="500" />
           <Property Name="Language" Type="char" Nullable="false" MaxLength="5" />
           <Property Name="Name" Type="varchar" Nullable="false" MaxLength="255" />
@@ -28,12 +30,29 @@
           <Property Name="Title" Type="varchar" MaxLength="500" />
           <Property Name="Type" Type="uint" Nullable="false" />
         </EntityType>
+        <EntityType Name="Galleries">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Comments" Type="varchar" MaxLength="1000" />
+          <Property Name="Id" Type="uint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="Images">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="GalleryId" Type="uint" />
+          <Property Name="Id" Type="uint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Image" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="Preview" Type="varchar" Nullable="false" MaxLength="255" />
+        </EntityType>
         <EntityType Name="SiteContent">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Description" Type="text" />
-          <Property StoreGeneratedPattern="Identity" Name="Id" Type="uint" Nullable="false" />
+          <Property Name="Id" Type="uint" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Keywords" Type="text" />
           <Property Name="Language" Type="char" Nullable="false" MaxLength="5" />
           <Property Name="Name" Type="varchar" Nullable="false" MaxLength="255" />
@@ -45,8 +64,8 @@
           <Property Name="Url" Type="varchar" Nullable="false" MaxLength="255" />
         </EntityType>
         <Association Name="FK_SiteContent_SiteContent">
-          <End Type="gbua_superiModel.Store.SiteContent" Multiplicity="0..1" Role="SiteContent" />
-          <End Type="gbua_superiModel.Store.SiteContent" Multiplicity="*" Role="SiteContent1" />
+          <End Role="SiteContent" Type="gbua_superiModel.Store.SiteContent" Multiplicity="0..1" />
+          <End Role="SiteContent1" Type="gbua_superiModel.Store.SiteContent" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="SiteContent">
               <PropertyRef Name="Id" />
@@ -66,7 +85,8 @@
             <End Role="SiteContent" EntitySet="SiteContent" />
             <End Role="SiteContent1" EntitySet="SiteContent" /></AssociationSet>
           <EntitySet Name="Articles" EntityType="gbua_superiModel.Article" />
-          </EntityContainer>
+          <EntitySet Name="Galleries" EntityType="gbua_superiModel.Galleries" />
+          <EntitySet Name="Images" EntityType="gbua_superiModel.Images" /></EntityContainer>
         <EntityType Name="SiteContent">
           <Key>
             <PropertyRef Name="Id" /></Key>
@@ -97,7 +117,19 @@
           <Property Name="Text" Type="String" Nullable="true" />
           <Property Name="Title" Type="String" Nullable="true" />
           <Property Name="Type" Type="Int64" Nullable="false" /></EntityType>
-        </Schema>
+        <EntityType Name="Galleries">
+          <Key>
+            <PropertyRef Name="Id" /></Key>
+          <Property Name="Comments" Type="String" Nullable="true" />
+          <Property Name="Id" Type="Int64" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" /></EntityType>
+        <EntityType Name="Images">
+          <Key>
+            <PropertyRef Name="Id" /></Key>
+          <Property Name="GalleryId" Type="Int64" Nullable="true" />
+          <Property Name="Id" Type="Int64" Nullable="false" />
+          <Property Name="Image" Type="String" Nullable="false" />
+          <Property Name="Preview" Type="String" Nullable="false" /></EntityType></Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -134,7 +166,19 @@
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Date" ColumnName="Date" /></MappingFragment></EntityTypeMapping></EntitySetMapping>
-          </EntityContainerMapping>
+          <EntitySetMapping Name="Galleries">
+            <EntityTypeMapping TypeName="IsTypeOf(gbua_superiModel.Galleries)">
+              <MappingFragment StoreEntitySet="Galleries">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" /></MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Images">
+            <EntityTypeMapping TypeName="IsTypeOf(gbua_superiModel.Images)">
+              <MappingFragment StoreEntitySet="Images">
+                <ScalarProperty Name="Preview" ColumnName="Preview" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="GalleryId" ColumnName="GalleryId" /></MappingFragment></EntityTypeMapping></EntitySetMapping></EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>
@@ -160,6 +204,7 @@
           <ConnectorPoint PointX="1.7284615384615383" PointY="3.7427376302083335" />
           <ConnectorPoint PointX="1.7284615384615383" PointY="3.4927376302083335" /></AssociationConnector>
         <EntityTypeShape EntityType="gbua_superiModel.Article" PointX="3.375" PointY="0.875" Width="1.5" Height="2.5783902994791674" />
-        </Diagram></edmx:Diagrams>
+        <EntityTypeShape EntityType="gbua_superiModel.Galleries" Width="1.5" PointX="0.75" PointY="4.75" Height="1.5956835937499996" />
+        <EntityTypeShape EntityType="gbua_superiModel.Images" Width="1.5" PointX="2.75" PointY="4.75" Height="1.7879850260416674" /></Diagram></edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

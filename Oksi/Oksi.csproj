@@ -78,6 +78,7 @@
     <Compile Include="Controllers\ArticlesController.cs" />
     <Compile Include="Controllers\BaseContentController.cs" />
     <Compile Include="Controllers\ContentAttribute.cs" />
+    <Compile Include="Controllers\GalleryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -194,6 +195,8 @@
     <Content Include="Scripts\webkit.js" />
     <Content Include="Views\Admin\EditText.aspx" />
     <Content Include="Views\Articles\Index.ascx" />
+    <Content Include="Views\Gallery\Images.ascx" />
+    <Content Include="Views\Gallery\Index.ascx" />
     <Content Include="Views\Home\Index.aspx" />
     <Content Include="Views\Home\IndexContent.ascx" />
     <Content Include="Views\Home\LatestNews.ascx" />

@@ -8,7 +8,7 @@
 </div>
 <div>|</div>
 <div class="menuItem">
-    <%= Html.ActionLink("Фотогалерея", "Index", "Photo")%>
+    <%= Html.ActionLink("Фотогалерея", "Index", "Gallery")%>
 </div>
 <div>|</div>
 <div class="menuItem">

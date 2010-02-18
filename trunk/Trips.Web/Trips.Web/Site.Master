@@ -1,5 +1,6 @@
 <%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Trips.Web.Site" %>
-
+<%@ Register Src="~/Controls/MainMenu.ascx" TagName="MainMenu" TagPrefix="controls" %>
+<%@ Register Src="~/Controls/CarSearch.ascx" TagName="CarSearch" TagPrefix="controls" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
@@ -36,51 +37,12 @@
                 (050) 375-11-01
             </p>
         </div>
-        <div id="box">
-            <div class="headerMenuItem">
-                <a href="/Request.aspx">
-                    Заявка
-                </a>
-            </div>
-            <div class="headerMenuItem">
-                <a href="/Catalogue.aspx">
-                    Каталог
-                </a>
-            </div>
-            <div class="headerMenuItem">
-                <a href="/Conditions.aspx">
-                    Условия
-                </a>
-            </div>
-            <div class="headerMenuItem">
-                <a href="/Contacts.aspx">
-                    Связь
-                </a>
-            </div>
-        </div>
+        <controls:MainMenu runat="server" />
     </div>
     <!--header-->
     <div id="container">
         <div id="leftSide">
-            <div id="leftBoxCarSearch">
-                <div id="carSearchHeader">
-                    <p>
-                        Поиск автомобиля
-                    </p>
-                </div>
-                <div id="carSearchContent">
-                    <form name="form1" method="post" action="">
-                    <label>
-                        <input type="text" name="field" id="searchField">
-                    </label>
-                    </form>
-                    <p>
-                        <img src="img/searchButton.jpg" alt="search car">
-                    </p>
-                </div>
-                <div id="carSearchFooter">
-                </div>
-            </div>
+            <controls:CarSearch runat="server" />
             <div id="leftBoxSwed">
                 <div id="swedHeader">
                     <p>

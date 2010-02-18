@@ -8,37 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Trips.Web {
+namespace Trips.Web.Controls {
     
     
-    public partial class Site {
-        
-        /// <summary>
-        /// head control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
-        
-        /// <summary>
-        /// form1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
-        
-        /// <summary>
-        /// LanguageSwitch control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink LanguageSwitch;
+    public partial class MainMenu {
         
         /// <summary>
         /// Literal1 control.
@@ -50,21 +23,30 @@ namespace Trips.Web {
         protected global::System.Web.UI.WebControls.Literal Literal1;
         
         /// <summary>
-        /// ContentTitle control.
+        /// Literal2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentTitle;
+        protected global::System.Web.UI.WebControls.Literal Literal2;
         
         /// <summary>
-        /// MainContent control.
+        /// Literal3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder MainContent;
+        protected global::System.Web.UI.WebControls.Literal Literal3;
+        
+        /// <summary>
+        /// Literal4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal Literal4;
     }
 }

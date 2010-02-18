@@ -60,6 +60,9 @@
     <Compile Include="AjaxEventStub.cs" />
     <Compile Include="AjaxOptions.cs" />
     <Compile Include="AudioPlayer.cs" />
+    <Compile Include="FancyBox.cs" />
+    <Compile Include="GalleryExtender.cs" />
+    <Compile Include="JCarousel.cs" />
     <Compile Include="CompnentLoader.cs" />
     <Compile Include="Jplayer.cs" />
     <Compile Include="Jquery.cs" />

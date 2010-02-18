@@ -33,7 +33,8 @@ namespace ClientLibrary
             get { return instanse; }
         }
 
-        public PageManager() : base()
+        public PageManager()
+            : base()
         {
         }
 
@@ -43,7 +44,7 @@ namespace ClientLibrary
             base.Initialize();
             Application.EnableHistory = true;
             Application.Navigate += new HistoryEventHandler(Application_Navigate);
-            
+
         }
 
         public void OnLoad()
@@ -93,7 +94,7 @@ namespace ClientLibrary
                 AnchorElement anchor = (AnchorElement)anchors[i];
                 DomEvent.AddHandler(anchor, "click", new DomEventHandler(MenuItemClicked));
             }
-            
+
             AnchorElement logoLink = (AnchorElement)Document.GetElementById("logo").GetElementsByTagName("a")[0];
             DomEvent.AddHandler(logoLink, "click", new DomEventHandler(MenuItemClicked));
         }
@@ -111,7 +112,7 @@ namespace ClientLibrary
             options.InsertionMode = InsertionMode.Replace;
             if (asyncRequestHandler == null)
             {
-                asyncRequestHandler =new AsyncRequestHandler(AsyncRequestCompleted); 
+                asyncRequestHandler = new AsyncRequestHandler(AsyncRequestCompleted);
             }
             options.OnComplete = asyncRequestHandler;
             AnchorElement target = (e.Target.TagName == "A") ? (AnchorElement)e.Target : (AnchorElement)e.Target.ParentNode;
@@ -124,7 +125,7 @@ namespace ClientLibrary
 
         void UpdateMenuSelection(string url)
         {
-            DOMElement target = (DOMElement)Utils.GetElementsByAttribute(Document.GetElementById("menuContainer"), "a", "href", url, null)[0] ;
+            DOMElement target = (DOMElement)Utils.GetElementsByAttribute(Document.GetElementById("menuContainer"), "a", "href", url, null)[0];
             if (target != null)
                 target = target.ParentNode;
             JQuery items = JQueryProxy.jQuery("#menuContainer div");
@@ -147,7 +148,7 @@ namespace ClientLibrary
         {
             linkNavigation = false;
             Window.SetTimeout(CreatePageExtenders, 200);
-            Window.SetTimeout(InvokeUpdated,400);
+            Window.SetTimeout(InvokeUpdated, 400);
         }
 
         void CreatePageExtenders()

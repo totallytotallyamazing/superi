@@ -71,7 +71,7 @@ namespace Oksi.Mvc.Ajax
 
             var sb = new StringBuilder();
             sb.AppendLine("<script type='text/javascript'>");
-            sb.AppendLine("var link=document.createElement('link')");
+            sb.AppendLine("var link=document.createElement('link');");
             sb.AppendLine("link.setAttribute('rel', 'stylesheet');");
             sb.AppendLine("link.setAttribute('type', 'text/css');");
             sb.AppendFormat("link.setAttribute('href', '{0}');", url);

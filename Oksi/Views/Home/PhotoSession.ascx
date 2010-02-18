@@ -21,7 +21,3 @@
         <img src="/Content/img/photo3.jpg" />
     </a>
 </div>
-
-<script type="text/javascript">
-
-</script>

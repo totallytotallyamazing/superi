@@ -1,6 +1,10 @@
 <%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<IEnumerable<Oksi.Models.Gallery>>" %>
 <%@ Import Namespace="Oksi.Models" %>
+<%@ Import Namespace="Oksi.Mvc.Ajax" %>
 
+<%= Ajax.DynamicCssInclude("/Content/fancybox/jquery.fancybox.css")%>
+<%= Ajax.ScriptInclude("/Scripts/jquery.fancybox.js") %>
+&nbsp;
 <% 
     int itemsCount = Model.Count();
     int i = 0;
@@ -28,3 +32,4 @@
         <%} %>
     </div>
     <% } %>
+<%= Ajax.Create("ClientLibrary.GalleryExtender", new { id = "GalleryManager" }, null, "pageExtender")%>

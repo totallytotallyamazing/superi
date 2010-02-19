@@ -16,6 +16,7 @@ using System.Web.Profile;
 using System.Configuration;
 using System.Reflection;
 using System.Web.UI.WebControls;
+using System.Data.Objects.DataClasses;
 
 namespace Zamov.Controllers
 {
@@ -315,7 +316,13 @@ namespace Zamov.Controllers
         {
             using (ZamovStorage context = new ZamovStorage())
             {
-                Category category = (from c in context.Categories where c.Id == id select c).First();
+                Category category = (from c in context.Categories.Include("Groups") where c.Id == id select c).First();
+                EntityCollection<Group> groups = category.Groups;
+                foreach (var item in groups)
+                {
+                    item.CategoryReference = null;
+                }
+
                 context.DeleteObject(category);
 
                 context.SaveChanges();

@@ -874,7 +874,6 @@ namespace Zamov.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        [Authorize(Roles = "Administrators, Dealers")]
         public void AcceptOrder(int orderId)
         {
             using (OrderStorage context = new OrderStorage())
@@ -887,7 +886,6 @@ namespace Zamov.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        [Authorize(Roles = "Administrators, Dealers")]
         public ActionResult CancelOrder(int orderId)
         {
             using (OrderStorage context = new OrderStorage())

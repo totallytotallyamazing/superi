@@ -76,6 +76,7 @@ namespace Zamov.Controllers
                     .Where(o => (userName == null || userName == string.Empty || o.UserName.Contains(userName)))
                     .Where(o => (city == null || city == string.Empty || o.City.Contains(city)))
                     .Where(o => (orderStatus == null || o.Status == orderStatus))
+                    .OrderByDescending(o=>o.OrderId)
                     .Select(o => o).ToList();
 
                 if (!string.IsNullOrEmpty(sortField))

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Trips.Web.Models;
 
 namespace Trips.Web
 {
@@ -12,6 +13,11 @@ namespace Trips.Web
         protected void Page_Load(object sender, EventArgs e)
         {
             string res = Resources.WebResources.LanguageSwitch;
+
+            using (CarAdStorage context = new CarAdStorage())
+            {
+            
+            }
         }
     }
 }

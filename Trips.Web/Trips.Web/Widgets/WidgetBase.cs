@@ -18,12 +18,12 @@ namespace Trips.Web.Widgets
             }
         }
 
-        protected string WidgetName { get; }
+        //protected string WidgetName { get; }
 
         protected override void OnInit(EventArgs e)
         {
             base.OnInit(e);
-            LoadedWidgets.Add(this.WidgetName);
+            //LoadedWidgets.Add(this.WidgetName);
         }
     }
 }

@@ -178,6 +178,32 @@
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>WebResources.ru-RU.designer.cs</LastGenOutput>
     </Content>
+    <Content Include="Scripts\Date.HijriCalendar.js" />
+    <Content Include="Scripts\Date.UmAlQuraCalendar.js" />
+    <Content Include="Scripts\extended\AutoComplete\AutoCompleteBehavior.js" />
+    <Content Include="Scripts\extended\Common\Common.js" />
+    <Content Include="Scripts\extended\Common\DateTime.js" />
+    <Content Include="Scripts\extended\Common\Threading.js" />
+    <Content Include="Scripts\extended\Compat\DragDrop\DragDropScripts.js" />
+    <Content Include="Scripts\extended\Compat\Timer\Timer.js" />
+    <Content Include="Scripts\extended\ExtendedControls.js" />
+    <Content Include="Scripts\extended\ExtenderBase\BaseScripts.js" />
+    <Content Include="Scripts\jquery-1.4.2.min.js" />
+    <Content Include="Scripts\MicrosoftAjax.js" />
+    <Content Include="Scripts\MicrosoftAjaxAdoNet.js" />
+    <Content Include="Scripts\MicrosoftAjaxApplicationServices.js" />
+    <Content Include="Scripts\MicrosoftAjaxComponentModel.js" />
+    <Content Include="Scripts\MicrosoftAjaxCore.js" />
+    <Content Include="Scripts\MicrosoftAjaxDataContext.js" />
+    <Content Include="Scripts\MicrosoftAjaxGlobalization.js" />
+    <Content Include="Scripts\MicrosoftAjaxHistory.js" />
+    <Content Include="Scripts\MicrosoftAjaxNetwork.js" />
+    <Content Include="Scripts\MicrosoftAjaxSerialization.js" />
+    <Content Include="Scripts\MicrosoftAjaxTemplates.js" />
+    <Content Include="Scripts\MicrosoftAjaxTimer.js" />
+    <Content Include="Scripts\MicrosoftAjaxWebForms.js" />
+    <Content Include="Scripts\MicrosoftAjaxWebServices.js" />
+    <Content Include="Scripts\Start.js" />
     <Content Include="Views\Widgets\News.ascx" />
     <Content Include="Views\Widgets\Smoking.ascx" />
   </ItemGroup>

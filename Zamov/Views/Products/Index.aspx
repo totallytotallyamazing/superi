@@ -90,6 +90,8 @@
 
 
         int dealerId = (int)ViewData["dealerId"];
+
+        int categoryId = (int)ViewData["categoryId"];
        
     %>
     <%= Html.ResourceActionLink("PickAnotherDealer", "Index", "Dealers", new { id = ViewContext.HttpContext.Items["categoryId"] }, null)%><br />
@@ -112,13 +114,13 @@
                 <%= Html.ResourceString("Photo") %>
             </th>
             <th class="sortable" align="center">
-                <%= Html.SortHeader("Name", "/Products/" + sortDealerId + "/" + groupId, "Name", "", "") %>
+                <%= Html.SortHeader("Name", "/Products/" + sortDealerId + "/" + categoryId + "/" + groupId, "Name", "", "")%>
             </th>
             <th style="width: 20px;">
                 <%= Html.ResourceString("MeassureUnit") %>
             </th>
             <th class="sortable"  align="center">
-                <%= Html.SortHeader("PriceHrn", "/Products/" + sortDealerId + "/" + groupId, "Price", "", "") %>
+                <%= Html.SortHeader("PriceHrn", "/Products/" + sortDealerId + "/" + categoryId + "/" + groupId, "Price", "", "")%>
             </th>
             <th style="width: 20px;"  align="center">
                 <%= Html.ResourceString("Quantity") %>

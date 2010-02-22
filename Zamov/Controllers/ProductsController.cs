@@ -27,7 +27,7 @@ namespace Zamov.Controllers
             ViewData["sortDealerId"] = dealerId;
             string sortFieldPart = (sortField != null) ? sortField.ToString() : "NoSort";
             string sortOrderPart = (sortOrder != null) ? sortOrder.ToString() : "NoSort";
-            string productsCacheKey = "ProductsPage_" + dealerId + "_" + groupId + "_" + sortFieldPart + "_" + sortOrderPart;
+            string productsCacheKey = "ProductsPage_" + dealerId + "_{0}_" + sortFieldPart + "_" + sortOrderPart;
             using (ZamovStorage context = new ZamovStorage())
             {
                 int dealer = context.Dealers.Where(d => d.Name == dealerId).Select(d => d.Id).First();
@@ -60,6 +60,8 @@ namespace Zamov.Controllers
 
                     displayGroupImages = currentGroup.DisplayProductImages;
                 }
+
+                productsCacheKey = string.Format(productsCacheKey, currentGroup.Id);
 
                 BreadCrumbAttribute.ProcessGroup(currentGroup.Id, HttpContext);
 

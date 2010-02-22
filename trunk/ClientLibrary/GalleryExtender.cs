@@ -31,17 +31,22 @@ namespace ClientLibrary
 
         public override void Initialize()
         {
-            //Script.Literal("debugger");
             contentUpdating = new EventHandler(Current_ContentUpdating);
             contentUpdated = new EventHandler(Current_ContentUpdated); ;
             PageManager.Current.ContentUpdating += contentUpdating;
             PageManager.Current.ContentUpdated += contentUpdated;
         }
 
+        void InitializeAdminArea()
+        {
+            if (PageManager.Current.IsAuthenticated)
+            {
+                JQueryProxy.jQuery(".adminLink").Fancybox();
+            }
+        }
+
         void Current_ContentUpdated(object sender, EventArgs e)
         {
-            Script.Alert("updated");
-            //Script.Literal("debugger");
             if (GalleryIds != null)
             {
                 int length = GalleryIds.Length;
@@ -51,6 +56,7 @@ namespace ClientLibrary
                     JQueryProxy.jQuery(controlId).Jcarousel(null);
                 }
             }
+            InitializeAdminArea();
         }
 
         void Current_ContentUpdating(object sender, EventArgs e)

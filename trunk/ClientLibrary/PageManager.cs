@@ -16,6 +16,15 @@ namespace ClientLibrary
         private bool linkNavigation = false;
         AsyncRequestHandler asyncRequestHandler = null;
 
+        public bool IsAuthenticated
+        {
+            get
+            {
+                Script.Literal("if(IsAuthenticated)return true");
+                return false;
+            }
+        }
+
         public event EventHandler ContentUpdated
         {
             add { this.Events.AddHandler("contentUpdated", value); }

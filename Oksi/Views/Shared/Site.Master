@@ -10,7 +10,11 @@
     <link href="../../Content/Site.css" rel="stylesheet" type="text/css" />
     <asp:ContentPlaceHolder ID="Includes" runat="server"></asp:ContentPlaceHolder>
     <script type="text/javascript" src="/Scripts/jquery.js"></script>
-    
+    <% if(Request.IsAuthenticated){ %>
+        <script type="text/javascript">
+            var IsAuthenticated = true;
+        </script>
+    <%} %>
    <%-- <%= Ajax.MicrosoftMvcAjaxLibraryInclude() %>--%>
 </head>
 
@@ -38,6 +42,10 @@
     <%= Ajax.Create("ClientLibrary.PageManager", new { id = "OksiManager"}, null)%>
     <div id="main">
         <div id="player">
+                    <% if(Request.IsAuthenticated){ %>
+                <div id="adminIndicator">Режим администрирования... <a href="/Account/LogOff">выйти</a></div>
+            <%} %>
+
             <div id="playerPresentation">   
                 <div class="controls">
                     <a rel="prev">

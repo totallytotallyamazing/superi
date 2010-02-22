@@ -10,6 +10,11 @@
     int i = 0;
     %>
 
+    <% if(Request.IsAuthenticated){ %>
+        <div class="adminAction">
+            <%= Html.ActionLink("Добавить галерею", "AddEditGallery", "Admin", null, new { @class = "adminLink" })%>
+        </div>
+    <%} %>
     <% foreach (var item in Model) {
            i++;
     %>
@@ -18,11 +23,7 @@
             <%= item.Name %>
         </div>
         <% 
-           using(DataStorage context = new DataStorage())
-           {
-               var images = context.Images.Where(img => img.GalleryId == item.Id).Select(img => img);
-               Html.RenderPartial("Images", images);
-           }
+            Html.RenderPartial("Images", item.Images);
         %>
         <div class="galleryComments">
             <%= item.Comments %>
@@ -32,4 +33,4 @@
         <%} %>
     </div>
     <% } %>
-<%= Ajax.Create("ClientLibrary.GalleryExtender", new { id = "GalleryManager" }, null, "pageExtender")%>
+<%= Ajax.Create("ClientLibrary.GalleryExtender", new { id = "GalleryManager", serializedIdArray = ViewData["serializedGalleriesId"] }, null, "pageExtender")%>

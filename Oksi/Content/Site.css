@@ -2,6 +2,8 @@
 body{background:black url(img/bodyBg.jpg) repeat-x;}
 #main{width:837px; position:relative; margin:0 auto;}
 
+#adminIndicator{float:right; height:0px; width:570px; text-align:right; padding-right:3px; color:red;}
+#adminIndicator a{color:White;}
 #player{width:auto; height:45px; border-right:1px solid white; background:black;}
 #playerPresentation{height:100%; width:264px; background:#c6c6c6; text-align:center; font-size:12px;}
 #playerPresentation div{float:left; line-height:45px; padding-left:10px;}
@@ -25,3 +27,4 @@ body{background:black url(img/bodyBg.jpg) repeat-x;}
 
 #footer1{margin-top:5px; background:#5c5c5c; width:auto; height:82px;}
 #footer2{margin-top:5px; width:auto; border:1px solid white; height:60px;}
+

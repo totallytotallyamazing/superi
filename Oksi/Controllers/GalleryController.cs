@@ -15,7 +15,7 @@ namespace Oksi.Controllers
         {
             using (DataStorage context = new DataStorage())
             {
-                List<Gallery> galleries = context.Galleries.Select(g => g).ToList();
+                List<Gallery> galleries = context.Galleries.Include("Images").Select(g => g).ToList();
                 long[] galleryIds = galleries.Select(g => g.Id).ToArray();
                 JavaScriptSerializer serializer = new JavaScriptSerializer();
                 ViewData["serializedGalleriesId"] = serializer.Serialize(galleryIds);

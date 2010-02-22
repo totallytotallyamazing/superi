@@ -2,6 +2,10 @@
 
 namespace Jquery
 {
+    public class FancyBoxOptions
+    { 
+        
+    }
 
     public partial class JQuery
     {

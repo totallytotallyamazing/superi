@@ -9,7 +9,8 @@ using Oksi.Helpers;
 
 namespace Oksi.Controllers
 {
-    public class AdminController : Controller// LocalizedController
+    [Authorize]
+    public class AdminController : Controller
     {
         [OutputCache(NoStore = true, Duration = 1, VaryByParam = "*")]
         public ActionResult EditText(string contentName, string controllerName)
@@ -79,5 +80,50 @@ namespace Oksi.Controllers
             }
             Response.Write("blabla");
         }
+
+        #region Galleries
+        public ActionResult AddEditGallery(int? id)
+        {
+            ViewData["id"] = id;
+            if (id != null)
+            {
+                using (DataStorage context = new DataStorage())
+                {
+                    var gallery = context.Galleries.Where(g => g.Id == id.Value).Select(g => new {name = g.Name, comments = g.Comments }).First();
+                    ViewData["name"] = gallery.name;
+                    ViewData["comments"] = gallery.comments;
+                }
+            }
+            return View();
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult AddEditGallery(int? id, string name, string comments)
+        {
+            using(DataStorage context = new DataStorage())
+            {
+                Gallery gallery = null;
+                if (id != null)
+                {
+                    gallery = context.Galleries.Where(g => g.Id == id.Value).First();
+                }
+                else
+                {
+                    gallery = new Gallery();
+                }
+
+                gallery.Name = name;
+                gallery.Comments = comments;
+
+                if (id == null)
+                {
+                    context.AddToGalleries(gallery);
+                }
+
+                context.SaveChanges();
+            }
+            return RedirectToAction("Index", "Gallery");
+        }
+        #endregion
     }
 }

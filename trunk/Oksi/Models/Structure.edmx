@@ -86,7 +86,10 @@
             <End Role="SiteContent1" EntitySet="SiteContent" /></AssociationSet>
           <EntitySet Name="Articles" EntityType="gbua_superiModel.Article" />
           <EntitySet Name="Galleries" EntityType="gbua_superiModel.Gallery" />
-          <EntitySet Name="Images" EntityType="gbua_superiModel.Image" /></EntityContainer>
+          <EntitySet Name="Images" EntityType="gbua_superiModel.Image" />
+          <AssociationSet Name="GalleryImage" Association="gbua_superiModel.GalleryImage">
+            <End Role="Gallery" EntitySet="Galleries" />
+            <End Role="Image" EntitySet="Images" /></AssociationSet></EntityContainer>
         <EntityType Name="SiteContent">
           <Key>
             <PropertyRef Name="Id" /></Key>
@@ -122,14 +125,18 @@
             <PropertyRef Name="Id" /></Key>
           <Property Name="Comments" Type="String" Nullable="true" />
           <Property Name="Id" Type="Int64" Nullable="false" />
-          <Property Name="Name" Type="String" Nullable="false" /></EntityType>
+          <Property Name="Name" Type="String" Nullable="false" />
+          <NavigationProperty Name="Images" Relationship="gbua_superiModel.GalleryImage" FromRole="Gallery" ToRole="Image" /></EntityType>
         <EntityType Name="Image">
           <Key>
             <PropertyRef Name="Id" /></Key>
-          <Property Name="GalleryId" Type="Int64" Nullable="false" />
           <Property Name="Id" Type="Int64" Nullable="false" />
           <Property Name="Preview" Type="String" Nullable="false" />
-          <Property Name="Picture" Type="String" Nullable="false" /></EntityType></Schema>
+          <Property Name="Picture" Type="String" Nullable="false" />
+          <NavigationProperty Name="Gallery" Relationship="gbua_superiModel.GalleryImage" FromRole="Image" ToRole="Gallery" /></EntityType>
+        <Association Name="GalleryImage">
+          <End Type="gbua_superiModel.Gallery" Role="Gallery" Multiplicity="1" />
+          <End Type="gbua_superiModel.Image" Role="Image" Multiplicity="*" /></Association></Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -178,7 +185,12 @@
                 <ScalarProperty Name="Picture" ColumnName="Picture" />
                 <ScalarProperty Name="Preview" ColumnName="Preview" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="GalleryId" ColumnName="GalleryId" /></MappingFragment></EntityTypeMapping></EntitySetMapping></EntityContainerMapping>
+                </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <AssociationSetMapping Name="GalleryImage" TypeName="gbua_superiModel.GalleryImage" StoreEntitySet="Images">
+            <EndProperty Name="Image">
+              <ScalarProperty Name="Id" ColumnName="Id" /></EndProperty>
+            <EndProperty Name="Gallery">
+              <ScalarProperty Name="Id" ColumnName="GalleryId" /></EndProperty></AssociationSetMapping></EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>
@@ -205,6 +217,9 @@
           <ConnectorPoint PointX="1.8534615384615383" PointY="3.8840950520833331" /></AssociationConnector>
         <EntityTypeShape EntityType="gbua_superiModel.Article" PointX="3.375" PointY="0.875" Width="1.5" Height="2.5783902994791674" />
         <EntityTypeShape EntityType="gbua_superiModel.Gallery" Width="1.5" PointX="0.75" PointY="4.75" Height="1.5956835937499996" />
-        <EntityTypeShape EntityType="gbua_superiModel.Image" Width="1.5" PointX="2.75" PointY="4.75" Height="1.7879850260416665" /></Diagram></edmx:Diagrams>
+        <EntityTypeShape EntityType="gbua_superiModel.Image" Width="1.5" PointX="3.625" PointY="4.75" Height="1.5923063151041665" />
+        <AssociationConnector Association="gbua_superiModel.GalleryImage">
+          <ConnectorPoint PointX="2.25" PointY="5.5461531575520837" />
+          <ConnectorPoint PointX="3.625" PointY="5.5461531575520837" /></AssociationConnector></Diagram></edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

@@ -2,8 +2,11 @@
 <%@ Import Namespace="Oksi.Models" %>
 <%@ Import Namespace="Oksi.Mvc.Ajax" %>
 
-<%= Ajax.DynamicCssInclude("/Content/fancybox/jquery.fancybox.css")%>
-<%= Ajax.ScriptInclude("/Scripts/jquery.fancybox.js") %>
+<%--<%= Ajax.DynamicCssInclude("/Content/fancybox/jquery.fancybox.css")%>
+<%= Ajax.ScriptInclude("/Scripts/jquery.fancybox.js") %>--%>
+
+
+
 &nbsp;
 <% 
     int itemsCount = Model.Count();
@@ -23,6 +26,7 @@
             <%= item.Name %>
         </div>
         <% 
+            ViewData["galleryId"] = item.Id;
             Html.RenderPartial("Images", item.Images);
         %>
         <div class="galleryComments">
@@ -32,5 +36,11 @@
             <div class="gallerySeparator"></div>
         <%} %>
     </div>
+    <% if(Request.IsAuthenticated){ %>
+        <div class="adminAction">
+            <%= Html.ActionLink("Удалить", "DeleteGallery", "Admin", new { id=item.Id }, new { @class = "adminConfirmLink" })%>
+        </div>
+    <%} %>
     <% } %>
+<%= Ajax.ScriptInclude("/Scripts/jquery.jcarousel.js")%>
 <%= Ajax.Create("ClientLibrary.GalleryExtender", new { id = "GalleryManager", serializedIdArray = ViewData["serializedGalleriesId"] }, null, "pageExtender")%>

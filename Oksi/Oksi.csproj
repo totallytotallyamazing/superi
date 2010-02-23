@@ -89,6 +89,7 @@
     </Compile>
     <Compile Include="Helpers\AjaxExtensions.cs" />
     <Compile Include="Helpers\CkExtensions.cs" />
+    <Compile Include="Helpers\IOHelper.cs" />
     <Compile Include="Helpers\JqueryUiExtensions.cs" />
     <Compile Include="Helpers\ResourceTracker.cs" />
     <Compile Include="Helpers\ScriptExtensions.cs" />
@@ -163,6 +164,7 @@
     <Content Include="Content\fancybox\fancy_title_over.png" />
     <Content Include="Content\fancybox\fancy_title_right.png" />
     <Content Include="Content\fancybox\jquery.fancybox.css" />
+    <Content Include="Content\gallery.css" />
     <Content Include="Content\img\bodyBg.jpg" />
     <Content Include="Content\img\headBg.jpg" />
     <Content Include="Content\img\logo.jpg" />
@@ -203,6 +205,7 @@
     <Content Include="Scripts\swfobject.js" />
     <Content Include="Scripts\webkit.js" />
     <Content Include="Views\Admin\AddEditGallery.ascx" />
+    <Content Include="Views\Admin\AddImage.ascx" />
     <Content Include="Views\Admin\EditText.aspx" />
     <Content Include="Views\Articles\Index.ascx" />
     <Content Include="Views\Gallery\Images.ascx" />
@@ -216,6 +219,8 @@
     <Content Include="Views\Shared\Index.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Content\Gallery\" />
+    <Folder Include="GalleryContent\" />
     <Folder Include="Songs\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

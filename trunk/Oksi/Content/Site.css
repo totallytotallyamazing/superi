@@ -29,3 +29,8 @@ img{border:0;}
 #footer1{margin-top:5px; background:#5c5c5c; width:auto; height:82px;}
 #footer2{margin-top:5px; width:auto; border:1px solid white; height:60px;}
 
+
+/*Gallery */
+
+.galleryTitle{padding-left:50px; font-size:20px;}
+.galleryComments{padding-left:50px; font-size:12px; color:#747171;}

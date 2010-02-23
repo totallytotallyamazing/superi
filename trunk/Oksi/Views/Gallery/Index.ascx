@@ -6,7 +6,6 @@
 <%= Ajax.ScriptInclude("/Scripts/jquery.fancybox.js") %>--%>
 
 
-
 &nbsp;
 <% 
     int itemsCount = Model.Count();
@@ -24,13 +23,17 @@
     <div class="gallery">
         <div class="galleryTitle">
             <%= item.Name %>
+                <% if(Request.IsAuthenticated){ %>
+            <%= Html.ActionLink("Редактировать", "AddEditGallery", "Admin", new { id = item.Id }, new { @class = "adminLink" })%>
+            <%} %>
+
         </div>
         <% 
             ViewData["galleryId"] = item.Id;
             Html.RenderPartial("Images", item.Images);
         %>
         <div class="galleryComments">
-            <%= item.Comments %>
+            <%= item.Comments.Replace(Environment.NewLine, "<br />") %>
         </div>
         <%if (i < itemsCount - 1){ %>
             <div class="gallerySeparator"></div>
@@ -42,5 +45,4 @@
         </div>
     <%} %>
     <% } %>
-<%= Ajax.ScriptInclude("/Scripts/jquery.jcarousel.js")%>
 <%= Ajax.Create("ClientLibrary.GalleryExtender", new { id = "GalleryManager", serializedIdArray = ViewData["serializedGalleriesId"] }, null, "pageExtender")%>

@@ -1,8 +1,8 @@
 <%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<IEnumerable<Oksi.Models.Image>>" %>
 <%@ Import Namespace="Oksi.Models" %>
 <%@ Import Namespace="Oksi.Mvc.Ajax" %>
-
-<% string id = "carousel_" + Model.First().GalleryId.ToString(); %>
+<%if (Model.Count() > 0){ %>
+<% string id = "carousel_" + Model.First().Gallery.Id.ToString(); %>
   <ul id="<%= id %>" class="jcarousel-skin-tango">
 <%foreach (var item in Model)
   {%>
@@ -13,3 +13,4 @@
     </li>  
   <%} %>
   </ul>
+  <%} %>

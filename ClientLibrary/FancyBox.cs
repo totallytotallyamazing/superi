@@ -24,7 +24,7 @@ namespace Jquery
 
     public partial class JQuery
     {
-        public JQuery Fancybox()
+        public JQuery Fancybox(FancyBoxOptions options)
         {
             return null;
         }

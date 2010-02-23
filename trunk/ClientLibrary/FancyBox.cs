@@ -22,11 +22,40 @@ namespace Jquery
         public string Scrolling;
     }
 
+    [Imported]
+    public class FancyBoxGlobals
+    {
+        public void ShowActivity(){}
+
+        public void HideActivity(){}
+
+        public void Next(){}
+
+        public void Prev(){}
+
+        public void Pos(int pos){}
+
+        public void Canel(){}
+
+        public void Close(){}
+
+        public void Resize(){}
+
+        public void Center() { }
+    }
+
     public partial class JQuery
     {
         public JQuery Fancybox(FancyBoxOptions options)
         {
             return null;
         }
+    }
+
+    [Imported]
+    [IgnoreNamespace]
+    public static class jQuery
+    {
+        public static FancyBoxGlobals Fancybox;
     }
 }

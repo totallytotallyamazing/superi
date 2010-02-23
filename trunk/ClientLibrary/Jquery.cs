@@ -17,7 +17,7 @@ namespace Jquery
     [GlobalMethods]
     [IgnoreNamespace]
     [Imported]
-    public static class JQueryProxy
+    public static partial class JQueryProxy
     {
         [PreserveCase]
         public static JQuery jQuery(string exp)

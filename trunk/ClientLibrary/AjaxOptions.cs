@@ -12,8 +12,8 @@ namespace ClientLibrary
         public string LoadingElementId;
         public string OnBegin;
         public AsyncRequestHandler OnComplete;
-        public string OnSuccess;
-        public string OnFailure;
+        public AsyncRequestHandler OnSuccess;
+        public AsyncRequestHandler OnFailure;
         public InsertionMode InsertionMode;
     }
 }

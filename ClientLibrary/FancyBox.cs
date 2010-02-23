@@ -4,22 +4,22 @@ namespace Jquery
 {
     public class FancyBoxOptions
     {
-        object Padding;
-        object Margin;
-        bool Opacity;
-        bool Modal;
-        bool Cyclic;
-        string Scrolling;
-        object Width;
-        object Height;
-        bool AutoScale = true;
-        bool AutoDimensions = true;
-        bool CenterOnScroll;
-        bool HideOnOverlayClick = true;
-        bool HideOnContentClick = true;
-        bool OverlayShow = true;
-        double OverlayOpacity = 0.3;
-        string OverlayColor
+        public object Padding;
+        public object Margin;
+        public object Width;
+        public object Height;
+        public bool Opacity;
+        public bool Modal;
+        public bool Cyclic;
+        public bool AutoScale = true;
+        public bool AutoDimensions = true;
+        public bool CenterOnScroll;
+        public bool HideOnOverlayClick = true;
+        public bool HideOnContentClick = true;
+        public bool OverlayShow = true;
+        public double OverlayOpacity = 0.3;
+        public string OverlayColor;
+        public string Scrolling;
     }
 
     public partial class JQuery

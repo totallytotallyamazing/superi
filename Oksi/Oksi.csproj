@@ -141,8 +141,13 @@
       <LastGenOutput>Resource.en-US.designer.cs</LastGenOutput>
     </Content>
     <Content Include="Content\carousel.skin.css" />
+    <Content Include="Content\fancybox\blank.gif" />
+    <Content Include="Content\fancybox\fancy_close.png" />
     <Content Include="Content\fancybox\fancy_closebox.png" />
     <Content Include="Content\fancybox\fancy_left.png" />
+    <Content Include="Content\fancybox\fancy_loading.png" />
+    <Content Include="Content\fancybox\fancy_nav_left.png" />
+    <Content Include="Content\fancybox\fancy_nav_right.png" />
     <Content Include="Content\fancybox\fancy_progress.png" />
     <Content Include="Content\fancybox\fancy_right.png" />
     <Content Include="Content\fancybox\fancy_shadow_e.png" />
@@ -155,6 +160,7 @@
     <Content Include="Content\fancybox\fancy_shadow_w.png" />
     <Content Include="Content\fancybox\fancy_title_left.png" />
     <Content Include="Content\fancybox\fancy_title_main.png" />
+    <Content Include="Content\fancybox\fancy_title_over.png" />
     <Content Include="Content\fancybox\fancy_title_right.png" />
     <Content Include="Content\fancybox\jquery.fancybox.css" />
     <Content Include="Content\img\bodyBg.jpg" />

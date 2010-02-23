@@ -12,4 +12,867 @@
  * Inspired by the "Carousel Component" by Bill Scott
  *   http://billwscott.com/carousel/
  */
-eval(function(p,a,c,k,e,r){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--)r[e(c)]=k[c]||e(c);k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('(9($){$.1s.A=9(o){z 4.14(9(){2H r(4,o)})};8 q={W:F,23:1,1G:1,u:7,15:3,16:7,1H:\'2I\',24:\'2J\',1i:0,B:7,1j:7,1I:7,25:7,26:7,27:7,28:7,29:7,2a:7,2b:7,1J:\'<N></N>\',1K:\'<N></N>\',2c:\'2d\',2e:\'2d\',1L:7,1M:7};$.A=9(e,o){4.5=$.17({},q,o||{});4.Q=F;4.D=7;4.H=7;4.t=7;4.R=7;4.S=7;4.O=!4.5.W?\'1N\':\'2f\';4.E=!4.5.W?\'2g\':\'2h\';8 a=\'\',1d=e.J.1d(\' \');1k(8 i=0;i<1d.K;i++){6(1d[i].2i(\'A-2j\')!=-1){$(e).1t(1d[i]);8 a=1d[i];1l}}6(e.2k==\'2K\'||e.2k==\'2L\'){4.t=$(e);4.D=4.t.18();6(4.D.1m(\'A-H\')){6(!4.D.18().1m(\'A-D\'))4.D=4.D.B(\'<N></N>\');4.D=4.D.18()}X 6(!4.D.1m(\'A-D\'))4.D=4.t.B(\'<N></N>\').18()}X{4.D=$(e);4.t=$(e).2M(\'>2l,>2m,N>2l,N>2m\')}6(a!=\'\'&&4.D.18()[0].J.2i(\'A-2j\')==-1)4.D.B(\'<N 2N=" \'+a+\'"></N>\');4.H=4.t.18();6(!4.H.K||!4.H.1m(\'A-H\'))4.H=4.t.B(\'<N></N>\').18();4.S=$(\'.A-11\',4.D);6(4.S.u()==0&&4.5.1K!=7)4.S=4.H.1u(4.5.1K).11();4.S.V(4.J(\'A-11\'));4.R=$(\'.A-19\',4.D);6(4.R.u()==0&&4.5.1J!=7)4.R=4.H.1u(4.5.1J).11();4.R.V(4.J(\'A-19\'));4.H.V(4.J(\'A-H\'));4.t.V(4.J(\'A-t\'));4.D.V(4.J(\'A-D\'));8 b=4.5.16!=7?1n.1O(4.1o()/4.5.16):7;8 c=4.t.2O(\'1v\');8 d=4;6(c.u()>0){8 f=0,i=4.5.1G;c.14(9(){d.1P(4,i++);f+=d.T(4,b)});4.t.y(4.O,f+\'U\');6(!o||o.u===L)4.5.u=c.u()}4.D.y(\'1w\',\'1x\');4.R.y(\'1w\',\'1x\');4.S.y(\'1w\',\'1x\');4.2n=9(){d.19()};4.2o=9(){d.11()};4.1Q=9(){d.2p()};6(4.5.1j!=7)4.5.1j(4,\'2q\');6($.2r.2s){4.1e(F,F);$(2t).1y(\'2P\',9(){d.1z()})}X 4.1z()};8 r=$.A;r.1s=r.2Q={A:\'0.2.3\'};r.1s.17=r.17=$.17;r.1s.17({1z:9(){4.C=7;4.G=7;4.Y=7;4.12=7;4.1a=F;4.1f=7;4.P=7;4.Z=F;6(4.Q)z;4.t.y(4.E,4.1A(4.5.1G)+\'U\');8 p=4.1A(4.5.23);4.Y=4.12=7;4.1p(p,F);$(2t).1R(\'2u\',4.1Q).1y(\'2u\',4.1Q)},2v:9(){4.t.2w();4.t.y(4.E,\'2R\');4.t.y(4.O,\'2S\');6(4.5.1j!=7)4.5.1j(4,\'2v\');4.1z()},2p:9(){6(4.P!=7&&4.Z)4.t.y(4.E,r.I(4.t.y(4.E))+4.P);4.P=7;4.Z=F;6(4.5.1I!=7)4.5.1I(4);6(4.5.16!=7){8 a=4;8 b=1n.1O(4.1o()/4.5.16),O=0,E=0;$(\'1v\',4.t).14(9(i){O+=a.T(4,b);6(i+1<a.C)E=O});4.t.y(4.O,O+\'U\');4.t.y(4.E,-E+\'U\')}4.15(4.C,F)},2T:9(){4.Q=1g;4.1e()},2U:9(){4.Q=F;4.1e()},u:9(s){6(s!=L){4.5.u=s;6(!4.Q)4.1e()}z 4.5.u},2V:9(i,a){6(a==L||!a)a=i;6(4.5.u!==7&&a>4.5.u)a=4.5.u;1k(8 j=i;j<=a;j++){8 e=4.M(j);6(!e.K||e.1m(\'A-1b-1B\'))z F}z 1g},M:9(i){z $(\'.A-1b-\'+i,4.t)},2x:9(i,s){8 e=4.M(i),1S=0,2x=0;6(e.K==0){8 c,e=4.1C(i),j=r.I(i);1q(c=4.M(--j)){6(j<=0||c.K){j<=0?4.t.2y(e):c.1T(e);1l}}}X 1S=4.T(e);e.1t(4.J(\'A-1b-1B\'));1U s==\'2W\'?e.2X(s):e.2w().2Y(s);8 a=4.5.16!=7?1n.1O(4.1o()/4.5.16):7;8 b=4.T(e,a)-1S;6(i>0&&i<4.C)4.t.y(4.E,r.I(4.t.y(4.E))-b+\'U\');4.t.y(4.O,r.I(4.t.y(4.O))+b+\'U\');z e},1V:9(i){8 e=4.M(i);6(!e.K||(i>=4.C&&i<=4.G))z;8 d=4.T(e);6(i<4.C)4.t.y(4.E,r.I(4.t.y(4.E))+d+\'U\');e.1V();4.t.y(4.O,r.I(4.t.y(4.O))-d+\'U\')},19:9(){4.1D();6(4.P!=7&&!4.Z)4.1W(F);X 4.15(((4.5.B==\'1X\'||4.5.B==\'G\')&&4.5.u!=7&&4.G==4.5.u)?1:4.C+4.5.15)},11:9(){4.1D();6(4.P!=7&&4.Z)4.1W(1g);X 4.15(((4.5.B==\'1X\'||4.5.B==\'C\')&&4.5.u!=7&&4.C==1)?4.5.u:4.C-4.5.15)},1W:9(b){6(4.Q||4.1a||!4.P)z;8 a=r.I(4.t.y(4.E));!b?a-=4.P:a+=4.P;4.Z=!b;4.Y=4.C;4.12=4.G;4.1p(a)},15:9(i,a){6(4.Q||4.1a)z;4.1p(4.1A(i),a)},1A:9(i){6(4.Q||4.1a)z;i=r.I(i);6(4.5.B!=\'1c\')i=i<1?1:(4.5.u&&i>4.5.u?4.5.u:i);8 a=4.C>i;8 b=r.I(4.t.y(4.E));8 f=4.5.B!=\'1c\'&&4.C<=1?1:4.C;8 c=a?4.M(f):4.M(4.G);8 j=a?f:f-1;8 e=7,l=0,p=F,d=0;1q(a?--j>=i:++j<i){e=4.M(j);p=!e.K;6(e.K==0){e=4.1C(j).V(4.J(\'A-1b-1B\'));c[a?\'1u\':\'1T\'](e)}c=e;d=4.T(e);6(p)l+=d;6(4.C!=7&&(4.5.B==\'1c\'||(j>=1&&(4.5.u==7||j<=4.5.u))))b=a?b+d:b-d}8 g=4.1o();8 h=[];8 k=0,j=i,v=0;8 c=4.M(i-1);1q(++k){e=4.M(j);p=!e.K;6(e.K==0){e=4.1C(j).V(4.J(\'A-1b-1B\'));c.K==0?4.t.2y(e):c[a?\'1u\':\'1T\'](e)}c=e;8 d=4.T(e);6(d==0){2Z(\'30: 31 1N/2f 32 1k 33. 34 35 36 37 38 39. 3a...\');z 0}6(4.5.B!=\'1c\'&&4.5.u!==7&&j>4.5.u)h.3b(e);X 6(p)l+=d;v+=d;6(v>=g)1l;j++}1k(8 x=0;x<h.K;x++)h[x].1V();6(l>0){4.t.y(4.O,4.T(4.t)+l+\'U\');6(a){b-=l;4.t.y(4.E,r.I(4.t.y(4.E))-l+\'U\')}}8 n=i+k-1;6(4.5.B!=\'1c\'&&4.5.u&&n>4.5.u)n=4.5.u;6(j>n){k=0,j=n,v=0;1q(++k){8 e=4.M(j--);6(!e.K)1l;v+=4.T(e);6(v>=g)1l}}8 o=n-k+1;6(4.5.B!=\'1c\'&&o<1)o=1;6(4.Z&&a){b+=4.P;4.Z=F}4.P=7;6(4.5.B!=\'1c\'&&n==4.5.u&&(n-k+1)>=1){8 m=r.10(4.M(n),!4.5.W?\'1r\':\'1Y\');6((v-m)>g)4.P=v-g-m}1q(i-->o)b+=4.T(4.M(i));4.Y=4.C;4.12=4.G;4.C=o;4.G=n;z b},1p:9(p,a){6(4.Q||4.1a)z;4.1a=1g;8 b=4;8 c=9(){b.1a=F;6(p==0)b.t.y(b.E,0);6(b.5.B==\'1X\'||b.5.B==\'G\'||b.5.u==7||b.G<b.5.u)b.2z();b.1e();b.1Z(\'2A\')};4.1Z(\'3c\');6(!4.5.1H||a==F){4.t.y(4.E,p+\'U\');c()}X{8 o=!4.5.W?{\'2g\':p}:{\'2h\':p};4.t.1p(o,4.5.1H,4.5.24,c)}},2z:9(s){6(s!=L)4.5.1i=s;6(4.5.1i==0)z 4.1D();6(4.1f!=7)z;8 a=4;4.1f=3d(9(){a.19()},4.5.1i*3e)},1D:9(){6(4.1f==7)z;3f(4.1f);4.1f=7},1e:9(n,p){6(n==L||n==7){8 n=!4.Q&&4.5.u!==0&&((4.5.B&&4.5.B!=\'C\')||4.5.u==7||4.G<4.5.u);6(!4.Q&&(!4.5.B||4.5.B==\'C\')&&4.5.u!=7&&4.G>=4.5.u)n=4.P!=7&&!4.Z}6(p==L||p==7){8 p=!4.Q&&4.5.u!==0&&((4.5.B&&4.5.B!=\'G\')||4.C>1);6(!4.Q&&(!4.5.B||4.5.B==\'G\')&&4.5.u!=7&&4.C==1)p=4.P!=7&&4.Z}8 a=4;4.R[n?\'1y\':\'1R\'](4.5.2c,4.2n)[n?\'1t\':\'V\'](4.J(\'A-19-1E\')).20(\'1E\',n?F:1g);4.S[p?\'1y\':\'1R\'](4.5.2e,4.2o)[p?\'1t\':\'V\'](4.J(\'A-11-1E\')).20(\'1E\',p?F:1g);6(4.R.K>0&&(4.R[0].1h==L||4.R[0].1h!=n)&&4.5.1L!=7){4.R.14(9(){a.5.1L(a,4,n)});4.R[0].1h=n}6(4.S.K>0&&(4.S[0].1h==L||4.S[0].1h!=p)&&4.5.1M!=7){4.S.14(9(){a.5.1M(a,4,p)});4.S[0].1h=p}},1Z:9(a){8 b=4.Y==7?\'2q\':(4.Y<4.C?\'19\':\'11\');4.13(\'25\',a,b);6(4.Y!==4.C){4.13(\'26\',a,b,4.C);4.13(\'27\',a,b,4.Y)}6(4.12!==4.G){4.13(\'28\',a,b,4.G);4.13(\'29\',a,b,4.12)}4.13(\'2a\',a,b,4.C,4.G,4.Y,4.12);4.13(\'2b\',a,b,4.Y,4.12,4.C,4.G)},13:9(a,b,c,d,e,f,g){6(4.5[a]==L||(1U 4.5[a]!=\'2B\'&&b!=\'2A\'))z;8 h=1U 4.5[a]==\'2B\'?4.5[a][b]:4.5[a];6(!$.3g(h))z;8 j=4;6(d===L)h(j,c,b);X 6(e===L)4.M(d).14(9(){h(j,4,d,c,b)});X{1k(8 i=d;i<=e;i++)6(i!==7&&!(i>=f&&i<=g))4.M(i).14(9(){h(j,4,i,c,b)})}},1C:9(i){z 4.1P(\'<1v></1v>\',i)},1P:9(e,i){8 a=$(e).V(4.J(\'A-1b\')).V(4.J(\'A-1b-\'+i));a.20(\'3h\',i);z a},J:9(c){z c+\' \'+c+(!4.5.W?\'-3i\':\'-W\')},T:9(e,d){8 a=e.2C!=L?e[0]:e;8 b=!4.5.W?a.1F+r.10(a,\'2D\')+r.10(a,\'1r\'):a.2E+r.10(a,\'2F\')+r.10(a,\'1Y\');6(d==L||b==d)z b;8 w=!4.5.W?d-r.10(a,\'2D\')-r.10(a,\'1r\'):d-r.10(a,\'2F\')-r.10(a,\'1Y\');$(a).y(4.O,w+\'U\');z 4.T(a)},1o:9(){z!4.5.W?4.H[0].1F-r.I(4.H.y(\'3j\'))-r.I(4.H.y(\'3k\')):4.H[0].2E-r.I(4.H.y(\'3l\'))-r.I(4.H.y(\'3m\'))},3n:9(i,s){6(s==L)s=4.5.u;z 1n.3o((((i-1)/s)-1n.3p((i-1)/s))*s)+1}});r.17({3q:9(d){z $.17(q,d||{})},10:9(e,p){6(!e)z 0;8 a=e.2C!=L?e[0]:e;6(p==\'1r\'&&$.2r.2s){8 b={\'1w\':\'1x\',\'3r\':\'3s\',\'1N\':\'1i\'},21,22;$.2G(a,b,9(){21=a.1F});b[\'1r\']=0;$.2G(a,b,9(){22=a.1F});z 22-21}z r.I($.y(a,p))},I:9(v){v=3t(v);z 3u(v)?0:v}})})(3v);',62,218,'||||this|options|if|null|var|function||||||||||||||||||||list|size||||css|return|jcarousel|wrap|first|container|lt|false|last|clip|intval|className|length|undefined|get|div|wh|tail|locked|buttonNext|buttonPrev|dimension|px|addClass|vertical|else|prevFirst|inTail|margin|prev|prevLast|callback|each|scroll|visible|extend|parent|next|animating|item|circular|split|buttons|timer|true|jcarouselstate|auto|initCallback|for|break|hasClass|Math|clipping|animate|while|marginRight|fn|removeClass|before|li|display|block|bind|setup|pos|placeholder|create|stopAuto|disabled|offsetWidth|offset|animation|reloadCallback|buttonNextHTML|buttonPrevHTML|buttonNextCallback|buttonPrevCallback|width|ceil|format|funcResize|unbind|old|after|typeof|remove|scrollTail|both|marginBottom|notify|attr|oWidth|oWidth2|start|easing|itemLoadCallback|itemFirstInCallback|itemFirstOutCallback|itemLastInCallback|itemLastOutCallback|itemVisibleInCallback|itemVisibleOutCallback|buttonNextEvent|click|buttonPrevEvent|height|left|top|indexOf|skin|nodeName|ul|ol|funcNext|funcPrev|reload|init|browser|safari|window|resize|reset|empty|add|prepend|startAuto|onAfterAnimation|object|jquery|marginLeft|offsetHeight|marginTop|swap|new|normal|swing|UL|OL|find|class|children|load|prototype|0px|10px|lock|unlock|has|string|html|append|alert|jCarousel|No|set|items|This|will|cause|an|infinite|loop|Aborting|push|onBeforeAnimation|setTimeout|1000|clearTimeout|isFunction|jcarouselindex|horizontal|borderLeftWidth|borderRightWidth|borderTopWidth|borderBottomWidth|index|round|floor|defaults|float|none|parseInt|isNaN|jQuery'.split('|'),0,{}))
+
+(function($) {
+    /**
+     * Creates a carousel for all matched elements.
+     *
+     * @example $("#mycarousel").jcarousel();
+     * @before <ul id="mycarousel" class="jcarousel-skin-name"><li>First item</li><li>Second item</li></ul>
+     * @result
+     *
+     * <div class="jcarousel-skin-name">
+     *   <div class="jcarousel-container">
+     *     <div disabled="disabled" class="jcarousel-prev jcarousel-prev-disabled"></div>
+     *     <div class="jcarousel-next"></div>
+     *     <div class="jcarousel-clip">
+     *       <ul class="jcarousel-list">
+     *         <li class="jcarousel-item-1">First item</li>
+     *         <li class="jcarousel-item-2">Second item</li>
+     *       </ul>
+     *     </div>
+     *   </div>
+     * </div>
+     *
+     * @name jcarousel
+     * @type jQuery
+     * @param Hash o A set of key/value pairs to set as configuration properties.
+     * @cat Plugins/jCarousel
+     */
+    $.fn.jcarousel = function(o) {
+        return this.each(function() {
+            new $jc(this, o);
+        });
+    };
+
+    // Default configuration properties.
+    var defaults = {
+        vertical: false,
+        start: 1,
+        offset: 1,
+        size: null,
+        scroll: 3,
+        visible: null,
+        animation: 'normal',
+        easing: 'swing',
+        auto: 0,
+        wrap: null,
+        initCallback: null,
+        reloadCallback: null,
+        itemLoadCallback: null,
+        itemFirstInCallback: null,
+        itemFirstOutCallback: null,
+        itemLastInCallback: null,
+        itemLastOutCallback: null,
+        itemVisibleInCallback: null,
+        itemVisibleOutCallback: null,
+        buttonNextHTML: '<div></div>',
+        buttonPrevHTML: '<div></div>',
+        buttonNextEvent: 'click',
+        buttonPrevEvent: 'click',
+        buttonNextCallback: null,
+        buttonPrevCallback: null
+    };
+
+    /**
+     * The jCarousel object.
+     *
+     * @constructor
+     * @name $.jcarousel
+     * @param Object e The element to create the carousel for.
+     * @param Hash o A set of key/value pairs to set as configuration properties.
+     * @cat Plugins/jCarousel
+     */
+    $.jcarousel = function(e, o) {
+        this.options    = $.extend({}, defaults, o || {});
+
+        this.locked     = false;
+
+        this.container  = null;
+        this.clip       = null;
+        this.list       = null;
+        this.buttonNext = null;
+        this.buttonPrev = null;
+
+        this.wh = !this.options.vertical ? 'width' : 'height';
+        this.lt = !this.options.vertical ? 'left' : 'top';
+
+        // Extract skin class
+        var skin = '', split = e.className.split(' ');
+
+        for (var i = 0; i < split.length; i++) {
+            if (split[i].indexOf('jcarousel-skin') != -1) {
+                $(e).removeClass(split[i]);
+                var skin = split[i];
+                break;
+            }
+        }
+
+        if (e.nodeName == 'UL' || e.nodeName == 'OL') {
+            this.list = $(e);
+            this.container = this.list.parent();
+
+            if (this.container.hasClass('jcarousel-clip')) {
+                if (!this.container.parent().hasClass('jcarousel-container'))
+                    this.container = this.container.wrap('<div></div>');
+
+                this.container = this.container.parent();
+            } else if (!this.container.hasClass('jcarousel-container'))
+                this.container = this.list.wrap('<div></div>').parent();
+        } else {
+            this.container = $(e);
+            this.list = $(e).find('>ul,>ol,div>ul,div>ol');
+        }
+
+        if (skin != '' && this.container.parent()[0].className.indexOf('jcarousel-skin') == -1)
+        	this.container.wrap('<div class=" '+ skin + '"></div>');
+
+        this.clip = this.list.parent();
+
+        if (!this.clip.length || !this.clip.hasClass('jcarousel-clip'))
+            this.clip = this.list.wrap('<div></div>').parent();
+
+        this.buttonPrev = $('.jcarousel-prev', this.container);
+
+        if (this.buttonPrev.size() == 0 && this.options.buttonPrevHTML != null)
+            this.buttonPrev = this.clip.before(this.options.buttonPrevHTML).prev();
+
+        this.buttonPrev.addClass(this.className('jcarousel-prev'));
+
+        this.buttonNext = $('.jcarousel-next', this.container);
+
+        if (this.buttonNext.size() == 0 && this.options.buttonNextHTML != null)
+            this.buttonNext = this.clip.before(this.options.buttonNextHTML).prev();
+
+        this.buttonNext.addClass(this.className('jcarousel-next'));
+
+        this.clip.addClass(this.className('jcarousel-clip'));
+        this.list.addClass(this.className('jcarousel-list'));
+        this.container.addClass(this.className('jcarousel-container'));
+
+        var di = this.options.visible != null ? Math.ceil(this.clipping() / this.options.visible) : null;
+        var li = this.list.children('li');
+
+        var self = this;
+
+        if (li.size() > 0) {
+            var wh = 0, i = this.options.offset;
+            li.each(function() {
+                self.format(this, i++);
+                wh += self.dimension(this, di);
+            });
+
+            this.list.css(this.wh, wh + 'px');
+
+            // Only set if not explicitly passed as option
+            if (!o || o.size === undefined)
+                this.options.size = li.size();
+        }
+
+        // For whatever reason, .show() does not work in Safari...
+        this.container.css('display', 'block');
+        this.buttonNext.css('display', 'block');
+        this.buttonPrev.css('display', 'block');
+
+        this.funcNext   = function() { self.next(); };
+        this.funcPrev   = function() { self.prev(); };
+        this.funcResize = function() { self.reload(); };
+
+        if (this.options.initCallback != null)
+            this.options.initCallback(this, 'init');
+
+        if ($.browser.safari) {
+            this.buttons(false, false);
+            $(window).bind('load', function() { self.setup(); });
+        } else
+            this.setup();
+    };
+
+    // Create shortcut for internal use
+    var $jc = $.jcarousel;
+
+    $jc.fn = $jc.prototype = {
+        jcarousel: '0.2.3'
+    };
+
+    $jc.fn.extend = $jc.extend = $.extend;
+
+    $jc.fn.extend({
+        /**
+         * Setups the carousel.
+         *
+         * @name setup
+         * @type undefined
+         * @cat Plugins/jCarousel
+         */
+        setup: function() {
+            this.first     = null;
+            this.last      = null;
+            this.prevFirst = null;
+            this.prevLast  = null;
+            this.animating = false;
+            this.timer     = null;
+            this.tail      = null;
+            this.inTail    = false;
+
+            if (this.locked)
+                return;
+
+            this.list.css(this.lt, this.pos(this.options.offset) + 'px');
+            var p = this.pos(this.options.start);
+            this.prevFirst = this.prevLast = null;
+            this.animate(p, false);
+
+            $(window).unbind('resize', this.funcResize).bind('resize', this.funcResize);
+        },
+
+        /**
+         * Clears the list and resets the carousel.
+         *
+         * @name reset
+         * @type undefined
+         * @cat Plugins/jCarousel
+         */
+        reset: function() {
+            this.list.empty();
+
+            this.list.css(this.lt, '0px');
+            this.list.css(this.wh, '10px');
+
+            if (this.options.initCallback != null)
+                this.options.initCallback(this, 'reset');
+
+            this.setup();
+        },
+
+        /**
+         * Reloads the carousel and adjusts positions.
+         *
+         * @name reload
+         * @type undefined
+         * @cat Plugins/jCarousel
+         */
+        reload: function() {
+            if (this.tail != null && this.inTail)
+                this.list.css(this.lt, $jc.intval(this.list.css(this.lt)) + this.tail);
+
+            this.tail   = null;
+            this.inTail = false;
+
+            if (this.options.reloadCallback != null)
+                this.options.reloadCallback(this);
+
+            if (this.options.visible != null) {
+                var self = this;
+                var di = Math.ceil(this.clipping() / this.options.visible), wh = 0, lt = 0;
+                $('li', this.list).each(function(i) {
+                    wh += self.dimension(this, di);
+                    if (i + 1 < self.first)
+                        lt = wh;
+                });
+
+                this.list.css(this.wh, wh + 'px');
+                this.list.css(this.lt, -lt + 'px');
+            }
+
+            this.scroll(this.first, false);
+        },
+
+        /**
+         * Locks the carousel.
+         *
+         * @name lock
+         * @type undefined
+         * @cat Plugins/jCarousel
+         */
+        lock: function() {
+            this.locked = true;
+            this.buttons();
+        },
+
+        /**
+         * Unlocks the carousel.
+         *
+         * @name unlock
+         * @type undefined
+         * @cat Plugins/jCarousel
+         */
+        unlock: function() {
+            this.locked = false;
+            this.buttons();
+        },
+
+        /**
+         * Sets the size of the carousel.
+         *
+         * @name size
+         * @type undefined
+         * @param Number s The size of the carousel.
+         * @cat Plugins/jCarousel
+         */
+        size: function(s) {
+            if (s != undefined) {
+                this.options.size = s;
+                if (!this.locked)
+                    this.buttons();
+            }
+
+            return this.options.size;
+        },
+
+        /**
+         * Checks whether a list element exists for the given index (or index range).
+         *
+         * @name get
+         * @type bool
+         * @param Number i The index of the (first) element.
+         * @param Number i2 The index of the last element.
+         * @cat Plugins/jCarousel
+         */
+        has: function(i, i2) {
+            if (i2 == undefined || !i2)
+                i2 = i;
+
+            if (this.options.size !== null && i2 > this.options.size)
+            	i2 = this.options.size;
+
+            for (var j = i; j <= i2; j++) {
+                var e = this.get(j);
+                if (!e.length || e.hasClass('jcarousel-item-placeholder'))
+                    return false;
+            }
+
+            return true;
+        },
+
+        /**
+         * Returns a jQuery object with list element for the given index.
+         *
+         * @name get
+         * @type jQuery
+         * @param Number i The index of the element.
+         * @cat Plugins/jCarousel
+         */
+        get: function(i) {
+            return $('.jcarousel-item-' + i, this.list);
+        },
+
+        /**
+         * Adds an element for the given index to the list.
+         * If the element already exists, it updates the inner html.
+         * Returns the created element as jQuery object.
+         *
+         * @name add
+         * @type jQuery
+         * @param Number i The index of the element.
+         * @param String s The innerHTML of the element.
+         * @cat Plugins/jCarousel
+         */
+        add: function(i, s) {
+            var e = this.get(i), old = 0, add = 0;
+
+            if (e.length == 0) {
+                var c, e = this.create(i), j = $jc.intval(i);
+                while (c = this.get(--j)) {
+                    if (j <= 0 || c.length) {
+                        j <= 0 ? this.list.prepend(e) : c.after(e);
+                        break;
+                    }
+                }
+            } else
+                old = this.dimension(e);
+
+            e.removeClass(this.className('jcarousel-item-placeholder'));
+            typeof s == 'string' ? e.html(s) : e.empty().append(s);
+
+            var di = this.options.visible != null ? Math.ceil(this.clipping() / this.options.visible) : null;
+            var wh = this.dimension(e, di) - old;
+
+            if (i > 0 && i < this.first)
+                this.list.css(this.lt, $jc.intval(this.list.css(this.lt)) - wh + 'px');
+
+            this.list.css(this.wh, $jc.intval(this.list.css(this.wh)) + wh + 'px');
+
+            return e;
+        },
+
+        /**
+         * Removes an element for the given index from the list.
+         *
+         * @name remove
+         * @type undefined
+         * @param Number i The index of the element.
+         * @cat Plugins/jCarousel
+         */
+        remove: function(i) {
+            var e = this.get(i);
+
+            // Check if item exists and is not currently visible
+            if (!e.length || (i >= this.first && i <= this.last))
+                return;
+
+            var d = this.dimension(e);
+
+            if (i < this.first)
+                this.list.css(this.lt, $jc.intval(this.list.css(this.lt)) + d + 'px');
+
+            e.remove();
+
+            this.list.css(this.wh, $jc.intval(this.list.css(this.wh)) - d + 'px');
+        },
+
+        /**
+         * Moves the carousel forwards.
+         *
+         * @name next
+         * @type undefined
+         * @cat Plugins/jCarousel
+         */
+        next: function() {
+            this.stopAuto();
+
+            if (this.tail != null && !this.inTail)
+                this.scrollTail(false);
+            else
+                this.scroll(((this.options.wrap == 'both' || this.options.wrap == 'last') && this.options.size != null && this.last == this.options.size) ? 1 : this.first + this.options.scroll);
+        },
+
+        /**
+         * Moves the carousel backwards.
+         *
+         * @name prev
+         * @type undefined
+         * @cat Plugins/jCarousel
+         */
+        prev: function() {
+            this.stopAuto();
+
+            if (this.tail != null && this.inTail)
+                this.scrollTail(true);
+            else
+                this.scroll(((this.options.wrap == 'both' || this.options.wrap == 'first') && this.options.size != null && this.first == 1) ? this.options.size : this.first - this.options.scroll);
+        },
+
+        /**
+         * Scrolls the tail of the carousel.
+         *
+         * @name scrollTail
+         * @type undefined
+         * @param Bool b Whether scroll the tail back or forward.
+         * @cat Plugins/jCarousel
+         */
+        scrollTail: function(b) {
+            if (this.locked || this.animating || !this.tail)
+                return;
+
+            var pos  = $jc.intval(this.list.css(this.lt));
+
+            !b ? pos -= this.tail : pos += this.tail;
+            this.inTail = !b;
+
+            // Save for callbacks
+            this.prevFirst = this.first;
+            this.prevLast  = this.last;
+
+            this.animate(pos);
+        },
+
+        /**
+         * Scrolls the carousel to a certain position.
+         *
+         * @name scroll
+         * @type undefined
+         * @param Number i The index of the element to scoll to.
+         * @param Bool a Flag indicating whether to perform animation.
+         * @cat Plugins/jCarousel
+         */
+        scroll: function(i, a) {
+            if (this.locked || this.animating)
+                return;
+
+            this.animate(this.pos(i), a);
+        },
+
+        /**
+         * Prepares the carousel and return the position for a certian index.
+         *
+         * @name pos
+         * @type Number
+         * @param Number i The index of the element to scoll to.
+         * @cat Plugins/jCarousel
+         */
+        pos: function(i) {
+            if (this.locked || this.animating)
+                return;
+
+            i = $jc.intval(i);
+            if (this.options.wrap != 'circular')
+                i = i < 1 ? 1 : (this.options.size && i > this.options.size ? this.options.size : i);
+
+            var back = this.first > i;
+            var pos  = $jc.intval(this.list.css(this.lt));
+
+            // Create placeholders, new list width/height
+            // and new list position
+            var f = this.options.wrap != 'circular' && this.first <= 1 ? 1 : this.first;
+            var c = back ? this.get(f) : this.get(this.last);
+            var j = back ? f : f - 1;
+            var e = null, l = 0, p = false, d = 0;
+
+            while (back ? --j >= i : ++j < i) {
+                e = this.get(j);
+                p = !e.length;
+                if (e.length == 0) {
+                    e = this.create(j).addClass(this.className('jcarousel-item-placeholder'));
+                    c[back ? 'before' : 'after' ](e);
+                }
+
+                c = e;
+                d = this.dimension(e);
+
+                if (p)
+                    l += d;
+
+                if (this.first != null && (this.options.wrap == 'circular' || (j >= 1 && (this.options.size == null || j <= this.options.size))))
+                    pos = back ? pos + d : pos - d;
+            }
+
+            // Calculate visible items
+            var clipping = this.clipping();
+            var cache = [];
+            var visible = 0, j = i, v = 0;
+            var c = this.get(i - 1);
+
+            while (++visible) {
+                e = this.get(j);
+                p = !e.length;
+                if (e.length == 0) {
+                    e = this.create(j).addClass(this.className('jcarousel-item-placeholder'));
+                    // This should only happen on a next scroll
+                    c.length == 0 ? this.list.prepend(e) : c[back ? 'before' : 'after' ](e);
+                }
+
+                c = e;
+                var d = this.dimension(e);
+                if (d == 0) {
+                //    alert('jCarousel: No width/height set for items. This will cause an infinite loop. Aborting...');
+                    return 0;
+                }
+
+                if (this.options.wrap != 'circular' && this.options.size !== null && j > this.options.size)
+                    cache.push(e);
+                else if (p)
+                    l += d;
+
+                v += d;
+
+                if (v >= clipping)
+                    break;
+
+                j++;
+            }
+
+             // Remove out-of-range placeholders
+            for (var x = 0; x < cache.length; x++)
+                cache[x].remove();
+
+            // Resize list
+            if (l > 0) {
+                this.list.css(this.wh, this.dimension(this.list) + l + 'px');
+
+                if (back) {
+                    pos -= l;
+                    this.list.css(this.lt, $jc.intval(this.list.css(this.lt)) - l + 'px');
+                }
+            }
+
+            // Calculate first and last item
+            var last = i + visible - 1;
+            if (this.options.wrap != 'circular' && this.options.size && last > this.options.size)
+                last = this.options.size;
+
+            if (j > last) {
+                visible = 0, j = last, v = 0;
+                while (++visible) {
+                    var e = this.get(j--);
+                    if (!e.length)
+                        break;
+                    v += this.dimension(e);
+                    if (v >= clipping)
+                        break;
+                }
+            }
+
+            var first = last - visible + 1;
+            if (this.options.wrap != 'circular' && first < 1)
+                first = 1;
+
+            if (this.inTail && back) {
+                pos += this.tail;
+                this.inTail = false;
+            }
+
+            this.tail = null;
+            if (this.options.wrap != 'circular' && last == this.options.size && (last - visible + 1) >= 1) {
+                var m = $jc.margin(this.get(last), !this.options.vertical ? 'marginRight' : 'marginBottom');
+                if ((v - m) > clipping)
+                    this.tail = v - clipping - m;
+            }
+
+            // Adjust position
+            while (i-- > first)
+                pos += this.dimension(this.get(i));
+
+            // Save visible item range
+            this.prevFirst = this.first;
+            this.prevLast  = this.last;
+            this.first     = first;
+            this.last      = last;
+
+            return pos;
+        },
+
+        /**
+         * Animates the carousel to a certain position.
+         *
+         * @name animate
+         * @type undefined
+         * @param mixed p Position to scroll to.
+         * @param Bool a Flag indicating whether to perform animation.
+         * @cat Plugins/jCarousel
+         */
+        animate: function(p, a) {
+            if (this.locked || this.animating)
+                return;
+
+            this.animating = true;
+
+            var self = this;
+            var scrolled = function() {
+                self.animating = false;
+
+                if (p == 0)
+                    self.list.css(self.lt,  0);
+
+                if (self.options.wrap == 'both' || self.options.wrap == 'last' || self.options.size == null || self.last < self.options.size)
+                    self.startAuto();
+
+                self.buttons();
+                self.notify('onAfterAnimation');
+            };
+
+            this.notify('onBeforeAnimation');
+
+            // Animate
+            if (!this.options.animation || a == false) {
+                this.list.css(this.lt, p + 'px');
+                scrolled();
+            } else {
+                var o = !this.options.vertical ? {'left': p} : {'top': p};
+                this.list.animate(o, this.options.animation, this.options.easing, scrolled);
+            }
+        },
+
+        /**
+         * Starts autoscrolling.
+         *
+         * @name auto
+         * @type undefined
+         * @param Number s Seconds to periodically autoscroll the content.
+         * @cat Plugins/jCarousel
+         */
+        startAuto: function(s) {
+            if (s != undefined)
+                this.options.auto = s;
+
+            if (this.options.auto == 0)
+                return this.stopAuto();
+
+            if (this.timer != null)
+                return;
+
+            var self = this;
+            this.timer = setTimeout(function() { self.next(); }, this.options.auto * 1000);
+        },
+
+        /**
+         * Stops autoscrolling.
+         *
+         * @name stopAuto
+         * @type undefined
+         * @cat Plugins/jCarousel
+         */
+        stopAuto: function() {
+            if (this.timer == null)
+                return;
+
+            clearTimeout(this.timer);
+            this.timer = null;
+        },
+
+        /**
+         * Sets the states of the prev/next buttons.
+         *
+         * @name buttons
+         * @type undefined
+         * @cat Plugins/jCarousel
+         */
+        buttons: function(n, p) {
+            if (n == undefined || n == null) {
+                var n = !this.locked && this.options.size !== 0 && ((this.options.wrap && this.options.wrap != 'first') || this.options.size == null || this.last < this.options.size);
+                if (!this.locked && (!this.options.wrap || this.options.wrap == 'first') && this.options.size != null && this.last >= this.options.size)
+                    n = this.tail != null && !this.inTail;
+            }
+
+            if (p == undefined || p == null) {
+                var p = !this.locked && this.options.size !== 0 && ((this.options.wrap && this.options.wrap != 'last') || this.first > 1);
+                if (!this.locked && (!this.options.wrap || this.options.wrap == 'last') && this.options.size != null && this.first == 1)
+                    p = this.tail != null && this.inTail;
+            }
+
+            var self = this;
+
+            this.buttonNext[n ? 'bind' : 'unbind'](this.options.buttonNextEvent, this.funcNext)[n ? 'removeClass' : 'addClass'](this.className('jcarousel-next-disabled')).attr('disabled', n ? false : true);
+            this.buttonPrev[p ? 'bind' : 'unbind'](this.options.buttonPrevEvent, this.funcPrev)[p ? 'removeClass' : 'addClass'](this.className('jcarousel-prev-disabled')).attr('disabled', p ? false : true);
+
+            if (this.buttonNext.length > 0 && (this.buttonNext[0].jcarouselstate == undefined || this.buttonNext[0].jcarouselstate != n) && this.options.buttonNextCallback != null) {
+                this.buttonNext.each(function() { self.options.buttonNextCallback(self, this, n); });
+                this.buttonNext[0].jcarouselstate = n;
+            }
+
+            if (this.buttonPrev.length > 0 && (this.buttonPrev[0].jcarouselstate == undefined || this.buttonPrev[0].jcarouselstate != p) && this.options.buttonPrevCallback != null) {
+                this.buttonPrev.each(function() { self.options.buttonPrevCallback(self, this, p); });
+                this.buttonPrev[0].jcarouselstate = p;
+            }
+        },
+
+        notify: function(evt) {
+            var state = this.prevFirst == null ? 'init' : (this.prevFirst < this.first ? 'next' : 'prev');
+
+            // Load items
+            this.callback('itemLoadCallback', evt, state);
+
+            if (this.prevFirst !== this.first) {
+                this.callback('itemFirstInCallback', evt, state, this.first);
+                this.callback('itemFirstOutCallback', evt, state, this.prevFirst);
+            }
+
+            if (this.prevLast !== this.last) {
+                this.callback('itemLastInCallback', evt, state, this.last);
+                this.callback('itemLastOutCallback', evt, state, this.prevLast);
+            }
+
+            this.callback('itemVisibleInCallback', evt, state, this.first, this.last, this.prevFirst, this.prevLast);
+            this.callback('itemVisibleOutCallback', evt, state, this.prevFirst, this.prevLast, this.first, this.last);
+        },
+
+        callback: function(cb, evt, state, i1, i2, i3, i4) {
+            if (this.options[cb] == undefined || (typeof this.options[cb] != 'object' && evt != 'onAfterAnimation'))
+                return;
+
+            var callback = typeof this.options[cb] == 'object' ? this.options[cb][evt] : this.options[cb];
+
+            if (!$.isFunction(callback))
+                return;
+
+            var self = this;
+
+            if (i1 === undefined)
+                callback(self, state, evt);
+            else if (i2 === undefined)
+                this.get(i1).each(function() { callback(self, this, i1, state, evt); });
+            else {
+                for (var i = i1; i <= i2; i++)
+                    if (i !== null && !(i >= i3 && i <= i4))
+                        this.get(i).each(function() { callback(self, this, i, state, evt); });
+            }
+        },
+
+        create: function(i) {
+            return this.format('<li></li>', i);
+        },
+
+        format: function(e, i) {
+            var $e = $(e).addClass(this.className('jcarousel-item')).addClass(this.className('jcarousel-item-' + i));
+            $e.attr('jcarouselindex', i);
+            return $e;
+        },
+
+        className: function(c) {
+            return c + ' ' + c + (!this.options.vertical ? '-horizontal' : '-vertical');
+        },
+
+        dimension: function(e, d) {
+            var el = e.jquery != undefined ? e[0] : e;
+
+            var old = !this.options.vertical ?
+                el.offsetWidth + $jc.margin(el, 'marginLeft') + $jc.margin(el, 'marginRight') :
+                el.offsetHeight + $jc.margin(el, 'marginTop') + $jc.margin(el, 'marginBottom');
+
+            if (d == undefined || old == d)
+                return old;
+
+            var w = !this.options.vertical ?
+                d - $jc.margin(el, 'marginLeft') - $jc.margin(el, 'marginRight') :
+                d - $jc.margin(el, 'marginTop') - $jc.margin(el, 'marginBottom');
+
+            $(el).css(this.wh, w + 'px');
+
+            return this.dimension(el);
+        },
+
+        clipping: function() {
+            return !this.options.vertical ?
+                this.clip[0].offsetWidth - $jc.intval(this.clip.css('borderLeftWidth')) - $jc.intval(this.clip.css('borderRightWidth')) :
+                this.clip[0].offsetHeight - $jc.intval(this.clip.css('borderTopWidth')) - $jc.intval(this.clip.css('borderBottomWidth'));
+        },
+
+        index: function(i, s) {
+            if (s == undefined)
+                s = this.options.size;
+
+            return Math.round((((i-1) / s) - Math.floor((i-1) / s)) * s) + 1;
+        }
+    });
+
+    $jc.extend({
+        /**
+         * Gets/Sets the global default configuration properties.
+         *
+         * @name defaults
+         * @descr Gets/Sets the global default configuration properties.
+         * @type Hash
+         * @param Hash d A set of key/value pairs to set as configuration properties.
+         * @cat Plugins/jCarousel
+         */
+        defaults: function(d) {
+            return $.extend(defaults, d || {});
+        },
+
+        margin: function(e, p) {
+            if (!e)
+                return 0;
+
+            var el = e.jquery != undefined ? e[0] : e;
+
+            if (p == 'marginRight' && $.browser.safari) {
+                var old = {'display': 'block', 'float': 'none', 'width': 'auto'}, oWidth, oWidth2;
+
+                $.swap(el, old, function() { oWidth = el.offsetWidth; });
+
+                old['marginRight'] = 0;
+                $.swap(el, old, function() { oWidth2 = el.offsetWidth; });
+
+                return oWidth2 - oWidth;
+            }
+
+            return $jc.intval($.css(el, p));
+        },
+
+        intval: function(v) {
+            v = parseInt(v);
+            return isNaN(v) ? 0 : v;
+        }
+    });
+
+})(jQuery);

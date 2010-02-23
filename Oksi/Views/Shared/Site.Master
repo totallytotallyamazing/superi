@@ -37,6 +37,7 @@
     <%=  Ajax.ScriptInclude("/Scripts/webkit.js") %>
     <%=  Ajax.ScriptInclude("/Scripts/jquery.jplayer.js")%>
     <%= Ajax.ScriptInclude("/Scripts/ClientLibrary.debug.js") %>
+    <%= Ajax.ScriptInclude("/Scripts/jquery.jcarousel.js")%>
     
     <div id="audioPlayer">
     </div>

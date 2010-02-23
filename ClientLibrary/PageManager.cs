@@ -25,6 +25,13 @@ namespace ClientLibrary
             }
         }
 
+        public static PageManager Current
+        {
+            get { return instanse; }
+        }
+
+
+        #region Events
         public event EventHandler ContentUpdated
         {
             add { this.Events.AddHandler("contentUpdated", value); }
@@ -36,45 +43,44 @@ namespace ClientLibrary
             add { this.Events.AddHandler("contentUpdating", value); }
             remove { this.Events.RemoveHandler("contentUpdating", value); }
         }
+        #endregion
 
-        public static PageManager Current
-        {
-            get { return instanse; }
-        }
 
         public PageManager()
             : base()
         {
         }
 
-        public override void Initialize()
+        public void GoToUrl(string url)
         {
-            instanse = this;
-            base.Initialize();
-            Application.EnableHistory = true;
-            Application.Navigate += new HistoryEventHandler(Application_Navigate);
-
+            Dictionary state = new Dictionary();
+            state["url"] = url;
+            RestoreSateFromHistory(state);
         }
 
-        public void OnLoad()
+        public static void AsyncRequest(string url, string verb, string body, DOMElement triggerElement, Object ajaxOptions)
         {
-            InitializeAsyncAnchors();
-            InvokeUpdated();
+            Script.Literal("Sys.Mvc.MvcHelpers.$1(url, verb, body, triggerElement, ajaxOptions)");
         }
 
-        void Application_Navigate(object sender, HistoryEventArgs e)
+        #region Private Methods
+        void CreateHistoryPoint(AnchorElement target, AjaxOptions options)
         {
-            if (!linkNavigation)
-            {
-                RestoreSateFromHistory(e.State);
-            }
+            Dictionary result = new Dictionary();
+            result["url"] = target.GetAttribute("href");
+            Application.AddHistoryPoint(result);
         }
 
         void RestoreSateFromHistory(Dictionary state)
         {
+            IvokeUpdating();
             AjaxOptions options = new AjaxOptions();
             options.UpdateTargetId = "content";
             options.InsertionMode = InsertionMode.Replace;
+            if (asyncRequestHandler == null)
+            {
+                asyncRequestHandler = new AsyncRequestHandler(AsyncRequestCompleted);
+            }
             options.OnComplete = asyncRequestHandler;
             if (state["url"] != null)
             {
@@ -87,11 +93,6 @@ namespace ClientLibrary
                 AsyncRequest("/Home/IndexContent", "post", "", null, options);
                 UpdateMenuSelection("*");
             }
-        }
-
-        public static void AsyncRequest(string url, string verb, string body, DOMElement triggerElement, Object ajaxOptions)
-        {
-            Script.Literal("Sys.Mvc.MvcHelpers.$1(url, verb, body, triggerElement, ajaxOptions)");
         }
 
         void InitializeAsyncAnchors()
@@ -108,13 +109,71 @@ namespace ClientLibrary
             DomEvent.AddHandler(logoLink, "click", new DomEventHandler(MenuItemClicked));
         }
 
-        void MenuItemClicked(DomEvent e)
+        void IvokeUpdating()
         {
             EventHandler handler = (EventHandler)this.Events.GetHandler("contentUpdating");
             if (handler != null)
             {
                 handler(this, new EventArgs());
             }
+
+        }
+
+        void InvokeUpdated()
+        {
+            EventHandler handler = (EventHandler)this.Events.GetHandler("contentUpdated");
+            if (handler != null)
+                handler(this, new EventArgs());
+        }
+
+        void UpdateMenuSelection(string url)
+        {
+            DOMElement target = (DOMElement)Utils.GetElementsByAttribute(Document.GetElementById("menuContainer"), "a", "href", url, null)[0];
+            if (target != null)
+                target = target.ParentNode;
+            JQuery items = JQueryProxy.jQuery("#menuContainer div");
+            if (target != null)
+            {
+                items = items.not(target);
+                DomElement.AddCssClass(target, "current");
+            }
+            items.removeClass("current");
+        }
+
+        void CreatePageExtenders()
+        {
+            //Array scripts = Utils.GetElementsByAttribute(null, "script", "rel", "pageExtender", null);
+            DOMElementCollection scripts = Document.GetElementById("content").GetElementsByTagName("script");
+            for (int i = 0; i < scripts.Length; i++)
+            {
+                ScriptElement script = (ScriptElement)scripts[i];
+                if (script != null)
+                {
+                    Script.Eval(script.InnerHTML);
+                    if (script.GetAttribute("src") != null)
+                    {
+                        ScriptElement newScript = (ScriptElement)Document.CreateElement("script");
+                        newScript.Type = "text/javascript";
+                        newScript.Src = (string)script.GetAttribute("src");
+                        Document.GetElementById("content").AppendChild(newScript);
+                    }
+                }
+            }
+        }
+        #endregion
+
+        #region EventHandlers
+        void Application_Navigate(object sender, HistoryEventArgs e)
+        {
+            if (!linkNavigation)
+            {
+                RestoreSateFromHistory(e.State);
+            }
+        }
+       
+        void MenuItemClicked(DomEvent e)
+        {
+            IvokeUpdating();
 
             AjaxOptions options = new AjaxOptions();
             options.UpdateTargetId = "content";
@@ -132,27 +191,6 @@ namespace ClientLibrary
             AsyncHyperlink.HandleClick(target, e, options);
         }
 
-        void UpdateMenuSelection(string url)
-        {
-            DOMElement target = (DOMElement)Utils.GetElementsByAttribute(Document.GetElementById("menuContainer"), "a", "href", url, null)[0];
-            if (target != null)
-                target = target.ParentNode;
-            JQuery items = JQueryProxy.jQuery("#menuContainer div");
-            if (target != null)
-            {
-                items = items.not(target);
-                DomElement.AddCssClass(target, "current");
-            }
-            items.removeClass("current");
-        }
-
-        void CreateHistoryPoint(AnchorElement target, AjaxOptions options)
-        {
-            Dictionary result = new Dictionary();
-            result["url"] = target.GetAttribute("href");
-            Application.AddHistoryPoint(result);
-        }
-
         public void AsyncRequestCompleted(AjaxContext param)
         {
             linkNavigation = false;
@@ -160,24 +198,21 @@ namespace ClientLibrary
             Window.SetTimeout(InvokeUpdated, 400);
         }
 
-        void CreatePageExtenders()
+        public override void Initialize()
         {
-            Array scripts = Utils.GetElementsByAttribute(null, "script", "rel", "pageExtender", null);
-            for (int i = 0; i < scripts.Length; i++)
-            {
-                ScriptElement script = (ScriptElement)scripts[i];
-                if (script != null)
-                {
-                    Script.Eval(script.InnerHTML);
-                }
-            }
+            instanse = this;
+            base.Initialize();
+            Application.EnableHistory = true;
+            Application.Navigate += new HistoryEventHandler(Application_Navigate);
+
         }
 
-        void InvokeUpdated()
+
+        public void OnLoad()
         {
-            EventHandler handler = (EventHandler)this.Events.GetHandler("contentUpdated");
-            if (handler != null)
-                handler(this, new EventArgs());
+            InitializeAsyncAnchors();
+            InvokeUpdated();
         }
+        #endregion
     }
 }

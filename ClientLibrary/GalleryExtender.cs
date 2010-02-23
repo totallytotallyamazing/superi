@@ -1,7 +1,9 @@
 ﻿using System;
+using System.DHTML;
 using Sys;
 using Sys.Serialization;
 using Jquery;
+using Sys.Mvc;
 
 namespace ClientLibrary
 {
@@ -20,7 +22,7 @@ namespace ClientLibrary
 
         private int[] GalleryIds
         {
-            get 
+            get
             {
                 if (SerializedIdArray != "")
                     return (int[])JavaScriptSerializer.Deserialize(SerializedIdArray);
@@ -32,7 +34,7 @@ namespace ClientLibrary
         public override void Initialize()
         {
             contentUpdating = new EventHandler(Current_ContentUpdating);
-            contentUpdated = new EventHandler(Current_ContentUpdated); ;
+            contentUpdated = new EventHandler(Current_ContentUpdated);
             PageManager.Current.ContentUpdating += contentUpdating;
             PageManager.Current.ContentUpdated += contentUpdated;
         }
@@ -42,28 +44,59 @@ namespace ClientLibrary
             if (PageManager.Current.IsAuthenticated)
             {
                 FancyBoxOptions options = new FancyBoxOptions();
-                options.Width = 150;
-                options.Height = 100;
+                options.Width = 200;
+                options.Height = 150;
                 options.HideOnContentClick = false;
                 options.HideOnOverlayClick = false;
                 options.AutoDimensions = false;
                 options.AutoScale = false;
                 options.Padding = 10;
+
                 JQueryProxy.jQuery(".adminLink").Fancybox(options);
+
+                JQueryProxy.jQuery(".adminConfirmLink").click(new BasicCallback(ConfirmClick));
             }
+        }
+
+
+        object ConfirmClick(object rawEvent, object stub)
+        {
+            Event evt = (Event)rawEvent;
+            AnchorElement element = (AnchorElement)evt.SrcElement;
+            if (Script.Confirm("Вы уверены?"))
+            {
+                AjaxOptions options = new AjaxOptions();
+                options.OnSuccess = delegate(AjaxContext context)
+                {
+                    PageManager.Current.GoToUrl("/Gallery");
+                };
+
+                PageManager.AsyncRequest(element.Href, "GET", "", element, options);
+            }
+            evt.ReturnValue = false;
+            Type.InvokeMethod(evt, "stopPropagation");
+            return false;
+        }
+
+        void ClearAdminHandlers()
+        {
+            JQueryProxy.jQuery(".adminConfirmLink").unbind("click", null);
         }
 
         void Current_ContentUpdated(object sender, EventArgs e)
         {
             if (GalleryIds != null)
             {
+                JQueryProxy.jQuery(".photoSession").Fancybox(null);
                 int length = GalleryIds.Length;
                 for (int i = 0; i < length; i++)
                 {
-                    string controlId = "carousel_" + GalleryIds[i];
+                    string controlId = "#carousel_" + GalleryIds[i];
                     JQueryProxy.jQuery(controlId).Jcarousel(null);
                 }
             }
+
+            JQueryProxy.jQuery("#content").css("padding", "0");
             InitializeAdminArea();
         }
 
@@ -71,7 +104,16 @@ namespace ClientLibrary
         {
             PageManager.Current.ContentUpdated -= contentUpdated;
             PageManager.Current.ContentUpdating -= contentUpdating;
+            JQueryProxy.jQuery("#content").css("padding", "");
+            ClearAdminHandlers();
             this.Dispose();
+        }
+
+        public static void Update()
+        {
+            jQuery.Fancybox.Close();
+
+            PageManager.Current.GoToUrl("/Gallery");
         }
     }
 }

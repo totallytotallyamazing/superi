@@ -41,7 +41,15 @@ namespace ClientLibrary
         {
             if (PageManager.Current.IsAuthenticated)
             {
-                JQueryProxy.jQuery(".adminLink").Fancybox();
+                FancyBoxOptions options = new FancyBoxOptions();
+                options.Width = 150;
+                options.Height = 100;
+                options.HideOnContentClick = false;
+                options.HideOnOverlayClick = false;
+                options.AutoDimensions = false;
+                options.AutoScale = false;
+                options.Padding = 10;
+                JQueryProxy.jQuery(".adminLink").Fancybox(options);
             }
         }
 

@@ -20,7 +20,7 @@ namespace ClientLibrary
         {
             get
             {
-                Script.Literal("if(IsAuthenticated)return true");
+                Script.Literal("if(typeof(window.IsAuthenticated) !=='undefined' && IsAuthenticated)return true");
                 return false;
             }
         }

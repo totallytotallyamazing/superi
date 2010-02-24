@@ -8,7 +8,7 @@
   {%>
     <li>
         <a href="/GalleryContent/<%= item.Picture %>" class="photoSession">
-            <img alt="" src="/GalleryContent/<%= item.Preview %>" /> 
+            <img rel="<%= item.Id %>" alt="" src="/GalleryContent/<%= item.Preview %>" /> 
         </a>
     </li>  
   <%} %>
@@ -16,4 +16,8 @@
   <%} %>
   <% if(Request.IsAuthenticated){ %>
     <%= Html.ActionLink("+", "AddImage", "Admin", new { id = ViewData["galleryId"] }, new { @class="adminLink iframe big" })%>
+    
+    <div id="imageDeleteFrame">
+        <a href="/Admin/DeleteImage?id=[id]" class="adminConfirmLink">Удалить</a>
+    </div>
   <%} %>

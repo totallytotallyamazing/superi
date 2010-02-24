@@ -6,7 +6,7 @@
 
 <div id="photoSession">
     <div id="sessionTitle">
-        Фотосессия для журнала L’OFFICIEL.
+        <%= Html.ActionLink("Фотосессия для журнала L’OFFICIEL.", "Index", "Gallery", null, new { rel = "async" })%>
     </div>
     <div id="sessionSubTitle">
         Краткая информация по фотосессии.

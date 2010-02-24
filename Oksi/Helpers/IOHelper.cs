@@ -11,7 +11,10 @@ namespace Oksi.Helpers
         public static void DeleteFile(string relativePath, string fileName)
         { 
             string absolutePath = HttpContext.Current.Server.MapPath(relativePath);
-            File.Delete(Path.Combine(absolutePath, fileName));
+            if (File.Exists(Path.Combine(absolutePath, fileName)))
+            {
+                File.Delete(Path.Combine(absolutePath, fileName));
+            }
         }
 
         public static string CreateAbsolutePath(string relativePath, string fileName)

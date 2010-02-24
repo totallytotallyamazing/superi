@@ -143,7 +143,7 @@ namespace Oksi.Controllers
             }
         }
 
-        public void DeleteImage(string fileName)
+        private void DeleteImage(string fileName)
         {
             IOHelper.DeleteFile("~/Content/GalleryContent", fileName);
         }

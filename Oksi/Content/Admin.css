@@ -1,0 +1,10 @@
+﻿#imageDeleteFrame
+{
+    width:141px;
+    height:141px;
+    position:absolute;
+    display:none;
+    z-index:1000;
+}
+
+#imageDeleteFrame a{color:Red;}

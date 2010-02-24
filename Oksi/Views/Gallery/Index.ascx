@@ -19,30 +19,10 @@
     <%} %>
     <% foreach (var item in Model) {
            i++;
-    %>
-    <div class="gallery">
-        <div class="galleryTitle">
-            <%= item.Name %>
-                <% if(Request.IsAuthenticated){ %>
-            <%= Html.ActionLink("Редактировать", "AddEditGallery", "Admin", new { id = item.Id }, new { @class = "adminLink" })%>
-            <%} %>
-
-        </div>
-        <% 
-            ViewData["galleryId"] = item.Id;
-            Html.RenderPartial("Images", item.Images);
-        %>
-        <div class="galleryComments">
-            <%= item.Comments.Replace(Environment.NewLine, "<br />") %>
-        </div>
-        <%if (i < itemsCount - 1){ %>
-            <div class="gallerySeparator"></div>
-        <%} %>
-    </div>
-    <% if(Request.IsAuthenticated){ %>
-        <div class="adminAction">
-            <%= Html.ActionLink("Удалить", "DeleteGallery", "Admin", new { id=item.Id }, new { @class = "adminConfirmLink" })%>
-        </div>
-    <%} %>
-    <% } %>
+           Html.RenderPartial("Gallery", item);
+        if (i < itemsCount - 1){
+            Response.Write("<div class=\"gallerySeparator\"></div>");
+        } 
+     } %>
+     
 <%= Ajax.Create("ClientLibrary.GalleryExtender", new { id = "GalleryManager", serializedIdArray = ViewData["serializedGalleriesId"] }, null, "pageExtender")%>

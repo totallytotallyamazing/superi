@@ -55,7 +55,7 @@
     <edmx:ConceptualModels>
       <Schema Namespace="gbua_tripsModel" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
         <EntityContainer Name="CarAdStorage">
-          <EntitySet Name="Brands" EntityType="gbua_tripsModel.Brands" />
+          <EntitySet Name="Brands" EntityType="gbua_tripsModel.Brand" />
           <EntitySet Name="CarAdDescriptions" EntityType="gbua_tripsModel.CarAdDescriptions" />
           <EntitySet Name="CarAdImages" EntityType="gbua_tripsModel.CarAdImages" />
           <EntitySet Name="CarAds" EntityType="gbua_tripsModel.CarAds" />
@@ -70,7 +70,7 @@
           <AssociationSet Name="CarAdsCarAdDescriptions" Association="gbua_tripsModel.CarAdsCarAdDescriptions">
             <End Role="CarAds" EntitySet="CarAds" />
             <End Role="CarAdDescriptions" EntitySet="CarAdDescriptions" /></AssociationSet></EntityContainer>
-        <EntityType Name="Brands">
+        <EntityType Name="Brand">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -109,7 +109,7 @@
           <NavigationProperty Name="Brands" Relationship="gbua_tripsModel.BrandsCarAds" FromRole="CarAds" ToRole="Brands" />
           <NavigationProperty Name="CarAdDescriptions" Relationship="gbua_tripsModel.CarAdsCarAdDescriptions" FromRole="CarAds" ToRole="CarAdDescriptions" /></EntityType>
         <Association Name="BrandsCarAds">
-          <End Type="gbua_tripsModel.Brands" Role="Brands" Multiplicity="1" />
+          <End Type="gbua_tripsModel.Brand" Role="Brands" Multiplicity="1" />
           <End Type="gbua_tripsModel.CarAds" Role="CarAds" Multiplicity="*" />
           </Association>
           <Association Name="CarAdsCarAdImages">
@@ -125,7 +125,7 @@
       <Mapping Space="C-S" xmlns="urn:schemas-microsoft-com:windows:storage:mapping:CS">
         <EntityContainerMapping StorageEntityContainer="gbua_tripsModelStoreContainer" CdmEntityContainer="CarAdStorage">
           <EntitySetMapping Name="Brands">
-            <EntityTypeMapping TypeName="IsTypeOf(gbua_tripsModel.Brands)">
+            <EntityTypeMapping TypeName="IsTypeOf(gbua_tripsModel.Brand)">
               <MappingFragment StoreEntitySet="Brands">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -202,7 +202,7 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram Name="CarAds">
-        <EntityTypeShape EntityType="gbua_tripsModel.Brands" Width="1.5" PointX="0.75" PointY="0.75" Height="1.2636116536458335" IsExpanded="true" />
+        <EntityTypeShape EntityType="gbua_tripsModel.Brand" Width="1.5" PointX="0.75" PointY="0.75" Height="1.2636116536458335" IsExpanded="true" />
         <EntityTypeShape EntityType="gbua_tripsModel.CarAdDescriptions" Width="1.5" PointX="7.25" PointY="0.75" Height="1.9210009765625" IsExpanded="true" />
         <EntityTypeShape EntityType="gbua_tripsModel.CarAdImages" Width="1.5" PointX="1.5" PointY="3.375" Height="1.5923063151041665" IsExpanded="true" />
         <EntityTypeShape EntityType="gbua_tripsModel.CarAds" Width="1.5" PointX="3.75" PointY="0.5" Height="1.7566536458333335" IsExpanded="true" />

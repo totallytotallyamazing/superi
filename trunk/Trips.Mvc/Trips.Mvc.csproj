@@ -76,6 +76,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CatalogueController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ImageController.cs" />
     <Compile Include="Controllers\WidgetsController.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -84,6 +85,18 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\AjaxExtensions.cs" />
+    <Compile Include="Helpers\CkExtensions.cs" />
+    <Compile Include="Helpers\GetOutputExtensions.cs" />
+    <Compile Include="Helpers\GraphicsHelper.cs" />
+    <Compile Include="Helpers\IOHelper.cs" />
+    <Compile Include="Helpers\JqueryUiExtensions.cs" />
+    <Compile Include="Helpers\LocaleHelper.cs" />
+    <Compile Include="Helpers\MailHelper.cs" />
+    <Compile Include="Helpers\ResourceTracker.cs" />
+    <Compile Include="Helpers\ScriptExtensions.cs" />
+    <Compile Include="Helpers\Session.cs" />
+    <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Models\CarAds.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

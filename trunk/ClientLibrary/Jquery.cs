@@ -32,10 +32,24 @@ namespace Jquery
         }
     }
 
+    [Imported]
+    public class Bounds
+    {
+        [IntrinsicProperty]
+        public int Top { get { return 0; } }
+
+        [IntrinsicProperty]
+        public int Left { get { return 0; } }
+
+    }
 
     [Imported]
     public partial class JQuery
     {
+        public Bounds position() { return null; }
+
+        public Bounds offset() { return null; }
+
         [PreserveCase]
         public JQuery flash(Dictionary options) { return null; }
         //methods goes here

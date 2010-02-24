@@ -97,8 +97,8 @@ namespace ClientLibrary
 
         void InitializeAsyncAnchors()
         {
-            DOMElement menuContainer = Document.GetElementById("menuContainer");
-            DOMElementCollection anchors = menuContainer.GetElementsByTagName("a");
+            //DOMElement menuContainer = ;//Document.GetElementById("menuContainer");
+            Array anchors = Utils.GetElementsByAttribute(Document.DocumentElement, "a", "rel", "async", null);
             for (int i = 0; i < anchors.Length; i++)
             {
                 AnchorElement anchor = (AnchorElement)anchors[i];

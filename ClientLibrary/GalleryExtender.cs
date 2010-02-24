@@ -4,6 +4,7 @@ using Sys;
 using Sys.Serialization;
 using Jquery;
 using Sys.Mvc;
+using Sys.UI;
 
 namespace ClientLibrary
 {
@@ -55,7 +56,36 @@ namespace ClientLibrary
                 JQueryProxy.jQuery(".adminLink").Fancybox(options);
 
                 JQueryProxy.jQuery(".adminConfirmLink").click(new BasicCallback(ConfirmClick));
+
+                JQueryProxy.jQuery(".photoSession img").mouseover(GalleryItemMouseOver);
             }
+        }
+
+        string lastId = "[id]";
+
+        object GalleryItemMouseOver(object rawEvent, object stub)
+        {
+            Event evt = (Event)rawEvent;
+            DOMElement target = (DOMElement)Type.GetField(evt, "target");
+            string imageId = (string)target.GetAttribute("rel");
+
+            DOMElement imageDeleteFrame = Document.GetElementById("imageDeleteFrame");
+
+//            Document.Body.AppendChild(imageDeleteFrame);
+
+            int left = JQueryProxy.jQuery(target).position().Left;
+            int top = JQueryProxy.jQuery(target).offset().Top;
+
+            imageDeleteFrame.Style.Left = left + 52 + "px";
+            imageDeleteFrame.Style.Top = top + "px";
+            imageDeleteFrame.Style.Display = "block";
+
+
+            AnchorElement anchor = (AnchorElement)imageDeleteFrame.Children[0];
+            anchor.Href = anchor.Href.Replace(lastId, (string)imageId);
+            lastId = (string)imageId;
+
+            return null;
         }
 
 
@@ -81,6 +111,7 @@ namespace ClientLibrary
         void ClearAdminHandlers()
         {
             JQueryProxy.jQuery(".adminConfirmLink").unbind("click", null);
+            JQueryProxy.jQuery(".photoSession img").unbind("mouseover", null);
         }
 
         void Current_ContentUpdated(object sender, EventArgs e)

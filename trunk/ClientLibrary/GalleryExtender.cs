@@ -58,6 +58,16 @@ namespace ClientLibrary
                 JQueryProxy.jQuery(".adminConfirmLink").click(new BasicCallback(ConfirmClick));
 
                 JQueryProxy.jQuery(".photoSession img").mouseover(GalleryItemMouseOver);
+
+                DOMElement oldDiv = Document.GetElementById("bodyImageDeleteFrame");
+                if (oldDiv != null)
+                {
+                    Document.Body.RemoveChild(oldDiv);
+                }
+
+                DOMElement imageDeleteFrame = Document.GetElementById("imageDeleteFrame");
+                imageDeleteFrame.ID = "bodyImageDeleteFrame";
+                Document.Body.AppendChild(imageDeleteFrame);
             }
         }
 
@@ -65,21 +75,18 @@ namespace ClientLibrary
 
         object GalleryItemMouseOver(object rawEvent, object stub)
         {
+
             Event evt = (Event)rawEvent;
             DOMElement target = (DOMElement)Type.GetField(evt, "target");
             string imageId = (string)target.GetAttribute("rel");
 
-            DOMElement imageDeleteFrame = Document.GetElementById("imageDeleteFrame");
-
-//            Document.Body.AppendChild(imageDeleteFrame);
-
-            int left = JQueryProxy.jQuery(target).position().Left;
+            int left = JQueryProxy.jQuery(target).offset().Left;
             int top = JQueryProxy.jQuery(target).offset().Top;
 
-            imageDeleteFrame.Style.Left = left + 52 + "px";
+            DOMElement imageDeleteFrame = Document.GetElementById("bodyImageDeleteFrame");
+            imageDeleteFrame.Style.Left = left + "px";
             imageDeleteFrame.Style.Top = top + "px";
             imageDeleteFrame.Style.Display = "block";
-
 
             AnchorElement anchor = (AnchorElement)imageDeleteFrame.Children[0];
             anchor.Href = anchor.Href.Replace(lastId, (string)imageId);

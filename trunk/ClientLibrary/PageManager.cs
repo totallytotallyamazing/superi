@@ -136,6 +136,7 @@ namespace ClientLibrary
             {
                 items = items.not(target);
                 DomElement.AddCssClass(target, "current");
+                DomElement.RemoveCssClass(target, "hover");
             }
             items.removeClass("current");
         }
@@ -207,10 +208,35 @@ namespace ClientLibrary
 
         }
 
+        private void InitializeMainMenu()
+        {
+            Array arr = (Array)(object)JQueryProxy.jQuery(".menuItem").not(".current");
+
+            for (int i = 0; i < arr.Length; i++)
+            {
+                DivElement elem = (DivElement)arr[i];
+                DomEvent.AddHandler(elem.FirstChild, "mouseover", delegate(DomEvent e)
+                {
+                    if (e.Target.ClassName != "current")
+                    {
+                        DomElement.AddCssClass(e.Target.ParentNode, "hover");
+                    }
+                });
+
+                DomEvent.AddHandler(elem.FirstChild, "mouseout", delegate(DomEvent e)
+                {
+                    if (e.Target.ClassName != "current")
+                    {
+                        DomElement.RemoveCssClass(e.Target.ParentNode, "hover");
+                    }
+                });
+            }
+        }
 
         public void OnLoad()
         {
             InitializeAsyncAnchors();
+            InitializeMainMenu();
             InvokeUpdated();
         }
         #endregion

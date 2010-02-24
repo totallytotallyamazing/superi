@@ -15,30 +15,30 @@
 
 (function($) {
     /**
-     * Creates a carousel for all matched elements.
-     *
-     * @example $("#mycarousel").jcarousel();
-     * @before <ul id="mycarousel" class="jcarousel-skin-name"><li>First item</li><li>Second item</li></ul>
-     * @result
-     *
-     * <div class="jcarousel-skin-name">
-     *   <div class="jcarousel-container">
-     *     <div disabled="disabled" class="jcarousel-prev jcarousel-prev-disabled"></div>
-     *     <div class="jcarousel-next"></div>
-     *     <div class="jcarousel-clip">
-     *       <ul class="jcarousel-list">
-     *         <li class="jcarousel-item-1">First item</li>
-     *         <li class="jcarousel-item-2">Second item</li>
-     *       </ul>
-     *     </div>
-     *   </div>
-     * </div>
-     *
-     * @name jcarousel
-     * @type jQuery
-     * @param Hash o A set of key/value pairs to set as configuration properties.
-     * @cat Plugins/jCarousel
-     */
+    * Creates a carousel for all matched elements.
+    *
+    * @example $("#mycarousel").jcarousel();
+    * @before <ul id="mycarousel" class="jcarousel-skin-name"><li>First item</li><li>Second item</li></ul>
+    * @result
+    *
+    * <div class="jcarousel-skin-name">
+    *   <div class="jcarousel-container">
+    *     <div disabled="disabled" class="jcarousel-prev jcarousel-prev-disabled"></div>
+    *     <div class="jcarousel-next"></div>
+    *     <div class="jcarousel-clip">
+    *       <ul class="jcarousel-list">
+    *         <li class="jcarousel-item-1">First item</li>
+    *         <li class="jcarousel-item-2">Second item</li>
+    *       </ul>
+    *     </div>
+    *   </div>
+    * </div>
+    *
+    * @name jcarousel
+    * @type jQuery
+    * @param Hash o A set of key/value pairs to set as configuration properties.
+    * @cat Plugins/jCarousel
+    */
     $.fn.jcarousel = function(o) {
         return this.each(function() {
             new $jc(this, o);
@@ -75,22 +75,22 @@
     };
 
     /**
-     * The jCarousel object.
-     *
-     * @constructor
-     * @name $.jcarousel
-     * @param Object e The element to create the carousel for.
-     * @param Hash o A set of key/value pairs to set as configuration properties.
-     * @cat Plugins/jCarousel
-     */
+    * The jCarousel object.
+    *
+    * @constructor
+    * @name $.jcarousel
+    * @param Object e The element to create the carousel for.
+    * @param Hash o A set of key/value pairs to set as configuration properties.
+    * @cat Plugins/jCarousel
+    */
     $.jcarousel = function(e, o) {
-        this.options    = $.extend({}, defaults, o || {});
+        this.options = $.extend({}, defaults, o || {});
 
-        this.locked     = false;
+        this.locked = false;
 
-        this.container  = null;
-        this.clip       = null;
-        this.list       = null;
+        this.container = null;
+        this.clip = null;
+        this.list = null;
         this.buttonNext = null;
         this.buttonPrev = null;
 
@@ -125,7 +125,7 @@
         }
 
         if (skin != '' && this.container.parent()[0].className.indexOf('jcarousel-skin') == -1)
-        	this.container.wrap('<div class=" '+ skin + '"></div>');
+            this.container.wrap('<div class=" ' + skin + '"></div>');
 
         this.clip = this.list.parent();
 
@@ -174,8 +174,8 @@
         this.buttonNext.css('display', 'block');
         this.buttonPrev.css('display', 'block');
 
-        this.funcNext   = function() { self.next(); };
-        this.funcPrev   = function() { self.prev(); };
+        this.funcNext = function() { self.next(); };
+        this.funcPrev = function() { self.prev(); };
         this.funcResize = function() { self.reload(); };
 
         if (this.options.initCallback != null)
@@ -183,7 +183,8 @@
 
         if ($.browser.safari) {
             this.buttons(false, false);
-            $(window).bind('load', function() { self.setup(); });
+            window.setTimeout(function() { self.setup(); }, 500);
+        //    $(window).bind('load', function() { self.setup(); });
         } else
             this.setup();
     };
@@ -199,21 +200,21 @@
 
     $jc.fn.extend({
         /**
-         * Setups the carousel.
-         *
-         * @name setup
-         * @type undefined
-         * @cat Plugins/jCarousel
-         */
+        * Setups the carousel.
+        *
+        * @name setup
+        * @type undefined
+        * @cat Plugins/jCarousel
+        */
         setup: function() {
-            this.first     = null;
-            this.last      = null;
+            this.first = null;
+            this.last = null;
             this.prevFirst = null;
-            this.prevLast  = null;
+            this.prevLast = null;
             this.animating = false;
-            this.timer     = null;
-            this.tail      = null;
-            this.inTail    = false;
+            this.timer = null;
+            this.tail = null;
+            this.inTail = false;
 
             if (this.locked)
                 return;
@@ -227,12 +228,12 @@
         },
 
         /**
-         * Clears the list and resets the carousel.
-         *
-         * @name reset
-         * @type undefined
-         * @cat Plugins/jCarousel
-         */
+        * Clears the list and resets the carousel.
+        *
+        * @name reset
+        * @type undefined
+        * @cat Plugins/jCarousel
+        */
         reset: function() {
             this.list.empty();
 
@@ -246,17 +247,17 @@
         },
 
         /**
-         * Reloads the carousel and adjusts positions.
-         *
-         * @name reload
-         * @type undefined
-         * @cat Plugins/jCarousel
-         */
+        * Reloads the carousel and adjusts positions.
+        *
+        * @name reload
+        * @type undefined
+        * @cat Plugins/jCarousel
+        */
         reload: function() {
             if (this.tail != null && this.inTail)
                 this.list.css(this.lt, $jc.intval(this.list.css(this.lt)) + this.tail);
 
-            this.tail   = null;
+            this.tail = null;
             this.inTail = false;
 
             if (this.options.reloadCallback != null)
@@ -279,37 +280,37 @@
         },
 
         /**
-         * Locks the carousel.
-         *
-         * @name lock
-         * @type undefined
-         * @cat Plugins/jCarousel
-         */
+        * Locks the carousel.
+        *
+        * @name lock
+        * @type undefined
+        * @cat Plugins/jCarousel
+        */
         lock: function() {
             this.locked = true;
             this.buttons();
         },
 
         /**
-         * Unlocks the carousel.
-         *
-         * @name unlock
-         * @type undefined
-         * @cat Plugins/jCarousel
-         */
+        * Unlocks the carousel.
+        *
+        * @name unlock
+        * @type undefined
+        * @cat Plugins/jCarousel
+        */
         unlock: function() {
             this.locked = false;
             this.buttons();
         },
 
         /**
-         * Sets the size of the carousel.
-         *
-         * @name size
-         * @type undefined
-         * @param Number s The size of the carousel.
-         * @cat Plugins/jCarousel
-         */
+        * Sets the size of the carousel.
+        *
+        * @name size
+        * @type undefined
+        * @param Number s The size of the carousel.
+        * @cat Plugins/jCarousel
+        */
         size: function(s) {
             if (s != undefined) {
                 this.options.size = s;
@@ -321,20 +322,20 @@
         },
 
         /**
-         * Checks whether a list element exists for the given index (or index range).
-         *
-         * @name get
-         * @type bool
-         * @param Number i The index of the (first) element.
-         * @param Number i2 The index of the last element.
-         * @cat Plugins/jCarousel
-         */
+        * Checks whether a list element exists for the given index (or index range).
+        *
+        * @name get
+        * @type bool
+        * @param Number i The index of the (first) element.
+        * @param Number i2 The index of the last element.
+        * @cat Plugins/jCarousel
+        */
         has: function(i, i2) {
             if (i2 == undefined || !i2)
                 i2 = i;
 
             if (this.options.size !== null && i2 > this.options.size)
-            	i2 = this.options.size;
+                i2 = this.options.size;
 
             for (var j = i; j <= i2; j++) {
                 var e = this.get(j);
@@ -346,28 +347,28 @@
         },
 
         /**
-         * Returns a jQuery object with list element for the given index.
-         *
-         * @name get
-         * @type jQuery
-         * @param Number i The index of the element.
-         * @cat Plugins/jCarousel
-         */
+        * Returns a jQuery object with list element for the given index.
+        *
+        * @name get
+        * @type jQuery
+        * @param Number i The index of the element.
+        * @cat Plugins/jCarousel
+        */
         get: function(i) {
             return $('.jcarousel-item-' + i, this.list);
         },
 
         /**
-         * Adds an element for the given index to the list.
-         * If the element already exists, it updates the inner html.
-         * Returns the created element as jQuery object.
-         *
-         * @name add
-         * @type jQuery
-         * @param Number i The index of the element.
-         * @param String s The innerHTML of the element.
-         * @cat Plugins/jCarousel
-         */
+        * Adds an element for the given index to the list.
+        * If the element already exists, it updates the inner html.
+        * Returns the created element as jQuery object.
+        *
+        * @name add
+        * @type jQuery
+        * @param Number i The index of the element.
+        * @param String s The innerHTML of the element.
+        * @cat Plugins/jCarousel
+        */
         add: function(i, s) {
             var e = this.get(i), old = 0, add = 0;
 
@@ -397,13 +398,13 @@
         },
 
         /**
-         * Removes an element for the given index from the list.
-         *
-         * @name remove
-         * @type undefined
-         * @param Number i The index of the element.
-         * @cat Plugins/jCarousel
-         */
+        * Removes an element for the given index from the list.
+        *
+        * @name remove
+        * @type undefined
+        * @param Number i The index of the element.
+        * @cat Plugins/jCarousel
+        */
         remove: function(i) {
             var e = this.get(i);
 
@@ -422,12 +423,12 @@
         },
 
         /**
-         * Moves the carousel forwards.
-         *
-         * @name next
-         * @type undefined
-         * @cat Plugins/jCarousel
-         */
+        * Moves the carousel forwards.
+        *
+        * @name next
+        * @type undefined
+        * @cat Plugins/jCarousel
+        */
         next: function() {
             this.stopAuto();
 
@@ -438,12 +439,12 @@
         },
 
         /**
-         * Moves the carousel backwards.
-         *
-         * @name prev
-         * @type undefined
-         * @cat Plugins/jCarousel
-         */
+        * Moves the carousel backwards.
+        *
+        * @name prev
+        * @type undefined
+        * @cat Plugins/jCarousel
+        */
         prev: function() {
             this.stopAuto();
 
@@ -454,38 +455,38 @@
         },
 
         /**
-         * Scrolls the tail of the carousel.
-         *
-         * @name scrollTail
-         * @type undefined
-         * @param Bool b Whether scroll the tail back or forward.
-         * @cat Plugins/jCarousel
-         */
+        * Scrolls the tail of the carousel.
+        *
+        * @name scrollTail
+        * @type undefined
+        * @param Bool b Whether scroll the tail back or forward.
+        * @cat Plugins/jCarousel
+        */
         scrollTail: function(b) {
             if (this.locked || this.animating || !this.tail)
                 return;
 
-            var pos  = $jc.intval(this.list.css(this.lt));
+            var pos = $jc.intval(this.list.css(this.lt));
 
             !b ? pos -= this.tail : pos += this.tail;
             this.inTail = !b;
 
             // Save for callbacks
             this.prevFirst = this.first;
-            this.prevLast  = this.last;
+            this.prevLast = this.last;
 
             this.animate(pos);
         },
 
         /**
-         * Scrolls the carousel to a certain position.
-         *
-         * @name scroll
-         * @type undefined
-         * @param Number i The index of the element to scoll to.
-         * @param Bool a Flag indicating whether to perform animation.
-         * @cat Plugins/jCarousel
-         */
+        * Scrolls the carousel to a certain position.
+        *
+        * @name scroll
+        * @type undefined
+        * @param Number i The index of the element to scoll to.
+        * @param Bool a Flag indicating whether to perform animation.
+        * @cat Plugins/jCarousel
+        */
         scroll: function(i, a) {
             if (this.locked || this.animating)
                 return;
@@ -494,13 +495,13 @@
         },
 
         /**
-         * Prepares the carousel and return the position for a certian index.
-         *
-         * @name pos
-         * @type Number
-         * @param Number i The index of the element to scoll to.
-         * @cat Plugins/jCarousel
-         */
+        * Prepares the carousel and return the position for a certian index.
+        *
+        * @name pos
+        * @type Number
+        * @param Number i The index of the element to scoll to.
+        * @cat Plugins/jCarousel
+        */
         pos: function(i) {
             if (this.locked || this.animating)
                 return;
@@ -510,7 +511,7 @@
                 i = i < 1 ? 1 : (this.options.size && i > this.options.size ? this.options.size : i);
 
             var back = this.first > i;
-            var pos  = $jc.intval(this.list.css(this.lt));
+            var pos = $jc.intval(this.list.css(this.lt));
 
             // Create placeholders, new list width/height
             // and new list position
@@ -524,7 +525,7 @@
                 p = !e.length;
                 if (e.length == 0) {
                     e = this.create(j).addClass(this.className('jcarousel-item-placeholder'));
-                    c[back ? 'before' : 'after' ](e);
+                    c[back ? 'before' : 'after'](e);
                 }
 
                 c = e;
@@ -549,13 +550,13 @@
                 if (e.length == 0) {
                     e = this.create(j).addClass(this.className('jcarousel-item-placeholder'));
                     // This should only happen on a next scroll
-                    c.length == 0 ? this.list.prepend(e) : c[back ? 'before' : 'after' ](e);
+                    c.length == 0 ? this.list.prepend(e) : c[back ? 'before' : 'after'](e);
                 }
 
                 c = e;
                 var d = this.dimension(e);
                 if (d == 0) {
-                //    alert('jCarousel: No width/height set for items. This will cause an infinite loop. Aborting...');
+                    //    alert('jCarousel: No width/height set for items. This will cause an infinite loop. Aborting...');
                     return 0;
                 }
 
@@ -572,7 +573,7 @@
                 j++;
             }
 
-             // Remove out-of-range placeholders
+            // Remove out-of-range placeholders
             for (var x = 0; x < cache.length; x++)
                 cache[x].remove();
 
@@ -625,22 +626,22 @@
 
             // Save visible item range
             this.prevFirst = this.first;
-            this.prevLast  = this.last;
-            this.first     = first;
-            this.last      = last;
+            this.prevLast = this.last;
+            this.first = first;
+            this.last = last;
 
             return pos;
         },
 
         /**
-         * Animates the carousel to a certain position.
-         *
-         * @name animate
-         * @type undefined
-         * @param mixed p Position to scroll to.
-         * @param Bool a Flag indicating whether to perform animation.
-         * @cat Plugins/jCarousel
-         */
+        * Animates the carousel to a certain position.
+        *
+        * @name animate
+        * @type undefined
+        * @param mixed p Position to scroll to.
+        * @param Bool a Flag indicating whether to perform animation.
+        * @cat Plugins/jCarousel
+        */
         animate: function(p, a) {
             if (this.locked || this.animating)
                 return;
@@ -652,7 +653,7 @@
                 self.animating = false;
 
                 if (p == 0)
-                    self.list.css(self.lt,  0);
+                    self.list.css(self.lt, 0);
 
                 if (self.options.wrap == 'both' || self.options.wrap == 'last' || self.options.size == null || self.last < self.options.size)
                     self.startAuto();
@@ -668,19 +669,19 @@
                 this.list.css(this.lt, p + 'px');
                 scrolled();
             } else {
-                var o = !this.options.vertical ? {'left': p} : {'top': p};
+                var o = !this.options.vertical ? { 'left': p} : { 'top': p };
                 this.list.animate(o, this.options.animation, this.options.easing, scrolled);
             }
         },
 
         /**
-         * Starts autoscrolling.
-         *
-         * @name auto
-         * @type undefined
-         * @param Number s Seconds to periodically autoscroll the content.
-         * @cat Plugins/jCarousel
-         */
+        * Starts autoscrolling.
+        *
+        * @name auto
+        * @type undefined
+        * @param Number s Seconds to periodically autoscroll the content.
+        * @cat Plugins/jCarousel
+        */
         startAuto: function(s) {
             if (s != undefined)
                 this.options.auto = s;
@@ -696,12 +697,12 @@
         },
 
         /**
-         * Stops autoscrolling.
-         *
-         * @name stopAuto
-         * @type undefined
-         * @cat Plugins/jCarousel
-         */
+        * Stops autoscrolling.
+        *
+        * @name stopAuto
+        * @type undefined
+        * @cat Plugins/jCarousel
+        */
         stopAuto: function() {
             if (this.timer == null)
                 return;
@@ -711,12 +712,12 @@
         },
 
         /**
-         * Sets the states of the prev/next buttons.
-         *
-         * @name buttons
-         * @type undefined
-         * @cat Plugins/jCarousel
-         */
+        * Sets the states of the prev/next buttons.
+        *
+        * @name buttons
+        * @type undefined
+        * @cat Plugins/jCarousel
+        */
         buttons: function(n, p) {
             if (n == undefined || n == null) {
                 var n = !this.locked && this.options.size !== 0 && ((this.options.wrap && this.options.wrap != 'first') || this.options.size == null || this.last < this.options.size);
@@ -784,7 +785,7 @@
             else {
                 for (var i = i1; i <= i2; i++)
                     if (i !== null && !(i >= i3 && i <= i4))
-                        this.get(i).each(function() { callback(self, this, i, state, evt); });
+                    this.get(i).each(function() { callback(self, this, i, state, evt); });
             }
         },
 
@@ -831,20 +832,20 @@
             if (s == undefined)
                 s = this.options.size;
 
-            return Math.round((((i-1) / s) - Math.floor((i-1) / s)) * s) + 1;
+            return Math.round((((i - 1) / s) - Math.floor((i - 1) / s)) * s) + 1;
         }
     });
 
     $jc.extend({
         /**
-         * Gets/Sets the global default configuration properties.
-         *
-         * @name defaults
-         * @descr Gets/Sets the global default configuration properties.
-         * @type Hash
-         * @param Hash d A set of key/value pairs to set as configuration properties.
-         * @cat Plugins/jCarousel
-         */
+        * Gets/Sets the global default configuration properties.
+        *
+        * @name defaults
+        * @descr Gets/Sets the global default configuration properties.
+        * @type Hash
+        * @param Hash d A set of key/value pairs to set as configuration properties.
+        * @cat Plugins/jCarousel
+        */
         defaults: function(d) {
             return $.extend(defaults, d || {});
         },
@@ -856,7 +857,7 @@
             var el = e.jquery != undefined ? e[0] : e;
 
             if (p == 'marginRight' && $.browser.safari) {
-                var old = {'display': 'block', 'float': 'none', 'width': 'auto'}, oWidth, oWidth2;
+                var old = { 'display': 'block', 'float': 'none', 'width': 'auto' }, oWidth, oWidth2;
 
                 $.swap(el, old, function() { oWidth = el.offsetWidth; });
 

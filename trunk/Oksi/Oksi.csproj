@@ -141,6 +141,7 @@
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>Resource.en-US.designer.cs</LastGenOutput>
     </Content>
+    <Content Include="Content\Admin.css" />
     <Content Include="Content\carousel.skin.css" />
     <Content Include="Content\fancybox\blank.gif" />
     <Content Include="Content\fancybox\fancy_close.png" />
@@ -212,6 +213,7 @@
     <Content Include="Views\Admin\AddImage.ascx" />
     <Content Include="Views\Admin\EditText.aspx" />
     <Content Include="Views\Articles\Index.ascx" />
+    <Content Include="Views\Gallery\Gallery.ascx" />
     <Content Include="Views\Gallery\Images.ascx" />
     <Content Include="Views\Gallery\Index.ascx" />
     <Content Include="Views\Home\Index.aspx" />

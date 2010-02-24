@@ -19,10 +19,12 @@ img{border:0;}
 #menuContainer{width:auto; height:48px; margin-top:1px; background:black;}
 #menuContainer div {float:left; line-height:48px; height:48px;color:#666262; padding:0 5px;}
 #menuContainer div a{color:#666262; text-decoration:none;}
-#menuContainer div a:hover{color:White; text-decoration:underline;}
+#menuContainer div a:hover{color:White; text-decoration:none;}
 .menuItem.current{background-color:#585858;}
 .menuItem.current a{color:White !important;}
 .menuItem.current a:hover{text-decoration:none !important;}
+
+.menuItem.hover{background:#C6C6C6;}
 
 #content{background:#C6C6C6; padding:6px; width:auto;}
 

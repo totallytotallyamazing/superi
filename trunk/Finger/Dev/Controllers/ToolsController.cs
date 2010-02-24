@@ -24,7 +24,5 @@ namespace Dev.Controllers
                 return Json(true);
             }
         }
-
-
     }
 }

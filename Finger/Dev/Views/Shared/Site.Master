@@ -20,6 +20,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
+    <link rel="shortcut icon" type="image/ico" href="/favicon.ico" />
     <meta name="Description" content="<%=ViewData["description"]%>"/>
     <meta name="Keywords" content="<%=ViewData["keywords"]%>"/>
     <title><%= Html.ResourceString("Elena") %> &mdash; <asp:ContentPlaceHolder ID="TitleContent" runat="server" /></title>

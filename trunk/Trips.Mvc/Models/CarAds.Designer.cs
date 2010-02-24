@@ -9,12 +9,12 @@
 //------------------------------------------------------------------------------
 
 [assembly: global::System.Data.Objects.DataClasses.EdmSchemaAttribute()]
-[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("gbua_tripsModel", "BrandsCarAds", "Brands", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips.Mvc.Models.Brands), "CarAds", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips.Mvc.Models.CarAds))]
+[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("gbua_tripsModel", "BrandsCarAds", "Brands", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips.Mvc.Models.Brand), "CarAds", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips.Mvc.Models.CarAds))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("gbua_tripsModel", "CarAdsCarAdImages", "CarAds", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips.Mvc.Models.CarAds), "CarAdImages", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips.Mvc.Models.CarAdImages))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("gbua_tripsModel", "CarAdsCarAdDescriptions", "CarAds", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips.Mvc.Models.CarAds), "CarAdDescriptions", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips.Mvc.Models.CarAdDescriptions))]
 
 // Original file name:
-// Generation date: 21.02.2010 20:47:10
+// Generation date: 24.02.2010 22:20:49
 namespace Trips.Mvc.Models
 {
     
@@ -51,18 +51,18 @@ namespace Trips.Mvc.Models
         /// <summary>
         /// There are no comments for Brands in the schema.
         /// </summary>
-        public global::System.Data.Objects.ObjectQuery<Brands> Brands
+        public global::System.Data.Objects.ObjectQuery<Brand> Brands
         {
             get
             {
                 if ((this._Brands == null))
                 {
-                    this._Brands = base.CreateQuery<Brands>("[Brands]");
+                    this._Brands = base.CreateQuery<Brand>("[Brands]");
                 }
                 return this._Brands;
             }
         }
-        private global::System.Data.Objects.ObjectQuery<Brands> _Brands;
+        private global::System.Data.Objects.ObjectQuery<Brand> _Brands;
         /// <summary>
         /// There are no comments for CarAdDescriptions in the schema.
         /// </summary>
@@ -111,9 +111,9 @@ namespace Trips.Mvc.Models
         /// <summary>
         /// There are no comments for Brands in the schema.
         /// </summary>
-        public void AddToBrands(Brands brands)
+        public void AddToBrands(Brand brand)
         {
-            base.AddObject("Brands", brands);
+            base.AddObject("Brands", brand);
         }
         /// <summary>
         /// There are no comments for CarAdDescriptions in the schema.
@@ -138,27 +138,27 @@ namespace Trips.Mvc.Models
         }
     }
     /// <summary>
-    /// There are no comments for gbua_tripsModel.Brands in the schema.
+    /// There are no comments for gbua_tripsModel.Brand in the schema.
     /// </summary>
     /// <KeyProperties>
     /// Id
     /// </KeyProperties>
-    [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="gbua_tripsModel", Name="Brands")]
+    [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="gbua_tripsModel", Name="Brand")]
     [global::System.Runtime.Serialization.DataContractAttribute(IsReference=true)]
     [global::System.Serializable()]
-    public partial class Brands : global::System.Data.Objects.DataClasses.EntityObject
+    public partial class Brand : global::System.Data.Objects.DataClasses.EntityObject
     {
         /// <summary>
-        /// Create a new Brands object.
+        /// Create a new Brand object.
         /// </summary>
         /// <param name="id">Initial value of Id.</param>
         /// <param name="name">Initial value of Name.</param>
-        public static Brands CreateBrands(long id, string name)
+        public static Brand CreateBrand(long id, string name)
         {
-            Brands brands = new Brands();
-            brands.Id = id;
-            brands.Name = name;
-            return brands;
+            Brand brand = new Brand();
+            brand.Id = id;
+            brand.Name = name;
+            return brand;
         }
         /// <summary>
         /// There are no comments for Property Id in the schema.
@@ -685,15 +685,15 @@ namespace Trips.Mvc.Models
         [global::System.Xml.Serialization.XmlIgnoreAttribute()]
         [global::System.Xml.Serialization.SoapIgnoreAttribute()]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public Brands Brands
+        public Brand Brands
         {
             get
             {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Brands>("gbua_tripsModel.BrandsCarAds", "Brands").Value;
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Brand>("gbua_tripsModel.BrandsCarAds", "Brands").Value;
             }
             set
             {
-                ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Brands>("gbua_tripsModel.BrandsCarAds", "Brands").Value = value;
+                ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Brand>("gbua_tripsModel.BrandsCarAds", "Brands").Value = value;
             }
         }
         /// <summary>
@@ -701,17 +701,17 @@ namespace Trips.Mvc.Models
         /// </summary>
         [global::System.ComponentModel.BrowsableAttribute(false)]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Data.Objects.DataClasses.EntityReference<Brands> BrandsReference
+        public global::System.Data.Objects.DataClasses.EntityReference<Brand> BrandsReference
         {
             get
             {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Brands>("gbua_tripsModel.BrandsCarAds", "Brands");
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Brand>("gbua_tripsModel.BrandsCarAds", "Brands");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<Brands>("gbua_tripsModel.BrandsCarAds", "Brands", value);
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<Brand>("gbua_tripsModel.BrandsCarAds", "Brands", value);
                 }
             }
         }

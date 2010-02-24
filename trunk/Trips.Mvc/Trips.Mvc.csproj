@@ -31,6 +31,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Web.Mvc, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Core">
@@ -219,6 +220,7 @@
     <Content Include="Scripts\MicrosoftAjaxWebForms.js" />
     <Content Include="Scripts\MicrosoftAjaxWebServices.js" />
     <Content Include="Scripts\Start.js" />
+    <Content Include="Views\Catalogue\Index.aspx" />
     <Content Include="Views\Widgets\News.ascx" />
     <Content Include="Views\Widgets\Smoking.ascx" />
   </ItemGroup>

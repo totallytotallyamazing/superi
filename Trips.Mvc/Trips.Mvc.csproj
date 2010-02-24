@@ -73,6 +73,8 @@
       <DependentUpon>WebResources.ru-RU.resx</DependentUpon>
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\CatalogueController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\WidgetsController.cs" />
     <Compile Include="Default.aspx.cs">

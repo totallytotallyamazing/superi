@@ -209,6 +209,10 @@
     <Content Include="Views\Widgets\News.ascx" />
     <Content Include="Views\Widgets\Smoking.ascx" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ImageCache\mainView\" />
+    <Folder Include="ImageCache\thumbnail\" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -11,20 +11,22 @@ namespace Oksi.Controllers
 {
     public class ArticlesController : Controller
     {
-        public ActionResult Index(int? page)
+        public ActionResult Index(int? id)
         {
-            ViewData["text"] = "Новости";
-            //using (DataStorage context = new DataStorage())
-            //{
-                //List<Article> articles = context.Articles.OrderByDescending(a => a.Date).Select(a => a).ToList();
-                return View("Index");
-           // }
+            using (DataStorage context = new DataStorage())
+            {
+                List<Article> articles = context.Articles.Where(a=>!id.HasValue || a.Id == id.Value).OrderByDescending(a => a.Date).Select(a => a).ToList();
+                return View("Index", articles);
+            }
         }
 
-        public ActionResult Press(int? page)
+        public ActionResult Press(int? id)
         {
-            ViewData["text"] = "Пресса";
-            return View("Index");
+            using (DataStorage context = new DataStorage())
+            {
+                List<Article> articles = context.Articles.Where(a => !id.HasValue || a.Id == id.Value).OrderByDescending(a => a.Date).Select(a => a).ToList();
+                return View("Index", articles);
+            }
         }
 
         public ActionResult Show(string name)

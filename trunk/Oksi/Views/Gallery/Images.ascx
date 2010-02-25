@@ -3,11 +3,11 @@
 <%@ Import Namespace="Oksi.Mvc.Ajax" %>
 <%if (Model.Count() > 0){ %>
 <% string id = "carousel_" + ViewData["galleryId"]; %>
-  <ul id="<%= id %>" class="jcarousel-skin-tango">
+  <ul class="jcarousel-skin-tango" id="<%= id %>" >
 <%foreach (var item in Model)
   {%>
     <li>
-        <a href="/GalleryContent/<%= item.Picture %>" class="photoSession">
+        <a href="/GalleryContent/<%= item.Picture %>" rel="<%= "images_" + ViewData["galleryId"] %>" class="photoSession">
             <img rel="<%= item.Id %>" alt="" src="/GalleryContent/<%= item.Preview %>" /> 
         </a>
     </li>  

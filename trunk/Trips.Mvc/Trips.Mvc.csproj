@@ -98,6 +98,7 @@
     <Compile Include="Helpers\ScriptExtensions.cs" />
     <Compile Include="Helpers\Session.cs" />
     <Compile Include="Helpers\Settings.cs" />
+    <Compile Include="Models\CarAdClasses.cs" />
     <Compile Include="Models\CarAds.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -220,11 +221,14 @@
     <Content Include="Scripts\MicrosoftAjaxWebForms.js" />
     <Content Include="Scripts\MicrosoftAjaxWebServices.js" />
     <Content Include="Scripts\Start.js" />
+    <Content Include="Views\Admin\Brands.aspx" />
+    <Content Include="Views\Catalogue\AdsNavigator.ascx" />
     <Content Include="Views\Catalogue\Index.aspx" />
     <Content Include="Views\Widgets\News.ascx" />
     <Content Include="Views\Widgets\Smoking.ascx" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Content\AdImages\" />
     <Folder Include="ImageCache\mainView\" />
     <Folder Include="ImageCache\thumbnail\" />
   </ItemGroup>

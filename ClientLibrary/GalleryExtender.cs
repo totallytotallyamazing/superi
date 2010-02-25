@@ -130,6 +130,8 @@ namespace ClientLibrary
                 for (int i = 0; i < length; i++)
                 {
                     string controlId = "#carousel_" + GalleryIds[i];
+                    JCarouselConfig config = new JCarouselConfig();
+                    config.Scroll = 1;
                     JQueryProxy.jQuery(controlId).Jcarousel(null);
                 }
             }

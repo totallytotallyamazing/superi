@@ -68,6 +68,7 @@
     <div id="container">
         <div id="leftSide">
             <% Html.RenderPartial("CarSearch"); %>
+            <asp:ContentPlaceHolder runat="server" ID="leftSide"></asp:ContentPlaceHolder>
             <% Html.RenderAction("Widget", "Widgets"); %>
         </div>
         <!--leftSide finish-->

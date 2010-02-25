@@ -12,10 +12,11 @@ namespace Trips.Mvc.Controllers
         //
         // GET: /Catalogue/
 
-        public ActionResult Index()
+        public ActionResult Index(int? id)
         {
+            Dictionary<string, List<KeyValuePair<string, int>>> brandClasses = new Dictionary<string, List<KeyValuePair<string, int>>>();
+            ViewData["brandClasses"] = brandClasses;
             return View();
         }
-
     }
 }

@@ -123,6 +123,24 @@
   <data name="Catalogue" xml:space="preserve">
     <value>Catalogue</value>
   </data>
+  <data name="ClassBusiness" xml:space="preserve">
+    <value>Business</value>
+  </data>
+  <data name="Classes" xml:space="preserve">
+    <value>Classes</value>
+  </data>
+  <data name="ClassMiddle" xml:space="preserve">
+    <value>Middle</value>
+  </data>
+  <data name="ClassMinivan" xml:space="preserve">
+    <value>Minivans</value>
+  </data>
+  <data name="ClassMultivan" xml:space="preserve">
+    <value>Multyvans</value>
+  </data>
+  <data name="ClassStandard" xml:space="preserve">
+    <value>Standard</value>
+  </data>
   <data name="Conditions" xml:space="preserve">
     <value>Conditions</value>
   </data>
@@ -137,6 +155,9 @@
   </data>
   <data name="LanguageSwitch" xml:space="preserve">
     <value>по-русски</value>
+  </data>
+  <data name="Lux" xml:space="preserve">
+    <value>Lux</value>
   </data>
   <data name="MBrand" xml:space="preserve">
     <value>M.brand</value>

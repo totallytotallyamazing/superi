@@ -215,7 +215,7 @@ namespace ClientLibrary
             for (int i = 0; i < arr.Length; i++)
             {
                 DivElement elem = (DivElement)arr[i];
-                DomEvent.AddHandler(elem.FirstChild, "mouseover", delegate(DomEvent e)
+                DomEvent.AddHandler(elem.GetElementsByTagName("a")[0], "mouseover", delegate(DomEvent e)
                 {
                     if (e.Target.ClassName != "current")
                     {
@@ -223,7 +223,7 @@ namespace ClientLibrary
                     }
                 });
 
-                DomEvent.AddHandler(elem.FirstChild, "mouseout", delegate(DomEvent e)
+                DomEvent.AddHandler(elem.GetElementsByTagName("a")[0], "mouseout", delegate(DomEvent e)
                 {
                     if (e.Target.ClassName != "current")
                     {

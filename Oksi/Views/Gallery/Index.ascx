@@ -5,8 +5,6 @@
 <%--<%= Ajax.DynamicCssInclude("/Content/fancybox/jquery.fancybox.css")%>
 <%= Ajax.ScriptInclude("/Scripts/jquery.fancybox.js") %>--%>
 
-
-&nbsp;
 <% 
     int itemsCount = Model.Count();
     int i = 0;
@@ -20,9 +18,8 @@
     <% foreach (var item in Model) {
            i++;
            Html.RenderPartial("Gallery", item);
-        if (i < itemsCount - 1){
+        if (i < itemsCount){
             Response.Write("<div class=\"gallerySeparator\"></div>");
         } 
      } %>
-     
 <%= Ajax.Create("ClientLibrary.GalleryExtender", new { id = "GalleryManager", serializedIdArray = ViewData["serializedGalleriesId"] }, null, "pageExtender")%>

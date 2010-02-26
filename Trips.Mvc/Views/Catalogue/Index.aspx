@@ -11,6 +11,9 @@
                 <td>
                     <%= Html.ActionLink("Марки машин", "Brands", "Admin") %>
                 </td>
+                <td>
+                    <%= Html.ActionLink("Добавть машину", "AddEditCarAd", "Admin") %>
+                </td>
             </tr>
         </table>
     <%} %>

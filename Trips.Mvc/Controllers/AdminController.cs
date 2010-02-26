@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 using Trips.Mvc.Models;
+using System.Web.UI;
 
 namespace Trips.Mvc.Controllers
 {
@@ -39,7 +40,7 @@ namespace Trips.Mvc.Controllers
                 brand.Name = name;
                 context.SaveChanges();
             }
-            return View();  
+            return View();
         }
 
         public ActionResult Brands()
@@ -112,6 +113,55 @@ namespace Trips.Mvc.Controllers
             }
 
             return RedirectToAction("Brands");
+        }
+
+        public ActionResult AddEditCarAd(int? id)
+        {
+            ViewData["id"] = id;
+
+            List<SelectListItem> classes = new List<SelectListItem>
+            {
+                new SelectListItem{ Text = "Стандарт", Value="1"},
+                new SelectListItem{ Text = "Средний", Value="2"},
+                new SelectListItem{ Text = "Бизнес", Value="3"},
+                new SelectListItem{ Text = "Минивены", Value="4"},
+                new SelectListItem{ Text = "Мультивены", Value="5"},
+            };
+
+            CarAd carAd = new CarAd();
+
+            using (CarAdStorage context = new CarAdStorage())
+            {
+                var brandsQuery = context.Brands
+                    .OrderBy(br => br.Name)
+                    .Select(br => new
+                    {
+                        Text = br.Name,
+                        Value = br.Id
+                    }).ToList();
+
+                List<SelectListItem> brands = brandsQuery
+                    .Select(br => new SelectListItem
+                    {
+                        Text = br.Text,
+                        Value = br.Value.ToString()
+                    }).ToList();
+
+                if (id.HasValue)
+                {
+                    carAd = context.CarAds.Include("Brand").Include("CarAdDescriptions").Where(ca => ca.Id == id.Value).First();
+                    ViewData["model"] = carAd.Model;
+                    brands.ForEach(br => br.Selected = (int.Parse(br.Value) == carAd.Brand.Id));
+                    classes.ForEach(cl => cl.Selected = (long.Parse(cl.Value) == carAd.Class));
+                    Dictionary<string, string> descriptions = carAd.CarAdDescriptions.ToDictionary(cad=>cad.Language, cad=>cad.Text);
+                    ViewData["description_ru"] = descriptions["ru-RU"];
+                    ViewData["description_en"] = descriptions["en-US"];
+                }
+
+                ViewData["brands"] = brands;
+                ViewData["classes"] = classes;
+            }
+            return View(carAd);
         }
     }
 }

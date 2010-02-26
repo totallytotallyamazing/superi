@@ -1,22 +1,20 @@
 <%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl" %>
 
 <script type="text/javascript">
-    Sys.require([Sys.scripts.jQuery], function() {
-        $(function() {
-            var boxWidth = $("#box").width();
-            var containerWidth = $("#header").width();
-            var padding = (containerWidth - boxWidth) / 2 - $("#headerLogo").width();
-            $("#box").css("padding-left", padding);
+    $(function() {
+        var boxWidth = $("#box").width();
+        var containerWidth = $("#header").width();
+        var padding = (containerWidth - boxWidth) / 2 - $("#headerLogo").width();
+        $("#box").css("padding-left", padding);
 
-            $(".headerMenuItem").blur();
-        })
+        $(".headerMenuItem").blur();
+    });
 
-        $(window).resize(function() {
-            var boxWidth = $("#box").width();
-            var containerWidth = $("#header").width();
-            var padding = (containerWidth - boxWidth) / 2 - $("#headerLogo").width();
-            $("#box").css("padding-left", padding);
-        })
+    $(window).resize(function() {
+        var boxWidth = $("#box").width();
+        var containerWidth = $("#header").width();
+        var padding = (containerWidth - boxWidth) / 2 - $("#headerLogo").width();
+        $("#box").css("padding-left", padding);
     });
 </script>
 

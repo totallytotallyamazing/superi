@@ -40,7 +40,7 @@ namespace Zamov.Controllers
                 string categoryIdsString = string.Join(",", categoryIds);
 
                 ObjectQuery<Group> groups = new ObjectQuery<Group>("SELECT VALUE G FROM Groups as G WHERE G.Category.Id IN{" + categoryIdsString + "}", context);
-                int[] onlineDealers = MembershipExtensions.GetOnlineDealers();
+                int[] onlineDealers = new int[0];//MembershipExtensions.GetOnlineDealers();
                 List<DealerPresentation> dealers = groups.Where(g => g.Dealer.Enabled)
                     .Where(g=>g.Dealer.Cities.Where(city=>city.Id == SystemSettings.CityId).Count()>0)
                     .Join(context.Translations

@@ -8,8 +8,9 @@
             <%= item.Title %> / <span class="newsDate"><%= item.Date.ToString("dd.MM.yyyy") %></span>
         </div>
         <div class="newsContent">
-            <%= Html.Image("~/Content/Artiles/News" + item.Image) %>
-            <%= item.Text %>
+            <%= Html.Image("~/Content/Articles/News/" + item.Image) %>
+            <%= item.Text.Replace("\r", "<br />") %>
         </div>
+        <div style="clear:both;"></div>
     </div>
 <%} %>

@@ -1,7 +1,5 @@
 <%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl" %>
 <%@ Import Namespace="Oksi.Mvc.Ajax" %>
-<%= Ajax.DynamicCssInclude("/Content/fancybox/jquery.fancybox.css")%>
-<%= Ajax.ScriptInclude("/Scripts/jquery.fancybox.js") %>
 <%= Ajax.Create("ClientLibrary.PhotoSessionExtender", new { id = "PageManager" }, null, "pageExtender")%>
 
 <div id="photoSession">

@@ -225,6 +225,7 @@
     <Content Include="Views\Shared\Index.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Content\Articles\News\" />
     <Folder Include="Content\Gallery\" />
     <Folder Include="GalleryContent\" />
     <Folder Include="Songs\" />

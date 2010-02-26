@@ -143,7 +143,6 @@ namespace ClientLibrary
 
         void CreatePageExtenders()
         {
-            //Array scripts = Utils.GetElementsByAttribute(null, "script", "rel", "pageExtender", null);
             DOMElementCollection scripts = Document.GetElementById("content").GetElementsByTagName("script");
             for (int i = 0; i < scripts.Length; i++)
             {

@@ -14,7 +14,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("gbua_tripsModel", "CarAdCarAdImage", "CarAd", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips.Mvc.Models.CarAd), "CarAdImage", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips.Mvc.Models.CarAdImage))]
 
 // Original file name:
-// Generation date: 25/02/2010 14:10:14
+// Generation date: 26/02/2010 13:22:06
 namespace Trips.Mvc.Models
 {
     
@@ -704,13 +704,13 @@ namespace Trips.Mvc.Models
         partial void OnYearChanging(long value);
         partial void OnYearChanged();
         /// <summary>
-        /// There are no comments for Brands in the schema.
+        /// There are no comments for Brand in the schema.
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("gbua_tripsModel", "BrandsCarAds", "Brands")]
         [global::System.Xml.Serialization.XmlIgnoreAttribute()]
         [global::System.Xml.Serialization.SoapIgnoreAttribute()]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public Brand Brands
+        public Brand Brand
         {
             get
             {
@@ -722,11 +722,11 @@ namespace Trips.Mvc.Models
             }
         }
         /// <summary>
-        /// There are no comments for Brands in the schema.
+        /// There are no comments for Brand in the schema.
         /// </summary>
         [global::System.ComponentModel.BrowsableAttribute(false)]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Data.Objects.DataClasses.EntityReference<Brand> BrandsReference
+        public global::System.Data.Objects.DataClasses.EntityReference<Brand> BrandReference
         {
             get
             {

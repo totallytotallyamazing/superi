@@ -105,7 +105,7 @@
           <Property Name="Id" Type="Int64" Nullable="false" />
           <Property Name="Model" Type="String" Nullable="false" />
           <Property Name="Year" Type="Int64" Nullable="false" />
-          <NavigationProperty Name="Brands" Relationship="gbua_tripsModel.BrandsCarAds" FromRole="CarAds" ToRole="Brands" />
+          <NavigationProperty Name="Brand" Relationship="gbua_tripsModel.BrandsCarAds" FromRole="CarAds" ToRole="Brands" />
           <NavigationProperty Name="CarAdDescriptions" Relationship="gbua_tripsModel.CarAdsCarAdDescriptions" FromRole="CarAds" ToRole="CarAdDescriptions" />
           <NavigationProperty Name="Images" Relationship="gbua_tripsModel.CarAdCarAdImage" FromRole="CarAd" ToRole="CarAdImage" /></EntityType>
         <Association Name="BrandsCarAds">

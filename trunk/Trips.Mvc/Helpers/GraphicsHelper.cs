@@ -15,7 +15,7 @@ namespace Trips.Mvc.Helpers
         {
             maxDimensions.Add("mainView", 400);
             maxDimensions.Add("thumbnail1", 150);
-            maxDimensions.Add("thumbnail1", 90);
+            maxDimensions.Add("thumbnail2", 90);
         }
 
         public static void ScaleImage(Bitmap image, int maxDimension, Stream saveTo)
@@ -61,7 +61,7 @@ namespace Trips.Mvc.Helpers
             }
         }
 
-        public static void CacheImage(string originalPath, string fileName, string cacheFolder)
+        private static void CacheImage(string originalPath, string fileName, string cacheFolder)
         { 
             string sourcePath = Path.Combine(HttpContext.Current.Server.MapPath(originalPath), fileName);
             Bitmap image;

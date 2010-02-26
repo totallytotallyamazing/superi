@@ -15,7 +15,9 @@ namespace Oksi.Controllers
         {
             using (DataStorage context = new DataStorage())
             {
-                List<Article> articles = context.Articles.Where(a=>!id.HasValue || a.Id == id.Value).OrderByDescending(a => a.Date).Select(a => a).ToList();
+                List<Article> articles = context.Articles
+                    .Where(a=>!id.HasValue || a.Id == id.Value).
+                    OrderByDescending(a => a.Date).Select(a => a).ToList();
                 return View("Index", articles);
             }
         }
@@ -24,7 +26,9 @@ namespace Oksi.Controllers
         {
             using (DataStorage context = new DataStorage())
             {
-                List<Article> articles = context.Articles.Where(a => !id.HasValue || a.Id == id.Value).OrderByDescending(a => a.Date).Select(a => a).ToList();
+                List<Article> articles = context.Articles
+                    .Where(a => !id.HasValue || a.Id == id.Value)
+                    .OrderByDescending(a => a.Date).Select(a => a).ToList();
                 return View("Index", articles);
             }
         }

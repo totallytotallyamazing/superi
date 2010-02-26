@@ -40,6 +40,10 @@
     <%= Ajax.ScriptInclude("/Scripts/ClientLibrary.debug.js") %>
     <%= Ajax.ScriptInclude("/Scripts/jquery.jcarousel.js")%>
     
+    <%= Ajax.DynamicCssInclude("/Content/fancybox/jquery.fancybox.css")%>
+    <%= Ajax.ScriptInclude("/Scripts/jquery.fancybox.js") %>
+
+    
     <div id="audioPlayer">
     </div>
     <%= Ajax.Create("ClientLibrary.AudioPlayer", null, "audioPlayer") %>

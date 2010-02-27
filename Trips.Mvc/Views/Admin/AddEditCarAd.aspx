@@ -6,17 +6,25 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    Класс: <%= Html.DropDownList("classes")%>Торговая марка: <%= Html.DropDownList("brands") %> <br />
-    Модель: <%= Html.TextBox("model")%>
-    <%
-        Dictionary<long, IEnumerable<CarAdImage>> item = new Dictionary<long, IEnumerable<CarAdImage>>();
-        item.Add(Model.Id, Model.Images);
-    %>
-    <% Html.RenderPartial("CarAdImages", item); %>
-    Описание на русском
-    <%= Html.TextArea("description_ru") %>
-    Описание на английском
-    <%= Html.TextArea("description_en") %>
+    <%= Html.ValidationSummary("Следующие параметры должны быть обязательно заполнены") %>
+    <%using(Html.BeginForm()){ %>
+        <%= Html.Hidden("id") %>
+        Класс: <%= Html.DropDownList("classId")%>Торговая марка: <%= Html.DropDownList("brandId") %> <br />
+        Модель: <%= Html.TextBox("model")%> <%= Html.ValidationMessage("model", "*", new { @class = "validationFailed" })%>
+        <%
+            Dictionary<long, IEnumerable<CarAdImage>> item = new Dictionary<long, IEnumerable<CarAdImage>>();
+            item.Add(Model.Id, Model.Images);
+        %>
+        <%if(ViewData["id"]!=null){ 
+            Html.RenderPartial("CarAdImages", item); 
+         }%>
+         <br />
+        Описание на русском: <%= Html.ValidationMessage("descriptionRu", "*", new { @class = "validationFailed" })%>
+        <%= Html.TextArea("descriptionRu") %>
+        Описание на английском: <%= Html.ValidationMessage("descriptionEn", "*", new { @class = "validationFailed" })%>
+        <%= Html.TextArea("descriptionEn") %>
+        <input type="submit" value="Сохранить" />
+    <%} %>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="leftSide" runat="server">
@@ -32,7 +40,7 @@
         
             $(function() {
                 $.fck.config = { path: '<%= VirtualPathUtility.ToAbsolute("~/Controls/fckeditor/") %>', config: { SkinPath: "skins/office2003/", Language: "RU", HtmlEncodeOutput: true} };
-                $("#description_ru, #description_en").fck({ toolbar: "Basic", height: 200 });
+                $("#descriptionRu, #descriptionEn").fck({ toolbar: "Basic", height: 200 });
             })
     </script>
 </asp:Content>

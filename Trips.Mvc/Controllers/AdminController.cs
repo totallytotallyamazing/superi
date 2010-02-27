@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 using Trips.Mvc.Models;
 using System.Web.UI;
+using System.Data;
 
 namespace Trips.Mvc.Controllers
 {
@@ -101,8 +102,8 @@ namespace Trips.Mvc.Controllers
                         DeleteImage(image.ImageSource);
                         context.DeleteObject(image);
                     }
-                    item.CarAdDescriptions.Load();
-                    foreach (var description in item.CarAdDescriptions)
+                    item.Descriptions.Load();
+                    foreach (var description in item.Descriptions)
                     {
                         context.DeleteObject(description);
                     }
@@ -115,7 +116,7 @@ namespace Trips.Mvc.Controllers
             return RedirectToAction("Brands");
         }
 
-        public ActionResult AddEditCarAd(int? id)
+        private void PrepareViewData(long? id, CarAd carAd)
         {
             ViewData["id"] = id;
 
@@ -128,7 +129,6 @@ namespace Trips.Mvc.Controllers
                 new SelectListItem{ Text = "Мультивены", Value="5"},
             };
 
-            CarAd carAd = new CarAd();
 
             using (CarAdStorage context = new CarAdStorage())
             {
@@ -153,15 +153,104 @@ namespace Trips.Mvc.Controllers
                     ViewData["model"] = carAd.Model;
                     brands.ForEach(br => br.Selected = (int.Parse(br.Value) == carAd.Brand.Id));
                     classes.ForEach(cl => cl.Selected = (long.Parse(cl.Value) == carAd.Class));
-                    Dictionary<string, string> descriptions = carAd.CarAdDescriptions.ToDictionary(cad=>cad.Language, cad=>cad.Text);
-                    ViewData["description_ru"] = descriptions["ru-RU"];
-                    ViewData["description_en"] = descriptions["en-US"];
+                    Dictionary<string, string> descriptions = carAd.Descriptions.ToDictionary(cad => cad.Language, cad => cad.Text);
+                    ViewData["descriptionRu"] = descriptions["ru-RU"];
+                    ViewData["descriptionEn"] = descriptions["en-US"];
                 }
 
-                ViewData["brands"] = brands;
-                ViewData["classes"] = classes;
+                ViewData["brandId"] = brands;
+                ViewData["classId"] = classes;
             }
+        }
+
+        public ActionResult AddEditCarAd(long? id)
+        {
+
+            CarAd carAd = new CarAd();
+
+            using (CarAdStorage context = new CarAdStorage())
+            {
+                if (id.HasValue)
+                {
+                    carAd = context.CarAds.Include("Brand").Include("CarAdDescriptions").Where(ca => ca.Id == id.Value).First();
+                }
+            }
+
+            PrepareViewData(id, carAd);
+
             return View(carAd);
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult AddEditCarAd(
+            long? id,
+            long classId,
+            long brandId,
+            string model,
+            string descriptionRu,
+            string descriptionEn
+            )
+        {
+            using (CarAdStorage context = new CarAdStorage())
+            {
+                CarAd carAd;
+                if (id.HasValue)
+                {
+                    carAd = context.CarAds.Include("Descriptions").Where(ca => ca.Id == id.Value).First();
+                }
+                else
+                {
+                    carAd = new CarAd();
+                    context.AddToCarAds(carAd);
+                }
+                if (ValidateCarAdd(model, descriptionRu, descriptionEn))
+                {
+
+
+                    carAd.Model = model;
+                    CarAdDescription descriptionEnItem;
+                    CarAdDescription descriptionRuItem;
+                    if (carAd.Descriptions.Count > 0)
+                    {
+                        descriptionEnItem = carAd.Descriptions.Where(d => d.Language == "en-US").First();
+                        descriptionRuItem = carAd.Descriptions.Where(d => d.Language == "ru-RU").First();
+                    }
+                    else
+                    {
+                        descriptionRuItem = new CarAdDescription();
+                        descriptionRuItem.Language = "ru-RU";
+                        context.AddToCarAdDescriptions(descriptionRuItem);
+                        descriptionEnItem = new CarAdDescription();
+                        descriptionRuItem.Language = "en-US";
+                        context.AddToCarAdDescriptions(descriptionEnItem);
+                    }
+
+                    descriptionEnItem.Text = HttpUtility.HtmlDecode(descriptionEn);
+                    descriptionRuItem.Text = HttpUtility.HtmlDecode(descriptionRu);
+                    carAd.BrandReference.EntityKey = new EntityKey("CarAdStorage.Brands", "Id", brandId);
+                    carAd.Class = classId;
+                    context.SaveChanges();
+                    if (!id.HasValue)
+                    {
+                        carAd.Descriptions.Add(descriptionEnItem);
+                        carAd.Descriptions.Add(descriptionRuItem);
+                        context.SaveChanges();
+                    }
+                }
+                PrepareViewData(id, carAd);
+                return View(carAd);
+            }
+        }
+
+        private bool ValidateCarAdd(string model, string descriptionRu, string descriptionEn)
+        {
+            if (string.IsNullOrEmpty(model))
+                ModelState.AddModelError("model", "Модель");
+            if (string.IsNullOrEmpty(descriptionRu))
+                ModelState.AddModelError("descriptionRu", "Описание на русском");
+            if (string.IsNullOrEmpty(descriptionEn))
+                ModelState.AddModelError("descriptionEn", "Описание на английском");
+            return ModelState.IsValid;
         }
     }
 }

@@ -12,7 +12,7 @@
                     <%= Html.ActionLink("Марки машин", "Brands", "Admin") %>
                 </td>
                 <td>
-                    <%= Html.ActionLink("Добавть машину", "AddEditCarAd", "Admin") %>
+                    <%= Html.ActionLink("Добавить машину", "AddEditCarAd", "Admin") %>
                 </td>
             </tr>
         </table>

@@ -221,7 +221,7 @@ namespace Trips.Mvc.Controllers
                         descriptionRuItem.Language = "ru-RU";
                         context.AddToCarAdDescriptions(descriptionRuItem);
                         descriptionEnItem = new CarAdDescription();
-                        descriptionRuItem.Language = "en-US";
+                        descriptionEnItem.Language = "en-US";
                         context.AddToCarAdDescriptions(descriptionEnItem);
                     }
 
@@ -230,12 +230,7 @@ namespace Trips.Mvc.Controllers
                     carAd.BrandReference.EntityKey = new EntityKey("CarAdStorage.Brands", "Id", brandId);
                     carAd.Class = classId;
                     context.SaveChanges();
-                    if (!id.HasValue)
-                    {
-                        carAd.Descriptions.Add(descriptionEnItem);
-                        carAd.Descriptions.Add(descriptionRuItem);
-                        context.SaveChanges();
-                    }
+
                 }
                 PrepareViewData(id, carAd);
                 return View(carAd);
@@ -251,6 +246,11 @@ namespace Trips.Mvc.Controllers
             if (string.IsNullOrEmpty(descriptionEn))
                 ModelState.AddModelError("descriptionEn", "Описание на английском");
             return ModelState.IsValid;
+        }
+
+        public ActionResult AddMe()
+        {
+            return RedirectToAction("AddEditCarAd");
         }
     }
 }

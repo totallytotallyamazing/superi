@@ -47,10 +47,10 @@ namespace Trips.Mvc.Helpers
 
         public static string GetCachedImage(string originalPath, string fileName, string cacheFolder)
         {
-            string result = Path.Combine("/ImageCache/" + cacheFolder, fileName);
+            string result = Path.Combine("/ImageCache/" + cacheFolder + "/", fileName);
             string cachePath = HttpContext.Current.Server.MapPath("~/ImageCache/" + cacheFolder);
             string cachedImagePath = Path.Combine(cachePath, fileName);
-            if (File.Exists(cachePath))
+            if (File.Exists(cachedImagePath))
             {
                 return result;
             }

@@ -168,4 +168,7 @@
   <data name="Request" xml:space="preserve">
     <value>Заявка</value>
   </data>
+  <data name="OurCatalogue" xml:space="preserve">
+    <value>Каталог наших автомобилей</value>
+  </data>
 </root>

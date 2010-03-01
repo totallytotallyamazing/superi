@@ -1,5 +1,6 @@
 *{margin:0; padding:0;}
 img{border:0;}
+.clearBoth{clear:both;}
 
 #lang{height:50px;min-width:1000px;width:auto;margin:0px 35px 0px 35px;}
 #langBox{height:16px;width:94px;float:right;background:url(img/eng.jpg) no-repeat;margin:0px 4px 0px 0px;}

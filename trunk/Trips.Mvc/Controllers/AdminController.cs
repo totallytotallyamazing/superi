@@ -7,6 +7,8 @@ using System.Web.Mvc.Ajax;
 using Trips.Mvc.Models;
 using System.Web.UI;
 using System.Data;
+using Trips.Mvc.Helpers;
+using System.IO;
 
 namespace Trips.Mvc.Controllers
 {
@@ -21,12 +23,12 @@ namespace Trips.Mvc.Controllers
             return View();
         }
 
+        #region Brands
         public ActionResult AddEditBrand(int? id)
         {
             ViewData["id"] = id;
             return View();
         }
-
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult AddEditBrand(int? id, string name)
         {
@@ -80,15 +82,6 @@ namespace Trips.Mvc.Controllers
             return RedirectToAction("Brands");
         }
 
-        private void DeleteImage(string name)
-        {
-            string imagePath = Server.MapPath("~/Content/AdImages/" + name);
-            if (System.IO.File.Exists(imagePath))
-            {
-                System.IO.File.Delete(imagePath);
-            }
-        }
-
         public ActionResult DeleteBrand(int id)
         {
             using (CarAdStorage context = new CarAdStorage())
@@ -115,6 +108,18 @@ namespace Trips.Mvc.Controllers
 
             return RedirectToAction("Brands");
         }
+        #endregion
+
+
+        private void DeleteImage(string name)
+        {
+            string imagePath = Server.MapPath("~/Content/AdImages/" + name);
+            if (System.IO.File.Exists(imagePath))
+            {
+                System.IO.File.Delete(imagePath);
+            }
+        }
+
 
         private void PrepareViewData(long? id, CarAd carAd)
         {
@@ -149,7 +154,6 @@ namespace Trips.Mvc.Controllers
 
                 if (id.HasValue)
                 {
-                    carAd = context.CarAds.Include("Brand").Include("CarAdDescriptions").Where(ca => ca.Id == id.Value).First();
                     ViewData["model"] = carAd.Model;
                     brands.ForEach(br => br.Selected = (int.Parse(br.Value) == carAd.Brand.Id));
                     classes.ForEach(cl => cl.Selected = (long.Parse(cl.Value) == carAd.Class));
@@ -172,7 +176,7 @@ namespace Trips.Mvc.Controllers
             {
                 if (id.HasValue)
                 {
-                    carAd = context.CarAds.Include("Brand").Include("CarAdDescriptions").Where(ca => ca.Id == id.Value).First();
+                    carAd = context.CarAds.Include("Brand").Include("Descriptions").Include("Images").Where(ca => ca.Id == id.Value).First();
                 }
             }
 
@@ -203,54 +207,80 @@ namespace Trips.Mvc.Controllers
                     carAd = new CarAd();
                     context.AddToCarAds(carAd);
                 }
-                if (ValidateCarAdd(model, descriptionRu, descriptionEn))
+
+                carAd.Model = model;
+                CarAdDescription descriptionEnItem;
+                CarAdDescription descriptionRuItem;
+                if (carAd.Descriptions.Count > 0)
                 {
-
-
-                    carAd.Model = model;
-                    CarAdDescription descriptionEnItem;
-                    CarAdDescription descriptionRuItem;
-                    if (carAd.Descriptions.Count > 0)
-                    {
-                        descriptionEnItem = carAd.Descriptions.Where(d => d.Language == "en-US").First();
-                        descriptionRuItem = carAd.Descriptions.Where(d => d.Language == "ru-RU").First();
-                    }
-                    else
-                    {
-                        descriptionRuItem = new CarAdDescription();
-                        descriptionRuItem.Language = "ru-RU";
-                        context.AddToCarAdDescriptions(descriptionRuItem);
-                        descriptionEnItem = new CarAdDescription();
-                        descriptionEnItem.Language = "en-US";
-                        context.AddToCarAdDescriptions(descriptionEnItem);
-                    }
-
-                    descriptionEnItem.Text = HttpUtility.HtmlDecode(descriptionEn);
-                    descriptionRuItem.Text = HttpUtility.HtmlDecode(descriptionRu);
-                    carAd.BrandReference.EntityKey = new EntityKey("CarAdStorage.Brands", "Id", brandId);
-                    carAd.Class = classId;
-                    context.SaveChanges();
-
+                    descriptionEnItem = carAd.Descriptions.Where(d => d.Language == "en-US").First();
+                    descriptionRuItem = carAd.Descriptions.Where(d => d.Language == "ru-RU").First();
                 }
-                PrepareViewData(id, carAd);
-                return View(carAd);
+                else
+                {
+                    descriptionRuItem = new CarAdDescription();
+                    descriptionRuItem.Language = "ru-RU";
+                    //context.AddToCarAdDescriptions(descriptionRuItem);
+                    carAd.Descriptions.Add(descriptionRuItem);
+                    descriptionEnItem = new CarAdDescription();
+                    descriptionEnItem.Language = "en-US";
+                  //  context.AddToCarAdDescriptions(descriptionEnItem);
+                    carAd.Descriptions.Add(descriptionEnItem);
+                }
+
+                descriptionEnItem.Text = HttpUtility.HtmlDecode(descriptionEn);
+                descriptionRuItem.Text = HttpUtility.HtmlDecode(descriptionRu);
+                carAd.BrandReference.EntityKey = new EntityKey("CarAdStorage.Brands", "Id", brandId);
+                carAd.Class = classId;
+                context.SaveChanges();
+                return RedirectToAction("AddEditCarAd", new { id = carAd.Id });
             }
         }
 
-        private bool ValidateCarAdd(string model, string descriptionRu, string descriptionEn)
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult AddCarAdImage(long carAdId, bool isDefault)
         {
-            if (string.IsNullOrEmpty(model))
-                ModelState.AddModelError("model", "Модель");
-            if (string.IsNullOrEmpty(descriptionRu))
-                ModelState.AddModelError("descriptionRu", "Описание на русском");
-            if (string.IsNullOrEmpty(descriptionEn))
-                ModelState.AddModelError("descriptionEn", "Описание на английском");
-            return ModelState.IsValid;
+            string file = Request.Files["image"].FileName;
+            if (!string.IsNullOrEmpty(file))
+            {
+                string newFileName = IOHelper.GetUniqueFileName("~/Content/AdImages", file);
+                string filePath = Path.Combine(Server.MapPath("~/Content/AdImages"), newFileName);
+                Request.Files["image"].SaveAs(filePath);
+
+                using (CarAdStorage context = new CarAdStorage())
+                {
+                    CarAdImage image = new CarAdImage();
+                    image.CarAdReference.EntityKey = new EntityKey("CarAdStorage.CarAds", "Id", carAdId);
+                    image.ImageSource = newFileName;
+                    image.Default = isDefault;
+                    context.AddToCarAdImages(image);
+                    context.SaveChanges();
+                }
+            }
+            return RedirectToAction("AddEditCarAd", new { id = carAdId });
         }
 
-        public ActionResult AddMe()
+        public ActionResult DeleteImage(long carAdId, long imageId)
+        { 
+            using(CarAdStorage context = new CarAdStorage())
+            {
+                CarAdImage image = context.CarAdImages.Where(i => i.Id == imageId).First();
+                return RedirectToAction("AddEditCarAd", new { id = carAdId });
+            }
+        }
+
+        public ActionResult SetDefaultImage(long adId, long defaultImage)
         {
-            return RedirectToAction("AddEditCarAd");
+            using (CarAdStorage context = new CarAdStorage())
+            {
+                var carAdImages = context.CarAdImages.Where(ca => ca.CarAd.Id == adId);
+                foreach (var item in carAdImages)
+                {
+                    item.Default = item.Id == defaultImage;
+                }
+                context.SaveChanges();
+            }
+            return RedirectToAction("AddEditCarAd", new { id = adId });
         }
     }
 }

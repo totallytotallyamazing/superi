@@ -38,7 +38,7 @@ namespace Dev.Helpers
 
         public static string GetResourceString(string resourceName)
         {
-            return HttpContext.GetGlobalResourceObject("Resources", resourceName, GetSelectedCulture()).ToString();
+            return HttpContext.GetGlobalResourceObject("WebResources", resourceName, GetSelectedCulture()).ToString();
         }
 
         public static string ResourceString(this System.Web.Mvc.HtmlHelper helper, string resourceName)

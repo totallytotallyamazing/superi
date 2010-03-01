@@ -196,6 +196,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Our catalogue.
+        /// </summary>
+        internal static string OurCatalogue {
+            get {
+                return ResourceManager.GetString("OurCatalogue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Our Phones.
         /// </summary>
         internal static string Phones {

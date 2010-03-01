@@ -33,7 +33,6 @@
         </asp:ContentPlaceHolder>
     </title>
     <link href="/Content/style.css" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="/Scripts/Start.js"></script>
     <script type="text/javascript" src="/Scripts/jquery-1.4.2.min.js"></script>
     <asp:ContentPlaceHolder runat="server" ID="includes"></asp:ContentPlaceHolder>
 </head>

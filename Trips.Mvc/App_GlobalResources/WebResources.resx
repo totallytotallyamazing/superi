@@ -168,4 +168,7 @@
   <data name="Request" xml:space="preserve">
     <value>Request</value>
   </data>
+  <data name="OurCatalogue" xml:space="preserve">
+    <value>Our catalogue</value>
+  </data>
 </root>

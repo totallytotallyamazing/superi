@@ -23,7 +23,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="CarAdId" Type="uint" />
+          <Property Name="CarAdId" Type="uint" Nullable="false" />
           <Property Name="Description" Type="text" />
           <Property Name="Id" Type="uint" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Keywords" Type="text" />
@@ -113,7 +113,7 @@
           <End Type="gbua_tripsModel.CarAd" Role="CarAds" Multiplicity="*" />
           </Association>
         <Association Name="CarAdsCarAdDescriptions">
-          <End Type="gbua_tripsModel.CarAd" Role="CarAds" Multiplicity="0..1" />
+          <End Type="gbua_tripsModel.CarAd" Role="CarAds" Multiplicity="1" />
           <End Type="gbua_tripsModel.CarAdDescription" Role="CarAdDescriptions" Multiplicity="*" /></Association>
         <Association Name="CarAdCarAdImage">
           <End Type="gbua_tripsModel.CarAd" Role="CarAd" Multiplicity="1" />
@@ -176,7 +176,7 @@
               <ScalarProperty Name="Id" ColumnName="Id" /></EndProperty>
             <EndProperty Name="CarAds">
               <ScalarProperty Name="Id" ColumnName="CarAdId" /></EndProperty>
-            <Condition ColumnName="CarAdId" IsNull="false" /></AssociationSetMapping>
+            </AssociationSetMapping>
           <AssociationSetMapping Name="CarAdCarAdImage" TypeName="gbua_tripsModel.CarAdCarAdImage" StoreEntitySet="CarAdImages">
             <EndProperty Name="CarAdImage">
               <ScalarProperty Name="Id" ColumnName="Id" /></EndProperty>

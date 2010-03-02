@@ -1,20 +1,18 @@
-<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl" %>
-
+<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<Oksi.Models.Article>" %>
+<%@ Import Namespace="Microsoft.Web.Mvc" %>
+<%@ Import Namespace="Oksi.Models" %>
 <div id="latestNews">
-    <img src="/Content/img/news1.jpg" />
+    <%= Html.Image("~/Content/Articles/News/" + Model.Image)%>
     <div id="newsContent">
         <div id="newsHeader">
-            Заголовок последней новости.
+            <%= Html.ActionLink(Model.Title, "Index", "Articles", new { id = Model.Id }, new { rel = "async" })%>
         </div>
         <div id="newsDate">
-            2010.01.01
+            <%= Model.Date.ToString("dd.MM.yyyy") %>
             <hr />
         </div>
         <div id="newsText">
-            OKSI LIMO PARTY- вечеринка, гостеприимной хозяйкой которой является украинская поп-звезда OKSI, продолжается! Следующий ночной вояж на звездных лимузинах состоится 29 января. В эту холодную зимнюю пятницу вы окунетесь в сказку, главным персонажем которой станет Красная шапочка. Но события всемирно известной сказки в эту ночь будут развиваться совсем по другому сценарию. В роли Красной шапочки выступит сама OKSI, а вот в роли сказочной бабушки – эпатажная травести дива Монро. 
-        </div>
-        <div id="newsDetailLink">
-            <a href="#">фотоотчет>>></a>
+            <%= Model.Description %>
         </div>
     </div>
 </div>

@@ -1,21 +1,18 @@
-<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl" %>
+<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<IEnumerable<Oksi.Models.Image>>" %>
+<%@ Import Namespace="Oksi.Models" %>
 <%@ Import Namespace="Oksi.Mvc.Ajax" %>
 <%= Ajax.Create("ClientLibrary.PhotoSessionExtender", new { id = "PageManager" }, null, "pageExtender")%>
 
 <div id="photoSession">
     <div id="sessionTitle">
-        <%= Html.ActionLink("Фотосессия для журнала L’OFFICIEL.", "Index", "Gallery", null, new { rel = "async" })%>
+        <%= Html.ActionLink((string)ViewData["name"], "Index", "Gallery", null, new { rel = "async" })%>
     </div>
     <div id="sessionSubTitle">
-        Краткая информация по фотосессии.
+        <%= ViewData["comments"]%>
     </div>
-    <a href="/Content/img/photo1.jpg" rel="photoSession" class="photoSession">
-        <img src="/Content/img/photo1.jpg" />
-    </a>
-    <a href="/Content/img/photo2.jpg" rel="photoSession" class="photoSession">
-        <img src="/Content/img/photo2.jpg" />
-    </a>
-    <a href="/Content/img/photo3.jpg" rel="photoSession" class="photoSession">
-        <img src="/Content/img/photo3.jpg" />
-    </a>
+    <% foreach (var item in Model){%>
+        <a rel="<%= "images_" + ViewData["galleryId"] %>" href="/GalleryContent/<%= item.Picture %>" class="photoSession">
+            <img src="/GalleryContent/<%= item.Preview %>" alt="" style="width:139px" />
+        </a>
+    <%}%>
 </div>

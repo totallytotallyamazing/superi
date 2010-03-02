@@ -31,9 +31,9 @@
             </div>
             <%if(Request.IsAuthenticated){ %>
                 <div class="adminLink">
-                    <a href="/Admin/Article/<%= item.Name %>">Редактировать</a>
+                    <a href="/Admin/Article/<%= item.Name %>?type=Note">Редактировать</a>
                     /
-                    <a href="/Admin/DeleteArticle/<%= item.Name %>">Удалить</a>
+                    <a href="/Admin/DeleteArticle/<%= item.Name %>?type=Note">Удалить</a>
                 </div>
             <%} %>
         </div>

@@ -7,6 +7,7 @@ using System.Web.Mvc.Ajax;
 using Zamov.Models;
 using System.Web.UI.WebControls;
 using System.Text;
+using System.Globalization;
 
 namespace Zamov.Controllers
 {
@@ -22,7 +23,7 @@ namespace Zamov.Controllers
             return View();
         }
 
-        public ActionResult SalesReport(int? dealerId, string userName, string city, Statuses? orderState, string sortField, SortDirection? sortOrder)
+        public ActionResult SalesReport(int? dealerId, string userName, string city, Statuses? orderState, string after, string before, string sortField, SortDirection? sortOrder)
         {
             StringBuilder filterString = new StringBuilder();
             if (dealerId != null)
@@ -33,6 +34,10 @@ namespace Zamov.Controllers
                 filterString.AppendFormat("&city={0}", city);
             if (orderState != null)
                 filterString.AppendFormat("&orderState={0}", orderState);
+            if(!string.IsNullOrEmpty(after))
+                filterString.AppendFormat("&after={0}", after);
+            if (!string.IsNullOrEmpty(before))
+                filterString.AppendFormat("&before={0}", before);
 
             string filter = filterString.ToString();
             if(filter.Length>0)
@@ -68,6 +73,18 @@ namespace Zamov.Controllers
             SortDirection sortDirection = (sortOrder == SortDirection.Ascending || sortOrder == null) ? SortDirection.Ascending : SortDirection.Descending;
             HttpContext.Items["sortDirection"] = ViewData["sortDirection"] = sortDirection;
 
+            DateTime? dateAfter = null;
+            DateTime? dateBefore = null;
+
+            if (!string.IsNullOrEmpty(after))
+            { 
+                dateAfter = DateTime.Parse(after, CultureInfo.GetCultureInfo("uk-UA"));
+            }
+            if (!string.IsNullOrEmpty(before))
+            {
+                dateBefore = DateTime.Parse(before, CultureInfo.GetCultureInfo("uk-UA"));
+            }
+
             using (Reports context = new Reports())
             {
                 int? orderStatus = (orderState.HasValue) ? (int)orderState.Value : (int?)null;
@@ -76,6 +93,8 @@ namespace Zamov.Controllers
                     .Where(o => (userName == null || userName == string.Empty || o.UserName.Contains(userName)))
                     .Where(o => (city == null || city == string.Empty || o.City.Contains(city)))
                     .Where(o => (orderStatus == null || o.Status == orderStatus))
+                    .Where(o=> (dateAfter == null || o.OrderDate >= dateAfter.Value))
+                    .Where(o => (dateBefore == null || o.OrderDate <= dateBefore.Value))
                     .OrderByDescending(o=>o.OrderId)
                     .Select(o => o).ToList();
 

@@ -129,7 +129,7 @@ namespace Zamov.Helpers
         public static string SortHeader(this System.Web.Mvc.HtmlHelper helper, string resourceName, string targetUrl, string sortField, string additionalParams, string otherAttributes)
         {
             string text = ResourcesHelper.GetResourceString(resourceName);
-            string linkFormat = "<a class=\"{2}\" href=\"{0}\">{1}</a>";
+            string linkFormat = "<a class=\"{2}\" href=\"{0}\" {3}>{1}</a>";
             string sortFieldName = (string)helper.ViewData["sortField"];
             string sortOrder = "Ascending";
             string sortClass = "Descending";
@@ -146,7 +146,7 @@ namespace Zamov.Helpers
             }
 
             string link = String.Format("{0}?sortField={1}&sortOrder={2}&{3}", targetUrl, sortField, sortOrder, additionalParams);
-            string linkLayout = String.Format(linkFormat, link, text, sortHeaderClass);
+            string linkLayout = String.Format(linkFormat, link, text, sortHeaderClass, otherAttributes);
 
             return linkLayout;
         }

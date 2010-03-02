@@ -2050,6 +2050,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Дисконтна карта.
+        /// </summary>
+        internal static string VoucherNumberShort {
+            get {
+                return ResourceManager.GetString("VoucherNumberShort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ласкаво просимо.
         /// </summary>
         internal static string Welcome {

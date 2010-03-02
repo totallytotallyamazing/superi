@@ -40,7 +40,7 @@ namespace Trips.Mvc.Controllers
 
                 if (classId.HasValue && brandId.HasValue)
                 {
-                    List<CarAd> carAds = context.CarAds.Include("Images")
+                    List<CarAd> carAds = context.CarAds.Include("Images").Include("Descriptions")
                         .Where(ca=>ca.Class == classId.Value)
                         .Where(ca => ca.Brand.Id == brandId.Value).ToList();
                     return View("AdList", carAds);

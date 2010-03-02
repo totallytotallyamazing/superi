@@ -21,9 +21,20 @@
         Класс: <%= Html.DropDownList("classId")%>Торговая марка: <%= Html.DropDownList("brandId")%> <br />
         Модель: <%= Html.TextBox("model")%> <span id="modelErrorHolder"></span>
         <br />
-        Год: <%= Html.TextBox("year")%>
+        Год: <%= Html.TextBox("year")%><span id="yearErrorHolder"></span>
         
-
+        <table>
+            <tr>
+                <td>
+                    Кратко на русском<span id="shortRuErrorHolder"></span><br />
+                    <%= Html.TextArea("shortRu") %>
+                </td>
+                <td>
+                    Кратко на английском<span id="shortEnErrorHolder"></span><br />
+                    <%= Html.TextArea("shortEn") %>
+                </td>
+            </tr>
+        </table>
         Описание на русском: <span id="descriptionRuErrorHolder"></span>
         <%= Html.TextArea("descriptionRu")%>
         Описание на английском:<span id="descriptionEnErrorHolder"></span>
@@ -52,16 +63,22 @@
                 messages: {
                     model: "*",
                     descriptionRu: "*",
-                    descriptionEn: "*"
+                    descriptionEn: "*",
+                    shortRu: "*",
+                    shortEn: "*",
+                    year: "*"
                 },
                 rules: {
                     model: { required: true },
                     descriptionRu: { required: true },
-                    descriptionEn: { required: true }
+                    descriptionEn: { required: true },
+                    shortRu: { required: true },
+                    shortEn: { required: true },
+                    year: { required: true, digits: true }
                 }
             });
 
-            $.fck.config = { path: '<%= VirtualPathUtility.ToAbsolute("~/Controls/fckeditor/") %>', config: { SkinPath: "skins/office2003/", DefaultLanguage: "ru", AutoDetectLanguage: false, EnterMode: "br", EnterMode: "p",  HtmlEncodeOutput: true} };
+            $.fck.config = { path: '<%= VirtualPathUtility.ToAbsolute("~/Controls/fckeditor/") %>', config: { SkinPath: "skins/office2003/", DefaultLanguage: "ru", AutoDetectLanguage: false, EnterMode: "br", EnterMode: "p", HtmlEncodeOutput: true} };
             $("#descriptionRu, #descriptionEn").fck({ toolbar: "Basic", height: 200 });
         });
     </script>

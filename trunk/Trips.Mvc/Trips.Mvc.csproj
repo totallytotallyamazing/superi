@@ -194,6 +194,7 @@
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>WebResources.ru-RU.designer.cs</LastGenOutput>
     </Content>
+    <Content Include="Content\AdImages\tripsWebMvcNoCarImage.jpg" />
     <Content Include="Content\Admin.css" />
     <Content Include="Content\img\delete.gif" />
     <Content Include="Controls\fckeditor\editor\css\behaviors\disablehandles.htc" />
@@ -520,6 +521,7 @@
     <Content Include="Scripts\MicrosoftAjaxWebForms.js" />
     <Content Include="Scripts\MicrosoftAjaxWebServices.js" />
     <Content Include="Scripts\Start.js" />
+    <Content Include="SetCookie.aspx" />
     <Content Include="Views\Admin\AddEditCarAd.aspx" />
     <Content Include="Views\Admin\Brands.aspx" />
     <Content Include="Views\Admin\CarAdImages.ascx" />
@@ -587,7 +589,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\" />
-    <Folder Include="Content\AdImages\" />
     <Folder Include="ImageCache\mainView\" />
     <Folder Include="ImageCache\thumbnail\" />
   </ItemGroup>

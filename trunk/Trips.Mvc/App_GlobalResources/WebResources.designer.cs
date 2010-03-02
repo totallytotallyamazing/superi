@@ -61,6 +61,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add car.
+        /// </summary>
+        internal static string AddCar {
+            get {
+                return ResourceManager.GetString("AddCar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Car Search.
         /// </summary>
         internal static string CarSearch {

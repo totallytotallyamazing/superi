@@ -1,5 +1,8 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<Trips.Mvc.Models.CarAd>>" %>
 <%@ Import Namespace="Trips.Mvc.Models" %>
+<%@ Import Namespace="Dev.Helpers" %>
+<%@ Import Namespace="Microsoft.Web.Mvc" %>
+<%@ Import Namespace="Trips.Mvc.Helpers" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	
 </asp:Content>
@@ -20,82 +23,32 @@
    <div id="catalog">
     
      <% foreach (var item in Model)
-       {
-           
-       }
-         %>
-    
-    
-               <div class="carPreviewBox">
-               <div class="carPreviewPhoto">
-               <img src="img/car1.jpg" alt="car1">
-               <h3><a href="#">УLacettiФ</a> (2006)</h3>
-               <p>5 мест;</p>
-			   <p> ондиционер;</p>
-               <h4><a href="#">ƒобавить в за€вку</a></h4>
-               </div></div>
-               
-               <div class="carPreviewBox">
-               <div class="carPreviewPhoto">
-               <img src="img/car2.jpg" alt="car1">
-               <h3><a href="#">УSparkФ</a> (2007)</h3>
-               <p>5 мест;</p>
-			   <p> ондиционер;</p>
-               <h4><a href="#">ƒобавить в за€вку</a></h4>
-               </div></div>
-               
-               <div class="carPreviewBox">
-               <div class="carPreviewPhoto">
-               <img src="img/car3.jpg" alt="car1">
-               <h3><a href="#">УImpalaФ</a> (1959)</h3>
-               <p>5 мест;</p>
-			   <p> ондиционер;</p>
-               <h4><a href="#">ƒобавить в за€вку</a></h4>
-               </div></div>
-               
-               <div class="carPreviewBox">
-               <div class="carPreviewPhoto">
-               <img src="img/car4.jpg" alt="car1">
-               <h3><a href="#">УRezzoФ</a> (2008)</h3>
-               <p>5 мест;</p>
-			   <p> ондиционер;</p>
-               <h4><a href="#">ƒобавить в за€вку</a></h4>
-               </div></div>
-               
-               <div class="carPreviewBox">
-               <div class="carPreviewPhoto">
-               <img src="img/car5.jpg" alt="car1">
-               <h3><a href="#">УAvioФ</a> (2008)</h3>
-               <p>5 мест;</p>
-			   <p> ондиционер;</p>
-               <h4><a href="#">ƒобавить в за€вку</a></h4>
-               </div></div>
-               
-               <div class="carPreviewBox">
-               <div class="carPreviewPhoto">
-               <img src="img/car6.jpg" alt="car1">
-               <h3><a href="#">УTacumaФ</a> (2005)</h3>
-               <p>5 мест;</p>
-			   <p> ондиционер;</p>
-               <h4><a href="#">ƒобавить в за€вку</a></h4>
-               </div></div></div>
-               <div class="clearBoth"></div>
-               
-                         <div class="line">
-                         <p><a href="#">1</a>..<a href="#">2</a>..<a href="#">3</a>  </p></div>
-                        </div></div></div>
-                       
-                		
-						</div>
-                        <div id="leftImageBox2">
-                        <div id="greyCar"></div>
-                        </div>
-
-    
+       {%>
+       <div class="carPreviewBox">
+           <div class="carPreviewPhoto">
+               <%= Html.Image(GraphicsHelper.GetCachedImage("~/Content/AdImages", item.Images.Where(i=>i.Default).Select(i=>i.ImageSource).FirstOrDefault(), "thumbnail1"))%>
+               <h3>
+                   <a href="#">У<%= item.Model %>Ф</a> (<%= item.Year %>)
+               </h3>
+               <p>
+                    <%= item.Descriptions.Where(d=>d.Language == LocaleHelper.GetCultureName()).Select(d=>d.ShortDescription).FirstOrDefault() %>
+               </p>
+               <h4>
+                <%= Html.ResourceActionLink("AddCar", "AddCar", new {id=item.Id}) %>    
+               </h4>
+           </div>
+       </div>
+<%     }%>
+</div>
+<div class="clearBoth"></div>
+    <%-- Pager --%>           
+     <div class="line">
+     <p><a href="#">1</a>..<a href="#">2</a>..<a href="#">3</a>  </p></div>
+    <%-- /Pager --%>           
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentTitle" runat="server">
-    <asp:Literal runat="server" Text="<%$ Resources.WebResources, OurCatalogue %>"
+    <asp:Literal runat="server" Text="<%$ Resources:WebResources, OurCatalogue %>"></asp:Literal>
 </asp:Content>
 
 <asp:Content runat="server" ContentPlaceHolderID="leftSide">

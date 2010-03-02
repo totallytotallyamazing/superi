@@ -171,4 +171,7 @@
   <data name="OurCatalogue" xml:space="preserve">
     <value>Our catalogue</value>
   </data>
+  <data name="AddCar" xml:space="preserve">
+    <value>Add car</value>
+  </data>
 </root>

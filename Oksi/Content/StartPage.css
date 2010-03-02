@@ -8,6 +8,7 @@
 #latestNews{ margin-left:447px; height:302px; background:#451515; padding:4px; width:369px;}
 #latestNews img{float:left; margin-right:4px;}
 #latestNews #newsHeader{color:White; font-size:14px; font-weight:bold;}
+#latestNews #newsHeader a{color:White; text-decoration:none;}
 #latestNews #newsDate{color:#B85959; font-size:11px;}
 #latestNews #newsText{color:White; font-size:11px; height:210px;}
 

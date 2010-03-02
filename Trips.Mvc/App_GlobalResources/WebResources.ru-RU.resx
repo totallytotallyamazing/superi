@@ -171,4 +171,7 @@
   <data name="OurCatalogue" xml:space="preserve">
     <value>Каталог наших автомобилей</value>
   </data>
+  <data name="AddCar" xml:space="preserve">
+    <value>Добавить в заявку</value>
+  </data>
 </root>

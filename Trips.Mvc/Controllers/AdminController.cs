@@ -158,8 +158,15 @@ namespace Trips.Mvc.Controllers
                     brands.ForEach(br => br.Selected = (int.Parse(br.Value) == carAd.Brand.Id));
                     classes.ForEach(cl => cl.Selected = (long.Parse(cl.Value) == carAd.Class));
                     Dictionary<string, string> descriptions = carAd.Descriptions.ToDictionary(cad => cad.Language, cad => cad.Text);
+                    Dictionary<string, string> shorts = carAd.Descriptions.ToDictionary(cad => cad.Language, cad => cad.ShortDescription);
+                  
                     ViewData["descriptionRu"] = descriptions["ru-RU"];
                     ViewData["descriptionEn"] = descriptions["en-US"];
+
+                    ViewData["shortRu"] = shorts["ru-RU"];
+                    ViewData["shortEn"] = shorts["en-US"];
+
+                    ViewData["year"] = carAd.Year;
                 }
 
                 ViewData["brandId"] = brands;
@@ -192,7 +199,10 @@ namespace Trips.Mvc.Controllers
             long brandId,
             string model,
             string descriptionRu,
-            string descriptionEn
+            string descriptionEn,
+            string shortRu,
+            string shortEn,
+            int year
             )
         {
             using (CarAdStorage context = new CarAdStorage())
@@ -220,18 +230,19 @@ namespace Trips.Mvc.Controllers
                 {
                     descriptionRuItem = new CarAdDescription();
                     descriptionRuItem.Language = "ru-RU";
-                    //context.AddToCarAdDescriptions(descriptionRuItem);
                     carAd.Descriptions.Add(descriptionRuItem);
                     descriptionEnItem = new CarAdDescription();
                     descriptionEnItem.Language = "en-US";
-                  //  context.AddToCarAdDescriptions(descriptionEnItem);
                     carAd.Descriptions.Add(descriptionEnItem);
                 }
 
                 descriptionEnItem.Text = HttpUtility.HtmlDecode(descriptionEn);
                 descriptionRuItem.Text = HttpUtility.HtmlDecode(descriptionRu);
+                descriptionEnItem.ShortDescription = shortEn;
+                descriptionRuItem.ShortDescription = shortRu;
                 carAd.BrandReference.EntityKey = new EntityKey("CarAdStorage.Brands", "Id", brandId);
                 carAd.Class = classId;
+                carAd.Year = year;
                 context.SaveChanges();
                 return RedirectToAction("AddEditCarAd", new { id = carAd.Id });
             }

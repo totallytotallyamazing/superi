@@ -38,24 +38,33 @@
                 <td>Статус замовлення</td>
                 <td><%= Html.DropDownList("orderState")%></td>
             </tr>
+            <tr>
+                <td>
+                    Після:
+                </td>
+                <td><%= Html.TextBox("after") %></td>
+                <td></td>
+                <td>До</td>
+                <td><%= Html.TextBox("before")%></td>
+            </tr>
         </table>
         <input type="submit" value="Фiльтрувати" />
     </form>
     <table class="blueHeaderedTable">
         <tr class="blueHeader">
-            <th><%= Html.SortHeader("NumberIndex", "/Reports/SalesReport", "OrderId", (string)ViewData["filterString"], null) %></th>
+            <th valign="top"><%= Html.SortHeader("NumberIndex", "/Reports/SalesReport", "OrderId", (string)ViewData["filterString"], "style=\"white-space:normal\"")%></th>
             <th><%= Html.SortHeader("Dealer", "/Reports/SalesReport", "DealerName", (string)ViewData["filterString"], null)%></th>
             <th><%= Html.SortHeader("Price", "/Reports/SalesReport", "TotalPrice", (string)ViewData["filterString"], null)%>, грн.</th>
-            <th><%= Html.SortHeader("Date", "/Reports/SalesReport", "OrderDate", (string)ViewData["filterString"], null)%></th>
-            <th><%= Html.SortHeader("DeliveryDateTime", "/Reports/SalesReport", "DeliveryDate", (string)ViewData["filterString"], null)%></th>
+            <th><%= Html.SortHeader("Date", "/Reports/SalesReport", "OrderDate", (string)ViewData["filterString"], "style=\"white-space:normal\"")%></th>
+            <th valign="top"><%= Html.SortHeader("DeliveryDateTime", "/Reports/SalesReport", "DeliveryDate", (string)ViewData["filterString"], "style=\"white-space:normal\"")%></th>
             <th><%= Html.SortHeader("Login", "/Reports/SalesReport", "UserName", (string)ViewData["filterString"], null)%></th>
-            <th><%= Html.SortHeader("Client", "/Reports/SalesReport", "ClientName", (string)ViewData["filterString"], null)%></th>
+            <th><%= Html.SortHeader("Client", "/Reports/SalesReport", "ClientName", (string)ViewData["filterString"], "style=\"white-space:normal\"")%></th>
             <th><%= Html.SortHeader("City", "/Reports/SalesReport", "City", (string)ViewData["filterString"], null)%></th>
             <th><%= Html.SortHeader("DeliveryAddress", "/Reports/SalesReport", "Address", (string)ViewData["filterString"], null)%></th>
             <th><%= Html.SortHeader("Phone", "/Reports/SalesReport", "Phone", (string)ViewData["filterString"], null)%></th>
-            <th><%= Html.SortHeader("Email", "/Reports/SalesReport", "Email", (string)ViewData["filterString"], null)%></th>
+            <th><%= Html.SortHeader("Email", "/Reports/SalesReport", "Email", (string)ViewData["filterString"], "style=\"white-space:normal\"")%></th>
             <th><%= Html.SortHeader("Comments", "/Reports/SalesReport", "Comments", (string)ViewData["filterString"], null)%></th>
-            <th><%= Html.SortHeader("VoucherNumber", "/Reports/SalesReport", "DiscountCardNumber", (string)ViewData["filterString"], null)%></th>
+            <th valign="top" style="width:25px;"><%= Html.SortHeader("VoucherNumberShort", "/Reports/SalesReport", "DiscountCardNumber", (string)ViewData["filterString"], "style=\"white-space:normal\"")%></th>
             <th><%= Html.SortHeader("Status", "/Reports/SalesReport", "Status", (string)ViewData["filterString"], null)%></th>
         </tr>
         <% foreach (var item in Model)
@@ -87,6 +96,16 @@
     <%= Html.RegisterJS("jquery.easing.js")%>
     <%= Html.RegisterJS("jquery.fancybox.js")%>
     <%= Html.RegisterCss("~/Content/fancy/jquery.fancybox.css")%>
+    <%= Html.RegisterCss("~/Content/redmond/jquery.ui.css")%>
+    <%= Html.RegisterJS("jquery.ui.js")%>
+    <%= Html.RegisterJS("ui.datepicker-uk.js")%>
+    
+    <script type="text/javascript">
+        $(function() {
+            $.datepicker.setDefaults($.extend({ showMonthAfterYear: false }, $.datepicker.regional['uk']));
+            $("#after, #before").datepicker();
+        })
+    </script>
 </asp:Content>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentTop" runat="server">

@@ -807,4 +807,7 @@
   <data name="Reports" xml:space="preserve">
     <value>Отчеты</value>
   </data>
+  <data name="VoucherNumberShort" xml:space="preserve">
+    <value>Дисконтная карта</value>
+  </data>
 </root>

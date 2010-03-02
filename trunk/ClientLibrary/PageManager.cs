@@ -74,6 +74,7 @@ namespace ClientLibrary
         void RestoreSateFromHistory(Dictionary state)
         {
             IvokeUpdating();
+            KillAsyncAnchors();
             AjaxOptions options = new AjaxOptions();
             options.UpdateTargetId = "content";
             options.InsertionMode = InsertionMode.Replace;
@@ -95,10 +96,21 @@ namespace ClientLibrary
             }
         }
 
-        void InitializeAsyncAnchors()
+        void InitializeMenuAnchors()
         {
-            //DOMElement menuContainer = ;//Document.GetElementById("menuContainer");
-            Array anchors = Utils.GetElementsByAttribute(Document.DocumentElement, "a", "rel", "async", null);
+            DOMElement menuContainer = Document.GetElementById("menuContainer");
+            DOMElementCollection menuAnchors = menuContainer.GetElementsByTagName("a");
+            InitializeAsyncAnchors((Array)(object)menuAnchors);
+        }
+
+        void InitializePageAnchors()
+        {
+            Array anchors = Utils.GetElementsByAttribute(Document.GetElementById("content"), "a", "rel", "async", null);
+            InitializeAsyncAnchors(anchors);
+        }
+
+        void InitializeAsyncAnchors(Array anchors)
+        { 
             for (int i = 0; i < anchors.Length; i++)
             {
                 AnchorElement anchor = (AnchorElement)anchors[i];
@@ -107,6 +119,16 @@ namespace ClientLibrary
 
             AnchorElement logoLink = (AnchorElement)Document.GetElementById("logo").GetElementsByTagName("a")[0];
             DomEvent.AddHandler(logoLink, "click", new DomEventHandler(MenuItemClicked));
+        }
+
+        void KillAsyncAnchors()
+        {
+            Array anchors = Utils.GetElementsByAttribute(Document.GetElementById("content"), "a", "rel", "async", null);
+            for (int i = 0; i < anchors.Length; i++)
+            {
+                AnchorElement anchor = (AnchorElement)anchors[i];
+                DomEvent.ClearHandlers(anchor);
+            }
         }
 
         void IvokeUpdating()
@@ -128,7 +150,12 @@ namespace ClientLibrary
 
         void UpdateMenuSelection(string url)
         {
-            DOMElement target = (DOMElement)Utils.GetElementsByAttribute(Document.GetElementById("menuContainer"), "a", "href", url, null)[0];
+            AttributeComparer comparer = new AttributeComparer(delegate(string a, string b)
+                {
+                    return (b.IndexOf(a) > -1 && b.IndexOf(a) < 1);
+                });
+
+            DOMElement target = (DOMElement)Utils.GetElementsByAttribute(Document.GetElementById("menuContainer"), "a", "href", url, comparer)[0];
             if (target != null)
                 target = target.ParentNode;
             JQuery items = JQueryProxy.jQuery("#menuContainer div");
@@ -174,7 +201,8 @@ namespace ClientLibrary
         void MenuItemClicked(DomEvent e)
         {
             IvokeUpdating();
-
+            KillAsyncAnchors();
+            
             AjaxOptions options = new AjaxOptions();
             options.UpdateTargetId = "content";
             options.InsertionMode = InsertionMode.Replace;
@@ -196,6 +224,7 @@ namespace ClientLibrary
             linkNavigation = false;
             Window.SetTimeout(CreatePageExtenders, 200);
             Window.SetTimeout(InvokeUpdated, 400);
+            Window.SetTimeout(InitializePageAnchors, 400);
         }
 
         public override void Initialize()
@@ -209,6 +238,7 @@ namespace ClientLibrary
 
         private void InitializeMainMenu()
         {
+            InitializeMenuAnchors();
             Array arr = (Array)(object)JQueryProxy.jQuery(".menuItem").not(".current");
 
             for (int i = 0; i < arr.Length; i++)
@@ -234,8 +264,8 @@ namespace ClientLibrary
 
         public void OnLoad()
         {
-            InitializeAsyncAnchors();
             InitializeMainMenu();
+            InitializePageAnchors();
             InvokeUpdated();
         }
         #endregion

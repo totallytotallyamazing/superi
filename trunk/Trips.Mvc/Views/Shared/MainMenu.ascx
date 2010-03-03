@@ -30,12 +30,12 @@
         </a>
     </div>
     <div class="headerMenuItem">
-        <a href="/Conditions">
+        <a href="/Content/Conditions">
             <asp:Literal ID="Literal3" runat="server" Text="<%$ Resources:WebResources, Conditions %>"></asp:Literal>
         </a>
     </div>
     <div class="headerMenuItem">
-        <a href="/Contacts">
+        <a href="/Content/Contacts">
             <asp:Literal ID="Literal4" runat="server" Text="<%$ Resources:WebResources, Contacts %>"></asp:Literal>
         </a>
     </div>

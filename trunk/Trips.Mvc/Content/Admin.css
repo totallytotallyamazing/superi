@@ -3,3 +3,5 @@
 #imagesForm .deleteLink{display:block; float:left; margin-left:-24px; width:24px; height:24px; background:url(img/delete.gif)}
 .carAddAdminImage img{float:left; display:block;}
 .carAddAdminImage input{position:relative; float:left; left:-150px;}
+
+#contentEditor input{width:100%;}

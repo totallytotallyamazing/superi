@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="gbua_tripsContent.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.0" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
+    <Schema Namespace="gbua_tripsContent.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.0" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
         <EntityContainer Name="gbua_tripsContentStoreContainer">
           <EntitySet Name="Articles" EntityType="gbua_tripsContent.Store.Articles" store:Type="Tables" Schema="gbua_trips" />
           <EntitySet Name="Content" EntityType="gbua_tripsContent.Store.Content" store:Type="Tables" Schema="gbua_trips" />
@@ -28,14 +28,14 @@
           </Key>
           <Property Name="Description" Type="text" />
           <Property Name="Id" Type="uint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Keywords" Type="text" />
           <Property Name="Language" Type="varchar" MaxLength="5" />
           <Property Name="Name" Type="varchar" Nullable="false" MaxLength="255" />
           <Property Name="ParentId" Type="uint" />
           <Property Name="Text" Type="text" />
           <Property Name="Title" Type="varchar" MaxLength="500" />
         </EntityType>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="gbua_tripsContent" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
@@ -69,7 +69,8 @@
           <Property Name="Text" Type="String" />
           <Property Name="Title" Type="String" />
           <NavigationProperty Name="Parent" Relationship="gbua_tripsContent.ContentContent" FromRole="Content" ToRole="Content1" />
-          <NavigationProperty Name="Children" Relationship="gbua_tripsContent.ContentContent" FromRole="Content1" ToRole="Content" /></EntityType>
+          <NavigationProperty Name="Children" Relationship="gbua_tripsContent.ContentContent" FromRole="Content1" ToRole="Content" />
+          <Property Name="Keywords" Type="String" Nullable="true" /></EntityType>
         <Association Name="ContentContent">
           <End Type="gbua_tripsContent.Content" Role="Content" Multiplicity="0..1" />
           <End Type="gbua_tripsContent.Content" Role="Content1" Multiplicity="*" /></Association></Schema>
@@ -95,6 +96,7 @@
           <EntitySetMapping Name="Content">
             <EntityTypeMapping TypeName="IsTypeOf(gbua_tripsContent.Content)">
               <MappingFragment StoreEntitySet="Content">
+                <ScalarProperty Name="Keywords" ColumnName="Keywords" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Language" ColumnName="Language" />
@@ -131,9 +133,9 @@
         <EntityTypeShape EntityType="gbua_tripsContent.Articles" Width="1.5" PointX="0.75" PointY="0.75" Height="2.2496956380208331" IsExpanded="true" />
         <EntityTypeShape EntityType="gbua_tripsContent.Content" Width="1.5" PointX="4" PointY="0.75" Height="1.9210009765625" IsExpanded="true" />
         <AssociationConnector Association="gbua_tripsContent.ContentContent">
-          <ConnectorPoint PointX="4.5319230769230767" PointY="2.6710009765625" />
-          <ConnectorPoint PointX="4.5319230769230767" PointY="2.9210009765625" />
-          <ConnectorPoint PointX="4.9784615384615378" PointY="2.9210009765625" />
-          <ConnectorPoint PointX="4.9784615384615378" PointY="2.6710009765625" /></AssociationConnector></Diagram></edmx:Diagrams>
+          <ConnectorPoint PointX="4.625" PointY="3.16404296875" />
+          <ConnectorPoint PointX="4.625" PointY="3.41404296875" />
+          <ConnectorPoint PointX="4.989583333333333" PointY="3.41404296875" />
+          <ConnectorPoint PointX="4.989583333333333" PointY="3.16404296875" /></AssociationConnector></Diagram></edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

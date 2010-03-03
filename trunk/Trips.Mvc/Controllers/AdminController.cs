@@ -9,6 +9,7 @@ using System.Web.UI;
 using System.Data;
 using Trips.Mvc.Helpers;
 using System.IO;
+using Dev.Helpers;
 
 namespace Trips.Mvc.Controllers
 {
@@ -111,6 +112,63 @@ namespace Trips.Mvc.Controllers
         #endregion
 
 
+        #region Content
+        public ActionResult UpdateContent(string id)
+        {
+            using (ContentStorage context = new ContentStorage())
+            {
+                string cultureName = LocaleHelper.GetCultureName();
+                Content content = context.Content.Where(c => c.Language == cultureName)
+                        .Where(c => c.Name == id)
+                        .FirstOrDefault();
+                if (content == null)
+                {
+                    ViewData["isNew"] = true;
+                }
+                else
+                {
+                    ViewData["id"] = id;
+                    ViewData["text"] = content.Text;
+                    ViewData["description"] = content.Description;
+                    ViewData["keywords"] = content.Keywords;
+                    ViewData["title"] = content.Title;
+                    ViewData["isNew"] = false;
+                }
+            }
+            return View(); 
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult UpdateContent(string id, string text, string description, string keywords, string title ,bool isNew)
+        {
+            using (ContentStorage context = new ContentStorage())
+            {
+                string cultureName = LocaleHelper.GetCultureName();
+                Content content = null;
+                if (isNew)
+                {
+                    content = new Content();
+                    context.AddToContent(content);
+                    content.Name = id;
+                    content.Language = cultureName;
+                }
+                else
+                {
+                    content = context.Content
+                        .Where(c => c.Language == cultureName)
+                        .Where(c => c.Name == id)
+                        .First();
+                }
+                content.Text = HttpUtility.HtmlDecode(text);
+                content.Description = description;
+                content.Keywords = keywords;
+                content.Title = title;
+                context.SaveChanges();
+            }
+            return RedirectToAction("Index", "Content", new { id = id });
+        }
+        #endregion
+
         private void DeleteImage(string name)
         {
             string imagePath = Server.MapPath("~/Content/AdImages/" + name);
@@ -120,7 +178,7 @@ namespace Trips.Mvc.Controllers
             }
         }
 
-
+        #region CarAds
         private void PrepareViewData(long? id, CarAd carAd)
         {
             ViewData["id"] = id;
@@ -293,5 +351,6 @@ namespace Trips.Mvc.Controllers
             }
             return RedirectToAction("AddEditCarAd", new { id = adId });
         }
+        #endregion
     }
 }

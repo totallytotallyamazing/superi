@@ -76,6 +76,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CatalogueController.cs" />
+    <Compile Include="Controllers\ContentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\WidgetsController.cs" />
     <Compile Include="Default.aspx.cs">
@@ -525,9 +526,11 @@
     <Content Include="Views\Admin\AddEditCarAd.aspx" />
     <Content Include="Views\Admin\Brands.aspx" />
     <Content Include="Views\Admin\CarAdImages.ascx" />
+    <Content Include="Views\Admin\UpdateContent.aspx" />
     <Content Include="Views\Catalogue\AdsNavigator.ascx" />
     <Content Include="Views\Catalogue\AdList.aspx" />
     <Content Include="Views\Catalogue\Index.aspx" />
+    <Content Include="Views\Shared\Content.aspx" />
     <Content Include="Views\Widgets\News.ascx" />
     <Content Include="Views\Widgets\Smoking.ascx" />
   </ItemGroup>
@@ -591,6 +594,7 @@
     <Folder Include="bin\" />
     <Folder Include="ImageCache\mainView\" />
     <Folder Include="ImageCache\thumbnail\" />
+    <Folder Include="Views\Content\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />

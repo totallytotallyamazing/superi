@@ -45,3 +45,5 @@ img{border:0;}
 .newsContent img{float:left; margin-right:10px;margin-bottom:10px;}
 .newsTitle{font-size:20px; margin:5px 0;}
 .newsContent{ font-size:12px;}
+
+#recentNews{min-height:200px;}

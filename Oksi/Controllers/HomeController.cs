@@ -36,20 +36,29 @@ namespace Oksi.Controllers
             using (DataStorage context = new DataStorage())
             {
                 Article article = context.Articles.OrderByDescending(a => a.Date).First();
-                return View(article); 
+                return View(article);
             }
         }
 
         public ActionResult RecentNews()
         {
-            return View();
+            using (DataStorage context = new DataStorage())
+            {
+                List<Article> articles = context.Articles
+                .Where(a => a.Type == 1)
+                .OrderByDescending(a => a.Date)
+                .Skip(1)
+                .Take(7)
+                .Select(a => a).ToList();
+                return View(articles);
+            }
         }
 
         public ActionResult PhotoSession()
         {
             using (DataStorage context = new DataStorage())
             {
-                Gallery gallery = context.Galleries.OrderByDescending(g=>g.Id).First();
+                Gallery gallery = context.Galleries.OrderByDescending(g => g.Id).First();
                 gallery.Images.Load();
                 List<Image> images = gallery.Images.Take(3).ToList();
                 ViewData["name"] = gallery.Name;

@@ -46,7 +46,16 @@ namespace Trips.Mvc.Controllers
                     return View("AdList", carAds);
                 }
 
-                return View();
+                using (ContentStorage cs = new ContentStorage())
+                {
+                    ViewData["id"] = "Catalogue";
+                    string language = LocaleHelper.GetCultureName();
+                    Content content = cs.Content
+                        .Where(c => c.Language == language)
+                        .Where(c => c.Name == "Catalogue")
+                        .FirstOrDefault();
+                    return View("Content", content); 
+                }
             }
         }
     }

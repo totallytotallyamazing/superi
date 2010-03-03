@@ -13,9 +13,6 @@ namespace Trips.Mvc.Controllers
 {
     public class CatalogueController : Controller
     {
-        //
-        // GET: /Catalogue/
-
         public ActionResult Index(int? classId, int? brandId)
         {
             Dictionary<KeyValuePair<string, long>, List<KeyValuePair<string, long>>> brandClasses = new Dictionary<KeyValuePair<string, long>, List<KeyValuePair<string, long>>>();
@@ -57,6 +54,34 @@ namespace Trips.Mvc.Controllers
                     return View("Content", content); 
                 }
             }
+        }
+
+        public ActionResult AddCar(int id)
+        {
+            using (CarAdStorage context = new CarAdStorage())
+            {
+                CarAd ad = context.CarAds.Where(ca => ca.Id == id).First();
+                ad.Images.Load();
+                ad.BrandReference.Load();
+                OrderItem orderItem = new OrderItem();
+                orderItem.AdModel = ad.Brand.Name + " " + ad.Model;
+                orderItem.CarId = ad.Id;
+                orderItem.Class = ad.Class;
+                orderItem.Year = ad.Year;
+                CarAdImage img = ad.Images.Where(i => i.Default).FirstOrDefault();
+                if (img != null)
+                {
+                    orderItem.ImageSource = ad.Images.Where(i => i.Default).First().ImageSource;
+                }
+                else
+                {
+                    orderItem.ImageSource = "tripsWebMvcNoCarImage.jpg";
+                }
+                WebSession.OrderItems.Add(orderItem);
+
+                ViewData["name"] = string.Format("{0} ({1})", orderItem.AdModel, orderItem.Year);
+            }
+            return View();
         }
     }
 }

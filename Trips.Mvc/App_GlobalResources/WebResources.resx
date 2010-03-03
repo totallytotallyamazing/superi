@@ -174,4 +174,13 @@
   <data name="AddCar" xml:space="preserve">
     <value>Add car</value>
   </data>
+  <data name="WasAdded" xml:space="preserve">
+    <value>was added to the request</value>
+  </data>
+  <data name="ProceedOrder" xml:space="preserve">
+    <value>Proceed to the request</value>
+  </data>
+  <data name="ReturnToCatalogue" xml:space="preserve">
+    <value>Return to the catalogue</value>
+  </data>
 </root>

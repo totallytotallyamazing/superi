@@ -174,4 +174,13 @@
   <data name="AddCar" xml:space="preserve">
     <value>Добавить в заявку</value>
   </data>
+  <data name="WasAdded" xml:space="preserve">
+    <value>был добавлен в заявку</value>
+  </data>
+  <data name="ProceedOrder" xml:space="preserve">
+    <value>Перейти к оформлению заявки</value>
+  </data>
+  <data name="ReturnToCatalogue" xml:space="preserve">
+    <value>Вернуться в каталог</value>
+  </data>
 </root>

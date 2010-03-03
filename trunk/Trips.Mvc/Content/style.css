@@ -34,11 +34,29 @@ img{border:0;}
 	padding-left:5px;
 	background-color:#FFDC20; 
 	float:left;
-	border:2px solid #ffffff; 
+	border:1px solid #ffffff; 
 	border-collapse:collapse;
-	border-left:0;
-	border-top:1px solid white;
+	border-bottom:2px solid white;
 }
+
+.headerMenuItem:first-child
+{
+    border-left:2px solid white;
+}
+
+.headerMenuItem.last
+{
+    border-right:2px solid white;
+}
+
+.headerMenuItem.current
+{
+    background:#FFDC20 url(img/menuBottom.gif) repeat-x 0 100%;
+    border-bottom:0;
+    height:30px;
+    padding-top:38px;
+}
+.headerMenuItem.current a{color:Black;}
 
 .headerMenuItem a
 {

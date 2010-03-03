@@ -223,11 +223,38 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Proceed to the request.
+        /// </summary>
+        internal static string ProceedOrder {
+            get {
+                return ResourceManager.GetString("ProceedOrder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Request.
         /// </summary>
         internal static string Request {
             get {
                 return ResourceManager.GetString("Request", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Return to the catalogue.
+        /// </summary>
+        internal static string ReturnToCatalogue {
+            get {
+                return ResourceManager.GetString("ReturnToCatalogue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to was added to the request.
+        /// </summary>
+        internal static string WasAdded {
+            get {
+                return ResourceManager.GetString("WasAdded", resourceCulture);
             }
         }
     }

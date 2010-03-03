@@ -21,6 +21,7 @@
 </asp:Content>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="leftSide" runat="server">
+    <% if (ViewData["brandClasses"] != null) Html.RenderPartial("AdsNavigator", ViewData["brandClasses"]); %>
 </asp:Content>
 
 <asp:Content ID="Content5" ContentPlaceHolderID="ContentTitle" runat="server">

@@ -78,6 +78,7 @@
     <Compile Include="Controllers\CatalogueController.cs" />
     <Compile Include="Controllers\ContentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\WebSession.cs" />
     <Compile Include="Controllers\WidgetsController.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -109,6 +110,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Content.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\OrderItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -198,6 +200,7 @@
     <Content Include="Content\AdImages\tripsWebMvcNoCarImage.jpg" />
     <Content Include="Content\Admin.css" />
     <Content Include="Content\img\delete.gif" />
+    <Content Include="Content\img\menuBottom.gif" />
     <Content Include="Controls\fckeditor\editor\css\behaviors\disablehandles.htc" />
     <Content Include="Controls\fckeditor\editor\css\behaviors\showtableborders.htc" />
     <Content Include="Controls\fckeditor\editor\css\fck_editorarea.css" />
@@ -527,6 +530,7 @@
     <Content Include="Views\Admin\Brands.aspx" />
     <Content Include="Views\Admin\CarAdImages.ascx" />
     <Content Include="Views\Admin\UpdateContent.aspx" />
+    <Content Include="Views\Catalogue\AddCar.aspx" />
     <Content Include="Views\Catalogue\AdsNavigator.ascx" />
     <Content Include="Views\Catalogue\AdList.aspx" />
     <Content Include="Views\Catalogue\Index.aspx" />

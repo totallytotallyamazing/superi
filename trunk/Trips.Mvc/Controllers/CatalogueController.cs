@@ -56,6 +56,24 @@ namespace Trips.Mvc.Controllers
             }
         }
 
+        public ActionResult Details(int id)
+        {
+            using (CarAdStorage context = new CarAdStorage())
+            {
+                CarAd carAd = context.CarAds.Where(ca => ca.Id == id).First();
+                carAd.Images.Load();
+                carAd.Descriptions.Load();
+
+                carAd.BrandReference.Load();
+
+                string title = string.Format("{0} {1} ({2})", carAd.Brand.Name, carAd.Model, carAd.Year);
+
+                ViewData["title"] = title;
+
+                return View(carAd); 
+            }
+        }
+
         public ActionResult AddCar(int id)
         {
             using (CarAdStorage context = new CarAdStorage())

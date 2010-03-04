@@ -199,6 +199,24 @@
     </Content>
     <Content Include="Content\AdImages\tripsWebMvcNoCarImage.jpg" />
     <Content Include="Content\Admin.css" />
+    <Content Include="Content\fancybox\blank.gif" />
+    <Content Include="Content\fancybox\fancy_close.png" />
+    <Content Include="Content\fancybox\fancy_loading.png" />
+    <Content Include="Content\fancybox\fancy_nav_left.png" />
+    <Content Include="Content\fancybox\fancy_nav_right.png" />
+    <Content Include="Content\fancybox\fancy_shadow_e.png" />
+    <Content Include="Content\fancybox\fancy_shadow_n.png" />
+    <Content Include="Content\fancybox\fancy_shadow_ne.png" />
+    <Content Include="Content\fancybox\fancy_shadow_nw.png" />
+    <Content Include="Content\fancybox\fancy_shadow_s.png" />
+    <Content Include="Content\fancybox\fancy_shadow_se.png" />
+    <Content Include="Content\fancybox\fancy_shadow_sw.png" />
+    <Content Include="Content\fancybox\fancy_shadow_w.png" />
+    <Content Include="Content\fancybox\fancy_title_left.png" />
+    <Content Include="Content\fancybox\fancy_title_main.png" />
+    <Content Include="Content\fancybox\fancy_title_over.png" />
+    <Content Include="Content\fancybox\fancy_title_right.png" />
+    <Content Include="Content\fancybox\jquery.fancybox.css" />
     <Content Include="Content\img\delete.gif" />
     <Content Include="Content\img\menuBottom.gif" />
     <Content Include="Controls\fckeditor\editor\css\behaviors\disablehandles.htc" />
@@ -508,7 +526,10 @@
     <Content Include="Scripts\extended\ExtendedControls.js" />
     <Content Include="Scripts\extended\ExtenderBase\BaseScripts.js" />
     <Content Include="Scripts\jquery-1.4.2.min.js" />
+    <Content Include="Scripts\jquery.easing.js" />
+    <Content Include="Scripts\jquery.fancybox.js" />
     <Content Include="Scripts\jquery.FCKEditor.js" />
+    <Content Include="Scripts\jquery.mousewheel.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\MicrosoftAjax.js" />
     <Content Include="Scripts\MicrosoftAjaxAdoNet.js" />
@@ -533,6 +554,7 @@
     <Content Include="Views\Catalogue\AddCar.aspx" />
     <Content Include="Views\Catalogue\AdsNavigator.ascx" />
     <Content Include="Views\Catalogue\AdList.aspx" />
+    <Content Include="Views\Catalogue\Details.aspx" />
     <Content Include="Views\Catalogue\Index.aspx" />
     <Content Include="Views\Shared\Content.aspx" />
     <Content Include="Views\Widgets\News.ascx" />

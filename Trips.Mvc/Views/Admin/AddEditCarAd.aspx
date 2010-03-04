@@ -78,7 +78,7 @@
                 }
             });
 
-            $.fck.config = { path: '<%= VirtualPathUtility.ToAbsolute("~/Controls/fckeditor/") %>', config: { SkinPath: "skins/office2003/", DefaultLanguage: "ru", AutoDetectLanguage: false, EnterMode: "br", EnterMode: "p", HtmlEncodeOutput: true} };
+            $.fck.config = { path: '<%= VirtualPathUtility.ToAbsolute("~/Controls/fckeditor/") %>', config: { SkinPath: "skins/office2003/", DefaultLanguage: "ru", AutoDetectLanguage: false, EnterMode: "br", ShiftEnterMode: "p", HtmlEncodeOutput: true} };
             $("#descriptionRu, #descriptionEn").fck({ toolbar: "Basic", height: 200 });
         });
     </script>

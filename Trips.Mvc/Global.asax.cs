@@ -7,6 +7,8 @@ using System.Web.Routing;
 using System.Configuration;
 using System.Threading;
 using System.Globalization;
+using System.IO;
+using Trips.Mvc.Helpers;
 
 namespace Trips.Mvc
 {
@@ -97,6 +99,16 @@ namespace Trips.Mvc
                     toCulture = Request.QueryString["lang"];
                 }
                 InitCulture(toCulture);
+            }
+
+            if (Request.Path.Contains("/ImageCache/"))
+            {
+                string fileName = Path.GetFileName(Server.MapPath(Request.Path));
+
+                string folder = Request.Path.Replace("/" + fileName, "");
+                folder = folder.Substring(folder.LastIndexOf("/") + 1);
+
+                string path = GraphicsHelper.GetCachedImage("~/Content/AdImages", fileName, folder);
             }
         }
 

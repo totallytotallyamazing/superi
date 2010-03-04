@@ -56,13 +56,15 @@ namespace ClientLibrary
 
         void SetInitialControlState()
         {
+            ((DOMElement)((Array)(object)JQueryProxy.jQuery("a[rel='prev']"))[0]).ClassName = "disabled";
+
             if (Songs == null || Songs.Length == 0)
             {
                 JQueryProxy.jQuery("#playerPresentation .controls a").addClass("disabled");
             }
             else if (Songs.Length == 1)
             {
-                JQueryProxy.jQuery("a[rel='prev'], a[rel='next']").addClass("disabled");
+                JQueryProxy.jQuery("a[rel='next']").addClass("disabled");
             }
         }
 
@@ -101,6 +103,7 @@ namespace ClientLibrary
         #region Player controls
         void PlayerReady()
         {
+            SetInitialControlState();
             if (Songs != null && Songs.Length > 0)
             {
                 Dictionary firstSong = (Dictionary)Songs[0];
@@ -118,13 +121,15 @@ namespace ClientLibrary
         void Play()
         {
             ((JPlayer)(Object)JQueryProxy.jQuery(Element)).Play();
-            JQueryProxy.jQuery("a[rel='play'], a[rel='pause']").toggleClass("disabled");
+            JQueryProxy.jQuery("a[rel='play']").addClass("disabled");
+            JQueryProxy.jQuery("a[rel='pause']").removeClass("disabled");
         }
 
         void Pause()
         {
             ((JPlayer)(Object)JQueryProxy.jQuery(Element)).Pause();
-            JQueryProxy.jQuery("a[rel='play'], a[rel='pause']").toggleClass("disabled");
+            JQueryProxy.jQuery("a[rel='play']").removeClass("disabled");
+            JQueryProxy.jQuery("a[rel='pause']").addClass("disabled");
         }
 
         void Stop()
@@ -135,7 +140,6 @@ namespace ClientLibrary
 
         void Next()
         {
-            Stop();
             currentSong++;
             if (Songs.Length <= currentSong + 1)
             {
@@ -146,12 +150,10 @@ namespace ClientLibrary
             ChangeSong((string)song["url"]);
             UpdateSongTitle((string)song["name"], (string)song["album"]);
             Play();
-
         }
 
         void Prev()
         {
-            Stop();
             currentSong--;
             if (currentSong == 0)
             {
@@ -167,7 +169,7 @@ namespace ClientLibrary
         void UpdateSongTitle(string name, string album)
         {
             Document.GetElementById("playerSongName").InnerHTML = name;
-            Document.GetElementById("playerSongName").InnerHTML = album;
+            //Document.GetElementById("playerAlbumName").InnerHTML = album;
         }
         #endregion
 

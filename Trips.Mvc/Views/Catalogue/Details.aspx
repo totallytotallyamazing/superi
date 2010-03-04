@@ -64,11 +64,9 @@
                 $(this).fadeTo(0.3);
                 this.style.background = "White";
                 this.style.display = "none";
-
             });
 
             $(".fadeImage").eq(0).fadeTo(0, 0.5);
-            
         }
 
         $(function() {
@@ -82,7 +80,6 @@
             });
 
             window.setTimeout(calculateDimensions, 500);
-            
         })
     </script>
 </asp:Content>

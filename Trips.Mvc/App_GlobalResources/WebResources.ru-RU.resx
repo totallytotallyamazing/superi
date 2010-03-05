@@ -183,4 +183,76 @@
   <data name="ReturnToCatalogue" xml:space="preserve">
     <value>Вернуться в каталог</value>
   </data>
+  <data name="Step" xml:space="preserve">
+    <value>Шаг</value>
+  </data>
+  <data name="AboutTheTrip" xml:space="preserve">
+    <value>О поездке</value>
+  </data>
+  <data name="ApproximatePrice" xml:space="preserve">
+    <value>Приблизительная цена поездки</value>
+  </data>
+  <data name="Calculation" xml:space="preserve">
+    <value>Просчитано</value>
+  </data>
+  <data name="CalculationFor" xml:space="preserve">
+    <value>Просчитано для</value>
+  </data>
+  <data name="Car" xml:space="preserve">
+    <value>Автомобиль</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="Distance" xml:space="preserve">
+    <value>Расстояние</value>
+  </data>
+  <data name="Dollars" xml:space="preserve">
+    <value>долларах</value>
+  </data>
+  <data name="EnterCityName" xml:space="preserve">
+    <value>название города</value>
+  </data>
+  <data name="EUR" xml:space="preserve">
+    <value>евро</value>
+  </data>
+  <data name="Euro" xml:space="preserve">
+    <value>евро</value>
+  </data>
+  <data name="Km" xml:space="preserve">
+    <value>км</value>
+  </data>
+  <data name="MoreDetails" xml:space="preserve">
+    <value>Детальнее о маршруте</value>
+  </data>
+  <data name="MoreDetailsExplanation" xml:space="preserve">
+    <value>Например, места, куда планируете заезжать по пути</value>
+  </data>
+  <data name="NumberOfCars" xml:space="preserve">
+    <value>Количество автомобилей</value>
+  </data>
+  <data name="Or" xml:space="preserve">
+    <value>Или</value>
+  </data>
+  <data name="RecountIn" xml:space="preserve">
+    <value>Пересчитать в</value>
+  </data>
+  <data name="Ruble" xml:space="preserve">
+    <value>рублях</value>
+  </data>
+  <data name="RUR" xml:space="preserve">
+    <value>руб.</value>
+  </data>
+  <data name="StartingPoint" xml:space="preserve">
+    <value>Откуда</value>
+  </data>
+  <data name="UAH" xml:space="preserve">
+    <value>грн</value>
+  </data>
+  <data name="USD" xml:space="preserve">
+    <value>usd</value>
+  </data>
+  <data name="WhereToGo" xml:space="preserve">
+    <value>Куда</value>
+  </data>
 </root>

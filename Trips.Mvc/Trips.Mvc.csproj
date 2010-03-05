@@ -78,6 +78,7 @@
     <Compile Include="Controllers\CatalogueController.cs" />
     <Compile Include="Controllers\ContentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\RequestController.cs" />
     <Compile Include="Controllers\WebSession.cs" />
     <Compile Include="Controllers\WidgetsController.cs" />
     <Compile Include="Default.aspx.cs">
@@ -111,6 +112,11 @@
       <DependentUpon>Content.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\OrderItem.cs" />
+    <Compile Include="Models\Routes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Routes.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -556,6 +562,7 @@
     <Content Include="Views\Catalogue\AdList.aspx" />
     <Content Include="Views\Catalogue\Details.aspx" />
     <Content Include="Views\Catalogue\Index.aspx" />
+    <Content Include="Views\Request\Index.aspx" />
     <Content Include="Views\Shared\Content.aspx" />
     <Content Include="Views\Widgets\News.ascx" />
     <Content Include="Views\Widgets\Smoking.ascx" />
@@ -615,6 +622,10 @@
     <None Include="Controls\fckeditor\fckeditor_php4.php" />
     <None Include="Controls\fckeditor\fckeditor_php5.php" />
     <None Include="Controls\fckeditor\fckutils.cfm" />
+    <EntityDeploy Include="Models\Routes.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Routes.Designer.cs</LastGenOutput>
+    </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\" />

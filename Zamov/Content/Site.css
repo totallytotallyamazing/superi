@@ -71,10 +71,15 @@ margin-right:40px;
 .menuItems{height:225px; width:auto; overflow:auto; background:transparent url(img/subItem.jpg)}
 .menuFooter{width:auto; height:11px; background: transparent url(img/subFooter.jpg)}
 .menuItem{width:auto; height: 15px; padding:5px; background:transparent url(img/subItemActive.jpg)}
+.menuItem.long{ height: 30px; background:transparent url(img/subMenuLong.jpg); padding-top:3px; }
+.menuItem a.active{text-decoration:none; color:#324D62; font-size:12px; font-weight:bold;}
 .menuItem a{text-decoration:none; color:#324D62; font-size:12px;}
 .subMenuItem{width:auto; padding:5px 5px 5px 15px; }
-.menuItem.selected a{font-weight:bold;}
+.subMenuItem a{font-size:10px;}
 
+.subMenuItem a.active{color:#2842e2; font-weight:normal; text-decoration:underline;}
+
+.menuItem.selected a.active{font-weight:bold !important;/* color:#2842e2; text-decoration:underline*/}
 .adminTable tr td{border-collapse:collapse; border:1px dotted #ccc; padding:3px;}
 .shader{background:white; opacity:0.5; filter:alpha(opacity=50); position:absolute; top:0; left:0; width:100%; height:100%; display:none; z-index:10000;}
 .greyBorderBox{padding:10px; border: 1px solid #dbdbdb;  background:white;}

@@ -3,7 +3,8 @@
 .subMenuItem{padding-bottom:4px !important;}
 li ul li .subMenuItem a{color:Highlight; text-decoration:underline;}
 
-.active{font-weight:bold !important;}
+.active{color:#2842e2;}
+/*.active{color:#2842e2 !important;}*/
 
 .treeview, .treeview ul { 
 	padding: 0;

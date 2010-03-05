@@ -28,8 +28,12 @@
     </div>
     <div class="menuItems">
         <% foreach (GroupResentation item in Model)
-           {%>
-        <div class="menuItem">
+           {
+               string className = "menuItem";
+               if (item.Name.Length > 20)
+                   className += " long";
+               %>
+        <div class="<%= className %>">
             <%
                 int newCategoryId = item.CategoryId;
                 if (newCategoryId == 0)

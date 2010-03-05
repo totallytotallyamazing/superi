@@ -30,7 +30,7 @@
     {%>
         <div class="item">
             <div class="title">
-                <%= item.Title %>
+                <span class="newsDate"><%= item.Date.ToString("dd.MM.yyyy") %></span>&nbsp;<%= item.Title %>
             </div>
             <%= HttpUtility.HtmlDecode(item.ShortText) %>
             <div class="itemFooter">

@@ -51,7 +51,7 @@ namespace Trips.Mvc.Controllers
                         .Where(c => c.Language == language)
                         .Where(c => c.Name == "Catalogue")
                         .FirstOrDefault();
-                    return View("Content", content); 
+                    return View(content); 
                 }
             }
         }

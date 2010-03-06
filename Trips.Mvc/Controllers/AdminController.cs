@@ -352,5 +352,158 @@ namespace Trips.Mvc.Controllers
             return RedirectToAction("AddEditCarAd", new { id = adId });
         }
         #endregion
+
+        #region Routes
+        public ActionResult Cities()
+        {
+            using (RouteStorage context = new RouteStorage())
+            {
+                List<City> cities = context.Cities.Include("CityNames").ToList();
+                return View(cities);
+            }
+        }
+
+        public ActionResult UpdateCity(long id, string nameRu, string nameEn)
+        {
+            using (RouteStorage context = new RouteStorage())
+            {
+                City city = context.Cities.Include("CityNames").Where(c => c.Id == id).First();
+                CityName nameRuItem = city.CityNames.Where(cn=>cn.Language == "ru-RU").First();
+                CityName nameEnItem = city.CityNames.Where(cn => cn.Language == "en-US").First();
+                nameEnItem.Name = nameEn;
+                nameRuItem.Name = nameRu;
+                context.SaveChanges();
+            }
+            return RedirectToAction("Cities");
+        }
+
+        public ActionResult DeleteCity(long id)
+        {
+            using (RouteStorage context = new RouteStorage())
+            {
+                City city = context.Cities.Include("CityNames").Where(c=>c.Id == id).First();
+                foreach (var item in city.CityNames)
+                {
+                    context.DeleteObject(item);
+                }
+                context.DeleteObject(city);
+                context.SaveChanges();
+            }
+            return RedirectToAction("Cities");
+        }
+
+        public ActionResult AddCity(string nameRu, string nameEn)
+        {
+            using (RouteStorage context = new RouteStorage())
+            {
+                City city = new City();
+                CityName nameRuItem = new CityName();
+                CityName nameEnItem = new CityName();
+                nameRuItem.Name = nameRu;
+                nameRuItem.Language = "ru-RU";
+                nameEnItem.Name = nameEn;
+                nameEnItem.Language = "en-US";
+                city.CityNames.Add(nameEnItem);
+                city.CityNames.Add(nameRuItem);
+                context.AddToCities(city);
+                context.SaveChanges();
+            }
+            return RedirectToAction("Cities");
+        }
+
+        public ActionResult Routes()
+        {
+            using (RouteStorage context = new RouteStorage())
+            {
+                List<Route> routes = context.Routes.Include("RoutePrices").ToList();
+                return View(routes); 
+            }
+        }
+
+        public ActionResult DeleteRoute(long id)
+        {
+            using (RouteStorage context = new RouteStorage())
+            {
+                Route route = context.Routes.Include("RoutePrices").Where(r => r.Id == id).First();
+                foreach (var item in route.RoutePrices)
+                {
+                    context.DeleteObject(item);
+                }
+                context.DeleteObject(route);
+                context.SaveChanges();
+            }
+            return RedirectToAction("Routes");
+        }
+
+        public ActionResult AddRoute(
+            int fromCityId,
+            int toCityId,
+            Single distance,
+            Single priceStandard,
+            Single priceMiddle,
+            Single priceBusiness,
+            Single priceMinivan,
+            Single priceMultivan,
+            Single priceLux
+            )
+        {
+            using (RouteStorage context = new RouteStorage())
+            {
+                Route route = new Route();
+                RoutePrice standart = new RoutePrice();
+                RoutePrice middle = new RoutePrice();
+                RoutePrice business = new RoutePrice();
+                RoutePrice minivan = new RoutePrice();
+                RoutePrice multivan = new RoutePrice();
+                RoutePrice lux = new RoutePrice();
+
+                standart.ClassId = (int)CarAdClasses.Standard;
+                middle.ClassId = (int)CarAdClasses.Middle;
+                business.ClassId = (int)CarAdClasses.Business;
+                minivan.ClassId = (int)CarAdClasses.Minivan;
+                multivan.ClassId = (int)CarAdClasses.Multivan;
+                lux.ClassId = (int)CarAdClasses.Lux;
+
+                standart.Price = priceStandard;
+                middle.Price = priceMiddle;
+                business.Price = priceBusiness;
+                minivan.Price = priceMinivan;
+                multivan.Price = priceMultivan;
+                lux.Price = priceLux;
+
+                route.FromCityId = fromCityId;
+                route.ToCityId = toCityId;
+
+                route.Distance = distance;
+                route.RoutePrices.Add(standart);
+                route.RoutePrices.Add(middle);
+                route.RoutePrices.Add(business);
+                route.RoutePrices.Add(minivan);
+                route.RoutePrices.Add(multivan);
+                route.RoutePrices.Add(lux);
+
+                context.AddToRoutes(route);
+
+                context.SaveChanges();
+
+            }
+            return RedirectToAction("Routes");
+        }
+
+        public ActionResult UpdateRoute(
+            int fromCityId,
+            int toCityId,
+            Single distance,
+            Single priceStandard,
+            Single priceMiddle,
+            Single priceBusiness,
+            Single priceMinivan,
+            Single priceMultivan,
+            Single priceLux
+            )
+        {
+            return RedirectToAction("Routes");
+        }
+        #endregion
     }
 }

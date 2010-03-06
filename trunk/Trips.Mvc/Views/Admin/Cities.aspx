@@ -1,37 +1,40 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<Trips.Mvc.Models.Brand>>" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<Trips.Mvc.Models.City>>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Марки автомобилей
+    Города
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <table>
         <tr>
             <th>
-                Бренд
+                Русский
             </th>
             <th>
-                Показывать
+                Английский
             </th>
             <th></th>
             <th></th>
         </tr>
 
-    <% foreach (var item in Model) { %>
-        <%using(Html.BeginForm("UpdateBrand", "Admin")){ %>
+    <% foreach (var item in Model) {
+           string nameEn = item.CityNames.Where(cn => cn.Language == "en-US").First().Name;
+           string nameRu = item.CityNames.Where(cn => cn.Language == "ru-RU").First().Name;
+           %>
+        <%using(Html.BeginForm("UpdateCity", "Admin")){ %>
         <tr>
             <td>
-                <%= Html.TextBox("name", item.Name) %>
+                <%= Html.TextBox("nameRu", nameRu)%>
             </td>
             <td>
-                <%= Html.CheckBox("published", item.Published) %>
+                <%= Html.TextBox("nameEn", nameEn)%>
             </td>
             <td>
                 <%= Html.Hidden("id", item.Id) %>
                 <input type="submit" value="Сохранить" />
             </td>
             <td>
-                <%= Html.ActionLink("Удалить", "DeleteBrand", new {id=item.Id}) %>
+                <%= Html.ActionLink("Удалить", "DeleteCity", new {id=item.Id}) %>
             </td>
         </tr>
         <%} %>
@@ -43,19 +46,19 @@
         <table>
             <tr>
                 <th>
-                    Бренд
+                    Русский
                 </th>
                 <th>
-                    Показывать
+                    Английский
                 </th>
                 <th></th>
             </tr>
             <tr>
                 <td>
-                    <%= Html.TextBox("name") %>
+                    <%= Html.TextBox("nameRu") %>
                 </td>
                 <td>
-                    <%= Html.CheckBox("published", false) %>
+                    <%= Html.TextBox("nameEn") %>
                 </td>
                 <td>
                     <input type="submit" value="Добавить" />
@@ -65,9 +68,13 @@
     <%} %>
 </asp:Content>
 
-<asp:Content ID="Content3" ContentPlaceHolderID="leftSide" runat="server">
+<asp:Content ID="Content3" ContentPlaceHolderID="includes" runat="server">
 </asp:Content>
 
-<asp:Content ID="Content4" ContentPlaceHolderID="ContentTitle" runat="server">
+<asp:Content ID="Content4" ContentPlaceHolderID="leftSide" runat="server">
+</asp:Content>
+
+<asp:Content ID="Content5" ContentPlaceHolderID="ContentTitle" runat="server">
+    Города
 </asp:Content>
 

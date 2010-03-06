@@ -556,6 +556,7 @@
     <Content Include="Views\Admin\AddEditCarAd.aspx" />
     <Content Include="Views\Admin\Brands.aspx" />
     <Content Include="Views\Admin\CarAdImages.ascx" />
+    <Content Include="Views\Admin\Cities.aspx" />
     <Content Include="Views\Admin\UpdateContent.aspx" />
     <Content Include="Views\Catalogue\AddCar.aspx" />
     <Content Include="Views\Catalogue\AdsNavigator.ascx" />

@@ -16,9 +16,6 @@ namespace Trips.Mvc.Controllers
     [Authorize]
     public class AdminController : Controller
     {
-        //
-        // GET: /Admin/
-
         public ActionResult Index()
         {
             return View();
@@ -88,21 +85,21 @@ namespace Trips.Mvc.Controllers
             using (CarAdStorage context = new CarAdStorage())
             {
                 Brand brand = context.Brands.Include("CarAds").Where(b => b.Id == id).First();
-                foreach (var item in brand.CarAds)
-                {
-                    item.Images.Load();
-                    foreach (var image in item.Images)
-                    {
-                        DeleteImage(image.ImageSource);
-                        context.DeleteObject(image);
-                    }
-                    item.Descriptions.Load();
-                    foreach (var description in item.Descriptions)
-                    {
-                        context.DeleteObject(description);
-                    }
-                    context.DeleteObject(item);
-                }
+                //foreach (var item in brand.CarAds)
+                //{
+                //    item.Images.Load();
+                //    foreach (var image in item.Images)
+                //    {
+                //        DeleteImage(image.ImageSource);
+                //        context.DeleteObject(image);
+                //    }
+                //    item.Descriptions.Load();
+                //    foreach (var description in item.Descriptions)
+                //    {
+                //        context.DeleteObject(description);
+                //    }
+                //    context.DeleteObject(item);
+                //}
                 context.DeleteObject(brand);
                 context.SaveChanges();
             }
@@ -110,7 +107,6 @@ namespace Trips.Mvc.Controllers
             return RedirectToAction("Brands");
         }
         #endregion
-
 
         #region Content
         public ActionResult UpdateContent(string id)
@@ -382,10 +378,6 @@ namespace Trips.Mvc.Controllers
             using (RouteStorage context = new RouteStorage())
             {
                 City city = context.Cities.Include("CityNames").Where(c=>c.Id == id).First();
-                foreach (var item in city.CityNames)
-                {
-                    context.DeleteObject(item);
-                }
                 context.DeleteObject(city);
                 context.SaveChanges();
             }
@@ -397,15 +389,22 @@ namespace Trips.Mvc.Controllers
             using (RouteStorage context = new RouteStorage())
             {
                 City city = new City();
+                city.Published = true;
+                context.AddToCities(city);
+                
                 CityName nameRuItem = new CityName();
                 CityName nameEnItem = new CityName();
                 nameRuItem.Name = nameRu;
                 nameRuItem.Language = "ru-RU";
                 nameEnItem.Name = nameEn;
                 nameEnItem.Language = "en-US";
+
+                context.AddToCityNames(nameEnItem);
+                context.AddToCityNames(nameRuItem);
+
                 city.CityNames.Add(nameEnItem);
                 city.CityNames.Add(nameRuItem);
-                context.AddToCities(city);
+                
                 context.SaveChanges();
             }
             return RedirectToAction("Cities");
@@ -425,10 +424,6 @@ namespace Trips.Mvc.Controllers
             using (RouteStorage context = new RouteStorage())
             {
                 Route route = context.Routes.Include("RoutePrices").Where(r => r.Id == id).First();
-                foreach (var item in route.RoutePrices)
-                {
-                    context.DeleteObject(item);
-                }
                 context.DeleteObject(route);
                 context.SaveChanges();
             }
@@ -438,13 +433,13 @@ namespace Trips.Mvc.Controllers
         public ActionResult AddRoute(
             int fromCityId,
             int toCityId,
-            Single distance,
-            Single priceStandard,
-            Single priceMiddle,
-            Single priceBusiness,
-            Single priceMinivan,
-            Single priceMultivan,
-            Single priceLux
+            float distance,
+            float priceStandard,
+            float priceMiddle,
+            float priceBusiness,
+            float priceMinivan,
+            float priceMultivan,
+            float priceLux
             )
         {
             using (RouteStorage context = new RouteStorage())
@@ -492,15 +487,15 @@ namespace Trips.Mvc.Controllers
 
         public ActionResult UpdateRoute(
             long id,
-            int fromCityId,
-            int toCityId,
-            Single distance,
-            Single priceStandard,
-            Single priceMiddle,
-            Single priceBusiness,
-            Single priceMinivan,
-            Single priceMultivan,
-            Single priceLux
+            long fromCityId,
+            long toCityId,
+            float distance,
+            float priceStandard,
+            float priceMiddle,
+            float priceBusiness,
+            float priceMinivan,
+            float priceMultivan,
+            float priceLux
             )
         {
             using (RouteStorage context = new RouteStorage())

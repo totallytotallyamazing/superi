@@ -109,14 +109,20 @@
           <NavigationProperty Name="Descriptions" Relationship="gbua_tripsModel.CarAdsCarAdDescriptions" FromRole="CarAds" ToRole="CarAdDescriptions" />
           <NavigationProperty Name="Images" Relationship="gbua_tripsModel.CarAdCarAdImage" FromRole="CarAd" ToRole="CarAdImage" /></EntityType>
         <Association Name="BrandsCarAds">
-          <End Type="gbua_tripsModel.Brand" Role="Brands" Multiplicity="1" />
+          <End Type="gbua_tripsModel.Brand" Role="Brands" Multiplicity="1" >
+            <OnDelete Action="Cascade"></OnDelete>
+          </End>
           <End Type="gbua_tripsModel.CarAd" Role="CarAds" Multiplicity="*" />
           </Association>
         <Association Name="CarAdsCarAdDescriptions">
-          <End Type="gbua_tripsModel.CarAd" Role="CarAds" Multiplicity="1" />
+          <End Type="gbua_tripsModel.CarAd" Role="CarAds" Multiplicity="1" >
+            <OnDelete Action="Cascade"></OnDelete>
+          </End>
           <End Type="gbua_tripsModel.CarAdDescription" Role="CarAdDescriptions" Multiplicity="*" /></Association>
         <Association Name="CarAdCarAdImage">
-          <End Type="gbua_tripsModel.CarAd" Role="CarAd" Multiplicity="1" />
+          <End Type="gbua_tripsModel.CarAd" Role="CarAd" Multiplicity="1" >
+            <OnDelete Action="Cascade"></OnDelete>
+          </End>
           <End Type="gbua_tripsModel.CarAdImage" Role="CarAdImage" Multiplicity="*" /></Association></Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->

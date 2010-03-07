@@ -491,6 +491,7 @@ namespace Trips.Mvc.Controllers
         }
 
         public ActionResult UpdateRoute(
+            long id,
             int fromCityId,
             int toCityId,
             Single distance,
@@ -502,6 +503,37 @@ namespace Trips.Mvc.Controllers
             Single priceLux
             )
         {
+            using (RouteStorage context = new RouteStorage())
+            {
+                Route route = context.Routes.Include("RoutePrices").Where(r => r.Id == id).First();
+                RoutePrice standart = route.RoutePrices.Where(rp => rp.ClassId == (int)CarAdClasses.Standard).First();
+                RoutePrice middle = route.RoutePrices.Where(rp => rp.ClassId == (int)CarAdClasses.Middle).First();
+                RoutePrice business = route.RoutePrices.Where(rp => rp.ClassId == (int)CarAdClasses.Business).First();
+                RoutePrice minivan = route.RoutePrices.Where(rp => rp.ClassId == (int)CarAdClasses.Minivan).First();
+                RoutePrice multivan = route.RoutePrices.Where(rp => rp.ClassId == (int)CarAdClasses.Multivan).First();
+                RoutePrice lux = route.RoutePrices.Where(rp => rp.ClassId == (int)CarAdClasses.Lux).First();
+
+                standart.ClassId = (int)CarAdClasses.Standard;
+                middle.ClassId = (int)CarAdClasses.Middle;
+                business.ClassId = (int)CarAdClasses.Business;
+                minivan.ClassId = (int)CarAdClasses.Minivan;
+                multivan.ClassId = (int)CarAdClasses.Multivan;
+                lux.ClassId = (int)CarAdClasses.Lux;
+
+                standart.Price = priceStandard;
+                middle.Price = priceMiddle;
+                business.Price = priceBusiness;
+                minivan.Price = priceMinivan;
+                multivan.Price = priceMultivan;
+                lux.Price = priceLux;
+
+                route.FromCityId = fromCityId;
+                route.ToCityId = toCityId;
+
+                route.Distance = distance;
+
+                context.SaveChanges();
+            }
             return RedirectToAction("Routes");
         }
         #endregion

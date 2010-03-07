@@ -13,7 +13,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("gbua_tripsEntities1", "RoutesRoutePrices", "Routes", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Trips.Mvc.Models.Route), "RoutePrices", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Trips.Mvc.Models.RoutePrice))]
 
 // Original file name:
-// Generation date: 06.03.2010 16:54:27
+// Generation date: 07.03.2010 13:23:15
 namespace Trips.Mvc.Models
 {
     
@@ -151,10 +151,12 @@ namespace Trips.Mvc.Models
         /// Create a new City object.
         /// </summary>
         /// <param name="id">Initial value of Id.</param>
-        public static City CreateCity(int id)
+        /// <param name="published">Initial value of Published.</param>
+        public static City CreateCity(int id, bool published)
         {
             City city = new City();
             city.Id = id;
+            city.Published = published;
             return city;
         }
         /// <summary>
@@ -180,6 +182,29 @@ namespace Trips.Mvc.Models
         private int _Id;
         partial void OnIdChanging(int value);
         partial void OnIdChanged();
+        /// <summary>
+        /// There are no comments for Property Published in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public bool Published
+        {
+            get
+            {
+                return this._Published;
+            }
+            set
+            {
+                this.OnPublishedChanging(value);
+                this.ReportPropertyChanging("Published");
+                this._Published = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("Published");
+                this.OnPublishedChanged();
+            }
+        }
+        private bool _Published;
+        partial void OnPublishedChanging(bool value);
+        partial void OnPublishedChanged();
         /// <summary>
         /// There are no comments for CityNames in the schema.
         /// </summary>

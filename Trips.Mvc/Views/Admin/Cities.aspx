@@ -42,7 +42,7 @@
 
     </table>
 
-    <%using(Html.BeginForm("AddBrand", "Admin")){ %>
+    <%using(Html.BeginForm("AddCity", "Admin")){ %>
         <table>
             <tr>
                 <th>

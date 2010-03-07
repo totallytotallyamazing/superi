@@ -38,3 +38,41 @@
         luxPrice = prices[(long)CarAdClasses.Lux];
     }    
 %>
+        <% using (Html.BeginForm("UpdateRoute", "Admin", FormMethod.Post)){%>
+            <tr>
+                <td>
+                    <%= Html.Hidden("id", Model.Id) %>
+                    <%= Html.DropDownList("fromCityId", fromCities) %>
+                </td>
+                <td>
+                    <%= Html.DropDownList("toCityId", toCities) %>
+                </td>
+                <td>
+                    <%= Html.TextBox("distance", distance) %>
+                </td>
+                <td>
+                    <%= Html.TextBox("priceStandard", standardPrice)%>
+                </td>
+                <td>
+                    <%= Html.TextBox("priceMiddle", middlePrice)%>
+                </td>
+                <td>
+                    <%= Html.TextBox("priceBusiness", businessPrice)%>
+                </td>
+                <td>
+                    <%= Html.TextBox("priceMinivan", minivanPrice)%>
+                </td>
+                <td>
+                    <%= Html.TextBox("priceMultivan", multivanPrice)%>
+                </td>
+                <td style="display:none">
+                    <%= Html.TextBox("priceLux", luxPrice)%>
+                </td>
+                <td>
+                    <input type="submit" value="Сохранить" />
+                </td>
+                <td>
+                    <%= Html.ActionLink("Удалить", "DeleteRoute", "Admin", new {id = Model.Id}, null) %>
+                </td>
+            </tr>   
+         <%} %>

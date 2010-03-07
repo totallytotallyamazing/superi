@@ -4,18 +4,19 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="RouteStorage.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.0" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
-        <EntityContainer Name="RouteStorageStoreContainer">
-          <EntitySet Name="Cities" EntityType="RouteStorage.Store.Cities" store:Type="Tables" Schema="gbua_trips" />
-          <EntitySet Name="CityNames" EntityType="RouteStorage.Store.CityNames" store:Type="Tables" Schema="gbua_trips" />
-          <EntitySet Name="RoutePrices" EntityType="RouteStorage.Store.RoutePrices" store:Type="Tables" Schema="gbua_trips" />
-          <EntitySet Name="Routes" EntityType="RouteStorage.Store.Routes" store:Type="Tables" Schema="gbua_trips" />
+    <Schema Namespace="gbua_tripsEntities1.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.0" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
+        <EntityContainer Name="gbua_tripsEntities1StoreContainer">
+          <EntitySet Name="Cities" EntityType="gbua_tripsEntities1.Store.Cities" store:Type="Tables" Schema="gbua_trips" />
+          <EntitySet Name="CityNames" EntityType="gbua_tripsEntities1.Store.CityNames" store:Type="Tables" Schema="gbua_trips" />
+          <EntitySet Name="RoutePrices" EntityType="gbua_tripsEntities1.Store.RoutePrices" store:Type="Tables" Schema="gbua_trips" />
+          <EntitySet Name="Routes" EntityType="gbua_tripsEntities1.Store.Routes" store:Type="Tables" Schema="gbua_trips" />
         </EntityContainer>
         <EntityType Name="Cities">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Published" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="CityNames">
           <Key>
@@ -44,8 +45,7 @@
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="ToCityId" Type="uint" Nullable="false" />
         </EntityType>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="gbua_tripsEntities1" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
@@ -65,7 +65,8 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="CityNames" Relationship="gbua_tripsEntities1.CitiesCityNames" FromRole="Cities" ToRole="CityNames" /></EntityType>
+          <NavigationProperty Name="CityNames" Relationship="gbua_tripsEntities1.CitiesCityNames" FromRole="Cities" ToRole="CityNames" />
+          <Property Name="Published" Type="Boolean" Nullable="false" /></EntityType>
         <EntityType Name="CityName">
           <Key>
             <PropertyRef Name="Id" />
@@ -92,19 +93,24 @@
           <Property Name="ToCityId" Type="Int64" Nullable="false" />
           <NavigationProperty Name="RoutePrices" Relationship="gbua_tripsEntities1.RoutesRoutePrices" FromRole="Routes" ToRole="RoutePrices" /></EntityType>
         <Association Name="CitiesCityNames">
-          <End Type="gbua_tripsEntities1.City" Role="Cities" Multiplicity="1" />
+          <End Type="gbua_tripsEntities1.City" Role="Cities" Multiplicity="1" >
+            <OnDelete Action="Cascade"></OnDelete>
+          </End>
           <End Type="gbua_tripsEntities1.CityName" Role="CityNames" Multiplicity="*" /></Association>
         <Association Name="RoutesRoutePrices">
-          <End Type="gbua_tripsEntities1.Route" Role="Routes" Multiplicity="1" />
+          <End Type="gbua_tripsEntities1.Route" Role="Routes" Multiplicity="1">
+            <OnDelete Action="Cascade"></OnDelete>
+          </End>
           <End Type="gbua_tripsEntities1.RoutePrice" Role="RoutePrices" Multiplicity="*" /></Association></Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="urn:schemas-microsoft-com:windows:storage:mapping:CS">
-        <EntityContainerMapping StorageEntityContainer="RouteStorageStoreContainer" CdmEntityContainer="RouteStorage">
+        <EntityContainerMapping StorageEntityContainer="gbua_tripsEntities1StoreContainer" CdmEntityContainer="RouteStorage">
           <EntitySetMapping Name="Cities">
             <EntityTypeMapping TypeName="IsTypeOf(gbua_tripsEntities1.City)">
               <MappingFragment StoreEntitySet="Cities">
+                <ScalarProperty Name="Published" ColumnName="Published" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

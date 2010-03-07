@@ -5,25 +5,14 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <table>
-        <tr>
-            <th>Откуда</th>
-            <th>Куда</th>
-            <th>Расстояние</th>
-            <th>Стандарт</th>
-            <th>Средний</th>
-            <th>Бизнес</th>
-            <th>Минивен</th>
-            <th>Мультивен</th>
-            <th style="display:none">Люкс</th>
-            <th></th>
-            <th></th>
-        </tr>
         <% foreach (var item in Model)
            {
-               Html.RenderPartial("Routes", item);     
+               Html.RenderPartial("Route", item);     
            } %>
-    </table>
+<div style="clear:both">
+
+
+</div>
 <% using (Html.BeginForm("AddRoute", "Admin"))
    {
            
@@ -49,57 +38,38 @@
             }).ToList();
     }
        %>
-    <table>
-        <tr>
-            <th>Откуда</th>
-            <th>Куда</th>
-            <th>Расстояние</th>
-            <th>Стандарт</th>
-            <th>Средний</th>
-            <th>Бизнес</th>
-            <th>Минивен</th>
-            <th>Мультивен</th>
-            <th style="display:none">Люкс</th>
-            <th></th>
-        </tr>
-        <tr>
-            <td>
-                <%= Html.DropDownList("fromCityId", fromCities) %>
-            </td>
-            <td>
-                <%= Html.DropDownList("toCityId", toCities) %>
-            </td>
-            <td>
-                <%= Html.TextBox("distance") %>
-            </td>
-            <td>
-                <%= Html.TextBox("priceStandard")%>
-            </td>
-            <td>
-                <%= Html.TextBox("priceMiddle")%>
-            </td>
-            <td>
-                <%= Html.TextBox("priceBusiness")%>
-            </td>
-            <td>
-                <%= Html.TextBox("priceMinivan")%>
-            </td>
-            <td>
-                <%= Html.TextBox("priceMultivan")%>
-            </td>
-            <td style="display:none">
-                <%= Html.TextBox("priceLux")%>
-            </td>
-            <td>
-                <input type="submit" value="Добавить" />
-            </td>
-        </tr>
-    </table>
+       
+<div class="newRoute">
+    <label for="fromCityId" title="Откуда">Откуда</label><br />
+    <%= Html.DropDownList("fromCityId", fromCities) %><br />
+    <label for="toCityId" title="Куда">Куда</label><br />
+    <%= Html.DropDownList("toCityId", toCities) %><br />
+    <label for="distance" title="Расстояние">Расстояние</label><br />
+    <%= Html.TextBox("distance") %><br />
+    <label for="priceStandard" title="Цена за стандарт">Цена за стандарт</label><br />
+    <%= Html.TextBox("priceStandard")%><br />
+    <label for="priceMiddle" title="Цена за средний">Цена за средний</label><br />
+    <%= Html.TextBox("priceMiddle")%><br />
+    <label for="priceBusiness" title="Цена за бизнес">Цена за бизнес</label><br />
+    <%= Html.TextBox("priceBusiness")%><br />
+    <label for="priceMinivan" title="Цена за минивен">Цена за минивен</label><br />
+    <%= Html.TextBox("priceMinivan")%><br />
+    <label for="priceMultivan" title="Цена за мультивен">Цена за мультивен</label><br />
+    <%= Html.TextBox("priceMultivan")%><br />
+    <div style="display:none">
+        <label for="priceLux" title="Цена за люкс">Цена за люкс</label><br />   
+        <%= Html.TextBox("priceLux", 0)%>
+    </div>
+    <div>
+        <input type="submit" value="Добавить" />
+    </div>
+</div>
 <% } %>    
     
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="includes" runat="server">
+    <link rel="Stylesheet" href="/Content/Admin.css" />
 </asp:Content>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="leftSide" runat="server">

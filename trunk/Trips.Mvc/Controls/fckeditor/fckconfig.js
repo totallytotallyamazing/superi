@@ -273,8 +273,8 @@ FCKConfig.JustifyClasses = [] ;
 // inline when creating the editor instance. In that cases you must set the
 // values of LinkBrowserURL, ImageBrowserURL and so on.
 // Custom implementations should just ignore it.
-var _FileBrowserLanguage	= 'php' ;	// asp | aspx | cfm | lasso | perl | php | py
-var _QuickUploadLanguage	= 'php' ;	// asp | aspx | cfm | lasso | perl | php | py
+var _FileBrowserLanguage	= 'aspx' ;	// asp | aspx | cfm | lasso | perl | php | py
+var _QuickUploadLanguage	= 'aspx' ;	// asp | aspx | cfm | lasso | perl | php | py
 
 // Don't care about the following two lines. It just calculates the correct connector
 // extension to use for the default File Browser (Perl uses "cgi").

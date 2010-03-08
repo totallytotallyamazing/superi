@@ -98,7 +98,7 @@ height:20px;width:161px;background:url(img/leftBox1Header.jpg) no-repeat;font-fa
 /*Swed finish*/
 /*News start*/
 #newsBox{height:250px;width:161px;}
-#newsHeader{height:20px;width:161px;background:url(img/leftBox1Header.jpg) no-repeat;font-family:Tahoma, sans-serif;text-decoration:none;font-size:13px;font-weight: bold;text-align:center;}
+#newsHeader{height:20px;width:161px;background:url(img/leftBox1Header.jpg) no-repeat;font-family:Tahoma, sans-serif;text-decoration:none;font-size:13px;font-weight: bold;text-align:center; text-transform:uppercase;}
 #newsHeader p{padding-top:2px;}
 #newsContent{min-height:230px;height:auto;width:159px;border-left:1px solid #ffcc00;border-right:1px solid #ffcc00;}
 #newsContent p{padding: 19px 0 0 8px;font-family:Tahoma, sans-serif;text-decoration:none;font-size:10px;color:#999999;font-weight:bold;}
@@ -114,7 +114,7 @@ height:20px;width:161px;background:url(img/leftBox1Header.jpg) no-repeat;font-fa
 #stringLeft{width:78px;height:32px;background:url(img/string_left.jpg) no-repeat;float:left;}
 #stringRight{width:78px;height:32px;background:url(img/string_right.jpg) no-repeat;float:right;}
 
-#content{height:auto;min-height:300px;width:auto;position:relative;margin-left:170px;margin-right:170px;}
+#content{height:auto;min-height:300px;width:auto;position:relative;margin-left:170px;margin-right:170px; font-size:0.8em;}
 #contentBox{height:auto;width:auto;min-width:300px;min-height:300px;position:relative;padding:0px 40px 40px 40px;
 background:#f7f6ef url(img/contentBoxBottomShadow.jpg) 0 100% repeat-x;}
 #contentBoxLeftShadow{margin:0px 74px 0px 78px;height:auto;width:auto;background:transparent url(img/leftContentShadow.jpg) repeat-y;
@@ -122,7 +122,6 @@ padding-left:4px;margin-left:74px;}
 #contentBoxRightShadow{height: auto;width:auto;padding-right:4px;background:transparent url(img/rightContentShadow.jpg) 100% 0 repeat-y;
 vertical-align: text-bottom;}
 #content li{list-style-type: none;font-family: Tahoma, Helvetica, sans-serif;font-weight:normal; font-size:13px;}
-#content li:before {content: "\2014";}
 #content a{color:#3366ff;}
 /*end container*/
 #leftImageBox{height:145px;width:291px;margin:150px 0 0 -35px;background:url(img/ladyAndDriver.jpg) no-repeat;}
@@ -138,31 +137,6 @@ vertical-align: text-bottom;}
 
 a.colortext {text-decoration:none;}
 
-/*STEP1 PAGE STYLE START*/
-#contentBoxStep1   {height:100px; height:auto; width:100px; width:auto;}
-#contentBoxStep1 h2{color:#999999; font-family:Verdana, Arial, Helvetica, sans-serif; font-weight:bold; font-size:16px;}
-#contentBoxStep1 h3{color:#000000; font-family:Tahoma, Helvetica, sans-serif;font-weight:bold; font-size:13px;padding:0 0 3px 0;}
-#contentBoxStep1 h4{color:#666666;font-family: Tahoma, Helvetica, sans-serif;font-weight:normal; font-size:12px;}
-#contentBoxStep1 h5{color:#000000; font-family: Tahoma, Helvetica, sans-serif;font-weight:bold; font-size:12px; padding:7px 0 0 0;}
-#contentBoxStep1 h6{color:#666666;font-family: Tahoma, Helvetica, sans-serif;font-weight:normal; font-size:10px;margin:0 0 0 37px;}
-#contentBoxStep1 p{color:#000000;font-family: Tahoma, Helvetica, sans-serif;font-weight:normal; font-size:11px;margin:0 0 0 37px;}
-#contentBoxStep1 a{color:#3366ff; font-weight:bold;}
-.forma{margin:0 0 0 37px; width:340px;}
-#raschetBox{width:345px; height:73px;background:url(img/raschetBg.jpg) repeat-x;margin:0 0 0 37px;}
-#raschetBoxLeft{width:6px; height:73px; border:0px solid blue; float:left;background:url(img/raschetLeft.jpg) no-repeat;}
-#raschetBoxRight{width:6px; height:73px; border:0px solid green; float:right;background:url(img/raschetRight.jpg) no-repeat;}
-#raschetBoxContent{min-width:200px; width:auto; height:73px; border:0px solid blue; float:left;}
-#opusMarsh{width:340px; height:48px;}
-#daliButton{width:74px; width:auto; height:75px;margin:30px 0px 0px 0px;border:0px solid red; background:#f7f6ef;text-align:center;}
-.lessFont{color:#000000; font-family: Tahoma, Helvetica, sans-serif;font-weight: normal; font-size:13px;}
-.lessFont2{color:#000000; font-family: Tahoma, Helvetica, sans-serif;font-weight: normal; font-size:12px;}
-#rightImageBox{height:176px;width:228px; width:auto;background:url(img/meeting.jpg) no-repeat right;margin:-20px -35px 0 0px;}
-#taxBox{margin: 60px 0 0 0;height:190px;width:161px;background:url(img/taxBanner.jpg) no-repeat;}
-/*STEP1 PAGE STYLE FINISH*/
-/*STEP2 PAGE STYLE START*/
-#redCar{height:150px;width:228px; width:auto;background:url(img/redCar.jpg) no-repeat right;}
-#escalator{height:200px;width:228px; width:auto;margin:0px 0x 20px 0px;bottom:125px; position: relative;}
-/*STEP2 PAGE STYLE FINISH*/
 /*CATALOG1 PAGE STYLE START*/
 #classBox{height:250px;width:161px; margin:20px 0 20px 0; padding:0px 0 40px 0;}
 .classMenuItems{height:225px; width:auto;}
@@ -190,6 +164,7 @@ li{list-style-type:none;}
 #bigPhotoBox{width:393px;height:250px;float:left;padding:30px 0px 0px 0px;}
 #carPhotoViews{width:400px;height:71px;float:left; margin:71px 0px 0px 0px;}
 .carPhoto{width:93px;height:71px;float:left; margin-right:7px;}
+.carPhoto img {cursor:pointer;}
 #carText{width:400px;height:190px;height:auto;float:left; margin:20px 0px 0px 0px;}
 #carText h3{font-family: Tahoma, Helvetica, sans-serif;font-weight:bold;font-size:13px;padding:4px 0px 3px 0px;}
 #carText h4{font-family: Tahoma, Helvetica, sans-serif;font-weight:normal;font-size:13px;padding:4px 0px 3px 0px;}

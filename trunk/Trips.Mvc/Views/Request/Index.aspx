@@ -1,5 +1,5 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage" %>
-
+<%@ Import Namespace="Dev.Helpers" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
     <asp:Literal runat="server" Text="<%$ Resources:WebResources, Request %>"></asp:Literal>
     »
@@ -7,78 +7,75 @@
     1
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+<% using(Html.BeginForm()){ %>
     <div id="contentBoxStep1">
         <br>
         <h2>
-            О поездке:</h2>
-        <br>
+            <%= Html.ResourceString("AboutTheTrip")%>:
+        </h2>
+        <br />
+        <% if ((bool)ViewData["hasItems"]) Html.RenderPartial("SelectedAds");
+           else Html.RenderPartial("NoAdsSelected");%>
+           
         <h3>
-            Автомобиль:</h3>
-        <br>
-        <h4>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="#">Выбрать</a> (при
-            переходе в каталог введенные Вами данные сохранятся)</h4>
-        <br>
-        <h3>
-            Откуда <span class="lessFont">(название города): </span>
+            <%= Html.ResourceString("StartingPoint") %> <span class="lessFont">(<%= Html.ResourceString("EnterCityName")%>): </span>
         </h3>
-        <form name="form2" method="post" action="">
-        <label>
-            <input type="text" name="way" id="punktA" value="Киев" class="forma">
-        </label>
-        </form>
-        <br>
+            <div class="textBoxWrapper">
+                <%= Html.TextBox("fromCity") %>
+                <%= Html.Hidden("fromCityId") %>
+            </div>
         <h3>
-            Куда <span class="lessFont">(название города): </span>
+            <%= Html.ResourceString("WhereToGo")%> <span class="lessFont">(<%= Html.ResourceString("EnterCityName")%>): </span>
         </h3>
-        <form name="form2" method="post" action="">
-        <label>
-            <input type="text" name="way" id="punktB" value="Борисполь" class="forma">
-        </label>
-        </form>
-        <br>
+        <div class="textBoxWrapper">
+            <%= Html.TextBox("toCity") %>
+            <%= Html.Hidden("toCityId") %>
+        </div>       
+        <% Html.RenderPartial("Calculations"); %>
         <h3>
-            Просчитано:</h3>
-        <div id="raschetBox">
-            <div id="raschetBoxLeft">
-            </div>
-            <div id="raschetBoxRight">
-            </div>
-            <div id="raschetBoxContent">
-                <h5>
-                    Маршрут: <span class="lessFont2">Киев—Борисполь </span>
-                </h5>
-                <h5>
-                    Расстояние: <span class="lessFont2">37 км </span>
-                </h5>
-                <h5>
-                    Стоимость: <span class="lessFont2">200 грн </span>
-                </h5>
-            </div>
-        </div>
-        <p>
-            (Пересчитать в <a href="#">евро</a>, <a href="#">рублях</a> или <a href="#">долларах</a>)</p>
-        <br>
-        <h3>
-            Детальнее о маршруте:</h3>
-        <form name="form3" method="post" action="">
-        <label>
-            <input type="text" name="opusMarsh" id="opusMarsh" class="forma">
-        </label>
-        </form>
-        <h6>
-            Например, места, куда планируете заезжать по пути</h6>
+            <%= Html.ResourceString("MoreDetails") %>:
+        </h3>
+        <div class="textBoxWrapper">
+            <%= Html.TextArea("moreDetails", null, 5, 5, null) %><br />
+            <h6>
+                <%= Html.ResourceString("MoreDetailsExplanation") %>
+            </h6>
+        </div>       
     </div>
     <div id="daliButton" align="center">
         <input type="image" src="/Content/img/Dali.jpg" />
     </div>
-    <div class="clearBoth">
+<% } %>
+     <div class="clearBoth">
     </div>
 </asp:Content>
+
 <asp:Content ID="Content3" ContentPlaceHolderID="includes" runat="server">
+    <link rel="Stylesheet" href="/Content/Request.css" />
+    <%if(!(bool)ViewData["hasItems"]){ %>
+        <script type="text/javascript">
+            $(function() {
+                $("#content form input, #content form textarea").attr("disabled", "disabled").addClass("disabled");
+            })
+        </script>
+    <%} %>
+    <%else{ %>
+        <link rel="Stylesheet" href="/Content/ui/jquery.ui.css" />
+        <script type="text/javascript" src="/Scripts/jquery.ui.js"></script>
+        <script type="text/javascript">
+            $(function() {
+                $("#toCity, #fromCity").autocomplete({
+                    source: "/Request/PickCity"
+                });
+            });
+        </script>
+    <%} %>
+    
 </asp:Content>
+
 <asp:Content ID="Content4" ContentPlaceHolderID="leftSide" runat="server">
 </asp:Content>
+
 <asp:Content ID="Content5" ContentPlaceHolderID="ContentTitle" runat="server">
     <asp:Literal ID="Literal2" runat="server" Text="<%$ Resources:WebResources, Request %>"></asp:Literal>
     »

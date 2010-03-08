@@ -21,7 +21,6 @@
             <%  }
                 List<CarAdImage> images = Model.Images.OrderByDescending(i=>i.Default).ToList();
             %>
-           <%-- <img src="img/carBigPhoto.jpg" alt="car">--%>
         </div>
         <div id="carPhotoViews">
             <%foreach (var item in images)
@@ -38,7 +37,8 @@
             </h4>
         </div>
         <p>
-            <a href="#">Добавить в заявку</a></p>
+            <%= Html.ResourceActionLink("AddCar", "AddCar", new {id = Model.Id}) %>    
+        </p>
     </div>
     <div class="clearBoth">
     </div>
@@ -73,10 +73,17 @@
             $("#bigPhotoBox a").fancybox();
 
             $(".carPhoto img").click(function(ev, elem) {
-                var src = this.src.substring(this.src.lastIndexOf("/"));
-                src = "/ImageCache/mainView/" + src;
+            var src = this.src.substring(this.src.lastIndexOf("/"));
+                var href = "/Content/AdImages" + src;
+                src = "/ImageCache/mainView" + src;
+
+
+                $("#bigPhotoBox img").attr("src", src);
+                $("#bigPhotoBox a").attr("href", href);
+
                 $(".fadeImage").fadeOut(0);
                 $(this).next("div").css("display", "block").fadeTo(0, 0.5);
+
             });
 
             window.setTimeout(calculateDimensions, 500);

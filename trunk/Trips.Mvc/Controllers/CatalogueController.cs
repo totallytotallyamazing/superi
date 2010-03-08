@@ -21,7 +21,7 @@ namespace Trips.Mvc.Controllers
                 Func<long, string> getClass = (cId) =>
                     {
                         CarAdClasses adClass = (CarAdClasses)cId;
-                        return LocaleHelper.GetResourceString("Class" + adClass);
+                        return LocaleHelper.GetResourceString(adClass.ToString());
                     };
 
                 var items = context.CarAds.Select(ca => new { Class = ca.Class, BrandName = ca.Brand.Name, BrandId = ca.Brand.Id })

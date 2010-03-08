@@ -78,6 +78,7 @@
     <Compile Include="Controllers\CatalogueController.cs" />
     <Compile Include="Controllers\ContentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\RequestController.cs" />
     <Compile Include="Controllers\WebSession.cs" />
     <Compile Include="Controllers\WidgetsController.cs" />
@@ -172,7 +173,6 @@
     <Content Include="Views\Shared\CarSearch.ascx" />
     <Content Include="Views\Shared\MainMenu.ascx" />
     <Content Include="Web.config" />
-    <Content Include="Content\Site.css" />
     <Content Include="Views\Account\ChangePassword.aspx" />
     <Content Include="Views\Account\ChangePasswordSuccess.aspx" />
     <Content Include="Views\Account\LogOn.aspx" />
@@ -225,6 +225,24 @@
     <Content Include="Content\fancybox\jquery.fancybox.css" />
     <Content Include="Content\img\delete.gif" />
     <Content Include="Content\img\menuBottom.gif" />
+    <Content Include="Content\News.css" />
+    <Content Include="Content\Request.css" />
+    <Content Include="Content\ui\images\ui-bg_diagonals-thick_18_b81900_40x40.png" />
+    <Content Include="Content\ui\images\ui-bg_diagonals-thick_20_666666_40x40.png" />
+    <Content Include="Content\ui\images\ui-bg_flat_10_000000_40x100.png" />
+    <Content Include="Content\ui\images\ui-bg_glass_100_f6f6f6_1x400.png" />
+    <Content Include="Content\ui\images\ui-bg_glass_100_fdf5ce_1x400.png" />
+    <Content Include="Content\ui\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\ui\images\ui-bg_gloss-wave_35_ffe000_500x100.png" />
+    <Content Include="Content\ui\images\ui-bg_highlight-soft_100_eeeeee_1x100.png" />
+    <Content Include="Content\ui\images\ui-bg_highlight-soft_75_ffe45c_1x100.png" />
+    <Content Include="Content\ui\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\ui\images\ui-icons_228ef1_256x240.png" />
+    <Content Include="Content\ui\images\ui-icons_ef8c08_256x240.png" />
+    <Content Include="Content\ui\images\ui-icons_ffd27a_256x240.png" />
+    <Content Include="Content\ui\images\ui-icons_ffe000_256x240.png" />
+    <Content Include="Content\ui\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\ui\jquery.ui.css" />
     <Content Include="Controls\fckeditor\editor\css\behaviors\disablehandles.htc" />
     <Content Include="Controls\fckeditor\editor\css\behaviors\showtableborders.htc" />
     <Content Include="Controls\fckeditor\editor\css\fck_editorarea.css" />
@@ -532,6 +550,8 @@
     <Content Include="Scripts\extended\ExtendedControls.js" />
     <Content Include="Scripts\extended\ExtenderBase\BaseScripts.js" />
     <Content Include="Scripts\jquery-1.4.2.min.js" />
+    <Content Include="Scripts\jquery.ui.datepicker-ru.js" />
+    <Content Include="Scripts\jquery.ui.js" />
     <Content Include="Scripts\jquery.easing.js" />
     <Content Include="Scripts\jquery.fancybox.js" />
     <Content Include="Scripts\jquery.FCKEditor.js" />
@@ -553,6 +573,7 @@
     <Content Include="Scripts\MicrosoftAjaxWebServices.js" />
     <Content Include="Scripts\Start.js" />
     <Content Include="SetCookie.aspx" />
+    <Content Include="Views\Admin\AddEditArticle.aspx" />
     <Content Include="Views\Admin\AddEditCarAd.aspx" />
     <Content Include="Views\Admin\Brands.aspx" />
     <Content Include="Views\Admin\CarAdImages.ascx" />
@@ -565,7 +586,11 @@
     <Content Include="Views\Catalogue\AdList.aspx" />
     <Content Include="Views\Catalogue\Details.aspx" />
     <Content Include="Views\Catalogue\Index.aspx" />
+    <Content Include="Views\News\Index.aspx" />
+    <Content Include="Views\Request\Calculations.ascx" />
     <Content Include="Views\Request\Index.aspx" />
+    <Content Include="Views\Request\NoAdsSelected.ascx" />
+    <Content Include="Views\Request\SelectedAds.ascx" />
     <Content Include="Views\Shared\Content.aspx" />
     <Content Include="Views\Widgets\News.ascx" />
     <Content Include="Views\Widgets\Smoking.ascx" />
@@ -632,8 +657,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\" />
-    <Folder Include="ImageCache\mainView\" />
-    <Folder Include="ImageCache\thumbnail\" />
+    <Folder Include="ImageCache\" />
     <Folder Include="Views\Content\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

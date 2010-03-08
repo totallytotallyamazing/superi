@@ -10,7 +10,7 @@
             Курите?
         </h4>
         <p>
-            <img src="Content/img/Sigara.jpg" alt="swed">
+            <img src="/Content/img/Sigara.jpg" alt="swed">
         </p>
     </div>
     <div id="swedFooter">

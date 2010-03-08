@@ -16,6 +16,7 @@ namespace Trips.Mvc.Helpers
             maxDimensions.Add("mainView", 400);
             maxDimensions.Add("thumbnail1", 150);
             maxDimensions.Add("thumbnail2", 90);
+            maxDimensions.Add("thumbnail3", 75);
         }
 
         public static void ScaleImage(Bitmap image, int maxDimension, Stream saveTo)
@@ -47,7 +48,8 @@ namespace Trips.Mvc.Helpers
 
         public static string GetCachedImage(string originalPath, string fileName, string cacheFolder)
         {
-            if(string.IsNullOrEmpty(fileName))
+            if(string.IsNullOrEmpty(fileName) ||
+                !File.Exists(Path.Combine(HttpContext.Current.Server.MapPath(originalPath), fileName)))
             {
                 fileName = "tripsWebMvcNoCarImage.jpg";
             }
@@ -66,14 +68,14 @@ namespace Trips.Mvc.Helpers
         }
 
         private static void CacheImage(string originalPath, string fileName, string cacheFolder)
-        { 
+        {
             string sourcePath = Path.Combine(HttpContext.Current.Server.MapPath(originalPath), fileName);
             Bitmap image;
-            using(FileStream stream = new FileStream(sourcePath, FileMode.Open))
+            using (FileStream stream = new FileStream(sourcePath, FileMode.Open))
             {
-                image= new Bitmap(stream);
-            } 
-            
+                image = new Bitmap(stream);
+            }
+
             string cachePath = HttpContext.Current.Server.MapPath("~/ImageCache/" + cacheFolder);
             string cachedImagePath = Path.Combine(cachePath, fileName);
 

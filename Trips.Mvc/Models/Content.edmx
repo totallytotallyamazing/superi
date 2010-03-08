@@ -21,6 +21,7 @@
           <Property Name="Name" Type="varchar" Nullable="false" MaxLength="255" />
           <Property Name="Preview" Type="varchar" MaxLength="500" />
           <Property Name="Text" Type="text" />
+          <Property Name="Title" Type="varchar" Nullable="false" MaxLength="500" />
         </EntityType>
         <EntityType Name="Content">
           <Key>
@@ -40,12 +41,12 @@
     <edmx:ConceptualModels>
       <Schema Namespace="gbua_tripsContent" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
         <EntityContainer Name="ContentStorage">
-          <EntitySet Name="Articles" EntityType="gbua_tripsContent.Articles" />
+          <EntitySet Name="Articles" EntityType="gbua_tripsContent.Article" />
           <EntitySet Name="Content" EntityType="gbua_tripsContent.Content" />
           <AssociationSet Name="ContentContent" Association="gbua_tripsContent.ContentContent">
             <End Role="Content" EntitySet="Content" />
             <End Role="Content1" EntitySet="Content" /></AssociationSet></EntityContainer>
-        <EntityType Name="Articles">
+        <EntityType Name="Article">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -57,7 +58,7 @@
           <Property Name="Name" Type="String" Nullable="false" />
           <Property Name="Preview" Type="String" />
           <Property Name="Text" Type="String" />
-        </EntityType>
+          <Property Name="Title" Type="String" Nullable="false" /></EntityType>
         <EntityType Name="Content">
           <Key>
             <PropertyRef Name="Id" />
@@ -80,8 +81,9 @@
       <Mapping Space="C-S" xmlns="urn:schemas-microsoft-com:windows:storage:mapping:CS">
         <EntityContainerMapping StorageEntityContainer="gbua_tripsContentStoreContainer" CdmEntityContainer="ContentStorage">
           <EntitySetMapping Name="Articles">
-            <EntityTypeMapping TypeName="IsTypeOf(gbua_tripsContent.Articles)">
+            <EntityTypeMapping TypeName="IsTypeOf(gbua_tripsContent.Article)">
               <MappingFragment StoreEntitySet="Articles">
+                <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -130,7 +132,7 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram Name="Content">
-        <EntityTypeShape EntityType="gbua_tripsContent.Articles" Width="1.5" PointX="0.75" PointY="0.75" Height="2.2496956380208331" IsExpanded="true" />
+        <EntityTypeShape EntityType="gbua_tripsContent.Article" Width="1.5" PointX="0.75" PointY="0.75" Height="2.2496956380208331" IsExpanded="true" />
         <EntityTypeShape EntityType="gbua_tripsContent.Content" Width="1.5" PointX="4" PointY="0.75" Height="1.9210009765625" IsExpanded="true" />
         <AssociationConnector Association="gbua_tripsContent.ContentContent">
           <ConnectorPoint PointX="4.625" PointY="3.16404296875" />

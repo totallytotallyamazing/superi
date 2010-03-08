@@ -26,9 +26,10 @@
        {%>
        <div class="carPreviewBox">
            <div class="carPreviewPhoto">
-               <%= Html.Image(GraphicsHelper.GetCachedImage("~/Content/AdImages", item.Images.Where(i=>i.Default).Select(i=>i.ImageSource).FirstOrDefault(), "thumbnail1"))%>
+               <%= Html.ActionLink("[IMAGE]", "Details", new {id = item.Id}).Replace("[IMAGE]",
+                   Html.Image(GraphicsHelper.GetCachedImage("~/Content/AdImages", item.Images.Where(i=>i.Default).Select(i=>i.ImageSource).FirstOrDefault(), "thumbnail1")))%>
                <h3>
-                   <a href="#">“<%= item.Model %>”</a> (<%= item.Year %>)
+                   <%= Html.ActionLink(item.Model, "Details", new {id = item.Id}) %> (<%= item.Year %>)
                </h3>
                <p>
                     <%= item.Descriptions.Where(d=>d.Language == LocaleHelper.GetCultureName()).Select(d=>d.ShortDescription).FirstOrDefault() %>

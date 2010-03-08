@@ -5,6 +5,7 @@
 .carAddAdminImage input{position:relative; float:left; left:-150px;}
 
 #contentEditor input{width:100%;}
+#contentEditor p{padding-bottom:30px;}
 
 .routeContainer{float:left; margin-right:10px;}
 .newRoute{clear:both; padding:5px; border:1px solid #868686; margin-top:10px;}

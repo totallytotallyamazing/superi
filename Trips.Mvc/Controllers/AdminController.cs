@@ -10,6 +10,7 @@ using System.Data;
 using Trips.Mvc.Helpers;
 using System.IO;
 using Dev.Helpers;
+using System.Globalization;
 
 namespace Trips.Mvc.Controllers
 {
@@ -131,11 +132,11 @@ namespace Trips.Mvc.Controllers
                     ViewData["isNew"] = false;
                 }
             }
-            return View(); 
+            return View();
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult UpdateContent(string id, string text, string description, string keywords, string title ,bool isNew)
+        public ActionResult UpdateContent(string id, string text, string description, string keywords, string title, bool isNew)
         {
             using (ContentStorage context = new ContentStorage())
             {
@@ -213,7 +214,7 @@ namespace Trips.Mvc.Controllers
                     classes.ForEach(cl => cl.Selected = (long.Parse(cl.Value) == carAd.Class));
                     Dictionary<string, string> descriptions = carAd.Descriptions.ToDictionary(cad => cad.Language, cad => cad.Text);
                     Dictionary<string, string> shorts = carAd.Descriptions.ToDictionary(cad => cad.Language, cad => cad.ShortDescription);
-                  
+
                     ViewData["descriptionRu"] = descriptions["ru-RU"];
                     ViewData["descriptionEn"] = descriptions["en-US"];
 
@@ -326,8 +327,8 @@ namespace Trips.Mvc.Controllers
         }
 
         public ActionResult DeleteImage(long carAdId, long imageId)
-        { 
-            using(CarAdStorage context = new CarAdStorage())
+        {
+            using (CarAdStorage context = new CarAdStorage())
             {
                 CarAdImage image = context.CarAdImages.Where(i => i.Id == imageId).First();
                 return RedirectToAction("AddEditCarAd", new { id = carAdId });
@@ -364,7 +365,7 @@ namespace Trips.Mvc.Controllers
             using (RouteStorage context = new RouteStorage())
             {
                 City city = context.Cities.Include("CityNames").Where(c => c.Id == id).First();
-                CityName nameRuItem = city.CityNames.Where(cn=>cn.Language == "ru-RU").First();
+                CityName nameRuItem = city.CityNames.Where(cn => cn.Language == "ru-RU").First();
                 CityName nameEnItem = city.CityNames.Where(cn => cn.Language == "en-US").First();
                 nameEnItem.Name = nameEn;
                 nameRuItem.Name = nameRu;
@@ -377,7 +378,7 @@ namespace Trips.Mvc.Controllers
         {
             using (RouteStorage context = new RouteStorage())
             {
-                City city = context.Cities.Include("CityNames").Where(c=>c.Id == id).First();
+                City city = context.Cities.Include("CityNames").Where(c => c.Id == id).First();
                 context.DeleteObject(city);
                 context.SaveChanges();
             }
@@ -391,7 +392,7 @@ namespace Trips.Mvc.Controllers
                 City city = new City();
                 city.Published = true;
                 context.AddToCities(city);
-                
+
                 CityName nameRuItem = new CityName();
                 CityName nameEnItem = new CityName();
                 nameRuItem.Name = nameRu;
@@ -404,7 +405,7 @@ namespace Trips.Mvc.Controllers
 
                 city.CityNames.Add(nameEnItem);
                 city.CityNames.Add(nameRuItem);
-                
+
                 context.SaveChanges();
             }
             return RedirectToAction("Cities");
@@ -415,7 +416,7 @@ namespace Trips.Mvc.Controllers
             using (RouteStorage context = new RouteStorage())
             {
                 List<Route> routes = context.Routes.Include("RoutePrices").ToList();
-                return View(routes); 
+                return View(routes);
             }
         }
 
@@ -530,6 +531,102 @@ namespace Trips.Mvc.Controllers
                 context.SaveChanges();
             }
             return RedirectToAction("Routes");
+        }
+        #endregion
+
+        #region News
+        public ActionResult AddEditArticle(string id)
+        {
+            string title = "Создание новости";
+            ViewData["isNew"] = string.IsNullOrEmpty(id);
+            ViewData["id"] = id;
+            if (!string.IsNullOrEmpty(id))
+            {
+                using (ContentStorage context = new ContentStorage())
+                {
+                    string language = LocaleHelper.GetCultureName();
+                    Article article = context.Articles
+                        .Where(a=>a.Language == language)
+                        .Where(a => a.Name == id).First();
+
+                    title = string.Format("Редактирование новости \"{0}\"", article.Title);
+
+                    ViewData["title"] = article.Title;
+                    ViewData["date"] = article.Date.ToString("dd.MM.yyyy");
+                    ViewData["text"] = article.Text;
+                    ViewData["description"] = article.Description;
+                    ViewData["keywords"] = article.Keywords;
+                }
+            }
+            ViewData["cTitle"] = title;
+            return View();
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult AddEditArticle(
+            string id, 
+            string title, 
+            string date, 
+            string keywords, 
+            string description, 
+            string text,
+            bool isNew
+            )
+        {
+            using (ContentStorage context = new ContentStorage())
+            {
+                Article article;
+                string language = LocaleHelper.GetCultureName();
+                string pairLanguage = (language == "en-US") ? "ru-RU" : "en-US";
+                Article pair;
+                if (isNew)
+                {
+                    article = new Article();
+                    article.Name = id;
+                    article.Language = language;
+                    context.AddToArticles(article);
+
+                    pair = new Article();
+                    
+                    pair.Name = id;
+                    pair.Language = pairLanguage;
+                    context.AddToArticles(pair);
+                }
+                else
+                {
+                    article = context.Articles.Where(a => a.Language == language)
+                        .Where(a => a.Name == id).First();
+                    pair = context.Articles.Where(a => a.Language == pairLanguage)
+                        .Where(a => a.Name == id).First();
+                }
+
+                article.Title = title;
+                article.Date = DateTime.Parse(date, CultureInfo.GetCultureInfo("ru-RU"));
+                pair.Date = DateTime.Parse(date, CultureInfo.GetCultureInfo("ru-RU"));
+                pair.Title = string.Empty;
+                article.Text = HttpUtility.HtmlDecode(text);
+                article.Description = description;
+                article.Keywords = keywords;
+
+                context.SaveChanges();
+            }
+            return RedirectToAction("AddEditArticle", new { id = id });
+        }
+
+        public ActionResult DeleteArticle(string id)
+        {
+            using (ContentStorage context = new ContentStorage())
+            {
+                List<Article> articles = context.Articles
+                    .Where(a => a.Name == id).ToList();
+
+                foreach (var item in articles)
+                {
+                    context.DeleteObject(item);
+                }
+                context.SaveChanges();
+            }
+            return RedirectToAction("Index", "News");
         }
         #endregion
     }

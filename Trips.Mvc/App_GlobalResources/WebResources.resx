@@ -123,22 +123,22 @@
   <data name="Catalogue" xml:space="preserve">
     <value>Catalogue</value>
   </data>
-  <data name="ClassBusiness" xml:space="preserve">
+  <data name="Business" xml:space="preserve">
     <value>Business</value>
   </data>
   <data name="Classes" xml:space="preserve">
     <value>Classes</value>
   </data>
-  <data name="ClassMiddle" xml:space="preserve">
+  <data name="Middle" xml:space="preserve">
     <value>Middle</value>
   </data>
-  <data name="ClassMinivan" xml:space="preserve">
+  <data name="Minivan" xml:space="preserve">
     <value>Minivans</value>
   </data>
-  <data name="ClassMultivan" xml:space="preserve">
+  <data name="Multivan" xml:space="preserve">
     <value>Multyvans</value>
   </data>
-  <data name="ClassStandard" xml:space="preserve">
+  <data name="Standard" xml:space="preserve">
     <value>Standard</value>
   </data>
   <data name="Conditions" xml:space="preserve">
@@ -148,7 +148,7 @@
     <value>Contacts</value>
   </data>
   <data name="Copyright" xml:space="preserve">
-    <value>© 2010 Transfering service “TRIPS”</value>
+    <value>© 2010 Transfer service “TRIPS”</value>
   </data>
   <data name="Design" xml:space="preserve">
     <value>design</value>
@@ -254,5 +254,47 @@
   </data>
   <data name="WhereToGo" xml:space="preserve">
     <value>Where to go</value>
+  </data>
+  <data name="AllNews" xml:space="preserve">
+    <value>All news</value>
+  </data>
+  <data name="News" xml:space="preserve">
+    <value>News</value>
+  </data>
+  <data name="BusinessClass" xml:space="preserve">
+    <value>Business class</value>
+  </data>
+  <data name="ClassBusinessCalculation" xml:space="preserve">
+    <value>Calculation for "Business" class</value>
+  </data>
+  <data name="ClassLuxCalculation" xml:space="preserve">
+    <value>Calculation for "Lux" class</value>
+  </data>
+  <data name="ClassMiddleCalculation" xml:space="preserve">
+    <value>Calculation for "Middle" class</value>
+  </data>
+  <data name="ClassMinivanCalculation" xml:space="preserve">
+    <value>Calculation for "Minivan" class</value>
+  </data>
+  <data name="ClassMultivanCalculation" xml:space="preserve">
+    <value>Calculation for "Mulitivan" class</value>
+  </data>
+  <data name="ClassStandardCalculation" xml:space="preserve">
+    <value>Calculation for "Standard" class</value>
+  </data>
+  <data name="LuxClass" xml:space="preserve">
+    <value>Lux class</value>
+  </data>
+  <data name="MiddleClass" xml:space="preserve">
+    <value>Middle class</value>
+  </data>
+  <data name="MinivanClass" xml:space="preserve">
+    <value>Minivans</value>
+  </data>
+  <data name="MultivanClass" xml:space="preserve">
+    <value>Multivans</value>
+  </data>
+  <data name="ChooseTheCar" xml:space="preserve">
+    <value>Choose the car</value>
   </data>
 </root>

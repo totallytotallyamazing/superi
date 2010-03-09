@@ -549,6 +549,7 @@
     <Content Include="Scripts\extended\Compat\Timer\Timer.js" />
     <Content Include="Scripts\extended\ExtendedControls.js" />
     <Content Include="Scripts\extended\ExtenderBase\BaseScripts.js" />
+    <Content Include="Scripts\extended\TextboxWatermark\TextboxWatermark.js" />
     <Content Include="Scripts\jquery-1.4.2.min.js" />
     <Content Include="Scripts\jquery.ui.datepicker-ru.js" />
     <Content Include="Scripts\jquery.ui.js" />

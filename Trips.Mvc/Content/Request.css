@@ -10,7 +10,7 @@
 #contentBoxStep1 h5{color:#000000; font-family: Tahoma, Helvetica, sans-serif;font-weight:bold; font-size:12px; padding:7px 0 0 0;}
 #contentBoxStep1 h6{color:#666666;font-family: Tahoma, Helvetica, sans-serif;font-weight:normal; font-size:10px;margin:0 0 0 37px;}
 #contentBoxStep1 p{color:#000000;font-family: Tahoma, Helvetica, sans-serif;font-weight:normal; font-size:11px;margin:0 0 0 37px;}
-#contentBoxStep1 a{color:#3366ff; font-weight:bold;}
+h4 a{color:#3366ff; font-weight:bold;}
 
 #raschetBox{width:345px; height:73px;background:url(img/raschetBg.jpg) repeat-x;margin:0 0 0 37px;}
 #raschetBoxLeft{width:6px; height:73px; border:0px solid blue; float:left;background:url(img/raschetLeft.jpg) no-repeat;}

@@ -3,6 +3,6 @@
 
 <h4 style="text-align:center">
     <%= Html.ResourceActionLink("ChooseTheCar", "Index", "Catalogue") %>
- </h4>
+</h4>
 <br />
  

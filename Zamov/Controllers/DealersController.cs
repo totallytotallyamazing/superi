@@ -25,7 +25,7 @@ namespace Zamov.Controllers
                 SystemSettings.InitializeCity(1);
 
             HttpContext.Items["categoryId"] = id;
-            
+
 
             BreadCrumbAttribute.ProcessCategory(id.Value, HttpContext);
 
@@ -41,8 +41,8 @@ namespace Zamov.Controllers
 
                 ObjectQuery<Group> groups = new ObjectQuery<Group>("SELECT VALUE G FROM Groups as G WHERE G.Category.Id IN{" + categoryIdsString + "}", context);
                 int[] onlineDealers = new int[0];//MembershipExtensions.GetOnlineDealers();
-                List<DealerPresentation> dealers = groups.Where(g => g.Dealer.Enabled)
-                    .Where(g=>g.Dealer.Cities.Where(city=>city.Id == SystemSettings.CityId).Count()>0)
+                List<DealerPresentation> dealers = groups.Where(g => g.Enabled).Where(g => g.Dealer.Enabled)
+                    .Where(g => g.Dealer.Cities.Where(city => city.Id == SystemSettings.CityId).Count() > 0)
                     .Join(context.Translations
                         .Where(tr => tr.Language == SystemSettings.CurrentLanguage)
                         .Where(tr => tr.TranslationItemTypeId == (int)ItemTypes.DealerName),

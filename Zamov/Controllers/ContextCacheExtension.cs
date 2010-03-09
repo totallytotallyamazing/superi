@@ -77,7 +77,7 @@ namespace Zamov.Controllers
             cache.ClearCache(key => key.StartsWith(CategoriesCachePrefix));
         }
 
-        private static void ClearCache(this Cache cache, Func<string, bool> cacheKeyCondition)
+        public static void ClearCache(this Cache cache, Func<string, bool> cacheKeyCondition)
         {
             List<string> keysToClear = new List<string>();
 

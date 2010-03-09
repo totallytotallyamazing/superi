@@ -43,7 +43,7 @@
         </div>       
     </div>
     <div id="daliButton" align="center">
-        <input type="image" src="/Content/img/Dali.jpg" />
+        <input type="submit"  />
     </div>
 <% } %>
      <div class="clearBoth">
@@ -64,8 +64,31 @@
         <script type="text/javascript" src="/Scripts/jquery.ui.js"></script>
         <script type="text/javascript">
             $(function() {
+                $("#content form input, #content form textarea").not("#fromCity").attr("disabled", "disabled").addClass("disabled");
+
                 $("#toCity, #fromCity").autocomplete({
-                    source: "/Request/PickCity"
+                    source: "/Request/PickCity",
+                    select: function(event, ui) {
+                        $("#" + this.id + "Id").val(ui.id);
+                    }
+                });
+
+                $("#fromCity").keyup(function() {
+                    if ($("#fromCity").val() != "") {
+                        $("#toCity").removeAttr("disabled");
+                    }
+                    else {
+                        $("#content form input, #content form textarea").not("#fromCity").attr("disabled", "disabled").addClass("disabled");
+                    }
+                });
+
+                $("#toCity").keyup(function() {
+                    if ($("#toCity").val() != "") {
+                        $("#content form textarea, #content form input").removeAttr("disabled");
+                    }
+                    else {
+                        $("#content form input, #content form textarea").not("#fromCity, #toCity").attr("disabled", "disabled").addClass("disabled");
+                    }
                 });
             });
         </script>

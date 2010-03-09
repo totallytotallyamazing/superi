@@ -6,6 +6,10 @@
 
 #contentEditor input{width:100%;}
 #contentEditor p{padding-bottom:30px;}
+#login p{padding-bottom:20px;}
+#login{padding-top:20px;}
 
 .routeContainer{float:left; margin-right:10px;}
 .newRoute{clear:both; padding:5px; border:1px solid #868686; margin-top:10px;}
+
+.watermark{color:Gray;}

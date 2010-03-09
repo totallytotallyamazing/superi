@@ -764,6 +764,12 @@ namespace Zamov.Controllers
             }
             return RedirectToAction("RemoveDealers");
         }
+
+        public ActionResult ClearCache()
+        {
+            HttpContext.Cache.ClearCache(k => true);
+            return View();
+        }
         #endregion
 
         #region Orders

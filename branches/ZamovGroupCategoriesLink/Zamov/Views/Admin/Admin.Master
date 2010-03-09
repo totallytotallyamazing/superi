@@ -32,6 +32,8 @@
 </asp:Content>
 <asp:Content ContentPlaceHolderID="mainContent" runat="server">
 
+    <a href="/Admin/ClearCache" target="_blank">Очистить кеш</a>
+
     <script type="text/javascript">
         $(function() {
             $("#contacts")

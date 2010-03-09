@@ -18,13 +18,13 @@ namespace Trips.Mvc.Controllers
             }
         }
 
-        public static List<OrderItem> OrderItems
+        public static Dictionary<long, OrderItem> OrderItems
         {
             get
             {
                 if (Session["orderItems"] == null)
-                    Session["orderItems"] = new List<OrderItem>();
-                return (List<OrderItem>)Session["orderItems"];
+                    Session["orderItems"] = new Dictionary<long, OrderItem>();
+                return (Dictionary<long, OrderItem>)Session["orderItems"];
             }
         }
 

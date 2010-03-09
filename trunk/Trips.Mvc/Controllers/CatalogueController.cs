@@ -74,29 +74,38 @@ namespace Trips.Mvc.Controllers
             }
         }
 
-        public ActionResult AddCar(int id)
+        public ActionResult AddCar(long id)
         {
             using (CarAdStorage context = new CarAdStorage())
             {
-                CarAd ad = context.CarAds.Where(ca => ca.Id == id).First();
-                ad.Images.Load();
-                ad.BrandReference.Load();
-                OrderItem orderItem = new OrderItem();
-                orderItem.AdModel = ad.Brand.Name + " " + ad.Model;
-                orderItem.CarId = ad.Id;
-                orderItem.Class = ad.Class;
-                orderItem.Year = ad.Year;
-                CarAdImage img = ad.Images.Where(i => i.Default).FirstOrDefault();
-                if (img != null)
+                OrderItem orderItem;
+                if (WebSession.OrderItems.ContainsKey(id))
                 {
-                    orderItem.ImageSource = ad.Images.Where(i => i.Default).First().ImageSource;
+                    WebSession.OrderItems[id].Quantity++;
+                    orderItem = WebSession.OrderItems[id];
                 }
                 else
                 {
-                    orderItem.ImageSource = "tripsWebMvcNoCarImage.jpg";
+                    CarAd ad = context.CarAds.Where(ca => ca.Id == id).First();
+                    ad.Images.Load();
+                    ad.BrandReference.Load();
+                    orderItem = new OrderItem();
+                    orderItem.AdModel = ad.Brand.Name + " " + ad.Model;
+                    orderItem.CarId = ad.Id;
+                    orderItem.Class = ad.Class;
+                    orderItem.Quantity = 1;
+                    orderItem.Year = ad.Year;
+                    CarAdImage img = ad.Images.Where(i => i.Default).FirstOrDefault();
+                    if (img != null)
+                    {
+                        orderItem.ImageSource = ad.Images.Where(i => i.Default).First().ImageSource;
+                    }
+                    else
+                    {
+                        orderItem.ImageSource = "tripsWebMvcNoCarImage.jpg";
+                    }
+                    WebSession.OrderItems.Add(orderItem.CarId, orderItem);
                 }
-                WebSession.OrderItems.Add(orderItem.CarId, orderItem);
-
                 ViewData["name"] = string.Format("{0} ({1})", orderItem.AdModel, orderItem.Year);
             }
             return View();

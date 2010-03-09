@@ -145,6 +145,7 @@ namespace Zamov.Controllers
             return source.Where(p => !p.TopProduct).Select(p => p).ToList();
         }
 
+        [OutputCache(VaryByParam="*", Duration=1, NoStore=true)]
         public ActionResult ProductGroups(string dealerId, int categoryId, int? groupId)
         {
             List<GroupResentation> groups = null;

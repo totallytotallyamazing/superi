@@ -51,7 +51,7 @@
 </head>
 <body>
     <map id="logoLink" name="logoLink">
-        <area alt="Zamov.net" shape="rect" coords="0,40,233, 90" href="/" />
+        <area alt="Zamov.com" shape="rect" coords="0,40,233, 90" href="/" />
     </map>
     <div class="shader">
     </div>

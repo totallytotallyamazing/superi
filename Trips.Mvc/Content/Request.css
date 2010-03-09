@@ -12,10 +12,13 @@
 #contentBoxStep1 p{color:#000000;font-family: Tahoma, Helvetica, sans-serif;font-weight:normal; font-size:11px;margin:0 0 0 37px;}
 h4 a{color:#3366ff; font-weight:bold;}
 
-#raschetBox{width:345px; height:73px;background:url(img/raschetBg.jpg) repeat-x;margin:0 0 0 37px;}
-#raschetBoxLeft{width:6px; height:73px; border:0px solid blue; float:left;background:url(img/raschetLeft.jpg) no-repeat;}
-#raschetBoxRight{width:6px; height:73px; border:0px solid green; float:right;background:url(img/raschetRight.jpg) no-repeat;}
-#raschetBoxContent{min-width:200px; width:auto; height:73px; border:0px solid blue; float:left;}
+#calculationContainer div.calc{margin-bottom:30px;}
+
+.raschetBox{width:345px; margin:0 0 0 37px;}
+.raschetBoxLeft{width:6px; height:50px; border:0px solid blue; float:left;background:url(img/calcLeft.jpg) no-repeat;}
+.raschetBoxRight{width:6px; height:50px; border:0px solid green; float:right;background:url(img/calcRight.jpg) no-repeat;}
+.raschetBoxContent{ width:auto; height:48px; background:#FFF5A3; border-bottom:1px solid #ccc; border-top:1px solid #ccc;}
+
 #opusMarsh{width:340px; height:48px;}
 #daliButton{width:74px; width:auto; height:75px;margin:30px 0px 0px 0px;border:0px solid red; background:#f7f6ef;text-align:center;}
 .lessFont{color:#000000; font-family: Tahoma, Helvetica, sans-serif;font-weight: normal; font-size:13px;}
@@ -27,3 +30,22 @@ h4 a{color:#3366ff; font-weight:bold;}
 #redCar{height:150px;width:228px; width:auto;background:url(img/redCar.jpg) no-repeat right;}
 #escalator{height:200px;width:228px; width:auto;margin:0px 0x 20px 0px;bottom:125px; position: relative;}
 /*STEP2 PAGE STYLE FINISH*/
+
+.selectedAds{position:relative; margin:0 auto;margin-bottom:20px;}
+
+.selectedAds th
+{
+	font-size:10px;
+	font-weight:normal;
+	text-align:center;
+}
+.selectedAds td{text-align:center;}
+.selectedAds td input{ width:28px !important; text-align:right; }
+
+.selectedAds th.quantity{width:30px;}
+.selectedAds td.carData{text-align:left;}
+.selectedAds td span.adClass{font-size:10px;}
+
+.selectedAds td image{border:1px solid #B1B0AF;}
+.selectedAds td a image{border:0;}
+.selectedAds td a{font-weight:bold;}

@@ -1,0 +1,5 @@
+﻿.next{border:0; width:74px; height:75px; background:transparent url(img/next.jpg) -74px 0 no-repeat; cursor:pointer}
+.next.disabled{background-position:0;cursor:default;}
+
+.done{border:0; width:74px; height:75px; background:transparent url(img/done.jpg) -74px 0 no-repeat; cursor:pointer}
+.done.disabled{background-position:0;cursor:default;}

@@ -1,0 +1,9 @@
+﻿.find{ display:block; width:36px; height:37px; background:transparent url(img/find.jpg) no-repeat; border:0;}
+
+.headerMenuItem a{ display:block; height:13px; width:75px;}
+.headerMenuItem a{background-position:-9px -47px;}
+
+a#order{ background-image:url(img/order.jpg) }
+a#cars{ background-image:url(img/cars.jpg) }
+a#terms{ background-image:url(img/cars.jpg) }
+a#contact{ background-image:url(img/cantact.jpg) }

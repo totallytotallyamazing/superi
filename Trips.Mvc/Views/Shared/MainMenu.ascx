@@ -47,23 +47,19 @@
 
 <div id="box">
     <div class="<%= request %>">
-        <a href="/Request">
-            <asp:Literal ID="Literal1" runat="server" Text="<%$ Resources:WebResources, Request %>"></asp:Literal>
+        <a href="/Request" id="order">
         </a>
     </div>
     <div class="<%= catalogue %>">
-        <a href="/Catalogue">
-            <asp:Literal ID="Literal2" runat="server" Text="<%$ Resources:WebResources, Catalogue %>"></asp:Literal>
+        <a href="/Catalogue"  id="cars">
         </a>
     </div>
     <div class="<%= conditions %>">
-        <a href="/Content/Conditions">
-            <asp:Literal ID="Literal3" runat="server" Text="<%$ Resources:WebResources, Conditions %>"></asp:Literal>
+        <a href="/Content/Conditions" id="terms">
         </a>
     </div>
     <div class="<%= contacts %>">
-        <a href="/Content/Contacts">
-            <asp:Literal ID="Literal4" runat="server" Text="<%$ Resources:WebResources, Contacts %>"></asp:Literal>
+        <a href="/Content/Contacts" id="contact">
         </a>
     </div>
 </div>

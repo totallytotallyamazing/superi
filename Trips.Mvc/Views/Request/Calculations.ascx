@@ -3,7 +3,6 @@
     function loadCalculationData() {
         var fromCityId = $("#fromCityId").val();
         var toCityId = $("#toCityId").val();
-        debugger;
         var requestPath = "/Request/RouteData?fromCityId=" + fromCityId + "&toCityId=" + toCityId;
         $("#calculationContainer").load(requestPath);
     }

@@ -13,6 +13,8 @@ namespace Trips.Mvc.Controllers
     {
         public ActionResult Index()
         {
+
+
             ViewData["hasItems"] = WebSession.OrderItems.Count != 0;
             return View();
         }

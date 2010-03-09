@@ -95,7 +95,7 @@ namespace Trips.Mvc.Controllers
                 {
                     orderItem.ImageSource = "tripsWebMvcNoCarImage.jpg";
                 }
-                WebSession.OrderItems.Add(orderItem);
+                WebSession.OrderItems.Add(orderItem.CarId, orderItem);
 
                 ViewData["name"] = string.Format("{0} ({1})", orderItem.AdModel, orderItem.Year);
             }

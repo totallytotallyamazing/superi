@@ -9,7 +9,7 @@
     <div id="carSearchContent">
         <input type="text" name="field" id="searchField" />
         <p>
-            <input type="image" src="/Content/img/searchButton.jpg" />
+            <input type="submit" class="find" value="" />
         </p>
     </div>
     <div id="carSearchFooter">

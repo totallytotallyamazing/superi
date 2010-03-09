@@ -1,5 +1,5 @@
 <%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
-
+<%@ Import Namespace="Dev.Mvc.Ajax" %>
 <%@ Import Namespace="Microsoft.Web.Mvc" %>
 <% 
     if (Request.Cookies["trips"] == null)
@@ -37,7 +37,9 @@
         <asp:ContentPlaceHolder runat="server" ID="TitleContent">
         </asp:ContentPlaceHolder>
     </title>
-    <link href="/Content/style.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/Site.css" rel="stylesheet" type="text/css" />
+    <%= Ajax.DynamicCssInclude(string.Format("/Content/LocaleDependent/{0}/Site.css", Dev.Helpers.LocaleHelper.GetCultureName())) %>
+    <link href="/Content/LocalDependent/<%=  %>/Site.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="/Scripts/jquery-1.4.2.min.js"></script>
     <script type="text/javascript" src="/Scripts/Start.js"></script>
     <asp:ContentPlaceHolder runat="server" ID="includes"></asp:ContentPlaceHolder>

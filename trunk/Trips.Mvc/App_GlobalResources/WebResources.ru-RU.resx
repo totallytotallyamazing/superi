@@ -297,4 +297,10 @@
   <data name="ChooseTheCar" xml:space="preserve">
     <value>Выбрать автомобиль</value>
   </data>
+  <data name="StandardClass" xml:space="preserve">
+    <value>Стандартный класс</value>
+  </data>
+  <data name="CalculatedIndividually" xml:space="preserve">
+    <value>Расчитывается индивидуально. Просчет будет выслан на указанный Email</value>
+  </data>
 </root>

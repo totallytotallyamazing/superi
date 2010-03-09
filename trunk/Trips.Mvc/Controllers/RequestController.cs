@@ -13,8 +13,6 @@ namespace Trips.Mvc.Controllers
     {
         public ActionResult Index()
         {
-
-
             ViewData["hasItems"] = WebSession.OrderItems.Count != 0;
             return View();
         }
@@ -40,5 +38,45 @@ namespace Trips.Mvc.Controllers
             }
         }
 
+        public ActionResult RouteData(long? fromCityId, long? toCityId)
+        {
+            if (fromCityId.HasValue && toCityId.HasValue)
+            {
+                using (RouteStorage context = new RouteStorage())
+                {
+                    Route route = context.Routes.Include("RoutePrices")
+                        .Where(r => r.FromCityId == fromCityId.Value)
+                        .Where(r => r.ToCityId == toCityId.Value)
+                        .FirstOrDefault();
+
+                    if (route != null)
+                    {
+                        ViewData["distance"] = route.Distance;
+
+                        Func<long, float> getPrice = (cl) =>
+                        {
+                            float price = route.RoutePrices
+                                .Where(r => r.ClassId == cl)
+                                .Select(r => r.Price)
+                                .First();
+                            return price;
+                        };
+
+                        var grouppedClasses = (from oi in WebSession.OrderItems
+                                               group oi by oi.Value.Class
+                                                   into g
+                                                   select new
+                                                       {
+                                                           Class = g.Key,
+                                                           Price = g.Sum(i => i.Value.Quantity * getPrice(g.Key))
+                                                       })
+                                                      .ToDictionary(g => ((CarAdClasses)g.Class),
+                                                        g => g.Price);
+                        return View(grouppedClasses);
+                    }
+                }
+            }
+            return View("NoRoute");
+        }
     }
 }

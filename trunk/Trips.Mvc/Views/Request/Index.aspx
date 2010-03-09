@@ -1,5 +1,6 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage" %>
 <%@ Import Namespace="Dev.Helpers" %>
+<%@ Import Namespace="Dev.Mvc.Ajax" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
     <asp:Literal runat="server" Text="<%$ Resources:WebResources, Request %>"></asp:Literal>
     »
@@ -7,6 +8,7 @@
     1
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+<% Html.RenderPartial("RoutesAdmin"); %>
 <% using(Html.BeginForm()){ %>
     <div id="contentBoxStep1">
         <br>
@@ -43,7 +45,7 @@
         </div>       
     </div>
     <div id="daliButton" align="center">
-        <input type="submit"  />
+        <input type="submit" class="next" value=""  />
     </div>
 <% } %>
      <div class="clearBoth">
@@ -52,6 +54,8 @@
 
 <asp:Content ID="Content3" ContentPlaceHolderID="includes" runat="server">
     <link rel="Stylesheet" href="/Content/Request.css" />
+    <%= Ajax.DynamicCssInclude(string.Format("/Content/LocaleDependent/{0}/Request.css", Dev.Helpers.LocaleHelper.GetCultureName())) %>
+
     <%if(!(bool)ViewData["hasItems"]){ %>
         <script type="text/javascript">
             $(function() {
@@ -64,18 +68,18 @@
         <script type="text/javascript" src="/Scripts/jquery.ui.js"></script>
         <script type="text/javascript">
             $(function() {
-                $("#content form input, #content form textarea").not("#fromCity").attr("disabled", "disabled").addClass("disabled");
+                $("#content form input, #content form textarea").not("#fromCity, .selectedAds input").attr("disabled", "disabled").addClass("disabled");
 
                 $("#toCity, #fromCity").autocomplete({
                     source: "/Request/PickCity",
                     select: function(event, ui) {
-                        $("#" + this.id + "Id").val(ui.id);
+                        $("#" + event.target.id + "Id").val(ui.item.id);
                     }
                 });
 
                 $("#fromCity").keyup(function() {
                     if ($("#fromCity").val() != "") {
-                        $("#toCity").removeAttr("disabled");
+                        $("#toCity").removeAttr("disabled").removeClass("disabled");
                     }
                     else {
                         $("#content form input, #content form textarea").not("#fromCity").attr("disabled", "disabled").addClass("disabled");
@@ -84,7 +88,7 @@
 
                 $("#toCity").keyup(function() {
                     if ($("#toCity").val() != "") {
-                        $("#content form textarea, #content form input").removeAttr("disabled");
+                        $("#content form textarea, #content form input").removeAttr("disabled").removeClass("disabled"); ;
                     }
                     else {
                         $("#content form input, #content form textarea").not("#fromCity, #toCity").attr("disabled", "disabled").addClass("disabled");

@@ -15,18 +15,22 @@
         <div class="raschetBoxContent">
             <h5>
                 <%= Html.ResourceString("ApproximatePrice")%>: 
-                <span class="lessFont2">
+                <span id="priceLabel_<%= item.Key %>" class="lessFont2">
                     <%= item.Value.ToString("#0.0") %>
                 </span>
+                <%= Html.Hidden("price_" + item.Key, item.Value.ToString(System.Globalization.CultureInfo.CurrentUICulture)) %>
             </h5>
             <p>
                 (<%= Html.ResourceString("RecountIn") %>
-                <a href="#">
-                    <%= Html.ResourceString("Euro") %></a>, <a href="#">
-                        <%= Html.ResourceString("Ruble") %></a>
+                <a href="javascript:recalculateIn(currency.euro, 'price_<%= item.Key %>', 'priceLabel_<%= item.Key %>')">
+                    <%= Html.ResourceString("Euro") %>
+                </a>, <a href="javascript:recalculateIn(currency.ruble, 'price_<%= item.Key %>', 'priceLabel_<%= item.Key %>')">
+                    <%= Html.ResourceString("Ruble") %>
+                </a>
                 <%= Html.ResourceString("Or").ToLower() %>
-                <a href="#">
-                    <%= Html.ResourceString("Dollars") %></a>)
+                <a href="javascript:recalculateIn(currency.dollar, 'price_<%= item.Key %>', 'priceLabel_<%= item.Key %>')">
+                    <%= Html.ResourceString("Dollars") %>
+                </a>)
             </p>
         </div>
     </div>

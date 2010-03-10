@@ -1,5 +1,7 @@
 <%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl" %>
 <script type="text/javascript">
+    var currency = { euro:0, dollar:1, ruble:2 };
+
     var requestTimeOut;
 
     function loadCalculationData() {
@@ -23,7 +25,27 @@
             loadCalculationData();
         });
     })
+
+    function recalculateIn(curr, priceId, placeholder) {
+        var price = $("#" + priceId).val() * 1;
+        var rate = 0;
+        switch (curr) {
+            case currency.euro:
+                rate = euroRate;
+                break;
+            case currency.dollar:
+                rate = dollarRate;
+                break;
+            case currency.ruble:
+                rate = rubleRate;
+                break;
+        }
+        var result = price * rate;
+        $("#" + placeholder).html(result);
+    }
 </script>
+
+<%= ViewData["script"] %>
 
 <div id="calculationContainer">
     

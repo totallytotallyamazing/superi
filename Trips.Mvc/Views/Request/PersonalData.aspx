@@ -18,24 +18,28 @@
         <br />
         <h3>
             <label for="yourName">
-                <%= Html.ResourceString("YorName") %>:
+                <%= Html.ResourceString("YourName") %>:
             </label>
         </h3>
-        <%= Html.TextBox("name") %>
-        <br />
+        <div class="textBoxWrapper">
+            <%= Html.TextBox("name") %>
+        </div>
         <h3>
             <label for="phone">
                 <%= Html.ResourceString("ContactPhone") %>:
             </label>
         </h3>
+        <div class="textBoxWrapper">
             <%= Html.TextBox("phone") %>
-        <br />
+        </div>
         <h3>
             <label for="email">
                 <%= Html.ResourceString("Email") %>:
             </label>
         </h3>
+        <div class="textBoxWrapper">
             <%= Html.TextBox("email") %>
+        </div>
         <div id="daliButton">
             <br />
             <br />
@@ -61,6 +65,37 @@
             height: auto;
         }
     </style>
+    
+    <script type="text/javascript">
+        $(function() {
+            $("#phone, #email, .done").attr("disabled", "disabled").addClass("disabled");
+            $("#name").keyup(function() {
+                if ($("#name").val() != "") {
+                    $("#phone").removeAttr("disabled").removeClass("disabled");
+                }
+                else {
+                    $("#phone, #email, .done").attr("disabled", "disabled").addClass("disabled");
+                }
+            });
+            $("#phone").keyup(function() {
+                if ($("#name").val() != "") {
+                    $("#email").removeAttr("disabled").removeClass("disabled");
+                }
+                else {
+                    $("#email, .done").attr("disabled", "disabled").addClass("disabled");
+                }
+            });
+
+            $("#email").keyup(function() {
+                if ($("#name").val() != "") {
+                    $(".done").removeAttr("disabled").removeClass("disabled");
+                }
+                else {
+                    $(".done").attr("disabled", "disabled").addClass("disabled");
+                }
+            });
+        })
+    </script>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="leftSide" runat="server">
 </asp:Content>

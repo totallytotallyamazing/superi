@@ -32,7 +32,6 @@ namespace Dev.Helpers
 
         public static bool SendTemplate(string from, List<MailAddress> to, string template, bool isBodyHtml)
         {
-
             return SendTemplate(from, to, string.Empty, template, string.Empty, isBodyHtml, null);
         }
 

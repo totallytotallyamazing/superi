@@ -283,8 +283,8 @@ namespace Superi.Features
 		    Picture = dr["Picture"].ToString();
 		    SingleMenuPage = (bool) dr["SingleMenuPage"];
             AdditionalTitle = dr["AdditionalTitle"].ToString();
-            AuthenticationRequired = (bool) dr["AuthenticationRequired"];
-		    AllowedGroups = dr["AllowedGroups"].ToString();
+            //AuthenticationRequired = (bool) dr["AuthenticationRequired"];
+            //AllowedGroups = dr["AllowedGroups"].ToString();
             try
             {
                 AdditionalTitleTextId = (int) dr["AdditionalTitleTextID"];

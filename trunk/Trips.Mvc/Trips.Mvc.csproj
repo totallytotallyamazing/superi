@@ -223,6 +223,8 @@
     <Content Include="Content\fancybox\fancy_title_over.png" />
     <Content Include="Content\fancybox\fancy_title_right.png" />
     <Content Include="Content\fancybox\jquery.fancybox.css" />
+    <Content Include="Content\img\calcLeft.jpg" />
+    <Content Include="Content\img\calcRight.jpg" />
     <Content Include="Content\img\delete.gif" />
     <Content Include="Content\img\delete.jpg" />
     <Content Include="Content\img\menuBottom.gif" />

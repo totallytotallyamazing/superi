@@ -13,6 +13,18 @@ namespace Trips.Mvc.Controllers
     {
         public ActionResult Index()
         {
+            using (RouteStorage context = new RouteStorage())
+            {
+                var cities = context.Cities.Include("CityNames").Where(c => c.Id == 1 || c.Id == 3).ToList();
+                List<SelectListItem> fromCity = cities.Select(c => new SelectListItem
+                    {
+                        Text = c.CityNames.ToDictionary(cn => cn.Language, cn => cn.Name)[LocaleHelper.GetCultureName()],
+                        Value = c.Id.ToString()
+                    }).ToList();
+
+                ViewData["fromCityId"] = fromCity;
+            }
+
             ViewData["hasItems"] = WebSession.OrderItems.Count != 0;
             return View();
         }

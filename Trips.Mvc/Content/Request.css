@@ -1,7 +1,7 @@
 ﻿/*STEP1 PAGE STYLE START*/
 .textBoxWrapper{margin:0 37px; width:auto; display:block;padding:0 0 30px 0;}
 .textBoxWrapper h6{left:-37px; display:block; position:relative;}
-#contentBox form input[type='text'], #contentBox form textarea{width:100%;}
+#contentBox form input[type='text'], #contentBox form textarea, #contentBox form select{width:100%;}
 
 #contentBoxStep1   {height:100px; height:auto; width:100px; width:auto;}
 #contentBoxStep1 h2{color:#999999; font-family:Verdana, Arial, Helvetica, sans-serif; font-weight:bold; font-size:16px;}

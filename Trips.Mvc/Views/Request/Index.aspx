@@ -23,8 +23,7 @@
             <%= Html.ResourceString("StartingPoint") %> <span class="lessFont">(<%= Html.ResourceString("EnterCityName")%>): </span>
         </h3>
             <div class="textBoxWrapper">
-                <%= Html.TextBox("fromCity") %>
-                <%= Html.Hidden("fromCityId") %>
+                <%= Html.DropDownList("fromCityId") %>
             </div>
         <h3>
             <%= Html.ResourceString("WhereToGo")%> <span class="lessFont">(<%= Html.ResourceString("EnterCityName")%>): </span>
@@ -59,7 +58,7 @@
     <%if(!(bool)ViewData["hasItems"]){ %>
         <script type="text/javascript">
             $(function() {
-                $("#content form input, #content form textarea").attr("disabled", "disabled").addClass("disabled");
+            $("#content form input, #content form textarea, #content form select").attr("disabled", "disabled").addClass("disabled");
             })
         </script>
     <%} %>
@@ -68,23 +67,15 @@
         <script type="text/javascript" src="/Scripts/jquery.ui.js"></script>
         <script type="text/javascript">
             $(function() {
-                $("#content form input, #content form textarea").not("#fromCity, .selectedAds input").attr("disabled", "disabled").addClass("disabled");
+                $("#content form textarea, .next").not("#fromCityId, .selectedAds input").attr("disabled", "disabled").addClass("disabled");
 
-                $("#toCity, #fromCity").autocomplete({
+                $("#toCity").autocomplete({
                     source: "/Request/PickCity",
                     select: function(event, ui) {
                         $("#" + event.target.id + "Id").val(ui.item.id);
                     }
                 });
 
-                $("#fromCity").keyup(function() {
-                    if ($("#fromCity").val() != "") {
-                        $("#toCity").removeAttr("disabled").removeClass("disabled");
-                    }
-                    else {
-                        $("#content form input, #content form textarea").not("#fromCity").attr("disabled", "disabled").addClass("disabled");
-                    }
-                });
 
                 $("#toCity").keyup(function() {
                     if ($("#toCity").val() != "") {

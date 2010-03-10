@@ -166,7 +166,7 @@
     <value>Our Phones</value>
   </data>
   <data name="Request" xml:space="preserve">
-    <value>Request</value>
+    <value>Order</value>
   </data>
   <data name="OurCatalogue" xml:space="preserve">
     <value>Our catalogue</value>
@@ -302,5 +302,17 @@
   </data>
   <data name="CalculatedIndividually" xml:space="preserve">
     <value>Calculated individually. To be sent on indicated email.</value>
+  </data>
+  <data name="AboutYou" xml:space="preserve">
+    <value>About you</value>
+  </data>
+  <data name="ContactPhone" xml:space="preserve">
+    <value>Contact phone</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>E-mail</value>
+  </data>
+  <data name="YourName" xml:space="preserve">
+    <value>Your name</value>
   </data>
 </root>

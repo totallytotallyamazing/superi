@@ -9,8 +9,8 @@
 #contentBoxStep1 h4{color:#666666;font-family: Tahoma, Helvetica, sans-serif;font-weight:normal; font-size:12px;}
 #contentBoxStep1 h5{color:#000000; font-family: Tahoma, Helvetica, sans-serif;font-weight:bold; font-size:12px; padding:7px 0 0 0;}
 #contentBoxStep1 h6{color:#666666;font-family: Tahoma, Helvetica, sans-serif;font-weight:normal; font-size:10px;margin:0 0 0 37px;}
-#contentBoxStep1 p{color:#000000;font-family: Tahoma, Helvetica, sans-serif;font-weight:normal; font-size:11px;margin:0 0 0 37px;}
-h4 a{color:#3366ff; font-weight:bold;}
+#contentBoxStep1 p{color:#000000;font-family: Tahoma, Helvetica, sans-serif;font-weight:normal; font-size:11px; padding-top:5px;}
+#calculationContainer h4 a{color:#3366ff; font-weight:bold;}
 
 #calculationContainer div.calc{margin-bottom:30px;}
 

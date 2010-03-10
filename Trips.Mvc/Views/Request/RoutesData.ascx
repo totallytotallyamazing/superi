@@ -24,7 +24,7 @@
                 <a href="#">
                     <%= Html.ResourceString("Euro") %></a>, <a href="#">
                         <%= Html.ResourceString("Ruble") %></a>
-                <%= Html.ResourceString("Or") %>
+                <%= Html.ResourceString("Or").ToLower() %>
                 <a href="#">
                     <%= Html.ResourceString("Dollars") %></a>)
             </p>

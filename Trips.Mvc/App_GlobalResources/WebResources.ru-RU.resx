@@ -298,9 +298,21 @@
     <value>Выбрать автомобиль</value>
   </data>
   <data name="StandardClass" xml:space="preserve">
-    <value>Стандартный класс</value>
+    <value>Стандартный класс</value>
   </data>
   <data name="CalculatedIndividually" xml:space="preserve">
     <value>Расчитывается индивидуально. Просчет будет выслан на указанный Email</value>
+  </data>
+  <data name="AboutYou" xml:space="preserve">
+    <value>О вас</value>
+  </data>
+  <data name="ContactPhone" xml:space="preserve">
+    <value>Контактный телефон</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Эл. почта</value>
+  </data>
+  <data name="YourName" xml:space="preserve">
+    <value>Имя, фамилия</value>
   </data>
 </root>

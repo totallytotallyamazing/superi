@@ -29,8 +29,23 @@ namespace Trips.Mvc.Controllers
             return View();
         }
 
-        public ActionResult PersonalData()
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult PersonalData(long fromCityId, string toCity, long? toCityId, string moreDetails)
         {
+            WebSession.FromCityId = fromCityId;
+
+            using (RouteStorage context = new RouteStorage())
+            {
+                string language = LocaleHelper.GetCultureName();
+                WebSession.FromCity = context.Cities.Where(c=>c.Id == fromCityId)
+                    .Select(c=>c.CityNames.Where(cn=>cn.Language == language).Select(cn=>cn.Name).First())
+                    .First(); 
+            }
+
+            WebSession.ToCity = toCity;
+            WebSession.ToCityId = (toCityId.HasValue) ? toCityId.Value : 0;
+            WebSession.MoreTripDetails = moreDetails;
+            
             return View();
         }
 
@@ -50,7 +65,15 @@ namespace Trips.Mvc.Controllers
             }
         }
 
-        public ActionResult RouteData(long? fromCityId, long? toCityId)
+        public void UpdateQuantity(long id, int quantity)
+        {
+            if (WebSession.OrderItems.ContainsKey(id))
+            {
+                WebSession.OrderItems[id].Quantity = quantity;
+            }
+        }
+
+        public ActionResult RoutesData(long? fromCityId, long? toCityId)
         {
             if (fromCityId.HasValue && toCityId.HasValue)
             {

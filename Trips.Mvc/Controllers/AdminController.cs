@@ -11,6 +11,7 @@ using Trips.Mvc.Helpers;
 using System.IO;
 using Dev.Helpers;
 using System.Globalization;
+using Trips.Mvc.Runtime;
 
 namespace Trips.Mvc.Controllers
 {
@@ -627,6 +628,30 @@ namespace Trips.Mvc.Controllers
                 context.SaveChanges();
             }
             return RedirectToAction("Index", "News");
+        }
+        #endregion
+
+        #region Settings
+        public ActionResult SiteSettings()
+        {
+            ViewData["euroRate"] = decimal.Parse(Configurator.GetSetting("EuroRate"), CultureInfo.InvariantCulture).ToString(CultureInfo.CurrentUICulture);
+            ViewData["dollarRate"] = decimal.Parse(Configurator.GetSetting("DollarRate"), CultureInfo.InvariantCulture).ToString(CultureInfo.CurrentUICulture);
+            ViewData["rubleRate"] = decimal.Parse(Configurator.GetSetting("RubleRate"), CultureInfo.InvariantCulture).ToString(CultureInfo.CurrentUICulture);
+            ViewData["receiverMail"] = Configurator.GetSetting("ReceiverMail");
+            ViewData["pageSize"] = Configurator.GetSetting("PageSize");
+            return View();
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult SiteSettings(decimal euroRate, decimal dollarRate, decimal rubleRate, string receiverMail, int pageSize)
+        {
+
+            Configurator.SetSetting("EuroRate", euroRate.ToString(CultureInfo.InvariantCulture));
+            Configurator.SetSetting("DollarRate", dollarRate.ToString(CultureInfo.InvariantCulture));
+            Configurator.SetSetting("RubleRate", rubleRate.ToString(CultureInfo.InvariantCulture));
+            Configurator.SetSetting("ReceiverMail", receiverMail);
+            Configurator.SetSetting("PageSize", pageSize.ToString(CultureInfo.InvariantCulture));
+            return RedirectToAction("SiteSettings");
         }
         #endregion
     }

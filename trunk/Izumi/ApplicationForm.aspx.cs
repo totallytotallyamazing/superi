@@ -62,7 +62,6 @@ public partial class ApplicationForm : System.Web.UI.Page
         catch (Exception ex)
         {
             success = false;
-            Trace.Write("fuck", "mail fucked", ex);
         }
         if (success)
             Response.Redirect(DefaultValues.BaseUrl + "send_success");

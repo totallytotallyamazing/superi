@@ -9,7 +9,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 <% Html.RenderPartial("RoutesAdmin"); %>
-<% using(Html.BeginForm()){ %>
+<% using(Html.BeginForm("PersonalData", "Request", FormMethod.Post)){ %>
     <div id="contentBoxStep1">
         <br>
         <h2>
@@ -58,14 +58,25 @@
     <%if(!(bool)ViewData["hasItems"]){ %>
         <script type="text/javascript">
             $(function() {
-            $("#content form input, #content form textarea, #content form select").attr("disabled", "disabled").addClass("disabled");
+                $("#content form input, #content form textarea, #content form select").attr("disabled", "disabled").addClass("disabled");
             })
         </script>
     <%} %>
     <%else{ %>
         <link rel="Stylesheet" href="/Content/ui/jquery.ui.css" />
         <script type="text/javascript" src="/Scripts/jquery.ui.js"></script>
+        <script src="/Scripts/extended/ExtendedControls.js" type="text/javascript"></script>
+        
         <script type="text/javascript">
+            Sys.require(Sys.components.maskedEdit, function() {
+                $("td input[type='text']").maskedEdit({
+                    Mask: "99",
+                    AcceptNegative: 0,
+                    MaskType: Sys.Extended.UI.MaskedEditType.Number,
+                    PromptChararacter: ""
+                });
+            });
+
             $(function() {
                 $("#content form textarea, .next").not("#fromCityId, .selectedAds input").attr("disabled", "disabled").addClass("disabled");
 
@@ -85,6 +96,16 @@
                         $("#content form input, #content form textarea").not("#fromCity, #toCity").attr("disabled", "disabled").addClass("disabled");
                     }
                 });
+
+                $("td input[type='text']").keyup(function(ev) {
+                    var val = this.value.replace("_", "");
+                    if (val != "") {
+                        var id = this.id.split("-")[1];
+                        $.get("/Request/UpdateQuantity/" + id + "?quantity=" + val);
+
+                        window.setTimeout(loadCalculationData, 300);
+                    }
+                })
             });
         </script>
     <%} %>

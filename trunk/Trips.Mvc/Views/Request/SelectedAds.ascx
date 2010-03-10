@@ -4,6 +4,10 @@
 <%@ Import Namespace="Trips.Mvc.Models" %>
 <%@ Import Namespace="Microsoft.Web.Mvc" %>
 
+<script type="text/javascript">
+    
+</script>
+
 <h3>
     <%= Html.ResourceString("Car")%>:
 </h3>
@@ -33,7 +37,7 @@
             </span>
         </td>
         <td>
-            <%= Html.TextBox("quantity_" + item.Key, item.Value.Quantity) %>
+            <%= Html.TextBox("quantity-" + item.Key, item.Value.Quantity) %>
         </td>
         <td>
             <%= Html.ActionLink("[IMAGE]", "DeleteOrderItem", new { id = item.Key })

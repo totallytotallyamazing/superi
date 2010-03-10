@@ -46,10 +46,12 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="includes" runat="server">
     <%= Ajax.DynamicCssInclude("/Content/Admin.css") %>
     <%= Ajax.DynamicCssInclude("/Content/ui/jquery.ui.css") %>
+    <%= Ajax.ScriptInclude("/Scripts/jquery.ui.js") %>
+    <%= Ajax.ScriptInclude("/Scripts/jquery.ui.datepicker-ru.j")%>
     <script type="text/javascript" src="/Scripts/jquery.FCKEditor.js"></script>
     <script type="text/javascript" src="/Scripts/jquery.validate.js"></script>
-    <script type="text/javascript" src="/Scripts/jquery.ui.js"></script>
-    <script type="text/javascript" src="/Scripts/jquery.ui.datepicker-ru.js"></script>
+    <%--<script type="text/javascript" src="/Scripts/jquery.ui.js"></script>--%>
+    <%--<script type="text/javascript" src="/Scripts/jquery.ui.datepicker-ru.js"></script>--%>
 
     <script type="text/javascript">
         $(function() {
@@ -95,3 +97,4 @@
 <asp:Content ID="Content5" ContentPlaceHolderID="ContentTitle" runat="server">
     <%= ViewData["cTitle"] %>
 </asp:Content>
+

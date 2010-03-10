@@ -63,8 +63,8 @@
         </script>
     <%} %>
     <%else{ %>
-        <link rel="Stylesheet" href="/Content/ui/jquery.ui.css" />
-        <script type="text/javascript" src="/Scripts/jquery.ui.js"></script>
+        <%= Ajax.DynamicCssInclude("/Content/ui/jquery.ui.css") %>
+        <%= Ajax.ScriptInclude("/Scripts/jquery.ui.js") %>
         <script src="/Scripts/extended/ExtendedControls.js" type="text/javascript"></script>
         
         <script type="text/javascript">

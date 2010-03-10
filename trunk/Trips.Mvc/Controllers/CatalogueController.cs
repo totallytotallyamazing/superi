@@ -56,6 +56,52 @@ namespace Trips.Mvc.Controllers
             }
         }
 
+        public ActionResult CarSearch(string searchField)
+        {
+            Dictionary<KeyValuePair<string, long>, List<KeyValuePair<string, long>>> brandClasses = new Dictionary<KeyValuePair<string, long>, List<KeyValuePair<string, long>>>();
+            using (CarAdStorage context = new CarAdStorage())
+            {
+                Func<long, string> getClass = (cId) =>
+                {
+                    CarAdClasses adClass = (CarAdClasses)cId;
+                    return LocaleHelper.GetResourceString(adClass.ToString());
+                };
+
+                var items = context.CarAds.Select(ca => new { Class = ca.Class, BrandName = ca.Brand.Name, BrandId = ca.Brand.Id })
+                    .Distinct()
+                    .OrderBy(i => i.Class)
+                    .ToList();
+                var grouppedItems = items.GroupBy(i => i.Class, i => new { BrandId = i.BrandId, BrandName = i.BrandName });
+                brandClasses = grouppedItems
+                    .ToDictionary(d => new KeyValuePair<string, long>(getClass(d.Key), d.Key),
+                    d => d.Select(di => new KeyValuePair<string, long>(di.BrandName, di.BrandId)).ToList());
+
+                ViewData["brandClasses"] = brandClasses;
+
+                if (!string.IsNullOrEmpty(searchField))
+                {
+                    List<CarAd> carAds = (from car in context.CarAds
+                                              .Include("Brand").Include("Images").Include("Descriptions")
+                                          let model = car.Brand.Name + " " + car.Model
+                                          where model.StartsWith(searchField)
+                                          select car).Distinct().ToList();
+                    carAds.ForEach(ca => { ca.Images.Load(); ca.Descriptions.Load(); });
+                    return View("AdList", carAds);
+                }
+
+                using (ContentStorage cs = new ContentStorage())
+                {
+                    ViewData["id"] = "Catalogue";
+                    string language = LocaleHelper.GetCultureName();
+                    Content content = cs.Content
+                        .Where(c => c.Language == language)
+                        .Where(c => c.Name == "Catalogue")
+                        .FirstOrDefault();
+                    return View(content);
+                }
+            }
+        }
+
         public ActionResult Details(int id)
         {
             using (CarAdStorage context = new CarAdStorage())
@@ -109,6 +155,18 @@ namespace Trips.Mvc.Controllers
                 ViewData["name"] = string.Format("{0} ({1})", orderItem.AdModel, orderItem.Year);
             }
             return View();
+        }
+
+        public ActionResult SearchSuggestion(string term)
+        {
+            using(CarAdStorage  context = new CarAdStorage())
+	        {
+                var result = (from car in context.CarAds.Include("Brand")
+                              let model = car.Brand.Name + " " + car.Model
+                              where model.StartsWith(term)
+                              select model).Distinct().ToList();
+                return Json(result);
+	        }
         }
     }
 }

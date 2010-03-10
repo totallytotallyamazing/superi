@@ -315,4 +315,10 @@
   <data name="YourName" xml:space="preserve">
     <value>Your name</value>
   </data>
+  <data name="RequestSentMessage" xml:space="preserve">
+    <value>Your order was succesfully sent. Our manger will contact you as soon as possible.</value>
+  </data>
+  <data name="RequestWasSent" xml:space="preserve">
+    <value>Order sent</value>
+  </data>
 </root>

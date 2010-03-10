@@ -315,4 +315,10 @@
   <data name="YourName" xml:space="preserve">
     <value>Имя, фамилия</value>
   </data>
+  <data name="RequestSentMessage" xml:space="preserve">
+    <value>Ваша заявка успешно отправлена.</value>
+  </data>
+  <data name="RequestWasSent" xml:space="preserve">
+    <value>Запрос отправлен</value>
+  </data>
 </root>

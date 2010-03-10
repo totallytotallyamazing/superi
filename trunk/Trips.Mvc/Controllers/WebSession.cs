@@ -95,5 +95,15 @@ namespace Trips.Mvc.Controllers
                 Session["MoreTripDetails"] = value;
             }
         }
+
+        internal static void ClearOrder()
+        {
+            OrderItems.Clear();
+            ToCityId = 0;
+            ToCity = null;
+            FromCityId = 0;
+            FromCity = null;
+            MoreTripDetails = null;
+        }
     }
 }

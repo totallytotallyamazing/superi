@@ -6,6 +6,9 @@ using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 using Trips.Mvc.Models;
 using Dev.Helpers;
+using System.Text;
+using Trips.Mvc.Runtime;
+using System.Net.Mail;
 
 namespace Trips.Mvc.Controllers
 {
@@ -13,6 +16,8 @@ namespace Trips.Mvc.Controllers
     {
         public ActionResult Index()
         {
+            string script = "<script type=\"text/javascript\">var euroRate = {0}; var dollarRate = {1}; var rubleRate = {2};</script>";
+            ViewData["script"] = string.Format(script, Configurator.GetSetting("EuroRate"), Configurator.GetSetting("DollarRate"), Configurator.GetSetting("RubleRate"));
             using (RouteStorage context = new RouteStorage())
             {
                 var cities = context.Cities.Include("CityNames").Where(c => c.Id == 1 || c.Id == 3).ToList();
@@ -29,6 +34,12 @@ namespace Trips.Mvc.Controllers
             return View();
         }
 
+        public ActionResult DeleteOrderItem(long id)
+        {
+            WebSession.OrderItems.Remove(id);
+            return RedirectToAction("Index");
+        }
+
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult PersonalData(long fromCityId, string toCity, long? toCityId, string moreDetails)
         {
@@ -38,7 +49,7 @@ namespace Trips.Mvc.Controllers
             {
                 string language = LocaleHelper.GetCultureName();
                 WebSession.FromCity = context.Cities.Where(c=>c.Id == fromCityId)
-                    .Select(c=>c.CityNames.Where(cn=>cn.Language == language).Select(cn=>cn.Name).First())
+                    .Select(c=>c.CityNames.Where(cn=>cn.Language == language).Select(cn=>cn.Name).FirstOrDefault())
                     .First(); 
             }
 
@@ -49,6 +60,36 @@ namespace Trips.Mvc.Controllers
             return View();
         }
 
+        public ActionResult Send(string name, string phone, string email)
+        {
+            List<MailAddress> to = new List<MailAddress>();
+            to.Add(new MailAddress(Configurator.GetSetting("ReceiverMail")));
+            MailHelper.SendTemplate("mailinator@trips.kiev.ua", to, "Заявка на сайте trips.kiev.ua",
+                "MailTemplate.htm", null, true, name, phone, email, 
+                WebSession.FromCity, WebSession.ToCity,
+                WebSession.MoreTripDetails, CreateRequestTable());
+
+            WebSession.ClearOrder();
+
+            return View();
+        }
+
+        private string CreateRequestTable()
+        {
+            string url = Request.Url.Scheme + ":" + Request.Url.Authority + Request.ApplicationPath;
+            StringBuilder result = new StringBuilder();
+            foreach (var item in WebSession.OrderItems)
+            {
+                result.Append("<tr>");
+                result.AppendFormat("<td><img src=\"{0}ImageCache/thumbnail3/{1}\" /></td>",
+                    url, item.Value.ImageSource);
+                result.AppendFormat("<td>{0} ({1})</td>", item.Value.AdModel, item.Value.Year);
+                result.AppendFormat("<td>{0}</td>", item.Value.Quantity);
+                result.Append("</tr>");
+            }
+            return result.ToString();
+        }
+        
         public ActionResult PickCity(string term)
         {
             using (RouteStorage context = new RouteStorage())

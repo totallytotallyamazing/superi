@@ -68,6 +68,28 @@ namespace ClientLibrary
             }
         }
 
+        void UpdateNavigationState()
+        {
+            if (Songs.Length <= currentSong + 1)
+            {
+                JQueryProxy.jQuery("a[rel='next']").addClass("disabled");
+                JQueryProxy.jQuery("a[rel='prev']").removeClass("disabled");
+            }
+            if (currentSong == 0)
+            {
+                JQueryProxy.jQuery("a[rel='prev']").addClass("disabled");
+                JQueryProxy.jQuery("a[rel='next']").removeClass("disabled");
+            }
+            if (currentSong > 0)
+            {
+                JQueryProxy.jQuery("a[rel='prev']").removeClass("disabled");
+            }
+            if (Songs.Length > currentSong + 1)
+            {
+                JQueryProxy.jQuery("a[rel='next']").removeClass("disabled");
+            }
+        }
+
         BasicCallback ControlClick(object rawEvent, object stub)
         {
             Event evt = (Event)rawEvent;
@@ -141,11 +163,7 @@ namespace ClientLibrary
         void Next()
         {
             currentSong++;
-            if (Songs.Length <= currentSong + 1)
-            {
-                JQueryProxy.jQuery("a[rel='next']").addClass("disabled");
-                JQueryProxy.jQuery("a[rel='prev']").removeClass("disabled");
-            }
+            UpdateNavigationState();
             Dictionary song = (Dictionary)Songs[currentSong];
             ChangeSong((string)song["url"]);
             UpdateSongTitle((string)song["name"], (string)song["album"]);
@@ -155,11 +173,7 @@ namespace ClientLibrary
         void Prev()
         {
             currentSong--;
-            if (currentSong == 0)
-            {
-                JQueryProxy.jQuery("a[rel='prev']").addClass("disabled");
-                JQueryProxy.jQuery("a[rel='next']").removeClass("disabled");
-            }
+            UpdateNavigationState();
             Dictionary song = (Dictionary)Songs[currentSong];
             ChangeSong((string)song["url"]);
             UpdateSongTitle((string)song["name"], (string)song["album"]);

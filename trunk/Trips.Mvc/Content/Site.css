@@ -9,7 +9,7 @@ img{border:0;}
 
 #topBanner{text-align:center; min-width:1070px; height:32px; position:relative; z-index:100;}
 #header{height:108px;width:auto;min-width:1000px;background:url(img/headerBg.jpg) #000099;margin:0px 35px 0px 35px;}
-#headerLogo{height:108px;width:235px;float:left;background:url(img/logo.jpg) no-repeat #ffe000;}
+#headerLogo{height:108px;width:235px;float:left;}
 #headerContacts
 {
 	height:85px;
@@ -107,7 +107,7 @@ height:20px;width:161px;background:url(img/leftBox1Header.jpg) no-repeat;font-fa
 #newsFooter{height:20px;width:161px;background:url(img/leftBox1Footer.jpg) no-repeat;}
 /*News finish*/
 /*Map start*/
-#mapBox{margin: 60px 0 0 0;height:261px;width:161px;background:url(img/mapBanner1.jpg) no-repeat;}
+#mapBox{margin: 60px 0 0 0;height:261px;width:161px;}
 /*Map finish*/
 #string{height:32px;width:auto;min-width:300px;position:relative;background-image:url(img/bg_string.jpg);position:relative;}
 #string h2{font-family:Tahoma, sans-serif;text-decoration:none;font-size:17px;font-weight:100;margin-left:20px;float:left;}
@@ -160,7 +160,7 @@ li{list-style-type:none;}
 .line a{color:#000000 !important;}
 /*CATALOG1 PAGE STYLE FINISH*/
 /*CATALOG2 PAGE STYLE START*/
-#bigPhoto{width:400px;height:190px;height:auto;}
+#bigPhoto{width:400px;height:190px;height:auto; margin:0 auto; position:relative;}
 #bigPhotoBox{width:393px;height:250px;float:left;padding:30px 0px 0px 0px;}
 #carPhotoViews{width:400px;height:71px;float:left; margin:71px 0px 0px 0px;}
 .carPhoto{width:93px;height:71px;float:left; margin-right:7px;}

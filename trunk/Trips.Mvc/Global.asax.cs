@@ -9,6 +9,7 @@ using System.Threading;
 using System.Globalization;
 using System.IO;
 using Trips.Mvc.Helpers;
+using Trips.Mvc.Runtime;
 
 namespace Trips.Mvc
 {
@@ -22,7 +23,7 @@ namespace Trips.Mvc
         {
             get
             {
-                return ConfigurationManager.AppSettings["DefaultLanguage"];
+                return Configurator.GetSetting("DefaultLanguage");
             }
         }
 

@@ -10,12 +10,12 @@
             Курите?
         </h4>
         <p>
-            <img src="/Content/img/Sigara.jpg" alt="swed">
+            <img src="/Content/img/Sigara.jpg" alt="swed" />
         </p>
     </div>
     <div id="swedFooter">
         <p>
-            Ознакомьтесь с <a href="#">условиями предоставления услуг.</a>
+            Ознакомьтесь с <a href="/Content/Conditions">условиями предоставления услуг.</a>
         </p>
     </div>
 </div>

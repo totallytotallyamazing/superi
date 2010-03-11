@@ -8,6 +8,11 @@
     <%= ViewData["title"] %>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+    <% if(Request.IsAuthenticated){ %>
+        <div>
+            <%= Html.ActionLink("Редактировать", "AddEditCarAd", "Admin", new { id = Model.Id }, null)%>
+        </div>
+    <%} %>
     <div id="bigPhoto">
         <div id="bigPhotoBox">  
             <% 

@@ -129,7 +129,17 @@ namespace Zamov.Models
                 {
                     DataRow row = table.NewRow();
                     for (int i = 0; i < table.Columns.Count; i++)
-                        row[table.Columns[i]] = excelReader.GetString(i);
+                    {
+                        if (table.Columns[i].ColumnName == "price")
+                        {
+                            row[table.Columns[i]] = excelReader.GetString(i).Replace(",", ".");
+                        }
+                        else
+                        {
+                            row[table.Columns[i]] = excelReader.GetString(i);
+                        }
+                        
+                    }
                     table.Rows.Add(row);
                 }
             }
@@ -209,6 +219,5 @@ namespace Zamov.Models
             return result * direction;
 
         }
-
     }
 }

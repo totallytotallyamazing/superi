@@ -5,7 +5,7 @@
       {%>
         <div>
             <p class="title"><%= item.Title %></p>
-            <p class="date"><%= item.Date.ToString("dd.MM.yyyy") %> <a rel="async" href="Articles/<%= item.Id %>">вся новость>>></a></p>
+            <p class="date"><%= item.Date.ToString("dd.MM.yyyy") %>  <%= Html.ActionLink("вся новость>>>", "Index", "Articles", new { id = item.Id }, new { rel = "async" })%>
             <p class="detailsLink">
                 
             </p>

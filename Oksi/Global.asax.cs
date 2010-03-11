@@ -18,6 +18,14 @@ namespace Oksi
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             routes.IgnoreRoute("favicon.ico");
 
+
+            routes.MapRoute(
+                "Press",                                              // Route name
+                "Press/{id}",                           // URL with parameters
+                new { controller = "Articles", action = "Press", id = "" }  // Parameter defaults
+            );
+
+
             routes.MapRoute(
                 "Default",                                              // Route name
                 "{controller}/{action}/{id}",                           // URL with parameters

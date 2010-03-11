@@ -16,7 +16,7 @@ namespace Oksi.Controllers
         }
 
         [Content]
-        public ActionResult Content(string contentName)
+        public ActionResult Content(string id)
         {
             return View();
         }

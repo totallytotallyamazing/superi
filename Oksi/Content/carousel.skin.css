@@ -10,7 +10,7 @@
 
 
 .jcarousel-skin-tango .jcarousel-clip-horizontal {
-    width:  750px;
+    width:  740px;
     height: 145px;
     margin-left:10px;
 }
@@ -29,6 +29,8 @@
     margin-left: 0px;
 }
 
+.galleryItemSpacer{padding-right:5px; float:left;}
+
 
 .jcarousel-skin-tango .jcarousel-item-vertical {
     margin-bottom: 10px;
@@ -46,6 +48,7 @@
     position: absolute;
     top: 0px;
     right: 0px;
+    margin-left:5px;
     width: 42px;
     height: 141px;
     cursor: pointer;

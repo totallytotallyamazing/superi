@@ -16,9 +16,14 @@
 #newsDetailLink{text-align:right;}
 #newsDetailLink a{color:White; font-style:italic; font-size:11px;}
 
-#photoSession{height:195px; padding-bottom:0px; clear:both; margin-top:5px;}
+#photoSession{ width:442px; padding:0px; padding-top:5px; clear:both; margin-top:5px;}
+#photoSession #sessionTitle{padding-left:5px;}
 a.photoSession img{border:1px solid white;}
 a.photoSession{text-decoration:none;}
+#photoSession #sessionSubTitle{width:auto; padding-left:5px;}
+#photoSession #photos{padding-left:5px;}
+#morePhoto{height:15px; background: #505050; width:auto; font-size:11px; padding-left:5px;}
+#morePhoto a{color:White; text-decoration:none;}
 
 #recentNews{width:377px; margin-left:447px; margin-top:5px;}
 #recentNews div{width:auto; margin-bottom:4px; background-color:#939393; padding:4px; min-height:20px;}

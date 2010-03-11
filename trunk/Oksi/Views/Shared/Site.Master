@@ -26,10 +26,10 @@
     <script type="text/javascript">
         
         var songs = new Array();
-        songs[0] = { url: "http://demo.akula.com.ua/Songs/oksi_-_podruga_luna.mp3", name: "Подруга луна", album: "альбом" };
-        songs[1] = { url: "http://demo.akula.com.ua/Songs/oksi_-_pustie_slova.mp3", name: "Пустые слова", album: "альбом" };
-        songs[2] = { url: "http://demo.akula.com.ua/Songs/Oksi_cap_carap.mp3", name: "Цап царап", album: "альбом" };
-        songs[3] = { url: "http://demo.akula.com.ua/Songs/Kiev-disco.mp3", name: "Киев диско", album: "альбом" };
+        songs[0] = { url: "http://demo-akula-c.1gb.ua/Songs/oksi_-_podruga_luna.mp3", name: "Подруга луна", album: "альбом" };
+        songs[1] = { url: "http://demo-akula-c.1gb.ua/Songs/oksi_-_pustie_slova.mp3", name: "Пустые слова", album: "альбом" };
+        songs[2] = { url: "http://demo-akula-c.1gb.ua/Songs/Oksi_cap_carap.mp3", name: "Цап царап", album: "альбом" };
+        songs[3] = { url: "http://demo-akula-c.1gb.ua/Songs/Kiev-disco.mp3", name: "Киев диско", album: "альбом" };
 
         function getSongs() {return songs;}
     </script>

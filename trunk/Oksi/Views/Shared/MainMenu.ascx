@@ -16,7 +16,7 @@
 </div>
 <div>|</div>
 <div class="menuItem">
-    <%= Html.ActionLink("Биография", "Content", "Home", new { contentName = "bio" }, new { rel = "async" })%>
+    <%= Html.ActionLink("Биография", "Content", "Home", new { id = "bio" }, new { rel = "async" })%>
 </div>
 <div>|</div>
 <div class="menuItem">

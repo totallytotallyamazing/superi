@@ -12,7 +12,7 @@ namespace Oksi.Controllers
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             base.OnActionExecuting(filterContext);
-            string contentName = filterContext.RouteData.Values["contentName"].ToString();
+            string contentName = filterContext.RouteData.Values["id"].ToString();
 
             if (contentName != null)
             {

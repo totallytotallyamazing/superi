@@ -10,9 +10,14 @@
     <div id="sessionSubTitle">
         <%= ViewData["comments"]%>
     </div>
-    <% foreach (var item in Model){%>
-        <a rel="<%= "images_" + ViewData["galleryId"] %>" href="/GalleryContent/<%= item.Picture %>" class="photoSession">
-            <img src="/GalleryContent/<%= item.Preview %>" alt="" style="width:139px" />
-        </a>
-    <%}%>
+    <div id="photos">
+        <% foreach (var item in Model){%>
+            <a rel="<%= "images_" + ViewData["galleryId"] %>" href="/GalleryContent/<%= item.Picture %>" class="photoSession">
+                <img src="/GalleryContent/<%= item.Preview %>" alt="" style="width:139px" />
+            </a>
+        <%}%>
+    </div>
+    <div id="morePhoto">
+        <a href="/Gallery" rel="async">еще фото</a>
+    </div>
 </div>

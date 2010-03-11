@@ -216,6 +216,7 @@
     <Content Include="Views\Gallery\Gallery.ascx" />
     <Content Include="Views\Gallery\Images.ascx" />
     <Content Include="Views\Gallery\Index.ascx" />
+    <Content Include="Views\Home\Content.ascx" />
     <Content Include="Views\Home\Index.aspx" />
     <Content Include="Views\Home\IndexContent.ascx" />
     <Content Include="Views\Home\LatestNews.ascx" />

@@ -170,6 +170,23 @@ namespace Zamov.Models
             ExecuteNonQuery(context, "ZamovStorage.UpdateImportedProducts", updatesXmlParameter);
         }
 
+        public static void CopyDealer(this ZamovStorage context, int dealerId, int cityId)
+        {
+            EntityParameter dealerIdParameter = new EntityParameter();
+            dealerIdParameter.ParameterName = "dealerId";
+            dealerIdParameter.IsNullable = false;
+            dealerIdParameter.Value = dealerId;
+            dealerIdParameter.DbType = DbType.Int32;
+
+            EntityParameter cityIdParameter = new EntityParameter();
+            cityIdParameter.ParameterName = "cityId";
+            cityIdParameter.IsNullable = false;
+            cityIdParameter.Value = cityId;
+            cityIdParameter.DbType = DbType.Int32;
+
+            ExecuteNonQuery(context, "ZamovStorage.CopyDealer", dealerIdParameter, cityIdParameter);
+        }
+
         public static void ExpireOrders(this ZamovStorage context)
         {
             ExecuteNonQuery(context, "ZamovStorage.ExpireOrders");
@@ -197,14 +214,5 @@ namespace Zamov.Models
             return descending ? source.OrderByDescending(keySelector)
                               : source.OrderBy(keySelector);
         }
-        /*
-        public static IOrderedQueryable<TSource> OrderByWithDirection<TSource, TKey>
-            (this IQueryable<TSource> source, 
-            Expression<Func<TSource, TKey>> 
-            keySelector, bool descending) 
-        { 
-            return descending ? source.OrderByDescending(keySelector) 
-                              : source.OrderBy(keySelector); 
-        }*/
     }
 }

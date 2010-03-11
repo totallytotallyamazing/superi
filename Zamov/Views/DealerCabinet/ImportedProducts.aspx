@@ -61,7 +61,7 @@
 %>
     
     <h2><%= Html.ResourceString("ImportedProducts") %></h2>
-    <input style="padding:10px; margin-top:10px;" type="button" class="ui-state-default ui-corner-all" value="<%= Html.ResourceString("Save") %>" onclick="saveImports()" />
+  <%--  <input style="padding:10px; margin-top:10px;" type="button" class="ui-state-default ui-corner-all" value="<%= Html.ResourceString("Save") %>" onclick="saveImports()" />--%>
     <div id="tabs">
         <ul>
             <li>

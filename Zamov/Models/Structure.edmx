@@ -421,6 +421,10 @@
           <Parameter Name="enabled" Type="bit" Mode="In" />
           <Parameter Name="translations" Type="varchar(max)" Mode="In" />
         </Function>
+        <Function Name="CopyDealer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="dealerId" Type="int" Mode="In" />
+          <Parameter Name="cityId" Type="int" Mode="In" />
+        </Function>
         <Function Name="deleteDealer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="dealerId" Type="int" Mode="In" />
         </Function>
@@ -526,7 +530,10 @@
           <FunctionImport Name="ExpireOrders" />
           <AssociationSet Name="FK_Groups_Categories" Association="BaseEntities.FK_Groups_Categories">
             <End Role="Category" EntitySet="Categories" />
-            <End Role="Group" EntitySet="Groups" /></AssociationSet></EntityContainer>
+            <End Role="Group" EntitySet="Groups" /></AssociationSet>
+          <FunctionImport Name="CopyDealer">
+            <Parameter Name="dealerId" Mode="In" Type="Int32" />
+            <Parameter Name="cityId" Mode="In" Type="Int32" /></FunctionImport></EntityContainer>
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="Id" />
@@ -889,7 +896,8 @@
               <ScalarProperty Name="Id" ColumnName="Id" /></EndProperty>
             <EndProperty Name="Category">
               <ScalarProperty Name="Id" ColumnName="CategoryId" /></EndProperty>
-            <Condition ColumnName="CategoryId" IsNull="false" /></AssociationSetMapping></EntityContainerMapping>
+            <Condition ColumnName="CategoryId" IsNull="false" /></AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="CopyDealer" FunctionName="BaseEntities.Store.CopyDealer" /></EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>
@@ -944,10 +952,10 @@
           <ConnectorPoint PointX="4.625" PointY="1.65625" />
           </AssociationConnector>
         <AssociationConnector Association="BaseEntities.FK_Categories_Categories" ManuallyRouted="true" >
-          <ConnectorPoint PointX="5.71875" PointY="1.7499999999999998" />
-          <ConnectorPoint PointX="5.71875" PointY="1.5" />
-          <ConnectorPoint PointX="6.0729166666666661" PointY="1.5" />
-          <ConnectorPoint PointX="6.0729166666666661" PointY="1.7499999999999998" /></AssociationConnector>
+          <ConnectorPoint PointX="6.364583333333333" PointY="3.9996956380208331" />
+          <ConnectorPoint PointX="6.364583333333333" PointY="4.2496956380208335" />
+          <ConnectorPoint PointX="5.40625" PointY="4.2496956380208335" />
+          <ConnectorPoint PointX="5.40625" PointY="3.9996956380208331" /></AssociationConnector>
         <AssociationConnector Association="BaseEntities.FK_Groups_Groups" >
           <ConnectorPoint PointX="3.6569230769230767" PointY="4.4417936197916656" />
           <ConnectorPoint PointX="3.6569230769230767" PointY="4.6917936197916656" />

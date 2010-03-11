@@ -770,6 +770,35 @@ namespace Zamov.Controllers
             HttpContext.Cache.ClearCache(k => true);
             return View();
         }
+
+        public ActionResult CopyDealer()
+        {
+            using (ZamovStorage context = new ZamovStorage())
+            {
+                var dealers = context.Dealers.Include("Cities")
+                    .Join(context.Translations.Where(tr => tr.Language == "uk-UA").Where(tr => tr.TranslationItemTypeId == 5),
+                    d => d.Id, tr => tr.ItemId, (d, tr) => new { id = d.Id, name = tr.Text }).ToList();
+
+                ViewData["dealerId"] = dealers.Select(d => new SelectListItem { Text = d.name, Value = d.id.ToString() }).ToList();
+
+                var cities = context.Cities
+                    .Join(context.Translations.Where(tr => tr.Language == "uk-UA").Where(tr => tr.TranslationItemTypeId == 1),
+                    c => c.Id, tr => tr.ItemId, (c, tr) => new { name = tr.Text, id = c.Id }).ToList();
+
+                ViewData["cityId"] = cities.Select(c => new SelectListItem { Text = c.name, Value = c.id.ToString() });
+            }
+            return View();
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult CopyDealer(int dealerId, int cityId)
+        {
+            using (ZamovStorage context = new ZamovStorage())
+            {
+                context.CopyDealer(dealerId, cityId);
+            }
+            return RedirectToAction("CopyDealer");
+        }
         #endregion
 
         #region Orders

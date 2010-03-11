@@ -45,6 +45,11 @@
     <asp:ContentPlaceHolder runat="server" ID="includes"></asp:ContentPlaceHolder>
 </head>
 <body>
+    <% if(Request.IsAuthenticated){ %>
+        <div style="float:left">
+            <%= Html.ActionLink("Настройки сайта", "SiteSettings", "Admin", null, null) %>
+        </div>
+    <%} %>
     <div id="lang">
         <div id="langBox">
             <p>
@@ -58,8 +63,7 @@
         </a>
     </div>
     <div id="header">
-        <div id="headerLogo">
-        </div>
+        <% Html.RenderPartial("Logo"); %>
         <div id="headerContacts">
             <p>
                 <asp:Literal runat="server" Text="<%$ Resources:WebResources, Phones %>"></asp:Literal>:
@@ -84,6 +88,8 @@
         <div id="rightSide">
             <% Html.RenderAction("News", "Widgets"); %>
             <div id="mapBox">
+                <%= Html.ActionLink("[IMAGE]", "Index", "Request", null, null)
+                    .Replace("[IMAGE]", Html.Image("/Content/img/mapBanner1.jpg"))%>
             </div>
         </div>
         <div id="content">
@@ -106,9 +112,13 @@
                 </div>
             </div>
         </div>
+            <div class="clearBoth">
+    
+    </div>
         <div id="leftImageBox">
         </div>
     </div>
+
     <!--container-->
     <div id="footer">
         <div id="footerLeftBox">

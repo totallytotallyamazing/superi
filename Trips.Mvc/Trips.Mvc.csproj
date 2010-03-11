@@ -712,6 +712,7 @@
     <Content Include="Views\Admin\SiteSettings.aspx" />
     <Content Include="Views\Request\PersonalData.aspx" />
     <Content Include="Views\Request\Send.aspx" />
+    <Content Include="Views\Shared\Logo.ascx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\" />

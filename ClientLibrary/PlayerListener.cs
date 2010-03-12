@@ -74,7 +74,6 @@ namespace ClientLibrary
         private void ProgressChanged(int loadPercent, int playedPercentRelative,
     int playedPercentAbsolute, int playedTime, int totalTime)
         {
-            Script.Literal("debugger");
             EventHandler handler = (EventHandler)this.Events.GetHandler("positionChanged");
             if (handler != null)
             {

@@ -46,7 +46,8 @@ namespace ClientLibrary
             options.Ready = PlayerReady;
             options.Volume = 100;
             options.SwfPath = "/Scripts";
-            JQueryProxy.jQuery(Element).jPlayer(options);
+            
+            JQueryProxy.jQuery(Element).jPlayer(options).OnProgressChange(PlayerListener.Instance.ProgressChangedHandler);
         }
 
         void InitializeControls()
@@ -149,6 +150,7 @@ namespace ClientLibrary
 
         void Pause()
         {
+            Script.Literal("debugger");
             ((JPlayer)(Object)JQueryProxy.jQuery(Element)).Pause();
             JQueryProxy.jQuery("a[rel='play']").removeClass("disabled");
             JQueryProxy.jQuery("a[rel='pause']").addClass("disabled");

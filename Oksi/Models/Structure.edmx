@@ -6,15 +6,23 @@
     <edmx:StorageModels>
     <Schema Namespace="gbua_superiModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.0" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
         <EntityContainer Name="gbua_superiModelStoreContainer">
+          <EntitySet Name="Album" EntityType="gbua_superiModel.Store.Album" store:Type="Tables" Schema="gbua_oksitest" />
           <EntitySet Name="Articles" EntityType="gbua_superiModel.Store.Articles" store:Type="Tables" Schema="gbua_oksitest" />
+          <EntitySet Name="Clip" EntityType="gbua_superiModel.Store.Clip" store:Type="Tables" Schema="gbua_oksitest" />
           <EntitySet Name="Galleries" EntityType="gbua_superiModel.Store.Galleries" store:Type="Tables" Schema="gbua_oksitest" />
           <EntitySet Name="Images" EntityType="gbua_superiModel.Store.Images" store:Type="Tables" Schema="gbua_oksitest" />
           <EntitySet Name="SiteContent" EntityType="gbua_superiModel.Store.SiteContent" store:Type="Tables" Schema="gbua_oksitest" />
-          <AssociationSet Name="FK_SiteContent_SiteContent" Association="gbua_superiModel.Store.FK_SiteContent_SiteContent">
-            <End Role="SiteContent" EntitySet="SiteContent" />
-            <End Role="SiteContent1" EntitySet="SiteContent" />
-          </AssociationSet>
+          <EntitySet Name="Song" EntityType="gbua_superiModel.Store.Song" store:Type="Tables" Schema="gbua_oksitest" />
         </EntityContainer>
+        <EntityType Name="Album">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Cover" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="Year" Type="usmallint" Nullable="false" />
+        </EntityType>
         <EntityType Name="Articles">
           <Key>
             <PropertyRef Name="Id" />
@@ -30,6 +38,16 @@
           <Property Name="Title" Type="varchar" MaxLength="500" />
           <Property Name="Type" Type="uint" Nullable="false" />
         </EntityType>
+        <EntityType Name="Clip">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Comment" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="Id" Type="uint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Source" Type="varchar" Nullable="false" MaxLength="4000" />
+          <Property Name="Title" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="Year" Type="usmallint" Nullable="false" />
+        </EntityType>
         <EntityType Name="Galleries">
           <Key>
             <PropertyRef Name="Id" />
@@ -42,7 +60,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="GalleryId" Type="uint" />
+          <Property Name="GalleryId" Type="uint" Nullable="false" />
           <Property Name="Id" Type="uint" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Picture" Type="varchar" Nullable="false" MaxLength="255" />
           <Property Name="Preview" Type="varchar" Nullable="false" MaxLength="255" />
@@ -63,18 +81,15 @@
           <Property Name="Title" Type="varchar" Nullable="false" MaxLength="500" />
           <Property Name="Url" Type="varchar" Nullable="false" MaxLength="255" />
         </EntityType>
-        <Association Name="FK_SiteContent_SiteContent">
-          <End Role="SiteContent" Type="gbua_superiModel.Store.SiteContent" Multiplicity="0..1" />
-          <End Role="SiteContent1" Type="gbua_superiModel.Store.SiteContent" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SiteContent">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="SiteContent1">
-              <PropertyRef Name="ParentId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
+        <EntityType Name="Song">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="AlbumId" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Source" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="Title" Type="varchar" Nullable="false" MaxLength="255" />
+        </EntityType>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -89,7 +104,13 @@
           <EntitySet Name="Images" EntityType="gbua_superiModel.Image" />
           <AssociationSet Name="GalleryImage" Association="gbua_superiModel.GalleryImage">
             <End Role="Gallery" EntitySet="Galleries" />
-            <End Role="Image" EntitySet="Images" /></AssociationSet></EntityContainer>
+            <End Role="Image" EntitySet="Images" /></AssociationSet>
+          <EntitySet Name="Albums" EntityType="gbua_superiModel.Album" />
+          <EntitySet Name="Clip" EntityType="gbua_superiModel.Clip" />
+          <EntitySet Name="Songs" EntityType="gbua_superiModel.Song" />
+          <AssociationSet Name="AlbumSong" Association="gbua_superiModel.AlbumSong">
+            <End Role="Album" EntitySet="Albums" />
+            <End Role="Song" EntitySet="Songs" /></AssociationSet></EntityContainer>
         <EntityType Name="SiteContent">
           <Key>
             <PropertyRef Name="Id" /></Key>
@@ -136,7 +157,33 @@
           <NavigationProperty Name="Gallery" Relationship="gbua_superiModel.GalleryImage" FromRole="Image" ToRole="Gallery" /></EntityType>
         <Association Name="GalleryImage">
           <End Type="gbua_superiModel.Gallery" Role="Gallery" Multiplicity="1" />
-          <End Type="gbua_superiModel.Image" Role="Image" Multiplicity="*" /></Association></Schema>
+          <End Type="gbua_superiModel.Image" Role="Image" Multiplicity="*" /></Association>
+        <EntityType Name="Album">
+          <Key>
+            <PropertyRef Name="Id" /></Key>
+          <Property Name="Cover" Type="String" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" Nullable="false" />
+          <Property Name="Year" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Songs" Relationship="gbua_superiModel.AlbumSong" FromRole="Album" ToRole="Song" /></EntityType>
+        <EntityType Name="Clip">
+          <Key>
+            <PropertyRef Name="Id" /></Key>
+          <Property Name="Comment" Type="String" Nullable="false" />
+          <Property Name="Id" Type="Int64" Nullable="false" />
+          <Property Name="Source" Type="String" Nullable="false" />
+          <Property Name="Title" Type="String" Nullable="false" />
+          <Property Name="Year" Type="Int32" Nullable="false" /></EntityType>
+        <EntityType Name="Song">
+          <Key>
+            <PropertyRef Name="Id" /></Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Source" Type="String" Nullable="false" />
+          <Property Name="Title" Type="String" Nullable="false" />
+          <NavigationProperty Name="Album" Relationship="gbua_superiModel.AlbumSong" FromRole="Song" ToRole="Album" /></EntityType>
+        <Association Name="AlbumSong">
+          <End Type="gbua_superiModel.Album" Role="Album" Multiplicity="1" />
+          <End Type="gbua_superiModel.Song" Role="Song" Multiplicity="*" /></Association></Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -190,7 +237,34 @@
             <EndProperty Name="Image">
               <ScalarProperty Name="Id" ColumnName="Id" /></EndProperty>
             <EndProperty Name="Gallery">
-              <ScalarProperty Name="Id" ColumnName="GalleryId" /></EndProperty></AssociationSetMapping></EntityContainerMapping>
+              <ScalarProperty Name="Id" ColumnName="GalleryId" /></EndProperty></AssociationSetMapping>
+          <EntitySetMapping Name="Albums">
+            <EntityTypeMapping TypeName="IsTypeOf(gbua_superiModel.Album)">
+              <MappingFragment StoreEntitySet="Album">
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Cover" ColumnName="Cover" /></MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Clip">
+            <EntityTypeMapping TypeName="IsTypeOf(gbua_superiModel.Clip)">
+              <MappingFragment StoreEntitySet="Clip">
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Source" ColumnName="Source" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" /></MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Songs">
+            <EntityTypeMapping TypeName="IsTypeOf(gbua_superiModel.Song)">
+              <MappingFragment StoreEntitySet="Song">
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Source" ColumnName="Source" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <AssociationSetMapping Name="AlbumSong" TypeName="gbua_superiModel.AlbumSong" StoreEntitySet="Song">
+            <EndProperty Name="Song">
+              <ScalarProperty Name="Id" ColumnName="Id" /></EndProperty>
+            <EndProperty Name="Album">
+              <ScalarProperty Name="Id" ColumnName="AlbumId" /></EndProperty></AssociationSetMapping></EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>
@@ -220,6 +294,12 @@
         <EntityTypeShape EntityType="gbua_superiModel.Image" Width="1.5" PointX="3.625" PointY="4.75" Height="1.5923063151041665" />
         <AssociationConnector Association="gbua_superiModel.GalleryImage">
           <ConnectorPoint PointX="2.25" PointY="5.5461531575520837" />
-          <ConnectorPoint PointX="3.625" PointY="5.5461531575520837" /></AssociationConnector></Diagram></edmx:Diagrams>
+          <ConnectorPoint PointX="3.625" PointY="5.5461531575520837" /></AssociationConnector>
+        <EntityTypeShape EntityType="gbua_superiModel.Album" Width="1.5" PointX="5.25" PointY="0.875" Height="1.7879850260416672" />
+        <EntityTypeShape EntityType="gbua_superiModel.Clip" Width="1.5" PointX="6.375" PointY="3.75" Height="1.9802864583333335" />
+        <EntityTypeShape EntityType="gbua_superiModel.Song" Width="1.5" PointX="7.375" PointY="0.875" Height="1.59568359375" />
+        <AssociationConnector Association="gbua_superiModel.AlbumSong">
+          <ConnectorPoint PointX="6.75" PointY="1.672841796875" />
+          <ConnectorPoint PointX="7.375" PointY="1.672841796875" /></AssociationConnector></Diagram></edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

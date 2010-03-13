@@ -230,7 +230,6 @@ namespace ClientLibrary
 
         void Pause()
         {
-            Script.Literal("debugger");
             ((JPlayer)(Object)JQueryProxy.jQuery(Element)).Pause();
             JQueryProxy.jQuery("a[rel='play']").removeClass("disabled");
             JQueryProxy.jQuery("a[rel='pause']").addClass("disabled");

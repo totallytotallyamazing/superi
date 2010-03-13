@@ -89,6 +89,7 @@
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Source" Type="varchar" Nullable="false" MaxLength="255" />
           <Property Name="Title" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="TrackNumber" Type="int" Nullable="false" />
         </EntityType>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -180,7 +181,8 @@
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Source" Type="String" Nullable="false" />
           <Property Name="Title" Type="String" Nullable="false" />
-          <NavigationProperty Name="Album" Relationship="gbua_superiModel.AlbumSong" FromRole="Song" ToRole="Album" /></EntityType>
+          <NavigationProperty Name="Album" Relationship="gbua_superiModel.AlbumSong" FromRole="Song" ToRole="Album" />
+          <Property Name="TrackNumber" Type="Int32" Nullable="false" /></EntityType>
         <Association Name="AlbumSong">
           <End Type="gbua_superiModel.Album" Role="Album" Multiplicity="1" />
           <End Type="gbua_superiModel.Song" Role="Song" Multiplicity="*" /></Association></Schema>
@@ -256,6 +258,7 @@
           <EntitySetMapping Name="Songs">
             <EntityTypeMapping TypeName="IsTypeOf(gbua_superiModel.Song)">
               <MappingFragment StoreEntitySet="Song">
+                <ScalarProperty Name="TrackNumber" ColumnName="TrackNumber" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="Source" ColumnName="Source" />
                 <ScalarProperty Name="Id" ColumnName="Id" />

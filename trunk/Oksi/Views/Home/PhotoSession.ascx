@@ -1,7 +1,7 @@
 <%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<IEnumerable<Oksi.Models.Image>>" %>
 <%@ Import Namespace="Oksi.Models" %>
 <%@ Import Namespace="Oksi.Mvc.Ajax" %>
-<%= Ajax.Create("ClientLibrary.PhotoSessionExtender", new { id = "PageManager" }, null, "pageExtender")%>
+<%= Ajax.Create("ClientLibrary.PhotoSessionExtender", null, null, "pageExtender")%>
 
 <div id="photoSession">
     <div id="sessionTitle">

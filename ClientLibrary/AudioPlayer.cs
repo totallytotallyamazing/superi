@@ -14,8 +14,57 @@ namespace ClientLibrary
         public static Array GetSongs() { return null; }
     }
 
+    public class PlayerListenerEventArgs : EventArgs
+    {
+        int loadPercent;
+        int playedPercentRelative;
+        int playedPercentAbsolute;
+        int playedTime;
+        int totalTime;
+
+        public int LoadPercent
+        {
+            get { return loadPercent; }
+            set { loadPercent = value; }
+        }
+
+        public int PlayedPercentRelative
+        {
+            get { return playedPercentRelative; }
+            set { playedPercentRelative = value; }
+        }
+
+        public int PlayedPercentAbsolute
+        {
+            get { return playedPercentAbsolute; }
+            set { playedPercentAbsolute = value; }
+        }
+
+        public int PlayedTime
+        {
+            get { return playedTime; }
+            set { playedTime = value; }
+        }
+
+        public int TotalTime
+        {
+            get { return totalTime; }
+            set { totalTime = value; }
+        }
+    }
+
+    public delegate void PlayerListenerCallback(PlayerListenerEventArgs e);
+
     public class AudioPlayer : Control, ILoadableComponent
     {
+        private static AudioPlayer instance;
+
+        public static AudioPlayer Instance
+        {
+            get { return AudioPlayer.instance; }
+        }
+
+
         int currentSong = 0;
 
         public Array Songs
@@ -23,9 +72,37 @@ namespace ClientLibrary
             get { return GlobalMethods.GetSongs(); }
         }
 
-        public AudioPlayer(DOMElement element)
+        private AudioPlayer(DOMElement element)
             : base(element)
         {
+            instance = this;
+        }
+
+        public event PlayerListenerCallback PlayerPositionCanged
+        {
+            add { this.Events.AddHandler("positionChanged", value); }
+            remove { this.Events.RemoveHandler("positionChanged", value); }
+        }
+
+        public PlayerProgressChangeCallback ProgressChangedHandler
+        {
+            get { return ProgressChanged; }
+        }
+
+        private void ProgressChanged(int loadPercent, int playedPercentRelative,
+            int playedPercentAbsolute, int playedTime, int totalTime)
+        {
+            EventHandler handler = (EventHandler)this.Events.GetHandler("positionChanged");
+            if (handler != null)
+            {
+                PlayerListenerEventArgs args = new PlayerListenerEventArgs();
+                args.LoadPercent = loadPercent;
+                args.PlayedPercentRelative = playedPercentRelative;
+                args.PlayedPercentAbsolute = playedPercentAbsolute;
+                args.PlayedTime = playedTime;
+                args.TotalTime = totalTime;
+                handler(this, args);
+            }
         }
 
         public override void Initialize()
@@ -34,6 +111,9 @@ namespace ClientLibrary
             this.Element.Style.Height = "0px";
         }
 
+        /// <summary>
+        /// Member of ILoadableComponent. Occurs after page is loaded.
+        /// </summary>
         public void OnLoad()
         {
             InitializePlayer();
@@ -46,8 +126,8 @@ namespace ClientLibrary
             options.Ready = PlayerReady;
             options.Volume = 100;
             options.SwfPath = "/Scripts";
-            
-            JQueryProxy.jQuery(Element).jPlayer(options).OnProgressChange(PlayerListener.Instance.ProgressChangedHandler);
+
+            JQueryProxy.jQuery(Element).jPlayer(options).OnProgressChange(this.ProgressChangedHandler);
         }
 
         void InitializeControls()

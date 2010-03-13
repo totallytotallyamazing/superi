@@ -71,7 +71,6 @@
     <Compile Include="ILoadableComponent.cs" />
     <Compile Include="ObjectElement.cs" />
     <Compile Include="PhotoSessionExtender.cs" />
-    <Compile Include="PlayerListener.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PageManager.cs" />
     <Compile Include="SWFObject.cs" />

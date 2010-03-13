@@ -166,6 +166,7 @@
     <Content Include="Content\fancybox\fancy_title_right.png" />
     <Content Include="Content\fancybox\jquery.fancybox.css" />
     <Content Include="Content\gallery.css" />
+    <Content Include="Content\img\albumTitleBg.png" />
     <Content Include="Content\img\bodyBg.jpg" />
     <Content Include="Content\img\galleryLeftA.jpg" />
     <Content Include="Content\img\galleryLeftP.jpg" />
@@ -180,6 +181,7 @@
     <Content Include="Content\img\photo2.jpg" />
     <Content Include="Content\img\photo3.jpg" />
     <Content Include="Content\img\play.gif" />
+    <Content Include="Content\img\podruga.png" />
     <Content Include="Content\img\prev.gif" />
     <Content Include="Content\pepper-grinder\images\ui-bg_diagonal-maze_20_6e4f1c_10x10.png" />
     <Content Include="Content\pepper-grinder\images\ui-bg_diagonal-maze_40_000000_10x10.png" />

@@ -14,6 +14,11 @@ namespace ClientLibrary
         public static Array GetSongs() { return null; }
     }
 
+    public enum PlayerState
+    { 
+        Playing = 0, Paused = 1, Stopped = 2
+    }
+
     public class PlayerListenerEventArgs : EventArgs
     {
         int loadPercent;
@@ -53,7 +58,7 @@ namespace ClientLibrary
         }
     }
 
-    public delegate void PlayerListenerCallback(PlayerListenerEventArgs e);
+    public delegate void PlayerListenerCallback(object sender, PlayerListenerEventArgs e);
 
     public class AudioPlayer : Control, ILoadableComponent
     {
@@ -64,8 +69,21 @@ namespace ClientLibrary
             get { return AudioPlayer.instance; }
         }
 
-
         int currentSong = 0;
+
+        PlayerState state;
+
+        public PlayerState State
+        {
+            get { return state; }
+            set { state = value; }
+        }
+
+        public int CurrentSong
+        {
+            get { return currentSong; }
+            set { currentSong = value; }
+        }
 
         public Array Songs
         {
@@ -82,6 +100,12 @@ namespace ClientLibrary
         {
             add { this.Events.AddHandler("positionChanged", value); }
             remove { this.Events.RemoveHandler("positionChanged", value); }
+        }
+
+        public event EventHandler SongChanged
+        {
+            add { this.Events.AddHandler("songChanged", value); }
+            remove { this.Events.RemoveHandler("songChanged", value); }
         }
 
         public PlayerProgressChangeCallback ProgressChangedHandler
@@ -216,29 +240,37 @@ namespace ClientLibrary
             }
         }
 
-        void ChangeSong(string url)
+        public void ChangeSong(string url)
         {
-            ((JPlayer)(Object)JQueryProxy.jQuery(Element)).SetFile(url);
+            ((JPlayer)JQueryProxy.jQuery(Element)).SetFile(url);
         }
 
-        void Play()
+        public void PlayHead(int percentOfLoaded)
         {
-            ((JPlayer)(Object)JQueryProxy.jQuery(Element)).Play();
+            ((JPlayer)JQueryProxy.jQuery(Element)).PlayHead(percentOfLoaded);
+        }
+
+        public void Play()
+        {
+            ((JPlayer)JQueryProxy.jQuery(Element)).Play();
             JQueryProxy.jQuery("a[rel='play']").addClass("disabled");
             JQueryProxy.jQuery("a[rel='pause']").removeClass("disabled");
+            State = PlayerState.Playing;
         }
 
-        void Pause()
+        public void Pause()
         {
-            ((JPlayer)(Object)JQueryProxy.jQuery(Element)).Pause();
+            ((JPlayer)JQueryProxy.jQuery(Element)).Pause();
             JQueryProxy.jQuery("a[rel='play']").removeClass("disabled");
             JQueryProxy.jQuery("a[rel='pause']").addClass("disabled");
+            State = PlayerState.Paused;
         }
 
-        void Stop()
+        public void Stop()
         {
-            ((JPlayer)(Object)JQueryProxy.jQuery(Element)).Stop();
+            ((JPlayer)JQueryProxy.jQuery(Element)).Stop();
             JQueryProxy.jQuery("a[rel='play'], a[rel='pause']").toggleClass("disabled");
+            State = PlayerState.Stopped;
         }
 
         void Next()
@@ -249,6 +281,12 @@ namespace ClientLibrary
             ChangeSong((string)song["url"]);
             UpdateSongTitle((string)song["name"], (string)song["album"]);
             Play();
+
+            EventHandler handler = (EventHandler)this.Events.GetHandler("songChanged");
+            if (handler != null)
+            {
+                handler(this, new EventArgs());
+            }
         }
 
         void Prev()
@@ -259,6 +297,12 @@ namespace ClientLibrary
             ChangeSong((string)song["url"]);
             UpdateSongTitle((string)song["name"], (string)song["album"]);
             Play();
+
+            EventHandler handler = (EventHandler)this.Events.GetHandler("songChanged");
+            if (handler != null)
+            {
+                handler(this, new EventArgs());
+            }
         }
 
         void UpdateSongTitle(string name, string album)

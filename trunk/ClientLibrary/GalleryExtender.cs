@@ -8,7 +8,7 @@ using Sys.UI;
 
 namespace ClientLibrary
 {
-    public class GalleryExtender : Component
+    public class GalleryExtender : PageExtender
     {
         EventHandler contentUpdating = null;
         EventHandler contentUpdated = null;
@@ -30,14 +30,6 @@ namespace ClientLibrary
                 else
                     return null;
             }
-        }
-
-        public override void Initialize()
-        {
-            contentUpdating = new EventHandler(Current_ContentUpdating);
-            contentUpdated = new EventHandler(Current_ContentUpdated);
-            PageManager.Current.ContentUpdating += contentUpdating;
-            PageManager.Current.ContentUpdated += contentUpdated;
         }
 
         void InitializeAdminArea()
@@ -121,7 +113,7 @@ namespace ClientLibrary
             JQueryProxy.jQuery(".photoSession img").unbind("mouseover", null);
         }
 
-        void Current_ContentUpdated(object sender, EventArgs e)
+        protected override void ContentUpdated(object sender, EventArgs e)
         {
             if (GalleryIds != null)
             {
@@ -140,13 +132,12 @@ namespace ClientLibrary
             InitializeAdminArea();
         }
 
-        void Current_ContentUpdating(object sender, EventArgs e)
+        protected override void ContentUpdating(object sender, EventArgs e)
         {
-            PageManager.Current.ContentUpdated -= contentUpdated;
-            PageManager.Current.ContentUpdating -= contentUpdating;
             JQueryProxy.jQuery("#content").css("padding", "");
             ClearAdminHandlers();
             this.Dispose();
+            base.ContentUpdating(sender, e);
         }
 
         public static void Update()

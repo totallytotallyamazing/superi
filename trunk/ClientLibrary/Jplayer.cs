@@ -25,7 +25,7 @@ namespace Jquery
     int playedPercentAbsolute, int playedTime, int totalTime);
 
     [Imported]
-    public class JPlayer
+    public class JPlayer : JQuery
     {
         public JPlayer SetFile(string mp3)
         {
@@ -48,6 +48,16 @@ namespace Jquery
         public JPlayer Volume(int percent)
         {
             return null;
+        }
+
+        public JPlayer PlayHead(int percentOfLoaded)
+        {
+            return null;
+        }
+
+        public JPlayer PlayHeadTime(int playedTime)
+        {
+            return null; 
         }
 
         public JPlayer OnSoundComplete(Callback callback)

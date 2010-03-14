@@ -33,8 +33,8 @@ namespace Oksi.Controllers
                 int i = 0;
                 foreach (var item in songs)
                 {
-                    sb.AppendFormat("songs[{0}] = {{ name: \"{1}\", url: \"{2}\", album: \"{3}\" }};",
-                        i, item.Title, item.Source, item.Album.Title
+                    sb.AppendFormat("songs[{0}] = {{ name: \"{1}\", url: \"{2}\", album: \"{3}\", id: \"{4}\" }};",
+                        i, item.Title, item.Source, item.Album.Title, item.Id
                         );
                     i++;
                 }

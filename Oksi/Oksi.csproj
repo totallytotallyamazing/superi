@@ -167,6 +167,7 @@
     <Content Include="Content\fancybox\fancy_title_right.png" />
     <Content Include="Content\fancybox\jquery.fancybox.css" />
     <Content Include="Content\gallery.css" />
+    <Content Include="Content\img\albumBg.jpg" />
     <Content Include="Content\img\albumTitleBg.png" />
     <Content Include="Content\img\bodyBg.jpg" />
     <Content Include="Content\img\galleryLeftA.jpg" />

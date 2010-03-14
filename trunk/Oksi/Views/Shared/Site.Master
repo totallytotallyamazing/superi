@@ -10,9 +10,9 @@
     <link href="/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="/Content/jquery.jcarousel.css" rel="stylesheet" type="text/css" />
     <link href="/Content/carousel.skin.css" rel="stylesheet" type="text/css" />
-
     <asp:ContentPlaceHolder ID="Includes" runat="server"></asp:ContentPlaceHolder>
     <script type="text/javascript" src="/Scripts/jquery.js"></script>
+    <script type="text/javascript" src="/Scripts/jquery.ui.js"></script>
     <% if(Request.IsAuthenticated){ %>
         <link href="/Content/Admin.css" rel="stylesheet" type="text/css" />
         <script type="text/javascript">

@@ -47,3 +47,21 @@ img{border:0;}
 .newsContent{ font-size:12px;}
 
 #recentNews{min-height:200px;}
+
+/*Audio*/
+
+.album{width:auto; height:373px; background:transparent url(img/albumBg.jpg) no-repeat; padding-bottom:200px;}
+
+.album .cover{float:left;}
+.album .albumContent{margin-left:417px;}
+.album .albumContent .title{width:195px; text-align:right; padding-top:36px; color:White; font-size:30px; font-weight:bold;}
+.album .albumContent .year{color:#777; font-weight:normal; font-size:16px; margin-top:-8px; }
+
+.album .songs{margin-top:12px; padding-top:31px; width:241px;}
+.album .songs .song{margin: 0 3px; width:auto; padding:5px; color:White; font-size:13px;}
+.album .songs .song.current{background: #919191;}
+.album .songs .song .player{display:none;}
+.album .songs .song .songTitle{cursor:pointer;}
+
+.ui-slider{ margin-top: 7px; height:2px; background:white; cursor:pointer;}
+.ui-slider-handle{width:5px; height:5px; display:block; background:White; top:-2px; position:relative;}

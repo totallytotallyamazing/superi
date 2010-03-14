@@ -61,7 +61,6 @@
     <Compile Include="AjaxOptions.cs" />
     <Compile Include="AlbumExtender.cs" />
     <Compile Include="AudioPlayer.cs" />
-    <Compile Include="Carousel.cs" />
     <Compile Include="CssHelper.cs" />
     <Compile Include="FancyBox.cs" />
     <Compile Include="GalleryExtender.cs" />
@@ -71,6 +70,7 @@
     <Compile Include="Jquery.cs" />
     <Compile Include="ILoadableComponent.cs" />
     <Compile Include="ObjectElement.cs" />
+    <Compile Include="PageExtender.cs" />
     <Compile Include="PhotoSessionExtender.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PageManager.cs" />

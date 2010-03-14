@@ -46,6 +46,11 @@ namespace Jquery
     [Imported]
     public partial class JQuery
     {
+
+        public JQuery Slider(Dictionary options){ return null; }
+
+        public JQuery Slider(string action, string option, Object value) { return null; }
+
         public Bounds position() { return null; }
 
         public Bounds offset() { return null; }

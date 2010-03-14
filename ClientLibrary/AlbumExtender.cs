@@ -50,7 +50,7 @@ namespace ClientLibrary
             Dictionary options = new Dictionary();
             options["max"] = 100;
             options["range"] = "min";
-            options["animate"] = true;
+            options["animate"] = false;
             options["slide"] = (BasicCallback)Slide;
 
             JQueryProxy.jQuery(".song .player").Slider(options);

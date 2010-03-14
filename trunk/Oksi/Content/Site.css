@@ -64,4 +64,4 @@ img{border:0;}
 .album .songs .song .songTitle{cursor:pointer;}
 
 .ui-slider{ margin-top: 7px; height:2px; background:white; cursor:pointer;}
-.ui-slider-handle{width:5px; height:5px; display:block; background:White; top:-2px; position:relative;}
+.ui-slider-handle{width:6px; height:6px; display:block; background:White; top:-2px; position:relative;}

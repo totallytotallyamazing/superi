@@ -43,7 +43,9 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Comment" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="Description" Type="varchar" MaxLength="1000" />
           <Property Name="Id" Type="uint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="SortOrder" Type="uint" Nullable="false" />
           <Property Name="Source" Type="varchar" Nullable="false" MaxLength="4000" />
           <Property Name="Title" Type="varchar" Nullable="false" MaxLength="255" />
           <Property Name="Year" Type="usmallint" Nullable="false" />
@@ -107,7 +109,7 @@
             <End Role="Gallery" EntitySet="Galleries" />
             <End Role="Image" EntitySet="Images" /></AssociationSet>
           <EntitySet Name="Albums" EntityType="gbua_superiModel.Album" />
-          <EntitySet Name="Clip" EntityType="gbua_superiModel.Clip" />
+          <EntitySet Name="Clips" EntityType="gbua_superiModel.Clip" />
           <EntitySet Name="Songs" EntityType="gbua_superiModel.Song" />
           <AssociationSet Name="AlbumSong" Association="gbua_superiModel.AlbumSong">
             <End Role="Album" EntitySet="Albums" />
@@ -174,7 +176,9 @@
           <Property Name="Id" Type="Int64" Nullable="false" />
           <Property Name="Source" Type="String" Nullable="false" />
           <Property Name="Title" Type="String" Nullable="false" />
-          <Property Name="Year" Type="Int32" Nullable="false" /></EntityType>
+          <Property Name="Year" Type="Int32" Nullable="false" />
+          <Property Name="SortOrder" Type="Int64" Nullable="true" />
+          <Property Name="Description" Type="String" Nullable="true" /></EntityType>
         <EntityType Name="Song">
           <Key>
             <PropertyRef Name="Id" /></Key>
@@ -247,9 +251,11 @@
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Cover" ColumnName="Cover" /></MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="Clip">
+          <EntitySetMapping Name="Clips">
             <EntityTypeMapping TypeName="IsTypeOf(gbua_superiModel.Clip)">
               <MappingFragment StoreEntitySet="Clip">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
                 <ScalarProperty Name="Year" ColumnName="Year" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="Source" ColumnName="Source" />

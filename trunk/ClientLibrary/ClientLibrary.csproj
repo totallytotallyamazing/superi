@@ -76,6 +76,7 @@
     <Compile Include="PageManager.cs" />
     <Compile Include="SWFObject.cs" />
     <Compile Include="Utils.cs" />
+    <Compile Include="VideoExtender.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

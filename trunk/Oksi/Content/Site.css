@@ -65,3 +65,7 @@ img{border:0;}
 
 .ui-slider{ margin-top: 7px; height:2px; background:white; cursor:pointer;}
 .ui-slider-handle{width:6px; height:6px; display:block; background:White; top:-2px; position:relative;}
+
+/*Video*/
+
+#currentVideo{padding:10px 10px 5px; width:auto; background:#c6c6c6;}

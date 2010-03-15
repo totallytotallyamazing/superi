@@ -81,6 +81,7 @@
     <Compile Include="Controllers\ContentAttribute.cs" />
     <Compile Include="Controllers\GalleryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\VideoController.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -96,6 +97,7 @@
     <Compile Include="Helpers\ScriptExtensions.cs" />
     <Compile Include="Helpers\Session.cs" />
     <Compile Include="Helpers\Settings.cs" />
+    <Compile Include="Helpers\TextHelper.cs" />
     <Compile Include="ModelBinders\ArticleTranslationsBinder.cs" />
     <Compile Include="Models\ArticleTranslations.cs" />
     <Compile Include="Models\ContextExtension.cs" />
@@ -206,6 +208,7 @@
     <Content Include="Scripts\ck.extensions.js" />
     <Content Include="Scripts\Jplayer.swf" />
     <Content Include="Scripts\jquery.fancybox.js" />
+    <Content Include="Scripts\jquery.FCKEditor.js" />
     <Content Include="Scripts\jquery.flash.js" />
     <Content Include="Content\jquery.jcarousel.css" />
     <Content Include="Scripts\jquery.jcarousel.js" />
@@ -215,7 +218,7 @@
     <Content Include="Scripts\webkit.js" />
     <Content Include="Views\Admin\AddEditGallery.ascx" />
     <Content Include="Views\Admin\AddImage.ascx" />
-    <Content Include="Views\Admin\EditText.aspx" />
+    <Content Include="Views\Admin\EditText.ascx" />
     <Content Include="Views\Articles\Index.ascx" />
     <Content Include="Views\Audio\Album.ascx" />
     <Content Include="Views\Audio\Index.ascx" />
@@ -231,6 +234,7 @@
     <Content Include="Views\Home\PhotoSession.ascx" />
     <Content Include="Views\Home\RecentNews.ascx" />
     <Content Include="Views\Shared\Index.aspx" />
+    <Content Include="Views\Video\Index.ascx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Articles\News\" />

@@ -13,28 +13,24 @@ namespace Oksi.Controllers
     public class AdminController : Controller
     {
         [OutputCache(NoStore = true, Duration = 1, VaryByParam = "*")]
-        public ActionResult EditText(string contentName, string controllerName)
+        public ActionResult EditText(string id)
         {
             using (DataStorage context = new DataStorage())
             {
-                SiteContent content = context.GetContent(contentName);
-                ViewData["controllerName"] = controllerName;
+                SiteContent content = context.GetContent(id);
                 ViewData["text"] = content.Text;
-                ViewData["editTitle"] = content.Title;
-                ViewData["keywords"] = content.Keywords;
-                ViewData["description"] = content.Description;
-                ViewData["contentName"] = contentName;
+                ViewData["contentName"] = id;
             }
             return View();
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult EditText(string text, string editTitle, string keywords, string description, string controllerName, string contentName)
+        [OutputCache(NoStore=true, Duration=1, VaryByParam="*")]
+        public void EditText(string text, string contentName)
         {
             using (DataStorage context = new DataStorage())
-                context.UpdateContext(contentName, HttpUtility.HtmlDecode(text), editTitle, keywords, description); ;
-
-            return RedirectToAction("Index", controllerName, new { contentUrl = contentName });
+                context.UpdateContext(contentName, HttpUtility.HtmlDecode(text), " ", null, null);
+            Response.Write("<script type=\"text/javascript\">window.top.$.fancybox.close();window.top.ClientLibrary.PageManager.get_current().goToUrl(\"/Home/Content/bio\");</script>");
         }
 
         public ActionResult Article(string name)

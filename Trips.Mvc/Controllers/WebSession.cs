@@ -84,6 +84,43 @@ namespace Trips.Mvc.Controllers
             set { Session["PriceDisplayed"] = value; }
         }
 
+        public static string Name
+        {
+            get
+            {
+                return (string)Session["Name"];
+            }
+            set
+            {
+                Session["Name"] = value;
+            }
+        }
+
+
+        public static string Phone
+        {
+            get
+            {
+                return (string)Session["Phone"];
+            }
+            set
+            {
+                Session["Phone"] = value;
+            }
+        }
+
+        public static string Email
+        {
+            get
+            {
+                return (string)Session["Email"];
+            }
+            set
+            {
+                Session["Email"] = value;
+            }
+        }
+
         public static string MoreTripDetails
         {
             get

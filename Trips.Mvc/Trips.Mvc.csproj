@@ -704,14 +704,22 @@
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>Graphics.ru-RU.designer.cs</LastGenOutput>
     </Content>
+    <Content Include="Content\LocaleDependent\en-US\img\doneFinal.jpg" />
+    <Content Include="Content\LocaleDependent\en-US\img\logo.jpg" />
+    <Content Include="Content\LocaleDependent\en-US\img\startOver.jpg" />
+    <Content Include="Content\LocaleDependent\ru-RU\img\doneFinal.jpg" />
+    <Content Include="Content\LocaleDependent\ru-RU\img\logo.jpg" />
+    <Content Include="Content\LocaleDependent\ru-RU\img\startOver.jpg" />
     <Content Include="Content\MailTemplates\MailTemplate.htm" />
     <Content Include="Scripts\extended\MaskedEdit\MaskedEditBehavior.debug.js" />
     <Content Include="Scripts\extended\MaskedEdit\MaskedEditBehavior.js" />
     <Content Include="Scripts\extended\MaskedEdit\MaskedEditValidator.debug.js" />
     <Content Include="Scripts\extended\MaskedEdit\MaskedEditValidator.js" />
     <Content Include="Views\Admin\SiteSettings.aspx" />
+    <Content Include="Views\Request\ChosedCars.ascx" />
     <Content Include="Views\Request\PersonalData.aspx" />
     <Content Include="Views\Request\Send.aspx" />
+    <Content Include="Views\Request\VerifyData.aspx" />
     <Content Include="Views\Shared\Logo.ascx" />
   </ItemGroup>
   <ItemGroup>

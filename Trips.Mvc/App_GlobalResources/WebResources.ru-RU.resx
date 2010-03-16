@@ -321,4 +321,25 @@
   <data name="RequestWasSent" xml:space="preserve">
     <value>Запрос отправлен</value>
   </data>
+  <data name="CarsChosed" xml:space="preserve">
+    <value>Ваш выбор автомобиля</value>
+  </data>
+  <data name="IncorrectEmail" xml:space="preserve">
+    <value>Введите корректный адрес почты (пример: email@domain.com)</value>
+  </data>
+  <data name="IncorrectPhone" xml:space="preserve">
+    <value>Введите корректный телефон в международном или локальном формате</value>
+  </data>
+  <data name="Route" xml:space="preserve">
+    <value>Маршрут</value>
+  </data>
+  <data name="RouteAnnotation" xml:space="preserve">
+    <value>Примечания к маршруту</value>
+  </data>
+  <data name="VerifyYourData" xml:space="preserve">
+    <value>Проверьте введенные данные</value>
+  </data>
+  <data name="YourContactData" xml:space="preserve">
+    <value>Ваши контактные данные</value>
+  </data>
 </root>

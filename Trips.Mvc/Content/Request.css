@@ -50,6 +50,6 @@
 .selectedAds td a image{border:0;}
 .selectedAds td a{font-weight:bold;}
 
-.doneContainer{ width:200px; position:relative; margin:0 auto; padding-top:70px;}
+.doneContainer{ width:200px; position:relative; margin:0 auto; padding-top:70px; height:80px;}
 .smallFont{color:#666666; font-weight:normal; }
 .routeVerificationDetails{padding-left:90px; color:#666666; padding-bottom:30px;}

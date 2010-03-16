@@ -30,6 +30,10 @@ namespace Trips.Mvc.Controllers
                 ViewData["fromCityId"] = fromCity;
             }
 
+            ViewData["toCity"] = WebSession.ToCity;
+            ViewData["toCityId"] = WebSession.ToCityId;
+            ViewData["moreDetails"] = WebSession.MoreTripDetails;
+
             ViewData["hasItems"] = WebSession.OrderItems.Count != 0;
             return View();
         }
@@ -56,18 +60,35 @@ namespace Trips.Mvc.Controllers
             WebSession.ToCity = toCity;
             WebSession.ToCityId = (toCityId.HasValue) ? toCityId.Value : 0;
             WebSession.MoreTripDetails = moreDetails;
+
+            ViewData["name"] = WebSession.Name;
+            ViewData["phone"] = WebSession.Phone;
+            ViewData["email"] = WebSession.Email;
             
             return View();
         }
 
-        public ActionResult Send(string name, string phone, string email)
+        public ActionResult VerifyData(string name, string phone, string email)
+        {
+            WebSession.Name = name;
+            WebSession.Phone = phone;
+            WebSession.Email = email;
+
+            ViewData["moreDetails"] = WebSession.MoreTripDetails.Replace("\r", "<br />");
+            ViewData["contactsData"] = WebSession.Name + "<br />" + WebSession.Phone + "<br />" + WebSession.Email;
+            ViewData["route"] = WebSession.FromCity + " &mdash; " + WebSession.ToCity;
+
+            return View();
+        }
+
+        public ActionResult Send()
         {
             List<MailAddress> to = new List<MailAddress>();
             to.Add(new MailAddress(Configurator.GetSetting("ReceiverMail")));
             MailHelper.SendTemplate("mailinator@trips.kiev.ua", to, "Заявка на сайте trips.kiev.ua",
-                "MailTemplate.htm", null, true, name, phone, email, 
+                "MailTemplate.htm", null, true, WebSession.Name, WebSession.Phone, WebSession.Email, 
                 WebSession.FromCity, WebSession.ToCity,
-                WebSession.MoreTripDetails, CreateRequestTable());
+                WebSession.MoreTripDetails.Replace("\r", "<br />"), CreateRequestTable());
 
             WebSession.ClearOrder();
 

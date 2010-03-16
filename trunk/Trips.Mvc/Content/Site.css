@@ -24,7 +24,7 @@ img{border:0;}
 #headerContacts p {font-family:Verdana, Arial, Helvetica, sans-serif;font-size:16px;}
 
 #boxheight:{height:100px;width:120px; width:auto;}
-#box{float:left;}
+#box{position: relative; margin: 0px auto; width: 470px;}
 .headerMenuItem
 {
 	height:20px;
@@ -170,3 +170,5 @@ li{list-style-type:none;}
 #carText h4{font-family: Tahoma, Helvetica, sans-serif;font-weight:normal;font-size:13px;padding:4px 0px 3px 0px;}
 #bigPhoto p{font-family: Tahoma, Helvetica, sans-serif;font-weight:normal;font-size:13px;padding:4px 0px 3px 0px;text-align:center;}
 /*CATALOG2 PAGE STYLE FINISH*/
+
+.errorHolder{font-size:9px; color:Red; text-align:right; height:10px;}

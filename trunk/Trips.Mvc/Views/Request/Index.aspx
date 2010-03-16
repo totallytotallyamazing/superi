@@ -80,6 +80,14 @@
             $(function() {
                 $("#content form textarea, .next").not("#fromCityId, .selectedAds input").attr("disabled", "disabled").addClass("disabled");
 
+                if ($("#toCity").val() != "") {
+                    loadCalculationData();
+                }
+                if ($("#toCity").val() != "") {
+                    $("#content form textarea, #content form input").removeAttr("disabled").removeClass("disabled"); ;
+                }
+
+
                 $("#toCity").autocomplete({
                     source: "/Request/PickCity",
                     select: function(event, ui) {

@@ -321,4 +321,25 @@
   <data name="RequestWasSent" xml:space="preserve">
     <value>Order sent</value>
   </data>
+  <data name="CarsChosed" xml:space="preserve">
+    <value>You chosed following car(s)</value>
+  </data>
+  <data name="IncorrectEmail" xml:space="preserve">
+    <value>Enter email in the correct format (e.g. email@domain.com)</value>
+  </data>
+  <data name="IncorrectPhone" xml:space="preserve">
+    <value>Enter phone in the correct international or local format</value>
+  </data>
+  <data name="Route" xml:space="preserve">
+    <value>Route</value>
+  </data>
+  <data name="RouteAnnotation" xml:space="preserve">
+    <value>More info on your route</value>
+  </data>
+  <data name="VerifyYourData" xml:space="preserve">
+    <value>Please verify entered data</value>
+  </data>
+  <data name="YourContactData" xml:space="preserve">
+    <value>Your contact details</value>
+  </data>
 </root>

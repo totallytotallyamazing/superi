@@ -342,4 +342,10 @@
   <data name="YourContactData" xml:space="preserve">
     <value>Your contact details</value>
   </data>
+  <data name="WriteToUs" xml:space="preserve">
+    <value>Please contact us using our feedback form</value>
+  </data>
+  <data name="YourMessage" xml:space="preserve">
+    <value>Your message</value>
+  </data>
 </root>

@@ -22,6 +22,9 @@
             if (id == "Contacts")
                 contacts += " current";
             break;
+        case "Feedback":
+            contacts += " current";
+            break;
         default:
             break;
     }
@@ -41,7 +44,7 @@
         </a>
     </div>
     <div class="<%= contacts %>">
-        <a href="/Content/Contacts" id="contact">
+        <a href="/Feedback" id="contact">
         </a>
     </div>
 </div>

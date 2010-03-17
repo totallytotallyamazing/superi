@@ -366,7 +366,7 @@ namespace Dev.Helpers
 			using (Graphics gr = Graphics.FromImage(bmp))
 			{
 				gr.SmoothingMode = SmoothingMode.AntiAlias;
-				gr.Clear(Color.White);
+                gr.Clear(ColorTranslator.FromHtml("#f7f6ef"));
 
 				int charOffset = 0;
 				double charWidth = _width / TextLength;

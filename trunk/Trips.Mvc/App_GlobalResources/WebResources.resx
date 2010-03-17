@@ -348,4 +348,13 @@
   <data name="YourMessage" xml:space="preserve">
     <value>Your message</value>
   </data>
+  <data name="CaptchaInvalid" xml:space="preserve">
+    <value>Invalid captcha</value>
+  </data>
+  <data name="EnterCaptcha" xml:space="preserve">
+    <value>Enter captcha symbols</value>
+  </data>
+  <data name="Feedback" xml:space="preserve">
+    <value>Feedback</value>
+  </data>
 </root>

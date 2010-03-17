@@ -20,8 +20,11 @@ namespace Trips.Mvc.Controllers
 
         [AcceptVerbs(HttpVerbs.Post)]
         [CaptchaValidation("captchaBox")]
-        public ActionResult MessageSent(string name, string email, string message, bool captchaValid)
+        public ActionResult SendMessage(string name, string email, string message, bool captchaValid)
         {
+            if (!captchaValid)
+                throw new HttpException(404, "Captcha validationFailed");
+
             List<MailAddress> to = new List<MailAddress>();
             to.Add(new MailAddress(Configurator.GetSetting("ReceiverMail")));
 
@@ -36,6 +39,11 @@ namespace Trips.Mvc.Controllers
             string subject = "Ќа сайте trips.kiev.ua была заполнена форма обратной св€зи";
 
             MailHelper.SendMessage("mailinator@trips.kiev.ua", to, body.ToString(), subject, false);
+            return Json(true);
+        }
+
+        public ActionResult MessageSent()
+        {
             return View();
         }
     }

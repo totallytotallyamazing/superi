@@ -63,16 +63,6 @@
     <Reference Include="System.Web.Mobile" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_GlobalResources\Graphics.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Graphics.resx</DependentUpon>
-    </Compile>
-    <Compile Include="App_GlobalResources\Graphics.ru-RU.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Graphics.ru-RU.resx</DependentUpon>
-    </Compile>
     <Compile Include="App_GlobalResources\WebResources.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -83,10 +73,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>WebResources.ru-RU.resx</DependentUpon>
     </Compile>
+    <Compile Include="captcha.ashx.cs">
+      <DependentUpon>captcha.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CatalogueController.cs" />
     <Compile Include="Controllers\ContentController.cs" />
+    <Compile Include="Controllers\FeedbackController.cs" />
     <Compile Include="Controllers\FormCollectionExtender.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
@@ -101,6 +95,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\AjaxExtensions.cs" />
+    <Compile Include="Helpers\Captcha\CaptchaExtensions.cs" />
+    <Compile Include="Helpers\Captcha\CaptchaImage.cs" />
+    <Compile Include="Helpers\Captcha\CaptchaValidationAttribute.cs" />
     <Compile Include="Helpers\CkExtensions.cs" />
     <Compile Include="Helpers\GetOutputExtensions.cs" />
     <Compile Include="Helpers\GraphicsHelper.cs" />
@@ -634,6 +631,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Configuration\Web.config" />
+    <Content Include="captcha.ashx" />
     <None Include="Controls\fckeditor\editor\dialog\fck_spellerpages\spellerpages\server-scripts\spellchecker.cfm" />
     <None Include="Controls\fckeditor\editor\dialog\fck_spellerpages\spellerpages\server-scripts\spellchecker.php" />
     <None Include="Controls\fckeditor\editor\dialog\fck_spellerpages\spellerpages\server-scripts\spellchecker.pl" />
@@ -694,16 +692,6 @@
     </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_GlobalResources\Graphics.resx">
-      <Generator>GlobalResourceProxyGenerator</Generator>
-      <LastGenOutput>Graphics.Designer.cs</LastGenOutput>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="App_GlobalResources\Graphics.ru-RU.resx">
-      <Generator>GlobalResourceProxyGenerator</Generator>
-      <LastGenOutput>Graphics.ru-RU.designer.cs</LastGenOutput>
-    </Content>
     <Content Include="Content\LocaleDependent\en-US\img\doneFinal.jpg" />
     <Content Include="Content\LocaleDependent\en-US\img\logo.jpg" />
     <Content Include="Content\LocaleDependent\en-US\img\startOver.jpg" />
@@ -716,6 +704,8 @@
     <Content Include="Scripts\extended\MaskedEdit\MaskedEditValidator.debug.js" />
     <Content Include="Scripts\extended\MaskedEdit\MaskedEditValidator.js" />
     <Content Include="Views\Admin\SiteSettings.aspx" />
+    <Content Include="Views\Feedback\Index.aspx" />
+    <Content Include="Views\Feedback\MessageSent.aspx" />
     <Content Include="Views\Request\ChosedCars.ascx" />
     <Content Include="Views\Request\PersonalData.aspx" />
     <Content Include="Views\Request\Send.aspx" />

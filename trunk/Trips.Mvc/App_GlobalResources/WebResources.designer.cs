@@ -718,11 +718,29 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please contact us using our feedback form.
+        /// </summary>
+        internal static string WriteToUs {
+            get {
+                return ResourceManager.GetString("WriteToUs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your contact details.
         /// </summary>
         internal static string YourContactData {
             get {
                 return ResourceManager.GetString("YourContactData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your message.
+        /// </summary>
+        internal static string YourMessage {
+            get {
+                return ResourceManager.GetString("YourMessage", resourceCulture);
             }
         }
         

@@ -357,4 +357,19 @@
   <data name="Feedback" xml:space="preserve">
     <value>Обратная связь</value>
   </data>
+  <data name="AddingToOrder" xml:space="preserve">
+    <value>Добавление в заявку</value>
+  </data>
+  <data name="MessageSentAnswer" xml:space="preserve">
+    <value>Ваше сообщение отправлено, спасибо!</value>
+  </data>
+  <data name="MessageWasSent" xml:space="preserve">
+    <value>Сообщение отправлено</value>
+  </data>
+  <data name="OrderWasAdded" xml:space="preserve">
+    <value>Заявка была успешно отправлена!</value>
+  </data>
+  <data name="WaitForCall" xml:space="preserve">
+    <value>Ждите звонка нашего менеджера.</value>
+  </data>
 </root>

@@ -19,7 +19,7 @@ namespace Dev.Helpers
                 message.Body = body;
                 message.Subject = subject;
                 to.ForEach(t => message.To.Add(t));
-                message.From = new MailAddress("mailinator@trips.com.ua");
+                message.From = new MailAddress("mailinator@trips.kiev.ua");
                 message.IsBodyHtml = isBodyHtml;
                 client.Send(message);
             }
@@ -34,7 +34,6 @@ namespace Dev.Helpers
         {
             return SendTemplate(from, to, string.Empty, template, string.Empty, isBodyHtml, null);
         }
-
 
         public static bool SendTemplate(string from, List<MailAddress> to, string subject, string template, string Language, bool isBodyHtml, params object[] replacements)
         {

@@ -357,4 +357,19 @@
   <data name="Feedback" xml:space="preserve">
     <value>Feedback</value>
   </data>
+  <data name="AddingToOrder" xml:space="preserve">
+    <value>Adding to order</value>
+  </data>
+  <data name="MessageSentAnswer" xml:space="preserve">
+    <value>Your message was sent. Highly appreciated.</value>
+  </data>
+  <data name="MessageWasSent" xml:space="preserve">
+    <value>Message was sent</value>
+  </data>
+  <data name="OrderWasAdded" xml:space="preserve">
+    <value>The order was succesfully sent!</value>
+  </data>
+  <data name="WaitForCall" xml:space="preserve">
+    <value>Wait for our dealer's call.</value>
+  </data>
 </root>

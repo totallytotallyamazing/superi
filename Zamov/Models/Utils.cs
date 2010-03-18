@@ -132,7 +132,10 @@ namespace Zamov.Models
                     {
                         if (table.Columns[i].ColumnName == "price")
                         {
-                            row[table.Columns[i]] = excelReader.GetString(i).Replace(",", ".");
+                            string rowValue = excelReader.GetString(i);
+                            if(!string.IsNullOrEmpty(rowValue))
+                                rowValue = rowValue.Replace(",", ".");
+                            row[table.Columns[i]] = rowValue;
                         }
                         else
                         {

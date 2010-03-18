@@ -169,6 +169,15 @@ li{list-style-type:none;}
 #carText h3{font-family: Tahoma, Helvetica, sans-serif;font-weight:bold;font-size:13px;padding:4px 0px 3px 0px;}
 #carText h4{font-family: Tahoma, Helvetica, sans-serif;font-weight:normal;font-size:13px;padding:4px 0px 3px 0px;}
 #bigPhoto p{font-family: Tahoma, Helvetica, sans-serif;font-weight:normal;font-size:13px;padding:4px 0px 3px 0px;text-align:center;}
+
+#wasAdded
+{
+    text-align:center;
+    padding-top:100px;
+    font-size:14px;
+    width:auto;
+}
+#wasAdded p{padding-top:20px;}
 /*CATALOG2 PAGE STYLE FINISH*/
 
 .errorHolder{font-size:9px; color:Red; text-align:right; height:10px;}

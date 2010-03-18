@@ -83,14 +83,14 @@ namespace Trips.Mvc.Controllers
 
         public ActionResult Send()
         {
-            List<MailAddress> to = new List<MailAddress>();
-            to.Add(new MailAddress(Configurator.GetSetting("ReceiverMail")));
-            MailHelper.SendTemplate("mailinator@trips.kiev.ua", to, "Заявка на сайте trips.kiev.ua",
-                "MailTemplate.htm", null, true, WebSession.Name, WebSession.Phone, WebSession.Email, 
-                WebSession.FromCity, WebSession.ToCity,
-                WebSession.MoreTripDetails.Replace("\r", "<br />"), CreateRequestTable());
+            //List<MailAddress> to = new List<MailAddress>();
+            //to.Add(new MailAddress(Configurator.GetSetting("ReceiverMail")));
+            //MailHelper.SendTemplate("mailinator@trips.kiev.ua", to, "Заявка на сайте trips.kiev.ua",
+            //    "MailTemplate.htm", null, true, WebSession.Name, WebSession.Phone, WebSession.Email, 
+            //    WebSession.FromCity, WebSession.ToCity,
+            //    WebSession.MoreTripDetails.Replace("\r", "<br />"), CreateRequestTable());
 
-            WebSession.ClearOrder();
+            //WebSession.ClearOrder();
 
             return View();
         }

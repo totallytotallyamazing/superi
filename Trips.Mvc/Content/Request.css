@@ -56,3 +56,6 @@
 
 .captchaBox{text-align:center; margin-bottom:40px;}
 input.captcha{width:160px !important;}
+
+#information{text-align:center; padding-top:100px; font-weight:bold; font-size:16px;}
+#information p{font-weight:normal; font-size:14px; padding-top:10px;}

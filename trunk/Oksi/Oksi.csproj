@@ -206,6 +206,8 @@
     <Content Include="Content\player_mp3_js.swf" />
     <Content Include="Content\StartPage.css" />
     <Content Include="Scripts\ck.extensions.js" />
+    <Content Include="Scripts\ClientLibrary.debug.js" />
+    <Content Include="Scripts\ClientLibrary.js" />
     <Content Include="Scripts\Jplayer.swf" />
     <Content Include="Scripts\jquery.fancybox.js" />
     <Content Include="Scripts\jquery.FCKEditor.js" />

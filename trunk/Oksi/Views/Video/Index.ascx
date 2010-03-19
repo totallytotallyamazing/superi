@@ -16,14 +16,16 @@
         </div>
     </div>
     <div id="clipThumbnails">
-        <% foreach (var item in Model.Skip(1)){%>
+        <% foreach (var item in Model){%>
             <div class="thumbnail"> 
                 <%= Html.Image("http://img.youtube.com/vi/" + TextHelper.GetYoutubeId(item.Source) + "/default.jpg") %>
-                <p><%= item.Title %></p>
-                <p>(<%= item.Comment %>)</p>
+                <p class="title"><%= item.Title %></p>
+                <p><%if(!string.IsNullOrEmpty(item.Comment)){ %> (<%= item.Comment %>)<%} %></p>
                 <p><%= item.Year %></p>
+                <%= Html.Hidden("source_" + item.Id, item.Source) %>
             </div>
         <% } %>
+        <div style="clear:both;"></div>
     </div>
 </div>
 

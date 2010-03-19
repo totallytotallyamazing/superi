@@ -14,7 +14,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("gbua_superiModel", "AlbumSong", "Album", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Oksi.Models.Album), "Song", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Oksi.Models.Song))]
 
 // Original file name:
-// Generation date: 15/03/2010 16:34:01
+// Generation date: 19/03/2010 11:40:50
 namespace Oksi.Models
 {
     
@@ -1164,7 +1164,8 @@ namespace Oksi.Models
         /// <param name="source">Initial value of Source.</param>
         /// <param name="title">Initial value of Title.</param>
         /// <param name="year">Initial value of Year.</param>
-        public static Clip CreateClip(string comment, long id, string source, string title, int year)
+        /// <param name="sortOrder">Initial value of SortOrder.</param>
+        public static Clip CreateClip(string comment, long id, string source, string title, int year, long sortOrder)
         {
             Clip clip = new Clip();
             clip.Comment = comment;
@@ -1172,6 +1173,7 @@ namespace Oksi.Models
             clip.Source = source;
             clip.Title = title;
             clip.Year = year;
+            clip.SortOrder = sortOrder;
             return clip;
         }
         /// <summary>
@@ -1292,9 +1294,9 @@ namespace Oksi.Models
         /// <summary>
         /// There are no comments for Property SortOrder in the schema.
         /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Nullable<long> SortOrder
+        public long SortOrder
         {
             get
             {
@@ -1309,8 +1311,8 @@ namespace Oksi.Models
                 this.OnSortOrderChanged();
             }
         }
-        private global::System.Nullable<long> _SortOrder;
-        partial void OnSortOrderChanging(global::System.Nullable<long> value);
+        private long _SortOrder;
+        partial void OnSortOrderChanging(long value);
         partial void OnSortOrderChanged();
         /// <summary>
         /// There are no comments for Property Description in the schema.

@@ -177,7 +177,7 @@
           <Property Name="Source" Type="String" Nullable="false" />
           <Property Name="Title" Type="String" Nullable="false" />
           <Property Name="Year" Type="Int32" Nullable="false" />
-          <Property Name="SortOrder" Type="Int64" Nullable="true" />
+          <Property Name="SortOrder" Type="Int64" Nullable="false" />
           <Property Name="Description" Type="String" Nullable="true" /></EntityType>
         <EntityType Name="Song">
           <Key>

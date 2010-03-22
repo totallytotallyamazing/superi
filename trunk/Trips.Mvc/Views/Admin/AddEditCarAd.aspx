@@ -15,29 +15,57 @@
      {
          Html.RenderPartial("CarAdImages", item);
      }%>
+     <br />
+     <span class="descriptionPartHeader">Об автомобиле:</span><br />
+     <br />
     <%using (Html.BeginForm("AddEditCarAd", "Admin", FormMethod.Post, new { id="addEditCarAd"}))
       { %>
         <%= Html.Hidden("id")%>
-        Класс: <%= Html.DropDownList("classId")%>Торговая марка: <%= Html.DropDownList("brandId")%> <br />
-        Модель: <%= Html.TextBox("model")%> <span id="modelErrorHolder"></span>
+        <table>
+            <tr>
+                <td style="width:70px"><strong>Бренд:</strong></td>
+                <td><%= Html.DropDownList("brandId")%></td>
+            </tr>
+            <tr>
+                <td>Класс: </td>
+                <td><%= Html.DropDownList("classId")%></td>
+            </tr>
+            <tr>
+                <td>Модель: </td>
+                <td><%= Html.TextBox("model")%> <span id="modelErrorHolder"></span></td>
+            </tr>
+            <tr>
+                <td>Год:</td>
+                <td><%= Html.TextBox("year")%><span id="yearErrorHolder"></span></td>
+            </tr>
+        </table>
         <br />
-        Год: <%= Html.TextBox("year")%><span id="yearErrorHolder"></span>
-        
+        <span class="descriptionPartHeader" style="font-size:10px;">
+            Краткое описание на русском:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;На английском:
+        </span>
+        <br />
+        <br />  
         <table>
             <tr>
                 <td>
-                    Кратко на русском<span id="shortRuErrorHolder"></span><br />
-                    <%= Html.TextArea("shortRu") %>
+                    <%= Html.TextArea("shortRu", new { rows = 5 })%><span id="shortRuErrorHolder"></span>
                 </td>
-                <td>
-                    Кратко на английском<span id="shortEnErrorHolder"></span><br />
-                    <%= Html.TextArea("shortEn") %>
+                <td style="padding-left:70px;">
+                    <%= Html.TextArea("shortEn", new { rows = 5 })%><span id="shortEnErrorHolder"></span>
                 </td>
             </tr>
         </table>
-        Описание на русском: <span id="descriptionRuErrorHolder"></span>
+        <br />
+        <br />        
+        <span class="descriptionPartHeader">Информация об автомобиле на русском: <span id="descriptionRuErrorHolder"></span></span>
+        <br />
+        <br />
         <%= Html.TextArea("descriptionRu")%>
-        Описание на английском:<span id="descriptionEnErrorHolder"></span>
+        <br />
+        <br />
+        <span class="descriptionPartHeader">На английском:<span id="descriptionEnErrorHolder"></span></span>
+        <br />
+        <br />
         <%= Html.TextArea("descriptionEn")%>
         <input type="submit" value="Сохранить" />
     <%} %>

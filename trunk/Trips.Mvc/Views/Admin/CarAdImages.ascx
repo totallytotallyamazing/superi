@@ -2,7 +2,7 @@
 <%@ Import Namespace="Microsoft.Web.Mvc" %>
 <%@ Import Namespace="Trips.Mvc.Models" %>
 <%@ Import Namespace="Trips.Mvc.Helpers" %>
-<fieldset>
+<fieldset id="images">
     <legend>Фото</legend>
     <%
     KeyValuePair<long, IEnumerable<Trips.Mvc.Models.CarAdImage>> images = new KeyValuePair<long,IEnumerable<CarAdImage>>();
@@ -24,7 +24,7 @@
                 <input type="radio" name="defaultImage" value="<%= item.Id %>" <%= (item.Default)?"checked":"" %> />
             </div>    
         <% } %>
-        <div class="clearBoth">
+        <div class="clearBoth" id="setDefaultImage">
             <input type="submit" value="Установить фото по-умолчанию" />
         </div>
     <%} %>
@@ -32,7 +32,10 @@
    { %>
     <%= Html.Hidden("carAdId", images.Key)%>
     <%= Html.Hidden("isDefault", isDefault)%>
-    <input type="file" name="image" />
-    <input type="submit" value="Добавить" />
+    <div id="addMore">
+        <p>Доббавить еще:</p>
+        <input type="file" name="image" />
+        <input type="submit" value="Добавить" />
+    </div>
 <%} %>
 </fieldset>

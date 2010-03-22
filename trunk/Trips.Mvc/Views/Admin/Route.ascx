@@ -1,4 +1,4 @@
-<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<Trips.Mvc.Models.Route>" %>
+п»ї<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<Trips.Mvc.Models.Route>" %>
 <%@ Import Namespace="Trips.Mvc.Models" %>
 <% 
     List<SelectListItem> fromCities;
@@ -11,6 +11,7 @@
         List<City> cities = context.Cities.Include("CityNames").ToList();
 
         fromCities = cities
+            .Where(c=>c.Id == 1 || c.Id == 3 )
             .Select(c => new SelectListItem 
             { 
                 Text = c.CityNames.ToDictionary(cn=>cn.Language, cn=>cn.Name)["ru-RU"], 
@@ -38,32 +39,59 @@
         luxPrice = prices[(long)CarAdClasses.Lux];
     }    
 %>
-<div class="routeContainer">
-    <% using (Html.BeginForm("UpdateRoute", "Admin", FormMethod.Post)){%>
-        <%= Html.Hidden("id", Model.Id) %>
-        <label for="fromCityId" title="Откуда">Откуда</label><br />
-        <%= Html.DropDownList("fromCityId", fromCities) %><br />
-        <label for="toCityId" title="Куда">Куда</label><br />
-        <%= Html.DropDownList("toCityId", toCities) %><br />
-        <label for="distance" title="Расстояние">Расстояние</label><br />
-        <%= Html.TextBox("distance", distance) %><br />
-        <label for="priceStandard" title="Цена за стандарт">Цена за стандарт</label><br />
-        <%= Html.TextBox("priceStandard", standardPrice)%><br />
-        <label for="priceMiddle" title="Цена за средний">Цена за средний</label><br />
-        <%= Html.TextBox("priceMiddle", middlePrice)%><br />
-        <label for="priceBusiness" title="Цена за бизнес">Цена за бизнес</label><br />
-        <%= Html.TextBox("priceBusiness", businessPrice)%><br />
-        <label for="priceMinivan" title="Цена за минивен">Цена за минивен</label><br />
-        <%= Html.TextBox("priceMinivan", minivanPrice)%><br />
-        <label for="priceMultivan" title="Цена за мультивен">Цена за мультивен</label><br />
-        <%= Html.TextBox("priceMultivan", multivanPrice)%><br />
-        <div style="display:none">
-            <label for="priceLux" title="Цена за люкс">Цена за люкс</label><br />   
-            <%= Html.TextBox("priceLux", luxPrice)%>
-        </div>
-        <div>
-            <input type="submit" value="Сохранить" />
-            <%= Html.ActionLink("Удалить", "DeleteRoute", "Admin", new {id = Model.Id}, null) %>
-        </div>
-     <%} %>
-</div>
+    <tr>
+        <td align="center">
+            <%= fromCities.Where(tc=>tc.Value == Model.FromCityId.ToString()).Select(c=>c.Text).First() %>
+        </td>
+        <td align="center">
+            в†’
+        </td align="center">
+        <td align="center">
+            <%= toCities.Where(tc=>tc.Value == Model.ToCityId.ToString()).Select(c=>c.Text).First() %>
+        </td>
+        <td align="center">
+            <a href="#" id="show_<%= Model.Id %>">СЂРµРґР°РєС‚РёСЂСѓРµРј</a> &nbsp; / &nbsp;  <%= Html.ActionLink("СѓРґР°Р»СЏРµРј", "DeleteRoute", "Admin", new {id = Model.Id}, null) %>
+            <div style="display:none;" id="routeDetails_<%= Model.Id %>"  class="routeContainer">  
+                <% using (Html.BeginForm("UpdateRoute", "Admin", FormMethod.Post)){%>
+                    <%= Html.Hidden("id", Model.Id)%>
+                    <label for="fromCityId" title="РћС‚РєСѓРґР°">РћС‚РєСѓРґР°</label><br />
+                    <%= Html.DropDownList("fromCityId", fromCities)%><br />
+                    <label for="toCityId" title="РљСѓРґР°">РљСѓРґР°</label><br />
+                    <%= Html.DropDownList("toCityId", toCities)%><br />
+                    <label for="distance" title="Р Р°СЃСЃС‚РѕСЏРЅРёРµ">Р Р°СЃСЃС‚РѕСЏРЅРёРµ</label><br />
+                    <%= Html.TextBox("distance", distance)%><br />
+                    <label for="priceStandard" title="Р¦РµРЅР° Р·Р° СЃС‚Р°РЅРґР°СЂС‚">Р¦РµРЅР° Р·Р° СЃС‚Р°РЅРґР°СЂС‚</label><br />
+                    <%= Html.TextBox("priceStandard", standardPrice)%><br />
+                    <label for="priceMiddle" title="Р¦РµРЅР° Р·Р° СЃСЂРµРґРЅРёР№">Р¦РµРЅР° Р·Р° СЃСЂРµРґРЅРёР№</label><br />
+                    <%= Html.TextBox("priceMiddle", middlePrice)%><br />
+                    <label for="priceBusiness" title="Р¦РµРЅР° Р·Р° Р±РёР·РЅРµСЃ">Р¦РµРЅР° Р·Р° Р±РёР·РЅРµСЃ</label><br />
+                    <%= Html.TextBox("priceBusiness", businessPrice)%><br />
+                    <label for="priceMinivan" title="Р¦РµРЅР° Р·Р° РјРёРЅРёРІРµРЅ">Р¦РµРЅР° Р·Р° РјРёРЅРёРІРµРЅ</label><br />
+                    <%= Html.TextBox("priceMinivan", minivanPrice)%><br />
+                    <label for="priceMultivan" title="Р¦РµРЅР° Р·Р° РјСѓР»СЊС‚РёРІРµРЅ">Р¦РµРЅР° Р·Р° РјСѓР»СЊС‚РёРІРµРЅ</label><br />
+                    <%= Html.TextBox("priceMultivan", multivanPrice)%><br />
+                    <div style="display:none">
+                        <label for="priceLux" title="Р¦РµРЅР° Р·Р° Р»СЋРєСЃ">Р¦РµРЅР° Р·Р° Р»СЋРєСЃ</label><br />   
+                        <%= Html.TextBox("priceLux", luxPrice)%>
+                    </div>
+                    <div>
+                        <input type="submit" value="РЎРѕС…СЂР°РЅРёС‚СЊ" />
+                    </div>
+                 <%} %>
+            </div>
+            <script type="text/javascript">
+                $(function() {
+                    $("#show_<%= Model.Id %>").click(function() {
+                        $("#routeDetails_<%= Model.Id %>").dialog("open");
+                    });
+                })
+                
+                function updateSuccess_<%= Model.Id %>(){
+                     $("#routeDetails_<%= Model.Id %>").dialog("close");
+                }
+            </script>
+
+        </td>
+    </tr>
+    
+    

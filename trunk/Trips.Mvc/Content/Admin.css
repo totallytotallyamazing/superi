@@ -10,6 +10,17 @@
 #login{padding-top:20px;}
 
 .routeContainer{float:left; margin-right:10px;}
-.newRoute{clear:both; padding:5px; border:1px solid #868686; margin-top:10px;}
+.newRoute{clear:both; padding:5px 0; border:1px solid #868686;}
 
 .watermark{color:Gray;}
+
+#addRouteLabel{float:left; clear:both; padding:0 5px; background:#676767; text-transform:uppercase; color:White; font-weight:bold; margin-top:20px;}
+
+#addRouteProperties div{float:left; padding-left:10px;}
+
+#addRoutePricesLabel{clear:both; background:#676767;  text-transform:uppercase; color:White; margin-top:10px; font-weight:bold; padding:0 5px;}
+
+#addRoutePrices div{float:left; padding-left:10px; padding-top:10px;}
+#addRoutePrices input{width:80px;}
+
+.modalBackground{background:black; opacity:0.5; -moz-opacity:0.5; filter: alpha(opacity=50);}

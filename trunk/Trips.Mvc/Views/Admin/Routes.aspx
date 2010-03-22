@@ -5,10 +5,19 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+    <table cellspacing="10">
+        <tr>
+            <th align="center">Откуда:</th>
+            <th align="center"></th>
+            <th align="center">Куда:</th>
+            <th align="center">Что делаем:</th>
+        </tr>
         <% foreach (var item in Model)
            {
                Html.RenderPartial("Route", item);     
-           } %>
+           } %>    
+    </table>
+
 <div style="clear:both">
 
 
@@ -38,29 +47,52 @@
             }).ToList();
     }
        %>
+
+<div id="addRouteLabel">Добавить маршрут</div>
        
-<div class="newRoute">
-    <label for="fromCityId" title="Откуда">Откуда</label><br />
-    <%= Html.DropDownList("fromCityId", fromCities) %><br />
-    <label for="toCityId" title="Куда">Куда</label><br />
-    <%= Html.DropDownList("toCityId", toCities) %><br />
-    <label for="distance" title="Расстояние">Расстояние</label><br />
-    <%= Html.TextBox("distance") %><br />
-    <label for="priceStandard" title="Цена за стандарт">Цена за стандарт</label><br />
-    <%= Html.TextBox("priceStandard")%><br />
-    <label for="priceMiddle" title="Цена за средний">Цена за средний</label><br />
-    <%= Html.TextBox("priceMiddle")%><br />
-    <label for="priceBusiness" title="Цена за бизнес">Цена за бизнес</label><br />
-    <%= Html.TextBox("priceBusiness")%><br />
-    <label for="priceMinivan" title="Цена за минивен">Цена за минивен</label><br />
-    <%= Html.TextBox("priceMinivan")%><br />
-    <label for="priceMultivan" title="Цена за мультивен">Цена за мультивен</label><br />
-    <%= Html.TextBox("priceMultivan")%><br />
-    <div style="display:none">
-        <label for="priceLux" title="Цена за люкс">Цена за люкс</label><br />   
-        <%= Html.TextBox("priceLux", 0)%>
+<div class="newRoute">  
+    <div id="addRouteProperties">
+        <div>
+            <label for="fromCityId" title="Откуда">Откуда</label><br />
+            <%= Html.DropDownList("fromCityId", fromCities) %><br />
+        </div>
+        <div>
+            <label for="toCityId" title="Куда">Куда</label><br />
+            <%= Html.DropDownList("toCityId", toCities) %><br />
+        </div>
+        <div>
+            <label for="distance" title="Расстояние">Расстояние</label><br />
+            <%= Html.TextBox("distance") %><br />
+        </div> 
     </div>
-    <div>
+    <div id="addRoutePricesLabel">Цены</div>
+    <div id= "addRoutePrices">
+        <div>
+            <label for="priceStandard" title="Cтандарт">Стандарт</label><br />
+            <%= Html.TextBox("priceStandard")%>
+        </div>
+        <div>
+            <label for="priceMiddle" title="Cредний">Средний</label><br />
+            <%= Html.TextBox("priceMiddle")%>
+        </div>
+        <div>
+            <label for="priceBusiness" title="Бизнес">Бизнес</label><br />
+            <%= Html.TextBox("priceBusiness")%>
+        </div>
+        <div>
+            <label for="priceMinivan" title="Минивен">Минивен</label><br />
+            <%= Html.TextBox("priceMinivan")%>
+        </div>
+        <div>
+            <label for="priceMultivan" title="Мультивен">Мультивен</label><br />
+            <%= Html.TextBox("priceMultivan")%>
+        </div>
+        <div style="display:none">
+            <label for="priceLux" title="Люкс">Люкс</label><br />   
+            <%= Html.TextBox("priceLux", 0)%>
+        </div>
+    </div>
+    <div style="text-align:center; clear:both; padding-top:10px;">
         <input type="submit" value="Добавить" />
     </div>
 </div>
@@ -70,6 +102,12 @@
 
 <asp:Content ID="Content3" ContentPlaceHolderID="includes" runat="server">
     <link rel="Stylesheet" href="/Content/Admin.css" />
+    <script src="/Scripts/jquery.ui.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function() {
+            $(".routeContainer").dialog({ autoOpen: false, resizable: false, modal: true });
+        });
+    </script>
 </asp:Content>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="leftSide" runat="server">

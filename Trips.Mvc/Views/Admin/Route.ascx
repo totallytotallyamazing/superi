@@ -51,30 +51,53 @@
         </td>
         <td align="center">
             <a href="#" id="show_<%= Model.Id %>">редактируем</a> &nbsp; / &nbsp;  <%= Html.ActionLink("удаляем", "DeleteRoute", "Admin", new {id = Model.Id}, null) %>
-            <div style="display:none;" id="routeDetails_<%= Model.Id %>"  class="routeContainer">  
+            <div title="Редактирование маршрута" style="display:none;" id="routeDetails_<%= Model.Id %>"  class="routeContainer">  
                 <% using (Html.BeginForm("UpdateRoute", "Admin", FormMethod.Post)){%>
                     <%= Html.Hidden("id", Model.Id)%>
-                    <label for="fromCityId" title="Откуда">Откуда</label><br />
-                    <%= Html.DropDownList("fromCityId", fromCities)%><br />
-                    <label for="toCityId" title="Куда">Куда</label><br />
-                    <%= Html.DropDownList("toCityId", toCities)%><br />
-                    <label for="distance" title="Расстояние">Расстояние</label><br />
-                    <%= Html.TextBox("distance", distance)%><br />
-                    <label for="priceStandard" title="Цена за стандарт">Цена за стандарт</label><br />
-                    <%= Html.TextBox("priceStandard", standardPrice)%><br />
-                    <label for="priceMiddle" title="Цена за средний">Цена за средний</label><br />
-                    <%= Html.TextBox("priceMiddle", middlePrice)%><br />
-                    <label for="priceBusiness" title="Цена за бизнес">Цена за бизнес</label><br />
-                    <%= Html.TextBox("priceBusiness", businessPrice)%><br />
-                    <label for="priceMinivan" title="Цена за минивен">Цена за минивен</label><br />
-                    <%= Html.TextBox("priceMinivan", minivanPrice)%><br />
-                    <label for="priceMultivan" title="Цена за мультивен">Цена за мультивен</label><br />
-                    <%= Html.TextBox("priceMultivan", multivanPrice)%><br />
-                    <div style="display:none">
-                        <label for="priceLux" title="Цена за люкс">Цена за люкс</label><br />   
-                        <%= Html.TextBox("priceLux", luxPrice)%>
-                    </div>
-                    <div>
+                    <table cellpadding="5" cellspacing="5">
+                        <tr>
+                            <th><label for="fromCityId" title="Откуда">Откуда</label></th>
+                            <th><label for="toCityId" title="Куда">Куда</label></th>
+                        </tr>
+                        <tr>
+                            <td><%= Html.DropDownList("fromCityId", fromCities)%></td>
+                            <td><%= Html.DropDownList("toCityId", toCities)%></td>
+                        </tr>
+                    </table>
+                    <table cellpadding="5" cellspacing="5">
+                        <tr>
+                            <td><label for="distance" title="Расстояние">Расстояние</label></td>
+                            <td><%= Html.TextBox("distance", distance)%></td>
+                        </tr>    
+                    </table>
+                    <div class="descriptionPartHeader">Цены</div>
+                    <table cellpadding="5" cellspacing="5">
+                        <tr>
+                            <td><label for="priceStandard" title="Cтандарт">Cтандарт</label></td>
+                            <td><%= Html.TextBox("priceStandard", standardPrice)%></td>
+                        </tr>
+                        <tr>
+                            <td><label for="priceMiddle" title="Средний">Cредний</label></td>
+                            <td><%= Html.TextBox("priceMiddle", middlePrice)%></td>
+                        </tr>
+                        <tr>
+                            <td> <label for="priceBusiness" title="Бизнес">Бизнес</label></td>
+                            <td><%= Html.TextBox("priceBusiness", businessPrice)%></td>
+                        </tr>
+                        <tr>
+                            <td><label for="priceMinivan" title="Минивен">Минивен</label></td>
+                            <td><%= Html.TextBox("priceMinivan", minivanPrice)%></td>
+                        </tr>
+                        <tr>
+                            <td><label for="priceMultivan" title="Мультивен">Мультивен</label></td>
+                            <td><%= Html.TextBox("priceMultivan", multivanPrice)%></td>
+                        </tr>
+                        <tr style="display:none">
+                            <td><label for="priceLux" title="Люкс">Люкс</label></td>
+                            <td><%= Html.TextBox("priceLux", luxPrice)%></td>
+                        </tr>
+                    </table>
+                    <div style="padding-top:10px;">
                         <input type="submit" value="Сохранить" />
                     </div>
                  <%} %>

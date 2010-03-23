@@ -105,7 +105,7 @@
     <script src="/Scripts/jquery.ui.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(function() {
-            $(".routeContainer").dialog({ autoOpen: false, resizable: false, modal: true });
+            $(".routeContainer").dialog({ autoOpen: false, resizable: false, modal: true, width: 330 });
         });
     </script>
 </asp:Content>

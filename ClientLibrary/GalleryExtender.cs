@@ -132,6 +132,7 @@ namespace ClientLibrary
             InitializeAdminArea();
         }
 
+
         protected override void ContentUpdating(object sender, EventArgs e)
         {
             JQueryProxy.jQuery("#content").css("padding", "");

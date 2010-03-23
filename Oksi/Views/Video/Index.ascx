@@ -12,7 +12,7 @@
             <p><%= clip.Description %></p>
         </div>
         <div id="clip">
-            <%= clip.Source %>
+  
         </div>
     </div>
     <div id="clipThumbnails">

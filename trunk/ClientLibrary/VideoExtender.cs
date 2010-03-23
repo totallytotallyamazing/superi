@@ -18,6 +18,7 @@ namespace ClientLibrary
         {
             Cleanup();
             base.ContentUpdating(sender, e);
+            this.Dispose();
         }
 
 
@@ -28,6 +29,8 @@ namespace ClientLibrary
             JQueryProxy.jQuery("#clipThumbnails .thumbnail").click((BasicCallback)Click);
             JQueryProxy.jQuery("#clipThumbnails .thumbnail").mouseover((BasicCallback)ThumbnailOver);
             JQueryProxy.jQuery("#clipThumbnails .thumbnail").mouseout((BasicCallback)ThumbnailOut);
+
+            JQueryProxy.jQuery("#clipThumbnails .thumbnail").eq(0).click();
         }
 
         void Cleanup()

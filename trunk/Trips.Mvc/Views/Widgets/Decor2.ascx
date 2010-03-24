@@ -3,9 +3,9 @@
 
 <div id="leftImageBox">
     <div>
-        <%= Html.Image("/Content/Decor/decor2Right.jpg")%>
+        <%= Html.Image("/Content/decor/decor2Right.jpg")%>
     </div>
     <div>
-        <%= Html.Image("/Content/Decor/decor2Left.jpg")%>
+        <%= Html.Image("/Content/decor/decor2Left.jpg")%>
     </div>
 </div>

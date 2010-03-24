@@ -107,7 +107,12 @@ height:20px;width:161px;background:url(img/leftBox1Header.jpg) no-repeat;font-fa
 #newsFooter{height:20px;width:161px;background:url(img/leftBox1Footer.jpg) no-repeat;}
 /*News finish*/
 /*Map start*/
-#mapBox{margin: 60px 0 0 0;height:261px;width:161px;}
+#mapBox
+{
+    margin: 60px 0 0 0;
+    height:261px;
+    width:161px;
+}
 /*Map finish*/
 #string{height:32px;width:auto;min-width:300px;position:relative;background-image:url(img/bg_string.jpg);position:relative;}
 #string h2{font-family:Tahoma, sans-serif;text-decoration:none;font-size:17px;font-weight:100;margin-left:20px;float:left;}
@@ -124,9 +129,8 @@ vertical-align: text-bottom;}
 #content li{list-style-type: none;font-family: Tahoma, Helvetica, sans-serif;font-weight:normal; font-size:13px;}
 #content a{color:#3366ff;}
 /*end container*/
-#leftImageBox{height:145px;width:291px;margin:150px 0 0 -35px;background:url(img/ladyAndDriver.jpg) no-repeat;}
-#leftImageBox2{height:145px;width:291px; width:auto;margin:0px -35px 0 110px;background:url(img/tetko.jpg) no-repeat;}
-
+#leftImageBox{margin:150px 0 0 -35px;width:auto;}
+#leftImageBox div:first-child{float:right; position:relative; left:35px;}
 
 #footer{height:50px;width:auto;min-width:1000px;margin:0px 30px 20px 30px;background:url(img/footerBg.jpg) repeat-x;}
 #footerLeftBox{height:50px;width:15px;width:auto;float:left;background:url(img/footerLeft.jpg) no-repeat left;padding:0px 0px 0px 65px;}

@@ -627,7 +627,7 @@
     <Content Include="Views\Request\SelectedAds.ascx" />
     <Content Include="Views\Shared\Content.aspx" />
     <Content Include="Views\Widgets\News.ascx" />
-    <Content Include="Views\Widgets\Smoking.ascx" />
+    <Content Include="Views\Widgets\Smoking_ru-RU.ascx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Configuration\Web.config" />
@@ -692,6 +692,13 @@
     </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Decor\decor1Left.jpg" />
+    <Content Include="Content\Decor\decor1Right.jpg" />
+    <Content Include="Content\Decor\decor2Left.jpg" />
+    <Content Include="Content\Decor\decor2Right.jpg" />
+    <Content Include="Content\Decor\decor3Left.jpg" />
+    <Content Include="Content\Decor\decor3Right.jpg" />
+    <Content Include="Content\img\rightBannerBg.jpg" />
     <Content Include="Content\LocaleDependent\en-US\img\doneFinal.jpg" />
     <Content Include="Content\LocaleDependent\en-US\img\logo.jpg" />
     <Content Include="Content\LocaleDependent\en-US\img\startOver.jpg" />
@@ -699,6 +706,14 @@
     <Content Include="Content\LocaleDependent\ru-RU\img\logo.jpg" />
     <Content Include="Content\LocaleDependent\ru-RU\img\startOver.jpg" />
     <Content Include="Content\MailTemplates\MailTemplate.htm" />
+    <Content Include="Content\RightBanners\en-US\Map.png" />
+    <Content Include="Content\RightBanners\en-US\Translate.png" />
+    <Content Include="Content\RightBanners\en-US\Customs.png" />
+    <Content Include="Content\RightBanners\en-US\Counter.png" />
+    <Content Include="Content\RightBanners\ru-RU\Map.png" />
+    <Content Include="Content\RightBanners\ru-RU\Translate.png" />
+    <Content Include="Content\RightBanners\ru-RU\Customs.png" />
+    <Content Include="Content\RightBanners\ru-RU\Counter.png" />
     <Content Include="Scripts\extended\MaskedEdit\MaskedEditBehavior.debug.js" />
     <Content Include="Scripts\extended\MaskedEdit\MaskedEditBehavior.js" />
     <Content Include="Scripts\extended\MaskedEdit\MaskedEditValidator.debug.js" />
@@ -713,6 +728,17 @@
     <Content Include="Views\Request\Send.aspx" />
     <Content Include="Views\Request\VerifyData.aspx" />
     <Content Include="Views\Shared\Logo.ascx" />
+    <Content Include="Views\Widgets\Beer_en-US.ascx" />
+    <Content Include="Views\Widgets\Beer_ru-RU.ascx" />
+    <Content Include="Views\Widgets\Decor1.ascx" />
+    <Content Include="Views\Widgets\Decor2.ascx" />
+    <Content Include="Views\Widgets\Decor3.ascx" />
+    <Content Include="Views\Widgets\Luggage_en-US.ascx" />
+    <Content Include="Views\Widgets\Luggage_ru-RU.ascx" />
+    <Content Include="Views\Widgets\Late_en-US.ascx" />
+    <Content Include="Views\Widgets\Late_ru-RU.ascx" />
+    <Content Include="Views\Widgets\RightBanner.ascx" />
+    <Content Include="Views\Widgets\Smoking_en-US.ascx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\" />

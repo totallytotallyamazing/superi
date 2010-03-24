@@ -87,10 +87,7 @@
         <!--leftSide finish-->
         <div id="rightSide">
             <% Html.RenderAction("News", "Widgets"); %>
-            <div id="mapBox">
-                <%= Html.ActionLink("[IMAGE]", "Index", "Request", null, null)
-                    .Replace("[IMAGE]", Html.Image("/Content/img/mapBanner1.jpg"))%>
-            </div>
+            <% Html.RenderAction("RightBanner", "Widgets"); %>
         </div>
         <div id="content">
             <div id="string">
@@ -115,8 +112,7 @@
             <div class="clearBoth">
     
     </div>
-        <div id="leftImageBox">
-        </div>
+        <% Html.RenderAction("Decor", "Widgets"); %>
     </div>
 
     <!--container-->

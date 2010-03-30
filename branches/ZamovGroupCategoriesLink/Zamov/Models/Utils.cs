@@ -117,6 +117,7 @@ namespace Zamov.Models
             columns.Add("unit");
             columns.Add("ukDescription");
             columns.Add("ruDescription");
+            columns.Add("imageUrl");
             while (excelReader.Read())
             {
                 if (columnDefinitions)
@@ -141,7 +142,6 @@ namespace Zamov.Models
                         {
                             row[table.Columns[i]] = excelReader.GetString(i);
                         }
-                        
                     }
                     table.Rows.Add(row);
                 }

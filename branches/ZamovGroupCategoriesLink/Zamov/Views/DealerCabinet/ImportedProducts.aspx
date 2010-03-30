@@ -110,6 +110,7 @@
                     <td align="center"><%= Html.ResourceString("Price")%></td>
                     <td align="center"><%= Html.ResourceString("Unit")%></td>
                     <td align="center"><%= Html.ResourceString("Description")%></td>
+                    <td align="center"><%= Html.ResourceString("Image")%></td>
                 </tr>
                 <%
                 foreach (var item in updatedItems)
@@ -130,7 +131,15 @@
     <%= Html.RegisterJS("fckeditor.js") %>
     <%= Html.RegisterJS("fcktools.js") %>
     <%= Html.RegisterJS("jquery.FCKeditor.js") %>
+    <%= Html.RegisterJS("jquery.fancybox.js")%>
+    <%= Html.RegisterCss("~/Content/fancy/jquery.fancybox.css")%>
     <style type="text/css">
         .ui-tabs-nav { height:2.4em; }
     </style>
+    
+    <script type="text/javascript">
+        $(function() {
+            $(".fancy").fancybox();
+        })
+    </script>
 </asp:Content>

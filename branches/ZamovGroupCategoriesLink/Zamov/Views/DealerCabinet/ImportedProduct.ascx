@@ -46,4 +46,9 @@
             </table>
         </div>
     </td>
+    <td>
+        <%if (!string.IsNullOrEmpty((string)ViewData["imageUrl"])){ %>
+            <a class="fancy" href="<%= ViewData["imageUrl"] %>"><%= Html.ResourceString("Image") %></a>
+        <%} %>
+    </td>
 </tr>

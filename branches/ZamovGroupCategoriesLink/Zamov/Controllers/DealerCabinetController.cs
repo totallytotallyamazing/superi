@@ -595,6 +595,7 @@ namespace Zamov.Controllers
             string ukDescription = (string)product["ukDescription"];
             string ruDescription = (string)product["ruDescription"];
             string unit = (string)product["unit"];
+            string imageUrl = (string)product["imageUrl"];
             ViewData["id"] = productId;
             ViewData["partNumber"] = partNumber;
             ViewData["name"] = name;
@@ -606,6 +607,7 @@ namespace Zamov.Controllers
             ViewData["ruDescription"] = ruDescription;
             ViewData["unit"] = unit;
             ViewData["isNew"] = isNew;
+            ViewData["imageUrl"] = imageUrl;
             return View();
         }
 

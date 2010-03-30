@@ -13,7 +13,7 @@ using System.Web.Services;
 [System.Web.Script.Services.ScriptService]
 public class CartService : System.Web.Services.WebService
 {
-    [WebMethod]
+    [WebMethod(EnableSession=true)]
     public int Count()
     {
         if (Cart.Items == null)

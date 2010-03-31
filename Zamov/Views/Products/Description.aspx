@@ -3,7 +3,7 @@
 <%@ Import Namespace="Zamov.Models" %>
 <%@ Import Namespace="Zamov.Controllers" %>
 
-<div class="productDescription">
+<div>
     <%
         if (Model.HasImage)
         {%>

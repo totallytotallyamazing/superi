@@ -2,7 +2,24 @@
 <%@ Import Namespace="Zamov.Helpers" %>
 <%@ Import Namespace="Microsoft.Web.Mvc" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-
+    <%= Html.RegisterJS("jquery.easing.js")%>
+    <%= Html.RegisterJS("jquery.fancybox.js")%>
+    <%= Html.RegisterCss("~/Content/fancy/jquery.fancybox.css")%>
+    
+    
+    <%= Html.RegisterJS("fckeditorapi.js") %>
+    <%= Html.RegisterJS("fckeditor.js") %>
+    <%= Html.RegisterJS("fcktools.js") %>
+    <%= Html.RegisterJS("jquery.FCKeditor.js") %>
+    
+    <script type="text/javascript">
+        $(function() {
+            $.fck.config = { path: '<%= VirtualPathUtility.ToAbsolute("~/Controls/fckeditor/") %>', height: 300, config: { SkinPath: "skins/office2003/", DefaultLanguage: "RU", AutoDetectLanguage: false, HtmlEncodeOutput: true} };
+            $('textarea#uaDescription, textarea#ruDescription').fck({ toolbar: "Basic", height: 300 });
+        });
+    </script>
+    
+    
     <script type="text/javascript">
         var enables = {};
         function updateEnables(check, id) {
@@ -60,6 +77,10 @@
         function closeImageDialog() {
             $("#imagePopUp").dialog('close');
         }
+
+        $(function() {
+            $(".cDescription").fancybox({hideOnContentClick: false});
+        })
     </script>
     <div title="<%= Html.ResourceString("Image") %>" id="imagePopUp" style="display: block; height: 300px;">
         <iframe id="updateImageBox" frameborder="0" hidefocus="true" style="width: 400px;

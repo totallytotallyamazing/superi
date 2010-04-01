@@ -367,6 +367,65 @@ namespace Zamov.Controllers
             }
             Response.Write("<script type=\"text/javascript\">top.closeImageDialog();</script>");
         }
+
+        public ActionResult CategoryDescription(int id)
+        {
+            using (ZamovStorage context = new ZamovStorage())
+            {
+                int typeId = (int)ItemTypes.CategoryDescription;
+                int titleTypeId = (int)ItemTypes.CategoryDescriptionTitle;
+
+                var items = context.Translations.Where(tr => tr.ItemId == id).Where(tr => tr.TranslationItemTypeId == typeId)
+                    .ToDictionary(ks => ks.Language, es => es.Text);
+
+                var titles = context.Translations.Where(tr => tr.ItemId == id).Where(tr => tr.TranslationItemTypeId == titleTypeId)
+                    .ToDictionary(ks => ks.Language, es => es.Text);
+
+                if (items.ContainsKey("ru-RU"))
+                    ViewData["ruDescription"] = items["ru-RU"];
+                if (items.ContainsKey("uk-UA"))
+                    ViewData["uaDescription"] = items["uk-UA"];
+                if (items.ContainsKey("ru-RU"))
+                    ViewData["ruTitle"] = titles["ru-RU"];
+                if (items.ContainsKey("uk-UA"))
+                    ViewData["uaTitle"] = titles["uk-UA"];
+            }
+            return View();
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult CategoryDescription(int id, string ruTitle, string uaTitle, string ruDescription, string uaDescription)
+        {
+            using (ZamovStorage context = new ZamovStorage())
+            {
+                int typeId = (int)ItemTypes.CategoryDescription;
+                int titleTypeId = (int)ItemTypes.CategoryDescriptionTitle;
+                var ruTranslation = context.Translations.Where(tr => tr.ItemId == id)
+                    .Where(tr => tr.TranslationItemTypeId == typeId)
+                    .Where(tr => tr.Language == "ru-RU").Select(tr => tr).First();
+
+                var uaTranslation = context.Translations.Where(tr => tr.ItemId == id)
+                    .Where(tr => tr.TranslationItemTypeId == typeId)
+                    .Where(tr => tr.Language == "uk-UA").Select(tr => tr).First();
+
+                var ruTitleTranslation = context.Translations.Where(tr => tr.ItemId == id)
+                    .Where(tr => tr.TranslationItemTypeId == titleTypeId)
+                    .Where(tr => tr.Language == "ru-RU").Select(tr => tr).First();
+
+                var uaTitleTranslation = context.Translations.Where(tr => tr.ItemId == id)
+                    .Where(tr => tr.TranslationItemTypeId == titleTypeId)
+                    .Where(tr => tr.Language == "uk-UA").Select(tr => tr).First();
+
+                ruTranslation.Text = HttpUtility.HtmlDecode(ruDescription);
+                uaTranslation.Text = HttpUtility.HtmlDecode(uaDescription);
+                ruTitleTranslation.Text = ruTitle;
+                uaTitleTranslation.Text = uaTitle;
+
+                context.SaveChanges();
+            }
+            return RedirectToAction("CategoryDescription", new { id = id });
+        }
+
         #endregion
 
         #region Mappings

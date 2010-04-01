@@ -36,7 +36,7 @@
             </th>
             <th></th>
             <th></th>
-            
+            <th></th>
         </tr>
         <%} %>
         <tr>
@@ -62,6 +62,9 @@
             </td>
             <td align="center" style="width:75px;">
                 <%= Html.CheckBox("Enabled_" + item.Id, item.Enabled, new { onblur = "updateEnables(this, " + item.Id + ")" })%>
+            </td>
+            <td>
+                <a href="/Admin/CategoryDescription/<%= item.Id %>" class="cDescription"><%= Html.ResourceString("Description") %></a>
             </td>
             <td>
                 <a href="#" onclick="insertCategory(this, <%= item.Id %>)">

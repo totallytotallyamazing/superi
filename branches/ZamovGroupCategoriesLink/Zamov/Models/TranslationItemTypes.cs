@@ -18,6 +18,8 @@ namespace Zamov.Models
         NewsDescription = 9,
         NewsText = 10,
         GroupName = 11,
-        SubCategoriesName = 12
+        SubCategoriesName = 12,
+        CategoryDescription = 13,
+        CategoryDescriptionTitle = 14
     }
 }

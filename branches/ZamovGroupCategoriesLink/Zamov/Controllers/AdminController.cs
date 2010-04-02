@@ -400,21 +400,46 @@ namespace Zamov.Controllers
             {
                 int typeId = (int)ItemTypes.CategoryDescription;
                 int titleTypeId = (int)ItemTypes.CategoryDescriptionTitle;
+
                 var ruTranslation = context.Translations.Where(tr => tr.ItemId == id)
                     .Where(tr => tr.TranslationItemTypeId == typeId)
-                    .Where(tr => tr.Language == "ru-RU").Select(tr => tr).First();
+                    .Where(tr => tr.Language == "ru-RU").Select(tr => tr).FirstOrDefault();
+
+                if (ruTranslation == null)
+                {
+                    ruTranslation = new Translation { ItemId = id, Language = "ru-RU", TranslationItemTypeId = typeId };
+                    context.AddToTranslations(ruTranslation);
+                }
 
                 var uaTranslation = context.Translations.Where(tr => tr.ItemId == id)
                     .Where(tr => tr.TranslationItemTypeId == typeId)
-                    .Where(tr => tr.Language == "uk-UA").Select(tr => tr).First();
+                    .Where(tr => tr.Language == "uk-UA").Select(tr => tr).FirstOrDefault();
 
+                if (uaTranslation == null)
+                {
+                    uaTranslation = new Translation { ItemId = id, Language = "uk-UA", TranslationItemTypeId = typeId };
+                    context.AddToTranslations(uaTranslation);
+                }
+                
                 var ruTitleTranslation = context.Translations.Where(tr => tr.ItemId == id)
                     .Where(tr => tr.TranslationItemTypeId == titleTypeId)
-                    .Where(tr => tr.Language == "ru-RU").Select(tr => tr).First();
+                    .Where(tr => tr.Language == "ru-RU").Select(tr => tr).FirstOrDefault();
 
+                if (ruTitleTranslation == null)
+                {
+                    ruTitleTranslation = new Translation { ItemId = id, Language = "ru-RU", TranslationItemTypeId = titleTypeId };
+                    context.AddToTranslations(ruTitleTranslation);
+                } 
+                
                 var uaTitleTranslation = context.Translations.Where(tr => tr.ItemId == id)
                     .Where(tr => tr.TranslationItemTypeId == titleTypeId)
-                    .Where(tr => tr.Language == "uk-UA").Select(tr => tr).First();
+                    .Where(tr => tr.Language == "uk-UA").Select(tr => tr).FirstOrDefault();
+
+                if (uaTitleTranslation == null)
+                {
+                    uaTitleTranslation = new Translation { ItemId = id, Language = "uk-UA", TranslationItemTypeId = titleTypeId };
+                    context.AddToTranslations(uaTitleTranslation);
+                } 
 
                 ruTranslation.Text = HttpUtility.HtmlDecode(ruDescription);
                 uaTranslation.Text = HttpUtility.HtmlDecode(uaDescription);
@@ -423,7 +448,7 @@ namespace Zamov.Controllers
 
                 context.SaveChanges();
             }
-            return RedirectToAction("CategoryDescription", new { id = id });
+            return RedirectToAction("Categories");
         }
 
         #endregion

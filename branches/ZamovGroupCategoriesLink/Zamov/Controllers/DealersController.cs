@@ -64,6 +64,32 @@ namespace Zamov.Controllers
                     .Where(c => c.ParentId == null)
                     .Where(c => c.Id == id || (c.Children.Count > 0 && c.Children.Where(ch => ch.Id == id).Count() > 0))
                     .Select(c => c.Id).First();
+
+                int itemType = (int)ItemTypes.CategoryDescription;
+                int titleType = (int)ItemTypes.CategoryDescriptionTitle;
+
+                Translation categoryDescription = context.Translations
+                    .Where(tr => tr.Language == SystemSettings.CurrentLanguage)
+                    .Where(tr => tr.ItemId == id.Value)
+                    .Where(tr => tr.TranslationItemTypeId == itemType)
+                    .FirstOrDefault();
+
+                Translation categoryDescriptionTitle = context.Translations
+                    .Where(tr => tr.Language == SystemSettings.CurrentLanguage)
+                    .Where(tr => tr.ItemId == id.Value)
+                    .Where(tr => tr.TranslationItemTypeId == titleType)
+                    .FirstOrDefault();
+
+                if (categoryDescription != null)
+                {
+                    ViewData["categoryDescription"] = categoryDescription.Text;
+                }
+
+                if (categoryDescriptionTitle != null)
+                {
+                    ViewData["categoryDescriptionTitle"] = categoryDescriptionTitle.Text;
+                }
+
                 return View(dealers);
             }
         }

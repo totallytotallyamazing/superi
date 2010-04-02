@@ -33,13 +33,18 @@
             intervalCount++;
         }
     </script>
-
+    <div class="categoriesHeader">
+        <div class="categoriesHeaderTitle">
+            <%= Html.ResourceString("Dealers") %>
+        </div>
+    </div>   
     <%
         var topDealers = Model.Where(d => d.TopDealer);
         var dealers = Model.Where(d => !d.TopDealer);
 
         if (topDealers.Count() > 0)
         {%>
+     
     <div class="topDealers">
         <%      foreach (var item in topDealers)
                 {%>
@@ -81,6 +86,14 @@
     %>
     <div style="clear: both;">
     </div>
+    <div class="categoriesHeader" style="margin-top:20px;">
+        <div class="categoriesHeaderTitle">
+            <%= ViewData["categoryDescriptionTitle"] %>
+        </div>
+        <div class="categoryDescription">
+            <%= ViewData["categoryDescription"] %>
+        </div>
+    </div>   
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="includes" runat="server">
     <%= Html.RegisterCss("~/Content/shadows.css")%>

@@ -15,7 +15,6 @@
     <script type="text/javascript">
         $(function() {
             $.fck.config = { path: '<%= VirtualPathUtility.ToAbsolute("~/Controls/fckeditor/") %>', height: 300, config: { SkinPath: "skins/office2003/", DefaultLanguage: "RU", AutoDetectLanguage: false, HtmlEncodeOutput: true} };
-            $('textarea#uaDescription, textarea#ruDescription').fck({ toolbar: "Basic", height: 300 });
         });
     </script>
     
@@ -79,7 +78,13 @@
         }
 
         $(function() {
-            $(".cDescription").fancybox({hideOnContentClick: false});
+            $(".cDescription").fancybox(
+            {
+                hideOnContentClick: false,
+                callbackOnShow: function() {
+                    $('textarea#uaDescription, textarea#ruDescription').fck({ toolbar: "Basic", height: 300 });
+                }
+            });
         })
     </script>
     <div title="<%= Html.ResourceString("Image") %>" id="imagePopUp" style="display: block; height: 300px;">

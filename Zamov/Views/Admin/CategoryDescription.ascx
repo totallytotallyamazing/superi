@@ -5,10 +5,16 @@
 <% using(Html.BeginForm()){ %>    
 <table>
     <tr>
+        <th>Укр</th>
+        <th>Рус</th>
+    </tr>
+    <tr>
         <td>
+            <%= Html.TextBox("uaTitle")%>
             <%= Html.TextArea("uaDescription") %>
         </td>
         <td>
+            <%= Html.TextBox("ruTitle")%>
             <%= Html.TextArea("ruDescription")%>
         </td>
     </tr>

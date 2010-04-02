@@ -304,6 +304,7 @@
     <Content Include="Content\img\categoryBgSingle.gif" />
     <Content Include="Content\img\categoryLongBg.jpg" />
     <Content Include="Content\img\categoryLongBgSingle.jpg" />
+    <Content Include="Content\img\categoryTitleBg.gif" />
     <Content Include="Content\img\greenButtonBg.gif" />
     <Content Include="Content\img\greenButtonLeft.png" />
     <Content Include="Content\img\greenButtonRight.png" />

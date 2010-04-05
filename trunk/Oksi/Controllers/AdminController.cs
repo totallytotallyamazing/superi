@@ -52,6 +52,7 @@ namespace Oksi.Controllers
             ViewData["Id"] = 0;
             ViewData["Image"] = "";
             int type = (news) ? 1 : 2;
+            ViewData["type"] = type;
             ViewData["pageTitle"] = (news) ? "Новости" : "Пресса";
             ViewData["folder"] = (news) ? "News" : "Press";
             if (id > 0)

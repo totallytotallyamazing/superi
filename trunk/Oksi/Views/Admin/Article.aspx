@@ -71,7 +71,7 @@
     <% } %>
 
     <div>
-        <%=Html.ActionLink("Назад", "Articles") %>
+        <%=Html.ActionLink("Назад", "Articles", new { id=ViewData["type"]})%>
     </div>
 
 </asp:Content>

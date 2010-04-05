@@ -186,22 +186,6 @@
     <Content Include="Content\img\play.gif" />
     <Content Include="Cover\podruga.png" />
     <Content Include="Content\img\prev.gif" />
-    <Content Include="Content\pepper-grinder\images\ui-bg_diagonal-maze_20_6e4f1c_10x10.png" />
-    <Content Include="Content\pepper-grinder\images\ui-bg_diagonal-maze_40_000000_10x10.png" />
-    <Content Include="Content\pepper-grinder\images\ui-bg_fine-grain_10_eceadf_60x60.png" />
-    <Content Include="Content\pepper-grinder\images\ui-bg_fine-grain_10_f8f7f6_60x60.png" />
-    <Content Include="Content\pepper-grinder\images\ui-bg_fine-grain_15_eceadf_60x60.png" />
-    <Content Include="Content\pepper-grinder\images\ui-bg_fine-grain_15_f7f3de_60x60.png" />
-    <Content Include="Content\pepper-grinder\images\ui-bg_fine-grain_15_ffffff_60x60.png" />
-    <Content Include="Content\pepper-grinder\images\ui-bg_fine-grain_65_654b24_60x60.png" />
-    <Content Include="Content\pepper-grinder\images\ui-bg_fine-grain_68_b83400_60x60.png" />
-    <Content Include="Content\pepper-grinder\images\ui-icons_222222_256x240.png" />
-    <Content Include="Content\pepper-grinder\images\ui-icons_3572ac_256x240.png" />
-    <Content Include="Content\pepper-grinder\images\ui-icons_8c291d_256x240.png" />
-    <Content Include="Content\pepper-grinder\images\ui-icons_b83400_256x240.png" />
-    <Content Include="Content\pepper-grinder\images\ui-icons_fbdb93_256x240.png" />
-    <Content Include="Content\pepper-grinder\images\ui-icons_ffffff_256x240.png" />
-    <Content Include="Content\pepper-grinder\jquery.ui.css" />
     <Content Include="Content\player_mp3_js.swf" />
     <Content Include="Content\StartPage.css" />
     <Content Include="Scripts\ck.extensions.js" />
@@ -237,12 +221,43 @@
     <Content Include="Views\Video\Index.ascx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\ui\images\ui-anim_basic_16x16.gif" />
+    <Content Include="Content\ui\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\ui\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\ui\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\ui\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\ui\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\ui\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\ui\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\ui\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\ui\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\ui\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\ui\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\ui\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\ui\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\ui\jquery.ui.accordion.css" />
+    <Content Include="Content\ui\jquery.ui.all.css" />
+    <Content Include="Content\ui\jquery.ui.autocomplete.css" />
+    <Content Include="Content\ui\jquery.ui.base.css" />
+    <Content Include="Content\ui\jquery.ui.button.css" />
+    <Content Include="Content\ui\jquery.ui.core.css" />
+    <Content Include="Content\ui\jquery.ui.css" />
+    <Content Include="Content\ui\jquery.ui.datepicker.css" />
+    <Content Include="Content\ui\jquery.ui.dialog.css" />
+    <Content Include="Content\ui\jquery.ui.progressbar.css" />
+    <Content Include="Content\ui\jquery.ui.resizable.css" />
+    <Content Include="Content\ui\jquery.ui.slider.css" />
+    <Content Include="Content\ui\jquery.ui.tabs.css" />
+    <Content Include="Content\ui\jquery.ui.theme.css" />
     <Content Include="Scripts\jquery.ui.js" />
     <Content Include="Scripts\jquery.ui.datepicker-ru.js" />
     <Content Include="Views\Admin\Admin.Master" />
+    <Content Include="Views\Admin\Article.aspx" />
+    <Content Include="Views\Admin\Articles.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Articles\News\" />
+    <Folder Include="Content\Articles\Press\" />
     <Folder Include="Content\Gallery\" />
     <Folder Include="GalleryContent\" />
     <Folder Include="Songs\" />

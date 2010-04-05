@@ -240,7 +240,6 @@
     <Content Include="Scripts\jquery.ui.js" />
     <Content Include="Scripts\jquery.ui.datepicker-ru.js" />
     <Content Include="Views\Admin\Admin.Master" />
-    <Content Include="Views\Admin\Article.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Articles\News\" />

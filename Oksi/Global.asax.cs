@@ -35,7 +35,6 @@ namespace Oksi
 
         protected void Application_Start()
         {
-            System.Web.Mvc.ModelBinders.Binders[typeof(ArticleTranslations)] = new ModelBinders.ArticleTranslationsBinder();
             RegisterRoutes(RouteTable.Routes);
         }
     }

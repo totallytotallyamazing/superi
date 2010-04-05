@@ -98,7 +98,6 @@
     <Compile Include="Helpers\Session.cs" />
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Helpers\TextHelper.cs" />
-    <Compile Include="ModelBinders\ArticleTranslationsBinder.cs" />
     <Compile Include="Models\ArticleTranslations.cs" />
     <Compile Include="Models\ContextExtension.cs" />
     <Compile Include="Models\Structure.Designer.cs">
@@ -215,7 +214,6 @@
     <Content Include="Content\jquery.jcarousel.css" />
     <Content Include="Scripts\jquery.jcarousel.js" />
     <Content Include="Scripts\jquery.jplayer.js" />
-    <Content Include="Scripts\jquery.ui.js" />
     <Content Include="Scripts\swfobject.js" />
     <Content Include="Scripts\webkit.js" />
     <Content Include="Views\Admin\AddEditGallery.ascx" />
@@ -237,6 +235,12 @@
     <Content Include="Views\Home\RecentNews.ascx" />
     <Content Include="Views\Shared\Index.aspx" />
     <Content Include="Views\Video\Index.ascx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Scripts\jquery.uisd.js" />
+    <Content Include="Scripts\jquery.ui.datepicker-ru.js" />
+    <Content Include="Views\Admin\Admin.Master" />
+    <Content Include="Views\Admin\Article.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Articles\News\" />

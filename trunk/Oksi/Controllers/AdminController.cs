@@ -25,7 +25,7 @@ namespace Oksi.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        [OutputCache(NoStore=true, Duration=1, VaryByParam="*")]
+        [OutputCache(NoStore = true, Duration = 1, VaryByParam = "*")]
         public void EditText(string text, string contentName)
         {
             using (DataStorage context = new DataStorage())
@@ -33,22 +33,24 @@ namespace Oksi.Controllers
             Response.Write("<script type=\"text/javascript\">window.top.$.fancybox.close();window.top.ClientLibrary.PageManager.get_current().goToUrl(\"/Home/Content/bio\");</script>");
         }
 
-        public ActionResult Article(string name)
+        public ActionResult Article(string id)
         {
-            if (!string.IsNullOrEmpty(name))
+            ViewData["Id"] = 0;
+            ViewData["Image"] = "";
+            if (!string.IsNullOrEmpty(id))
             {
                 using (DataStorage context = new DataStorage())
                 {
-                    var articles = context.Articles.Where(a => a.Name == name).OrderByDescending(a => a.Language).Select(a => a);
+                    var articles = context.Articles.Where(a => a.Name == id).Select(a => a);
                     foreach (var item in articles)
                     {
-                        ViewData["id_" + item.Language] = item.Id;
-                        ViewData["name_" + item.Language] = item.Name;
-                        ViewData["title_" + item.Language] = item.Title;
-                        ViewData["date_" + item.Language] = item.Date;
-                        ViewData["description_" + item.Language] = item.Description;
-                        ViewData["text_" + item.Language] = item.Text;
-                        ViewData["image_" + item.Language] = item.Image;
+                        ViewData["id"] = item.Id;
+                        ViewData["name"] = item.Name;
+                        ViewData["title"] = item.Title;
+                        ViewData["date"] = item.Date;
+                        ViewData["description"] = item.Description;
+                        ViewData["text"] = item.Text;
+                        ViewData["image"] = item.Image;
                     }
                 }
             }
@@ -56,25 +58,22 @@ namespace Oksi.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public void Article(ArticleTranslations articleTranslations)
+        public ActionResult Article(Article article)
         {
             using (DataStorage context = new DataStorage())
             {
-                foreach (string key in articleTranslations.Keys)
+                if (article.Id > 0)
                 {
-                    if (articleTranslations[key].Id > 0)
-                    {
-                        context.Attach(articleTranslations[key]);
-                    }
-                    else
-                    {
-                        context.AddToArticles(articleTranslations[key]);
-                    }
-                    context.AcceptAllChanges();
-                    context.SaveChanges();
+                    context.Attach(article);
                 }
+                else
+                {
+                    context.AddToArticles(article);
+                }
+                context.AcceptAllChanges();
+                context.SaveChanges();
             }
-            Response.Write("blabla");
+            return RedirectToAction("Articles");
         }
 
         #region Galleries
@@ -85,7 +84,7 @@ namespace Oksi.Controllers
             {
                 using (DataStorage context = new DataStorage())
                 {
-                    var gallery = context.Galleries.Where(g => g.Id == id.Value).Select(g => new {name = g.Name, comments = g.Comments }).First();
+                    var gallery = context.Galleries.Where(g => g.Id == id.Value).Select(g => new { name = g.Name, comments = g.Comments }).First();
                     ViewData["name"] = gallery.name;
                     ViewData["comments"] = gallery.comments;
                 }
@@ -96,7 +95,7 @@ namespace Oksi.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         public void AddEditGallery(int? id, string name, string comments)
         {
-            using(DataStorage context = new DataStorage())
+            using (DataStorage context = new DataStorage())
             {
                 Gallery gallery = null;
                 if (id != null)
@@ -147,12 +146,12 @@ namespace Oksi.Controllers
         public ActionResult AddImage(int id)
         {
             ViewData["galleryId"] = id;
-            return View();    
+            return View();
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
         public void AddImage(long galleryId, FormCollection frm)
-        { 
+        {
             string preview = Request.Files["preview"].FileName;
             string picture = Request.Files["picture"].FileName;
             if (!string.IsNullOrEmpty(preview) && !string.IsNullOrEmpty(picture))

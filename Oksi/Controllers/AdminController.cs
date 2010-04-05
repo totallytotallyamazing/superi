@@ -6,6 +6,8 @@ using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 using Oksi.Models;
 using Oksi.Helpers;
+using Helpers;
+using System.IO;
 
 namespace Oksi.Controllers
 {
@@ -33,28 +35,51 @@ namespace Oksi.Controllers
             Response.Write("<script type=\"text/javascript\">window.top.$.fancybox.close();window.top.ClientLibrary.PageManager.get_current().goToUrl(\"/Home/Content/bio\");</script>");
         }
 
-        public ActionResult Article(string id)
+        public ActionResult Articles(int id)
+        {
+            ViewData["pageTitle"] = (id == 1) ? "Новости" : "Пресса";
+            ViewData["news"] = (id == 1);
+            using (DataStorage context = new DataStorage())
+            {
+                var articles = context.Articles.Where(a => a.Type == id)
+                    .OrderByDescending(a => a.Date).ToList();
+                return View(articles);
+            }
+        }
+
+        public ActionResult Article(int? id, bool news)
         {
             ViewData["Id"] = 0;
             ViewData["Image"] = "";
-            if (!string.IsNullOrEmpty(id))
+            int type = (news) ? 1 : 2;
+            ViewData["pageTitle"] = (news) ? "Новости" : "Пресса";
+            ViewData["folder"] = (news) ? "News" : "Press";
+            if (id > 0)
             {
                 using (DataStorage context = new DataStorage())
                 {
-                    var articles = context.Articles.Where(a => a.Name == id).Select(a => a);
-                    foreach (var item in articles)
-                    {
-                        ViewData["id"] = item.Id;
-                        ViewData["name"] = item.Name;
-                        ViewData["title"] = item.Title;
-                        ViewData["date"] = item.Date;
-                        ViewData["description"] = item.Description;
-                        ViewData["text"] = item.Text;
-                        ViewData["image"] = item.Image;
-                    }
+                    var article = context.Articles.Where(a => a.Id == id)
+                        .Where(a => a.Type == type)
+                        .Select(a => a).First();
+                    return View(article);
                 }
             }
             return View();
+        }
+
+        public ActionResult DeleteArticle(int id)
+        {
+            using (DataStorage context = new DataStorage())
+            {
+                Article article = context.Articles.Where(a => a.Id == id).First();
+                string folder = (article.Type == 1) ? "News" : "Press";
+                string filePath = "/Content/Articles/" + folder + "/";
+                IOHelper.DeleteFile(filePath, article.Image);
+                context.DeleteObject(article);
+                long type = article.Type;
+                context.SaveChanges();
+                return RedirectToAction("Articles", new { id = type });
+            }
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
@@ -70,10 +95,24 @@ namespace Oksi.Controllers
                 {
                     context.AddToArticles(article);
                 }
+                if (Request.Files["picture"] != null &&
+                    !string.IsNullOrEmpty(Request.Files["picture"].FileName))
+                {
+                    string folder = (article.Type == 1) ? "News" : "Press";
+                    string fileName = Request.Files["picture"].FileName;
+                    string filePath = "/Content/Articles/" + folder + "/";
+                    string newFilePath = Path.Combine(filePath, IOHelper.GetUniqueFileName(filePath, fileName));
+                    if (article.Id > 0)
+                    {
+                        IOHelper.DeleteFile(filePath, article.Image);
+                    }
+                    Request.Files["picture"].SaveAs(newFilePath);
+                }
+                article.Name = TextHelper.Transliterate(article.Title);
                 context.AcceptAllChanges();
                 context.SaveChanges();
             }
-            return RedirectToAction("Articles");
+            return RedirectToAction("Articles", new { id = article.Type });
         }
 
         #region Galleries
@@ -190,3 +229,4 @@ namespace Oksi.Controllers
         #endregion
     }
 }
+

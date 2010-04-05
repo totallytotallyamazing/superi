@@ -2,6 +2,10 @@
 <%@ Import Namespace="Microsoft.Web.Mvc" %>
 <%@ Import Namespace="Oksi.Models" %>
 
+<% if(Request.IsAuthenticated){ %>
+    <%= Html.ActionLink("Редактировать", "Articles", "Admin", new { id=ViewData["type"] }, new {@class="adminLink"}) %>
+<%} %>
+
 <% foreach (var item in Model){%>
     <div class="news">
         <div class="newsTitle">

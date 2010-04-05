@@ -13,6 +13,7 @@ namespace Oksi.Controllers
     {
         public ActionResult Index(int? id)
         {
+            ViewData["type"] = 1;
             using (DataStorage context = new DataStorage())
             {
                 List<Article> articles = context.Articles
@@ -25,6 +26,7 @@ namespace Oksi.Controllers
 
         public ActionResult Press(int? id)
         {
+            ViewData["type"] = 2;
             using (DataStorage context = new DataStorage())
             {
                 List<Article> articles = context.Articles

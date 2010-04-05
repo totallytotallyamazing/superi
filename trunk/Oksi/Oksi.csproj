@@ -237,7 +237,7 @@
     <Content Include="Views\Video\Index.ascx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Scripts\jquery.uisd.js" />
+    <Content Include="Scripts\jquery.ui.js" />
     <Content Include="Scripts\jquery.ui.datepicker-ru.js" />
     <Content Include="Views\Admin\Admin.Master" />
     <Content Include="Views\Admin\Article.aspx" />

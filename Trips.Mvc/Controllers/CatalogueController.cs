@@ -13,8 +13,9 @@ namespace Trips.Mvc.Controllers
 {
     public class CatalogueController : Controller
     {
-        public ActionResult Index(int? classId, int? brandId)
+        public ActionResult Index(int? classId, int? brandId, int? pageNumber)
         {
+            
             Dictionary<KeyValuePair<string, long>, List<KeyValuePair<string, long>>> brandClasses = new Dictionary<KeyValuePair<string, long>, List<KeyValuePair<string, long>>>();
             using (CarAdStorage context = new CarAdStorage())
             {

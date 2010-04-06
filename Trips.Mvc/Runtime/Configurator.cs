@@ -10,6 +10,8 @@ namespace Trips.Mvc.Runtime
 {
     public static class Configurator
     {
+        public static int PageSize { get { return int.Parse(GetSetting("GetSetting")); } }
+
         private static Configuration LoadConfiguration()
         {
             return WebConfigurationManager.OpenWebConfiguration("/Configuration");

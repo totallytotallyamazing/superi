@@ -107,6 +107,7 @@
     <Compile Include="Controllers\Resources.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\Securirty.cs" />
+    <Compile Include="Controllers\SeoController.cs" />
     <Compile Include="Controllers\SystemSettings.cs" />
     <Compile Include="Controllers\UpdateCurrentDealerAttribute.cs" />
     <Compile Include="Controllers\UserCabinetController.cs" />
@@ -172,6 +173,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reports.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Seo.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Seo.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\SetingsStorage.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -363,6 +369,10 @@
     <None Include="Content\MailTemplates\uk-UA\activateAccount" />
     <None Include="Content\MailTemplates\ru-RU\resetPassword" />
     <None Include="Content\MailTemplates\uk-UA\resetPassword" />
+    <EntityDeploy Include="Models\Seo.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Seo.Designer.cs</LastGenOutput>
+    </EntityDeploy>
     <EntityDeploy Include="Models\Reports.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Reports.Designer.cs</LastGenOutput>
@@ -394,7 +404,9 @@
     <Content Include="Views\Reports\Index.aspx" />
     <Content Include="Views\Reports\ReportsNavigation.ascx" />
     <Content Include="Views\Reports\SalesReport.aspx" />
+    <Content Include="Views\Seo\Index.aspx" />
     <Content Include="Views\Shared\ManagerOrdersInfo.ascx" />
+    <Content Include="Views\Shared\MetaData.ascx" />
     <Content Include="Views\Shared\ProductImageThumbnail.ascx" />
     <Content Include="Views\Shared\AdminOrdersInfo.ascx" />
     <Content Include="Views\Shared\TopProducts.ascx" />

@@ -11,8 +11,7 @@
         <asp:ContentPlaceHolder ID="TitleContent" runat="server" />
     </title>
     <link rel="shortcut icon" type="image/ico" href="/favicon.ico" />
-     <meta name="KeyWords" content="Замов, заказ пиццы, заказ суши, заказ обеда, доставка пиццы, доставка еды, доставка суши, заказ подарков, подарок заказать, заказ онлайн, онлайн заказ" />
-     <meta name="Description" content="Zamov - портал онлайн заказа пиццы, суши, подарков, косметики, цветов." />
+    <% Html.RenderPartial("MetaData"); %>
     <link href="../../Content/Site.css" rel="stylesheet" type="text/css" />
     <%= Html.RegisterJS("MicrosoftAjax.js")%>
     <%= Html.RegisterJS("MicrosoftMvcAjax.js")%>

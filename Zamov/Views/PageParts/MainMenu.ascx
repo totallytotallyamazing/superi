@@ -17,6 +17,8 @@
         Response.Write(Html.ResourceActionLink("Reports", "Index", "Reports").ToLower() + "&nbsp;|&nbsp;");
     if (authenticated && admin)
         Response.Write(Html.ResourceActionLink("Administration", "Index", "Admin").ToLower() + "&nbsp;|&nbsp;");
+    if (authenticated && admin)
+        Response.Write(Html.ActionLink("Seo", "Index", "Seo").ToLower() + "&nbsp;|&nbsp;");
     if ((authenticated && dealer) || (authenticated && admin))
         Response.Write(Html.ResourceActionLink("DealerCabinet", "Index", "DealerCabinet").ToLower() + "&nbsp;|&nbsp;");
     if ((authenticated && customer))

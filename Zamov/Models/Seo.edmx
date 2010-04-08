@@ -17,6 +17,7 @@
           <Property Name="Url" Type="nvarchar" Nullable="false" />
           <Property Name="Keywords" Type="nvarchar" Nullable="false" />
           <Property Name="Description" Type="nvarchar" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" />
         </EntityType>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -34,7 +35,7 @@
           <Property Name="Url" Type="String" Nullable="false" MaxLength="4000" Unicode="true" FixedLength="false" />
           <Property Name="Keywords" Type="String" Nullable="false" MaxLength="4000" Unicode="true" FixedLength="false" />
           <Property Name="Description" Type="String" Nullable="false" MaxLength="4000" Unicode="true" FixedLength="false" />
-        </EntityType>
+          <Property Name="Title" Type="String" Nullable="true" /></EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -44,6 +45,7 @@
           <EntitySetMapping Name="Seo">
             <EntityTypeMapping TypeName="IsTypeOf(BaseEntities.Seo)">
               <MappingFragment StoreEntitySet="Seo">
+                <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Language" ColumnName="Language" />
                 <ScalarProperty Name="Url" ColumnName="Url" />

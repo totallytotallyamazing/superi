@@ -2,9 +2,6 @@
 <%@ Import Namespace="Zamov.Helpers" %>
 <%@ Import Namespace="Microsoft.Web.Mvc" %>
 <%@ Import Namespace="Zamov.Models" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	<%= Html.ResourceString("Groups") %>
-</asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <script type="text/javascript">

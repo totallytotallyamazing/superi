@@ -5,8 +5,6 @@
 <%@ Import Namespace="Zamov.Controllers" %>
 <%@ Import Namespace="Microsoft.Web.Mvc" %>
 <%@ Import Namespace="AjaxControlToolkitMvc" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-</asp:Content>
 <asp:Content ContentPlaceHolderID="dealerLogo" runat="server">
     <% Html.RenderPartial("CurrentDealer");  %>
 </asp:Content>

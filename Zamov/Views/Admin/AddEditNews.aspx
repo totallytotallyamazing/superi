@@ -1,14 +1,6 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Admin/Admin.Master" Inherits="System.Web.Mvc.ViewPage" %>
 <%@ Import Namespace="Zamov.Helpers" %>
 <%@ Import Namespace="Zamov.Controllers" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-<% 
-    if (ViewData["id"] == null)
-        Response.Write(Html.ResourceString("CreateNews"));
-    else
-        Response.Write(Html.ResourceString("EditNews"));
-%>
-</asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <%

@@ -1,8 +1,6 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage" %>
 <%@ Import Namespace="Zamov.Helpers" %>
-<asp:Content ID="registerTitle" ContentPlaceHolderID="TitleContent" runat="server">
-    <%= Html.ResourceString("Register") %>
-</asp:Content>
+
 <asp:Content ContentPlaceHolderID="includes" runat="server">
     <%= Html.RegisterCss("~/Content/register.css") %>
 </asp:Content>

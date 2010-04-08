@@ -24,7 +24,7 @@ namespace Zamov.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Index(int? id, string lang, string url, string keywords, string description)
+        public ActionResult Index(int? id, string lang, string url, string keywords, string description, string title)
         {
             using (SeoStorage context = new SeoStorage())
             {
@@ -42,6 +42,7 @@ namespace Zamov.Controllers
                 seo.Url = url;
                 seo.Keywords = keywords;
                 seo.Description = description;
+                seo.Title = title;
 
                 context.SaveChanges();
             }

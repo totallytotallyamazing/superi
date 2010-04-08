@@ -12,10 +12,6 @@
 %>
 </asp:Content>
 
-<asp:Content runat="server" ContentPlaceHolderID="TitleContent">
-    <asp:ContentPlaceHolder runat="server" ID="TitleContent"></asp:ContentPlaceHolder>
-</asp:Content>
-
 <asp:Content runat="server" ContentPlaceHolderID="mainContent">
     <asp:ContentPlaceHolder runat="server" ID="mainContent"></asp:ContentPlaceHolder>
 </asp:Content>

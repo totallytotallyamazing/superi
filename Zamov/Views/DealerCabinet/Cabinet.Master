@@ -23,10 +23,7 @@
         Html.RenderAction<Zamov.Controllers.PagePartsController>(ac => ac.LeftMenu(Html.ResourceString("PersonalCabinet"), items)); 
     %>
 </asp:Content>
-<asp:Content ContentPlaceHolderID="TitleContent" runat="server">
-    <asp:ContentPlaceHolder ID="TitleContent" runat="server">
-    </asp:ContentPlaceHolder>
-</asp:Content>
+
 <asp:Content ContentPlaceHolderID="mainContent" runat="server">
     <%= Html.FrameWindow("CityMappings", "/DealerCabinet/DealerCityMappings")%>
     <%= Html.FrameWindow("CategoryMappings", "/DealerCabinet/DealerCategoryMappings")%>

@@ -8,13 +8,15 @@
 	x:Class="Tina.AllVideo"
 	d:DesignWidth="640" d:DesignHeight="480" Loaded="UserControl_Loaded">
 	<UserControl.Resources>
-		<Storyboard x:Name="Storyboard1">
-			<DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="rotatePanel" Storyboard.TargetProperty="(RotatePanel.Offset)">
-				<EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
-				<EasingDoubleKeyFrame KeyTime="00:00:20" Value="360"/>
-			</DoubleAnimationUsingKeyFrames>
-		</Storyboard>
-	</UserControl.Resources>
+        <Storyboard x:Name="rotateLeft" RepeatBehavior="Forever">
+            <DoubleAnimation From="0" To="360" Storyboard.Target="rotatePanel" Storyboard.TargetProperty="(RotatePanel.Offset)">
+            </DoubleAnimation>
+        </Storyboard>
+        <Storyboard x:Name="rotateRight" RepeatBehavior="Forever">
+            <DoubleAnimation From="0" To="-360" Storyboard.Target="rotatePanel" Storyboard.TargetProperty="(RotatePanel.Offset)">
+            </DoubleAnimation>
+        </Storyboard>
+    </UserControl.Resources>
 
     <Grid x:Name="LayoutRoot">
     	<Grid Height="80" VerticalAlignment="Bottom">
@@ -53,7 +55,7 @@
 				<Grid x:Name="RightScrollOverlay" Grid.Column="1"/>
 			</Grid>
     	</Grid>
-    	<local:RotatePanel x:Name="rotatePanel" Spacing="5" SegmentLength="132" Rotate="rotatePanel_Rotate" Height="96" VerticalAlignment="Bottom" Margin="0,0,0,-10">
+    	<local:RotatePanel x:Name="rotatePanel" Spacing="5" SegmentLength="132" Rotate="rotatePanel_Rotate" Height="96" VerticalAlignment="Bottom" Margin="0,0,0,-10" Offset="-11">
     		<local:ClipThumb ImageUrl="/Tina;Component/Assets/playerBg.jpg" Title="Ключик" Width="132">
     			<local:ClipThumb.RenderTransform>
     				<ScaleTransform/>
@@ -140,6 +142,7 @@
     			</local:ClipThumb.RenderTransform>
     		</local:ClipThumb>
     	</local:RotatePanel>
+    	<Grid x:Name="rotatorGrid" MouseMove="rotatorGrid_MouseMove" MouseLeave="rotatorGrid_MouseLeave" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Height="96" Margin="0,0,0,-10"/>
         
     </Grid>
 </UserControl>

@@ -30,12 +30,12 @@ namespace Tina
 
         private static void OnItemsChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
-            
+
         }
 
         void GoToItem(int to)
-        { 
-            
+        {
+
         }
 
         void CreateStoryboards()
@@ -84,8 +84,10 @@ namespace Tina
 
         private void UserControl_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
-        	
+            //rotateRight.Seek(GetSoryboardOffset());
         }
+
+        double offset;
 
         private void rotatePanel_Rotate(object sender, Tina.RotatePanelItemChangedEventArgs e)
         {
@@ -96,7 +98,7 @@ namespace Tina
                 shrinkCurrent.Stop();
                 Storyboard.SetTarget(shrinkX, e.FromControl);
                 Storyboard.SetTarget(shrinkY, e.FromControl);
-                e.FromControl.SetValue(Canvas.ZIndexProperty, 0);
+                //e.FromControl.SetValue(Canvas.ZIndexProperty, 0);
                 shrinkCurrent.Begin();
                 (e.FromControl as ClipThumb).HideCaption();
             }
@@ -107,18 +109,92 @@ namespace Tina
             Storyboard.SetTarget(zoomX, e.ToControl);
             Storyboard.SetTarget(zoomY, e.ToControl);
             zoomCurrent.Begin();
-            e.ToControl.SetValue(Canvas.ZIndexProperty, 999);
+            zoomCurrent.Completed += delegate(object s, EventArgs ev) { e.ToControl.SetValue(Canvas.ZIndexProperty, 1001); };
+            if (stopOnNext)
+            {
+                rotateRight.Stop();
+                rotateLeft.Stop();
+            }
             (e.ToControl as ClipThumb).ShowCaption();
+        }
+
+        private TimeSpan GetSoryboardOffset()
+        {
+            double offset = 360.0 + this.offset;
+            int miliseconds = (int)Math.Floor(TimeSpan.FromSeconds(40).TotalMilliseconds * offset / 720.0);
+            TimeSpan result = TimeSpan.FromMilliseconds(miliseconds);
+            return result;
+        }
+
+        bool rotatingLeft = false;
+        bool rotatingRight = false;
+
+        private double EvaluateRatio(double relativePosition)
+        {
+            double result = 1.0;
+            if (relativePosition < 0.3)
+                result = 0.01;
+            else if (relativePosition < 0.53)
+                result = 1.0;
+            else if (relativePosition < 0.80)
+                result = 1.5;
+            else
+                result = 2.0;
+            return result;
         }
 
         private void rotatorGrid_MouseMove(object sender, MouseEventArgs e)
         {
-            
+            stopOnNext = false;
+            double pos = e.GetPosition(rotatePanel).X;
+            double width = rotatePanel.ActualWidth;
+            bool left = pos < width / 2;
+            double relativePos = Math.Abs(width / 2 - pos) /(width / 2) ;
+            double ratio = EvaluateRatio(relativePos);
+            if (left)
+            {
+                if (!rotatingLeft)
+                {
+                    rotatingLeft = true;
+                    if (rotatingRight)
+                    {
+                        offset = rotatePanel.Offset;
+                        rotateRight.Stop();
+                        rotatingRight = false;
+                    }
+                    rotatingLeft = true;
+                    rotateLeft.Begin();
+                    rotateLeft.Seek(GetSoryboardOffset());
+                }
+                    rotateLeft.SpeedRatio = ratio;
+                    //rotateLeft.Seek(GetSoryboardOffset());
+            }
+            else
+            {
+                if (!rotatingRight)
+                {
+                    rotatingRight = true;
+                    if (rotatingLeft)
+                    {
+                        offset = rotatePanel.Offset;
+                        rotateLeft.Stop();
+                        rotatingLeft = false;
+                    }
+                    rotatingRight = true;
+                    rotateRight.Begin();
+                    rotateRight.Seek(GetSoryboardOffset());
+                }
+                rotateRight.SpeedRatio = ratio;
+                //rotateLeft.Seek(GetSoryboardOffset());
+            }
+
         }
+
+        bool stopOnNext = false;
 
         private void rotatorGrid_MouseLeave(object sender, MouseEventArgs e)
         {
-
+            stopOnNext = true;
         }
     }
 }

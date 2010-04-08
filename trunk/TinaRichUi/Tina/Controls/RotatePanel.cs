@@ -57,6 +57,9 @@ namespace Tina
 
                 int currentItemIndex = (int)a;
 
+                if (currentItemIndex < 0)
+                    currentItemIndex = itemsCount + currentItemIndex - 1;
+
                 if (Math.Floor(a) < a)
                     currentItemIndex++;
 
@@ -175,10 +178,10 @@ namespace Tina
                 double num9 = Math.Abs((double)(180.0 - currentAngle)) / 180.0;
                 double num10 = 10.0 * (1.0 - num9);
                 double num11 = num9 + 0.5;
-                DistanceEffect effect = new DistanceEffect();
-                effect.Distance = num9;
-                effect.MinOpacity = 0.25;
-                element.Effect = effect;
+               // DistanceEffect effect = new DistanceEffect();
+              //  effect.Distance = num9;
+              //  effect.MinOpacity = 0.25;
+              //  element.Effect = effect;
                 element.Arrange(finalRect);
                 currentIndex++;
             }

@@ -1,10 +1,6 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<Zamov.Models.Seo>>" %>
 <%@ Import Namespace="Zamov.Helpers" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Index
-</asp:Content>
-
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <% using(Html.BeginForm()){ %>
     <fieldset>
@@ -12,12 +8,19 @@
             <%= Html.Hidden("lang", ViewData["lng"]) %>
         </p>
         <p>
+            Url:<br />
             <%= Html.TextBox("url") %>
         </p>
         <p>
+            Title:<br />
+            <%= Html.TextArea("title")%>
+        </p>
+        <p>
+            Keywords:<br />
             <%= Html.TextBox("keywords") %>
         </p>
         <p>
+            Description:<br />
             <%= Html.TextArea("description")%>
         </p>
         <input type="submit" value="<%= Html.ResourceString("Add") %>" />
@@ -36,6 +39,10 @@
             <p>
                 Url:<br />
                 <%= Html.TextBox("url", item.Url) %>
+            </p>
+            <p>
+                Title:<br />
+                <%= Html.TextArea("title")%>
             </p>
             <p>
                 Keywords:<br />

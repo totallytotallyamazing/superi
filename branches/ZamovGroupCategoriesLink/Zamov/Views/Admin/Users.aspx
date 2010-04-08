@@ -3,9 +3,6 @@
 <%@ Import Namespace="Microsoft.Web.Mvc" %>
 <%@ Import Namespace="Zamov.Controllers" %>
 <%@ Import Namespace="Zamov.Models" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	<%= Html.ResourceString("Users") %>
-</asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 

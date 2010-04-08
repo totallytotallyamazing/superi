@@ -1,11 +1,6 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<List<NewsPresentation>>" %>
 <%@ Import Namespace="Zamov.Helpers" %>
 <%@ Import Namespace="Zamov.Models" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-    <%= Html.ResourceString("News") %>
-</asp:Content>
-
-
 <asp:Content ID="Content3" ContentPlaceHolderID="includes" runat="server">
     <%= Html.RegisterJS("jquery.easing.js")%>
     <%= Html.RegisterJS("jquery.fancybox.js")%>

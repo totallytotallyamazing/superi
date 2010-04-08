@@ -2,9 +2,7 @@
 
 <%@ Import Namespace="Zamov.Helpers" %>
 <%@ Import Namespace="Zamov.Controllers" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-    <%= Html.ResourceString("Dealers") %>
-</asp:Content>
+
 <asp:Content ContentPlaceHolderID="includes" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">

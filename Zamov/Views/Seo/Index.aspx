@@ -42,7 +42,7 @@
             </p>
             <p>
                 Title:<br />
-                <%= Html.TextArea("title")%>
+                <%= Html.TextArea("title", item.Title)%>
             </p>
             <p>
                 Keywords:<br />

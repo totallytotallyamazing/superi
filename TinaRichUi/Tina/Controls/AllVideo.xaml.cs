@@ -84,7 +84,7 @@ namespace Tina
 
         private void UserControl_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
-        	Storyboard1.Begin();
+        	
         }
 
         private void rotatePanel_Rotate(object sender, Tina.RotatePanelItemChangedEventArgs e)
@@ -109,6 +109,16 @@ namespace Tina
             zoomCurrent.Begin();
             e.ToControl.SetValue(Canvas.ZIndexProperty, 999);
             (e.ToControl as ClipThumb).ShowCaption();
+        }
+
+        private void rotatorGrid_MouseMove(object sender, MouseEventArgs e)
+        {
+            
+        }
+
+        private void rotatorGrid_MouseLeave(object sender, MouseEventArgs e)
+        {
+
         }
     }
 }

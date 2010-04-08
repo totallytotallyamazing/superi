@@ -144,10 +144,21 @@ namespace Tina
             double incircle = EvaluateRadius(SegmentLength, itemsCount);
             double zRadius = -(incircle + (10 * this.Spacing));
             double absoluteOffset = Math.Abs(this.Offset);
+            int offsetDirection = (this.Offset < 0) ? -1 : 1;
+            double offsetAdjusted = this.Offset;
+            if (this.Offset > 360.0)
+            {
+                offsetAdjusted = this.Offset - 360.0;
+            }
+            else if (this.Offset < -360.0)
+            {
+                offsetAdjusted = this.Offset + 360.0;
+            }
+            
             if (absoluteOffset > 360.0)
             {
                 int num5 = ((int)absoluteOffset) / 360;
-                absoluteOffset = this.Offset - ((num5 - 1) * 360);
+                absoluteOffset = offsetAdjusted - ((num5 - 1) * 360);
             }
             foreach (UIElement element in base.Children)
             {
@@ -156,11 +167,7 @@ namespace Tina
                 Size size = new Size(element.DesiredSize.Width, element.DesiredSize.Height);
                 Rect finalRect = new Rect(new Point(x, y), size);
                 PlaneProjection projection = new PlaneProjection();
-                double currentAngle = (currentIndex * itemAngle) + absoluteOffset;
-                if (currentAngle > 360.0)
-                {
-                    currentAngle -= 360.0;
-                }
+                double currentAngle = (currentIndex * itemAngle) + absoluteOffset * offsetDirection;
                 projection.CenterOfRotationZ = zRadius;
                 projection.CenterOfRotationX = 0.5;
                 projection.RotationY = currentAngle;

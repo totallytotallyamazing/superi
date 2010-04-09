@@ -7,23 +7,9 @@
 	mc:Ignorable="d"
 	x:Class="Tina.AllVideo"
 	d:DesignWidth="640" d:DesignHeight="480" Loaded="UserControl_Loaded"  >
-	<UserControl.Resources>
-        <Storyboard x:Name="rotateLeft">
-            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" RepeatBehavior="Forever" Storyboard.TargetName="rotatePanel" Storyboard.TargetProperty="(RotatePanel.Offset)">
-                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="360"/>
-                <EasingDoubleKeyFrame KeyTime="00:00:40" Value="-360"/>
-            </DoubleAnimationUsingKeyFrames>
-        </Storyboard>
-        <Storyboard x:Name="rotateRight">
-            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" RepeatBehavior="Forever" Storyboard.TargetName="rotatePanel" Storyboard.TargetProperty="(RotatePanel.Offset)">
-                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="-360"/>
-                <EasingDoubleKeyFrame KeyTime="00:00:40" Value="360"/>
-            </DoubleAnimationUsingKeyFrames>
-        </Storyboard>
-    </UserControl.Resources>
 
     <Grid x:Name="LayoutRoot">
-    	<Grid Height="80" VerticalAlignment="Bottom">
+    	<Grid Height="80" VerticalAlignment="Bottom" Margin="0,0,0,32">
     		<Rectangle HorizontalAlignment="Stretch">
     			<Rectangle.Fill>
     				<LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
@@ -59,7 +45,7 @@
 				<Grid x:Name="RightScrollOverlay" Grid.Column="1"/>
 			</Grid>
     	</Grid>
-    	<local:RotatePanel x:Name="rotatePanel" Spacing="5" SegmentLength="132" Rotate="rotatePanel_Rotate" Height="96" VerticalAlignment="Bottom" Margin="0,0,0,-10" Offset="0">
+    	<local:RotatePanel x:Name="rotatePanel" Spacing="5" SegmentLength="132" Rotate="rotatePanel_Rotate" Height="96" VerticalAlignment="Bottom" Margin="0,0,0,23" Offset="0">
     		<local:ClipThumb ImageUrl="/Tina;Component/Assets/playerBg.jpg" Title="Ключик1" Width="132">
     			<local:ClipThumb.RenderTransform>
     				<ScaleTransform/>
@@ -146,8 +132,6 @@
     			</local:ClipThumb.RenderTransform>
     		</local:ClipThumb>
     	</local:RotatePanel>
-        <Rectangle MouseMove="rotatorGrid_MouseMove" MouseLeave="rotatorGrid_MouseLeave" Canvas.ZIndex="100" Margin="0,0,0,-10" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Height="96" Fill="#FFE02525" Opacity="0.5">
-            
-        </Rectangle>
+    	<Slider HorizontalAlignment="Stretch" Margin="0,0,0,7" ValueChanged="Slider_ValueChanged" VerticalAlignment="Bottom" Minimum="-360" Maximum="360"/>
     </Grid>
 </UserControl>

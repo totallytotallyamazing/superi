@@ -2,12 +2,12 @@
 <div id="leftBoxSwed">
     <div id="swedHeader">
         <p>
-            NOTE
+            FOR INFORMATION
         </p>
     </div>
     <div id="swedContent">
         <h4>
-            Smoking?
+            Smoke?
         </h4>
         <p>
             <img src="/Content/img/Sigara.jpg" alt="Smoking?" />
@@ -15,7 +15,7 @@
     </div>
     <div id="swedFooter">
         <p>
-            Read <a href="/Content/Conditions">the terms of service.</a>
+            Get to know our <a href="/Content/Conditions">terms and conditions.</a>
         </p>
     </div>
 </div>

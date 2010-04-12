@@ -246,7 +246,6 @@
     <Content Include="Content\LocaleDependent\en-US\img\terms.png" />
     <Content Include="Content\LocaleDependent\en-US\Request.css" />
     <Content Include="Content\LocaleDependent\en-US\Site.css" />
-    <Content Include="Content\LocaleDependent\ru-RU\img\cars.png" />
     <Content Include="Content\LocaleDependent\ru-RU\img\contact.png" />
     <Content Include="Content\LocaleDependent\ru-RU\img\done.jpg" />
     <Content Include="Content\LocaleDependent\ru-RU\img\find.jpg" />
@@ -702,6 +701,7 @@
     <Content Include="Content\LocaleDependent\en-US\img\doneFinal.jpg" />
     <Content Include="Content\LocaleDependent\en-US\img\logo.jpg" />
     <Content Include="Content\LocaleDependent\en-US\img\startOver.jpg" />
+    <Content Include="Content\LocaleDependent\ru-RU\img\cars.png" />
     <Content Include="Content\LocaleDependent\ru-RU\img\doneFinal.jpg" />
     <Content Include="Content\LocaleDependent\ru-RU\img\logo.jpg" />
     <Content Include="Content\LocaleDependent\ru-RU\img\startOver.jpg" />

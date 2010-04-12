@@ -133,10 +133,10 @@
     <value>Средний</value>
   </data>
   <data name="Minivan" xml:space="preserve">
-    <value>Минивены</value>
+    <value>Минивэны</value>
   </data>
   <data name="Multivan" xml:space="preserve">
-    <value>Мультивены</value>
+    <value>Мультивэны</value>
   </data>
   <data name="Standard" xml:space="preserve">
     <value>Стандартный</value>
@@ -211,7 +211,7 @@
     <value>долларах</value>
   </data>
   <data name="EnterCityName" xml:space="preserve">
-    <value>название города</value>
+    <value>введите название города</value>
   </data>
   <data name="EUR" xml:space="preserve">
     <value>евро</value>
@@ -229,7 +229,7 @@
     <value>Например, места, куда планируете заезжать по пути</value>
   </data>
   <data name="NumberOfCars" xml:space="preserve">
-    <value>Количество автомобилей</value>
+    <value>Кол-во машин</value>
   </data>
   <data name="Or" xml:space="preserve">
     <value>Или</value>
@@ -244,7 +244,7 @@
     <value>руб.</value>
   </data>
   <data name="StartingPoint" xml:space="preserve">
-    <value>Откуда</value>
+    <value>Откуда едем</value>
   </data>
   <data name="UAH" xml:space="preserve">
     <value>грн</value>
@@ -274,10 +274,10 @@
     <value>Просчет для среднего класса</value>
   </data>
   <data name="ClassMinivanCalculation" xml:space="preserve">
-    <value>Просчет для минивенов</value>
+    <value>Просчет для минивэнов</value>
   </data>
   <data name="ClassMultivanCalculation" xml:space="preserve">
-    <value>Просчет для мультивенов</value>
+    <value>Просчет для мультивэнов</value>
   </data>
   <data name="ClassStandardCalculation" xml:space="preserve">
     <value>Просчет для стандартного класса</value>
@@ -289,13 +289,13 @@
     <value>Средний класс</value>
   </data>
   <data name="MinivanClass" xml:space="preserve">
-    <value>Минивены</value>
+    <value>Минивэны</value>
   </data>
   <data name="MultivanClass" xml:space="preserve">
-    <value>Мультивены</value>
+    <value>Мультивэны</value>
   </data>
   <data name="ChooseTheCar" xml:space="preserve">
-    <value>Выбрать автомобиль</value>
+    <value>Выберите автомобиль</value>
   </data>
   <data name="StandardClass" xml:space="preserve">
     <value>Стандартный класс</value>
@@ -310,7 +310,7 @@
     <value>Контактный телефон</value>
   </data>
   <data name="Email" xml:space="preserve">
-    <value>Эл. почта</value>
+    <value>Электронная почта</value>
   </data>
   <data name="YourName" xml:space="preserve">
     <value>Имя, фамилия</value>

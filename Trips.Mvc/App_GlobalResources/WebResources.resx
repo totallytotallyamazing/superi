@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CarSearch" xml:space="preserve">
-    <value>Car Search</value>
+    <value>Find a car</value>
   </data>
   <data name="Catalogue" xml:space="preserve">
     <value>Catalogue</value>
@@ -163,13 +163,13 @@
     <value>M.brand</value>
   </data>
   <data name="Phones" xml:space="preserve">
-    <value>Our Phones</value>
+    <value>Please, call:</value>
   </data>
   <data name="Request" xml:space="preserve">
-    <value>Order</value>
+    <value>Ordering</value>
   </data>
   <data name="OurCatalogue" xml:space="preserve">
-    <value>Our catalogue</value>
+    <value>Our cars</value>
   </data>
   <data name="AddCar" xml:space="preserve">
     <value>Add car</value>
@@ -253,7 +253,7 @@
     <value>usd</value>
   </data>
   <data name="WhereToGo" xml:space="preserve">
-    <value>Where to go</value>
+    <value>Where to</value>
   </data>
   <data name="AllNews" xml:space="preserve">
     <value>All news</value>

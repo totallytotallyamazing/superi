@@ -13,6 +13,7 @@ namespace Trips.Mvc.Controllers
 {
     public class CatalogueController : Controller
     {
+        [OutputCache(Duration=1, NoStore = true, VaryByParam="*")]
         public ActionResult Index(int? classId, int? brandId, int? pageNumber)
         {
             
@@ -57,6 +58,7 @@ namespace Trips.Mvc.Controllers
             }
         }
 
+        [OutputCache(Duration = 1, NoStore = true, VaryByParam = "*")]
         public ActionResult CarSearch(string searchField)
         {
             Dictionary<KeyValuePair<string, long>, List<KeyValuePair<string, long>>> brandClasses = new Dictionary<KeyValuePair<string, long>, List<KeyValuePair<string, long>>>();
@@ -158,6 +160,7 @@ namespace Trips.Mvc.Controllers
             return View();
         }
 
+        [OutputCache(Duration = 1, NoStore = true, VaryByParam = "*")]
         public ActionResult SearchSuggestion(string term)
         {
             using(CarAdStorage  context = new CarAdStorage())

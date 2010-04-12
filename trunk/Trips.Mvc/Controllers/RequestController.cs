@@ -14,6 +14,7 @@ namespace Trips.Mvc.Controllers
 {
     public class RequestController : Controller
     {
+        [OutputCache(Duration = 1, NoStore = true, VaryByParam = "*")]
         public ActionResult Index()
         {
             string script = "<script type=\"text/javascript\">var euroRate = {0}; var dollarRate = {1}; var rubleRate = {2};</script>";

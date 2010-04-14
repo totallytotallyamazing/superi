@@ -84,8 +84,6 @@
     </div>
     <%}
     %>
-    <div style="clear: both;">
-    </div>
     <div class="categoriesHeader" style="margin-top:20px;">
         <div class="categoriesHeaderTitle">
             <%= ViewData["categoryDescriptionTitle"] %>
@@ -94,9 +92,11 @@
             <%= ViewData["categoryDescription"] %>
         </div>
     </div>   
+    <div style="clear:both;"></div>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="includes" runat="server">
     <%= Html.RegisterCss("~/Content/shadows.css")%>
+    <%= Html.RegisterCss("~/Content/Dealers.css")%>
     <%= Html.RegisterJS("dropshadow.js")%>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="leftMenu" runat="server">

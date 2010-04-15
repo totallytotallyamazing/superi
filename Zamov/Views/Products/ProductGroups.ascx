@@ -78,4 +78,15 @@
     </div>
     <div class="menuFooter">
     </div>
+    <script type="text/javascript">
+        $(function() {
+            window.setTimeout(expandCurrent, 1000);
+
+        })
+
+        function expandCurrent() {
+            $("a.active").parent("div").prev("div.hitarea").click();
+            $("a.active").parents("ul").prevAll("div.hitarea").click();
+        }
+    </script>
 </div>

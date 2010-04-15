@@ -68,7 +68,7 @@ namespace Zamov.Helpers
                 sb.AppendFormat(
                     @"<script type='text/javascript'>
                     $(document).ready(function() {{
-                        $('#{0}').treeview({{ animated: 'fast' }});
+                        $('#{0}').treeview({{ animated: 'fast', collapsed:true }});
                     }});
                 </script>", treeId);
             }

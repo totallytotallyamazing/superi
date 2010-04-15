@@ -16,7 +16,7 @@ namespace Zamov.Controllers
 
         private const int MaxTopProductsNumber = 5;
         //TODO: тут пиздец с быстродейтвием
-        public ActionResult Index(string dealerId, int categoryId, int? groupId, SortFieldNames? sortField, SortDirection? sortOrder)
+        public ActionResult Index(string dealerId, int categoryId, int? groupId, SortFieldNames? sortField, SortDirection? sortOrder, int? productId)
         {
             HttpContext.Items["categoryId"] = categoryId;
 

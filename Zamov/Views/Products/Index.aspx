@@ -91,6 +91,18 @@
 
         int categoryId = (int)ViewData["categoryId"];
        
+        
+        Func<string, string> processDescription = s=>
+            {
+                string result = s;
+                if(s.Length > 240)
+                {
+                    result = s.Substring(0, 240);
+                    result = result.Substring(0, result.LastIndexOf(' '));
+                    result += "...";
+                }
+                return result;
+            };
     %>
     <%= Html.ResourceActionLink("PickAnotherDealer", "Index", "Dealers", new { id = ViewContext.HttpContext.Items["categoryId"] }, null)%><br />
     <% Html.RenderPartial("TopProducts"); %>
@@ -170,7 +182,7 @@
                 </a>
                 <div class="productDescription <%= ((bool)ViewData["displayGroupImages"]).ToString() %>">
                     <%if (item.Descriptions.ContainsKey(SystemSettings.CurrentLanguage)) %>
-                        <%= item.Descriptions[SystemSettings.CurrentLanguage] %>
+                        <%= processDescription(item.Descriptions[SystemSettings.CurrentLanguage]) %>
                 </div>
             </td>
             <td align="center">

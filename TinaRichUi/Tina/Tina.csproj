@@ -59,6 +59,10 @@
       <HintPath>C:\Program Files\Microsoft Expression\Encoder 3\BlendMediaPlayer\MediaPlayer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Expression.Interactions, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+    <Reference Include="MioPlayer_Beta_2, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Downloads\B6\MioPlayer_Beta_2.dll</HintPath>
+    </Reference>
     <Reference Include="PlugInMssCtrl.dll">
       <HintPath>..\..\..\..\..\Program Files\Microsoft Expression\Encoder 3\BlendMediaPlayer\PlugInMssCtrl.dll</HintPath>
     </Reference>
@@ -85,6 +89,10 @@
     <Reference Include="System.Xml.Linq, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\Program Files\Microsoft SDKs\Silverlight\v2.0\Libraries\Client\System.Xml.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="VideoPlayer, Version=1.0.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\SRC\W2\Sl\Player_codeplex\VideoPlayer\ClientBin\VideoPlayer.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -299,6 +307,21 @@
     <None Include="Service References\RichServiceReference\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Assets\bannerRuTube.jpg" />
+    <Resource Include="Assets\bannerUkrNet.jpg" />
+    <Resource Include="Assets\bannerYouTube.jpg" />
+    <Resource Include="Assets\homeBackground.jpg" />
+    <Resource Include="Assets\homeSTina.jpg" />
+    <Resource Include="Assets\playerRes\pClose.png" />
+    <Resource Include="Assets\playerRes\pPause.png" />
+    <Resource Include="Assets\playerRes\pPeremotka.png" />
+    <Resource Include="Assets\playerRes\pPlayBig.png" />
+    <Resource Include="Assets\playerRes\pPlayMini.png" />
+    <Resource Include="Assets\playerRes\pPolzun.png" />
+    <Resource Include="Assets\playerRes\pPolzunPosle.png" />
+    <Resource Include="Assets\playerRes\pUmenshit.png" />
+    <Resource Include="Assets\playerRes\pUvelichit.png" />
+    <Resource Include="Assets\signature.jpg" />
     <Resource Include="Distance.ps">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>

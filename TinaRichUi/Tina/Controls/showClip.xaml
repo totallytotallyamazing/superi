@@ -83,7 +83,7 @@
 
 	<Grid x:Name="LayoutRoot">
 		<MediaElement x:Name="mediaElement" HorizontalAlignment="Left" VerticalAlignment="Top" MediaOpened="mediaElement_MediaOpened" d:LayoutOverrides="GridBox" Canvas.ZIndex="999" d:IsHidden="True"/>
-		<Grid x:Name="grid" HorizontalAlignment="Left" VerticalAlignment="Top" Opacity="0" MouseEnter="mediaElement_MouseEnter" MouseLeave="mediaElement_MouseLeave" Canvas.ZIndex="999">
+		<Grid x:Name="grid" VerticalAlignment="Bottom" Opacity="0" MouseEnter="mediaElement_MouseEnter" MouseLeave="mediaElement_MouseLeave" Canvas.ZIndex="999">
 			<Rectangle x:Name="rectangle" Fill="White" HorizontalAlignment="Left" VerticalAlignment="Top" Opacity="0.01"/>
 			<Button x:Name="play" Click="play_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Width="75" Content="Button" Visibility="Collapsed"/>
 			<Button x:Name="close" Click="close_Click" HorizontalAlignment="Right" VerticalAlignment="Top" Width="75" Content="Button"/>

@@ -13,16 +13,24 @@ using System.Windows.Shapes;
 
 namespace Tina
 {
-    public partial class Home : Page
+  public partial class Home : Page
+  {
+    public Home()
     {
-        public Home()
-        {
-            InitializeComponent();
-        }
-
-        // Executes when the user navigates to this page.
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-        }
+      InitializeComponent();
+      this.allVideo.rotatePanel.Rotate += new RotatePanelItemChangedDelegate(rotatePanel_Rotate);
     }
+
+    void rotatePanel_Rotate(object sender, RotatePanelItemChangedEventArgs e)
+    {     
+      player.SetSource("http://tinakarol.ua/Clips/011.wmv");
+      player.Play();     
+    }
+
+    // Executes when the user navigates to this page.
+    protected override void OnNavigatedTo(NavigationEventArgs e)
+    {
+    }
+  
+  }
 }

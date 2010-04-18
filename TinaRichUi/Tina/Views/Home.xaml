@@ -4,9 +4,11 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
 	xmlns:local="clr-namespace:Tina"
-    mc:Ignorable="d" xmlns:ExpressionMediaPlayer="clr-namespace:ExpressionMediaPlayer;assembly=MediaPlayer" xmlns:System="clr-namespace:System;assembly=mscorlib" xmlns:layoutToolkit="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Layout.Toolkit" xmlns:layoutPrimitivesToolkit="clr-namespace:System.Windows.Controls.Primitives;assembly=System.Windows.Controls.Layout.Toolkit" xmlns:controlsToolkit="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Toolkit" x:Class="Tina.Home" 
+    xmlns:pl="clr-namespace:VideoPlayer;assembly=VideoPlayer"
+    xmlns:mono="clr-namespace:MioPlayer_Beta_2;assembly=MioPlayer_Beta_2"
+    mc:Ignorable="d" xmlns:ExpressionMediaPlayer="clr-namespace:ExpressionMediaPlayer;assembly=MediaPlayer" xmlns:System="clr-namespace:System;assembly=mscorlib" xmlns:layoutToolkit="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Layout.Toolkit" xmlns:layoutPrimitivesToolkit="clr-namespace:System.Windows.Controls.Primitives;assembly=System.Windows.Controls.Layout.Toolkit" xmlns:controlsToolkit="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Toolkit" xmlns:Tina_Controls="clr-namespace:Tina.Controls" x:Class="Tina.Home" 
     d:DesignWidth="1200"
-    Title="Home">
+    Title="Home" Background="#FFA3B0B8">
 
     <navigation:Page.Resources>
         <Style x:Key="SensitiveSliderStyle" TargetType="Slider">
@@ -862,30 +864,105 @@
         </Style>
     </navigation:Page.Resources>
 
-    <Grid x:Name="LayoutRoot">
-		<StackPanel Orientation="Vertical" d:LayoutOverrides="Height">
-			<Grid Height="61"/>
-			<Grid VerticalAlignment="Top" Margin="0,-61,0,0" Width="992">
-				<local:AllVideo Margin="0,0,41,0" HorizontalAlignment="Right" Width="634" Height="200"></local:AllVideo>
-				<StackPanel Margin="307,387,8,0" Orientation="Vertical" d:LayoutOverrides="Height">
-					<StackPanel Margin="0,30,26,0" Orientation="Vertical">
-						<Grid Height="42">
+    <Grid x:Name="LayoutRoot" Width="1000" Height="1156">
+    	<Grid.Background>
+    		<ImageBrush ImageSource="/Tina;Component/Assets/homeBackground.jpg"/>
+    	</Grid.Background>
+		<Grid x:Name="rightSideGrid"  Width="535" Margin="0,0,15,0" HorizontalAlignment="Right">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100" />
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="400" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Border x:Name="borderForTopGrid" BorderBrush="#7C586165" BorderThickness="5" Grid.Row="0">
+            	<Border.Effect>
+            		<DropShadowEffect Color="#FF787070"/>
+            	</Border.Effect>
+            	<Grid  x:Name="iconsGrid"
+            		Height="95"
+                   Margin="0" VerticalAlignment="Top">
+            		<Grid.RowDefinitions>
+            			<RowDefinition Height="1.3*"/>
+            			<RowDefinition Height="3*"/>
+            		</Grid.RowDefinitions>
+            		<TextBox x:Name="musicTextBox" Margin="0" Text="МУЗЫКА" TextWrapping="Wrap" FontSize="18.667" FontWeight="Bold" BorderThickness="0" Foreground="#FF525E65">
+            			<TextBox.Background>
+            				<LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
+            					<GradientStop Color="#FF6A7883" Offset="0"/>
+					<GradientStop Color="#FF626F75" Offset="1"/>
+					<GradientStop Color="#FF4E5D64" Offset="0.932"/>
+					<GradientStop Color="#FF525E65" Offset="0.846"/>
+					<GradientStop Color="#FF546167" Offset="0.763"/>
+					<GradientStop Color="#FF52656C" Offset="0.675"/>
+					<GradientStop Color="#FF59676E" Offset="0.585"/>
+					<GradientStop Color="#FF5F696F" Offset="0.503"/>
+					<GradientStop Color="#FF637075" Offset="0.414"/>
+					<GradientStop Color="#FF697A82" Offset="0.326"/>
+					<GradientStop Color="#FF69767E" Offset="0.24"/>
+					<GradientStop Color="#FF66777E" Offset="0.153"/>
+					<GradientStop Color="#FF6D787E" Offset="0.066"/>
+					<GradientStop Color="#FF697881" Offset="0.288"/>
+					<GradientStop Color="#FF65767E" Offset="0.196"/>
+					<GradientStop Color="#FF6A7887" Offset="0.104"/>
+            				</LinearGradientBrush>
+            			</TextBox.Background>
+            		</TextBox>
+            	</Grid>
+            </Border>
+            <Border  x:Name="border4Player" BorderBrush="#FFCBCBCB" BorderThickness="4" Grid.Row="2"> 
+            	<Border.Effect>
+            		<DropShadowEffect Color="#FF978C8C"/>
+            	</Border.Effect>
+            	<local:showClip x:Name="player" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            </Border>
+            <Grid x:Name="playerAndContentGrid" VerticalAlignment="Top" Margin="0" Grid.Row="3">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="100"/>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition/>
+				</Grid.RowDefinitions>
+				<local:AllVideo  x:Name="allVideo" Margin="0" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="100" Background="#FFD8D5D5" />
+				<Grid Margin="0" Grid.Row="1">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="235"/>
+						<ColumnDefinition Width="300"/>
+					</Grid.ColumnDefinitions>
+					<StackPanel x:Name="leftStack" Margin="0,0,5,0">
+						<TextBlock FontFamily="Times New Roman" FontSize="44" Foreground="White" Margin="0,0,10,0" Height="51" Text="ГАЛЕРЕЯ"/>
+						<Border Margin="0" BorderBrush="#FF7D888E" BorderThickness="5" Height="305">
+							<Image Margin="0" Source="../Assets/homeSTina.jpg"/>
+						</Border>
+						<Border Height="70" Margin="0" BorderBrush="#FF7D888E" BorderThickness="5">
+							<Image Margin="0" Source="/Tina;Component/Assets/signature.jpg"/>
+						</Border>
+						<Grid>
+							<TextBox HorizontalAlignment="Center" Margin="0" VerticalAlignment="Bottom" Text=" ОФИЦИАЛЬНЫЕ КАНАЛЫ" TextWrapping="Wrap" Background="{x:Null}" FontWeight="Bold" Foreground="White" BorderThickness="0"/>
+						</Grid>
+						<StackPanel Orientation="Horizontal">
+							<HyperlinkButton x:Name="hyperYouTube">
+								<Image Stretch="Fill" Source="/Tina;Component/Assets/bannerYouTube.jpg"/>
+							</HyperlinkButton>
+							<HyperlinkButton x:Name="hyperRuTube">
+								<Image Stretch="Fill" Source="/Tina;Component/Assets/bannerRuTube.jpg"/>
+							</HyperlinkButton>
+							<HyperlinkButton x:Name="hyperUkr" NavigateUri="http://ukr.net">
+								<Image Source="/Tina;Component/Assets/bannerUkrNet.jpg" Stretch="Fill"/>
+							</HyperlinkButton>
+						</StackPanel>
+					</StackPanel>
+					<StackPanel x:Name="rightStack" Margin="5,0,0,0" Orientation="Vertical" VerticalAlignment="Top" Grid.Column="1">
+						<Grid>
 							<Border BorderThickness="5,5,5,0" BorderBrush="#7C586165">
 								<Rectangle Fill="White" Opacity="0.31"/>
 							</Border>
-							<TextBlock FontFamily="Times New Roman" FontSize="44" Foreground="White" HorizontalAlignment="Left" Margin="10,0,0,0"><Run Text="НОВОСТИ"/></TextBlock>
+							<TextBlock FontFamily="Times New Roman" FontSize="44" Foreground="White" Margin="10,0,0,0"><Run Text="НОВОСТИ"/></TextBlock>
 						</Grid>
 						<layoutToolkit:Accordion HorizontalAlignment="Stretch" BorderThickness="5,0,5,5" BorderBrush="#7C586165">
 							<layoutToolkit:AccordionItem Style="{StaticResource AccordionItemStyle}" Header="С новым годом" Background="#FF889FA8" BorderBrush="#00ECECEC" IsSelected="True" >
 								<Grid Margin="0" Width="649">
 									<Rectangle Fill="#FFB8C5CA"/>
-									<TextBlock TextWrapping="Wrap">
-										"Я поздравляю всех с наступающим Новым Годом, годом Белого Тигра!<LineBreak /> 
-										И пусть он радует нас только своими белыми полосами в жизни, привнося в каждый дом любовь, счастье и благодать.<LineBreak /> 
-										Всегда пою только для вас, Ваша Тина Кароль."<LineBreak />
-										Сегодня на Официальном канале Тины Кароль на YouTube состоялась интернет-премьера видео на песню Radio Baby! <LineBreak />
-										Смотреть: http://www.youtube.com/TinaKarol
-									</TextBlock>
+									<TextBlock TextWrapping="Wrap"><Run Text="&quot;Я поздравляю всех с наступающим Новым Годом, годом Белого Тигра!"/><LineBreak /><Run Text=" И пусть он радует нас только своими белыми полосами в жизни, привнося в каждый дом любовь, счастье и благодать."/><LineBreak /><Run Text=" Всегда пою только для вас, Ваша Тина Кароль.&quot;"/><LineBreak /><Run Text=" Сегодня на Официальном канале Тины Кароль на YouTube состоялась интернет-премьера видео на песню Radio Baby! "/><LineBreak /><Run Text=" Смотреть: http://www.youtube.com/TinaKarol"/></TextBlock>
 								</Grid>
 							</layoutToolkit:AccordionItem>
 							<layoutToolkit:AccordionItem Style="{StaticResource AccordionItemStyle}" Header="С новым годом" Content="lasdjfaskldjfal;ksdj" Background="#FF889FA8" BorderThickness="0,2,0,0" BorderBrush="#FFCED7DA" />
@@ -893,10 +970,10 @@
 						<layoutToolkit:AccordionItem Header="sjkldfhas" Style="{StaticResource AccordionItemStyle}" Background="#FF889FA8" Visibility="Collapsed"/>
 						
 					</StackPanel>
-                </StackPanel>
+				</Grid>
 				
 			</Grid>
-		</StackPanel>
+		</Grid>
 	</Grid>
 
 </navigation:Page>

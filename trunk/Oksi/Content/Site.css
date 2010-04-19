@@ -28,7 +28,9 @@ img{border:0;}
 
 #content{background:#C6C6C6; padding:6px; width:auto;}
 
-#footer1{margin-top:5px; background:#5c5c5c; width:auto; height:82px;}
+#footer1{margin-top:5px; background:#5c5c5c; width:auto; padding-left:15px; height:67px;}
+.banners{ margin-right:195px; }
+.contacts{width:180px; float:right; padding-left:10px; color:white; padding-top:5px; height:62px; font-size:11px; background:#4A4A4A;}
 #footer2{margin-top:5px; width:auto; border:1px solid white; height:60px;}
 
 /*Gallery */

@@ -90,7 +90,15 @@
             <asp:ContentPlaceHolder ID="MainContent" runat="server" />
         </div>
         <div id="footer1">
-        </div>
+            <div class="contacts">
+                Контакты:<br />
+                044 000 00 00<br />
+                e-mail:
+            </div>
+            <div class="banners">
+                <img src="/Content/img/banners.jpg" />
+            </div>
+        </div>  
         <div id="footer2">
         </div>
     </div>

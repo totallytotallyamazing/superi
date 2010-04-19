@@ -54,3 +54,5 @@ div.mainCategory.long .categoryButton
 }
 
 .subCategories a{color:#687177;}
+
+.menuItem.selected a{font-weight:bold;}

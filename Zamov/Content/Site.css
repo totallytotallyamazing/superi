@@ -255,3 +255,5 @@ div.productDescription{padding-top:5px;}
 .categoriesHeader{width:100%; border-bottom:1px solid #b0b6b9; height:26px; float:left; }
 .categoriesHeaderTitle{height:21px; float:left; background:transparent url(img/categoryTitleBg.gif) repeat-x; color:White; padding:5px 30px 0; padding-top:5px;}
 .categoryDescription{margin-top:36px;}
+
+#footer{position:relative; top:60px; clear:both; text-align:center; padding-right:150px; padding-bottom:20px;}

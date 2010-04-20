@@ -113,9 +113,13 @@
             </div>
             <asp:ContentPlaceHolder ID="mainContent" runat="server">
             </asp:ContentPlaceHolder>
+            <div id="footer">   
+                © 2009 &mdash; 2010 Zamov
+                <asp:ContentPlaceHolder runat="server" ID="ContentBottom">
+                </asp:ContentPlaceHolder>
+            </div>
         </div>
-        <asp:ContentPlaceHolder runat="server" ID="ContentBottom">
-        </asp:ContentPlaceHolder>
+
     </div>
     <div id="rightBanner">
     </div>

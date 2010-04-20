@@ -914,6 +914,100 @@
         		</Ellipse>
         	</Grid>
         </ControlTemplate>
+        <ControlTemplate x:Key="ButtonMinimizeTemplate" TargetType="Button">
+        	<Grid>
+        		<VisualStateManager.VisualStateGroups>
+        			<VisualStateGroup x:Name="FocusStates">
+        				<VisualState x:Name="Focused"/>
+        				<VisualState x:Name="Unfocused"/>
+        			</VisualStateGroup>
+        			<VisualStateGroup x:Name="CommonStates">
+        				<VisualState x:Name="Normal"/>
+        				<VisualState x:Name="MouseOver">
+        					<Storyboard>
+        						<DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="ellipse" Storyboard.TargetProperty="(FrameworkElement.Width)">
+        							<EasingDoubleKeyFrame KeyTime="00:00:00" Value="36.5"/>
+        						</DoubleAnimationUsingKeyFrames>
+        						<DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="ellipse" Storyboard.TargetProperty="(FrameworkElement.Height)">
+        							<EasingDoubleKeyFrame KeyTime="00:00:00" Value="36.5"/>
+        						</DoubleAnimationUsingKeyFrames>
+        					</Storyboard>
+        				</VisualState>
+        				<VisualState x:Name="Pressed">
+        					<Storyboard>
+        						<DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="ellipse" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)">
+        							<EasingDoubleKeyFrame KeyTime="00:00:00" Value="1"/>
+        						</DoubleAnimationUsingKeyFrames>
+        						<DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="ellipse" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)">
+        							<EasingDoubleKeyFrame KeyTime="00:00:00" Value="1"/>
+        						</DoubleAnimationUsingKeyFrames>
+        					</Storyboard>
+        				</VisualState>
+        				<VisualState x:Name="Disabled"/>
+        			</VisualStateGroup>
+        		</VisualStateManager.VisualStateGroups>
+        		<Ellipse x:Name="ellipse" Width="36" Height="36" RenderTransformOrigin="0.5,0.5">
+        			<Ellipse.RenderTransform>
+        				<TransformGroup>
+        					<ScaleTransform/>
+        					<SkewTransform/>
+        					<RotateTransform/>
+        					<TranslateTransform/>
+        				</TransformGroup>
+        			</Ellipse.RenderTransform>
+        			<Ellipse.Fill>
+        				<ImageBrush ImageSource="/Tina;Component/Assets/playerRes/pUmenshit.png"/>
+        			</Ellipse.Fill>
+        		</Ellipse>
+        	</Grid>
+        </ControlTemplate>
+        <ControlTemplate x:Key="ButtonMaxizeTemplate" TargetType="Button">
+        	<Grid>
+        		<VisualStateManager.VisualStateGroups>
+        			<VisualStateGroup x:Name="FocusStates">
+        				<VisualState x:Name="Focused"/>
+        				<VisualState x:Name="Unfocused"/>
+        			</VisualStateGroup>
+        			<VisualStateGroup x:Name="CommonStates">
+        				<VisualState x:Name="Normal"/>
+        				<VisualState x:Name="MouseOver">
+        					<Storyboard>
+        						<DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="ellipse" Storyboard.TargetProperty="(FrameworkElement.Width)">
+        							<EasingDoubleKeyFrame KeyTime="00:00:00" Value="36.5"/>
+        						</DoubleAnimationUsingKeyFrames>
+        						<DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="ellipse" Storyboard.TargetProperty="(FrameworkElement.Height)">
+        							<EasingDoubleKeyFrame KeyTime="00:00:00" Value="36.5"/>
+        						</DoubleAnimationUsingKeyFrames>
+        					</Storyboard>
+        				</VisualState>
+        				<VisualState x:Name="Pressed">
+        					<Storyboard>
+        						<DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="ellipse" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)">
+        							<EasingDoubleKeyFrame KeyTime="00:00:00" Value="1"/>
+        						</DoubleAnimationUsingKeyFrames>
+        						<DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="ellipse" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)">
+        							<EasingDoubleKeyFrame KeyTime="00:00:00" Value="1"/>
+        						</DoubleAnimationUsingKeyFrames>
+        					</Storyboard>
+        				</VisualState>
+        				<VisualState x:Name="Disabled"/>
+        			</VisualStateGroup>
+        		</VisualStateManager.VisualStateGroups>
+        		<Ellipse x:Name="ellipse" d:LayoutOverrides="VerticalAlignment" Width="36" Height="36" RenderTransformOrigin="0.5,0.5">
+        			<Ellipse.RenderTransform>
+        				<TransformGroup>
+        					<ScaleTransform/>
+        					<SkewTransform/>
+        					<RotateTransform/>
+        					<TranslateTransform/>
+        				</TransformGroup>
+        			</Ellipse.RenderTransform>
+        			<Ellipse.Fill>
+        				<ImageBrush ImageSource="/Tina;Component/Assets/playerRes/pUvelichit.png"/>
+        			</Ellipse.Fill>
+        		</Ellipse>
+        	</Grid>
+        </ControlTemplate>
     </basics:ChildWindow.Resources>
 	<basics:ChildWindow.Style>
 		<StaticResource ResourceKey="ChildWindowStyle1"/>
@@ -924,8 +1018,8 @@
         		<Rectangle x:Name="rectangle" Fill="White" Height="300" HorizontalAlignment="Left" VerticalAlignment="Top" Width="400" Opacity="0.01"/>
         		<Button x:Name="play" Click="play_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Width="75" Content="Button" Visibility="Collapsed" Template="{StaticResource playerBibButtonTemplate}"/>
         		<Button x:Name="close" Click="close_Click" HorizontalAlignment="Right" VerticalAlignment="Top" Width="75" Content="Button" Template="{StaticResource ButtonCloseTemplate}"/>
-        		<Button x:Name="maximize" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="75" Click="maximize_Click" Content="Button"/>
-                <Button x:Name="minimize" Visibility="Collapsed" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="75" Click="minimize_Click" Content="Button"/>
+        		<Button x:Name="maximize" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="75" Click="maximize_Click" Content="Button" Template="{StaticResource ButtonMaxizeTemplate}"/>
+                <Button x:Name="minimize" Visibility="Collapsed" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="75" Click="minimize_Click" Content="Button" Template="{StaticResource ButtonMinimizeTemplate}"/>
         		<Button x:Name="playBottom" Click="play_Click" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="75" Content="Button" Visibility="Collapsed" Template="{StaticResource playBottomTemplate}"/>
         		<Slider x:Name="slider" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="246" ValueChanged="slider_ValueChanged" MouseLeftButtonDown="slider_MouseLeftButtonDown" Style="{StaticResource SliderStyle1}" Margin="0,0,0,10"/>
         		<Button x:Name="pauseBottom" Click="pauseBottom_Click" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="75" Content="Button" Template="{StaticResource pauseBottomTemplate}"/>

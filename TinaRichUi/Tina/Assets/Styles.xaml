@@ -367,10 +367,40 @@
   	<Setter Property="Template">
   		<Setter.Value>
   			<ControlTemplate TargetType="HyperlinkButton">
-  				<Grid Cursor="{TemplateBinding Cursor}" Background="{TemplateBinding Background}">
+  				<Grid x:Name="grid" Cursor="{TemplateBinding Cursor}" Background="{TemplateBinding Background}" RenderTransformOrigin="0.5,0.5">
+  					<Grid.RenderTransform>
+  						<TransformGroup>
+  							<ScaleTransform/>
+  							<SkewTransform/>
+  							<RotateTransform/>
+  							<TranslateTransform/>
+  						</TransformGroup>
+  					</Grid.RenderTransform>
+  					<Grid.Projection>
+  						<PlaneProjection/>
+  					</Grid.Projection>
   					<VisualStateManager.VisualStateGroups>
   						<VisualStateGroup x:Name="CommonStates">
-  							<VisualState x:Name="Normal"/>
+  							<VisualStateGroup.Transitions>
+  								<VisualTransition From="Normal" GeneratedDuration="00:00:00.3000000" To="MouseOver"/>
+  								<VisualTransition From="MouseOver" GeneratedDuration="00:00:00.3000000" To="Normal"/>
+  							</VisualStateGroup.Transitions>
+  							<VisualState x:Name="Normal">
+  								<Storyboard>
+  									<DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="NormalOverlay" Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.RotationX)">
+  										<EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+  									</DoubleAnimationUsingKeyFrames>
+  									<DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="NormalOverlay" Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.RotationZ)">
+  										<EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+  									</DoubleAnimationUsingKeyFrames>
+  									<DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="grid" Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.RotationZ)">
+  										<EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+  									</DoubleAnimationUsingKeyFrames>
+  									<DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="grid" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)">
+  										<EasingDoubleKeyFrame KeyTime="00:00:00" Value="-45"/>
+  									</DoubleAnimationUsingKeyFrames>
+  								</Storyboard>
+  							</VisualState>
   							<VisualState x:Name="MouseOver">
   								<Storyboard RepeatBehavior="Forever" AutoReverse="False">
   									<ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="MouseOverOverlay" Storyboard.TargetProperty="(UIElement.Visibility)">
@@ -439,7 +469,11 @@
   					<Rectangle x:Name="FocusVisualElement" Stroke="#FF6DBDD1" StrokeThickness="1" IsHitTestVisible="false" Opacity="0" Visibility="Collapsed"/>
   					<Border x:Name="DisabledOverlay" Margin="0" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1" Visibility="Collapsed"/>
   					<Rectangle x:Name="MouseOverOverlay" Fill="White" Margin="1" Visibility="Collapsed"/>
-  					<Rectangle x:Name="NormalOverlay" Fill="Black" Margin="1" Opacity="0.4"/>
+  					<Rectangle x:Name="NormalOverlay" Fill="Black" Margin="1" Opacity="0.4">
+  						<Rectangle.Projection>
+  							<PlaneProjection/>
+  						</Rectangle.Projection>
+  					</Rectangle>
   				</Grid>
   			</ControlTemplate>
   		</Setter.Value>

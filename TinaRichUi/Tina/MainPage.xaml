@@ -123,14 +123,14 @@
                 <Grid>
                     <Grid Canvas.ZIndex="99" x:Name="NavigationGrid" Style="{StaticResource NavigationGridStyle}" Background="{x:Null}" RenderTransformOrigin="0.54,0.524" Height="Auto" Margin="0" VerticalAlignment="Top" Width="800" HorizontalAlignment="Center">
                         <StackPanel x:Name="LinksStackPanel" Style="{StaticResource LinksStackPanelStyle}">
-                            <HyperlinkButton TargetName="ContentFrame" NavigateUri="/Night" HorizontalAlignment="Left" Margin="3,0,0,0" VerticalAlignment="Top" Style="{StaticResource AlbumHyperLink}" Width="42" BorderBrush="White">
-                                <Image Stretch="Fill" Height="40" Width="40" Source="Assets/nightThumb.jpg"/>
+                            <HyperlinkButton TargetName="ContentFrame" NavigateUri="/Night" HorizontalAlignment="Left" Margin="3,0,0,0" VerticalAlignment="Top" Style="{StaticResource AlbumHyperLink}" Width="70" BorderBrush="White" Height="70">
+                                <Image Stretch="Fill" Source="Assets/alb-noch.jpg"/>
                             </HyperlinkButton>
-                            <HyperlinkButton TargetName="ContentFrame" NavigateUri="/Polus" HorizontalAlignment="Left" Margin="3,0,0,0" VerticalAlignment="Top" Style="{StaticResource AlbumHyperLink}" Width="42" Background="#FF868686">
-                                <Image Stretch="Fill" Height="40" Width="40" Source="Assets/polusThumb.jpg"/>
+                            <HyperlinkButton TargetName="ContentFrame" NavigateUri="/Polus" HorizontalAlignment="Left" Margin="3,0,0,0" VerticalAlignment="Top" Style="{StaticResource AlbumHyperLink}" Width="70" Background="#FF868686" Height="70">
+                                <Image Stretch="Fill" Source="Assets/alb-polus.jpg"/>
                             </HyperlinkButton>
-                            <HyperlinkButton TargetName="ContentFrame" NavigateUri="/Show" HorizontalAlignment="Left" Margin="3,0,0,0" VerticalAlignment="Top" Style="{StaticResource AlbumHyperLink}" Width="42" Background="Transparent" BorderBrush="White">
-                                <Image Stretch="Fill" Height="40" Width="40" Source="Assets/smylThumb.jpg"/>
+                            <HyperlinkButton TargetName="ContentFrame" NavigateUri="/Show" HorizontalAlignment="Left" Margin="3,0,0,0" VerticalAlignment="Top" Style="{StaticResource AlbumHyperLink}" Width="70" Background="Transparent" BorderBrush="White" Height="70">
+                                <Image Stretch="Fill" Source="Assets/alb-show.jpg"/>
                             </HyperlinkButton>
                         </StackPanel>
                     </Grid>

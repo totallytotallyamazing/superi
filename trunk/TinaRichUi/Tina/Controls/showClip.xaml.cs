@@ -8,15 +8,21 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Tina.Controls;
+using System.Windows.Threading;
 
 namespace Tina
 {
     public partial class showClip : UserControl
     {
         bool paused = false;
-
+        private DispatcherTimer _timer = new DispatcherTimer();
+        private bool timerChangingValue = false;
         public event EventHandler Maximizing;
         public event EventHandler Minimizing;
+        private bool playVideoWhenSliderDragIsOver = false;
+
+        
+
 
         //public event RoutedEventHandler MediaOpened
         //{
@@ -41,11 +47,27 @@ namespace Tina
         {
             // Required to initialize variables
             InitializeComponent();
+            InitTimerForVideoNavigation();
+        }
+
+        private void InitTimerForVideoNavigation()
+        {
+          _timer.Interval = TimeSpan.FromMilliseconds(200);
+          _timer.Start();
+          _timer.Tick += _timer_Tick;
+        }
+
+        void _timer_Tick(object sender, EventArgs e)
+        {
+          timerChangingValue = true;
+          slider.Value = mediaElement.Position.TotalMilliseconds;
+          timerChangingValue = false;
         }
 
         private static void MediaSourcePropertyChanged(object sender, DependencyPropertyChangedEventArgs args)
         {
             (sender as showClip).mediaElement.Source = args.NewValue as Uri;
+          
         }
 
         #region Pubblic Methods
@@ -76,6 +98,7 @@ namespace Tina
 
         private void slider_ValueChanged(object sender, System.Windows.RoutedPropertyChangedEventArgs<double> e)
         {
+          if (!timerChangingValue)
             mediaElement.Position = TimeSpan.FromMilliseconds(slider.Value);
         }
 
@@ -157,5 +180,57 @@ namespace Tina
             rectangle.Width = this.Width;
             rectangle.Height = this.Height;
         }
+
+
+      #region Volume
+      
+        private Slider GetSliderParent(object sender)
+        {
+          FrameworkElement element = (FrameworkElement)sender;
+          do
+          {
+            element = (FrameworkElement)VisualTreeHelper.GetParent(element);
+          } while (!(element is Slider));
+          return (Slider)element;
+        }
+
+        private void LeftTrack_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+          e.Handled = true;
+          FrameworkElement lefttrack = (sender as FrameworkElement).FindName("LeftTrack") as FrameworkElement;
+          FrameworkElement righttrack = (sender as FrameworkElement).FindName("RightTrack") as FrameworkElement;
+          double position = e.GetPosition(lefttrack).X;
+          double width = righttrack.TransformToVisual(lefttrack).Transform(new Point(righttrack.ActualWidth, righttrack.ActualHeight)).X;
+          double percent = position / width;
+          Slider slider = GetSliderParent(sender);
+          slider.Value = percent;
+        }
+
+        private void HorizontalThumb_DragStarted(object sender, System.Windows.Controls.Primitives.DragStartedEventArgs e)
+        {
+          if (GetSliderParent(sender) != slider) return;
+
+          bool notPlaying = (mediaElement.CurrentState == MediaElementState.Paused
+              || mediaElement.CurrentState == MediaElementState.Stopped);
+
+          if (notPlaying)
+          {
+            playVideoWhenSliderDragIsOver = false;
+          }
+          else
+          {
+            playVideoWhenSliderDragIsOver = true;
+            mediaElement.Pause();
+          }
+        }
+
+        private void HorizontalThumb_DragCompleted(object sender, System.Windows.Controls.Primitives.DragCompletedEventArgs e)
+        {
+          if (playVideoWhenSliderDragIsOver)
+            mediaElement.Play();
+        }
+
+      
+      #endregion
     }
 }

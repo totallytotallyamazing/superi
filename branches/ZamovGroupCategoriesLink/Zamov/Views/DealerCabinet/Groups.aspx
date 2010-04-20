@@ -56,11 +56,12 @@
         }
     %>
     
-    <a href="#" onclick="insertGroup(event, this, <%= int.MinValue %>)">
+    <a style="text-decoration:underline; cursor:pointer" onclick="insertGroup(event, this, <%= int.MinValue %>)">
         <%= Html.ResourceString("AddGroup") %>
     </a>
-    
+</asp:Content>
 
+<asp:Content runat="server" ContentPlaceHolderID="bodyTop">
         <div id="insertGroup" class="greyBorderBox popUpBox">
         <% using (Html.BeginForm("InsertGroup", "DealerCabinet"))
            { %>
@@ -104,5 +105,4 @@
         <input type="submit" value="<%= Html.ResourceString("Add") %>" />
         <%} %>
     </div>
-    
 </asp:Content>

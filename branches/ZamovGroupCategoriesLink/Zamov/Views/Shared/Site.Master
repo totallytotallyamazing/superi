@@ -46,6 +46,7 @@
 
 </head>
 <body>
+    <asp:ContentPlaceHolder runat="server" ID="bodyTop"></asp:ContentPlaceHolder>
     <map id="logoLink" name="logoLink">
         <area alt="Zamov.com" shape="rect" coords="0,40,233, 90" href="/" />
     </map>

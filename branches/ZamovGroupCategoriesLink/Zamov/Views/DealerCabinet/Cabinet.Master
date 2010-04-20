@@ -58,3 +58,7 @@
     <asp:ContentPlaceHolder runat="server" ID="includes">
     </asp:ContentPlaceHolder>
 </asp:Content>
+
+<asp:Content ID="Content1" runat="server" ContentPlaceHolderID="bodyTop">
+    <asp:ContentPlaceHolder runat="server" ID="bodyTop"></asp:ContentPlaceHolder>
+</asp:Content>

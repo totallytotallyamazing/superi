@@ -99,10 +99,12 @@
     <input type="submit" value="<%= Html.ResourceString("Save") %>" onclick="return collectCategoryChanges();" />
     <%} %>
     
-    <a href="#" onclick="insertCategory(this, <%= int.MinValue %>)">
+    <a style="text-decoration:underline; cursor:pointer" onclick="insertCategory(this, <%= int.MinValue %>)">
         <%= Html.ResourceString("AddCategory") %>
     </a>
-    
+</asp:Content>
+
+<asp:Content runat="server" ContentPlaceHolderID="bodyTop">
     <div id="insertCategory" class="greyBorderBox popUpBox">
         <% using (Html.BeginForm("InsertCategory", "Admin")){ %>
         <table class="adminTable">

@@ -29,6 +29,10 @@
     %>
 </asp:Content>
 
+<asp:Content runat="server" ContentPlaceHolderID="bodyTop">
+    <asp:ContentPlaceHolder runat="server" ID="bodyTop"></asp:ContentPlaceHolder>
+</asp:Content>
+
 <asp:Content ContentPlaceHolderID="mainContent" runat="server">
 
     <a href="/Admin/ClearCache" target="_blank">Очистить кеш</a>

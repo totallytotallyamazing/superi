@@ -939,17 +939,26 @@
 						<Grid>
 							<TextBox HorizontalAlignment="Center" Margin="0" VerticalAlignment="Bottom" Text=" ОФИЦИАЛЬНЫЕ КАНАЛЫ" TextWrapping="Wrap" Background="{x:Null}" FontWeight="Bold" Foreground="White" BorderThickness="0"/>
 						</Grid>
-						<StackPanel Orientation="Horizontal">
-							<HyperlinkButton x:Name="hyperYouTube">
+						<Grid x:Name="hyperlinkButtonsPanel" Height="34">
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition/>
+								<ColumnDefinition/>
+								<ColumnDefinition/>
+							</Grid.ColumnDefinitions>
+							<HyperlinkButton x:Name="hyperYouTube" NavigateUri="http://www.youtube.com" TargetName="_blank" d:LayoutOverrides="Height">
 								<Image Stretch="Fill" Source="/Tina;Component/Assets/bannerYouTube.jpg"/>
 							</HyperlinkButton>
-							<HyperlinkButton x:Name="hyperRuTube">
-								<Image Stretch="Fill" Source="/Tina;Component/Assets/bannerRuTube.jpg"/>
+							<HyperlinkButton x:Name="hyperRuTube" NavigateUri="http://rutube.ru/" TargetName="_blank" d:LayoutOverrides="Height" Grid.Column="1">
+								<Image Stretch="Fill" Source="/Tina;Component/Assets/bannerRuTube.jpg">
+									<Image.OpacityMask>
+										<ImageBrush ImageSource="/Tina;Component/Assets/bannerRuTube.jpg"/>
+									</Image.OpacityMask>
+								</Image>
 							</HyperlinkButton>
-							<HyperlinkButton x:Name="hyperUkr" NavigateUri="http://ukr.net">
+							<HyperlinkButton x:Name="hyperUkr" NavigateUri="http://ukr.net" TargetName="_blank" d:LayoutOverrides="Height" Grid.Column="2">
 								<Image Source="/Tina;Component/Assets/bannerUkrNet.jpg" Stretch="Fill"/>
 							</HyperlinkButton>
-						</StackPanel>
+						</Grid>
 					</StackPanel>
 					<StackPanel x:Name="rightStack" Margin="5,0,0,0" Orientation="Vertical" VerticalAlignment="Top" Grid.Column="1">
 						<Grid>

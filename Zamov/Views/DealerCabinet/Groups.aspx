@@ -62,6 +62,13 @@
 </asp:Content>
 
 <asp:Content runat="server" ContentPlaceHolderID="bodyTop">
+
+
+        <%
+            List<CategoryPresentation> categories = (List<CategoryPresentation>)ViewData["categories"];
+        %>
+
+
         <div id="insertGroup" class="greyBorderBox popUpBox">
         <% using (Html.BeginForm("InsertGroup", "DealerCabinet"))
            { %>

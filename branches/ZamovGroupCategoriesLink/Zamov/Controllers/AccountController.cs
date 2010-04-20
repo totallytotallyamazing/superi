@@ -227,6 +227,7 @@ namespace Zamov.Controllers
                         SystemSettings.CurrentLanguage,
                         false,
                         linkBase + "/Account/UserEmailVerified?guid=" + user.ProviderUserKey);
+
                     return RedirectToAction("UserEmailVerification", new { email = email });
                 }
                 else
@@ -256,7 +257,9 @@ namespace Zamov.Controllers
 
             user.IsApproved = true;
             Membership.UpdateUser(user);
-            FormsAuth.SignOut();
+            
+            FormsAuth.SignIn(user.UserName, true);
+
             return View("UserEmailVerified" + SystemSettings.CurrentLanguage);
         }
 

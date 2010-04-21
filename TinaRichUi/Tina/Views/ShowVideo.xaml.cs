@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Tina.Controls;
+using System.Windows.Threading;
 
 namespace Tina
 {
@@ -17,16 +18,32 @@ namespace Tina
     {
         string url = "";
         bool paused = false;
+        private DispatcherTimer _timer = new DispatcherTimer();
+        private bool timerChangingValue = false;
 
         public ShowVideo()
         {
             InitializeComponent();
+            InitTimerForVideoNavigation();
         }
 
-        public ShowVideo(string url)
+        public ShowVideo(string url):this()
         {
-            InitializeComponent();
             this.url = url;
+        }
+
+        private void InitTimerForVideoNavigation()
+        {
+          _timer.Interval = TimeSpan.FromMilliseconds(200);
+          _timer.Start();
+          _timer.Tick += _timer_Tick;
+        }
+
+        void _timer_Tick(object sender, EventArgs e)
+        {
+          timerChangingValue = true;
+          slider.Value = mediaElement.Position.TotalMilliseconds;
+          timerChangingValue = false;
         }
 
         private void ChildWindow_Loaded(object sender, System.Windows.RoutedEventArgs e)
@@ -43,6 +60,7 @@ namespace Tina
 
         private void slider_ValueChanged(object sender, System.Windows.RoutedPropertyChangedEventArgs<double> e)
         {
+          if (!timerChangingValue)
             mediaElement.Position = TimeSpan.FromMilliseconds(slider.Value);
         }
 

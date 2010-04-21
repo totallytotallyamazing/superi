@@ -101,6 +101,12 @@
     <Content Include="Views\Shared\Site.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="App_Data\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

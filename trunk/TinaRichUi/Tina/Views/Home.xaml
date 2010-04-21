@@ -914,7 +914,7 @@
             	<Border.Effect>
             		<DropShadowEffect Color="#FF978C8C"/>
             	</Border.Effect>
-            	<local:showClip x:Name="player" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            	<local:showClip x:Name="player"/>
             </Border>
             <Grid x:Name="playerAndContentGrid" VerticalAlignment="Top" Margin="0" Grid.Row="3">
 				<Grid.RowDefinitions>

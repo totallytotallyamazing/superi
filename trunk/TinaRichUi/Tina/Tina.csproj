@@ -53,16 +53,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="MediaPlayer.dll">
-      <HintPath>..\..\..\..\..\Program Files\Microsoft Expression\Encoder 3\BlendMediaPlayer\MediaPlayer.dll</HintPath>
-    </Reference>
-    <Reference Include="MediaPlayer.dll">
       <HintPath>C:\Program Files\Microsoft Expression\Encoder 3\BlendMediaPlayer\MediaPlayer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Expression.Interactions, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
-    <Reference Include="MioPlayer_Beta_2, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Downloads\B6\MioPlayer_Beta_2.dll</HintPath>
-    </Reference>
     <Reference Include="PlugInMssCtrl.dll">
       <HintPath>..\..\..\..\..\Program Files\Microsoft Expression\Encoder 3\BlendMediaPlayer\PlugInMssCtrl.dll</HintPath>
     </Reference>
@@ -89,10 +82,6 @@
     <Reference Include="System.Xml.Linq, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\Program Files\Microsoft SDKs\Silverlight\v2.0\Libraries\Client\System.Xml.Linq.dll</HintPath>
-    </Reference>
-    <Reference Include="VideoPlayer, Version=1.0.6.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\SRC\W2\Sl\Player_codeplex\VideoPlayer\ClientBin\VideoPlayer.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

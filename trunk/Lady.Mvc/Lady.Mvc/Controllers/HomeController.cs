@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace Lady.Mvc.Controllers
 {
@@ -12,7 +13,6 @@ namespace Lady.Mvc.Controllers
         public ActionResult Index()
         {
             ViewData["Message"] = "Welcome to ASP.NET MVC!";
-
             return View();
         }
 

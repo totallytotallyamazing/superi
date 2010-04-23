@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lady.Mvc", "Lady.Mvc\Lady.Mvc.csproj", "{95DDE62B-8305-45B0-AD2E-34521C19B642}"
 EndProject
 Global
@@ -20,5 +20,31 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		Reflector2DestinationAssemblyName = 
+		Reflector2DestinationVersion = 6.2.3.0
+		Reflector2DestinationName = MySql.Web
+		Reflector2DestinationLocation = C:\WINDOWS\assembly\GAC_MSIL\MySql.Web\6.2.3.0__c5687fc88969c44d\MySql.Web.dll
+		Reflector2SourceAssemblyName = 
+		Reflector2SourceVersion = 6.2.3.0
+		Reflector2SourceName = MySql.Web
+		Reflector2SourceLocation = C:\My\MySqlConnector\MySql.Web.dll
+		Reflector1DestinationAssemblyName = 
+		Reflector1DestinationVersion = 6.2.3.0
+		Reflector1DestinationName = MySql.Data.Entity
+		Reflector1DestinationLocation = C:\WINDOWS\assembly\GAC_MSIL\MySql.Data.Entity\6.2.3.0__c5687fc88969c44d\MySql.Data.Entity.dll
+		Reflector1SourceAssemblyName = 
+		Reflector1SourceVersion = 6.2.3.0
+		Reflector1SourceName = MySql.Data.Entity
+		Reflector1SourceLocation = C:\My\MySqlConnector\MySql.Data.Entity.dll
+		Reflector0DestinationAssemblyName = 
+		Reflector0DestinationVersion = 6.2.3.0
+		Reflector0DestinationName = MySql.Data
+		Reflector0DestinationLocation = C:\WINDOWS\assembly\GAC_MSIL\MySql.Data\6.2.3.0__c5687fc88969c44d\MySql.Data.dll
+		Reflector0SourceAssemblyName = 
+		Reflector0SourceVersion = 6.2.3.0
+		Reflector0SourceName = MySql.Data
+		Reflector0SourceLocation = C:\My\MySqlConnector\MySql.Data.dll
 	EndGlobalSection
 EndGlobal

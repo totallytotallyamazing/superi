@@ -89,15 +89,15 @@ ClientLibrary.AjaxOptions.prototype = {
 // ClientLibrary.AlbumExtender
 
 ClientLibrary.AlbumExtender = function ClientLibrary_AlbumExtender() {
-    /// <field name="currentId" type="String">
+    /// <field name="_currentId$2" type="String">
     /// </field>
-    /// <field name="currentSlider" type="Jquery.JQuery">
+    /// <field name="_currentSlider$2" type="Jquery.JQuery">
     /// </field>
     ClientLibrary.AlbumExtender.initializeBase(this);
 }
 ClientLibrary.AlbumExtender.prototype = {
-    currentId: '',
-    currentSlider: null,
+    _currentId$2: '',
+    _currentSlider$2: null,
     
     contentUpdated: function ClientLibrary_AlbumExtender$contentUpdated(sender, e) {
         /// <param name="sender" type="Object">
@@ -105,26 +105,26 @@ ClientLibrary.AlbumExtender.prototype = {
         /// <param name="e" type="Sys.EventArgs">
         /// </param>
         jQuery('#content').css('padding', '0');
-        ClientLibrary.AudioPlayer.get_instance().add_playerPositionCanged(Function.createDelegate(this, this.playerPositionCanged));
-        ClientLibrary.AudioPlayer.get_instance().add_songChanged(Function.createDelegate(this, this.songChanged));
-        this.initializePlayers();
+        ClientLibrary.AudioPlayer.get_instance().add_playerPositionCanged(Function.createDelegate(this, this._playerPositionCanged$2));
+        ClientLibrary.AudioPlayer.get_instance().add_songChanged(Function.createDelegate(this, this._songChanged$2));
+        this._initializePlayers$2();
         ClientLibrary.AlbumExtender.callBaseMethod(this, 'contentUpdated', [ sender, e ]);
     },
     
-    songChanged: function ClientLibrary_AlbumExtender$songChanged(sender, e) {
+    _songChanged$2: function ClientLibrary_AlbumExtender$_songChanged$2(sender, e) {
         /// <param name="sender" type="Object">
         /// </param>
         /// <param name="e" type="Sys.EventArgs">
         /// </param>
-        this.openCurrentSong();
+        this._openCurrentSong$2();
     },
     
-    playerPositionCanged: function ClientLibrary_AlbumExtender$playerPositionCanged(sender, e) {
+    _playerPositionCanged$2: function ClientLibrary_AlbumExtender$_playerPositionCanged$2(sender, e) {
         /// <param name="sender" type="Object">
         /// </param>
         /// <param name="e" type="ClientLibrary.PlayerListenerEventArgs">
         /// </param>
-        this.currentSlider.slider('option', 'value', e.get_playedPercentAbsolute());
+        this._currentSlider$2.slider('option', 'value', e.get_playedPercentAbsolute());
     },
     
     contentUpdating: function ClientLibrary_AlbumExtender$contentUpdating(sender, e) {
@@ -133,36 +133,36 @@ ClientLibrary.AlbumExtender.prototype = {
         /// <param name="e" type="Sys.EventArgs">
         /// </param>
         jQuery('#content').css('padding', '');
-        ClientLibrary.AudioPlayer.get_instance().remove_playerPositionCanged(Function.createDelegate(this, this.playerPositionCanged));
-        ClientLibrary.AudioPlayer.get_instance().remove_songChanged(Function.createDelegate(this, this.songChanged));
+        ClientLibrary.AudioPlayer.get_instance().remove_playerPositionCanged(Function.createDelegate(this, this._playerPositionCanged$2));
+        ClientLibrary.AudioPlayer.get_instance().remove_songChanged(Function.createDelegate(this, this._songChanged$2));
         ClientLibrary.AlbumExtender.callBaseMethod(this, 'contentUpdating', [ sender, e ]);
         this.dispose();
     },
     
-    initializePlayers: function ClientLibrary_AlbumExtender$initializePlayers() {
+    _initializePlayers$2: function ClientLibrary_AlbumExtender$_initializePlayers$2() {
         var options = {};
         options['max'] = 100;
         options['range'] = 'min';
         options['animate'] = false;
-        options['slide'] = Function.createDelegate(this, this.slide);
+        options['slide'] = Function.createDelegate(this, this._slide$2);
         jQuery('.song .player').slider(options);
-        jQuery('.songTitle').click(Function.createDelegate(this, this.titleClick));
-        this.openCurrentSong();
+        jQuery('.songTitle').click(Function.createDelegate(this, this._titleClick$2));
+        this._openCurrentSong$2();
     },
     
-    openCurrentSong: function ClientLibrary_AlbumExtender$openCurrentSong() {
+    _openCurrentSong$2: function ClientLibrary_AlbumExtender$_openCurrentSong$2() {
         var songs = ClientLibrary.AudioPlayer.get_instance().get_songs();
         if (ClientLibrary.AudioPlayer.get_instance().get_state() === ClientLibrary.PlayerState.playing) {
             var song = songs[ClientLibrary.AudioPlayer.get_instance().get_currentSong()];
             var id = song['id'];
             jQuery('.player').not('.player[rel=\'' + id + '\']').hide();
-            this.currentSlider = jQuery('.player[rel=\'' + id + '\']').show();
-            this.currentSlider.slider('option', 'value', 0);
-            this.currentId = id;
+            this._currentSlider$2 = jQuery('.player[rel=\'' + id + '\']').show();
+            this._currentSlider$2.slider('option', 'value', 0);
+            this._currentId$2 = id;
         }
     },
     
-    slide: function ClientLibrary_AlbumExtender$slide(rawEvent, ui) {
+    _slide$2: function ClientLibrary_AlbumExtender$_slide$2(rawEvent, ui) {
         /// <param name="rawEvent" type="Object">
         /// </param>
         /// <param name="ui" type="Object">
@@ -173,7 +173,7 @@ ClientLibrary.AlbumExtender.prototype = {
         return null;
     },
     
-    titleClick: function ClientLibrary_AlbumExtender$titleClick(rawEvent, ui) {
+    _titleClick$2: function ClientLibrary_AlbumExtender$_titleClick$2(rawEvent, ui) {
         /// <param name="rawEvent" type="Object">
         /// </param>
         /// <param name="ui" type="Object">
@@ -182,7 +182,7 @@ ClientLibrary.AlbumExtender.prototype = {
         var evt = rawEvent;
         var element = evt.target;
         var id = element.getAttribute('rel');
-        if (id !== this.currentId) {
+        if (id !== this._currentId$2) {
             var songs = ClientLibrary.AudioPlayer.get_instance().get_songs();
             var length = songs.length;
             for (var i = 0; i < length; i++) {
@@ -195,9 +195,9 @@ ClientLibrary.AlbumExtender.prototype = {
                 }
             }
             jQuery('.player').not('.player[rel=\'' + id + '\']').hide();
-            this.currentSlider = jQuery('.player[rel=\'' + id + '\']').show();
-            this.currentSlider.slider('option', 'value', 0);
-            this.currentId = id;
+            this._currentSlider$2 = jQuery('.player[rel=\'' + id + '\']').show();
+            this._currentSlider$2.slider('option', 'value', 0);
+            this._currentId$2 = id;
         }
         else {
             ClientLibrary.AudioPlayer.get_instance().stop();
@@ -212,72 +212,72 @@ ClientLibrary.AlbumExtender.prototype = {
 // ClientLibrary.PlayerListenerEventArgs
 
 ClientLibrary.PlayerListenerEventArgs = function ClientLibrary_PlayerListenerEventArgs() {
-    /// <field name="loadPercent" type="Number" integer="true">
+    /// <field name="_loadPercent$1" type="Number" integer="true">
     /// </field>
-    /// <field name="playedPercentRelative" type="Number" integer="true">
+    /// <field name="_playedPercentRelative$1" type="Number" integer="true">
     /// </field>
-    /// <field name="playedPercentAbsolute" type="Number" integer="true">
+    /// <field name="_playedPercentAbsolute$1" type="Number" integer="true">
     /// </field>
-    /// <field name="playedTime" type="Number" integer="true">
+    /// <field name="_playedTime$1" type="Number" integer="true">
     /// </field>
-    /// <field name="totalTime" type="Number" integer="true">
+    /// <field name="_totalTime$1" type="Number" integer="true">
     /// </field>
     ClientLibrary.PlayerListenerEventArgs.initializeBase(this);
 }
 ClientLibrary.PlayerListenerEventArgs.prototype = {
-    loadPercent: 0,
-    playedPercentRelative: 0,
-    playedPercentAbsolute: 0,
-    playedTime: 0,
-    totalTime: 0,
+    _loadPercent$1: 0,
+    _playedPercentRelative$1: 0,
+    _playedPercentAbsolute$1: 0,
+    _playedTime$1: 0,
+    _totalTime$1: 0,
     
     get_loadPercent: function ClientLibrary_PlayerListenerEventArgs$get_loadPercent() {
         /// <value type="Number" integer="true"></value>
-        return this.loadPercent;
+        return this._loadPercent$1;
     },
     set_loadPercent: function ClientLibrary_PlayerListenerEventArgs$set_loadPercent(value) {
         /// <value type="Number" integer="true"></value>
-        this.loadPercent = value;
+        this._loadPercent$1 = value;
         return value;
     },
     
     get_playedPercentRelative: function ClientLibrary_PlayerListenerEventArgs$get_playedPercentRelative() {
         /// <value type="Number" integer="true"></value>
-        return this.playedPercentRelative;
+        return this._playedPercentRelative$1;
     },
     set_playedPercentRelative: function ClientLibrary_PlayerListenerEventArgs$set_playedPercentRelative(value) {
         /// <value type="Number" integer="true"></value>
-        this.playedPercentRelative = value;
+        this._playedPercentRelative$1 = value;
         return value;
     },
     
     get_playedPercentAbsolute: function ClientLibrary_PlayerListenerEventArgs$get_playedPercentAbsolute() {
         /// <value type="Number" integer="true"></value>
-        return this.playedPercentAbsolute;
+        return this._playedPercentAbsolute$1;
     },
     set_playedPercentAbsolute: function ClientLibrary_PlayerListenerEventArgs$set_playedPercentAbsolute(value) {
         /// <value type="Number" integer="true"></value>
-        this.playedPercentAbsolute = value;
+        this._playedPercentAbsolute$1 = value;
         return value;
     },
     
     get_playedTime: function ClientLibrary_PlayerListenerEventArgs$get_playedTime() {
         /// <value type="Number" integer="true"></value>
-        return this.playedTime;
+        return this._playedTime$1;
     },
     set_playedTime: function ClientLibrary_PlayerListenerEventArgs$set_playedTime(value) {
         /// <value type="Number" integer="true"></value>
-        this.playedTime = value;
+        this._playedTime$1 = value;
         return value;
     },
     
     get_totalTime: function ClientLibrary_PlayerListenerEventArgs$get_totalTime() {
         /// <value type="Number" integer="true"></value>
-        return this.totalTime;
+        return this._totalTime$1;
     },
     set_totalTime: function ClientLibrary_PlayerListenerEventArgs$set_totalTime(value) {
         /// <value type="Number" integer="true"></value>
-        this.totalTime = value;
+        this._totalTime$1 = value;
         return value;
     }
 }
@@ -291,9 +291,9 @@ ClientLibrary.AudioPlayer = function ClientLibrary_AudioPlayer(element) {
     /// </param>
     /// <field name="_instance$2" type="ClientLibrary.AudioPlayer" static="true">
     /// </field>
-    /// <field name="currentSong" type="Number" integer="true">
+    /// <field name="_currentSong$2" type="Number" integer="true">
     /// </field>
-    /// <field name="state" type="ClientLibrary.PlayerState">
+    /// <field name="_state$2" type="ClientLibrary.PlayerState">
     /// </field>
     ClientLibrary.AudioPlayer.initializeBase(this, [ element ]);
     ClientLibrary.AudioPlayer._instance$2 = this;
@@ -303,26 +303,26 @@ ClientLibrary.AudioPlayer.get_instance = function ClientLibrary_AudioPlayer$get_
     return ClientLibrary.AudioPlayer._instance$2;
 }
 ClientLibrary.AudioPlayer.prototype = {
-    currentSong: 0,
-    state: 0,
+    _currentSong$2: 0,
+    _state$2: 0,
     
     get_state: function ClientLibrary_AudioPlayer$get_state() {
         /// <value type="ClientLibrary.PlayerState"></value>
-        return this.state;
+        return this._state$2;
     },
     set_state: function ClientLibrary_AudioPlayer$set_state(value) {
         /// <value type="ClientLibrary.PlayerState"></value>
-        this.state = value;
+        this._state$2 = value;
         return value;
     },
     
     get_currentSong: function ClientLibrary_AudioPlayer$get_currentSong() {
         /// <value type="Number" integer="true"></value>
-        return this.currentSong;
+        return this._currentSong$2;
     },
     set_currentSong: function ClientLibrary_AudioPlayer$set_currentSong(value) {
         /// <value type="Number" integer="true"></value>
-        this.currentSong = value;
+        this._currentSong$2 = value;
         return value;
     },
     
@@ -366,7 +366,7 @@ ClientLibrary.AudioPlayer.prototype = {
         /// <param name="totalTime" type="Number" integer="true">
         /// </param>
         var handler = this.get_events().getHandler('positionChanged');
-        if (handler) {
+        if (handler != null) {
             var args = new ClientLibrary.PlayerListenerEventArgs();
             args.set_loadPercent(loadPercent);
             args.set_playedPercentRelative(playedPercentRelative);
@@ -386,25 +386,25 @@ ClientLibrary.AudioPlayer.prototype = {
         /// <summary>
         /// Member of ILoadableComponent. Occurs after page is loaded.
         /// </summary>
-        this.initializePlayer();
-        this.initializeControls();
+        this._initializePlayer$2();
+        this._initializeControls$2();
     },
     
-    initializePlayer: function ClientLibrary_AudioPlayer$initializePlayer() {
+    _initializePlayer$2: function ClientLibrary_AudioPlayer$_initializePlayer$2() {
         var options = new Jquery.JPlayerOptions();
-        options.ready = Function.createDelegate(this, this.playerReady);
+        options.ready = Function.createDelegate(this, this._playerReady$2);
         options.volume = 100;
         options.swfPath = '/Scripts';
         jQuery(this.get_element()).jPlayer(options).onProgressChange(this.get_progressChangedHandler());
     },
     
-    initializeControls: function ClientLibrary_AudioPlayer$initializeControls() {
-        jQuery('#playerPresentation .controls a').click(Function.createDelegate(this, this.controlClick));
+    _initializeControls$2: function ClientLibrary_AudioPlayer$_initializeControls$2() {
+        jQuery('#playerPresentation .controls a').click(Function.createDelegate(this, this._controlClick$2));
     },
     
-    setInitialControlState: function ClientLibrary_AudioPlayer$setInitialControlState() {
+    _setInitialControlState$2: function ClientLibrary_AudioPlayer$_setInitialControlState$2() {
         ((jQuery('a[rel=\'prev\']'))[0]).className = 'disabled';
-        if (!this.get_songs() || !this.get_songs().length) {
+        if (this.get_songs() == null || this.get_songs().length === 0) {
             jQuery('#playerPresentation .controls a').addClass('disabled');
         }
         else if (this.get_songs().length === 1) {
@@ -412,24 +412,24 @@ ClientLibrary.AudioPlayer.prototype = {
         }
     },
     
-    updateNavigationState: function ClientLibrary_AudioPlayer$updateNavigationState() {
-        if (this.get_songs().length <= this.currentSong + 1) {
+    _updateNavigationState$2: function ClientLibrary_AudioPlayer$_updateNavigationState$2() {
+        if (this.get_songs().length <= this._currentSong$2 + 1) {
             jQuery('a[rel=\'next\']').addClass('disabled');
             jQuery('a[rel=\'prev\']').removeClass('disabled');
         }
-        if (!this.currentSong) {
+        if (this._currentSong$2 === 0) {
             jQuery('a[rel=\'prev\']').addClass('disabled');
             jQuery('a[rel=\'next\']').removeClass('disabled');
         }
-        if (this.currentSong > 0) {
+        if (this._currentSong$2 > 0) {
             jQuery('a[rel=\'prev\']').removeClass('disabled');
         }
-        if (this.get_songs().length > this.currentSong + 1) {
+        if (this.get_songs().length > this._currentSong$2 + 1) {
             jQuery('a[rel=\'next\']').removeClass('disabled');
         }
     },
     
-    controlClick: function ClientLibrary_AudioPlayer$controlClick(rawEvent, stub) {
+    _controlClick$2: function ClientLibrary_AudioPlayer$_controlClick$2(rawEvent, stub) {
         /// <param name="rawEvent" type="Object">
         /// </param>
         /// <param name="stub" type="Object">
@@ -437,7 +437,7 @@ ClientLibrary.AudioPlayer.prototype = {
         /// <returns type="BasicCallback"></returns>
         var evt = rawEvent;
         var srcElement = evt.srcElement;
-        if (!srcElement) {
+        if (srcElement == null) {
             srcElement = evt.target;
         }
         var target = (srcElement.tagName === 'IMG') ? srcElement.parentNode : srcElement;
@@ -452,22 +452,22 @@ ClientLibrary.AudioPlayer.prototype = {
                     this.pause();
                     break;
                 case 'prev':
-                    this.prev();
+                    this._prev$2();
                     break;
                 case 'next':
-                    this.next();
+                    this._next$2();
                     break;
             }
         }
         return null;
     },
     
-    playerReady: function ClientLibrary_AudioPlayer$playerReady() {
-        this.setInitialControlState();
-        if (this.get_songs() && this.get_songs().length > 0) {
+    _playerReady$2: function ClientLibrary_AudioPlayer$_playerReady$2() {
+        this._setInitialControlState$2();
+        if (this.get_songs() != null && this.get_songs().length > 0) {
             var firstSong = this.get_songs()[0];
             (jQuery(this.get_element())).setFile(firstSong['url']).play();
-            this.updateSongTitle(firstSong['name'], firstSong['album']);
+            this._updateSongTitle$2(firstSong['name'], firstSong['album']);
             jQuery('a[rel=\'play\']').addClass('disabled');
         }
     },
@@ -504,33 +504,33 @@ ClientLibrary.AudioPlayer.prototype = {
         this.set_state(ClientLibrary.PlayerState.stopped);
     },
     
-    next: function ClientLibrary_AudioPlayer$next() {
-        this.currentSong++;
-        this.updateNavigationState();
-        var song = this.get_songs()[this.currentSong];
+    _next$2: function ClientLibrary_AudioPlayer$_next$2() {
+        this._currentSong$2++;
+        this._updateNavigationState$2();
+        var song = this.get_songs()[this._currentSong$2];
         this.changeSong(song['url']);
-        this.updateSongTitle(song['name'], song['album']);
+        this._updateSongTitle$2(song['name'], song['album']);
         this.play();
         var handler = this.get_events().getHandler('songChanged');
-        if (handler) {
+        if (handler != null) {
             handler(this, new Sys.EventArgs());
         }
     },
     
-    prev: function ClientLibrary_AudioPlayer$prev() {
-        this.currentSong--;
-        this.updateNavigationState();
-        var song = this.get_songs()[this.currentSong];
+    _prev$2: function ClientLibrary_AudioPlayer$_prev$2() {
+        this._currentSong$2--;
+        this._updateNavigationState$2();
+        var song = this.get_songs()[this._currentSong$2];
         this.changeSong(song['url']);
-        this.updateSongTitle(song['name'], song['album']);
+        this._updateSongTitle$2(song['name'], song['album']);
         this.play();
         var handler = this.get_events().getHandler('songChanged');
-        if (handler) {
+        if (handler != null) {
             handler(this, new Sys.EventArgs());
         }
     },
     
-    updateSongTitle: function ClientLibrary_AudioPlayer$updateSongTitle(name, album) {
+    _updateSongTitle$2: function ClientLibrary_AudioPlayer$_updateSongTitle$2(name, album) {
         /// <param name="name" type="String">
         /// </param>
         /// <param name="album" type="String">
@@ -565,13 +565,13 @@ ClientLibrary.CssHelper.removeCss = function ClientLibrary_CssHelper$removeCss(k
 // ClientLibrary.GalleryExtender
 
 ClientLibrary.GalleryExtender = function ClientLibrary_GalleryExtender() {
-    /// <field name="contentUpdating" type="Sys.EventHandler">
+    /// <field name="_contentUpdating$2" type="Sys.EventHandler">
     /// </field>
-    /// <field name="contentUpdated" type="Sys.EventHandler">
+    /// <field name="_contentUpdated$2" type="Sys.EventHandler">
     /// </field>
     /// <field name="_serializedIdArray$2" type="String">
     /// </field>
-    /// <field name="lastId" type="String">
+    /// <field name="_lastId$2" type="String">
     /// </field>
     ClientLibrary.GalleryExtender.initializeBase(this);
 }
@@ -580,8 +580,8 @@ ClientLibrary.GalleryExtender.update = function ClientLibrary_GalleryExtender$up
     ClientLibrary.PageManager.get_current().goToUrl('/Gallery');
 }
 ClientLibrary.GalleryExtender.prototype = {
-    contentUpdating: null,
-    contentUpdated: null,
+    _contentUpdating$2: null,
+    _contentUpdated$2: null,
     _serializedIdArray$2: null,
     
     get_serializedIdArray: function ClientLibrary_GalleryExtender$get_serializedIdArray() {
@@ -604,7 +604,7 @@ ClientLibrary.GalleryExtender.prototype = {
         }
     },
     
-    initializeAdminArea: function ClientLibrary_GalleryExtender$initializeAdminArea() {
+    _initializeAdminArea$2: function ClientLibrary_GalleryExtender$_initializeAdminArea$2() {
         if (ClientLibrary.PageManager.get_current().get_isAuthenticated()) {
             var options = new Jquery.FancyBoxOptions();
             options.width = 200;
@@ -615,10 +615,10 @@ ClientLibrary.GalleryExtender.prototype = {
             options.autoScale = false;
             options.padding = 10;
             jQuery('.adminLink').fancybox(options);
-            jQuery('.adminConfirmLink').click(Function.createDelegate(this, this.confirmClick));
-            jQuery('.photoSession img').mouseover(Function.createDelegate(this, this.galleryItemMouseOver));
+            jQuery('.adminConfirmLink').click(Function.createDelegate(this, this._confirmClick$2));
+            jQuery('.photoSession img').mouseover(Function.createDelegate(this, this._galleryItemMouseOver$2));
             var oldDiv = document.getElementById('bodyImageDeleteFrame');
-            if (oldDiv) {
+            if (oldDiv != null) {
                 document.body.removeChild(oldDiv);
             }
             var imageDeleteFrame = document.getElementById('imageDeleteFrame');
@@ -627,9 +627,9 @@ ClientLibrary.GalleryExtender.prototype = {
         }
     },
     
-    lastId: '[id]',
+    _lastId$2: '[id]',
     
-    galleryItemMouseOver: function ClientLibrary_GalleryExtender$galleryItemMouseOver(rawEvent, stub) {
+    _galleryItemMouseOver$2: function ClientLibrary_GalleryExtender$_galleryItemMouseOver$2(rawEvent, stub) {
         /// <param name="rawEvent" type="Object">
         /// </param>
         /// <param name="stub" type="Object">
@@ -645,12 +645,12 @@ ClientLibrary.GalleryExtender.prototype = {
         imageDeleteFrame.style.top = top + 'px';
         imageDeleteFrame.style.display = 'block';
         var anchor = imageDeleteFrame.children[0];
-        anchor.href = anchor.href.replace(this.lastId, imageId);
-        this.lastId = imageId;
+        anchor.href = anchor.href.replace(this._lastId$2, imageId);
+        this._lastId$2 = imageId;
         return null;
     },
     
-    confirmClick: function ClientLibrary_GalleryExtender$confirmClick(rawEvent, stub) {
+    _confirmClick$2: function ClientLibrary_GalleryExtender$_confirmClick$2(rawEvent, stub) {
         /// <param name="rawEvent" type="Object">
         /// </param>
         /// <param name="stub" type="Object">
@@ -670,7 +670,7 @@ ClientLibrary.GalleryExtender.prototype = {
         return false;
     },
     
-    clearAdminHandlers: function ClientLibrary_GalleryExtender$clearAdminHandlers() {
+    _clearAdminHandlers$2: function ClientLibrary_GalleryExtender$_clearAdminHandlers$2() {
         jQuery('.adminConfirmLink').unbind('click', null);
         jQuery('.photoSession img').unbind('mouseover', null);
     },
@@ -680,7 +680,7 @@ ClientLibrary.GalleryExtender.prototype = {
         /// </param>
         /// <param name="e" type="Sys.EventArgs">
         /// </param>
-        if (this.get__galleryIds$2()) {
+        if (this.get__galleryIds$2() != null) {
             jQuery('.photoSession').fancybox(null);
             var length = this.get__galleryIds$2().length;
             for (var i = 0; i < length; i++) {
@@ -691,7 +691,7 @@ ClientLibrary.GalleryExtender.prototype = {
             }
         }
         jQuery('#content').css('padding', '0');
-        this.initializeAdminArea();
+        this._initializeAdminArea$2();
     },
     
     contentUpdating: function ClientLibrary_GalleryExtender$contentUpdating(sender, e) {
@@ -700,7 +700,7 @@ ClientLibrary.GalleryExtender.prototype = {
         /// <param name="e" type="Sys.EventArgs">
         /// </param>
         jQuery('#content').css('padding', '');
-        this.clearAdminHandlers();
+        this._clearAdminHandlers$2();
         this.dispose();
         ClientLibrary.GalleryExtender.callBaseMethod(this, 'contentUpdating', [ sender, e ]);
     }
@@ -716,10 +716,10 @@ ClientLibrary.ComponentLoader = function ClientLibrary_ComponentLoader() {
 ClientLibrary.ComponentLoader.prototype = {
     
     initialize: function ClientLibrary_ComponentLoader$initialize() {
-        window.setTimeout(Function.createDelegate(this, this.pageLoaded), 1000);
+        window.setTimeout(Function.createDelegate(this, this._pageLoaded$1), 1000);
     },
     
-    pageLoaded: function ClientLibrary_ComponentLoader$pageLoaded() {
+    _pageLoaded$1: function ClientLibrary_ComponentLoader$_pageLoaded$1() {
         var components = Sys.Application.getComponents();
         var length = components.length;
         for (var i = 0; i < length; i++) {
@@ -735,21 +735,21 @@ ClientLibrary.ComponentLoader.prototype = {
 // ClientLibrary.PageExtender
 
 ClientLibrary.PageExtender = function ClientLibrary_PageExtender() {
-    /// <field name="contentUpdating" type="Sys.EventHandler">
+    /// <field name="_contentUpdating$1" type="Sys.EventHandler">
     /// </field>
-    /// <field name="contentUpdated" type="Sys.EventHandler">
+    /// <field name="_contentUpdated$1" type="Sys.EventHandler">
     /// </field>
     ClientLibrary.PageExtender.initializeBase(this);
 }
 ClientLibrary.PageExtender.prototype = {
-    contentUpdating: null,
-    contentUpdated: null,
+    _contentUpdating$1: null,
+    _contentUpdated$1: null,
     
     initialize: function ClientLibrary_PageExtender$initialize() {
-        this.contentUpdating = Function.createDelegate(this, this.contentUpdating);
-        this.contentUpdated = Function.createDelegate(this, this.contentUpdated);
-        ClientLibrary.PageManager.get_current().add_contentUpdating(this.contentUpdating);
-        ClientLibrary.PageManager.get_current().add_contentUpdated(this.contentUpdated);
+        this._contentUpdating$1 = Function.createDelegate(this, this.contentUpdating);
+        this._contentUpdated$1 = Function.createDelegate(this, this.contentUpdated);
+        ClientLibrary.PageManager.get_current().add_contentUpdating(this._contentUpdating$1);
+        ClientLibrary.PageManager.get_current().add_contentUpdated(this._contentUpdated$1);
     },
     
     contentUpdated: function ClientLibrary_PageExtender$contentUpdated(sender, e) {
@@ -764,8 +764,8 @@ ClientLibrary.PageExtender.prototype = {
         /// </param>
         /// <param name="e" type="Sys.EventArgs">
         /// </param>
-        ClientLibrary.PageManager.get_current().remove_contentUpdated(this.contentUpdated);
-        ClientLibrary.PageManager.get_current().remove_contentUpdating(this.contentUpdating);
+        ClientLibrary.PageManager.get_current().remove_contentUpdated(this._contentUpdated$1);
+        ClientLibrary.PageManager.get_current().remove_contentUpdating(this._contentUpdating$1);
     }
 }
 
@@ -796,7 +796,7 @@ ClientLibrary.PageManager = function ClientLibrary_PageManager() {
     /// </field>
     /// <field name="_linkNavigation$1" type="Boolean">
     /// </field>
-    /// <field name="asyncRequestHandler" type="Sys.Mvc.AsyncRequestHandler">
+    /// <field name="_asyncRequestHandler$1" type="Sys.Mvc.AsyncRequestHandler">
     /// </field>
     ClientLibrary.PageManager.initializeBase(this);
 }
@@ -819,7 +819,7 @@ ClientLibrary.PageManager.asyncRequest = function ClientLibrary_PageManager$asyn
 }
 ClientLibrary.PageManager.prototype = {
     _linkNavigation$1: false,
-    asyncRequestHandler: null,
+    _asyncRequestHandler$1: null,
     
     get_isAuthenticated: function ClientLibrary_PageManager$get_isAuthenticated() {
         /// <value type="Boolean"></value>
@@ -850,10 +850,10 @@ ClientLibrary.PageManager.prototype = {
         /// </param>
         var state = {};
         state['url'] = url;
-        this.restoreSateFromHistory(state);
+        this._restoreSateFromHistory$1(state);
     },
     
-    createHistoryPoint: function ClientLibrary_PageManager$createHistoryPoint(target, options) {
+    _createHistoryPoint$1: function ClientLibrary_PageManager$_createHistoryPoint$1(target, options) {
         /// <param name="target" type="Object" domElement="true">
         /// </param>
         /// <param name="options" type="ClientLibrary.AjaxOptions">
@@ -863,52 +863,52 @@ ClientLibrary.PageManager.prototype = {
         Sys.Application.addHistoryPoint(result);
     },
     
-    restoreSateFromHistory: function ClientLibrary_PageManager$restoreSateFromHistory(state) {
+    _restoreSateFromHistory$1: function ClientLibrary_PageManager$_restoreSateFromHistory$1(state) {
         /// <param name="state" type="Object">
         /// </param>
-        this.ivokeUpdating();
-        this.killAsyncAnchors();
+        this._ivokeUpdating$1();
+        this._killAsyncAnchors$1();
         var options = new ClientLibrary.AjaxOptions();
         options.updateTargetId = 'content';
         options.insertionMode = Sys.Mvc.InsertionMode.replace;
-        if (!this.asyncRequestHandler) {
-            this.asyncRequestHandler = Function.createDelegate(this, this.asyncRequestCompleted);
+        if (this._asyncRequestHandler$1 == null) {
+            this._asyncRequestHandler$1 = Function.createDelegate(this, this.asyncRequestCompleted);
         }
-        options.onComplete = this.asyncRequestHandler;
-        if (state['url']) {
+        options.onComplete = this._asyncRequestHandler$1;
+        if (state['url'] != null) {
             var url = state['url'];
             ClientLibrary.PageManager.asyncRequest(url, 'post', '', null, options);
-            this.updateMenuSelection(url);
+            this._updateMenuSelection$1(url);
         }
         else {
             ClientLibrary.PageManager.asyncRequest('/Home/IndexContent', 'post', '', null, options);
-            this.updateMenuSelection('*');
+            this._updateMenuSelection$1('*');
         }
     },
     
-    initializeMenuAnchors: function ClientLibrary_PageManager$initializeMenuAnchors() {
+    _initializeMenuAnchors$1: function ClientLibrary_PageManager$_initializeMenuAnchors$1() {
         var menuContainer = document.getElementById('menuContainer');
         var menuAnchors = menuContainer.getElementsByTagName('a');
-        this.initializeAsyncAnchors(menuAnchors);
+        this._initializeAsyncAnchors$1(menuAnchors);
     },
     
-    initializePageAnchors: function ClientLibrary_PageManager$initializePageAnchors() {
+    _initializePageAnchors$1: function ClientLibrary_PageManager$_initializePageAnchors$1() {
         var anchors = ClientLibrary.Utils.getElementsByAttribute(document.getElementById('content'), 'a', 'rel', 'async', null);
-        this.initializeAsyncAnchors(anchors);
+        this._initializeAsyncAnchors$1(anchors);
     },
     
-    initializeAsyncAnchors: function ClientLibrary_PageManager$initializeAsyncAnchors(anchors) {
+    _initializeAsyncAnchors$1: function ClientLibrary_PageManager$_initializeAsyncAnchors$1(anchors) {
         /// <param name="anchors" type="Array">
         /// </param>
         for (var i = 0; i < anchors.length; i++) {
             var anchor = anchors[i];
-            $addHandler(anchor, 'click', Function.createDelegate(this, this.menuItemClicked));
+            $addHandler(anchor, 'click', Function.createDelegate(this, this._menuItemClicked$1));
         }
         var logoLink = document.getElementById('logo').getElementsByTagName('a')[0];
-        $addHandler(logoLink, 'click', Function.createDelegate(this, this.menuItemClicked));
+        $addHandler(logoLink, 'click', Function.createDelegate(this, this._menuItemClicked$1));
     },
     
-    killAsyncAnchors: function ClientLibrary_PageManager$killAsyncAnchors() {
+    _killAsyncAnchors$1: function ClientLibrary_PageManager$_killAsyncAnchors$1() {
         var anchors = ClientLibrary.Utils.getElementsByAttribute(document.getElementById('content'), 'a', 'rel', 'async', null);
         for (var i = 0; i < anchors.length; i++) {
             var anchor = anchors[i];
@@ -916,32 +916,32 @@ ClientLibrary.PageManager.prototype = {
         }
     },
     
-    ivokeUpdating: function ClientLibrary_PageManager$ivokeUpdating() {
+    _ivokeUpdating$1: function ClientLibrary_PageManager$_ivokeUpdating$1() {
         var handler = this.get_events().getHandler('contentUpdating');
-        if (handler) {
+        if (handler != null) {
             handler(this, new Sys.EventArgs());
         }
     },
     
-    invokeUpdated: function ClientLibrary_PageManager$invokeUpdated() {
+    _invokeUpdated$1: function ClientLibrary_PageManager$_invokeUpdated$1() {
         var handler = this.get_events().getHandler('contentUpdated');
-        if (handler) {
+        if (handler != null) {
             handler(this, new Sys.EventArgs());
         }
     },
     
-    updateMenuSelection: function ClientLibrary_PageManager$updateMenuSelection(url) {
+    _updateMenuSelection$1: function ClientLibrary_PageManager$_updateMenuSelection$1(url) {
         /// <param name="url" type="String">
         /// </param>
         var comparer = Function.createDelegate(this, function(a, b) {
             return (b.indexOf(a) > -1 && b.indexOf(a) < 1);
         });
         var target = ClientLibrary.Utils.getElementsByAttribute(document.getElementById('menuContainer'), 'a', 'href', url, comparer)[0];
-        if (target) {
+        if (target != null) {
             target = target.parentNode;
         }
         var items = jQuery('#menuContainer div');
-        if (target) {
+        if (target != null) {
             items = items.not(target);
             Sys.UI.DomElement.addCssClass(target, 'current');
             Sys.UI.DomElement.removeCssClass(target, 'hover');
@@ -949,13 +949,13 @@ ClientLibrary.PageManager.prototype = {
         items.removeClass('current');
     },
     
-    createPageExtenders: function ClientLibrary_PageManager$createPageExtenders() {
+    _createPageExtenders$1: function ClientLibrary_PageManager$_createPageExtenders$1() {
         var scripts = document.getElementById('content').getElementsByTagName('script');
         for (var i = 0; i < scripts.length; i++) {
             var script = scripts[i];
-            if (script) {
+            if (script != null) {
                 eval(script.innerHTML);
-                if (script.getAttribute('src')) {
+                if (script.getAttribute('src') != null) {
                     var newScript = document.createElement('script');
                     newScript.type = 'text/javascript';
                     newScript.src = script.getAttribute('src');
@@ -965,33 +965,33 @@ ClientLibrary.PageManager.prototype = {
         }
     },
     
-    application_Navigate: function ClientLibrary_PageManager$application_Navigate(sender, e) {
+    _application_Navigate$1: function ClientLibrary_PageManager$_application_Navigate$1(sender, e) {
         /// <param name="sender" type="Object">
         /// </param>
         /// <param name="e" type="Sys.HistoryEventArgs">
         /// </param>
         if (!this._linkNavigation$1) {
-            this.restoreSateFromHistory(e.get_state());
+            this._restoreSateFromHistory$1(e.get_state());
         }
     },
     
-    menuItemClicked: function ClientLibrary_PageManager$menuItemClicked(e) {
+    _menuItemClicked$1: function ClientLibrary_PageManager$_menuItemClicked$1(e) {
         /// <param name="e" type="Sys.UI.DomEvent">
         /// </param>
-        this.ivokeUpdating();
-        this.killAsyncAnchors();
+        this._ivokeUpdating$1();
+        this._killAsyncAnchors$1();
         var options = new ClientLibrary.AjaxOptions();
         options.updateTargetId = 'content';
         options.insertionMode = Sys.Mvc.InsertionMode.replace;
-        if (!this.asyncRequestHandler) {
-            this.asyncRequestHandler = Function.createDelegate(this, this.asyncRequestCompleted);
+        if (this._asyncRequestHandler$1 == null) {
+            this._asyncRequestHandler$1 = Function.createDelegate(this, this.asyncRequestCompleted);
         }
-        options.onComplete = this.asyncRequestHandler;
+        options.onComplete = this._asyncRequestHandler$1;
         var target = (e.target.tagName === 'A') ? e.target : e.target.parentNode;
         var url = target.getAttribute('href');
-        this.updateMenuSelection(url);
+        this._updateMenuSelection$1(url);
         this._linkNavigation$1 = true;
-        this.createHistoryPoint(target, options);
+        this._createHistoryPoint$1(target, options);
         Sys.Mvc.AsyncHyperlink.handleClick(target, e, options);
     },
     
@@ -999,20 +999,20 @@ ClientLibrary.PageManager.prototype = {
         /// <param name="param" type="Sys.Mvc.AjaxContext">
         /// </param>
         this._linkNavigation$1 = false;
-        window.setTimeout(Function.createDelegate(this, this.createPageExtenders), 200);
-        window.setTimeout(Function.createDelegate(this, this.invokeUpdated), 400);
-        window.setTimeout(Function.createDelegate(this, this.initializePageAnchors), 400);
+        window.setTimeout(Function.createDelegate(this, this._createPageExtenders$1), 200);
+        window.setTimeout(Function.createDelegate(this, this._invokeUpdated$1), 400);
+        window.setTimeout(Function.createDelegate(this, this._initializePageAnchors$1), 400);
     },
     
     initialize: function ClientLibrary_PageManager$initialize() {
         ClientLibrary.PageManager._instanse$1 = this;
         ClientLibrary.PageManager.callBaseMethod(this, 'initialize');
         Sys.Application.set_enableHistory(true);
-        Sys.Application.add_navigate(Function.createDelegate(this, this.application_Navigate));
+        Sys.Application.add_navigate(Function.createDelegate(this, this._application_Navigate$1));
     },
     
     _initializeMainMenu$1: function ClientLibrary_PageManager$_initializeMainMenu$1() {
-        this.initializeMenuAnchors();
+        this._initializeMenuAnchors$1();
         var arr = jQuery('.menuItem').not('.current');
         for (var i = 0; i < arr.length; i++) {
             var elem = arr[i];
@@ -1031,8 +1031,8 @@ ClientLibrary.PageManager.prototype = {
     
     onLoad: function ClientLibrary_PageManager$onLoad() {
         this._initializeMainMenu$1();
-        this.initializePageAnchors();
-        this.invokeUpdated();
+        this._initializePageAnchors$1();
+        this._invokeUpdated$1();
     }
 }
 
@@ -1056,19 +1056,19 @@ ClientLibrary.Utils.getElementsByAttribute = function ClientLibrary_Utils$getEle
     /// <returns type="Array"></returns>
     var result = [];
     var currentResultIndex = 0;
-    if (!parent) {
+    if (parent == null) {
         parent = document.documentElement;
     }
-    if (!tagName) {
+    if (tagName == null) {
         tagName = '*';
     }
     var startElements = parent.getElementsByTagName(tagName);
     for (var i = 0; i < startElements.length; i++) {
         var current = startElements[i];
         var attribute = current.getAttribute(attributeName);
-        if (attribute) {
+        if (attribute != null) {
             var attributesEqual = false;
-            if (comparer) {
+            if (comparer != null) {
                 attributesEqual = comparer(attribute.toString(), attributeValue);
             }
             else {
@@ -1088,12 +1088,12 @@ ClientLibrary.Utils.getElementsByAttribute = function ClientLibrary_Utils$getEle
 // ClientLibrary.VideoExtender
 
 ClientLibrary.VideoExtender = function ClientLibrary_VideoExtender() {
-    /// <field name="current" type="Object" domElement="true">
+    /// <field name="_current$2" type="Object" domElement="true">
     /// </field>
     ClientLibrary.VideoExtender.initializeBase(this);
 }
 ClientLibrary.VideoExtender.prototype = {
-    current: null,
+    _current$2: null,
     
     contentUpdated: function ClientLibrary_VideoExtender$contentUpdated(sender, e) {
         /// <param name="sender" type="Object">
@@ -1101,7 +1101,7 @@ ClientLibrary.VideoExtender.prototype = {
         /// <param name="e" type="Sys.EventArgs">
         /// </param>
         ClientLibrary.VideoExtender.callBaseMethod(this, 'contentUpdated', [ sender, e ]);
-        this.init();
+        this._init$2();
     },
     
     contentUpdating: function ClientLibrary_VideoExtender$contentUpdating(sender, e) {
@@ -1109,25 +1109,27 @@ ClientLibrary.VideoExtender.prototype = {
         /// </param>
         /// <param name="e" type="Sys.EventArgs">
         /// </param>
-        this.cleanup();
+        this._cleanup$2();
         ClientLibrary.VideoExtender.callBaseMethod(this, 'contentUpdating', [ sender, e ]);
+        this.dispose();
     },
     
-    init: function ClientLibrary_VideoExtender$init() {
+    _init$2: function ClientLibrary_VideoExtender$_init$2() {
         ClientLibrary.AudioPlayer.get_instance().pause();
         jQuery('#content').css('padding', '0');
-        jQuery('#clipThumbnails .thumbnail').click(Function.createDelegate(this, this.click));
-        jQuery('#clipThumbnails .thumbnail').mouseover(Function.createDelegate(this, this.thumbnailOver));
-        jQuery('#clipThumbnails .thumbnail').mouseout(Function.createDelegate(this, this.thumbnailOut));
+        jQuery('#clipThumbnails .thumbnail').click(Function.createDelegate(this, this._click$2));
+        jQuery('#clipThumbnails .thumbnail').mouseover(Function.createDelegate(this, this._thumbnailOver$2));
+        jQuery('#clipThumbnails .thumbnail').mouseout(Function.createDelegate(this, this._thumbnailOut$2));
+        jQuery('#clipThumbnails .thumbnail').eq(0).click();
     },
     
-    cleanup: function ClientLibrary_VideoExtender$cleanup() {
+    _cleanup$2: function ClientLibrary_VideoExtender$_cleanup$2() {
         jQuery('#content').css('padding', '');
         jQuery('#clipThumbnails .thumbnail').unbind('click', null).unbind('mouseover', null).unbind('mouseout', null);
         ClientLibrary.AudioPlayer.get_instance().play();
     },
     
-    thumbnailOver: function ClientLibrary_VideoExtender$thumbnailOver(rawEvent, ui) {
+    _thumbnailOver$2: function ClientLibrary_VideoExtender$_thumbnailOver$2(rawEvent, ui) {
         /// <param name="rawEvent" type="Object">
         /// </param>
         /// <param name="ui" type="Object">
@@ -1138,7 +1140,7 @@ ClientLibrary.VideoExtender.prototype = {
         return null;
     },
     
-    thumbnailOut: function ClientLibrary_VideoExtender$thumbnailOut(rawEvent, ui) {
+    _thumbnailOut$2: function ClientLibrary_VideoExtender$_thumbnailOut$2(rawEvent, ui) {
         /// <param name="rawEvent" type="Object">
         /// </param>
         /// <param name="ui" type="Object">
@@ -1149,7 +1151,7 @@ ClientLibrary.VideoExtender.prototype = {
         return null;
     },
     
-    click: function ClientLibrary_VideoExtender$click(rawEvent, ui) {
+    _click$2: function ClientLibrary_VideoExtender$_click$2(rawEvent, ui) {
         /// <param name="rawEvent" type="Object">
         /// </param>
         /// <param name="ui" type="Object">
@@ -1166,8 +1168,8 @@ ClientLibrary.VideoExtender.prototype = {
             jQuery('#clip').fadeIn('slow', null);
             return null;
         }));
-        jQuery(this.current).removeClass('current').mouseover(Function.createDelegate(this, this.thumbnailOver)).click(Function.createDelegate(this, this.click));
-        this.current = target;
+        jQuery(this._current$2).removeClass('current').mouseover(Function.createDelegate(this, this._thumbnailOver$2)).click(Function.createDelegate(this, this._click$2));
+        this._current$2 = target;
         return null;
     }
 }
@@ -1306,5 +1308,5 @@ ClientLibrary.AudioPlayer._instance$2 = null;
 ClientLibrary.PageManager._instanse$1 = null;
 
 // ---- Do not remove this footer ----
-// Generated using Script# v0.5.1.0 (http://projects.nikhilk.net)
+// This script was generated using Script# v0.5.5.0 (http://projects.nikhilk.net/ScriptSharp)
 // -----------------------------------

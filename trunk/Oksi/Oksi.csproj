@@ -221,7 +221,11 @@
     <Content Include="Views\Video\Index.ascx" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< .mine
+    <Content Include="bleft.swf" />
+=======
     <Content Include="Content\img\banners.jpg" />
+>>>>>>> .r1352
     <Content Include="Content\ui\images\ui-anim_basic_16x16.gif" />
     <Content Include="Content\ui\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\ui\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -257,6 +261,7 @@
     <Content Include="Views\Admin\Articles.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="bin\" />
     <Folder Include="Content\Articles\News\" />
     <Folder Include="Content\Articles\Press\" />
     <Folder Include="Content\Gallery\" />

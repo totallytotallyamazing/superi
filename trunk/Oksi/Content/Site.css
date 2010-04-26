@@ -3,6 +3,9 @@ body{background:black url(img/bodyBg.jpg) repeat-x;}
 img{border:0;}
 #main{width:837px; position:relative; margin:0 auto;}
 
+#mainWrapper{width:1327px; position:relative; margin:0 auto;}
+#leftBanners{float:left; position:absolute; margin-left:-245px; padding-top:95px}
+
 #adminIndicator{float:right; height:0px; width:570px; text-align:right; padding-right:3px; color:red;}
 #adminIndicator a{color:White;}
 #player{width:auto; height:45px; border-right:1px solid white; background:black;}

@@ -28,7 +28,11 @@ namespace Oksi.Controllers
 
         public ActionResult LatestVideo()
         {
-            return View();
+            using (DataStorage context = new DataStorage())
+            {
+                Clip clip = context.Clips.OrderBy(c => c.SortOrder).First();
+                return View(clip);
+            }
         }
 
         public ActionResult LatestNews()

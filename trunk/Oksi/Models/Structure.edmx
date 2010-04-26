@@ -28,7 +28,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Date" Type="datetime" Nullable="false" />
-          <Property Name="Description" Type="varchar" MaxLength="1000" />
+          <Property Name="Description" Type="varchar" />
           <Property Name="Id" Type="uint" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Image" Type="varchar" MaxLength="500" />
           <Property Name="Language" Type="char" Nullable="false" MaxLength="5" />
@@ -43,8 +43,9 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Comment" Type="varchar" Nullable="false" MaxLength="255" />
-          <Property Name="Description" Type="varchar" MaxLength="1000" />
+          <Property Name="Description" Type="varchar" />
           <Property Name="Id" Type="uint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="SmallSource" Type="varchar" MaxLength="4000" />
           <Property Name="SortOrder" Type="uint" Nullable="false" />
           <Property Name="Source" Type="varchar" Nullable="false" MaxLength="4000" />
           <Property Name="Title" Type="varchar" Nullable="false" MaxLength="255" />
@@ -54,9 +55,9 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Comments" Type="varchar" MaxLength="1000" />
+          <Property Name="Comments" Type="varchar" />
           <Property Name="Id" Type="uint" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="1000" />
+          <Property Name="Name" Type="varchar" Nullable="false" />
         </EntityType>
         <EntityType Name="Images">
           <Key>
@@ -178,7 +179,8 @@
           <Property Name="Title" Type="String" Nullable="false" />
           <Property Name="Year" Type="Int32" Nullable="false" />
           <Property Name="SortOrder" Type="Int64" Nullable="false" />
-          <Property Name="Description" Type="String" Nullable="true" /></EntityType>
+          <Property Name="Description" Type="String" Nullable="true" />
+          <Property Name="SmallSource" Type="String" Nullable="true" /></EntityType>
         <EntityType Name="Song">
           <Key>
             <PropertyRef Name="Id" /></Key>
@@ -254,6 +256,7 @@
           <EntitySetMapping Name="Clips">
             <EntityTypeMapping TypeName="IsTypeOf(gbua_superiModel.Clip)">
               <MappingFragment StoreEntitySet="Clip">
+                <ScalarProperty Name="SmallSource" ColumnName="SmallSource" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
                 <ScalarProperty Name="Year" ColumnName="Year" />

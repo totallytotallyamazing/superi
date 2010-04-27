@@ -194,5 +194,19 @@ namespace Tina
         {
             rotatePanel.Offset = e.NewValue;
         }
+
+        private void brnRight_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+          if(rotatePanel.Offset >= 280) 
+            rotatePanel.Offset= 0;
+          rotatePanel.Offset += 80;
+        }
+
+        private void btnLeft_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+          if(rotatePanel.Offset <= -280) 
+            rotatePanel.Offset= 0;
+          rotatePanel.Offset -= 80;        	
+        }
     }
 }

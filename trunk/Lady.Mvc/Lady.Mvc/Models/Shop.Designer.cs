@@ -21,7 +21,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("gbua_mladyModel", "BrandProduct", "Brand", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Lady.Mvc.Models.Brand), "Product", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Lady.Mvc.Models.Product))]
 
 // Original file name:
-// Generation date: 26.04.2010 16:37:26
+// Generation date: 27.04.2010 13:34:09
 namespace Lady.Mvc.Models
 {
     
@@ -146,20 +146,20 @@ namespace Lady.Mvc.Models
         }
         private global::System.Data.Objects.ObjectQuery<ProductImage> _ProductImages;
         /// <summary>
-        /// There are no comments for Brand in the schema.
+        /// There are no comments for Brands in the schema.
         /// </summary>
-        public global::System.Data.Objects.ObjectQuery<Brand> Brand
+        public global::System.Data.Objects.ObjectQuery<Brand> Brands
         {
             get
             {
-                if ((this._Brand == null))
+                if ((this._Brands == null))
                 {
-                    this._Brand = base.CreateQuery<Brand>("[Brand]");
+                    this._Brands = base.CreateQuery<Brand>("[Brands]");
                 }
-                return this._Brand;
+                return this._Brands;
             }
         }
-        private global::System.Data.Objects.ObjectQuery<Brand> _Brand;
+        private global::System.Data.Objects.ObjectQuery<Brand> _Brands;
         /// <summary>
         /// There are no comments for Categories in the schema.
         /// </summary>
@@ -203,11 +203,11 @@ namespace Lady.Mvc.Models
             base.AddObject("ProductImages", productImage);
         }
         /// <summary>
-        /// There are no comments for Brand in the schema.
+        /// There are no comments for Brands in the schema.
         /// </summary>
-        public void AddToBrand(Brand brand)
+        public void AddToBrands(Brand brand)
         {
-            base.AddObject("Brand", brand);
+            base.AddObject("Brands", brand);
         }
     }
     /// <summary>

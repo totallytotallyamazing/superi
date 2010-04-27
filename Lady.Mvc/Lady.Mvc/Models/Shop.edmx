@@ -132,9 +132,9 @@
           <AssociationSet Name="CategoryCategory" Association="gbua_mladyModel.CategoryCategory">
             <End Role="Category" EntitySet="Categories" />
             <End Role="Category1" EntitySet="Categories" /></AssociationSet>
-          <EntitySet Name="Brand" EntityType="gbua_mladyModel.Brand" />
+          <EntitySet Name="Brands" EntityType="gbua_mladyModel.Brand" />
           <AssociationSet Name="BrandProduct" Association="gbua_mladyModel.BrandProduct">
-            <End Role="Brand" EntitySet="Brand" />
+            <End Role="Brand" EntitySet="Brands" />
             <End Role="Product" EntitySet="Products" /></AssociationSet></EntityContainer>
         <EntityType Name="Category">
           <Key>
@@ -348,7 +348,7 @@
               <ScalarProperty Name="Id" ColumnName="Id" /></EndProperty>
             <EndProperty Name="Category">
               <ScalarProperty Name="Id" ColumnName="ParentId" /></EndProperty></AssociationSetMapping>
-          <EntitySetMapping Name="Brand">
+          <EntitySetMapping Name="Brands">
             <EntityTypeMapping TypeName="IsTypeOf(gbua_mladyModel.Brand)">
               <MappingFragment StoreEntitySet="Brand">
                 <ScalarProperty Name="SeoKeywords" ColumnName="SeoKeywords" />

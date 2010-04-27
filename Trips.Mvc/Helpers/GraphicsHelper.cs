@@ -62,7 +62,14 @@ namespace Trips.Mvc.Helpers
             }
             else
             {
-                CacheImage(originalPath, fileName, cacheFolder);
+                try
+                {
+                    CacheImage(originalPath, fileName, cacheFolder);
+                }
+                catch
+                {
+                    return GetCachedImage(originalPath, "tripsWebMvcNoCarImage.jpg", cacheFolder);
+                }
                 return result;
             }
         }

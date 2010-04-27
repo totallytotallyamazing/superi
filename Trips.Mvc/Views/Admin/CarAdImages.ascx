@@ -19,7 +19,7 @@
            { %>
             <div class="carAddAdminImage">
                 <%= Html.Image(GraphicsHelper.GetCachedImage("~/Content/AdImages", item.ImageSource, "thumbnail1"))%>
-                <%= Html.ActionLink("[IMAGE]", "DeleteImage", new { id = item.Id }, new { @class= "deleteLink", onclick="return confirm('Вы уверены?')"})
+                <%= Html.ActionLink("[IMAGE]", "DeleteImage", new { carAdId = images.Key, imageId = item.Id }, new { @class = "deleteLink", onclick = "return confirm('Вы уверены?')" })
                     .Replace("[IMAGE]", "") %>
                 <input type="radio" name="defaultImage" value="<%= item.Id %>" <%= (item.Default)?"checked":"" %> />
             </div>    

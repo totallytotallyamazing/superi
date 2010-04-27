@@ -332,6 +332,14 @@ namespace Trips.Mvc.Controllers
             using (CarAdStorage context = new CarAdStorage())
             {
                 CarAdImage image = context.CarAdImages.Where(i => i.Id == imageId).First();
+                if (image.Default)
+                {
+                    CarAdImage newDefaultImage = context.CarAdImages.Where(i => i.Id != imageId).FirstOrDefault();
+                    if (newDefaultImage != null)
+                        newDefaultImage.Default = true;
+                }
+                context.DeleteObject(image);
+                context.SaveChanges();
                 return RedirectToAction("AddEditCarAd", new { id = carAdId });
             }
         }

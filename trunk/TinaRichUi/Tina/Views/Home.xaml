@@ -886,28 +886,29 @@
             			<RowDefinition Height="1.3*"/>
             			<RowDefinition Height="3*"/>
             		</Grid.RowDefinitions>
-            		<TextBox x:Name="musicTextBox" Margin="0" Text="МУЗЫКА" TextWrapping="Wrap" FontSize="18.667" FontWeight="Bold" BorderThickness="0" Foreground="#FF525E65">
-            			<TextBox.Background>
-            				<LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
-            					<GradientStop Color="#FF6A7883" Offset="0"/>
-					<GradientStop Color="#FF626F75" Offset="1"/>
-					<GradientStop Color="#FF4E5D64" Offset="0.932"/>
-					<GradientStop Color="#FF525E65" Offset="0.846"/>
-					<GradientStop Color="#FF546167" Offset="0.763"/>
-					<GradientStop Color="#FF52656C" Offset="0.675"/>
-					<GradientStop Color="#FF59676E" Offset="0.585"/>
-					<GradientStop Color="#FF5F696F" Offset="0.503"/>
-					<GradientStop Color="#FF637075" Offset="0.414"/>
-					<GradientStop Color="#FF697A82" Offset="0.326"/>
-					<GradientStop Color="#FF69767E" Offset="0.24"/>
-					<GradientStop Color="#FF66777E" Offset="0.153"/>
-					<GradientStop Color="#FF6D787E" Offset="0.066"/>
-					<GradientStop Color="#FF697881" Offset="0.288"/>
-					<GradientStop Color="#FF65767E" Offset="0.196"/>
-					<GradientStop Color="#FF6A7887" Offset="0.104"/>
-            				</LinearGradientBrush>
-            			</TextBox.Background>
-            		</TextBox>
+                    <Grid>
+                        <Grid.Background>
+                            <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
+                                <GradientStop Color="#FF6A7883" Offset="0" />
+                                <GradientStop Color="#FF626F75" Offset="1" />
+                                <GradientStop Color="#FF4E5D64" Offset="0.932" />
+                                <GradientStop Color="#FF525E65" Offset="0.846" />
+                                <GradientStop Color="#FF546167" Offset="0.763" />
+                                <GradientStop Color="#FF52656C" Offset="0.675" />
+                                <GradientStop Color="#FF59676E" Offset="0.585" />
+                                <GradientStop Color="#FF5F696F" Offset="0.503" />
+                                <GradientStop Color="#FF637075" Offset="0.414" />
+                                <GradientStop Color="#FF697A82" Offset="0.326" />
+                                <GradientStop Color="#FF69767E" Offset="0.24" />
+                                <GradientStop Color="#FF66777E" Offset="0.153" />
+                                <GradientStop Color="#FF6D787E" Offset="0.066" />
+                                <GradientStop Color="#FF697881" Offset="0.288" />
+                                <GradientStop Color="#FF65767E" Offset="0.196" />
+                                <GradientStop Color="#FF6A7887" Offset="0.104" />
+                            </LinearGradientBrush>
+                        </Grid.Background>
+            		    <TextBlock x:Name="musicTextBox" Margin="0" Text="МУЗЫКА" TextWrapping="Wrap" FontSize="18.667" FontWeight="Bold"  Foreground="#FF525E65" />            			
+            		</Grid>
             	</Grid>
             </Border>
             <Border  x:Name="border4Player" BorderBrush="#FFCBCBCB" BorderThickness="4" Grid.Row="2"> 

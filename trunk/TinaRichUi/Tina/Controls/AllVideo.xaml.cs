@@ -197,16 +197,43 @@ namespace Tina
 
         private void brnRight_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-          if(rotatePanel.Offset >= 280) 
-            rotatePanel.Offset= 0;
-          rotatePanel.Offset += 80;
+            TurnUpStep(TurnOnDirection.CounterClockwise);
         }
 
         private void btnLeft_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-          if(rotatePanel.Offset <= -280) 
-            rotatePanel.Offset= 0;
-          rotatePanel.Offset -= 80;        	
+            TurnUpStep(TurnOnDirection.Clockwise);
         }
+        private void TurnUpStep(TurnOnDirection direction)
+        {
+          //double itemAngle = 360.0 / rotatePanel.Children.Count;
+          double itemAngle = 1;
+          double tempOffset = rotatePanel.Offset;
+          if (direction == TurnOnDirection.Clockwise)
+          {
+            tempOffset += itemAngle;
+            if (tempOffset > 360)
+              tempOffset -= 360;
+          }
+          else
+          {
+            tempOffset -= itemAngle;
+            if (tempOffset < -360)
+              tempOffset += 360;
+          }
+          rotatePanel.Offset = tempOffset;
+
+        }
+
+        private void ClipThumb_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+    }
+
+    public enum TurnOnDirection
+    {
+      Clockwise,
+      CounterClockwise
     }
 }

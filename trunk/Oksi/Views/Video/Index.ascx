@@ -20,9 +20,12 @@
             <div class="thumbnail"> 
                 <%= Html.Image("http://img.youtube.com/vi/" + TextHelper.GetYoutubeId(item.Source) + "/default.jpg") %>
                 <p class="title"><%= item.Title %></p>
-                <p><%if(!string.IsNullOrEmpty(item.Comment)){ %> (<%= item.Comment %>)<%} %></p>
-                <p><%= item.Year %></p>
+                <p class="clipComment"><%if(!string.IsNullOrEmpty(item.Comment)){ %> (<%= item.Comment %>)<%} %></p>
+                <p class="clipYear"><%= item.Year %></p>
                 <%= Html.Hidden("source_" + item.Id, item.Source) %>
+                <p class="clipDescription" style="display:none">
+                    <%= clip.Description %>
+                </p>
             </div>
         <% } %>
         <div style="clear:both;"></div>

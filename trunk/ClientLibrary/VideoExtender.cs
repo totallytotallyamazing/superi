@@ -56,17 +56,26 @@ namespace ClientLibrary
 
         Object Click(object rawEvent, object ui)
         {
+            Script.Literal("debugger");
             DOMElement target = (DOMElement)Type.GetField(rawEvent, "target");
             if (target.TagName != "DIV")
             {
                 target = target.ParentNode;
             }
 
+            
+
             JQueryProxy.jQuery(target)
                 .unbind("mouseover", null)
                 .unbind("click", null)
                 .removeClass("hover")
                 .addClass("current");
+
+            string title = JQueryProxy.jQuery(target).children("p.title").html();
+            string description = JQueryProxy.jQuery(target).children("p.clipDescription").html();
+
+            JQueryProxy.jQuery("#clipDetails h1").html(title);
+            JQueryProxy.jQuery("#clipDetails p").html(description);
 
             string source = ((InputElement)target.GetElementsByTagName("input")[0]).Value;
             JQueryProxy.jQuery("#clip").fadeTo("slow", 10, 

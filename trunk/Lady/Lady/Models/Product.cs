@@ -8,18 +8,21 @@ using System.ComponentModel;
 
 namespace Lady.Models
 {
-    [MetadataType(typeof(BrandValidation))]
-    public partial class Brand
+    [MetadataType(typeof(ProductValidation))]
+    public partial class Product
     {
     }
 
-    [Bind(Exclude="Id")]
-    public class BrandValidation
+    [Bind(Exclude = "Id")]
+    public class ProductValidation
     {
         [DisplayName("Описание")]
         public string Description { get; set; }
 
-        [Required(ErrorMessage="Введите название")]
+        [DisplayColumn("Краткое описание")]
+        public string ShortDescription{ get; set; }
+
+        [Required(ErrorMessage = "Введите название")]
         [DisplayName("Название")]
         public string Name { get; set; }
 
@@ -29,7 +32,11 @@ namespace Lady.Models
         [DisplayName("Description")]
         public string SeoDescription { get; set; }
 
-        [DisplayName("Лого")]
-        public string Logo { get; set; }
+        [DisplayName("Цена")]
+        public float Price { get; set; }
+
+        [DisplayName("Старая цена")]
+        public float OldPrice { get; set; }
     }
+
 }

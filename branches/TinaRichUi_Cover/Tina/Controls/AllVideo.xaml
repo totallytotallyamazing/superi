@@ -1,0 +1,146 @@
+﻿<UserControl
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:Tina"
+	mc:Ignorable="d"
+	x:Class="Tina.AllVideo"
+	d:DesignWidth="535" d:DesignHeight="100" Loaded="UserControl_Loaded" >
+
+    <Grid x:Name="LayoutRoot" Width="Auto">
+    	<Grid Height="80" VerticalAlignment="Bottom" Margin="0,0,0,32">
+    		<Rectangle HorizontalAlignment="Stretch">
+    			<Rectangle.Fill>
+    				<LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+    					<GradientStop Color="#FFA5BABF" Offset="0"/>
+    					<GradientStop Color="#FFE4EAEC" Offset="1"/>
+    				</LinearGradientBrush>
+    			</Rectangle.Fill>
+    		</Rectangle>
+    		<Rectangle Fill="#FFA4B9BE" Stroke="#FF96AAAE" HorizontalAlignment="Stretch" Margin="3" VerticalAlignment="Stretch" StrokeThickness="2"/>
+			<Rectangle x:Name="rectangle" Margin="3" RenderTransformOrigin="0.5,0.5">
+				<Rectangle.RenderTransform>
+					<TransformGroup>
+						<ScaleTransform/>
+						<SkewTransform/>
+						<RotateTransform/>
+						<TranslateTransform/>
+					</TransformGroup>
+				</Rectangle.RenderTransform>
+				<Rectangle.Fill>
+					<LinearGradientBrush>
+						<GradientStop Color="#4B000000"/>
+						<GradientStop Offset="0.5"/>
+						<GradientStop Color="#4B000000" Offset="1"/>
+					</LinearGradientBrush>
+				</Rectangle.Fill>
+			</Rectangle>
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="0.5*"/>
+					<ColumnDefinition Width="0.5*"/>
+				</Grid.ColumnDefinitions>
+				<Grid x:Name="LeftScrollOverlay"/>
+				<Grid x:Name="RightScrollOverlay" Grid.Column="1"/>
+			</Grid>
+    	</Grid>
+    	<Grid Height="96" Margin="0,0,0,19" Width="Auto" HorizontalAlignment="Stretch" VerticalAlignment="Bottom">
+    		<Grid.ColumnDefinitions>
+    			<ColumnDefinition Width="Auto"/>
+    			<ColumnDefinition Width="*"/>
+    			<ColumnDefinition Width="Auto" />
+    		</Grid.ColumnDefinitions>
+    		<RepeatButton x:Name="btnLeft" Height="60" Content="&lt;" d:LayoutOverrides="VerticalMargin" Width="20" Click="btnLeft_Click"/>
+    		<local:RotatePanel x:Name="rotatePanel" Spacing="5" SegmentLength="94" Rotate="rotatePanel_Rotate" Height="Auto" VerticalAlignment="Stretch" Offset="0" HorizontalAlignment="Stretch" Width="Auto" Grid.Column="1">
+    			<local:ClipThumb ImageUrl="/Tina;Component/Assets/playerBg.jpg" Title="Ключик1" Width="95">
+    				<local:ClipThumb.RenderTransform>
+    					<ScaleTransform/>
+    				</local:ClipThumb.RenderTransform>
+    			</local:ClipThumb>
+    			<local:ClipThumb ImageUrl="/Tina;Component/Assets/playerBg.jpg" Title="Ключик2" Width="95">
+    				<local:ClipThumb.RenderTransform>
+    					<ScaleTransform/>
+    				</local:ClipThumb.RenderTransform>
+    			</local:ClipThumb>
+    			<local:ClipThumb ImageUrl="/Tina;Component/Assets/playerBg.jpg" Title="Ключик3" Width="95">
+    				<local:ClipThumb.RenderTransform>
+    					<ScaleTransform/>
+    				</local:ClipThumb.RenderTransform>
+    			</local:ClipThumb>
+    			<local:ClipThumb ImageUrl="/Tina;Component/Assets/playerBg.jpg" Title="Ключик4" Width="95">
+    				<local:ClipThumb.RenderTransform>
+    					<ScaleTransform/>
+    				</local:ClipThumb.RenderTransform>
+    			</local:ClipThumb>
+    			<local:ClipThumb ImageUrl="/Tina;Component/Assets/playerBg.jpg" Title="Ключик5" Width="95">
+    				<local:ClipThumb.RenderTransform>
+    					<ScaleTransform/>
+    				</local:ClipThumb.RenderTransform>
+    			</local:ClipThumb>
+    			<local:ClipThumb ImageUrl="/Tina;Component/Assets/playerBg.jpg" Title="Ключик6" Width="95">
+    				<local:ClipThumb.RenderTransform>
+    					<ScaleTransform/>
+    				</local:ClipThumb.RenderTransform>
+    			</local:ClipThumb>
+    			<local:ClipThumb ImageUrl="/Tina;Component/Assets/playerBg.jpg" Title="Ключик7" Width="95">
+    				<local:ClipThumb.RenderTransform>
+    					<ScaleTransform/>
+    				</local:ClipThumb.RenderTransform>
+    			</local:ClipThumb>
+    			<local:ClipThumb ImageUrl="/Tina;Component/Assets/playerBg.jpg" Title="Ключик8" Width="95">
+    				<local:ClipThumb.RenderTransform>
+    					<ScaleTransform/>
+    				</local:ClipThumb.RenderTransform>
+    			</local:ClipThumb>
+    			<local:ClipThumb ImageUrl="/Tina;Component/Assets/playerBg.jpg" Title="Ключик9" Width="95">
+    				<local:ClipThumb.RenderTransform>
+    					<ScaleTransform/>
+    				</local:ClipThumb.RenderTransform>
+    			</local:ClipThumb>
+    			<local:ClipThumb ImageUrl="/Tina;Component/Assets/playerBg.jpg" Title="Ключик10" Width="95">
+    				<local:ClipThumb.RenderTransform>
+    					<ScaleTransform/>
+    				</local:ClipThumb.RenderTransform>
+    			</local:ClipThumb>
+    			<local:ClipThumb ImageUrl="/Tina;Component/Assets/playerBg.jpg" Title="Ключик11" Width="95">
+    				<local:ClipThumb.RenderTransform>
+    					<ScaleTransform/>
+    				</local:ClipThumb.RenderTransform>
+    			</local:ClipThumb>
+    			<local:ClipThumb ImageUrl="/Tina;Component/Assets/playerBg.jpg" Title="Ключик12" Width="95">
+    				<local:ClipThumb.RenderTransform>
+    					<ScaleTransform/>
+    				</local:ClipThumb.RenderTransform>
+    			</local:ClipThumb>
+    			<local:ClipThumb ImageUrl="/Tina;Component/Assets/playerBg.jpg" Title="Ключик13" Width="95">
+    				<local:ClipThumb.RenderTransform>
+    					<ScaleTransform/>
+    				</local:ClipThumb.RenderTransform>
+    			</local:ClipThumb>
+    			<local:ClipThumb ImageUrl="/Tina;Component/Assets/playerBg.jpg" Title="Ключик14" Width="95">
+    				<local:ClipThumb.RenderTransform>
+    					<ScaleTransform/>
+    				</local:ClipThumb.RenderTransform>
+    			</local:ClipThumb>
+    			<local:ClipThumb ImageUrl="/Tina;Component/Assets/playerBg.jpg" Title="Ключик15" Width="95">
+    				<local:ClipThumb.RenderTransform>
+    					<ScaleTransform/>
+    				</local:ClipThumb.RenderTransform>
+    			</local:ClipThumb>
+    			<local:ClipThumb ImageUrl="/Tina;Component/Assets/playerBg.jpg" Title="Ключик16" Width="95">
+    				<local:ClipThumb.RenderTransform>
+    					<ScaleTransform/>
+    				</local:ClipThumb.RenderTransform>
+    			</local:ClipThumb>
+    			<local:ClipThumb ImageUrl="/Tina;Component/Assets/playerBg.jpg" Title="Ключик17" Width="95">
+    				<local:ClipThumb.RenderTransform>
+    					<ScaleTransform/>
+    				</local:ClipThumb.RenderTransform>
+    			</local:ClipThumb>
+    		</local:RotatePanel>
+    		<RepeatButton x:Name="btnRight" Height="60" Width="20" Content="&gt;" Grid.Column="2" Click="brnRight_Click"/>
+    	</Grid>
+    	<Slider HorizontalAlignment="Stretch" Margin="0,0,0,7" ValueChanged="Slider_ValueChanged" VerticalAlignment="Bottom" Minimum="-360" Maximum="360"/>
+    </Grid>
+</UserControl>

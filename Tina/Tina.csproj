@@ -52,6 +52,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ControlLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\ControlLibrary.dll</HintPath>
+    </Reference>
     <Reference Include="MediaPlayer.dll">
       <HintPath>C:\Program Files\Microsoft Expression\Encoder 3\BlendMediaPlayer\MediaPlayer.dll</HintPath>
     </Reference>
@@ -206,6 +210,10 @@
     </Page>
     <Page Include="Controls\showClip.xaml">
       <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\CoverFlowResDictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Gallery.xaml">

@@ -1,0 +1,23 @@
+﻿<ResourceDictionary
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:ControlLibrary="clr-namespace:ControlLibrary;assembly=ControlLibrary">
+	<!-- Resource dictionary entries should be defined here. -->
+	<Style x:Key="CoverFlowControlStyleNoOpacity" TargetType="ControlLibrary:CoverFlowControl">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="ControlLibrary:CoverFlowControl">
+					<Grid x:Name="LayoutRoot">
+						<ItemsPresenter x:Name="ItemsPresenter" Height="{TemplateBinding Height}"/>
+					</Grid>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+		<Setter Property="ItemsPanel">
+			<Setter.Value>
+				<ItemsPanelTemplate>
+					<Canvas x:Name="itemCanvas"/>
+				</ItemsPanelTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+</ResourceDictionary>

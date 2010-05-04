@@ -3,10 +3,16 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
-	xmlns:local="clr-namespace:Tina"
-    xmlns:pl="clr-namespace:VideoPlayer;assembly=VideoPlayer"
-    xmlns:mono="clr-namespace:MioPlayer_Beta_2;assembly=MioPlayer_Beta_2"
-    mc:Ignorable="d" xmlns:ExpressionMediaPlayer="clr-namespace:ExpressionMediaPlayer;assembly=MediaPlayer" xmlns:System="clr-namespace:System;assembly=mscorlib" xmlns:layoutToolkit="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Layout.Toolkit" xmlns:layoutPrimitivesToolkit="clr-namespace:System.Windows.Controls.Primitives;assembly=System.Windows.Controls.Layout.Toolkit" xmlns:controlsToolkit="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Toolkit" xmlns:Tina_Controls="clr-namespace:Tina.Controls" x:Class="Tina.Home" 
+	xmlns:local="clr-namespace:Tina"    
+    mc:Ignorable="d"
+    xmlns:ExpressionMediaPlayer="clr-namespace:ExpressionMediaPlayer;assembly=MediaPlayer"
+    xmlns:System="clr-namespace:System;assembly=mscorlib" 
+    xmlns:layoutToolkit="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Layout.Toolkit"
+    xmlns:layoutPrimitivesToolkit="clr-namespace:System.Windows.Controls.Primitives;assembly=System.Windows.Controls.Layout.Toolkit"
+    xmlns:controlsToolkit="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Toolkit" 
+    xmlns:Tina_Controls="clr-namespace:Tina.Controls" 
+    xmlns:cl="clr-namespace:ControlLibrary;assembly=ControlLibrary"
+    x:Class="Tina.Home" 
     d:DesignWidth="1200"
     Title="Home" Background="#FFA3B0B8">
 
@@ -920,11 +926,35 @@
             <Grid x:Name="playerAndContentGrid" VerticalAlignment="Top" Margin="0" Grid.Row="3">
 				<Grid.RowDefinitions>
 					<RowDefinition Height="110"/>
-					<RowDefinition Height="Auto"/>
+					<RowDefinition/>
 					<RowDefinition/>
 				</Grid.RowDefinitions>
-				<local:AllVideo  x:Name="allVideo" Margin="0" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="110" Background="#FFD8D5D5" />
-				<Grid Margin="0" Grid.Row="1">
+                <cl:CoverFlowControl x:Name="ClipsCover"                                                 
+                                     SpaceBetweenItems="90"
+                                     SpaceBetweenSelectedItemAndItems="20"
+                                     RotationAngle="45"
+                                     Scale="0.9" Style="{StaticResource CoverFlowControlStyleNoOpacity}"                                    
+                                     >                    
+                    <cl:CoverFlowControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <StackPanel>
+                                    <Image Source="{Binding ImageUrl}"
+                                           CacheMode="BitmapCache"
+                                           Height="80"
+                                           
+                                            />
+                                    <TextBlock Text="{Binding Title}"
+                                               FontSize="14"
+                                               TextWrapping="Wrap"
+                                               Foreground="White" 
+                                               HorizontalAlignment="Center"/>
+                                </StackPanel>
+                            </Grid>
+                        </DataTemplate>
+                    </cl:CoverFlowControl.ItemTemplate>                    
+                </cl:CoverFlowControl>
+                    <Grid Margin="0" Grid.Row="2">
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="235"/>
 						<ColumnDefinition Width="300"/>

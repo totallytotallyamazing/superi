@@ -3,10 +3,13 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
-	xmlns:local="clr-namespace:Tina"
-    xmlns:pl="clr-namespace:VideoPlayer;assembly=VideoPlayer"
-    xmlns:mono="clr-namespace:MioPlayer_Beta_2;assembly=MioPlayer_Beta_2"
-    mc:Ignorable="d" xmlns:ExpressionMediaPlayer="clr-namespace:ExpressionMediaPlayer;assembly=MediaPlayer" xmlns:System="clr-namespace:System;assembly=mscorlib" xmlns:layoutToolkit="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Layout.Toolkit" xmlns:layoutPrimitivesToolkit="clr-namespace:System.Windows.Controls.Primitives;assembly=System.Windows.Controls.Layout.Toolkit" xmlns:controlsToolkit="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Toolkit" xmlns:Tina_Controls="clr-namespace:Tina.Controls" x:Class="Tina.Home" 
+	xmlns:local="clr-namespace:Tina"   
+    mc:Ignorable="d"    
+    xmlns:System="clr-namespace:System;assembly=mscorlib"
+    xmlns:layoutToolkit="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Layout.Toolkit"
+    xmlns:layoutPrimitivesToolkit="clr-namespace:System.Windows.Controls.Primitives;assembly=System.Windows.Controls.Layout.Toolkit"
+    xmlns:controlsToolkit="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Toolkit"
+    xmlns:Tina_Controls="clr-namespace:Tina.Controls" x:Class="Tina.Home" 
     d:DesignWidth="1200"
     Title="Home" Background="#FFA3B0B8">
 

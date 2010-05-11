@@ -4,6 +4,7 @@
 <asp:Content ContentPlaceHolderID="leftMenu" runat="server">
     <%
         List<SelectListItem> items = new List<SelectListItem>();
+        SelectListItem dealerCurrencyRates = new SelectListItem { Text = Html.ResourceString("CurrencyRates"), Value = VirtualPathUtility.ToAbsolute("~/DealerCabinet/CurrencyRates") };
         SelectListItem dealerInfo = new SelectListItem { Text = Html.ResourceString("EditDealer"), Value = VirtualPathUtility.ToAbsolute("~/DealerCabinet/AddUpdateDealer") };
         SelectListItem payment = new SelectListItem { Text = Html.ResourceString("Payment"), Value = "javascript:openPaymentDetails()" };
         SelectListItem delivery = new SelectListItem { Text = Html.ResourceString("Delivery"), Value = "javascript:openDeliveryDetails()" };
@@ -20,6 +21,7 @@
         items.Add(groups);
         items.Add(products);
         items.Add(orders);
+        items.Add(dealerCurrencyRates);
         Html.RenderAction<Zamov.Controllers.PagePartsController>(ac => ac.LeftMenu(Html.ResourceString("PersonalCabinet"), items)); 
     %>
 </asp:Content>

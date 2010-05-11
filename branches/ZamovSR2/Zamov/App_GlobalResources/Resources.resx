@@ -810,4 +810,19 @@
   <data name="VoucherNumberShort" xml:space="preserve">
     <value>Дисконтна карта</value>
   </data>
+  <data name="Manufacturers" xml:space="preserve">
+    <value>Виробники</value>
+  </data>
+  <data name="Manufacturer" xml:space="preserve">
+    <value>Виробник</value>
+  </data>
+  <data name="SetManufacturer" xml:space="preserve">
+    <value>Назначити виробника</value>
+  </data>
+  <data name="Currencies" xml:space="preserve">
+    <value>Валюта</value>
+  </data>
+  <data name="CurrencyRates" xml:space="preserve">
+    <value>Курси валют</value>
+  </data>
 </root>

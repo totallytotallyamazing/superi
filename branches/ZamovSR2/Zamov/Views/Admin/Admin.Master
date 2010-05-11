@@ -5,6 +5,8 @@
 <asp:Content ContentPlaceHolderID="leftMenu" runat="server">
     <%
         List<SelectListItem> items = new List<SelectListItem>();
+        SelectListItem currencies = new SelectListItem { Text = Html.ResourceString("Currencies"), Value = VirtualPathUtility.ToAbsolute("~/Admin/Currencies") };
+        SelectListItem manufacturers = new SelectListItem { Text = Html.ResourceString("Manufacturers"), Value = VirtualPathUtility.ToAbsolute("~/Admin/Manufacturers") };
         SelectListItem cities = new SelectListItem { Text = Html.ResourceString("Cities"), Value = VirtualPathUtility.ToAbsolute("~/Admin/Cities") };
         SelectListItem dealers = new SelectListItem { Text = Html.ResourceString("Dealers"), Value = VirtualPathUtility.ToAbsolute("~/Admin/Dealers") };
         SelectListItem categories = new SelectListItem { Text = Html.ResourceString("Categories"), Value = VirtualPathUtility.ToAbsolute("~/Admin/Categories") };
@@ -15,6 +17,8 @@
         SelectListItem startText = new SelectListItem { Text = Html.ResourceString("StartText"), Value = "javascript:startText();" };
         SelectListItem expireOrders = new SelectListItem { Text = Html.ResourceString("ExpireOrders"), Value = "/Admin/ExpireOrders" };
         SelectListItem copyDealer = new SelectListItem { Text = "Копировать продавца", Value = "/Admin/CopyDealer" };
+        items.Add(currencies);
+        items.Add(manufacturers);
         items.Add(cities);
         items.Add(dealers);
         items.Add(categories);

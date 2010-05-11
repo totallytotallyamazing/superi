@@ -121,6 +121,16 @@ namespace Zamov.Models
             parameter.DbType = System.Data.DbType.Int32;
             ExecuteNonQuery(context, "ZamovStorage.ProductImages_Cleanup", parameter);
         }
+        
+        public static void CleanupProductManufacturer(this ZamovStorage context, int productId)
+        {
+            EntityParameter parameter = new EntityParameter();
+            parameter.ParameterName = "productId";
+            parameter.IsNullable = false;
+            parameter.Value = productId;
+            parameter.DbType = System.Data.DbType.Int32;
+            ExecuteNonQuery(context, "ZamovStorage.ProductManufacturer_Cleanup", parameter);
+        }
 
         public static void CleanupCategoryImages(this ZamovStorage context, int categoryId)
         {

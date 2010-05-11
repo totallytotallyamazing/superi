@@ -9,11 +9,15 @@
           <EntitySet Name="Categories" EntityType="BaseEntities.Store.Categories" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="CategoryImages" EntityType="BaseEntities.Store.CategoryImages" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Cities" EntityType="BaseEntities.Store.Cities" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Currencies" EntityType="BaseEntities.Store.Currencies" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="DealerCategoryMapping" EntityType="BaseEntities.Store.DealerCategoryMapping" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="DealerCityMappings" EntityType="BaseEntities.Store.DealerCityMappings" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="DealerCurrencyRates" EntityType="BaseEntities.Store.DealerCurrencyRates" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="DealerFeedback" EntityType="BaseEntities.Store.DealerFeedback" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Dealers" EntityType="BaseEntities.Store.Dealers" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Groups" EntityType="BaseEntities.Store.Groups" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Manufacturer" EntityType="BaseEntities.Store.Manufacturer" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ManufacturerProductMapping" EntityType="BaseEntities.Store.ManufacturerProductMapping" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ProductCityMappings" EntityType="BaseEntities.Store.ProductCityMappings" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ProductImages" EntityType="BaseEntities.Store.ProductImages" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Products" EntityType="BaseEntities.Store.Products" store:Type="Tables" Schema="dbo" />
@@ -44,6 +48,14 @@
             <End Role="Dealers" EntitySet="Dealers" />
             <End Role="DealerCityMappings" EntitySet="DealerCityMappings" />
           </AssociationSet>
+          <AssociationSet Name="FK_DealerCurrencyRates_Currency" Association="BaseEntities.Store.FK_DealerCurrencyRates_Currency">
+            <End Role="Currencies" EntitySet="Currencies" />
+            <End Role="DealerCurrencyRates" EntitySet="DealerCurrencyRates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DealerCurrencyRates_Dealer" Association="BaseEntities.Store.FK_DealerCurrencyRates_Dealer">
+            <End Role="Dealers" EntitySet="Dealers" />
+            <End Role="DealerCurrencyRates" EntitySet="DealerCurrencyRates" />
+          </AssociationSet>
           <AssociationSet Name="FK_DealerFeedback_Dealers" Association="BaseEntities.Store.FK_DealerFeedback_Dealers">
             <End Role="Dealers" EntitySet="Dealers" />
             <End Role="DealerFeedback" EntitySet="DealerFeedback" />
@@ -60,6 +72,14 @@
             <End Role="Groups" EntitySet="Groups" />
             <End Role="Groups1" EntitySet="Groups" />
           </AssociationSet>
+          <AssociationSet Name="FK_ManufacturerProductMapping_Manufacturers" Association="BaseEntities.Store.FK_ManufacturerProductMapping_Manufacturers">
+            <End Role="Manufacturer" EntitySet="Manufacturer" />
+            <End Role="ManufacturerProductMapping" EntitySet="ManufacturerProductMapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ManufacturerProductMapping_Products" Association="BaseEntities.Store.FK_ManufacturerProductMapping_Products">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="ManufacturerProductMapping" EntitySet="ManufacturerProductMapping" />
+          </AssociationSet>
           <AssociationSet Name="FK_ProductCityMappings_Cities" Association="BaseEntities.Store.FK_ProductCityMappings_Cities">
             <End Role="Cities" EntitySet="Cities" />
             <End Role="ProductCityMappings" EntitySet="ProductCityMappings" />
@@ -71,6 +91,10 @@
           <AssociationSet Name="FK_ProductImages_Products" Association="BaseEntities.Store.FK_ProductImages_Products">
             <End Role="Products" EntitySet="Products" />
             <End Role="ProductImages" EntitySet="ProductImages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Products_Currency" Association="BaseEntities.Store.FK_Products_Currency">
+            <End Role="Currencies" EntitySet="Currencies" />
+            <End Role="Products" EntitySet="Products" />
           </AssociationSet>
           <AssociationSet Name="FK_Products_Dealers" Association="BaseEntities.Store.FK_Products_Dealers">
             <End Role="Dealers" EntitySet="Dealers" />
@@ -107,6 +131,15 @@
           <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="Enabled" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="Currencies">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="Sign" Type="varchar" MaxLength="10" />
+          <Property Name="ShortName" Type="varchar" MaxLength="3" />
+        </EntityType>
         <EntityType Name="DealerCategoryMapping">
           <Key>
             <PropertyRef Name="DealerId" />
@@ -122,6 +155,15 @@
           </Key>
           <Property Name="DealerId" Type="int" Nullable="false" />
           <Property Name="CityId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DealerCurrencyRates">
+          <Key>
+            <PropertyRef Name="DealerId" />
+            <PropertyRef Name="CurrencyId" />
+          </Key>
+          <Property Name="DealerId" Type="int" Nullable="false" />
+          <Property Name="CurrencyId" Type="int" Nullable="false" />
+          <Property Name="Rate" Type="decimal" Nullable="false" Precision="12" Scale="8" />
         </EntityType>
         <EntityType Name="DealerFeedback">
           <Key>
@@ -164,6 +206,22 @@
           <Property Name="DealerId" Type="int" Nullable="false" />
           <Property Name="Deleted" Type="bit" Nullable="false" />
           <Property Name="DisplayProductImages" Type="bit" Nullable="false" />
+          <Property Name="OldId" Type="int" />
+        </EntityType>
+        <EntityType Name="Manufacturer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="ManufacturerProductMapping">
+          <Key>
+            <PropertyRef Name="ManufacturerId" />
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="ManufacturerId" Type="int" Nullable="false" />
+          <Property Name="ProductId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="ProductCityMappings">
           <Key>
@@ -199,6 +257,8 @@
           <Property Name="New" Type="bit" Nullable="false" />
           <Property Name="TopProduct" Type="bit" Nullable="false" />
           <Property Name="Action" Type="bit" Nullable="false" />
+          <Property Name="OldId" Type="int" />
+          <Property Name="CurrencyId" Type="int" />
         </EntityType>
         <EntityType Name="TranslationItemsTypes">
           <Key>
@@ -298,6 +358,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_DealerCurrencyRates_Currency">
+          <End Role="Currencies" Type="BaseEntities.Store.Currencies" Multiplicity="1" />
+          <End Role="DealerCurrencyRates" Type="BaseEntities.Store.DealerCurrencyRates" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currencies">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DealerCurrencyRates">
+              <PropertyRef Name="CurrencyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DealerCurrencyRates_Dealer">
+          <End Role="Dealers" Type="BaseEntities.Store.Dealers" Multiplicity="1" />
+          <End Role="DealerCurrencyRates" Type="BaseEntities.Store.DealerCurrencyRates" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dealers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DealerCurrencyRates">
+              <PropertyRef Name="DealerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_DealerFeedback_Dealers">
           <End Role="Dealers" Type="BaseEntities.Store.Dealers" Multiplicity="1" />
           <End Role="DealerFeedback" Type="BaseEntities.Store.DealerFeedback" Multiplicity="*" />
@@ -346,6 +430,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ManufacturerProductMapping_Manufacturers">
+          <End Role="Manufacturer" Type="BaseEntities.Store.Manufacturer" Multiplicity="1" />
+          <End Role="ManufacturerProductMapping" Type="BaseEntities.Store.ManufacturerProductMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Manufacturer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ManufacturerProductMapping">
+              <PropertyRef Name="ManufacturerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ManufacturerProductMapping_Products">
+          <End Role="Products" Type="BaseEntities.Store.Products" Multiplicity="1" />
+          <End Role="ManufacturerProductMapping" Type="BaseEntities.Store.ManufacturerProductMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ManufacturerProductMapping">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ProductCityMappings_Cities">
           <End Role="Cities" Type="BaseEntities.Store.Cities" Multiplicity="1" />
           <End Role="ProductCityMappings" Type="BaseEntities.Store.ProductCityMappings" Multiplicity="*" />
@@ -379,6 +487,18 @@
             </Principal>
             <Dependent Role="ProductImages">
               <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Products_Currency">
+          <End Role="Currencies" Type="BaseEntities.Store.Currencies" Multiplicity="0..1" />
+          <End Role="Products" Type="BaseEntities.Store.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currencies">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="CurrencyId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -439,6 +559,9 @@
         <Function Name="ProductImages_Cleanup" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="productId" Type="int" Mode="In" />
         </Function>
+        <Function Name="ProductManufacturer_Cleanup" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="productId" Type="int" Mode="In" />
+        </Function>
         <Function Name="Products_InsertImported" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="updatesXml" Type="nvarchar(max)" Mode="In" />
           <Parameter Name="dealerId" Type="int" Mode="In" />
@@ -452,6 +575,23 @@
         <Function Name="Translations_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="translationsXml" Type="nvarchar(max)" Mode="In" />
         </Function>
+        <!--Errors Found During Generation:
+      warning 6037: Foreign Key constraint 'FK_DealerCityMappings_DealerCityMappings' has been omitted from the storage model. Column 'CityId' of table 'BaseEntities.Store.DealerCityMappings' is a Foreign Key participating in multiple relationships. A one-to-one Entity Model will not validate since data inconsistency is possible.
+      
+      <Association Name="FK_DealerCityMappings_DealerCityMappings">
+        <End Role="DealerCityMappings" Type="BaseEntities.Store.DealerCityMappings" Multiplicity="1" />
+        <End Role="DealerCityMappings1" Type="BaseEntities.Store.DealerCityMappings" Multiplicity="0..1" />
+        <ReferentialConstraint>
+          <Principal Role="DealerCityMappings">
+            <PropertyRef Name="DealerId" />
+            <PropertyRef Name="CityId" />
+          </Principal>
+          <Dependent Role="DealerCityMappings1">
+            <PropertyRef Name="DealerId" />
+            <PropertyRef Name="CityId" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>-->
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -500,6 +640,9 @@
             <End Role="Category1" EntitySet="Categories" /></AssociationSet>
           <FunctionImport Name="ProductImages_Cleanup">
             <Parameter Name="productId" Mode="In" Type="Int32" /></FunctionImport>
+          <FunctionImport Name="ProductManufacturer_Cleanup">
+            <Parameter Name="productId" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="UpdateProducts">
             <Parameter Name="updatesXml" Mode="In" Type="String" /></FunctionImport>
           <AssociationSet Name="FK_Groups_Groups" Association="BaseEntities.FK_Groups_Groups">
@@ -533,7 +676,22 @@
             <End Role="Group" EntitySet="Groups" /></AssociationSet>
           <FunctionImport Name="CopyDealer">
             <Parameter Name="dealerId" Mode="In" Type="Int32" />
-            <Parameter Name="cityId" Mode="In" Type="Int32" /></FunctionImport></EntityContainer>
+            <Parameter Name="cityId" Mode="In" Type="Int32" /></FunctionImport>
+          <EntitySet Name="Manufacturer" EntityType="BaseEntities.Manufacturer" />
+          <AssociationSet Name="ManufacturerProductMapping" Association="BaseEntities.ManufacturerProductMapping">
+            <End Role="Manufacturer" EntitySet="Manufacturer" />
+            <End Role="Product" EntitySet="Products" /></AssociationSet>
+          <EntitySet Name="Currencies" EntityType="BaseEntities.Currencies" />
+          <EntitySet Name="DealerCurrencyRates" EntityType="BaseEntities.DealerCurrencyRates" />
+          <AssociationSet Name="FK_DealerCurrencyRates_Currency" Association="BaseEntities.FK_DealerCurrencyRates_Currency">
+            <End Role="Currencies" EntitySet="Currencies" />
+            <End Role="DealerCurrencyRates" EntitySet="DealerCurrencyRates" /></AssociationSet>
+          <AssociationSet Name="FK_Products_Currency" Association="BaseEntities.FK_Products_Currency">
+            <End Role="Currencies" EntitySet="Currencies" />
+            <End Role="Product" EntitySet="Products" /></AssociationSet>
+          <AssociationSet Name="FK_DealerCurrencyRates_Dealer" Association="BaseEntities.FK_DealerCurrencyRates_Dealer">
+            <End Role="Dealer" EntitySet="Dealers" />
+            <End Role="DealerCurrencyRates" EntitySet="DealerCurrencyRates" /></AssociationSet></EntityContainer>
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="Id" />
@@ -576,7 +734,8 @@
           <Property Name="Cash" Type="Boolean" Nullable="false" />
           <Property Name="Noncash" Type="Boolean" Nullable="false" />
           <Property Name="Card" Type="Boolean" Nullable="false" />
-          <Property Name="OrderLifeTime" Type="Int32" Nullable="true" /></EntityType>
+          <Property Name="OrderLifeTime" Type="Int32" Nullable="true" />
+          <NavigationProperty Name="DealerCurrencyRates" Relationship="BaseEntities.FK_DealerCurrencyRates_Dealer" FromRole="Dealer" ToRole="DealerCurrencyRates" /></EntityType>
         <EntityType Name="Group">
           <Key>
             <PropertyRef Name="Id" />
@@ -590,7 +749,8 @@
           <NavigationProperty Name="Groups" Relationship="BaseEntities.FK_Groups_Groups" FromRole="Group" ToRole="Group1" />
           <NavigationProperty Name="Parent" Relationship="BaseEntities.FK_Groups_Groups" FromRole="Group1" ToRole="Group" />
           <Property Name="DisplayProductImages" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Category" Relationship="BaseEntities.FK_Groups_Categories" FromRole="Group" ToRole="Category" /></EntityType>
+          <NavigationProperty Name="Category" Relationship="BaseEntities.FK_Groups_Categories" FromRole="Group" ToRole="Category" />
+          <Property Name="OldId" Type="Int32" Nullable="true" /></EntityType>
         <EntityType Name="Product">
           <Key>
             <PropertyRef Name="Id" />
@@ -608,7 +768,10 @@
           <Property Name="Unit" Type="String" Nullable="true" />
           <Property Name="New" Type="Boolean" Nullable="false" />
           <Property Name="TopProduct" Type="Boolean" Nullable="false" />
-          <Property Name="Action" Type="Boolean" Nullable="false" /></EntityType>
+          <Property Name="Action" Type="Boolean" Nullable="false" />
+          <Property Name="OldId" Type="Int32" Nullable="true" />
+          <NavigationProperty Name="Manufacturer" Relationship="BaseEntities.ManufacturerProductMapping" FromRole="Product" ToRole="Manufacturer" />
+          <NavigationProperty Name="Currencies" Relationship="BaseEntities.FK_Products_Currency" FromRole="Product" ToRole="Currencies" /></EntityType>
         <EntityType Name="TranslationItemsType">
           <Key>
             <PropertyRef Name="Id" />
@@ -696,7 +859,53 @@
           </EntityType>
         <Association Name="FK_Groups_Categories">
           <End Type="BaseEntities.Category" Role="Category" Multiplicity="0..1" />
-          <End Type="BaseEntities.Group" Role="Group" Multiplicity="*" /></Association></Schema>
+          <End Type="BaseEntities.Group" Role="Group" Multiplicity="*" /></Association>
+        <EntityType Name="Manufacturer">
+          <Key>
+            <PropertyRef Name="Id" /></Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Products" Relationship="BaseEntities.ManufacturerProductMapping" FromRole="Manufacturer" ToRole="Product" />
+          <Property Name="Name" Type="String" Nullable="false" /></EntityType>
+        <Association Name="ManufacturerProductMapping">
+          <End Type="BaseEntities.Manufacturer" Role="Manufacturer" Multiplicity="*" />
+          <End Type="BaseEntities.Product" Role="Product" Multiplicity="*" /></Association>
+        <EntityType Name="Currencies">
+          <Key>
+            <PropertyRef Name="Id" /></Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="ShortName" Type="String" Nullable="true" />
+          <NavigationProperty Name="DealerCurrencyRates" Relationship="BaseEntities.FK_DealerCurrencyRates_Currency" FromRole="Currencies" ToRole="DealerCurrencyRates" />
+          <NavigationProperty Name="Products" Relationship="BaseEntities.FK_Products_Currency" FromRole="Currencies" ToRole="Product" />
+          <Property Name="Sign" Type="String" Nullable="true" /></EntityType>
+        <EntityType Name="DealerCurrencyRates">
+          <Key>
+            <PropertyRef Name="DealerId" />
+            <PropertyRef Name="CurrencyId" /></Key>
+          <Property Name="DealerId" Type="Int32" Nullable="false" />
+          <Property Name="CurrencyId" Type="Int32" Nullable="false" />
+          <Property Name="Rate" Type="Decimal" Nullable="false" />
+          <NavigationProperty Name="Currencies" Relationship="BaseEntities.FK_DealerCurrencyRates_Currency" FromRole="DealerCurrencyRates" ToRole="Currencies" />
+          <NavigationProperty Name="Dealers" Relationship="BaseEntities.FK_DealerCurrencyRates_Dealer" FromRole="DealerCurrencyRates" ToRole="Dealer" /></EntityType>
+        <Association Name="FK_DealerCurrencyRates_Currency">
+          <End Type="BaseEntities.Currencies" Role="Currencies" Multiplicity="1" />
+          <End Type="BaseEntities.DealerCurrencyRates" Role="DealerCurrencyRates" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currencies">
+              <PropertyRef Name="Id" /></Principal>
+            <Dependent Role="DealerCurrencyRates">
+              <PropertyRef Name="CurrencyId" /></Dependent></ReferentialConstraint></Association>
+        <Association Name="FK_Products_Currency">
+          <End Type="BaseEntities.Currencies" Role="Currencies" Multiplicity="0..1" />
+          <End Type="BaseEntities.Product" Role="Product" Multiplicity="*" /></Association>
+        <Association Name="FK_DealerCurrencyRates_Dealer">
+          <End Type="BaseEntities.Dealer" Role="Dealer" Multiplicity="1" />
+          <End Type="BaseEntities.DealerCurrencyRates" Role="DealerCurrencyRates" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dealer">
+              <PropertyRef Name="Id" /></Principal>
+            <Dependent Role="DealerCurrencyRates">
+              <PropertyRef Name="DealerId" /></Dependent></ReferentialConstraint></Association></Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -741,6 +950,7 @@
           <EntitySetMapping Name="Groups">
             <EntityTypeMapping TypeName="IsTypeOf(BaseEntities.Group)">
               <MappingFragment StoreEntitySet="Groups">
+                <ScalarProperty Name="OldId" ColumnName="OldId" />
                 <ScalarProperty Name="DisplayProductImages" ColumnName="DisplayProductImages" />
                 <ScalarProperty Name="Deleted" ColumnName="Deleted" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -752,6 +962,7 @@
           <EntitySetMapping Name="Products">
             <EntityTypeMapping TypeName="IsTypeOf(BaseEntities.Product)">
               <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="OldId" ColumnName="OldId" />
                 <ScalarProperty Name="Action" ColumnName="Action" />
                 <ScalarProperty Name="TopProduct" ColumnName="TopProduct" />
                 <ScalarProperty Name="New" ColumnName="New" />
@@ -847,6 +1058,7 @@
               <ScalarProperty Name="Id" ColumnName="CategoryId" /></EndProperty>
             <Condition ColumnName="CategoryId" IsNull="false" /></AssociationSetMapping>
           <FunctionImportMapping FunctionImportName="ProductImages_Cleanup" FunctionName="BaseEntities.Store.ProductImages_Cleanup" />
+          <FunctionImportMapping FunctionImportName="ProductManufacturer_Cleanup" FunctionName="BaseEntities.Store.ProductManufacturer_Cleanup" />
           <FunctionImportMapping FunctionImportName="UpdateProducts" FunctionName="BaseEntities.Store.Products_Update" />
           <AssociationSetMapping Name="FK_Groups_Groups" TypeName="BaseEntities.FK_Groups_Groups" StoreEntitySet="Groups">
             <EndProperty Name="Group1">
@@ -897,7 +1109,48 @@
             <EndProperty Name="Category">
               <ScalarProperty Name="Id" ColumnName="CategoryId" /></EndProperty>
             <Condition ColumnName="CategoryId" IsNull="false" /></AssociationSetMapping>
-          <FunctionImportMapping FunctionImportName="CopyDealer" FunctionName="BaseEntities.Store.CopyDealer" /></EntityContainerMapping>
+          <FunctionImportMapping FunctionImportName="CopyDealer" FunctionName="BaseEntities.Store.CopyDealer" />
+          <EntitySetMapping Name="Manufacturer">
+            <EntityTypeMapping TypeName="IsTypeOf(BaseEntities.Manufacturer)">
+              <MappingFragment StoreEntitySet="Manufacturer">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" /></MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <AssociationSetMapping Name="ManufacturerProductMapping" TypeName="BaseEntities.ManufacturerProductMapping" StoreEntitySet="ManufacturerProductMapping">
+            <EndProperty Name="Product">
+              <ScalarProperty Name="Id" ColumnName="ProductId" /></EndProperty>
+            <EndProperty Name="Manufacturer">
+              <ScalarProperty Name="Id" ColumnName="ManufacturerId" /></EndProperty></AssociationSetMapping>
+          <EntitySetMapping Name="Currencies">
+            <EntityTypeMapping TypeName="IsTypeOf(BaseEntities.Currencies)">
+              <MappingFragment StoreEntitySet="Currencies">
+                <ScalarProperty Name="Sign" ColumnName="Sign" />
+                <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" /></MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="DealerCurrencyRates">
+            <EntityTypeMapping TypeName="IsTypeOf(BaseEntities.DealerCurrencyRates)">
+              <MappingFragment StoreEntitySet="DealerCurrencyRates">
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="CurrencyId" ColumnName="CurrencyId" />
+                <ScalarProperty Name="DealerId" ColumnName="DealerId" /></MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <AssociationSetMapping Name="FK_DealerCurrencyRates_Currency" TypeName="BaseEntities.FK_DealerCurrencyRates_Currency" StoreEntitySet="DealerCurrencyRates">
+            <EndProperty Name="DealerCurrencyRates">
+              <ScalarProperty Name="CurrencyId" ColumnName="CurrencyId" />
+              <ScalarProperty Name="DealerId" ColumnName="DealerId" /></EndProperty>
+            <EndProperty Name="Currencies">
+              <ScalarProperty Name="Id" ColumnName="CurrencyId" /></EndProperty></AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Products_Currency" TypeName="BaseEntities.FK_Products_Currency" StoreEntitySet="Products">
+            <EndProperty Name="Product">
+              <ScalarProperty Name="Id" ColumnName="Id" /></EndProperty>
+            <EndProperty Name="Currencies">
+              <ScalarProperty Name="Id" ColumnName="CurrencyId" /></EndProperty>
+            <Condition ColumnName="CurrencyId" IsNull="false" /></AssociationSetMapping>
+          <AssociationSetMapping Name="FK_DealerCurrencyRates_Dealer" TypeName="BaseEntities.FK_DealerCurrencyRates_Dealer" StoreEntitySet="DealerCurrencyRates">
+            <EndProperty Name="DealerCurrencyRates">
+              <ScalarProperty Name="CurrencyId" ColumnName="CurrencyId" />
+              <ScalarProperty Name="DealerId" ColumnName="DealerId" /></EndProperty>
+            <EndProperty Name="Dealer">
+              <ScalarProperty Name="Id" ColumnName="DealerId" /></EndProperty></AssociationSetMapping></EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>
@@ -924,16 +1177,16 @@
         <EntityTypeShape EntityType="BaseEntities.TranslationItemsType" Width="1.5" PointX="11.25" PointY="2.625" Height="1.4033821614583331" IsExpanded="true" />
         <EntityTypeShape EntityType="BaseEntities.Translation" Width="1.5" PointX="11.25" PointY="0.5" Height="1.7566536458333335" IsExpanded="true" />
         <AssociationConnector ManuallyRouted="false" Association="BaseEntities.FK_Products_Dealers">
-          <ConnectorPoint PointX="9.625" PointY="4.21875" />
-          <ConnectorPoint PointX="2.25" PointY="4.21875" />
-          </AssociationConnector>
+          <ConnectorPoint PointX="10.608315651041666" PointY="4.3931689453125" />
+          <ConnectorPoint PointX="10.608315651041666" PointY="7.038452865251581" />
+          <ConnectorPoint PointX="2.25" PointY="7.038452865251581" /></AssociationConnector>
         <AssociationConnector Association="BaseEntities.FK_Products_Groups" ManuallyRouted="false">
-          <ConnectorPoint PointX="3.125" PointY="4.0958968098958328" />
-          <ConnectorPoint PointX="2.25" PointY="4.0958968098958328" />
+          <ConnectorPoint PointX="3.125" PointY="3.9963688151041659" />
+          <ConnectorPoint PointX="2.25" PointY="3.9963688151041659" />
           </AssociationConnector>
         <AssociationConnector ManuallyRouted="false" Association="BaseEntities.DealerCityMappings">
-          <ConnectorPoint PointX="2.25" PointY="1.25" />
-          <ConnectorPoint PointX="9.625" PointY="1.25" />
+          <ConnectorPoint PointX="2.25" PointY="1.28125" />
+          <ConnectorPoint PointX="9.625" PointY="1.28125" />
           </AssociationConnector>
         <AssociationConnector Association="BaseEntities.ProductCityMappings" ManuallyRouted="false">
           <ConnectorPoint PointX="1.5" PointY="2.8816536458333331" />
@@ -948,8 +1201,8 @@
           <ConnectorPoint PointX="6.625" PointY="1.96875" />
           <ConnectorPoint PointX="9.625" PointY="1.96875" /></AssociationConnector>
         <AssociationConnector Association="BaseEntities.FK_Groups_Dealers" >
-          <ConnectorPoint PointX="9.625" PointY="1.65625" />
-          <ConnectorPoint PointX="4.625" PointY="1.65625" />
+          <ConnectorPoint PointX="9.625" PointY="1.59375" />
+          <ConnectorPoint PointX="4.625" PointY="1.59375" />
           </AssociationConnector>
         <AssociationConnector Association="BaseEntities.FK_Categories_Categories" ManuallyRouted="true" >
           <ConnectorPoint PointX="6.364583333333333" PointY="3.9996956380208331" />
@@ -957,10 +1210,10 @@
           <ConnectorPoint PointX="5.40625" PointY="4.2496956380208335" />
           <ConnectorPoint PointX="5.40625" PointY="3.9996956380208331" /></AssociationConnector>
         <AssociationConnector Association="BaseEntities.FK_Groups_Groups" >
-          <ConnectorPoint PointX="3.6569230769230767" PointY="4.4417936197916656" />
-          <ConnectorPoint PointX="3.6569230769230767" PointY="4.6917936197916656" />
-          <ConnectorPoint PointX="4.1034615384615378" PointY="4.6917936197916656" />
-          <ConnectorPoint PointX="4.1034615384615378" PointY="4.4417936197916656" /></AssociationConnector>
+          <ConnectorPoint PointX="3.6569230769230767" PointY="4.2427376302083326" />
+          <ConnectorPoint PointX="3.6569230769230767" PointY="4.4927376302083326" />
+          <ConnectorPoint PointX="4.1034615384615378" PointY="4.4927376302083326" />
+          <ConnectorPoint PointX="4.1034615384615378" PointY="4.2427376302083326" /></AssociationConnector>
         <EntityTypeShape EntityType="BaseEntities.CategoryImage" Width="1.875" PointX="7.25" PointY="2.25" Height="1.5923063151041665" />
         <AssociationConnector Association="BaseEntities.FK_CategoryImages_Categories" >
           <ConnectorPoint PointX="6.625" PointY="3.1439925130208333" />
@@ -968,13 +1221,35 @@
           </AssociationConnector>
         <EntityTypeShape EntityType="BaseEntities.DealerFeedback" Width="1.875" PointX="7.5" PointY="4.375" Height="1.592306315104167" />
         <AssociationConnector Association="BaseEntities.FK_DealerFeedback_Dealers" >
-          <ConnectorPoint PointX="10.153645833333332" PointY="4.7879036458333326" />
-          <ConnectorPoint PointX="10.153645833333332" PointY="5.763896984375" />
-          <ConnectorPoint PointX="9.375" PointY="5.763896984375" />
+          <ConnectorPoint PointX="10.091631302083332" PointY="4.3931689453125" />
+          <ConnectorPoint PointX="10.091631302083332" PointY="5.4580111263020825" />
+          <ConnectorPoint PointX="9.375" PointY="5.4580111263020825" />
           </AssociationConnector>
         <EntityTypeShape EntityType="BaseEntities.MeassureUnit" Width="1.5" PointX="3.25" PointY="4.5" Height="1.4033821614583326" />
         <AssociationConnector Association="BaseEntities.FK_Groups_Categories" >
-          <ConnectorPoint PointX="5.125" PointY="3.0285953776041663" />
-          <ConnectorPoint PointX="4.625" PointY="3.0285953776041663" /></AssociationConnector></Diagram></edmx:Diagrams>
+          <ConnectorPoint PointX="5.125" PointY="2.8748478190104167" />
+          <ConnectorPoint PointX="4.625" PointY="2.8748478190104167" /></AssociationConnector>
+        <EntityTypeShape EntityType="BaseEntities.Manufacturer" Width="1.5" PointX="3.375" PointY="7.875" Height="1.4279589843749996" />
+        <AssociationConnector Association="BaseEntities.ManufacturerProductMapping" >
+          <ConnectorPoint PointX="3.375" PointY="8.5889794921875" />
+          <ConnectorPoint PointX="1.5" PointY="8.5889794921875" />
+          <ConnectorPoint PointX="1.5" PointY="7.4788216145833326" /></AssociationConnector>
+        <EntityTypeShape EntityType="BaseEntities.Currencies" Width="1.5" PointX="11.625" PointY="5.5" Height="1.9210009765624996" />
+        <EntityTypeShape EntityType="BaseEntities.DealerCurrencyRates" Width="1.5" PointX="13.875" PointY="1.625" Height="1.7566536458333335" />
+        <AssociationConnector Association="BaseEntities.FK_DealerCurrencyRates_Currency" >
+          <ConnectorPoint PointX="12.96875" PointY="5.5" />
+          <ConnectorPoint PointX="12.96875" PointY="2.4408268229166667" />
+          <ConnectorPoint PointX="13.875" PointY="2.4408268229166667" /></AssociationConnector>
+        <AssociationConnector Association="BaseEntities.FK_Products_Currency" >
+          <ConnectorPoint PointX="11.625" PointY="6.7181505862716246" />
+          <ConnectorPoint PointX="10.691648984375" PointY="6.7181505862716238" />
+          <ConnectorPoint PointX="10.524982317708332" PointY="6.7181505862716246" />
+          <ConnectorPoint PointX="2.25" PointY="6.7181505862716246" /></AssociationConnector>
+        <AssociationConnector Association="BaseEntities.FK_DealerCurrencyRates_Dealer" >
+          <ConnectorPoint PointX="11.125" PointY="4.1721402994791665" />
+          <ConnectorPoint PointX="12.885416666666666" PointY="4.1721402994791656" />
+          <ConnectorPoint PointX="13.052083333333334" PointY="4.1721402994791665" />
+          <ConnectorPoint PointX="14.625" PointY="4.1721402994791665" />
+          <ConnectorPoint PointX="14.625" PointY="3.3816536458333335" /></AssociationConnector></Diagram></edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

@@ -193,7 +193,7 @@
                   { %>
                   <%=(Math.Round(item.Price * item.Rate.Value, 2)).ToString("#.00#")%>
                 <br />
-                <% Response.Write(item.Currencies.Sign + item.Price.ToString("#.00#")); %>
+                <%  Response.Write(item.Currencies.Sign + item.Price.ToString("#.00#")); %>
                 
                 <%}
                   else

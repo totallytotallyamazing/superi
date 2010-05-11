@@ -55,7 +55,7 @@
                     }
                 }
                 else {
-                    input.value = "";        
+                    input.value = "";
                 }
             }
             else {
@@ -90,12 +90,12 @@
         int dealerId = (int)ViewData["dealerId"];
 
         int categoryId = (int)ViewData["categoryId"];
-       
-        
-        Func<string, string> processDescription = s=>
+
+
+        Func<string, string> processDescription = s =>
             {
                 string result = s;
-                if(s.Length > 240)
+                if (s.Length > 240)
                 {
                     result = s.Substring(0, 240);
                     result = result.Substring(0, result.LastIndexOf(' '));
@@ -110,11 +110,10 @@
       { %>
     <%using (Html.BeginForm("AddToCart", "Products", FormMethod.Post, new { id = "addToCart", style = "margin-bottom:20px;" }))
       { %>
-
     <input type="hidden" name="dealerId" value="<%= dealerId %>" />
     <%= Html.Hidden("groupId")%>
     <%= Html.Hidden("categoryId") %>
-    <div style="text-align: right; margin-top:-20px;">
+    <div style="text-align: right; margin-top: -20px;">
         <input type="submit" value="<%= Html.ResourceString("AddToCart") %>" />
     </div>
     <table class="blueHeaderedTable" style="width: 100%; margin: 5px 0;" cellpadding="0"
@@ -129,13 +128,13 @@
             <th style="width: 20px;">
                 <%= Html.ResourceString("MeassureUnit") %>
             </th>
-            <th class="sortable"  align="center">
+            <th class="sortable" align="center">
                 <%= Html.SortHeader("PriceHrn", "/Products/" + sortDealerId + "/" + categoryId + "/" + groupId, "Price", "", "")%>
             </th>
-            <th style="width: 20px;"  align="center">
+            <th style="width: 20px;" align="center">
                 <%= Html.ResourceString("Quantity") %>
             </th>
-            <th style="width: 20px;"  align="center">
+            <th style="width: 20px;" align="center">
                 <%= Html.ResourceString("ToOrder") %>
             </th>
         </tr>
@@ -157,7 +156,8 @@
         <tr class="<%= rowClass %>">
             <td align="center">
                 <table class="noBorder">
-                    <% if ((bool)ViewData["displayGroupImages"]){ %>
+                    <% if ((bool)ViewData["displayGroupImages"])
+                       { %>
                     <tr>
                         <td style="height: 80px" valign="middle" align="center">
                             <%
@@ -182,14 +182,24 @@
                 </a>
                 <div class="productDescription <%= ((bool)ViewData["displayGroupImages"]).ToString() %>">
                     <%if (item.Descriptions.ContainsKey(SystemSettings.CurrentLanguage)) %>
-                        <%= processDescription(item.Descriptions[SystemSettings.CurrentLanguage]) %>
+                    <%= processDescription(item.Descriptions[SystemSettings.CurrentLanguage]) %>
                 </div>
             </td>
             <td align="center">
                 <%= item.Unit %>
             </td>
             <td align="center">
-                <%= item.Price.ToString("#.00#") %>
+                <%if (item.Currencies != null && item.Rate.HasValue)
+                  { %>
+                  <%=(Math.Round(item.Price * item.Rate.Value, 2)).ToString("#.00#")%>
+                <br />
+                <% Response.Write(item.Currencies.Sign + item.Price.ToString("#.00#")); %>
+                
+                <%}
+                  else
+                  { %>
+                <%= item.Price.ToString("#.00#")%>
+                <%} %>
             </td>
             <td align="center" valign="middle">
                 <%
@@ -201,8 +211,9 @@
                 <%--<%= Ajax.MaskEdit("", MaskTypes.Number, mask, false, true, "quantity_" + item.Id)%>--%>
             </td>
             <td align="center" valign="middle">
-                <a id="orderLink_<%= item.Id %>" class="orderCheckLink <%= SystemSettings.CurrentLanguage %>" rel="<%= item.Id %>"></a>
-                <div style="overflow:hidden; width:0; height:0;">
+                <a id="orderLink_<%= item.Id %>" class="orderCheckLink <%= SystemSettings.CurrentLanguage %>"
+                    rel="<%= item.Id %>"></a>
+                <div style="overflow: hidden; width: 0; height: 0;">
                     <%= Html.CheckBox("order_" + item.Id, false, new { onclick = "order(this)", style = "visibility:hidden; display: block; height: 0px; font-size: 0px;" })%>
                 </div>
             </td>

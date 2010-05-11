@@ -29,6 +29,83 @@ namespace Zamov.Controllers
             return View();
         }
 
+        #region Currency rates
+
+        [Authorize(Roles = "Administrators, Dealers")]
+        [BreadCrumb(ResourceName = "CurrencyRates", Url = "/DealerCabinet/CurrencyRates")]
+        public ActionResult CurrencyRates()
+        {
+            using (ZamovStorage context = new ZamovStorage())
+            {
+                List<Currencies> currencies = context.Currencies.Select(c => c).ToList();
+                List<SelectListItem> currencysList = new List<SelectListItem>();
+                foreach (var item in currencies)
+                {
+                    currencysList.Add(new SelectListItem { Text = item.Name+" ["+item.ShortName+"]", Value = item.Id.ToString() });
+                }
+                ViewData["currencies"] = currencysList;
+
+                int dealerId = Security.GetCurentDealerId(User.Identity.Name);
+                List<DealerCurrencyRates> dealerCurrencyRates = (from dcr in context.DealerCurrencyRates.Include("Currencies").Include("Dealers") where dcr.DealerId == dealerId select dcr).ToList();
+                return View(dealerCurrencyRates);
+            }
+        }
+
+        [Authorize(Roles = "Administrators, Dealers")]
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult InsertCurrencyRate(FormCollection form)
+        {
+            int currencyId = 0;
+            decimal rate = 0;
+
+            int dealerId = Security.GetCurentDealerId(User.Identity.Name);
+            if (int.TryParse(form["currencysList"], out currencyId))
+                if (decimal.TryParse(form["rate"].Replace(".", ","), out rate))
+                {
+                    using (ZamovStorage context = new ZamovStorage())
+                    {
+                        Dealer currentDealer = context.Dealers.Select(d => d).Where(d => d.Id == dealerId).FirstOrDefault();
+                        Currencies currentCurrency = context.Currencies.Select(c => c).Where(c => c.Id == currencyId).FirstOrDefault();
+                        DealerCurrencyRates dcr = new DealerCurrencyRates();
+                        dcr.Dealers = currentDealer;
+                        dcr.Currencies = currentCurrency;
+                        dcr.Rate = rate;
+                        context.AddToDealerCurrencyRates(dcr);
+                        context.SaveChanges();
+                    }
+                }
+            return RedirectToAction("CurrencyRates");
+        }
+
+        [Authorize(Roles = "Administrators, Dealers")]
+        public ActionResult UpdateCurrencyRates(FormCollection form)
+        {
+            PostData postData = form.ProcessPostData();
+            PostData updates = new PostData();
+            foreach (var item in postData)
+            {
+                updates.Add(item.Key, item.Value.ToDictionary(v => v.Key, v => v.Value));
+            }
+            int dealerId = Security.GetCurentDealerId(User.Identity.Name);
+            foreach (var item in updates)
+            {
+                item.Value["rate"] = item.Value["rate"].Replace(".", ",");
+            }
+
+            using (ZamovStorage context = new ZamovStorage())
+            {
+                List<DealerCurrencyRates> dealerCurrencyRates = (from dcr in context.DealerCurrencyRates.Include("Currencies").Include("Dealers") where dcr.DealerId == dealerId select dcr).ToList();
+                foreach (var item in dealerCurrencyRates)
+                {
+                    item.Rate = Convert.ToDecimal(updates[item.CurrencyId.ToString()]["rate"]);
+                }
+                context.SaveChanges();
+            }
+            return RedirectToAction("CurrencyRates");
+        }
+
+        #endregion
+
         #region Groups
         [BreadCrumb(ResourceName = "Groups", Url = "/DealerCabinet/Groups")]
         [Authorize(Roles = "Administrators, Dealers")]
@@ -40,11 +117,11 @@ namespace Zamov.Controllers
                 dealerId = Security.GetCurentDealerId(User.Identity.Name);
                 ViewData["dealerId"] = dealerId;
                 List<CategoryPresentation> categories = context.GetTranslatedCategories(SystemSettings.CurrentLanguage, true, null, false)
-                    .Select(c => new CategoryPresentation 
-                    { 
-                        Id = c.Entity.Id, 
-                        Name = c.Translation.Text, 
-                        ParentId = c.Entity.Parent.Id 
+                    .Select(c => new CategoryPresentation
+                    {
+                        Id = c.Entity.Id,
+                        Name = c.Translation.Text,
+                        ParentId = c.Entity.Parent.Id
                     }).ToList();
                 categories.ForEach(c => c.PickChildren(categories));
                 categories = categories.Where(c => c.ParentId == null).ToList();
@@ -73,7 +150,7 @@ namespace Zamov.Controllers
 
         [AcceptVerbs(HttpVerbs.Post)]
         [Authorize(Roles = "Administrators, Dealers")]
-        public ActionResult InsertGroup(string groupName, string groupUkrName, string groupRusName, bool displayImages, bool enabled, int parentId,  int categoryId)
+        public ActionResult InsertGroup(string groupName, string groupUkrName, string groupRusName, bool displayImages, bool enabled, int parentId, int categoryId)
         {
             ClearGroupCache();
 
@@ -93,7 +170,7 @@ namespace Zamov.Controllers
                 group.Names["uk-UA"] = groupUkrName;
                 group.Enabled = enabled;
                 group.DisplayProductImages = displayImages;
-                if(parentId < 0)
+                if (parentId < 0)
                     group.CategoryReference.EntityKey = new EntityKey("ZamovStorage.Categories", "Id", categoryId);
                 context.AddToGroups(group);
                 context.SaveChanges();
@@ -287,14 +364,14 @@ namespace Zamov.Controllers
             List<Product> products = new List<Product>();
             if (id != null && id > 0)
             {
-                products = (from product in context.Products
+                products = (from product in context.Products.Include("Manufacturer").Include("Currencies")
                             where product.Group.Id == id.Value && product.Dealer.Id == dealerId && !product.Deleted && !product.Group.Deleted
                             select product).ToList();
             }
             else if (id == 0)
             {
                 products = (from product in context.Products
-                            where product.Dealer.Id == dealerId && !product.Deleted && product.Group.Name!="TRASH" && !product.Group.Deleted
+                            where product.Dealer.Id == dealerId && !product.Deleted && product.Group.Name != "TRASH" && !product.Group.Deleted
                             select product).ToList();
             }
             List<SelectListItem> items = new List<SelectListItem>();
@@ -307,6 +384,25 @@ namespace Zamov.Controllers
             ViewData["groups"] = items;
             ViewData["moveToGroups"] = moveToItems;
             ViewData["groupId"] = currentGroupId;
+
+
+            List<Manufacturer> manufacturers = context.Manufacturer.Select(m => m).ToList();
+            List<SelectListItem> manufacturersList = new List<SelectListItem>();
+            foreach (var item in manufacturers)
+            {
+                manufacturersList.Add(new SelectListItem { Text = item.Name, Value = item.Id.ToString() });
+            }
+            ViewData["manufacturers"] = manufacturersList;
+
+            List<Currencies> currencies = context.Currencies.Select(c => c).ToList();
+            List<SelectListItem> currencysList = new List<SelectListItem>();
+            currencysList.Add(new SelectListItem { Text = "---", Value = "0" });
+            foreach (var item in currencies)
+            {
+                currencysList.Add(new SelectListItem { Text = item.Name + " [" + item.ShortName + "]", Value = item.Id.ToString() });
+            }
+            ViewData["currencies"] = currencysList;
+
             return View(products);
         }
 
@@ -495,7 +591,7 @@ namespace Zamov.Controllers
         [Authorize(Roles = "Administrators, Dealers")]
         public ActionResult UpdateProducts(FormCollection form)
         {
-            PostData postData = form.ProcessPostData("groupId", "groups");
+            PostData postData = form.ProcessPostData("groupId", "groups", "manufacturers", "currencies");
             PostData updates = new PostData();
             foreach (var item in postData)
                 updates.Add(item.Key, item.Value.Where(v => v.Key != "moveTo").ToDictionary(v => v.Key, v => v.Value));
@@ -507,6 +603,8 @@ namespace Zamov.Controllers
             }
 
             int moveToGroup = 0;
+            int manufacturerId = 0;
+            int currencyId = 0;
             using (ZamovStorage context = new ZamovStorage())
             {
                 context.UpdateProducts(updates.CreateUpdatesXml());
@@ -531,6 +629,74 @@ namespace Zamov.Controllers
 
                         foreach (Product product in productsQuery)
                             product.Group = group;
+                        context.SaveChanges();
+                    }
+                }
+
+
+
+                if (int.TryParse(form["manufacturers"], out manufacturerId))
+                {
+                    List<int> manufacturerProducts = new List<int>();
+                    foreach (var item in postData)
+                    {
+                        if (item.Value["setManufacturer"] == "true")
+                            manufacturerProducts.Add(int.Parse(item.Key));
+                    }
+                    if (manufacturerProducts.Count > 0)
+                    {
+                        string[] manufacturerProductsArray = manufacturerProducts.Select(i => i.ToString()).ToArray();
+                        string productIds = string.Join(",", manufacturerProductsArray);
+
+
+
+
+
+                        ObjectQuery<Product> productsQuery = new ObjectQuery<Product>(
+                                    "SELECT VALUE P FROM Products AS P WHERE P.Id IN {" + productIds + "}",
+                                    context);
+
+
+
+                        Manufacturer manufacturer = context.Manufacturer.Where(m => m.Id == manufacturerId).Select(m => m).First();
+
+                        foreach (Product product in productsQuery)
+                        {
+                            context.CleanupProductManufacturer(product.Id);
+                            product.Manufacturer.Add(manufacturer);
+                        }
+                        context.SaveChanges();
+
+                    }
+                }
+
+                if (int.TryParse(form["currencies"], out currencyId))
+                {
+                    List<int> setCurrencyProducts = new List<int>();
+                    foreach (var item in postData)
+                    {
+                        if (item.Value["setCurrency"] == "true")
+                            setCurrencyProducts.Add(int.Parse(item.Key));
+                    }
+                    if (setCurrencyProducts.Count > 0)
+                    {
+                        string[] setCurrencyProductsArray = setCurrencyProducts.Select(i => i.ToString()).ToArray();
+                        string productIds = string.Join(",", setCurrencyProductsArray);
+                        ObjectQuery<Product> productsQuery = new ObjectQuery<Product>(
+                                    "SELECT VALUE P FROM Products AS P WHERE P.Id IN {" + productIds + "}",
+                                    context);
+
+
+                        Currencies productCurrency = null;
+                        if (currencyId != 0)
+                            productCurrency = context.Currencies.Where(c => c.Id == currencyId).Select(c => c).First();
+
+
+
+                        foreach (Product product in productsQuery)
+                        {
+                            product.Currencies = productCurrency;
+                        }
                         context.SaveChanges();
                     }
                 }
@@ -697,7 +863,7 @@ namespace Zamov.Controllers
             if (updatedItemsDictionary.Count == 0 && newItemsDictionary.Count == 0)
                 return RedirectToAction("Products", new { groupId = form["groupId"] });
 
-            return RedirectToAction("ImportedProducts", new { groupId = form["groupId"]});
+            return RedirectToAction("ImportedProducts", new { groupId = form["groupId"] });
         }
         #endregion
 

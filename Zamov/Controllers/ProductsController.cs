@@ -40,6 +40,8 @@ namespace Zamov.Controllers
                 ViewData["groupId"] = groupId;
                 ViewData["categoryId"] = categoryId;
 
+                
+
                 bool displayGroupImages = false;
 
                 Group currentGroup = null;
@@ -67,7 +69,8 @@ namespace Zamov.Controllers
 
                 ViewData["displayGroupImages"] = displayGroupImages;
 
-                if (HttpContext.Cache[productsCacheKey] == null)
+                //if (HttpContext.Cache[productsCacheKey] == null)
+                if (1==1)
                 {
                     List<Product> products = new List<Product>();
                     if (currentGroup != null)
@@ -89,8 +92,7 @@ namespace Zamov.Controllers
 
 
                     products.ForEach(p => p.LoadDescriptions());
-
-
+                    products.ForEach(p => p.LoadProductRate());
 
                     if (sortField != null && sortOrder != null)
                         switch (sortField)

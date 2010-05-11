@@ -30,6 +30,84 @@ namespace Zamov.Controllers
             return View();
         }
 
+        #region Currencies
+
+        [BreadCrumb(ResourceName = "Currencies", Url = "/Admin/Currencies")]
+        public ActionResult Currencies()
+        {
+            using (ZamovStorage context = new ZamovStorage())
+            {
+                List<Currencies> currencies = context.Currencies.Select(c => c).ToList();
+                return View(currencies);
+            }
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult InsertCurrency(FormCollection form)
+        {
+            using (ZamovStorage context = new ZamovStorage())
+            {
+                Currencies currency = new Currencies();
+                currency.Name = form["currencyName"];
+                currency.ShortName = form["currencyShortName"];
+                currency.Sign = form["currencySign"];
+                context.AddToCurrencies(currency);
+                context.SaveChanges();
+            }
+            return RedirectToAction("Currencies");
+        }
+
+        public ActionResult DeleteCurrency(int id)
+        {
+            using (ZamovStorage context = new ZamovStorage())
+            {
+                Currencies currency = (from c in context.Currencies where c.Id == id select c).First();
+                context.DeleteObject(currency);
+                context.SaveChanges();
+            }
+            return RedirectToAction("Currencies");
+        }
+
+        #endregion
+
+        #region Manufacturers
+
+        [BreadCrumb(ResourceName = "Manufacturers", Url = "/Admin/Manufacturers")]
+        public ActionResult Manufacturers()
+        {
+            using (ZamovStorage context = new ZamovStorage())
+            {
+                List<Manufacturer> manufacturers = context.Manufacturer.Select(c => c).ToList();
+                return View(manufacturers);
+            }
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult InsertManufacturer(FormCollection form)
+        {
+            using (ZamovStorage context = new ZamovStorage())
+            {
+                Manufacturer manufacturer = new Manufacturer();
+                manufacturer.Name = form["manufacturerName"];
+                context.AddToManufacturer(manufacturer);
+                context.SaveChanges();
+            }
+            return RedirectToAction("Manufacturers");
+        }
+
+        public ActionResult DeleteManufacturer(int id)
+        {
+            using (ZamovStorage context = new ZamovStorage())
+            {
+                Manufacturer manufacturer = (from c in context.Manufacturer where c.Id == id select c).First();
+                context.DeleteObject(manufacturer);
+                context.SaveChanges();
+            }
+            return RedirectToAction("Manufacturers");
+        }
+
+        #endregion
+
         #region Cities
         [BreadCrumb(ResourceName = "Cities", Url = "/Admin/Cities")]
         public ActionResult Cities()

@@ -394,12 +394,15 @@
     <Content Include="Views\Admin\CategoryDescription.ascx" />
     <Content Include="Views\Admin\ClearCache.aspx" />
     <Content Include="Views\Admin\CopyDealer.aspx" />
+    <Content Include="Views\Admin\Currencies.aspx" />
+    <Content Include="Views\Admin\Manufacturers.aspx" />
     <Content Include="Views\Admin\RemoveDealers.aspx" />
     <Content Include="Views\Admin\StartText.aspx" />
     <Content Include="Views\Admin\SubCategoryText.aspx" />
     <Content Include="Views\Admin\UpdateUser.aspx" />
     <Content Include="Views\Admin\UserTypeSelector.ascx" />
     <Content Include="Views\Cart\Expired.aspx" />
+    <Content Include="Views\DealerCabinet\CurrencyRates.aspx" />
     <Content Include="Views\Dealer\DealerInfo.aspx" />
     <Content Include="Views\Home\Index.aspx" />
     <Content Include="Views\Reports\Index.aspx" />

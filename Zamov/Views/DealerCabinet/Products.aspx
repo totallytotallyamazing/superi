@@ -1,6 +1,7 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/DealerCabinet/Cabinet.Master"
     Inherits="System.Web.Mvc.ViewPage<List<Zamov.Models.Product>>" %>
 <%@ Import Namespace="System.Globalization" %>
+<%@ Import Namespace="Zamov.Models" %>
 <%@ Import Namespace="Zamov.Helpers" %>
 <%@ Import Namespace="Microsoft.Web.Mvc" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
@@ -113,14 +114,40 @@
         <%using (Html.BeginForm("UpdateProducts", "DealerCabinet", FormMethod.Post))
       { %>
       <%= Html.ResourceString("MoveTo") %>
-      <%= Html.DropDownList("groups", (List<SelectListItem>)ViewData["moveToGroups"])%> <input type="submit" value="->" />
+      <%= Html.DropDownList("groups", (List<SelectListItem>)ViewData["moveToGroups"])%> 
+      &nbsp;&nbsp;&nbsp;
+      <%= Html.ResourceString("SetManufacturer")%>
+      <%=Html.DropDownList("manufacturers",(List<SelectListItem>)ViewData["manufacturers"]) %>
+      &nbsp;&nbsp;&nbsp;
+      <%= Html.ResourceString("Currencies")%>
+      <%= Html.DropDownList("currencies", (List<SelectListItem>)ViewData["currencies"])%> 
+      &nbsp;&nbsp;&nbsp;
+      <input type="submit" value="->" />
+      
+      
+      <br />
+      <b>П</b> - <%= Html.ResourceString("Move") %>
+      <br />
+      <b>ЗП</b> - <%= Html.ResourceString("SetManufacturer")%>
+      <br />
+      <b>В</b> - <%= Html.ResourceString("Currencies")%>
+      <br />
     <table class="adminTable">
         <tr id="productsHeader">
-            <th><%= Html.ResourceString("Move") %>
+            <th>П
                 <input type="checkbox" id="moveToBox" />
+            </th>
+            <th>ЗП
+                <input type="checkbox" id="setManufacturerBox" />
+            </th>
+             <th>В
+                <input type="checkbox" id="setCurrencyBox" />
             </th>
             <th style="width:100px;">
                 <%= Html.ResourceString("PartNumber")%>
+            </th>
+            <th>
+                <%= Html.ResourceString("Manufacturer")%>
             </th>
             <th>
                 <%= Html.ResourceString("Title")%>
@@ -131,7 +158,10 @@
                 <%= Html.ResourceString("Description") %>
             </th>
             <th style="width:50px;">
-                <%= Html.ResourceString("Price")%>, грн.
+                <%= Html.ResourceString("Price")%>, (грн, если не указана валюта).
+            </th>
+            <th>
+                В
             </th>
             <th style="width:50px;">
                 <%= Html.ResourceString("Unit")%>
@@ -156,14 +186,28 @@
                 
             </th>
         </tr>
-        <%foreach (var item in Model)
+        <%
+              foreach (var item in Model)
           {%>
         <tr>
             <td>
                 <%= Html.CheckBox("moveTo_" + item.Id, false, new { @class = "moveToBox" })%>
             </td>
             <td>
+                <%= Html.CheckBox("setManufacturer_" + item.Id, false, new { @class = "setManufacturerBox" })%>
+            </td>
+            <td>
+                <%= Html.CheckBox("setCurrency_" + item.Id, false, new { @class = "setCurrencyBox" })%>
+            </td>
+            <td>
                 <%= Html.TextBox("partNumber_" + item.Id, item.PartNumber, new { style = "width:100px;" })%>
+            </td>
+            <td>
+                <%if (item.Manufacturer.Count > 0)
+                  { %>
+                <%=Html.Encode(item.Manufacturer.First().Name)%>
+                <%} %>
+                
             </td>
             <td>
                 <%= Html.TextBox("name_" + item.Id, item.Name)%>
@@ -179,6 +223,11 @@
             <td>
                 <% CultureInfo enUs = CultureInfo.GetCultureInfo("en-US"); %>
                 <%= Html.TextBox("price_" + item.Id, item.Price.ToString(enUs), new { style = "width:50px;" })%>
+            </td>
+            <td>
+                <%if(item.Currencies!=null){ %>
+                <%=Html.Encode(item.Currencies.ShortName) %>
+                <%} %>
             </td>
             <td>
                 <%= Html.TextBox("unit_" + item.Id, item.Unit, new { style = "width:100%;" })%>

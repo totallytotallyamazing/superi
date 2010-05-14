@@ -19,7 +19,7 @@ namespace Lady.Models
         [DisplayName("Описание")]
         public string Description { get; set; }
 
-        [DisplayColumn("Краткое описание")]
+        [DisplayName("Краткое описание")]
         public string ShortDescription{ get; set; }
 
         [Required(ErrorMessage = "Введите название")]

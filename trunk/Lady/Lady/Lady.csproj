@@ -157,6 +157,8 @@
     <Content Include="Content\fancybox\fancy_title_over.png" />
     <Content Include="Content\fancybox\fancy_title_right.png" />
     <Content Include="Content\fancybox\jquery.fancybox.css" />
+    <Content Include="Content\img\stub.jpg" />
+    <Content Include="index.html" />
     <Content Include="Scripts\jquery.mask.js" />
   </ItemGroup>
   <ItemGroup>

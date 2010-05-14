@@ -2,7 +2,7 @@
 <%@ Import Namespace="Dev.Mvc.Helpers" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	
+	<%= ViewData["title"]%>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">

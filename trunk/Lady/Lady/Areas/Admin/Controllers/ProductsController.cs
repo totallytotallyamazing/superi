@@ -23,7 +23,7 @@ namespace Lady.Areas.Admin.Controllers
             }
         }
 
-        public ActionResult AddEdit(int? id)
+        public ActionResult AddEdit(Product product)
         {
 
             return View();

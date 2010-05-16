@@ -37,7 +37,7 @@ namespace Zamov.Models
             {
                 if (this.Currencies != null)
                 {
-                    DealerCurrencyRates dcr = context.DealerCurrencyRates.Select(r => r).Where(r => r.Currencies == this.Currencies && r.Dealers == this.Dealer).FirstOrDefault();
+                    DealerCurrencyRates dcr = context.DealerCurrencyRates.Select(r => r).Where(r => r.Currencies.Id == this.Currencies.Id && r.Dealers.Id == this.Dealer.Id).FirstOrDefault();
                     if (dcr != null)
                     {    
                         rate = dcr.Rate;

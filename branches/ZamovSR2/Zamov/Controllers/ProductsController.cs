@@ -92,6 +92,7 @@ namespace Zamov.Controllers
 
 
                     products.ForEach(p => p.LoadDescriptions());
+                    products.ForEach(p => p.CurrenciesReference.Load());
                     products.ForEach(p => p.LoadProductRate());
 
                     if (sortField != null && sortOrder != null)

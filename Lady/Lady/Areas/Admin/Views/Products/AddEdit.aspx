@@ -1,15 +1,37 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<Lady.Models.Product>" %>
-
+<%@ Import Namespace="Lady.Models" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	<%= ViewData["title"]%>
 </asp:Content>
 
 
-<asp:Content ID="Content3" ContentPlaceHolderID="includes" runat="server">
+<asp:Content ID="Content3" ContentPlaceHolderID="includes" runat="server">  
+    <script type="text/javascript" src="/Scripts/jquery.FCKEditor.js"></script>
+    <script type="text/javascript" src="/Scripts/MicrosoftAjax.js"></script>
+    <script type="text/javascript" src="/Scripts/MicrosoftMvcValidation.js"></script>
+
+    <script type="text/javascript">
+        $(function() {
+            $.fck.config = { path: '<%= VirtualPathUtility.ToAbsolute("~/Controls/fckeditor/") %>', config: { SkinPath: "skins/office2003/", DefaultLanguage: "ru", AutoDetectLanguage: false, EnterMode: "br", ShiftEnterMode: "p", HtmlEncodeOutput: true} };
+            $("#Description, #ShortDescription").fck({ toolbar: "Basic", height: 200 });
+        });
+    </script>
+
 </asp:Content>
 
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+
+    <%
+    Dictionary<long, IEnumerable<ProductImage>> item = new Dictionary<long, IEnumerable<ProductImage>>();
+    item.Add(Model.Id, Model.ProductImages);
+    %>
+    <%if (ViewData["id"] != null)
+     {
+         Html.RenderPartial("CarAdImages", item);
+     }%>
+     <br />
+
     <% Html.EnableClientValidation(); %>
 
     <% using (Html.BeginForm("AddEdit", "Products", FormMethod.Post, new { enctype = "multipart/form-data" })){%>
@@ -24,16 +46,16 @@
             <div class="editor-label">
                 <%= Html.LabelFor(model => model.Name) %>
             </div>
+            <div class="editor-field">
+                <%= Html.TextBoxFor(model => model.Name) %>
+                <%= Html.ValidationMessageFor(model => model.Name) %>
+            </div>
             <div class="editor-label">
                 <%= Html.LabelFor(model => model.PartNumber) %>
             </div>
             <div class="editor-field">
                 <%= Html.TextBoxFor(model => model.PartNumber) %>
                 <%= Html.ValidationMessageFor(model => model.PartNumber) %>
-            </div>
-            <div class="editor-field">
-                <%= Html.TextBoxFor(model => model.Name) %>
-                <%= Html.ValidationMessageFor(model => model.Name) %>
             </div>
             <div class="editor-label">
                 <%= Html.LabelFor(model => model.ShortDescription) %>

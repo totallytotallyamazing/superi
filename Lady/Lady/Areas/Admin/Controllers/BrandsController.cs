@@ -44,7 +44,7 @@ namespace Lady.Areas.Admin.Controllers
                 if (brand.Id > 0)
                 {
                     object originalItem;
-                    EntityKey entityKey = context.CreateEntityKey("Articles", brand.Id);
+                    EntityKey entityKey = context.CreateEntityKey("Brands", brand.Id);
                     if (context.TryGetObjectByKey(entityKey, out originalItem))
                     {
                         context.ApplyPropertyChanges(entityKey.EntitySetName, brand);

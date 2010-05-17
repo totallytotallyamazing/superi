@@ -31,8 +31,8 @@
                 <%= Html.Encode(item.Price) %>
             </td>
             <td>
-                <%= Html.ActionLink("Изменить", "AddEdit", new { id=item.Id }) %> |
-                <%= Html.ActionLink("Удалить", "Delete", new { id=item.Id })%>
+                <%= Html.ActionLink("Изменить", "AddEdit", new { id = item.Id, cId = ViewData["cId"], bId = ViewData["bId"] })%> |
+                <%= Html.ActionLink("Удалить", "Delete", new { id = item.Id, cId = ViewData["cId"], bId = ViewData["bId"] })%>
             </td>
 
         </tr>
@@ -41,7 +41,7 @@
     </table>
     
     <p>
-        <%= Html.ActionLink("Создать", "AddEdit")%>
+        <%= Html.ActionLink("Создать", "AddEdit", new { cId = ViewData["cId"], bId = ViewData["bId"] })%>
     </p>
 
 </asp:Content>

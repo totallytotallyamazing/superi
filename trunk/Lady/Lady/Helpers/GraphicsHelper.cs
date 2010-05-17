@@ -5,7 +5,7 @@ using System.Web;
 using System.IO;
 using System.Drawing;
 
-namespace Trips.Mvc.Helpers
+namespace Dev.Mvc.Helpers
 {
     public static class GraphicsHelper
     {

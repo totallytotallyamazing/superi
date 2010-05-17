@@ -135,6 +135,7 @@
     <Content Include="Areas\Admin\Views\Brands\Index.aspx" />
     <Content Include="Areas\Admin\Views\Products\AddEdit.aspx" />
     <Content Include="Areas\Admin\Views\Products\Index.aspx" />
+    <Content Include="Areas\Admin\Views\Products\ProductImages.ascx" />
     <Content Include="Areas\Admin\Views\Web.config" />
     <Content Include="Content\fancybox\blank.gif" />
     <Content Include="Content\fancybox\fancybox-x.png" />

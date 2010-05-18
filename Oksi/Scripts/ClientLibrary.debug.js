@@ -1157,11 +1157,16 @@ ClientLibrary.VideoExtender.prototype = {
         /// <param name="ui" type="Object">
         /// </param>
         /// <returns type="Object"></returns>
+        debugger;
         var target = rawEvent.target;
         if (target.tagName !== 'DIV') {
             target = target.parentNode;
         }
         jQuery(target).unbind('mouseover', null).unbind('click', null).removeClass('hover').addClass('current');
+        var title = jQuery(target).children('p.title').html();
+        var description = jQuery(target).children('p.clipDescription').html();
+        jQuery('#clipDetails h1').html(title);
+        jQuery('#clipDetails p').html(description);
         var source = (target.getElementsByTagName('input')[0]).value;
         jQuery('#clip').fadeTo('slow', 10, Function.createDelegate(this, function(a, b) {
             jQuery('#clip').html(source);

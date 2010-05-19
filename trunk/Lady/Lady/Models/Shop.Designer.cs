@@ -11,7 +11,6 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmSchemaAttribute()]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("gbua_mladyModel", "CategoryProduct", "Category", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Lady.Models.Category), "Product", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Lady.Models.Product))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("gbua_mladyModel", "ProductProduct", "Product", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Lady.Models.Product), "Product1", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Lady.Models.Product))]
-[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("gbua_mladyModel", "CategoryProductAttribute", "Category", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Lady.Models.Category), "ProductAttribute", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Lady.Models.ProductAttribute))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("gbua_mladyModel", "ProductAttributeProductAttributeValue", "ProductAttribute", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Lady.Models.ProductAttribute), "ProductAttributeValue", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Lady.Models.ProductAttributeValue))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("gbua_mladyModel", "ProductProductImage", "Product", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Lady.Models.Product), "ProductImage", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Lady.Models.ProductImage))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("gbua_mladyModel", "ProductProductAttributeValueSelected", "Product", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Lady.Models.Product), "ProductAttributeValueSelected", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Lady.Models.ProductAttributeValueSelected))]
@@ -19,9 +18,10 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("gbua_mladyModel", "ProductAttributeValueProductAttributeValueSelected", "ProductAttributeValue", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Lady.Models.ProductAttributeValue), "ProductAttributeValueSelected", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Lady.Models.ProductAttributeValueSelected))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("gbua_mladyModel", "CategoryCategory", "Category", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Lady.Models.Category), "Category1", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Lady.Models.Category))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("gbua_mladyModel", "BrandProduct", "Brand", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Lady.Models.Brand), "Product", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Lady.Models.Product))]
+[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("gbua_mladyModel", "CategoryProductAttribute", "Category", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Lady.Models.Category), "ProductAttribute", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Lady.Models.ProductAttribute))]
 
 // Original file name:
-// Generation date: 29.04.2010 14:47:06
+// Generation date: 19.05.2010 17:59:19
 namespace Lady.Models
 {
     
@@ -280,6 +280,52 @@ namespace Lady.Models
         partial void OnNameChanging(string value);
         partial void OnNameChanged();
         /// <summary>
+        /// There are no comments for Property SeoDescription in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string SeoDescription
+        {
+            get
+            {
+                return this._SeoDescription;
+            }
+            set
+            {
+                this.OnSeoDescriptionChanging(value);
+                this.ReportPropertyChanging("SeoDescription");
+                this._SeoDescription = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
+                this.ReportPropertyChanged("SeoDescription");
+                this.OnSeoDescriptionChanged();
+            }
+        }
+        private string _SeoDescription;
+        partial void OnSeoDescriptionChanging(string value);
+        partial void OnSeoDescriptionChanged();
+        /// <summary>
+        /// There are no comments for Property SeoKeywords in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string SeoKeywords
+        {
+            get
+            {
+                return this._SeoKeywords;
+            }
+            set
+            {
+                this.OnSeoKeywordsChanging(value);
+                this.ReportPropertyChanging("SeoKeywords");
+                this._SeoKeywords = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
+                this.ReportPropertyChanged("SeoKeywords");
+                this.OnSeoKeywordsChanged();
+            }
+        }
+        private string _SeoKeywords;
+        partial void OnSeoKeywordsChanging(string value);
+        partial void OnSeoKeywordsChanged();
+        /// <summary>
         /// There are no comments for Products in the schema.
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("gbua_mladyModel", "CategoryProduct", "Product")]
@@ -301,6 +347,64 @@ namespace Lady.Models
             }
         }
         /// <summary>
+        /// There are no comments for Categories in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("gbua_mladyModel", "CategoryCategory", "Category1")]
+        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
+        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Data.Objects.DataClasses.EntityCollection<Category> Categories
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<Category>("gbua_mladyModel.CategoryCategory", "Category1");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<Category>("gbua_mladyModel.CategoryCategory", "Category1", value);
+                }
+            }
+        }
+        /// <summary>
+        /// There are no comments for Parent in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("gbua_mladyModel", "CategoryCategory", "Category")]
+        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
+        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public Category Parent
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Category>("gbua_mladyModel.CategoryCategory", "Category").Value;
+            }
+            set
+            {
+                ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Category>("gbua_mladyModel.CategoryCategory", "Category").Value = value;
+            }
+        }
+        /// <summary>
+        /// There are no comments for Parent in the schema.
+        /// </summary>
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Data.Objects.DataClasses.EntityReference<Category> ParentReference
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Category>("gbua_mladyModel.CategoryCategory", "Category");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<Category>("gbua_mladyModel.CategoryCategory", "Category", value);
+                }
+            }
+        }
+        /// <summary>
         /// There are no comments for ProductAttributes in the schema.
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("gbua_mladyModel", "CategoryProductAttribute", "ProductAttribute")]
@@ -318,64 +422,6 @@ namespace Lady.Models
                 if ((value != null))
                 {
                     ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<ProductAttribute>("gbua_mladyModel.CategoryProductAttribute", "ProductAttribute", value);
-                }
-            }
-        }
-        /// <summary>
-        /// There are no comments for Parent in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("gbua_mladyModel", "CategoryCategory", "Category1")]
-        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
-        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Data.Objects.DataClasses.EntityCollection<Category> Parent
-        {
-            get
-            {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<Category>("gbua_mladyModel.CategoryCategory", "Category1");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<Category>("gbua_mladyModel.CategoryCategory", "Category1", value);
-                }
-            }
-        }
-        /// <summary>
-        /// There are no comments for Categories in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("gbua_mladyModel", "CategoryCategory", "Category")]
-        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
-        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public Category Categories
-        {
-            get
-            {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Category>("gbua_mladyModel.CategoryCategory", "Category").Value;
-            }
-            set
-            {
-                ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Category>("gbua_mladyModel.CategoryCategory", "Category").Value = value;
-            }
-        }
-        /// <summary>
-        /// There are no comments for Categories in the schema.
-        /// </summary>
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Data.Objects.DataClasses.EntityReference<Category> CategoriesReference
-        {
-            get
-            {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Category>("gbua_mladyModel.CategoryCategory", "Category");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<Category>("gbua_mladyModel.CategoryCategory", "Category", value);
                 }
             }
         }
@@ -866,43 +912,6 @@ namespace Lady.Models
         partial void OnValueTypeChanging(string value);
         partial void OnValueTypeChanged();
         /// <summary>
-        /// There are no comments for Category in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("gbua_mladyModel", "CategoryProductAttribute", "Category")]
-        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
-        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public Category Category
-        {
-            get
-            {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Category>("gbua_mladyModel.CategoryProductAttribute", "Category").Value;
-            }
-            set
-            {
-                ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Category>("gbua_mladyModel.CategoryProductAttribute", "Category").Value = value;
-            }
-        }
-        /// <summary>
-        /// There are no comments for Category in the schema.
-        /// </summary>
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Data.Objects.DataClasses.EntityReference<Category> CategoryReference
-        {
-            get
-            {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Category>("gbua_mladyModel.CategoryProductAttribute", "Category");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<Category>("gbua_mladyModel.CategoryProductAttribute", "Category", value);
-                }
-            }
-        }
-        /// <summary>
         /// There are no comments for ProductAttributeValue in the schema.
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("gbua_mladyModel", "ProductAttributeProductAttributeValue", "ProductAttributeValue")]
@@ -941,6 +950,27 @@ namespace Lady.Models
                 if ((value != null))
                 {
                     ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<ProductAttributeValueSelected>("gbua_mladyModel.ProductAttributeProductAttributeValueSelected", "ProductAttributeValueSelected", value);
+                }
+            }
+        }
+        /// <summary>
+        /// There are no comments for Categories in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("gbua_mladyModel", "CategoryProductAttribute", "Category")]
+        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
+        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Data.Objects.DataClasses.EntityCollection<Category> Categories
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<Category>("gbua_mladyModel.CategoryProductAttribute", "Category");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<Category>("gbua_mladyModel.CategoryProductAttribute", "Category", value);
                 }
             }
         }

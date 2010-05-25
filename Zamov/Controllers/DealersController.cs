@@ -14,6 +14,10 @@ namespace Zamov.Controllers
 {
     public class DealersController : Controller
     {
+
+
+
+
         public ActionResult Index(int? id, int? cityId)
         {
             if (!id.HasValue)
@@ -41,6 +45,9 @@ namespace Zamov.Controllers
 
                 ObjectQuery<Group> groups = new ObjectQuery<Group>("SELECT VALUE G FROM Groups as G WHERE G.Category.Id IN{" + categoryIdsString + "}", context);
                 int[] onlineDealers = new int[0];//MembershipExtensions.GetOnlineDealers();
+                
+                
+                
                 List<DealerPresentation> dealers = groups.Where(g => g.Enabled).Where(g => g.Dealer.Enabled)
                     .Where(g => g.Dealer.Cities.Where(city => city.Id == SystemSettings.CityId).Count() > 0)
                     .Join(context.Translations
@@ -57,6 +64,9 @@ namespace Zamov.Controllers
                             }
                         )
                    .Distinct().ToList();
+
+
+                int[] dealerIds = dealers.Select(d=>d.Id).ToArray();
 
                 dealers.ForEach(d => d.OnLine = onlineDealers.Contains(d.Id));
 
@@ -92,9 +102,13 @@ namespace Zamov.Controllers
                 }
 
 
-
+                // string.Join(",", dealerIds);
 
                 //var products = context.Products.Join(dealers, p=>p.Name, d=>d.Name, (p,d))
+
+                 context.Dealers.SelectMany(d => d.Products.SelectMany(p => p.Manufacturer.Distinct()));
+
+
 
 
                 /*

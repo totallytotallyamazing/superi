@@ -77,6 +77,7 @@
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -166,6 +167,10 @@
     <Content Include="Content\img\stub.jpg" />
     <Content Include="index.html" />
     <Content Include="Scripts\jquery.mask.js" />
+    <Content Include="Views\Products\Index.aspx" />
+    <Content Include="Views\Products\Product.ascx" />
+    <Content Include="Views\Shared\Categories.ascx" />
+    <Content Include="Views\Shared\CurrencyConverter.ascx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

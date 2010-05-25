@@ -69,8 +69,8 @@ namespace Zamov.Controllers
 
                 ViewData["displayGroupImages"] = displayGroupImages;
 
-                //if (HttpContext.Cache[productsCacheKey] == null)
-                if (1==1)
+                if (HttpContext.Cache[productsCacheKey] == null)
+                //if (1==1)
                 {
                     List<Product> products = new List<Product>();
                     if (currentGroup != null)

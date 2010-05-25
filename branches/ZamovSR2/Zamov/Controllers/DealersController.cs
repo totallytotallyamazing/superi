@@ -46,7 +46,8 @@ namespace Zamov.Controllers
                     .Join(context.Translations
                         .Where(tr => tr.Language == SystemSettings.CurrentLanguage)
                         .Where(tr => tr.TranslationItemTypeId == (int)ItemTypes.DealerName),
-                        g => g.Dealer.Id, tr => tr.ItemId,
+                        g => g.Dealer.Id, 
+                        tr => tr.ItemId,
                         (g, tr) => new DealerPresentation
                             {
                                 Id = g.Dealer.Id,
@@ -89,6 +90,26 @@ namespace Zamov.Controllers
                 {
                     ViewData["categoryDescriptionTitle"] = categoryDescriptionTitle.Text;
                 }
+
+
+
+
+                //var products = context.Products.Join(dealers, p=>p.Name, d=>d.Name, (p,d))
+
+
+                /*
+                var manufacturerList = new List<Manufacturer>();
+                var products = context.Products.Include("Dealer").Select(p => p).Where(p => p.Dealer.Id == id.Value&&p.Enabled).ToList();
+                foreach (var item in products)
+                {
+                    if (item.Manufacturer.Count > 0)
+                    {
+ 
+                    }
+                }
+                */
+                
+                
 
                 return View(dealers);
             }

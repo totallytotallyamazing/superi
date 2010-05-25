@@ -106,7 +106,7 @@ namespace Zamov.Controllers
 
                 //var products = context.Products.Join(dealers, p=>p.Name, d=>d.Name, (p,d))
 
-                 context.Dealers.SelectMany(d => d.Products.SelectMany(p => p.Manufacturer.Distinct()));
+                 //context.Dealers.SelectMany(d => d.Products.SelectMany(p => p.Manufacturer.Distinct()));
 
 
 

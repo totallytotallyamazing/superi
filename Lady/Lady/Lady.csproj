@@ -177,6 +177,7 @@
     <Content Include="Views\Products\Product.ascx" />
     <Content Include="Views\Shared\Categories.ascx" />
     <Content Include="Views\Shared\CurrencyConverter.ascx" />
+    <Content Include="Views\Widgets\News.ascx" />
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="Models\Content.edmx">

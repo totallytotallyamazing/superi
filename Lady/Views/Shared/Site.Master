@@ -1,40 +1,231 @@
-п»ї<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
+<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title><asp:ContentPlaceHolder ID="TitleContent" runat="server" /></title>
-    <link href="../../Content/Site.css" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="/Scripts/jquery.js"></script>
-    <asp:ContentPlaceHolder runat="server" ID="includes"></asp:ContentPlaceHolder>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+    <title><asp:ContentPlaceHolder runat="server" ID="TitleContent"></asp:ContentPlaceHolder></title>
+    <link href="/Content/style.css" rel="stylesheet" type="text/css">
 </head>
-
 <body>
-    <div class="page">
-
-        <div id="header">
-            <div id="title">
-                <h1>My MVC Application</h1>
+    <div id="header">
+        <div id="headerLinks">
+            <h2>
+                УГОЛОК ПОКУПАТЕЛЯ</h2>
+            <p>
+                <a href="#">О СТУДИИ</a> / <a href="#">НОВОСТИ</a>/ <a href="#">О БРЕНДАХ</a>/ <a
+                    href="#">ЗАКАЗ, ОПЛАТА И ДОСТАВКА</a>/ <a href="#">ТАБЛИЦА РАЗМЕРОВ</a>/ <a href="#">
+                        ПАРТНЕРАМ</a>
+            </p>
+        </div>
+        <div id="headerLogo">
+            <p>
+                <img src="img/logo.jpg" alt="Модная леди. Студия стиля Людмилы Захаренко">
+            </p>
+        </div>
+        <div id="headerContacts">
+            <h3>(097) 400-19-77</h3>
+            <h3>(044) 123-45-67</h3>
+        </div>
+    </div>
+    <div id="underHeader">
+        <div id="wellcome">
+            <p>
+                Добро пожаловать, <a href="#">Виктория Тряпичная!</a></p>
+        </div>
+        <div id="searchText">
+            <p>
+                ПОИСК ПО КАТАЛОГУ</p>
+        </div>
+        <div id="write">
+            <p>
+                <a href="#">Напишите нам</a>
+            </p>
+        </div>
+    </div>
+    <div id="search">
+        <div id="searchField">
+            <form name="form1" method="post" action="">
+            <label>
+                <input type="text" name="field" id="searchField">
+            </label>
+            </form>
+        </div>
+        <p>
+            <a href="#">Расширенный поиск</a>
+        </p>
+        <h2>СКИДКА ДНЯ</h2>
+    </div>
+    <div id="skidki">
+        <div id="skidkiBox">
+            <div id="imgBox">
+                <img src="img/cheshki.jpg" alt="cheshki">
             </div>
-              
-            <div id="logindisplay">
-                <% Html.RenderPartial("LogOnUserControl"); %>
-            </div> 
-            
-            <div id="menucontainer">
-            
-                <ul id="menu">              
-                    <li><%= Html.ActionLink("Home", "Index", "Home")%></li>
-                    <li><%= Html.ActionLink("About", "About", "Home")%></li>
-                </ul>
-            
+            <p>
+                <a href="#">Чешки “Ed Hardy”</a>
+            </p>
+            <p>
+                Размер: <strong>35</strong>
+            </p>
+            <p>
+                Цвет: <strong>Разноцветные</strong>
+            </p>
+            <h4>
+                1350 грн</h4>
+        </div>
+        <div id="skidkiBox">
+            <div id="imgBox">
+                <img src="img/kurtka.jpg" alt="kurtka"></div>
+            <p>
+                <a href="#">Куртка “Alchemist”</a>
+            </p>
+            <p>
+                Размер: <strong>L, S</strong>
+            </p>
+            <p>
+                Цвет: <strong>Черный, желтый</strong>
+            </p>
+            <h4>
+                1100 грн</h4>
+        </div>
+        <div id="skidkiBox">
+            <div id="imgBox">
+                <img src="img/jeans.jpg" alt="jeans"></div>
+            <p>
+                <a href="#">Джинсы “Verdi Nerdi”</a></p>
+            <p>
+                Размер: <strong>L</strong>
+            </p>
+            <p>
+                Цвет: <strong>Синий</strong>
+            </p>
+            <h4>
+                400 грн</h4>
+        </div>
+    </div>
+    <div id="contentBox">
+        <div id="string">
+            <div id="currency">
+                <p>Считаем в:</p>
+                <h3><a href="#">ГРН </a>| <a href="#">USD </a>| <a href="#">EUR </a>| <a href="#">РУБ</a></h3>
+            </div>
+            <div id="blueText">
+                <p>О брендах</p>
+            </div>
+            <div id="basket">
+                <p>
+                    В <a href="#">корзинке</a> 3 товара на 2,300 грн.
+                </p>
             </div>
         </div>
-
-        <div id="main">
-            <asp:ContentPlaceHolder ID="MainContent" runat="server" />
-
-            <div id="footer">
+        <div id="leftSide">
+            <div id="leftSideLiBox">
+                <% Html.RenderPartial("Catgories"); %>
+            </div>
+            <div id="newsBox">
+                <div id="newsHeader">
+                    <p>
+                        <asp:ContentPlaceHolder runat="server" ID="ContentTitle"></asp:ContentPlaceHolder>
+                    </p>
+                </div>
+                <div id="newsContent">
+                    <p>
+                        28 марта</p>
+                    <h4>
+                        <a href="#">Новые поступления курток “Roca Wear”</a></h4>
+                    <p>
+                        21 марта</p>
+                    <h4>
+                        <a href="#">Скидки на свитера!</a></h4>
+                    <p>
+                        11 марта</p>
+                    <h4>
+                        <a href="#">Новые аксессуары!</a></h4>
+                    <br>
+                    <h4>
+                        <a href="#" style="color: #3366ff">Все новости</a></h4>
+                </div>
+                <div id="newsFooter">
+                </div>
+            </div>
+            <div id="girl">
+                <img src="img/girl.jpg" alt="jeans"></div>
+        </div>
+        <div id="rightSide">
+            <div id="content">
+                <div id="contentHeader">
+                    <div id="contentHeaderBgLeft">
+                    </div>
+                    <div id="contentHeaderBgRight">
+                    </div>
+                </div>
+                <div id="footerDate">
+                    <p>Март, 29</p>
+                </div>
+                <div id="contentItem">
+                    <div id="contentItemFoto">
+                        <img src="img/foto1.jpg" alt="jeans">
+                    </div>
+                    <div id="contentItemText">
+                        <p>
+                            Одна из самых известных немецких марок в мире одежды. представленная широким ассортиментом
+                            товаров, отвечающих индивидуальным потребностям, гарантирует высокое качество продукции
+                            с характерным и узнаваемым дизайном. Лидирующий бренд итальянской группы Forall.
+                            Для тех, кто одинаково влюблены и в классический костюм и в ультрасовременные вещи.</p>
+                    </div>
+                </div>
+                <div id="contentItem">
+                    <div id="contentItemFoto">
+                        <img src="img/foto2.jpg" alt="jeans">
+                    </div>
+                    <div id="contentItemText">
+                        <p>
+                            Немецкая марка одежды. Ассоциируется с классическими костюмами идеального кроя.
+                            Бренд высококлассной одежды, в котором гармонично со-существуют традиционная классика,
+                            одежда для отдыха и светских приемов. А также привлекательным соотношением цена-качество.</p>
+                    </div>
+                </div>
+                <div id="contentItem">
+                    <div id="contentItemFoto">
+                        <img src="img/foto3.jpg" alt="jeans">
+                    </div>
+                    <div id="contentItemText">
+                        <p>
+                            Итальянская марка женской одежды высочайшего качества и дизайна. Неповторимость
+                            фасонов, новаторство и творчество – движущие элементы фирмы. Итальянская марка,
+                            специализирующаяся на выпуске нарядного трикотажа. В последние годы коллекция трикотажа
+                            дополняется брюками, джинсами, куртками, аксессуарами. Широкая гамма оригинальных
+                            фасонов из высококлассных материалов.</p>
+                    </div>
+                </div>
+                <div id="contentItem">
+                    <div id="contentItemFoto">
+                        <img src="img/foto1.jpg" alt="jeans">
+                    </div>
+                    <div id="contentItemText">
+                        <p>
+                            Одна из самых известных немецких марок в мире одежды. представленная широким ассортиментом
+                            товаров, отвечающих индивидуальным потребностям, гарантирует высокое качество продукции
+                            с характерным и узнаваемым дизайном. Лидирующий бренд итальянской группы Forall.
+                            Для тех, кто одинаково влюблены и в классический костюм и в ультрасовременные вещи.</p>
+                    </div>
+                </div>
+                <div id="contentAfterItems">
+                    <div id="contentAfterItemsFoto">
+                    </div>
+                </div>
+            </div>
+            <div id="contentFooterBg">
+            </div>
+        </div>
+        <div id="footer">
+            <div id="footerCopy">
+                <p>
+                    © 2010 Студия стиля Людмилы Захаренко «Модная Леди»</p>
+            </div>
+            <div id="footerRightBox">
+                <p>
+                    М.бренд | <span class="colortext">дизайн</span></p>
             </div>
         </div>
     </div>

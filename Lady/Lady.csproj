@@ -116,7 +116,6 @@
     <Content Include="Scripts\MicrosoftMvcAjax.js" />
     <Content Include="Scripts\MicrosoftMvcValidation.js" />
     <Content Include="Web.config" />
-    <Content Include="Content\Site.css" />
     <Content Include="Views\Account\ChangePassword.aspx" />
     <Content Include="Views\Account\ChangePasswordSuccess.aspx" />
     <Content Include="Views\Account\LogOn.aspx" />
@@ -164,13 +163,59 @@
     <Content Include="Content\fancybox\fancy_title_over.png" />
     <Content Include="Content\fancybox\fancy_title_right.png" />
     <Content Include="Content\fancybox\jquery.fancybox.css" />
+    <Content Include="Content\img\addToBasket.jpg" />
+    <Content Include="Content\img\allright.jpg" />
+    <Content Include="Content\img\back.jpg" />
+    <Content Include="Content\img\bg.jpg" />
+    <Content Include="Content\img\bigFoto.jpg" />
+    <Content Include="Content\img\cheshki.jpg" />
+    <Content Include="Content\img\closeButton.jpg" />
+    <Content Include="Content\img\contentBg.jpg" />
+    <Content Include="Content\img\contentFooterBg.jpg" />
+    <Content Include="Content\img\contentFooterBgLeft.jpg" />
+    <Content Include="Content\img\contentFooterBgRight.jpg" />
+    <Content Include="Content\img\contentHeaderBg.jpg" />
+    <Content Include="Content\img\contentHeaderBgLeft.jpg" />
+    <Content Include="Content\img\contentHeaderBgRight.jpg" />
+    <Content Include="Content\img\contentItemBg.jpg" />
+    <Content Include="Content\img\contentItemFooterBg.jpg" />
+    <Content Include="Content\img\contentItemHeaderBg.jpg" />
+    <Content Include="Content\img\contentSlotBg.jpg" />
+    <Content Include="Content\img\contentSlotFooterBg.jpg" />
+    <Content Include="Content\img\foto1.jpg" />
+    <Content Include="Content\img\foto2.jpg" />
+    <Content Include="Content\img\foto3.jpg" />
+    <Content Include="Content\img\fotoContact1.jpg" />
+    <Content Include="Content\img\fotoContact2.jpg" />
+    <Content Include="Content\img\fotoContact3.jpg" />
+    <Content Include="Content\img\fotoContact4.jpg" />
+    <Content Include="Content\img\fotoContact5.jpg" />
+    <Content Include="Content\img\fotoContact6.jpg" />
+    <Content Include="Content\img\fotoText.jpg" />
+    <Content Include="Content\img\girl.jpg" />
+    <Content Include="Content\img\girl2.jpg" />
+    <Content Include="Content\img\heart.jpg" />
+    <Content Include="Content\img\jeans.jpg" />
+    <Content Include="Content\img\kurtka.jpg" />
+    <Content Include="Content\img\logo.jpg" />
+    <Content Include="Content\img\newsBg.jpg" />
+    <Content Include="Content\img\newsFooterBg.jpg" />
+    <Content Include="Content\img\previewsFoto1.jpg" />
+    <Content Include="Content\img\previewsFoto2.jpg" />
+    <Content Include="Content\img\searchBg.jpg" />
+    <Content Include="Content\img\skidkiBg.jpg" />
+    <Content Include="Content\img\skidkiBgSlot.jpg" />
     <Content Include="Content\img\stub.jpg" />
+    <Content Include="Content\style.css" />
     <Content Include="index.html" />
     <Content Include="Scripts\jquery.mask.js" />
     <Content Include="Views\Products\Index.aspx" />
     <Content Include="Views\Products\Product.ascx" />
     <Content Include="Views\Shared\Categories.ascx" />
     <Content Include="Views\Shared\CurrencyConverter.ascx" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Content\img\Thumbs.db" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

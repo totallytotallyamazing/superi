@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.SessionState;
+using Lady.Models;
 
 namespace Dev.Helpers
 {
@@ -23,52 +24,6 @@ namespace Dev.Helpers
                 if (Session["orderItems"] == null)
                     Session["orderItems"] = new Dictionary<long, OrderItem>();
                 return (Dictionary<long, OrderItem>)Session["orderItems"];
-            }
-        }
-
-        public static long FromCityId
-        {
-            get
-            {
-                if (Session["FromCityId"] == null)
-                    Session["FromCityId"] = 0;
-                return Convert.ToInt64(Session["FromCityId"]);
-            }
-            set { Session["FromCityId"] = value; }
-        }
-
-        public static string FromCity
-        {
-            get
-            {
-                return (string)Session["FromCity"];
-            }
-            set
-            {
-                Session["FromCity"] = value;
-            }
-        }
-
-        public static long ToCityId
-        {
-            get
-            {
-                if (Session["ToCityId"] == null)
-                    Session["ToCityId"] = 0;
-                return Convert.ToInt64(Session["ToCityId"]);
-            }
-            set { Session["ToCityId"] = value; }
-        }
-
-        public static string ToCity
-        {
-            get
-            {
-                return (string)Session["ToCity"];
-            }
-            set
-            {
-                Session["ToCity"] = value;
             }
         }
 
@@ -120,26 +75,34 @@ namespace Dev.Helpers
             }
         }
 
-        public static string MoreTripDetails
+        public static string AdditionalInfo
         {
             get
             {
-                return (string)Session["MoreTripDetails"];
+                return (string)Session["AdditionalInfo"];
             }
             set
             {
-                Session["MoreTripDetails"] = value;
+                Session["AdditionalInfo"] = value;
+            }
+        }
+
+        public static string DeliveryAddress
+        {
+            get
+            {
+                return (string)Session["DeliveryAddress"];
+            }
+            set
+            {
+                Session["DeliveryAddress"] = value;
             }
         }
 
         internal static void ClearOrder()
         {
             OrderItems.Clear();
-            ToCityId = 0;
-            ToCity = null;
-            FromCityId = 0;
-            FromCity = null;
-            MoreTripDetails = null;
+            AdditionalInfo = null;
         }
     }
 }

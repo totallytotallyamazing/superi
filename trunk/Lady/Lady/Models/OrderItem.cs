@@ -9,7 +9,7 @@ namespace Lady.Models
     {
         public long ProductId { get; set; }
         public string Name { get; set; }
-        public List<ProductAttributeValue> AttributesSelected { get; set; }
+        public List<ProductAttributeValue> SelectedAttributes { get; set; }
         public int Quantity { get; set; }
         public float Price { get; set; }
     }

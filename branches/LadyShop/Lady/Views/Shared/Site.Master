@@ -10,8 +10,7 @@
 <body>
     <div id="header">
         <div id="headerLinks">
-            <h2>
-                УГОЛОК ПОКУПАТЕЛЯ</h2>
+            <h2>УГОЛОК ПОКУПАТЕЛЯ</h2>
             <p>
                 <a href="#">О СТУДИИ</a> / <a href="#">НОВОСТИ</a>/ <a href="#">О БРЕНДАХ</a>/ <a
                     href="#">ЗАКАЗ, ОПЛАТА И ДОСТАВКА</a>/ <a href="#">ТАБЛИЦА РАЗМЕРОВ</a>/ <a href="#">
@@ -105,12 +104,9 @@
     </div>
     <div id="contentBox">
         <div id="string">
-            <div id="currency">
-                <p>Считаем в:</p>
-                <h3><a href="#">ГРН </a>| <a href="#">USD </a>| <a href="#">EUR </a>| <a href="#">РУБ</a></h3>
-            </div>
+            <% Html.RenderPartial("CurrencyConverter"); %>
             <div id="blueText">
-                <p>О брендах</p>
+                <p><asp:ContentPlaceHolder runat="server" ID="ContentTitle"></asp:ContentPlaceHolder></p>
             </div>
             <div id="basket">
                 <p>
@@ -122,34 +118,10 @@
             <div id="leftSideLiBox">
                 <% Html.RenderPartial("Catgories"); %>
             </div>
-            <div id="newsBox">
-                <div id="newsHeader">
-                    <p>
-                        <asp:ContentPlaceHolder runat="server" ID="ContentTitle"></asp:ContentPlaceHolder>
-                    </p>
-                </div>
-                <div id="newsContent">
-                    <p>
-                        28 марта</p>
-                    <h4>
-                        <a href="#">Новые поступления курток “Roca Wear”</a></h4>
-                    <p>
-                        21 марта</p>
-                    <h4>
-                        <a href="#">Скидки на свитера!</a></h4>
-                    <p>
-                        11 марта</p>
-                    <h4>
-                        <a href="#">Новые аксессуары!</a></h4>
-                    <br>
-                    <h4>
-                        <a href="#" style="color: #3366ff">Все новости</a></h4>
-                </div>
-                <div id="newsFooter">
-                </div>
-            </div>
+            <% Html.RenderAction("News", "Widgets", null); %>
             <div id="girl">
-                <img src="img/girl.jpg" alt="jeans"></div>
+                <img src="img/girl.jpg" alt="jeans">
+            </div>
         </div>
         <div id="rightSide">
             <div id="content">

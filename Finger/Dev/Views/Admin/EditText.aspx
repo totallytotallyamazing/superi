@@ -35,7 +35,7 @@
         <tr>
             <td colspan="2">
                 <%= Html.TextArea("text")%>
-                <%= Ajax.CkEditor("text", true, new { toolbar = "Media", language = "ru-RU", width = 400 })%>                
+                <%= Ajax.CkEditor("text", true, null)%>                
             </td>
         </tr>
         </table>

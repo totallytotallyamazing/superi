@@ -5,10 +5,14 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <% foreach (var item in Model)
-       {
-           Html.RenderPartial("Product", item);
-       } %>
+    <% if(Roles.IsUserInRole("Administrators")){ %>
+        <%= Html.ActionLink("Удалить категорию", "Delete", "Categories", new { area = "Admin", id= ViewData["categoryId"]}, null) %>
+    <%} %>
+    <% if(Model!=null)
+           foreach (var item in Model)
+           {
+               Html.RenderPartial("Product", item);
+           } %>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="includes" runat="server">

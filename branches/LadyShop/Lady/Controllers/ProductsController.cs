@@ -11,9 +11,10 @@ namespace Lady.Controllers
     {
         public ActionResult Index(int id)
         {
+            ViewData["categoryId"] = id;
             using (ShopStorage context = new ShopStorage())
             {
-                List<Product> products = context.Products.Include("Brands").Where(p => p.Category.Id == id).ToList();
+                List<Product> products = context.Products.Include("Brand").Where(p => p.Category.Id == id).ToList();
                 return View();
             }
         }

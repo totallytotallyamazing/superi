@@ -56,7 +56,7 @@ namespace Lady.Areas.Admin.Controllers
                 context.SaveChanges();
             }
 
-            return RedirectToAction("Index", "Categories", new { id = parentId });
+            return RedirectToAction("Index", "Categories", new { id = parentId, area="Admin" });
         }
 
         public ActionResult Delete(int id)
@@ -73,7 +73,7 @@ namespace Lady.Areas.Admin.Controllers
                 context.DeleteObject(category);
                 context.SaveChanges();
             }
-            return RedirectToAction("Index", "Categories", new { id = parentId });
+            return RedirectToAction("Index", "Categories", new { id = parentId, area = "Admin" });
         }
     }
 }

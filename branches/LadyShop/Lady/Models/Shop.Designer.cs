@@ -13,13 +13,13 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("gbua_mladyModel", "ProductProduct", "Product", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Lady.Models.Product), "Product1", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Lady.Models.Product))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("gbua_mladyModel", "ProductAttributeProductAttributeValue", "ProductAttribute", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Lady.Models.ProductAttribute), "ProductAttributeValue", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Lady.Models.ProductAttributeValue))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("gbua_mladyModel", "ProductProductImage", "Product", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Lady.Models.Product), "ProductImage", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Lady.Models.ProductImage))]
-[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("gbua_mladyModel", "CategoryCategory", "Category", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Lady.Models.Category), "Category1", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Lady.Models.Category))]
+[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("gbua_mladyModel", "CategoryCategory", "Category", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Lady.Models.Category), "Category1", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Lady.Models.Category))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("gbua_mladyModel", "BrandProduct", "Brand", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Lady.Models.Brand), "Product", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Lady.Models.Product))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("gbua_mladyModel", "CategoryProductAttribute", "Category", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Lady.Models.Category), "ProductAttribute", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Lady.Models.ProductAttribute))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("gbua_mladyModel", "ProductDiscount", "Product", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Lady.Models.Product), "Discount", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Lady.Models.Discount))]
 
 // Original file name:
-// Generation date: 27.05.2010 13:47:30
+// Generation date: 31.05.2010 17:13:45
 namespace Lady.Models
 {
     

@@ -6,6 +6,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
     <title><asp:ContentPlaceHolder runat="server" ID="TitleContent"></asp:ContentPlaceHolder></title>
     <link href="/Content/style.css" rel="stylesheet" type="text/css">
+    <asp:ContentPlaceHolder runat="server" ID="includes"></asp:ContentPlaceHolder>
 </head>
 <body>
     <div id="header">
@@ -17,14 +18,15 @@
                         ПАРТНЕРАМ</a>
             </p>
         </div>
+        <div id="headerContacts">
+            <h3>(097) 400-19-77</h3>
+            <h3>(044) 123-45-67</h3>
+        </div>
+
         <div id="headerLogo">
             <p>
                 <img src="img/logo.jpg" alt="Модная леди. Студия стиля Людмилы Захаренко">
             </p>
-        </div>
-        <div id="headerContacts">
-            <h3>(097) 400-19-77</h3>
-            <h3>(044) 123-45-67</h3>
         </div>
     </div>
     <div id="underHeader">
@@ -32,14 +34,15 @@
             <p>
                 Добро пожаловать, <a href="#">Виктория Тряпичная!</a></p>
         </div>
-        <div id="searchText">
-            <p>
-                ПОИСК ПО КАТАЛОГУ</p>
-        </div>
         <div id="write">
             <p>
                 <a href="#">Напишите нам</a>
             </p>
+        </div>
+
+        <div id="searchText">
+            <p>
+                ПОИСК ПО КАТАЛОГУ</p>
         </div>
     </div>
     <div id="search">
@@ -101,7 +104,7 @@
             <h4>
                 400 грн</h4>
         </div>
-    </div>
+    </div>l
     <div id="contentBox">
         <div id="string">
             <% Html.RenderPartial("CurrencyConverter"); %>
@@ -116,81 +119,40 @@
         </div>
         <div id="leftSide">
             <div id="leftSideLiBox">
-                <% Html.RenderPartial("Catgories"); %>
+                <% Html.RenderAction("Categories", "Home", new { area = "" }); %>
             </div>
-            <% Html.RenderAction("News", "Widgets", null); %>
+            <% Html.RenderAction("News", "Widgets", new { area = "" }); %>
             <div id="girl">
                 <img src="img/girl.jpg" alt="jeans">
             </div>
         </div>
         <div id="rightSide">
             <div id="content">
-                <div id="contentHeader">
-                    <div id="contentHeaderBgLeft">
+                    <div id="contentHeader">
+                        <div id="contentHeaderBgLeft">
+                        </div>
+                        <div id="contentHeaderBgRight">
+                        </div>
                     </div>
-                    <div id="contentHeaderBgRight">
+                <div class="contentWrapper">
+                    
+                    <div id="footerDate">
+                        <p><%= DateTime.Now.ToString("MMMM, dd") %></p>
                     </div>
-                </div>
-                <div id="footerDate">
-                    <p>Март, 29</p>
-                </div>
-                <div id="contentItem">
-                    <div id="contentItemFoto">
-                        <img src="img/foto1.jpg" alt="jeans">
-                    </div>
-                    <div id="contentItemText">
-                        <p>
-                            Одна из самых известных немецких марок в мире одежды. представленная широким ассортиментом
-                            товаров, отвечающих индивидуальным потребностям, гарантирует высокое качество продукции
-                            с характерным и узнаваемым дизайном. Лидирующий бренд итальянской группы Forall.
-                            Для тех, кто одинаково влюблены и в классический костюм и в ультрасовременные вещи.</p>
-                    </div>
-                </div>
-                <div id="contentItem">
-                    <div id="contentItemFoto">
-                        <img src="img/foto2.jpg" alt="jeans">
-                    </div>
-                    <div id="contentItemText">
-                        <p>
-                            Немецкая марка одежды. Ассоциируется с классическими костюмами идеального кроя.
-                            Бренд высококлассной одежды, в котором гармонично со-существуют традиционная классика,
-                            одежда для отдыха и светских приемов. А также привлекательным соотношением цена-качество.</p>
-                    </div>
-                </div>
-                <div id="contentItem">
-                    <div id="contentItemFoto">
-                        <img src="img/foto3.jpg" alt="jeans">
-                    </div>
-                    <div id="contentItemText">
-                        <p>
-                            Итальянская марка женской одежды высочайшего качества и дизайна. Неповторимость
-                            фасонов, новаторство и творчество – движущие элементы фирмы. Итальянская марка,
-                            специализирующаяся на выпуске нарядного трикотажа. В последние годы коллекция трикотажа
-                            дополняется брюками, джинсами, куртками, аксессуарами. Широкая гамма оригинальных
-                            фасонов из высококлассных материалов.</p>
-                    </div>
-                </div>
-                <div id="contentItem">
-                    <div id="contentItemFoto">
-                        <img src="img/foto1.jpg" alt="jeans">
-                    </div>
-                    <div id="contentItemText">
-                        <p>
-                            Одна из самых известных немецких марок в мире одежды. представленная широким ассортиментом
-                            товаров, отвечающих индивидуальным потребностям, гарантирует высокое качество продукции
-                            с характерным и узнаваемым дизайном. Лидирующий бренд итальянской группы Forall.
-                            Для тех, кто одинаково влюблены и в классический костюм и в ультрасовременные вещи.</p>
-                    </div>
-                </div>
-                <div id="contentAfterItems">
-                    <div id="contentAfterItemsFoto">
+                    <asp:ContentPlaceHolder runat="server" ID="MainContent"></asp:ContentPlaceHolder>
+                    <div id="contentAfterItems">
+                        <div id="contentAfterItemsFoto">
+                        </div>
                     </div>
                 </div>
             </div>
             <div id="contentFooterBg">
+                <div class="left"></div>
+                <div class="right"></div>
             </div>
         </div>
-        <div id="footer">
+    </div>
+            <div id="footer">
             <div id="footerCopy">
                 <p>
                     © 2010 Студия стиля Людмилы Захаренко «Модная Леди»</p>
@@ -200,6 +162,6 @@
                     М.бренд | <span class="colortext">дизайн</span></p>
             </div>
         </div>
-    </div>
+
 </body>
 </html>

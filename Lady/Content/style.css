@@ -1,41 +1,36 @@
-@import url('contact.css');
-@import url('productSlot.css');
-@import url('basket.css');
-@import url('basket2.css');
-@import url('basket3.css');
-@import url('finish.css');
 *{margin:0; padding:0;}
-#header{height:92px; width:1000px;background:#75ae39;}
+body{background:url(img/bg.jpg);}
+#header{height:92px; width:auto;background:#75ae39;}
 #headerLinks{height:92px;width:345px;float:left;}
 #headerLinks a{color:#cccccc;}
 #headerLinks a:hover{color:#ffffff; text-decoration:none;}
 #headerLinks h2{font:Verdana, Arial, Helvetica, sans-serif; font-size:12px;color:#ffffff;padding: 8px 0 0px 15px;}
-#headerLinks p{font:Verdana, Arial, Helvetica, sans-serif; font-size:15px; color:ffffff;padding: 6px 0 0px 15px;}
-#headerLogo{height:52px;width:450px;float:left;color:#ffffff;margin: 28px 0 0px 0px;}
+#headerLinks p{font:Verdana, Arial, Helvetica, sans-serif; font-size:15px; color:#ffffff;padding: 6px 0 0px 15px;}
+#headerLogo{height:52px;width:450px;color:#ffffff;margin:0 auto;}
 #headerContacts{height:52px;width:170px;float:right;margin: 10px 0 0 0px;}
 #headerContacts h3{font-family:Verdana, Arial, Helvetica, sans-serif;font-size:17px; color:#ffffff; margin: 7px 0 0 0px;}
-#underHeader{height:42px; width:1000px;float:left;}
+#underHeader{height:42px; width:auto;}
 #wellcome{height:42px; width:410px;float:left;}
 #wellcome p{font:Verdana, sans-serif; font-size:10px; font-weight:bold; color:#669933;margin:10px 0px 0px 21px;}
 #wellcome a{color:#0099cc;}
-#searchText{height:42px; width:290px;float:left;}
+#searchText{height:42px; width:290px; margin:0 auto;}
 #searchText p{color:#0099cc;font:Verdana, sans-serif; font-size:15px;font-weight:bold;margin:25px 0px 0px 0px;}
-#write{height:42px; width:300px;float:left;}
+#write{height:42px; width:300px;float:right;}
 #write p{margin:5px 0px 0px 175px;}
 #write a{font:Verdana, sans-serif; font-size:10px; font-weight:bold; color:#0099cc;}
-#search {height:63px; width:1000px; background:url(img/searchBg.jpg);float:left;}
-#searchField {margin:0px 0px 0px 181px;height:20px;width:272px;}
+#search {height:63px; width:auto; background:url(img/searchBg.jpg);}
+#searchField {margin:0 auto; height:20px;width:272px;}
 #search p{margin:3px 0px 0px 450px; color:#CC3366;}
 #search a{font:Verdana, sans-serif; font-size:10px; font-weight:bold; color:#0099cc;}
 #search h2{font:Verdana, sans-serif; font-size:15px; font-weight:bold; color:#cc0066; padding:10px 0px 0px 45px;}
-#skidki {height:107px; width:1000px;float:left;background:url(img/skidkiBg.jpg);}
+#skidki {height:107px; width:auto;background:url(img/skidkiBg.jpg);}
 #skidki p{margin:4px 0px 0px 85px;font:Verdana, sans-serif; font-size:12px;}
 #skidki h4{margin:4px 0px 0px 85px;font:Verdana, sans-serif; font-size:13px; font-weight:bold;color:#c70067}
 #skidki a{color:#000000;font:Verdana, sans-serif; font-size:12px; font-weight:bold;}
 #skidkiBox{height:97px; width:250px;float:left; margin:5px 0px 0px 65px; float:left;}
 #imgBox{height:97px; width:76px;float:left;border: 1px solid #c70067;margin:-5px 0px 0px 0px;}
-#contentBox {min-height:900px; height:auto; width:1000px;float:left;background:url(img/bg.jpg);}
-#string {height:39px; width:886px;border-top:1px solid #000000; border-bottom: 1px solid #000000;float:left; margin:25px 0px 0px 57px; background:#FFFFFF;}
+#contentBox {min-height:900px; height:auto; width:auto; }
+#string {height:39px; width:auto; border-top:1px solid #000000; border-bottom: 1px solid #000000; margin:25px 57px; background:#FFFFFF;}
 #currency{height:39px; width:240px;float:left;}
 #currency p {font:Verdana, sans-serif; font-size:11px; font-weight:bold; color:#669933;margin:3px 0px 0px 20px;}
 #currency h3 {font:Verdana, sans-serif; font-size:11px; font-weight:bold; color:#000000;margin:3px 0px 0px 20px;}
@@ -47,21 +42,27 @@
 #basket p{font:Verdana, sans-serif; font-size:14px;margin:8px 0px 0px 240px;}
 #basket a{color:#0099cc;font:Verdana, sans-serif; font-size:14px;}
 #leftSide{min-height:800px;height:auto; width:257px;float:left; margin:27px 0px 0px 0px;}
-#rightSide{min-height:850px; height:auto; width:730px;border: 0px solid black;float:left;}
-#content{min-height:800px; height:auto; width:669px;float:left;margin:27px 0px 0px 20px;background:url(img/contentBg.jpg) repeat-y;}
-#contentHeader{width:667px; height:14px;float:left;background:url(img/contentHeaderBg.jpg) repeat-x;}
+#rightSide{min-height:850px; height:auto; width:auto; margin-left:271px; margin-right:80px;}
+#content{min-height:800px; height:auto; width:auto; margin:27px 0px 0px 20px; background:#e8e8e8 url(img/leftContentBg.jpg) repeat-y;}
+
+#content .contentWrapper{background:transparent url(img/rigthGridBg.jpg) repeat-y; min-height:800px; background-position:right top; padding:39px 82px 0px; padding-left:82px;}
+
+#contentHeader{height:14px; background:url(img/contentHeaderBg.jpg) repeat-x; margin-right:2px;}
 #contentHeaderBgLeft{width:14px; height:14px;background:url(img/contentHeaderBgLeft.jpg); float:left;}
 #contentHeaderBgRight{width:14px; height:14px;background:url(img/contentHeaderBgRight.jpg); float:right;}
-#contentFooterBg{width:669px; height:17px;background:url(img/contentFooterBg.jpg); float:left;margin:0px 0px 0px 20px;}
-#footerDate{width:500px; height:17px;border-bottom:1px solid black;margin:39px 0px 9px 82px;}
+#contentFooterBg{height:17px;background:url(img/contentFooterBg.jpg); margin:0px 0px 0px 20px;}
+#contentFooterBg .left{float:left; width:14px; height:17px; background:transparent url(img/contentFooterBgLeft.jpg)}
+#contentFooterBg .right{float:right; width:14px; height:17px; background:transparent url(img/contentFooterBgRight.jpg)}
+
+#footerDate{height:17px; border-bottom:1px solid black; margin-bottom:50px;}
 #footerDate p{font:Verdana, sans-serif; font-size:10px; font-weight:bold; color:#666666;padding:3px 0px 0px 0px;}
 #contentItem{width:460px; height:120px;margin:25px 0px 0px 100px;float:left;}
 #contentItemFoto{width:100px; height:100px;margin:8px 0px 0px 0px;float:left;border: 1px solid #666666;}
 #contentItemText{width:328px; height:120px;margin:1px 0px 0px 25px;float:left;}
 #contentItemText p{font:Verdana, sans-serif; font-size:12px; font-weight:100; color:#000000;}
-#contentAfterItems{width:485px; height:30px;border-top:1px solid black;margin:50px 0px 0px 80px;float:left;}
+#contentAfterItems{ height:30px;border-top:1px solid black;margin-top:50px}
 #contentAfterItemsFoto{width:485px; height:30px; background:url(img/fotoText.jpg) no-repeat;margin:5px 0px 0px 0px;}
-#leftSideLiBox{height:200px; width:250px;float:left;}
+#leftSideLiBox{width:250px;}
 #leftSide li{margin:7px 0px 0px 85px;list-style-type:none;}
 #leftSide a{font:Verdana, sans-serif; font-size:12px; font-weight:bold; color:#0099cc;}
 #newsBox{height:auto; width:200px;float:left;margin:30px 0px 0px 40px;}
@@ -73,7 +74,7 @@
 #newsContent a{color:#000000;font-size:10px;font-weight:100;}
 #newsFooter{float:left;height:20px;width:125px;background:url(img/newsFooterBg.jpg) repeat-x;margin:0px 0px 0px 4px;}
 #girl{height:350px; width:162px;float:left;margin:40px 0px 0px 35px;}
-#footer{height:37px; width:1000px;float:left;margin:0px 0px 0px 0px; background:#75ae39;}
+#footer{height:37px; width:auto; margin:0px 0px 0px 0px; background:#75ae39;}
 #footerCopy{height:37px; width:500px; float:left;}
 #footerCopy p{font:Verdana, sans-serif; font-size:11px; font-weight:normal; color:#ffffff;margin:10px 0px 0px 80px;}
 #footerRightBox{height:50px;min-width:15px;width:auto;float:right;background:url(img/footerRight.jpg) no-repeat right;padding:0px 65px 0px 0px;}

@@ -9,6 +9,7 @@ namespace Lady.Controllers
 {
     public class WidgetsController : Controller
     {
+        [ChildActionOnly]
         public ActionResult News()
         {
             using (ContentStorage context = new ContentStorage())

@@ -218,7 +218,9 @@
           <Property Name="ImageSource" Type="String" Nullable="false" />
           <NavigationProperty Name="Product" Relationship="gbua_mladyModel.ProductProductImage" FromRole="ProductImage" ToRole="Product" /></EntityType>
         <Association Name="CategoryProduct">
-          <End Type="gbua_mladyModel.Category" Role="Category" Multiplicity="1" />
+          <End Type="gbua_mladyModel.Category" Role="Category" Multiplicity="1" >
+            <OnDelete Action="Cascade"></OnDelete>
+          </End>
           <End Type="gbua_mladyModel.Product" Role="Product" Multiplicity="*" /></Association>
         <Association Name="ProductProduct">
           <End Type="gbua_mladyModel.Product" Role="Product" Multiplicity="*" />
@@ -227,11 +229,16 @@
           <End Type="gbua_mladyModel.ProductAttribute" Role="ProductAttribute" Multiplicity="1" />
           <End Type="gbua_mladyModel.ProductAttributeValue" Role="ProductAttributeValue" Multiplicity="*" /></Association>
         <Association Name="ProductProductImage">
-          <End Type="gbua_mladyModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="gbua_mladyModel.Product" Role="Product" Multiplicity="1">
+            <OnDelete Action="Cascade"></OnDelete>
+          </End>
           <End Type="gbua_mladyModel.ProductImage" Role="ProductImage" Multiplicity="*" /></Association>
         <Association Name="CategoryCategory">
-          <End Type="gbua_mladyModel.Category" Role="Category" Multiplicity="1" />
-          <End Type="gbua_mladyModel.Category" Role="Category1" Multiplicity="*" /></Association>
+          <End Type="gbua_mladyModel.Category" Role="Category" Multiplicity="0..1">
+            <OnDelete Action="Cascade"></OnDelete>
+          </End>
+          <End Type="gbua_mladyModel.Category" Role="Category1" Multiplicity="*" />
+        </Association>
         <EntityType Name="Brand">
           <Key>
             <PropertyRef Name="Id" /></Key>
@@ -243,11 +250,14 @@
           <Property Name="SeoKeywords" Type="String" Nullable="true" />
           <NavigationProperty Name="Products" Relationship="gbua_mladyModel.BrandProduct" FromRole="Brand" ToRole="Product" /></EntityType>
         <Association Name="BrandProduct">
-          <End Type="gbua_mladyModel.Brand" Role="Brand" Multiplicity="1" />
+          <End Type="gbua_mladyModel.Brand" Role="Brand" Multiplicity="1">
+            <OnDelete Action="Cascade"></OnDelete>
+          </End>
           <End Type="gbua_mladyModel.Product" Role="Product" Multiplicity="*" /></Association>
         <Association Name="CategoryProductAttribute">
           <End Type="gbua_mladyModel.Category" Role="Category" Multiplicity="*" />
-          <End Type="gbua_mladyModel.ProductAttribute" Role="ProductAttribute" Multiplicity="*" /></Association>
+          <End Type="gbua_mladyModel.ProductAttribute" Role="ProductAttribute" Multiplicity="*" />
+        </Association>
         <EntityType Name="Discount">
           <Key>
             <PropertyRef Name="Id" /></Key>
@@ -340,7 +350,8 @@
             <EndProperty Name="Category1">
               <ScalarProperty Name="Id" ColumnName="Id" /></EndProperty>
             <EndProperty Name="Category">
-              <ScalarProperty Name="Id" ColumnName="ParentId" /></EndProperty></AssociationSetMapping>
+              <ScalarProperty Name="Id" ColumnName="ParentId" /></EndProperty>
+            <Condition ColumnName="ParentId" IsNull="false" /></AssociationSetMapping>
           <EntitySetMapping Name="Brands">
             <EntityTypeMapping TypeName="IsTypeOf(gbua_mladyModel.Brand)">
               <MappingFragment StoreEntitySet="Brand">

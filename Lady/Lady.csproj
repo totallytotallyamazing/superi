@@ -76,6 +76,7 @@
     <Compile Include="Areas\Admin\Controllers\ProductsController.cs" />
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BrandsController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
@@ -206,11 +207,13 @@
     <Content Include="Content\img\heart.jpg" />
     <Content Include="Content\img\jeans.jpg" />
     <Content Include="Content\img\kurtka.jpg" />
+    <Content Include="Content\img\leftContentBg.jpg" />
     <Content Include="Content\img\logo.jpg" />
     <Content Include="Content\img\newsBg.jpg" />
     <Content Include="Content\img\newsFooterBg.jpg" />
     <Content Include="Content\img\previewsFoto1.jpg" />
     <Content Include="Content\img\previewsFoto2.jpg" />
+    <Content Include="Content\img\rigthGridBg.jpg" />
     <Content Include="Content\img\searchBg.jpg" />
     <Content Include="Content\img\skidkiBg.jpg" />
     <Content Include="Content\img\skidkiBgSlot.jpg" />
@@ -218,6 +221,7 @@
     <Content Include="Content\style.css" />
     <Content Include="index.html" />
     <Content Include="Scripts\jquery.mask.js" />
+    <Content Include="Views\Brands\Index.aspx" />
     <Content Include="Views\Products\Index.aspx" />
     <Content Include="Views\Products\Product.ascx" />
     <Content Include="Views\Shared\Categories.ascx" />

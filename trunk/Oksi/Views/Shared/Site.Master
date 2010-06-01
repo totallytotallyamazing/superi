@@ -112,13 +112,23 @@
             <div class="contacts">
                 Контакты:<br />
                 097 735 03 34<br />
-                e-mail:<a href="mailto:oksi.pr@gmail.com">oksi.pr@ gmail.com</a>
+                e-mail:<a href="mailto:oksi.pr@gmail.com">oksi.pr@gmail.com</a>
             </div>
             <div class="banners">
                 <img src="/Content/img/banners.jpg" />
             </div>
         </div>  
         <div id="footer2">
+            <div>
+                <a href="http://www.youtube.com/oksicomua" target="_blank">
+                    <img src="/Content/img/youtubeLogo.jpg" alt="Канал на YouTube" />
+                </a>
+            </div>
+            <div>
+                <a href="http://vkontakte.ru/club12925979" target="_blank">
+                    <img src="/Content/img/vkLogo.jpg" alt="ВКонтакте" />
+                </a>
+            </div>
         </div>
     </div>
     </div>

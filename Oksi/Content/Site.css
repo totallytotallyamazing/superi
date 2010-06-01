@@ -6,7 +6,7 @@ img{border:0;}
 #mainWrapper{width:1327px; position:relative; margin:0 auto;}
 
 #leftBanners{float:left; position:absolute; margin-left:-245px; padding-top:91px}
-#leftBanners div, #rightBanners div{border:1px solid white;}
+#leftBanners div, #rightBanners div{border:1px solid #ccc;}
 
 #b1, #br1{height:360px;}
 
@@ -41,11 +41,13 @@ img{border:0;}
 .menuItem.hover{background:#C6C6C6;}
 
 #content{background:#C6C6C6; padding:6px; width:auto;}
+#textContent{font-size:12px; padding:10px 50px;}
 
 #footer1{margin-top:5px; background:#5c5c5c; width:auto; padding-left:15px; height:67px;}
 .banners{ margin-right:195px; }
 .contacts{width:180px; float:right; padding-left:10px; color:white; padding-top:5px; height:62px; font-size:11px; background:#4A4A4A;}
-#footer2{margin-top:5px; width:auto; border:1px solid white; height:60px;}
+#footer2{margin-top:5px; width:auto; border:1px solid white; height:40px; padding:10px 16px;}
+#footer2>div{margin-right:14px; float:left;}
 
 /*Gallery */
 

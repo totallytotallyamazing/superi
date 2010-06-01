@@ -19,5 +19,6 @@
         });
     </script>
 <%} %>
-
+<div id="textContent">
 <%= ViewData["text"] %>
+</div>

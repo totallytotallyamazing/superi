@@ -56,7 +56,6 @@ namespace ClientLibrary
 
         Object Click(object rawEvent, object ui)
         {
-            Script.Literal("debugger");
             DOMElement target = (DOMElement)Type.GetField(rawEvent, "target");
             if (target.TagName != "DIV")
             {

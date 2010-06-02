@@ -108,6 +108,11 @@ namespace Oksi.Controllers
                         IOHelper.DeleteFile(filePath, article.Image);
                     }
                     Request.Files["picture"].SaveAs(newFilePath);
+                    article.Image = Path.GetFileName(newFilePath);
+                }
+                else
+                {
+                    //article.Image = "oksiSiteDefaultArticleImage.jpg";
                 }
                 article.Name = TextHelper.Transliterate(article.Title);
                 context.AcceptAllChanges();

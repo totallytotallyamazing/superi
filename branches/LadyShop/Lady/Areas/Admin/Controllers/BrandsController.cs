@@ -36,17 +36,16 @@ namespace Lady.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddEdit(Brand brand)
+        public ActionResult AddEdit(Brand brand, int Id)
         {
             using (ShopStorage context = new ShopStorage())
             {
-                if (brand.Id > 0)
+                if (Id > 0)
                 {
-                    object originalItem;
-                    EntityKey entityKey = context.CreateEntityKey("Brands", brand.Id);
-                    if (context.TryGetObjectByKey(entityKey, out originalItem))
+                    brand.Id = Id;
+                    Brand originalItem = context.Brands.Where(b=>b.Id == Id).First();
                     {
-                        context.ApplyPropertyChanges(entityKey.EntitySetName, brand);
+                        context.ApplyPropertyChanges("Brands", brand);
                     }
                 }
                 else
@@ -66,6 +65,18 @@ namespace Lady.Areas.Admin.Controllers
 
                 context.SaveChanges();
             } 
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Delete(int id)
+        {
+            using (ShopStorage context = new ShopStorage())
+            {
+                Brand brand = context.Brands.Where(b => b.Id == id).First();
+                context.DeleteObject(brand);
+                context.SaveChanges();
+            }
+
             return RedirectToAction("Index");
         }
     }

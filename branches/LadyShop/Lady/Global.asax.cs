@@ -17,6 +17,14 @@ namespace Lady
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                "Go", // Route name
+                "Go/{id}", // URL with parameters
+                new { controller = "Home", action = "Go", id = UrlParameter.Optional }, // Parameter defaults
+                new string[1] { "Lady.Controllers" }
+            );
+
+
+            routes.MapRoute(
                 "Default", // Route name
                 "{controller}/{action}/{id}", // URL with parameters
                 new { controller = "Home", action = "Index", id = UrlParameter.Optional }, // Parameter defaults

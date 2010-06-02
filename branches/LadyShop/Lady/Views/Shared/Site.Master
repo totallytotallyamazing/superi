@@ -3,20 +3,17 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+    <% Html.RenderPartial("MetaTags"); %>
     <title><asp:ContentPlaceHolder runat="server" ID="TitleContent"></asp:ContentPlaceHolder></title>
     <link href="/Content/style.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="/Scripts/jquery.js"></script>
     <asp:ContentPlaceHolder runat="server" ID="includes"></asp:ContentPlaceHolder>
 </head>
 <body>
     <div id="header">
         <div id="headerLinks">
             <h2>УГОЛОК ПОКУПАТЕЛЯ</h2>
-            <p>
-                <a href="#">О СТУДИИ</a> / <a href="#">НОВОСТИ</a>/ <a href="#">О БРЕНДАХ</a>/ <a
-                    href="#">ЗАКАЗ, ОПЛАТА И ДОСТАВКА</a>/ <a href="#">ТАБЛИЦА РАЗМЕРОВ</a>/ <a href="#">
-                        ПАРТНЕРАМ</a>
-            </p>
+            <% Html.RenderPartial("MainMenu"); %>
         </div>
         <div id="headerContacts">
             <h3>(097) 400-19-77</h3>
@@ -25,7 +22,7 @@
 
         <div id="headerLogo">
             <p>
-                <img src="img/logo.jpg" alt="Модная леди. Студия стиля Людмилы Захаренко">
+                <img src="/Content/img/logo.jpg" alt="Модная леди. Студия стиля Людмилы Захаренко">
             </p>
         </div>
     </div>
@@ -61,7 +58,7 @@
     <div id="skidki">
         <div id="skidkiBox">
             <div id="imgBox">
-                <img src="img/cheshki.jpg" alt="cheshki">
+                <img src="/Content/img/cheshki.jpg" alt="cheshki">
             </div>
             <p>
                 <a href="#">Чешки “Ed Hardy”</a>
@@ -77,7 +74,7 @@
         </div>
         <div id="skidkiBox">
             <div id="imgBox">
-                <img src="img/kurtka.jpg" alt="kurtka"></div>
+                <img src="/Content/img/kurtka.jpg" alt="kurtka"></div>
             <p>
                 <a href="#">Куртка “Alchemist”</a>
             </p>
@@ -92,7 +89,7 @@
         </div>
         <div id="skidkiBox">
             <div id="imgBox">
-                <img src="img/jeans.jpg" alt="jeans"></div>
+                <img src="/Content/img/jeans.jpg" alt="jeans"></div>
             <p>
                 <a href="#">Джинсы “Verdi Nerdi”</a></p>
             <p>
@@ -123,7 +120,7 @@
             </div>
             <% Html.RenderAction("News", "Widgets", new { area = "" }); %>
             <div id="girl">
-                <img src="img/girl.jpg" alt="jeans">
+                <img src="/Content/img/girl.jpg" alt="jeans">
             </div>
         </div>
         <div id="rightSide">

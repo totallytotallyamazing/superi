@@ -12,14 +12,13 @@ namespace Lady.Controllers
     {
         public ActionResult Index()
         {
-            ViewData["Message"] = "Welcome to ASP.NET MVC!";
-
-            return View();
+            return RedirectToAction("Go", new { id = "home" });
         }
 
-        public ActionResult About()
+        [Content]
+        public ActionResult Go(string id)
         {
-            return View();
+            return View("Content");
         }
 
         [ChildActionOnly]

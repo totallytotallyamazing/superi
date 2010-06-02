@@ -8,7 +8,7 @@
     <% } %>
     </ul>
     
-    <% if(Request.IsAuthenticated && Roles.IsUserInRole("Administrators")){ %>    
+    <% if(Roles.IsUserInRole("Administrators")){ %>    
         <p>
             <a href="/Admin/Categories/AddEdit">Добавить категорию</a>
         </p>

@@ -5,10 +5,14 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-
+<% if(Roles.IsUserInRole("Administrators")){ %>
+    <p class="adminLink">
+        <%= Html.ActionLink("адмнистрирование брендов", "Index", new {conteoller="Brands", area="admin"}) %>
+    </p>
+<%} %>
                     <div id="contentItem">
                     <div id="contentItemFoto">
-                        <img src="img/foto1.jpg" alt="jeans">
+                        <img src="/Content/img/foto1.jpg" alt="jeans">
                     </div>
                     <div id="contentItemText">
                         <p>
@@ -20,7 +24,7 @@
                 </div>
                 <div id="contentItem">
                     <div id="contentItemFoto">
-                        <img src="img/foto2.jpg" alt="jeans">
+                        <img src="/Content/img/foto2.jpg" alt="jeans">
                     </div>
                     <div id="contentItemText">
                         <p>
@@ -31,7 +35,7 @@
                 </div>
                 <div id="contentItem">
                     <div id="contentItemFoto">
-                        <img src="img/foto3.jpg" alt="jeans">
+                        <img src="/Content/img/foto3.jpg" alt="jeans">
                     </div>
                     <div id="contentItemText">
                         <p>
@@ -44,7 +48,7 @@
                 </div>
                 <div id="contentItem">
                     <div id="contentItemFoto">
-                        <img src="img/foto1.jpg" alt="jeans">
+                        <img src="/Content/img/foto1.jpg" alt="jeans">
                     </div>
                     <div id="contentItemText">
                         <p>

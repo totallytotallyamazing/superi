@@ -28,7 +28,7 @@
     %>
     <%if (ViewData["id"] != null)
      {
-         Html.RenderPartial("CarAdImages", item);
+         Html.RenderPartial("ProductImages", item);
      }%>
      <br />
 

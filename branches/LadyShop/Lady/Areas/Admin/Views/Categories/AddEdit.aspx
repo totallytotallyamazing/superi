@@ -42,11 +42,6 @@
         </fieldset>
 
     <% } %>
-
-<%--    <div>
-        <%= Html.ActionLink("Назад", "Index") %>
-    </div>--%>
-
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="includes" runat="server">

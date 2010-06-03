@@ -53,7 +53,7 @@ namespace Lady.Areas.Admin.Controllers
                 if (product.Id > 0)
                 {
                     object originalItem;
-                    EntityKey entityKey = context.CreateEntityKey("Products", product.Id);
+                    EntityKey entityKey = context.CreateEntityKey("ShopStorage.Products", product.Id);
                     if (context.TryGetObjectByKey(entityKey, out originalItem))
                     {
                         context.ApplyPropertyChanges(entityKey.EntitySetName, product);

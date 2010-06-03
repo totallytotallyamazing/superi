@@ -13,7 +13,7 @@
           <EntitySet Name="Product" EntityType="gbua_mladyModel.Store.Product" store:Type="Tables" Schema="gbua_mlady" />
           <EntitySet Name="ProductAttribute" EntityType="gbua_mladyModel.Store.ProductAttribute" store:Type="Tables" Schema="gbua_mlady" />
           <EntitySet Name="ProductAttributeValue" EntityType="gbua_mladyModel.Store.ProductAttributeValue" store:Type="Tables" Schema="gbua_mlady" />
-          <EntitySet Name="ProductAttributeValueSelected" EntityType="gbua_mladyModel.Store.ProductAttributeValueSelected" store:Type="Tables" Schema="gbua_mlady" />
+          <EntitySet Name="ProductAttributeValueAvailable" EntityType="gbua_mladyModel.Store.ProductAttributeValueAvailable" store:Type="Tables" Schema="gbua_mlady" />
           <EntitySet Name="ProductDiscountMapping" EntityType="gbua_mladyModel.Store.ProductDiscountMapping" store:Type="Tables" Schema="gbua_mlady" />
           <EntitySet Name="ProductImage" EntityType="gbua_mladyModel.Store.ProductImage" store:Type="Tables" Schema="gbua_mlady" />
           <EntitySet Name="SimilalProduct" EntityType="gbua_mladyModel.Store.SimilalProduct" store:Type="Tables" Schema="gbua_mlady" />
@@ -38,6 +38,7 @@
           <Property Name="ParentId" Type="int" />
           <Property Name="SeoDescription" Type="varchar" />
           <Property Name="SeoKeywords" Type="varchar" MaxLength="500" />
+          <Property Name="SortOrder" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="CategoryProductAttributeMapping">
           <Key>
@@ -87,17 +88,16 @@
           </Key>
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="ProductAttributeId" Type="int" Nullable="false" />
+          <Property Name="SortOrder" Type="int" Nullable="false" />
           <Property Name="Value" Type="varchar" Nullable="false" MaxLength="500" />
         </EntityType>
-        <EntityType Name="ProductAttributeValueSelected">
+        <EntityType Name="ProductAttributeValueAvailable">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="ProductAttributeValueId" />
+            <PropertyRef Name="ProductId" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="ProductAttributeId" Type="int" Nullable="false" />
-          <Property Name="ProductAttributeValueId" Type="int" />
+          <Property Name="ProductAttributeValueId" Type="int" Nullable="false" />
           <Property Name="ProductId" Type="int" Nullable="false" />
-          <Property Name="Value" Type="varchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="ProductDiscountMapping">
           <Key>
@@ -159,7 +159,10 @@
           <EntitySet Name="Discount" EntityType="gbua_mladyModel.Discount" />
           <AssociationSet Name="ProductDiscount" Association="gbua_mladyModel.ProductDiscount">
             <End Role="Product" EntitySet="Products" />
-            <End Role="Discount" EntitySet="Discount" /></AssociationSet></EntityContainer>
+            <End Role="Discount" EntitySet="Discount" /></AssociationSet>
+          <AssociationSet Name="ProductProductAttributeValue" Association="gbua_mladyModel.ProductProductAttributeValue">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="ProductAttributeValue" EntitySet="ProductAttributeValues" /></AssociationSet></EntityContainer>
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="Id" />
@@ -171,7 +174,8 @@
           <NavigationProperty Name="Parent" Relationship="gbua_mladyModel.CategoryCategory" FromRole="Category1" ToRole="Category" />
           <Property Name="SeoDescription" Type="String" Nullable="true" />
           <Property Name="SeoKeywords" Type="String" Nullable="true" />
-          <NavigationProperty Name="ProductAttributes" Relationship="gbua_mladyModel.CategoryProductAttribute" FromRole="Category" ToRole="ProductAttribute" /></EntityType>
+          <NavigationProperty Name="ProductAttributes" Relationship="gbua_mladyModel.CategoryProductAttribute" FromRole="Category" ToRole="ProductAttribute" />
+          <Property Name="SortOrder" Type="Int32" Nullable="false" /></EntityType>
         <EntityType Name="Product">
           <Key>
             <PropertyRef Name="Id" />
@@ -191,7 +195,8 @@
           <Property Name="PartNumber" Type="String" Nullable="true" />
           <NavigationProperty Name="Brand" Relationship="gbua_mladyModel.BrandProduct" FromRole="Product" ToRole="Brand" />
           <Property Name="IsNew" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Discounts" Relationship="gbua_mladyModel.ProductDiscount" FromRole="Product" ToRole="Discount" /></EntityType>
+          <NavigationProperty Name="Discounts" Relationship="gbua_mladyModel.ProductDiscount" FromRole="Product" ToRole="Discount" />
+          <NavigationProperty Name="ProductAttributeValues" Relationship="gbua_mladyModel.ProductProductAttributeValue" FromRole="Product" ToRole="ProductAttributeValue" /></EntityType>
         <EntityType Name="ProductAttribute">
           <Key>
             <PropertyRef Name="Id" />
@@ -208,7 +213,8 @@
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Value" Type="String" Nullable="false" />
           <NavigationProperty Name="ProductAttribute" Relationship="gbua_mladyModel.ProductAttributeProductAttributeValue" FromRole="ProductAttributeValue" ToRole="ProductAttribute" />
-          </EntityType>
+          <Property Name="SortOrder" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Products" Relationship="gbua_mladyModel.ProductProductAttributeValue" FromRole="ProductAttributeValue" ToRole="Product" /></EntityType>
         <EntityType Name="ProductImage">
           <Key>
             <PropertyRef Name="Id" />
@@ -268,7 +274,10 @@
           <NavigationProperty Name="Products" Relationship="gbua_mladyModel.ProductDiscount" FromRole="Discount" ToRole="Product" /></EntityType>
         <Association Name="ProductDiscount">
           <End Type="gbua_mladyModel.Product" Role="Product" Multiplicity="*" />
-          <End Type="gbua_mladyModel.Discount" Role="Discount" Multiplicity="*" /></Association></Schema>
+          <End Type="gbua_mladyModel.Discount" Role="Discount" Multiplicity="*" /></Association>
+        <Association Name="ProductProductAttributeValue">
+          <End Type="gbua_mladyModel.Product" Role="Product" Multiplicity="*" />
+          <End Type="gbua_mladyModel.ProductAttributeValue" Role="ProductAttributeValue" Multiplicity="*" /></Association></Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -277,6 +286,7 @@
           <EntitySetMapping Name="Categories">
             <EntityTypeMapping TypeName="IsTypeOf(gbua_mladyModel.Category)">
               <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
                 <ScalarProperty Name="SeoKeywords" ColumnName="SeoKeywords" />
                 <ScalarProperty Name="SeoDescription" ColumnName="SeoDescription" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -312,6 +322,7 @@
           <EntitySetMapping Name="ProductAttributeValues">
             <EntityTypeMapping TypeName="IsTypeOf(gbua_mladyModel.ProductAttributeValue)">
               <MappingFragment StoreEntitySet="ProductAttributeValue">
+                <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Value" ColumnName="Value" />
               </MappingFragment>
@@ -382,6 +393,11 @@
             <EndProperty Name="Discount">
               <ScalarProperty Name="Id" ColumnName="DiscountId" /></EndProperty>
             <EndProperty Name="Product">
+              <ScalarProperty Name="Id" ColumnName="ProductId" /></EndProperty></AssociationSetMapping>
+          <AssociationSetMapping Name="ProductProductAttributeValue" TypeName="gbua_mladyModel.ProductProductAttributeValue" StoreEntitySet="ProductAttributeValueAvailable" >
+            <EndProperty Name="ProductAttributeValue">
+              <ScalarProperty Name="Id" ColumnName="ProductAttributeValueId" /></EndProperty>
+            <EndProperty Name="Product">
               <ScalarProperty Name="Id" ColumnName="ProductId" /></EndProperty></AssociationSetMapping></EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -400,43 +416,47 @@
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram Name="Shop" ZoomLevel="86">
+      <Diagram Name="Shop" ZoomLevel="98">
         <EntityTypeShape EntityType="gbua_mladyModel.Category" Width="1.75" PointX="1.375" PointY="0.625" Height="2.1473193359375" IsExpanded="true" />
-        <EntityTypeShape EntityType="gbua_mladyModel.Product" Width="2.5" PointX="9.5" PointY="0.625" Height="3.6632698567708326" IsExpanded="true" />
+        <EntityTypeShape EntityType="gbua_mladyModel.Product" Width="2.5" PointX="8" PointY="0.625" Height="4.2317513020833326" IsExpanded="true" />
         <EntityTypeShape EntityType="gbua_mladyModel.ProductAttribute" Width="2.625" PointX="1.125" PointY="4.125" Height="1.9578255208333326" IsExpanded="true" />
         <EntityTypeShape EntityType="gbua_mladyModel.ProductAttributeValue" Width="2.25" PointX="4.5" PointY="4.375" Height="1.5788378906249996" IsExpanded="true" />
-        <EntityTypeShape EntityType="gbua_mladyModel.ProductImage" Width="1.5" PointX="14.625" PointY="3.375" Height="1.7879850260416665" IsExpanded="true" />
+        <EntityTypeShape EntityType="gbua_mladyModel.ProductImage" Width="1.5" PointX="11.5" PointY="3.375" Height="1.7683317057291665" IsExpanded="true" />
         <AssociationConnector Association="gbua_mladyModel.CategoryProduct">
-          <ConnectorPoint PointX="3.125" PointY="1.46875" />
-          <ConnectorPoint PointX="9.5" PointY="1.46875" /></AssociationConnector>
+          <ConnectorPoint PointX="3.125" PointY="1.15625" />
+          <ConnectorPoint PointX="8" PointY="1.15625" /></AssociationConnector>
         <AssociationConnector Association="gbua_mladyModel.ProductProduct">
-          <ConnectorPoint PointX="10.386538461538462" PointY="4.6672574869791656" />
-          <ConnectorPoint PointX="10.386538461538462" PointY="4.9172574869791656" />
-          <ConnectorPoint PointX="11.13076923076923" PointY="4.9172574869791656" />
-          <ConnectorPoint PointX="11.13076923076923" PointY="4.6672574869791656" /></AssociationConnector>
+          <ConnectorPoint PointX="8.8865384615384624" PointY="4.8567513020833326" />
+          <ConnectorPoint PointX="8.8865384615384624" PointY="5.1067513020833335" />
+          <ConnectorPoint PointX="9.63076923076923" PointY="5.1067513020833335" />
+          <ConnectorPoint PointX="9.63076923076923" PointY="4.8567513020833326" /></AssociationConnector>
         <AssociationConnector Association="gbua_mladyModel.ProductAttributeProductAttributeValue">
-          <ConnectorPoint PointX="3.75" PointY="5.3296743462197185" />
-          <ConnectorPoint PointX="4.5" PointY="5.3296743462197185" />
+          <ConnectorPoint PointX="3.75" PointY="5.2289127604166659" />
+          <ConnectorPoint PointX="4.5" PointY="5.2289127604166659" />
           </AssociationConnector>
         <AssociationConnector Association="gbua_mladyModel.ProductProductImage">
-          <ConnectorPoint PointX="12" PointY="3.9982645377604165" />
-          <ConnectorPoint PointX="14.625" PointY="3.9982645377604165" /></AssociationConnector>
+          <ConnectorPoint PointX="10.5" PointY="4.1158756510416667" />
+          <ConnectorPoint PointX="11.5" PointY="4.1158756510416667" /></AssociationConnector>
         <AssociationConnector Association="gbua_mladyModel.CategoryCategory">
           <ConnectorPoint PointX="1.9955769230769231" PointY="0.625" />
           <ConnectorPoint PointX="1.9955769230769231" PointY="0.375" />
           <ConnectorPoint PointX="2.5165384615384614" PointY="0.375" />
           <ConnectorPoint PointX="2.5165384615384614" PointY="0.625" /></AssociationConnector>
-        <EntityTypeShape EntityType="gbua_mladyModel.Brand" Width="1.5" PointX="12.875" PointY="0.625" Height="2.1473193359374996" />
+        <EntityTypeShape EntityType="gbua_mladyModel.Brand" Width="1.5" PointX="11.375" PointY="0.625" Height="2.336813151041667" />
         <AssociationConnector Association="gbua_mladyModel.BrandProduct">
-          <ConnectorPoint PointX="12.875" PointY="1.8074446614583337" />
-          <ConnectorPoint PointX="12" PointY="1.8074446614583337" /></AssociationConnector>
+          <ConnectorPoint PointX="11.375" PointY="1.7934065755208337" />
+          <ConnectorPoint PointX="10.5" PointY="1.7934065755208337" /></AssociationConnector>
         <AssociationConnector Association="gbua_mladyModel.CategoryProductAttribute">
           <ConnectorPoint PointX="1.84375" PointY="3.1513069661458331" />
           <ConnectorPoint PointX="1.84375" PointY="4.125" /></AssociationConnector>
-        <EntityTypeShape EntityType="gbua_mladyModel.Discount" Width="1.5" PointX="7.375" PointY="2.375" Height="1.9578255208333335" />
+        <EntityTypeShape EntityType="gbua_mladyModel.Discount" Width="1.5" PointX="5.5" PointY="1.75" Height="1.9578255208333335" />
         <AssociationConnector Association="gbua_mladyModel.ProductDiscount">
-          <ConnectorPoint PointX="9.5" PointY="3.3539127604166667" />
-          <ConnectorPoint PointX="8.875" PointY="3.3539127604166667" />
+          <ConnectorPoint PointX="8" PointY="2.7289127604166667" />
+          <ConnectorPoint PointX="7" PointY="2.7289127604166667" />
+          </AssociationConnector>
+        <AssociationConnector Association="gbua_mladyModel.ProductProductAttributeValue">
+          <ConnectorPoint PointX="8" PointY="4.6158756510416667" />
+          <ConnectorPoint PointX="6.75" PointY="4.6158756510416667" />
           </AssociationConnector></Diagram></edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

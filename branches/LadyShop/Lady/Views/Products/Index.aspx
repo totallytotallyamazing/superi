@@ -6,7 +6,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <% if(Roles.IsUserInRole("Administrators")){ %>
-        <%= Html.ActionLink("Удалить категорию", "Delete", "Categories", new { area = "Admin", id= ViewData["categoryId"]}, null) %>
+        <% Html.RenderPartial("CategoriesAdmin"); %>
     <%} %>
     <% if(Model!=null)
            foreach (var item in Model)

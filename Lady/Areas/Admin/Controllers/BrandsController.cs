@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Lady.Models;
 using Trips.Mvc.Helpers;
 using System.Data;
+using System.IO;
 
 namespace Lady.Areas.Admin.Controllers
 {
@@ -60,7 +61,10 @@ namespace Lady.Areas.Admin.Controllers
                         IOHelper.DeleteFile("~/Content/BrandLogos", brand.Logo);
                     }
                     string fileName = IOHelper.GetUniqueFileName("~/Content/BrandLogos", Request.Files["logo"].FileName);
-                    Request.Files["logo"].SaveAs(fileName);
+                    string filePath = Server.MapPath("~/Content/BrandLogos");
+                    filePath = Path.Combine(filePath, fileName);
+                    Request.Files["logo"].SaveAs(filePath);
+                    brand.Logo = fileName;
                 }
 
                 context.SaveChanges();

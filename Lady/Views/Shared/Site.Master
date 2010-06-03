@@ -103,7 +103,7 @@
             <h4>
                 400 грн</h4>
         </div>
-    </div>l
+    </div>
     <div id="contentBox">
         <div id="string">
             <% Html.RenderPartial("CurrencyConverter"); %>
@@ -134,7 +134,6 @@
                         </div>
                     </div>
                 <div class="contentWrapper">
-                    
                     <div id="footerDate">
                         <p><%= DateTime.Now.ToString("MMMM, dd") %></p>
                     </div>

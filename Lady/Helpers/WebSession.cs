@@ -104,5 +104,18 @@ namespace Dev.Helpers
             OrderItems.Clear();
             AdditionalInfo = null;
         }
+
+        public static string Currency
+        {
+            get
+            {
+                return (string)Session["Currency"];
+            }
+            set
+            {
+                Session["Currency"] = value;
+            }
+        }
+
     }
 }

@@ -22,12 +22,10 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <%
-    Dictionary<long, IEnumerable<ProductImage>> item = new Dictionary<long, IEnumerable<ProductImage>>();
-    item.Add(Model.Id, Model.ProductImages);
-    %>
     <%if (ViewData["id"] != null)
      {
+        Dictionary<long, IEnumerable<ProductImage>> item = new Dictionary<long, IEnumerable<ProductImage>>();
+         item.Add(Model.Id, Model.ProductImages);
          Html.RenderPartial("ProductImages", item);
      }%>
      <br />
@@ -55,6 +53,13 @@
             </div>
             <div class="editor-field">
                 <%= Html.TextBoxFor(model => model.PartNumber) %>
+                <%= Html.ValidationMessageFor(model => model.PartNumber) %>
+            </div>
+            <div class="editor-label">
+                Бренд
+            </div>
+            <div class="editor-field">
+                <%= Html.DropDownListFor(model=>model.Brand.Id, new SelectList((IEnumerable)ViewData["Brands"], "Id", "Name")) %>
                 <%= Html.ValidationMessageFor(model => model.PartNumber) %>
             </div>
             <div class="editor-label">

@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.IO;
 using System.Drawing;
+using System.Web.Mvc;
+using System.Text;
 
 namespace Dev.Mvc.Helpers
 {
@@ -14,9 +16,9 @@ namespace Dev.Mvc.Helpers
         static GraphicsHelper()
         {
             maxDimensions.Add("mainView", 400);
-            maxDimensions.Add("thumbnail1", 150);
-            maxDimensions.Add("thumbnail2", 90);
-            maxDimensions.Add("thumbnail3", 75);
+            maxDimensions.Add("thumbnail1", 112);
+            maxDimensions.Add("thumbnail2", 170);
+            maxDimensions.Add("thumbnail3", 85);
         }
 
         public static void ScaleImage(Bitmap image, int maxDimension, Stream saveTo)
@@ -90,6 +92,16 @@ namespace Dev.Mvc.Helpers
             {
                 ScaleImage(image, maxDimensions[cacheFolder], stream);
             }
+        }
+
+        public static string CachedImage(this HtmlHelper helper, string originalPath, string fileName, string cacheFolder, string alt)
+        {
+            StringBuilder sb = new StringBuilder();
+            string formatString = "<img src=\"{0}\" alt=\"{1}\" />";
+
+            sb.AppendFormat(formatString, GetCachedImage(originalPath, fileName, cacheFolder), alt);
+
+            return sb.ToString();
         }
     }
 }

@@ -166,6 +166,7 @@
     <Content Include="Areas\Admin\Views\Products\Index.aspx" />
     <Content Include="Areas\Admin\Views\Products\ProductImages.ascx" />
     <Content Include="Areas\Admin\Views\Web.config" />
+    <Content Include="Content\products.css" />
     <Content Include="Content\fancybox\blank.gif" />
     <Content Include="Content\fancybox\fancybox-x.png" />
     <Content Include="Content\fancybox\fancybox-y.png" />
@@ -239,6 +240,7 @@
     <Content Include="Views\Products\CategoriesAdmin.ascx" />
     <Content Include="Views\Products\Index.aspx" />
     <Content Include="Views\Products\Product.ascx" />
+    <Content Include="Views\Products\ProductAttributes.ascx" />
     <Content Include="Views\Products\ProductsAdmin.ascx" />
     <Content Include="Views\Shared\Categories.ascx" />
     <Content Include="Views\Shared\Content.aspx" />

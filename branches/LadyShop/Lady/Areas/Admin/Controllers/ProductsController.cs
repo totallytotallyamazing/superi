@@ -10,7 +10,7 @@ using System.IO;
 
 namespace Lady.Areas.Admin.Controllers
 {
-    [Authorize(Roles="Administrators")]
+    [Authorize(Roles = "Administrators")]
     public class ProductsController : Controller
     {
         //
@@ -24,7 +24,7 @@ namespace Lady.Areas.Admin.Controllers
             {
                 List<Product> products = context.Products.Where(p => p.Category.Id == categoryId)
                     .Where(p => (!brandId.HasValue || p.Brand.Id == brandId.Value)).ToList();
-                return View(products); 
+                return View(products);
             }
         }
 
@@ -34,9 +34,17 @@ namespace Lady.Areas.Admin.Controllers
             ViewData["bId"] = bId;
 
             Product product = null;
-            if (id.HasValue)
+            using (ShopStorage context = new ShopStorage())
             {
-                using (ShopStorage context = new ShopStorage())
+                var br = context.Brands.ToList();
+
+                List<SelectListItem> brands = br
+                    .Select(b => new SelectListItem { Text = b.Name, Value = b.Id.ToString() })
+                    .ToList();
+
+                ViewData["Brands"] = br;
+
+                if (id.HasValue)
                 {
                     product = context.Products.Where(p => p.Id == id.Value).First();
                 }
@@ -64,7 +72,7 @@ namespace Lady.Areas.Admin.Controllers
                     context.AddToProducts(product);
                 }
                 context.SaveChanges();
-            } 
+            }
 
             return RedirectToAction("Index", new { categoryId = cId, brandId = bId });
         }

@@ -34,16 +34,16 @@ namespace Lady.Models
 
     public class LogOnModel
     {
-        [Required]
-        [DisplayName("User name")]
+        [Required(ErrorMessage="*")]
+        [DisplayName("Логин")]
         public string UserName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "*")]
         [DataType(DataType.Password)]
-        [DisplayName("Password")]
+        [DisplayName("Пароль")]
         public string Password { get; set; }
 
-        [DisplayName("Remember me?")]
+        [DisplayName("Запомнить меня")]
         public bool RememberMe { get; set; }
     }
 

@@ -1,165 +1,41 @@
-<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
+<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" MasterPageFile="~/Views/Shared/Base.Master" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html>
-<head>
-    <% Html.RenderPartial("MetaTags"); %>
-    <title><asp:ContentPlaceHolder runat="server" ID="TitleContent"></asp:ContentPlaceHolder></title>
-    <link href="/Content/style.css" rel="stylesheet" type="text/css">
-    <link href="/Content/fancybox/jquery.fancybox.css" rel="stylesheet" type="text/css">
-    <script type="text/javascript" src="/Scripts/jquery.js"></script>
-    <script type="text/javascript" src="/Scripts/jquery.fancybox.js"></script>
+<asp:Content runat="server" ContentPlaceHolderID="ContentTitle">
+    <asp:ContentPlaceHolder runat="server" ID="ContentTitle"></asp:ContentPlaceHolder>
+</asp:Content>
+
+<asp:Content ID="Content1" runat="server" ContentPlaceHolderID="includes">
     <asp:ContentPlaceHolder runat="server" ID="includes"></asp:ContentPlaceHolder>
-</head>
-<body>
-    <div id="header">
-        <div id="headerLinks">
-            <h2>УГОЛОК ПОКУПАТЕЛЯ</h2>
-            <% Html.RenderPartial("MainMenu"); %>
-        </div>
-        <div id="headerContacts">
-            <h3>(097) 400-19-77</h3>
-            <h3>(044) 123-45-67</h3>
-        </div>
+</asp:Content>
 
-        <div id="headerLogo">
-            <p>
-                <img src="/Content/img/logo.jpg" alt="Модная леди. Студия стиля Людмилы Захаренко">
-            </p>
-        </div>
-    </div>
-    <div id="underHeader">
-        <div id="wellcome">
-            <p>
-                Добро пожаловать, <a href="#">Виктория Тряпичная!</a></p>
-        </div>
-        <div id="write">
-            <p>
-                <a href="#">Напишите нам</a>
-            </p>
-        </div>
+<asp:Content ID="Content2" runat="server" ContentPlaceHolderID="TitleContent">
+    <asp:ContentPlaceHolder runat="server" ID="TitleContent"></asp:ContentPlaceHolder>
+</asp:Content>
 
-        <div id="searchText">
-            <p>
-                ПОИСК ПО КАТАЛОГУ</p>
-        </div>
-    </div>
-    <div id="search">
-        <div id="searchField">
-            <form name="form1" method="post" action="">
-            <label>
-                <input type="text" name="field" id="searchField">
-            </label>
-            </form>
-        </div>
-        <p>
-            <a href="#">Расширенный поиск</a>
-        </p>
-        <h2>СКИДКА ДНЯ</h2>
-    </div>
-    <div id="skidki">
-        <div id="skidkiBox">
-            <div id="imgBox">
-                <img src="/Content/img/cheshki.jpg" alt="cheshki">
+<asp:Content ID="Content3" runat="server" ContentPlaceHolderID="MainContent">
+    <div id="content">
+        <div id="contentHeader">
+            <div id="contentHeaderBgLeft">
             </div>
-            <p>
-                <a href="#">Чешки “Ed Hardy”</a>
-            </p>
-            <p>
-                Размер: <strong>35</strong>
-            </p>
-            <p>
-                Цвет: <strong>Разноцветные</strong>
-            </p>
-            <h4>
-                1350 грн</h4>
-        </div>
-        <div id="skidkiBox">
-            <div id="imgBox">
-                <img src="/Content/img/kurtka.jpg" alt="kurtka"></div>
-            <p>
-                <a href="#">Куртка “Alchemist”</a>
-            </p>
-            <p>
-                Размер: <strong>L, S</strong>
-            </p>
-            <p>
-                Цвет: <strong>Черный, желтый</strong>
-            </p>
-            <h4>
-                1100 грн</h4>
-        </div>
-        <div id="skidkiBox">
-            <div id="imgBox">
-                <img src="/Content/img/jeans.jpg" alt="jeans"></div>
-            <p>
-                <a href="#">Джинсы “Verdi Nerdi”</a></p>
-            <p>
-                Размер: <strong>L</strong>
-            </p>
-            <p>
-                Цвет: <strong>Синий</strong>
-            </p>
-            <h4>
-                400 грн</h4>
-        </div>
-    </div>
-    <div id="contentBox">
-        <div id="string">
-            <% Html.RenderPartial("CurrencyConverter"); %>
-            <div id="blueText">
-                <p><asp:ContentPlaceHolder runat="server" ID="ContentTitle"></asp:ContentPlaceHolder></p>
-            </div>
-            <div id="basket">
-                <p>
-                    В <a href="#">корзинке</a> 3 товара на 2,300 грн.
-                </p>
+            <div id="contentHeaderBgRight">
             </div>
         </div>
-        <div id="leftSide">
-            <div id="leftSideLiBox">
-                <% Html.RenderAction("Categories", "Home", new { area = "" }); %>
+        <div class="contentWrapper">
+            <div id="footerDate">
+                <p><%= DateTime.Now.ToString("MMMM, dd") %></p>
             </div>
-            <% Html.RenderAction("News", "Widgets", new { area = "" }); %>
-            <div id="girl">
-                <img src="/Content/img/girl.jpg" alt="jeans">
-            </div>
-        </div>
-        <div id="rightSide">
-            <div id="content">
-                    <div id="contentHeader">
-                        <div id="contentHeaderBgLeft">
-                        </div>
-                        <div id="contentHeaderBgRight">
-                        </div>
-                    </div>
-                <div class="contentWrapper">
-                    <div id="footerDate">
-                        <p><%= DateTime.Now.ToString("MMMM, dd") %></p>
-                    </div>
-                    <asp:ContentPlaceHolder runat="server" ID="MainContent"></asp:ContentPlaceHolder>
-                    <div id="contentAfterItems">
-                        <div id="contentAfterItemsFoto">
-                        </div>
-                    </div>
+            <asp:ContentPlaceHolder runat="server" ID="MainContent">
+            </asp:ContentPlaceHolder>
+            <div id="contentAfterItems">
+                <div id="contentAfterItemsFoto">
                 </div>
             </div>
-            <div id="contentFooterBg">
-                <div class="left"></div>
-                <div class="right"></div>
-            </div>
         </div>
     </div>
-            <div id="footer">
-            <div id="footerCopy">
-                <p>
-                    © 2010 Студия стиля Людмилы Захаренко «Модная Леди»</p>
-            </div>
-            <div id="footerRightBox">
-                <p>
-                    М.бренд | <span class="colortext">дизайн</span></p>
-            </div>
+    <div id="contentFooterBg">
+        <div class="left">
         </div>
-
-</body>
-</html>
+        <div class="right">
+        </div>
+    </div>
+</asp:Content>

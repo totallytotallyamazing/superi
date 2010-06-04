@@ -18,11 +18,12 @@ namespace Lady.Controllers
                 List<Product> products = context.Products
                     .Include("Brand")
                     .Include("ProductAttributeValues")
+                    .Include("ProductImages")
                     .Where(p => p.Category.Id == id).ToList();
 
                 products.ForEach(p => p.ProductAttributeValues.ToList()
                     .ForEach(pav => pav.ProductAttributeReference.Load()));
-                return View();
+                return View(products);
             }
         }
     }

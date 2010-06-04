@@ -5,7 +5,7 @@
     string productClickLink = Html.ActionLink("[IMAGE]", "Show", new { id=Model.Id }).ToString();
     if (Roles.IsUserInRole("Administrators"))
     {
-        productClickLink = Html.ActionLink("[IMAGE]", "AddEdit", "Products", new { area = "Admin", id = Model.Id, cId = ViewData["categoryId"], bId = ViewData["brandId"] }).ToString();
+        productClickLink = Html.ActionLink("[IMAGE]", "AddEdit", "Products", new { area = "Admin", id = Model.Id, cId = ViewData["categoryId"], bId = ViewData["brandId"] }, null).ToString();
     }
 %>
 
@@ -14,12 +14,20 @@
         <p><a href="#">&trade; <%= Model.Brand.Name %></a></p>
     </div>
     <div id="contentItemBoxBg">
-        <div id="contentItemFoto1">
+        <div class="contentItemPhoto">
+            <% if (Model.ProductImages.Count > 0)
+               { %>
             <%= productClickLink
-                .Replace("[IMAGE]", 
+                .Replace("[IMAGE]",
                 Html.CachedImage("~/Content/ProductImages", Model.ProductImages.Where(pi => pi.Default).First().ImageSource, "thumbnail2", Model.Name))%>
+            <%}
+               else {
+                   Response.Write(productClickLink.Replace("[IMAGE]", "редактировать"));
+               }
+                %>
+                
         </div>
-        <div id="contentItemText1">
+        <div class="contentItemText">
             <p><%= Model.Name %></p>
             <h2>Цвет: <strong>Синий</strong></h2>
             <% Html.RenderPartial("ProductAttributes", Model.ProductAttributeValues); %>

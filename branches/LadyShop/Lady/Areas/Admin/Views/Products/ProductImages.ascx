@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<Dictionary<long, IEnumerable<Trips.Mvc.Models.CarAdImage>>>" %>
+﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<Dictionary<long, IEnumerable<Lady.Models.ProductImage>>>" %>
 <%@ Import Namespace="Lady.Models" %>
 <%@ Import Namespace="Dev.Mvc.Helpers" %>
 <fieldset id="images">
@@ -17,7 +17,7 @@
         <% foreach (var item in images.Value)
            { %>
             <div class="carAddAdminImage">
-                <%= Html.Image(GraphicsHelper.GetCachedImage("~/Content/AdImages", item.ImageSource, "thumbnail1"), "")%>
+                <%= Html.Image(GraphicsHelper.GetCachedImage("~/Content/ProductImages", item.ImageSource, "thumbnail1"), "")%>
                 <%= Html.ActionLink("[IMAGE]", "DeleteImage", new { productId = images.Key, imageId = item.Id }, new { @class = "deleteLink", onclick = "return confirm('Вы уверены?')" })
                     .ToHtmlString()
                     .Replace("[IMAGE]", "") %>
@@ -28,10 +28,11 @@
             <input type="submit" value="Установить фото по-умолчанию" />
         </div>
     <%} %>
-<% using (Html.BeginForm("AddProductImage", "Product", new { id = images.Key }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+<% using (Html.BeginForm("AddProductImage", "Products", new { id = images.Key }, FormMethod.Post, new { enctype = "multipart/form-data" }))
    { %>
     <%= Html.Hidden("productId", images.Key)%>
     <%= Html.Hidden("isDefault", isDefault)%>
+    <%= Html.Hidden("categoryId", ViewData["cId"])%>
     <div id="addMore">
         <p>Доббавить еще:</p>
         <input type="file" name="image" />

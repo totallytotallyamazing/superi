@@ -1,0 +1,5 @@
+﻿#login p{padding-bottom:20px;}
+#login{padding-top:20px;}
+.watermark{color:Gray;}
+
+div#login input[type='text'], div#login input[type='password']{width:150px;}

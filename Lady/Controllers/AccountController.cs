@@ -55,7 +55,7 @@ namespace Lady.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("", "The user name or password provided is incorrect.");
+                    ModelState.AddModelError("", "Имя пользователя и/или пароль введены неправильно.");
                 }
             }
 

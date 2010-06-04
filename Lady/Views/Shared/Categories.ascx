@@ -9,7 +9,7 @@
     </ul>
     
     <% if(Roles.IsUserInRole("Administrators")){ %>    
-        <p>
+        <p class="adminLink categoriesAdmin">
             <a href="/Admin/Categories/AddEdit">Добавить категорию</a>
         </p>
     <%} %>

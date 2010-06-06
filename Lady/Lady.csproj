@@ -282,8 +282,10 @@
     <Content Include="Views\Shared\Base.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="SetCookie.aspx" />
     <Content Include="Views\Products\Products.Master" />
     <Content Include="Content\contact.css" />
+    <Content Include="Views\Shared\FooterDate.ascx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

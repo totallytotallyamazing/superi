@@ -21,9 +21,7 @@
             </div>
         </div>
         <div class="contentWrapper">
-            <div id="footerDate">
-                <p><%= DateTime.Now.ToString("MMMM, dd") %></p>
-            </div>
+            <% Html.RenderPartial("FooterDate"); %>
             <asp:ContentPlaceHolder runat="server" ID="MainContent">
             </asp:ContentPlaceHolder>
             <div id="contentAfterItems">

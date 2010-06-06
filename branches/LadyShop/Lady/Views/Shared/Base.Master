@@ -1,5 +1,9 @@
 ﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
 
+<% 
+    if (Request.Cookies["lady"] == null)
+        Response.Redirect("~/index.html");%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
 <head>
@@ -35,20 +39,22 @@
         </div>
     </div>
     <div id="underHeader">
-        <div id="wellcome">
-            <p>
-                Добро пожаловать, <a href="#">Виктория Тряпичная!</a></p>
+        <div style="">
+            <div id="wellcome">
+                <p>
+                    Добро пожаловать, <a href="#">Виктория Тряпичная!</a></p>
+            </div>
+            <div id="write">
+                <p>
+                    <a href="#">Напишите нам</a>
+                </p>
+            </div>
         </div>
-        <div id="write">
-            <p>
-                <a href="#">Напишите нам</a>
-            </p>
-        </div>
-
-        <div id="searchText">
-            <p>
-                ПОИСК ПО КАТАЛОГУ</p>
-        </div>
+    </div>
+    <div id="searchText">
+        <p>
+            ПОИСК ПО КАТАЛОГУ
+        </p>
     </div>
     <div id="search">
         <div id="searchField">
@@ -127,22 +133,22 @@
                 <% Html.RenderAction("Categories", "Home", new { area = "" }); %>
             </div>
             <% Html.RenderAction("News", "Widgets", new { area = "" }); %>
-            <div id="girl">
-                <img src="/Content/img/girl.jpg" alt="jeans">
-            </div>
         </div>
         <div id="rightSide">
             <asp:ContentPlaceHolder runat="server" ID="MainContent"></asp:ContentPlaceHolder>
         </div>
     </div>
             <div id="footer">
+            <div id="girl">
+                <img src="/Content/img/girl.jpg" alt="jeans">
+            </div>
             <div id="footerCopy">
                 <p>
                     © 2010 Студия стиля Людмилы Захаренко «Модная Леди»</p>
             </div>
             <div id="footerRightBox">
                 <p>
-                    М.бренд | <span class="colortext">дизайн</span></p>
+                    Дизвйн сайта - <span class="colortext">Евгений Миллер</span></p>
             </div>
         </div>
 

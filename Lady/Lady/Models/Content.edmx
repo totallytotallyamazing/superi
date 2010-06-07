@@ -43,10 +43,10 @@
       <Schema Namespace="gbua_mladyModel1" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
         <EntityContainer Name="ContentStorage">
           <EntitySet Name="Articles" EntityType="gbua_mladyModel1.Article" />
-          <EntitySet Name="Content" EntityType="gbua_mladyModel1.Content" />
+          <EntitySet Name="Contents" EntityType="gbua_mladyModel1.Content" />
           <AssociationSet Name="ContentContent" Association="gbua_mladyModel1.ContentContent">
-            <End Role="Content" EntitySet="Content" />
-            <End Role="Content1" EntitySet="Content" /></AssociationSet></EntityContainer>
+            <End Role="Content" EntitySet="Contents" />
+            <End Role="Content1" EntitySet="Contents" /></AssociationSet></EntityContainer>
         <EntityType Name="Article">
           <Key>
             <PropertyRef Name="Id" />
@@ -97,7 +97,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Content">
+          <EntitySetMapping Name="Contents">
             <EntityTypeMapping TypeName="IsTypeOf(gbua_mladyModel1.Content)">
               <MappingFragment StoreEntitySet="Content">
                 <ScalarProperty Name="Description" ColumnName="Description" />

@@ -24,7 +24,7 @@ namespace Helpers
         public static string Transliterate(string source)
         {
             string[] russian = "aбвгдеёжзийклмнопрстуфхцчшщъыьэюя"
-                .ToCharArray().Cast<string>().ToArray();
+                .ToCharArray().Select(c => new String(c, 1)).ToArray();
             string[] english = "a/b/v/g/d/e/e/zh/z/i/y/k/l/m/n/o/p/r/s/t/u/f/h/ts/ch/sh/shch//y/'/e/iu/ia"
                 .Split('/');
             string result = source;

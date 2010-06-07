@@ -98,3 +98,8 @@ img{border:0;}
 
 #clipThumbnails .thumbnail p{font-size:10px;}
 #clipThumbnails .thumbnail p.title{font-size:14px;}
+
+a.bottomLogo{height:37px; float:left; display:block;}
+.bottomLogo.youtubeLogo{width:86px; background:black url(img/youtubeLogo.jpg) no-repeat 0 -37px;}
+.bottomLogo.vkLogo{width:100px; background:black url(img/vkLogo.jpg) no-repeat 0 -37px;}
+a.bottomLogo:hover{background-position:0 0;}

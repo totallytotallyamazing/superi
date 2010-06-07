@@ -120,13 +120,11 @@
         </div>  
         <div id="footer2">
             <div>
-                <a href="http://www.youtube.com/oksicomua" target="_blank">
-                    <img src="/Content/img/youtubeLogo.jpg" alt="Канал на YouTube" />
+                <a href="http://www.youtube.com/oksicomua" title="Канал на YouTube" class="bottomLogo youtubeLogo" target="_blank">
                 </a>
             </div>
             <div>
-                <a href="http://vkontakte.ru/club12925979" target="_blank">
-                    <img src="/Content/img/vkLogo.jpg" alt="ВКонтакте" />
+                <a href="http://vkontakte.ru/club12925979" title="ВКонтакте" target="_blank" class="bottomLogo vkLogo">
                 </a>
             </div>
         </div>

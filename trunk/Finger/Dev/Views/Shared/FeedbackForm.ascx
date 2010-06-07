@@ -69,7 +69,7 @@
 <% using (Ajax.BeginForm("SendMail", "Tools", null, new AjaxOptions { HttpMethod = "POST", OnSuccess = "messageSent", OnBegin="ajaxValidate" }, new { id = "feedback" }))
    { %>
 <div id="feedbackForm">
-<table>
+<table style="float:left;">
     <tr>
         <td class="label">
             <%= Html.ResourceString("YourName")%>:

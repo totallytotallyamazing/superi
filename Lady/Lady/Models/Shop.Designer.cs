@@ -13,13 +13,14 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("gbua_mladyModel", "ProductProduct", "Product", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Lady.Models.Product), "Product1", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Lady.Models.Product))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("gbua_mladyModel", "ProductAttributeProductAttributeValue", "ProductAttribute", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Lady.Models.ProductAttribute), "ProductAttributeValue", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Lady.Models.ProductAttributeValue))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("gbua_mladyModel", "ProductProductImage", "Product", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Lady.Models.Product), "ProductImage", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Lady.Models.ProductImage))]
-[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("gbua_mladyModel", "CategoryCategory", "Category", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Lady.Models.Category), "Category1", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Lady.Models.Category))]
+[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("gbua_mladyModel", "CategoryCategory", "Category", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Lady.Models.Category), "Category1", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Lady.Models.Category))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("gbua_mladyModel", "BrandProduct", "Brand", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Lady.Models.Brand), "Product", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Lady.Models.Product))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("gbua_mladyModel", "CategoryProductAttribute", "Category", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Lady.Models.Category), "ProductAttribute", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Lady.Models.ProductAttribute))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("gbua_mladyModel", "ProductDiscount", "Product", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Lady.Models.Product), "Discount", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Lady.Models.Discount))]
+[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("gbua_mladyModel", "ProductProductAttributeValue", "Product", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Lady.Models.Product), "ProductAttributeValue", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Lady.Models.ProductAttributeValue))]
 
 // Original file name:
-// Generation date: 27.05.2010 13:47:30
+// Generation date: 03.06.2010 15:50:02
 namespace Lady.Models
 {
     
@@ -224,11 +225,13 @@ namespace Lady.Models
         /// </summary>
         /// <param name="id">Initial value of Id.</param>
         /// <param name="name">Initial value of Name.</param>
-        public static Category CreateCategory(int id, string name)
+        /// <param name="sortOrder">Initial value of SortOrder.</param>
+        public static Category CreateCategory(int id, string name, int sortOrder)
         {
             Category category = new Category();
             category.Id = id;
             category.Name = name;
+            category.SortOrder = sortOrder;
             return category;
         }
         /// <summary>
@@ -323,6 +326,29 @@ namespace Lady.Models
         private string _SeoKeywords;
         partial void OnSeoKeywordsChanging(string value);
         partial void OnSeoKeywordsChanged();
+        /// <summary>
+        /// There are no comments for Property SortOrder in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public int SortOrder
+        {
+            get
+            {
+                return this._SortOrder;
+            }
+            set
+            {
+                this.OnSortOrderChanging(value);
+                this.ReportPropertyChanging("SortOrder");
+                this._SortOrder = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("SortOrder");
+                this.OnSortOrderChanged();
+            }
+        }
+        private int _SortOrder;
+        partial void OnSortOrderChanging(int value);
+        partial void OnSortOrderChanged();
         /// <summary>
         /// There are no comments for Products in the schema.
         /// </summary>
@@ -839,6 +865,27 @@ namespace Lady.Models
                 }
             }
         }
+        /// <summary>
+        /// There are no comments for ProductAttributeValues in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("gbua_mladyModel", "ProductProductAttributeValue", "ProductAttributeValue")]
+        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
+        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Data.Objects.DataClasses.EntityCollection<ProductAttributeValue> ProductAttributeValues
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<ProductAttributeValue>("gbua_mladyModel.ProductProductAttributeValue", "ProductAttributeValue");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<ProductAttributeValue>("gbua_mladyModel.ProductProductAttributeValue", "ProductAttributeValue", value);
+                }
+            }
+        }
     }
     /// <summary>
     /// There are no comments for gbua_mladyModel.ProductAttribute in the schema.
@@ -993,11 +1040,13 @@ namespace Lady.Models
         /// </summary>
         /// <param name="id">Initial value of Id.</param>
         /// <param name="value">Initial value of Value.</param>
-        public static ProductAttributeValue CreateProductAttributeValue(int id, string value)
+        /// <param name="sortOrder">Initial value of SortOrder.</param>
+        public static ProductAttributeValue CreateProductAttributeValue(int id, string value, int sortOrder)
         {
             ProductAttributeValue productAttributeValue = new ProductAttributeValue();
             productAttributeValue.Id = id;
             productAttributeValue.Value = value;
+            productAttributeValue.SortOrder = sortOrder;
             return productAttributeValue;
         }
         /// <summary>
@@ -1047,6 +1096,29 @@ namespace Lady.Models
         partial void OnValueChanging(string value);
         partial void OnValueChanged();
         /// <summary>
+        /// There are no comments for Property SortOrder in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public int SortOrder
+        {
+            get
+            {
+                return this._SortOrder;
+            }
+            set
+            {
+                this.OnSortOrderChanging(value);
+                this.ReportPropertyChanging("SortOrder");
+                this._SortOrder = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("SortOrder");
+                this.OnSortOrderChanged();
+            }
+        }
+        private int _SortOrder;
+        partial void OnSortOrderChanging(int value);
+        partial void OnSortOrderChanged();
+        /// <summary>
         /// There are no comments for ProductAttribute in the schema.
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("gbua_mladyModel", "ProductAttributeProductAttributeValue", "ProductAttribute")]
@@ -1080,6 +1152,27 @@ namespace Lady.Models
                 if ((value != null))
                 {
                     ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<ProductAttribute>("gbua_mladyModel.ProductAttributeProductAttributeValue", "ProductAttribute", value);
+                }
+            }
+        }
+        /// <summary>
+        /// There are no comments for Products in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("gbua_mladyModel", "ProductProductAttributeValue", "Product")]
+        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
+        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Data.Objects.DataClasses.EntityCollection<Product> Products
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<Product>("gbua_mladyModel.ProductProductAttributeValue", "Product");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<Product>("gbua_mladyModel.ProductProductAttributeValue", "Product", value);
                 }
             }
         }

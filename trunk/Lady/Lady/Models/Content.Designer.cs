@@ -12,7 +12,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("gbua_mladyModel1", "ContentContent", "Content", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Lady.Models.Content), "Content1", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Lady.Models.Content))]
 
 // Original file name:
-// Generation date: 27.05.2010 12:07:28
+// Generation date: 07.06.2010 16:02:08
 namespace Lady.Models
 {
     
@@ -62,20 +62,20 @@ namespace Lady.Models
         }
         private global::System.Data.Objects.ObjectQuery<Article> _Articles;
         /// <summary>
-        /// There are no comments for Content in the schema.
+        /// There are no comments for Contents in the schema.
         /// </summary>
-        public global::System.Data.Objects.ObjectQuery<Content> Content
+        public global::System.Data.Objects.ObjectQuery<Content> Contents
         {
             get
             {
-                if ((this._Content == null))
+                if ((this._Contents == null))
                 {
-                    this._Content = base.CreateQuery<Content>("[Content]");
+                    this._Contents = base.CreateQuery<Content>("[Contents]");
                 }
-                return this._Content;
+                return this._Contents;
             }
         }
-        private global::System.Data.Objects.ObjectQuery<Content> _Content;
+        private global::System.Data.Objects.ObjectQuery<Content> _Contents;
         /// <summary>
         /// There are no comments for Articles in the schema.
         /// </summary>
@@ -84,11 +84,11 @@ namespace Lady.Models
             base.AddObject("Articles", article);
         }
         /// <summary>
-        /// There are no comments for Content in the schema.
+        /// There are no comments for Contents in the schema.
         /// </summary>
-        public void AddToContent(Content content)
+        public void AddToContents(Content content)
         {
-            base.AddObject("Content", content);
+            base.AddObject("Contents", content);
         }
     }
     /// <summary>

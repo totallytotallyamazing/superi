@@ -12,7 +12,7 @@
             <%= item.Title %> / <span class="newsDate"><%= item.Date.ToString("dd.MM.yyyy") %></span>
         </div>
         <div class="newsContent">
-            <%= Html.Image("~/Content/Articles/News/" + ((string.IsNullOrEmpty(item.Image) != null) ? item.Image : "oksiSiteDefaultArticleImage.jpg"))%>
+            <%= Html.Image("~/Content/Articles/News/" + ((!string.IsNullOrEmpty(item.Image)) ? item.Image : "oksiSiteDefaultArticleImage.jpg"))%>
             <%= item.Text.Replace("\r", "<br />") %>
         </div>
         <div style="clear:both;"></div>

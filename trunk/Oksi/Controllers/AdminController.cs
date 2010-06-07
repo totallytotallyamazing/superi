@@ -8,6 +8,7 @@ using Oksi.Models;
 using Oksi.Helpers;
 using Helpers;
 using System.IO;
+using System.Data;
 
 namespace Oksi.Controllers
 {
@@ -88,21 +89,14 @@ namespace Oksi.Controllers
         {
             using (DataStorage context = new DataStorage())
             {
-                if (article.Id > 0)
-                {
-                    context.Attach(article);
-                }
-                else
-                {
-                    context.AddToArticles(article);
-                }
+                article.Text = HttpUtility.HtmlDecode(article.Text);
                 if (Request.Files["picture"] != null &&
                     !string.IsNullOrEmpty(Request.Files["picture"].FileName))
                 {
                     string folder = (article.Type == 1) ? "News" : "Press";
                     string fileName = Request.Files["picture"].FileName;
-                    string filePath = "/Content/Articles/" + folder + "/";
-                    string newFilePath = Path.Combine(filePath, IOHelper.GetUniqueFileName(filePath, fileName));
+                    string filePath = "~/Content/Articles/" + folder + "/";
+                    string newFilePath = Path.Combine(Server.MapPath(filePath), IOHelper.GetUniqueFileName(filePath, fileName));
                     if (article.Id > 0)
                     {
                         IOHelper.DeleteFile(filePath, article.Image);
@@ -115,7 +109,19 @@ namespace Oksi.Controllers
                     //article.Image = "oksiSiteDefaultArticleImage.jpg";
                 }
                 article.Name = TextHelper.Transliterate(article.Title);
-                context.AcceptAllChanges();
+                if (article.Id > 0)
+                {
+                    object objectValue = null;
+                    EntityKey key = new EntityKey("DataStorage.Articles", "Id", article.Id);
+                    if (context.TryGetObjectByKey(key, out objectValue))
+                    {
+                        context.ApplyPropertyChanges("Articles", article);
+                    }
+                }
+                else
+                {
+                    context.AddToArticles(article);
+                }
                 context.SaveChanges();
             }
             return RedirectToAction("Articles", new { id = article.Type });

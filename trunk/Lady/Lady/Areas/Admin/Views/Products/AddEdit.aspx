@@ -16,25 +16,24 @@
             $("#Description, #ShortDescription").fck({ toolbar: "Basic", height: 200 });
         });
     </script>
-
 </asp:Content>
-
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <%
-    Dictionary<long, IEnumerable<ProductImage>> item = new Dictionary<long, IEnumerable<ProductImage>>();
-    item.Add(Model.Id, Model.ProductImages);
-    %>
     <%if (ViewData["id"] != null)
      {
-         Html.RenderPartial("CarAdImages", item);
+         Dictionary<long, IEnumerable<ProductImage>> item = new Dictionary<long, IEnumerable<ProductImage>>();
+         item.Add(Model.Id, Model.ProductImages);
+         Html.RenderPartial("ProductImages", item);
      }%>
      <br />
 
     <% Html.EnableClientValidation(); %>
 
     <% using (Html.BeginForm("AddEdit", "Products", FormMethod.Post, new { enctype = "multipart/form-data" })){%>
+        <%= Html.Hidden("cId") %>
+        <%= Html.Hidden("bId") %>
+        
         <%= Html.ValidationSummary(true) %>
 
         <fieldset>
@@ -55,6 +54,13 @@
             </div>
             <div class="editor-field">
                 <%= Html.TextBoxFor(model => model.PartNumber) %>
+                <%= Html.ValidationMessageFor(model => model.PartNumber) %>
+            </div>
+            <div class="editor-label">
+                Бренд
+            </div>
+            <div class="editor-field">
+                <%= Html.DropDownList("brandId", new SelectList((IEnumerable)ViewData["Brands"], "Id", "Name")) %>
                 <%= Html.ValidationMessageFor(model => model.PartNumber) %>
             </div>
             <div class="editor-label">

@@ -13,7 +13,6 @@
         <%= Html.ValidationSummary(true)%>
 
         <fieldset>
-            
              <%= Html.HiddenFor(model => model.Id)%>
             <div>
                 <div style="float:left; width:100px;">
@@ -76,7 +75,6 @@
     <script type="text/javascript" src="/Scripts/jquery.FCKEditor.js"></script>
     <script type="text/javascript" src="/Scripts/MicrosoftAjax.js"></script>
     <script type="text/javascript" src="/Scripts/MicrosoftMvcValidation.js"></script>
-
     <script type="text/javascript">
         $(function() {
             $.fck.config = { path: '<%= VirtualPathUtility.ToAbsolute("~/Controls/fckeditor/") %>', config: { SkinPath: "skins/office2003/", DefaultLanguage: "ru", AutoDetectLanguage: false, EnterMode: "br", ShiftEnterMode: "p", HtmlEncodeOutput: true} };

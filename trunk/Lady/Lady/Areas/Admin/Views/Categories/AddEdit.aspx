@@ -13,15 +13,8 @@
 
         <fieldset>
             <%= Html.Hidden("parentId") %>
+            <%= Html.HiddenFor(model=>model.Id) %>
         
-            <div class="editor-label">
-                <%= Html.LabelFor(model => model.Id) %>
-            </div>
-            <div class="editor-field">
-                <%= Html.TextBoxFor(model => model.Id) %>
-                <%= Html.ValidationMessageFor(model => model.Id) %>
-            </div>
-            
             <div class="editor-label">
                 <%= Html.LabelFor(model => model.Name) %>
             </div>
@@ -49,11 +42,6 @@
         </fieldset>
 
     <% } %>
-
-<%--    <div>
-        <%= Html.ActionLink("Назад", "Index") %>
-    </div>--%>
-
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="includes" runat="server">

@@ -10,12 +10,9 @@ using System.IO;
 
 namespace Lady.Areas.Admin.Controllers
 {
-    [Authorize(Roles="Administrators")]
+    [Authorize(Roles = "Administrators")]
     public class ProductsController : Controller
     {
-        //
-        // GET: /Admin/Products/
-
         public ActionResult Index(int categoryId, int? brandId)
         {
             ViewData["cId"] = categoryId;
@@ -24,7 +21,7 @@ namespace Lady.Areas.Admin.Controllers
             {
                 List<Product> products = context.Products.Where(p => p.Category.Id == categoryId)
                     .Where(p => (!brandId.HasValue || p.Brand.Id == brandId.Value)).ToList();
-                return View(products); 
+                return View(products);
             }
         }
 
@@ -32,44 +29,68 @@ namespace Lady.Areas.Admin.Controllers
         {
             ViewData["cId"] = cId;
             ViewData["bId"] = bId;
+            ViewData["id"] = id;
 
             Product product = null;
-            if (id.HasValue)
+            using (ShopStorage context = new ShopStorage())
             {
-                using (ShopStorage context = new ShopStorage())
+                var br = context.Brands.ToList();
+
+                List<SelectListItem> brands = br
+                    .Select(b => new SelectListItem { Text = b.Name, Value = b.Id.ToString() })
+                    .ToList();
+
+                ViewData["Brands"] = br;
+
+                if (id.HasValue)
                 {
-                    product = context.Products.Where(p => p.Id == id.Value).First();
+                    product = context.Products.Include("ProductImages").Include("Brand").Where(p => p.Id == id.Value).First();
                 }
             }
             return View(product);
         }
 
         [HttpPost]
-        public ActionResult AddEdit(Product product, int cId, int? bId)
+        public ActionResult AddEdit(Product product, int? Id, int cId, int? bId, int brandId)
         {
-
             using (ShopStorage context = new ShopStorage())
             {
-                if (product.Id > 0)
+                if (Id.HasValue && Id > 0)
                 {
-                    object originalItem;
-                    EntityKey entityKey = context.CreateEntityKey("Products", product.Id);
-                    if (context.TryGetObjectByKey(entityKey, out originalItem))
+                    product.Id = Id.Value;
+                    Product prod = context.Products.Include("Brand").Where(p => p.Id == Id.Value).First();
+                    prod.Name = product.Name;
+                    prod.OldPrice = product.OldPrice;
+                    prod.PartNumber = product.PartNumber;
+                    prod.SeoDescription = product.SeoDescription;
+                    prod.SeoKeywords = product.SeoKeywords;
+                    prod.ShortDescription = HttpUtility.HtmlDecode(product.ShortDescription);
+                    prod.Description = HttpUtility.HtmlDecode(product.Description);
+                    prod.Price = product.Price;
+
+                    if (prod.Brand.Id != brandId)
                     {
-                        context.ApplyPropertyChanges(entityKey.EntitySetName, product);
+                        EntityKey brand = new EntityKey("ShopStorage.Brands", "Id", brandId);
+                        prod.Brand = null;
+                        prod.BrandReference.EntityKey = brand;
                     }
                 }
                 else
                 {
+                    EntityKey category = new EntityKey("ShopStorage.Categories", "Id", cId);
+                    EntityKey brand = new EntityKey("ShopStorage.Brands", "Id", brandId);
+                    product.CategoryReference.EntityKey = category;
+                    product.Brand = null;
+                    product.BrandReference.EntityKey = brand;
                     context.AddToProducts(product);
                 }
                 context.SaveChanges();
-            } 
+            }
 
-            return RedirectToAction("Index", new { categoryId = cId, brandId = bId });
+            return View("Index", new { categoryId = cId, brandId = bId });
         }
 
-        public ActionResult AddProductImage(long productId, bool isDefault)
+        public ActionResult AddProductImage(int productId, bool isDefault, int categoryId)
         {
             string file = Request.Files["image"].FileName;
             if (!string.IsNullOrEmpty(file))
@@ -88,7 +109,7 @@ namespace Lady.Areas.Admin.Controllers
                     context.SaveChanges();
                 }
             }
-            return RedirectToAction("AddEdit", new { id = productId });
+            return RedirectToAction("AddEdit", new { id = productId, cId = categoryId });
         }
 
         public ActionResult DeleteImage(long productId, long imageId)

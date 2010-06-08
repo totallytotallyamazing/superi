@@ -12,7 +12,7 @@ namespace Lady.Controllers
     {
         public ActionResult Index()
         {
-            return RedirectToAction("Go", new { id = "home" });
+            return View();
         }
 
         [Content]

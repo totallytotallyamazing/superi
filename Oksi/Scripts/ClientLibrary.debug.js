@@ -1157,7 +1157,6 @@ ClientLibrary.VideoExtender.prototype = {
         /// <param name="ui" type="Object">
         /// </param>
         /// <returns type="Object"></returns>
-        debugger;
         var target = rawEvent.target;
         if (target.tagName !== 'DIV') {
             target = target.parentNode;

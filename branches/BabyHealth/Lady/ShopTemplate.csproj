@@ -58,9 +58,14 @@
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Security" />
-    <Reference Include="System.Web.Mvc, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+    <Reference Include="System.Web.Abstractions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\..\Program Files\Microsoft ASP.NET\ASP.NET MVC 2\\Assemblies\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Routing, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -68,8 +73,6 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="System.Web.Abstractions" />
-    <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
@@ -138,12 +141,10 @@
     <Content Include="Scripts\MicrosoftMvcAjax.js" />
     <Content Include="Scripts\MicrosoftMvcValidation.js" />
     <Content Include="Web.config" />
-    <Content Include="Content\Site.css" />
     <Content Include="Views\Account\ChangePassword.aspx" />
     <Content Include="Views\Account\ChangePasswordSuccess.aspx" />
     <Content Include="Views\Account\LogOn.aspx" />
     <Content Include="Views\Account\Register.aspx" />
-    <Content Include="Views\Home\About.aspx" />
     <Content Include="Views\Home\Index.aspx" />
     <Content Include="Views\Shared\Error.aspx" />
     <Content Include="Views\Shared\LogOnUserControl.ascx" />
@@ -169,7 +170,6 @@
     <Content Include="Areas\Admin\Views\Web.config" />
     <Content Include="Content\Admin.css" />
     <Content Include="Content\LogOn.css" />
-    <Content Include="Content\products.css" />
     <Content Include="Content\fancybox\blank.gif" />
     <Content Include="Content\fancybox\fancybox-x.png" />
     <Content Include="Content\fancybox\fancybox-y.png" />
@@ -191,51 +191,6 @@
     <Content Include="Content\fancybox\fancy_title_over.png" />
     <Content Include="Content\fancybox\fancy_title_right.png" />
     <Content Include="Content\fancybox\jquery.fancybox.css" />
-    <Content Include="Content\img\addToBasket.jpg" />
-    <Content Include="Content\img\allright.jpg" />
-    <Content Include="Content\img\back.jpg" />
-    <Content Include="Content\img\bg.jpg" />
-    <Content Include="Content\img\bigFoto.jpg" />
-    <Content Include="Content\img\cheshki.jpg" />
-    <Content Include="Content\img\closeButton.jpg" />
-    <Content Include="Content\img\contentBg.jpg" />
-    <Content Include="Content\img\contentFooterBg.jpg" />
-    <Content Include="Content\img\contentFooterBgLeft.jpg" />
-    <Content Include="Content\img\contentFooterBgRight.jpg" />
-    <Content Include="Content\img\contentHeaderBg.jpg" />
-    <Content Include="Content\img\contentHeaderBgLeft.jpg" />
-    <Content Include="Content\img\contentHeaderBgRight.jpg" />
-    <Content Include="Content\img\contentItemBg.jpg" />
-    <Content Include="Content\img\contentItemFooterBg.jpg" />
-    <Content Include="Content\img\contentItemHeaderBg.jpg" />
-    <Content Include="Content\img\contentSlotBg.jpg" />
-    <Content Include="Content\img\contentSlotFooterBg.jpg" />
-    <Content Include="Content\img\foto1.jpg" />
-    <Content Include="Content\img\foto2.jpg" />
-    <Content Include="Content\img\foto3.jpg" />
-    <Content Include="Content\img\fotoContact1.jpg" />
-    <Content Include="Content\img\fotoContact2.jpg" />
-    <Content Include="Content\img\fotoContact3.jpg" />
-    <Content Include="Content\img\fotoContact4.jpg" />
-    <Content Include="Content\img\fotoContact5.jpg" />
-    <Content Include="Content\img\fotoContact6.jpg" />
-    <Content Include="Content\img\fotoText.jpg" />
-    <Content Include="Content\img\girl.jpg" />
-    <Content Include="Content\img\girl2.jpg" />
-    <Content Include="Content\img\heart.jpg" />
-    <Content Include="Content\img\jeans.jpg" />
-    <Content Include="Content\img\kurtka.jpg" />
-    <Content Include="Content\img\leftContentBg.jpg" />
-    <Content Include="Content\img\logo.jpg" />
-    <Content Include="Content\img\newsBg.jpg" />
-    <Content Include="Content\img\newsFooterBg.jpg" />
-    <Content Include="Content\img\previewsFoto1.jpg" />
-    <Content Include="Content\img\previewsFoto2.jpg" />
-    <Content Include="Content\img\rigthGridBg.jpg" />
-    <Content Include="Content\img\searchBg.jpg" />
-    <Content Include="Content\img\skidkiBg.jpg" />
-    <Content Include="Content\img\skidkiBgSlot.jpg" />
-    <Content Include="Content\img\stub.jpg" />
     <Content Include="index.html" />
     <Content Include="Scripts\Date.HijriCalendar.js" />
     <Content Include="Scripts\Date.UmAlQuraCalendar.js" />
@@ -282,10 +237,41 @@
     <Content Include="Views\Shared\Base.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\img\01-o-magazine.png" />
+    <Content Include="Content\img\02-o-razmere.png" />
+    <Content Include="Content\img\03-pay-deliver.png" />
+    <Content Include="Content\img\04-o-brendax.png" />
+    <Content Include="Content\img\05-partners.png" />
+    <Content Include="Content\img\blue.jpg" />
+    <Content Include="Content\img\book.jpg" />
+    <Content Include="Content\img\currency.jpg" />
+    <Content Include="Content\img\footerBg.jpg" />
+    <Content Include="Content\img\guest.jpg" />
+    <Content Include="Content\img\hand.jpg" />
+    <Content Include="Content\img\handLeft.jpg" />
+    <Content Include="Content\img\headerBg.jpg" />
+    <Content Include="Content\img\Inna.jpg" />
+    <Content Include="Content\img\jaket.jpg" />
+    <Content Include="Content\img\liBg.jpg" />
+    <Content Include="Content\img\liHeader.jpg" />
+    <Content Include="Content\img\logo.jpg" />
+    <Content Include="Content\img\logoBg.jpg" />
+    <Content Include="Content\img\mif.jpg" />
+    <Content Include="Content\img\new.jpg" />
+    <Content Include="Content\img\notes.jpg" />
+    <Content Include="Content\img\patefon.jpg" />
+    <Content Include="Content\img\pencil.jpg" />
+    <Content Include="Content\img\ramka.jpg" />
+    <Content Include="Content\img\rightSideFooterBg.jpg" />
+    <Content Include="Content\img\rightSideFooterBgL.jpg" />
+    <Content Include="Content\img\rightSideFooterBgR.jpg" />
+    <Content Include="Content\img\rightSideHeaderBg.jpg" />
+    <Content Include="Content\img\search.jpg" />
+    <Content Include="Content\img\tovar.jpg" />
+    <Content Include="Content\style.css" />
     <Content Include="SetCookie.aspx" />
     <Content Include="Views\Products\Products.Master" />
-    <Content Include="Content\contact.css" />
-    <Content Include="Views\Shared\FooterDate.ascx" />
+    <Content Include="Views\Widgets\Myths.ascx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

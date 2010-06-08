@@ -1,156 +1,138 @@
 ﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
 
 <% 
-    if (Request.Cookies["lady"] == null)
-        Response.Redirect("~/index.html");%>
-
+//    if (Request.Cookies["lady"] == null)
+  //      Response.Redirect("~/index.html");%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
 <head>
     <% Html.RenderPartial("MetaTags"); %>
-    <title><asp:ContentPlaceHolder runat="server" ID="TitleContent"></asp:ContentPlaceHolder></title>
-    <link href="/Content/style.css" rel="stylesheet" type="text/css">
-    <link href="/Content/fancybox/jquery.fancybox.css" rel="stylesheet" type="text/css">
-    
-    <% if(Roles.IsUserInRole("Administrators")){ %>
-        <link href="/Content/Admin.css" rel="stylesheet" type="text/css">    
+    <title>
+        <asp:ContentPlaceHolder runat="server" ID="TitleContent">
+        </asp:ContentPlaceHolder>
+    </title>
+    <link href="/Content/style.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/fancybox/jquery.fancybox.css" rel="stylesheet" type="text/css" />
+    <% if (Roles.IsUserInRole("Administrators"))
+       { %>
+    <link href="/Content/Admin.css" rel="stylesheet" type="text/css" />
     <%} %>
-    
     <script type="text/javascript" src="/Scripts/jquery.js"></script>
     <script type="text/javascript" src="/Scripts/start.js"></script>
     <script type="text/javascript" src="/Scripts/jquery.fancybox.js"></script>
-    <asp:ContentPlaceHolder runat="server" ID="includes"></asp:ContentPlaceHolder>
+    <asp:ContentPlaceHolder runat="server" ID="includes">
+    </asp:ContentPlaceHolder>
 </head>
 <body>
     <div id="header">
-        <div id="headerLinks">
-            <h2>УГОЛОК ПОКУПАТЕЛЯ</h2>
+        <div id="logoBox">
+            <% Html.RenderAction("News", "Widgets", new { area = "" }); %>
+            <a href="#">
+                <img src="/Content/img/logo.jpg" alt="babyHealth" />
+            </a>
+        </div>
+        <div id="headerItems">
+            <div id="headerContacts">
+                <div id="headerContactsItems">
+                    <p>Еще, у нас есть</p>
+                    <div id="blue">
+                        <p>
+                            <a href="#">Бэби-портал</a></p>
+                    </div>
+                    <h3>
+                        (067) 443-55-30</h3>
+                    <h5><a href="#">Форма обратной связи</a></h5>
+                </div>
+            </div>
+            <div id="search">
+                <form name="form1" method="post" action="">
+                <p>
+                    <input name="textfield" type="text" value="Слово + “Enter”" id="searchField"></p>
+                </form>
+            </div>
             <% Html.RenderPartial("MainMenu"); %>
-        </div>
-        <div id="headerContacts">
-            <h3>(097) 400-19-77</h3>
-            <h3>(044) 123-45-67</h3>
-        </div>
-
-        <div id="headerLogo">
-            <p>
-                <img src="/Content/img/logo.jpg" alt="Модная леди. Студия стиля Людмилы Захаренко">
-            </p>
-        </div>
-    </div>
-    <div id="underHeader">
-        <div style="">
-            <div id="wellcome">
-                <p>
-                    Добро пожаловать, <a href="#">Виктория Тряпичная!</a></p>
-            </div>
-            <div id="write">
-                <p>
-                    <a href="#">Напишите нам</a>
-                </p>
-            </div>
-        </div>
-    </div>
-    <div id="searchText">
-        <p>
-            ПОИСК ПО КАТАЛОГУ
-        </p>
-    </div>
-    <div id="search">
-        <div id="searchField">
-            <form name="form1" method="post" action="">
-            <label>
-                <input type="text" name="field" id="searchField">
-            </label>
-            </form>
-        </div>
-        <p>
-            <a href="#">Расширенный поиск</a>
-        </p>
-        <h2>СКИДКА ДНЯ</h2>
-    </div>
-    <div id="skidki">
-        <div id="skidkiBox">
-            <div id="imgBox">
-                <img src="/Content/img/cheshki.jpg" alt="cheshki">
-            </div>
-            <p>
-                <a href="#">Чешки “Ed Hardy”</a>
-            </p>
-            <p>
-                Размер: <strong>35</strong>
-            </p>
-            <p>
-                Цвет: <strong>Разноцветные</strong>
-            </p>
-            <h4>
-                1350 грн</h4>
-        </div>
-        <div id="skidkiBox">
-            <div id="imgBox">
-                <img src="/Content/img/kurtka.jpg" alt="kurtka"></div>
-            <p>
-                <a href="#">Куртка “Alchemist”</a>
-            </p>
-            <p>
-                Размер: <strong>L, S</strong>
-            </p>
-            <p>
-                Цвет: <strong>Черный, желтый</strong>
-            </p>
-            <h4>
-                1100 грн</h4>
-        </div>
-        <div id="skidkiBox">
-            <div id="imgBox">
-                <img src="/Content/img/jeans.jpg" alt="jeans"></div>
-            <p>
-                <a href="#">Джинсы “Verdi Nerdi”</a></p>
-            <p>
-                Размер: <strong>L</strong>
-            </p>
-            <p>
-                Цвет: <strong>Синий</strong>
-            </p>
-            <h4>
-                400 грн</h4>
         </div>
     </div>
     <div id="contentBox">
-        <div id="string">
-            <% Html.RenderPartial("CurrencyConverter"); %>
-            <div id="blueText">
-                <p><asp:ContentPlaceHolder runat="server" ID="ContentTitle"></asp:ContentPlaceHolder></p>
-            </div>
-            <div id="basket">
-                <p>
-                    В <a href="#">корзинке</a> 3 товара на 2,300 грн.
-                </p>
-            </div>
-        </div>
         <div id="leftSide">
-            <div id="leftSideLiBox">
-                <% Html.RenderAction("Categories", "Home", new { area = "" }); %>
+            <% Html.RenderPartial("CurrencyConverter"); %>
+            <% Html.RenderPartial("LogOnUserControl"); %>
+            <% Html.RenderAction("Categories", "Home", new { area = "" }); %> 
+            <div id="leftHand">
             </div>
-            <% Html.RenderAction("News", "Widgets", new { area = "" }); %>
         </div>
         <div id="rightSide">
+            <div id="rightSideHeader">
+                <div id="rightSideHeaderBg">
+                </div>
+            </div>
+            <div id="borderLine">
+                <h1><asp:ContentPlaceHolder runat="server" ID="ContentTitle"></asp:ContentPlaceHolder></h1>
+            </div>
             <asp:ContentPlaceHolder runat="server" ID="MainContent"></asp:ContentPlaceHolder>
+            <div id="borderLine2">
+            </div>
+            <div id="rightSideFooter">
+                <div id="rightSideFooterBgL">
+                </div>
+                <div id="rightSideFooterBgR">
+                </div>
+            </div>
         </div>
     </div>
-            <div id="footer">
-            <div id="girl">
-                <img src="/Content/img/girl.jpg" alt="jeans">
-            </div>
-            <div id="footerCopy">
+    <div id="preFooter">
+        <% Html.RenderAction("Myths", "Widgets", new { area = "" }); %>
+        <div id="notes">
+            <div id="tapki">
                 <p>
-                    © 2010 Студия стиля Людмилы Захаренко «Модная Леди»</p>
+                    <a href="#">Тапочки</a></p>
             </div>
-            <div id="footerRightBox">
+            <div id="pizhama">
                 <p>
-                    Дизвйн сайта - <span class="colortext">Евгений Миллер</span></p>
+                    <a href="#">Пижамки</a></p>
+            </div>
+            <div id="kurtka">
+                <p>
+                    <a href="#">Курточки</a></p>
+            </div>
+            <div id="prost">
+                <p>
+                    <a href="#">Простынки</a></p>
+            </div>
+            <div id="kor">
+                <p>
+                    <a href="#">Коротыши</a></p>
+            </div>
+            <div id="shapki">
+                <p>
+                    <a href="#">Шапочки</a></p>
+            </div>
+            <div id="pugovka">
+                <p>
+                    <a href="#">Пуговички</a></p>
+            </div>
+            <div id="chep">
+                <p>
+                    <a href="#">Чепчики</a></p>
+            </div>
+            <div id="vorot">
+                <p>
+                    <a href="#">Воротнички</a></p>
             </div>
         </div>
-
+    </div>
+    <div id="footer">
+        <div id="book">
+        </div>
+        <div id="ramka">
+        </div>
+        <div id="copy">
+            <p>
+                © 2010 Магазин родительского опыта <span id="babyCopy">“Baby Health”</span></p>
+            <h5>
+                Дизайн сайта — <a href="#">Евгений Миллер</a></h5>
+        </div>
+    </div>
+    </div>
 </body>
 </html>

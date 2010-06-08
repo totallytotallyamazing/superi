@@ -1,14 +1,4 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl" %>
-<%
-    if (Request.IsAuthenticated) {
-%>
-        Welcome <b><%= Html.Encode(Page.User.Identity.Name) %></b>!
-        [ <%= Html.ActionLink("Log Off", "LogOff", "Account") %> ]
-<%
-    }
-    else {
-%> 
-        [ <%= Html.ActionLink("Log On", "LogOn", "Account") %> ]
-<%
-    }
-%>
+<div id="guest">
+    <p>Чтобы стать Почетным Гостем, необходимо <a href="#">зарегистрироваться.</a></p>
+</div>

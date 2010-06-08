@@ -90,6 +90,7 @@ namespace Oksi.Controllers
             using (DataStorage context = new DataStorage())
             {
                 article.Text = HttpUtility.HtmlDecode(article.Text);
+                article.Description = HttpUtility.HtmlDecode(article.Description);
                 if (Request.Files["picture"] != null &&
                     !string.IsNullOrEmpty(Request.Files["picture"].FileName))
                 {

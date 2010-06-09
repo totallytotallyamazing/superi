@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Lady.Models;
+using Shop.Models;
 using System.Data;
 using Trips.Mvc.Helpers;
 using System.IO;
@@ -24,7 +24,8 @@ namespace Lady.Areas.Admin.Controllers
                 return View(products);
             }
         }
-
+        
+        [HttpGet]
         public ActionResult AddEdit(int? id, int cId, int? bId)
         {
             ViewData["cId"] = cId;
@@ -87,7 +88,7 @@ namespace Lady.Areas.Admin.Controllers
                 context.SaveChanges();
             }
 
-            return View("Index", new { categoryId = cId, brandId = bId });
+            return View(new { categoryId = cId, brandId = bId });
         }
 
         public ActionResult AddProductImage(int productId, bool isDefault, int categoryId)

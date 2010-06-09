@@ -1,8 +1,8 @@
 ﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
 
 <% 
-//    if (Request.Cookies["lady"] == null)
-  //      Response.Redirect("~/index.html");%>
+    if (Request.Cookies["baby"] == null)
+        Response.Redirect("~/index.html");%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
 <head>
@@ -47,7 +47,7 @@
             <div id="search">
                 <form name="form1" method="post" action="">
                 <p>
-                    <input name="textfield" type="text" value="Слово + “Enter”" id="searchField"></p>
+                    <input name="textfield" type="text" value="Слово + “Enter”" id="searchField" /></p>
                 </form>
             </div>
             <% Html.RenderPartial("MainMenu"); %>
@@ -69,7 +69,9 @@
             <div id="borderLine">
                 <h1><asp:ContentPlaceHolder runat="server" ID="ContentTitle"></asp:ContentPlaceHolder></h1>
             </div>
-            <asp:ContentPlaceHolder runat="server" ID="MainContent"></asp:ContentPlaceHolder>
+            <div id="contentWrapper">
+                <asp:ContentPlaceHolder runat="server" ID="MainContent"></asp:ContentPlaceHolder>
+            </div>
             <div id="borderLine2">
             </div>
             <div id="rightSideFooter">
@@ -132,7 +134,6 @@
             <h5>
                 Дизайн сайта — <a href="#">Евгений Миллер</a></h5>
         </div>
-    </div>
     </div>
 </body>
 </html>

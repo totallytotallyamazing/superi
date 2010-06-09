@@ -1,0 +1,14 @@
+#tovar{height:456px;width:359px; border: 1px solid #999999; padding: 0px 0px 0px 0px; float:left;}
+#tovarDesk{height:456px;width:235px;float:right;}
+#tovarDesk p{font:Verdana, Arial, Helvetica, sans-serif normal;font-size:11pt;}
+#new1{height:15px; width:76px;border:0px solid #000000; position: relative; bottom:456px; right:0px; background:url(img/new.jpg) no-repeat;}
+#guest1{height:130px;width:212px;float:left;border:0px solid green;background:url(img/guest.jpg) no-repeat center;margin:18px 0px 0px 14px;}
+#guest1 p{font:Verdana, Arial, Helvetica, sans-serif normal;font-size:10pt;padding:5px 55px 0px 45px;margin:0px 0px 0px 10px; text-align:center; color:#d74f03;}
+#guest1 h2{font:Verdana, Arial, Helvetica, sans-serif normal;font-size:10pt;padding:30px 30px 0px 20px;margin:0px 0px 0px 10px; text-align:center; color:#d74f03;}
+#guest1 a{color:#d74f03;}
+
+
+
+
+
+

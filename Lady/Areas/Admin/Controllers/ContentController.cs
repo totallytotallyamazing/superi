@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Lady.Models;
+using Shop.Models;
 using System.Data;
 
-namespace Lady.Areas.Admin.Controllers
+namespace Shop.Areas.Admin.Controllers
 {
     public class ContentController : Controller
     {
@@ -31,9 +31,6 @@ namespace Lady.Areas.Admin.Controllers
 
                 context.SaveChanges();
             }
-
-            
-
             return RedirectToAction("Go", "Home", new { id = content.Name, area = "" });
         }
 

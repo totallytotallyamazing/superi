@@ -8,8 +8,8 @@
     <ProjectTypeGuids>{F85E285D-A4E0-4152-9332-AB1D724D3325};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Lady</RootNamespace>
-    <AssemblyName>Lady</AssemblyName>
+    <RootNamespace>Shop</RootNamespace>
+    <AssemblyName>Shop</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
   </PropertyGroup>
@@ -191,7 +191,6 @@
     <Content Include="Content\fancybox\fancy_title_over.png" />
     <Content Include="Content\fancybox\fancy_title_right.png" />
     <Content Include="Content\fancybox\jquery.fancybox.css" />
-    <Content Include="index.html" />
     <Content Include="Scripts\Date.HijriCalendar.js" />
     <Content Include="Scripts\Date.UmAlQuraCalendar.js" />
     <Content Include="Scripts\extended\Common\Common.js" />
@@ -237,6 +236,7 @@
     <Content Include="Views\Shared\Base.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\catalog.css" />
     <Content Include="Content\img\01-o-magazine.png" />
     <Content Include="Content\img\02-o-razmere.png" />
     <Content Include="Content\img\03-pay-deliver.png" />
@@ -268,9 +268,12 @@
     <Content Include="Content\img\rightSideHeaderBg.jpg" />
     <Content Include="Content\img\search.jpg" />
     <Content Include="Content\img\tovar.jpg" />
+    <Content Include="Content\journal.css" />
     <Content Include="Content\style.css" />
+    <Content Include="Content\tovar.css" />
     <Content Include="SetCookie.aspx" />
     <Content Include="Views\Products\Products.Master" />
+    <Content Include="Views\Shared\SubCategories.ascx" />
     <Content Include="Views\Widgets\Myths.ascx" />
   </ItemGroup>
   <ItemGroup>

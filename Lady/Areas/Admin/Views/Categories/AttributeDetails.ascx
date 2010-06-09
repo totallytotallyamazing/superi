@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<Lady.Models.ProductAttribute>" %>
+﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<Shop.Models.ProductAttribute>" %>
 
 <div class="productAttribute">
     <%= Model.Name %>

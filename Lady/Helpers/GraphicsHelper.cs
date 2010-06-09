@@ -17,7 +17,7 @@ namespace Dev.Mvc.Helpers
         {
             maxDimensions.Add("mainView", 400);
             maxDimensions.Add("thumbnail1", 112);
-            maxDimensions.Add("thumbnail2", 170);
+            maxDimensions.Add("thumbnail2", 193);
             maxDimensions.Add("thumbnail3", 85);
         }
 

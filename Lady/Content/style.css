@@ -10,11 +10,11 @@ body{background:#ffedab}
 #sayText p{font:Verdana, Arial, Helvetica, sans-serif normal; font-size:10pt;margin:-4px 0px 0px 100px;}
 #sayText a {color:#3366ff;}
 #headerItems{height:202px; width:auto;}
-#headerContacts{height:99px;float:right; }
+#headerContacts{height:99px;float:right; width:218px; }
 #headerContactsItems{height:99px; width:218px;border:0px solid green;float:right; position:relative;}
 #headerContactsItems p{font:Verdana, Arial, Helvetica, sans-serif normal; font-size:10.75pt;float:left;}
-#headerContactsItems h3{font:Verdana, Arial, Helvetica, sans-serif bold;color:#cc6600;font-size:16pt; margin:10px 0px 0px 35px;float:left;}
-#headerContactsItems h5{font-size:11pt ;font:Verdana, Arial, Helvetica, sans-serif; font-weight: normal;margin:0px 0px 0px 35px;float:left;}
+#headerContactsItems h3{font:Verdana, Arial, Helvetica, sans-serif bold;color:#cc6600;font-size:16pt; margin:10px 0px 0px 35px; display:block; clear:both;}
+#headerContactsItems h5{font-size:11pt ;font:Verdana, Arial, Helvetica, sans-serif; font-weight: normal;margin:0px 0px 0px 35px; display:block; clear:both;}
 #headerContactsItems a {color:#6699ff;}
 #blue{height:29px; width:112px;float:right;background:url(img/blue.jpg);margin:0px 10px 0px 0px;}
 #blue p{font:Verdana, Arial, Helvetica, sans-serif normal; font-size:11pt;margin:0px 0px 0px 16px;}
@@ -47,7 +47,7 @@ a#menuItem4{height:71px;background:transparent url(img/04-o-brendax.png) no-repe
 a#menuItem4:hover{background-position: -15px -152px;}
 a#menuItem4.current{background-position:0px 0px; margin-top:25px; height:144px; width:127px; position:relative; margin-left:-45px; left:37px;}
 
-a#menuItem5{height:71px; :77px;background:url(img/05-partners.png) no-repeat;background-position: -15px -233px;}
+a#menuItem5{height:71px; background:url(img/05-partners.png) no-repeat;background-position: -15px -233px;}
 a#menuItem5:hover{background-position: -15px -152px;}
 a#menuItem5.current{background-position:0px 0px; margin-top:25px; height:144px; width:127px; position:relative; margin-left:-45px; left:37px;}
 #search{height:102px; width:185px;float:right;margin-top:-85px; background:url(img/search.jpg);clear:both;}
@@ -66,7 +66,7 @@ a#menuItem5.current{background-position:0px 0px; margin-top:25px; height:144px; 
 #menuBox{height:auto;width:172px; margin:20px 0px 0px 35px; padding:0px 0px 0px 0px;float:left;}
 #liHeader{height:35px; width:172px;float:left;border:0px solid red;background:url(img/liHeader.jpg) no-repeat center;margin:0px 0px 0px 0px;}
 #classMenuItems{min-height:173px; height:auto; width:172px;padding:5px 0px 5px 0px;float:left;background:url(img/liBg.jpg) repeat-y;}
-.classMenuItem{width:auto;height:15px;padding:7px 0px 0px 20px;color:#000000;font-family:Tahoma, Helvetica, sans-serif;font-weight:normal;font-size:14px;}
+.classMenuItem{width:auto;padding:7px 0px 0px 20px;color:#000000;font-family:Tahoma, Helvetica, sans-serif;font-weight:normal;font-size:14px;}
 .classMenuItem a{color:#000000;font-size:14px;}
 .classMenuItem a:hover{font-weight:bold;}
 .subMenuItem{width:auto;padding:3px 0px 0px 45px;color:#000000;font-family: Tahoma, Helvetica, sans-serif;font-weight:normal;font-size:13px;}
@@ -76,6 +76,7 @@ li{list-style-type:none;}
 .subMenuItem a:hover{font-weight:bold;}
 #leftHand{height:153px; width:207px;float:left;border:0px solid red;background:url(img/handLeft.jpg) no-repeat center;margin:0px 0px 0px 0px;}
 #rightSide{height:auto; min-width:727px; width:auto; margin-right:30px;margin-left:243px;background:#ffffff;}
+#contentWrapper{padding:0 51px;}
 #rightSideHeader{height:36px; width:auto; }
 #rightSideHeaderBg{height:36px; width:34px;float:right;background: url(img/rightSideHeaderBg.jpg) no-repeat;}
 #borderLine{height:23px;width:auto;border-bottom:3px solid #ff6600;margin:0 51px;}

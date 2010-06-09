@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.SessionState;
-using Lady.Models;
+using Shop.Models;
 
 namespace Dev.Helpers
 {
@@ -97,6 +97,29 @@ namespace Dev.Helpers
             {
                 Session["DeliveryAddress"] = value;
             }
+        }
+
+        public static string Currency
+        {
+            get
+            {
+                return (string)Session["Currency"];
+            }
+            set
+            {
+                Session["Currency"] = value;
+            }
+        }
+
+        public static int CurrentCategory
+        {
+            get 
+            {
+                if (Session["CurrentCategory"] != null)
+                    return Convert.ToInt32(Session["CurrentCategory"]);
+                return int.MinValue;
+            }
+            set { Session["CurrentCategory"] = value; }
         }
 
         internal static void ClearOrder()

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Lady.Models;
+using Shop.Models;
 using System.Data;
 using Trips.Mvc.Helpers;
 
@@ -50,7 +50,7 @@ namespace Lady.Areas.Admin.Controllers
                     context.AddToCategories(category);
                     if (parentId.HasValue)
                     {
-                        EntityKey parentKey = new EntityKey("ShopStorage.Cateories", "Id", parentId.Value);
+                        EntityKey parentKey = new EntityKey("ShopStorage.Categories", "Id", parentId.Value);
                         category.ParentReference.EntityKey = parentKey;
                     }
                 }

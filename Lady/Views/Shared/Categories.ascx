@@ -1,49 +1,25 @@
-﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<IEnumerable<Lady.Models.Category>>" %>
-<%@ Import Namespace="Lady.Models" %>
-            <div id="menuBox">
-                <div id="liHeader">
-                </div>
-                <div id="newsContent">
-                    <div id="classMenuItems">
-                        <div class="classMenuItem">
-                            <p>
-                                <a class="active" href="#">Детские вещички</a></p>
-                        </div>
-                        <ul class="treeview" id="productGroups">
-                            <li>
-                                <div class="subMenuItem">
-                                    <a class="" href="#">Шапочки</a></div>
-                            </li>
-                            <li>
-                                <div class="subMenuItem">
-                                    <a class="" href="#">Тапочки</a></div>
-                            </li>
-                            <li>
-                                <div class="subMenuItem">
-                                    <a class="" href="#">Воротнички</a></div>
-                            </li>
-                            <li class="last">
-                                <div class="subMenuItem">
-                                    <a class="" href="#">Коротыши</a></div>
-                            </li>
-                        </ul>
-                        <div class="classMenuItem">
-                            <a class="active" href="#">Детская комната</a>
-                        </div>
-                        <div class="classMenuItem">
-                            <a class="active" href="#">Родительский гардероб</a>
-                        </div>
-                    </div>
-                </div>
-                <div id="newsFooter">
-                </div>
+﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<IEnumerable<Shop.Models.Category>>" %>
+<%@ Import Namespace="Dev.Helpers" %>
+<div id="menuBox">
+    <div id="liHeader">
+    </div>
+    <div id="newsContent">
+        <div id="classMenuItems">
+        <% 
+        foreach (var item in Model)
+        {%>
+            <div class="classMenuItem">
+                <p>
+                    <%= Html.ActionLink(item.Name, "Index", "Products", new { id = item.Id }, null)%>
+                </p>
             </div>
-
-    <ul>
-    
-    <% if(Roles.IsUserInRole("Administrators")){ %>    
-        <p class="adminLink categoriesAdmin">
-            <a href="/Admin/Categories/AddEdit">Добавить категорию</a>
-        </p>
-    <%} %>
+      <%
+          if (WebSession.CurrentCategory == item.Id)
+              Html.RenderPartial("SubCategories", item.Categories);
+        }%>
+        </div>
+    </div>
+    <div id="newsFooter">
+    </div>
+</div>
 

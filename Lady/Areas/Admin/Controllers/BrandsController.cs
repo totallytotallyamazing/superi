@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Lady.Models;
+using Shop.Models;
 using Trips.Mvc.Helpers;
 using System.Data;
 using System.IO;
@@ -37,14 +37,17 @@ namespace Lady.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddEdit(Brand brand, int Id)
+        public ActionResult AddEdit(Brand brand)
         {
             using (ShopStorage context = new ShopStorage())
             {
-                if (Id > 0)
+                if (brand.Id > 0)
                 {
-                    brand.Id = Id;
-                    Brand originalItem = context.Brands.Where(b=>b.Id == Id).First();
+                   //brand.Id = Id;
+                    EntityKey key = new EntityKey("ShopStorage.Brands", "Id", brand.Id);
+
+                    object originalItem = null;
+                    if(context.TryGetObjectByKey(key, out originalItem))
                     {
                         context.ApplyPropertyChanges("Brands", brand);
                     }

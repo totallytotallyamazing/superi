@@ -214,6 +214,7 @@
     <Content Include="Content\img\menuBottom.png" />
     <Content Include="Content\img\en-US\tv.gif" />
     <Content Include="favicon.ico" />
+    <Content Include="Views\Shared\GoogleAnalytics.ascx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\" />

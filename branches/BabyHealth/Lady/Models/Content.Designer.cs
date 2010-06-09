@@ -9,11 +9,11 @@
 //------------------------------------------------------------------------------
 
 [assembly: global::System.Data.Objects.DataClasses.EdmSchemaAttribute()]
-[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("gbua_mladyModel1", "ContentContent", "Content", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Lady.Models.Content), "Content1", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Lady.Models.Content))]
+[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("gbua_mladyModel1", "ContentContent", "Content", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Shop.Models.Content), "Content1", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Shop.Models.Content))]
 
 // Original file name:
-// Generation date: 07.06.2010 16:02:08
-namespace Lady.Models
+// Generation date: 09.06.2010 14:36:46
+namespace Shop.Models
 {
     
     /// <summary>

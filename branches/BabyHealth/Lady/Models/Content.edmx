@@ -134,11 +134,11 @@
     <edmx:Diagrams>
       <Diagram Name="Content">
         <EntityTypeShape EntityType="gbua_mladyModel1.Article" Width="1.5" PointX="0.75" PointY="0.75" Height="2.7158007812499996" IsExpanded="true" />
-        <EntityTypeShape EntityType="gbua_mladyModel1.Content" Width="1.5" PointX="3" PointY="0.75" Height="2.71580078125" IsExpanded="true" />
+        <EntityTypeShape EntityType="gbua_mladyModel1.Content" Width="1.5" PointX="3.875" PointY="0.875" Height="2.71580078125" IsExpanded="true" />
         <AssociationConnector Association="gbua_mladyModel1.ContentContent">
-          <ConnectorPoint PointX="3.5319230769230767" PointY="3.46580078125" />
-          <ConnectorPoint PointX="3.5319230769230767" PointY="3.7158007812499996" />
-          <ConnectorPoint PointX="3.9784615384615383" PointY="3.7158007812499996" />
-          <ConnectorPoint PointX="3.9784615384615383" PointY="3.46580078125" /></AssociationConnector></Diagram></edmx:Diagrams>
+          <ConnectorPoint PointX="4.4069230769230767" PointY="3.59080078125" />
+          <ConnectorPoint PointX="4.4069230769230767" PointY="3.8408007812499996" />
+          <ConnectorPoint PointX="4.8534615384615378" PointY="3.8408007812499996" />
+          <ConnectorPoint PointX="4.8534615384615378" PointY="3.59080078125" /></AssociationConnector></Diagram></edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

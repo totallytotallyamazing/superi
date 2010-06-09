@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 using System.ComponentModel;
 
-namespace Lady.Models
+namespace Shop.Models
 {
     [MetadataType(typeof(ProductValidation))]
     public partial class Product

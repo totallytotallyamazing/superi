@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Lady.Models;
+using Shop.Models;
 
 namespace Lady.Controllers
 {
@@ -26,7 +26,7 @@ namespace Lady.Controllers
         {
             using (ShopStorage context = new ShopStorage())
             {
-                List<Category> categories = context.Categories.Where(c => c.Parent == null).ToList();
+                List<Category> categories = context.Categories.Include("Categories").Where(c => c.Parent == null).ToList();
                 return View(categories);
             }
         }

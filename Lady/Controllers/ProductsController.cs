@@ -43,5 +43,17 @@ namespace Lady.Controllers
                 return View(products);
             }
         }
+
+        public ActionResult Show(int id)
+        {
+            using (ShopStorage context = new ShopStorage())
+            {
+                Product product = context.Products
+                    .Include("ProductImages")
+                    .Include("ProductAttributeValues")
+                    .Where(p => p.Id == id).First();
+                return View(product); 
+            }
+        }
     }
 }

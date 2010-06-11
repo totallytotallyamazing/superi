@@ -272,7 +272,9 @@
     <Content Include="Content\style.css" />
     <Content Include="Content\tovar.css" />
     <Content Include="SetCookie.aspx" />
+    <Content Include="Views\Products\ProductImages.ascx" />
     <Content Include="Views\Products\Products.Master" />
+    <Content Include="Views\Products\Show.aspx" />
     <Content Include="Views\Shared\SubCategories.ascx" />
     <Content Include="Views\Widgets\Myths.ascx" />
   </ItemGroup>

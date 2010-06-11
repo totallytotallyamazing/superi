@@ -1,4 +1,4 @@
-*{margin:0; padding:0;}
+*{margin:0; padding:0; font-family:Verdana;}
 a img{border: none;}
 body{background:#ffedab}
 #header{height:202px; min-width:1000px; width:auto;background: url(img/headerBg.jpg);}
@@ -11,7 +11,7 @@ body{background:#ffedab}
 #sayText a {color:#3366ff;}
 #headerItems{height:202px; width:auto;}
 #headerContacts{height:99px;float:right; width:218px; }
-#headerContactsItems{height:99px; width:218px;border:0px solid green;float:right; position:relative;}
+#headerContactsItems{height:99px; width:240px;border:0px solid green;float:right; position:relative;}
 #headerContactsItems p{font:Verdana, Arial, Helvetica, sans-serif normal; font-size:10.75pt;float:left;}
 #headerContactsItems h3{font:Verdana, Arial, Helvetica, sans-serif bold;color:#cc6600;font-size:16pt; margin:10px 0px 0px 35px; display:block; clear:both;}
 #headerContactsItems h5{font-size:11pt ;font:Verdana, Arial, Helvetica, sans-serif; font-weight: normal;margin:0px 0px 0px 35px; display:block; clear:both;}

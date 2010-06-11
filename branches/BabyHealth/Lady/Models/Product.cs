@@ -26,6 +26,9 @@ namespace Shop.Models
         [DisplayName("Название")]
         public string Name { get; set; }
 
+        [DisplayName("Артикул")]
+        public string PartNumber { get; set; }
+
         [DisplayName("Keywords")]
         public string SeoKeywords { get; set; }
 

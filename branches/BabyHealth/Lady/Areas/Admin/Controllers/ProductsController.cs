@@ -88,7 +88,7 @@ namespace Lady.Areas.Admin.Controllers
                 context.SaveChanges();
             }
 
-            return View(new { categoryId = cId, brandId = bId });
+            return RedirectToAction("AddEdit", new { id = product.Id, cId = cId, bId = bId });
         }
 
         public ActionResult AddProductImage(int productId, bool isDefault, int categoryId)

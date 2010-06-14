@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Lady.Models;
+using Shop.Models;
 
-namespace Lady.Controllers
+namespace Shop.Controllers
 {
     public class WidgetsController : Controller
     {

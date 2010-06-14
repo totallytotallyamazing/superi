@@ -20,7 +20,7 @@ namespace Shop
                 "Go", // Route name
                 "Go/{id}", // URL with parameters
                 new { controller = "Home", action = "Go", id = UrlParameter.Optional }, // Parameter defaults
-                new string[1] { "Lady.Controllers" }
+                new string[1] { "Shop.Controllers" }
             );
 
 
@@ -28,7 +28,7 @@ namespace Shop
                 "Default", // Route name
                 "{controller}/{action}/{id}", // URL with parameters
                 new { controller = "Home", action = "Index", id = UrlParameter.Optional }, // Parameter defaults
-                new string[1] { "Lady.Controllers" }
+                new string[1] { "Shop.Controllers" }
             );
 
         }

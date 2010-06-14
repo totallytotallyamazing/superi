@@ -23,11 +23,11 @@
                 <%= Html.ValidationMessageFor(model => model.Name) %>
             </div>
             <div class="editor-label">
-                <%= Html.LabelFor(model => model.SeoDescription)%>
+                <%= Html.LabelFor(model => model.SortOrder) %>
             </div>
             <div class="editor-field">
-                <%= Html.TextBoxFor(model => model.SeoDescription)%>
-                <%= Html.ValidationMessageFor(model => model.SeoDescription)%>
+                <%= Html.TextBoxFor(model => model.SortOrder)%>
+                <%= Html.ValidationMessageFor(model => model.SortOrder)%>
             </div>
             <div class="editor-label">
                 <%= Html.LabelFor(model => model.SeoKeywords)%>
@@ -35,6 +35,13 @@
             <div class="editor-field">
                 <%= Html.TextBoxFor(model => model.SeoKeywords)%>
                 <%= Html.ValidationMessageFor(model => model.SeoKeywords)%>
+            </div>
+            <div class="editor-label">
+                <%= Html.LabelFor(model => model.SeoDescription)%>
+            </div>
+            <div class="editor-field">
+                <%= Html.TextAreaFor(model => model.SeoDescription)%>
+                <%= Html.ValidationMessageFor(model => model.SeoDescription)%>
             </div>
             <p>
                 <input type="submit" value="Сохранить" />

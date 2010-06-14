@@ -9,7 +9,7 @@ using System.Web.Routing;
 using System.Web.Security;
 using Shop.Models;
 
-namespace Lady.Controllers
+namespace Shop.Controllers
 {
 
     [HandleError]

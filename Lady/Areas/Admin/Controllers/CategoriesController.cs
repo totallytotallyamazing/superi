@@ -7,7 +7,7 @@ using Shop.Models;
 using System.Data;
 using Trips.Mvc.Helpers;
 
-namespace Lady.Areas.Admin.Controllers
+namespace Shop.Areas.Admin.Controllers
 {
     public class CategoriesController : Controller
     {
@@ -39,7 +39,7 @@ namespace Lady.Areas.Admin.Controllers
                 {
                     category.Id = Id.Value;
                     object originalItem;
-                    EntityKey entityKey = context.CreateEntityKey("ShopStorage.Categories", category.Id);
+                    EntityKey entityKey = new EntityKey("ShopStorage.Categories", "Id", category.Id);
                     if (context.TryGetObjectByKey(entityKey, out originalItem))
                     {
                         context.ApplyPropertyChanges(entityKey.EntitySetName, category);

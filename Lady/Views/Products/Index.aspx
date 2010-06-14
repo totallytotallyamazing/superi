@@ -5,7 +5,7 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <% if(Roles.IsUserInRole("Administrators") && (bool)ViewData["showAdminLinks"]){ %>
+    <% if(Roles.IsUserInRole("Administrators")){ %>
         <% Html.RenderPartial("CategoriesAdmin"); %>
     <%} %>
     <% if(Model!=null)

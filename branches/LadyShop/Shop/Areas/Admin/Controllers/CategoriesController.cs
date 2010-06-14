@@ -39,7 +39,7 @@ namespace Shop.Areas.Admin.Controllers
                 {
                     category.Id = Id.Value;
                     object originalItem;
-                    EntityKey entityKey = context.CreateEntityKey("ShopStorage.Categories", category.Id);
+                    EntityKey entityKey = new EntityKey("ShopStorage.Categories", "Id", category.Id);
                     if (context.TryGetObjectByKey(entityKey, out originalItem))
                     {
                         context.ApplyPropertyChanges(entityKey.EntitySetName, category);
@@ -50,7 +50,7 @@ namespace Shop.Areas.Admin.Controllers
                     context.AddToCategories(category);
                     if (parentId.HasValue)
                     {
-                        EntityKey parentKey = new EntityKey("ShopStorage.Cateories", "Id", parentId.Value);
+                        EntityKey parentKey = new EntityKey("ShopStorage.Categories", "Id", parentId.Value);
                         category.ParentReference.EntityKey = parentKey;
                     }
                 }

@@ -31,9 +31,6 @@ namespace Shop.Areas.Admin.Controllers
 
                 context.SaveChanges();
             }
-
-            
-
             return RedirectToAction("Go", "Home", new { id = content.Name, area = "" });
         }
 

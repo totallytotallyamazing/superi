@@ -1,5 +1,5 @@
-﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<Dictionary<long, IEnumerable<Lady.Models.ProductImage>>>" %>
-<%@ Import Namespace="Lady.Models" %>
+﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<Dictionary<long, IEnumerable<Shop.Models.ProductImage>>>" %>
+<%@ Import Namespace="Shop.Models" %>
 <%@ Import Namespace="Dev.Mvc.Helpers" %>
 <fieldset id="images">
     <legend>Фото</legend>

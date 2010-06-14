@@ -24,7 +24,8 @@ namespace Shop.Areas.Admin.Controllers
                 return View(products);
             }
         }
-
+        
+        [HttpGet]
         public ActionResult AddEdit(int? id, int cId, int? bId)
         {
             ViewData["cId"] = cId;
@@ -87,7 +88,7 @@ namespace Shop.Areas.Admin.Controllers
                 context.SaveChanges();
             }
 
-            return View("Index", new { categoryId = cId, brandId = bId });
+            return RedirectToAction("AddEdit", new { id = product.Id, cId = cId, bId = bId });
         }
 
         public ActionResult AddProductImage(int productId, bool isDefault, int categoryId)

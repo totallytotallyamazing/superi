@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Shop.Models;
 
-namespace Lady.Controllers
+namespace Shop.Controllers
 {
     public class WidgetsController : Controller
     {

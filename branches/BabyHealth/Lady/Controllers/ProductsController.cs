@@ -6,7 +6,7 @@ using System.Web.Mvc;
 using Shop.Models;
 using Dev.Helpers;
 
-namespace Lady.Controllers
+namespace Shop.Controllers
 {
     public class ProductsController : Controller
     {

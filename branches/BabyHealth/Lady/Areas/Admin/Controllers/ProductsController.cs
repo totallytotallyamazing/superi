@@ -8,7 +8,7 @@ using System.Data;
 using Trips.Mvc.Helpers;
 using System.IO;
 
-namespace Lady.Areas.Admin.Controllers
+namespace Shop.Areas.Admin.Controllers
 {
     [Authorize(Roles = "Administrators")]
     public class ProductsController : Controller

@@ -12,14 +12,12 @@
         </asp:ContentPlaceHolder>
     </title>
     <link href="/Content/style.css" rel="stylesheet" type="text/css" />
-    <link href="/Content/fancybox/jquery.fancybox.css" rel="stylesheet" type="text/css" />
     <% if (Roles.IsUserInRole("Administrators"))
        { %>
     <link href="/Content/Admin.css" rel="stylesheet" type="text/css" />
     <%} %>
     <script type="text/javascript" src="/Scripts/jquery.js"></script>
     <script type="text/javascript" src="/Scripts/start.js"></script>
-    <script type="text/javascript" src="/Scripts/jquery.fancybox.js"></script>
     <asp:ContentPlaceHolder runat="server" ID="includes">
     </asp:ContentPlaceHolder>
 </head>

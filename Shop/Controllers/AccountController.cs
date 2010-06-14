@@ -7,9 +7,9 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Security;
-using Lady.Models;
+using Shop.Models;
 
-namespace Lady.Controllers
+namespace Shop.Controllers
 {
 
     [HandleError]

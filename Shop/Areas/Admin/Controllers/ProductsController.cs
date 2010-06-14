@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Lady.Models;
+using Shop.Models;
 using System.Data;
 using Trips.Mvc.Helpers;
 using System.IO;
 
-namespace Lady.Areas.Admin.Controllers
+namespace Shop.Areas.Admin.Controllers
 {
     [Authorize(Roles = "Administrators")]
     public class ProductsController : Controller

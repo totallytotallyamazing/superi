@@ -9,6 +9,7 @@ using Trips.Mvc.Helpers;
 
 namespace Shop.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Administrators")]
     public class CategoriesController : Controller
     {
         //

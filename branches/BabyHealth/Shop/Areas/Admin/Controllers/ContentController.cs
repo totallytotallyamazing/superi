@@ -8,6 +8,7 @@ using System.Data;
 
 namespace Shop.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Administrators")]
     public class ContentController : Controller
     {
         public ActionResult Edit(string id)

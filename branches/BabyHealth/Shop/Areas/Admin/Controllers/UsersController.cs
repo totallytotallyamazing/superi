@@ -10,7 +10,7 @@ namespace Shop.Areas.Admin.Controllers
     {
         //
         // GET: /Admin/Users/
-
+        [Authorize(Roles = "Administrators")]
         public ActionResult Index()
         {
             return View();

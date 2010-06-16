@@ -11,19 +11,19 @@ namespace Shop.Areas.Admin.Controllers
     public class AttributeValuesController : Controller
     {
         [ChildActionOnly]
-        public ActionResult Index(int attributeId)
+        public ActionResult Index(int id)
         {
             using (ShopStorage context = new ShopStorage())
             {
-                ViewData["attributeId"] = attributeId;
+                ViewData["attributeId"] = id;
                 List<ProductAttributeValue> values = context.ProductAttributeValues.Where(pav => pav.ProductAttribute.Id == id).ToList();
                 return View(values);
             }
         }
 
-        public ActionResult AddEdit(int id, int? valueId)
+        public ActionResult AddEdit(int attributeId, int? valueId)
         {
-            ViewData["attributeId"] = id;
+            ViewData["attributeId"] = attributeId;
             ProductAttributeValue value = null;
             if (valueId.HasValue)
             {
@@ -43,7 +43,7 @@ namespace Shop.Areas.Admin.Controllers
                 if (productAttributeValue.Id > 0)
                 {
                     object originalItem;
-                    EntityKey entityKey = new EntityKey("ShopStorage.ProductAttributes", "Id", productAttributeValue.Id);
+                    EntityKey entityKey = new EntityKey("ShopStorage.ProductAttributeValues", "Id", productAttributeValue.Id);
                     if (context.TryGetObjectByKey(entityKey, out originalItem))
                     {
                         context.ApplyPropertyChanges(entityKey.EntitySetName, productAttributeValue);
@@ -52,10 +52,13 @@ namespace Shop.Areas.Admin.Controllers
                 else
                 {
                     context.AddToProductAttributeValues(productAttributeValue);
+                    EntityKey key = new EntityKey("ShopStorage.ProductAttributes", "Id", attributeId);
+                    productAttributeValue.ProductAttributeReference.EntityKey = key;
                 }
                 context.SaveChanges();
             }
-            return JavaScript("window.top.location.href = window.top.location.href");
+            return RedirectToAction("Index", "Attributes", new { id = attributeId });
+            //Response.Write("<script type=\"text/javascript\">window.top.location.href = window.top.location.href</script>");
         }
 
     }

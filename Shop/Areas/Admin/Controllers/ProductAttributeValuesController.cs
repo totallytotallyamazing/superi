@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace Shop.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Administrators")]
     public class ProductAttributeValuesController : Controller
     {
         public ActionResult Index()

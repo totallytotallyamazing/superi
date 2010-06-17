@@ -9,6 +9,8 @@
     <script type="text/javascript" src="/Scripts/jquery.FCKEditor.js"></script>
     <script type="text/javascript" src="/Scripts/MicrosoftAjax.js"></script>
     <script type="text/javascript" src="/Scripts/MicrosoftMvcValidation.js"></script>
+    <script type="text/javascript" src="/Scripts/jquery.fancybox.js"></script>
+    <link rel="Stylesheet" href="/Content/fancybox/jquery.fancybox.css" />
 
     <script type="text/javascript">
         $(function() {
@@ -19,7 +21,7 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-
+    <%= Html.ActionLink("Допустимые значения атрибутов", "Index", "ProductAttributeValues", new { id = Model.Id }, new { @class = "fancyAdmin iframe" })%>
     <%if (ViewData["id"] != null)
      {
          Dictionary<long, IEnumerable<ProductImage>> item = new Dictionary<long, IEnumerable<ProductImage>>();

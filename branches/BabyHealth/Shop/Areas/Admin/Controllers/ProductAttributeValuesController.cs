@@ -14,13 +14,27 @@ namespace Shop.Areas.Admin.Controllers
         {
             using (ShopStorage context = new ShopStorage())
             {
-                List<ProductAttribute> values = context.Products
-                    //.Include("Category.ProductAttributes.ProductArributeValues")
-                    .Where(p => p.Id == id).Select(p => p.Category)
-                    .SelectMany(c => c.ProductAttributes).ToList();
+                List<ProductAttribute> values = context.Categories
+                    .Include("ProductArributeValues")
+                    .Where(c => c.Id == id).SelectMany(c=>c.ProductAttributes).ToList();
                 return View(values); 
             }
         }
 
+        [HttpPost]
+        public ActionResult Index(FormCollection form)
+        {
+            using(ShopStorage context = new ShopStorage())
+	        {
+                ProductAttributeValue val = context.ProductAttributeValues.Where(pav => pav.Id == 1).First();
+                Product product = context.Products.Include("ProductAttributeValues").Where(p => p.Id == 2).First();
+                if (product.ProductAttributeValues.Where(pv => pv.Id == val.Id).Count() == 0)
+                {
+                    product.ProductAttributeValues.Add(val);
+                }
+                context.SaveChanges();
+	        }
+            return RedirectToAction("Somewhere");
+        }
     }
 }

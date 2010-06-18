@@ -21,7 +21,9 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <%= Html.ActionLink("Допустимые значения атрибутов", "Index", "ProductAttributeValues", new { id = Model.Id }, new { @class = "fancyAdmin iframe" })%>
+    <%if (Model!=null){ %>
+        <%= Html.ActionLink("Допустимые значения атрибутов", "Index", "ProductAttributeValues", new { id = Model.Category.Id }, new { @class = "fancyAdmin iframe" })%>
+    <%} %>
     <%if (ViewData["id"] != null)
      {
          Dictionary<long, IEnumerable<ProductImage>> item = new Dictionary<long, IEnumerable<ProductImage>>();

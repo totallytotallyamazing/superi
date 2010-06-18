@@ -20,7 +20,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("gbua_mladyModel", "ProductProductAttributeValue", "Product", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Shop.Models.Product), "ProductAttributeValue", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Shop.Models.ProductAttributeValue))]
 
 // Original file name:
-// Generation date: 14.06.2010 14:13:40
+// Generation date: 18.06.2010 18:15:20
 namespace Shop.Models
 {
     

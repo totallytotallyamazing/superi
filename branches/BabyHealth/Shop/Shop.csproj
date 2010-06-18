@@ -243,7 +243,8 @@
     <Content Include="Areas\Admin\Views\Attributes\Index.aspx" />
     <Content Include="Areas\Admin\Views\AttributeValues\AddEdit.ascx" />
     <Content Include="Areas\Admin\Views\AttributeValues\Index.ascx" />
-    <Content Include="Areas\Admin\Views\ProductAttributeValues\Index.aspx" />
+    <Content Include="Areas\Admin\Views\ProductAttributeValues\Index.ascx" />
+    <Content Include="Areas\Admin\Views\ProductAttributeValues\ProuctAttributeValue.ascx" />
     <Content Include="Content\catalog.css" />
     <Content Include="Content\img\01-o-magazine.png" />
     <Content Include="Content\img\02-o-razmere.png" />

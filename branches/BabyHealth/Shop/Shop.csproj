@@ -81,6 +81,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\ArticlesController.cs" />
     <Compile Include="Areas\Admin\Controllers\AttributesController.cs" />
     <Compile Include="Areas\Admin\Controllers\AttributeValuesController.cs" />
     <Compile Include="Areas\Admin\Controllers\BrandsController.cs" />
@@ -91,6 +92,7 @@
     <Compile Include="Areas\Admin\Controllers\ProductsController.cs" />
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ArticlesController.cs" />
     <Compile Include="Controllers\BrandsController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\ContentAttribute.cs" />
@@ -239,12 +241,14 @@
     <Content Include="Views\Shared\Base.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Admin\Views\Articles\AddEdit.aspx" />
     <Content Include="Areas\Admin\Views\Attributes\AddEdit.aspx" />
     <Content Include="Areas\Admin\Views\Attributes\Index.aspx" />
     <Content Include="Areas\Admin\Views\AttributeValues\AddEdit.ascx" />
     <Content Include="Areas\Admin\Views\AttributeValues\Index.ascx" />
     <Content Include="Areas\Admin\Views\ProductAttributeValues\Index.ascx" />
     <Content Include="Areas\Admin\Views\ProductAttributeValues\ProuctAttributeValue.ascx" />
+    <Content Include="Content\Articles.css" />
     <Content Include="Content\catalog.css" />
     <Content Include="Content\img\01-o-magazine.png" />
     <Content Include="Content\img\02-o-razmere.png" />
@@ -281,6 +285,8 @@
     <Content Include="Content\style.css" />
     <Content Include="Content\tovar.css" />
     <Content Include="SetCookie.aspx" />
+    <Content Include="Views\Articles\Article.ascx" />
+    <Content Include="Views\Articles\Index.aspx" />
     <Content Include="Views\Products\ProductImages.ascx" />
     <Content Include="Views\Products\Products.Master" />
     <Content Include="Views\Products\Show.aspx" />

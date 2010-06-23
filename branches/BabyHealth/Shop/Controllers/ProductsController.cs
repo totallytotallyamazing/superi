@@ -26,7 +26,7 @@ namespace Shop.Controllers
                 {
                     WebSession.CurrentCategory = id;
                     ViewData["showAdminLinks"] = false;
-
+                    
                     products = category.Categories.SelectMany(c => c.Products).Union(category.Products).ToList();
                 }
                 else
@@ -39,7 +39,7 @@ namespace Shop.Controllers
                         .Where(p => (!brandId.HasValue || p.Brand.Id == brandId.Value))
                         .ToList();
                 }
-
+                ViewData["title"] = category.Name;
                 return View(products);
             }
         }

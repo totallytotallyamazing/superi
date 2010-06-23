@@ -10,14 +10,16 @@ namespace Shop.Areas.Admin.Controllers
     [Authorize(Roles = "Administrators")]
     public class ProductAttributeValuesController : Controller
     {
-        public ActionResult Index(int id)
+        public ActionResult Index(int id, int productId)
         {
+            ViewData["productId"] = productId;
             using (ShopStorage context = new ShopStorage())
             {
-                List<ProductAttribute> values = context.Categories
-                    .Include("ProductArributeValues")
-                    .Where(c => c.Id == id).SelectMany(c=>c.ProductAttributes).ToList();
-                return View(values); 
+                List<ProductAttribute> values = context.Categories.Include("ProductAttributeValues")
+                    .Where(c => c.Id == id).SelectMany(c => c.ProductAttributes).ToList();
+                foreach (var item in values)
+                    item.ProductAttributeValue.Load();
+                return View(values);
             }
         }
 

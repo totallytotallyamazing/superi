@@ -22,7 +22,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <%if (Model!=null){ %>
-        <%= Html.ActionLink("Допустимые значения атрибутов", "Index", "ProductAttributeValues", new { id = Model.Category.Id }, new { @class = "fancyAdmin iframe" })%>
+        <%= Html.ActionLink("Допустимые значения атрибутов", "Index", "ProductAttributeValues", new { id = Model.Category.Id,productId=Model.Id }, new { @class = "fancyAdmin iframe" })%>
     <%} %>
     <%if (ViewData["id"] != null)
      {

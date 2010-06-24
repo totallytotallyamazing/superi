@@ -13,7 +13,7 @@ namespace Shop.Areas.Admin.Controllers
         public ActionResult Index(int id, int productId)
         {
             ViewData["productId"] = productId;
-            ViewData["cId"] = id;
+            ViewData["categoryId"] = id;
 
             using (ShopStorage context = new ShopStorage())
             {
@@ -26,39 +26,15 @@ namespace Shop.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(FormCollection form)
+        public ActionResult Index(FormCollection form, int productId, int categoryId)
         {
             using (ShopStorage context = new ShopStorage())
             {
-
-                int productId = 0;
-                int categotyId = 0;
-                foreach (string key in form.Keys)
-                {
-                    if (key == "productId")
-                    {
-                        productId = Convert.ToInt32(form[key]);
-                    }
-                    if (key == "cId")
-                    {
-                        categotyId = Convert.ToInt32(form[key]);
-                    }
-                }
-
-
                 Product product = context.Products.Include("ProductAttributeValues").Where(p => p.Id == productId).First();
 
                 product.ProductAttributeValues.Clear();
 
-                /*foreach (ProductAttributeValue value in product.ProductAttributeValues)
-                {
-                    product.ProductAttributeValues.Remove(value);
-                }
-                  */
-
-
-                
-                PostData postData = form.ProcessPostData("productId","cId");
+                PostData postData = form.ProcessPostData("productId", "categoryId");
                 int[] items = (from item in postData where item.Value["attr"] == "true" select int.Parse(item.Key)).ToArray();
                 foreach (int id in items)
                 {
@@ -70,7 +46,7 @@ namespace Shop.Areas.Admin.Controllers
                     }
                 }
                 context.SaveChanges();
-                return RedirectToAction("AddEdit", "Products", new { area = "Admin", id = productId, cId = categotyId });
+                return RedirectToAction("AddEdit", "Products", new { area = "Admin", id = productId, cId = categoryId });
             }
         }
     }

@@ -1,7 +1,7 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<IEnumerable<Shop.Models.ProductAttribute>>" %>
 <% using(Html.BeginForm()){ %>
 <%=Html.Hidden("productId",ViewData["productId"])%>
-<%=Html.Hidden("cId",ViewData["cId"])%>
+<%=Html.Hidden("categoryId", ViewData["categoryId"])%>
 <% foreach (var item in Model)
    {
        %>

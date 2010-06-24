@@ -130,6 +130,6 @@
     <% } %>
 
     <div>
-        <%= Html.ActionLink("Назад", "Index") %>
+        <%= Html.ActionLink("Назад", "Index", "Products", new { area = "", id = ViewData["cId"] }, null)%>
     </div>
 </asp:Content>

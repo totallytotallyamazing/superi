@@ -19,8 +19,29 @@ namespace Shop.Areas.Admin.Controllers
             {
                 List<ProductAttribute> values = context.Categories.Include("ProductAttributeValues")
                     .Where(c => c.Id == id).SelectMany(c => c.ProductAttributes).ToList();
+                
                 foreach (var item in values)
                     item.ProductAttributeValue.Load();
+
+                Product product = context.Products.Include("ProductAttributeValues").Where(p => p.Id == productId).First();
+
+
+
+                foreach (ProductAttribute pa in values)
+                {
+                    foreach (var av in pa.ProductAttributeValue)
+                    {
+                        foreach (ProductAttributeValue attributeValue in product.ProductAttributeValues)
+                        {
+                            if(attributeValue.Id==av.Id)
+                            {
+                                av.Value += "_Checked";
+                            }
+
+                        }
+                    }
+                }
+
                 return View(values);
             }
         }

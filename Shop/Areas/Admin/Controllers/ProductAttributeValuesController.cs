@@ -25,23 +25,9 @@ namespace Shop.Areas.Admin.Controllers
 
                 Product product = context.Products.Include("ProductAttributeValues").Where(p => p.Id == productId).First();
 
-
-
-                foreach (ProductAttribute pa in values)
-                {
-                    foreach (var av in pa.ProductAttributeValue)
-                    {
-                        foreach (ProductAttributeValue attributeValue in product.ProductAttributeValues)
-                        {
-                            if(attributeValue.Id==av.Id)
-                            {
-                                av.Value += "_Checked";
-                            }
-
-                        }
-                    }
-                }
-
+                int[] attributesSelected = product.ProductAttributeValues.Select(pav => pav.Id).ToArray();
+                ViewData["attributesSelected"] = attributesSelected;
+                
                 return View(values);
             }
         }

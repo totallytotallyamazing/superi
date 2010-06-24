@@ -26,7 +26,7 @@ namespace Shop.Controllers
         {
             using (ShopStorage context = new ShopStorage())
             {
-                List<Category> categories = context.Categories.Include("Categories").Where(c => c.Parent == null).ToList();
+                List<Category> categories = context.Categories.Include("Categories").Where(c => c.Parent == null).OrderBy(c=>c.SortOrder).ToList();
                 return View(categories);
             }
         }

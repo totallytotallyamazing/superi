@@ -87,7 +87,7 @@ namespace Shop.Areas.Admin.Controllers
                     bool contains = bool.Parse(item.Value["attribute"]);
                     if (contains)
                     {
-                        Category category = context.Categories.Include("ProductAttributes").Where(c => c.Id == id).First();
+                        Category category = context.Categories.Include("Categories").Include("ProductAttributes").Where(c => c.Id == id).First();
                         if (category.ProductAttributes.Where(pa => pa.Id == attributeId).Count() == 0)
                         {
                             ProductAttribute attribute = new ProductAttribute();
@@ -96,6 +96,22 @@ namespace Shop.Areas.Admin.Controllers
                             context.Attach(attribute);
                             category.ProductAttributes.Add(attribute);
                         }
+
+                        context.SaveChanges();
+                        
+                        // TODO: Каскадное применение аттрибутов в категории (не работает)
+                        foreach (var childCategory in category.Categories)
+                        {
+                            if (childCategory.ProductAttributes.Where(pa => pa.Id == attributeId).Count() == 0)
+                            {
+                                ProductAttribute attribute = new ProductAttribute();
+                                attribute.EntityKey = new EntityKey("ShopStorage.ProductAttributes", "Id", attributeId);
+                                attribute.Id = attributeId;
+                                context.Attach(attribute);
+                                childCategory.ProductAttributes.Add(attribute);
+                            }
+                        }
+
                     }
                 }
 

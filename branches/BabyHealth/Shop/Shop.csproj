@@ -246,7 +246,7 @@
     <Content Include="Areas\Admin\Views\Attributes\Index.aspx" />
     <Content Include="Areas\Admin\Views\AttributeValues\AddEdit.ascx" />
     <Content Include="Areas\Admin\Views\AttributeValues\Index.ascx" />
-    <Content Include="Areas\Admin\Views\ProductAttributeValues\Index.ascx" />
+    <Content Include="Areas\Admin\Views\ProductAttributeValues\Index.aspx" />
     <Content Include="Areas\Admin\Views\ProductAttributeValues\ProuctAttributeValue.ascx" />
     <Content Include="Content\Articles.css" />
     <Content Include="Content\catalog.css" />

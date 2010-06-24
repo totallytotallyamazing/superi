@@ -17,6 +17,11 @@
           if (WebSession.CurrentCategory == item.Id)
               Html.RenderPartial("SubCategories", item.Categories);
         }%>
+        <% if(Roles.IsUserInRole("Administrators")){ %>    
+        <p class="adminLink rootCategoriesAdmin">   
+        <%= Html.ActionLink("Добавить категорию (корневую)", "AddEdit", "Categories", new { area="admin" }, null)%>
+        </p>
+        <%} %>
         </div>
     </div>
     <div id="newsFooter">

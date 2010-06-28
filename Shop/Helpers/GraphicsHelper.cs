@@ -54,6 +54,10 @@ namespace Dev.Mvc.Helpers
                 !File.Exists(Path.Combine(HttpContext.Current.Server.MapPath(originalPath), fileName)))
             {
                 fileName = "tripsWebMvcNoCarImage.jpg";
+                if (!File.Exists(Path.Combine(HttpContext.Current.Server.MapPath(originalPath), fileName)))
+                {
+                    return null;
+                }
             }
             string result = Path.Combine("/ImageCache/" + cacheFolder + "/", fileName);
             string cachePath = HttpContext.Current.Server.MapPath("~/ImageCache/" + cacheFolder);

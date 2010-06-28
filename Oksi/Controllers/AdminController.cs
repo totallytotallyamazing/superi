@@ -177,13 +177,6 @@ namespace Oksi.Controllers
             {
                 Gallery gallery = context.Galleries.Where(g => g.Id == id).First();
 
-                foreach (var item in gallery.Images)
-                {
-                    context.DeleteObject(item);
-                    DeleteImage(item.Picture);
-                    DeleteImage(item.Preview);
-                }
-
                 context.DeleteObject(gallery);
 
                 context.SaveChanges();
@@ -193,6 +186,20 @@ namespace Oksi.Controllers
         private void DeleteImage(string fileName)
         {
             IOHelper.DeleteFile("~/Content/GalleryContent", fileName);
+        }
+       
+        public ActionResult DeleteImage(int id)
+        {
+            using (DataStorage context = new DataStorage())
+            {
+                Image image = context.Images.Where(i => i.Id == id).First();
+                DeleteImage(image.Picture);
+                DeleteImage(image.Preview);
+                context.DeleteObject(image);
+                context.SaveChanges();
+            }
+
+            return Json(null);
         }
 
         public ActionResult AddImage(int id)
@@ -226,18 +233,6 @@ namespace Oksi.Controllers
             }
 
             Response.Write("<script type=\"text/javascript\">window.top.ClientLibrary.GalleryExtender.update();</script>");
-        }
-
-        public void DeleteImage(int id)
-        {
-            using (DataStorage context = new DataStorage())
-            {
-                Image image = context.Images.Where(i => i.Id == id).First();
-                DeleteImage(image.Picture);
-                DeleteImage(image.Preview);
-                context.DeleteObject(image);
-                context.SaveChanges();
-            }
         }
         #endregion
     }

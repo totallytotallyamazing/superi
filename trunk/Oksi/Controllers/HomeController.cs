@@ -52,7 +52,7 @@ namespace Oksi.Controllers
                 .Where(a => a.Type == 1)
                 .OrderByDescending(a => a.Date)
                 .Skip(1)
-                .Take(7)
+                .Take(4)
                 .Select(a => a).ToList();
                 return View(articles);
             }

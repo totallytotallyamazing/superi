@@ -102,4 +102,5 @@ img{border:0;}
 a.bottomLogo{height:37px; float:left; display:block;}
 .bottomLogo.youtubeLogo{width:86px; background:black url(img/youtubeLogo.jpg) no-repeat 0 -37px;}
 .bottomLogo.vkLogo{width:100px; background:black url(img/vkLogo.jpg) no-repeat 0 -37px;}
+.bottomLogo.twitterLogo{width:103px; background:black url(img/twitterLogo.jpg) no-repeat 0 -37px;}
 a.bottomLogo:hover{background-position:0 0;}

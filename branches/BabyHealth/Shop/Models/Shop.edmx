@@ -4,19 +4,21 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="gbua_mladyModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.0" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
-        <EntityContainer Name="gbua_mladyModelStoreContainer">
-          <EntitySet Name="Brand" EntityType="gbua_mladyModel.Store.Brand" store:Type="Tables" Schema="gbua_mlady" />
-          <EntitySet Name="Category" EntityType="gbua_mladyModel.Store.Category" store:Type="Tables" Schema="gbua_mlady" />
-          <EntitySet Name="CategoryProductAttributeMapping" EntityType="gbua_mladyModel.Store.CategoryProductAttributeMapping" store:Type="Tables" Schema="gbua_mlady" />
-          <EntitySet Name="Discount" EntityType="gbua_mladyModel.Store.Discount" store:Type="Tables" Schema="gbua_mlady" />
-          <EntitySet Name="Product" EntityType="gbua_mladyModel.Store.Product" store:Type="Tables" Schema="gbua_mlady" />
-          <EntitySet Name="ProductAttribute" EntityType="gbua_mladyModel.Store.ProductAttribute" store:Type="Tables" Schema="gbua_mlady" />
-          <EntitySet Name="ProductAttributeValue" EntityType="gbua_mladyModel.Store.ProductAttributeValue" store:Type="Tables" Schema="gbua_mlady" />
-          <EntitySet Name="ProductAttributeValueAvailable" EntityType="gbua_mladyModel.Store.ProductAttributeValueAvailable" store:Type="Tables" Schema="gbua_mlady" />
-          <EntitySet Name="ProductDiscountMapping" EntityType="gbua_mladyModel.Store.ProductDiscountMapping" store:Type="Tables" Schema="gbua_mlady" />
-          <EntitySet Name="ProductImage" EntityType="gbua_mladyModel.Store.ProductImage" store:Type="Tables" Schema="gbua_mlady" />
-          <EntitySet Name="SimilalProduct" EntityType="gbua_mladyModel.Store.SimilalProduct" store:Type="Tables" Schema="gbua_mlady" />
+    <Schema Namespace="shop_model.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.0" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
+        <EntityContainer Name="shop_modelStoreContainer">
+          <EntitySet Name="Brand" EntityType="shop_model.Store.Brand" store:Type="Tables" Schema="gbua_x_baby_583" />
+          <EntitySet Name="Category" EntityType="shop_model.Store.Category" store:Type="Tables" Schema="gbua_x_baby_583" />
+          <EntitySet Name="CategoryProductAttributeMapping" EntityType="shop_model.Store.CategoryProductAttributeMapping" store:Type="Tables" Schema="gbua_x_baby_583" />
+          <EntitySet Name="Discount" EntityType="shop_model.Store.Discount" store:Type="Tables" Schema="gbua_x_baby_583" />
+          <EntitySet Name="Product" EntityType="shop_model.Store.Product" store:Type="Tables" Schema="gbua_x_baby_583" />
+          <EntitySet Name="ProductAttribute" EntityType="shop_model.Store.ProductAttribute" store:Type="Tables" Schema="gbua_x_baby_583" />
+          <EntitySet Name="ProductAttributeValue" EntityType="shop_model.Store.ProductAttributeValue" store:Type="Tables" Schema="gbua_x_baby_583" />
+          <EntitySet Name="ProductAttributeValueAvailable" EntityType="shop_model.Store.ProductAttributeValueAvailable" store:Type="Tables" Schema="gbua_x_baby_583" />
+          <EntitySet Name="ProductDiscountMapping" EntityType="shop_model.Store.ProductDiscountMapping" store:Type="Tables" Schema="gbua_x_baby_583" />
+          <EntitySet Name="ProductImage" EntityType="shop_model.Store.ProductImage" store:Type="Tables" Schema="gbua_x_baby_583" />
+          <EntitySet Name="ProductTagMapping" EntityType="shop_model.Store.ProductTagMapping" store:Type="Tables" Schema="gbua_x_baby_583" />
+          <EntitySet Name="SimilalProduct" EntityType="shop_model.Store.SimilalProduct" store:Type="Tables" Schema="gbua_x_baby_583" />
+          <EntitySet Name="Tag" EntityType="shop_model.Store.Tag" store:Type="Tables" Schema="gbua_x_baby_583" />
         </EntityContainer>
         <EntityType Name="Brand">
           <Key>
@@ -116,6 +118,14 @@
           <Property Name="ImageSource" Type="varchar" Nullable="false" MaxLength="500" />
           <Property Name="ProductId" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="ProductTagMapping">
+          <Key>
+            <PropertyRef Name="ProductId" />
+            <PropertyRef Name="TagId" />
+          </Key>
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="TagId" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="SimilalProduct">
           <Key>
             <PropertyRef Name="ProductId" />
@@ -124,57 +134,68 @@
           <Property Name="ProductId" Type="int" Nullable="false" />
           <Property Name="SimilarProductId" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="Tag">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Value" Type="varchar" Nullable="false" MaxLength="500" />
+        </EntityType>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="gbua_mladyModel" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
+      <Schema Namespace="shop_model" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
         <EntityContainer Name="ShopStorage">
-          <EntitySet Name="Categories" EntityType="gbua_mladyModel.Category" />
-          <EntitySet Name="Products" EntityType="gbua_mladyModel.Product" />
-          <EntitySet Name="ProductAttributes" EntityType="gbua_mladyModel.ProductAttribute" />
-          <EntitySet Name="ProductAttributeValues" EntityType="gbua_mladyModel.ProductAttributeValue" />
-          <EntitySet Name="ProductImages" EntityType="gbua_mladyModel.ProductImage" />
-          <AssociationSet Name="CategoryProduct" Association="gbua_mladyModel.CategoryProduct">
+          <EntitySet Name="Categories" EntityType="shop_model.Category" />
+          <EntitySet Name="Products" EntityType="shop_model.Product" />
+          <EntitySet Name="ProductAttributes" EntityType="shop_model.ProductAttribute" />
+          <EntitySet Name="ProductAttributeValues" EntityType="shop_model.ProductAttributeValue" />
+          <EntitySet Name="ProductImages" EntityType="shop_model.ProductImage" />
+          <AssociationSet Name="CategoryProduct" Association="shop_model.CategoryProduct">
             <End Role="Category" EntitySet="Categories" />
             <End Role="Product" EntitySet="Products" /></AssociationSet>
-          <AssociationSet Name="ProductProduct" Association="gbua_mladyModel.ProductProduct">
+          <AssociationSet Name="ProductProduct" Association="shop_model.ProductProduct">
             <End Role="Product" EntitySet="Products" />
             <End Role="Product1" EntitySet="Products" /></AssociationSet>
-          <AssociationSet Name="ProductAttributeProductAttributeValue" Association="gbua_mladyModel.ProductAttributeProductAttributeValue">
+          <AssociationSet Name="ProductAttributeProductAttributeValue" Association="shop_model.ProductAttributeProductAttributeValue">
             <End Role="ProductAttribute" EntitySet="ProductAttributes" />
             <End Role="ProductAttributeValue" EntitySet="ProductAttributeValues" /></AssociationSet>
-          <AssociationSet Name="ProductProductImage" Association="gbua_mladyModel.ProductProductImage">
+          <AssociationSet Name="ProductProductImage" Association="shop_model.ProductProductImage">
             <End Role="Product" EntitySet="Products" />
             <End Role="ProductImage" EntitySet="ProductImages" /></AssociationSet>
-          <AssociationSet Name="CategoryCategory" Association="gbua_mladyModel.CategoryCategory">
+          <AssociationSet Name="CategoryCategory" Association="shop_model.CategoryCategory">
             <End Role="Category" EntitySet="Categories" />
             <End Role="Category1" EntitySet="Categories" /></AssociationSet>
-          <EntitySet Name="Brands" EntityType="gbua_mladyModel.Brand" />
-          <AssociationSet Name="BrandProduct" Association="gbua_mladyModel.BrandProduct">
+          <EntitySet Name="Brands" EntityType="shop_model.Brand" />
+          <AssociationSet Name="BrandProduct" Association="shop_model.BrandProduct">
             <End Role="Brand" EntitySet="Brands" />
             <End Role="Product" EntitySet="Products" /></AssociationSet>
-          <AssociationSet Name="CategoryProductAttribute" Association="gbua_mladyModel.CategoryProductAttribute">
+          <AssociationSet Name="CategoryProductAttribute" Association="shop_model.CategoryProductAttribute">
             <End Role="Category" EntitySet="Categories" />
             <End Role="ProductAttribute" EntitySet="ProductAttributes" /></AssociationSet>
-          <EntitySet Name="Discount" EntityType="gbua_mladyModel.Discount" />
-          <AssociationSet Name="ProductDiscount" Association="gbua_mladyModel.ProductDiscount">
+          <EntitySet Name="Discount" EntityType="shop_model.Discount" />
+          <AssociationSet Name="ProductDiscount" Association="shop_model.ProductDiscount">
             <End Role="Product" EntitySet="Products" />
             <End Role="Discount" EntitySet="Discount" /></AssociationSet>
-          <AssociationSet Name="ProductProductAttributeValue" Association="gbua_mladyModel.ProductProductAttributeValue">
+          <AssociationSet Name="ProductProductAttributeValue" Association="shop_model.ProductProductAttributeValue">
             <End Role="Product" EntitySet="Products" />
-            <End Role="ProductAttributeValue" EntitySet="ProductAttributeValues" /></AssociationSet></EntityContainer>
+            <End Role="ProductAttributeValue" EntitySet="ProductAttributeValues" /></AssociationSet>
+          <EntitySet Name="Tags" EntityType="shop_model.Tag" />
+          <AssociationSet Name="ProductTag" Association="shop_model.ProductTag">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="Tag" EntitySet="Tags" /></AssociationSet></EntityContainer>
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" Nullable="false" />
-          <NavigationProperty Name="Products" Relationship="gbua_mladyModel.CategoryProduct" FromRole="Category" ToRole="Product" />
-          <NavigationProperty Name="Categories" Relationship="gbua_mladyModel.CategoryCategory" FromRole="Category" ToRole="Category1" />
-          <NavigationProperty Name="Parent" Relationship="gbua_mladyModel.CategoryCategory" FromRole="Category1" ToRole="Category" />
+          <NavigationProperty Name="Products" Relationship="shop_model.CategoryProduct" FromRole="Category" ToRole="Product" />
+          <NavigationProperty Name="Categories" Relationship="shop_model.CategoryCategory" FromRole="Category" ToRole="Category1" />
+          <NavigationProperty Name="Parent" Relationship="shop_model.CategoryCategory" FromRole="Category1" ToRole="Category" />
           <Property Name="SeoDescription" Type="String" Nullable="true" />
           <Property Name="SeoKeywords" Type="String" Nullable="true" />
-          <NavigationProperty Name="ProductAttributes" Relationship="gbua_mladyModel.CategoryProductAttribute" FromRole="Category" ToRole="ProductAttribute" />
+          <NavigationProperty Name="ProductAttributes" Relationship="shop_model.CategoryProductAttribute" FromRole="Category" ToRole="ProductAttribute" />
           <Property Name="SortOrder" Type="Int32" Nullable="false" /></EntityType>
         <EntityType Name="Product">
           <Key>
@@ -188,15 +209,16 @@
           <Property Name="SeoDescription" Type="String" />
           <Property Name="SeoKeywords" Type="String" />
           <Property Name="ShortDescription" Type="String" />
-          <NavigationProperty Name="Category" Relationship="gbua_mladyModel.CategoryProduct" FromRole="Product" ToRole="Category" />
-          <NavigationProperty Name="SimilarProduct" Relationship="gbua_mladyModel.ProductProduct" FromRole="Product" ToRole="Product1" />
-          <NavigationProperty Name="SimilarProductChildren" Relationship="gbua_mladyModel.ProductProduct" FromRole="Product1" ToRole="Product" />
-          <NavigationProperty Name="ProductImages" Relationship="gbua_mladyModel.ProductProductImage" FromRole="Product" ToRole="ProductImage" />
+          <NavigationProperty Name="Category" Relationship="shop_model.CategoryProduct" FromRole="Product" ToRole="Category" />
+          <NavigationProperty Name="SimilarProduct" Relationship="shop_model.ProductProduct" FromRole="Product" ToRole="Product1" />
+          <NavigationProperty Name="SimilarProductChildren" Relationship="shop_model.ProductProduct" FromRole="Product1" ToRole="Product" />
+          <NavigationProperty Name="ProductImages" Relationship="shop_model.ProductProductImage" FromRole="Product" ToRole="ProductImage" />
           <Property Name="PartNumber" Type="String" Nullable="true" />
-          <NavigationProperty Name="Brand" Relationship="gbua_mladyModel.BrandProduct" FromRole="Product" ToRole="Brand" />
+          <NavigationProperty Name="Brand" Relationship="shop_model.BrandProduct" FromRole="Product" ToRole="Brand" />
           <Property Name="IsNew" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Discounts" Relationship="gbua_mladyModel.ProductDiscount" FromRole="Product" ToRole="Discount" />
-          <NavigationProperty Name="ProductAttributeValues" Relationship="gbua_mladyModel.ProductProductAttributeValue" FromRole="Product" ToRole="ProductAttributeValue" /></EntityType>
+          <NavigationProperty Name="Discounts" Relationship="shop_model.ProductDiscount" FromRole="Product" ToRole="Discount" />
+          <NavigationProperty Name="ProductAttributeValues" Relationship="shop_model.ProductProductAttributeValue" FromRole="Product" ToRole="ProductAttributeValue" />
+          <NavigationProperty Name="Tags" Relationship="shop_model.ProductTag" FromRole="Product" ToRole="Tag" /></EntityType>
         <EntityType Name="ProductAttribute">
           <Key>
             <PropertyRef Name="Id" />
@@ -204,17 +226,17 @@
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" Nullable="false" />
           <Property Name="ValueType" Type="String" Nullable="false" />
-          <NavigationProperty Name="ProductAttributeValue" Relationship="gbua_mladyModel.ProductAttributeProductAttributeValue" FromRole="ProductAttribute" ToRole="ProductAttributeValue" />
-          <NavigationProperty Name="Categories" Relationship="gbua_mladyModel.CategoryProductAttribute" FromRole="ProductAttribute" ToRole="Category" /></EntityType>
+          <NavigationProperty Name="ProductAttributeValue" Relationship="shop_model.ProductAttributeProductAttributeValue" FromRole="ProductAttribute" ToRole="ProductAttributeValue" />
+          <NavigationProperty Name="Categories" Relationship="shop_model.CategoryProductAttribute" FromRole="ProductAttribute" ToRole="Category" /></EntityType>
         <EntityType Name="ProductAttributeValue">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Value" Type="String" Nullable="false" />
-          <NavigationProperty Name="ProductAttribute" Relationship="gbua_mladyModel.ProductAttributeProductAttributeValue" FromRole="ProductAttributeValue" ToRole="ProductAttribute" />
+          <NavigationProperty Name="ProductAttribute" Relationship="shop_model.ProductAttributeProductAttributeValue" FromRole="ProductAttributeValue" ToRole="ProductAttribute" />
           <Property Name="SortOrder" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Products" Relationship="gbua_mladyModel.ProductProductAttributeValue" FromRole="ProductAttributeValue" ToRole="Product" /></EntityType>
+          <NavigationProperty Name="Products" Relationship="shop_model.ProductProductAttributeValue" FromRole="ProductAttributeValue" ToRole="Product" /></EntityType>
         <EntityType Name="ProductImage">
           <Key>
             <PropertyRef Name="Id" />
@@ -222,28 +244,28 @@
           <Property Name="Default" Type="Boolean" Nullable="false" />
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="ImageSource" Type="String" Nullable="false" />
-          <NavigationProperty Name="Product" Relationship="gbua_mladyModel.ProductProductImage" FromRole="ProductImage" ToRole="Product" /></EntityType>
+          <NavigationProperty Name="Product" Relationship="shop_model.ProductProductImage" FromRole="ProductImage" ToRole="Product" /></EntityType>
         <Association Name="CategoryProduct">
-          <End Type="gbua_mladyModel.Category" Role="Category" Multiplicity="1" >
+          <End Type="shop_model.Category" Role="Category" Multiplicity="1" >
             <OnDelete Action="Cascade"></OnDelete>
           </End>
-          <End Type="gbua_mladyModel.Product" Role="Product" Multiplicity="*" /></Association>
+          <End Type="shop_model.Product" Role="Product" Multiplicity="*" /></Association>
         <Association Name="ProductProduct">
-          <End Type="gbua_mladyModel.Product" Role="Product" Multiplicity="*" />
-          <End Type="gbua_mladyModel.Product" Role="Product1" Multiplicity="*" /></Association>
+          <End Type="shop_model.Product" Role="Product" Multiplicity="*" />
+          <End Type="shop_model.Product" Role="Product1" Multiplicity="*" /></Association>
         <Association Name="ProductAttributeProductAttributeValue">
-          <End Type="gbua_mladyModel.ProductAttribute" Role="ProductAttribute" Multiplicity="1" />
-          <End Type="gbua_mladyModel.ProductAttributeValue" Role="ProductAttributeValue" Multiplicity="*" /></Association>
+          <End Type="shop_model.ProductAttribute" Role="ProductAttribute" Multiplicity="1" />
+          <End Type="shop_model.ProductAttributeValue" Role="ProductAttributeValue" Multiplicity="*" /></Association>
         <Association Name="ProductProductImage">
-          <End Type="gbua_mladyModel.Product" Role="Product" Multiplicity="1">
+          <End Type="shop_model.Product" Role="Product" Multiplicity="1">
             <OnDelete Action="Cascade"></OnDelete>
           </End>
-          <End Type="gbua_mladyModel.ProductImage" Role="ProductImage" Multiplicity="*" /></Association>
+          <End Type="shop_model.ProductImage" Role="ProductImage" Multiplicity="*" /></Association>
         <Association Name="CategoryCategory">
-          <End Type="gbua_mladyModel.Category" Role="Category" Multiplicity="0..1">
+          <End Type="shop_model.Category" Role="Category" Multiplicity="0..1">
             <OnDelete Action="Cascade"></OnDelete>
           </End>
-          <End Type="gbua_mladyModel.Category" Role="Category1" Multiplicity="*" />
+          <End Type="shop_model.Category" Role="Category1" Multiplicity="*" />
         </Association>
         <EntityType Name="Brand">
           <Key>
@@ -254,15 +276,15 @@
           <Property Name="Name" Type="String" Nullable="false" />
           <Property Name="SeoDescription" Type="String" Nullable="true" />
           <Property Name="SeoKeywords" Type="String" Nullable="true" />
-          <NavigationProperty Name="Products" Relationship="gbua_mladyModel.BrandProduct" FromRole="Brand" ToRole="Product" /></EntityType>
+          <NavigationProperty Name="Products" Relationship="shop_model.BrandProduct" FromRole="Brand" ToRole="Product" /></EntityType>
         <Association Name="BrandProduct">
-          <End Type="gbua_mladyModel.Brand" Role="Brand" Multiplicity="1">
+          <End Type="shop_model.Brand" Role="Brand" Multiplicity="1">
             <OnDelete Action="Cascade"></OnDelete>
           </End>
-          <End Type="gbua_mladyModel.Product" Role="Product" Multiplicity="*" /></Association>
+          <End Type="shop_model.Product" Role="Product" Multiplicity="*" /></Association>
         <Association Name="CategoryProductAttribute">
-          <End Type="gbua_mladyModel.Category" Role="Category" Multiplicity="*" />
-          <End Type="gbua_mladyModel.ProductAttribute" Role="ProductAttribute" Multiplicity="*" />
+          <End Type="shop_model.Category" Role="Category" Multiplicity="*" />
+          <End Type="shop_model.ProductAttribute" Role="ProductAttribute" Multiplicity="*" />
         </Association>
         <EntityType Name="Discount">
           <Key>
@@ -271,20 +293,29 @@
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Percentage" Type="Boolean" Nullable="false" />
           <Property Name="SpecialDiscount" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Products" Relationship="gbua_mladyModel.ProductDiscount" FromRole="Discount" ToRole="Product" /></EntityType>
+          <NavigationProperty Name="Products" Relationship="shop_model.ProductDiscount" FromRole="Discount" ToRole="Product" /></EntityType>
         <Association Name="ProductDiscount">
-          <End Type="gbua_mladyModel.Product" Role="Product" Multiplicity="*" />
-          <End Type="gbua_mladyModel.Discount" Role="Discount" Multiplicity="*" /></Association>
+          <End Type="shop_model.Product" Role="Product" Multiplicity="*" />
+          <End Type="shop_model.Discount" Role="Discount" Multiplicity="*" /></Association>
         <Association Name="ProductProductAttributeValue">
-          <End Type="gbua_mladyModel.Product" Role="Product" Multiplicity="*" />
-          <End Type="gbua_mladyModel.ProductAttributeValue" Role="ProductAttributeValue" Multiplicity="*" /></Association></Schema>
+          <End Type="shop_model.Product" Role="Product" Multiplicity="*" />
+          <End Type="shop_model.ProductAttributeValue" Role="ProductAttributeValue" Multiplicity="*" /></Association>
+        <EntityType Name="Tag">
+          <Key>
+            <PropertyRef Name="Id" /></Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Value" Type="String" Nullable="false" />
+          <NavigationProperty Name="Products" Relationship="shop_model.ProductTag" FromRole="Tag" ToRole="Product" /></EntityType>
+        <Association Name="ProductTag">
+          <End Type="shop_model.Product" Role="Product" Multiplicity="*" />
+          <End Type="shop_model.Tag" Role="Tag" Multiplicity="*" /></Association></Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="urn:schemas-microsoft-com:windows:storage:mapping:CS">
-        <EntityContainerMapping StorageEntityContainer="gbua_mladyModelStoreContainer" CdmEntityContainer="ShopStorage">
+        <EntityContainerMapping StorageEntityContainer="shop_modelStoreContainer" CdmEntityContainer="ShopStorage">
           <EntitySetMapping Name="Categories">
-            <EntityTypeMapping TypeName="IsTypeOf(gbua_mladyModel.Category)">
+            <EntityTypeMapping TypeName="IsTypeOf(shop_model.Category)">
               <MappingFragment StoreEntitySet="Category">
                 <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
                 <ScalarProperty Name="SeoKeywords" ColumnName="SeoKeywords" />
@@ -295,7 +326,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Products">
-            <EntityTypeMapping TypeName="IsTypeOf(gbua_mladyModel.Product)">
+            <EntityTypeMapping TypeName="IsTypeOf(shop_model.Product)">
               <MappingFragment StoreEntitySet="Product">
                 <ScalarProperty Name="IsNew" ColumnName="IsNew" />
                 <ScalarProperty Name="PartNumber" ColumnName="PartNumber" />
@@ -311,7 +342,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ProductAttributes">
-            <EntityTypeMapping TypeName="IsTypeOf(gbua_mladyModel.ProductAttribute)">
+            <EntityTypeMapping TypeName="IsTypeOf(shop_model.ProductAttribute)">
               <MappingFragment StoreEntitySet="ProductAttribute">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -320,7 +351,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ProductAttributeValues">
-            <EntityTypeMapping TypeName="IsTypeOf(gbua_mladyModel.ProductAttributeValue)">
+            <EntityTypeMapping TypeName="IsTypeOf(shop_model.ProductAttributeValue)">
               <MappingFragment StoreEntitySet="ProductAttributeValue">
                 <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -329,7 +360,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ProductImages">
-            <EntityTypeMapping TypeName="IsTypeOf(gbua_mladyModel.ProductImage)">
+            <EntityTypeMapping TypeName="IsTypeOf(shop_model.ProductImage)">
               <MappingFragment StoreEntitySet="ProductImage">
                 <ScalarProperty Name="Default" ColumnName="Default" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -337,34 +368,34 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="CategoryProduct" TypeName="gbua_mladyModel.CategoryProduct" StoreEntitySet="Product">
+          <AssociationSetMapping Name="CategoryProduct" TypeName="shop_model.CategoryProduct" StoreEntitySet="Product">
             <EndProperty Name="Product">
               <ScalarProperty Name="Id" ColumnName="Id" /></EndProperty>
             <EndProperty Name="Category">
               <ScalarProperty Name="Id" ColumnName="CategoryId" /></EndProperty></AssociationSetMapping>
-          <AssociationSetMapping Name="ProductProduct" TypeName="gbua_mladyModel.ProductProduct" StoreEntitySet="SimilalProduct" >
+          <AssociationSetMapping Name="ProductProduct" TypeName="shop_model.ProductProduct" StoreEntitySet="SimilalProduct" >
             <EndProperty Name="Product1">
               <ScalarProperty Name="Id" ColumnName="SimilarProductId" /></EndProperty>
             <EndProperty Name="Product">
               <ScalarProperty Name="Id" ColumnName="ProductId" /></EndProperty></AssociationSetMapping>
-          <AssociationSetMapping Name="ProductAttributeProductAttributeValue" TypeName="gbua_mladyModel.ProductAttributeProductAttributeValue" StoreEntitySet="ProductAttributeValue">
+          <AssociationSetMapping Name="ProductAttributeProductAttributeValue" TypeName="shop_model.ProductAttributeProductAttributeValue" StoreEntitySet="ProductAttributeValue">
             <EndProperty Name="ProductAttributeValue">
               <ScalarProperty Name="Id" ColumnName="Id" /></EndProperty>
             <EndProperty Name="ProductAttribute">
               <ScalarProperty Name="Id" ColumnName="ProductAttributeId" /></EndProperty></AssociationSetMapping>
-          <AssociationSetMapping Name="ProductProductImage" TypeName="gbua_mladyModel.ProductProductImage" StoreEntitySet="ProductImage">
+          <AssociationSetMapping Name="ProductProductImage" TypeName="shop_model.ProductProductImage" StoreEntitySet="ProductImage">
             <EndProperty Name="ProductImage">
               <ScalarProperty Name="Id" ColumnName="Id" /></EndProperty>
             <EndProperty Name="Product">
               <ScalarProperty Name="Id" ColumnName="ProductId" /></EndProperty></AssociationSetMapping>
-          <AssociationSetMapping Name="CategoryCategory" TypeName="gbua_mladyModel.CategoryCategory" StoreEntitySet="Category">
+          <AssociationSetMapping Name="CategoryCategory" TypeName="shop_model.CategoryCategory" StoreEntitySet="Category">
             <EndProperty Name="Category1">
               <ScalarProperty Name="Id" ColumnName="Id" /></EndProperty>
             <EndProperty Name="Category">
               <ScalarProperty Name="Id" ColumnName="ParentId" /></EndProperty>
             <Condition ColumnName="ParentId" IsNull="false" /></AssociationSetMapping>
           <EntitySetMapping Name="Brands">
-            <EntityTypeMapping TypeName="IsTypeOf(gbua_mladyModel.Brand)">
+            <EntityTypeMapping TypeName="IsTypeOf(shop_model.Brand)">
               <MappingFragment StoreEntitySet="Brand">
                 <ScalarProperty Name="SeoKeywords" ColumnName="SeoKeywords" />
                 <ScalarProperty Name="SeoDescription" ColumnName="SeoDescription" />
@@ -372,31 +403,41 @@
                 <ScalarProperty Name="Logo" ColumnName="Logo" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Description" ColumnName="Description" /></MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <AssociationSetMapping Name="BrandProduct" TypeName="gbua_mladyModel.BrandProduct" StoreEntitySet="Product">
+          <AssociationSetMapping Name="BrandProduct" TypeName="shop_model.BrandProduct" StoreEntitySet="Product">
             <EndProperty Name="Product">
               <ScalarProperty Name="Id" ColumnName="Id" /></EndProperty>
             <EndProperty Name="Brand">
               <ScalarProperty Name="Id" ColumnName="BrandId" /></EndProperty></AssociationSetMapping>
-          <AssociationSetMapping Name="CategoryProductAttribute" TypeName="gbua_mladyModel.CategoryProductAttribute" StoreEntitySet="CategoryProductAttributeMapping" >
+          <AssociationSetMapping Name="CategoryProductAttribute" TypeName="shop_model.CategoryProductAttribute" StoreEntitySet="CategoryProductAttributeMapping" >
             <EndProperty Name="ProductAttribute">
               <ScalarProperty Name="Id" ColumnName="AttributeId" /></EndProperty>
             <EndProperty Name="Category">
               <ScalarProperty Name="Id" ColumnName="CategoryId" /></EndProperty></AssociationSetMapping>
           <EntitySetMapping Name="Discount">
-            <EntityTypeMapping TypeName="IsTypeOf(gbua_mladyModel.Discount)">
+            <EntityTypeMapping TypeName="IsTypeOf(shop_model.Discount)">
               <MappingFragment StoreEntitySet="Discount">
                 <ScalarProperty Name="SpecialDiscount" ColumnName="SpecialDiscount" />
                 <ScalarProperty Name="Percentage" ColumnName="Percentage" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Amount" ColumnName="Amount" /></MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <AssociationSetMapping Name="ProductDiscount" TypeName="gbua_mladyModel.ProductDiscount" StoreEntitySet="ProductDiscountMapping" >
+          <AssociationSetMapping Name="ProductDiscount" TypeName="shop_model.ProductDiscount" StoreEntitySet="ProductDiscountMapping" >
             <EndProperty Name="Discount">
               <ScalarProperty Name="Id" ColumnName="DiscountId" /></EndProperty>
             <EndProperty Name="Product">
               <ScalarProperty Name="Id" ColumnName="ProductId" /></EndProperty></AssociationSetMapping>
-          <AssociationSetMapping Name="ProductProductAttributeValue" TypeName="gbua_mladyModel.ProductProductAttributeValue" StoreEntitySet="ProductAttributeValueAvailable" >
+          <AssociationSetMapping Name="ProductProductAttributeValue" TypeName="shop_model.ProductProductAttributeValue" StoreEntitySet="ProductAttributeValueAvailable" >
             <EndProperty Name="ProductAttributeValue">
               <ScalarProperty Name="Id" ColumnName="ProductAttributeValueId" /></EndProperty>
+            <EndProperty Name="Product">
+              <ScalarProperty Name="Id" ColumnName="ProductId" /></EndProperty></AssociationSetMapping>
+          <EntitySetMapping Name="Tags">
+            <EntityTypeMapping TypeName="IsTypeOf(shop_model.Tag)">
+              <MappingFragment StoreEntitySet="Tag">
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Id" ColumnName="Id" /></MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <AssociationSetMapping Name="ProductTag" TypeName="shop_model.ProductTag" StoreEntitySet="ProductTagMapping" >
+            <EndProperty Name="Tag">
+              <ScalarProperty Name="Id" ColumnName="TagId" /></EndProperty>
             <EndProperty Name="Product">
               <ScalarProperty Name="Id" ColumnName="ProductId" /></EndProperty></AssociationSetMapping></EntityContainerMapping>
       </Mapping>
@@ -417,46 +458,50 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram Name="Shop" ZoomLevel="98">
-        <EntityTypeShape EntityType="gbua_mladyModel.Category" Width="1.75" PointX="1.375" PointY="0.625" Height="2.1473193359375" IsExpanded="true" />
-        <EntityTypeShape EntityType="gbua_mladyModel.Product" Width="2.5" PointX="8" PointY="0.625" Height="4.2317513020833326" IsExpanded="true" />
-        <EntityTypeShape EntityType="gbua_mladyModel.ProductAttribute" Width="2.625" PointX="1.125" PointY="4.125" Height="1.9578255208333326" IsExpanded="true" />
-        <EntityTypeShape EntityType="gbua_mladyModel.ProductAttributeValue" Width="2.25" PointX="4.5" PointY="4.375" Height="1.5788378906249996" IsExpanded="true" />
-        <EntityTypeShape EntityType="gbua_mladyModel.ProductImage" Width="1.5" PointX="11.5" PointY="3.375" Height="1.7683317057291665" IsExpanded="true" />
-        <AssociationConnector Association="gbua_mladyModel.CategoryProduct">
-          <ConnectorPoint PointX="3.125" PointY="1.09375" />
-          <ConnectorPoint PointX="8" PointY="1.09375" /></AssociationConnector>
-        <AssociationConnector Association="gbua_mladyModel.ProductProduct">
-          <ConnectorPoint PointX="8.8865384615384624" PointY="4.8567513020833326" />
-          <ConnectorPoint PointX="8.8865384615384624" PointY="5.1067513020833335" />
-          <ConnectorPoint PointX="9.63076923076923" PointY="5.1067513020833335" />
-          <ConnectorPoint PointX="9.63076923076923" PointY="4.8567513020833326" /></AssociationConnector>
-        <AssociationConnector Association="gbua_mladyModel.ProductAttributeProductAttributeValue">
+        <EntityTypeShape EntityType="shop_model.Category" Width="1.75" PointX="1.375" PointY="0.625" Height="2.1473193359375" IsExpanded="true" />
+        <EntityTypeShape EntityType="shop_model.Product" Width="2.5" PointX="8" PointY="0.625" Height="4.2317513020833326" IsExpanded="true" />
+        <EntityTypeShape EntityType="shop_model.ProductAttribute" Width="2.625" PointX="1.125" PointY="4.125" Height="1.9578255208333326" IsExpanded="true" />
+        <EntityTypeShape EntityType="shop_model.ProductAttributeValue" Width="2.25" PointX="4.5" PointY="4.375" Height="1.5788378906249996" IsExpanded="true" />
+        <EntityTypeShape EntityType="shop_model.ProductImage" Width="1.5" PointX="11.5" PointY="3.375" Height="1.7683317057291665" IsExpanded="true" />
+        <AssociationConnector Association="shop_model.CategoryProduct">
+          <ConnectorPoint PointX="3.125" PointY="0.90624999999999989" />
+          <ConnectorPoint PointX="8" PointY="0.90624999999999989" /></AssociationConnector>
+        <AssociationConnector Association="shop_model.ProductProduct">
+          <ConnectorPoint PointX="8.8865384615384624" PointY="4.9129036458333326" />
+          <ConnectorPoint PointX="8.8865384615384624" PointY="5.1629036458333326" />
+          <ConnectorPoint PointX="9.63076923076923" PointY="5.1629036458333326" />
+          <ConnectorPoint PointX="9.63076923076923" PointY="4.9129036458333326" /></AssociationConnector>
+        <AssociationConnector Association="shop_model.ProductAttributeProductAttributeValue">
           <ConnectorPoint PointX="3.75" PointY="5.2289127604166659" />
           <ConnectorPoint PointX="4.5" PointY="5.2289127604166659" />
           </AssociationConnector>
-        <AssociationConnector Association="gbua_mladyModel.ProductProductImage">
+        <AssociationConnector Association="shop_model.ProductProductImage">
           <ConnectorPoint PointX="10.5" PointY="4.1158756510416667" />
           <ConnectorPoint PointX="11.5" PointY="4.1158756510416667" /></AssociationConnector>
-        <AssociationConnector Association="gbua_mladyModel.CategoryCategory">
+        <AssociationConnector Association="shop_model.CategoryCategory">
           <ConnectorPoint PointX="1.9955769230769231" PointY="0.625" />
-          <ConnectorPoint PointX="1.9955769230769231" PointY="0.375" />
-          <ConnectorPoint PointX="2.5165384615384614" PointY="0.375" />
+          <ConnectorPoint PointX="1.9955769230769231" PointY="0.37499999999999978" />
+          <ConnectorPoint PointX="2.5165384615384614" PointY="0.37499999999999978" />
           <ConnectorPoint PointX="2.5165384615384614" PointY="0.625" /></AssociationConnector>
-        <EntityTypeShape EntityType="gbua_mladyModel.Brand" Width="1.5" PointX="11.375" PointY="0.625" Height="2.336813151041667" />
-        <AssociationConnector Association="gbua_mladyModel.BrandProduct">
+        <EntityTypeShape EntityType="shop_model.Brand" Width="1.5" PointX="11.375" PointY="0.625" Height="2.336813151041667" />
+        <AssociationConnector Association="shop_model.BrandProduct">
           <ConnectorPoint PointX="11.375" PointY="1.7934065755208337" />
           <ConnectorPoint PointX="10.5" PointY="1.7934065755208337" /></AssociationConnector>
-        <AssociationConnector Association="gbua_mladyModel.CategoryProductAttribute">
+        <AssociationConnector Association="shop_model.CategoryProductAttribute">
           <ConnectorPoint PointX="1.84375" PointY="3.1513069661458331" />
           <ConnectorPoint PointX="1.84375" PointY="4.125" /></AssociationConnector>
-        <EntityTypeShape EntityType="gbua_mladyModel.Discount" Width="1.5" PointX="5.125" PointY="1.625" Height="1.9578255208333335" />
-        <AssociationConnector Association="gbua_mladyModel.ProductDiscount">
-          <ConnectorPoint PointX="8" PointY="2.6039127604166667" />
-          <ConnectorPoint PointX="6.625" PointY="2.6039127604166667" />
+        <EntityTypeShape EntityType="shop_model.Discount" Width="1.5" PointX="3.75" PointY="1.25" Height="1.9802864583333339" />
+        <AssociationConnector Association="shop_model.ProductDiscount">
+          <ConnectorPoint PointX="8" PointY="1.78125" />
+          <ConnectorPoint PointX="5.25" PointY="1.78125" />
           </AssociationConnector>
-        <AssociationConnector Association="gbua_mladyModel.ProductProductAttributeValue">
-          <ConnectorPoint PointX="8" PointY="4.6158756510416667" />
-          <ConnectorPoint PointX="6.75" PointY="4.6158756510416667" />
-          </AssociationConnector></Diagram></edmx:Diagrams>
+        <AssociationConnector Association="shop_model.ProductProductAttributeValue">
+          <ConnectorPoint PointX="8" PointY="4.7401025390625" />
+          <ConnectorPoint PointX="6.75" PointY="4.7401025390625" />
+          </AssociationConnector>
+        <EntityTypeShape EntityType="shop_model.Tag" Width="1.5" PointX="6" PointY="2.375" Height="1.5956835937499996" />
+        <AssociationConnector Association="shop_model.ProductTag">
+          <ConnectorPoint PointX="8" PointY="3.172841796875" />
+          <ConnectorPoint PointX="7.5" PointY="3.172841796875" /></AssociationConnector></Diagram></edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

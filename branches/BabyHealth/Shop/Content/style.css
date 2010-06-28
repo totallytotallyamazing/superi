@@ -66,8 +66,8 @@ a#menuItem5.current{background-position:0px 0px; margin-top:25px; height:144px; 
 #menuBox{height:auto;width:172px; margin:20px 0px 0px 35px; padding:0px 0px 0px 0px;float:left;}
 #liHeader{height:35px; width:172px;float:left;border:0px solid red;background:url(img/liHeader.jpg) no-repeat center;margin:0px 0px 0px 0px;}
 #classMenuItems{min-height:173px; height:auto; width:172px;padding:5px 0px 5px 0px;float:left;background:url(img/liBg.jpg) repeat-y;}
-.classMenuItem{width:auto;padding:7px 0px 0px 20px;color:#000000;font-family:Tahoma, Helvetica, sans-serif;font-weight:normal;font-size:14px;}
-.classMenuItem a{color:#000000;font-size:14px;}
+.classMenuItem{width:auto;padding:7px 0px 0px 20px;color:#000000;font-family:Tahoma, Helvetica, sans-serif;font-weight:normal;font-size:12px;}
+.classMenuItem a{color:#000000;font-size:12px;}
 .classMenuItem a:hover{font-weight:bold;}
 .subMenuItem{width:auto;padding:3px 0px 0px 45px;color:#000000;font-family: Tahoma, Helvetica, sans-serif;font-weight:normal;font-size:13px;}
 ul {padding:5px 0px 0px 0px;}

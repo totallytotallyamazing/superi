@@ -160,7 +160,9 @@
           <Property Name="Picture" Type="String" Nullable="false" />
           <NavigationProperty Name="Gallery" Relationship="gbua_superiModel.GalleryImage" FromRole="Image" ToRole="Gallery" /></EntityType>
         <Association Name="GalleryImage">
-          <End Type="gbua_superiModel.Gallery" Role="Gallery" Multiplicity="1" />
+          <End Type="gbua_superiModel.Gallery" Role="Gallery" Multiplicity="1">
+            <OnDelete Action="Cascade"></OnDelete>
+          </End>
           <End Type="gbua_superiModel.Image" Role="Image" Multiplicity="*" /></Association>
         <EntityType Name="Album">
           <Key>

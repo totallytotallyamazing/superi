@@ -18,6 +18,6 @@
     <%= Html.ActionLink("+", "AddImage", "Admin", new { id = ViewData["galleryId"] }, new { @class="adminLink iframe big" })%>
     
     <div id="imageDeleteFrame">
-        <a href="/Admin/DeleteImage?id=[id]" class="adminConfirmLink">Удалить</a>
+        <a href="/Admin/DeleteImage/[id]" class="adminConfirmLink">Удалить</a>
     </div>
   <%} %>

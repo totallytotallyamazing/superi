@@ -249,6 +249,7 @@
     <Content Include="Areas\Admin\Views\AttributeValues\Index.ascx" />
     <Content Include="Areas\Admin\Views\ProductAttributeValues\Index.aspx" />
     <Content Include="Areas\Admin\Views\ProductAttributeValues\ProuctAttributeValue.ascx" />
+    <Content Include="Areas\Admin\Views\Tags\Index.aspx" />
     <Content Include="Content\Articles.css" />
     <Content Include="Content\catalog.css" />
     <Content Include="Content\img\01-o-magazine.png" />

@@ -33,7 +33,8 @@ namespace Shop.Areas.Admin.Controllers
         {
             using (ShopStorage context = new ShopStorage())
             {
-                Tag tag = context.Tags.Where(t => t.Id == id).First();
+                Tag tag = context.Tags.Include("Products").Where(t => t.Id == id).First();
+                tag.Products.Clear();
                 context.DeleteObject(tag);
                 context.SaveChanges();
             }

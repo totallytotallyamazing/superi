@@ -6,6 +6,8 @@ using System.Web.Mvc;
 using Shop.Models;
 using System.Data;
 using Trips.Mvc.Helpers;
+using System.Collections.ObjectModel;
+using System.Data.Objects;
 
 namespace Shop.Areas.Admin.Controllers
 {
@@ -61,14 +63,28 @@ namespace Shop.Areas.Admin.Controllers
             return RedirectToAction("Index", "Products", new { id = category.Id, area = "" });
         }
 
-        [OutputCache(Duration=1, NoStore=true, VaryByParam="*")]
+        [OutputCache(Duration = 1, NoStore = true, VaryByParam = "*")]
         public ActionResult Attributes(int id)
         {
             ViewData["id"] = id;
             using (ShopStorage context = new ShopStorage())
             {
-                List<ProductAttribute> atrrtibutes = context.ProductAttributes.Include("Categories").ToList();
-                int[] attributesSelected = atrrtibutes.Where(a => a.Categories.Where(c => c.Id == id).Count() > 0).Select(c=>c.Id).ToArray();
+                var atrrtibutes = context.ProductAttributes.Include("Categories").ToList();
+                Category category = context.Categories.Include("Categories").Include("Parent").Where(c => c.Id == id).First();
+                int[] attributesSelected = null;
+                if (category.Parent != null)
+                {
+                    attributesSelected = atrrtibutes
+                        .Where(a => a.Categories.Where(c => c.Id == id).Count() > 0)
+                        .Select(c => c.Id).ToArray();
+                }
+                else
+                {
+                    attributesSelected = atrrtibutes
+                        .Where(a=> a.Categories.Intersect(category.Categories).Count()>0)
+                        .Select(c => c.Id).ToArray();
+                }
+
                 ViewData["attributesSelected"] = attributesSelected;
                 return View(atrrtibutes);
             }
@@ -81,43 +97,79 @@ namespace Shop.Areas.Admin.Controllers
             using (ShopStorage context = new ShopStorage())
             {
                 PostData data = form.ProcessPostData("id");
+                Category category = context.Categories
+                    .Include("Categories").Include("Parent").Include("ProductAttributes")
+                    .Where(c => c.Id == id).First();
+                Collection<int> addAttributeIds = new Collection<int>();
+                Collection<int> removeAttributeIds = new Collection<int>();
                 foreach (var item in data)
                 {
                     int attributeId = int.Parse(item.Key);
                     bool contains = bool.Parse(item.Value["attribute"]);
                     if (contains)
+                        addAttributeIds.Add(attributeId);
+                    else
+                        removeAttributeIds.Add(attributeId);
+                }
+                if (category.Parent != null)
+                {
+                    AddAttributesToCategory(context, category, addAttributeIds);
+                    RemoveAttributesFromCategory(context, category, removeAttributeIds);
+                }
+                else
+                {
+                    foreach (var item in category.Categories)
                     {
-                        Category category = context.Categories.Include("Categories").Include("ProductAttributes").Where(c => c.Id == id).First();
-                        if (category.ProductAttributes.Where(pa => pa.Id == attributeId).Count() == 0)
-                        {
-                            ProductAttribute attribute = new ProductAttribute();
-                            attribute.EntityKey = new EntityKey("ShopStorage.ProductAttributes", "Id", attributeId);
-                            attribute.Id = attributeId;
-                            context.Attach(attribute);
-                            category.ProductAttributes.Add(attribute);
-                        }
-
-                        context.SaveChanges();
-                        
-                        // TODO: Каскадное применение аттрибутов в категории (не работает)
-                        foreach (var childCategory in category.Categories)
-                        {
-                            if (childCategory.ProductAttributes.Where(pa => pa.Id == attributeId).Count() == 0)
-                            {
-                                ProductAttribute attribute = new ProductAttribute();
-                                attribute.EntityKey = new EntityKey("ShopStorage.ProductAttributes", "Id", attributeId);
-                                attribute.Id = attributeId;
-                                context.Attach(attribute);
-                                childCategory.ProductAttributes.Add(attribute);
-                            }
-                        }
-
+                        AddAttributesToCategory(context, item, addAttributeIds);
+                        RemoveAttributesFromCategory(context, item, removeAttributeIds);
                     }
                 }
-
                 context.SaveChanges();
             }
             Response.Write("<script type=\"text/javascript\">window.top.$.fancybox.close();</script>");
+        }
+
+        private ProductAttribute TryGetAttributeFromObjectStateManager(ShopStorage context, int attributeId)
+        {
+            EntityKey key = new EntityKey("ShopStorage.ProductAttributes", "Id", attributeId);
+            ObjectStateEntry obj = null;
+            ProductAttribute attribute = null;
+            if (context.ObjectStateManager.TryGetObjectStateEntry(key, out obj))
+            {
+                attribute = (ProductAttribute)obj.Entity;
+            }
+            else
+            {
+                attribute = new ProductAttribute { EntityKey = key };
+                attribute.Id = attributeId;
+                context.Attach(attribute);
+            }
+
+            return attribute;
+        }
+
+        private void AddAttributesToCategory(ShopStorage context, Category category, Collection<int> attributeIds)
+        {
+            foreach (var attributeId in attributeIds)
+            {
+                if (category.ProductAttributes.Where(pa => pa.Id == attributeId).Count() == 0)
+                {
+                    ProductAttribute attribute = TryGetAttributeFromObjectStateManager(context, attributeId);
+                    category.ProductAttributes.Add(attribute);
+                }
+            }
+        }
+
+        private void RemoveAttributesFromCategory(ShopStorage context, Category category, Collection<int> attributeIds)
+        {
+            foreach (var attributeId in attributeIds)
+            {
+                if (category.ProductAttributes.Where(pa => pa.Id == attributeId).Count() != 0)
+                {
+                    ProductAttribute attribute = TryGetAttributeFromObjectStateManager(context, attributeId);
+                    category.ProductAttributes.Remove(attribute);
+                }
+            }   
         }
 
         public ActionResult Delete(int id)

@@ -7,86 +7,37 @@ using Shop.Models;
 
 namespace Shop.Areas.Admin.Controllers
 {
+    [Authorize(Roles="Administrators")]
     public class TagsController : Controller
     {
-        //
-        // GET: /Admin/Tags/
-
         public ActionResult Index()
         {
-            return View();
-        }
-
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-
-        public ActionResult Create()
-        {
-            return View();
-        } 
-
-        [HttpPost]
-        public ActionResult Create(Tag tag)
-        {
-            try
+            using (ShopStorage context= new ShopStorage())
             {
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-        
- 
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
- 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
+                List<Tag> tags = context.Tags.ToList();
+                return View(tags); 
             }
         }
 
-        //
-        // GET: /Admin/Tags/Delete/5
- 
+        public ActionResult Add([Bind(Exclude="Id")]Tag tag)
+        {
+            using (ShopStorage context = new ShopStorage())
+            {
+                context.AddToTags(tag);
+                context.SaveChanges();
+            }
+            return RedirectToAction("Index");
+        }
+
         public ActionResult Delete(int id)
         {
-            return View();
-        }
-
-        //
-        // POST: /Admin/Tags/Delete/5
-
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
+            using (ShopStorage context = new ShopStorage())
             {
-                // TODO: Add delete logic here
- 
-                return RedirectToAction("Index");
+                Tag tag = context.Tags.Where(t => t.Id == id).First();
+                context.DeleteObject(tag);
+                context.SaveChanges();
             }
-            catch
-            {
-                return View();
-            }
+            return RedirectToAction("Index");
         }
     }
 }

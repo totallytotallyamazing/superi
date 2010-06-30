@@ -33,7 +33,7 @@ namespace Shop.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(FormCollection form, int productId, int categoryId)
+        public void Index(FormCollection form, int productId, int categoryId)
         {
             using (ShopStorage context = new ShopStorage())
             {
@@ -53,7 +53,7 @@ namespace Shop.Areas.Admin.Controllers
                     }
                 }
                 context.SaveChanges();
-                return RedirectToAction("AddEdit", "Products", new { area = "Admin", id = productId, cId = categoryId });
+                Response.Write("<script type=\"text/javascript\">window.top.$.fancybox.close()</script>");
             }
         }
     }

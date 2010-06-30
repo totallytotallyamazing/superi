@@ -90,6 +90,7 @@
     <Compile Include="Areas\Admin\Controllers\FormCollectionExtender.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductAttributeValuesController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductTagsController.cs" />
     <Compile Include="Areas\Admin\Controllers\TagsController.cs" />
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -247,8 +248,9 @@
     <Content Include="Areas\Admin\Views\Attributes\Index.aspx" />
     <Content Include="Areas\Admin\Views\AttributeValues\AddEdit.ascx" />
     <Content Include="Areas\Admin\Views\AttributeValues\Index.ascx" />
-    <Content Include="Areas\Admin\Views\ProductAttributeValues\Index.aspx" />
+    <Content Include="Areas\Admin\Views\ProductAttributeValues\Index.ascx" />
     <Content Include="Areas\Admin\Views\ProductAttributeValues\ProuctAttributeValue.ascx" />
+    <Content Include="Areas\Admin\Views\ProductTags\Index.ascx" />
     <Content Include="Areas\Admin\Views\Tags\Index.aspx" />
     <Content Include="Content\Articles.css" />
     <Content Include="Content\catalog.css" />

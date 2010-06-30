@@ -45,10 +45,13 @@ namespace Shop.Areas.Admin.Controllers
                 int[] items = (from item in postData where item.Value["attr"] == "true" select int.Parse(item.Key)).ToArray();
                 foreach (int id in items)
                 {
-                    ProductAttributeValue val = context.ProductAttributeValues.Where(pav => pav.Id == id).First();
+                    ProductAttributeValue val = new ProductAttributeValue();
                     
-                    if (product.ProductAttributeValues.Where(pv => pv.Id == val.Id).Count() == 0)
+                    if (product.ProductAttributeValues.Where(pv => pv.Id == id).Count() == 0)
                     {
+                        val.Id = id;
+                        val.EntityKey = new System.Data.EntityKey("ShopStorage.ProductAttributeValues", "Id", id);
+                        context.Attach(val);
                         product.ProductAttributeValues.Add(val);
                     }
                 }

@@ -9,15 +9,16 @@ namespace Shop.Areas.Admin.Controllers
 {
     public class ProductTagsController : Controller
     {
+        [OutputCache(NoStore = true, VaryByParam = "*", Duration = 1)]
         public ActionResult Index(int id)
         {
-            using (ShopStorage context  = new ShopStorage())
+            using (ShopStorage context = new ShopStorage())
             {
                 List<Tag> tags = context.Tags.ToList();
                 int[] productTagsSelected = context.Products.Where(p => p.Id == id).SelectMany(p => p.Tags).Select(t => t.Id).ToArray();
                 ViewData["productTagsSelected"] = productTagsSelected;
                 ViewData["ProductId"] = id;
-                return View(tags); 
+                return View(tags);
             }
         }
 
@@ -30,19 +31,30 @@ namespace Shop.Areas.Admin.Controllers
 
                 product.ProductAttributeValues.Clear();
 
-                PostData postData = form.ProcessPostData("productId", "categoryId");
-                int[] items = (from item in postData where item.Value["attr"] == "true" select int.Parse(item.Key)).ToArray();
-                foreach (int id in items)
+                PostData postData = form.ProcessPostData("id");
+                int[] items = (from item in postData where item.Value["tag"] == "true" select int.Parse(item.Key)).ToArray();
+                int[] itemsToRemove = (from item in postData where item.Value["tag"] == "false" select int.Parse(item.Key)).ToArray();
+                foreach (int tagId in items)
                 {
-                    ProductAttributeValue val = context.ProductAttributeValues.Where(pav => pav.Id == id).First();
-                    
-                    if (product.ProductAttributeValues.Where(pv => pv.Id == val.Id).Count() == 0)
+                    Tag val = new Tag();
+                    if (product.Tags.Where(t => t.Id == tagId).Count() == 0)
                     {
-                        product.ProductAttributeValues.Add(val);
+                        val.Id = tagId;
+                        val.EntityKey = new System.Data.EntityKey("ShopStorage.Tags", "Id", tagId);
+                        context.Attach(val);
+                        product.Tags.Add(val);
                     }
                 }
+
+                foreach (int tagId in itemsToRemove)
+                {
+                    Tag val = product.Tags.Where(t => t.Id == tagId).FirstOrDefault();
+                    if (val != null)
+                        product.Tags.Remove(val);
+                }
                 context.SaveChanges();
-            Response.Write("<script type=\"text/javascript\">windoq.top.$fancybox.close();</script>");
+            }
+            Response.Write("<script type=\"text/javascript\">window.top.$.fancybox.close();</script>");
         }
     }
 }

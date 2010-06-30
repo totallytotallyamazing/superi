@@ -98,7 +98,7 @@ namespace Shop.Areas.Admin.Controllers
             {
                 PostData data = form.ProcessPostData("id");
                 Category category = context.Categories
-                    .Include("Categories").Include("Parent").Include("ProductAttributes")
+                    .Include("Categories.ProductAttributes").Include("Parent").Include("ProductAttributes")
                     .Where(c => c.Id == id).First();
                 Collection<int> addAttributeIds = new Collection<int>();
                 Collection<int> removeAttributeIds = new Collection<int>();

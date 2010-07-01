@@ -14,7 +14,7 @@ namespace Shop.Areas.Admin.Controllers
         //
         // GET: /Admin/Articles/
         [HttpGet]
-        public ActionResult AddEdit(int? id)
+        public ActionResult AddEdit(int? id, int type)
         {
             Article article = null;
             if (id.HasValue)
@@ -28,7 +28,7 @@ namespace Shop.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddEdit(Article article, int? Id)
+        public ActionResult AddEdit(Article article, int? Id, int type)
         {
             using (ContentStorage context = new ContentStorage())
             {
@@ -52,7 +52,5 @@ namespace Shop.Areas.Admin.Controllers
 
             return RedirectToAction("Index", "Articles", new { area = "" });
         }
-       
-
     }
 }

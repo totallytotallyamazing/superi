@@ -2,10 +2,7 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<% 
-    if (Request.UrlReferrer == null || Request.UrlReferrer.Host != Request.Url.Host)
-        Response.Redirect("~/promos/radiobaby.htm");
-%>
+
 <head runat="server">
 
     <script src="js/jquery.js" type="text/javascript"></script>
@@ -86,7 +83,7 @@
             </div>
         </div>
             <div id="funClub">
-                <a target="_blank" href="http://www.tinakarol.net"
+                <a target="_blank" href="http://fan.tinakarol.ua"
                 ><img alt="Фан клуб" src="Images/fun.jpg" /></a>
             </div>
             <div id="promoDiv">

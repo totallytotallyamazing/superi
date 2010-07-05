@@ -17,6 +17,7 @@ namespace Shop.Areas.Admin.Controllers
         public ActionResult AddEdit(int? id, int type)
         {
             Article article = null;
+            ViewData["type"] = type;
             if (id.HasValue)
             {
                 using (ContentStorage context = new ContentStorage())
@@ -28,7 +29,7 @@ namespace Shop.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddEdit(Article article, int? Id, int type)
+        public ActionResult AddEdit(Article article, int? Id)
         {
             using (ContentStorage context = new ContentStorage())
             {
@@ -45,12 +46,13 @@ namespace Shop.Areas.Admin.Controllers
                 else
                 {
                     article.Language = "ru-RU";
+                    article.Name = article.Title;
                     context.AddToArticles(article);
                 }
                 context.SaveChanges();
             }
 
-            return RedirectToAction("Index", "Articles", new { area = "" });
+            return RedirectToAction("Index", "Articles", new { area = "", type = article.Type });
         }
     }
 }

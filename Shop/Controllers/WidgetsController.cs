@@ -14,10 +14,10 @@ namespace Shop.Controllers
             using (ContentStorage context = new ContentStorage())
             {
                 var articles = context.Articles
-                    //.Where(a=>a.Type=1)
+                    .Where(a => a.Type == 1)
                     .OrderByDescending(a => a.Date)
                     .Take(1).ToList();
-
+                ViewData["type"] = 1;
                 return View(articles);
             }
         }
@@ -26,11 +26,16 @@ namespace Shop.Controllers
         {
             using (ContentStorage context = new ContentStorage())
             {
+                int articlesCount = context.Articles.Where(a => a.Type == 2).Count();
+                Random rnd = new Random();
+                int index = rnd.Next(articlesCount - 1);
                 var articles = context.Articles
-                    //.Where(a=>a.Type=2)
+                    .Where(a => a.Type == 2)
                     .OrderByDescending(a => a.Date)
+                    .Skip(index)
                     .Take(1).ToList();
-
+                ViewData["type"] = 2;
+                ViewData["index"] = index + 1;
                 return View(articles);
             }
         }

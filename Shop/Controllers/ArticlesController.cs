@@ -12,11 +12,24 @@ namespace Shop.Controllers
         //
         // GET: /Articles/
 
-        public ActionResult Index()
+        public ActionResult Index(int type)
         {
+            switch (type)
+            {
+                case 1:
+                    ViewData["title"] = "Новости";
+                    ViewData["css"] = "/Content/Articles.css";
+                    break;
+                case 2:
+                    ViewData["title"] = "Мифы";
+                    ViewData["css"] = "/Content/Myths.css";
+                    break;
+            }
+
+            ViewData["type"] = type;
             using (ContentStorage context = new ContentStorage())
             {
-                var articles = context.Articles.Select(a => a).ToList();
+                var articles = context.Articles.Where(a=>a.Type == type).ToList();
                 return View(articles);
             }
             

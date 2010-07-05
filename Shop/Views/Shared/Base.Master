@@ -16,6 +16,12 @@
        { %>
     <link href="/Content/Admin.css" rel="stylesheet" type="text/css" />
     <%} %>
+    <%if(false) {%>
+        <script type="text/javascript" src="../../Scripts/jquery-vsdoc.js"></script>
+        <script type="text/javascript">
+            /// <reference path="jquery.js" />
+        </script>
+    <%} %>
     <script type="text/javascript" src="/Scripts/jquery.js"></script>
     <script type="text/javascript" src="/Scripts/start.js"></script>
     <asp:ContentPlaceHolder runat="server" ID="includes">

@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<Shop.Models.Article>>" %>
-
+<%@ Import Namespace="Dev.Mvc.Ajax" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	
+	<%= ViewData["title"] %>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
@@ -14,18 +14,18 @@
                Html.RenderPartial("Article", item);
            } %>
 <div style="clear:both"></div>
-
-    <p>
-        <%= Html.ActionLink("Создать", "AddEdit", "Articles", new { area="Admin"}, null)%>
-    </p>
-
+<% if(Roles.IsUserInRole("Administrators")){ %>
+    <div class="adminLink">
+        <%= Html.ActionLink("Создать", "AddEdit", "Articles", new { area="Admin", type=ViewData["type"] }, null)%>
+    </div>
+<%} %>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentTitle" runat="server">
-Новости
+    <%= ViewData["title"] %>
 </asp:Content>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="includes" runat="server">
-    <link rel="Stylesheet" href="/Content/Articles.css" />
+    <%= Ajax.DynamicCssInclude((string)ViewData["css"]) %>
 </asp:Content>
 

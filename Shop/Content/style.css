@@ -36,7 +36,7 @@ body{background:url(img/bg.jpg);}
 #currency h3 {font:Verdana, sans-serif; font-size:11px; font-weight:bold; color:#000000;margin:3px 0px 0px 20px;}
 #currency a {font:Verdana, sans-serif; font-size:11px; font-weight:bold; color:#669933;}
 #currency a:hover{color:#ffffff; text-decoration:none; background-color:#669933;}
-#blueText {height:39px; width:200px;float:left; margin-top:4px;}
+#blueText {height:39px; float:left; margin-top:4px;}
 #blueText p{color:#0099cc;font:Verdana, sans-serif; font-size:20px;font-weight:bold; font-style:italic;}
 #basket{height:39px; float:right; margin-right:20px;}
 #basket p{font:Verdana, sans-serif; font-size:14px;margin:8px 0px 0px 240px;}

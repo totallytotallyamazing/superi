@@ -10,7 +10,6 @@
     <% using (Html.BeginForm()) {%>
         <%= Html.ValidationSummary(true) %>
         <%=Html.Hidden("language")%>
-        <%=Html.Hidden("type")%>
         <fieldset>
             <div class="editor-label">
                 <%= Html.LabelFor(model => model.Title) %>

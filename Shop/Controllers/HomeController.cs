@@ -12,7 +12,6 @@ namespace Shop.Controllers
     {
         public ActionResult Index()
         {
-            return View();
             return RedirectToAction("Go", new { id = "home" });
         }
 

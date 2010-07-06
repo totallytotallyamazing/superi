@@ -18,7 +18,6 @@
     
     <script type="text/javascript" src="/Scripts/jquery.js"></script>
     <script type="text/javascript" src="/Scripts/start.js"></script>
-    <script type="text/javascript" src="/Scripts/jquery.fancybox.js"></script>
     <asp:ContentPlaceHolder runat="server" ID="includes"></asp:ContentPlaceHolder>
 </head>
 <body>
@@ -140,7 +139,7 @@
     </div>
             <div id="footer">
             <div id="girl">
-                <img src="/Content/img/girl.jpg" alt="jeans">
+                <img src="/Content/img/girl1.png" alt="jeans">
             </div>
             <div id="footerCopy">
                 <p>

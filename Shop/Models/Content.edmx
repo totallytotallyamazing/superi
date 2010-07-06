@@ -6,8 +6,8 @@
     <edmx:StorageModels>
     <Schema Namespace="shop_contentModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.0" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
         <EntityContainer Name="shop_contentModelStoreContainer">
-          <EntitySet Name="Articles" EntityType="shop_contentModel.Store.Articles" store:Type="Tables" Schema="gbua_x_baby_583" />
-          <EntitySet Name="Content" EntityType="shop_contentModel.Store.Content" store:Type="Tables" Schema="gbua_x_baby_583" />
+          <EntitySet Name="Articles" EntityType="shop_contentModel.Store.Articles" store:Type="Tables" Schema="gbua_mlady" />
+          <EntitySet Name="Content" EntityType="shop_contentModel.Store.Content" store:Type="Tables" Schema="gbua_mlady" />
         </EntityContainer>
         <EntityType Name="Articles">
           <Key>
@@ -22,7 +22,6 @@
           <Property Name="Preview" Type="varchar" MaxLength="500" />
           <Property Name="Text" Type="text" />
           <Property Name="Title" Type="varchar" Nullable="false" MaxLength="500" />
-          <Property Name="Type" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Content">
           <Key>
@@ -60,7 +59,7 @@
           <Property Name="Preview" Type="String" />
           <Property Name="Text" Type="String" />
           <Property Name="Title" Type="String" Nullable="false" />
-          <Property Name="Type" Type="Int32" Nullable="false" /></EntityType>
+          </EntityType>
         <EntityType Name="Content">
           <Key>
             <PropertyRef Name="Id" />
@@ -85,7 +84,6 @@
           <EntitySetMapping Name="Articles">
             <EntityTypeMapping TypeName="IsTypeOf(shop_contentModel.Article)">
               <MappingFragment StoreEntitySet="Articles">
-                <ScalarProperty Name="Type" ColumnName="Type" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -141,6 +139,7 @@
           <ConnectorPoint PointX="3.5319230769230767" PointY="3.46580078125" />
           <ConnectorPoint PointX="3.5319230769230767" PointY="3.7158007812499996" />
           <ConnectorPoint PointX="3.9784615384615383" PointY="3.7158007812499996" />
-          <ConnectorPoint PointX="3.9784615384615383" PointY="3.46580078125" /></AssociationConnector></Diagram></edmx:Diagrams>
+          <ConnectorPoint PointX="3.9784615384615383" PointY="3.46580078125" /></AssociationConnector>
+        <EntityTypeShape EntityType="shop_contentModel.Article" Width="1.5" PointX="2.75" PointY="0.75" Height="2.71580078125" /></Diagram></edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

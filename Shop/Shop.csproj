@@ -78,14 +78,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\ArticlesController.cs" />
     <Compile Include="Areas\Admin\Controllers\AttributesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\AttributeValuesController.cs" />
     <Compile Include="Areas\Admin\Controllers\BrandsController.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoriesController.cs" />
     <Compile Include="Areas\Admin\Controllers\ContentController.cs" />
     <Compile Include="Areas\Admin\Controllers\FormCollectionExtender.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductAttributeValuesController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductTagsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TagsController.cs" />
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ArticlesController.cs" />
     <Compile Include="Controllers\BrandsController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\ContentAttribute.cs" />
@@ -100,6 +106,7 @@
     <Compile Include="Helpers\Captcha\CaptchaImage.cs" />
     <Compile Include="Helpers\Captcha\CaptchaValidationAttribute.cs" />
     <Compile Include="Helpers\CkExtensions.cs" />
+    <Compile Include="Helpers\DateTimeExtensions.cs" />
     <Compile Include="Helpers\GraphicsHelper.cs" />
     <Compile Include="Helpers\HtmlHelpers.cs" />
     <Compile Include="Helpers\IOHelper.cs" />
@@ -111,6 +118,7 @@
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Helpers\WebSession.cs" />
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\ArticleValidation.cs" />
     <Compile Include="Models\Brand.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Content.Designer.cs">
@@ -282,7 +290,23 @@
     <Content Include="Views\Shared\Base.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Admin\Views\Articles\AddEdit.aspx" />
+    <Content Include="Areas\Admin\Views\Attributes\AddEdit.aspx" />
+    <Content Include="Areas\Admin\Views\Attributes\Index.aspx" />
+    <Content Include="Areas\Admin\Views\AttributeValues\AddEdit.ascx" />
+    <Content Include="Areas\Admin\Views\AttributeValues\Index.ascx" />
+    <Content Include="Areas\Admin\Views\ProductAttributeValues\Index.ascx" />
+    <Content Include="Areas\Admin\Views\ProductAttributeValues\ProuctAttributeValue.ascx" />
+    <Content Include="Areas\Admin\Views\ProductTags\Index.ascx" />
+    <Content Include="Areas\Admin\Views\Tags\Index.aspx" />
+    <Content Include="Content\Articles.css" />
+    <Content Include="Content\img\girl1.png" />
+    <Content Include="Scripts\jquery-vsdoc.js" />
+    <Content Include="Scripts\jquery.ui.datepicker-ru.js" />
+    <Content Include="Scripts\jquery.ui.js" />
     <Content Include="SetCookie.aspx" />
+    <Content Include="Views\Articles\Article.ascx" />
+    <Content Include="Views\Articles\Index.aspx" />
     <Content Include="Views\Products\Products.Master" />
     <Content Include="Content\contact.css" />
     <Content Include="Views\Shared\FooterDate.ascx" />

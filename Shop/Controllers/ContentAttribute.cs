@@ -26,7 +26,6 @@ namespace Shop.Controllers
 
                     filterContext.Controller.ViewData["text"] = content.Text;
                     filterContext.Controller.ViewData["contentName"] = contentName;
-                    filterContext.Controller.ViewData["text"] = content.Text;
                     filterContext.Controller.ViewData["title"] = content.Title;
                     filterContext.Controller.ViewData["keywords"] = content.Keywords;
                     filterContext.Controller.ViewData["description"] = content.Description;

@@ -4,6 +4,10 @@
 	<%= ViewData["title"] %>
 </asp:Content>
 
+<asp:Content ID="Content4" ContentPlaceHolderID="ContentTitle" runat="server">
+<%= ViewData["title"] %>
+</asp:Content>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <% if(Roles.IsUserInRole("Administrators")){ %>
         <% Html.RenderPartial("CategoriesAdmin"); %>

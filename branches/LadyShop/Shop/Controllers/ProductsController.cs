@@ -20,7 +20,7 @@ namespace Shop.Controllers
                     .Include("ProductAttributeValues")
                     .Include("ProductImages")
                     .Where(p => p.Category.Id == id).ToList();
-
+                    
                 products.ForEach(p => p.ProductAttributeValues.ToList()
                     .ForEach(pav => pav.ProductAttributeReference.Load()));
                 return View(products);

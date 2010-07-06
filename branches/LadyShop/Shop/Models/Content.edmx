@@ -4,10 +4,10 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="gbua_mladyModel1.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.0" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
-        <EntityContainer Name="gbua_mladyModel1StoreContainer">
-          <EntitySet Name="Articles" EntityType="gbua_mladyModel1.Store.Articles" store:Type="Tables" Schema="gbua_mlady" />
-          <EntitySet Name="Content" EntityType="gbua_mladyModel1.Store.Content" store:Type="Tables" Schema="gbua_mlady" />
+    <Schema Namespace="shop_contentModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.0" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
+        <EntityContainer Name="shop_contentModelStoreContainer">
+          <EntitySet Name="Articles" EntityType="shop_contentModel.Store.Articles" store:Type="Tables" Schema="gbua_x_baby_583" />
+          <EntitySet Name="Content" EntityType="shop_contentModel.Store.Content" store:Type="Tables" Schema="gbua_x_baby_583" />
         </EntityContainer>
         <EntityType Name="Articles">
           <Key>
@@ -22,6 +22,7 @@
           <Property Name="Preview" Type="varchar" MaxLength="500" />
           <Property Name="Text" Type="text" />
           <Property Name="Title" Type="varchar" Nullable="false" MaxLength="500" />
+          <Property Name="Type" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Content">
           <Key>
@@ -36,15 +37,14 @@
           <Property Name="Text" Type="text" />
           <Property Name="Title" Type="varchar" MaxLength="500" />
         </EntityType>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="gbua_mladyModel1" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
+      <Schema Namespace="shop_contentModel" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
         <EntityContainer Name="ContentStorage">
-          <EntitySet Name="Articles" EntityType="gbua_mladyModel1.Article" />
-          <EntitySet Name="Contents" EntityType="gbua_mladyModel1.Content" />
-          <AssociationSet Name="ContentContent" Association="gbua_mladyModel1.ContentContent">
+          <EntitySet Name="Articles" EntityType="shop_contentModel.Article" />
+          <EntitySet Name="Contents" EntityType="shop_contentModel.Content" />
+          <AssociationSet Name="ContentContent" Association="shop_contentModel.ContentContent">
             <End Role="Content" EntitySet="Contents" />
             <End Role="Content1" EntitySet="Contents" /></AssociationSet></EntityContainer>
         <EntityType Name="Article">
@@ -60,7 +60,7 @@
           <Property Name="Preview" Type="String" />
           <Property Name="Text" Type="String" />
           <Property Name="Title" Type="String" Nullable="false" />
-        </EntityType>
+          <Property Name="Type" Type="Int32" Nullable="false" /></EntityType>
         <EntityType Name="Content">
           <Key>
             <PropertyRef Name="Id" />
@@ -72,19 +72,20 @@
           <Property Name="Name" Type="String" Nullable="false" />
           <Property Name="Text" Type="String" />
           <Property Name="Title" Type="String" />
-          <NavigationProperty Name="Parent" Relationship="gbua_mladyModel1.ContentContent" FromRole="Content" ToRole="Content1" />
-          <NavigationProperty Name="Children" Relationship="gbua_mladyModel1.ContentContent" FromRole="Content1" ToRole="Content" /></EntityType>
+          <NavigationProperty Name="Parent" Relationship="shop_contentModel.ContentContent" FromRole="Content" ToRole="Content1" />
+          <NavigationProperty Name="Children" Relationship="shop_contentModel.ContentContent" FromRole="Content1" ToRole="Content" /></EntityType>
         <Association Name="ContentContent">
-          <End Type="gbua_mladyModel1.Content" Role="Content" Multiplicity="0..1" />
-          <End Type="gbua_mladyModel1.Content" Role="Content1" Multiplicity="*" /></Association></Schema>
+          <End Type="shop_contentModel.Content" Role="Content" Multiplicity="1" />
+          <End Type="shop_contentModel.Content" Role="Content1" Multiplicity="*" /></Association></Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="urn:schemas-microsoft-com:windows:storage:mapping:CS">
-        <EntityContainerMapping StorageEntityContainer="gbua_mladyModel1StoreContainer" CdmEntityContainer="ContentStorage">
+        <EntityContainerMapping StorageEntityContainer="shop_contentModelStoreContainer" CdmEntityContainer="ContentStorage">
           <EntitySetMapping Name="Articles">
-            <EntityTypeMapping TypeName="IsTypeOf(gbua_mladyModel1.Article)">
+            <EntityTypeMapping TypeName="IsTypeOf(shop_contentModel.Article)">
               <MappingFragment StoreEntitySet="Articles">
+                <ScalarProperty Name="Type" ColumnName="Type" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -98,7 +99,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Contents">
-            <EntityTypeMapping TypeName="IsTypeOf(gbua_mladyModel1.Content)">
+            <EntityTypeMapping TypeName="IsTypeOf(shop_contentModel.Content)">
               <MappingFragment StoreEntitySet="Content">
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -110,7 +111,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="ContentContent" TypeName="gbua_mladyModel1.ContentContent" StoreEntitySet="Content">
+          <AssociationSetMapping Name="ContentContent" TypeName="shop_contentModel.ContentContent" StoreEntitySet="Content">
             <EndProperty Name="Content1">
               <ScalarProperty Name="Id" ColumnName="Id" /></EndProperty>
             <EndProperty Name="Content">
@@ -134,9 +135,9 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram Name="Content">
-        <EntityTypeShape EntityType="gbua_mladyModel1.Article" Width="1.5" PointX="0.75" PointY="0.75" Height="2.7158007812499996" IsExpanded="true" />
-        <EntityTypeShape EntityType="gbua_mladyModel1.Content" Width="1.5" PointX="3" PointY="0.75" Height="2.71580078125" IsExpanded="true" />
-        <AssociationConnector Association="gbua_mladyModel1.ContentContent">
+        <EntityTypeShape EntityType="shop_model.Article" Width="1.5" PointX="0.75" PointY="0.75" Height="2.7158007812499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="shop_model.Content" Width="1.5" PointX="3.875" PointY="0.875" Height="2.71580078125" IsExpanded="true" />
+        <AssociationConnector Association="shop_model.ContentContent">
           <ConnectorPoint PointX="3.5319230769230767" PointY="3.46580078125" />
           <ConnectorPoint PointX="3.5319230769230767" PointY="3.7158007812499996" />
           <ConnectorPoint PointX="3.9784615384615383" PointY="3.7158007812499996" />

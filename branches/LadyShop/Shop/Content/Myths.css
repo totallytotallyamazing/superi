@@ -1,0 +1,8 @@
+﻿#borderLine h1{color:#ff0000;}
+#borderLine, #borderLine2 {border-bottom:#ff0000 solid 3px; }
+#contentWrapper{padding-bottom:38px;}
+.articleItem{padding-top:40px;}
+.articleItemDate{font-size:10px; color:#999; font-weight:bold; padding-left:5px; padding-bottom:5px;}
+.articleItemTitle{color:White; font-size:13px; background:#ff0000; padding:1px 3px 2px 3px; float:left; clear:both; font-weight:bold;}
+.articleItemText{clear:both; padding-left:38px; padding-top:10px; font-size:11px;}
+

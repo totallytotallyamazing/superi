@@ -17,7 +17,7 @@ namespace Shop.Controllers
                 var articles = context.Articles
                     .OrderByDescending(a => a.Date)
                     .Take(3).ToList();
-
+                ViewData["type"] = 1;
                 return View(articles);
             }
         }

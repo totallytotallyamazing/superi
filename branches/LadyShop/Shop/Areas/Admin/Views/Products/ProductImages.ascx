@@ -11,7 +11,7 @@
 	}
     bool isDefault = images.Value.Count() == 0;
     %>
-    <%using (Html.BeginForm("SetDefaultImage", "Admin", FormMethod.Post, new { id="imagesForm"}))
+    <%using (Html.BeginForm("SetDefaultImage", "Products", FormMethod.Post, new { id="imagesForm"}))
       { %>
         <%= Html.Hidden("adId", images.Key)%>
         <% foreach (var item in images.Value)

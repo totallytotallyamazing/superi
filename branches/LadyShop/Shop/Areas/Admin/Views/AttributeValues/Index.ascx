@@ -20,7 +20,7 @@
                 <%= Html.Encode(item.SortOrder) %>
             </td>
             <td>
-                <%= Html.ActionLink("Изменть", "Edit", new { controller="AttributeValues", id=item.Id, attributeId=ViewData["attributeId"] }) %> |
+                <%= Html.ActionLink("Изменть", "AddEdit", new { controller="AttributeValues", id=item.Id, attributeId=ViewData["attributeId"] }) %> |
                 <%= Html.ActionLink("Удалить", "Delete", new { controller="AttributeValues", id=item.Id })%>
             </td>
         </tr>
@@ -29,7 +29,7 @@
     </table>
 
     <p>
-        <%= Html.ActionLink("Добавить значение", "AddEdit", new { controller = "AttributeValues", id = ViewData["attributeId"] }, new { @class="fancyAttributeValue iframe" })%>
+        <%= Html.ActionLink("Добавить значение", "AddEdit", new { controller = "AttributeValues", attributeId = ViewData["attributeId"] }, new { @class = "fancyAttributeValue" })%>
     </p>
 
 

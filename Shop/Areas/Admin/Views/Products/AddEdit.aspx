@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<Shop.Models.Product>" %>
 <%@ Import Namespace="Shop.Models" %>
+<%@ Import Namespace="Dev.Mvc.Ajax" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	<%= ViewData["title"]%>
 </asp:Content>
@@ -9,17 +10,27 @@
     <script type="text/javascript" src="/Scripts/jquery.FCKEditor.js"></script>
     <script type="text/javascript" src="/Scripts/MicrosoftAjax.js"></script>
     <script type="text/javascript" src="/Scripts/MicrosoftMvcValidation.js"></script>
+    <%= Ajax.ScriptInclude("/Scripts/jquery.fancybox.js")  %>
+    <%= Ajax.DynamicCssInclude("/Content/fancybox/jquery.fancybox.css")%>
 
     <script type="text/javascript">
         $(function() {
             $.fck.config = { path: '<%= VirtualPathUtility.ToAbsolute("~/Controls/fckeditor/") %>', config: { SkinPath: "skins/office2003/", DefaultLanguage: "ru", AutoDetectLanguage: false, EnterMode: "br", ShiftEnterMode: "p", HtmlEncodeOutput: true} };
             $("#Description, #ShortDescription").fck({ toolbar: "Basic", height: 200 });
+
+            $(".fancyAdmin").fancybox({showCloseButton:true, hideOnOverlayClick:false, hideOnContentClick:false});
         });
+        
+        
+        
     </script>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-
+    <%if (Model!=null){ %>
+        <%= Html.ActionLink("Размеры в наличии", "Index", "ProductAttributeValues", new { id = Model.Category.Id,productId=Model.Id }, new { @class = "fancyAdmin iframe" })%>
+        <%= Html.ActionLink("Теги", "Index", "ProductTags", new { id = Model.Id }, new { @class = "fancyAdmin iframe" })%>
+    <%} %>
     <%if (ViewData["id"] != null)
      {
          Dictionary<long, IEnumerable<ProductImage>> item = new Dictionary<long, IEnumerable<ProductImage>>();
@@ -126,6 +137,6 @@
     <% } %>
 
     <div>
-        <%= Html.ActionLink("Назад", "Index") %>
+        <%= Html.ActionLink("Назад", "Index", "Products", new { area = "", id = ViewData["cId"] }, null)%>
     </div>
 </asp:Content>

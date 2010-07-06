@@ -15,6 +15,8 @@ namespace Shop.Controllers
             ViewData["brandId"] = brandId;
             using (ShopStorage context = new ShopStorage())
             {
+                ViewData["title"] = context.Categories.Where(c => c.Id == id).Select(c => c.Name).First();
+
                 List<Product> products = context.Products
                     .Include("Brand")
                     .Include("ProductAttributeValues")

@@ -14,10 +14,9 @@ namespace Shop.Areas.Admin.Controllers
         //
         // GET: /Admin/Articles/
         [HttpGet]
-        public ActionResult AddEdit(int? id, int type)
+        public ActionResult AddEdit(int? id)
         {
             Article article = null;
-            ViewData["type"] = type;
             if (id.HasValue)
             {
                 using (ContentStorage context = new ContentStorage())
@@ -52,7 +51,7 @@ namespace Shop.Areas.Admin.Controllers
                 context.SaveChanges();
             }
 
-            return RedirectToAction("Index", "Articles", new { area = "", type = article.Type });
+            return RedirectToAction("Index", "Articles", new { area = ""});
         }
     }
 }

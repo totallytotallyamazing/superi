@@ -6,19 +6,19 @@
     <edmx:StorageModels>
     <Schema Namespace="shop_model.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.0" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
         <EntityContainer Name="shop_modelStoreContainer">
-          <EntitySet Name="Brand" EntityType="shop_model.Store.Brand" store:Type="Tables" Schema="gbua_x_baby_583" />
-          <EntitySet Name="Category" EntityType="shop_model.Store.Category" store:Type="Tables" Schema="gbua_x_baby_583" />
-          <EntitySet Name="CategoryProductAttributeMapping" EntityType="shop_model.Store.CategoryProductAttributeMapping" store:Type="Tables" Schema="gbua_x_baby_583" />
-          <EntitySet Name="Discount" EntityType="shop_model.Store.Discount" store:Type="Tables" Schema="gbua_x_baby_583" />
-          <EntitySet Name="Product" EntityType="shop_model.Store.Product" store:Type="Tables" Schema="gbua_x_baby_583" />
-          <EntitySet Name="ProductAttribute" EntityType="shop_model.Store.ProductAttribute" store:Type="Tables" Schema="gbua_x_baby_583" />
-          <EntitySet Name="ProductAttributeValue" EntityType="shop_model.Store.ProductAttributeValue" store:Type="Tables" Schema="gbua_x_baby_583" />
-          <EntitySet Name="ProductAttributeValueAvailable" EntityType="shop_model.Store.ProductAttributeValueAvailable" store:Type="Tables" Schema="gbua_x_baby_583" />
-          <EntitySet Name="ProductDiscountMapping" EntityType="shop_model.Store.ProductDiscountMapping" store:Type="Tables" Schema="gbua_x_baby_583" />
-          <EntitySet Name="ProductImage" EntityType="shop_model.Store.ProductImage" store:Type="Tables" Schema="gbua_x_baby_583" />
-          <EntitySet Name="ProductTagMapping" EntityType="shop_model.Store.ProductTagMapping" store:Type="Tables" Schema="gbua_x_baby_583" />
-          <EntitySet Name="SimilalProduct" EntityType="shop_model.Store.SimilalProduct" store:Type="Tables" Schema="gbua_x_baby_583" />
-          <EntitySet Name="Tag" EntityType="shop_model.Store.Tag" store:Type="Tables" Schema="gbua_x_baby_583" />
+          <EntitySet Name="Brand" EntityType="shop_model.Store.Brand" store:Type="Tables" Schema="gbua_mlady" />
+          <EntitySet Name="Category" EntityType="shop_model.Store.Category" store:Type="Tables" Schema="gbua_mlady" />
+          <EntitySet Name="CategoryProductAttributeMapping" EntityType="shop_model.Store.CategoryProductAttributeMapping" store:Type="Tables" Schema="gbua_mlady" />
+          <EntitySet Name="Discount" EntityType="shop_model.Store.Discount" store:Type="Tables" Schema="gbua_mlady" />
+          <EntitySet Name="Product" EntityType="shop_model.Store.Product" store:Type="Tables" Schema="gbua_mlady" />
+          <EntitySet Name="ProductAttribute" EntityType="shop_model.Store.ProductAttribute" store:Type="Tables" Schema="gbua_mlady" />
+          <EntitySet Name="ProductAttributeValue" EntityType="shop_model.Store.ProductAttributeValue" store:Type="Tables" Schema="gbua_mlady" />
+          <EntitySet Name="ProductAttributeValueAvailable" EntityType="shop_model.Store.ProductAttributeValueAvailable" store:Type="Tables" Schema="gbua_mlady" />
+          <EntitySet Name="ProductDiscountMapping" EntityType="shop_model.Store.ProductDiscountMapping" store:Type="Tables" Schema="gbua_mlady" />
+          <EntitySet Name="ProductImage" EntityType="shop_model.Store.ProductImage" store:Type="Tables" Schema="gbua_mlady" />
+          <EntitySet Name="ProductTagMapping" EntityType="shop_model.Store.ProductTagMapping" store:Type="Tables" Schema="gbua_mlady" />
+          <EntitySet Name="SimilalProduct" EntityType="shop_model.Store.SimilalProduct" store:Type="Tables" Schema="gbua_mlady" />
+          <EntitySet Name="Tag" EntityType="shop_model.Store.Tag" store:Type="Tables" Schema="gbua_mlady" />
         </EntityContainer>
         <EntityType Name="Brand">
           <Key>

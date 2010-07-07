@@ -55,5 +55,21 @@ namespace Shop.Controllers
                 return View(product); 
             }
         }
+
+        public ActionResult Tags(int id)
+        {
+            ViewData["tags"] = true;
+            ViewData["showAdminLinks"] = false;
+            using (ShopStorage context = new ShopStorage())
+            {
+                var products = context.Products
+                    .Include("Brand")
+                    .Include("ProductImages")
+                    .Include("ProductAttributeValues.ProductAttribute")
+                    .Where(p=>p.Tags.Where(t=>t.Id == id).Count()>0)
+                    .ToList();
+                return View("Index", products); 
+            }
+        }
     }
 }

@@ -9,7 +9,7 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <% if(Roles.IsUserInRole("Administrators")){ %>
+    <% if(Roles.IsUserInRole("Administrators") && ViewData["tags"] != null){ %>
         <% Html.RenderPartial("CategoriesAdmin"); %>
     <%} %>
     <% if(Model!=null)

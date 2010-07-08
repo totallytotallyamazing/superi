@@ -51,6 +51,9 @@ namespace Shop.Controllers
                 Product product = context.Products
                     .Include("ProductImages")
                     .Include("ProductAttributeValues")
+                    .Include("ProductAttributeValues.ProductAttribute")
+                    .Include("Category")
+                    .Include("Brand")
                     .Where(p => p.Id == id).First();
                 return View(product); 
             }

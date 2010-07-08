@@ -2,10 +2,6 @@
 <%@ Import Namespace="Dev.Mvc.Helpers" %>
 <% 
     string productClickLink = Html.ActionLink("[IMAGE]", "Show", new { id = Model.Id }).ToString();
-    if (Roles.IsUserInRole("Administrators"))
-    {
-        productClickLink = Html.ActionLink("[IMAGE]", "AddEdit", "Products", new { area = "Admin", id = Model.Id, cId = ViewData["categoryId"], bId = ViewData["brandId"] }, null).ToString();
-    }
 %>
 <div class="tovarBox">
     <div class="nazva">
@@ -15,13 +11,13 @@
     <div class="item">
         <a href="#">
             <% if (Model.ProductImages.Count > 0){ %>
-            <%= productClickLink
+            <%= Html.ActionLink("[IMAGE]", "Show", new { id = Model.Id }).ToString()
                 .Replace("[IMAGE]",
                 Html.CachedImage("~/Content/ProductImages", Model.ProductImages.Where(pi => pi.Default).First().ImageSource, "thumbnail2", Model.Name))%>
             <%}
                else
                {
-                   Response.Write(productClickLink.Replace("[IMAGE]", "редактировать"));
+                   Response.Write(productClickLink.Replace("[IMAGE]", Model.Name));
                }
             %>
         </a>

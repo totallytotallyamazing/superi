@@ -5,7 +5,7 @@
 
     foreach (var item in pav)
     {%>
-        <h2>Размер: <strong><%= string.Join(",", item.ToArray()) %></strong></h2>
+        Размер: <strong><%= string.Join(",", item.ToArray()) %></strong>
   <%}
 %>
 

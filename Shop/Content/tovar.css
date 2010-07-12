@@ -1,5 +1,6 @@
-#tovar{height:456px;width:359px; border: 1px solid #999999; padding: 0px 0px 0px 0px; float:left;}
-#tovarDesk{height:456px;width:235px;float:right;}
+#tovar{padding: 0px 0px 0px 0px; float:left; width:359px;}
+#tovar>img{border: 1px solid #999999;}
+#tovarDesk{ margin-left:380px;}
 #tovarDesk p{font:Verdana, Arial, Helvetica, sans-serif normal;font-size:11pt;}
 #new1{height:15px; width:76px;border:0px solid #000000; position: relative; bottom:456px; right:0px; background:url(img/new.jpg) no-repeat;}
 #guest1{height:130px;width:212px;float:left;border:0px solid green;background:url(img/guest.jpg) no-repeat center;margin:18px 0px 0px 14px;}
@@ -7,8 +8,9 @@
 #guest1 h2{font:Verdana, Arial, Helvetica, sans-serif normal;font-size:10pt;padding:30px 30px 0px 20px;margin:0px 0px 0px 10px; text-align:center; color:#d74f03;}
 #guest1 a{color:#d74f03;}
 
+#borderLine h1{color:#39b54a;}
+#borderLine, #borderLine2 {border-bottom:#39b54a solid 3px; }
 
-
-
-
-
+#imagePreviews{width:365px; text-align:center;} 
+#imagePreviews img{border:1px solid #999;}
+#imagePreviews div.imageItem{float:left; margin-right:10px;}

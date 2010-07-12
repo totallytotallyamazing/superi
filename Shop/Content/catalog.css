@@ -4,7 +4,8 @@
 .nazva{height:23px; width:152px;}
 .nazva p{font:Verdana, Arial, Helvetica, sans-serif;}
 .nazva a{font-weight:bold;font-size:11pt;color:#6699cc;}
-.item{height:193px;width:152px; border:1px solid #999999;}
+.item{width:152px;}
+.item a img{border:1px solid #999999;}
 .new{height:15px; width:76px;position:relative; bottom:14px; right:1px; background:url(img/new.jpg) no-repeat;}
 .itemDesc{height:156px;width:152px;}
 .itemDesc h3{font:Verdana, Arial, Helvetica, sans-serif;}
@@ -14,8 +15,3 @@
 #next{height:20px;width:200px;margin:0 auto; padding-top:35px;text-align:center;}
 #next a{font:Verdana, Arial, Helvetica, sans-serif; font-weight:bold;font-size:12pt; color:#000000;padding: 2px 5px;}
 #next a:hover{ background-color:#3bb64b;}
-
-
-
-
-

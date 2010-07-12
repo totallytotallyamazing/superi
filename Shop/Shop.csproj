@@ -256,6 +256,7 @@
     <Content Include="Areas\Admin\Views\Tags\Index.aspx" />
     <Content Include="Content\Articles.css" />
     <Content Include="Content\catalog.css" />
+    <Content Include="Content\img\OrderBg.jpg" />
     <Content Include="Content\Myths.css" />
     <Content Include="Content\img\01-o-magazine.png" />
     <Content Include="Content\img\02-o-razmere.png" />

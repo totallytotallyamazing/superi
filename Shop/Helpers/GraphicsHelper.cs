@@ -26,6 +26,8 @@ namespace Dev.Mvc.Helpers
             fixDimension.Add("thumbnail2", FixedDimension.Width);
             maxDimensions.Add("thumbnail3", 85);
             fixDimension.Add("thumbnail3", FixedDimension.Width);
+            maxDimensions.Add("cartThumb", 60);
+            fixDimension.Add("cartThumb", FixedDimension.Width);
         }
 
         private static Size CalculateSize(Size image, FixedDimension? fixedDimension, int maxDimension)

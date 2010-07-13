@@ -75,13 +75,12 @@
                 <%= Html.ValidationMessageFor(model => model.PartNumber) %>
             </div>
             <div class="editor-label">
-                <%= Html.LabelFor(model => model.ShortDescription) %>
+                <%= Html.LabelFor(model => model.Color) %>
             </div>
             <div class="editor-field">
-                <%= Html.TextAreaFor(model => model.ShortDescription) %>
-                <%= Html.ValidationMessageFor(model => model.ShortDescription) %>
+                <%= Html.TextAreaFor(model => model.Color)%>
+                <%= Html.ValidationMessageFor(model => model.Color)%>
             </div>
-
             <div class="editor-label">
                 <%= Html.LabelFor(model => model.Description) %>
             </div>

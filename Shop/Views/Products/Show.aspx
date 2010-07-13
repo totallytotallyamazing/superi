@@ -10,13 +10,19 @@
     <%= Html.ActionLink("Редактировать", "AddEdit", "Products", new { area = "Admin", id = Model.Id, cId = Model.Category.Id, bId = Model.Brand.Id }, null).ToString()%>
     <%} %>
     <div id="linksBoxC">
-        <div id="tovar">
-            <% Html.RenderPartial("ProductImages", Model.ProductImages); %>
-            <% if(Model.IsNew){ %>
-                <div id="new1">
-                </div>
-            <%} %>
+        <div class="productTitle">
+            <h2>
+                <%= Model.Name %>
+            </h2>
         </div>
+        <% using(Html.BeginForm(new {controller="Cart", action="Add", id=Model.Id})){ %>
+            <div id="tovar">
+                <% Html.RenderPartial("ProductImages", Model.ProductImages); %>
+                <% if(Model.IsNew){ %>
+                    <div id="new1">
+                    </div>
+                <%} %>
+            </div>
         <div id="tovarDesk">    
             <p>
                 <%= Model.Description %>
@@ -24,7 +30,7 @@
             <br />
             <p>Артикул: <strong><%= Model.PartNumber %></strong></p>
             <br />
-            <p><% Html.RenderPartial("ProductAttributes", Model.ProductAttributeValues); %></p>
+            <p><% Html.RenderPartial("ProductAttributesSelector", Model.ProductAttributeValues); %></p>
             <br />
             <p>
                 <%= Model.ShortDescription %>
@@ -32,6 +38,7 @@
             <br />
             <p>Цена: <strong><%= Model.Price.ToString("#.##") %> <%= WebSession.Currency %></strong></p>
         </div>
+        <%} %>
         <div style="clear:both"></div>
     </div>
 </asp:Content>

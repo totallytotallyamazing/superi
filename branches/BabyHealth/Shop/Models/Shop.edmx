@@ -65,6 +65,7 @@
           </Key>
           <Property Name="BrandId" Type="int" Nullable="false" />
           <Property Name="CategoryId" Type="int" Nullable="false" />
+          <Property Name="Color" Type="varchar" MaxLength="100" />
           <Property Name="Description" Type="varchar" MaxLength="8000" />
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="IsNew" Type="bit" Nullable="false" />
@@ -138,7 +139,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Value" Type="varchar" Nullable="false" MaxLength="500" />
         </EntityType>
       </Schema></edmx:StorageModels>
@@ -218,7 +219,8 @@
           <Property Name="IsNew" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Discounts" Relationship="shop_model.ProductDiscount" FromRole="Product" ToRole="Discount" />
           <NavigationProperty Name="ProductAttributeValues" Relationship="shop_model.ProductProductAttributeValue" FromRole="Product" ToRole="ProductAttributeValue" />
-          <NavigationProperty Name="Tags" Relationship="shop_model.ProductTag" FromRole="Product" ToRole="Tag" /></EntityType>
+          <NavigationProperty Name="Tags" Relationship="shop_model.ProductTag" FromRole="Product" ToRole="Tag" />
+          <Property Name="Color" Type="String" Nullable="true" /></EntityType>
         <EntityType Name="ProductAttribute">
           <Key>
             <PropertyRef Name="Id" />
@@ -328,6 +330,7 @@
           <EntitySetMapping Name="Products">
             <EntityTypeMapping TypeName="IsTypeOf(shop_model.Product)">
               <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="Color" ColumnName="Color" />
                 <ScalarProperty Name="IsNew" ColumnName="IsNew" />
                 <ScalarProperty Name="PartNumber" ColumnName="PartNumber" />
                 <ScalarProperty Name="Description" ColumnName="Description" />

@@ -17,13 +17,13 @@ namespace Dev.Helpers
             }
         }
 
-        public static Dictionary<long, OrderItem> OrderItems
+        public static Dictionary<int, OrderItem> OrderItems
         {
             get
             {
                 if (Session["orderItems"] == null)
                     Session["orderItems"] = new Dictionary<long, OrderItem>();
-                return (Dictionary<long, OrderItem>)Session["orderItems"];
+                return (Dictionary<int, OrderItem>)Session["orderItems"];
             }
         }
 

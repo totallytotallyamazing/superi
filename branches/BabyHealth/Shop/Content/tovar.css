@@ -14,3 +14,11 @@
 #imagePreviews{width:365px; text-align:center;} 
 #imagePreviews img{border:1px solid #999;}
 #imagePreviews div.imageItem{float:left; margin-right:10px;}
+
+.orderButton{background:transparent url(img/OrderBg.jpg); margin-left:358px; padding-left:10px; width:186px; height:22px; color:White; margin-top:-25px;}
+.orderButton a{color:White;}
+
+#linksBoxC{padding:35px 20px;}
+
+.productTitle h2{color:#666666; font-size:16px;}
+.productTitle{padding-bottom:10px;}

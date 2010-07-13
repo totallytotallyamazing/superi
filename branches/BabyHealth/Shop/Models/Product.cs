@@ -40,6 +40,10 @@ namespace Shop.Models
 
         [DisplayName("Старая цена")]
         public float OldPrice { get; set; }
+
+        [DisplayName("Цвет")]
+        [StringLength(100, ErrorMessage="Максимум 100 символов.")]
+        public string Color { get; set; }
     }
 
 }

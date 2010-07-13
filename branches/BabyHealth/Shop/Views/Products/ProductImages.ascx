@@ -7,6 +7,9 @@
 %>
 <div>
     <%= Html.CachedImage("~/Content/ProductImages", mainImage.ImageSource, "mainView", mainImage.Product.Name) %>
+    <div class="orderButton">
+        <a href="#" onclick="$(this).parents('form')[0].submit()" >Добавить в корзину</a>
+    </div>
 </div>
 <div id="imagePreviews">
 <%foreach (var item in images){%>

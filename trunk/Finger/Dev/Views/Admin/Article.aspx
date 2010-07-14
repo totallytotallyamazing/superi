@@ -25,7 +25,6 @@
         }
     %>
     <% using (Html.BeginForm()){ %>
-        Адрессная строка: <%= Html.TextBox("name") %><br />
         Дата: <%= Html.DatePicker("date", ViewData["date"], null, new {dateFormat = "dd.mm.yy"}) %>
         <%= Ajax.Tabs("tabs", tabs, content, new { })%>
         <input type="submit" value="Сохранить" />

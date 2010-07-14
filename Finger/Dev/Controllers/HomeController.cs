@@ -27,7 +27,9 @@ namespace Dev.Controllers
             using (DataStorage context = new DataStorage())
             {
                 string cultureName = LocaleHelper.GetCultureName();
-                Article article = context.Articles.Where(a => a.Language == cultureName && a.Type == (int)ArticleType.LifeStyle && a.Name == contentName).Select(a => a).First();
+                Article article = context.Articles
+                    .Where(a => a.Language == cultureName && a.Type == (int)ArticleType.LifeStyle && a.Name == contentName)
+                    .Select(a => a).First();
                 ViewData["year"] = article.Date.Year;
                 ViewData["month"] = article.Date.Month;
                 return View(article);

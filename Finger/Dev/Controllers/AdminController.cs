@@ -8,6 +8,7 @@ using Dev.Models;
 using Dev.Helpers;
 using System.Globalization;
 using System.Data;
+using Helpers;
 
 namespace Dev.Controllers
 {
@@ -66,13 +67,13 @@ namespace Dev.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Article(ArticleTranslations articleTranslations, string name, string date, ArticleType type)
+        public ActionResult Article(ArticleTranslations articleTranslations, string date, ArticleType type)
         {
             using (DataStorage context = new DataStorage())
             {
                 foreach (string key in articleTranslations.Keys)
                 {
-                    articleTranslations[key].Name = name;
+                    articleTranslations[key].Name = TextHelper.Transliterate(articleTranslations[key].Name);
                     articleTranslations[key].Date = DateTime.Parse(date, CultureInfo.GetCultureInfo("ru-RU"));
                     articleTranslations[key].Type = (int)type;
                     if (articleTranslations[key].Id > 0)

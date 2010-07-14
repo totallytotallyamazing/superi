@@ -33,6 +33,11 @@ namespace Shop
 
         }
 
+        protected void Application_BeginRequest()
+        { 
+            
+        }
+
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();

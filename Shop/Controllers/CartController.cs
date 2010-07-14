@@ -47,7 +47,8 @@ namespace Shop.Controllers
                         Price = product.Price,
                         ProductId = product.Id,
                         Quantity = 1,
-                        Image = product.ProductImages.Where(i=>i.Default).First().ImageSource
+                        Image = product.ProductImages.Where(i=>i.Default).First().ImageSource,
+                        Description = product.Description
                     };
                     orderItem.SelectedAttributes.AddRange(attributeValues);
                 }

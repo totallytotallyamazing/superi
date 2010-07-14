@@ -15,5 +15,6 @@ namespace Shop.Models
         public int Quantity { get; set; }
         public float Price { get; set; }
         public string Image { get; set; }
+        public string Description { get; set; }
     }
 }

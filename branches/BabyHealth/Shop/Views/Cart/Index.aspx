@@ -11,7 +11,23 @@
             <td>
                 <%= Html.CachedImage("~/Content/ProductImages", item.Image, "cartThumb", "") %>
             </td>
-            <td></td>
+            <td>
+                <div>
+                    <h2><%= item.Name %></h2>
+                </div>  
+                <div>
+                    <%= item.Description %>
+                </div>
+            </td>
+            <td>
+                <%= Html.TextBox("oi_" + item.ProductId) %>
+            </td>
+            <td>
+                
+            </td>
+            <td>
+            
+            </td>
         </tr>
     <%} %>
     </table>

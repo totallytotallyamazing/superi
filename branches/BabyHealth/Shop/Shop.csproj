@@ -329,6 +329,7 @@
     <Content Include="Views\Widgets\Myths.ascx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Admin\Views\Settings\Index.aspx" />
     <Content Include="Configuration\Web.config" />
   </ItemGroup>
   <ItemGroup>

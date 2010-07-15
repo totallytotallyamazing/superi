@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Trips.Mvc.Runtime;
+using System.Globalization;
+using Shop.Models;
 
 namespace Shop.Areas.Admin.Controllers
 {
@@ -14,18 +16,13 @@ namespace Shop.Areas.Admin.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            return View(Configurator.LoadSettings());
         }
 
         [HttpPost]
-        public ActionResult Index(decimal euroRate, decimal dollarRate, decimal rubleRate, string receiverMail, int pageSize    )
+        public ActionResult Index(SiteSettings siteSettings)
         {
-
-            Configurator.SetSetting("EuroRate", euroRate.ToString(CultureInfo.InvariantCulture));
-            Configurator.SetSetting("DollarRate", dollarRate.ToString(CultureInfo.InvariantCulture));
-            Configurator.SetSetting("RubleRate", rubleRate.ToString(CultureInfo.InvariantCulture));
-            Configurator.SetSetting("ReceiverMail", receiverMail);
-            Configurator.SetSetting("PageSize", pageSize.ToString(CultureInfo.InvariantCulture));
+            Configurator.SaveSettings(siteSettings);
             return RedirectToAction("Index");
         }
 

@@ -5,6 +5,9 @@ using System.Web;
 using System.Xml.Linq;
 using System.Configuration;
 using System.Web.Configuration;
+using Shop.Models;
+using System.Reflection;
+using System.Globalization;
 
 namespace Trips.Mvc.Runtime
 {
@@ -30,6 +33,34 @@ namespace Trips.Mvc.Runtime
         {
             Configuration config = LoadConfiguration();
             config.AppSettings.Settings[key].Value = value;
+            config.Save();
+            configuration = null;
+        }
+
+        public static SiteSettings LoadSettings()
+        {
+            SiteSettings result = new SiteSettings();
+            PropertyInfo[] properties = typeof(SiteSettings).GetProperties();
+            foreach (var item in properties)
+            {
+                string stringValue = GetSetting(item.Name);
+                object value = Convert.ChangeType(stringValue, item.PropertyType, CultureInfo.CurrentUICulture);
+                item.SetValue(result, value, null);
+            }
+            return result;
+        }
+
+        public static void SaveSettings(object settings)
+        {
+            Configuration config = LoadConfiguration();
+            PropertyInfo[] properties = settings.GetType().GetProperties();
+            config.AppSettings.Settings.Clear();
+            foreach (var item in properties)
+            {
+                object value = item.GetValue(settings, null);
+                string stringValue = Convert.ToString(value, CultureInfo.CurrentUICulture);
+                config.AppSettings.Settings.Add(item.Name, stringValue);
+            }
             config.Save();
             configuration = null;
         }

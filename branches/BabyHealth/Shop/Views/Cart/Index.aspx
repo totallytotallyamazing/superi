@@ -6,6 +6,19 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <table>
+    <tr>
+        <th></th>
+        <th></th>
+        <th>
+            Кол-во, шт
+        </th>
+        <th>
+            Стоимость
+        </th>
+        <th>
+            Удалить
+        </th>
+    </tr>
     <% foreach (var item in Model){%>
         <tr>
             <td>
@@ -31,6 +44,44 @@
         </tr>
     <%} %>
     </table>
+    
+    
+<%--    
+    <table class="productsInCart" cellpadding="5" cellspacing="15">
+    <tr>
+        <th>
+        </th>
+        <th>
+        </th>
+        <th class="quantity">
+            Кол-во, шт
+        </th>
+        <th>
+            Стоимость
+        </th>
+    </tr>
+    <% foreach (var item in WebSession.OrderItems){%>
+    <tr>
+        <td>
+            <%= Html.Image("/ImageCache/thumbnail3/" + item.Value.ImageSource) %>
+        </td>
+        <td class="carData">
+            <%= Html.ActionLink(item.Value.AdModel, "Details", "Catalogue", new { id = item.Value.CarId }, null) %><br />
+            <span class="adClass">
+                <%= Html.ResourceString(((CarAdClasses)item.Value.Class) + "Class") %>
+            </span>
+        </td>
+        <td>
+            <%= Html.TextBox("quantity-" + item.Key, item.Value.Quantity) %>
+        </td>
+        <td>
+            <%= Html.ActionLink("[IMAGE]", "DeleteOrderItem", new { id = item.Key })
+                                .Replace("[IMAGE]", Html.Image("/Content/img/delete.jpg"))%>
+        </td>
+    </tr>
+    <%} %>
+</table>--%>
+
 
 </asp:Content>
 

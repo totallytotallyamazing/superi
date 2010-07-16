@@ -1,5 +1,7 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<Shop.Models.Product>" %>
+<%@ Import Namespace="Shop.Helpers" %>
 <%@ Import Namespace="Dev.Mvc.Helpers" %>
+<%@ Import Namespace="Dev.Helpers" %>
 <% 
     string productClickLink = Html.ActionLink("[IMAGE]", "Show", new { id = Model.Id }).ToString();
 %>
@@ -27,6 +29,6 @@
     <div class="itemDesc">
         <h3><%= productClickLink.Replace("[IMAGE]", Model.Name) %></h3>
         <p><%= Model.ShortDescription %></p>
-        <h4><%= Model.Price.ToString("#.##") %> <%= Dev.Helpers.WebSession.Currency %></h4>
+        <h4><%= Html.RenderPrice(Model.Price, WebSession.Currency, 0, ",") %></h4>
     </div>
 </div>

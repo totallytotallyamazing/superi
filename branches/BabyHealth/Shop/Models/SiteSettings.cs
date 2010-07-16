@@ -12,15 +12,15 @@ namespace Shop.Models
         [DisplayName("Курс евро")]
         [Required(ErrorMessage="*")]
         [DataType(DataType.Currency)]
-        public decimal EuroRate { get; set; }
+        public float EuroRate { get; set; }
         [Required(ErrorMessage = "*")]
         [DisplayName("Курс доллара")]
         [DataType(DataType.Currency)]
-        public decimal DollarRate { get; set; }
+        public float DollarRate { get; set; }
         [Required(ErrorMessage = "*")]
         [DisplayName("Курс рубля")]
         [DataType(DataType.Currency)]
-        public decimal RubleRate { get; set; }
+        public float RubleRate { get; set; }
         [Required(ErrorMessage = "*")]
         [DisplayName("Почтовый ящик администратора")]
         public string ReceiverMail { get; set; }

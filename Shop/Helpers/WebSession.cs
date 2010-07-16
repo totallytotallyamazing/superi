@@ -4,11 +4,15 @@ using System.Linq;
 using System.Web;
 using System.Web.SessionState;
 using Shop.Models;
+using Trips.Mvc.Runtime;
+using Shop.Helpers;
 
 namespace Dev.Helpers
 {
     public static class WebSession
     {
+        private static SiteSettings settings = null;
+
         static HttpSessionState Session
         {
             get
@@ -50,6 +54,15 @@ namespace Dev.Helpers
             }
         }
 
+        public static SiteSettings Settings 
+        {
+            get
+            {
+                if (settings == null)
+                    settings = Configurator.LoadSettings();
+                return settings;
+            }
+        }
 
         public static string Phone
         {
@@ -99,11 +112,13 @@ namespace Dev.Helpers
             }
         }
 
-        public static string Currency
+        public static Currencies Currency
         {
             get
             {
-                return (string)Session["Currency"];
+                if (Session["Currency"] == null)
+                    Session["Currency"] = Currencies.Hrivna;
+                return (Currencies)Session["Currency"];
             }
             set
             {
@@ -127,5 +142,7 @@ namespace Dev.Helpers
             OrderItems.Clear();
             AdditionalInfo = null;
         }
+
+        public static void ClearSettings() { settings = null; }
     }
 }

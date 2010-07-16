@@ -116,10 +116,10 @@
     <Compile Include="Helpers\IOHelper.cs" />
     <Compile Include="Helpers\JqueryUiExtensions.cs" />
     <Compile Include="Helpers\MailHelper.cs" />
+    <Compile Include="Helpers\CurrencyHelper.cs" />
     <Compile Include="Helpers\ResourceTracker.cs" />
     <Compile Include="Helpers\ScriptExtensions.cs" />
     <Compile Include="Helpers\Session.cs" />
-    <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Helpers\TextHelper.cs" />
     <Compile Include="Helpers\WebSession.cs" />
     <Compile Include="Models\AccountModels.cs" />

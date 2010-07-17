@@ -23,7 +23,6 @@
         </script>
     <%} %>
     <script type="text/javascript" src="/Scripts/jquery.js"></script>
-    <script type="text/javascript" src="/Scripts/start.js"></script>
     <asp:ContentPlaceHolder runat="server" ID="includes">
     </asp:ContentPlaceHolder>
 </head>

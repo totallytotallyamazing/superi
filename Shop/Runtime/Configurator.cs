@@ -26,7 +26,11 @@ namespace Trips.Mvc.Runtime
 
         public static string GetSetting(string name)
         {
-            return LoadConfiguration().AppSettings.Settings[name].Value;
+
+            KeyValueConfigurationElement element = LoadConfiguration().AppSettings.Settings[name];
+            if(element!=null)
+                return LoadConfiguration().AppSettings.Settings[name].Value;
+            return null;
         }
 
         public static void SetSetting(string key, string value)
@@ -44,8 +48,11 @@ namespace Trips.Mvc.Runtime
             foreach (var item in properties)
             {
                 string stringValue = GetSetting(item.Name);
-                object value = Convert.ChangeType(stringValue, item.PropertyType, CultureInfo.CurrentUICulture);
-                item.SetValue(result, value, null);
+                if (!string.IsNullOrEmpty(stringValue))
+                {
+                    object value = Convert.ChangeType(stringValue, item.PropertyType, CultureInfo.CurrentUICulture);
+                    item.SetValue(result, value, null);
+                }
             }
             return result;
         }

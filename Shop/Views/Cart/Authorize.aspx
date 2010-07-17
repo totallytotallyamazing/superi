@@ -1,7 +1,7 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Views/Shared/Base.Master" Inherits="System.Web.Mvc.ViewPage<Shop.Models.RegisterModel>" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<Shop.Models.AuthorizeModel>" %>
 <%@ Import Namespace="Dev.Mvc.Ajax" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Регистрация
+	Авторизация
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
@@ -11,7 +11,7 @@
     <table>
         <tr>
             <td>
-                <%= Html.LabelFor(model=>model.Email) %>:<br />
+                Адрес элентропочты:<br />
                 <span class="comments">
                     (при регистрации является вашим логином)
                 </span>
@@ -25,7 +25,7 @@
         </tr>
         <tr>
             <td>
-                <%= Html.LabelFor(model=>model.Name) %>:
+                Имя, фамилия:
             </td>
             <td>
                 <%= Html.TextBoxFor(model=>model.Name) %>
@@ -36,7 +36,7 @@
         </tr>
         <tr>
             <td>
-                <%= Html.LabelFor(model=>model.Phone) %>:
+                Номер телефона
             </td>
             <td>
                 <%= Html.TextBoxFor(model=>model.Phone) %>
@@ -47,40 +47,18 @@
         </tr>
         <tr>
             <td colspan="3">
-                <span class="pleaseRegister">Зарегистрируйте меня как пользователя,</span> пожалуйста
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <%= Html.LabelFor(model=>model.DeliveryAddress) %>
-            </td>
-            <td colspan="2">
-                <%= Html.TextAreaFor(model=>model.DeliveryAddress) %>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <%= Html.LabelFor(model=>model.Password) %>
-            </td>
-            <td>
-                <%= Html.TextBoxFor(model=>model.Password) %>
-            </td>
-            <td>
-                <%= Html.ValidationMessageFor(model => model.Password)%>
+                <%= Html.ActionLink("Зарегистрируйте меня как пользователя,", "Register", new { redirectTo = "~/Cart/DeliveryAndPayment"}, new {@class="pleaseRegister"})%> пожалуйста
             </td>
         </tr>
     </table>
-    <input type="submit" value="Зарегистрироваться" />
     <%} %>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentTitle" runat="server">
-    <% Html.RenderPartial("CartBreadCrumbs", 0); %>
-    
+    <%= Ajax.ScriptInclude("/Scripts/MicrosoftAjax.js")%>
+    <%= Ajax.ScriptInclude("/Scripts/MicrosoftMvcValidation.js")%>
 </asp:Content>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="includes" runat="server">
-    <%= Ajax.ScriptInclude("/Scripts/MicrosoftAjax.js")%>
-    <%= Ajax.ScriptInclude("/Scripts/MicrosoftMvcValidation.js")%>\
-    <%= Ajax.ScriptInclude("/Scripts/MvcRemoteValidator.js")%>
+    <% Html.RenderPartial("CartBreadCrumbs", 0); %>
 </asp:Content>

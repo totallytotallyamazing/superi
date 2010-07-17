@@ -8,6 +8,7 @@ using Dev.Helpers;
 using Shop.Helpers;
 using System.IO;
 using Dev.Mvc.Helpers;
+using Shop.Helpers.Validation;
 
 namespace Shop
 {
@@ -63,6 +64,8 @@ namespace Shop
             AreaRegistration.RegisterAllAreas();
 
             RegisterRoutes(RouteTable.Routes);
+
+            DataAnnotationsModelValidatorProvider.RegisterAdapter(typeof(RemoteAttribute), typeof(RemoteAttributeAdapter));
         }
     }
 }

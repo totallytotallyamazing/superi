@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<Shop.Models.LogOnModel>" %>
-
+<%@ Import Namespace="Dev.Mvc.Ajax" %>
 <asp:Content ID="loginTitle" ContentPlaceHolderID="TitleContent" runat="server">
     Админка
 </asp:Content>
@@ -34,8 +34,8 @@
 
 <asp:Content runat="server" ContentPlaceHolderID="includes">
     <link rel="Stylesheet" href="/Content/LogOn.css" />
-
-    <script src="http://ajax.microsoft.com/ajax/beta/0911/extended/ExtendedControls.js" type="text/javascript"></script>  
+    <%= Ajax.ScriptInclude("/Scripts/start.js") %>
+    <%= Ajax.ScriptInclude("/Scripts/extended/ExtendedControls.js")%>
     <script type="text/javascript">
         Sys.require(Sys.components.watermark, function() {
             $("#UserName").watermark("Логин", "watermark");

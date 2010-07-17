@@ -78,23 +78,23 @@ namespace Shop.Controllers
         // URL: /Account/Register
         // **************************************
 
-        public ActionResult Register()
+        public ActionResult Register(string redirectTo)
         {
             ViewData["PasswordLength"] = MembershipService.MinPasswordLength;
             return View();
         }
 
         [HttpPost]
-        public ActionResult Register(RegisterModel model)
+        public ActionResult Register(RegisterModel model, string redirectTo)
         {
             if (ModelState.IsValid)
             {
                 // Attempt to register the user
-                MembershipCreateStatus createStatus = MembershipService.CreateUser(model.UserName, model.Password, model.Email);
+                MembershipCreateStatus createStatus = MembershipService.CreateUser(model.Email, model.Password, model.Email);
 
                 if (createStatus == MembershipCreateStatus.Success)
                 {
-                    FormsService.SignIn(model.UserName, false /* createPersistentCookie */);
+                    FormsService.SignIn(model.Email, false /* createPersistentCookie */);
                     return RedirectToAction("Index", "Home");
                 }
                 else
@@ -105,7 +105,16 @@ namespace Shop.Controllers
 
             // If we got this far, something failed, redisplay form
             ViewData["PasswordLength"] = MembershipService.MinPasswordLength;
+            if (!string.IsNullOrEmpty(redirectTo))
+            {
+                return Redirect(redirectTo);
+            }
             return View(model);
+        }
+
+        public string IsEmailUnique(string value)
+        {
+            return AccountValidation.IsEmailUnique(value) ? "true" : "false";
         }
 
         // **************************************

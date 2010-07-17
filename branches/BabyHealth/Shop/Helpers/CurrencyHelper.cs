@@ -30,7 +30,7 @@ namespace Shop.Helpers
             }
         }
 
-        public static string RenderPrice(this HtmlHelper helper, float price, Currencies currency, int decimalPlaces, string groupSeparator)
+        public static string FormatPrice(float price, Currencies currency, int decimalPlaces, string groupSeparator)
         {
             float amount = Convert(price, currency);
             string currencySymbol = "грн.";
@@ -57,6 +57,11 @@ namespace Shop.Helpers
             info.NumberFormat.CurrencyPositivePattern = currencyPattern;
 
             return string.Format(info, "{0:c}", price);
+        }
+
+        public static string RenderPrice(this HtmlHelper helper, float price, Currencies currency, int decimalPlaces, string groupSeparator)
+        {
+            return FormatPrice(price, currency, decimalPlaces, groupSeparator);
         }
     }
 }

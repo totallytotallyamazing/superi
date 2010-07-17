@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using Shop.Helpers.Validation;
 
 namespace Shop.Models
 {
@@ -47,28 +48,28 @@ namespace Shop.Models
         public bool RememberMe { get; set; }
     }
 
-    [PropertiesMustMatch("Password", "ConfirmPassword", ErrorMessage = "The password and confirmation password do not match.")]
     public class RegisterModel
     {
-        [Required]
-        [DisplayName("User name")]
-        public string UserName { get; set; }
-
-        [Required]
+        [Required(ErrorMessage = "Обязательно!")]
+        [RegularExpression(@"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$", ErrorMessage = "Неверно введен адрес почты. Формат: name@domain.com")]
         [DataType(DataType.EmailAddress)]
-        [DisplayName("Email address")]
+        [DisplayName("Адресс электропочты")]
+        [Remote("IsEmailUnique", "Account", "value", ErrorMessage = "Такой пользователь уже существует")]
         public string Email { get; set; }
-
+        [Required(ErrorMessage = "Обязательно!")]
+        [DisplayName("Имя, Фамилия")]
+        public string Name { get; set; }
+        [Required(ErrorMessage = "Обязательно!")]
+        [RegularExpression(@"^(\(\d{3}\))?\s?((\d{3}(\s|-)?\d{2}(\s|-)\d{2})|(\d{3}(\s|-)?\d{4})|(\d{7}))$", ErrorMessage = "Неверно введен номер телефона. Формат: (123) 111-22-33")]
+        [DataType(DataType.PhoneNumber)]
+        [DisplayName("Номер телефона")]
+        public string Phone { get; set; }
+        [DisplayName("Ваш домашний адресс")]
+        public string DeliveryAddress { get; set; }
         [Required]
         [ValidatePasswordLength]
-        [DataType(DataType.Password)]
-        [DisplayName("Password")]
+        [DisplayName("Придумайте пароль для Вашей учетной записи")]
         public string Password { get; set; }
-
-        [Required]
-        [DataType(DataType.Password)]
-        [DisplayName("Confirm password")]
-        public string ConfirmPassword { get; set; }
     }
     #endregion
 
@@ -177,6 +178,11 @@ namespace Shop.Models
     #region Validation
     public static class AccountValidation
     {
+        public static bool IsEmailUnique(string value)
+        {
+            return Membership.GetUser(value) == null;
+        }
+
         public static string ErrorCodeToString(MembershipCreateStatus createStatus)
         {
             // See http://go.microsoft.com/fwlink/?LinkID=177550 for

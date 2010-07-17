@@ -26,7 +26,7 @@ namespace Dev.Helpers
             get
             {
                 if (Session["orderItems"] == null)
-                    Session["orderItems"] = new Dictionary<long, OrderItem>();
+                    Session["orderItems"] = new Dictionary<int, OrderItem>();
                 return (Dictionary<int, OrderItem>)Session["orderItems"];
             }
         }

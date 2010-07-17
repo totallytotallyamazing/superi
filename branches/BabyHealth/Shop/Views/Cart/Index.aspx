@@ -1,94 +1,63 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<Shop.Models.OrderItem>>" %>
-<%@ Import Namespace="Dev.Mvc.Helpers" %>
+<%@ Import Namespace="Dev.Mvc.Ajax" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	Корзина
 </asp:Content>
 
-<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <table>
-    <tr>
-        <th></th>
-        <th></th>
-        <th>
-            Кол-во, шт
-        </th>
-        <th>
-            Стоимость
-        </th>
-        <th>
-            Удалить
-        </th>
-    </tr>
-    <% foreach (var item in Model){%>
-        <tr>
-            <td>
-                <%= Html.CachedImage("~/Content/ProductImages", item.Image, "cartThumb", "") %>
-            </td>
-            <td>
-                <div>
-                    <h2><%= item.Name %></h2>
-                </div>  
-                <div>
-                    <%= item.Description %>
-                </div>
-            </td>
-            <td>
-                <%= Html.TextBox("oi_" + item.ProductId) %>
-            </td>
-            <td>
-                
-            </td>
-            <td>
+<asp:Content ID="Content4" ContentPlaceHolderID="includes" runat="server">
+    <%= Ajax.ScriptInclude("/Scripts/start.js") %>
+    <%= Ajax.ScriptInclude("/Scripts/extended/ExtendedControls.js")%>
+
+    <script type="text/javascript">
+        Sys.require(Sys.components.maskedEdit, function() {
+            $("#cartContents td input[type='text']").maskedEdit({
+                Mask: "9",
+                AcceptNegative: 0,
+                MaskType: Sys.Extended.UI.MaskedEditType.Number,
+                PromptChararacter: ""
+            });
+        });
+
+        function bindEvents() {
+            $("td input[type='text']").keyup(function(ev) {
+                var val = this.value.replace("_", "");
+                if (val != "") {
+                    var id = this.id.split("_")[1];
+                    $.post("/Cart/UpdateQuantity/" + id + "?quantity=" + val, function(data) {
+                        updateCartAmounts(data);
+                    });
+                }
+            });
+        }
+
+        function updateCartAmounts(data) {
+            $("#totalAmount").html(data.totalAmount);
+            for (var i in data.items) {
+                var item = data.items[i];
+                $("#price_" + item.id).html(item.price);
+            }
             
-            </td>
-        </tr>
-    <%} %>
-    </table>
-    
-    
-<%--    
-    <table class="productsInCart" cellpadding="5" cellspacing="15">
-    <tr>
-        <th>
-        </th>
-        <th>
-        </th>
-        <th class="quantity">
-            Кол-во, шт
-        </th>
-        <th>
-            Стоимость
-        </th>
-    </tr>
-    <% foreach (var item in WebSession.OrderItems){%>
-    <tr>
-        <td>
-            <%= Html.Image("/ImageCache/thumbnail3/" + item.Value.ImageSource) %>
-        </td>
-        <td class="carData">
-            <%= Html.ActionLink(item.Value.AdModel, "Details", "Catalogue", new { id = item.Value.CarId }, null) %><br />
-            <span class="adClass">
-                <%= Html.ResourceString(((CarAdClasses)item.Value.Class) + "Class") %>
-            </span>
-        </td>
-        <td>
-            <%= Html.TextBox("quantity-" + item.Key, item.Value.Quantity) %>
-        </td>
-        <td>
-            <%= Html.ActionLink("[IMAGE]", "DeleteOrderItem", new { id = item.Key })
-                                .Replace("[IMAGE]", Html.Image("/Content/img/delete.jpg"))%>
-        </td>
-    </tr>
-    <%} %>
-</table>--%>
+        }
 
+        $(function() {
+            bindEvents();
+        });
+    </script>
+</asp:Content>
 
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+    <%using (Html.BeginForm("Authorize", "Cart", FormMethod.Post, new { id = "cartForm" }))
+      { %>    
+        <% Html.RenderPartial("CartContent", Model); %>
+    <%} %>
+    <div class="proceedContainer">
+        Все верно, <a href="javascript:$('#cartForm')[0].submit();">оформляем!</a>
+    </div>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentTitle" runat="server">
-</asp:Content>
-
-<asp:Content ID="Content4" ContentPlaceHolderID="includes" runat="server">
+    <% Html.RenderPartial("CartBreadCrumbs", 0); %>
 </asp:Content>
 
 

@@ -9,7 +9,7 @@ namespace Dev.Helpers
 {
     public class MailHelper
     {
-        public static bool SendMessage(string from, List<MailAddress> to, string body, string subject, bool isBodyHtml)
+        public static bool SendMessage(List<MailAddress> to, string body, string subject, bool isBodyHtml)
         {
             SmtpClient client = new SmtpClient();
             bool result = true;
@@ -19,7 +19,7 @@ namespace Dev.Helpers
                 message.Body = body;
                 message.Subject = subject;
                 to.ForEach(t => message.To.Add(t));
-                message.From = new MailAddress("mailinator@trips.kiev.ua");
+                message.From = new MailAddress("mailer@baby-health.org.ua");
                 message.IsBodyHtml = isBodyHtml;
                 client.Send(message);
             }
@@ -30,12 +30,12 @@ namespace Dev.Helpers
             return result;
         }
 
-        public static bool SendTemplate(string from, List<MailAddress> to, string template, bool isBodyHtml)
+        public static bool SendTemplate(List<MailAddress> to, string template, bool isBodyHtml)
         {
-            return SendTemplate(from, to, string.Empty, template, string.Empty, isBodyHtml, null);
+            return SendTemplate(to, string.Empty, template, string.Empty, isBodyHtml, null);
         }
 
-        public static bool SendTemplate(string from, List<MailAddress> to, string subject, string template, string Language, bool isBodyHtml, params object[] replacements)
+        public static bool SendTemplate(List<MailAddress> to, string subject, string template, string Language, bool isBodyHtml, params object[] replacements)
         {
             string languageFolder = (string.IsNullOrEmpty(Language)) ? string.Empty : Language + "/";
             string filePath = HttpContext.Current.Server.MapPath("~/Content/MailTemplates/" + languageFolder + template);
@@ -44,7 +44,7 @@ namespace Dev.Helpers
             string body = reader.ReadToEnd();
             string formattedBody = (replacements != null && replacements.Length > 0) ? string.Format(body, replacements) : body;
             reader.Close();
-            return SendMessage(from, to, formattedBody, subject, isBodyHtml);
+            return SendMessage(to, formattedBody, subject, isBodyHtml);
         }
     }
 }

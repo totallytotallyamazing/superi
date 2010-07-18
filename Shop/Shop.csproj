@@ -88,6 +88,7 @@
     <Compile Include="Areas\Admin\Controllers\CategoriesController.cs" />
     <Compile Include="Areas\Admin\Controllers\ContentController.cs" />
     <Compile Include="Areas\Admin\Controllers\SettingsController.cs" />
+    <Compile Include="Helpers\CacheExtensions.cs" />
     <Compile Include="Helpers\FormCollectionExtender.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductAttributeValuesController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductsController.cs" />
@@ -134,7 +135,11 @@
       <DependentUpon>Content.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\ContextExtensions.cs" />
-    <Compile Include="Models\OrderItem.cs" />
+    <Compile Include="Models\Orders.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Orders.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductAttributeValueValidation.cs" />
     <Compile Include="Models\ProfileCommon.cs" />
@@ -337,14 +342,23 @@
     <Content Include="Content\img\backArrow.jpg" />
     <Content Include="Content\img\deleteFromCart.jpg" />
     <Content Include="Content\img\proceedBg.jpg" />
+    <Content Include="Content\MailTemplates\MailTemplate.htm" />
     <Content Include="Scripts\extended\ExtendedControls.js" />
     <Content Include="Scripts\extended\MaskedEdit\MaskedEditBehavior.js" />
     <Content Include="Scripts\extended\MaskedEdit\MaskedEditValidator.js" />
     <Content Include="Scripts\MvcRemoteValidator.js" />
+    <Content Include="Views\Cart\Approve.aspx" />
     <Content Include="Views\Cart\Authorize.aspx" />
+    <Content Include="Views\Cart\DeliveryAndPayment.aspx" />
     <Content Include="Views\Shared\CartBreadCrumb.ascx" />
     <Content Include="Views\Shared\CartBreadCrumbs.ascx" />
     <Content Include="Views\Cart\CartContent.ascx" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Models\Orders.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Orders.Designer.cs</LastGenOutput>
+    </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

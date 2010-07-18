@@ -12,6 +12,7 @@ namespace Dev.Helpers
     public static class WebSession
     {
         private static SiteSettings settings = null;
+        private static Order order = null;
 
         static HttpSessionState Session
         {
@@ -31,84 +32,26 @@ namespace Dev.Helpers
             }
         }
 
-        public static float PriceDisplayed
+        public static Order Order
         {
             get
             {
-                if (Session["PriceDisplayed"] == null)
-                    Session["PriceDisplayed"] = 0;
-                return Convert.ToSingle(Session["PriceDisplayed"]);
-            }
-            set { Session["PriceDisplayed"] = value; }
-        }
-
-        public static string Name
-        {
-            get
-            {
-                return (string)Session["Name"];
-            }
-            set
-            {
-                Session["Name"] = value;
+                if (order == null)
+                {
+                    order = new Order();
+                    Session["order"] = order;
+                }
+                return (Shop.Models.Order)Session["order"];
             }
         }
 
-        public static SiteSettings Settings 
+        public static SiteSettings Settings
         {
             get
             {
                 if (settings == null)
                     settings = Configurator.LoadSettings();
                 return settings;
-            }
-        }
-
-        public static string Phone
-        {
-            get
-            {
-                return (string)Session["Phone"];
-            }
-            set
-            {
-                Session["Phone"] = value;
-            }
-        }
-
-        public static string Email
-        {
-            get
-            {
-                return (string)Session["Email"];
-            }
-            set
-            {
-                Session["Email"] = value;
-            }
-        }
-
-        public static string AdditionalInfo
-        {
-            get
-            {
-                return (string)Session["AdditionalInfo"];
-            }
-            set
-            {
-                Session["AdditionalInfo"] = value;
-            }
-        }
-
-        public static string DeliveryAddress
-        {
-            get
-            {
-                return (string)Session["DeliveryAddress"];
-            }
-            set
-            {
-                Session["DeliveryAddress"] = value;
             }
         }
 
@@ -128,7 +71,7 @@ namespace Dev.Helpers
 
         public static int CurrentCategory
         {
-            get 
+            get
             {
                 if (Session["CurrentCategory"] != null)
                     return Convert.ToInt32(Session["CurrentCategory"]);
@@ -137,12 +80,24 @@ namespace Dev.Helpers
             set { Session["CurrentCategory"] = value; }
         }
 
-        internal static void ClearOrder()
+
+        #region Methods
+        public static void ClearOrder()
         {
-            OrderItems.Clear();
-            AdditionalInfo = null;
+            Session.Remove("order");
+        }
+
+        public static bool IsBillingInfoFilled()
+        { 
+            return (order!=null && !string.IsNullOrEmpty(order.BillingPhone) && !string.IsNullOrEmpty(order.BillingName));
+        }
+
+        public static bool IsDeliveryInfoFilled()
+        {
+            return (order != null && !string.IsNullOrEmpty(order.DeliveryPhone) && !string.IsNullOrEmpty(order.DeliveryName));
         }
 
         public static void ClearSettings() { settings = null; }
+        #endregion
     }
 }

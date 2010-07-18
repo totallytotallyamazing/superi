@@ -36,7 +36,7 @@ namespace Shop.Helpers.Validation
 
         public virtual string GetUrl(ControllerContext controllerContext)
         {
-            var pathData = RouteTable.Routes.GetVirtualPath(controllerContext.RequestContext,
+            var pathData = RouteTable.Routes.GetVirtualPathForArea(controllerContext.RequestContext,
                                                             RouteName,
                                                             RouteData);
 

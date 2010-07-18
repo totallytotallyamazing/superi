@@ -7,7 +7,10 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <h2>Ваши контактные данные</h2>
     <% Html.EnableClientValidation(); %>
-    <% using(Html.BeginForm()){ %>
+    <% using(Html.BeginForm("ProceedAuthorize", "Cart", FormMethod.Post, new{id="authorizeForm"})){ %>
+    <div style="display:none">
+        <%= Html.CheckBox("back", false) %>
+    </div>
     <table>
         <tr>
             <td>
@@ -51,14 +54,27 @@
             </td>
         </tr>
     </table>
+    <div class="backAndForward">
+        <div class="back">
+            <a href="javascript:goBack();">Вернуться</a>
+        </div>
+        Все верно, <a href="javascript:$('#cartForm')[0].submit();">продолжаем!</a>
+    </div>
     <%} %>
 </asp:Content>
 
-<asp:Content ID="Content3" ContentPlaceHolderID="ContentTitle" runat="server">
+<asp:Content ID="Content3" ContentPlaceHolderID="includes" runat="server">
     <%= Ajax.ScriptInclude("/Scripts/MicrosoftAjax.js")%>
     <%= Ajax.ScriptInclude("/Scripts/MicrosoftMvcValidation.js")%>
+    <script type="text/javascript">
+        function goBack() {
+            document.getElementById("back").checked = true;
+            document.getElementById("authorizeForm").submit();
+        }
+    
+    </script>
 </asp:Content>
 
-<asp:Content ID="Content4" ContentPlaceHolderID="includes" runat="server">
+<asp:Content ID="Content4" ContentPlaceHolderID="ContentTitle" runat="server">
     <% Html.RenderPartial("CartBreadCrumbs", 0); %>
 </asp:Content>

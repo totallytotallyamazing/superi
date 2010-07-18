@@ -94,6 +94,11 @@ namespace Shop.Controllers
 
                 if (createStatus == MembershipCreateStatus.Success)
                 {
+                    ProfileCommon profile = ProfileCommon.Create(model.Email);
+                    profile.DeliveryAddress = model.DeliveryAddress;
+                    profile.Phone = model.Phone;
+                    profile.Name = model.Name;
+                    profile.Save();
                     FormsService.SignIn(model.Email, false /* createPersistentCookie */);
                     return RedirectToAction("Index", "Home");
                 }

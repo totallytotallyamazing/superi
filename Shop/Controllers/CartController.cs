@@ -91,7 +91,7 @@ namespace Shop.Controllers
         }
 
         [HttpPost]
-        public ActionResult Authorize(AuthorizeModel authorizeModel)
+        public ActionResult ProceedAuthorize(AuthorizeModel authorizeModel, bool back)
         {
             return RedirectToAction("DeliveryAndPayment");
         }
@@ -114,6 +114,11 @@ namespace Shop.Controllers
                 totalAmount = CurrencyHelper.FormatPrice(WebSession.OrderItems.Sum(oi => oi.Value.Price * oi.Value.Quantity), WebSession.Currency, 0, ",")
             };
             return Json(result);
+        }
+
+        public ActionResult DeliveryAndPayment()
+        {
+            return View();
         }
     }
     

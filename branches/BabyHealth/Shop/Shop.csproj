@@ -350,6 +350,7 @@
     <Content Include="Views\Cart\Approve.aspx" />
     <Content Include="Views\Cart\Authorize.aspx" />
     <Content Include="Views\Cart\DeliveryAndPayment.aspx" />
+    <Content Include="Views\Cart\OrderItems.ascx" />
     <Content Include="Views\Shared\CartBreadCrumb.ascx" />
     <Content Include="Views\Shared\CartBreadCrumbs.ascx" />
     <Content Include="Views\Cart\CartContent.ascx" />

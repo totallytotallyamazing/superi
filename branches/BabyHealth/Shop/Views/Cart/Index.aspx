@@ -47,12 +47,9 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <%using (Html.BeginForm("Authorize", "Cart", FormMethod.Post, new { id = "cartForm" }))
-      { %>    
-        <% Html.RenderPartial("CartContent", Model); %>
-    <%} %>
+    <% Html.RenderPartial("CartContent", Model); %>
     <div class="proceedContainer">
-        Все верно, <a href="javascript:$('#cartForm')[0].submit();">оформляем!</a>
+        Все верно, <%= Html.ActionLink("оформляем!", "Authorize") %>
     </div>
 </asp:Content>
 

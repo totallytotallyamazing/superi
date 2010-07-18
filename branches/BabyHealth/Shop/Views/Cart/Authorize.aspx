@@ -7,7 +7,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <h2>Ваши контактные данные</h2>
     <% Html.EnableClientValidation(); %>
-    <% using(Html.BeginForm("ProceedAuthorize", "Cart", FormMethod.Post, new{id="authorizeForm"})){ %>
+    <% using(Html.BeginForm("Authorize", "Cart", FormMethod.Post, new{id="authorizeForm"})){ %>
     <div style="display:none">
         <%= Html.CheckBox("back", false) %>
     </div>
@@ -76,5 +76,5 @@
 </asp:Content>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentTitle" runat="server">
-    <% Html.RenderPartial("CartBreadCrumbs", 0); %>
+    <% Html.RenderPartial("CartBreadCrumbs", 1); %>
 </asp:Content>

@@ -339,6 +339,7 @@
   <ItemGroup>
     <Content Include="Areas\Admin\Views\Settings\Index.aspx" />
     <Content Include="Configuration\Web.config" />
+    <Content Include="Content\AdminStyles\addEditProduct.css" />
     <Content Include="Content\img\backArrow.jpg" />
     <Content Include="Content\img\deleteFromCart.jpg" />
     <Content Include="Content\img\proceedBg.jpg" />

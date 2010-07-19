@@ -12,6 +12,7 @@
     <script type="text/javascript" src="/Scripts/MicrosoftMvcValidation.js"></script>
     <%= Ajax.ScriptInclude("/Scripts/jquery.fancybox.js")  %>
     <%= Ajax.DynamicCssInclude("/Content/fancybox/jquery.fancybox.css")%>
+    <%= Ajax.DynamicCssInclude("/Content/AdminStyles/addEditProduct.css")%>
 
     <script type="text/javascript">
         $(function() {
@@ -27,115 +28,123 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <%if (Model!=null){ %>
-        <%= Html.ActionLink("Размеры в наличии", "Index", "ProductAttributeValues", new { id = Model.Category.Id,productId=Model.Id }, new { @class = "fancyAdmin iframe" })%>
-        <%= Html.ActionLink("Теги", "Index", "ProductTags", new { id = Model.Id }, new { @class = "fancyAdmin iframe" })%>
-    <%} %>
-    <%if (ViewData["id"] != null)
-     {
-         Dictionary<long, IEnumerable<ProductImage>> item = new Dictionary<long, IEnumerable<ProductImage>>();
-         item.Add(Model.Id, Model.ProductImages);
-         Html.RenderPartial("ProductImages", item);
-     }%>
-     <br />
+
 
     <% Html.EnableClientValidation(); %>
 
-    <% using (Html.BeginForm("AddEdit", "Products", FormMethod.Post, new { enctype = "multipart/form-data" })){%>
+        <%= Html.ValidationSummary(true) %>
+
+        <span class="sectionTitle">
+            О товаре
+        </span>
+        <div class="section">   
+            <%= Html.HiddenFor(model => model.Id) %>
+
+            <%if (ViewData["id"] != null)
+             {
+                 Dictionary<long, IEnumerable<ProductImage>> item = new Dictionary<long, IEnumerable<ProductImage>>();
+                 item.Add(Model.Id, Model.ProductImages);
+                 Html.RenderPartial("ProductImages", item);
+             }%>
+             <br />
+                 <% using (Html.BeginForm("AddEdit", "Products", FormMethod.Post, new { enctype = "multipart/form-data" })){%>
         <%= Html.Hidden("cId") %>
         <%= Html.Hidden("bId") %>
         
-        <%= Html.ValidationSummary(true) %>
 
-        <fieldset>
-            <legend>
-                Основные
-            </legend>
-            <%= Html.HiddenFor(model => model.Id) %>
-
-            <div class="editor-label">
-                <%= Html.LabelFor(model => model.Name) %>
-            </div>
-            <div class="editor-field">
-                <%= Html.TextBoxFor(model => model.Name) %>
-                <%= Html.ValidationMessageFor(model => model.Name) %>
-            </div>
-            <div class="editor-label">
-                <%= Html.LabelFor(model => model.PartNumber) %>
-            </div>
-            <div class="editor-field">
-                <%= Html.TextBoxFor(model => model.PartNumber) %>
-                <%= Html.ValidationMessageFor(model => model.PartNumber) %>
-            </div>
-            <div class="editor-label">
-                Бренд
-            </div>
-            <div class="editor-field">
-                <%= Html.DropDownList("brandId", new SelectList((IEnumerable)ViewData["Brands"], "Id", "Name")) %>
-                <%= Html.ValidationMessageFor(model => model.PartNumber) %>
-            </div>
-            <div class="editor-label">
-                <%= Html.LabelFor(model => model.Color) %>
-            </div>
-            <div class="editor-field">
-                <%= Html.TextAreaFor(model => model.Color)%>
-                <%= Html.ValidationMessageFor(model => model.Color)%>
-            </div>
-            <div class="editor-label">
+            <table>
+                <tr>
+                    <td class="labelCell">
+                        <%= Html.LabelFor(model => model.Name) %>
+                    </td>                
+                    <td>
+                        <%= Html.TextBoxFor(model => model.Name) %>
+                    </td>
+                    <td><%= Html.ValidationMessageFor(model => model.Name) %></td>
+                </tr>
+                <tr>
+                    <td class="labelCell">
+                        <%= Html.LabelFor(model => model.PartNumber) %>
+                    </td>                
+                    <td>
+                        <%= Html.TextBoxFor(model => model.PartNumber) %>
+                    </td>
+                    <td><%= Html.ValidationMessageFor(model => model.PartNumber) %></td>
+                </tr>
+                <tr>
+                    <td class="labelCell">
+                        <%= Html.LabelFor(model => model.Price) %>
+                    </td>                
+                    <td>
+                        <%= Html.TextBoxFor(model => model.Price) %>
+                    </td>
+                    <td>
+                        <div style="width:35px; float:left; height:20px;">
+                            <%= Html.ValidationMessageFor(model => model.Price) %>
+                        </div>
+                        <span class="labelCell">
+                            <%= Html.LabelFor(model => model.OldPrice) %>
+                        </span>
+                        <span class="comments">(не обязательно)</span>
+                        <%= Html.TextBoxFor(model => model.OldPrice) %>
+                        <%= Html.ValidationMessageFor(model => model.OldPrice) %>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="labelCell">
+                        Бренд
+                    </td>                
+                    <td>
+                        <%= Html.DropDownList("brandId", new SelectList((IEnumerable)ViewData["Brands"], "Id", "Name")) %>
+                    </td>
+                    <td class="explanation">
+                        Добавить бренд можно, перейдя в <%= Html.ActionLink("область редактирования брендов", "Index", new { controller="Brands", area="Admin"})%>, находящуюся в разделе "О брендах"
+                    </td>
+                </tr>
+                <tr>
+                    <td class="labelCell">
+                        <%= Html.LabelFor(model => model.Color) %>
+                    </td>                
+                    <td>
+                        <%= Html.TextBoxFor(model => model.Color)%>
+                    </td>
+                    <td>
+                        <%= Html.ValidationMessageFor(model => model.Color)%>
+                    </td>
+                </tr>
+            </table>
+            <div class="labelCell" style="margin-bottom:0px; margin-top:20px;">
                 <%= Html.LabelFor(model => model.Description) %>
             </div>
-            <div class="editor-field">
-                <%= Html.TextAreaFor(model => model.Description) %>
-                <%= Html.ValidationMessageFor(model => model.Description) %>
-            </div>
-         </fieldset>
-         <fieldset>  
-            <legend>
-               Цена
-            </legend>
-            <div class="editor-label">
-                <%= Html.LabelFor(model => model.OldPrice) %>
-            </div>
-            <div class="editor-field">
-                <%= Html.TextBoxFor(model => model.OldPrice) %>
-                <%= Html.ValidationMessageFor(model => model.OldPrice) %>
-            </div>
-            
-            <div class="editor-label">
-                <%= Html.LabelFor(model => model.Price) %>
-            </div>
-            <div class="editor-field">
-                <%= Html.TextBoxFor(model => model.Price) %>
-                <%= Html.ValidationMessageFor(model => model.Price) %>
-            </div>
-         </fieldset>
-         <fieldset> 
-            <legend>
-               Seo
-            </legend>
-            <div class="editor-label">
-                <%= Html.LabelFor(model => model.SeoDescription) %>
-            </div>
-            <div class="editor-field">
-                <%= Html.TextBoxFor(model => model.SeoDescription) %>
-                <%= Html.ValidationMessageFor(model => model.SeoDescription) %>
-            </div>
-            
-            <div class="editor-label">
-                <%= Html.LabelFor(model => model.SeoKeywords) %>
-            </div>
-            <div class="editor-field">
-                <%= Html.TextBoxFor(model => model.SeoKeywords) %>
-                <%= Html.ValidationMessageFor(model => model.SeoKeywords) %>
-            </div>
+            <%= Html.TextAreaFor(model => model.Description) %>            
 
-        </fieldset>
-        <p>
-            <input type="submit" value="Сохранить" />
+
+            <%if (Model!=null){ %>
+                <div class="productLinks">
+                    <%= Html.ActionLink("Размеры в наличии", "Index", "ProductAttributeValues", new { id = Model.Category.Id,productId=Model.Id }, new { @class = "fancyAdmin iframe" })%>
+                    <%= Html.ActionLink("Теги", "Index", "ProductTags", new { id = Model.Id }, new { @class = "fancyAdmin iframe" })%>
+                </div>
+            <%} %>
+
+         </div>
+
+        <span class="sectionTitle">
+           Оптимизация для поисковиков
+        </span>
+         <div class="section"> 
+            <table>
+                <tr>
+                    <td class="labelCell" style="width:0"><%= Html.LabelFor(model => model.SeoDescription) %>:</td>
+                    <td><%= Html.TextAreaFor(model => model.SeoDescription) %></td>
+                </tr>
+                <tr>
+                    <td class="labelCell" style="width:0"><%= Html.LabelFor(model => model.SeoKeywords) %>:</td>
+                    <td><%= Html.TextAreaFor(model => model.SeoKeywords) %></td>
+                </tr>
+            </table>
+        </div>
+        <p style="text-align:center;">
+            <input type="submit" value="Сохранить все" />
         </p>
     <% } %>
-
-    <div>
-        <%= Html.ActionLink("Назад", "Index", "Products", new { area = "", id = ViewData["cId"] }, null)%>
-    </div>
 </asp:Content>

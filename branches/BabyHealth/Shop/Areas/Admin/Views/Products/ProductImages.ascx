@@ -11,7 +11,9 @@
     %>
     <%using (Html.BeginForm("SetDefaultImage", "Products", FormMethod.Post, new { id="imagesForm"}))
       { %>
-        <table style="width:100%">
+        <%= Html.Hidden("productId", images.Key)%>
+        <%= Html.Hidden("cId", ViewData["cId"]) %>
+        <table style="width:100%; margin-bottom:10px;">
             <tr>
                 <td>
                     <div class="labelCell"> 

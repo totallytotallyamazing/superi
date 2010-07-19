@@ -179,9 +179,9 @@ li{list-style-type:none;}
 #vorot a{color:#ff9999;font-weight:bold;}
 #footer{height:71px; min-width:1013px; width:100%;float:left;margin:0px 0px 0px 0px; background:url(img/footerBg.jpg);}
 #copy{height:71px; width:auto;border:0px solid #ff6600; text-align:center;}
-#copy p{font:Verdana, Arial, Helvetica, sans-serif normal; font-size:10px;padding:25px 0px 0px 210px;}
-#copy h5{font:Verdana, Arial, Helvetica, sans-serif;font-weight:normal; font-size:10px;padding:1px 0px 0px 220px;}
-#copy a{font:Verdana, Arial, Helvetica, sans-serif; font-weight:bold; font-size:10px; color:#ff6600;}
-#babyCopy {font:Verdana, Arial, Helvetica, sans-serif; font-weight:bold; font-size:10px; color:#ff6600;}
+#copy p{font-size:11px;padding:25px 0px 0px 210px;}
+#copy h5{font-weight:normal; font-size:11px;padding:1px 0px 0px 220px;}
+#copy a{font-weight:bold; font-size:11px; color:#ff6600;}
+#babyCopy {font-weight:bold; font-size:11px; color:#ff6600;}
 #book{height:71px; width:190px;float:left;margin:0px 0px 0px 0px; background:url(img/book.jpg) no-repeat right;}
 #ramka{height:71px; width:270px;float:right;margin:0px 0px 0px 0px; background:url(img/ramka.jpg) no-repeat right;}

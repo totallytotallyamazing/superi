@@ -113,12 +113,6 @@
                     </td>
                 </tr>
             </table>
-            <div class="labelCell" style="margin-bottom:0px; margin-top:20px;">
-                <%= Html.LabelFor(model => model.Description) %>
-            </div>
-            <%= Html.TextAreaFor(model => model.Description) %>            
-
-
             <%if (Model!=null){ %>
                 <div class="productLinks">
                     <%= Html.ActionLink("Размеры в наличии", "Index", "ProductAttributeValues", new { id = Model.Category.Id,productId=Model.Id }, new { @class = "fancyAdmin iframe" })%>
@@ -126,6 +120,10 @@
                 </div>
             <%} %>
 
+            <div class="labelCell" style="margin-bottom:0px; margin-top:20px;">
+                <%= Html.LabelFor(model => model.Description) %>
+            </div>
+            <%= Html.TextAreaFor(model => model.Description) %>            
          </div>
 
         <span class="sectionTitle">
@@ -134,11 +132,11 @@
          <div class="section"> 
             <table>
                 <tr>
-                    <td class="labelCell" style="width:0"><%= Html.LabelFor(model => model.SeoDescription) %>:</td>
+                    <td class="labelCell" style="width:150px; white-space:nowrap;"><%= Html.LabelFor(model => model.SeoDescription) %>:</td>
                     <td><%= Html.TextAreaFor(model => model.SeoDescription) %></td>
                 </tr>
                 <tr>
-                    <td class="labelCell" style="width:0"><%= Html.LabelFor(model => model.SeoKeywords) %>:</td>
+                    <td class="labelCell" style="width:150px; white-space:nowrap;"><%= Html.LabelFor(model => model.SeoKeywords) %>:</td>
                     <td><%= Html.TextAreaFor(model => model.SeoKeywords) %></td>
                 </tr>
             </table>

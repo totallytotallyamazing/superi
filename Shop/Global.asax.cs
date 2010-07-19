@@ -38,7 +38,7 @@ namespace Shop
 
         }
 
-        protected void Application_AquireSessionState()
+        protected void Application_AcquireRequestState()
         {
             if (Request.Path.EndsWith(".aspx") || Request.Path.IndexOf(".") < 0)
             {

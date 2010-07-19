@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<Shop.Models.Product>" %>
-
+<%@ Import Namespace="Shop.Helpers" %>
 <%@ Import Namespace="Dev.Helpers" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
     <%= Model.Name %>
@@ -36,7 +36,7 @@
                 <%= Model.ShortDescription %>
             </p>
             <br />
-            <p>Цена: <strong><%= Model.Price.ToString("#.##") %> <%= WebSession.Currency %></strong></p>
+            <p>Цена: <strong><%= Html.RenderPrice(Model.Price, WebSession.Currency, 0, ",") %></strong></p>
         </div>
         <%} %>
         <div style="clear:both"></div>

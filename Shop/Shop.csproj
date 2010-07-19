@@ -344,6 +344,7 @@
     <Content Include="Content\img\deleteFromCart.jpg" />
     <Content Include="Content\img\proceedBg.jpg" />
     <Content Include="Content\MailTemplates\MailTemplate.htm" />
+    <Content Include="Content\UserStatus.css" />
     <Content Include="Scripts\extended\ExtendedControls.js" />
     <Content Include="Scripts\extended\MaskedEdit\MaskedEditBehavior.js" />
     <Content Include="Scripts\extended\MaskedEdit\MaskedEditValidator.js" />
@@ -355,6 +356,7 @@
     <Content Include="Views\Shared\CartBreadCrumb.ascx" />
     <Content Include="Views\Shared\CartBreadCrumbs.ascx" />
     <Content Include="Views\Cart\CartContent.ascx" />
+    <Content Include="Views\Shared\UserStatus.ascx" />
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="Models\Orders.edmx">

@@ -130,7 +130,7 @@ namespace Shop.Areas.Admin.Controllers
             }
         }
 
-        public ActionResult SetDefaultImage(long productId, long defaultImage)
+        public ActionResult SetDefaultImage(long productId, long defaultImage, int cId)
         {
             using (ShopStorage context = new ShopStorage())
             {
@@ -141,7 +141,7 @@ namespace Shop.Areas.Admin.Controllers
                 }
                 context.SaveChanges();
             }
-            return RedirectToAction("AddEdit", new { id = productId });
+            return RedirectToAction("AddEdit", new { id = productId, cId = cId });
         }
     }
 }

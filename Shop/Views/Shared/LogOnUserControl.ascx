@@ -1,5 +1,6 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl" %>
-<% if(Request.IsAuthenticated){ %>
+<% if(Request.IsAuthenticated){ %>  
+    <% Html.RenderPartial("UserStatus"); %>
 <%} %>
 <%else{ %>
 <div id="guest">

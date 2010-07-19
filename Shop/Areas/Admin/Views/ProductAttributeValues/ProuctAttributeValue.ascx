@@ -3,7 +3,7 @@
     var attributesSelected = (int[])ViewData["attributesSelected"]; 
     foreach (var item in Model)
     {%>
-    <div>
+    <span>   
      <%= Html.CheckBox("attr_" + item.Id, attributesSelected.Contains(item.Id))%>  <%= item.Value %>
-     </div>
+     </span>
    <%} %>

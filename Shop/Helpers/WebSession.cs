@@ -31,6 +31,11 @@ namespace Dev.Helpers
                 return (Dictionary<int, OrderItem>)Session["orderItems"];
             }
         }
+        
+        public static float TotalAmount
+        {
+            get { return OrderItems.Sum(oi=>oi.Value.Price* oi.Value.Quantity);}
+        }
 
         public static Order Order
         {

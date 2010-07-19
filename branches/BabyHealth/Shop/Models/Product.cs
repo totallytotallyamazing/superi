@@ -22,20 +22,21 @@ namespace Shop.Models
         [DisplayName("Краткое описание")]
         public string ShortDescription{ get; set; }
 
-        [Required(ErrorMessage = "Введите название")]
-        [DisplayName("Название")]
+        [Required(ErrorMessage = "*")]
+        [DisplayName("Наименование товара")]
         public string Name { get; set; }
 
         [DisplayName("Артикул")]
         public string PartNumber { get; set; }
 
-        [DisplayName("Keywords")]
+        [DisplayName("Ключевые слова страницы")]
         public string SeoKeywords { get; set; }
 
-        [DisplayName("Description")]
+        [DisplayName("Описание страницы")]
         public string SeoDescription { get; set; }
 
         [DisplayName("Цена")]
+        [Required(ErrorMessage = "*")]
         public float Price { get; set; }
 
         [DisplayName("Старая цена")]

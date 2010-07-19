@@ -56,7 +56,7 @@ namespace Shop.Helpers
             info.NumberFormat.CurrencySymbol = currencySymbol;
             info.NumberFormat.CurrencyPositivePattern = currencyPattern;
 
-            return string.Format(info, "{0:c}", price);
+            return string.Format(info, "{0:c}", amount);
         }
 
         public static string RenderPrice(this HtmlHelper helper, float price, Currencies currency, int decimalPlaces, string groupSeparator)

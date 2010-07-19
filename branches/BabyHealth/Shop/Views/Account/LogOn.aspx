@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<Shop.Models.LogOnModel>" %>
 <%@ Import Namespace="Dev.Mvc.Ajax" %>
 <asp:Content ID="loginTitle" ContentPlaceHolderID="TitleContent" runat="server">
-    Админка
+    Вход
 </asp:Content>
 
 <asp:Content ID="loginContent" ContentPlaceHolderID="MainContent" runat="server">
@@ -29,7 +29,7 @@
 </asp:Content>
 
 <asp:Content runat="server" ContentPlaceHolderID="ContentTitle">
-    Админка
+    Вход
 </asp:Content>
 
 <asp:Content runat="server" ContentPlaceHolderID="includes">

@@ -189,7 +189,7 @@
     <Content Include="Areas\Admin\Views\Products\Index.aspx" />
     <Content Include="Areas\Admin\Views\Products\ProductImages.ascx" />
     <Content Include="Areas\Admin\Views\Web.config" />
-    <Content Include="Content\Admin.css" />
+    <Content Include="Content\AdminStyles\Admin.css" />
     <Content Include="Content\LogOn.css" />
     <Content Include="Content\fancybox\blank.gif" />
     <Content Include="Content\fancybox\fancybox-x.png" />
@@ -338,8 +338,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Views\Settings\Index.aspx" />
+    <Content Include="Views\Shared\AdminPanel.ascx" />
     <Content Include="Configuration\Web.config" />
     <Content Include="Content\AdminStyles\addEditProduct.css" />
+    <Content Include="Content\AdminStyles\img\handleBg.gif" />
     <Content Include="Content\img\backArrow.jpg" />
     <Content Include="Content\img\deleteFromCart.jpg" />
     <Content Include="Content\img\proceedBg.jpg" />

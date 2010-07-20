@@ -85,13 +85,13 @@ a#menuItem5.current{background-position:0px 0px; margin-top:25px; height:144px; 
 #searchField{height:18px; width:116px;float:left;margin:26px 0px 0px 20px;font:Verdana, Arial, Helvetica, sans-serif bold;font-size:12px; color:#cccccc; border:0px solid black;}
 #contentBox{min-height:600px;height:auto;min-width:1013px; width:100%;float:left;padding:5px 0px 0px 0px;background-color:#ffedab;border:0px solid green; position:relative}
 #leftSide{min-height:600px;height:auto; width:243px;float:left; margin:0px 0px 0px 0px;}
-#currency{height:11px; width:243px;float:left; padding-top:7px;}
+#currency{height:11px; width:243px; padding-top:7px;}
 #currency p{font:Verdana, Arial, Helvetica, sans-serif normal; font-size:12px;color:#cc6633;padding:0px 0px 0px 45px;}
 #currencyBox h2{font:Verdana, Arial, Helvetica, sans-serif bold; font-size:11px;margin:0px 0px 0px 0px; color:#ffffff;padding:1px 0px 0px 67px;}
 #currencyBox a{color:#ffffff; font-weight:normal;}
 #currencyBox a.current{font-weight:bold;}
 #currencyBox a:hover{ text-decoration:none;}
-#currencyBox{height:25px; width:243px;float:left;border:0px solid green;background:url(img/currency.jpg) no-repeat center;margin:4px 0px 0px 0px; }
+#currencyBox{height:25px; width:243px;border:0px solid green;background:url(img/currency.jpg) no-repeat center;margin:4px 0px 0px 0px; }
 #guest{height:130px; width:212px;float:left;border:0px solid green;background:url(img/guest.jpg) no-repeat center;margin:18px 0px 0px 14px;}
 #guest p
 {

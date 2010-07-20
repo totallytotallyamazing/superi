@@ -14,7 +14,7 @@
     <link href="/Content/style.css" rel="stylesheet" type="text/css" />
     <% if (Roles.IsUserInRole("Administrators"))
        { %>
-    <link href="/Content/Admin.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/AdminStyles/Admin.css" rel="stylesheet" type="text/css" />
     <%} %>
     <%if(false) {%>
         <script type="text/javascript" src="../../Scripts/jquery-vsdoc.js"></script>
@@ -27,6 +27,7 @@
     </asp:ContentPlaceHolder>
 </head>
 <body>
+    <%if (Roles.IsUserInRole("Administrators")) Html.RenderPartial("AdminPanel");  %>
     <div id="header">
         <div id="logoBox">
             <% Html.RenderAction("News", "Widgets", new { area = "" }); %>

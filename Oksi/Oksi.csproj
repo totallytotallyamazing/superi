@@ -231,6 +231,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="bleft.swf" />
+    <Content Include="Content\Banners\playboy.jpg" />
     <Content Include="Content\img\banners.jpg" />
     <Content Include="Content\img\twitterLogo.jpg" />
     <Content Include="Content\img\vkLogo.jpg" />

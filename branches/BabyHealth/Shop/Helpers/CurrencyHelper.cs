@@ -33,20 +33,20 @@ namespace Shop.Helpers
         public static string FormatPrice(float price, Currencies currency, int decimalPlaces, string groupSeparator)
         {
             float amount = Convert(price, currency);
-            string currencySymbol = "грн.";
+            string currencySymbol = "<span>грн.</span>";
             int currencyPattern = 3;
             switch (currency)
             {
                 case Currencies.Dollar:
-                    currencySymbol = "$";
+                    currencySymbol = "<span>$</span>";
                     currencyPattern = 0;
                     break;
                 case Currencies.Euro:
-                    currencySymbol = "€";
+                    currencySymbol = "<span>€</span>";
                     currencyPattern = 0;
                     break;
                 case Currencies.Ruble:
-                    currencySymbol = "руб.";
+                    currencySymbol = "<span>руб.</span>";
                     currencyPattern = 3;
                     break;
             }

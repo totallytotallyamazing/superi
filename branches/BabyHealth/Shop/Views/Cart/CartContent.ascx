@@ -7,46 +7,63 @@
     <tr>
         <th></th>
         <th></th>
-        <th>
-            Кол-во, шт
+        <th valign="top">
+            <div>
+                Кол-во, шт
+            </div>
         </th>
-        <th>
-            Стоимость
+        <th valign="top">
+            <div>
+                Стоимость
+            </div>
         </th>
-        <th>
-            Удалить
+        <th valign="top">
+            <div>
+                Удалить
+            </div>
         </th>
     </tr>
     <% foreach (var item in Model){%>
         <tr>
-            <td>
+            <td valign="top" class="productImage">
                 <%= Html.CachedImage("~/Content/ProductImages", item.Image, "cartThumb", "")%>
             </td>
-            <td>
-                <div>
-                    <h2><%= item.Name %></h2>
+            <td class="name" valign="top">
+                <div class="name">
+                    <%= Html.ActionLink(item.Name, "Show", new { controller="Products", area="", id=item.Id})%>
                 </div>  
-                <div>
+                <div class="description">
                     <%= item.Description %>
                 </div>
             </td>
-            <td>
+            <td class="quantity" valign="top">
                 <%= Html.TextBox("oi_" + item.ProductId, item.Quantity) %>
             </td>
-            <td id="price_<%= item.ProductId %>">
+            <td class="price" valign="top" id="price_<%= item.ProductId %>">
                 <%= Html.RenderPrice(item.Price * item.Quantity, WebSession.Currency, 0, ",") %>
             </td>
-            <td>
+            <td class="delete" valign="top">
                 <%= Html.ActionLink("[IMAGE]", "Delete", new { id=item.ProductId }).ToString()
                     .Replace("[IMAGE]", "<img style=\"border:0\" src=\"/Content/img/deleteFromCart.jpg\" alt=\"Удалить\" />") %>
             </td>
         </tr>
     <%} %>
-        <tr class="totalLine">
-            <td colspan="3"></td>
+        <tr>
+            <td colspan="3">&nbsp;</td>
             <td id="totalAmount">
-                <%= Html.RenderPrice((float)ViewData["totalAmount"], WebSession.Currency, 0, ",") %>
+                <div class="left">
+                    <div class="right">
+                        <div class="bg">
+                            <%= Html.RenderPrice((float)ViewData["totalAmount"], WebSession.Currency, 0, ",") %>
+                        </div>
+                    </div>
+                </div>
+                <div class="totalLabel">Итого:</div>
             </td>
-            <td></td>
+            <td>&nbsp;</td>
         </tr>
     </table>
+    
+    <div id="totalLine">
+    
+    </div>

@@ -53,7 +53,7 @@ namespace Shop.Models
         [Required(ErrorMessage = "Обязательно!")]
         [RegularExpression(@"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$", ErrorMessage = "Неверно введен адрес почты. Формат: name@domain.com")]
         [DataType(DataType.EmailAddress)]
-        [DisplayName("Адресс электропочты")]
+        [DisplayName("Адрес электропочты")]
         [Remote("IsEmailUnique", "Account", "value", ErrorMessage = "Такой пользователь уже существует")]
         public string Email { get; set; }
         [Required(ErrorMessage = "Обязательно!")]
@@ -64,7 +64,7 @@ namespace Shop.Models
         [DataType(DataType.PhoneNumber)]
         [DisplayName("Номер телефона")]
         public string Phone { get; set; }
-        [DisplayName("Ваш домашний адресс")]
+        [DisplayName("Ваш домашний адрес")]
         public string DeliveryAddress { get; set; }
         [Required]
         [ValidatePasswordLength]

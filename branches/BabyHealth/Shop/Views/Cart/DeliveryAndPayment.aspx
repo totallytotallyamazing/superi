@@ -38,7 +38,7 @@
         </tr>
         <tr>
             <td>
-                Адресс доставки:
+                Адрес доставки:
             </td>
             <td colspan="2">
                 <%= Html.TextAreaFor(model=>model.DeliveryAddress) %>

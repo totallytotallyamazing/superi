@@ -53,21 +53,25 @@ namespace Shop.Controllers
                             .ToList();
                     }
                     Product product = context.Products.Include("ProductImages").Where(p => p.Id == id).First();
+                    var image = product.ProductImages.Where(i => i.Default).FirstOrDefault();
                     OrderItem orderItem = new OrderItem
                     {
                         Name = product.Name,
                         Price = product.Price,
                         ProductId = product.Id,
                         Quantity = 1,
-                        Image = product.ProductImages.Where(i => i.Default).First().ImageSource,
+                        Image = (image != null) ? image.ImageSource : null,
                         Description = product.Description
                     };
-                    JavaScriptSerializer serializer = new JavaScriptSerializer();
-                    string serializedAttributeValues = serializer.Serialize(
-                        attributeValues
-                        .Select(av => new KeyValuePair<string, string>(av.ProductAttribute.Name, av.Value))
-                        .ToArray());
-                    orderItem.ProductAttributes = serializedAttributeValues;
+                    if (product.ProductAttributeValues.Count > 0)
+                    {
+                        JavaScriptSerializer serializer = new JavaScriptSerializer();
+                        string serializedAttributeValues = serializer.Serialize(
+                            attributeValues
+                            .Select(av => new KeyValuePair<string, string>(av.ProductAttribute.Name, av.Value))
+                            .ToArray());
+                        orderItem.ProductAttributes = serializedAttributeValues;
+                    }
                     WebSession.OrderItems.Add(product.Id, orderItem);
                 }
             }
@@ -191,6 +195,8 @@ namespace Shop.Controllers
                 context.SaveChanges();
             }
 
+            SendOrderMail();
+
             WebSession.ClearOrder();
 
             return RedirectToAction("OrderSent");
@@ -226,7 +232,7 @@ namespace Shop.Controllers
             return result.ToString();
         }
 
-        public ActionResult OrerSent()
+        public ActionResult OrderSent()
         {
             return View();
         }
@@ -239,7 +245,7 @@ namespace Shop.Models
     public class AuthorizeModel
     {
         [RegularExpression(@"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$", ErrorMessage = "Неверно введен адрес почты. Формат: name@domain.com")]
-        public string Email { get; set; }
+        public string Email { get; set; } 
         [Required(ErrorMessage = "Обязательно!")]
         public string Name { get; set; }
         [Required(ErrorMessage = "Обязательно!")]

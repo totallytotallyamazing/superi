@@ -6,6 +6,7 @@
 </asp:Content>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="includes" runat="server">
+    <%= Ajax.DynamicCssInclude("/Content/Cart.css") %>
     <%= Ajax.ScriptInclude("/Scripts/start.js") %>
     <%= Ajax.ScriptInclude("/Scripts/extended/ExtendedControls.js")%>
 
@@ -32,7 +33,7 @@
         }
 
         function updateCartAmounts(data) {
-            $("#totalAmount").html(data.totalAmount);
+            $("#totalAmount .bg").html(data.totalAmount);
             for (var i in data.items) {
                 var item = data.items[i];
                 $("#price_" + item.id).html(item.price);
@@ -47,7 +48,9 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <% Html.RenderPartial("CartContent", Model); %>
+    <div id="cartContainer">
+        <% Html.RenderPartial("CartContent", Model); %>
+    </div>
     <div class="proceedContainer">
         Все верно, <%= Html.ActionLink("оформляем!", "Authorize") %>
     </div>

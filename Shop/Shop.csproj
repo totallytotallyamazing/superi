@@ -338,6 +338,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Views\Settings\Index.aspx" />
+    <Content Include="Content\Cart.css" />
+    <Content Include="Views\Cart\OrderSent.aspx" />
     <Content Include="Views\Shared\AdminPanel.ascx" />
     <Content Include="Configuration\Web.config" />
     <Content Include="Content\AdminStyles\addEditProduct.css" />

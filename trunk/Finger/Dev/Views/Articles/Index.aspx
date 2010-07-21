@@ -1,5 +1,6 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<Dev.Models.Article>>" %>
 <%@ Import Namespace="Dev.Helpers" %>
+<%@ Import Namespace="Dev.Models" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	<%= Html.ResourceString("Articles") %>
 </asp:Content>
@@ -15,7 +16,7 @@
         if (Request.IsAuthenticated)
         {%>
             <div class="adminEditLink">
-                <%= Html.ActionLink("Добавить", "Article", "Admin")%>
+                <%= Html.ActionLink("Добавить", "Article", "Admin", new { type=ArticleType.Note }, null)%>
             </div>
     <%}%>
     <% foreach (var item in Model) { %>

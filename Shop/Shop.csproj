@@ -339,6 +339,9 @@
   <ItemGroup>
     <Content Include="Areas\Admin\Views\Settings\Index.aspx" />
     <Content Include="Content\Cart.css" />
+    <Content Include="Content\img\totalBg.png" />
+    <Content Include="Content\img\totalLeft.png" />
+    <Content Include="Content\img\totalRight.png" />
     <Content Include="Views\Cart\OrderSent.aspx" />
     <Content Include="Views\Shared\AdminPanel.ascx" />
     <Content Include="Configuration\Web.config" />

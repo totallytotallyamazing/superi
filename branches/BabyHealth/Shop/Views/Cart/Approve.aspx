@@ -14,11 +14,11 @@
     <span class="approveTitle">
         Общая стоимость без доставки:
     </span>
-    <%= Html.RenderPrice( %>
+    
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentTitle" runat="server">
-    <% Html.RenderPartial("CartBreadCrumbs", 2); %>
+    <% Html.RenderPartial("CartBreadCrumbs", 3); %>
 </asp:Content>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="includes" runat="server">

@@ -50,7 +50,7 @@
         </tr>
         <tr>
             <td colspan="3">
-                <%= Html.ActionLink("Зарегистрируйте меня как пользователя,", "Register", new { redirectTo = "~/Cart/DeliveryAndPayment"}, new {@class="pleaseRegister"})%> пожалуйста
+                <%= Html.ActionLink("Зарегистрируйте меня как пользователя,", "Register", new {controller="Account", area="", redirectTo = "~/Cart/DeliveryAndPayment"}, new {@class="pleaseRegister"})%> пожалуйста
             </td>
         </tr>
     </table>
@@ -58,7 +58,7 @@
         <div class="back">
             <a href="javascript:goBack();">Вернуться</a>
         </div>
-        Все верно, <a href="javascript:$('#cartForm')[0].submit();">продолжаем!</a>
+        Все верно, <a href="javascript:$('#authorizeForm')[0].submit();">продолжаем!</a>
     </div>
     <%} %>
 </asp:Content>

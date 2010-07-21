@@ -28,7 +28,7 @@
                    { %>
                     <div class="productImage">
                         <%= Html.Image(GraphicsHelper.GetCachedImage("~/Content/ProductImages", item.ImageSource, "thumbnail1"), "")%>
-                        <%= Html.ActionLink("[IMAGE]", "DeleteImage", new { productId = images.Key, imageId = item.Id }, new { @class = "deleteLink", onclick = "return confirm('Вы уверены?')" })
+                        <%= Html.ActionLink("[IMAGE]", "DeleteImage", new { productId = images.Key, imageId = item.Id, cId=ViewData["cId"] }, new { @class = "deleteLink", onclick = "return confirm('Вы уверены?')" })
                             .ToHtmlString()
                             .Replace("[IMAGE]", "")%>
                         <input type="radio" name="defaultImage" value="<%= item.Id %>" <%= (item.Default)?"checked":"" %> />

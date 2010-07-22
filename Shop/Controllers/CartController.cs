@@ -114,7 +114,7 @@ namespace Shop.Controllers
         }
 
         [HttpPost]
-        public ActionResult Authorize(AuthorizeModel authorizeModel, bool back)
+        public ActionResult Authorize(AuthorizeModel authorizeModel)
         {
             WebSession.Order.BillingEmail = authorizeModel.Email;
             WebSession.Order.BillingName = authorizeModel.Name;

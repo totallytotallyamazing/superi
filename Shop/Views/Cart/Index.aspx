@@ -38,11 +38,12 @@
                 var item = data.items[i];
                 $("#price_" + item.id).html(item.price);
             }
-            
+            alignTotal();
         }
 
         $(function() {
             bindEvents();
+            alignTotal();
         });
     </script>
 </asp:Content>
@@ -51,8 +52,8 @@
     <div id="cartContainer">
         <% Html.RenderPartial("CartContent", Model); %>
     </div>
-    <div class="proceedContainer">
-        Все верно, <%= Html.ActionLink("оформляем!", "Authorize") %>
+    <div id="proceedContainer">
+        Все верно,&nbsp;&nbsp;&nbsp;<%= Html.ActionLink("оформляем!", "Authorize") %>
     </div>
 </asp:Content>
 

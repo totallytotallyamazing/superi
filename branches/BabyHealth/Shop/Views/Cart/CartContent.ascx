@@ -2,7 +2,14 @@
 <%@ Import Namespace="Dev.Helpers" %>
 <%@ Import Namespace="Shop.Helpers" %>
 <%@ Import Namespace="Dev.Mvc.Helpers" %>
-
+<script type="text/javascript">
+     function alignTotal() {
+         var w = $("#totalAmount").width();
+         var tw = $("#totalAmount .left").width();
+         var m = 1 * (w - tw) / 2;
+         $("#totalAmount .left, #totalAmount .totalLabel").css("left", m + "px").css("position", "relative");
+     }
+</script>
     <table id="cartContents">
     <tr>
         <th></th>

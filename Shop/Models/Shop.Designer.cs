@@ -21,7 +21,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("shop_model", "ProductTag", "Product", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Shop.Models.Product), "Tag", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Shop.Models.Tag))]
 
 // Original file name:
-// Generation date: 13.07.2010 11:40:23
+// Generation date: 26.07.2010 19:00:31
 namespace Shop.Models
 {
     
@@ -230,6 +230,22 @@ namespace Shop.Models
         public void AddToTags(Tag tag)
         {
             base.AddObject("Tags", tag);
+        }
+        /// <summary>
+        /// There are no comments for shop_model.SearchProducts in the schema.
+        /// </summary>
+        public global::System.Data.Objects.ObjectResult<Product> SearchProducts(string saerchString)
+        {
+            global::System.Data.Objects.ObjectParameter saerchStringParameter;
+            if ((saerchString != null))
+            {
+                saerchStringParameter = new global::System.Data.Objects.ObjectParameter("saerchString", saerchString);
+            }
+            else
+            {
+                saerchStringParameter = new global::System.Data.Objects.ObjectParameter("saerchString", typeof(string));
+            }
+            return base.ExecuteFunction<Product>("SearchProducts", saerchStringParameter);
         }
     }
     /// <summary>

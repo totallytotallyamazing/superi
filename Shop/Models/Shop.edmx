@@ -142,6 +142,9 @@
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Value" Type="varchar" Nullable="false" MaxLength="500" />
         </EntityType>
+      <Function Name="searchProducts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="gbua_x_baby_583" >
+        <Parameter Name="saerchString" Type="varchar" MaxLength="2000" />
+      </Function>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -184,7 +187,9 @@
           <EntitySet Name="Tags" EntityType="shop_model.Tag" />
           <AssociationSet Name="ProductTag" Association="shop_model.ProductTag">
             <End Role="Product" EntitySet="Products" />
-            <End Role="Tag" EntitySet="Tags" /></AssociationSet></EntityContainer>
+            <End Role="Tag" EntitySet="Tags" /></AssociationSet>
+          <FunctionImport Name="SearchProducts" EntitySet="Products" ReturnType="Collection(shop_model.Product)">
+            <Parameter Name="saerchString" Type="String" /></FunctionImport></EntityContainer>
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="Id" />
@@ -442,7 +447,8 @@
             <EndProperty Name="Tag">
               <ScalarProperty Name="Id" ColumnName="TagId" /></EndProperty>
             <EndProperty Name="Product">
-              <ScalarProperty Name="Id" ColumnName="ProductId" /></EndProperty></AssociationSetMapping></EntityContainerMapping>
+              <ScalarProperty Name="Id" ColumnName="ProductId" /></EndProperty></AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="SearchProducts" FunctionName="shop_model.Store.searchProducts" /></EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

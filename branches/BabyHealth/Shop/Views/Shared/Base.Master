@@ -58,12 +58,7 @@
                     <h3>(050) 358-58-18</h3>
                     <h5><a id="feedbackForm" class="iframe" href="/Home/FeedbackForm">Форма обратной связи</a></h5>
                 </div>
-                <div id="search">
-                    <form name="form1" method="post" action="">
-                    <p>
-                        <input name="textfield" type="text" value="Слово + “Enter”" id="searchField" /></p>
-                    </form>
-                </div>
+                <% Html.RenderPartial("Search"); %>
             </div>
             <% Html.RenderPartial("MainMenu"); %>
         </div>

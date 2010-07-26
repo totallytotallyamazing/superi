@@ -370,6 +370,7 @@
     <Content Include="Views\Shared\CartBreadCrumb.ascx" />
     <Content Include="Views\Shared\CartBreadCrumbs.ascx" />
     <Content Include="Views\Cart\CartContent.ascx" />
+    <Content Include="Views\Shared\Search.ascx" />
     <Content Include="Views\Shared\UserStatus.ascx" />
   </ItemGroup>
   <ItemGroup>

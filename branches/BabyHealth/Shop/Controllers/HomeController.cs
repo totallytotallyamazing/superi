@@ -39,6 +39,7 @@ namespace Shop.Controllers
 
         public ActionResult FeedbackForm()
         {
+
             return View();
         }
 
@@ -69,6 +70,7 @@ namespace Shop.Models
         public string Text { get; set; }
         [Captcha("ValidateCaptcha", "Captcha", "value", ErrorMessage="Неправильно введены символы с картинки!")]
         [Required(ErrorMessage = "Введите символы с картинки")]
+        [DisplayName("")]
         public string Captcha { get; set; }
     }
 }

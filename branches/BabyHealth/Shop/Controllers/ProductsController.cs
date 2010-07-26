@@ -74,5 +74,25 @@ namespace Shop.Controllers
                 return View("Index", products); 
             }
         }
+
+        public ActionResult Search(string search)
+        {
+            ViewData["tags"] = true;
+            using (ShopStorage context = new ShopStorage())
+            {
+                var products = context.SearchProducts(search);
+                foreach (var item in products)
+	            {
+                    item.BrandReference.Load();
+                    item.ProductImages.Load();
+                    item.ProductAttributeValues.Load();
+                    foreach (var pav in item.ProductAttributeValues)
+                    {
+                        pav.ProductAttributeReference.Load();
+                    }
+	            }
+                return View("Index", products.ToList());
+            }
+        }
     }
 }

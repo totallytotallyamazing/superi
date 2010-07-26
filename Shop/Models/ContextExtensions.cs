@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Linq.Expressions;
+using System.Data.Common;
+using System.Data.EntityClient;
+using System.Collections;
+using System.Data;
 
 namespace Shop.Models
 {
@@ -53,5 +57,35 @@ namespace Shop.Models
             return Expression.Lambda<Func<TElement, bool>>(body, p);
         }
 
+        public static int[] GetSearchResults(this ShopStorage context, string searchString)
+        {
+            int[] result = null;
+            
+            EntityCommand command = (EntityCommand)context.Connection.CreateCommand();
+            command.CommandType = System.Data.CommandType.StoredProcedure;
+            command.CommandText = "ShopStorage.searchProducts";
+            EntityParameter param  =new EntityParameter("searchString", System.Data.DbType.String);
+            param.Value = searchString;
+            command.Parameters.Add(param);
+            
+            bool closeConnection = false;
+            if (context.Connection.State != System.Data.ConnectionState.Open)
+            {
+                context.Connection.Open();
+                closeConnection = true;
+            }
+            using (DbDataReader reader = command.ExecuteReader(CommandBehavior.SequentialAccess))
+            {
+                ArrayList items = new ArrayList();
+                while (reader.Read())
+                {
+                    items.Add(reader[0]);
+                }
+                result = (int[])items.ToArray(typeof(int));
+            }
+            if (closeConnection)
+                context.Connection.Close();
+            return result;
+        }
     }
 }

@@ -75,23 +75,20 @@ namespace Shop.Controllers
             }
         }
 
-        public ActionResult Search(string search)
+        public ActionResult Search(string searchField)
         {
             ViewData["tags"] = true;
+
             using (ShopStorage context = new ShopStorage())
             {
-                var products = context.SearchProducts(search);
-                foreach (var item in products)
-	            {
-                    item.BrandReference.Load();
-                    item.ProductImages.Load();
-                    item.ProductAttributeValues.Load();
-                    foreach (var pav in item.ProductAttributeValues)
-                    {
-                        pav.ProductAttributeReference.Load();
-                    }
-	            }
-                return View("Index", products.ToList());
+                int[] ids = context.GetSearchResults(searchField);
+                var products = context.Products
+                    .Include("Brand")
+                    .Include("ProductImages")
+                    .Include("ProductAttributeValues.ProductAttribute")
+                    //.Where(ContextExtension.BuildContainsExpression<Product, int>(p => p.Id, ids))
+                    .ToList();
+                return View("Index", products);
             }
         }
     }

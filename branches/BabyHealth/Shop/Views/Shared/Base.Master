@@ -1,5 +1,5 @@
 ﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
-
+<%@ Import Namespace="Dev.Mvc.Ajax" %>
 <% 
     if (Request.Cookies["baby"] == null)
         Response.Redirect("~/index.html");%>
@@ -23,6 +23,18 @@
         </script>
     <%} %>
     <script type="text/javascript" src="/Scripts/jquery.js"></script>
+    <%= Ajax.DynamicCssInclude("/Content/fancybox/jquery.fancybox.css") %>
+    <%= Ajax.ScriptInclude("/Scripts/jquery.fancybox.js")%>
+    <script type="text/javascript">
+        $(function() {
+            $("#feedbackForm").fancybox(
+            {
+                hideOnContentClick: false,
+                hideOnOverlayClick: false,
+                showCloseButton: true
+            });
+        });
+    </script>
     <asp:ContentPlaceHolder runat="server" ID="includes">
     </asp:ContentPlaceHolder>
 </head>
@@ -44,7 +56,7 @@
                     </div>
                     <h3>(044) 360-32-63</h3>
                     <h3>(050) 358-58-18</h3>
-                    <h5><a href="#">Форма обратной связи</a></h5>
+                    <h5><a id="feedbackForm" class="iframe" href="/Home/FeedbackForm">Форма обратной связи</a></h5>
                 </div>
                 <div id="search">
                     <form name="form1" method="post" action="">

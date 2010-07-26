@@ -20,6 +20,8 @@ namespace Shop
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+            routes.IgnoreRoute("captcha.ashx");
+
 
             routes.MapRoute(
                 "Go", // Route name
@@ -66,6 +68,7 @@ namespace Shop
             RegisterRoutes(RouteTable.Routes);
 
             DataAnnotationsModelValidatorProvider.RegisterAdapter(typeof(RemoteAttribute), typeof(RemoteAttributeAdapter));
+            DataAnnotationsModelValidatorProvider.RegisterAdapter(typeof(CaptchaAttribute), typeof(CaptchaAttributeAdapter));
         }
     }
 }

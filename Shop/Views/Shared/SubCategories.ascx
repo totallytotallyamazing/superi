@@ -3,10 +3,18 @@
 <ul class="treeview" id="productGroups">
 <% 
     foreach (var item in Model)
-    {%>
+    {
+        string extraClass = "";
+        string actionLink = Html.ActionLink(item.Name, "Index", "Products", new { id = item.Id }, null).ToString();
+        if (item.Id == WebSession.CurrentCategory)
+        {
+            actionLink = string.Format("<span>{0}</span>", item.Name);
+            extraClass = " current";
+        }
+        %>
     <li>
-        <div class="subMenuItem">
-            <%= Html.ActionLink(item.Name, "Index", "Products", new { id = item.Id }, null)%>
+        <div class="subMenuItem<%= extraClass %>">
+            <%= actionLink%>
         </div>
     </li>
   <%}        

@@ -10,7 +10,7 @@ namespace Dev.Helpers
 {
     public static class CaptchaExtensions
     {
-        public static string CaptchaImage(this HtmlHelper helper, int height, int width)
+        public static string CaptchaImage(int width, int height)
         {
             CaptchaImage image = new CaptchaImage
             {
@@ -21,7 +21,7 @@ namespace Dev.Helpers
             HttpContext.Current.Cache.Add(image.UniqueId, image, null, DateTime.Now.AddMinutes(30), Cache.NoSlidingExpiration, CacheItemPriority.Default, null);
 
             StringBuilder stringBuilder = new StringBuilder(256);
-            stringBuilder.Append("<input type=\"hidden\" name=\"captcha-guid\" value=\"");
+            stringBuilder.Append("<input type=\"hidden\" name=\"captcha-guid\" id=\"captcha_guid\" value=\"");
             stringBuilder.Append(image.UniqueId);
             stringBuilder.Append("\" />");
             stringBuilder.AppendLine();
@@ -34,6 +34,12 @@ namespace Dev.Helpers
             stringBuilder.Append("\" />");
 
             return stringBuilder.ToString();
+
+        }
+
+        public static string CaptchaImage(this HtmlHelper helper, int height, int width)
+        {
+            return CaptchaImage(width, height);
         }
     }
 }

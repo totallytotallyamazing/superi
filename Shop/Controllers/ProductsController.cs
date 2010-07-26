@@ -15,6 +15,8 @@ namespace Shop.Controllers
             ViewData["categoryId"] = id;
             ViewData["brandId"] = brandId;
             ViewData["showAdminLinks"] = true;
+            WebSession.CurrentCategory = id;
+
             using (ShopStorage context = new ShopStorage())
             {
                 List<Product> products = null;
@@ -24,9 +26,7 @@ namespace Shop.Controllers
                     .Where(c => c.Id == id).First();
                 if (category.Parent == null)
                 {
-                    WebSession.CurrentCategory = id;
                     ViewData["showAdminLinks"] = false;
-                    
                     products = category.Categories.SelectMany(c => c.Products).Union(category.Products).ToList();
                 }
                 else

@@ -7,14 +7,34 @@
         <div id="classMenuItems">
         <% 
         foreach (var item in Model)
-        {%>
-            <div class="classMenuItem">
+        {
+            bool expandCategory = false;
+            string actionLink = "";
+            string extraClass = "";
+            if (item.Id == WebSession.CurrentCategory)
+            {
+                actionLink = string.Format("<span>{0}</span>", item.Name);
+                extraClass = " current";
+                expandCategory = true;
+            }
+            else if (item.Categories.Select(c => c.Id).Contains(WebSession.CurrentCategory))
+            {
+                actionLink = Html.ActionLink(item.Name, "Index", "Products", new { id = item.Id }, null).ToString();
+                extraClass = " current";
+                expandCategory = true;
+            }
+            else
+            {
+                actionLink = Html.ActionLink(item.Name, "Index", "Products", new { id = item.Id }, null).ToString();
+            }
+            %>
+            <div class="classMenuItem<%= extraClass %>">
                 <p>
-                    <%= Html.ActionLink(item.Name, "Index", "Products", new { id = item.Id }, null)%>
+                    <%= actionLink %>
                 </p>
             </div>
       <%
-          if (WebSession.CurrentCategory == item.Id)
+          if (WebSession.CurrentCategory == item.Id || expandCategory)
               Html.RenderPartial("SubCategories", item.Categories);
         }%>
         <% if(Roles.IsUserInRole("Administrators")){ %>    

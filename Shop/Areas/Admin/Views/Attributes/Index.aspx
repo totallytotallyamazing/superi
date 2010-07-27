@@ -5,13 +5,13 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-<% foreach (var item in Model){%>
+<%--<% foreach (var item in Model){%>
     <div>
         <%= Html.ActionLink(item.Name, "Index", new{id=item.Id }) %>
     </div>       
-<%} %>
+<%} %>--%>
 
-<%= Html.ActionLink("Создать", "AddEdit") %>
+<%--<%= Html.ActionLink("Создать", "AddEdit") %>--%>
 
 <% if(ViewData["id"]!=null)
    {
@@ -25,9 +25,6 @@
 </asp:Content>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="includes" runat="server">  
-    <script type="text/javascript" src="/Scripts/jquery.fancybox.js"></script>
-    <link href="/Content/fancybox/jquery.fancybox.css" rel="stylesheet" type="text/css" />
-    
     <script type="text/javascript">
         $(function() {
             $(".fancyAttributeValue").fancybox({ modal: true, autoDimensions: false, width: 200, height: 200 });

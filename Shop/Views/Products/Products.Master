@@ -18,7 +18,7 @@
             <asp:ContentPlaceHolder runat="server" ID="MainContent">
             </asp:ContentPlaceHolder>
     </div>
-    <div id="contentContactSelectors">
+    <div id="contentContactSelectors" style="display:none">
         <p>
             <a href="#">1</a> ... <a href="#">2</a> ... <a href="#">3</a>
         </p>

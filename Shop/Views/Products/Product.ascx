@@ -1,12 +1,9 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<Shop.Models.Product>" %>
+<%@ Import Namespace="Shop.Helpers" %>
 <%@ Import Namespace="Dev.Mvc.Helpers" %>
-
+<%@ Import Namespace="Dev.Helpers" %>
 <% 
     string productClickLink = Html.ActionLink("[IMAGE]", "Show", new { id=Model.Id }).ToString();
-    if (Roles.IsUserInRole("Administrators"))
-    {
-        productClickLink = Html.ActionLink("[IMAGE]", "AddEdit", "Products", new { area = "Admin", id = Model.Id, cId = ViewData["categoryId"], bId = ViewData["brandId"] }, null).ToString();
-    }
 %>
 
 <div id="contentItemBox">

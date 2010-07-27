@@ -14,14 +14,14 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("shop_model", "ProductAttributeProductAttributeValue", "ProductAttribute", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Shop.Models.ProductAttribute), "ProductAttributeValue", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Shop.Models.ProductAttributeValue))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("shop_model", "ProductProductImage", "Product", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Shop.Models.Product), "ProductImage", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Shop.Models.ProductImage))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("shop_model", "CategoryCategory", "Category", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Shop.Models.Category), "Category1", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Shop.Models.Category))]
-[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("shop_model", "BrandProduct", "Brand", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Shop.Models.Brand), "Product", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Shop.Models.Product))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("shop_model", "CategoryProductAttribute", "Category", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Shop.Models.Category), "ProductAttribute", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Shop.Models.ProductAttribute))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("shop_model", "ProductDiscount", "Product", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Shop.Models.Product), "Discount", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Shop.Models.Discount))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("shop_model", "ProductProductAttributeValue", "Product", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Shop.Models.Product), "ProductAttributeValue", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Shop.Models.ProductAttributeValue))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("shop_model", "ProductTag", "Product", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Shop.Models.Product), "Tag", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Shop.Models.Tag))]
+[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("shop_model", "BrandProduct", "Brand", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Shop.Models.Brand), "Product", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Shop.Models.Product))]
 
 // Original file name:
-// Generation date: 06.07.2010 13:01:58
+// Generation date: 27.07.2010 11:27:02
 namespace Shop.Models
 {
     
@@ -731,6 +731,29 @@ namespace Shop.Models
         partial void OnIsNewChanging(bool value);
         partial void OnIsNewChanged();
         /// <summary>
+        /// There are no comments for Property Color in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string Color
+        {
+            get
+            {
+                return this._Color;
+            }
+            set
+            {
+                this.OnColorChanging(value);
+                this.ReportPropertyChanging("Color");
+                this._Color = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
+                this.ReportPropertyChanged("Color");
+                this.OnColorChanged();
+            }
+        }
+        private string _Color;
+        partial void OnColorChanging(string value);
+        partial void OnColorChanged();
+        /// <summary>
         /// There are no comments for Category in the schema.
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("shop_model", "CategoryProduct", "Category")]
@@ -831,43 +854,6 @@ namespace Shop.Models
             }
         }
         /// <summary>
-        /// There are no comments for Brand in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("shop_model", "BrandProduct", "Brand")]
-        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
-        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public Brand Brand
-        {
-            get
-            {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Brand>("shop_model.BrandProduct", "Brand").Value;
-            }
-            set
-            {
-                ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Brand>("shop_model.BrandProduct", "Brand").Value = value;
-            }
-        }
-        /// <summary>
-        /// There are no comments for Brand in the schema.
-        /// </summary>
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Data.Objects.DataClasses.EntityReference<Brand> BrandReference
-        {
-            get
-            {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Brand>("shop_model.BrandProduct", "Brand");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<Brand>("shop_model.BrandProduct", "Brand", value);
-                }
-            }
-        }
-        /// <summary>
         /// There are no comments for Discounts in the schema.
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("shop_model", "ProductDiscount", "Discount")]
@@ -927,6 +913,43 @@ namespace Shop.Models
                 if ((value != null))
                 {
                     ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<Tag>("shop_model.ProductTag", "Tag", value);
+                }
+            }
+        }
+        /// <summary>
+        /// There are no comments for Brand in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("shop_model", "BrandProduct", "Brand")]
+        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
+        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public Brand Brand
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Brand>("shop_model.BrandProduct", "Brand").Value;
+            }
+            set
+            {
+                ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Brand>("shop_model.BrandProduct", "Brand").Value = value;
+            }
+        }
+        /// <summary>
+        /// There are no comments for Brand in the schema.
+        /// </summary>
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Data.Objects.DataClasses.EntityReference<Brand> BrandReference
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Brand>("shop_model.BrandProduct", "Brand");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<Brand>("shop_model.BrandProduct", "Brand", value);
                 }
             }
         }

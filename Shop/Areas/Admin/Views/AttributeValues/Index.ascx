@@ -31,5 +31,3 @@
     <p>
         <%= Html.ActionLink("Добавить значение", "AddEdit", new { controller = "AttributeValues", attributeId = ViewData["attributeId"] }, new { @class = "fancyAttributeValue" })%>
     </p>
-
-

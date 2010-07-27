@@ -7,6 +7,7 @@ using Shop.Models;
 using System.Data;
 using Trips.Mvc.Helpers;
 using System.IO;
+using Dev.Helpers;
 
 namespace Shop.Areas.Admin.Controllers
 {
@@ -24,7 +25,7 @@ namespace Shop.Areas.Admin.Controllers
                 return View(products);
             }
         }
-        
+
         [HttpGet]
         public ActionResult AddEdit(int? id, int cId, int? bId)
         {
@@ -113,7 +114,13 @@ namespace Shop.Areas.Admin.Controllers
             return RedirectToAction("AddEdit", new { id = productId, cId = categoryId });
         }
 
-        public ActionResult DeleteImage(long productId, long imageId)
+        public ActionResult DeleteImage(int productId, int imageId, int cId)
+        {
+            DeleteProductImage(productId, imageId);
+            return RedirectToAction("AddEdit", new { id = productId, cId = cId });
+        }
+
+        private void DeleteProductImage(int productId, int imageId)
         {
             using (ShopStorage context = new ShopStorage())
             {
@@ -126,11 +133,10 @@ namespace Shop.Areas.Admin.Controllers
                 }
                 context.DeleteObject(image);
                 context.SaveChanges();
-                return RedirectToAction("AddEdit", new { id = productId });
             }
         }
 
-        public ActionResult SetDefaultImage(long productId, long defaultImage)
+        public ActionResult SetDefaultImage(long productId, long defaultImage, int cId)
         {
             using (ShopStorage context = new ShopStorage())
             {
@@ -141,7 +147,22 @@ namespace Shop.Areas.Admin.Controllers
                 }
                 context.SaveChanges();
             }
-            return RedirectToAction("AddEdit", new { id = productId });
+            return RedirectToAction("AddEdit", new { id = productId, cId = cId });
+        }
+
+        public ActionResult Delete(int id)
+        {
+            using (ShopStorage context = new ShopStorage())
+            {
+                Product product = context.Products.Include("ProductImages").Where(p => p.Id == id).First();
+                foreach (var item in product.ProductImages)
+                {
+                    DeleteProductImage(id, item.Id);
+                }
+                context.DeleteObject(product);
+                context.SaveChanges();
+            }
+            return RedirectToAction("Index", new { controller = "Products", area = "", id = WebSession.CurrentCategory });
         }
     }
 }

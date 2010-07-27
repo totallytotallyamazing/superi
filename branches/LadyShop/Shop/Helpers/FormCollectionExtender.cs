@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Shop.Areas.Admin.Controllers
+namespace Dev.Helpers
 {
     public class PostData : Dictionary<string, Dictionary<string, string>>
     {

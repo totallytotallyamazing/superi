@@ -59,7 +59,18 @@ namespace Shop.Areas.Admin.Controllers
                 context.SaveChanges();
             }
             return RedirectToAction("Index", "Attributes", new { id = attributeId });
-            //Response.Write("<script type=\"text/javascript\">window.top.location.href = window.top.location.href</script>");
+        }
+
+        public ActionResult Delete(int id)
+        { 
+            using (ShopStorage context = new ShopStorage())
+            {
+                ProductAttributeValue value = context.ProductAttributeValues.Include("ProductAttribute").Where(pav=>pav.Id == id).First();
+                int attributeId = value.ProductAttribute.Id;
+                context.DeleteObject(value);
+                context.SaveChanges();
+                return RedirectToAction("Index", "Attributes", new { id = attributeId });
+            }
         }
 
     }

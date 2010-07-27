@@ -1,60 +1,86 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<Shop.Models.RegisterModel>" %>
-
-<asp:Content ID="registerTitle" ContentPlaceHolderID="TitleContent" runat="server">
-    Register
+﻿<%@ Page Language="C#" MasterPageFile="~/Views/Shared/Base.Master" Inherits="System.Web.Mvc.ViewPage<Shop.Models.RegisterModel>" %>
+<%@ Import Namespace="Dev.Mvc.Ajax" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
+	Регистрация
 </asp:Content>
 
-<asp:Content ID="registerContent" ContentPlaceHolderID="MainContent" runat="server">
-    <h2>Create a New Account</h2>
-    <p>
-        Use the form below to create a new account. 
-    </p>
-    <p>
-        Passwords are required to be a minimum of <%= Html.Encode(ViewData["PasswordLength"]) %> characters in length.
-    </p>
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+    <h2>Ваши контактные данные</h2>
+    <% Html.EnableClientValidation(); %>
+    <% using(Html.BeginForm()){ %>
+    <table>
+        <tr>
+            <td>
+                <%= Html.LabelFor(model=>model.Email) %>:<br />
+                <span class="comments">
+                    (при регистрации является вашим логином)
+                </span>
+            </td>
+            <td>
+                <%= Html.TextBoxFor(model=>model.Email) %>
+            </td>
+            <td>
+                <%= Html.ValidationMessageFor(model=>model.Email) %>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <%= Html.LabelFor(model=>model.Name) %>:
+            </td>
+            <td>
+                <%= Html.TextBoxFor(model=>model.Name) %>
+            </td>
+            <td>
+                <%= Html.ValidationMessageFor(model => model.Name)%>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <%= Html.LabelFor(model=>model.Phone) %>:
+            </td>
+            <td>
+                <%= Html.TextBoxFor(model=>model.Phone) %>
+            </td>
+            <td>
+                <%= Html.ValidationMessageFor(model => model.Phone)%>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <span class="pleaseRegister">Зарегистрируйте меня как пользователя,</span> пожалуйста
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <%= Html.LabelFor(model=>model.DeliveryAddress) %>
+            </td>
+            <td colspan="2">
+                <%= Html.TextAreaFor(model=>model.DeliveryAddress) %>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <%= Html.LabelFor(model=>model.Password) %>
+            </td>
+            <td>
+                <%= Html.TextBoxFor(model=>model.Password) %>
+            </td>
+            <td>
+                <%= Html.ValidationMessageFor(model => model.Password)%>
+            </td>
+        </tr>
+    </table>
+    <input type="submit" value="Зарегистрироваться" />
+    <%} %>
+</asp:Content>
 
-    <% using (Html.BeginForm()) { %>
-        <%= Html.ValidationSummary(true, "Account creation was unsuccessful. Please correct the errors and try again.") %>
-        <div>
-            <fieldset>
-                <legend>Account Information</legend>
-                
-                <div class="editor-label">
-                    <%= Html.LabelFor(m => m.UserName) %>
-                </div>
-                <div class="editor-field">
-                    <%= Html.TextBoxFor(m => m.UserName) %>
-                    <%= Html.ValidationMessageFor(m => m.UserName) %>
-                </div>
-                
-                <div class="editor-label">
-                    <%= Html.LabelFor(m => m.Email) %>
-                </div>
-                <div class="editor-field">
-                    <%= Html.TextBoxFor(m => m.Email) %>
-                    <%= Html.ValidationMessageFor(m => m.Email) %>
-                </div>
-                
-                <div class="editor-label">
-                    <%= Html.LabelFor(m => m.Password) %>
-                </div>
-                <div class="editor-field">
-                    <%= Html.PasswordFor(m => m.Password) %>
-                    <%= Html.ValidationMessageFor(m => m.Password) %>
-                </div>
-                
-                <div class="editor-label">
-                    <%= Html.LabelFor(m => m.ConfirmPassword) %>
-                </div>
-                <div class="editor-field">
-                    <%= Html.PasswordFor(m => m.ConfirmPassword) %>
-                    <%= Html.ValidationMessageFor(m => m.ConfirmPassword) %>
-                </div>
-                
-                <p>
-                    <input type="submit" value="Register" />
-                </p>
-            </fieldset>
-        </div>
-    <% } %>
+<asp:Content ID="Content3" ContentPlaceHolderID="ContentTitle" runat="server">
+    <% Html.RenderPartial("CartBreadCrumbs", 0); %>
+    
+</asp:Content>
+
+<asp:Content ID="Content4" ContentPlaceHolderID="includes" runat="server">
+    <%= Ajax.ScriptInclude("/Scripts/MicrosoftAjax.js")%>
+    <%= Ajax.ScriptInclude("/Scripts/MicrosoftMvcValidation.js")%>\
+    <%= Ajax.ScriptInclude("/Scripts/MvcRemoteValidator.js")%>
 </asp:Content>

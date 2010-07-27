@@ -25,9 +25,6 @@
 </asp:Content>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="includes" runat="server">  
-    <script type="text/javascript" src="/Scripts/jquery.fancybox.js"></script>
-    <link href="/Content/fancybox/jquery.fancybox.css" rel="stylesheet" type="text/css" />
-    
     <script type="text/javascript">
         $(function() {
             $(".fancyAttributeValue").fancybox({ modal: true, autoDimensions: false, width: 200, height: 200 });

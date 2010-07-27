@@ -82,7 +82,7 @@ a#menuItem5.current{background-position:0px 0px; margin-top:25px; height:144px; 
 	background:url(img/search.jpg);
 	margin-left:35px;
 }
-#searchField{height:18px; width:116px;float:left;margin:26px 0px 0px 20px;font:Verdana, Arial, Helvetica, sans-serif bold;font-size:12px; color:#cccccc; border:0px solid black;}
+#searchField{height:18px; width:116px;float:left;margin:26px 0px 0px 20px;font:Verdana, Arial, Helvetica, sans-serif bold;font-size:12px; color:Black; border:0px solid black;}
 #contentBox{min-height:600px;height:auto;min-width:1013px; width:100%;float:left;padding:5px 0px 0px 0px;background-color:#ffedab;border:0px solid green; position:relative}
 #leftSide{min-height:600px;height:auto; width:243px;float:left; margin:0px 0px 0px 0px;}
 #currency{height:11px; width:243px; padding-top:7px;}
@@ -105,13 +105,15 @@ a#menuItem5.current{background-position:0px 0px; margin-top:25px; height:144px; 
 #menuBox{height:auto;width:172px; margin:20px 0px 0px 35px; padding:0px 0px 0px 0px;float:left;}
 #liHeader{height:35px; width:172px;float:left;border:0px solid red;background:url(img/liHeader.jpg) no-repeat center;margin:0px 0px 0px 0px;}
 #classMenuItems{min-height:173px; height:auto; width:152px;padding:5px 20px 5px 0px;float:left;background:url(img/liBg.jpg) repeat-y;}
-.classMenuItem{width:auto;padding:7px 0px 0px 20px;color:#000000;font-family:Tahoma, Helvetica, sans-serif;font-weight:normal;font-size:12px;}
-.classMenuItem *{color:#000000;font-size:12px;}
+.classMenuItem{width:auto;padding:7px 0px 0px 20px;color:#ff6600;font-family:Tahoma, Helvetica, sans-serif;font-weight:normal;font-size:12px;}
+.classMenuItem *{color:#ff6600;font-size:12px;}
+.classMenuItem a:hover{color:#993300;}
 .classMenuItem.current *{font-weight:bold;}
-.subMenuItem{width:auto;padding:3px 0px 0px 45px;color:#000000;font-family: Tahoma, Helvetica, sans-serif;font-weight:normal;font-size:13px;}
+.subMenuItem{width:auto;padding:3px 0px 0px 45px;color:#ff6600;font-family: Tahoma, Helvetica, sans-serif;font-weight:normal;font-size:13px;}
 ul {padding:5px 0px 0px 0px;}
 li{list-style-type:none;}
-.subMenuItem a{color:#000000;}
+.subMenuItem a{color:#ff6600;}
+.subMenuItem a:hover{color:#993300;}
 .subMenuItem.current *{font-weight:bold;}
 #leftHand{height:153px; width:207px;float:left;border:0px solid red;background:url(img/handLeft.jpg) no-repeat center;margin:0px 0px 0px 0px;}
 #rightSide{height:auto; min-width:727px; width:auto; margin-right:30px;margin-left:243px;background:#ffffff;}
@@ -186,4 +188,4 @@ li{list-style-type:none;}
 #book{height:71px; width:190px;float:left;margin:0px 0px 0px 0px; background:url(img/book.jpg) no-repeat right;}
 #ramka{height:71px; width:270px;float:right;margin:0px 0px 0px 0px; background:url(img/ramka.jpg) no-repeat right;}
 
-.watermark{color:Gray;}
+.watermark{color:#ccc !important;}

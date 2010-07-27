@@ -60,14 +60,14 @@ namespace Shop.Models
         public static int[] GetSearchResults(this ShopStorage context, string searchString)
         {
             int[] result = null;
-            
+
             EntityCommand command = (EntityCommand)context.Connection.CreateCommand();
             command.CommandType = System.Data.CommandType.StoredProcedure;
             command.CommandText = "ShopStorage.searchProducts";
-            EntityParameter param  =new EntityParameter("searchString", System.Data.DbType.String);
+            EntityParameter param = new EntityParameter("searchString", System.Data.DbType.String);
             param.Value = searchString;
             command.Parameters.Add(param);
-            
+
             bool closeConnection = false;
             if (context.Connection.State != System.Data.ConnectionState.Open)
             {

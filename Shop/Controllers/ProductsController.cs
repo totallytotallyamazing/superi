@@ -86,7 +86,7 @@ namespace Shop.Controllers
                     .Include("Brand")
                     .Include("ProductImages")
                     .Include("ProductAttributeValues.ProductAttribute")
-                    //.Where(ContextExtension.BuildContainsExpression<Product, int>(p => p.Id, ids))
+                    .Where(ContextExtension.BuildContainsExpression<Product, int>(p => p.Id, ids))
                     .ToList();
                 return View("Index", products);
             }

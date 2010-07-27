@@ -143,7 +143,7 @@
           <Property Name="Value" Type="varchar" Nullable="false" MaxLength="500" />
         </EntityType>
       <Function Name="searchProducts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="gbua_x_baby_583" >
-        <Parameter Name="saerchString" Type="varchar" MaxLength="2000" />
+        <Parameter Name="searchString" Type="varchar"></Parameter>
       </Function>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -171,9 +171,6 @@
             <End Role="Category" EntitySet="Categories" />
             <End Role="Category1" EntitySet="Categories" /></AssociationSet>
           <EntitySet Name="Brands" EntityType="shop_model.Brand" />
-          <AssociationSet Name="BrandProduct" Association="shop_model.BrandProduct">
-            <End Role="Brand" EntitySet="Brands" />
-            <End Role="Product" EntitySet="Products" /></AssociationSet>
           <AssociationSet Name="CategoryProductAttribute" Association="shop_model.CategoryProductAttribute">
             <End Role="Category" EntitySet="Categories" />
             <End Role="ProductAttribute" EntitySet="ProductAttributes" /></AssociationSet>
@@ -188,8 +185,11 @@
           <AssociationSet Name="ProductTag" Association="shop_model.ProductTag">
             <End Role="Product" EntitySet="Products" />
             <End Role="Tag" EntitySet="Tags" /></AssociationSet>
-          <FunctionImport Name="SearchProducts" EntitySet="Products" ReturnType="Collection(shop_model.Product)">
-            <Parameter Name="saerchString" Type="String" /></FunctionImport></EntityContainer>
+          <AssociationSet Name="BrandProduct" Association="shop_model.BrandProduct">
+            <End Role="Brand" EntitySet="Brands" />
+            <End Role="Product" EntitySet="Products" /></AssociationSet>
+          <FunctionImport Name="searchProducts" ReturnType="Collection(Int32)">
+            <Parameter Name="searchString" Type="String" /></FunctionImport></EntityContainer>
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="Id" />
@@ -220,12 +220,12 @@
           <NavigationProperty Name="SimilarProductChildren" Relationship="shop_model.ProductProduct" FromRole="Product1" ToRole="Product" />
           <NavigationProperty Name="ProductImages" Relationship="shop_model.ProductProductImage" FromRole="Product" ToRole="ProductImage" />
           <Property Name="PartNumber" Type="String" Nullable="true" />
-          <NavigationProperty Name="Brand" Relationship="shop_model.BrandProduct" FromRole="Product" ToRole="Brand" />
           <Property Name="IsNew" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Discounts" Relationship="shop_model.ProductDiscount" FromRole="Product" ToRole="Discount" />
           <NavigationProperty Name="ProductAttributeValues" Relationship="shop_model.ProductProductAttributeValue" FromRole="Product" ToRole="ProductAttributeValue" />
           <NavigationProperty Name="Tags" Relationship="shop_model.ProductTag" FromRole="Product" ToRole="Tag" />
-          <Property Name="Color" Type="String" Nullable="true" /></EntityType>
+          <Property Name="Color" Type="String" Nullable="true" />
+          <NavigationProperty Name="Brand" Relationship="shop_model.BrandProduct" FromRole="Product" ToRole="Brand" /></EntityType>
         <EntityType Name="ProductAttribute">
           <Key>
             <PropertyRef Name="Id" />
@@ -284,11 +284,6 @@
           <Property Name="SeoDescription" Type="String" Nullable="true" />
           <Property Name="SeoKeywords" Type="String" Nullable="true" />
           <NavigationProperty Name="Products" Relationship="shop_model.BrandProduct" FromRole="Brand" ToRole="Product" /></EntityType>
-        <Association Name="BrandProduct">
-          <End Type="shop_model.Brand" Role="Brand" Multiplicity="1">
-            <OnDelete Action="Cascade"></OnDelete>
-          </End>
-          <End Type="shop_model.Product" Role="Product" Multiplicity="*" /></Association>
         <Association Name="CategoryProductAttribute">
           <End Type="shop_model.Category" Role="Category" Multiplicity="*" />
           <End Type="shop_model.ProductAttribute" Role="ProductAttribute" Multiplicity="*" />
@@ -315,7 +310,10 @@
           <NavigationProperty Name="Products" Relationship="shop_model.ProductTag" FromRole="Tag" ToRole="Product" /></EntityType>
         <Association Name="ProductTag">
           <End Type="shop_model.Product" Role="Product" Multiplicity="*" />
-          <End Type="shop_model.Tag" Role="Tag" Multiplicity="*" /></Association></Schema>
+          <End Type="shop_model.Tag" Role="Tag" Multiplicity="*" /></Association>
+        <Association Name="BrandProduct">
+          <End Type="shop_model.Brand" Role="Brand" Multiplicity="1" />
+          <End Type="shop_model.Product" Role="Product" Multiplicity="*" /></Association></Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -411,11 +409,6 @@
                 <ScalarProperty Name="Logo" ColumnName="Logo" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Description" ColumnName="Description" /></MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <AssociationSetMapping Name="BrandProduct" TypeName="shop_model.BrandProduct" StoreEntitySet="Product">
-            <EndProperty Name="Product">
-              <ScalarProperty Name="Id" ColumnName="Id" /></EndProperty>
-            <EndProperty Name="Brand">
-              <ScalarProperty Name="Id" ColumnName="BrandId" /></EndProperty></AssociationSetMapping>
           <AssociationSetMapping Name="CategoryProductAttribute" TypeName="shop_model.CategoryProductAttribute" StoreEntitySet="CategoryProductAttributeMapping" >
             <EndProperty Name="ProductAttribute">
               <ScalarProperty Name="Id" ColumnName="AttributeId" /></EndProperty>
@@ -448,7 +441,12 @@
               <ScalarProperty Name="Id" ColumnName="TagId" /></EndProperty>
             <EndProperty Name="Product">
               <ScalarProperty Name="Id" ColumnName="ProductId" /></EndProperty></AssociationSetMapping>
-          <FunctionImportMapping FunctionImportName="SearchProducts" FunctionName="shop_model.Store.searchProducts" /></EntityContainerMapping>
+          <AssociationSetMapping Name="BrandProduct" TypeName="shop_model.BrandProduct" StoreEntitySet="Product">
+            <EndProperty Name="Product">
+              <ScalarProperty Name="Id" ColumnName="Id" /></EndProperty>
+            <EndProperty Name="Brand">
+              <ScalarProperty Name="Id" ColumnName="BrandId" /></EndProperty></AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="searchProducts" FunctionName="shop_model.Store.searchProducts" /></EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>
@@ -493,9 +491,6 @@
           <ConnectorPoint PointX="2.5165384615384614" PointY="0.37499999999999978" />
           <ConnectorPoint PointX="2.5165384615384614" PointY="0.625" /></AssociationConnector>
         <EntityTypeShape EntityType="shop_model.Brand" Width="1.5" PointX="11.375" PointY="0.625" Height="2.336813151041667" />
-        <AssociationConnector Association="shop_model.BrandProduct">
-          <ConnectorPoint PointX="11.375" PointY="1.7934065755208337" />
-          <ConnectorPoint PointX="10.5" PointY="1.7934065755208337" /></AssociationConnector>
         <AssociationConnector Association="shop_model.CategoryProductAttribute">
           <ConnectorPoint PointX="1.84375" PointY="3.1513069661458331" />
           <ConnectorPoint PointX="1.84375" PointY="4.125" /></AssociationConnector>
@@ -511,6 +506,9 @@
         <EntityTypeShape EntityType="shop_model.Tag" Width="1.5" PointX="6" PointY="2.375" Height="1.5956835937499996" />
         <AssociationConnector Association="shop_model.ProductTag">
           <ConnectorPoint PointX="8" PointY="3.172841796875" />
-          <ConnectorPoint PointX="7.5" PointY="3.172841796875" /></AssociationConnector></Diagram></edmx:Diagrams>
+          <ConnectorPoint PointX="7.5" PointY="3.172841796875" /></AssociationConnector>
+        <AssociationConnector Association="shop_model.BrandProduct">
+          <ConnectorPoint PointX="11.375" PointY="1.69865966796875" />
+          <ConnectorPoint PointX="10.5" PointY="1.69865966796875" /></AssociationConnector></Diagram></edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

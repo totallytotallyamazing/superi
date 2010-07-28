@@ -17,8 +17,9 @@
            {
                Html.RenderPartial("Product", item);
            } %>
+           <div style="clear:both"></div>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="includes" runat="server">
-    <link rel="Stylesheet" href="/Content/products.css" />
+    <link rel="Stylesheet" href="/Content/catalog.css" />
 </asp:Content>

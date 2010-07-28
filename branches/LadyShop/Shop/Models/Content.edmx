@@ -140,6 +140,12 @@
           <ConnectorPoint PointX="3.5319230769230767" PointY="3.7158007812499996" />
           <ConnectorPoint PointX="3.9784615384615383" PointY="3.7158007812499996" />
           <ConnectorPoint PointX="3.9784615384615383" PointY="3.46580078125" /></AssociationConnector>
-        <EntityTypeShape EntityType="shop_contentModel.Article" Width="1.5" PointX="2.75" PointY="0.75" Height="2.71580078125" /></Diagram></edmx:Diagrams>
+        <EntityTypeShape EntityType="shop_contentModel.Article" Width="1.5" PointX="2.75" PointY="0.75" Height="2.71580078125" />
+        <AssociationConnector Association="shop_contentModel.ContentContent">
+          <ConnectorPoint PointX="1.1569230769230767" PointY="3.5908007812499996" />
+          <ConnectorPoint PointX="1.1569230769230767" PointY="3.8408007812499996" />
+          <ConnectorPoint PointX="1.6034615384615383" PointY="3.8408007812499996" />
+          <ConnectorPoint PointX="1.6034615384615383" PointY="3.5908007812499996" /></AssociationConnector>
+        <EntityTypeShape EntityType="shop_contentModel.Content" Width="1.5" PointX="0.625" PointY="0.875" Height="2.7158007812499996" /></Diagram></edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

@@ -339,6 +339,7 @@
     <Content Include="Scripts\MvcCaptchaValidation.js" />
     <Content Include="Views\Cart\OrderSent.aspx" />
     <Content Include="Views\Home\FeedbackForm.ascx" />
+    <Content Include="Views\Products\Show.aspx" />
     <Content Include="Views\Shared\AdminPanel.ascx" />
     <Content Include="Configuration\Web.config" />
     <Content Include="Content\AdminStyles\addEditProduct.css" />

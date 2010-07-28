@@ -12,7 +12,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("shop_contentModel", "ContentContent", "Content", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Shop.Models.Content), "Content1", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Shop.Models.Content))]
 
 // Original file name:
-// Generation date: 06.07.2010 13:02:54
+// Generation date: 28.07.2010 18:15:53
 namespace Shop.Models
 {
     

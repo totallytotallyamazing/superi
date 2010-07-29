@@ -71,7 +71,7 @@
     <script type="text/javascript" src="/Scripts/MicrosoftMvcValidation.js"></script>
     <%= Ajax.ScriptInclude("/Scripts/jquery.ui.js") %>
     <%= Ajax.ScriptInclude("/Scripts/jquery.ui.datepicker-ru.js")%>
-    <%= Ajax.DynamicCssInclude("/Content/sunny/jquery.css") %>
+    <%= Ajax.DynamicCssInclude("/Content/lady/jquery.css") %>
 
     <script type="text/javascript">
         $(function() {

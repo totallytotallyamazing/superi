@@ -4,17 +4,19 @@
 <%= Ajax.ScriptInclude("/Scripts/extended/ExtendedControls.js")%>
 <script type="text/javascript">
     Sys.require(Sys.components.watermark, function() {
-        $("#searchField").watermark("Слово + “Enter”", "watermark");
+        $("#searchField").watermark("Введите текст и нажмите “Enter”", "searchWatermark");
     });   
 </script>
-
-<div id="search">
-    <% using(Html.BeginForm("Search", "Products", FormMethod.Post, null)){ %>
+<div id="searchText">
     <p>
-        <%= Html.TextBox("searchField") %>
+        ПОИСК ПО КАТАЛОГУ
     </p>
-    <%} %>
 </div>
-
-
-
+<div id="search">
+    <% using(Html.BeginForm("Search", "Products", FormMethod.Get, null)){ %>
+        <%= Html.TextBox("searchField") %>
+    <%} %>
+    <p>
+        <a href="#">Расширенный поиск</a>
+    </p>
+</div>

@@ -19,7 +19,7 @@ body{background:url(img/bg.jpg);}
 #write p{margin:5px 0px 0px 175px;}
 #write a{font:Verdana, sans-serif; font-size:10px; font-weight:bold; color:#0099cc;}
 #search {height:73px; width:auto; background:url(img/searchBg.jpg) repeat-x;}
-#searchField {margin:0 auto; height:20px;width:272px;}
+#searchField {margin:0 auto; width:272px; position:relative; display:block;}
 #search p{color:#CC3366; text-align:center;}
 #search a{font:Verdana, sans-serif; font-size:10px; font-weight:bold; color:#0099cc;}
 #skidki {height:107px; width:auto;background:url(img/skidkiBg.jpg);}
@@ -81,3 +81,6 @@ body{background:url(img/bg.jpg);}
 #footerRightBox{height:50px;min-width:15px;width:auto;float:right;background:url(img/footerRight.jpg) no-repeat right;padding:0px 65px 0px 0px;}
 #footerRightBox p{padding: 12px 0px 0px 8px;font-family:Tahoma, sans-serif;text-decoration:none;font-size:12px;color:#ffffff;font-weight:100;}
 .colortext{background:#ffffff;color:#75ae39;padding:0px 3px 3px 3px;}
+
+.watermark, .searchWatermark{color:Gray;}
+.searchWatermark{text-align:center;}

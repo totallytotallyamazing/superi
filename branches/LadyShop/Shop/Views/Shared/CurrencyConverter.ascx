@@ -21,6 +21,7 @@
     hrnLink.NavigateUrl = getCurrencyLink(Currencies.Hrivna);
     usdLink.NavigateUrl = getCurrencyLink(Currencies.Dollar);
     euroLink.NavigateUrl = getCurrencyLink(Currencies.Euro);
+    rubleLink.NavigateUrl = getCurrencyLink(Currencies.Ruble);
 
     switch (WebSession.Currency)
     {
@@ -36,14 +37,16 @@
             hrnLink.CssClass = "current";
             hrnLink.NavigateUrl = string.Empty;
             break;
+        case Currencies.Ruble:
+            rubleLink.CssClass = "current";
+            rubleLink.NavigateUrl = string.Empty;
+            break;
     }
 %>
     
 <div id="currency">
     <p>Считаем в:</p>
-</div>
-<div id="currencyBox">
     <h3>
-        <asp:HyperLink runat="server" ID="hrnLink" Text="ГРН"></asp:HyperLink> | <asp:HyperLink runat="server" ID="usdLink" Text="USD"></asp:HyperLink> | <asp:HyperLink runat="server" ID="euroLink" Text="EUR"></asp:HyperLink>
+        <asp:HyperLink runat="server" ID="hrnLink" Text="ГРН"></asp:HyperLink> | <asp:HyperLink runat="server" ID="usdLink" Text="USD"></asp:HyperLink> | <asp:HyperLink runat="server" ID="euroLink" Text="EUR"></asp:HyperLink> | <asp:HyperLink runat="server" ID="rubleLink" Text="РУБ"></asp:HyperLink>
     </h3>
 </div>

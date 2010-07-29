@@ -12,7 +12,7 @@ body{background:url(img/bg.jpg);}
 #underHeader{height:30px; width:auto; background:white;}
 #wellcome{height:30px; width:410px;float:left;}
 #wellcome p{font:Verdana, sans-serif; font-size:10px; font-weight:bold; color:#669933;margin:10px 0px 0px 21px;}
-#wellcome a{color:#0099cc;}
+#wellcome a, #wellcome span{color:#0099cc;}
 #searchText{text-align:center; clear:both; background:white;}
 #searchText p{color:#0099cc;font:Verdana, sans-serif; font-size:15px;font-weight:bold;}
 #write{height:30px; width:300px;float:right;}
@@ -22,8 +22,9 @@ body{background:url(img/bg.jpg);}
 #searchField {margin:0 auto; height:20px;width:272px;}
 #search p{color:#CC3366; text-align:center;}
 #search a{font:Verdana, sans-serif; font-size:10px; font-weight:bold; color:#0099cc;}
-#search h2{font:Verdana, sans-serif; font-size:15px; font-weight:bold; color:#cc0066; padding:10px 0px 0px 45px;}
 #skidki {height:107px; width:auto;background:url(img/skidkiBg.jpg);}
+#skidki h2{font:Verdana, sans-serif; font-size:15px; font-weight:bold; color:#cc0066; padding-left:45px; display:block; height:0px; position:relative; top:-20px;}
+
 #skidki p{margin:4px 0px 0px 85px;font:Verdana, sans-serif; font-size:12px;}
 #skidki h4{margin:4px 0px 0px 85px;font:Verdana, sans-serif; font-size:13px; font-weight:bold;color:#c70067}
 #skidki a{color:#000000;font:Verdana, sans-serif; font-size:12px; font-weight:bold;}
@@ -35,7 +36,7 @@ body{background:url(img/bg.jpg);}
 #currency p {font:Verdana, sans-serif; font-size:11px; font-weight:bold; color:#669933;margin:3px 0px 0px 20px;}
 #currency h3 {font:Verdana, sans-serif; font-size:11px; font-weight:bold; color:#000000;margin:3px 0px 0px 20px;}
 #currency a {font:Verdana, sans-serif; font-size:11px; font-weight:bold; color:#669933;}
-#currency a:hover{color:#ffffff; text-decoration:none; background-color:#669933;}
+#currency a.current {color:#ffffff; text-decoration:none; background-color:#669933;}
 #blueText {height:39px; float:left; margin-top:4px;}
 #blueText p{color:#0099cc;font:Verdana, sans-serif; font-size:20px;font-weight:bold; font-style:italic;}
 #basket{height:39px; float:right; margin-right:20px;}

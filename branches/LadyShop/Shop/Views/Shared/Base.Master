@@ -9,11 +9,11 @@
 <head>
     <% Html.RenderPartial("MetaTags"); %>
     <title><asp:ContentPlaceHolder runat="server" ID="TitleContent"></asp:ContentPlaceHolder></title>
-    <link href="/Content/style.css" rel="stylesheet" type="text/css">
-    <link href="/Content/fancybox/jquery.fancybox.css" rel="stylesheet" type="text/css">
+    <link href="/Content/style.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/fancybox/jquery.fancybox.css" rel="stylesheet" type="text/css" />
     
     <% if(Roles.IsUserInRole("Administrators")){ %>
-        <link href="/Content/Admin.css" rel="stylesheet" type="text/css">    
+        <link href="/Content/Admin.css" rel="stylesheet" type="text/css" />    
     <%} %>
     
     <script type="text/javascript" src="/Scripts/jquery.js"></script>
@@ -33,16 +33,13 @@
 
         <div id="headerLogo">
             <p>
-                <img src="/Content/img/logo.jpg" alt="Модная леди. Студия стиля Людмилы Захаренко">
+                <img src="/Content/img/logo.jpg" alt="Модная леди. Студия стиля Людмилы Захаренко" />
             </p>
         </div>
     </div>
     <div id="underHeader">
-        <div style="">
-            <div id="wellcome">
-                <p>
-                    Добро пожаловать, <a href="#">Виктория Тряпичная!</a></p>
-            </div>
+        <div>
+            <% Html.RenderPartial("LogOnUserControl"); %>
             <div id="write">
                 <p>
                     <a href="#">Напишите нам</a>
@@ -66,55 +63,8 @@
         <p>
             <a href="#">Расширенный поиск</a>
         </p>
-        <h2>СКИДКА ДНЯ</h2>
     </div>
-    <div id="skidki">
-        <div id="skidkiBox">
-            <div id="imgBox">
-                <img src="/Content/img/cheshki.jpg" alt="cheshki">
-            </div>
-            <p>
-                <a href="#">Чешки “Ed Hardy”</a>
-            </p>
-            <p>
-                Размер: <strong>35</strong>
-            </p>
-            <p>
-                Цвет: <strong>Разноцветные</strong>
-            </p>
-            <h4>
-                1350 грн</h4>
-        </div>
-        <div id="skidkiBox">
-            <div id="imgBox">
-                <img src="/Content/img/kurtka.jpg" alt="kurtka"></div>
-            <p>
-                <a href="#">Куртка “Alchemist”</a>
-            </p>
-            <p>
-                Размер: <strong>L, S</strong>
-            </p>
-            <p>
-                Цвет: <strong>Черный, желтый</strong>
-            </p>
-            <h4>
-                1100 грн</h4>
-        </div>
-        <div id="skidkiBox">
-            <div id="imgBox">
-                <img src="/Content/img/jeans.jpg" alt="jeans"></div>
-            <p>
-                <a href="#">Джинсы “Verdi Nerdi”</a></p>
-            <p>
-                Размер: <strong>L</strong>
-            </p>
-            <p>
-                Цвет: <strong>Синий</strong>
-            </p>
-            <h4>
-                400 грн</h4>
-        </div>
-    </div>
+    
     <div id="contentBox">
         <div id="string">
             <% Html.RenderPartial("CurrencyConverter"); %>

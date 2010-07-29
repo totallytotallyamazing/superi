@@ -1,14 +1,12 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl" %>
-<%
-    if (Request.IsAuthenticated) {
-%>
-        Welcome <b><%= Html.Encode(Page.User.Identity.Name) %></b>!
-        [ <%= Html.ActionLink("Log Off", "LogOff", "Account") %> ]
-<%
-    }
-    else {
-%> 
-        [ <%= Html.ActionLink("Log On", "LogOn", "Account") %> ]
-<%
-    }
-%>
+<div id="wellcome">
+    <p>
+    <%if (Request.IsAuthenticated) {%>
+        Добро пожаловать, <span><%= Profile.Name %></span>
+    <%}else {%> 
+        <%= Html.ActionLink("Зарегистрируйтесь", "Register", new { area="", controller="Account"})%> или <%= Html.ActionLink("войдите", "LogOn", new { area = "", controller = "Account" })%><br />
+        (знакомым - привилегии)
+    <%}%>
+    </p>
+</div>
+

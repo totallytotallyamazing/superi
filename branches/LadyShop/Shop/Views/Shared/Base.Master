@@ -13,14 +13,14 @@
     <link href="/Content/fancybox/jquery.fancybox.css" rel="stylesheet" type="text/css" />
     
     <% if(Roles.IsUserInRole("Administrators")){ %>
-        <link href="/Content/Admin.css" rel="stylesheet" type="text/css" />    
+        <link href="/Content/AdminStyles/Admin.css" rel="stylesheet" type="text/css" />    
     <%} %>
     
     <script type="text/javascript" src="/Scripts/jquery.js"></script>
-    <script type="text/javascript" src="/Scripts/start.js"></script>
     <asp:ContentPlaceHolder runat="server" ID="includes"></asp:ContentPlaceHolder>
 </head>
 <body>
+    <%if (Roles.IsUserInRole("Administrators")) Html.RenderPartial("AdminPanel");  %>
     <div id="header">
         <div id="headerLinks">
             <h2>УГОЛОК ПОКУПАТЕЛЯ</h2>
@@ -40,31 +40,10 @@
     <div id="underHeader">
         <div>
             <% Html.RenderPartial("LogOnUserControl"); %>
-            <div id="write">
-                <p>
-                    <a href="#">Напишите нам</a>
-                </p>
-            </div>
+            <% Html.RenderPartial("FeedbackLink"); %>
         </div>
     </div>
-    <div id="searchText">
-        <p>
-            ПОИСК ПО КАТАЛОГУ
-        </p>
-    </div>
-    <div id="search">
-        <div id="searchField">
-            <form name="form1" method="post" action="">
-            <label>
-                <input type="text" name="field" id="searchField">
-            </label>
-            </form>
-        </div>
-        <p>
-            <a href="#">Расширенный поиск</a>
-        </p>
-    </div>
-    
+    <% Html.RenderPartial("Search"); %>    
     <div id="contentBox">
         <div id="string">
             <% Html.RenderPartial("CurrencyConverter"); %>

@@ -9,6 +9,7 @@ namespace Shop.Controllers
 {
     public class CaptchaController : Controller
     {
+        [OutputCache(NoStore=true, Duration=1, VaryByParam="*")]
         public void Draw()
         {
             Response.Write(CaptchaExtensions.CaptchaImage(200, 60));

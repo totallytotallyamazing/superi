@@ -11,7 +11,9 @@
             <a href="#">™ <%= Model.Brand.Name %></a></p>
     </div>
     <div class="item">
-        <% if (Model.ProductImages.Count > 0){ %>
+        <% if (Model.ProductImages.Count > 0){
+               Shop.Models.ProductImage img = Model.ProductImages.Where(pi => pi.Default).FirstOrDefault();
+               %>
         <%= Html.ActionLink("[IMAGE]", "Show", new { id = Model.Id }).ToString()
             .Replace("[IMAGE]",
             Html.CachedImage("~/Content/ProductImages", Model.ProductImages.Where(pi => pi.Default).First().ImageSource, "thumbnail2", Model.Name)) + "<br />"%>

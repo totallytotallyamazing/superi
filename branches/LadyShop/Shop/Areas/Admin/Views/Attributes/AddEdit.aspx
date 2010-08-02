@@ -18,7 +18,19 @@
             <%= Html.TextBoxFor(model => model.Name) %>
             <%= Html.ValidationMessageFor(model => model.Name) %>
         </div>
-        
+        <div class="editor-label">
+            <%= Html.LabelFor(model => model.SortOrder) %>
+        </div>
+        <div class="editor-field">
+            <%= Html.TextBoxFor(model => model.SortOrder)%>
+            <%= Html.ValidationMessageFor(model => model.SortOrder)%>
+        </div>
+        <div class="editor-label">
+            <%= Html.LabelFor(model => model.Static) %>
+        </div>
+        <div class="editor-field">
+            <%= Html.CheckBoxFor(model => model.Static) %>
+        </div>
         <input type="submit" value="Сохранить" />
     <% } %>
 </asp:Content>

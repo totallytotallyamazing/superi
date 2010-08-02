@@ -5,13 +5,14 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-<%--<% foreach (var item in Model){%>
+<% foreach (var item in Model){%>
     <div>
-        <%= Html.ActionLink(item.Name, "Index", new{id=item.Id }) %>
+        <%= Html.ActionLink(item.Name, "Index", new{id=item.Id }) %> | 
+        <%= Html.ActionLink("Редактировать", "AddEdit", new{id=item.Id }) %>
     </div>       
-<%} %>--%>
+<%} %>
 
-<%--<%= Html.ActionLink("Создать", "AddEdit") %>--%>
+<%= Html.ActionLink("Создать", "AddEdit") %>
 
 <% if(ViewData["id"]!=null)
    {

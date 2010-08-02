@@ -37,6 +37,12 @@ namespace Shop.Controllers
             }
         }
 
+        [Content]
+        public ActionResult ShowContent(string id)
+        {
+            return View();
+        }
+
         public ActionResult FeedbackForm()
         {
 

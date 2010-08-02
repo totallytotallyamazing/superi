@@ -89,6 +89,7 @@
     <Compile Include="Areas\Admin\Controllers\ContentController.cs" />
     <Compile Include="Areas\Admin\Controllers\SettingsController.cs" />
     <Compile Include="Controllers\CaptchaController.cs" />
+    <Compile Include="Controllers\TitleAttribute.cs" />
     <Compile Include="Helpers\CacheExtensions.cs" />
     <Compile Include="Helpers\Captcha\CaptchaAttribute.cs" />
     <Compile Include="Helpers\Captcha\CaptchaAttributeAdapter.cs" />
@@ -341,6 +342,7 @@
     <Content Include="Views\Widgets\Myths.ascx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Admin\Views\Content\Content.ascx" />
     <Content Include="Areas\Admin\Views\Settings\Index.aspx" />
     <Content Include="Content\Cart.css" />
     <Content Include="Content\img\totalBg.png" />
@@ -350,6 +352,7 @@
     <Content Include="Scripts\MvcCaptchaValidation.js" />
     <Content Include="Views\Cart\OrderSent.aspx" />
     <Content Include="Views\Home\FeedbackForm.ascx" />
+    <Content Include="Views\Home\ShowContent.ascx" />
     <Content Include="Views\Shared\AdminPanel.ascx" />
     <Content Include="Configuration\Web.config" />
     <Content Include="Content\AdminStyles\addEditProduct.css" />
@@ -372,6 +375,7 @@
     <Content Include="Views\Shared\CartBreadCrumbs.ascx" />
     <Content Include="Views\Cart\CartContent.ascx" />
     <Content Include="Views\Shared\Search.ascx" />
+    <Content Include="Views\Shared\Title.ascx" />
     <Content Include="Views\Shared\UserStatus.ascx" />
   </ItemGroup>
   <ItemGroup>

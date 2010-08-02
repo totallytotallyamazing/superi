@@ -7,8 +7,10 @@
        %>
        <div>
        <strong><%=item.Name%></strong>
-       <%
-           Html.RenderPartial("ProuctAttributeValue", item.ProductAttributeValue);
+       <%if(!item.Static)
+           Html.RenderPartial("DynamicValue", item.ProductAttributeValue);
+         else
+           Html.RenderPartial("StaticValue", item.ProductAttributeValue);
        %>
        </div>
        <%

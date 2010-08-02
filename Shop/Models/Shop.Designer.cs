@@ -21,7 +21,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("shop_model", "BrandProduct", "Brand", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Shop.Models.Brand), "Product", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Shop.Models.Product))]
 
 // Original file name:
-// Generation date: 27.07.2010 11:27:02
+// Generation date: 02.08.2010 18:30:31
 namespace Shop.Models
 {
     
@@ -971,12 +971,16 @@ namespace Shop.Models
         /// <param name="id">Initial value of Id.</param>
         /// <param name="name">Initial value of Name.</param>
         /// <param name="valueType">Initial value of ValueType.</param>
-        public static ProductAttribute CreateProductAttribute(int id, string name, string valueType)
+        /// <param name="static">Initial value of Static.</param>
+        /// <param name="sortOrder">Initial value of SortOrder.</param>
+        public static ProductAttribute CreateProductAttribute(int id, string name, string valueType, bool @static, string sortOrder)
         {
             ProductAttribute productAttribute = new ProductAttribute();
             productAttribute.Id = id;
             productAttribute.Name = name;
             productAttribute.ValueType = valueType;
+            productAttribute.Static = @static;
+            productAttribute.SortOrder = sortOrder;
             return productAttribute;
         }
         /// <summary>
@@ -1048,6 +1052,52 @@ namespace Shop.Models
         private string _ValueType;
         partial void OnValueTypeChanging(string value);
         partial void OnValueTypeChanged();
+        /// <summary>
+        /// There are no comments for Property Static in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public bool Static
+        {
+            get
+            {
+                return this._Static;
+            }
+            set
+            {
+                this.OnStaticChanging(value);
+                this.ReportPropertyChanging("Static");
+                this._Static = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("Static");
+                this.OnStaticChanged();
+            }
+        }
+        private bool _Static;
+        partial void OnStaticChanging(bool value);
+        partial void OnStaticChanged();
+        /// <summary>
+        /// There are no comments for Property SortOrder in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string SortOrder
+        {
+            get
+            {
+                return this._SortOrder;
+            }
+            set
+            {
+                this.OnSortOrderChanging(value);
+                this.ReportPropertyChanging("SortOrder");
+                this._SortOrder = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
+                this.ReportPropertyChanged("SortOrder");
+                this.OnSortOrderChanged();
+            }
+        }
+        private string _SortOrder;
+        partial void OnSortOrderChanging(string value);
+        partial void OnSortOrderChanged();
         /// <summary>
         /// There are no comments for ProductAttributeValue in the schema.
         /// </summary>

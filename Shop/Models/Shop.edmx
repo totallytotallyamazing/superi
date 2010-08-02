@@ -83,6 +83,8 @@
           </Key>
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="varchar" Nullable="false" MaxLength="250" />
+          <Property Name="SortOrder" Type="varchar" Nullable="false" MaxLength="45" />
+          <Property Name="Static" Type="bit" Nullable="false" />
           <Property Name="ValueType" Type="varchar" Nullable="false" MaxLength="20" />
         </EntityType>
         <EntityType Name="ProductAttributeValue">
@@ -142,7 +144,7 @@
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Value" Type="varchar" Nullable="false" MaxLength="500" />
         </EntityType>
-      <Function Name="searchProducts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="gbua_x_baby_583" >
+      <Function Name="searchProducts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="gbua_mlady">
         <Parameter Name="searchString" Type="varchar"></Parameter>
       </Function>
       </Schema></edmx:StorageModels>
@@ -189,7 +191,8 @@
             <End Role="Brand" EntitySet="Brands" />
             <End Role="Product" EntitySet="Products" /></AssociationSet>
           <FunctionImport Name="searchProducts" ReturnType="Collection(Int32)">
-            <Parameter Name="searchString" Type="String" /></FunctionImport></EntityContainer>
+            <Parameter Name="searchString" Type="String" /></FunctionImport>
+        </EntityContainer>
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="Id" />
@@ -234,7 +237,9 @@
           <Property Name="Name" Type="String" Nullable="false" />
           <Property Name="ValueType" Type="String" Nullable="false" />
           <NavigationProperty Name="ProductAttributeValue" Relationship="shop_model.ProductAttributeProductAttributeValue" FromRole="ProductAttribute" ToRole="ProductAttributeValue" />
-          <NavigationProperty Name="Categories" Relationship="shop_model.CategoryProductAttribute" FromRole="ProductAttribute" ToRole="Category" /></EntityType>
+          <NavigationProperty Name="Categories" Relationship="shop_model.CategoryProductAttribute" FromRole="ProductAttribute" ToRole="Category" />
+          <Property Name="Static" Type="Boolean" Nullable="false" />
+          <Property Name="SortOrder" Type="String" Nullable="false" /></EntityType>
         <EntityType Name="ProductAttributeValue">
           <Key>
             <PropertyRef Name="Id" />
@@ -350,6 +355,8 @@
           <EntitySetMapping Name="ProductAttributes">
             <EntityTypeMapping TypeName="IsTypeOf(shop_model.ProductAttribute)">
               <MappingFragment StoreEntitySet="ProductAttribute">
+                <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+                <ScalarProperty Name="Static" ColumnName="Static" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ValueType" ColumnName="ValueType" />
@@ -446,7 +453,8 @@
               <ScalarProperty Name="Id" ColumnName="Id" /></EndProperty>
             <EndProperty Name="Brand">
               <ScalarProperty Name="Id" ColumnName="BrandId" /></EndProperty></AssociationSetMapping>
-          <FunctionImportMapping FunctionImportName="searchProducts" FunctionName="shop_model.Store.searchProducts" /></EntityContainerMapping>
+          <FunctionImportMapping FunctionImportName="searchProducts" FunctionName="shop_model.Store.searchProducts" />
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

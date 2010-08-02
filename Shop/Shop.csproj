@@ -330,7 +330,7 @@
     <Content Include="Views\Shared\FooterDate.ascx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Admin\Views\ProductAttributeValues\StaticValue.aspx" />
+    <Content Include="Areas\Admin\Views\ProductAttributeValues\StaticValue.ascx" />
     <Content Include="Areas\Admin\Views\Settings\Index.aspx" />
     <Content Include="Content\Cart.css" />
     <Content Include="Content\img\totalBg.png" />

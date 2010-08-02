@@ -17,7 +17,10 @@ namespace Shop.Areas.Admin.Controllers
             using (ShopStorage context = new ShopStorage())
             {
                 ViewData["attributeId"] = id;
-                List<ProductAttributeValue> values = context.ProductAttributeValues.Where(pav => pav.ProductAttribute.Id == id).ToList();
+                List<ProductAttributeValue> values = context.ProductAttributeValues
+                    .Where(pav => pav.ProductAttribute.Id == id)
+                    .OrderBy(pav=>pav.SortOrder)
+                    .ToList();
                 return View(values);
             }
         }

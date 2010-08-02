@@ -19,7 +19,8 @@ namespace Shop.Areas.Admin.Controllers
             }
             using (ShopStorage context = new ShopStorage())
             {
-                List<ProductAttribute> attributes = context.ProductAttributes.ToList();
+                List<ProductAttribute> attributes = context.ProductAttributes
+                    .OrderBy(pa=>pa.SortOrder).ToList();
                 return View(attributes);
             }
         }
@@ -44,6 +45,7 @@ namespace Shop.Areas.Admin.Controllers
         {
             using (ShopStorage context = new ShopStorage())
             {
+                attribute.ValueType = "DROPDOWN";
                 if (attribute.Id > 0)
                 {
                     object originalItem;
@@ -57,7 +59,6 @@ namespace Shop.Areas.Admin.Controllers
                 {
                     context.AddToProductAttributes(attribute);
                 }
-                attribute.ValueType = "DROPDOWN";
                 context.SaveChanges();
             }
             return RedirectToAction("Index", "Attributes", new { id = attribute.Id, area = "Admin" });

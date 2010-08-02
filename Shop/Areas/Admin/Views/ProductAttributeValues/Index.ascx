@@ -5,13 +5,13 @@
 <% foreach (var item in Model)
    {
        %>
-       <div>
-       <strong><%=item.Name%></strong>
-       <%if(!item.Static)
-           Html.RenderPartial("DynamicValue", item.ProductAttributeValue);
-         else
-           Html.RenderPartial("StaticValue", item.ProductAttributeValue);
-       %>
+       <div class="productAttributeValue">
+           <strong><%=item.Name%></strong>
+           <%if(!item.Static)
+               Html.RenderPartial("DynamicValue", item.ProductAttributeValue);
+             else
+               Html.RenderPartial("StaticValue", item.ProductAttributeValue);
+           %>
        </div>
        <%
    } %>

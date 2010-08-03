@@ -8,45 +8,38 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <% if (Roles.IsUserInRole("Administrators"))
        { %>
+       <p class="adminLink">
     <%= Html.ActionLink("Редактировать", "AddEdit", "Products", new { area = "Admin", id = Model.Id, cId = Model.Category.Id, bId = Model.Brand.Id }, null).ToString()%>
     |
-    <%= Html.ActionLink("Удалить", "Delete", "Products", new { area = "Admin", id = Model.Id }, new { onclick="return confirm('Вы уверены?')" }).ToString()%>
+    <%= Html.ActionLink("Удалить", "Delete", "Products", new { area = "Admin", id = Model.Id }, new { onclick = "return confirm('Вы уверены?')" }).ToString()%>
+    </p>
     <%} %>
     <div id="SlotH">
         <h1>
             Куртка “Roca Wear”</h1>
     </div>
+    
+<%--    <% 
+    var mainImage = Model.Where(m => m.Default).FirstOrDefault();
+    var images = Model.Where(m => !m.Default).ToList();
+%>--%>
+
     <div id="SlotProduct">
-        <div id="SlotProductFoto">
-            <img alt="kurtka" src="img/bigFoto.jpg">
-        </div>
+        <% Html.RenderPartial("ProductImage", Model.ProductImages.Where(m => m.Default).FirstOrDefault()); %>
         <div id="SlotProductText">
             <p>
                 <%= Model.Description %>
             </p>
-            <br />
             <p>
-                Артикул:<strong><%= Model.PartNumber %></strong></p>
-            <br />
-            <p>
-                Пр-во: <strong>США</strong>
+                Артикул:<strong><%= Model.PartNumber %></strong>
             </p>
-            <br />
+            <% Html.RenderPartial("DetailViewAttributes", Model.ProductAttributeValues); %>    
             <p>
-                Размеры:<strong> L, S</strong>
+                Цена: <strong><%= Html.RenderPrice(Model.Price, WebSession.Currency, 0, ",") %></strong>
             </p>
-            <br />
-            <p>
-                Состав: <strong>Вискоза, мех.</strong>
-            </p>
-            <br />
-            <p>
-                Цена: <strong>1,200 грн</strong></p>
-        </div>
-        <div id="addToBasket">
-            <input alt="Добавить в корзину" src="/Content/img/addToBasket.jpg" type="image">
         </div>
     </div>
+    
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentTitle" runat="server">
     <%= Model.Name %>

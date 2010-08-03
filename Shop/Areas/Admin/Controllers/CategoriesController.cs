@@ -73,18 +73,15 @@ namespace Shop.Areas.Admin.Controllers
                 var atrrtibutes = context.ProductAttributes.Include("Categories").ToList();
                 Category category = context.Categories.Include("Categories").Include("Parent").Where(c => c.Id == id).First();
                 int[] attributesSelected = null;
-                if (category.Parent != null)
-                {
-                    attributesSelected = atrrtibutes
-                        .Where(a => a.Categories.Where(c => c.Id == id).Count() > 0)
-                        .Select(c => c.Id).ToArray();
-                }
-                else
-                {
-                    attributesSelected = atrrtibutes
-                        .Where(a=> a.Categories.Intersect(category.Categories).Count()>0)
-                        .Select(c => c.Id).ToArray();
-                }
+                
+                attributesSelected = atrrtibutes
+                    .Where(a => a.Categories.Where(c => c.Id == id).Count() > 0)
+                    .Select(c => c.Id).ToArray();
+
+                attributesSelected = attributesSelected.Union(
+                atrrtibutes
+                    .Where(a => a.Categories.Intersect(category.Categories).Count() > 0)
+                    .Select(c => c.Id)).ToArray();
 
                 ViewData["attributesSelected"] = attributesSelected;
                 return View(atrrtibutes);
@@ -112,18 +109,12 @@ namespace Shop.Areas.Admin.Controllers
                     else
                         removeAttributeIds.Add(attributeId);
                 }
-                if (category.Parent != null)
+                AddAttributesToCategory(context, category, addAttributeIds);
+                RemoveAttributesFromCategory(context, category, removeAttributeIds);
+                foreach (var item in category.Categories)
                 {
-                    AddAttributesToCategory(context, category, addAttributeIds);
-                    RemoveAttributesFromCategory(context, category, removeAttributeIds);
-                }
-                else
-                {
-                    foreach (var item in category.Categories)
-                    {
-                        AddAttributesToCategory(context, item, addAttributeIds);
-                        RemoveAttributesFromCategory(context, item, removeAttributeIds);
-                    }
+                    AddAttributesToCategory(context, item, addAttributeIds);
+                    RemoveAttributesFromCategory(context, item, removeAttributeIds);
                 }
                 context.SaveChanges();
             }

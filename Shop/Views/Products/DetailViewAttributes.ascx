@@ -10,9 +10,9 @@
     {
         if (item.Key.Static)
         { %>
-            <div>
+            <p>
                 <%= item.Key.Name%>: <strong><%= item.First().Value%></strong>
-            </div>  
+            </p>  
         <%}
         else
         {

@@ -324,7 +324,7 @@
     <Content Include="Views\Articles\Index.aspx" />
     <Content Include="Views\Cart\Index.aspx" />
     <Content Include="Views\Products\ProductAttributesSelector.ascx" />
-    <Content Include="Views\Products\ProductImages.ascx" />
+    <Content Include="Views\Products\ProductImage.ascx" />
     <Content Include="Views\Products\Products.Master" />
     <Content Include="Content\contact.css" />
     <Content Include="Views\Shared\FooterDate.ascx" />
@@ -358,7 +358,9 @@
     <Content Include="Scripts\MvcCaptchaValidation.js" />
     <Content Include="Views\Cart\OrderSent.aspx" />
     <Content Include="Views\Home\FeedbackForm.ascx" />
+    <Content Include="Views\Products\DetailViewAttributes.ascx" />
     <Content Include="Views\Products\DiscountOfTheDay.ascx" />
+    <Content Include="Views\Products\ImagePreviews.ascx" />
     <Content Include="Views\Products\Show.aspx" />
     <Content Include="Views\Shared\AdminPanel.ascx" />
     <Content Include="Configuration\Web.config" />

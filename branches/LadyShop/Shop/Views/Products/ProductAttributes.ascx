@@ -1,11 +1,15 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<IEnumerable<Shop.Models.ProductAttributeValue>>" %>
 
 <% 
-    var pav = Model.GroupBy(m => m.ProductAttribute.Name, m => m.Value);
+    var pav = Model
+        .Where(m => m.ProductAttribute.ShowInCommonView)
+        .GroupBy(m => m.ProductAttribute, m => m.Value);
 
     foreach (var item in pav)
     {%>
-        Размер: <strong><%= string.Join(",", item.ToArray()) %></strong>
+        <div>
+            <%= item.Key.ListName %>: <strong><%= string.Join(", ", item.ToArray()) %></strong>
+        </div>
   <%}
 %>
 

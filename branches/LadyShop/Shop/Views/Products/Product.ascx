@@ -26,9 +26,11 @@
         </div>
         <div class="contentItemText">
             <p><%= Model.Name %></p>
-            <h2>Цвет: <strong>Синий</strong></h2>
             <% Html.RenderPartial("ProductAttributes", Model.ProductAttributeValues); %>
-            <h3><%= Model.Price.ToString("#.##") %> <%= Dev.Helpers.WebSession.Currency %></h3>
+            <% if (!string.IsNullOrEmpty(Model.Color)){ %>
+            <h2>Цвет: <strong><%= Model.Color %></strong></h2>
+            <%} %>
+            <h3><%= Html.RenderPrice(Model.Price, WebSession.Currency, 0, ",") %></h3>
         </div>
     </div>
     <div id="contentItemBoxFooter">

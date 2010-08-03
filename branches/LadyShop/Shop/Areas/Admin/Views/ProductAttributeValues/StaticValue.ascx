@@ -5,6 +5,6 @@
     foreach (var item in Model)
     {%>
     <span>   
-        <%= Html.RadioButton("static_" + item.ProductAttribute.Id, item.Id) %><%= item.Value %>
+        <%= Html.RadioButton("static_" + item.ProductAttribute.Id, item.Id, attributesSelected.Contains(item.Id))%><%= item.Value %>
     </span>
    <%} %>

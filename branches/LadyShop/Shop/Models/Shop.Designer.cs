@@ -21,7 +21,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("shop_model", "BrandProduct", "Brand", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Shop.Models.Brand), "Product", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Shop.Models.Product))]
 
 // Original file name:
-// Generation date: 02.08.2010 18:30:31
+// Generation date: 03.08.2010 17:47:49
 namespace Shop.Models
 {
     
@@ -973,7 +973,9 @@ namespace Shop.Models
         /// <param name="valueType">Initial value of ValueType.</param>
         /// <param name="static">Initial value of Static.</param>
         /// <param name="sortOrder">Initial value of SortOrder.</param>
-        public static ProductAttribute CreateProductAttribute(int id, string name, string valueType, bool @static, string sortOrder)
+        /// <param name="showInCommonView">Initial value of ShowInCommonView.</param>
+        /// <param name="listName">Initial value of ListName.</param>
+        public static ProductAttribute CreateProductAttribute(int id, string name, string valueType, bool @static, int sortOrder, bool showInCommonView, string listName)
         {
             ProductAttribute productAttribute = new ProductAttribute();
             productAttribute.Id = id;
@@ -981,6 +983,8 @@ namespace Shop.Models
             productAttribute.ValueType = valueType;
             productAttribute.Static = @static;
             productAttribute.SortOrder = sortOrder;
+            productAttribute.ShowInCommonView = showInCommonView;
+            productAttribute.ListName = listName;
             return productAttribute;
         }
         /// <summary>
@@ -1080,7 +1084,7 @@ namespace Shop.Models
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public string SortOrder
+        public int SortOrder
         {
             get
             {
@@ -1090,14 +1094,60 @@ namespace Shop.Models
             {
                 this.OnSortOrderChanging(value);
                 this.ReportPropertyChanging("SortOrder");
-                this._SortOrder = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
+                this._SortOrder = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
                 this.ReportPropertyChanged("SortOrder");
                 this.OnSortOrderChanged();
             }
         }
-        private string _SortOrder;
-        partial void OnSortOrderChanging(string value);
+        private int _SortOrder;
+        partial void OnSortOrderChanging(int value);
         partial void OnSortOrderChanged();
+        /// <summary>
+        /// There are no comments for Property ShowInCommonView in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public bool ShowInCommonView
+        {
+            get
+            {
+                return this._ShowInCommonView;
+            }
+            set
+            {
+                this.OnShowInCommonViewChanging(value);
+                this.ReportPropertyChanging("ShowInCommonView");
+                this._ShowInCommonView = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("ShowInCommonView");
+                this.OnShowInCommonViewChanged();
+            }
+        }
+        private bool _ShowInCommonView;
+        partial void OnShowInCommonViewChanging(bool value);
+        partial void OnShowInCommonViewChanged();
+        /// <summary>
+        /// There are no comments for Property ListName in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string ListName
+        {
+            get
+            {
+                return this._ListName;
+            }
+            set
+            {
+                this.OnListNameChanging(value);
+                this.ReportPropertyChanging("ListName");
+                this._ListName = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
+                this.ReportPropertyChanged("ListName");
+                this.OnListNameChanged();
+            }
+        }
+        private string _ListName;
+        partial void OnListNameChanging(string value);
+        partial void OnListNameChanged();
         /// <summary>
         /// There are no comments for ProductAttributeValue in the schema.
         /// </summary>

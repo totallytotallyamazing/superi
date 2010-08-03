@@ -21,5 +21,4 @@
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="includes" runat="server">
-    <link rel="Stylesheet" href="/Content/catalog.css" />
 </asp:Content>

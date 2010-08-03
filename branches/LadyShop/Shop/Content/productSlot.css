@@ -1,21 +1,22 @@
-#contentSlot{min-height:700px;height:auto; width:899px;float:left;margin:27px 0px 0px 50px; background:url(img/contentSlotBg.jpg);}
-#contentSlotHeader{width:897px; height:14px;float:left;background:url(img/contentHeaderBg.jpg) repeat-x;}
-#contentSlotHeaderBgLeft{width:14px; height:14px;background:url(img/contentHeaderBgLeft.jpg); float:left;}
-#contentSlotHeaderBgRight{width:14px; height:14px;background:url(img/contentHeaderBgRight.jpg); float:right;}
-#contentSlotFooterBg{width:899px; height:17px;background:url(img/contentSlotFooterBg.jpg); float:left;margin:0px 0px 0px 50px;}
-#contentSlotFooterBgLeft{width:14px; height:17px;background:url(img/contentFooterBgLeft.jpg); float:left;}
-#contentSlotFooterBgRight{width:14px; height:17px;background:url(img/contentFooterBgRight.jpg); float:right;}
-#contentSlotDate{width:720px; height:40px;margin:39px 0px 9px 82px;}
-#dateText{width:641px; height:25px;border-bottom:1px solid black; float:left;}
-#contentSlotDate p{font:Verdana, sans-serif; font-size:10px; font-weight:bold; color:#666666;padding:10px 0px 0px 0px;}
-#closeButton{height:20px; width:79px;float:right;margin:15px 0px 0px 0px;}
-#SlotH{height:25px; width:711px;float:left;margin:10px 0px 0px 0px;}
+img{display:block}
+#SlotH{margin:10px 0px 0px 0px;}
 #SlotH h1{font:Verdana, sans-serif; font-size:18px; font-weight:normal;color:#0099ff;padding:0px 0px 0px 47px;}
-#SlotProduct{height:447px; width:711px;float:left;margin:0px 0px 0px 45px;}
-#SlotProductFoto{height:441px; width:394px;float:left;border:3px solid #0099cc;}
-#SlotProductText{height:400px; width:309px;float:right;}
-#SlotProductText p{font:Verdana, sans-serif; font-size:12px; font-weight:normal; color:#000000;padding:0px 60px 0px 10px;}
-#addToBasket{height:22px; width:311px;float:right;margin:25px 0px 0px 0px;}
+#SlotProduct{margin:0px 0px 0px 45px;}
+#SlotProductFoto{float:left; width:400px;}
+#SlotProductFoto img{border:3px solid #0099cc;}
+#SlotProductText{margin-left:420px;}
+#SlotProductText p{font:Verdana, sans-serif; font-size:12px; font-weight:normal; color:#000000;}
+
+#imagePreviews{width:394px; text-align:center; padding-top:10px;} 
+#imagePreviews img{border:1px solid #0099cc;}
+#imagePreviews div.imageItem{float:left; margin-right:10px;}
+
+.orderButton{left:400px;margin-top:-22px; position:relative;}
+.orderButton input{background:transparent url(img/addToBasket.jpg); color:White;  border:0; text-align:center; width:196px; height:22px; text-decoration:underline;  }
+#contentAfterItems{clear:both;}
+
+
+/*
 #previewFoto{height:150px; width:320px;float:left;margin:0px 0px 0px 120px;}
 #previewFotoBox{height:100px; width:100px;float:left;border:1px solid #0099cc;margin:16px 0px 0px 14px;}
 #heartBox{height:150px; width:250px;float:left;margin:0px 0px 0px 0px;}
@@ -28,4 +29,4 @@
 #imgBoxSlot{height:97px; width:76px;float:left;border: 1px solid #0099cc;margin:-5px 0px 0px 0px;}
 #contentAfterItemsSlot{width:720px; height:30px;border-top:1px solid black;margin:20px 0px 50px 80px;float:left;}
 #contentAfterItemsFotoSlot{width:485px; height:30px; background:url(img/fotoText.jpg) no-repeat;margin:5px 0px 0px 0px;}
-
+*/

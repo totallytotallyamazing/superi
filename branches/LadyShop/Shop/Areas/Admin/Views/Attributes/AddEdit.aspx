@@ -19,6 +19,13 @@
             <%= Html.ValidationMessageFor(model => model.Name) %>
         </div>
         <div class="editor-label">
+            <%= Html.LabelFor(model => model.ListName) %>
+        </div>
+        <div class="editor-field">
+            <%= Html.TextBoxFor(model => model.ListName)%>
+            <%= Html.ValidationMessageFor(model => model.ListName)%>
+        </div>
+        <div class="editor-label">
             <%= Html.LabelFor(model => model.SortOrder) %>
         </div>
         <div class="editor-field">
@@ -30,6 +37,12 @@
         </div>
         <div class="editor-field">
             <%= Html.CheckBoxFor(model => model.Static) %>
+        </div>
+        <div class="editor-label">
+            <%= Html.LabelFor(model => model.ShowInCommonView) %>
+        </div>
+        <div class="editor-field">
+            <%= Html.CheckBoxFor(model => model.ShowInCommonView)%>
         </div>
         <input type="submit" value="Сохранить" />
     <% } %>

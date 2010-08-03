@@ -18,11 +18,6 @@
         <h1>
             Куртка “Roca Wear”</h1>
     </div>
-    
-<%--    <% 
-    var mainImage = Model.Where(m => m.Default).FirstOrDefault();
-    var images = Model.Where(m => !m.Default).ToList();
-%>--%>
 
     <div id="SlotProduct">
         <% Html.RenderPartial("ProductImage", Model.ProductImages.Where(m => m.Default).FirstOrDefault()); %>
@@ -39,6 +34,7 @@
             </p>
         </div>
     </div>
+    <% Html.RenderPartial("ImagePreviews", Model.ProductImages.Where(m => !m.Default)); %>
     
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentTitle" runat="server">

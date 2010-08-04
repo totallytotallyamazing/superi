@@ -116,6 +116,10 @@ namespace Oksi.Controllers
                     EntityKey key = new EntityKey("DataStorage.Articles", "Id", article.Id);
                     if (context.TryGetObjectByKey(key, out objectValue))
                     {
+                        if (string.IsNullOrEmpty(article.Image))
+                        {
+                            article.Image = ((Article)objectValue).Image;
+                        }
                         context.ApplyPropertyChanges("Articles", article);
                     }
                 }

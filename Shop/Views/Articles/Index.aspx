@@ -5,18 +5,15 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-
-    
-
-    <% if(Model!=null)
-           foreach (var item in Model)
-           {
-               Html.RenderPartial("Article", item);
-           } %>
+<% if(Model != null)
+       foreach (var item in Model)
+       {
+           Html.RenderPartial("Article", item);
+       } %>
 <div style="clear:both"></div>
 <% if(Roles.IsUserInRole("Administrators")){ %>
     <div class="adminLink">
-        <%= Html.ActionLink("Создать", "AddEdit", "Articles", new { area="Admin", type=ViewData["type"] }, null)%>
+        <%= Html.ActionLink("Создать", "AddEdit", "Articles", new { area = "Admin", type = ViewData["type"] }, null)%>
     </div>
 <%} %>
 </asp:Content>

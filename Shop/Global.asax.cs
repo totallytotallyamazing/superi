@@ -57,7 +57,7 @@ namespace Shop
                 string folder = Request.Path.Replace("/" + fileName, "");
                 folder = folder.Substring(folder.LastIndexOf("/") + 1);
 
-                string path = GraphicsHelper.GetCachedImage("~/Content/AdImages", fileName, folder);
+                string path = GraphicsHelper.GetCachedImage("~/Content/ProductImages", fileName, folder);
             }
         }
 

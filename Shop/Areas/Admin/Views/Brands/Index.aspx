@@ -29,7 +29,7 @@
             </td>
             <td>
                 <%= Html.ActionLink("Редактировать", "AddEdit", new { id = item.Id }, new { @class="fancy"})%> |
-                <%= Html.ActionLink("Удалить", "Delete", new { id=item.Id }, new { onclick="return confirm('Вы уверены?')"})%>
+                <%= Html.ActionLink("Удалить", "Delete", new { id=item.Id }, new { onclick="return confirm('При удалении бренда, удаляются так же все товары с ним связанные. Вы уверены что хотите удалить бренд?')"})%>
             </td>
         </tr>
     

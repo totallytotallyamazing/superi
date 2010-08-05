@@ -54,5 +54,16 @@ namespace Shop.Areas.Admin.Controllers
 
             return RedirectToAction("Index", "Articles", new { area = "", type = article.Type });
         }
+
+        public ActionResult Delete(int id)
+        {
+            using (ContentStorage context = new ContentStorage())
+            {
+                Article article = context.Articles.Where(a => a.Id == id).First();
+                context.DeleteObject(article);
+                context.SaveChanges();
+                return RedirectToAction("Index", "Articles", new { area = "", type = article.Type }); 
+            }
+        }
     }
 }

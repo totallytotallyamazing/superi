@@ -6,7 +6,8 @@
     <div class="articleItemText"><%=Model.Text %></div>
     <% if(Roles.IsUserInRole("Administrators")){ %>
     <p class="adminLink">
-        <%= Html.ActionLink("Редактировать", "AddEdit","Articles", new { area="Admin", id = Model.Id, type = Model.Type },null)%>
+        <%= Html.ActionLink("Редактировать", "AddEdit","Articles", new { area="Admin", id = Model.Id, type = Model.Type },null)%> |
+        <%= Html.ActionLink("Удалить", "Delete", "Articles", new { area = "Admin", id = Model.Id }, new { onclick = "return confirm('Вы уверены?')" })%>
         </p>
     <%} %>
 </div>

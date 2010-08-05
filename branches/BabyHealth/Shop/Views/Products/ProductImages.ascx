@@ -44,17 +44,18 @@
         }
 
         $(function() {
-            $("#mainImage a#mi").fancybox();
+            $("#mainImage a#mi").fancybox({ autoScale: false, titleShow: false });
 
             $(".imageItem img").click(function(ev, elem) {
                 var src = this.src.substring(this.src.lastIndexOf("/"));
                 var href = "/Content/ProductImages" + src;
                 //src = "/ImageCache/mainView" + src;
+                $.get("/Graphics/ShowMain" + src + "?alt=" + this.alt, function(data) {
+                    $("#mainImage a#mi").html(data);
+                });
+                //$("#mainImage a#mi").load("/Graphics/ShowMain" + src + "?alt=" + this.alt);
 
-                $("#mainImage a#mi").load("/Graphics" + src + "?alt=" + this.alt);
-                
-               // $("#mainImage img").attr("src", src);
-                window.setTimeout(function() { $("#mainImage img").attr("src", src); }, 500);
+                // $("#mainImage img").attr("src", src);
                 $("#mainImage a").attr("href", href);
 
                 $(".fadeImage").fadeOut(0);

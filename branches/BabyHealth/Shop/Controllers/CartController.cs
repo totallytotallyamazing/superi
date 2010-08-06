@@ -236,6 +236,16 @@ namespace Shop.Controllers
         {
             return View();
         }
+
+        public ActionResult AvailablePaymentTypes(int id)
+        {
+            using (OrdersStorage context = new OrdersStorage())
+            {
+                List<PaymentType> paymentTypes = context.PaymentTypes
+                    .Where(p => p.DeliveryTypes.Where(dt => dt.Id == id).Count() > 0).ToList();
+                return View(paymentTypes);
+            }
+        }
     }
     
 }

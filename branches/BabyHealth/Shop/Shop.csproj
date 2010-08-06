@@ -351,6 +351,7 @@
     <Content Include="Content\img\totalRight.png" />
     <Content Include="Content\MailTemplates\FeedbackTemplate.htm" />
     <Content Include="Scripts\MvcCaptchaValidation.js" />
+    <Content Include="Views\Cart\DeliveryType.ascx" />
     <Content Include="Views\Cart\OrderSent.aspx" />
     <Content Include="Views\Home\FeedbackForm.ascx" />
     <Content Include="Views\Home\ShowContent.ascx" />

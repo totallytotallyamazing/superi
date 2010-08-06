@@ -27,5 +27,8 @@ namespace Shop.Models
         [DisplayName("Размер страницы")]
         [Required(ErrorMessage = "*")]
         public int PageSize { get; set; }
+        //[Required(ErrorMessage = "*")]
+        //[DisplayName("Стоимость доставки")]
+        //public float DeliveryCost { get; set; }
     }
 }

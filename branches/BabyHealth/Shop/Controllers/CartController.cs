@@ -246,6 +246,15 @@ namespace Shop.Controllers
                 return View(paymentTypes);
             }
         }
+
+        public ActionResult PaymentProperties(int id)
+        {
+            using (OrdersStorage context = new OrdersStorage())
+            {
+                List<PaymentProperty> paymentProperties = context.PaymentProperties.Where(pp => pp.PaymentType.Id == id).ToList();
+                return View(paymentProperties);
+            }
+        }
     }
     
 }

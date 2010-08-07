@@ -41,9 +41,10 @@ namespace Dev.Helpers
         {
             get
             {
-                if (order == null)
+                if (Session["order"] == null)
                 {
-                    order = new Order();
+                    if(order == null)
+                        order = new Order();
                     Session["order"] = order;
                 }
                 return (Shop.Models.Order)Session["order"];

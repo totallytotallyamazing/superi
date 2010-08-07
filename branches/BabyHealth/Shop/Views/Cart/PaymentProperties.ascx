@@ -6,7 +6,7 @@
             <%= item.Name %>
         </td>
         <td>
-            <%= Html.TextBox("pp_" + item.Id) %>
+            <%= Html.TextBox(item.FieldName) %>
         </td>
     </tr>  
 <%} %>

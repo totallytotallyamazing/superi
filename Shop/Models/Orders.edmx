@@ -19,7 +19,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Disabled" Type="bit" Nullable="false" />
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="varchar" Nullable="false" MaxLength="500" />
         </EntityType>
         <EntityType Name="Order">
@@ -57,7 +57,8 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Disabled" Type="bit" Nullable="false" />
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="FieldName" Type="varchar" MaxLength="45" />
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="varchar" Nullable="false" MaxLength="500" />
           <Property Name="PaymentTypeId" Type="int" Nullable="false" />
         </EntityType>
@@ -65,7 +66,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="OrderId" Type="int" Nullable="false" />
           <Property Name="PaymentPropertyId" Type="int" Nullable="false" />
           <Property Name="Value" Type="varchar" MaxLength="4000" />
@@ -75,7 +76,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Disabled" Type="bit" Nullable="false" />
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="varchar" Nullable="false" MaxLength="500" />
         </EntityType>
         <EntityType Name="PaymentTypeAvailable">
@@ -166,7 +167,8 @@
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" Nullable="false" />
           <NavigationProperty Name="PaymentType" Relationship="shop_Orders.PaymentTypePaymentProperty" FromRole="PaymentProperty" ToRole="PaymentType" />
-          <NavigationProperty Name="PaymentPropertyValue" Relationship="shop_Orders.PaymentPropertyPaymentPropertyValue" FromRole="PaymentProperty" ToRole="PaymentPropertyValue" /></EntityType>
+          <NavigationProperty Name="PaymentPropertyValue" Relationship="shop_Orders.PaymentPropertyPaymentPropertyValue" FromRole="PaymentProperty" ToRole="PaymentPropertyValue" />
+          <Property Name="FieldName" Type="String" Nullable="true" /></EntityType>
         <EntityType Name="PaymentPropertyValue">
           <Key>
             <PropertyRef Name="Id" /></Key>
@@ -249,6 +251,7 @@
           <EntitySetMapping Name="PaymentProperties">
             <EntityTypeMapping TypeName="IsTypeOf(shop_Orders.PaymentProperty)">
               <MappingFragment StoreEntitySet="PaymentProperty">
+                <ScalarProperty Name="FieldName" ColumnName="FieldName" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Disabled" ColumnName="Disabled" /></MappingFragment></EntityTypeMapping></EntitySetMapping>

@@ -2,7 +2,7 @@
 <%@ Import Namespace="Dev.Mvc.Ajax" %>
 <p class="adminLink">
 <%= Html.ActionLink("Изменить категорию", "AddEdit", "Categories", new { area = "Admin", id= ViewData["categoryId"]}, null) %>&nbsp;/&nbsp;
-<%= Html.ActionLink("Удалить категорию", "Delete", "Categories", new { area = "Admin", id= ViewData["categoryId"]}, null) %>&nbsp;/&nbsp;
+<%= Html.ActionLink("Удалить категорию", "Delete", "Categories", new { area = "Admin", id = ViewData["categoryId"] }, new { onclick = "return confirm('При удалении категории также удаляются все товары в ней. Вы уверены что хотите удалить категорию?')"})%>&nbsp;/&nbsp;
 <%= Html.ActionLink("Атрибуты", "Attributes", "Categories", new { area = "Admin", id = ViewData["categoryId"] }, new { @class = "fancyAdmin iframe"})%>
 </p>
 <%if((bool)ViewData["showAdminLinks"]){ %>

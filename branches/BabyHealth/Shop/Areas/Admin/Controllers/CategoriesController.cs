@@ -187,7 +187,14 @@ namespace Shop.Areas.Admin.Controllers
                 context.DeleteObject(category);
                 context.SaveChanges();
             }
-            return RedirectToAction("Index", "Categories", new { id = parentId, area = "Admin" });
+            if (parentId.HasValue)
+            {
+                return RedirectToAction("Index", "Products", new { id = parentId, area = "" });
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home", new { area = "" });
+            }
         }
     }
 }

@@ -59,7 +59,7 @@
         </table>
         <div class="backAndForward">
             <div class="back">
-                <a href="javascript:goBack();">Вернуться</a>
+                <a href="javascript:history.back();">Вернуться</a>
             </div>
             Все верно, <input type="submit" value="продолжаем!" />
         </div>
@@ -71,12 +71,6 @@
     <%= Ajax.ScriptInclude("/Scripts/MicrosoftAjax.js")%>
     <%= Ajax.ScriptInclude("/Scripts/MicrosoftMvcValidation.js")%>
     <%= Ajax.DynamicCssInclude("/Content/Cart.css") %>
-    <script type="text/javascript">
-        function goBack() {
-            history.back();
-        }
-    
-    </script>
 </asp:Content>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentTitle" runat="server">

@@ -124,6 +124,15 @@
                 <%= Html.LabelFor(model => model.Description) %>
             </div>
             <%= Html.TextAreaFor(model => model.Description) %>            
+            
+            <div class="labelCell" style="margin-bottom:0px; margin-top:20px;">
+                <%= Html.LabelFor(model => model.ShortDescription) %>
+            </div>
+            <%= Html.TextAreaFor(model => model.ShortDescription)%>    
+            
+            <div class="labelCell" style="margin-bottom:0px; margin-top:20px;">
+                <%= Html.LabelFor(model => model.IsNew) %> <%= Html.CheckBoxFor(m => m.IsNew) %>
+            </div>
          </div>
 
         <span class="sectionTitle">

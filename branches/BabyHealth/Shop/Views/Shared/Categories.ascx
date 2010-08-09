@@ -35,7 +35,7 @@
             </div>
       <%
           if (WebSession.CurrentCategory == item.Id || expandCategory)
-              Html.RenderPartial("SubCategories", item.Categories);
+              Html.RenderPartial("SubCategories", item.Categories.OrderBy(c=>c.SortOrder));
         }%>
         <% if(Roles.IsUserInRole("Administrators")){ %>    
         <p class="adminLink rootCategoriesAdmin">   

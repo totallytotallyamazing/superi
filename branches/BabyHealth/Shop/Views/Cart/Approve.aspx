@@ -29,7 +29,7 @@
     
     <div class="backAndForward">
         <div class="back">
-            <a href="javascript:goBack();">Вернуться</a>
+            <a href="javascript:history.back();">Вернуться</a>
         </div>
         Все верно, <%= Html.ActionLink("Отправить", "SendOrder") %>
     </div>

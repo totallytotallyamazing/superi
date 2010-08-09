@@ -7,8 +7,10 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <% if (Roles.IsUserInRole("Administrators"))
        { %>
-    <%= Html.ActionLink("Редактировать", "AddEdit", "Products", new { area = "Admin", id = Model.Id, cId = Model.Category.Id, bId = Model.Brand.Id }, null).ToString()%> | 
-    <%= Html.ActionLink("Удалить", "Delete", "Products", new { area = "Admin", id = Model.Id }, new { onclick="return confirm('Вы уверены?')" }).ToString()%>
+    <div class="adminLink">
+        <%= Html.ActionLink("Редактировать", "AddEdit", "Products", new { area = "Admin", id = Model.Id, cId = Model.Category.Id, bId = Model.Brand.Id }, null).ToString()%> | 
+        <%= Html.ActionLink("Удалить", "Delete", "Products", new { area = "Admin", id = Model.Id }, new { onclick="return confirm('Вы уверены?')" }).ToString()%>
+    </div>
     <%} %>
     <div id="linksBoxC">
         <div class="productTitle">
@@ -18,11 +20,12 @@
         </div>
         <% using(Html.BeginForm(new {controller="Cart", action="Add", id=Model.Id})){ %>
             <div id="tovar">
-                <% Html.RenderPartial("ProductImages", Model.ProductImages); %>
+                <% Html.RenderPartial("ProductImage", Model.ProductImages.Where(m => m.Default).FirstOrDefault()); %>
                 <% if(Model.IsNew){ %>
                     <div id="new1">
                     </div>
                 <%} %>
+                <% Html.RenderPartial("ImagePreviews", Model.ProductImages); %>
             </div>
         <div id="tovarDesk">    
             <p>
@@ -31,13 +34,15 @@
             <br />
             <p>Артикул: <strong><%= Model.PartNumber %></strong></p>
             <br />
+            <p>Цвет: <strong><%= Model.Color %></strong></p>
+            <br />
             <p><% Html.RenderPartial("ProductAttributesSelector", Model.ProductAttributeValues); %></p>
             <br />
             <p>
                 <%= Model.ShortDescription %>
             </p>
             <br />
-            <p>Цена: <strong><%= Html.RenderPrice(Model.Price, WebSession.Currency, 0, ",") %></strong></p>
+            <p>Цена: <% Html.RenderPartial("Price", Model); %></p>
         </div>
         <%} %>
         <div style="clear:both"></div>

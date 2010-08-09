@@ -103,29 +103,29 @@ a#menuItem5.current{background-position:0px 0px; margin-top:25px; height:144px; 
 }
 #guest a{color:#d74f03;}
 #menuBox{height:auto;width:172px; margin:20px 0px 0px 35px; padding:0px 0px 0px 0px;float:left;}
-#liHeader{height:35px; width:172px;float:left;border:0px solid red;background:url(img/liHeader.jpg) no-repeat center;margin:0px 0px 0px 0px;}
+#liHeader{height:35px; width:185px;float:left;border:0px solid red;background:url(img/liHeader.jpg) no-repeat center;margin:0px 0px 0px 0px;}
 #classMenuItems{min-height:173px; height:auto; width:152px;padding:5px 20px 5px 0px;float:left;background:url(img/liBg.jpg) repeat-y;}
-.classMenuItem{width:auto;padding:7px 0px 0px 20px;color:#ff6600;font-family:Tahoma, Helvetica, sans-serif;font-weight:normal;font-size:12px;}
-.classMenuItem *{color:#ff6600;font-size:12px;}
+.classMenuItem{width:auto;padding:7px 0px 0px 20px;color:#ff6600;font-family:Tahoma;font-weight:normal;font-size:14px;}
+.classMenuItem *{color:#ff6600;font-size:14px;}
 .classMenuItem a:hover{color:#993300;}
 .classMenuItem.current *{font-weight:bold;}
-.subMenuItem{width:auto;padding:3px 0px 0px 45px;color:#ff6600;font-family: Tahoma, Helvetica, sans-serif;font-weight:normal;font-size:13px;}
+.subMenuItem{width:auto;padding:3px 0px 0px 45px;color:#ff6600;font-family: Tahoma;font-weight:normal;font-size:13px;}
 ul {padding:5px 0px 0px 0px;}
 li{list-style-type:none;}
 .subMenuItem a{color:#ff6600;}
 .subMenuItem a:hover{color:#993300;}
 .subMenuItem.current *{font-weight:bold;}
-#leftHand{height:153px; width:207px;float:left;border:0px solid red;background:url(img/handLeft.jpg) no-repeat center;margin:0px 0px 0px 0px;}
+#leftHand{height:153px; width:220px;float:left;border:0px solid red;background:url(img/handLeft.jpg) no-repeat center;margin:0px 0px 0px 0px;}
 #rightSide{height:auto; min-width:727px; width:auto; margin-right:30px;margin-left:243px;background:#ffffff;}
-#contentWrapper{padding:0 51px;}
+#contentWrapper{padding:33px 51px;}
 #rightSideHeader{height:36px; width:auto; }
 #rightSideHeaderBg{height:36px; width:34px;float:right;background: url(img/rightSideHeaderBg.jpg) no-repeat;}
 #borderLine{height:23px;width:auto;border-bottom:4px solid #ff6600;margin:0 51px;}
 #borderLine h1{font-size:17px;color:#ff6600;padding:3px 0px 0px 0px;}
-#textUnderLine{height:62px;width:auto;padding:33px 51px 0px 51px;}
+#textUnderLine{height:62px;width:auto;padding:0px 51px 0px 51px;}
 #borderLine2{height:3px;width:auto;border-bottom:3px solid #ff6600;margin:0 51px;}
 #textUnderLine p{font:Verdana, Arial, Helvetica, sans-serif normal; font-size:12px;color:#000000;padding:0px 15px 0px 15px;}
-#textUnderLinks{height:62px;width:auto;padding:33px 51px 0px 51px;}
+#textUnderLinks{width:auto;padding:33px 51px 0px 51px;}
 #textUnderLinks p{font:Verdana, Arial, Helvetica, sans-serif normal; font-size:12px;color:#000000;padding:0px 15px 0px 15px;}
 #linksBox{min-height:200px;height:auto;width:613px;border:0px solid #ff6600;margin:0 auto; position:relative;}
 .linksBoxString{height:50px;height:auto;width:613px;border:0px solid #ff6600;margin:5px 0px 0px 0px;}

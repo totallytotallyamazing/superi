@@ -31,7 +31,7 @@
         <%} %>
     </div>
     <div class="itemDesc">
-        <h3><%= productClickLink.Replace("[IMAGE]", Model.Name) %></h3>
+        <div class="productName"><%= productClickLink.Replace("[IMAGE]", Model.Name) %></div>
         <p><%= Model.ShortDescription %></p>
         <h4><% Html.RenderPartial("Price", Model); %></h4>
     </div>

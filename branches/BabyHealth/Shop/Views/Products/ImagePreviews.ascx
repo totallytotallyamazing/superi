@@ -30,7 +30,7 @@
         }
 
         $(function() {
-            $("#mainImage a#mi").fancybox({ autoScale: false, titleShow: false });
+            $("#mainImage a#mi").fancybox({ autoScale: false, titleShow: false, hideOnContentClick: true, hideOnOverlayClick: true });
 
             $(".imageItem img").click(function(ev, elem) {
                 var src = this.src.substring(this.src.lastIndexOf("/"));

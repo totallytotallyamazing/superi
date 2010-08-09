@@ -37,15 +37,15 @@ namespace Shop.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddEdit(Brand brand)
+        public ActionResult AddEdit(Brand brand, int? Id)
         {
             using (ShopStorage context = new ShopStorage())
             {
-                if (brand.Id > 0)
+                if (Id.HasValue && Id > 0)
                 {
                    //brand.Id = Id;
-                    EntityKey key = new EntityKey("ShopStorage.Brands", "Id", brand.Id);
-
+                    EntityKey key = new EntityKey("ShopStorage.Brands", "Id", Id.Value);
+                    brand.Id = Id.Value;
                     object originalItem = null;
                     if(context.TryGetObjectByKey(key, out originalItem))
                     {

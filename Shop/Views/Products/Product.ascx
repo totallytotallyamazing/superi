@@ -11,12 +11,14 @@
             <a href="#">™ <%= Model.Brand.Name %></a></p>
     </div>
     <div class="item">
-        <% if (Model.ProductImages.Count > 0){
-               Shop.Models.ProductImage img = Model.ProductImages.Where(pi => pi.Default).FirstOrDefault();
+        <% 
+            Shop.Models.ProductImage img = Model.ProductImages.Where(pi => pi.Default).FirstOrDefault();
+            if (img != null)
+            {
                %>
         <%= Html.ActionLink("[IMAGE]", "Show", new { id = Model.Id }).ToString()
             .Replace("[IMAGE]",
-            Html.CachedImage("~/Content/ProductImages", Model.ProductImages.Where(pi => pi.Default).First().ImageSource, "thumbnail2", Model.Name)) + "<br />"%>
+                        Html.CachedImage("~/Content/ProductImages", img.ImageSource, "thumbnail2", Model.Name)) + "<br />"%>
         <%}
            else
            {
@@ -31,6 +33,6 @@
     <div class="itemDesc">
         <h3><%= productClickLink.Replace("[IMAGE]", Model.Name) %></h3>
         <p><%= Model.ShortDescription %></p>
-        <h4><%= Html.RenderPrice(Model.Price, WebSession.Currency, 0, ",") %></h4>
+        <h4><% Html.RenderPartial("Price", Model); %></h4>
     </div>
 </div>

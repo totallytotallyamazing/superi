@@ -1,24 +1,10 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<IEnumerable<Shop.Models.ProductImage>>" %>
 <%@ Import Namespace="Dev.Mvc.Helpers" %>
 
-<% 
-    var mainImage = Model.Where(m => m.Default).FirstOrDefault();
-    var images = Model.ToList();
-%>
-<div id="mainImage">
-    <%if(mainImage!=null){ %>
-        <a id="mi" href="/Content/ProductImages/<%= mainImage.ImageSource %>">
-            <% Html.RenderAction("ShowMain", new { controller = "Graphics", area = "", id = mainImage.ImageSource, alt = mainImage.Product.Name }); %>
-        </a>
-    <%} %>
-    <div class="orderButton">
-        <a href="#" onclick="$(this).parents('form')[0].submit()" >Добавить в корзину</a>
-    </div>
-</div>
 <div id="imagePreviews">
-<%foreach (var item in images){%>
+<%foreach (var item in Model){%>
     <div class="imageItem">
-        <%= Html.CachedImage("~/Content/ProductImages", item.ImageSource, "thumbnail1", mainImage.Product.Name) %>
+        <%= Html.CachedImage("~/Content/ProductImages", item.ImageSource, "thumbnail1", item.Product.Name)%>
         <div class="fadeImage"></div>
     </div>
 <%} %>

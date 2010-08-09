@@ -68,6 +68,7 @@ namespace Shop.Areas.Admin.Controllers
                     prod.SeoKeywords = product.SeoKeywords;
                     prod.ShortDescription = HttpUtility.HtmlDecode(product.ShortDescription);
                     prod.Description = HttpUtility.HtmlDecode(product.Description);
+                    prod.IsNew = product.IsNew;
                     prod.Price = product.Price;
 
                     if (prod.Brand.Id != brandId)

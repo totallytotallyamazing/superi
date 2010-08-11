@@ -242,7 +242,7 @@ namespace Shop.Controllers
             using (OrdersStorage context = new OrdersStorage())
             {
                 List<PaymentType> paymentTypes = context.PaymentTypes
-                    .Where(p => p.DeliveryTypes.Where(dt => dt.Id == id).Count() > 0).ToList();
+                    .Where(p => p.DeliveryTypes.Any(dt=>dt.Id == id)).ToList();
                 return View(paymentTypes);
             }
         }

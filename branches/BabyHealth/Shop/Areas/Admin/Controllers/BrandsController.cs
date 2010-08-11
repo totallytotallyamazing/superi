@@ -30,7 +30,7 @@ namespace Shop.Areas.Admin.Controllers
             {
                 using (ShopStorage context = new ShopStorage())
                 {
-                    brand = context.Brands.Where(b => b.Id == id.Value).First();
+                    brand = context.Brands.First(b => b.Id == id.Value);
                 }
             }
             return View(brand);

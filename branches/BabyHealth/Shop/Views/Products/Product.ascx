@@ -8,7 +8,7 @@
 <div class="tovarBox">
     <div class="nazva">
         <p>
-            <a href="#">™ <%= Model.Brand.Name %></a></p>
+            <a href="#">™ <%= (Model.Brand!=null)?Model.Brand.Name:""%></a></p>
     </div>
     <div class="item">
         <% 

@@ -81,12 +81,16 @@ namespace Shop.Controllers
         public ActionResult Register(string redirectTo)
         {
             ViewData["PasswordLength"] = MembershipService.MinPasswordLength;
+            ViewData["redirectTo"] = redirectTo;
+            ViewData["redirect"] = !string.IsNullOrEmpty(redirectTo);
             return View();
         }
 
         [HttpPost]
         public ActionResult Register(RegisterModel model, string redirectTo)
         {
+            ViewData["redirectTo"] = redirectTo;
+            ViewData["redirect"] = !string.IsNullOrEmpty(redirectTo);
             if (ModelState.IsValid)
             {
                 // Attempt to register the user
@@ -100,6 +104,10 @@ namespace Shop.Controllers
                     profile.Name = model.Name;
                     profile.Save();
                     FormsService.SignIn(model.Email, false /* createPersistentCookie */);
+                    if (!string.IsNullOrEmpty(redirectTo))
+                    {
+                        return Redirect(redirectTo);
+                    }
                     return RedirectToAction("Index", "Home");
                 }
                 else
@@ -110,10 +118,6 @@ namespace Shop.Controllers
 
             // If we got this far, something failed, redisplay form
             ViewData["PasswordLength"] = MembershipService.MinPasswordLength;
-            if (!string.IsNullOrEmpty(redirectTo))
-            {
-                return Redirect(redirectTo);
-            }
             return View(model);
         }
 

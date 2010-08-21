@@ -158,10 +158,13 @@ namespace Shop.Controllers
             else if (Request.IsAuthenticated)
             {
                 ProfileCommon profile = ProfileCommon.Create(User.Identity.Name);
-                model.DeliveryAddress = profile.DeliveryAddress;
-                model.Email = User.Identity.Name;
-                model.Name = profile.Name;
-                model.Phone = profile.Phone;
+                model = new AuthorizeModel
+                {
+                    DeliveryAddress =  profile.DeliveryAddress,
+                    Name = profile.Name,
+                    Phone = profile.Phone,
+                    Email = User.Identity.Name
+                };
             }
             return View(model);
         }

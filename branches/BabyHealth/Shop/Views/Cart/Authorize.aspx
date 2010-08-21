@@ -49,7 +49,7 @@
                     <%= Html.ValidationMessageFor(model => model.Phone)%>
                 </td>
             </tr>
-            <% if(Request.IsAuthenticated){ %>
+            <% if(!Request.IsAuthenticated){ %>
             <tr>
                 <td class="registerMePlease" colspan="3">
                     <%= Html.ActionLink("Зарегистрируйте меня как пользователя,", "Register", new {controller="Account", area="", redirectTo = "~/Cart/DeliveryAndPayment"}, new {@class="pleaseRegister"})%> пожалуйста

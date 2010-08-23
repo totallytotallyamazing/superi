@@ -10,8 +10,8 @@
     <%= Html.ActionLink("Добавить продукт", "AddEdit", "Products", new { area = "Admin", cId = ViewData["categoryId"], bId=ViewData["brandId"] }, null)%>
 </p>
 <%} %>
-<script src="/Scripts/jquery.fancybox.js" type="text/javascript"></script>
-<%= Ajax.DynamicCssInclude("/Content/fancybox/jquery.fancybox.css")%>
+    <%= Ajax.ScriptInclude("/Scripts/jquery.fancybox.js")  %>
+    <%= Ajax.DynamicCssInclude("/Content/fancybox/jquery.fancybox.css")%>
 <script type="text/javascript">
     $(function() {
         $(".fancyAdmin").fancybox({modal:true});

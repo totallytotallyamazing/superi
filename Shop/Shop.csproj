@@ -90,6 +90,7 @@
     <Compile Include="Areas\Admin\Controllers\SettingsController.cs" />
     <Compile Include="Controllers\CaptchaController.cs" />
     <Compile Include="Controllers\GraphicsController.cs" />
+    <Compile Include="Controllers\InvoiceController.cs" />
     <Compile Include="Controllers\TitleAttribute.cs" />
     <Compile Include="Helpers\CacheExtensions.cs" />
     <Compile Include="Helpers\Captcha\CaptchaAttribute.cs" />
@@ -357,6 +358,8 @@
     <Content Include="Views\Cart\PaymentProperties.ascx" />
     <Content Include="Views\Home\FeedbackForm.ascx" />
     <Content Include="Views\Home\ShowContent.ascx" />
+    <Content Include="Views\Invoice\Invoice.aspx" />
+    <Content Include="Views\Invoice\Receipt.aspx" />
     <Content Include="Views\Products\ImagePreviews.ascx" />
     <Content Include="Views\Products\Price.ascx" />
     <Content Include="Views\Shared\AdminPanel.ascx" />

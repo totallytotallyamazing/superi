@@ -119,6 +119,11 @@ namespace Shop.Controllers
             WebSession.Order.BillingEmail = authorizeModel.Email;
             WebSession.Order.BillingName = authorizeModel.Name;
             WebSession.Order.BillingPhone = authorizeModel.Phone;
+            using (OrdersStorage context = new OrdersStorage())
+            {
+                context.AddToOrders(WebSession.Order);
+                context.SaveChanges();
+            }
             return RedirectToAction("DeliveryAndPayment");
         }
 
@@ -187,17 +192,14 @@ namespace Shop.Controllers
 
         public ActionResult SendOrder()
         {
-            foreach (var item in WebSession.OrderItems)
+            using (OrdersStorage context =  new OrdersStorage())
             {
-                WebSession.Order.OrderItems.Add(item.Value);
-            }
-
-            using (OrdersStorage context = new OrdersStorage())
-            {
-                context.AddToOrders(WebSession.Order);
+                foreach (var item in WebSession.OrderItems)
+                {
+                    WebSession.Order.OrderItems.Add(item.Value);
+                }
                 context.SaveChanges();
             }
-
             SendOrderMail();
 
             WebSession.ClearOrder();

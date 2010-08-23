@@ -12,37 +12,28 @@
             return true;
         }
 
-        //        var newUrl = ((url.indexOf('?') < 0) ? (url + '?') : (url + '&'))
-        //                     + encodeURIComponent(parameterName) + '=' + encodeURIComponent(value);
+        var captchaGuid = document.getElementById("captcha_guid").value;
 
-        var captchaGuid = document.getElementById("captcha-guid").value;
+        var body = null;
+        eval('body = {' + encodeURIComponent(parameterName) + ' : "' + encodeURIComponent(value) + '", "captcha-guid": "' + captchaGuid + '"}');
 
-        var body = encodeURIComponent(parameterName) + '=' + encodeURIComponent(value);
-        body += "&captcha-guid=" + captchaGuid;
+        var result = true;
 
-        //newUrl = newUrl + "&guid=" + captchaGuid;
-
-        var completedCallback = function(executor) {
-            if (executor.get_statusCode() != 200) {
-                return;
-            }
-
-            var responseData = executor.get_responseData();
+        var completedCallback = function(data) {
+            var responseData = data;
             if (responseData != 'true') {
                 var newMessage = (responseData == 'false' ? message : responseData);
                 context.fieldContext.addError(newMessage);
                 if (typeof (window.OnCaptchaValidationError) !== "undefined") {
                     window.OnCaptchaValidationError();
                 }
+                result = false;
             }
         };
 
-        var r = new Sys.Net.WebRequest();
-        r.set_url(url);
-        r.set_httpVerb('POST');
-        r.set_body(body);
-        r.add_completed(completedCallback);
-        r.invoke();
-        return true;
+
+        $.ajax({ type: "POST", url: url, success: completedCallback, async: false, data: body });
+
+        return result;
     };
 };

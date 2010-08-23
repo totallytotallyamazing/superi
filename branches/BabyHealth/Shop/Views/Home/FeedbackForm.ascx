@@ -5,7 +5,7 @@
     <script type="text/javascript" src="/Scripts/jquery.js"></script>
     <script type="text/javascript">
         function OnCaptchaValidationError() {
-            $("#captchaImage").load("/Captcha/Draw");
+            $.get("/Captcha/Draw", function(data) { $("#captchaImage").html(data); });
         }
     </script>
     <% Html.EnableClientValidation(); %>

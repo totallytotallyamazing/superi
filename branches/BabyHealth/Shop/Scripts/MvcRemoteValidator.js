@@ -8,30 +8,24 @@
             return true;
         }
 
-        if (context.eventName != 'blur') {
+        if (context.eventName != 'blur' && context.eventName != 'submit') {
             return true;
         }
 
         var newUrl = ((url.indexOf('?') < 0) ? (url + '?') : (url + '&'))
                      + encodeURIComponent(parameterName) + '=' + encodeURIComponent(value);
 
-        var completedCallback = function(executor) {
-            if (executor.get_statusCode() != 200) {
-                return;
-            }
-
-            var responseData = executor.get_responseData();
+        var result = true;
+        var completedCallback = function(data) {
+            var responseData = data;
             if (responseData != 'true') {
                 var newMessage = (responseData == 'false' ? message : responseData);
                 context.fieldContext.addError(newMessage);
+                result = false;
             }
         };
 
-        var r = new Sys.Net.WebRequest();
-        r.set_url(newUrl);
-        r.set_httpVerb('GET');
-        r.add_completed(completedCallback);
-        r.invoke();
-        return true;
+        $.ajax({ url: newUrl, success: completedCallback, async: false });
+        return result;
     };
 };

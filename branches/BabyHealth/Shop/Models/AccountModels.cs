@@ -35,7 +35,7 @@ namespace Shop.Models
 
     public class LogOnModel
     {
-        [Required(ErrorMessage="*")]
+        [Required(ErrorMessage = "*")]
         [DisplayName("Логин")]
         public string UserName { get; set; }
 
@@ -66,7 +66,7 @@ namespace Shop.Models
         public string Phone { get; set; }
         [DisplayName("Ваш домашний адрес")]
         public string DeliveryAddress { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Обязательно!")]
         [ValidatePasswordLength]
         [DisplayName("Придумайте пароль для Вашей учетной записи")]
         public string Password { get; set; }

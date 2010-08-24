@@ -27,7 +27,7 @@
 <asp:Content ID="Content4" ContentPlaceHolderID="includes" runat="server">  
     <script type="text/javascript">
         $(function() {
-            $(".fancyAttributeValue").fancybox({ modal: true, autoDimensions: false, width: 200, height: 200 });
+            $(".fancyAttributeValue").fancybox({hideOnOverlayClick:false, showCloseButton:true, autoDimensions: false, width: 200, height: 200 });
         })
     </script>
 </asp:Content>

@@ -36,6 +36,7 @@ namespace Shop.Areas.Admin.Controllers
                 if (Id.HasValue && Id.Value > 0)
                 {
                     article.Id = Id.Value;
+                    article.Name = article.Title;
                     object originalItem;
                     EntityKey entityKey = new EntityKey("ContentStorage.Articles", "Id", article.Id);
                     if (context.TryGetObjectByKey(entityKey, out originalItem))

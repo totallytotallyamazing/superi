@@ -55,6 +55,8 @@ namespace Shop.Controllers
                     .Include("Category")
                     .Include("Brand")
                     .Where(p => p.Id == id).First();
+                ViewData["keywords"] = product.SeoKeywords;
+                ViewData["description"] = product.SeoDescription;
                 return View(product); 
             }
         }

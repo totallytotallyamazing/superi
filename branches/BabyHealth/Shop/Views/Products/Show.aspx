@@ -36,8 +36,10 @@
             <br />
             <p>Артикул: <strong><%= Model.PartNumber %></strong></p>
             <br />
-            <p>Цвет: <strong><%= Model.Color %></strong></p>
-            <br />
+            <%if (!string.IsNullOrEmpty(Model.Color)){ %>
+                <p>Цвет: <strong><%= Model.Color %></strong></p>
+                <br />
+            <%} %>
             <p><% Html.RenderPartial("ProductAttributesSelector", Model.ProductAttributeValues); %></p>
             <br />
             <p>

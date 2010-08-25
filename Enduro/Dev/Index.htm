@@ -2,8 +2,48 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title></title>
+    <script src="Scripts/jquery-1.4.1-vsdoc.js" type="text/javascript"></script>
+    <style type="text/css">
+        *{margin:0; padding:0}
+        #main{width:1000px; margin:0 auto; position:relative; background:transparent url(Content/img/stubHeader.jpg) no-repeat; padding-top:450px;}
+        #links{text-align:center;}
+        a#orderLink{padding-left:125px;}
+    </style>
+    <script type="text/javascript">
+        $(function () {
+            $("#order").hide(0);
+
+            $("#orderLink").click(orderClick);
+
+        });
+
+        function orderClick() {
+            $("#about").hide("fast", function () { $("#order").show("fast") });
+            $("orderLink").unbind("click").toggleClass("current");
+            $("#aboutLink").click(aboutClick);
+        }
+
+        function aboutClick() {
+            $("#order").hide("fast", function () { $("#about").show("fast") });
+            $("aboutLink").unbind("click").toggleClass("current");
+            $("#orderLink").click(orderClick);
+        }
+    </script>
 </head>
 <body>
-
+    <div id="main">
+        <div id="links">
+            <a href="#" id="aboutLink" class="current">Об эндуро</a><a id="orderLink" href="#">Регламент</a>
+        </div>
+        <div id="about">
+            Эбаут
+        </div>
+        <div id="order">
+            Регламент
+        </div>
+        <div id="footer">
+            
+        </div>
+    </div>
 </body>
 </html>

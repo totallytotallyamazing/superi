@@ -102,7 +102,7 @@
     </div>
     <div class="<%= polyClass %>">
         <a href="/See/Poly">
-            Полиграфия
+            Реклама
         </a>
     </div>
     <div class="seeMenuItemSplitter">
@@ -110,7 +110,7 @@
     </div>
     <div class="<%= textClass %>">
         <a href="/See/Text">
-            Работа с текстом
+            Брендинг
         </a>
     </div>
     <div class="seeMenuItemSplitter">

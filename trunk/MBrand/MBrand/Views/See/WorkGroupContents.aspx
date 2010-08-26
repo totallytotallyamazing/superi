@@ -21,10 +21,10 @@
                 chapterName = "Логотипы";
                 break;
             case WorkType.Poly:
-                chapterName = "Полиграфия";
+                chapterName = "Реклама";
                 break;
             case WorkType.Text:
-                chapterName = "Работа с текстом";
+                chapterName = "Брендинг";
                 break;
             case WorkType.Video:
                 chapterName = "Видеодизайн";

@@ -13,18 +13,6 @@
         });
     </script>
     
-<%--    <div style="padding-bottom:20px;">
-        <%= Html.ActionLink("Сайты", "See", new { type = "Site"})%>
-        &nbsp;
-        <%= Html.ActionLink("Визитки", "See", new { type = "Vcard"})%>
-        &nbsp;
-        <%= Html.ActionLink("Логотипы", "See", new { type = "Logo"})%>
-        &nbsp;
-        <%= Html.ActionLink("Полиграфия", "See", new { type = "Poly"})%>
-        &nbsp;
-        <%= Html.ActionLink("Работа с текстом", "See", new { type = "Text"})%>
-    </div>--%>
-    
     <% Html.RenderPartial("SeeMenu"); %>
     <div style="clear:both;"></div>
         

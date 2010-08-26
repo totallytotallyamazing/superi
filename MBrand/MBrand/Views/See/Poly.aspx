@@ -2,12 +2,12 @@
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Полиграфия
+	Реклама
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <h2>
-        » Полиграфия
+        » Реклама
     </h2>
     <div style="height:38px;"></div>
     <% Html.RenderPartial("Thumbnails"); %>
@@ -18,5 +18,5 @@
 </asp:Content>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="HeaderTitle" runat="server">
-    Портфолио
+    Реклама
 </asp:Content>

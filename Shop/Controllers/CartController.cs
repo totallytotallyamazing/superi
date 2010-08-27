@@ -246,8 +246,9 @@ namespace Shop.Controllers
         {
             using (OrdersStorage context = new OrdersStorage())
             {
-                List<PaymentType> paymentTypes = context.PaymentTypes
-                    .Where(p => p.DeliveryTypes.Any(dt=>dt.Id == id)).ToList();
+                var result = context.DeliveryTypes.Where(dt => dt.Id == id).Select(dt => new { paymentTypes = dt.PaymentTypes, deliveryType = dt }).First();
+                List<PaymentType> paymentTypes = result.paymentTypes.ToList();
+                WebSession.Order.DeliveryType = result.deliveryType;
                 return View(paymentTypes);
             }
         }
@@ -256,7 +257,9 @@ namespace Shop.Controllers
         {
             using (OrdersStorage context = new OrdersStorage())
             {
-                List<PaymentProperty> paymentProperties = context.PaymentProperties.Where(pp => pp.PaymentType.Id == id).ToList();
+                var result = context.PaymentTypes.Where(pt => pt.Id == id).Select(pt => new { paymentProperties = pt.PaymentProperties, paymentType = pt }).First();
+                List<PaymentProperty> paymentProperties = result.paymentProperties.ToList();
+                WebSession.Order.PaymentType = result.paymentType;
                 return View(paymentProperties);
             }
         }

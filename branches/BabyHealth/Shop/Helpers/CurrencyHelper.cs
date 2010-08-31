@@ -5,6 +5,7 @@ using System.Web;
 using Dev.Helpers;
 using System.Web.Mvc;
 using System.Globalization;
+using WriteEncoder;
 
 namespace Shop.Helpers
 {
@@ -64,85 +65,13 @@ namespace Shop.Helpers
             return FormatPrice(price, currency, decimalPlaces, groupSeparator);
         }
 
-        #region Amount spelling
-        static string[] lessThenTen = "нуль один два три чотири п'ять шість сімь вісем дев'ять".Split();
-        static string[] tenToTwelve = "десять одиннадцять дванадцять тринадцять чотирнадцять п'ятнадцять шістнадцять сімнадцять вісімнадцять дев'ятнадцять".Split();
-        static string[] twentyToNinety = "нуль десять двадцять тридцять сорок п'ятдесят шістдесят сімдесят вісімдесят дев'яносто".Split();
-        static string[] hundredToNine = "нуль сто двісті триста чотириста п'ятсот шістсот сімсот вісімсот дев'ятсот".Split();
-        static string[] rank = @" тысяч мільйон мільярд трильйон квадриллион квинтиллион секстиллион септиллион октиллион нониллион дециллион андециллион дуодециллион тредециллион кваттордециллион квиндециллион сексдециллион септемдециллион октодециллион новемдециллион вигинтиллион анвигинтиллион дуовигинтиллион тревигинтиллион кватторвигинтиллион квинвигинтиллион сексвигинтиллион септемвигинтиллион октовигинтиллион новемвигинтиллион тригинтиллион антригинтиллион".Split();
-
-        public static string SpellNumber(int number)
+        public static string SpellPrice(this HtmlHelper helper, float price)
         {
-            return string.Join(" ", Spell(SplitToRanks(number.ToString())).ToArray());
+            ConvertorRussian convertor = new ConvertorRussian(new SyntaxUkrainian());
+            string result = convertor.ConvertFullInput(price, ConversionMode.OnlyIntegral);
+            result = result.ToLower();
+            result = result[0].ToString().ToUpper() + result.Substring(1);
+            return result;
         }
-
-        private static IEnumerable<string> SplitToRanks(string s)
-        {
-            s = s.PadLeft(s.Length + 3 - s.Length % 3, '0');
-            return Enumerable.Range(0, s.Length / 3).Select(i => s.Substring(i * 3, 3));
-        }
-
-        //вывести название цифр в разряде
-        static IEnumerable<string> Spell(IEnumerable<string> n)
-        {
-            var ii = 0;
-            foreach (var s in n)
-            {
-                var countdown = n.Count() - ++ii;
-                yield return
-                    String.Format(@"{0} {1} {2} {3}",
-                        s[0] == '0' ? "" : hundredToNine[GetDigit(s[0])],
-                        GetFirstDigit(s[1], s[2]),
-                        GetSecondDigit(s[1], s[2], countdown),
-                        s == "000" ? "" : GetRankName(s, countdown)
-                    );
-            }
-        }
-
-        private static int GetDigit(char p1)
-        {
-            return Int32.Parse(p1.ToString());
-        }
-
-        //вторая цифра разряда
-        private static string GetFirstDigit(char p1, char p2)
-        {
-            if (p1 != '0')
-            {
-                if (p1 == '1')
-                    return tenToTwelve[GetDigit(p2)];
-                return twentyToNinety[GetDigit(p1)];
-            }
-            return "";
-        }
-        //третья цифра разряда
-        private static string GetSecondDigit(char p1, char p2, int cd)
-        {
-            if (p1 != '1')
-            {
-                if (p2 == '0') return "";
-                return (p2 == '2' && cd == 1) ? "две" : lessThenTen[GetDigit(p2)];
-            }
-            return "";
-        }
-
-
-        private static string GetRankName(string s, int ii)
-        {
-            if (ii == 0) return "";
-            var r = rank[ii];
-            //10 11 ...
-            if (s[1] == '1') return r + (ii == 1 ? "" : "ов");
-
-            if (new[] { '2', '3', '4' }.Contains(s[2]))
-            {
-                return r + (ii == 1 ? "и" : "а");
-            }
-            else
-                return r + (ii == 1 ? "" : "ов");
-        }
-
-
-        #endregion
     }   
 }

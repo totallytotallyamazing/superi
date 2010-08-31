@@ -12,6 +12,7 @@ using System.Web.Script.Serialization;
 using System.Text;
 using System.Net.Mail;
 using Trips.Mvc.Runtime;
+using System.Data;
 
 namespace Shop.Controllers
 {
@@ -186,13 +187,7 @@ namespace Shop.Controllers
 
         public ActionResult Approve()
         {
-
-            return View();
-        }
-
-        public ActionResult SendOrder()
-        {
-            using (OrdersStorage context =  new OrdersStorage())
+            using (OrdersStorage context = new OrdersStorage())
             {
                 foreach (var item in WebSession.OrderItems)
                 {
@@ -200,6 +195,11 @@ namespace Shop.Controllers
                 }
                 context.SaveChanges();
             }
+            return View();
+        }
+
+        public ActionResult SendOrder()
+        {
             SendOrderMail();
 
             WebSession.ClearOrder();
@@ -246,9 +246,12 @@ namespace Shop.Controllers
         {
             using (OrdersStorage context = new OrdersStorage())
             {
+                context.PaymentTypes.MergeOption = System.Data.Objects.MergeOption.NoTracking;
+                context.DeliveryTypes.MergeOption = System.Data.Objects.MergeOption.NoTracking;
                 var result = context.DeliveryTypes.Where(dt => dt.Id == id).Select(dt => new { paymentTypes = dt.PaymentTypes, deliveryType = dt }).First();
                 List<PaymentType> paymentTypes = result.paymentTypes.ToList();
-                WebSession.Order.DeliveryType = result.deliveryType;
+                WebSession.Order.DeliveryTypeReference.EntityKey = new EntityKey("OrdersStorage.DeliveryTypes", "Id", id);
+                WebSession.DeliveryType = result.deliveryType;
                 return View(paymentTypes);
             }
         }
@@ -257,9 +260,12 @@ namespace Shop.Controllers
         {
             using (OrdersStorage context = new OrdersStorage())
             {
+                context.PaymentTypes.MergeOption = System.Data.Objects.MergeOption.NoTracking;
+                context.PaymentProperties.MergeOption = System.Data.Objects.MergeOption.NoTracking;
                 var result = context.PaymentTypes.Where(pt => pt.Id == id).Select(pt => new { paymentProperties = pt.PaymentProperties, paymentType = pt }).First();
                 List<PaymentProperty> paymentProperties = result.paymentProperties.ToList();
-                WebSession.Order.PaymentType = result.paymentType;
+                WebSession.Order.PaymentTypeReference.EntityKey = new EntityKey("OrdersStorage.PaymentTypes", "Id", id);
+                WebSession.PaymentType = result.paymentType;
                 return View(paymentProperties);
             }
         }

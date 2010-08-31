@@ -37,6 +37,7 @@
           <Property Name="DeliveryPhone" Type="varchar" MaxLength="20" />
           <Property Name="DeliveryTypeId" Type="int" />
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="OrderDate" Type="datetime" />
           <Property Name="PaymentTypeId" Type="int" />
         </EntityType>
         <EntityType Name="OrderItem">
@@ -77,6 +78,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Disabled" Type="bit" Nullable="false" />
+          <Property Name="DocumentName" Type="varchar" MaxLength="250" />
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="varchar" Nullable="false" MaxLength="500" />
         </EntityType>
@@ -136,7 +138,8 @@
           <NavigationProperty Name="OrderItems" Relationship="shop_Orders.OrderOrderItem" FromRole="Order" ToRole="OrderItem" />
           <NavigationProperty Name="DeliveryType" Relationship="shop_Orders.DeliveryTypeOrder" FromRole="Order" ToRole="DeliveryType" />
           <NavigationProperty Name="PaymentType" Relationship="shop_Orders.PaymentTypeOrder" FromRole="Order" ToRole="PaymentType" />
-          <NavigationProperty Name="PaymentPropertyValues" Relationship="shop_Orders.OrderPaymentPropertyValue" FromRole="Order" ToRole="PaymentPropertyValue" /></EntityType>
+          <NavigationProperty Name="PaymentPropertyValues" Relationship="shop_Orders.OrderPaymentPropertyValue" FromRole="Order" ToRole="PaymentPropertyValue" />
+          <Property Name="OrderDate" Type="DateTime" Nullable="true" /></EntityType>
         <EntityType Name="OrderItem">
           <Key>
             <PropertyRef Name="Id" />
@@ -187,7 +190,7 @@
           <NavigationProperty Name="DeliveryTypes" Relationship="shop_Orders.DeliveryTypePaymentType" FromRole="PaymentType" ToRole="DeliveryType" />
           <NavigationProperty Name="Orders" Relationship="shop_Orders.PaymentTypeOrder" FromRole="PaymentType" ToRole="Order" />
           <NavigationProperty Name="PaymentProperties" Relationship="shop_Orders.PaymentTypePaymentProperty" FromRole="PaymentType" ToRole="PaymentProperty" />
-          </EntityType>
+          <Property Name="DocumentName" Type="String" Nullable="true" /></EntityType>
         <Association Name="DeliveryTypeOrder">
           <End Type="shop_Orders.DeliveryType" Role="DeliveryType" Multiplicity="0..1" />
           <End Type="shop_Orders.Order" Role="Order" Multiplicity="*" /></Association>
@@ -214,6 +217,7 @@
           <EntitySetMapping Name="Orders">
             <EntityTypeMapping TypeName="IsTypeOf(shop_Orders.Order)">
               <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
                 <ScalarProperty Name="AdditionalDeliveryInfo" ColumnName="AdditionalDeliveryInfo" />
                 <ScalarProperty Name="AdditionalProperties" ColumnName="AdditionalProperties" />
                 <ScalarProperty Name="BillingEmail" ColumnName="BillingEmail" />
@@ -267,6 +271,7 @@
           <EntitySetMapping Name="PaymentTypes">
             <EntityTypeMapping TypeName="IsTypeOf(shop_Orders.PaymentType)">
               <MappingFragment StoreEntitySet="PaymentType">
+                <ScalarProperty Name="DocumentName" ColumnName="DocumentName" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Disabled" ColumnName="Disabled" /></MappingFragment></EntityTypeMapping></EntitySetMapping>

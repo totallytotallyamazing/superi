@@ -360,6 +360,7 @@
     <Content Include="Views\Home\FeedbackForm.ascx" />
     <Content Include="Views\Home\ShowContent.ascx" />
     <Content Include="Views\Invoice\Invoice.aspx" />
+    <Content Include="Views\Invoice\InvoiceLegal.aspx" />
     <Content Include="Views\Invoice\Receipt.aspx" />
     <Content Include="Views\Products\ImagePreviews.ascx" />
     <Content Include="Views\Products\Price.ascx" />

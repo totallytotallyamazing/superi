@@ -86,6 +86,28 @@ namespace Dev.Helpers
             set { Session["CurrentCategory"] = value; }
         }
 
+        public static DeliveryType DeliveryType
+        {
+            get
+            {
+                if (Session["DeliveryType"] != null)
+                    return (DeliveryType)Session["DeliveryType"];
+                return null;
+            }
+            set { Session["DeliveryType"] = value; }
+        }
+
+        public static PaymentType PaymentType
+        {
+            get
+            {
+                if (Session["PaymentType"] != null)
+                    return (PaymentType)Session["PaymentType"];
+                return null;
+            }
+            set { Session["PaymentType"] = value; }
+        }
+
 
         #region Methods
         public static void ClearOrder()

@@ -42,13 +42,18 @@ div#userInfoWrapper{width:585px; position:relative; margin:0 auto; padding:25px 
 .validationError{color:Red; font-size:9px;}
 td.validationError{width:200px;}
 td.registerMePlease a{font-size: 12px; font-weight:bold; color:#ff6600;}
+.approveTitle{font-weight:bold; color:#ff6600; padding-right:10px;}
+div.section{padding:10px 0; font-size:12px;}
+
 td.registerMePlease {font-weight:bold; font-size:12px; padding-top:25px !important;}
 
 div.backAndForward{background: transparent url(img/proceedBg.jpg) no-repeat right;  margin-top:40px; padding-left:10px; padding-top:2px; height:22px; font-size:14px; text-align:right; height:24px;}
 div.backAndForward{color:#ff6600; font-weight:bold;}
 div.backAndForward div{float:left; background: transparent url(img/backArrow.jpg) no-repeat left; height:24px; width:92px; text-align:left; padding-left:10px; padding-top:2px; }
 div.backAndForward input{border:0; background:transparent; text-decoration:underline; color:White;  width:110px; font-size:14px;}
-div.backAndForward a{color:White; font-size:14px; font-weight:normal;}
+
+div.backAndForward a{color:White; font-size:14px; font-weight:normal; padding-left:10px; padding-right:25px;}
+div.backAndForward .back a{padding:0;}
 
 #deliveryTypes{margin-top:65px;}
 div.options{padding-left:86px; padding-top:20px;}
@@ -56,3 +61,6 @@ div.options{padding-left:86px; padding-top:20px;}
 div.options div{font-size:12px; color:#ff6600; margin-bottom:12px; }
 #paymentTypes{ padding-top:30px;}
 #paymentProperties{margin-top:40px;}
+
+table.orderItems{font-size:12px; margin:10px 0 10px 0;}
+table.orderItems tr td{padding:5px 50px 5px 0;}

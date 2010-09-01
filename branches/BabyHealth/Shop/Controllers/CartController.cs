@@ -242,6 +242,7 @@ namespace Shop.Controllers
             return View();
         }
 
+        [OutputCache(NoStore = true, VaryByParam="*", Duration=1)]
         public ActionResult AvailablePaymentTypes(int id)
         {
             using (OrdersStorage context = new OrdersStorage())
@@ -256,6 +257,7 @@ namespace Shop.Controllers
             }
         }
 
+        [OutputCache(NoStore = true, VaryByParam="*", Duration=1)]
         public ActionResult PaymentProperties(int id)
         {
             using (OrdersStorage context = new OrdersStorage())

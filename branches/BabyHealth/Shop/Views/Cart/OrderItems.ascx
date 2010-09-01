@@ -1,7 +1,7 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl" %>
 <%@ Import Namespace="Dev.Helpers" %>
 <%@ Import Namespace="Shop.Helpers" %>
-<table>
+<table class="orderItems">
 <% foreach (var item in WebSession.OrderItems){%>
     <tr>
         <td>

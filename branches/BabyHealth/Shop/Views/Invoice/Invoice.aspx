@@ -195,7 +195,7 @@
                             Всього:
                         </td>
                         <td align="left">
-                            <%= orderItems.GetTotalAmount() %>
+                            <%= orderItems.GetTotalAmount().ToString("0.00", CultureInfo.CurrentUICulture) %>
                         </td>
                     </tr>
                 </tfoot>

@@ -1,0 +1,109 @@
+﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
+<%@ Import Namespace="Dev.Mvc.Ajax" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+    <% Html.RenderPartial("MetaTags"); %>
+    <title>
+        <asp:ContentPlaceHolder runat="server" ID="TitleContent">
+        </asp:ContentPlaceHolder>
+    </title>
+    <link href="/Content/style.css" rel="stylesheet" type="text/css" />
+    <% if (Roles.IsUserInRole("Administrators"))
+       { %>
+    <link href="/Content/AdminStyles/Admin.css" rel="stylesheet" type="text/css" />
+    <%} %>
+    <%if(false) {%>
+        <script type="text/javascript" src="../../Scripts/jquery-vsdoc.js"></script>
+        <script type="text/javascript">
+            /// <reference path="jquery.js" />
+        </script>
+    <%} %>
+    <script type="text/javascript" src="/Scripts/jquery.js"></script>
+    <%= Ajax.DynamicCssInclude("/Content/fancybox/jquery.fancybox.css") %>
+    <%= Ajax.ScriptInclude("/Scripts/jquery.fancybox.js")%>
+    <script type="text/javascript">
+        $(function() {
+            $("#feedbackForm").fancybox(
+            {
+                hideOnContentClick: false,
+                hideOnOverlayClick: false,
+                showCloseButton: true
+            });
+        });
+    </script>
+    <asp:ContentPlaceHolder runat="server" ID="includes">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <%if (Roles.IsUserInRole("Administrators")) Html.RenderPartial("AdminPanel");  %>
+    <div id="header">
+        <div id="logoBox">
+            <% Html.RenderAction("News", "Widgets", new { area = "" }); %>
+            <a href="#">
+                <img src="/Content/img/logo.jpg" alt="babyHealth" />
+            </a>
+        </div>
+        <div id="headerItems">
+            <div id="headerContacts">
+                <div id="headerContactsItems">
+                    <div style="margin-bottom:17px;">
+                        <span id="weAlsoHave">Еще, у нас есть</span>
+                        <a id="babyPortalLink" href="#">Бэби-портал</a>
+                    </div>
+                    <h3>(044) 360-32-63</h3>
+                    <h3>(050) 358-58-18</h3>
+                    <h5><a id="feedbackForm" class="iframe" href="/Home/FeedbackForm">Форма обратной связи</a></h5>
+                </div>
+                <% Html.RenderPartial("Search"); %>
+            </div>
+            <% Html.RenderPartial("MainMenu"); %>
+        </div>
+    </div>
+    <div id="contentBox">
+        <div id="leftSide">
+            <% Html.RenderPartial("CurrencyConverter"); %>
+            <% Html.RenderPartial("LogOnUserControl"); %>
+            <% Html.RenderAction("Categories", "Home", new { area = "" }); %> 
+            <div id="leftHand">
+            </div>
+        </div>
+        <div id="rightSide">
+            <div id="rightSideHeader">
+                <div id="rightSideHeaderBg">
+                </div>
+            </div>
+            <div id="borderLine">
+                <h1><asp:ContentPlaceHolder runat="server" ID="ContentTitle"></asp:ContentPlaceHolder></h1>
+            </div>
+            <div id="contentWrapper">
+                <asp:ContentPlaceHolder runat="server" ID="MainContent"></asp:ContentPlaceHolder>
+            </div>
+            <div id="borderLine2">
+            </div>
+            <div id="rightSideFooter">
+                <div id="rightSideFooterBgL">
+                </div>
+                <div id="rightSideFooterBgR">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="preFooter">
+        <% Html.RenderAction("Myths", "Widgets", new { area = "" }); %>
+        <% Html.RenderPartial("BottomCategories"); %>
+    </div>
+    <div id="footer">
+        <div id="book">
+        </div>
+        <div id="ramka">
+        </div>
+        <div id="copy">
+            <p>
+                © 2010 Магазин родительского опыта <span id="babyCopy">“Baby Health”</span></p>
+            <h5>
+                Дизайн сайта — <a href="http://m-brand.com.ua">Евгений Миллер</a></h5>
+        </div>
+    </div>
+</body>
+</html>

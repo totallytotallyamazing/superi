@@ -1,7 +1,16 @@
 ﻿<%@ Page Language="C#" Inherits="System.Web.Mvc.ViewPage" %>
 <%@ Import Namespace="Dev.Helpers" %>
 <%@ Import Namespace="Shop.Helpers" %>
+<%@ Import Namespace="Shop.Models" %>
+<%@ Import Namespace="System.Globalization" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<% 
+    Order order = (Order)ViewData["Order"];
+    IEnumerable<OrderItem> orderItems = (IEnumerable<OrderItem>)ViewData["OrderItems"];
+    
+    string[] months = {"", "січня", "лютого", "березня", "квітня", "травня", "червня", "липня", "серпня", "вересня", "жовтня", "листопада", "грудня"};
+%>
 
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head runat="server">
@@ -71,7 +80,7 @@
                     26006000451971
                 </td>
                 <td>
-                    <%= WebSession.OrderItems.Sum(oi=>oi.Value.Quantity * oi.Value.Price).ToString("0.00")  %>
+                    <%=  orderItems.GetTotalAmount().ToString("0.00", CultureInfo.CurrentUICulture) %>
                 </td>
                 <td>&nbsp;</td>
             </tr>
@@ -80,12 +89,12 @@
                     Загальна сума (цифрами)
                 </td>
                 <td>
-                    <%= WebSession.OrderItems.Sum(oi=>oi.Value.Quantity * oi.Value.Price).ToString("0.00")  %>
+                    <%= orderItems.GetTotalAmount().ToString("0.00", CultureInfo.CurrentUICulture)  %>
                 </td>
             </tr>
         </table>
         <p>
-            Платник <span><%= WebSession.Order.BillingName %></span>
+            Платник <span><%= order.BillingName %></span>
         </p>  
         <p>
             Код платника ** ________________________
@@ -106,10 +115,10 @@
             Код банку отримувача    <span>322001</span>
         </p>
         <p>
-            Загальна сума  <span><%= Html.SpellPrice(WebSession.OrderItems.Sum(oi => oi.Value.Price * oi.Value.Quantity))%></span>
+            Загальна сума  <span><%= Html.SpellPrice(orderItems.GetTotalAmount())%></span>
         </p>
         <p>
-            Призначення платежу  <span>За товар Інтернет-магазину згідно замовлення №<%= WebSession.Order.Id %></span>
+            Призначення платежу  <span>За товар Інтернет-магазину згідно замовлення №<%= order.Id %></span>
         </p>
         <p>
             Додаткові реквізити      <span>тел. 3603263</span>
@@ -166,7 +175,7 @@
                     26006000451971
                 </td>
                 <td>
-                    <%= WebSession.OrderItems.Sum(oi=>oi.Value.Quantity * oi.Value.Price).ToString("0.00")  %>
+                    <%= orderItems.GetTotalAmount().ToString("0.00", CultureInfo.CurrentUICulture)   %>
                 </td>
                 <td>&nbsp;</td>
             </tr>
@@ -175,7 +184,7 @@
                     Загальна сума (цифрами)
                 </td>
                 <td>
-                    <%= WebSession.OrderItems.Sum(oi=>oi.Value.Quantity * oi.Value.Price).ToString("0.00")  %>
+                    <%= orderItems.GetTotalAmount().ToString("0.00", CultureInfo.CurrentUICulture)   %>
                 </td>
             </tr>
         </table>
@@ -201,10 +210,10 @@
             Код банку отримувача    <span>322001</span>
         </p>
         <p>
-            Загальна сума  <span><%= Html.SpellPrice(WebSession.OrderItems.Sum(oi => oi.Value.Price * oi.Value.Quantity))%></span>
+            Загальна сума  <span><%= Html.SpellPrice(orderItems.GetTotalAmount())%></span>
         </p>
         <p>
-            Призначення платежу  <span>За товар Інтернет-магазину згідно замовлення №<%= WebSession.Order.Id %></span>
+            Призначення платежу  <span>За товар Інтернет-магазину згідно замовлення №<%= order.Id %></span>
         </p>
         <p>
             Додаткові реквізити      <span>тел. 3603263</span>

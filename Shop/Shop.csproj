@@ -358,6 +358,7 @@
     <Content Include="Views\Cart\DeliveryType.ascx" />
     <Content Include="Views\Cart\OrderSent.aspx" />
     <Content Include="Views\Cart\PaymentProperties.ascx" />
+    <Content Include="Views\Cart\PrintDocument.ascx" />
     <Content Include="Views\Home\FeedbackForm.ascx" />
     <Content Include="Views\Home\ShowContent.ascx" />
     <Content Include="Views\Invoice\Invoice.aspx" />

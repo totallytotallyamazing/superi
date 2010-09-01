@@ -185,6 +185,7 @@ namespace Shop.Controllers
             return RedirectToAction("Approve");
         }
 
+        [OutputCache(NoStore = true, VaryByParam="*", Duration=1)]
         public ActionResult Approve()
         {
             using (OrdersStorage context = new OrdersStorage())

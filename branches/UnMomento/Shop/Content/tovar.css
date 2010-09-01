@@ -1,0 +1,29 @@
+#tovar{padding: 0px 0px 0px 0px; float:left; width:360px;}
+#tovar>img{border: 1px solid #999999;}
+#tovarDesk{ margin-left:380px;}
+#tovarDesk p{font:Verdana, Arial, Helvetica, sans-serif normal;font-size:11pt;}
+#new1{height:15px; width:76px;border:0px solid #000000; position: relative; bottom:37px; right:0px; background:url(img/new.jpg) no-repeat;}
+#guest1{height:130px;width:212px;float:left;border:0px solid green;background:url(img/guest.jpg) no-repeat center;margin:18px 0px 0px 14px;}
+#guest1 p{font:Verdana, Arial, Helvetica, sans-serif normal;font-size:10pt;padding:5px 55px 0px 45px;margin:0px 0px 0px 10px; text-align:center; color:#d74f03;}
+#guest1 h2{font:Verdana, Arial, Helvetica, sans-serif normal;font-size:10pt;padding:30px 30px 0px 20px;margin:0px 0px 0px 10px; text-align:center; color:#d74f03;}
+#guest1 a{color:#d74f03;}
+
+#borderLine h1{color:#39b54a;}
+#borderLine, #borderLine2 {border-bottom:#39b54a solid 3px; }
+
+#imagePreviews{width:365px; text-align:center; padding-top:10px;} 
+#imagePreviews img{border:1px solid #39b54a;}
+#imagePreviews div.imageItem{float:left; margin-right:10px;}
+
+.orderButton{background:#39b54a url(img/OrderBg.jpg) no-repeat right; position:relative; padding-left:10px; width:355px; height:22px; color:White; margin-top:-20px; text-align:center; z-index:110;}
+.orderButton a{color:White;}
+
+#linksBoxC{padding:35px 20px;}
+
+.productTitle h2{color:#666666; font-size:16px;}
+.productTitle{padding-bottom:10px;}
+#mainImage img{display:block;}
+#mainImage{border:1px solid #39b54a; border-bottom:0;}
+
+span.price{font-weight:bold;}
+span.oldPrice{font-weight:bold; color:Red; text-decoration:line-through;}

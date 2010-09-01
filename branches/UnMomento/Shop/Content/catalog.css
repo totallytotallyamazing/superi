@@ -1,0 +1,23 @@
+#linksBoxC{min-height:500px;height:auto;width:613px;margin:0 auto; position:relative;}
+#linksBoxC h2{font:Verdana, Arial, Helvetica, sans-serif normal; font-size:12pt;padding:0px 0px 5px 0px;}
+.tovarBox{height:365px; width:152px;float:left; margin:10px 50px 0px 0px;}
+.nazva{width:152px; margin-bottom:2px;}
+.nazva p{}
+.nazva a{font-weight:bold;font-size:11px;color:#6699cc;}
+.item{width:152px;}
+.item a img{border:1px solid #999999;}
+.new{height:15px; width:76px;position:relative; bottom:14px; right:1px; background:url(img/new.jpg) no-repeat;}
+.itemDesc{height:156px;width:152px;}
+.itemDesc div.productName{}
+.itemDesc a{color:#6699cc;margin:0px 0px 0px 2px;font-size:12px;font-weight:bold;}
+.itemDesc p{font-size:11px;color:#666666;font-weight:bold;padding:7px 0px 0px 2px;}
+.itemDesc h4{font-size:14px; color:#ff6600;padding:4px 0px 0px 2px;}
+#next{height:20px;width:200px;margin:0 auto; padding-top:35px;text-align:center;}
+#next a{font-weight:bold;font-size:12pt; color:#000000;padding: 2px 5px;}
+#next a:hover{ background-color:#3bb64b;}
+
+
+.oldPrice{text-decoration:line-through; color:Red; display:block;}
+span.price{color:#009933;}
+
+span.price.single{color:#ff6600;}

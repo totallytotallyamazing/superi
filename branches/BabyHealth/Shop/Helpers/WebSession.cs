@@ -108,11 +108,22 @@ namespace Dev.Helpers
             set { Session["PaymentType"] = value; }
         }
 
+        public static List<PaymentPropertyValue> PaymentProertyValues
+        {
+            get 
+            {
+                if (Session["PaymentProertyValues"] == null)
+                   Session["PaymentProertyValues"] = new List<PaymentPropertyValue>();
+                return (List<PaymentPropertyValue>)Session["PaymentProertyValues"];
+            }
+        }
+
 
         #region Methods
         public static void ClearOrder()
         {
             Session.Remove("order");
+            Session["order"] = null;
         }
 
         public static bool IsBillingInfoFilled()

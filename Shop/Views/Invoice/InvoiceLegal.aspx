@@ -146,7 +146,7 @@
                     </td>
                     <td valign="top">
                         <% 
-                            string name = WebSession.Order.GetPaymentProperty("OrgName");
+                            string name = WebSession.PaymentProertyValues.First(pp => pp.PaymentProperty.FieldName == "OrgName").Value;
                             if (string.IsNullOrEmpty(name))
                                 name = "___________________________________";
                         %>

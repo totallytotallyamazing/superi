@@ -264,6 +264,7 @@
     <Content Include="Content\ui\jquery.ui.slider.css" />
     <Content Include="Content\ui\jquery.ui.tabs.css" />
     <Content Include="Content\ui\jquery.ui.theme.css" />
+    <Content Include="newBanner.swf" />
     <Content Include="Scripts\jquery.ui.js" />
     <Content Include="Scripts\jquery.ui.datepicker-ru.js" />
     <Content Include="Views\Admin\Admin.Master" />

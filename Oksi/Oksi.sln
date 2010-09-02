@@ -5,7 +5,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oksi", "Oksi.csproj", "{DA7
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientLibrary", "..\ClientLibrary\ClientLibrary.csproj", "{74865320-78E6-4B54-8795-BD5940251A71}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Superi.Ajax.Mvc", "..\..\..\Script#\Superi.Ajax.Mvc\Superi.Ajax.Mvc.csproj", "{4B155D99-55AF-4880-8B09-DB8544131742}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Superi.Ajax.Mvc", "..\..\..\Superi.Ajax\Superi.Ajax.Mvc.csproj", "{4B155D99-55AF-4880-8B09-DB8544131742}"
 EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution

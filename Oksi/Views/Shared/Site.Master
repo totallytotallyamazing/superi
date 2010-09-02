@@ -25,12 +25,12 @@
     <%} %>
             <script type="text/javascript">
                 $(function() {
-                    $("#b1, #br1").html('<img src="/Content/Banners/playboy.jpg" alt="playboy"/>')
-//                    swfobject = new SWFObject("party.swf", "b1", "235", "360", "9.0.0");
-//                    swfobject.write("b1");
+                    //$("#b1, #br1").html('<img src="/Content/Banners/playboy.jpg" alt="playboy"/>')
+                    swfobject = new SWFObject("newBanner.swf", "b1", "235", "360", "9.0.0");
+                    swfobject.write("b1");
 
-//                    swfobject1 = new SWFObject("party.swf", "b1", "235", "360", "9.0.0");
-//                    swfobject.write("br1");
+                    swfobject1 = new SWFObject("newBanner.swf", "b1", "235", "360", "9.0.0");
+                    swfobject.write("br1");
                 });
         </script>
    <%-- <%= Ajax.MicrosoftMvcAjaxLibraryInclude() %>--%>

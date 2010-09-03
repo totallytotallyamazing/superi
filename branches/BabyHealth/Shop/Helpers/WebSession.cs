@@ -43,8 +43,8 @@ namespace Dev.Helpers
             {
                 if (Session["order"] == null)
                 {
-                    if(order == null)
-                        order = new Order();
+                    if (order == null)
+                        order = new Order { UniqueId = Guid.NewGuid().ToString() };
                     Session["order"] = order;
                 }
                 return (Shop.Models.Order)Session["order"];
@@ -124,6 +124,7 @@ namespace Dev.Helpers
         {
             Session.Remove("order");
             Session["order"] = null;
+            order = null;
         }
 
         public static bool IsBillingInfoFilled()

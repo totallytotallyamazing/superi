@@ -236,6 +236,7 @@ namespace Shop.Controllers
                 foreach (var item in WebSession.OrderItems)
                 {
                     WebSession.Order.OrderItems.Add(item.Value);
+                    WebSession.Order.OrderDate = DateTime.Now;
                 }
                 context.SaveChanges();
             }
@@ -245,22 +246,43 @@ namespace Shop.Controllers
         public ActionResult SendOrder()
         {
             SendOrderMail();
+            if(!string.IsNullOrEmpty(WebSession.Order.BillingEmail))
+                SedClientMail();
 
             WebSession.ClearOrder();
 
             return RedirectToAction("OrderSent");
         }
 
+        private void SedClientMail()
+        {
+            string link = string.Empty;
+            if (WebSession.PaymentType.HasDocument)
+            {
+                StringBuilder sb = new StringBuilder();
+                string format = "<a href=\"http://shop.baby-health.org.ua/Invoice/Show/{0}?orderId={1}&uniqueId={2}\">{3}</a>";
+                link = string.Format(format, WebSession.PaymentType.DocumentName, WebSession.Order.Id, WebSession.Order.UniqueId, WebSession.PaymentType.DocumentCaption);
+            }
+
+            List<MailAddress> to = new List<MailAddress>();
+            to.Add(new MailAddress(WebSession.Order.BillingEmail));
+            MailHelper.SendTemplate(to, "Заказ №" + WebSession.Order.Id + " на сайте baby-health.org.ua",
+                "ClientMail.htm", null, true, CreateOrderPresentation(), link);
+
+        }
+
         private void SendOrderMail()
         {
+            string deliveryAddress = WebSession.Order.DeliveryAddress ?? string.Empty;
+            string additionalDeliveryInfo = WebSession.Order.AdditionalDeliveryInfo ?? string.Empty;
             List<MailAddress> to = new List<MailAddress>();
             to.Add(new MailAddress(Configurator.GetSetting("ReceiverMail")));
-            MailHelper.SendTemplate(to, "Заказ на сайте baby-health.org.ua",
+            MailHelper.SendTemplate(to, "Заказ №" + WebSession.Order.Id + " на сайте baby-health.org.ua",
                 "MailTemplate.htm", null, true, WebSession.Order.BillingEmail,
                 WebSession.Order.BillingName, WebSession.Order.BillingPhone,
                 WebSession.Order.DeliveryName, WebSession.Order.DeliveryPhone,
-                WebSession.Order.DeliveryAddress.Replace("\r", "<br />"),
-                WebSession.Order.AdditionalDeliveryInfo.Replace("\r", "<br />"),
+                deliveryAddress.Replace("\r", "<br />"),
+                additionalDeliveryInfo.Replace("\r", "<br />"),
                 CreateOrderPresentation());
 
         }

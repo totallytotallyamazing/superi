@@ -352,6 +352,7 @@
     <Content Include="Content\img\totalBg.png" />
     <Content Include="Content\img\totalLeft.png" />
     <Content Include="Content\img\totalRight.png" />
+    <Content Include="Content\MailTemplates\ClientMail.htm" />
     <Content Include="Content\MailTemplates\FeedbackTemplate.htm" />
     <Content Include="Content\orderSent.css" />
     <Content Include="Scripts\MvcCaptchaValidation.js" />

@@ -106,7 +106,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Script#\Superi.Ajax.Mvc\Superi.Ajax.Mvc.csproj">
+    <ProjectReference Include="..\..\..\Superi.Ajax\Superi.Ajax.Mvc.csproj">
       <Project>{4B155D99-55AF-4880-8B09-DB8544131742}</Project>
       <Name>Superi.Ajax.Mvc</Name>
     </ProjectReference>

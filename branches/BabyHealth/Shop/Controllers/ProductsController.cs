@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Shop.Models;
 using Dev.Helpers;
+using System.Web.Security;
 
 namespace Shop.Controllers
 {
@@ -15,6 +16,7 @@ namespace Shop.Controllers
             ViewData["categoryId"] = id;
             ViewData["brandId"] = brandId;
             ViewData["showAdminLinks"] = true;
+            ViewData["isAdmin"] = Roles.IsUserInRole("Administrators");
             WebSession.CurrentCategory = id;
 
             using (ShopStorage context = new ShopStorage())
@@ -23,11 +25,14 @@ namespace Shop.Controllers
                 Category category = context.Categories.Include("Parent").Include("Categories.Products.Brand")
                     .Include("Categories.Products.ProductImages")
                     //.Include("Categories.Products.ProductAttributeValues.ProductAttribute")
-                    .Where(c => c.Id == id).First();
+                    .First(c => c.Id == id);
                 if (category.Parent == null)
                 {
                     ViewData["showAdminLinks"] = false;
-                    products = category.Categories.SelectMany(c => c.Products).Union(category.Products).ToList();
+                    products = category.Categories.SelectMany(c => c.Products)
+                        .Union(category.Products)
+                        .OrderBy(p => p.SortOrder)
+                        .ToList();
                 }
                 else
                 {
@@ -37,6 +42,7 @@ namespace Shop.Controllers
                         .Include("ProductImages")
                         .Where(p => p.Category.Id == id)
                         .Where(p => (!brandId.HasValue || p.Brand.Id == brandId.Value))
+                        .OrderBy(p => p.SortOrder)
                         .ToList();
                 }
                 ViewData["title"] = category.Name;
@@ -46,6 +52,7 @@ namespace Shop.Controllers
 
         public ActionResult Show(int id)
         {
+            HttpContext.Items["IsProductView"] = true;
             using (ShopStorage context = new ShopStorage())
             {
                 Product product = context.Products
@@ -71,9 +78,10 @@ namespace Shop.Controllers
                     .Include("Brand")
                     .Include("ProductImages")
                     .Include("ProductAttributeValues.ProductAttribute")
-                    .Where(p=>p.Tags.Where(t=>t.Id == id).Count()>0)
+                    .Where(p => p.Tags.Where(t => t.Id == id).Count() > 0)
+                    .OrderBy(p => p.SortOrder)
                     .ToList();
-                return View("Index", products); 
+                return View("Index", products);
             }
         }
 
@@ -89,6 +97,7 @@ namespace Shop.Controllers
                     .Include("ProductImages")
                     .Include("ProductAttributeValues.ProductAttribute")
                     .Where(ContextExtension.BuildContainsExpression<Product, int>(p => p.Id, ids))
+                    .OrderBy(p => p.SortOrder)
                     .ToList();
                 return View("Index", products);
             }

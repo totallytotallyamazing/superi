@@ -27,15 +27,10 @@ namespace Shop.Controllers
             return View("Content");
         }
 
-        [ChildActionOnly]
-        public ActionResult Categories()
-        {
-            using (ShopStorage context = new ShopStorage())
-            {
-                List<Category> categories = context.Categories.Include("Categories").Where(c => c.Parent == null).OrderBy(c=>c.SortOrder).ToList();
-                return View(categories);
-            }
-        }
+        //[ChildActionOnly]
+        //public ActionResult Categories()
+        //{
+        //}
 
         [Content]
         public ActionResult ShowContent(string id)

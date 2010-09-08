@@ -1,17 +1,26 @@
-﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<IEnumerable<Shop.Models.Category>>" %>
+﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl" %>
 <%@ Import Namespace="Dev.Helpers" %>
+<%@ Import Namespace="Shop.Models" %>
+<% 
+    List<Category> categories;
+    using (ShopStorage context = new ShopStorage())
+    {
+        categories = context.Categories.Include("Categories").Where(c => c.Parent == null).OrderBy(c => c.SortOrder).ToList();
+    }
+%>
 <div id="menuBox">
     <div id="liHeader">
     </div>
     <div id="newsContent">
         <div id="classMenuItems">
         <% 
-        foreach (var item in Model)
+        foreach (var item in categories)
         {
             bool expandCategory = false;
             string actionLink = "";
             string extraClass = "";
-            if (item.Id == WebSession.CurrentCategory)
+            bool isProductView = ViewContext.RouteData.Values["action"].ToString().ToLower() == "show";
+            if (item.Id == WebSession.CurrentCategory && !isProductView)
             {
                 actionLink = string.Format("<span>{0}</span>", item.Name);
                 extraClass = " current";

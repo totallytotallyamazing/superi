@@ -6,10 +6,12 @@
     {
         string extraClass = "";
         string actionLink = Html.ActionLink(item.Name, "Index", "Products", new { id = item.Id }, null).ToString();
+        bool isProductView = ViewContext.RouteData.Values["action"].ToString().ToLower() == "show";
         if (item.Id == WebSession.CurrentCategory)
         {
-            actionLink = string.Format("<span>{0}</span>", item.Name);
             extraClass = " current";
+            if (!isProductView)
+                actionLink = string.Format("<span>{0}</span>", item.Name);
         }
         %>
     <li>

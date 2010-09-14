@@ -3,6 +3,6 @@
 #contentWrapper{padding-bottom:38px;}
 .articleItem{padding-top:40px;}
 .articleItemDate{font-size:10px; color:#999; font-weight:bold; padding-left:5px; padding-bottom:5px;}
-.articleItemTitle{color:White; font-size:13px; background:#3399cc; padding:1px 3px 2px 3px; float:left; clear:both; font-weight:bold;}
-.articleItemText{clear:both; padding-left:38px; padding-top:10px; font-size:11px;}
+.articleItemTitle{color:White; font-size:13px; background:#3399cc; padding:1px 3px 2px 3px; display:inline-block; font-weight:bold;}
+.articleItemText{padding-left:38px; padding-top:10px; font-size:11px;}
 

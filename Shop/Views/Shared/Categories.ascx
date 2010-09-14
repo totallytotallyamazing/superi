@@ -14,15 +14,23 @@
     <div id="newsContent">
         <div id="classMenuItems">
         <% 
+        string[] listPages = { "index", "search", "tags" };
         foreach (var item in categories)
         {
             bool expandCategory = false;
             string actionLink = "";
             string extraClass = "";
-            bool isProductView = ViewContext.RouteData.Values["action"].ToString().ToLower() == "show";
-            if (item.Id == WebSession.CurrentCategory && !isProductView)
+            bool isProductList = listPages.Contains(ViewContext.RouteData.Values["action"].ToString().ToLower());
+            if (item.Id == WebSession.CurrentCategory )
             {
-                actionLink = string.Format("<span>{0}</span>", item.Name);
+                if (isProductList && ViewData["brandId"] == null)
+                {
+                    actionLink = string.Format("<span>{0}</span>", item.Name);
+                }
+                else
+                {
+                    actionLink = Html.ActionLink(item.Name, "Index", "Products", new { id = item.Id }, null).ToString();
+                }
                 extraClass = " current";
                 expandCategory = true;
             }

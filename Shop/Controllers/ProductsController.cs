@@ -30,6 +30,7 @@ namespace Shop.Controllers
                 {
                     ViewData["showAdminLinks"] = false;
                     products = category.Categories.SelectMany(c => c.Products)
+                        .Where(p => (!brandId.HasValue || p.Brand.Id == brandId.Value))
                         .Union(category.Products)
                         .OrderBy(p => p.SortOrder)
                         .ToList();

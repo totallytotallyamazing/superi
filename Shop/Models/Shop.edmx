@@ -1,24 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
   <!-- EF Runtime content -->
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="shop_model.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.0" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
+    <Schema Namespace="shop_model.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.0" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="shop_modelStoreContainer">
-          <EntitySet Name="Brand" EntityType="shop_model.Store.Brand" store:Type="Tables" Schema="gbua_x_baby_583" />
-          <EntitySet Name="Category" EntityType="shop_model.Store.Category" store:Type="Tables" Schema="gbua_x_baby_583" />
-          <EntitySet Name="CategoryProductAttributeMapping" EntityType="shop_model.Store.CategoryProductAttributeMapping" store:Type="Tables" Schema="gbua_x_baby_583" />
-          <EntitySet Name="Discount" EntityType="shop_model.Store.Discount" store:Type="Tables" Schema="gbua_x_baby_583" />
-          <EntitySet Name="Product" EntityType="shop_model.Store.Product" store:Type="Tables" Schema="gbua_x_baby_583" />
-          <EntitySet Name="ProductAttribute" EntityType="shop_model.Store.ProductAttribute" store:Type="Tables" Schema="gbua_x_baby_583" />
-          <EntitySet Name="ProductAttributeValue" EntityType="shop_model.Store.ProductAttributeValue" store:Type="Tables" Schema="gbua_x_baby_583" />
-          <EntitySet Name="ProductAttributeValueAvailable" EntityType="shop_model.Store.ProductAttributeValueAvailable" store:Type="Tables" Schema="gbua_x_baby_583" />
-          <EntitySet Name="ProductDiscountMapping" EntityType="shop_model.Store.ProductDiscountMapping" store:Type="Tables" Schema="gbua_x_baby_583" />
-          <EntitySet Name="ProductImage" EntityType="shop_model.Store.ProductImage" store:Type="Tables" Schema="gbua_x_baby_583" />
-          <EntitySet Name="ProductTagMapping" EntityType="shop_model.Store.ProductTagMapping" store:Type="Tables" Schema="gbua_x_baby_583" />
-          <EntitySet Name="SimilalProduct" EntityType="shop_model.Store.SimilalProduct" store:Type="Tables" Schema="gbua_x_baby_583" />
-          <EntitySet Name="Tag" EntityType="shop_model.Store.Tag" store:Type="Tables" Schema="gbua_x_baby_583" />
+          <EntitySet Name="Brand" EntityType="shop_model.Store.Brand" store:Type="Tables" Schema="gbua_x_baby_583" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Category" EntityType="shop_model.Store.Category" store:Type="Tables" Schema="gbua_x_baby_583" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="CategoryProductAttributeMapping" EntityType="shop_model.Store.CategoryProductAttributeMapping" store:Type="Tables" Schema="gbua_x_baby_583" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Discount" EntityType="shop_model.Store.Discount" store:Type="Tables" Schema="gbua_x_baby_583" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Product" EntityType="shop_model.Store.Product" store:Type="Tables" Schema="gbua_x_baby_583" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="ProductAttribute" EntityType="shop_model.Store.ProductAttribute" store:Type="Tables" Schema="gbua_x_baby_583" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="ProductAttributeValue" EntityType="shop_model.Store.ProductAttributeValue" store:Type="Tables" Schema="gbua_x_baby_583" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="ProductAttributeValueAvailable" EntityType="shop_model.Store.ProductAttributeValueAvailable" store:Type="Tables" Schema="gbua_x_baby_583" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="ProductDiscountMapping" EntityType="shop_model.Store.ProductDiscountMapping" store:Type="Tables" Schema="gbua_x_baby_583" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="ProductImage" EntityType="shop_model.Store.ProductImage" store:Type="Tables" Schema="gbua_x_baby_583" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="ProductTagMapping" EntityType="shop_model.Store.ProductTagMapping" store:Type="Tables" Schema="gbua_x_baby_583" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="SimilalProduct" EntityType="shop_model.Store.SimilalProduct" store:Type="Tables" Schema="gbua_x_baby_583" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Tag" EntityType="shop_model.Store.Tag" store:Type="Tables" Schema="gbua_x_baby_583" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
         </EntityContainer>
         <EntityType Name="Brand">
           <Key>
@@ -144,13 +144,13 @@
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Value" Type="varchar" Nullable="false" MaxLength="500" />
         </EntityType>
-      <Function Name="searchProducts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="gbua_x_baby_583" >
-        <Parameter Name="searchString" Type="varchar"></Parameter>
+      <Function Name="searchProducts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="gbua_x_baby_583">
+        <Parameter Name="searchString" Type="varchar" />
       </Function>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="shop_model" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
+      <Schema Namespace="shop_model" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
         <EntityContainer Name="ShopStorage">
           <EntitySet Name="Categories" EntityType="shop_model.Category" />
           <EntitySet Name="Products" EntityType="shop_model.Product" />
@@ -257,8 +257,8 @@
           <Property Name="ImageSource" Type="String" Nullable="false" />
           <NavigationProperty Name="Product" Relationship="shop_model.ProductProductImage" FromRole="ProductImage" ToRole="Product" /></EntityType>
         <Association Name="CategoryProduct">
-          <End Type="shop_model.Category" Role="Category" Multiplicity="1" >
-            <OnDelete Action="Cascade"></OnDelete>
+          <End Type="shop_model.Category" Role="Category" Multiplicity="1">
+            <OnDelete Action="Cascade" />
           </End>
           <End Type="shop_model.Product" Role="Product" Multiplicity="*" /></Association>
         <Association Name="ProductProduct">
@@ -269,12 +269,12 @@
           <End Type="shop_model.ProductAttributeValue" Role="ProductAttributeValue" Multiplicity="*" /></Association>
         <Association Name="ProductProductImage">
           <End Type="shop_model.Product" Role="Product" Multiplicity="1">
-            <OnDelete Action="Cascade"></OnDelete>
+            <OnDelete Action="Cascade" />
           </End>
           <End Type="shop_model.ProductImage" Role="ProductImage" Multiplicity="*" /></Association>
         <Association Name="CategoryCategory">
           <End Type="shop_model.Category" Role="Category" Multiplicity="0..1">
-            <OnDelete Action="Cascade"></OnDelete>
+            <OnDelete Action="Cascade" />
           </End>
           <End Type="shop_model.Category" Role="Category1" Multiplicity="*" />
         </Association>
@@ -316,14 +316,14 @@
           <End Type="shop_model.Product" Role="Product" Multiplicity="*" />
           <End Type="shop_model.Tag" Role="Tag" Multiplicity="*" /></Association>
         <Association Name="BrandProduct">
-          <End Type="shop_model.Brand" Role="Brand" Multiplicity="1" >
-            <OnDelete Action="Cascade"></OnDelete>
+          <End Type="shop_model.Brand" Role="Brand" Multiplicity="1">
+            <OnDelete Action="Cascade" />
           </End>
           <End Type="shop_model.Product" Role="Product" Multiplicity="*" /></Association></Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-      <Mapping Space="C-S" xmlns="urn:schemas-microsoft-com:windows:storage:mapping:CS">
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="shop_modelStoreContainer" CdmEntityContainer="ShopStorage">
           <EntitySetMapping Name="Categories">
             <EntityTypeMapping TypeName="IsTypeOf(shop_model.Category)">
@@ -387,7 +387,7 @@
               <ScalarProperty Name="Id" ColumnName="Id" /></EndProperty>
             <EndProperty Name="Category">
               <ScalarProperty Name="Id" ColumnName="CategoryId" /></EndProperty></AssociationSetMapping>
-          <AssociationSetMapping Name="ProductProduct" TypeName="shop_model.ProductProduct" StoreEntitySet="SimilalProduct" >
+          <AssociationSetMapping Name="ProductProduct" TypeName="shop_model.ProductProduct" StoreEntitySet="SimilalProduct">
             <EndProperty Name="Product1">
               <ScalarProperty Name="Id" ColumnName="SimilarProductId" /></EndProperty>
             <EndProperty Name="Product">
@@ -417,7 +417,7 @@
                 <ScalarProperty Name="Logo" ColumnName="Logo" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Description" ColumnName="Description" /></MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <AssociationSetMapping Name="CategoryProductAttribute" TypeName="shop_model.CategoryProductAttribute" StoreEntitySet="CategoryProductAttributeMapping" >
+          <AssociationSetMapping Name="CategoryProductAttribute" TypeName="shop_model.CategoryProductAttribute" StoreEntitySet="CategoryProductAttributeMapping">
             <EndProperty Name="ProductAttribute">
               <ScalarProperty Name="Id" ColumnName="AttributeId" /></EndProperty>
             <EndProperty Name="Category">
@@ -429,12 +429,12 @@
                 <ScalarProperty Name="Percentage" ColumnName="Percentage" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Amount" ColumnName="Amount" /></MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <AssociationSetMapping Name="ProductDiscount" TypeName="shop_model.ProductDiscount" StoreEntitySet="ProductDiscountMapping" >
+          <AssociationSetMapping Name="ProductDiscount" TypeName="shop_model.ProductDiscount" StoreEntitySet="ProductDiscountMapping">
             <EndProperty Name="Discount">
               <ScalarProperty Name="Id" ColumnName="DiscountId" /></EndProperty>
             <EndProperty Name="Product">
               <ScalarProperty Name="Id" ColumnName="ProductId" /></EndProperty></AssociationSetMapping>
-          <AssociationSetMapping Name="ProductProductAttributeValue" TypeName="shop_model.ProductProductAttributeValue" StoreEntitySet="ProductAttributeValueAvailable" >
+          <AssociationSetMapping Name="ProductProductAttributeValue" TypeName="shop_model.ProductProductAttributeValue" StoreEntitySet="ProductAttributeValueAvailable">
             <EndProperty Name="ProductAttributeValue">
               <ScalarProperty Name="Id" ColumnName="ProductAttributeValueId" /></EndProperty>
             <EndProperty Name="Product">
@@ -444,7 +444,7 @@
               <MappingFragment StoreEntitySet="Tag">
                 <ScalarProperty Name="Value" ColumnName="Value" />
                 <ScalarProperty Name="Id" ColumnName="Id" /></MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <AssociationSetMapping Name="ProductTag" TypeName="shop_model.ProductTag" StoreEntitySet="ProductTagMapping" >
+          <AssociationSetMapping Name="ProductTag" TypeName="shop_model.ProductTag" StoreEntitySet="ProductTagMapping">
             <EndProperty Name="Tag">
               <ScalarProperty Name="Id" ColumnName="TagId" /></EndProperty>
             <EndProperty Name="Product">
@@ -459,20 +459,20 @@
     </edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
-  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2007/06/edmx">
+  <edmx:Designer>
     <edmx:Connection>
-      <DesignerInfoPropertySet>
+      <DesignerInfoPropertySet xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
         <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
       </DesignerInfoPropertySet>
     </edmx:Connection>
     <edmx:Options>
-      <DesignerInfoPropertySet>
+      <DesignerInfoPropertySet xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
       </DesignerInfoPropertySet>
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram Name="Shop" ZoomLevel="98">
+      <Diagram Name="Shop" ZoomLevel="98" xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
         <EntityTypeShape EntityType="shop_model.Category" Width="1.75" PointX="1.375" PointY="0.625" Height="2.1473193359375" IsExpanded="true" />
         <EntityTypeShape EntityType="shop_model.Product" Width="2.5" PointX="8" PointY="0.625" Height="5.057109375" IsExpanded="true" />
         <EntityTypeShape EntityType="shop_model.ProductAttribute" Width="2.625" PointX="1.125" PointY="4.125" Height="1.9578255208333326" IsExpanded="true" />

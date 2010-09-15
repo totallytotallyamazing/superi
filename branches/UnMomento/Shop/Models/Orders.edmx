@@ -1,18 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
   <!-- EF Runtime content -->
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="shop_Orders.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.0" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
+    <Schema Namespace="shop_Orders.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.0" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="shop_OrdersStoreContainer">
-          <EntitySet Name="DeliveryType" EntityType="shop_Orders.Store.DeliveryType" store:Type="Tables" Schema="gbua_x_baby_583" />
-          <EntitySet Name="Order" EntityType="shop_Orders.Store.Order" store:Type="Tables" Schema="gbua_x_baby_583" />
-          <EntitySet Name="OrderItem" EntityType="shop_Orders.Store.OrderItem" store:Type="Tables" Schema="gbua_x_baby_583" />
-          <EntitySet Name="PaymentProperty" EntityType="shop_Orders.Store.PaymentProperty" store:Type="Tables" Schema="gbua_x_baby_583" />
-          <EntitySet Name="PaymentPropertyValue" EntityType="shop_Orders.Store.PaymentPropertyValue" store:Type="Tables" Schema="gbua_x_baby_583" />
-          <EntitySet Name="PaymentType" EntityType="shop_Orders.Store.PaymentType" store:Type="Tables" Schema="gbua_x_baby_583" />
-          <EntitySet Name="PaymentTypeAvailable" EntityType="shop_Orders.Store.PaymentTypeAvailable" store:Type="Tables" Schema="gbua_x_baby_583" />
+          <EntitySet Name="DeliveryType" EntityType="shop_Orders.Store.DeliveryType" store:Type="Tables" Schema="gbua_x_baby_583" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Order" EntityType="shop_Orders.Store.Order" store:Type="Tables" Schema="gbua_x_baby_583" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="OrderItem" EntityType="shop_Orders.Store.OrderItem" store:Type="Tables" Schema="gbua_x_baby_583" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="PaymentProperty" EntityType="shop_Orders.Store.PaymentProperty" store:Type="Tables" Schema="gbua_x_baby_583" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="PaymentPropertyValue" EntityType="shop_Orders.Store.PaymentPropertyValue" store:Type="Tables" Schema="gbua_x_baby_583" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="PaymentType" EntityType="shop_Orders.Store.PaymentType" store:Type="Tables" Schema="gbua_x_baby_583" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="PaymentTypeAvailable" EntityType="shop_Orders.Store.PaymentTypeAvailable" store:Type="Tables" Schema="gbua_x_baby_583" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
         </EntityContainer>
         <EntityType Name="DeliveryType">
           <Key>
@@ -96,7 +96,7 @@
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="shop_Orders" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
+      <Schema Namespace="shop_Orders" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
         <EntityContainer Name="OrdersStorage">
           <EntitySet Name="Orders" EntityType="shop_Orders.Order" />
           <EntitySet Name="OrderItems" EntityType="shop_Orders.OrderItem" />
@@ -218,7 +218,7 @@
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-      <Mapping Space="C-S" xmlns="urn:schemas-microsoft-com:windows:storage:mapping:CS">
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="shop_OrdersStoreContainer" CdmEntityContainer="OrdersStorage">
           <EntitySetMapping Name="Orders">
             <EntityTypeMapping TypeName="IsTypeOf(shop_Orders.Order)">
@@ -290,7 +290,7 @@
             <EndProperty Name="DeliveryType">
               <ScalarProperty Name="Id" ColumnName="DeliveryTypeId" /></EndProperty>
             <Condition ColumnName="DeliveryTypeId" IsNull="false" /></AssociationSetMapping>
-          <AssociationSetMapping Name="DeliveryTypePaymentType" TypeName="shop_Orders.DeliveryTypePaymentType" StoreEntitySet="PaymentTypeAvailable" >
+          <AssociationSetMapping Name="DeliveryTypePaymentType" TypeName="shop_Orders.DeliveryTypePaymentType" StoreEntitySet="PaymentTypeAvailable">
             <EndProperty Name="PaymentType">
               <ScalarProperty Name="Id" ColumnName="PaymentTypeId" /></EndProperty>
             <EndProperty Name="DeliveryType">
@@ -320,20 +320,20 @@
     </edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
-  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2007/06/edmx">
+  <edmx:Designer>
     <edmx:Connection>
-      <DesignerInfoPropertySet>
+      <DesignerInfoPropertySet xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
         <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
       </DesignerInfoPropertySet>
     </edmx:Connection>
     <edmx:Options>
-      <DesignerInfoPropertySet>
+      <DesignerInfoPropertySet xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
       </DesignerInfoPropertySet>
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram Name="Orders" ZoomLevel="100">
+      <Diagram Name="Orders" ZoomLevel="100" xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
         <EntityTypeShape EntityType="shop_Orders.Order" Width="2" PointX="5.125" PointY="0.5" Height="3.4737760416666656" IsExpanded="true" />
         <EntityTypeShape EntityType="shop_Orders.OrderItem" Width="1.5" PointX="9.5" PointY="0.5" Height="2.7158007812499996" IsExpanded="true" />
         <AssociationConnector Association="shop_Orders.OrderOrderItem">

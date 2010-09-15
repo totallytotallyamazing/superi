@@ -352,7 +352,9 @@
     <Content Include="Content\img\totalBg.png" />
     <Content Include="Content\img\totalLeft.png" />
     <Content Include="Content\img\totalRight.png" />
+    <Content Include="Content\MailTemplates\ClientMail.htm" />
     <Content Include="Content\MailTemplates\FeedbackTemplate.htm" />
+    <Content Include="Content\orderSent.css" />
     <Content Include="Scripts\MvcCaptchaValidation.js" />
     <Content Include="Views\Cart\AvailablePaymentTypes.ascx" />
     <Content Include="Views\Cart\DeliveryType.ascx" />
@@ -367,7 +369,6 @@
     <Content Include="Views\Products\ImagePreviews.ascx" />
     <Content Include="Views\Products\Price.ascx" />
     <Content Include="Views\Shared\AdminPanel.ascx" />
-    <Content Include="Configuration\Web.config" />
     <Content Include="Content\AdminStyles\addEditProduct.css" />
     <Content Include="Content\AdminStyles\img\handleBg.gif" />
     <Content Include="Content\img\backArrow.jpg" />
@@ -387,6 +388,7 @@
     <Content Include="Views\Shared\CartBreadCrumb.ascx" />
     <Content Include="Views\Shared\CartBreadCrumbs.ascx" />
     <Content Include="Views\Cart\CartContent.ascx" />
+    <Content Include="Views\Shared\Logo.ascx" />
     <Content Include="Views\Shared\Search.ascx" />
     <Content Include="Views\Shared\Title.ascx" />
     <Content Include="Views\Shared\UserStatus.ascx" />
@@ -401,6 +403,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Admin\Views\Shared\" />
+    <Folder Include="Configuration\" />
     <Folder Include="Content\BrandLogos\" />
     <Folder Include="Content\ProductImages\" />
     <Folder Include="ImageCache\cartThumb\" />

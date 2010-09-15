@@ -1,6 +1,7 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<IEnumerable<Shop.Models.ProductImage>>" %>
 <%@ Import Namespace="Dev.Mvc.Helpers" %>
 
+<%if(Model.Count()>1){ %>
 <div id="imagePreviews">
 <%foreach (var item in Model){%>
     <div class="imageItem">
@@ -9,7 +10,6 @@
     </div>
 <%} %>
 </div>
-
 <script type="text/javascript">
 
     function calculateDimensions() {
@@ -30,8 +30,6 @@
     }
 
     $(function() {
-        $("#mainImage a#mi").fancybox({ autoScale: false, titleShow: false, hideOnContentClick: true, hideOnOverlayClick: true });
-
         $(".imageItem img").click(function(ev, elem) {
             var src = this.src.substring(this.src.lastIndexOf("/"));
             var href = "/Content/ProductImages" + src;
@@ -48,3 +46,5 @@
         window.setTimeout(calculateDimensions, 500);
     })
 </script>
+
+<%} %>

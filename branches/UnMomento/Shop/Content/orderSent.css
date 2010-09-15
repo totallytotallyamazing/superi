@@ -1,0 +1,6 @@
+﻿.orderMade, .goHome{text-align:center;}
+.orderMade{padding-top:208px;}
+.orderMade h1{font-size:35px;}
+.orderMade p{font-size:13px;}
+.goHome{margin-top:137px; height:24px; background:transparent url(img/proceedBg.jpg) no-repeat 50% top; padding-top:2px;}
+.goHome a{color:white; font-size:14px; font-weight:bold;}

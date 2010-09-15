@@ -20,7 +20,7 @@
         </div>
         <% using(Html.BeginForm(new {controller="Cart", action="Add", id=Model.Id})){ %>
             <div id="tovar">
-            <% Shop.Models.ProductImage img = Model.ProductImages.Where(m => m.Default).DefaultIfEmpty(new Shop.Models.ProductImage { Product = Model }).FirstOrDefault();
+            <% Shop.Models.ProductImage img = Model.ProductImages.Where(m => m.Default).DefaultIfEmpty(new Shop.Models.ProductImage { Product = new Shop.Models.Product { Name = Model.Name } }).First();
                %>
                 <% Html.RenderPartial("ProductImage", img); %>
                 <% if(Model.IsNew){ %>

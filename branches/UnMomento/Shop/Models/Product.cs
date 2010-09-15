@@ -20,7 +20,7 @@ namespace Shop.Models
         public string Description { get; set; }
 
         [DisplayName("Краткое описание")]
-        public string ShortDescription{ get; set; }
+        public string ShortDescription { get; set; }
 
         [Required(ErrorMessage = "*")]
         [DisplayName("Наименование товара")]
@@ -43,11 +43,18 @@ namespace Shop.Models
         public float OldPrice { get; set; }
 
         [DisplayName("Цвет")]
-        [StringLength(100, ErrorMessage="Максимум 100 символов.")]
+        [StringLength(100, ErrorMessage = "Максимум 100 символов.")]
         public string Color { get; set; }
 
         [DisplayName("Новинка")]
         public bool IsNew { get; set; }
+
+        [DisplayName("Номер по порядку")]
+        [RegularExpression(@"\d+", ErrorMessage = "Введите число")]
+        public int SortOrder { get; set; }
+
+        [DisplayName("Показывать на сайте")]
+        public bool Published { get; set; }
     }
 
 }

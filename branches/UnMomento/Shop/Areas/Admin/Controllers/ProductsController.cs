@@ -70,6 +70,9 @@ namespace Shop.Areas.Admin.Controllers
                     prod.Description = HttpUtility.HtmlDecode(product.Description);
                     prod.IsNew = product.IsNew;
                     prod.Price = product.Price;
+                    prod.SortOrder = product.SortOrder;
+                    prod.Color = product.Color;
+                    prod.Published = product.Published;
 
                     if (prod.Brand.Id != brandId)
                     {

@@ -37,6 +37,7 @@ namespace Shop.Areas.Admin.Controllers
                 {
                     article.Id = Id.Value;
                     article.Name = article.Title;
+                    article.Text = HttpUtility.HtmlDecode(article.Text);
                     object originalItem;
                     EntityKey entityKey = new EntityKey("ContentStorage.Articles", "Id", article.Id);
                     if (context.TryGetObjectByKey(entityKey, out originalItem))

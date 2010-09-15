@@ -1,6 +1,8 @@
 *{margin:0; padding:0; font-family:Verdana;}
 a img{border: none;}
 body{background:#ffedab}
+.translucent{opacity:0.5; -moz-opacity:0.5; filter:alpha(opacity=50);}
+
 #header{height:202px; min-width:1013px; width:auto;background: url(img/headerBg.jpg);}
 #logoBox{height:185px; width:308px;float:left;}
 #babySay{height:85px; width:308px;float:left; background:url(img/logoBg.jpg);}

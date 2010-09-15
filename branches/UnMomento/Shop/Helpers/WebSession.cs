@@ -43,8 +43,8 @@ namespace Dev.Helpers
             {
                 if (Session["order"] == null)
                 {
-                    if(order == null)
-                        order = new Order();
+                    if (order == null)
+                        order = new Order { UniqueId = Guid.NewGuid().ToString() };
                     Session["order"] = order;
                 }
                 return (Shop.Models.Order)Session["order"];
@@ -108,11 +108,23 @@ namespace Dev.Helpers
             set { Session["PaymentType"] = value; }
         }
 
+        public static List<PaymentPropertyValue> PaymentProertyValues
+        {
+            get 
+            {
+                if (Session["PaymentProertyValues"] == null)
+                   Session["PaymentProertyValues"] = new List<PaymentPropertyValue>();
+                return (List<PaymentPropertyValue>)Session["PaymentProertyValues"];
+            }
+        }
+
 
         #region Methods
         public static void ClearOrder()
         {
             Session.Remove("order");
+            Session["order"] = null;
+            order = null;
         }
 
         public static bool IsBillingInfoFilled()

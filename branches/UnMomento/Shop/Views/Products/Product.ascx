@@ -2,13 +2,20 @@
 <%@ Import Namespace="Shop.Helpers" %>
 <%@ Import Namespace="Dev.Mvc.Helpers" %>
 <%@ Import Namespace="Dev.Helpers" %>
-<% 
+<% bool isAdmin = (bool)(ViewData["isAdmin"] ?? false); %>
+<%if (Model.Published || isAdmin)
+  { %>
+<%
+      string additionalClass = string.Empty;
+    if(!Model.Published && isAdmin) 
+        additionalClass = " translucent";
     string productClickLink = Html.ActionLink("[IMAGE]", "Show", new { id = Model.Id }).ToString();
 %>
-<div class="tovarBox">
+<div class="tovarBox<%= additionalClass %>">
     <div class="nazva">
         <p>
-            <a href="#">™ <%= (Model.Brand!=null)?Model.Brand.Name:""%></a></p>
+            <%= Html.ActionLink("™" + ((Model.Brand != null) ? Model.Brand.Name : string.Empty), "Index", new { controller = "Products", area = "", id = WebSession.CurrentCategory, brandId = (Model.Brand != null) ? Model.Brand.Id : (int?)null })%>
+        </p>
     </div>
     <div class="item">
         <% 
@@ -36,3 +43,4 @@
         <h4><% Html.RenderPartial("Price", Model); %></h4>
     </div>
 </div>
+<%} %>

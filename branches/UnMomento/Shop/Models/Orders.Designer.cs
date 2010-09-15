@@ -18,7 +18,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("shop_Orders", "OrderPaymentPropertyValue", "Order", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Shop.Models.Order), "PaymentPropertyValue", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Shop.Models.PaymentPropertyValue))]
 
 // Original file name:
-// Generation date: 01.09.2010 14:28:36
+// Generation date: 03.09.2010 11:21:38
 namespace Shop.Models
 {
     
@@ -436,6 +436,29 @@ namespace Shop.Models
         private global::System.Nullable<global::System.DateTime> _OrderDate;
         partial void OnOrderDateChanging(global::System.Nullable<global::System.DateTime> value);
         partial void OnOrderDateChanged();
+        /// <summary>
+        /// There are no comments for Property UniqueId in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string UniqueId
+        {
+            get
+            {
+                return this._UniqueId;
+            }
+            set
+            {
+                this.OnUniqueIdChanging(value);
+                this.ReportPropertyChanging("UniqueId");
+                this._UniqueId = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
+                this.ReportPropertyChanged("UniqueId");
+                this.OnUniqueIdChanged();
+            }
+        }
+        private string _UniqueId;
+        partial void OnUniqueIdChanging(string value);
+        partial void OnUniqueIdChanged();
         /// <summary>
         /// There are no comments for OrderItems in the schema.
         /// </summary>

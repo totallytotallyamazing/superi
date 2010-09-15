@@ -2,14 +2,18 @@
 <%@ Import Namespace="Dev.Helpers" %>
 <ul class="treeview" id="productGroups">
 <% 
+    string[] listPages = { "index", "search", "tags" };
     foreach (var item in Model)
     {
         string extraClass = "";
-        string actionLink = Html.ActionLink(item.Name, "Index", "Products", new { id = item.Id }, null).ToString();
+        string actionLink = Html.ActionLink(item.Name, "Index", "Products", new { id = item.Id, area="" }, null).ToString();
+        string currentAction = ViewContext.RouteData.Values["action"].ToString().ToLower();
+        bool isProductList = listPages.Contains(currentAction);
         if (item.Id == WebSession.CurrentCategory)
         {
-            actionLink = string.Format("<span>{0}</span>", item.Name);
             extraClass = " current";
+            if (isProductList && ViewData["brandId"] == null)
+            actionLink = string.Format("<span>{0}</span>", item.Name);
         }
         %>
     <li>

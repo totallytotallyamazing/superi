@@ -15,3 +15,9 @@
         <a href="#" onclick="$(this).parents('form')[0].submit()" >Добавить в корзину</a>
     </div>
 </div>
+
+<script type="text/javascript">
+    $(function() {
+        $("#mainImage a#mi").fancybox({ autoScale: false, titleShow: false, hideOnContentClick: true, hideOnOverlayClick: true });
+    });
+</script>

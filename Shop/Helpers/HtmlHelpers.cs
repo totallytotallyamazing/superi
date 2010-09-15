@@ -11,11 +11,14 @@ namespace Dev.Mvc.Helpers
     {
         public static string Image(this HtmlHelper helper, string relativeUrl, string alt)
         {
+            string result = string.Empty;
+            if (!string.IsNullOrEmpty(relativeUrl))
+            {
             string srcFormat = "<img src=\"{0}\" alt=\"{1}\" />";
-            string imageSource = string.Empty;
-            if(relativeUrl!=null)
-                imageSource = VirtualPathUtility.ToAbsolute(relativeUrl);
-            return string.Format(srcFormat, imageSource, alt);
+                string imageSource = VirtualPathUtility.ToAbsolute(relativeUrl);
+                result = string.Format(srcFormat, imageSource, alt);
         }
+            return result;
+    }
     }
 }

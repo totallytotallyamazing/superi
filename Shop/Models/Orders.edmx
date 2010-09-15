@@ -39,6 +39,7 @@
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="OrderDate" Type="datetime" />
           <Property Name="PaymentTypeId" Type="int" />
+          <Property Name="UniqueId" Type="varchar" MaxLength="32" />
         </EntityType>
         <EntityType Name="OrderItem">
           <Key>
@@ -141,7 +142,8 @@
           <NavigationProperty Name="DeliveryType" Relationship="shop_Orders.DeliveryTypeOrder" FromRole="Order" ToRole="DeliveryType" />
           <NavigationProperty Name="PaymentType" Relationship="shop_Orders.PaymentTypeOrder" FromRole="Order" ToRole="PaymentType" />
           <NavigationProperty Name="PaymentPropertyValues" Relationship="shop_Orders.OrderPaymentPropertyValue" FromRole="Order" ToRole="PaymentPropertyValue" />
-          <Property Name="OrderDate" Type="DateTime" Nullable="true" /></EntityType>
+          <Property Name="OrderDate" Type="DateTime" Nullable="true" />
+          <Property Name="UniqueId" Type="String" Nullable="true" /></EntityType>
         <EntityType Name="OrderItem">
           <Key>
             <PropertyRef Name="Id" />
@@ -221,6 +223,7 @@
           <EntitySetMapping Name="Orders">
             <EntityTypeMapping TypeName="IsTypeOf(shop_Orders.Order)">
               <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="UniqueId" ColumnName="UniqueId" />
                 <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
                 <ScalarProperty Name="AdditionalDeliveryInfo" ColumnName="AdditionalDeliveryInfo" />
                 <ScalarProperty Name="AdditionalProperties" ColumnName="AdditionalProperties" />

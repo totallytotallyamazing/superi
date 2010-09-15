@@ -40,9 +40,7 @@
     <div id="header">
         <div id="logoBox">
             <% Html.RenderAction("News", "Widgets", new { area = "" }); %>
-            <a href="#">
-                <img src="/Content/img/logo.jpg" alt="babyHealth" />
-            </a>
+            <% Html.RenderPartial("Logo"); %>
         </div>
         <div id="headerItems">
             <div id="headerContacts">
@@ -64,7 +62,7 @@
         <div id="leftSide">
             <% Html.RenderPartial("CurrencyConverter"); %>
             <% Html.RenderPartial("LogOnUserControl"); %>
-            <% Html.RenderAction("Categories", "Home", new { area = "" }); %> 
+            <% Html.RenderPartial("Categories"); %> 
             <div id="leftHand">
             </div>
         </div>

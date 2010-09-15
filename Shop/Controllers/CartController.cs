@@ -124,6 +124,7 @@ namespace Shop.Controllers
             {
                 context.AddToOrders(WebSession.Order);
                 context.SaveChanges();
+                context.Detach(WebSession.Order);
             }
             return RedirectToAction("DeliveryAndPayment");
         }
@@ -176,22 +177,66 @@ namespace Shop.Controllers
         }
 
         [HttpPost]
-        public ActionResult DeliveryAndPayment(AuthorizeModel model)
+        public ActionResult DeliveryAndPayment(AuthorizeModel model, FormCollection form)
         {
+            using (OrdersStorage context = new OrdersStorage())
+            {
+                context.Attach(WebSession.Order);
             WebSession.Order.DeliveryAddress = model.DeliveryAddress;
             WebSession.Order.DeliveryName = model.Name;
             WebSession.Order.DeliveryPhone = model.Phone;
             WebSession.Order.AdditionalDeliveryInfo = model.AdditionalDeliveryInfo;
+
+
+                var paymentPropertyValues = form.AllKeys.Where(ac => ac.StartsWith("pp_"));
+
+                int[] ppIds = paymentPropertyValues.Select(fac => int.Parse(fac.Split('_')[1])).ToArray();
+
+                List<PaymentProperty> paymentProperties = null;
+
+                WebSession.PaymentProertyValues.Clear();
+
+                paymentProperties = context.PaymentProperties
+                    .Where(ContextExtension.BuildContainsExpression<PaymentProperty, int>(pp => pp.Id, ppIds)).ToList();
+                if (paymentPropertyValues.Count() > 0)
+                {
+                    foreach (var item in paymentPropertyValues)
+                    {
+                        string[] itemSegments = item.Split('_');
+
+                        int paymentPropertyId = int.Parse(itemSegments[1]);
+                        string paymentPropertyValue = form[item];
+
+                        PaymentProperty paymentProperty = paymentProperties.First(pp => pp.Id == paymentPropertyId);
+
+                        PaymentPropertyValue val = new PaymentPropertyValue
+                        {
+                            PaymentProperty = paymentProperty,
+                            Value = paymentPropertyValue
+                        };
+
+                        context.Attach(paymentProperty);
+                        WebSession.Order.PaymentPropertyValues.Add(val);
+                        WebSession.PaymentProertyValues.Add(val);
+                    }
+                }
+                context.SaveChanges();
+                context.Detach(WebSession.Order);
+            }
+
             return RedirectToAction("Approve");
         }
 
+        [OutputCache(NoStore = true, VaryByParam = "*", Duration = 1)]
         public ActionResult Approve()
         {
             using (OrdersStorage context = new OrdersStorage())
             {
+                context.Attach(WebSession.Order);
                 foreach (var item in WebSession.OrderItems)
                 {
                     WebSession.Order.OrderItems.Add(item.Value);
+                    WebSession.Order.OrderDate = DateTime.Now;
                 }
                 context.SaveChanges();
             }
@@ -201,22 +246,43 @@ namespace Shop.Controllers
         public ActionResult SendOrder()
         {
             SendOrderMail();
+            if(!string.IsNullOrEmpty(WebSession.Order.BillingEmail))
+                SedClientMail();
 
             WebSession.ClearOrder();
 
             return RedirectToAction("OrderSent");
         }
 
+        private void SedClientMail()
+        {
+            string link = string.Empty;
+            if (WebSession.PaymentType.HasDocument)
+            {
+                StringBuilder sb = new StringBuilder();
+                string format = "<a href=\"http://shop.baby-health.org.ua/Invoice/Show/{0}?orderId={1}&uniqueId={2}\">{3}</a>";
+                link = string.Format(format, WebSession.PaymentType.DocumentName, WebSession.Order.Id, WebSession.Order.UniqueId, WebSession.PaymentType.DocumentCaption);
+            }
+
+            List<MailAddress> to = new List<MailAddress>();
+            to.Add(new MailAddress(WebSession.Order.BillingEmail));
+            MailHelper.SendTemplate(to, "Заказ №" + WebSession.Order.Id + " на сайте baby-health.org.ua",
+                "ClientMail.htm", null, true, CreateOrderPresentation(), link);
+
+        }
+
         private void SendOrderMail()
         {
+            string deliveryAddress = WebSession.Order.DeliveryAddress ?? string.Empty;
+            string additionalDeliveryInfo = WebSession.Order.AdditionalDeliveryInfo ?? string.Empty;
             List<MailAddress> to = new List<MailAddress>();
             to.Add(new MailAddress(Configurator.GetSetting("ReceiverMail")));
-            MailHelper.SendTemplate(to, "Заказ на сайте baby-health.org.ua",
-                "MailTemplate.htm", null, true, WebSession.Order.BillingEmail, 
+            MailHelper.SendTemplate(to, "Заказ №" + WebSession.Order.Id + " на сайте baby-health.org.ua",
+                "MailTemplate.htm", null, true, WebSession.Order.BillingEmail,
                 WebSession.Order.BillingName, WebSession.Order.BillingPhone,
-                WebSession.Order.DeliveryName, WebSession.Order.DeliveryPhone, 
-                WebSession.Order.DeliveryAddress.Replace("\r", "<br />"),
-                WebSession.Order.AdditionalDeliveryInfo.Replace("\r", "<br />"),
+                WebSession.Order.DeliveryName, WebSession.Order.DeliveryPhone,
+                deliveryAddress.Replace("\r", "<br />"),
+                additionalDeliveryInfo.Replace("\r", "<br />"),
                 CreateOrderPresentation());
 
         }
@@ -242,7 +308,7 @@ namespace Shop.Controllers
             return View();
         }
 
-        [OutputCache(NoStore = true, VaryByParam="*", Duration=1)]
+        [OutputCache(NoStore = true, VaryByParam = "*", Duration = 1)]
         public ActionResult AvailablePaymentTypes(int id)
         {
             using (OrdersStorage context = new OrdersStorage())
@@ -257,7 +323,7 @@ namespace Shop.Controllers
             }
         }
 
-        [OutputCache(NoStore = true, VaryByParam="*", Duration=1)]
+        [OutputCache(NoStore = true, VaryByParam = "*", Duration = 1)]
         public ActionResult PaymentProperties(int id)
         {
             using (OrdersStorage context = new OrdersStorage())
@@ -272,7 +338,7 @@ namespace Shop.Controllers
             }
         }
     }
-    
+
 }
 
 namespace Shop.Models
@@ -280,7 +346,7 @@ namespace Shop.Models
     public class AuthorizeModel
     {
         [RegularExpression(@"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$", ErrorMessage = "Неверно введен адрес почты. Формат: name@domain.com")]
-        public string Email { get; set; } 
+        public string Email { get; set; }
         [Required(ErrorMessage = "Обязательно!")]
         public string Name { get; set; }
         [Required(ErrorMessage = "Обязательно!")]

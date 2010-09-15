@@ -73,6 +73,24 @@
                 </tr>
                 <tr>
                     <td class="labelCell">
+                        <%= Html.LabelFor(model => model.SortOrder) %>
+                    </td>                
+                    <td>
+                        <%= Html.TextBoxFor(model => model.SortOrder) %>
+                    </td>
+                    <td><%= Html.ValidationMessageFor(model => model.SortOrder) %></td>
+                </tr>
+                <tr>
+                    <td class="labelCell">
+                        <%= Html.LabelFor(model => model.Published) %>
+                    </td>                
+                    <td>
+                        <%= Html.CheckBoxFor(model => model.Published)%>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="labelCell">
                         <%= Html.LabelFor(model => model.Price) %>
                     </td>                
                     <td>

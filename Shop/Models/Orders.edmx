@@ -4,15 +4,15 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="shop_Orders.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.0" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="shop_Orders.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="shop_OrdersStoreContainer">
-          <EntitySet Name="DeliveryType" EntityType="shop_Orders.Store.DeliveryType" store:Type="Tables" Schema="gbua_x_baby_583" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Order" EntityType="shop_Orders.Store.Order" store:Type="Tables" Schema="gbua_x_baby_583" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="OrderItem" EntityType="shop_Orders.Store.OrderItem" store:Type="Tables" Schema="gbua_x_baby_583" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="PaymentProperty" EntityType="shop_Orders.Store.PaymentProperty" store:Type="Tables" Schema="gbua_x_baby_583" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="PaymentPropertyValue" EntityType="shop_Orders.Store.PaymentPropertyValue" store:Type="Tables" Schema="gbua_x_baby_583" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="PaymentType" EntityType="shop_Orders.Store.PaymentType" store:Type="Tables" Schema="gbua_x_baby_583" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="PaymentTypeAvailable" EntityType="shop_Orders.Store.PaymentTypeAvailable" store:Type="Tables" Schema="gbua_x_baby_583" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="DeliveryType" EntityType="shop_Orders.Store.DeliveryType" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Order" EntityType="shop_Orders.Store.Order" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="OrderItem" EntityType="shop_Orders.Store.OrderItem" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="PaymentProperty" EntityType="shop_Orders.Store.PaymentProperty" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="PaymentPropertyValue" EntityType="shop_Orders.Store.PaymentPropertyValue" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="PaymentType" EntityType="shop_Orders.Store.PaymentType" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="PaymentTypeAvailable" EntityType="shop_Orders.Store.PaymentTypeAvailable" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
         </EntityContainer>
         <EntityType Name="DeliveryType">
           <Key>
@@ -28,7 +28,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="AdditionalDeliveryInfo" Type="varchar" MaxLength="2000" />
-          <Property Name="AdditionalProperties" Type="varchar" MaxLength="21844" />
+          <Property Name="AdditionalProperties" Type="varchar" />
           <Property Name="BillingEmail" Type="varchar" MaxLength="2063" />
           <Property Name="BillingName" Type="varchar" MaxLength="500" />
           <Property Name="BillingPhone" Type="varchar" MaxLength="20" />
@@ -45,13 +45,13 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Description" Type="varchar" MaxLength="21844" />
+          <Property Name="Description" Type="varchar" />
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Image" Type="varchar" MaxLength="2000" />
           <Property Name="Name" Type="varchar" MaxLength="500" />
           <Property Name="OrderId" Type="int" Nullable="false" />
           <Property Name="Price" Type="float" Nullable="false" />
-          <Property Name="ProductAttributes" Type="varchar" MaxLength="21844" />
+          <Property Name="ProductAttributes" Type="varchar" />
           <Property Name="ProductId" Type="int" Nullable="false" />
           <Property Name="Quantity" Type="int" Nullable="false" />
         </EntityType>

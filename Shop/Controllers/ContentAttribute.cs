@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Shop.Models;
+using System.Web.Security;
 
 namespace Shop.Controllers
 {

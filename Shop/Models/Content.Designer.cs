@@ -70,22 +70,6 @@ namespace Shop.Models
         /// <summary>
         /// Нет доступной документации по метаданным.
         /// </summary>
-        public ObjectSet<Article> Articles
-        {
-            get
-            {
-                if ((_Articles == null))
-                {
-                    _Articles = base.CreateObjectSet<Article>("Articles");
-                }
-                return _Articles;
-            }
-        }
-        private ObjectSet<Article> _Articles;
-    
-        /// <summary>
-        /// Нет доступной документации по метаданным.
-        /// </summary>
         public ObjectSet<Content> Contents
         {
             get
@@ -98,17 +82,25 @@ namespace Shop.Models
             }
         }
         private ObjectSet<Content> _Contents;
+    
+        /// <summary>
+        /// Нет доступной документации по метаданным.
+        /// </summary>
+        public ObjectSet<Article> Articles
+        {
+            get
+            {
+                if ((_Articles == null))
+                {
+                    _Articles = base.CreateObjectSet<Article>("Articles");
+                }
+                return _Articles;
+            }
+        }
+        private ObjectSet<Article> _Articles;
 
         #endregion
         #region Методы AddTo
-    
-        /// <summary>
-        /// Устаревший метод для добавления новых объектов в набор EntitySet Articles. Взамен можно использовать метод .Add связанного свойства ObjectSet&lt;T&gt;.
-        /// </summary>
-        public void AddToArticles(Article article)
-        {
-            base.AddObject("Articles", article);
-        }
     
         /// <summary>
         /// Устаревший метод для добавления новых объектов в набор EntitySet Contents. Взамен можно использовать метод .Add связанного свойства ObjectSet&lt;T&gt;.
@@ -116,6 +108,14 @@ namespace Shop.Models
         public void AddToContents(Content content)
         {
             base.AddObject("Contents", content);
+        }
+    
+        /// <summary>
+        /// Устаревший метод для добавления новых объектов в набор EntitySet Articles. Взамен можно использовать метод .Add связанного свойства ObjectSet&lt;T&gt;.
+        /// </summary>
+        public void AddToArticles(Article article)
+        {
+            base.AddObject("Articles", article);
         }
 
         #endregion
@@ -139,17 +139,17 @@ namespace Shop.Models
         /// <summary>
         /// Создание нового объекта Article.
         /// </summary>
-        /// <param name="date">Исходное значение свойства Date.</param>
         /// <param name="id">Исходное значение свойства Id.</param>
+        /// <param name="date">Исходное значение свойства Date.</param>
         /// <param name="language">Исходное значение свойства Language.</param>
         /// <param name="name">Исходное значение свойства Name.</param>
         /// <param name="title">Исходное значение свойства Title.</param>
         /// <param name="type">Исходное значение свойства Type.</param>
-        public static Article CreateArticle(global::System.DateTime date, global::System.Int64 id, global::System.String language, global::System.String name, global::System.String title, global::System.Int32 type)
+        public static Article CreateArticle(global::System.Int32 id, global::System.DateTime date, global::System.String language, global::System.String name, global::System.String title, global::System.Int32 type)
         {
             Article article = new Article();
-            article.Date = date;
             article.Id = id;
+            article.Date = date;
             article.Language = language;
             article.Name = name;
             article.Title = title;
@@ -159,6 +159,33 @@ namespace Shop.Models
 
         #endregion
         #region Свойства-примитивы
+    
+        /// <summary>
+        /// Нет доступной документации по метаданным.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 Id
+        {
+            get
+            {
+                return _Id;
+            }
+            set
+            {
+                if (_Id != value)
+                {
+                    OnIdChanging(value);
+                    ReportPropertyChanging("Id");
+                    _Id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("Id");
+                    OnIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _Id;
+        partial void OnIdChanging(global::System.Int32 value);
+        partial void OnIdChanged();
     
         /// <summary>
         /// Нет доступной документации по метаданным.
@@ -189,57 +216,6 @@ namespace Shop.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String Description
-        {
-            get
-            {
-                return _Description;
-            }
-            set
-            {
-                OnDescriptionChanging(value);
-                ReportPropertyChanging("Description");
-                _Description = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("Description");
-                OnDescriptionChanged();
-            }
-        }
-        private global::System.String _Description;
-        partial void OnDescriptionChanging(global::System.String value);
-        partial void OnDescriptionChanged();
-    
-        /// <summary>
-        /// Нет доступной документации по метаданным.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int64 Id
-        {
-            get
-            {
-                return _Id;
-            }
-            set
-            {
-                if (_Id != value)
-                {
-                    OnIdChanging(value);
-                    ReportPropertyChanging("Id");
-                    _Id = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("Id");
-                    OnIdChanged();
-                }
-            }
-        }
-        private global::System.Int64 _Id;
-        partial void OnIdChanging(global::System.Int64 value);
-        partial void OnIdChanged();
-    
-        /// <summary>
-        /// Нет доступной документации по метаданным.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
         public global::System.String Keywords
         {
             get
@@ -258,6 +234,30 @@ namespace Shop.Models
         private global::System.String _Keywords;
         partial void OnKeywordsChanging(global::System.String value);
         partial void OnKeywordsChanged();
+    
+        /// <summary>
+        /// Нет доступной документации по метаданным.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Description
+        {
+            get
+            {
+                return _Description;
+            }
+            set
+            {
+                OnDescriptionChanging(value);
+                ReportPropertyChanging("Description");
+                _Description = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Description");
+                OnDescriptionChanged();
+            }
+        }
+        private global::System.String _Description;
+        partial void OnDescriptionChanging(global::System.String value);
+        partial void OnDescriptionChanged();
     
         /// <summary>
         /// Нет доступной документации по метаданным.
@@ -312,30 +312,6 @@ namespace Shop.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String Preview
-        {
-            get
-            {
-                return _Preview;
-            }
-            set
-            {
-                OnPreviewChanging(value);
-                ReportPropertyChanging("Preview");
-                _Preview = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("Preview");
-                OnPreviewChanged();
-            }
-        }
-        private global::System.String _Preview;
-        partial void OnPreviewChanging(global::System.String value);
-        partial void OnPreviewChanged();
-    
-        /// <summary>
-        /// Нет доступной документации по метаданным.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
         public global::System.String Text
         {
             get
@@ -354,6 +330,30 @@ namespace Shop.Models
         private global::System.String _Text;
         partial void OnTextChanging(global::System.String value);
         partial void OnTextChanged();
+    
+        /// <summary>
+        /// Нет доступной документации по метаданным.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Preview
+        {
+            get
+            {
+                return _Preview;
+            }
+            set
+            {
+                OnPreviewChanging(value);
+                ReportPropertyChanging("Preview");
+                _Preview = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Preview");
+                OnPreviewChanged();
+            }
+        }
+        private global::System.String _Preview;
+        partial void OnPreviewChanging(global::System.String value);
+        partial void OnPreviewChanged();
     
         /// <summary>
         /// Нет доступной документации по метаданным.
@@ -422,7 +422,7 @@ namespace Shop.Models
         /// </summary>
         /// <param name="id">Исходное значение свойства Id.</param>
         /// <param name="name">Исходное значение свойства Name.</param>
-        public static Content CreateContent(global::System.Int64 id, global::System.String name)
+        public static Content CreateContent(global::System.Int32 id, global::System.String name)
         {
             Content content = new Content();
             content.Id = id;
@@ -462,7 +462,7 @@ namespace Shop.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int64 Id
+        public global::System.Int32 Id
         {
             get
             {
@@ -480,8 +480,8 @@ namespace Shop.Models
                 }
             }
         }
-        private global::System.Int64 _Id;
-        partial void OnIdChanging(global::System.Int64 value);
+        private global::System.Int32 _Id;
+        partial void OnIdChanging(global::System.Int32 value);
         partial void OnIdChanged();
     
         /// <summary>

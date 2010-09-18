@@ -28,6 +28,9 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("shop_model", "ProductProductAttributeValue", "Product", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Shop.Models.Product), "ProductAttributeValue", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Shop.Models.ProductAttributeValue))]
 [assembly: EdmRelationshipAttribute("shop_model", "ProductTag", "Product", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Shop.Models.Product), "Tag", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Shop.Models.Tag))]
 [assembly: EdmRelationshipAttribute("shop_model", "BrandProduct", "Brand", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Shop.Models.Brand), "Product", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Shop.Models.Product))]
+[assembly: EdmRelationshipAttribute("shop_model", "FK_ProductVariant_ProductVariant", "Product", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Shop.Models.Product), "ProductVariant", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Shop.Models.ProductVariant))]
+[assembly: EdmRelationshipAttribute("shop_model", "BrandDiscountMapping", "Brand", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Shop.Models.Brand), "Discount", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Shop.Models.Discount))]
+[assembly: EdmRelationshipAttribute("shop_model", "CategoryDiscountMapping", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Shop.Models.Category), "Discount", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Shop.Models.Discount))]
 
 #endregion
 
@@ -203,6 +206,22 @@ namespace Shop.Models
             }
         }
         private ObjectSet<Tag> _Tags;
+    
+        /// <summary>
+        /// Нет доступной документации по метаданным.
+        /// </summary>
+        public ObjectSet<ProductVariant> ProductVariant
+        {
+            get
+            {
+                if ((_ProductVariant == null))
+                {
+                    _ProductVariant = base.CreateObjectSet<ProductVariant>("ProductVariant");
+                }
+                return _ProductVariant;
+            }
+        }
+        private ObjectSet<ProductVariant> _ProductVariant;
 
         #endregion
         #region Методы AddTo
@@ -269,6 +288,14 @@ namespace Shop.Models
         public void AddToTags(Tag tag)
         {
             base.AddObject("Tags", tag);
+        }
+    
+        /// <summary>
+        /// Устаревший метод для добавления новых объектов в набор EntitySet ProductVariant. Взамен можно использовать метод .Add связанного свойства ObjectSet&lt;T&gt;.
+        /// </summary>
+        public void AddToProductVariant(ProductVariant productVariant)
+        {
+            base.AddObject("ProductVariant", productVariant);
         }
 
         #endregion
@@ -496,6 +523,28 @@ namespace Shop.Models
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Product>("shop_model.BrandProduct", "Product", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// Нет доступной документации по метаданным.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("shop_model", "BrandDiscountMapping", "Discount")]
+        public EntityCollection<Discount> Discount
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Discount>("shop_model.BrandDiscountMapping", "Discount");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Discount>("shop_model.BrandDiscountMapping", "Discount", value);
                 }
             }
         }
@@ -761,6 +810,28 @@ namespace Shop.Models
                 }
             }
         }
+    
+        /// <summary>
+        /// Нет доступной документации по метаданным.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("shop_model", "CategoryDiscountMapping", "Discount")]
+        public EntityCollection<Discount> Discount
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Discount>("shop_model.CategoryDiscountMapping", "Discount");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Discount>("shop_model.CategoryDiscountMapping", "Discount", value);
+                }
+            }
+        }
 
         #endregion
     }
@@ -916,6 +987,50 @@ namespace Shop.Models
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Product>("shop_model.ProductDiscount", "Product", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// Нет доступной документации по метаданным.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("shop_model", "BrandDiscountMapping", "Brand")]
+        public EntityCollection<Brand> Brand
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Brand>("shop_model.BrandDiscountMapping", "Brand");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Brand>("shop_model.BrandDiscountMapping", "Brand", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// Нет доступной документации по метаданным.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("shop_model", "CategoryDiscountMapping", "Category")]
+        public EntityCollection<Category> Category
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Category>("shop_model.CategoryDiscountMapping", "Category");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Category>("shop_model.CategoryDiscountMapping", "Category", value);
                 }
             }
         }
@@ -1483,6 +1598,28 @@ namespace Shop.Models
                 }
             }
         }
+    
+        /// <summary>
+        /// Нет доступной документации по метаданным.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("shop_model", "FK_ProductVariant_ProductVariant", "ProductVariant")]
+        public EntityCollection<ProductVariant> ProductVariant
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ProductVariant>("shop_model.FK_ProductVariant_ProductVariant", "ProductVariant");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProductVariant>("shop_model.FK_ProductVariant_ProductVariant", "ProductVariant", value);
+                }
+            }
+        }
 
         #endregion
     }
@@ -1952,6 +2089,306 @@ namespace Shop.Models
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Product>("shop_model.ProductProductImage", "Product", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// Нет доступной документации по метаданным.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="shop_model", Name="ProductVariant")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class ProductVariant : EntityObject
+    {
+        #region Фабричный метод
+    
+        /// <summary>
+        /// Создание нового объекта ProductVariant.
+        /// </summary>
+        /// <param name="id">Исходное значение свойства Id.</param>
+        /// <param name="name">Исходное значение свойства Name.</param>
+        /// <param name="price">Исходное значение свойства Price.</param>
+        /// <param name="oldPrice">Исходное значение свойства OldPrice.</param>
+        /// <param name="published">Исходное значение свойства Published.</param>
+        /// <param name="sortOrder">Исходное значение свойства SortOrder.</param>
+        /// <param name="image">Исходное значение свойства Image.</param>
+        public static ProductVariant CreateProductVariant(global::System.Int32 id, global::System.String name, global::System.Decimal price, global::System.Decimal oldPrice, global::System.Boolean published, global::System.Int32 sortOrder, global::System.String image)
+        {
+            ProductVariant productVariant = new ProductVariant();
+            productVariant.Id = id;
+            productVariant.Name = name;
+            productVariant.Price = price;
+            productVariant.OldPrice = oldPrice;
+            productVariant.Published = published;
+            productVariant.SortOrder = sortOrder;
+            productVariant.Image = image;
+            return productVariant;
+        }
+
+        #endregion
+        #region Свойства-примитивы
+    
+        /// <summary>
+        /// Нет доступной документации по метаданным.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 Id
+        {
+            get
+            {
+                return _Id;
+            }
+            set
+            {
+                if (_Id != value)
+                {
+                    OnIdChanging(value);
+                    ReportPropertyChanging("Id");
+                    _Id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("Id");
+                    OnIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _Id;
+        partial void OnIdChanging(global::System.Int32 value);
+        partial void OnIdChanged();
+    
+        /// <summary>
+        /// Нет доступной документации по метаданным.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Name
+        {
+            get
+            {
+                return _Name;
+            }
+            set
+            {
+                OnNameChanging(value);
+                ReportPropertyChanging("Name");
+                _Name = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Name");
+                OnNameChanged();
+            }
+        }
+        private global::System.String _Name;
+        partial void OnNameChanging(global::System.String value);
+        partial void OnNameChanged();
+    
+        /// <summary>
+        /// Нет доступной документации по метаданным.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal Price
+        {
+            get
+            {
+                return _Price;
+            }
+            set
+            {
+                OnPriceChanging(value);
+                ReportPropertyChanging("Price");
+                _Price = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Price");
+                OnPriceChanged();
+            }
+        }
+        private global::System.Decimal _Price;
+        partial void OnPriceChanging(global::System.Decimal value);
+        partial void OnPriceChanged();
+    
+        /// <summary>
+        /// Нет доступной документации по метаданным.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal OldPrice
+        {
+            get
+            {
+                return _OldPrice;
+            }
+            set
+            {
+                OnOldPriceChanging(value);
+                ReportPropertyChanging("OldPrice");
+                _OldPrice = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("OldPrice");
+                OnOldPriceChanged();
+            }
+        }
+        private global::System.Decimal _OldPrice;
+        partial void OnOldPriceChanging(global::System.Decimal value);
+        partial void OnOldPriceChanged();
+    
+        /// <summary>
+        /// Нет доступной документации по метаданным.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean Published
+        {
+            get
+            {
+                return _Published;
+            }
+            set
+            {
+                OnPublishedChanging(value);
+                ReportPropertyChanging("Published");
+                _Published = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Published");
+                OnPublishedChanged();
+            }
+        }
+        private global::System.Boolean _Published;
+        partial void OnPublishedChanging(global::System.Boolean value);
+        partial void OnPublishedChanged();
+    
+        /// <summary>
+        /// Нет доступной документации по метаданным.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String ShortDescripton
+        {
+            get
+            {
+                return _ShortDescripton;
+            }
+            set
+            {
+                OnShortDescriptonChanging(value);
+                ReportPropertyChanging("ShortDescripton");
+                _ShortDescripton = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("ShortDescripton");
+                OnShortDescriptonChanged();
+            }
+        }
+        private global::System.String _ShortDescripton;
+        partial void OnShortDescriptonChanging(global::System.String value);
+        partial void OnShortDescriptonChanged();
+    
+        /// <summary>
+        /// Нет доступной документации по метаданным.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Description
+        {
+            get
+            {
+                return _Description;
+            }
+            set
+            {
+                OnDescriptionChanging(value);
+                ReportPropertyChanging("Description");
+                _Description = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Description");
+                OnDescriptionChanged();
+            }
+        }
+        private global::System.String _Description;
+        partial void OnDescriptionChanging(global::System.String value);
+        partial void OnDescriptionChanged();
+    
+        /// <summary>
+        /// Нет доступной документации по метаданным.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 SortOrder
+        {
+            get
+            {
+                return _SortOrder;
+            }
+            set
+            {
+                OnSortOrderChanging(value);
+                ReportPropertyChanging("SortOrder");
+                _SortOrder = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SortOrder");
+                OnSortOrderChanged();
+            }
+        }
+        private global::System.Int32 _SortOrder;
+        partial void OnSortOrderChanging(global::System.Int32 value);
+        partial void OnSortOrderChanged();
+    
+        /// <summary>
+        /// Нет доступной документации по метаданным.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Image
+        {
+            get
+            {
+                return _Image;
+            }
+            set
+            {
+                OnImageChanging(value);
+                ReportPropertyChanging("Image");
+                _Image = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Image");
+                OnImageChanged();
+            }
+        }
+        private global::System.String _Image;
+        partial void OnImageChanging(global::System.String value);
+        partial void OnImageChanged();
+
+        #endregion
+    
+        #region Свойства навигации
+    
+        /// <summary>
+        /// Нет доступной документации по метаданным.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("shop_model", "FK_ProductVariant_ProductVariant", "Product")]
+        public Product Product
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Product>("shop_model.FK_ProductVariant_ProductVariant", "Product").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Product>("shop_model.FK_ProductVariant_ProductVariant", "Product").Value = value;
+            }
+        }
+        /// <summary>
+        /// Нет доступной документации по метаданным.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Product> ProductReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Product>("shop_model.FK_ProductVariant_ProductVariant", "Product");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Product>("shop_model.FK_ProductVariant_ProductVariant", "Product", value);
                 }
             }
         }

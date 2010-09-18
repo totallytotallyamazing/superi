@@ -26,16 +26,20 @@ namespace Shop.Controllers
         {
             using (ContentStorage context = new ContentStorage())
             {
+                List<Article> articles = null;
                 int articlesCount = context.Articles.Where(a => a.Type == 2).Count();
                 Random rnd = new Random();
-                int index = rnd.Next(articlesCount - 1);
-                var articles = context.Articles
-                    .Where(a => a.Type == 2)
-                    .OrderByDescending(a => a.Date)
-                    .Skip(index)
-                    .Take(1).ToList();
-                ViewData["type"] = 2;
-                ViewData["index"] = index + 1;
+                if (articlesCount > 0)
+                {
+                    int index = rnd.Next(articlesCount - 1);
+                    articles = context.Articles
+                        .Where(a => a.Type == 2)
+                        .OrderByDescending(a => a.Date)
+                        .Skip(index)
+                        .Take(1).ToList();
+                    ViewData["type"] = 2;
+                    ViewData["index"] = index + 1;
+                }
                 return View(articles);
             }
         }

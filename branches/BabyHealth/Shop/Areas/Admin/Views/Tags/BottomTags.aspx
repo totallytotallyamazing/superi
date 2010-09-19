@@ -5,15 +5,18 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <% foreach (var item in Model) {
-           Html.RenderPartial("TagEdit", item);
+           Html.RenderPartial("BottomTag", item);
      } %>
      <fieldset style="margin-top:20px;">
         <legend style="font-size:12px;">Добавить</legend>
         <%using (Html.BeginForm("Add", "Tags", FormMethod.Post, new { id="addTagForm" })){ %>
             <div>
-                <%= Html.Hidden("viewName", "Index") %>
+                <%= Html.Hidden("viewName", "BottomTags") %>
                 <%= Html.TextBox("Value")%>&nbsp;&nbsp;
+                <%= Html.TextBox("Top") %>
                 <%= Html.TextBox("Left") %>
+                <%= Html.TextBox("Url") %>
+                <%= Html.Hidden("Type", 1)%>
             </div>
             <input type="submit" value="Добавить" />
         <%} %>
@@ -27,16 +30,19 @@
     <%= Ajax.ScriptInclude("/Scripts/jquery.validate.js") %>
     <%= Ajax.ScriptInclude("/Scripts/jquery.watermark.js")%>
     <script type="text/javascript">
-        $(function() {
+        $(function () {
             $("#addTagForm").validate(
             {
-                rules: { Value: {required:true} }, 
-                messages: {Value: "*"}
+                rules: { Value: { required: true} },
+                messages: { Value: "*" }
             });
 
-            $("#Value").watermark({ html: "Тег", cls: "watermark" });
-            $("#Left").watermark({ html: "Отступ слева", cls: "watermark" });
-
+            $("fieldset #Value").watermark({ html: "Тег", cls: "watermark" });
+            $("fieldset #Left").watermark({ html: "Отступ слева", cls: "watermark" });
+            $("fieldset #Top").watermark({ html: "Отступ сверху", cls: "watermark" });
+            $("fieldset #Url").watermark({ html: "Ссылка", cls: "watermark" });
         })
     </script>
 </asp:Content>
+
+

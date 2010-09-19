@@ -14,20 +14,59 @@ namespace Shop.Areas.Admin.Controllers
         {
             using (ShopStorage context= new ShopStorage())
             {
-                List<Tag> tags = context.Tags.ToList();
+                List<Tag> tags = context.Tags.Where(t=>t.Type == 0).ToList();
                 return View(tags); 
             }
         }
 
-        public ActionResult Add([Bind(Exclude="Id")]Tag tag)
+        public ActionResult BottomTags()
+        {
+            using (ShopStorage context = new ShopStorage())
+            {
+                List<Tag> tags = context.Tags.Where(t => t.Type == 1).ToList();
+                return View(tags);
+            }
+        }
+
+        public ActionResult Add([Bind(Exclude="Id")]Tag tag, string viewName)
         {
             using (ShopStorage context = new ShopStorage())
             {
                 context.AddToTags(tag);
                 context.SaveChanges();
             }
+            return RedirectToAction(viewName);
+        }
+
+        public ActionResult Edit(FormCollection form)
+        {
+            int tagId = int.Parse(form["Id"]);
+
+            using (ShopStorage context = new ShopStorage())
+            { 
+                Tag tag = context.Tags.First(t=>t.Id == tagId);
+                TryUpdateModel(tag, form);
+                context.SaveChanges();
+            }
+
             return RedirectToAction("Index");
         }
+
+
+        public ActionResult EditBottom(FormCollection form)
+        {
+            int tagId = int.Parse(form["Id"]);
+
+            using (ShopStorage context = new ShopStorage())
+            {
+                Tag tag = context.Tags.First(t => t.Id == tagId);
+                TryUpdateModel(tag, form);
+                context.SaveChanges();
+            }
+
+            return RedirectToAction("BottomTags");
+        }
+
 
         public ActionResult Delete(int id)
         {
@@ -39,6 +78,17 @@ namespace Shop.Areas.Admin.Controllers
                 context.SaveChanges();
             }
             return RedirectToAction("Index");
+        }
+
+        public ActionResult DeleteBottom(int id)
+        {
+            using (ShopStorage context = new ShopStorage())
+            {
+                Tag tag = context.Tags.Include("Products").Where(t => t.Id == id).First();
+                context.DeleteObject(tag);
+                context.SaveChanges();
+            }
+            return RedirectToAction("BottomTags");
         }
     }
 }

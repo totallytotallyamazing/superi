@@ -79,12 +79,22 @@ a#menuItem5:hover{background-position: -15px -152px;}
 a#menuItem5.current{background-position:0px 0px; margin-top:25px; height:144px; width:127px; position:relative; margin-left:-55px; left:37px;}
 #search
 {
-	height:102px; 
-	width:185px;
+	height:76px; 
+	width:165px;
 	background:url(img/search.jpg);
 	margin-left:35px;
+    padding:26px 0px 0px 20px;
 }
-#searchField{height:18px; width:116px;float:left;margin:26px 0px 0px 20px;font:Verdana, Arial, Helvetica, sans-serif bold;font-size:12px; color:Black; border:0px solid black;}
+#searchField
+{
+    height:18px; 
+    width:116px;
+    float:left;
+    font:Verdana, Arial, Helvetica, sans-serif bold;
+    font-size:12px; 
+    color:Black; 
+    border:0px solid black;
+}
 #contentBox{min-height:600px;height:auto;min-width:1013px; width:100%;float:left;padding:5px 0px 0px 0px;background-color:#ffedab;border:0px solid green; position:relative}
 #leftSide{min-height:600px;height:auto; width:243px;float:left; margin:0px 0px 0px 0px;}
 #currency{height:11px; width:243px; padding-top:7px;}
@@ -190,4 +200,5 @@ li{list-style-type:none;}
 #book{height:71px; width:190px;float:left;margin:0px 0px 0px 0px; background:url(img/book.jpg) no-repeat right;}
 #ramka{height:71px; width:270px;float:right;margin:0px 0px 0px 0px; background:url(img/ramka.jpg) no-repeat right;}
 
-.watermark{color:#ccc !important;}
+.watermark{color:#ccc !important; font-size:13px;}
+#search span{display:block;}

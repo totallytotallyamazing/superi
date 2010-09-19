@@ -14,6 +14,6 @@
     <%= Ajax.DynamicCssInclude("/Content/fancybox/jquery.fancybox.css")%>
 <script type="text/javascript">
     $(function() {
-        $(".fancyAdmin").fancybox({modal:true});
+        $(".fancyAdmin").fancybox({hideOnContentClick:false, hideOnOverlayClick:false});
     })
 </script>

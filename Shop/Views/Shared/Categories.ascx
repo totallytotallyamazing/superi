@@ -29,20 +29,20 @@
                 }
                 else
                 {
-                    actionLink = Html.ActionLink(item.Name, "Index", "Products", new { id = item.Id }, null).ToString();
+                    actionLink = Html.ActionLink(item.Name, "Index", "Products", new { id = item.Id, area="" }, null).ToString();
                 }
                 extraClass = " current";
                 expandCategory = true;
             }
             else if (item.Categories.Select(c => c.Id).Contains(WebSession.CurrentCategory))
             {
-                actionLink = Html.ActionLink(item.Name, "Index", "Products", new { id = item.Id }, null).ToString();
+                actionLink = Html.ActionLink(item.Name, "Index", "Products", new { id = item.Id, area = "" }, null).ToString();
                 extraClass = " current";
                 expandCategory = true;
             }
             else
             {
-                actionLink = Html.ActionLink(item.Name, "Index", "Products", new { id = item.Id }, null).ToString();
+                actionLink = Html.ActionLink(item.Name, "Index", "Products", new { id = item.Id, area = "" }, null).ToString();
             }
             %>
             <div class="classMenuItem<%= extraClass %>">

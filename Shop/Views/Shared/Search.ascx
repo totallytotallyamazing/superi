@@ -1,11 +1,11 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl" %>
 <%@ Import Namespace="Dev.Mvc.Ajax" %>
-<%= Ajax.ScriptInclude("/Scripts/start.js") %>
-<%= Ajax.ScriptInclude("/Scripts/extended/ExtendedControls.js")%>
+<%= Ajax.ScriptInclude("/Scripts/jquery.watermark.js")%>
+
 <script type="text/javascript">
-//    Sys.require(Sys.components.watermark, function() {
-//        $("#searchField").watermark("Слово + “Enter”", "watermark");
-//    });   
+    $(function () {
+        $("#searchField").watermark({ html: "Слово + “Enter”", cls: "watermark"});
+    })
 </script>
 
 <div id="search">

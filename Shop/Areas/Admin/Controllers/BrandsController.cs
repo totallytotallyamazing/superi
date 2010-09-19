@@ -50,7 +50,7 @@ namespace Shop.Areas.Admin.Controllers
                     object originalItem = null;
                     if(context.TryGetObjectByKey(key, out originalItem))
                     {
-                        context.ApplyPropertyChanges("Brands", brand);
+                        context.ApplyCurrentValues("Brands", brand);
                     }
                 }
                 else

@@ -30,8 +30,6 @@ namespace Shop.Areas.Admin.Controllers
             {
                 Product product = context.Products.Include("Tags").Where(p => p.Id == id).First();
 
-                product.ProductAttributeValues.Clear();
-
                 PostData postData = form.ProcessPostData("id");
                 int[] items = (from item in postData where item.Value["tag"] == "true" select int.Parse(item.Key)).ToArray();
                 int[] itemsToRemove = (from item in postData where item.Value["tag"] == "false" select int.Parse(item.Key)).ToArray();

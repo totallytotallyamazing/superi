@@ -190,4 +190,4 @@ li{list-style-type:none;}
 #book{height:71px; width:190px;float:left;margin:0px 0px 0px 0px; background:url(img/book.jpg) no-repeat right;}
 #ramka{height:71px; width:270px;float:right;margin:0px 0px 0px 0px; background:url(img/ramka.jpg) no-repeat right;}
 
-.watermark{color:#ccc !important;}
+.watermark{color:#ccc !important; font-size:12px;}

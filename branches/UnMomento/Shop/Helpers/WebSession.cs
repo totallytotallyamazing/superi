@@ -31,10 +31,10 @@ namespace Dev.Helpers
                 return (Dictionary<int, OrderItem>)Session["orderItems"];
             }
         }
-        
+
         public static float TotalAmount
         {
-            get { return OrderItems.Sum(oi=>oi.Value.Price* oi.Value.Quantity);}
+            get { return OrderItems.Sum(oi => oi.Value.Price * oi.Value.Quantity); }
         }
 
         public static Order Order
@@ -83,8 +83,28 @@ namespace Dev.Helpers
                     return Convert.ToInt32(Session["CurrentCategory"]);
                 return int.MinValue;
             }
-            set { Session["CurrentCategory"] = value; }
+            set 
+            { 
+                Session["CurrentCategory"] = value;
+                Session["CurrentTag"] = null; ;
+            }
         }
+
+        public static int CurrentTag
+        {
+            get
+            {
+                if (Session["CurrentTag"] != null)
+                    return Convert.ToInt32(Session["CurrentTag"]);
+                return int.MinValue;
+            }
+            set 
+            { 
+                Session["CurrentTag"] = value;
+                Session["CurrentCategory"] = null;
+            }
+        }
+
 
         public static DeliveryType DeliveryType
         {
@@ -110,10 +130,10 @@ namespace Dev.Helpers
 
         public static List<PaymentPropertyValue> PaymentProertyValues
         {
-            get 
+            get
             {
                 if (Session["PaymentProertyValues"] == null)
-                   Session["PaymentProertyValues"] = new List<PaymentPropertyValue>();
+                    Session["PaymentProertyValues"] = new List<PaymentPropertyValue>();
                 return (List<PaymentPropertyValue>)Session["PaymentProertyValues"];
             }
         }
@@ -128,8 +148,8 @@ namespace Dev.Helpers
         }
 
         public static bool IsBillingInfoFilled()
-        { 
-            return (order!=null && !string.IsNullOrEmpty(order.BillingPhone) && !string.IsNullOrEmpty(order.BillingName));
+        {
+            return (order != null && !string.IsNullOrEmpty(order.BillingPhone) && !string.IsNullOrEmpty(order.BillingName));
         }
 
         public static bool IsDeliveryInfoFilled()

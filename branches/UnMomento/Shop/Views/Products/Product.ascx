@@ -11,6 +11,23 @@
         additionalClass = " translucent";
     string productClickLink = Html.ActionLink("[IMAGE]", "Show", new { id = Model.Id }).ToString();
 %>
+
+
+
+    <div id="productItem">
+        <img src="../../Content/UnMomentoStyles/img/sheep.gif" alt="Овца" />
+        <div id="item1Txt">
+                        
+            <a href="#" class="it1"> <b>Овца клонированная,</b></a>   пух и 
+                прах. Мех, шах и мат. 
+            <p class="it2">1,200 грн.</p>
+            <a href="#" class="it3">Заказать »</a>
+        </div>    
+    </div> 
+
+
+
+
 <div class="tovarBox<%= additionalClass %>">
     <div class="nazva">
         <p>

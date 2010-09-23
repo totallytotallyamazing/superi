@@ -92,8 +92,10 @@
                     <asp:ContentPlaceHolder runat="server" ID="ContentTitle">
                     </asp:ContentPlaceHolder>
                 </div>
-                <asp:ContentPlaceHolder ID="MainContent" runat="server">
-                </asp:ContentPlaceHolder>
+                <div id="contentWrapper">
+                    <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
                 <div class="bottom">
                     <asp:ContentPlaceHolder runat="server" ID="Footer">
                     </asp:ContentPlaceHolder>
@@ -110,72 +112,5 @@
             </div>
         </div>
     </div>
-    <%-- ---------------------- --%>
-    <%-- <div id="logoBox">
-            <% Html.RenderAction("News", "Widgets", new { area = "" }); %>
-            <% Html.RenderPartial("Logo"); %>
-        </div>
-        <div id="headerItems">
-            <div id="headerContacts">
-                <div id="headerContactsItems">
-                    <div style="margin-bottom:17px;">
-                        <span id="weAlsoHave">Еще, у нас есть</span>
-                        <a id="babyPortalLink" href="#">Бэби-портал</a>
-                    </div>
-                    <h3>(044) 360-32-63</h3>
-                    <h3>(050) 358-58-18</h3>
-                    <h5><a id="feedbackForm" class="iframe" href="/Home/FeedbackForm">Форма обратной связи</a></h5>
-                </div>
-                <% Html.RenderPartial("Search"); %>
-            </div>
-            
-        </div>
-     <div id="contentBox">
-        <div id="leftSide">
-            
-            <% Html.RenderPartial("LogOnUserControl"); %>
-            <% Html.RenderPartial("Categories"); %> 
-            <div id="leftHand">
-            </div>
-        </div>
-        <div id="rightSide">
-            <div id="rightSideHeader">
-                <div id="rightSideHeaderBg">
-                </div>
-            </div>
-            <div id="borderLine">
-                <h1><asp:ContentPlaceHolder runat="server" ID="ContentTitle"></asp:ContentPlaceHolder></h1>
-            </div>
-            <div id="contentWrapper">
-                <asp:ContentPlaceHolder runat="server" ID="MainContent"></asp:ContentPlaceHolder>
-            </div>
-            <div id="borderLine2">
-            </div>
-            <div id="rightSideFooter">
-                <div id="rightSideFooterBgL">
-                </div>
-                <div id="rightSideFooterBgR">
-                </div>
-            </div>
-        </div>
-    </div>
-    <div id="preFooter">
-        <% Html.RenderAction("Myths", "Widgets", new { area = "" }); %>
-        <% Html.RenderPartial("BottomCategories"); %>
-    </div>
-    <div id="footer">
-        <div id="book">
-        </div>
-        <div id="ramka">
-        </div>
-        <div id="copy">
-            <p>
-                © 2010 Магазин родительского опыта <span id="babyCopy">“Baby Health”</span></p>
-            <h5>
-                Дизайн сайта — <a href="http://m-brand.com.ua">Евгений Миллер</a></h5>
-        </div>
-    </div>
-
-    --%>
 </body>
 </html>

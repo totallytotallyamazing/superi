@@ -46,14 +46,14 @@ namespace Shop.Areas.Admin.Controllers
 
                 if (id.HasValue)
                 {
-                    product = context.Products.Include("ProductImages").Include("Category").Include("Brand").Where(p => p.Id == id.Value).First();
+                    product = context.Products.Include("ProductImages").Include("Categories").Include("Brand").Where(p => p.Id == id.Value).First();
                 }
             }
             return View(product);
         }
 
         [HttpPost]
-        public ActionResult AddEdit(Product product, int? Id, int cId, int? bId, int brandId)
+        public ActionResult AddEdit(Product product, int? Id, int cId, int? bId, int? brandId)
         {
             using (ShopStorage context = new ShopStorage())
             {
@@ -74,7 +74,7 @@ namespace Shop.Areas.Admin.Controllers
                     prod.Color = product.Color;
                     prod.Published = product.Published;
 
-                    if (prod.Brand.Id != brandId)
+                    if (brandId.HasValue && prod.Brand.Id != brandId)
                     {
                         EntityKey brand = new EntityKey("ShopStorage.Brands", "Id", brandId);
                         prod.Brand = null;
@@ -84,10 +84,18 @@ namespace Shop.Areas.Admin.Controllers
                 else
                 {
                     EntityKey category = new EntityKey("ShopStorage.Categories", "Id", cId);
-                    EntityKey brand = new EntityKey("ShopStorage.Brands", "Id", brandId);
-                    product.Categories.Add(new Category { EntityKey = category });
+
+                    if (brandId.HasValue)
+                    {
+                        EntityKey brand = new EntityKey("ShopStorage.Brands", "Id", brandId);
+                        product.BrandReference.EntityKey = brand; 
+                    }
+                    
+                    object categoryItem = null;
+                    context.TryGetObjectByKey(category, out categoryItem);
+
+                    product.Categories.Add((Category)categoryItem);
                     product.Brand = null;
-                    product.BrandReference.EntityKey = brand;
                     context.AddToProducts(product);
                 }
                 context.SaveChanges();

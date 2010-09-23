@@ -20,21 +20,17 @@ string[] listPages = { "index", "search", "tags" };
 foreach (var item in categories)
 {
     bool expandCategory = false;
-    string actionLink = "";
-    string extraClass = "";
-    bool isProductList = listPages.Contains(ViewContext.RouteData.Values["action"].ToString().ToLower());
+    string actionLink = string.Empty;
+    string extraClass = string.Empty;
+    bool isProductList = listPages.Contains(ViewContext.RouteData.Values["action"].ToString().ToLower()); 
     if (item.Id == WebSession.CurrentCategory)
     {
-        if (isProductList && ViewData["brandId"] == null)
-        {
-            actionLink = string.Format("<span class=\"ot6Selected\">{0}</span>", item.Name);
-        }
-        else
-        {
-            actionLink = Html.ActionLink(item.Name, "Index", "Products", new { id = item.Id }, new { @class="ot6"}).ToString();
-        }
         extraClass = " current";
         expandCategory = true;
+        if (isProductList && ViewData["brandId"] == null)
+            actionLink = string.Format("<span class=\"ot6 current\">{0}</span>", item.Name);
+        else
+            actionLink = Html.ActionLink(item.Name, "Index", "Products", new { id = item.Id, area="" }, new { @class = "ot6" + extraClass }).ToString();
     }
     //else if (item.Categories.Select(c => c.Id).Contains(WebSession.CurrentCategory))
     //{
@@ -44,11 +40,12 @@ foreach (var item in categories)
     //}
     else
     {
-        actionLink = Html.ActionLink(item.Name, "Index", "Products", new { id = item.Id }, new { @class = "ot6" }).ToString();
+        actionLink = Html.ActionLink(item.Name, "Index", "Products", new { id = item.Id, area = "" }, new { @class = "ot6" }).ToString();
     }
     %>
-    <%= actionLink %>
-    <br />
+    <div>
+        <%= actionLink %>
+    </div>
 <%} %>
 
 <% if(Roles.IsUserInRole("Administrators")){ %>    

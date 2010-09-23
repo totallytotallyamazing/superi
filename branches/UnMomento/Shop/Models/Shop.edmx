@@ -137,6 +137,7 @@
           <Property Name="SeoKeywords" Type="varchar" MaxLength="500" />
           <Property Name="SeoDescription" Type="varchar" MaxLength="1000" />
           <Property Name="SortOrder" Type="int" Nullable="false" />
+          <Property Name="Image" Type="varchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="CategoryDiscountMapping">
           <Key>
@@ -168,7 +169,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="BrandId" Type="int" Nullable="false" />
+          <Property Name="BrandId" Type="int" />
           <Property Name="PartNumber" Type="varchar" MaxLength="45" />
           <Property Name="Name" Type="varchar" Nullable="false" MaxLength="500" />
           <Property Name="ShortDescription" Type="varchar" MaxLength="500" />
@@ -307,7 +308,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Product__BrandId__4DE98D56">
-          <End Role="Brand" Type="shop_model.Store.Brand" Multiplicity="1" />
+          <End Role="Brand" Type="shop_model.Store.Brand" Multiplicity="0..1" />
           <End Role="Product" Type="shop_model.Store.Product" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Brand">
@@ -598,7 +599,8 @@
           <NavigationProperty Name="ProductAttributes" Relationship="shop_model.CategoryProductAttribute" FromRole="Category" ToRole="ProductAttribute" />
           <Property Name="SortOrder" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Discount" Relationship="shop_model.CategoryDiscountMapping" FromRole="Category" ToRole="Discount" />
-          <NavigationProperty Name="Products" Relationship="shop_model.ProductCategoryMapping" FromRole="Category" ToRole="Product" /></EntityType>
+          <NavigationProperty Name="Products" Relationship="shop_model.ProductCategoryMapping" FromRole="Category" ToRole="Product" />
+          <Property Type="String" Name="Image" MaxLength="500" FixedLength="false" Unicode="false" /></EntityType>
         <EntityType Name="Product">
           <Key>
             <PropertyRef Name="Id" />
@@ -709,7 +711,7 @@
           <End Type="shop_model.Product" Role="Product" Multiplicity="*" />
           <End Type="shop_model.Tag" Role="Tag" Multiplicity="*" /></Association>
         <Association Name="BrandProduct">
-          <End Type="shop_model.Brand" Role="Brand" Multiplicity="1">
+          <End Type="shop_model.Brand" Role="Brand" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
           <End Type="shop_model.Product" Role="Product" Multiplicity="*" /></Association>
@@ -752,6 +754,7 @@
           <EntitySetMapping Name="Categories">
             <EntityTypeMapping TypeName="IsTypeOf(shop_model.Category)">
               <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
                 <ScalarProperty Name="SeoKeywords" ColumnName="SeoKeywords" />
                 <ScalarProperty Name="SeoDescription" ColumnName="SeoDescription" />
@@ -872,7 +875,8 @@
             <EndProperty Name="Product">
               <ScalarProperty Name="Id" ColumnName="Id" /></EndProperty>
             <EndProperty Name="Brand">
-              <ScalarProperty Name="Id" ColumnName="BrandId" /></EndProperty></AssociationSetMapping>
+              <ScalarProperty Name="Id" ColumnName="BrandId" /></EndProperty>
+            <Condition ColumnName="BrandId" IsNull="false" /></AssociationSetMapping>
           <FunctionImportMapping FunctionImportName="searchProducts" FunctionName="shop_model.Store.searchProducts" />
           <EntitySetMapping Name="ProductVariant">
             <EntityTypeMapping TypeName="shop_model.ProductVariant">
@@ -947,10 +951,10 @@
         <EntityTypeShape EntityType="shop_model.ProductAttributeValue" Width="2.25" PointX="3.875" PointY="5.625" Height="1.9802864583333326" IsExpanded="true" />
         <EntityTypeShape EntityType="shop_model.ProductImage" Width="1.5" PointX="10.875" PointY="1.25" Height="1.7879850260416665" IsExpanded="true" />
         <AssociationConnector Association="shop_model.ProductProduct">
-          <ConnectorPoint PointX="8.3865384615384624" PointY="6.6917122395833317" />
-          <ConnectorPoint PointX="8.3865384615384624" PointY="6.9417122395833317" />
-          <ConnectorPoint PointX="9.13076923076923" PointY="6.9417122395833317" />
-          <ConnectorPoint PointX="9.13076923076923" PointY="6.6917122395833317" /></AssociationConnector>
+          <ConnectorPoint PointX="8.3199729984633883" PointY="6.4994108072916656" />
+          <ConnectorPoint PointX="8.3199729984633883" PointY="6.7494108072916656" />
+          <ConnectorPoint PointX="9.2404271754596081" PointY="6.7494108072916656" />
+          <ConnectorPoint PointX="9.2404271754596081" PointY="6.4994108072916656" /></AssociationConnector>
         <AssociationConnector Association="shop_model.ProductAttributeProductAttributeValue">
           <ConnectorPoint PointX="3.125" PointY="5.9276432291666659" />
           <ConnectorPoint PointX="3.875" PointY="5.9276432291666659" />
@@ -1001,8 +1005,8 @@
         </AssociationConnector>
         <AssociationConnector Association="shop_model.ProductCategoryMapping" >
           <ConnectorPoint PointX="8.75" PointY="1.25" />
-          <ConnectorPoint PointX="8.75" PointY="0.71875" />
-          <ConnectorPoint PointX="2.875" PointY="0.71875" />
+          <ConnectorPoint PointX="8.75" PointY="0.758116525295883" />
+          <ConnectorPoint PointX="2.875" PointY="0.758116525295883" />
         </AssociationConnector></Diagram></edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

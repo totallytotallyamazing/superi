@@ -1,30 +1,44 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl" %>
+<%@ Import Namespace="Shop.Models" %>
+<%@ Import Namespace="Dev.Helpers" %>
 
 <div id="bubReason">
-                <p class="ot3">
-                    ...или повод</p>
-            </div>
-<div id="reasonMenu">
-    <a href="#" class="ot6">Дружба</a>
-    <br />
-    <a href="#" class="ot6">День рождения</a>
-    <br />
-    <a href="#" class="ot6">Свадьба</a>
-    <br />
-    <a href="#" class="ot6">Бизнес-презент</a>
-    <div id="txtBlkReason">
-        <p class="ot7">
-            <a href="#" class="ot7">Напомнить
-                <br />
-                о себе</a>
-        </p>
-    </div>
-    <a href="#" class="ot6">Родителям</a>
-    <br />
-    <a href="#" class="ot6">Мужчине</a>
-    <br />
-    <a href="#" class="ot6">Женщине</a>
+    <p class="ot3">...или повод</p>
 </div>
+<div id="reasonMenu">
+
+<% 
+using (ShopStorage context = new ShopStorage())
+{
+    foreach (var item in context.Tags)
+    {
+        string extraClass = string.Empty;
+        string actionLink = string.Empty;
+        bool isProductList = ViewContext.RouteData.Values["action"].ToString().ToLower() == "tags" &&
+            ViewContext.RouteData.Values["controller"].ToString().ToLower() == "products"; 
+        if (WebSession.CurrentTag == item.Id)
+        {
+            extraClass = " current";
+            if (isProductList)
+                actionLink = string.Format("<span class=\"ot6 current\">{0}</span>", item.Value);
+            else
+                actionLink = Html.ActionLink(item.Value, "Tags", "Products", new { id = item.Id }, new { @class = "ot6" + extraClass }).ToString();
+        }
+        else
+        {
+            actionLink = Html.ActionLink(item.Value, "Tags", "Products", new { id = item.Id }, new { @class = "ot6" }).ToString();
+        }
+%>
+    <div>
+        <%= actionLink %>
+    </div>
+<%
+    }
+} 
+    %>
+
+</div>
+
 <div id="bubAndWe">
     <p class="ot3">
         А ещё, мы
@@ -38,41 +52,5 @@
         </p>
     </div>
 </div>
-<%--<div id="notes">
-            <div id="tapki">
-                <p>
-                    <a href="#">Тапочки</a></p>
-            </div>
-            <div id="pizhama">
-                <p>
-                    <a href="#">Пижамки</a></p>
-            </div>
-            <div id="kurtka">
-                <p>
-                    <a href="#">Курточки</a></p>
-            </div>
-            <div id="prost">
-                <p>
-                    <a href="#">Простынки</a></p>
-            </div>
-            <div id="kor">
-                <p>
-                    <a href="#">Коротыши</a></p>
-            </div>
-            <div id="shapki">
-                <p>
-                    <a href="#">Шапочки</a></p>
-            </div>
-            <div id="pugovka">
-                <p>
-                    <a href="#">Пуговички</a></p>
-            </div>
-            <div id="chep">
-                <p>
-                    <a href="#">Чепчики</a></p>
-            </div>
-            <div id="vorot">
-                <p>
-                    <a href="#">Воротнички</a></p>
-            </div>
-        </div>--%>
+
+

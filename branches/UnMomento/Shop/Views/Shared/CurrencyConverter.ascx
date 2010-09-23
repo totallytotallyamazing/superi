@@ -38,12 +38,22 @@
             break;
     }
 %>
+
+  <div id="topCurrencyCB"> 
+                <form action="" method="post">
+                    <p><select style="width : 120px">
+                        <option value="UAH"><asp:HyperLink runat="server" ID="hrnLink" Text="ГРН"></asp:HyperLink>   </option>
+                        <option value="USD"><asp:HyperLink runat="server" ID="usdLink" Text="USD"></asp:HyperLink>   </option>
+                        <option value="EUR"><asp:HyperLink runat="server" ID="euroLink" Text="EUR"></asp:HyperLink>   </option>                        
+                    </select></p>                    
+                </form>                
+            </div> 
     
-<div id="currency">
+<%--<div id="currency">
     <p>Цены отображаются в</p>
 </div>
 <div id="currencyBox">
     <h2>
         <asp:HyperLink runat="server" ID="hrnLink" Text="ГРН"></asp:HyperLink> | <asp:HyperLink runat="server" ID="usdLink" Text="USD"></asp:HyperLink> | <asp:HyperLink runat="server" ID="euroLink" Text="EUR"></asp:HyperLink>
     </h2>
-</div>
+</div>--%>

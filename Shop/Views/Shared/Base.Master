@@ -73,8 +73,7 @@
                 <!--point-->
             </div>
             <div id="msgOfDay">
-                <p class="bt2">
-                    Сообщение дня</p>
+                <p class="bt2">Сообщение дня</p>
                 <div id="baner">
                     <img src="../../Content/UnMomentoStyles/img/baner.gif" alt="Подарки по низким ценам" />
                 </div>

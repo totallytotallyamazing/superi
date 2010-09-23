@@ -41,7 +41,7 @@ namespace Shop.Controllers
                         .Include("Brand")
                         .Include("ProductAttributeValues.ProductAttribute")
                         .Include("ProductImages")
-                        .Where(p => p.Category.Id == id)
+                        .Where(p => p.Categories.Any(c=>c.Id == id))
                         .Where(p => (!brandId.HasValue || p.Brand.Id == brandId.Value))
                         .OrderBy(p => p.SortOrder)
                         .ToList();

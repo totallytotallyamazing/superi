@@ -26,7 +26,7 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("shop_model", "ProductDiscount", "Product", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Shop.Models.Product), "Discount", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Shop.Models.Discount))]
 [assembly: EdmRelationshipAttribute("shop_model", "ProductProductAttributeValue", "Product", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Shop.Models.Product), "ProductAttributeValue", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Shop.Models.ProductAttributeValue))]
 [assembly: EdmRelationshipAttribute("shop_model", "ProductTag", "Product", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Shop.Models.Product), "Tag", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Shop.Models.Tag))]
-[assembly: EdmRelationshipAttribute("shop_model", "BrandProduct", "Brand", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Shop.Models.Brand), "Product", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Shop.Models.Product))]
+[assembly: EdmRelationshipAttribute("shop_model", "BrandProduct", "Brand", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Shop.Models.Brand), "Product", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Shop.Models.Product))]
 [assembly: EdmRelationshipAttribute("shop_model", "FK_ProductVariant_ProductVariant", "Product", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Shop.Models.Product), "ProductVariant", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Shop.Models.ProductVariant))]
 [assembly: EdmRelationshipAttribute("shop_model", "BrandDiscountMapping", "Brand", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Shop.Models.Brand), "Discount", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Shop.Models.Discount))]
 [assembly: EdmRelationshipAttribute("shop_model", "CategoryDiscountMapping", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Shop.Models.Category), "Discount", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Shop.Models.Discount))]
@@ -702,6 +702,30 @@ namespace Shop.Models
         private global::System.Int32 _SortOrder;
         partial void OnSortOrderChanging(global::System.Int32 value);
         partial void OnSortOrderChanged();
+    
+        /// <summary>
+        /// Нет доступной документации по метаданным.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Image
+        {
+            get
+            {
+                return _Image;
+            }
+            set
+            {
+                OnImageChanging(value);
+                ReportPropertyChanging("Image");
+                _Image = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Image");
+                OnImageChanged();
+            }
+        }
+        private global::System.String _Image;
+        partial void OnImageChanging(global::System.String value);
+        partial void OnImageChanged();
 
         #endregion
     

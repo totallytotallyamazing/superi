@@ -6,16 +6,22 @@
 <% 
     Func<int, string, string> getEnding = (i, word) =>
         {
-            if (i == 1) return word;
-            else if (i > 1 && i < 5) return word + "а";
-            else return word + "ов";
+            if (i == 1) return word +  "ок";
+            else if (i > 1 && i < 5) return word + "ка";
+            else return word + "ков";
         };
 %>
-<div id="guest1">
-    <h2>
-        <a href="#"><%= Profile.Name %>,</a></h2>
-    <p>
-        в Вашей&nbsp;<a href="/Cart">корзинке</a> <strong><%= WebSession.OrderItems.Count %></strong> <%= getEnding(WebSession.OrderItems.Count, "товар")%> на сумму 
-        <%= Html.RenderPrice(WebSession.TotalAmount, WebSession.Currency, 0, ",") %></p>
-</div>
 
+<div id="basket">
+    <div id="basketText">
+        <p class="bt1">
+            В Вашей <a href="/Cart" class="bt1"><b>корзинке</b></a>
+            <br />
+            <b class="bt2"><%= WebSession.OrderItems.Count %></b> <%= getEnding(WebSession.OrderItems.Count, "подар")%>
+            <br />
+            на сумму <b class="bt2"><%= Html.RenderPrice(WebSession.TotalAmount, WebSession.Currency, 0, ",") %></b>                    
+            <br />
+            <a href="#" class="bt3"><b>Оформить! »</b></a>
+        </p>
+    </div>
+</div>

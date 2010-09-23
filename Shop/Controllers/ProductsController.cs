@@ -23,6 +23,7 @@ namespace Shop.Controllers
             {
                 List<Product> products = null;
                 Category category = context.Categories.Include("Parent").Include("Categories.Products.Brand")
+                    .Include("Products")
                     .Include("Categories.Products.ProductImages")
                     //.Include("Categories.Products.ProductAttributeValues.ProductAttribute")
                     .First(c => c.Id == id);
@@ -71,6 +72,8 @@ namespace Shop.Controllers
 
         public ActionResult Tags(int id)
         {
+            WebSession.CurrentTag = id;
+
             ViewData["tags"] = true;
             ViewData["showAdminLinks"] = false;
             using (ShopStorage context = new ShopStorage())
@@ -89,6 +92,8 @@ namespace Shop.Controllers
         public ActionResult Search(string searchField)
         {
             ViewData["tags"] = true;
+            WebSession.CurrentTag = int.MinValue;
+            WebSession.CurrentCategory = int.MinValue;
 
             using (ShopStorage context = new ShopStorage())
             {

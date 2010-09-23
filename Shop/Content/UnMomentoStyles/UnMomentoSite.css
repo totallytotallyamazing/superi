@@ -35,6 +35,8 @@
     #all {width: 1000px; margin: 0px auto; background: #fff;}
     #mainBkg {width: 1000px; background: url('./img/allBkg.gif') no-repeat; background-position: bottom; padding-bottom: 45px;}      
     
+    #contentWrapper{padding:0 70px 0 75px;}
+    
     
     /*шапка*/    
     #top {height: 257px; width: 1000px; background: url('./img/top_bkg.gif') no-repeat;}
@@ -52,10 +54,11 @@
                    
     /*левый блок*/
     #bubGift {margin-left: 5px; margin-top: 10px; height: 46px; width: 113px; background: url('./img/bubbleGift.gif') no-repeat; line-height: 18px;}      
-    #giftMenu {margin-left: 20px; margin-top: 5px;}      
+    #giftMenu {margin-left: 20px; margin-top: 5px; width:130px;}      
     #txtBlkGift {padding: 8px 0px 0px 0px;}
     #bubReason {margin-left: 5px; margin-top: 20px; height: 47px; width: 135px; background: url('./img/bubbleReason.gif') no-repeat; line-height: 35px;}
-    #reasonMenu {margin-left: 20px; margin-top: 5px;}
+    #reasonMenu {margin-left: 20px; margin-top: 5px; width:130px;}
+    #reasonMenu div, #giftMenu div{padding-bottom:5px;}
     #txtBlkReason {padding: 6px 0px 6px 0px;}
     #bubAndWe {margin-left: 5px; margin-top: 15px; height: 47px; width: 135px; background: url('./img/bubbleReason.png') no-repeat; line-height: 18px;}
     #txtBlkAndWe {padding: 20px 0px 0px 15px;}
@@ -75,13 +78,13 @@
     #desBy {margin-top: 40px;}
          
     /*шрифты*/
-    .ot1, .ot2, .ot3, .ot4, .ot5, .ot6, .ot6Selected, .ot7, .bt1, .bt2, .bt3, .pt1, .pt2, .pgt1  {font-family: Georgia, 'Times New Roman', Times, serif; color: Black;}
+    .ot1, .ot2, .ot3, .ot4, .ot5, .ot6, ot6.current, .ot7, .bt1, .bt2, .bt3, .pt1, .pt2, .pgt1  {font-family: Georgia, 'Times New Roman', Times, serif; color: Black;}
       
     .ot1 {font-size: 25px;}
     .ot2, .dt2 {font-size: 16px;}  
     .ot3 {padding-left: 15px; font-weight:600; }  
     .ot4, .ot5, .opt3, .pmt1, .pmt2  {font-size: 13px; text-align:center;}    
-    .ot6, .ot6Selected, .ot7, .bt3 { font-size: 13px; line-height: 25px; font-weight:bold;}
+    .ot6, .ot6.current, .ot7, .bt3 { font-size: 13px; font-weight:bold;}
     .ot7 {line-height: 15px;}    
     .bt1, .bt2, .bt3 {font-size: 12px; text-align:center;}    
     
@@ -104,7 +107,7 @@
     
     
     .bt2, .it3, .ot3, .ot5, .pt1, .nt1, .opt1, .opt2, .opt3 { color: #cc0000;}
-    .ot6Selected, .ort1, .pt2, .pmt2, .pmt3 {color: #999999;}
+    .ot6.current, .ort1, .pt2, .pmt2, .pmt3 {color: #999999;}
     .it1, .nt2, .pgt1, .obt1, .pmt1, .dt1, .dt2, .dt3 {color: black;}
     
     /*----------------внутренность------------------------------------------------*/  
@@ -117,12 +120,12 @@
     #contName {width: 600px; height: 130px;}      
     #pagePic{float: left; padding: 28px 0px 0px 33px; width: 89px;position:absolute;} 
     #pageName {padding: 58px 0px 0px 125px;}
-    #contGoodsTop {height: 330px;}
-    #item1, #item2, #item3, #item4 {width: 196px; height: 197px; border: 1px solid #999999;}
-    #item1, #item3 {float: left; margin-left: 75px;}
-    #item2, #item4 {float: right; margin-right: 70px;}
+    
+    #item1, #item2, #item3, #item4 {width: 196px; margin-bottom:50px;}
+    #item1 img, #item2 img, #item3 img, #item4 img{ border: 1px solid #999999;}
+    #item1, #item3,#item2, #item4  {float: left;}
+    #item1, #item3{margin-right:60px;}
     #item1Txt, #item2Txt, #item3Txt, #item4Txt {padding: 10px 0px 0px 10px;}
-    #contGoodsBottom {height: 330px;}
     #pager {padding-top: 30px; }
          
     /*центр страници заказов*/     

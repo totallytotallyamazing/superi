@@ -108,7 +108,7 @@
                         <%= Html.ValidationMessageFor(model => model.OldPrice) %>
                     </td>
                 </tr>
-                <tr>
+<%--                <tr>
                     <td class="labelCell">
                         Бренд
                     </td>                
@@ -118,7 +118,7 @@
                     <td class="explanation">
                         Добавить бренд можно, перейдя в <%= Html.ActionLink("область редактирования брендов", "Index", new { controller="Brands", area="Admin"})%>, находящуюся в разделе "О брендах"
                     </td>
-                </tr>
+                </tr>--%>
                 <tr>
                     <td class="labelCell">
                         <%= Html.LabelFor(model => model.Color) %>
@@ -133,7 +133,7 @@
             </table>
             <%if (Model!=null){ %>
                 <div class="productLinks">
-                    <%= Html.ActionLink("Размеры в наличии", "Index", "ProductAttributeValues", new { id = Model.Category.Id,productId=Model.Id }, new { @class = "fancyAdmin iframe" })%>
+                    <%= Html.ActionLink("Дополнительные категории", "Index", "ProductCategories", new { id = Model.Id }, new { @class = "fancyAdmin iframe" })%>
                     <%= Html.ActionLink("Теги", "Index", "ProductTags", new { id = Model.Id }, new { @class = "fancyAdmin iframe" })%>
                 </div>
             <%} %>

@@ -8,7 +8,37 @@
         categories = context.Categories.Include("Categories").Where(c => c.Parent == null).OrderBy(c => c.SortOrder).ToList();
     }
 %>
-<div id="menuBox">
+<div id="bubGift">
+    <p class="ot3">
+        Выберите
+        <br />
+        подарок...</p>
+</div>
+<div id="giftMenu">
+    <a href="#" class="ot6">Цветы</a>
+    <br />
+    <span class="ot6Selected">Мягкие игрушки</span>
+    <br />
+    <a href="#" class="ot6">Подарки</a>
+    <br />
+    <a href="#" class="ot6">Букеты</a>
+    <br />
+    <a href="#" class="ot6">Фрукты</a>
+    <br />
+    <a href="#" class="ot6">Напитки</a>
+    <div id="txtBlkGift">
+        <p class="ot7">
+            <a href="#" class="ot7">Комнатные
+                <br />
+                растения</a>
+        </p>
+    </div>
+</div>
+
+
+
+<%--<div id="menuBox">
+
     <div id="liHeader">
     </div>
     <div id="newsContent">
@@ -63,5 +93,4 @@
     </div>
     <div id="newsFooter">
     </div>
-</div>
-
+</div>--%>

@@ -1,4 +1,5 @@
 ﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
+
 <%@ Import Namespace="Dev.Mvc.Ajax" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
@@ -8,22 +9,24 @@
         <asp:ContentPlaceHolder runat="server" ID="TitleContent">
         </asp:ContentPlaceHolder>
     </title>
-    <link href="/Content/style.css" rel="stylesheet" type="text/css" />
+    <link rel="Stylesheet" href="/Content/UnMomentoStyles/UnMomentoSite.css" />
+    <%-- <link href="/Content/style.css" rel="stylesheet" type="text/css" />--%>
     <% if (Roles.IsUserInRole("Administrators"))
        { %>
     <link href="/Content/AdminStyles/Admin.css" rel="stylesheet" type="text/css" />
     <%} %>
-    <%if(false) {%>
-        <script type="text/javascript" src="../../Scripts/jquery-vsdoc.js"></script>
-        <script type="text/javascript">
-            /// <reference path="jquery.js" />
-        </script>
+    <%if (false)
+      {%>
+    <script type="text/javascript" src="../../Scripts/jquery-vsdoc.js"></script>
+    <script type="text/javascript">
+        /// <reference path="jquery.js" />
+    </script>
     <%} %>
     <script type="text/javascript" src="/Scripts/jquery.js"></script>
     <%= Ajax.DynamicCssInclude("/Content/fancybox/jquery.fancybox.css") %>
     <%= Ajax.ScriptInclude("/Scripts/jquery.fancybox.js")%>
     <script type="text/javascript">
-        $(function() {
+        $(function () {
             $("#feedbackForm").fancybox(
             {
                 hideOnContentClick: false,
@@ -37,8 +40,79 @@
 </head>
 <body>
     <%if (Roles.IsUserInRole("Administrators")) Html.RenderPartial("AdminPanel");  %>
-    <div id="header">
-        <div id="logoBox">
+    <div id="all">
+        <div id="top">
+            <div id="topRight">
+                <p class="ot1">
+                    (063) 211-85-34</p>
+                <p class="ot1">
+                    (044) 233-11-99</p>
+                <p class="ot2">
+                    <a id="feedbackForm" href="/Home/FeedbackForm" class="ot2">Задать быстрый вопрос</a>
+                </p>
+            </div>
+            <div id="topLeft">
+                <% Html.RenderPartial("MainMenu"); %>
+                <% Html.RenderPartial("CurrencyConverter"); %>
+            </div>
+            <div id="inRussian">
+                <p class="ot6Selected">
+                    <b>По-русски</b></p>
+            </div>
+            <div id="inEnglish">
+                <a href="#" class="ot6"><b>In english</b></a>
+            </div>
+        </div>
+        <div id="ctrRight"> <% Html.RenderPartial("LogOnUserControl"); %>
+            
+            <div id="point_basket">
+                <!--point-->
+            </div>
+            <% Html.RenderAction("News", "Widgets", new { area = "" }); %>
+            <div id="pointNews">
+                <!--point-->
+            </div>
+            <div id="msgOfDay">
+                <p class="bt2">
+                    Сообщение дня</p>
+                <div id="baner">
+                    <img src="../../Content/UnMomentoStyles/img/baner.gif" alt="Подарки по низким ценам" />
+                </div>
+            </div>
+            <div id="point_baner">
+                <!--point-->
+            </div>
+        </div>
+        <div id="ctrLeft">
+            <% Html.RenderPartial("Categories"); %>
+            <% Html.RenderPartial("BottomCategories"); %>
+        </div>
+        <div id="mainBkg">
+            <div id="ctr">
+                <div class="top">
+                    <asp:ContentPlaceHolder runat="server" ID="ContentTitle">
+                    </asp:ContentPlaceHolder>
+                </div>
+                <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                </asp:ContentPlaceHolder>
+                <div class="bottom">
+                    <asp:ContentPlaceHolder runat="server" ID="Footer">
+                    </asp:ContentPlaceHolder>
+                </div>
+            </div>
+            <div id="footer">
+                <div id="desBy">
+                    <p class="ot4">
+                        © 2010 Служба моментальной доставки цветов и подарков “<b>— Un momento!</b>”
+                        <br />
+                        Дизайн сайта — <a href="http://m-brand.com.ua" class="ot5"><b>Евгений Миллер</b> </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%-- ---------------------- --%>
+    <%-- <div id="logoBox">
             <% Html.RenderAction("News", "Widgets", new { area = "" }); %>
             <% Html.RenderPartial("Logo"); %>
         </div>
@@ -55,12 +129,11 @@
                 </div>
                 <% Html.RenderPartial("Search"); %>
             </div>
-            <% Html.RenderPartial("MainMenu"); %>
+            
         </div>
-    </div>
-    <div id="contentBox">
+     <div id="contentBox">
         <div id="leftSide">
-            <% Html.RenderPartial("CurrencyConverter"); %>
+            
             <% Html.RenderPartial("LogOnUserControl"); %>
             <% Html.RenderPartial("Categories"); %> 
             <div id="leftHand">
@@ -103,5 +176,7 @@
                 Дизайн сайта — <a href="http://m-brand.com.ua">Евгений Миллер</a></h5>
         </div>
     </div>
+
+    --%>
 </body>
 </html>

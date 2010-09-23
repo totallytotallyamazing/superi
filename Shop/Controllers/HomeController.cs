@@ -21,6 +21,7 @@ namespace Shop.Controllers
             return View();
         }
 
+
         [Content]
         public ActionResult Go(string id)
         {
@@ -75,3 +76,6 @@ namespace Shop.Models
         public string Captcha { get; set; }
     }
 }
+
+
+

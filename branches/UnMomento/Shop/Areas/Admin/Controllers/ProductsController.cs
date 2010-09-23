@@ -20,7 +20,7 @@ namespace Shop.Areas.Admin.Controllers
             ViewData["bId"] = brandId;
             using (ShopStorage context = new ShopStorage())
             {
-                List<Product> products = context.Products.Where(p => p.Category.Id == categoryId)
+                List<Product> products = context.Products.Where(p => p.Categories.Any(c=>c.Id == categoryId))
                     .Where(p => (!brandId.HasValue || p.Brand.Id == brandId.Value)).ToList();
                 return View(products);
             }
@@ -85,7 +85,7 @@ namespace Shop.Areas.Admin.Controllers
                 {
                     EntityKey category = new EntityKey("ShopStorage.Categories", "Id", cId);
                     EntityKey brand = new EntityKey("ShopStorage.Brands", "Id", brandId);
-                    product.CategoryReference.EntityKey = category;
+                    product.Categories.Add(new Category { EntityKey = category });
                     product.Brand = null;
                     product.BrandReference.EntityKey = brand;
                     context.AddToProducts(product);

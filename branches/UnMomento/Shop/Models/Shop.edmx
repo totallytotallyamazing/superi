@@ -16,6 +16,7 @@
           <EntitySet Name="ProductAttribute" EntityType="shop_model.Store.ProductAttribute" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ProductAttributeValue" EntityType="shop_model.Store.ProductAttributeValue" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ProductAttributeValueAvailable" EntityType="shop_model.Store.ProductAttributeValueAvailable" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ProductCategoryMapping" EntityType="shop_model.Store.ProductCategoryMapping" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ProductDiscountMapping" EntityType="shop_model.Store.ProductDiscountMapping" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ProductImage" EntityType="shop_model.Store.ProductImage" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ProductTagMapping" EntityType="shop_model.Store.ProductTagMapping" store:Type="Tables" Schema="dbo" />
@@ -36,10 +37,6 @@
           </AssociationSet>
           <AssociationSet Name="FK__Product__BrandId__4DE98D56" Association="shop_model.Store.FK__Product__BrandId__4DE98D56">
             <End Role="Brand" EntitySet="Brand" />
-            <End Role="Product" EntitySet="Product" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Product__Categor__4EDDB18F" Association="shop_model.Store.FK__Product__Categor__4EDDB18F">
-            <End Role="Category" EntitySet="Category" />
             <End Role="Product" EntitySet="Product" />
           </AssociationSet>
           <AssociationSet Name="FK__ProductAt__Produ__00750D23" Association="shop_model.Store.FK__ProductAt__Produ__00750D23">
@@ -97,6 +94,14 @@
           <AssociationSet Name="FK_CategoryDiscountMapping_Discount" Association="shop_model.Store.FK_CategoryDiscountMapping_Discount">
             <End Role="Discount" EntitySet="Discount" />
             <End Role="CategoryDiscountMapping" EntitySet="CategoryDiscountMapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductCategoryMapping_ProductCategoryMapping" Association="shop_model.Store.FK_ProductCategoryMapping_ProductCategoryMapping">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="ProductCategoryMapping" EntitySet="ProductCategoryMapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductCategoryMapping_ProductCategoryMapping1" Association="shop_model.Store.FK_ProductCategoryMapping_ProductCategoryMapping1">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="ProductCategoryMapping" EntitySet="ProductCategoryMapping" />
           </AssociationSet>
           <AssociationSet Name="FK_ProductVariant_ProductVariant" Association="shop_model.Store.FK_ProductVariant_ProductVariant">
             <End Role="Product" EntitySet="Product" />
@@ -164,7 +169,6 @@
           </Key>
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="BrandId" Type="int" Nullable="false" />
-          <Property Name="CategoryId" Type="int" Nullable="false" />
           <Property Name="PartNumber" Type="varchar" MaxLength="45" />
           <Property Name="Name" Type="varchar" Nullable="false" MaxLength="500" />
           <Property Name="ShortDescription" Type="varchar" MaxLength="500" />
@@ -202,6 +206,14 @@
           </Key>
           <Property Name="ProductId" Type="int" Nullable="false" />
           <Property Name="ProductAttributeValueId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProductCategoryMapping">
+          <Key>
+            <PropertyRef Name="ProductId" />
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="CategoryId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="ProductDiscountMapping">
           <Key>
@@ -303,18 +315,6 @@
             </Principal>
             <Dependent Role="Product">
               <PropertyRef Name="BrandId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Product__Categor__4EDDB18F">
-          <End Role="Category" Type="shop_model.Store.Category" Multiplicity="1" />
-          <End Role="Product" Type="shop_model.Store.Product" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Category">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Product">
-              <PropertyRef Name="CategoryId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -486,6 +486,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ProductCategoryMapping_ProductCategoryMapping">
+          <End Role="Product" Type="shop_model.Store.Product" Multiplicity="1" />
+          <End Role="ProductCategoryMapping" Type="shop_model.Store.ProductCategoryMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductCategoryMapping">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductCategoryMapping_ProductCategoryMapping1">
+          <End Role="Category" Type="shop_model.Store.Category" Multiplicity="1" />
+          <End Role="ProductCategoryMapping" Type="shop_model.Store.ProductCategoryMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductCategoryMapping">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ProductVariant_ProductVariant">
           <End Role="Product" Type="shop_model.Store.Product" Multiplicity="1" />
           <End Role="ProductVariant" Type="shop_model.Store.ProductVariant" Multiplicity="*" />
@@ -511,9 +535,6 @@
           <EntitySet Name="ProductAttributes" EntityType="shop_model.ProductAttribute" />
           <EntitySet Name="ProductAttributeValues" EntityType="shop_model.ProductAttributeValue" />
           <EntitySet Name="ProductImages" EntityType="shop_model.ProductImage" />
-          <AssociationSet Name="CategoryProduct" Association="shop_model.CategoryProduct">
-            <End Role="Category" EntitySet="Categories" />
-            <End Role="Product" EntitySet="Products" /></AssociationSet>
           <AssociationSet Name="ProductProduct" Association="shop_model.ProductProduct">
             <End Role="Product" EntitySet="Products" />
             <End Role="Product1" EntitySet="Products" /></AssociationSet>
@@ -559,6 +580,10 @@
           <AssociationSet Name="CategoryDiscountMapping" Association="shop_model.CategoryDiscountMapping">
             <End Role="Category" EntitySet="Categories" />
             <End Role="Discount" EntitySet="Discount" />
+          </AssociationSet>
+          <AssociationSet Name="ProductCategoryMapping" Association="shop_model.ProductCategoryMapping">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="Category" EntitySet="Categories" />
           </AssociationSet></EntityContainer>
         <EntityType Name="Category">
           <Key>
@@ -566,14 +591,14 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" Nullable="false" />
-          <NavigationProperty Name="Products" Relationship="shop_model.CategoryProduct" FromRole="Category" ToRole="Product" />
           <NavigationProperty Name="Categories" Relationship="shop_model.CategoryCategory" FromRole="Category" ToRole="Category1" />
           <NavigationProperty Name="Parent" Relationship="shop_model.CategoryCategory" FromRole="Category1" ToRole="Category" />
           <Property Name="SeoDescription" Type="String" Nullable="true" />
           <Property Name="SeoKeywords" Type="String" Nullable="true" />
           <NavigationProperty Name="ProductAttributes" Relationship="shop_model.CategoryProductAttribute" FromRole="Category" ToRole="ProductAttribute" />
           <Property Name="SortOrder" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Discount" Relationship="shop_model.CategoryDiscountMapping" FromRole="Category" ToRole="Discount" /></EntityType>
+          <NavigationProperty Name="Discount" Relationship="shop_model.CategoryDiscountMapping" FromRole="Category" ToRole="Discount" />
+          <NavigationProperty Name="Products" Relationship="shop_model.ProductCategoryMapping" FromRole="Category" ToRole="Product" /></EntityType>
         <EntityType Name="Product">
           <Key>
             <PropertyRef Name="Id" />
@@ -586,7 +611,6 @@
           <Property Name="SeoDescription" Type="String" />
           <Property Name="SeoKeywords" Type="String" />
           <Property Name="ShortDescription" Type="String" />
-          <NavigationProperty Name="Category" Relationship="shop_model.CategoryProduct" FromRole="Product" ToRole="Category" />
           <NavigationProperty Name="SimilarProduct" Relationship="shop_model.ProductProduct" FromRole="Product" ToRole="Product1" />
           <NavigationProperty Name="SimilarProductChildren" Relationship="shop_model.ProductProduct" FromRole="Product1" ToRole="Product" />
           <NavigationProperty Name="ProductImages" Relationship="shop_model.ProductProductImage" FromRole="Product" ToRole="ProductImage" />
@@ -599,7 +623,8 @@
           <NavigationProperty Name="Brand" Relationship="shop_model.BrandProduct" FromRole="Product" ToRole="Brand" />
           <Property Name="SortOrder" Type="Int32" Nullable="false" />
           <Property Name="Published" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="ProductVariant" Relationship="shop_model.FK_ProductVariant_ProductVariant" FromRole="Product" ToRole="ProductVariant" /></EntityType>
+          <NavigationProperty Name="ProductVariant" Relationship="shop_model.FK_ProductVariant_ProductVariant" FromRole="Product" ToRole="ProductVariant" />
+          <NavigationProperty Name="Categories" Relationship="shop_model.ProductCategoryMapping" FromRole="Product" ToRole="Category" /></EntityType>
         <EntityType Name="ProductAttribute">
           <Key>
             <PropertyRef Name="Id" />
@@ -626,11 +651,6 @@
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="ImageSource" Type="String" Nullable="false" />
           <NavigationProperty Name="Product" Relationship="shop_model.ProductProductImage" FromRole="ProductImage" ToRole="Product" /></EntityType>
-        <Association Name="CategoryProduct">
-          <End Type="shop_model.Category" Role="Category" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="shop_model.Product" Role="Product" Multiplicity="*" /></Association>
         <Association Name="ProductProduct">
           <End Type="shop_model.Product" Role="Product" Multiplicity="*" />
           <End Type="shop_model.Product" Role="Product1" Multiplicity="*" /></Association>
@@ -719,6 +739,10 @@
         <Association Name="CategoryDiscountMapping">
           <End Type="shop_model.Category" Role="Category" Multiplicity="*" />
           <End Type="shop_model.Discount" Role="Discount" Multiplicity="*" />
+        </Association>
+        <Association Name="ProductCategoryMapping">
+          <End Type="shop_model.Product" Role="Product" Multiplicity="*" />
+          <End Type="shop_model.Category" Role="Category" Multiplicity="*" />
         </Association></Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -782,11 +806,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="CategoryProduct" TypeName="shop_model.CategoryProduct" StoreEntitySet="Product">
-            <EndProperty Name="Product">
-              <ScalarProperty Name="Id" ColumnName="Id" /></EndProperty>
-            <EndProperty Name="Category">
-              <ScalarProperty Name="Id" ColumnName="CategoryId" /></EndProperty></AssociationSetMapping>
           <AssociationSetMapping Name="ProductProduct" TypeName="shop_model.ProductProduct" StoreEntitySet="SimilalProduct">
             <EndProperty Name="Product1">
               <ScalarProperty Name="Id" ColumnName="SimilarProductId" /></EndProperty>
@@ -893,6 +912,14 @@
             <EndProperty Name="Category">
               <ScalarProperty Name="Id" ColumnName="CategoryId" />
             </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="ProductCategoryMapping" TypeName="shop_model.ProductCategoryMapping" StoreEntitySet="ProductCategoryMapping">
+            <EndProperty Name="Category">
+              <ScalarProperty Name="Id" ColumnName="CategoryId" />
+            </EndProperty>
+            <EndProperty Name="Product">
+              <ScalarProperty Name="Id" ColumnName="ProductId" />
+            </EndProperty>
           </AssociationSetMapping></EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -919,16 +946,11 @@
         <EntityTypeShape EntityType="shop_model.ProductAttribute" Width="2.625" PointX="0.5" PointY="4.25" Height="1.9802864583333326" IsExpanded="true" />
         <EntityTypeShape EntityType="shop_model.ProductAttributeValue" Width="2.25" PointX="3.875" PointY="5.625" Height="1.9802864583333326" IsExpanded="true" />
         <EntityTypeShape EntityType="shop_model.ProductImage" Width="1.5" PointX="10.875" PointY="1.25" Height="1.7879850260416665" IsExpanded="true" />
-        <AssociationConnector Association="shop_model.CategoryProduct">
-          <ConnectorPoint PointX="2.875" PointY="0.78125" />
-          <ConnectorPoint PointX="8.75" PointY="0.78125" />
-          <ConnectorPoint PointX="8.75" PointY="1.25" />
-          </AssociationConnector>
         <AssociationConnector Association="shop_model.ProductProduct">
-          <ConnectorPoint PointX="8.3865384615384624" PointY="6.4994108072916656" />
-          <ConnectorPoint PointX="8.3865384615384624" PointY="6.7494108072916656" />
-          <ConnectorPoint PointX="9.13076923076923" PointY="6.7494108072916656" />
-          <ConnectorPoint PointX="9.13076923076923" PointY="6.4994108072916656" /></AssociationConnector>
+          <ConnectorPoint PointX="8.3865384615384624" PointY="6.6917122395833317" />
+          <ConnectorPoint PointX="8.3865384615384624" PointY="6.9417122395833317" />
+          <ConnectorPoint PointX="9.13076923076923" PointY="6.9417122395833317" />
+          <ConnectorPoint PointX="9.13076923076923" PointY="6.6917122395833317" /></AssociationConnector>
         <AssociationConnector Association="shop_model.ProductAttributeProductAttributeValue">
           <ConnectorPoint PointX="3.125" PointY="5.9276432291666659" />
           <ConnectorPoint PointX="3.875" PointY="5.9276432291666659" />
@@ -944,17 +966,17 @@
           <ConnectorPoint PointX="2.2665384615384614" PointY="0.625" /></AssociationConnector>
         <EntityTypeShape EntityType="shop_model.Brand" Width="1.5" PointX="5.375" PointY="1" Height="2.5571907552083331" />
         <AssociationConnector Association="shop_model.CategoryProductAttribute">
-          <ConnectorPoint PointX="2" PointY="3.5667936197916661" />
+          <ConnectorPoint PointX="2" PointY="3.7590950520833331" />
           <ConnectorPoint PointX="2" PointY="4.25" /></AssociationConnector>
-        <EntityTypeShape EntityType="shop_model.Discount" Width="1.5" PointX="3.375" PointY="1.125" Height="2.364889322916667" />
+        <EntityTypeShape EntityType="shop_model.Discount" Width="1.5" PointX="3.625" PointY="0.875" Height="2.364889322916667" />
         <AssociationConnector Association="shop_model.ProductDiscount" ManuallyRouted="false">
-          <ConnectorPoint PointX="7.5" PointY="5.5040910280621764" />
-          <ConnectorPoint PointX="4.1531251258333963" PointY="5.5040910280621764" />
-          <ConnectorPoint PointX="4.1531251258333963" PointY="3.4898893229166683" />
+          <ConnectorPoint PointX="7.5" PointY="5.485341796875" />
+          <ConnectorPoint PointX="3.71875" PointY="5.485341796875" />
+          <ConnectorPoint PointX="3.71875" PointY="3.239889322916667" />
           </AssociationConnector>
         <AssociationConnector Association="shop_model.ProductProductAttributeValue">
-          <ConnectorPoint PointX="7.5" PointY="6.0622054036458328" />
-          <ConnectorPoint PointX="6.125" PointY="6.0622054036458328" />
+          <ConnectorPoint PointX="7.5" PointY="6.1583561197916659" />
+          <ConnectorPoint PointX="6.125" PointY="6.1583561197916659" />
           </AssociationConnector>
         <EntityTypeShape EntityType="shop_model.Tag" Width="1.5" PointX="4.875" PointY="3.75" Height="1.5956835937499996" />
         <AssociationConnector Association="shop_model.ProductTag">
@@ -970,12 +992,17 @@
           <ConnectorPoint PointX="10.875" PointY="4.9708968098958328" />
         </AssociationConnector>
         <AssociationConnector Association="shop_model.BrandDiscountMapping" >
-          <ConnectorPoint PointX="5.375" PointY="2.3074446614583337" />
-          <ConnectorPoint PointX="4.875" PointY="2.3074446614583337" />
+          <ConnectorPoint PointX="5.375" PointY="2.1199446614583337" />
+          <ConnectorPoint PointX="5.125" PointY="2.1199446614583337" />
         </AssociationConnector>
         <AssociationConnector Association="shop_model.CategoryDiscountMapping" >
-          <ConnectorPoint PointX="2.875" PointY="2.3074446614583337" />
-          <ConnectorPoint PointX="3.375" PointY="2.3074446614583337" />
+          <ConnectorPoint PointX="2.875" PointY="2.0574446614583337" />
+          <ConnectorPoint PointX="3.625" PointY="2.0574446614583337" />
+        </AssociationConnector>
+        <AssociationConnector Association="shop_model.ProductCategoryMapping" >
+          <ConnectorPoint PointX="8.75" PointY="1.25" />
+          <ConnectorPoint PointX="8.75" PointY="0.71875" />
+          <ConnectorPoint PointX="2.875" PointY="0.71875" />
         </AssociationConnector></Diagram></edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

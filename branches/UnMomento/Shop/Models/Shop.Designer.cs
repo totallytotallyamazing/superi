@@ -18,7 +18,6 @@ using System.Runtime.Serialization;
 [assembly: EdmSchemaAttribute()]
 #region Метаданные связи EDM
 
-[assembly: EdmRelationshipAttribute("shop_model", "CategoryProduct", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Shop.Models.Category), "Product", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Shop.Models.Product))]
 [assembly: EdmRelationshipAttribute("shop_model", "ProductProduct", "Product", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Shop.Models.Product), "Product1", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Shop.Models.Product))]
 [assembly: EdmRelationshipAttribute("shop_model", "ProductAttributeProductAttributeValue", "ProductAttribute", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Shop.Models.ProductAttribute), "ProductAttributeValue", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Shop.Models.ProductAttributeValue))]
 [assembly: EdmRelationshipAttribute("shop_model", "ProductProductImage", "Product", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Shop.Models.Product), "ProductImage", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Shop.Models.ProductImage))]
@@ -31,6 +30,7 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("shop_model", "FK_ProductVariant_ProductVariant", "Product", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Shop.Models.Product), "ProductVariant", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Shop.Models.ProductVariant))]
 [assembly: EdmRelationshipAttribute("shop_model", "BrandDiscountMapping", "Brand", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Shop.Models.Brand), "Discount", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Shop.Models.Discount))]
 [assembly: EdmRelationshipAttribute("shop_model", "CategoryDiscountMapping", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Shop.Models.Category), "Discount", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Shop.Models.Discount))]
+[assembly: EdmRelationshipAttribute("shop_model", "ProductCategoryMapping", "Product", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Shop.Models.Product), "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Shop.Models.Category))]
 
 #endregion
 
@@ -713,28 +713,6 @@ namespace Shop.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("shop_model", "CategoryProduct", "Product")]
-        public EntityCollection<Product> Products
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Product>("shop_model.CategoryProduct", "Product");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Product>("shop_model.CategoryProduct", "Product", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// Нет доступной документации по метаданным.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("shop_model", "CategoryCategory", "Category1")]
         public EntityCollection<Category> Categories
         {
@@ -829,6 +807,28 @@ namespace Shop.Models
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Discount>("shop_model.CategoryDiscountMapping", "Discount", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// Нет доступной документации по метаданным.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("shop_model", "ProductCategoryMapping", "Product")]
+        public EntityCollection<Product> Products
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Product>("shop_model.ProductCategoryMapping", "Product");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Product>("shop_model.ProductCategoryMapping", "Product", value);
                 }
             }
         }
@@ -1397,44 +1397,6 @@ namespace Shop.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("shop_model", "CategoryProduct", "Category")]
-        public Category Category
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("shop_model.CategoryProduct", "Category").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("shop_model.CategoryProduct", "Category").Value = value;
-            }
-        }
-        /// <summary>
-        /// Нет доступной документации по метаданным.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<Category> CategoryReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("shop_model.CategoryProduct", "Category");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Category>("shop_model.CategoryProduct", "Category", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// Нет доступной документации по метаданным.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("shop_model", "ProductProduct", "Product1")]
         public EntityCollection<Product> SimilarProduct
         {
@@ -1617,6 +1579,28 @@ namespace Shop.Models
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ProductVariant>("shop_model.FK_ProductVariant_ProductVariant", "ProductVariant", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// Нет доступной документации по метаданным.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("shop_model", "ProductCategoryMapping", "Category")]
+        public EntityCollection<Category> Categories
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Category>("shop_model.ProductCategoryMapping", "Category");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Category>("shop_model.ProductCategoryMapping", "Category", value);
                 }
             }
         }

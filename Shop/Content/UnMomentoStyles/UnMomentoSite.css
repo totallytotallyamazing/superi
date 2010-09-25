@@ -35,7 +35,7 @@
     #all {width: 1000px; margin: 0px auto; background: #fff;}
     #mainBkg {width: 1000px; background: url('./img/allBkg.gif') no-repeat; background-position: bottom; padding-bottom: 45px;}      
     
-    #contentWrapper{padding:0 70px 0 75px;}
+    #contentWrapper{padding:0 70px 0 75px; min-height:600px;}
     
     
     /*шапка*/    
@@ -58,7 +58,7 @@
     #txtBlkGift {padding: 8px 0px 0px 0px;}
     #bubReason {margin-left: 5px; margin-top: 20px; height: 47px; width: 135px; background: url('./img/bubbleReason.gif') no-repeat; line-height: 35px;}
     #reasonMenu {margin-left: 20px; margin-top: 5px; width:130px;}
-    #reasonMenu div, #giftMenu div{padding-bottom:5px;}
+    #reasonMenu div, #giftMenu div{padding-bottom:15px; line-height:12px;}
     #txtBlkReason {padding: 6px 0px 6px 0px;}
     #bubAndWe {margin-left: 5px; margin-top: 15px; height: 47px; width: 135px; background: url('./img/bubbleReason.png') no-repeat; line-height: 18px;}
     #txtBlkAndWe {padding: 20px 0px 0px 15px;}
@@ -121,11 +121,6 @@
     #pagePic{float: left; padding: 28px 0px 0px 33px; width: 89px;position:absolute;} 
     #pageName {padding: 58px 0px 0px 125px;}
     
-    #item1, #item2, #item3, #item4 {width: 196px; margin-bottom:50px;}
-    #item1 img, #item2 img, #item3 img, #item4 img{ border: 1px solid #999999;}
-    #item1, #item3,#item2, #item4  {float: left;}
-    #item1, #item3{margin-right:60px;}
-    #item1Txt, #item2Txt, #item3Txt, #item4Txt {padding: 10px 0px 0px 10px; width: 196px;}
     #pager {padding-top: 30px; }
          
     /*центр страници заказов*/     

@@ -190,6 +190,7 @@
     <Content Include="Content\UnMomentoStyles\img\top_bkg.gif" />
     <Content Include="Content\UnMomentoStyles\img\tree.gif" />
     <Content Include="Content\UnMomentoStyles\img\wonderingFace.gif" />
+    <Content Include="Content\UnMomentoStyles\products.css" />
     <Content Include="Content\UnMomentoStyles\UnMomentoSite.css" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\jquery.fancybox.js" />

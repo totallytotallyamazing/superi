@@ -141,16 +141,14 @@ namespace Shop.Models
         /// </summary>
         /// <param name="id">Исходное значение свойства Id.</param>
         /// <param name="date">Исходное значение свойства Date.</param>
-        /// <param name="language">Исходное значение свойства Language.</param>
         /// <param name="name">Исходное значение свойства Name.</param>
         /// <param name="title">Исходное значение свойства Title.</param>
         /// <param name="type">Исходное значение свойства Type.</param>
-        public static Article CreateArticle(global::System.Int32 id, global::System.DateTime date, global::System.String language, global::System.String name, global::System.String title, global::System.Int32 type)
+        public static Article CreateArticle(global::System.Int32 id, global::System.DateTime date, global::System.String name, global::System.String title, global::System.Int32 type)
         {
             Article article = new Article();
             article.Id = id;
             article.Date = date;
-            article.Language = language;
             article.Name = name;
             article.Title = title;
             article.Type = type;
@@ -262,7 +260,7 @@ namespace Shop.Models
         /// <summary>
         /// Нет доступной документации по метаданным.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
         public global::System.String Language
         {
@@ -274,7 +272,7 @@ namespace Shop.Models
             {
                 OnLanguageChanging(value);
                 ReportPropertyChanging("Language");
-                _Language = StructuralObject.SetValidValue(value, false);
+                _Language = StructuralObject.SetValidValue(value, true);
                 ReportPropertyChanged("Language");
                 OnLanguageChanged();
             }

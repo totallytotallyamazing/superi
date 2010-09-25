@@ -27,7 +27,7 @@
 
 
 
-<%--
+
 <div class="tovarBox<%= additionalClass %>">
     <div class="nazva">
         <p>
@@ -59,6 +59,6 @@
         <p><%= Model.ShortDescription %></p>
         <h4><% Html.RenderPartial("Price", Model); %></h4>
     </div>
-</div>--%>
+</div>
 
 <%} %>

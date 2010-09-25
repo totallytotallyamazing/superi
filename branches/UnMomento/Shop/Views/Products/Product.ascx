@@ -14,7 +14,7 @@
 
 
 
-    <div id="productItem">
+    <div class="productItem">
         <img src="../../Content/UnMomentoStyles/img/sheep.gif" alt="Овца" />
         <div id="item1Txt">
                         
@@ -27,7 +27,7 @@
 
 
 
-
+<%--
 <div class="tovarBox<%= additionalClass %>">
     <div class="nazva">
         <p>
@@ -59,6 +59,6 @@
         <p><%= Model.ShortDescription %></p>
         <h4><% Html.RenderPartial("Price", Model); %></h4>
     </div>
-</div>
+</div>--%>
 
 <%} %>

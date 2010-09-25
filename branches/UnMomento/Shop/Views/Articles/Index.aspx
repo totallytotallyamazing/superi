@@ -5,7 +5,7 @@
     <%= ViewData["title"] %>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <div id="newsContent">
+<%--    <div id="newsContent">
         <div id="news1">
             <p class="it3">
                 16 сентября 2010 года</p>
@@ -18,8 +18,10 @@
                 ярко описал состояние евреев Речи Посполитой XVIII века, а также</p>
             <br />
         </div>
-    </div>
-    <%--<% if(Model != null)
+    </div>--%>
+
+
+    <% if(Model != null)
        foreach (var item in Model)
        {
            Html.RenderPartial("Article", item);
@@ -29,7 +31,7 @@
     <div class="adminLink">
         <%= Html.ActionLink("Создать", "AddEdit", "Articles", new { area = "Admin", type = ViewData["type"] }, null)%>
     </div>
-<%} %>--%>
+<%} %>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentTitle" runat="server">
     <div id="contName">

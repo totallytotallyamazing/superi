@@ -4,6 +4,10 @@
 	Index
 </asp:Content>
 
+<asp:Content runat="server" ContentPlaceHolderID="includes">
+    <link href="/Content/UnMomentoStyles/products.css" rel="stylesheet" type="text/css" />
+</asp:Content>
+
 <asp:Content runat="server" ContentPlaceHolderID="ContentTitle">
             <div id="contName">
                 <div id="pagePic">
@@ -16,9 +20,9 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <div id="item1">
+    <div class="productItem">
         <img src="../../Content/UnMomentoStyles/img/sheep.gif" alt="Овца" />
-        <div id="item1Txt">
+        <div class="text">
                         
             <a href="#" class="it1"> <b>Овца клонированная,</b></a>   пух и 
                 прах. Мех, шах и мат. 
@@ -26,27 +30,27 @@
             <a href="#" class="it3">Заказать »</a>
         </div>    
     </div> 
-    <div id="item2">
+    <div class="productItem">
         <img src="../../Content/UnMomentoStyles/img/elephant.gif" alt="Слон" />
-        <div id="item2Txt">
+        <div class="text">
             <a href="#" class="it1"><b>Хоботливый Чак,</b></a>  уход за 
                 ним не требует мозгов.
             <p class="it2">от 30 грн.</p>
             <a href="#" class="it3">Заказать »</a> 
         </div>    
     </div>
-        <div id="item3">
+        <div class="productItem">
         <img src="../../Content/UnMomentoStyles/img/bearItem.gif" alt="Медвед" />
-        <div id="item3Txt">
+        <div class="text">
             <a href="#" class="it1"> <b>Педо-bear,</b></a>  лучший друг твой
                 детко, кИсО. Сосёт только лапу. 
             <p class="it2">1,200 грн.</p>
             <a href="#" class="it3">Заказать »</a>
         </div>    
     </div>
-    <div id="item4">
+    <div class="productItem">
         <img src="../../Content/UnMomentoStyles/img/sheepClone.gif" alt="Овца клонированная" />
-        <div id="item4Txt">
+        <div class="text">
                         
             <a href="#" class="it1"> <b>Овца клонированная,</b></a>   пух и 
                 прах. Мех, шах и мат. 

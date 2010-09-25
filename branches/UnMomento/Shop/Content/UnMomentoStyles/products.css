@@ -1,0 +1,4 @@
+﻿    .productItem {width: 196px; margin-bottom:50px; float: left; margin-right:60px;}
+    .productItem img{ border: 1px solid #999999;}
+    .productItem .text{padding: 10px 0px 0px 10px; width: 196px;}
+    #contentWrapper{padding-right:0;}

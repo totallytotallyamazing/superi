@@ -29,7 +29,15 @@
 </asp:Content>
 
 <asp:Content runat="server" ContentPlaceHolderID="ContentTitle">
-    Вход
+    
+    <div id="contName">
+                <div id="pagePic">
+                    <img src="../../Content/UnMomentoStyles/img/bear.gif" alt="Медведь" />     
+                </div>            
+                <div id="pageName">
+                    <p class="pt1">Вход</p>            
+                </div>
+            </div>
 </asp:Content>
 
 <asp:Content runat="server" ContentPlaceHolderID="includes">

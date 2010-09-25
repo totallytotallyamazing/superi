@@ -58,14 +58,14 @@
     #txtBlkGift {padding: 8px 0px 0px 0px;}
     #bubReason {margin-left: 5px; margin-top: 20px; height: 47px; width: 135px; background: url('./img/bubbleReason.gif') no-repeat; line-height: 35px;}
     #reasonMenu {margin-left: 20px; margin-top: 5px; width:130px;}
-    #reasonMenu div, #giftMenu div{padding-bottom:15px; line-height:12px;}
+    #reasonMenu div, #giftMenu div{padding-bottom:15px; line-height:14px;}
     #txtBlkReason {padding: 6px 0px 6px 0px;}
     #bubAndWe {margin-left: 5px; margin-top: 15px; height: 47px; width: 135px; background: url('./img/bubbleReason.png') no-repeat; line-height: 18px;}
     #txtBlkAndWe {padding: 20px 0px 0px 15px;}
     
     /*правый блок*/
     #basket {height: 87px; width: 140px; margin-left: 20px; background: url('./img/basket.gif') no-repeat;}
-    #basketText {padding: 10px 0px 0px 0px;}
+    #basketText {padding: 5px 0px 0px 0px;}
     #point_basket, #point_baner, #pointNews {margin: 10px 0px 0px 80px; background: url('./img/point.gif') no-repeat; height: 22px; width: 29px;}
     #bubNews { margin-top: 10px; margin-left: 10px; height: 139px; width: 172px; height: 133px; background: url('./img/bubbleNews.gif') no-repeat;}
     #pointNews {margin-top: 0px;}
@@ -160,7 +160,7 @@
     #individual {margin: 25px 0px 0px 133px; height: 80px;}
     
     /*Новости*/
-    #newsContent {height: 640px; width: 470px; margin: 20px 0px 0px 0px;}
+    #newsContent {/*height: 640px; */width: 470px; margin: 20px 0px 0px 0px;}
     #news1 {margin-top: 10px; border-bottom: 1px solid #cc0000;}
     .imgNewsContent {margin-right: 40px;}
     

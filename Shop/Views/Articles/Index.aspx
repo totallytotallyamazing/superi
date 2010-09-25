@@ -5,27 +5,13 @@
     <%= ViewData["title"] %>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-<%--    <div id="newsContent">
-        <div id="news1">
-            <p class="it3">
-                16 сентября 2010 года</p>
-            <p class="it1">
-                <b>Зона покрытия службы расширила свои границы.</b></p>
-            <br />
-            <p class="dt3">
-                Соломон Маймон (между 1751 и 1754 — 22 ноября 1800) — немецкий философ еврейского
-                происхождения, критик Канта. Известен более всего какавтор книги воспоминаний, где
-                ярко описал состояние евреев Речи Посполитой XVIII века, а также</p>
-            <br />
-        </div>
-    </div>--%>
-
-
+<div id="newsContent">
     <% if(Model != null)
        foreach (var item in Model)
        {
            Html.RenderPartial("Article", item);
        } %>
+</div>
 <div style="clear:both"></div>
 <% if(Roles.IsUserInRole("Administrators")){ %>
     <div class="adminLink">

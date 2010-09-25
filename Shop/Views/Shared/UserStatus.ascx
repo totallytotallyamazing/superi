@@ -15,6 +15,7 @@
 <div id="basket">
     <div id="basketText">
         <p class="bt1">
+            <br />
             В Вашей <a href="/Cart" class="bt1"><b>корзинке</b></a>
             <br />
             <b class="bt2"><%= WebSession.OrderItems.Count %></b> <%= getEnding(WebSession.OrderItems.Count, "подар")%>

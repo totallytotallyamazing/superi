@@ -60,4 +60,5 @@
         <h4><% Html.RenderPartial("Price", Model); %></h4>
     </div>
 </div>
+
 <%} %>

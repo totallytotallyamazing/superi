@@ -125,7 +125,7 @@
     #item1 img, #item2 img, #item3 img, #item4 img{ border: 1px solid #999999;}
     #item1, #item3,#item2, #item4  {float: left;}
     #item1, #item3{margin-right:60px;}
-    #item1Txt, #item2Txt, #item3Txt, #item4Txt {padding: 10px 0px 0px 10px;}
+    #item1Txt, #item2Txt, #item3Txt, #item4Txt {padding: 10px 0px 0px 10px; width: 196px;}
     #pager {padding-top: 30px; }
          
     /*центр страници заказов*/     
@@ -165,7 +165,8 @@
     #individual {margin: 25px 0px 0px 133px; height: 80px;}
     
     /*Новости*/
-    #newsContent {height: 640px; width: 470px; margin: 20px 0px 0px 70px;}
+    #newsContent {height: 640px; width: 470px; margin: 20px 0px 0px 0px;}
     #news1 {margin-top: 10px; border-bottom: 1px solid #cc0000;}
     .imgNewsContent {margin-right: 40px;}
-            
+    
+   /* #productItem{width: 196px;} */       

@@ -24,3 +24,8 @@
         </p>
     </div>
 </asp:Content>
+
+<asp:Content ID="Content5" runat="server" ContentPlaceHolderID="Footer">
+    <asp:ContentPlaceHolder runat="server" ID="Footer">
+    </asp:ContentPlaceHolder>
+</asp:Content>

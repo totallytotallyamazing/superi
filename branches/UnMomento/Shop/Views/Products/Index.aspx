@@ -5,7 +5,16 @@
 </asp:Content>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentTitle" runat="server">
-<%= ViewData["title"] %>
+ <div id="contName">
+                <div id="pagePic">
+                    <img src="../../Content/UnMomentoStyles/img/bear.gif" alt="Медведь" />     
+                </div>            
+                <div id="pageName">
+                    <p class="pt1"><%= ViewData["title"] %>, <span class="pt2" >страница 1</span> </p>            
+                </div>
+            </div>
+
+
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
@@ -22,4 +31,10 @@
 
 <asp:Content ID="Content3" ContentPlaceHolderID="includes" runat="server">
     <link rel="Stylesheet" href="/Content/catalog.css" />
+</asp:Content>
+
+<asp:Content ID="Content5" runat="server" ContentPlaceHolderID="Footer">
+    <div id="pager">
+                <p class="pgt1">1 ... <a href="#" class="pgt1">2</a> ... <a href="#" class="pgt1">3</a></p>
+            </div>
 </asp:Content>

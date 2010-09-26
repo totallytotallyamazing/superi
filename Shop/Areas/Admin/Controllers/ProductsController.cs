@@ -27,7 +27,7 @@ namespace Shop.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public ActionResult AddEdit(int? id, int cId, int? bId)
+        public ActionResult AddEdit(int? id, int? cId, int? bId)
         {
             ViewData["cId"] = cId;
             ViewData["bId"] = bId;
@@ -53,7 +53,7 @@ namespace Shop.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddEdit(Product product, int? Id, int cId, int? bId, int? brandId)
+        public ActionResult AddEdit(Product product, int? Id, int? cId, int? bId, int? brandId)
         {
             using (ShopStorage context = new ShopStorage())
             {
@@ -83,6 +83,8 @@ namespace Shop.Areas.Admin.Controllers
                 }
                 else
                 {
+                    if (!cId.HasValue)
+                        throw new ArgumentNullException("cId");
                     EntityKey category = new EntityKey("ShopStorage.Categories", "Id", cId);
 
                     if (brandId.HasValue)

@@ -82,6 +82,7 @@
     <Compile Include="Areas\Admin\Controllers\CategoriesController.cs" />
     <Compile Include="Areas\Admin\Controllers\ContentController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductCategoriesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductVariantsController.cs" />
     <Compile Include="Areas\Admin\Controllers\SettingsController.cs" />
     <Compile Include="Controllers\CaptchaController.cs" />
     <Compile Include="Controllers\GraphicsController.cs" />
@@ -157,6 +158,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Views\ProductCategories\Index.ascx" />
+    <Content Include="Areas\Admin\Views\ProductVariants\AddEdit.ascx" />
+    <Content Include="Areas\Admin\Views\ProductVariants\Index.aspx" />
     <Content Include="Content\UnMomentoStyles\img\allBkg.gif" />
     <Content Include="Content\UnMomentoStyles\img\baner.gif" />
     <Content Include="Content\UnMomentoStyles\img\basket.gif" />

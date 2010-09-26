@@ -210,18 +210,18 @@ namespace Shop.Models
         /// <summary>
         /// Нет доступной документации по метаданным.
         /// </summary>
-        public ObjectSet<ProductVariant> ProductVariant
+        public ObjectSet<ProductVariant> ProductVariants
         {
             get
             {
-                if ((_ProductVariant == null))
+                if ((_ProductVariants == null))
                 {
-                    _ProductVariant = base.CreateObjectSet<ProductVariant>("ProductVariant");
+                    _ProductVariants = base.CreateObjectSet<ProductVariant>("ProductVariants");
                 }
-                return _ProductVariant;
+                return _ProductVariants;
             }
         }
-        private ObjectSet<ProductVariant> _ProductVariant;
+        private ObjectSet<ProductVariant> _ProductVariants;
 
         #endregion
         #region Методы AddTo
@@ -291,11 +291,11 @@ namespace Shop.Models
         }
     
         /// <summary>
-        /// Устаревший метод для добавления новых объектов в набор EntitySet ProductVariant. Взамен можно использовать метод .Add связанного свойства ObjectSet&lt;T&gt;.
+        /// Устаревший метод для добавления новых объектов в набор EntitySet ProductVariants. Взамен можно использовать метод .Add связанного свойства ObjectSet&lt;T&gt;.
         /// </summary>
-        public void AddToProductVariant(ProductVariant productVariant)
+        public void AddToProductVariants(ProductVariant productVariant)
         {
-            base.AddObject("ProductVariant", productVariant);
+            base.AddObject("ProductVariants", productVariant);
         }
 
         #endregion

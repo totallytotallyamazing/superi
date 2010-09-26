@@ -8,7 +8,7 @@
     <% if (Roles.IsUserInRole("Administrators"))
        { %>
     <div class="adminLink">
-        <%= Html.ActionLink("Редактировать", "AddEdit", "Products", new { area = "Admin", id = Model.Id, cId = Model.Category.Id, bId = (Model.Brand != null) ? Model.Brand.Id : 0 }, null).ToString()%> | 
+        <%= Html.ActionLink("Редактировать", "AddEdit", "Products", new { area = "Admin", id = Model.Id, bId = (Model.Brand != null) ? Model.Brand.Id : 0 }, null).ToString()%> | 
         <%= Html.ActionLink("Удалить", "Delete", "Products", new { area = "Admin", id = Model.Id }, new { onclick="return confirm('Вы уверены?')" }).ToString()%>
     </div>
     <%} %>

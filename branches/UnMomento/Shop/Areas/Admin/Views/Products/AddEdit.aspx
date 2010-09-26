@@ -21,17 +21,10 @@
 
             $(".fancyAdmin").fancybox({showCloseButton:true, hideOnOverlayClick:false, hideOnContentClick:false});
         });
-        
-        
-        
     </script>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-
-
-    <% Html.EnableClientValidation(); %>
-
         <%= Html.ValidationSummary(true) %>
 
         <span class="sectionTitle">

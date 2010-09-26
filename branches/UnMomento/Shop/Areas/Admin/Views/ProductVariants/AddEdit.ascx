@@ -1,92 +1,72 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<Shop.Models.ProductVariant>" %>
+<%@ Import Namespace="Dev.Mvc.Helpers" %>
 
-    <% using (Html.BeginForm()) {%>
-        <%: Html.ValidationSummary(true) %>
-        
-        <fieldset>
-            <legend>Fields</legend>
-            
-            <div class="editor-label">
-                <%: Html.LabelFor(model => model.Id) %>
-            </div>
-            <div class="editor-field">
-                <%: Html.TextBoxFor(model => model.Id) %>
-                <%: Html.ValidationMessageFor(model => model.Id) %>
-            </div>
-            
-            <div class="editor-label">
-                <%: Html.LabelFor(model => model.Name) %>
-            </div>
-            <div class="editor-field">
-                <%: Html.TextBoxFor(model => model.Name) %>
-                <%: Html.ValidationMessageFor(model => model.Name) %>
-            </div>
-            
-            <div class="editor-label">
-                <%: Html.LabelFor(model => model.Price) %>
-            </div>
-            <div class="editor-field">
-                <%: Html.TextBoxFor(model => model.Price) %>
-                <%: Html.ValidationMessageFor(model => model.Price) %>
-            </div>
-            
-            <div class="editor-label">
-                <%: Html.LabelFor(model => model.OldPrice) %>
-            </div>
-            <div class="editor-field">
-                <%: Html.TextBoxFor(model => model.OldPrice) %>
-                <%: Html.ValidationMessageFor(model => model.OldPrice) %>
-            </div>
-            
-            <div class="editor-label">
-                <%: Html.LabelFor(model => model.Published) %>
-            </div>
-            <div class="editor-field">
-                <%: Html.TextBoxFor(model => model.Published) %>
-                <%: Html.ValidationMessageFor(model => model.Published) %>
-            </div>
-            
-            <div class="editor-label">
-                <%: Html.LabelFor(model => model.ShortDescripton) %>
-            </div>
-            <div class="editor-field">
-                <%: Html.TextBoxFor(model => model.ShortDescripton) %>
-                <%: Html.ValidationMessageFor(model => model.ShortDescripton) %>
-            </div>
-            
-            <div class="editor-label">
-                <%: Html.LabelFor(model => model.Description) %>
-            </div>
-            <div class="editor-field">
-                <%: Html.TextBoxFor(model => model.Description) %>
-                <%: Html.ValidationMessageFor(model => model.Description) %>
-            </div>
-            
-            <div class="editor-label">
-                <%: Html.LabelFor(model => model.SortOrder) %>
-            </div>
-            <div class="editor-field">
-                <%: Html.TextBoxFor(model => model.SortOrder) %>
-                <%: Html.ValidationMessageFor(model => model.SortOrder) %>
-            </div>
-            
-            <div class="editor-label">
-                <%: Html.LabelFor(model => model.Image) %>
-            </div>
-            <div class="editor-field">
-                <%: Html.TextBoxFor(model => model.Image) %>
-                <%: Html.ValidationMessageFor(model => model.Image) %>
-            </div>
-            
-            <p>
-                <input type="submit" value="Save" />
-            </p>
-        </fieldset>
+<% using (Ajax.BeginForm(new AjaxOptions { OnBegin = "variantUpdateStarted", OnSuccess = "variantUpdated" })){%>
+    <% Html.EnableClientValidation(); %>
+               <table>
+                <tr>
+                    <td class="labelCell">
+                        <%= Html.LabelFor(model => model.Name) %>
+                    </td>                
+                    <td>
+                        <%= Html.TextBoxFor(model => model.Name) %>
+                    </td>
+                    <td><%= Html.ValidationMessageFor(model => model.Name) %></td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <div class="labelCell">
+                            <%= Html.LabelFor(model => model.Image)%>
+                        </div>
+                            <div class="editor-field">
+                                <input type="file" name="image" />
+                            </div>
+                        <div style="margin-left:101px">
+                            <% if (Model != null && !string.IsNullOrWhiteSpace(Model.Image)) %>
+                            <%= Html.CachedImage("~/Content/ProductImages/", Model.Image, "thumbnail2", Model.Name) %>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="labelCell">
+                        <%= Html.LabelFor(model => model.SortOrder) %>
+                    </td>                
+                    <td>
+                        <%= Html.TextBoxFor(model => model.SortOrder) %>
+                    </td>
+                    <td><%= Html.ValidationMessageFor(model => model.SortOrder) %></td>
+                </tr>
+                <tr>
+                    <td class="labelCell">
+                        <%= Html.LabelFor(model => model.Published) %>
+                    </td>                
+                    <td>
+                        <%= Html.CheckBoxFor(model => model.Published)%>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="labelCell" valign="bottom">
+                        <%= Html.LabelFor(model => model.Price) %>
+                    </td>                
+                    <td valign="bottom">
+                        <%= Html.TextBoxFor(model => model.Price) %>
+                    </td>
+                    <td valign="bottom">
+                        <div style="width:35px; float:left; height:20px;">
+                            <%= Html.ValidationMessageFor(model => model.Price) %>
+                        </div>
+                        <span class="labelCell">
+                            <%= Html.LabelFor(model => model.OldPrice) %>
+                        </span>
+                        <span class="comments">(не обязательно)</span>
+                        <%= Html.TextBoxFor(model => model.OldPrice) %>
+                        <%= Html.ValidationMessageFor(model => model.OldPrice) %>
+                    </td>
+                </tr>
+            </table>
+            <input type="submit" value="Сохранить" />
+<% } %>
 
-    <% } %>
-
-    <div>
-        <%: Html.ActionLink("Back to List", "Index") %>
-    </div>
 
 

@@ -26,7 +26,7 @@ img{border:0;}
 #playerPresentation .controls a{cursor:pointer;}
 #playerPresentation .controls a.disabled{cursor:default;}
 #playerPresentation .controls a.disabled img{opacity:0.5; filter: alpha(opacity=50);  moz-opacity:0.5;}
-#header{width:835px; height:406px; border:1px solid white; background:transparent url(img/headBg.jpg) no-repeat}
+#header{width:835px; height:406px; border:1px solid white; background:transparent url(topImages/top0.jpg) no-repeat}
 
 #logo{position:absolute; width:261px; height:101px; left:570px; top:380px;}
 
@@ -104,3 +104,7 @@ a.bottomLogo{height:37px; float:left; display:block;}
 .bottomLogo.vkLogo{width:100px; background:black url(img/vkLogo.jpg) no-repeat 0 -37px;}
 .bottomLogo.twitterLogo{width:103px; background:black url(img/twitterLogo.jpg) no-repeat 0 -37px;}
 a.bottomLogo:hover{background-position:0 0;}
+
+#officialSite{position:relative; line-height:11px; height:0px; color:#909090; z-index:800; left:130px; top:5px; width:60px;}
+#officialSite #official{font-size:13px}
+#officialSite #site{font-size:19px; text-align:right;}

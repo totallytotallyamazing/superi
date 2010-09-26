@@ -99,8 +99,12 @@
         </div>
         <div id="header">
             <div id="logo">
+                <div id="officialSite">
+                    <div id="official">официальный</div>
+                    <div id="site">сайт</div>
+                </div>
                 <%= Html.ActionLink("[Image]", "IndexContent", "Home")
-                    .Replace("[Image]", Html.Image("/Content/img/logo.jpg"))%>
+                    .Replace("[Image]", Html.Image("/Content/img/logo.png"))%>
             </div>
         </div>
         <div id="menuContainer">

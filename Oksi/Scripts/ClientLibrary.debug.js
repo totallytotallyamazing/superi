@@ -798,6 +798,10 @@ ClientLibrary.PageManager = function ClientLibrary_PageManager() {
     /// </field>
     /// <field name="_asyncRequestHandler$1" type="Sys.Mvc.AsyncRequestHandler">
     /// </field>
+    /// <field name="_currentTopImage$1" type="Number" integer="true">
+    /// </field>
+    /// <field name="_imagesNumber$1" type="Number" integer="true" static="true">
+    /// </field>
     ClientLibrary.PageManager.initializeBase(this);
 }
 ClientLibrary.PageManager.get_current = function ClientLibrary_PageManager$get_current() {
@@ -820,6 +824,7 @@ ClientLibrary.PageManager.asyncRequest = function ClientLibrary_PageManager$asyn
 ClientLibrary.PageManager.prototype = {
     _linkNavigation$1: false,
     _asyncRequestHandler$1: null,
+    _currentTopImage$1: 0,
     
     get_isAuthenticated: function ClientLibrary_PageManager$get_isAuthenticated() {
         /// <value type="Boolean"></value>
@@ -853,11 +858,20 @@ ClientLibrary.PageManager.prototype = {
         this._restoreSateFromHistory$1(state);
     },
     
+    _updateTopImage$1: function ClientLibrary_PageManager$_updateTopImage$1() {
+        this._currentTopImage$1++;
+        if (this._currentTopImage$1 >= ClientLibrary.PageManager._imagesNumber$1) {
+            this._currentTopImage$1 = 0;
+        }
+        jQuery('#header').css('background', 'transparent url(/Content/topImages/top' + this._currentTopImage$1 + '.jpg) no-repeat');
+    },
+    
     _createHistoryPoint$1: function ClientLibrary_PageManager$_createHistoryPoint$1(target, options) {
         /// <param name="target" type="Object" domElement="true">
         /// </param>
         /// <param name="options" type="ClientLibrary.AjaxOptions">
         /// </param>
+        this._updateTopImage$1();
         var result = {};
         result['url'] = target.getAttribute('href');
         Sys.Application.addHistoryPoint(result);
@@ -1310,6 +1324,7 @@ Jquery.JCarouselConfig.registerClass('Jquery.JCarouselConfig');
 Jquery.JPlayerOptions.registerClass('Jquery.JPlayerOptions');
 ClientLibrary.AudioPlayer._instance$2 = null;
 ClientLibrary.PageManager._instanse$1 = null;
+ClientLibrary.PageManager._imagesNumber$1 = 2;
 
 // ---- Do not remove this footer ----
 // This script was generated using Script# v0.5.5.0 (http://projects.nikhilk.net/ScriptSharp)

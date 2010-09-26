@@ -12,7 +12,6 @@
            Html.RenderPartial("Article", item);
        } %>
 </div>
-<div style="clear:both"></div>
 <% if(Roles.IsUserInRole("Administrators")){ %>
     <div class="adminLink">
         <%= Html.ActionLink("Создать", "AddEdit", "Articles", new { area = "Admin", type = ViewData["type"] }, null)%>
@@ -30,9 +29,6 @@
             </p>
         </div>
     </div>
-
-
-    <%--<%= ViewData["title"] %>--%>
 </asp:Content>
 
 <asp:Content ID="Content5" runat="server" ContentPlaceHolderID="Footer">

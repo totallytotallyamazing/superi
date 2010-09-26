@@ -569,10 +569,10 @@
           <FunctionImport Name="searchProducts" ReturnType="Collection(Int32)">
           <Parameter Name="searchString" Mode="In" Type="String" />
           </FunctionImport>
-          <EntitySet Name="ProductVariant" EntityType="shop_model.ProductVariant" />
+          <EntitySet Name="ProductVariants" EntityType="shop_model.ProductVariant" />
           <AssociationSet Name="FK_ProductVariant_ProductVariant" Association="shop_model.FK_ProductVariant_ProductVariant">
             <End Role="Product" EntitySet="Products" />
-            <End Role="ProductVariant" EntitySet="ProductVariant" />
+            <End Role="ProductVariant" EntitySet="ProductVariants" />
           </AssociationSet>
           <AssociationSet Name="BrandDiscountMapping" Association="shop_model.BrandDiscountMapping">
             <End Role="Brand" EntitySet="Brands" />
@@ -878,7 +878,7 @@
               <ScalarProperty Name="Id" ColumnName="BrandId" /></EndProperty>
             <Condition ColumnName="BrandId" IsNull="false" /></AssociationSetMapping>
           <FunctionImportMapping FunctionImportName="searchProducts" FunctionName="shop_model.Store.searchProducts" />
-          <EntitySetMapping Name="ProductVariant">
+          <EntitySetMapping Name="ProductVariants">
             <EntityTypeMapping TypeName="shop_model.ProductVariant">
               <MappingFragment StoreEntitySet="ProductVariant">
                 <ScalarProperty Name="Image" ColumnName="Image" />

@@ -15,6 +15,8 @@ namespace ClientLibrary
         private static PageManager instanse;
         private bool linkNavigation = false;
         AsyncRequestHandler asyncRequestHandler = null;
+        int currentTopImage = 0;
+        const int imagesNumber = 2;
 
         public bool IsAuthenticated
         {
@@ -64,8 +66,17 @@ namespace ClientLibrary
         }
 
         #region Private Methods
+        void UpdateTopImage()
+        {
+            currentTopImage++;
+            if (currentTopImage >= imagesNumber)
+                currentTopImage = 0;
+            JQueryProxy.jQuery("#header").css("background", "transparent url(/Content/topImages/top" + currentTopImage + ".jpg) no-repeat");
+        }
+
         void CreateHistoryPoint(AnchorElement target, AjaxOptions options)
         {
+            UpdateTopImage();
             Dictionary result = new Dictionary();
             result["url"] = target.GetAttribute("href");
             Application.AddHistoryPoint(result);

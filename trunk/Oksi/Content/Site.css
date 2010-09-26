@@ -105,6 +105,6 @@ a.bottomLogo{height:37px; float:left; display:block;}
 .bottomLogo.twitterLogo{width:103px; background:black url(img/twitterLogo.jpg) no-repeat 0 -37px;}
 a.bottomLogo:hover{background-position:0 0;}
 
-#officialSite{position:relative; line-height:11px; height:0px; color:#909090; z-index:800; left:130px; top:5px; width:60px;}
+#officialSite{position:relative; line-height:11px; height:0px; color:White; z-index:800; left:130px; top:5px; width:60px;}
 #officialSite #official{font-size:13px}
 #officialSite #site{font-size:19px; text-align:right;}

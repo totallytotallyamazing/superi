@@ -146,6 +146,7 @@
     </Compile>
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductAttributeValueValidation.cs" />
+    <Compile Include="Models\ProductVariant.cs" />
     <Compile Include="Models\ProfileCommon.cs" />
     <Compile Include="Models\Shop.Designer.cs">
       <AutoGen>True</AutoGen>

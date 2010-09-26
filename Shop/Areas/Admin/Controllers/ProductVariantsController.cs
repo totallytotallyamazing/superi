@@ -19,12 +19,19 @@ namespace Shop.Areas.Admin.Controllers
             }
         }
 
+        [OutputCache(NoStore = false, Duration = 1, VaryByParam = "*")]
+        [HttpGet]
         public ActionResult AddEdit(int? id)
         {
             if (id.HasValue)
                 using (ShopStorage context = new ShopStorage())
                     return View(context.ProductVariants.First(pv => pv.Id == id.Value));
             return View();
+        }
+
+        [HttpPost]
+        public void AddEdit(FormCollection form)
+        { 
         }
     }
 }

@@ -29,6 +29,8 @@
 
 
 <div class="tovarBox<%= additionalClass %>">
+
+
     <div class="nazva">
         <p>
             <%= Html.ActionLink("™" + ((Model.Brand != null) ? Model.Brand.Name : string.Empty), "Index", new { controller = "Products", area = "", id = WebSession.CurrentCategory, brandId = (Model.Brand != null) ? Model.Brand.Id : (int?)null })%>

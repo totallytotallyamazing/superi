@@ -53,12 +53,26 @@
         <% Html.RenderPartial("CartContent", Model); %>
     </div>
     <div id="proceedContainer">
-        Все верно,&nbsp;&nbsp;&nbsp;<%= Html.ActionLink("оформляем!", "Authorize") %>
+        Все верно,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= Html.ActionLink("оформляем!", "Authorize") %>
     </div>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentTitle" runat="server">
-    <% Html.RenderPartial("CartBreadCrumbs", 0); %>
+<div id="contName">
+                <div id="pagePic">
+                    <img src="../../Content/UnMomentoStyles/img/bear.gif" alt="Медведь" />     
+                </div>  
+    <div id="pageName">
+        <p class="pt1">У вас в корзинке:</p>            
+    </div>
+</div>
+    <%--<% Html.RenderPartial("CartBreadCrumbs", 0); %>--%>
 </asp:Content>
 
+
+<asp:Content ID="Content5" runat="server" ContentPlaceHolderID="Footer">
+    <div id="pager" style="padding-left:20px;">
+                <p class="pgt1"><a href="#" class="pgt1">« Вернуться</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" class="pgt1">Продолжить »</a></p>
+        </div>
+</asp:Content>
 

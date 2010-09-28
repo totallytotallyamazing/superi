@@ -15,20 +15,21 @@
 
 
     <div class="productItem">
-        <img src="../../Content/UnMomentoStyles/img/sheep.gif" alt="Овца" />
+  
+       <img src="../../Content/UnMomentoStyles/img/sheep.gif" alt="Овца" />
         <div id="item1Txt">
                         
-            <a href="#" class="it1"> <b>Овца клонированная,</b></a>   пух и 
-                прах. Мех, шах и мат. 
-            <p class="it2">1,200 грн.</p>
+            <span class="it1"> <b><%= productClickLink.Replace("[IMAGE]", Model.Name)%>,</b></span>   
+                <%= Model.ShortDescription %> 
+            <p class="it2"><% Html.RenderPartial("Price", Model); %></p>
             <a href="#" class="it3">Заказать »</a>
         </div>    
     </div> 
 
+     
 
 
-
-<div class="tovarBox<%= additionalClass %>">
+<%--<div class="tovarBox<%= additionalClass %>">
 
 
     <div class="nazva">
@@ -42,6 +43,7 @@
             if (img != null)
             {
                %>
+               
         <%= Html.ActionLink("[IMAGE]", "Show", new { id = Model.Id }).ToString()
             .Replace("[IMAGE]",
                         Html.CachedImage("~/Content/ProductImages", img.ImageSource, "thumbnail2", Model.Name)) + "<br />"%>
@@ -55,12 +57,13 @@
             <div class="new">
             </div>
         <%} %>
+        jg,fhj,fhj,fhj.,fhj.fhk.
     </div>
     <div class="itemDesc">
         <div class="productName"><%= productClickLink.Replace("[IMAGE]", Model.Name) %></div>
         <p><%= Model.ShortDescription %></p>
         <h4><% Html.RenderPartial("Price", Model); %></h4>
     </div>
-</div>
+</div>--%>
 
 <%} %>

@@ -12,7 +12,6 @@ namespace Dev.Helpers
     public static class WebSession
     {
         private static SiteSettings settings = null;
-        private static Order order = null;
 
         static HttpSessionState Session
         {
@@ -43,9 +42,7 @@ namespace Dev.Helpers
             {
                 if (Session["order"] == null)
                 {
-                    if (order == null)
-                        order = new Order { UniqueId = Guid.NewGuid().ToString() };
-                    Session["order"] = order;
+                    Session["order"] = new Order { UniqueId = Guid.NewGuid().ToString() };
                 }
                 return (Shop.Models.Order)Session["order"];
             }
@@ -123,18 +120,19 @@ namespace Dev.Helpers
         public static void ClearOrder()
         {
             Session.Remove("order");
+            Session.Remove("orderItems");
+            Session["orderItems"] = null;
             Session["order"] = null;
-            order = null;
         }
 
         public static bool IsBillingInfoFilled()
-        { 
-            return (order!=null && !string.IsNullOrEmpty(order.BillingPhone) && !string.IsNullOrEmpty(order.BillingName));
+        {
+            return (Order != null && !string.IsNullOrEmpty(Order.BillingPhone) && !string.IsNullOrEmpty(Order.BillingName));
         }
 
         public static bool IsDeliveryInfoFilled()
         {
-            return (order != null && !string.IsNullOrEmpty(order.DeliveryPhone) && !string.IsNullOrEmpty(order.DeliveryName));
+            return (Order != null && !string.IsNullOrEmpty(Order.DeliveryPhone) && !string.IsNullOrEmpty(Order.DeliveryName));
         }
 
         public static void ClearSettings() { settings = null; }

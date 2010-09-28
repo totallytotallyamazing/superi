@@ -113,7 +113,8 @@
                         Бренд
                     </td>                
                     <td>
-                        <%= Html.DropDownList("brandId", new SelectList((IEnumerable)ViewData["Brands"], "Id", "Name")) %>
+                        
+                        <%= Html.DropDownList("brandId", (IEnumerable<SelectListItem>)ViewData["Brands"]) %>
                     </td>
                     <td class="explanation">
                         Добавить бренд можно, перейдя в <%= Html.ActionLink("область редактирования брендов", "Index", new { controller="Brands", area="Admin"})%>, находящуюся в разделе "О брендах"

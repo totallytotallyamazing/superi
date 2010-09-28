@@ -127,11 +127,11 @@
     #ctrOrder {margin-left: auto; margin-right: auto; width: 602px; height: 1316px; 
          background: url('./img/mainBoxOrder.png') no-repeat;} 
     #pageNameOrder {padding: 58px 0px 0px 40px;}
-    #OrderItems {margin: 70px 0px 0px 75px;}
+    #OrderItems {margin: 70px 0px 0px 0px;}
     #orderItem {margin-top: 30px;}
     #imgOrderItem {float: left; width: 98px; height: 99px; border: 1px solid #999999;}
-    #priceOrderItem {float: right; margin: 25px 95px 0px 0px;}
-    #txtOrderItem {margin-left: 125px; width: 230px; height: 99px; text-align: justify; overflow: hidden;}
+    #priceOrderItem {float: right; margin: 25px 0px 0px 0px;}
+    #txtOrderItem {margin-left: 125px; width: 220px; height: 99px; text-align: justify; overflow: hidden;}
     #nameOrderItem {margin-bottom: 8px;}
     #removeOrderItem {margin-top: 10px;}
     #crossOrderItem {float: left;}
@@ -152,7 +152,7 @@
     
     /*О товаре*/    
     #imgProduct {height: 359px; width: 358px; margin-left: auto; margin-right: auto; border: 1px solid #999999;}
-    #productMenu {margin-top: 10px; height: 50px; width: 240px; margin-left: auto; margin-right: auto;}
+    #productMenu {margin-top: 10px; /*height: 50px;*/ width: 240px; margin-left: auto; margin-right: auto;}
     #smalProduct {float: right;}
     #bigProduct {float: left;}
     #midProduct {/*margin-left: auto; margin-right: auto; width: 148px;*/}

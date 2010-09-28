@@ -49,7 +49,7 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <div id="cartContainer">
+    <div id="OrderItems">
         <% Html.RenderPartial("CartContent", Model); %>
     </div>
     <div id="proceedContainer">

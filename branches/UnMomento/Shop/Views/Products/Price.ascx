@@ -6,11 +6,11 @@
         <%= Html.RenderPrice(Model.OldPrice.Value, WebSession.Currency, 0, ",") %>
     </span>
     <span class="price">
-        <%= Html.RenderPrice(Model.Price, WebSession.Currency, 0, ",") %>
+        <%= Html.RenderPrice(Model.Price, WebSession.Currency, 0, ",")%>
     </span>
 <%} %>
 <%else{ %>
     <span class="price single">    
-        <%= Html.RenderPrice(Model.Price, WebSession.Currency, 0, ",") %>
+        <%= Html.RenderPrice(Model.Price, WebSession.Currency, 0, ",")%>
     </span>
 <%} %>

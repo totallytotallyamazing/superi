@@ -40,7 +40,9 @@
 
 <div id="orderItem">
         <div id="priceOrderItem">
+        <div class="price">
             <p class="ort1"><%= Html.RenderPrice(item.Price * item.Quantity, WebSession.Currency, 0, ",") %></p>
+        </div>
         </div>
         <div id="imgOrderItem">
             <%= Html.CachedImage("~/Content/ProductImages", item.Image, "cartThumb", "")%>
@@ -65,9 +67,13 @@
 
  <%} %>
  <div id="payment">
-        <p class="opt1">=</p>         <p class="opt2"><%= Html.RenderPrice((float)ViewData["totalAmount"], WebSession.Currency, 0, ",") %>  </p>        <p class="opt3">к оплате</p>
+        <p class="opt1">=</p>         <div class="price">        <p class="opt2"><%= Html.RenderPrice((float)ViewData["totalAmount"], WebSession.Currency, 0, ",") %>  </p>        </div>        <p class="opt3">к оплате</p>
         
     </div>
+
+
+
+
 
    <%-- <table id="cartContents">
     <tr>

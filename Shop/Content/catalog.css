@@ -17,7 +17,7 @@
 #next a:hover{ background-color:#3bb64b;}
 
 
-.oldPrice{text-decoration:line-through; color:Red; display:block;}
-span.price{color:#009933;}
+.oldPrice{text-decoration:line-through; /*color:Red;*/ /*display:block;*/}
+span.price{/*color:#009933;*/}
 
-span.price.single{color:#ff6600;}
+span.price.single{/*color:#ff6600;*/}

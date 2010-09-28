@@ -6,29 +6,27 @@
 <%if (Model.Published || isAdmin)
   { %>
 <%
-      string additionalClass = string.Empty;
-    if(!Model.Published && isAdmin) 
+    string additionalClass = string.Empty;
+    if (!Model.Published && isAdmin)
         additionalClass = " translucent";
     string productClickLink = Html.ActionLink("[IMAGE]", "Show", new { id = Model.Id }).ToString();
 %>
-
-
-
-    <div class="productItem">
-  
-       <img src="../../Content/UnMomentoStyles/img/sheep.gif" alt="Овца" />
-        <div id="item1Txt">
-                        
-            <span class="it1"> <b><%= productClickLink.Replace("[IMAGE]", Model.Name)%>,</b></span>   
-                <%= Model.ShortDescription %> 
-            <p class="it2"><% Html.RenderPartial("Price", Model); %></p>
-            <a href="#" class="it3">Заказать »</a>
-        </div>    
-    </div> 
-
-     
-
-
+<div class="productItem">
+    <img src="../../Content/UnMomentoStyles/img/sheep.gif" alt="Овца" />
+    <div id="item1Txt">
+        <span class="it1"><b>
+            <%= productClickLink.Replace("[IMAGE]", Model.Name)%>,</b></span>
+        <%= Model.ShortDescription %>
+        <div class="priceNonBlock">
+            <p class="it2">
+            
+                <% Html.RenderPartial("Price", Model); %>
+                 
+                </p>
+       </div>
+        <a href="#" class="it3">Заказать »</a>
+    </div>
+</div>
 <%--<div class="tovarBox<%= additionalClass %>">
 
 
@@ -65,5 +63,4 @@
         <h4><% Html.RenderPartial("Price", Model); %></h4>
     </div>
 </div>--%>
-
 <%} %>

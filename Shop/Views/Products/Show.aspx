@@ -40,9 +40,11 @@
             <p class="pmt2">
                 Большой
             </p>
+            <div class="priceNonBlock">
             <p class="pmt3">
                 <% Html.RenderPartial("Price", Model); %>
             </p>
+            </div>
         </div>
         <div id="midProduct">
             <p class="pmt1">

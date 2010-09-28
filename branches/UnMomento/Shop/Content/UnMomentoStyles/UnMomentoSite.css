@@ -138,16 +138,17 @@
     #txtRemoveOrderItem {padding-left: 17px;}
     #payment {margin: 30px 0px 0px 10px;}
     
-    #offer {margin: 40px 0px 0px 55px;}
+    #offer {margin: 40px 0px 0px -20px;}
     #txtOffer {margin: 0px 0px 5px 25px;}
     #bubbleOffer {height: 612px; width: 505px; background: url('./img/bubbleOffer.gif') no-repeat;}
     #bubOfferAll {padding: 40px 30px 0px 30px;}
     #bubOfferTop, #bubOfferCenter, #bubOfferBottom {margin-top: 30px;}
-    #bubOfferItem {width: 148px;}
-    #bubOfferImg {margin-left: auto; margin-right: auto; width: 98px; height: 99px; border: 1px solid #999999;}  
-    #bubOfferTRight{float: right;}
-    #bubOfferTLeft{float: left;}
-    #bubOfferTCenter {margin-left: auto; margin-right: auto; width: 148px;} 
+    .bubOfferItem {width: 148px;}
+    .bubOfferImg {margin-left: auto; margin-right: auto; width: 98px; height: 99px; border: 1px solid #999999;}  
+    .bubOfferTRight{float: right;}
+    .bubOfferTLeft{float: left;}
+    .bubOfferTCenter {margin-left: auto; margin-right: auto; width: 148px;} 
+    .bubOfferName {}
     #pagerOrder {margin: 40px 33px 0px 0px;} 
     
     /*О товаре*/    
@@ -165,3 +166,6 @@
     .imgNewsContent {margin-right: 40px;}
     
    /* #productItem{width: 196px;} */       
+   
+   .price span{display:block;}
+   .priceNonBlock span{display:inline;}

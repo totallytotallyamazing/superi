@@ -38,16 +38,20 @@ namespace Shop.Areas.Admin.Controllers
             {
                 var br = context.Brands.ToList();
 
-                List<SelectListItem> brands = br
-                    .Select(b => new SelectListItem { Text = b.Name, Value = b.Id.ToString() })
-                    .ToList();
-
-                ViewData["Brands"] = br;
+                int brandId = int.MinValue;
 
                 if (id.HasValue)
                 {
                     product = context.Products.Include("ProductImages").Include("Category").Include("Brand").Where(p => p.Id == id.Value).First();
+                    brandId = product.Brand.Id;
                 }
+
+                List<SelectListItem> brands = br
+                .Select(b => new SelectListItem { Text = b.Name, Value = b.Id.ToString(), Selected = b.Id == brandId })
+                .ToList();
+
+                ViewData["Brands"] = brands;
+
             }
             return View(product);
         }

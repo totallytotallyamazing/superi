@@ -158,6 +158,7 @@
     <Compile Include="Runtime\Configurator.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Admin\Views\Content\EditPartial.ascx" />
     <Content Include="Areas\Admin\Views\ProductCategories\Index.ascx" />
     <Content Include="Areas\Admin\Views\ProductVariants\AddEdit.ascx" />
     <Content Include="Areas\Admin\Views\ProductVariants\Index.aspx" />
@@ -204,6 +205,7 @@
     <Content Include="Scripts\MicrosoftAjax.js" />
     <Content Include="Scripts\MicrosoftMvcAjax.js" />
     <Content Include="Scripts\MicrosoftMvcValidation.js" />
+    <Content Include="Views\Shared\ContentPartial.ascx" />
     <Content Include="Views\Shared\LogOnOrSignUp.ascx" />
     <Content Include="Web.config" />
     <Content Include="Views\Account\ChangePassword.aspx" />
@@ -417,6 +419,7 @@
     <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Configuration\" />
     <Folder Include="Content\BrandLogos\" />
+    <Folder Include="Content\CategoryImages\" />
     <Folder Include="Content\ProductImages\" />
     <Folder Include="ImageCache\cartThumb\" />
     <Folder Include="ImageCache\mainView\" />

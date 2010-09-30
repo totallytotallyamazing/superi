@@ -10,17 +10,16 @@
         }
 
         Func<string, string> isCurrent = (location) => (location == currenLocation) ? " current" : string.Empty;
-    
-    
     %>
-    <p class="ot2">
-        <a href="#" class="ot2"><b>О НОВОМ СЕРВИСЕ</b></a>
+    <p class="ot2 capital">
+        
+        <a href="/Go/About" class="ot2"><b>О НОВОМ СЕРВИСЕ</b></a>
         <br />
-        <a href="#" class="ot2"><b>ОПЛАТА И ДОСТАВКА</b></a>
+        <a href="/Go/PaymentAndDelivery" class="ot2"><b>ОПЛАТА И ДОСТАВКА</b></a>
         <br />
-        <a href="#" class="ot2"><b>ПАРТНЕРАМ</b></a>
+        <a href="/Go/Partners" class="ot2"><b>ПАРТНЕРАМ</b></a>
         <br />
-        <a href="#" class="ot2"><b>НОВОСТИ</b></a>
+        <a href="/Go/GiftedGuys" class="ot2"><b>ОДАРЕННЫЕ НАМИ ЛЮДИ</b></a>
     </p>
 </div>
 <%--<div id="menu">

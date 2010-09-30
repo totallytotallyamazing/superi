@@ -20,6 +20,12 @@ namespace Shop.Models
         [DisplayName("Название")]
         public string Name { get; set; }
 
+        [DisplayName("Активная")]
+        public bool Published { get; set; }
+        
+        [DisplayName("Показывать на стартовой")]
+        public bool ShowOnMainPage{ get; set; }
+
         [Required(ErrorMessage = "Введите порядок в списке")]
         [DataType(DataType.Currency, ErrorMessage="Введите число")]
         [DisplayName("Номер по порядку")]

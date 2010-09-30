@@ -27,7 +27,7 @@
     <%= Ajax.ScriptInclude("/Scripts/jquery.fancybox.js")%>
     <script type="text/javascript">
         $(function () {
-            $("#feedbackForm").fancybox(
+            $("#feedbackForm, .editContentLink").fancybox(
             {
                 hideOnContentClick: false,
                 hideOnOverlayClick: false,
@@ -48,7 +48,7 @@
                 <p class="ot1">
                     (044) 233-11-99</p>
                 <p class="ot2">
-                    <a id="feedbackForm" href="/Home/FeedbackForm" class="ot2">Задать быстрый вопрос</a>
+                    <a id="feedbackForm" href="/Home/FeedbackForm" class="ot2 iframe">Задать быстрый вопрос</a>
                 </p>
             </div>
             <div id="topLeft">

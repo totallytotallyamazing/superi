@@ -568,12 +568,16 @@ namespace Shop.Models
         /// <param name="id">Исходное значение свойства Id.</param>
         /// <param name="name">Исходное значение свойства Name.</param>
         /// <param name="sortOrder">Исходное значение свойства SortOrder.</param>
-        public static Category CreateCategory(global::System.Int32 id, global::System.String name, global::System.Int32 sortOrder)
+        /// <param name="published">Исходное значение свойства Published.</param>
+        /// <param name="showOnMainPage">Исходное значение свойства ShowOnMainPage.</param>
+        public static Category CreateCategory(global::System.Int32 id, global::System.String name, global::System.Int32 sortOrder, global::System.Boolean published, global::System.Boolean showOnMainPage)
         {
             Category category = new Category();
             category.Id = id;
             category.Name = name;
             category.SortOrder = sortOrder;
+            category.Published = published;
+            category.ShowOnMainPage = showOnMainPage;
             return category;
         }
 
@@ -726,6 +730,54 @@ namespace Shop.Models
         private global::System.String _Image;
         partial void OnImageChanging(global::System.String value);
         partial void OnImageChanged();
+    
+        /// <summary>
+        /// Нет доступной документации по метаданным.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean Published
+        {
+            get
+            {
+                return _Published;
+            }
+            set
+            {
+                OnPublishedChanging(value);
+                ReportPropertyChanging("Published");
+                _Published = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Published");
+                OnPublishedChanged();
+            }
+        }
+        private global::System.Boolean _Published;
+        partial void OnPublishedChanging(global::System.Boolean value);
+        partial void OnPublishedChanged();
+    
+        /// <summary>
+        /// Нет доступной документации по метаданным.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean ShowOnMainPage
+        {
+            get
+            {
+                return _ShowOnMainPage;
+            }
+            set
+            {
+                OnShowOnMainPageChanging(value);
+                ReportPropertyChanging("ShowOnMainPage");
+                _ShowOnMainPage = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ShowOnMainPage");
+                OnShowOnMainPageChanged();
+            }
+        }
+        private global::System.Boolean _ShowOnMainPage;
+        partial void OnShowOnMainPageChanging(global::System.Boolean value);
+        partial void OnShowOnMainPageChanged();
 
         #endregion
     
@@ -2268,24 +2320,24 @@ namespace Shop.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String ShortDescripton
+        public global::System.String ShortDescription
         {
             get
             {
-                return _ShortDescripton;
+                return _ShortDescription;
             }
             set
             {
-                OnShortDescriptonChanging(value);
-                ReportPropertyChanging("ShortDescripton");
-                _ShortDescripton = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("ShortDescripton");
-                OnShortDescriptonChanged();
+                OnShortDescriptionChanging(value);
+                ReportPropertyChanging("ShortDescription");
+                _ShortDescription = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("ShortDescription");
+                OnShortDescriptionChanged();
             }
         }
-        private global::System.String _ShortDescripton;
-        partial void OnShortDescriptonChanging(global::System.String value);
-        partial void OnShortDescriptonChanged();
+        private global::System.String _ShortDescription;
+        partial void OnShortDescriptionChanging(global::System.String value);
+        partial void OnShortDescriptionChanged();
     
         /// <summary>
         /// Нет доступной документации по метаданным.

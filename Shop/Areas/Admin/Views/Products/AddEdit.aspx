@@ -25,6 +25,9 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+        <div>
+            <%: Html.ActionLink("Варианты продукта", "Index", new { controller = "ProductVariants", id = Model.Id })%>
+        </div>    
         <%= Html.ValidationSummary(true) %>
 
         <span class="sectionTitle">

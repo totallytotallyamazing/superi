@@ -20,44 +20,7 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="productItem">
-        <img src="../../Content/UnMomentoStyles/img/sheep.gif" alt="Овца" />
-        <div class="text">
-                        
-            <a href="#" class="it1"> <b>Овца клонированная,</b></a>   пух и 
-                прах. Мех, шах и мат. 
-            <p class="it2">1,200 грн.</p>
-            <a href="#" class="it3">Заказать »</a>
-        </div>    
-    </div> 
-    <div class="productItem">
-        <img src="../../Content/UnMomentoStyles/img/elephant.gif" alt="Слон" />
-        <div class="text">
-            <a href="#" class="it1"><b>Хоботливый Чак,</b></a>  уход за 
-                ним не требует мозгов.
-            <p class="it2">от 30 грн.</p>
-            <a href="#" class="it3">Заказать »</a> 
-        </div>    
-    </div>
-        <div class="productItem">
-        <img src="../../Content/UnMomentoStyles/img/bearItem.gif" alt="Медвед" />
-        <div class="text">
-            <a href="#" class="it1"> <b>Педо-bear,</b></a>  лучший друг твой
-                детко, кИсО. Сосёт только лапу. 
-            <p class="it2">1,200 грн.</p>
-            <a href="#" class="it3">Заказать »</a>
-        </div>    
-    </div>
-    <div class="productItem">
-        <img src="../../Content/UnMomentoStyles/img/sheepClone.gif" alt="Овца клонированная" />
-        <div class="text">
-                        
-            <a href="#" class="it1"> <b>Овца клонированная,</b></a>   пух и 
-                прах. Мех, шах и мат. 
-            <p class="it2">1,200 грн.</p>
-            <a href="#" class="it3">Заказать »</a>
-        </div>    
-    </div> 
+    <%  Html.RenderPartial("ContentPartial", "MainTop"); %>
     <div style="clear:both"></div>
 </asp:Content>
 

@@ -5,20 +5,23 @@
     Парианты продукта
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+    <div>
+        <%: Html.ActionLink("Свойства продукта", "AddEdit", new { controller = "Products", id = ViewData["productId"] })%>
+    </div>
     <% foreach (var item in Model)
        { %>
     <div class="productVariantItem">
         <%= item.Name %>
         <span class="adminLinks">
-            <%= Ajax.ActionLink("Редактировать", "AddEdit", new { id = item.Id }, new AjaxOptions { UpdateTargetId = "editVariantContainer_" + item.Id, OnBegin = "beforeVariantEditorLoad", OnSuccess = "variantEditorLoaded" }) %>
+            <%= Ajax.ActionLink("Редактировать", "AddEdit", new { id = item.Id, productId = ViewData["productId"] }, new AjaxOptions { UpdateTargetId = "editVariantContainer_" + item.Id, OnBegin = "beforeVariantEditorLoad", OnSuccess = "variantEditorLoaded", HttpMethod="GET" })%>
             &nbsp;|&nbsp;
-            <%= Html.ActionLink("Удалить", "Delete", new { id = item.Id }) %>
+            <%= Html.ActionLink("Удалить", "Delete", new { id = item.Id, productId = ViewData["productId"] }, new { onclick = "return confirm('Вы уверены?');"})%>
         </span>
     </div>
     <div id="editVariantContainer_<%= item.Id %>" class="editorVariantContainer">
     </div>
     <% } %>
-    <%= Ajax.ActionLink("Добавить", "AddEdit", new { }, new AjaxOptions {HttpMethod="GET", UpdateTargetId = "editVariantContainer_0", OnBegin = "beforeVariantEditorLoad", OnSuccess = "variantEditorLoaded" }) %>
+    <%= Ajax.ActionLink("Добавить", "AddEdit", new { productId = ViewData["productId"] }, new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "editVariantContainer_0", OnBegin = "beforeVariantEditorLoad", OnSuccess = "variantEditorLoaded" })%>
     <div id="editVariantContainer_0" class="editorVariantContainer">
     </div>
 </asp:Content>
@@ -28,9 +31,9 @@
     <%= Ajax.ScriptInclude("/Scripts/MicrosoftAjax.js")%>
     <%= Ajax.ScriptInclude("/Scripts/MicrosoftMvcAjax.js")%>
     <%= Ajax.ScriptInclude("/Scripts/jquery.validate.js")%>
+    <%= Ajax.ScriptInclude("/Scripts/jquery.FCKEditor.js")%>
     <%= Ajax.DynamicCssInclude("/Content/AdminStyles/addEditProduct.css")%>
     <script type="text/javascript">
-        var frm = null;
 
         function beforeVariantEditorLoad() {
             $(".editorVariantContainer").hide(0);
@@ -40,6 +43,11 @@
             $(context.get_updateTarget()).show("slow");
             var form = context.get_updateTarget().getElementsByTagName("form")[0];
             frm = form;
+
+            $.fck.config = { path: '<%= VirtualPathUtility.ToAbsolute("~/Controls/fckeditor/") %>', config: { SkinPath: "skins/office2003/", DefaultLanguage: "ru", AutoDetectLanguage: false, EnterMode: "br", ShiftEnterMode: "p", HtmlEncodeOutput: true} };
+            $("#Description").fck({ toolbar: "Basic", height: 200 });
+
+            bindValidation(form);
         }
 
         function bindValidation(form) {
@@ -57,15 +65,9 @@
                     error.appendTo(element.parent("td").next("td"));
                 }
 
-            }).form();
+            })
         }
 
-        function variantUpdateStarted() {
-            return bindValidation(frm);
-        }
-
-        function variantUpdated() {
-        }
     </script>
 </asp:Content>
 <asp:Content ContentPlaceHolderID="Footer" runat="server">

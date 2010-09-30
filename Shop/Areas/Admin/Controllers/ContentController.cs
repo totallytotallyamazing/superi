@@ -35,5 +35,27 @@ namespace Shop.Areas.Admin.Controllers
             return RedirectToAction("Go", "Home", new { id = content.Name, area = "" });
         }
 
+        [HttpGet]
+        public ActionResult EditPartial(string id)
+        {
+            using (ContentStorage context = new ContentStorage())
+            {
+                Content content = context.GetContent(id);
+                return View(content);
+            }
+        }
+
+        [HttpPost]
+        public void EditPartial(FormCollection form)
+        {
+            using (ContentStorage context = new ContentStorage())
+            {
+                string name = form["Name"];
+                Content content = context.Contents.First(c => c.Name == name);
+                content.Text = HttpUtility.HtmlDecode(form["Text"]);
+                context.SaveChanges();
+            }
+            Response.Write("<script type=\"text/javascript\">window.top.$.fancybox.close();</script>");
+        }
     }
 }

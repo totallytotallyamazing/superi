@@ -9,6 +9,7 @@ using Trips.Mvc.Helpers;
 using System.Collections.ObjectModel;
 using System.Data.Objects;
 using Dev.Helpers;
+using System.IO;
 
 namespace Shop.Areas.Admin.Controllers
 {
@@ -35,29 +36,46 @@ namespace Shop.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddEdit(Category category, int? Id, int? parentId)
+        public ActionResult AddEdit(FormCollection form)
         {
+            Category category = null;
+
             using (ShopStorage context = new ShopStorage())
             {
-                if (Id.HasValue && Id.Value > 0)
+                int id = 0;
+                if (int.TryParse(form["Id"], out id))
                 {
-                    category.Id = Id.Value;
-                    object originalItem;
-                    EntityKey entityKey = new EntityKey("ShopStorage.Categories", "Id", category.Id);
-                    if (context.TryGetObjectByKey(entityKey, out originalItem))
-                    {
-                        context.ApplyCurrentValues(entityKey.EntitySetName, category);
-                    }
+                    category = context.Categories.First(c => c.Id == id);
                 }
                 else
                 {
+                    category = new Category();
                     context.AddToCategories(category);
-                    if (parentId.HasValue)
+                    int parentId = 0;
+                    if (int.TryParse(form["parentId"], out parentId))
                     {
-                        EntityKey parentKey = new EntityKey("ShopStorage.Categories", "Id", parentId.Value);
+                        EntityKey parentKey = new EntityKey("ShopStorage.Categories", "Id", parentId);
                         category.ParentReference.EntityKey = parentKey;
                     }
                 }
+
+                TryUpdateModel(category,
+                    new string[] { "Name", "SortOrder", "SeoKeywords", "SeoDescription" },
+                    form.ToValueProvider());
+
+                if (Request.Files["logo"] != null && !string.IsNullOrEmpty(Request.Files["Image"].FileName))
+                {
+                    if (!string.IsNullOrEmpty(category.Image))
+                    {
+                        IOHelper.DeleteFile("~/Content/CategoryImages", category.Image);
+                    }
+                    string fileName = IOHelper.GetUniqueFileName("~/Content/CategoryImages", Request.Files["Image"].FileName);
+                    string filePath = Server.MapPath("~/Content/CategoryImages");
+                    filePath = Path.Combine(filePath, fileName);
+                    Request.Files["Image"].SaveAs(filePath);
+                    category.Image = fileName;
+                }
+
                 context.SaveChanges();
             }
 

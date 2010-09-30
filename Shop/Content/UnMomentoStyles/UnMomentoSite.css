@@ -16,6 +16,8 @@
     background-color: #ffeeee;
 }
 
+.capital{text-transform:uppercase;}
+
 .validation-summary-errors
 {
     font-weight: bold;
@@ -152,7 +154,7 @@
     #pagerOrder {margin: 40px 33px 0px 0px;} 
     
     /*О товаре*/    
-    #imgProduct {height: 359px; width: 358px; margin-left: auto; margin-right: auto; border: 1px solid #999999;}
+    #imgProduct {width: 358px; margin-left: auto; margin-right: auto; border: 1px solid #999999;}
     #productMenu {margin-top: 10px; /*height: 50px;*/ width: 240px; margin-left: auto; margin-right: auto;}
     #smalProduct {float: right;}
     #bigProduct {float: left;}

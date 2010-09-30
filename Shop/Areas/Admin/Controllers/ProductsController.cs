@@ -106,7 +106,7 @@ namespace Shop.Areas.Admin.Controllers
             return RedirectToAction("AddEdit", new { id = product.Id, cId = cId, bId = bId });
         }
 
-        public ActionResult AddProductImage(int productId, bool isDefault, int categoryId)
+        public ActionResult AddProductImage(int productId, bool isDefault, int? categoryId)
         {
             string file = Request.Files["image"].FileName;
             if (!string.IsNullOrEmpty(file))

@@ -5,7 +5,11 @@
     List<Category> categories;
     using (ShopStorage context = new ShopStorage())
     {
-        categories = context.Categories.Include("Categories").Where(c => c.Parent == null).OrderBy(c => c.SortOrder).ToList();
+        context.Categories.MergeOption = System.Data.Objects.MergeOption.NoTracking;
+        categories = context.Categories.Include("Categories")
+            .Where(c => c.Parent == null)
+            .Where(c => c.Published)
+            .OrderBy(c => c.SortOrder).ToList();
     }
 %>
 <div id="bubGift">

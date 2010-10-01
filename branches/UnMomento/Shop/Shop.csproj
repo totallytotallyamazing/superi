@@ -162,6 +162,7 @@
     <Content Include="Areas\Admin\Views\ProductCategories\Index.ascx" />
     <Content Include="Areas\Admin\Views\ProductVariants\AddEdit.ascx" />
     <Content Include="Areas\Admin\Views\ProductVariants\Index.aspx" />
+    <Content Include="bin\Elmah.dll" />
     <Content Include="Content\UnMomentoStyles\img\allBkg.gif" />
     <Content Include="Content\UnMomentoStyles\img\baner.gif" />
     <Content Include="Content\UnMomentoStyles\img\basket.gif" />

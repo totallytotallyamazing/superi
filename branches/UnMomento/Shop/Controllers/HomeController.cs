@@ -13,11 +13,11 @@ using System.ComponentModel;
 
 namespace Shop.Controllers
 {
-    [HandleError]
     public class HomeController : Controller
     {
         public ActionResult Index()
         {
+            throw new Exception("ex");
             return View();
         }
 

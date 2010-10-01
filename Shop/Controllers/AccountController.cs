@@ -9,10 +9,9 @@ using System.Web.Routing;
 using System.Web.Security;
 using Shop.Models;
 
-namespace Shop.Controllers
+namespace Shop.Controllers  
 {
 
-    [HandleError]
     public class AccountController : Controller
     {
 

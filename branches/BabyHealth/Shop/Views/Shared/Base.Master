@@ -89,7 +89,7 @@
     </div>
     <div id="preFooter">
         <% Html.RenderAction("Myths", "Widgets", new { area = "" }); %>
-        <% Html.RenderPartial("BottomCategories"); %>
+        <% Html.RenderPartial("BottomTagsPresentation"); %>
     </div>
     <div id="footer">
         <div id="book">

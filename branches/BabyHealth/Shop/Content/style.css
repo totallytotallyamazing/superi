@@ -142,17 +142,7 @@ li{list-style-type:none;}
 #linksBox{min-height:200px;height:auto;width:613px;border:0px solid #ff6600;margin:0 auto; position:relative;}
 .linksBoxString{height:50px;height:auto;width:613px;border:0px solid #ff6600;margin:5px 0px 0px 0px;}
 .linksBoxString p{font:Verdana, Arial, Helvetica, sans-serif bold; font-size:16px;}
-.linksBoxString a{color:#ff9966;margin:0px 0px 0px 0px; font-weight:normal;}
-.span1{ padding-left:30px;}
-.span2{ padding-left:90px;}
-.span3{ padding-left:110px;}
-.span4{ padding-left:70px;}
-.span5{ padding-left:90px;}
-.span6{ padding-left:105px;}
-.span7{ padding-left:80px;}
-.span8{ padding-left:90px;}
-.span9{ padding-left:60px;}
-.span10{ padding-left:270px;}
+.linksBoxString a{color:#ff9966;margin:0px 0px 0px 0px; font-weight:normal; line-height:40px;}
 #rightSideFooter{height:51px; width:auto;border:0px solid black;background: url(img/rightSideFooterBg.jpg) repeat-x; margin-top:30px;}
 #rightSideFooterBgL{height:51px; width:34px;float:left;background: url(img/rightSideFooterBgL.jpg) no-repeat;}
 #rightSideFooterBgR{height:51px; width:34px;float:right;background: url(img/rightSideFooterBgR.jpg) no-repeat;}

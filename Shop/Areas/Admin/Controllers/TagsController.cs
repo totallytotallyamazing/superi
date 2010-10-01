@@ -14,6 +14,7 @@ namespace Shop.Areas.Admin.Controllers
         {
             using (ShopStorage context= new ShopStorage())
             {
+                context.Tags.MergeOption = System.Data.Objects.MergeOption.NoTracking;
                 List<Tag> tags = context.Tags.Where(t=>t.Type == 0).ToList();
                 return View(tags); 
             }
@@ -23,6 +24,7 @@ namespace Shop.Areas.Admin.Controllers
         {
             using (ShopStorage context = new ShopStorage())
             {
+                context.Tags.MergeOption = System.Data.Objects.MergeOption.NoTracking;
                 List<Tag> tags = context.Tags.Where(t => t.Type == 1).ToList();
                 return View(tags);
             }

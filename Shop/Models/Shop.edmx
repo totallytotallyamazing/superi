@@ -147,6 +147,7 @@
           <Property Name="Type" Type="int" Nullable="false" />
           <Property Name="Value" Type="varchar" Nullable="false" MaxLength="500" />
           <Property Name="Url" Type="varchar" MaxLength="2000" />
+          <Property Name="FontSize" Type="int" DefaultValue="12" />
         </EntityType>
         <Function Name="searchProducts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="gbua_x_baby_583">
           <Parameter Type="varchar" Name="searchString"></Parameter>
@@ -349,6 +350,7 @@
           <Property Type="Int32" Name="Top" Nullable="false" />
           <Property Type="Int32" Name="Type" Nullable="false" />
           <Property Type="String" Name="Url" />
+          <Property Type="Int32" Name="FontSize" Nullable="false" />
         </EntityType>
         <Association Name="ProductTag">
           <End Type="shop_model.Product" Role="Product" Multiplicity="*" />
@@ -513,6 +515,7 @@
           <EntitySetMapping Name="Tags">
             <EntityTypeMapping TypeName="IsTypeOf(shop_model.Tag)">
               <MappingFragment StoreEntitySet="Tag">
+                <ScalarProperty Name="FontSize" ColumnName="FontSize" />
                 <ScalarProperty Name="Url" ColumnName="Url" />
                 <ScalarProperty Name="Type" ColumnName="Type" />
                 <ScalarProperty Name="Top" ColumnName="Top" />
@@ -603,10 +606,10 @@
           <ConnectorPoint PointX="7.125" PointY="4.9035546875" />
           <ConnectorPoint PointX="5.875" PointY="4.9035546875" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="shop_model.Tag" Width="1.5" PointX="5.125" PointY="1.625" Height="2.364889322916667" />
+        <EntityTypeShape EntityType="shop_model.Tag" Width="1.5" PointX="5.125" PointY="1.625" Height="2.5571907552083326" />
         <AssociationConnector Association="shop_model.ProductTag">
-          <ConnectorPoint PointX="7.125" PointY="2.8074446614583337" />
-          <ConnectorPoint PointX="6.625" PointY="2.8074446614583337" />
+          <ConnectorPoint PointX="7.125" PointY="2.9035953776041667" />
+          <ConnectorPoint PointX="6.625" PointY="2.9035953776041667" />
         </AssociationConnector>
         <AssociationConnector Association="shop_model.BrandProduct">
           <ConnectorPoint PointX="10.5" PointY="1.6824446614583337" />

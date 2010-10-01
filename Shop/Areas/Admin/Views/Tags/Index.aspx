@@ -34,8 +34,8 @@
                 messages: {Value: "*"}
             });
 
-            $("#Value").watermark({ html: "Тег", cls: "watermark" });
-            $("#Left").watermark({ html: "Отступ слева", cls: "watermark" });
+            $("fieldset #Value").watermark({ html: "Тег", cls: "watermark" });
+            $("fieldset #Left").watermark({ html: "Отступ слева", cls: "watermark" });
 
         })
     </script>

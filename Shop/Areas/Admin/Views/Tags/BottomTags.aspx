@@ -15,6 +15,7 @@
                 <%= Html.TextBox("Value")%>&nbsp;&nbsp;
                 <%= Html.TextBox("Top") %>
                 <%= Html.TextBox("Left") %>
+                <%= Html.TextBox("FontSize") %>
                 <%= Html.TextBox("Url") %>
                 <%= Html.Hidden("Type", 1)%>
             </div>
@@ -41,6 +42,7 @@
             $("fieldset #Left").watermark({ html: "Отступ слева", cls: "watermark" });
             $("fieldset #Top").watermark({ html: "Отступ сверху", cls: "watermark" });
             $("fieldset #Url").watermark({ html: "Ссылка", cls: "watermark" });
+            $("fieldset #FontSize").watermark({ html: "Размер шрифта", cls: "watermark" });
         })
     </script>
 </asp:Content>

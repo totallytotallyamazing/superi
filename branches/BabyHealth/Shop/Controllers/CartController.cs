@@ -233,12 +233,21 @@ namespace Shop.Controllers
             using (OrdersStorage context = new OrdersStorage())
             {
                 context.Attach(WebSession.Order);
+                WebSession.Order.OrderItems.Load();
+                context.Attach(WebSession.DeliveryType);
+                context.Attach(WebSession.PaymentType);
+                WebSession.Order.DeliveryType = WebSession.DeliveryType;
+                WebSession.Order.PaymentType = WebSession.PaymentType;
                 foreach (var item in WebSession.OrderItems)
                 {
-                    WebSession.Order.OrderItems.Add(item.Value);
+                    if (!WebSession.Order.OrderItems.Select(oi => oi.Id).ToArray().Contains(item.Value.Id))
+                        WebSession.Order.OrderItems.Add(item.Value);
                     WebSession.Order.OrderDate = DateTime.Now;
                 }
                 context.SaveChanges();
+                foreach (var item in WebSession.OrderItems)
+                    context.Detach(item.Value);
+
             }
             return View();
         }
@@ -317,7 +326,6 @@ namespace Shop.Controllers
                 context.DeliveryTypes.MergeOption = System.Data.Objects.MergeOption.NoTracking;
                 var result = context.DeliveryTypes.Where(dt => dt.Id == id).Select(dt => new { paymentTypes = dt.PaymentTypes, deliveryType = dt }).First();
                 List<PaymentType> paymentTypes = result.paymentTypes.ToList();
-                WebSession.Order.DeliveryTypeReference.EntityKey = new EntityKey("OrdersStorage.DeliveryTypes", "Id", id);
                 WebSession.DeliveryType = result.deliveryType;
                 return View(paymentTypes);
             }
@@ -332,7 +340,6 @@ namespace Shop.Controllers
                 context.PaymentProperties.MergeOption = System.Data.Objects.MergeOption.NoTracking;
                 var result = context.PaymentTypes.Where(pt => pt.Id == id).Select(pt => new { paymentProperties = pt.PaymentProperties, paymentType = pt }).First();
                 List<PaymentProperty> paymentProperties = result.paymentProperties.ToList();
-                WebSession.Order.PaymentTypeReference.EntityKey = new EntityKey("OrdersStorage.PaymentTypes", "Id", id);
                 WebSession.PaymentType = result.paymentType;
                 return View(paymentProperties);
             }

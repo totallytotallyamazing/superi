@@ -20,8 +20,15 @@ namespace Shop
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-            routes.IgnoreRoute("captcha.ashx");
-
+            routes.IgnoreRoute("captcha.ashx"); 
+            routes.IgnoreRoute("elmah/default.aspx");
+            routes.IgnoreRoute("elmah/default.aspx/detail");
+            routes.IgnoreRoute("elmah/default.aspx/stylesheet");
+            routes.IgnoreRoute("elmah/default.aspx/download");
+            routes.IgnoreRoute("elmah/default.aspx/rss");
+            routes.IgnoreRoute("elmah/default.aspx/digestrss");
+            routes.IgnoreRoute("elmah/default.aspx/about");
+            routes.IgnoreRoute("elmah.axd");
 
             routes.MapRoute(
                 "Go", // Route name

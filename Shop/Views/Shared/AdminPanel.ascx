@@ -32,6 +32,7 @@
         <%= Html.ActionLink("Теги внизу", "BottomTags", new { controller = "Tags", Area = "Admin" })%> | 
         <%= Html.ActionLink("Размеры", "Index", new {controller="Attributes", Area="Admin", id=2}) %> |
         <%= Html.ActionLink("Бренды", "Index", new { controller = "Brands", Area = "Admin", id = 2 })%> |
+        <%= Html.ActionLink("Заказы", "Index", new { controller = "Orders", Area = "Admin", id = 2 })%> |
         <%= Html.ActionLink("Выход", "LogOff", new {controller="Account", Area=""}) %> 
     </div>
     <div class="handle">

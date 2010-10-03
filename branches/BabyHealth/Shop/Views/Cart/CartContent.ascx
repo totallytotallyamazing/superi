@@ -37,7 +37,7 @@
             </td>
             <td class="name" valign="top">
                 <div class="name">
-                    <%= Html.ActionLink(item.Name, "Show", new { controller="Products", area="", id=item.Id})%>
+                    <%= Html.ActionLink(item.Name, "Show", new { controller="Products", area="", id=item.ProductId})%>
                 </div>  
                 <div class="description">
                     <%= item.Description %>

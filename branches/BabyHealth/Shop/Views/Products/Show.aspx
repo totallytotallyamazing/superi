@@ -47,6 +47,9 @@
             </p>
             <br />
             <p>Цена: <% Html.RenderPartial("Price", Model); %></p>
+
+            <% if (Model.PersonalExperienceSet)
+                   Html.RenderPartial("PersonalExperience", Model.PersonalExperience); %>
         </div>
         <%} %>
         <div style="clear:both"></div>

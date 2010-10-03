@@ -77,6 +77,9 @@ namespace Shop.Areas.Admin.Controllers
                     prod.SortOrder = product.SortOrder;
                     prod.Color = product.Color;
                     prod.Published = product.Published;
+                    prod.IsSpecialOffer = product.IsSpecialOffer;
+                    prod.PersonalExperience = HttpUtility.HtmlDecode(product.PersonalExperience);
+                    prod.PersonalExperienceSet = product.PersonalExperienceSet;
 
                     if (prod.Brand.Id != brandId)
                     {

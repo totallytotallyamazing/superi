@@ -114,9 +114,9 @@ a#menuItem5.current{background-position:0px 0px; margin-top:25px; height:144px; 
 	color:#d74f03;
 }
 #guest a{color:#d74f03;}
-#menuBox{height:auto;width:172px; margin:20px 0px 0px 35px; padding:0px 0px 0px 0px;float:left;}
+#menuBox{height:auto;width:172px; margin:20px 0px 0px 35px; padding:0px 0px 0px 0px;}
 #liHeader{height:35px; width:185px;float:left;border:0px solid red;background:url(img/liHeader.jpg) no-repeat center;margin:0px 0px 0px 0px;}
-#classMenuItems{min-height:173px; height:auto; width:152px;padding:5px 20px 5px 0px;float:left;background:url(img/liBg.jpg) repeat-y;}
+#classMenuItems{min-height:173px; height:auto; width:152px;padding:5px 20px 5px 0px;background:url(img/liBg.jpg) repeat-y;}
 .classMenuItem{width:auto;padding:7px 0px 0px 20px;color:#ff6600;font-family:Tahoma;font-weight:normal;font-size:14px;}
 .classMenuItem *{color:#ff6600;font-size:14px;}
 .classMenuItem a:hover{color:#993300;}
@@ -127,7 +127,7 @@ li{list-style-type:none;}
 .subMenuItem a{color:#ff6600;}
 .subMenuItem a:hover{color:#993300;}
 .subMenuItem.current *{font-weight:bold;}
-#leftHand{height:153px; width:220px;float:left;border:0px solid red;background:url(img/handLeft.jpg) no-repeat center;margin:0px 0px 0px 0px;}
+#leftHand{height:153px; width:220px;border:0px solid red;background:url(img/handLeft.jpg) no-repeat center;margin:0px 0px 0px 0px;}
 #rightSide{height:auto; min-width:727px; width:auto; margin-right:30px;margin-left:243px;background:#ffffff;}
 #contentWrapper{padding:33px 51px;}
 #rightSideHeader{height:36px; width:auto; }
@@ -192,3 +192,12 @@ li{list-style-type:none;}
 
 .watermark{color:#ccc !important; font-size:13px;}
 #search span{display:block;}
+
+#mamaRecomends{width:226px; background:transparent url(img/mamaSuggestsHead.jpg) no-repeat; padding-top:36px; margin-top:45px;}
+#mamaRecomends #recomendsContent{margin:0 34px 0 36px; background:white;}
+#recomendsContent .picture img{width:152px; border-bottom:2px solid #3399cc; display:block; border-left: 2px solid #3399cc;border-right: 2px solid #3399cc; }
+#recomendsContent .footer{background:transparent url(img/mamaSuggestsFoot.jpg) no-repeat; width:156px; height:22px;}
+#recomendsContent .text{border-left: 2px solid #3399cc;border-right: 2px solid #3399cc; padding:10px; text-align:center;}
+#recomendsContent .text .title a{font-size:12px;color:#3399cc; font-weight:bold;}
+#recomendsContent .text .description {color:black; font-size:10px;}
+

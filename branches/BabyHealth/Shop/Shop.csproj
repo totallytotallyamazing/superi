@@ -181,7 +181,9 @@
     <Content Include="Scripts\MicrosoftMvcAjax.js" />
     <Content Include="Scripts\MicrosoftMvcValidation.js" />
     <Content Include="Views\Home\Tags.ascx" />
+    <Content Include="Views\Products\PersonalExperience.ascx" />
     <Content Include="Views\Shared\BottomTagsPresentation.ascx" />
+    <Content Include="Views\Shared\MamaRecomends.ascx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

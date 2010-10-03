@@ -15,14 +15,25 @@
     <%= Ajax.DynamicCssInclude("/Content/AdminStyles/addEditProduct.css")%>
 
     <script type="text/javascript">
-        $(function() {
+        $(function () {
             $.fck.config = { path: '<%= VirtualPathUtility.ToAbsolute("~/Controls/fckeditor/") %>', config: { SkinPath: "skins/office2003/", DefaultLanguage: "ru", AutoDetectLanguage: false, EnterMode: "br", ShiftEnterMode: "p", HtmlEncodeOutput: true} };
-            $("#Description, #ShortDescription").fck({ toolbar: "Basic", height: 200 });
+            $("#Description, #ShortDescription, #PersonalExperience").fck({ toolbar: "Basic", height: 200 });
 
-            $(".fancyAdmin").fancybox({showCloseButton:true, hideOnOverlayClick:false, hideOnContentClick:false});
+            $(".fancyAdmin").fancybox({ showCloseButton: true, hideOnOverlayClick: false, hideOnContentClick: false });
+
+            $("#PersonalExperienceSet").click(setPersonalExperienceVisibility);
+
+            setPersonalExperienceVisibility();
         });
-        
-        
+
+        function setPersonalExperienceVisibility() {
+            if (!$get("PersonalExperienceSet").checked) {
+                $get("personalExperienceDiv").style.display = "none";
+            }
+            else {
+                $get("personalExperienceDiv").style.display = "block";
+            }
+        }
         
     </script>
 </asp:Content>
@@ -91,6 +102,15 @@
                 </tr>
                 <tr>
                     <td class="labelCell">
+                        <%= Html.LabelFor(model => model.IsSpecialOffer) %>
+                    </td>                
+                    <td>
+                        <%= Html.CheckBoxFor(model => model.IsSpecialOffer)%>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="labelCell">
                         <%= Html.LabelFor(model => model.Price) %>
                     </td>                
                     <td>
@@ -152,7 +172,18 @@
             <div class="labelCell" style="margin-bottom:0px; margin-top:20px;">
                 <%= Html.LabelFor(model => model.IsNew) %> <%= Html.CheckBoxFor(m => m.IsNew) %>
             </div>
+
+            <div class="labelCell" style="margin-bottom:0px; margin-top:20px;">
+                <%= Html.LabelFor(model => model.PersonalExperienceSet) %> <%= Html.CheckBoxFor(m => m.PersonalExperienceSet)%>
+            </div>
+            <div id="personalExperienceDiv">
+                <div class="labelCell">
+                    <%= Html.TextAreaFor(model=>model.PersonalExperience) %>
+                </div>
+            </div>
          </div>
+
+
 
         <span class="sectionTitle">
            Оптимизация для поисковиков

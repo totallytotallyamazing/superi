@@ -15,7 +15,7 @@
         <table class="userInfo">
             <tr>
                 <td class="labelCell">
-                    Адрес элентропочты:<br />
+                    Адрес электропочты:<br />
                     <span class="comments">
                         (при регистрации является вашим логином)
                     </span>

@@ -12,7 +12,8 @@
         </a>
     <%} %>
     <div class="orderButton">
-        <a href="#" onclick="$(this).parents('form')[0].submit()" >Добавить в корзину</a>
+        <input type="submit" value="Добавить в корзину" class="addToCart" />
+        <%--<a href="#" onclick="$(this).parents('form')[0].submit()" >Добавить в корзину</a>--%>
     </div>
 </div>
 

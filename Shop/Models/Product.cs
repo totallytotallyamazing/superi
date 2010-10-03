@@ -55,6 +55,12 @@ namespace Shop.Models
 
         [DisplayName("Показывать на сайте")]
         public bool Published { get; set; }
+
+        [DisplayName("Мама рекомендует")]
+        public bool IsSpecialOffer { get; set; }
+
+        [DisplayName("Личный опыт")]
+        public bool PersonalExperienceSet{ get; set; }
     }
 
 }

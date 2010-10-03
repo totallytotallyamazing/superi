@@ -78,6 +78,9 @@
           <Property Name="SeoKeywords" Type="varchar" MaxLength="500" />
           <Property Name="ShortDescription" Type="varchar" MaxLength="500" />
           <Property Name="SortOrder" Type="int" Nullable="false" />
+          <Property Name="IsSpecialOffer" Type="bit" Nullable="false" />
+          <Property Name="PersonalExperience" Type="varchar" MaxLength="8000" />
+          <Property Name="PersonalExperienceSet" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="ProductAttribute">
           <Key>
@@ -249,6 +252,9 @@
           <NavigationProperty Name="Brand" Relationship="shop_model.BrandProduct" FromRole="Product" ToRole="Brand" />
           <Property Name="SortOrder" Type="Int32" Nullable="false" />
           <Property Name="Published" Type="Boolean" Nullable="false" />
+          <Property Type="Boolean" Name="IsSpecialOffer" Nullable="false" />
+          <Property Type="String" Name="PersonalExperience" Nullable="true" />
+          <Property Type="Boolean" Name="PersonalExperienceSet" Nullable="false" />
         </EntityType>
         <EntityType Name="ProductAttribute">
           <Key>
@@ -382,6 +388,9 @@
           <EntitySetMapping Name="Products">
             <EntityTypeMapping TypeName="IsTypeOf(shop_model.Product)">
               <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="PersonalExperienceSet" ColumnName="PersonalExperienceSet" />
+                <ScalarProperty Name="PersonalExperience" ColumnName="PersonalExperience" />
+                <ScalarProperty Name="IsSpecialOffer" ColumnName="IsSpecialOffer" />
                 <ScalarProperty Name="Published" ColumnName="Published" />
                 <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
                 <ScalarProperty Name="Color" ColumnName="Color" />
@@ -564,23 +573,23 @@
     <edmx:Diagrams>
       <Diagram Name="Shop" ZoomLevel="98" xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
         <EntityTypeShape EntityType="shop_model.Category" Width="1.75" PointX="0.5" PointY="0.5" Height="2.7494921875" IsExpanded="true" />
-        <EntityTypeShape EntityType="shop_model.Product" Width="2.5" PointX="7.125" PointY="0.5" Height="5.057109375" IsExpanded="true" />
+        <EntityTypeShape EntityType="shop_model.Product" Width="2.5" PointX="7.125" PointY="0.5" Height="5.634013671875" IsExpanded="true" />
         <EntityTypeShape EntityType="shop_model.ProductAttribute" Width="2.625" PointX="0.5" PointY="4" Height="1.9802864583333326" IsExpanded="true" />
-        <EntityTypeShape EntityType="shop_model.ProductAttributeValue" Width="2.25" PointX="3.625" PointY="4.25" Height="1.9802864583333326" IsExpanded="true" />
+        <EntityTypeShape EntityType="shop_model.ProductAttributeValue" Width="2.25" PointX="3.625" PointY="4.5" Height="1.9802864583333326" IsExpanded="true" />
         <EntityTypeShape EntityType="shop_model.ProductImage" Width="1.5" PointX="10.625" PointY="3.25" Height="1.7879850260416665" IsExpanded="true" />
         <AssociationConnector Association="shop_model.CategoryProduct">
           <ConnectorPoint PointX="2.25" PointY="0.78125" />
           <ConnectorPoint PointX="7.125" PointY="0.78125" />
         </AssociationConnector>
         <AssociationConnector Association="shop_model.ProductProduct">
-          <ConnectorPoint PointX="8.0115384615384624" PointY="5.557109375" />
-          <ConnectorPoint PointX="8.0115384615384624" PointY="5.807109375" />
-          <ConnectorPoint PointX="8.75576923076923" PointY="5.807109375" />
-          <ConnectorPoint PointX="8.75576923076923" PointY="5.557109375" />
+          <ConnectorPoint PointX="8.0115384615384624" PointY="6.134013671875" />
+          <ConnectorPoint PointX="8.0115384615384624" PointY="6.384013671875" />
+          <ConnectorPoint PointX="8.75576923076923" PointY="6.384013671875" />
+          <ConnectorPoint PointX="8.75576923076923" PointY="6.134013671875" />
         </AssociationConnector>
         <AssociationConnector Association="shop_model.ProductAttributeProductAttributeValue">
-          <ConnectorPoint PointX="3.125" PointY="5.1151432291666659" />
-          <ConnectorPoint PointX="3.625" PointY="5.1151432291666659" />
+          <ConnectorPoint PointX="3.125" PointY="5.2401432291666659" />
+          <ConnectorPoint PointX="3.625" PointY="5.2401432291666659" />
         </AssociationConnector>
         <AssociationConnector Association="shop_model.ProductProductImage">
           <ConnectorPoint PointX="9.625" PointY="4.1439925130208337" />
@@ -603,13 +612,13 @@
           <ConnectorPoint PointX="4.375" PointY="1.34375" />
         </AssociationConnector>
         <AssociationConnector Association="shop_model.ProductProductAttributeValue">
-          <ConnectorPoint PointX="7.125" PointY="4.9035546875" />
-          <ConnectorPoint PointX="5.875" PointY="4.9035546875" />
+          <ConnectorPoint PointX="7.125" PointY="5.3170068359375" />
+          <ConnectorPoint PointX="5.875" PointY="5.3170068359375" />
         </AssociationConnector>
         <EntityTypeShape EntityType="shop_model.Tag" Width="1.5" PointX="5.125" PointY="1.625" Height="2.5571907552083326" />
         <AssociationConnector Association="shop_model.ProductTag">
-          <ConnectorPoint PointX="7.125" PointY="2.9035953776041667" />
-          <ConnectorPoint PointX="6.625" PointY="2.9035953776041667" />
+          <ConnectorPoint PointX="7.125" PointY="2.9035953776041659" />
+          <ConnectorPoint PointX="6.625" PointY="2.9035953776041659" />
         </AssociationConnector>
         <AssociationConnector Association="shop_model.BrandProduct">
           <ConnectorPoint PointX="10.5" PointY="1.6824446614583337" />

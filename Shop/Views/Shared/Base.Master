@@ -1,5 +1,10 @@
 ﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
 <%@ Import Namespace="Dev.Mvc.Ajax" %>
+
+<%--<% if (Request.Cookies["babyNew"] == null)
+       Response.Redirect("http://google.com");
+        %>
+--%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
 <head>
@@ -65,6 +70,7 @@
             <% Html.RenderPartial("Categories"); %> 
             <div id="leftHand">
             </div>
+            <% Html.RenderPartial("MamaRecomends"); %>
         </div>
         <div id="rightSide">
             <div id="rightSideHeader">

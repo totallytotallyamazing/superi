@@ -171,6 +171,8 @@
     <Content Include="Areas\Admin\Views\Tags\BottomTag.ascx" />
     <Content Include="Areas\Admin\Views\Tags\BottomTags.aspx" />
     <Content Include="Areas\Admin\Views\Tags\TagEdit.ascx" />
+    <Content Include="Content\img\mamaSuggestsFoot.jpg" />
+    <Content Include="Content\img\mamaSuggestsHead.jpg" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\jquery.fancybox.js" />
     <Content Include="Scripts\jquery.FCKEditor.js" />

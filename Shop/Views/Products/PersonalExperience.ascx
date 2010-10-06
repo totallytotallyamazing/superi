@@ -1,5 +1,5 @@
-﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<string>" %>
-
+﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<Shop.Models.Product>" %>
+<% if(!string.IsNullOrEmpty(Model.PersonalExperience)){ %>
 <div class="personalExperience">
     <div class="header">
         Личный опыт
@@ -8,3 +8,4 @@
         <%= Model %>
     </div>
 </div>
+<%} %>

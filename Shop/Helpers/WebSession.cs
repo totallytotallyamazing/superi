@@ -42,7 +42,7 @@ namespace Dev.Helpers
             {
                 if (Session["order"] == null)
                 {
-                    Session["order"] = new Order { UniqueId = Guid.NewGuid().ToString() };
+                    Session["order"] = new Order();
                 }
                 return (Shop.Models.Order)Session["order"];
             }

@@ -120,12 +120,6 @@ namespace Shop.Controllers
             WebSession.Order.BillingEmail = authorizeModel.Email;
             WebSession.Order.BillingName = authorizeModel.Name;
             WebSession.Order.BillingPhone = authorizeModel.Phone;
-            using (OrdersStorage context = new OrdersStorage())
-            {
-                context.AddToOrders(WebSession.Order);
-                context.SaveChanges();
-                context.Detach(WebSession.Order);
-            }
             return RedirectToAction("DeliveryAndPayment");
         }
 
@@ -181,7 +175,7 @@ namespace Shop.Controllers
         {
             using (OrdersStorage context = new OrdersStorage())
             {
-                context.Attach(WebSession.Order);
+              //  context.Attach(WebSession.Order);
                 WebSession.Order.DeliveryAddress = model.DeliveryAddress;
                 WebSession.Order.DeliveryName = model.Name;
                 WebSession.Order.DeliveryPhone = model.Phone;
@@ -211,17 +205,18 @@ namespace Shop.Controllers
 
                         PaymentPropertyValue val = new PaymentPropertyValue
                         {
-                            PaymentProperty = paymentProperty,
+                            PaymentProperty =  paymentProperty,
                             Value = paymentPropertyValue
                         };
 
-                        context.Attach(paymentProperty);
-                        WebSession.Order.PaymentPropertyValues.Add(val);
+
+                        //context.Attach(paymentProperty);
+                        //WebSession.Order.PaymentPropertyValues.Add(val);
                         WebSession.PaymentProertyValues.Add(val);
                     }
                 }
-                context.SaveChanges();
-                context.Detach(WebSession.Order);
+                //context.SaveChanges();
+                //context.Detach(WebSession.Order);
             }
 
             return RedirectToAction("Approve");
@@ -230,30 +225,36 @@ namespace Shop.Controllers
         [OutputCache(NoStore = true, VaryByParam = "*", Duration = 1)]
         public ActionResult Approve()
         {
+            return View();
+        }
+
+        private void SaveOrder()
+        {
             using (OrdersStorage context = new OrdersStorage())
             {
-                context.Attach(WebSession.Order);
-                WebSession.Order.OrderItems.Load();
+                context.AddToOrders(WebSession.Order);
                 context.Attach(WebSession.DeliveryType);
                 context.Attach(WebSession.PaymentType);
+                foreach (var item in WebSession.PaymentProertyValues)
+                {
+                    PaymentPropertyValue val = new PaymentPropertyValue();
+                    val.Value = item.Value;
+                    val.PaymentPropertyReference.EntityKey = new EntityKey("OrdersStorage.PaymentProperties", "Id", item.PaymentProperty.Id);
+                    WebSession.Order.PaymentPropertyValues.Add(val);
+                }
                 WebSession.Order.DeliveryType = WebSession.DeliveryType;
                 WebSession.Order.PaymentType = WebSession.PaymentType;
+                WebSession.Order.UniqueId = Guid.NewGuid().ToString();
                 foreach (var item in WebSession.OrderItems)
-                {
-                    if (!WebSession.Order.OrderItems.Select(oi => oi.Id).ToArray().Contains(item.Value.Id))
-                        WebSession.Order.OrderItems.Add(item.Value);
-                    WebSession.Order.OrderDate = DateTime.Now;
-                }
+                    WebSession.Order.OrderItems.Add(item.Value);
+                WebSession.Order.OrderDate = DateTime.Now;
                 context.SaveChanges();
-                foreach (var item in WebSession.OrderItems)
-                    context.Detach(item.Value);
-
             }
-            return View();
         }
 
         public ActionResult SendOrder()
         {
+            SaveOrder();
             SendOrderMail();
             if(!string.IsNullOrEmpty(WebSession.Order.BillingEmail))
                 SedClientMail();

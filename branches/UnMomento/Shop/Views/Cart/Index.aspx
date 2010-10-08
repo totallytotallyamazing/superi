@@ -49,9 +49,9 @@
     <div id="OrderItems">
         <% Html.RenderPartial("CartContent", Model); %>
     </div>
-    <div id="proceedContainer">
+    <%--<div id="proceedContainer">
         Все верно,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= Html.ActionLink("оформляем!", "Authorize") %>
-    </div>
+    </div>--%>
     <div id="offer">
         <div id="txtOffer">
             <p class="it1">
@@ -228,7 +228,9 @@
 <asp:Content ID="Content5" runat="server" ContentPlaceHolderID="Footer">
     <div id="pager" style="padding-left: 20px;">
         <p class="pgt1">
-            <a href="#" class="pgt1">« Вернуться</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
-                href="#" class="pgt1">Продолжить »</a></p>
+            <a href="#" class="pgt1">« Вернуться</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <%= Html.ActionLink("Продолжить »", "Authorize", new { Area = "", type = 1 }, new { @class = "pgt1" })%>
+            <%--<a href="#" class="pgt1">Продолжить »</a>--%>
+            </p>
     </div>
 </asp:Content>

@@ -9,8 +9,11 @@
     string additionalClass = string.Empty;
     if (!Model.Published && isAdmin)
         additionalClass = " translucent";
-    string productClickLink = Html.ActionLink("[IMAGE]", "Show", new { id = Model.Id }).ToString();
+    string productClickLink = Html.ActionLink("[IMAGE]", "Show", new { id = Model.Id }, new { @class = "hlColor" }).ToString();
 %>
+
+
+
 <div class="productItem">
     <img src="../../Content/UnMomentoStyles/img/sheep.gif" alt="Овца" />
     <div id="item1Txt">
@@ -24,9 +27,20 @@
                  
                 </p>
        </div>
-        <a href="#" class="it3">Заказать »</a>
+
+      
+     <a href="#"  class="it3">Заказать »</a>
+      
+    
+             
+       
+
     </div>
 </div>
+
+
+
+
 <%--<div class="tovarBox<%= additionalClass %>">
 
 

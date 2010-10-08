@@ -16,7 +16,10 @@
     background-color: #ffeeee;
 }
 
-.capital{text-transform:uppercase;}
+.capital
+{
+    text-transform: uppercase;
+}
 
 .validation-summary-errors
 {
@@ -27,147 +30,671 @@
 .validation-summary-valid
 {
     display: none;
-} 
+}
 
- * {margin: 0px; padding: 0px;}
-    img {border: 0px;}
-    html, body {background: #fff;}
-     
-    /*----------------внешность--------------------------------------------------*/     
-    #all {width: 1000px; margin: 0px auto; background: #fff;}
-    #mainBkg {width: 1000px; background: url('./img/allBkg.gif') no-repeat; background-position: bottom; padding-bottom: 45px;}      
-    
-    #contentWrapper{padding:0 70px 0 75px; min-height:600px;}
-    
-    
-    /*шапка*/    
-    #top {height: 257px; width: 1000px; background: url('./img/top_bkg.gif') no-repeat;}
-    #topLeft {float: left; padding: 15px 0px 0px 25px;}
-    #topInfoMenu {padding: 55px 0px 0px 20px;}
-    #topCurrencyCB {padding: 80px 0px 0px 20px;}    
-   /* #topCentral {margin-left: 350px; width: 293px; position: absolute; }*/
-    #inRussian {float: right; padding: 20px 50px 0px 0px;}
-    #inEnglish {float: left; padding: 20px 0px 0px 70px;}
-    #topRight {float: right; padding: 65px 90px 0px 0px;}
-    
-    /*контейнер*/    
-    #ctrLeft {float: left; padding: 20px 0px 0px 25px; position:absolute;}
-    #ctrRight {float: right; width: 199px;}      
-                   
-    /*левый блок*/
-    #bubGift {margin-left: 5px; margin-top: 10px; height: 46px; width: 113px; background: url('./img/bubbleGift.gif') no-repeat; line-height: 18px;}      
-    #giftMenu {margin-left: 20px; margin-top: 5px; width:130px;}      
-    #txtBlkGift {padding: 8px 0px 0px 0px;}
-    #bubReason {margin-left: 5px; margin-top: 20px; height: 47px; width: 135px; background: url('./img/bubbleReason.gif') no-repeat; line-height: 35px;}
-    #reasonMenu {margin-left: 20px; margin-top: 5px; width:130px;}
-    #reasonMenu div, #giftMenu div{padding-bottom:15px; line-height:14px;}
-    #txtBlkReason {padding: 6px 0px 6px 0px;}
-    #bubAndWe {margin-left: 5px; margin-top: 15px; height: 47px; width: 135px; background: url('./img/bubbleReason.png') no-repeat; line-height: 18px;}
-    #txtBlkAndWe {padding: 20px 0px 0px 15px;}
-    
-    /*правый блок*/
-    #basket {height: 87px; width: 140px; margin-left: 20px; background: url('./img/basket.gif') no-repeat;}
-    #basketText {padding: 5px 0px 0px 0px;}
-    #point_basket, #point_baner, #pointNews {margin: 10px 0px 0px 80px; background: url('./img/point.gif') no-repeat; height: 22px; width: 29px;}
-    #bubNews { margin-top: 10px; margin-left: 10px; height: 139px; width: 172px; height: 133px; background: url('./img/bubbleNews.gif') no-repeat;}
-    #pointNews {margin-top: 0px;}
-    #txtBlkNews {margin: 15px 0px 0px 30px; width: 130px;}
-    #msgOfDay {margin: 15px 7px 0px 0px;}
-    #baner {margin: 10px 0px 0px 22px; border: 1px solid #999999; width: 148px; height: 209px;}
-        
-    /*подвал*/       
-    #footer {height: 104;}
-    #desBy {margin-top: 40px;}
-         
-    /*шрифты*/
-    .ot1, .ot2, .ot3, .ot4, .ot5, .ot6, ot6.current, .ot7, .bt1, .bt2, .bt3, .pt1, .pt2, .pgt1  {font-family: Georgia, 'Times New Roman', Times, serif; color: Black;}
-      
-    .ot1 {font-size: 25px;}
-    .ot2, .dt2 {font-size: 16px;}  
-    .ot3 {padding-left: 15px; font-weight:600; }  
-    .ot4, .ot5, .opt3, .pmt1, .pmt2  {font-size: 13px; text-align:center;}    
-    .ot6, .ot6.current, .ot7, .bt3 { font-size: 13px; font-weight:bold;}
-    .ot7 {line-height: 15px;}    
-    .bt1, .bt2, .bt3 {font-size: 12px; text-align:center;}    
-    
-    .nt1, .nt2, .it1, .it2, .it3, .ort1, .ort2, .opt1, .opt2, .opt3, .obt1, .pmt1, .pmt2, .pmt3, .dt1, .dt2, .dt3 {font-family: Tahoma, Veranda, sans-serif;}
-    .nt1, .it3 {font-size: 10px;}
-    .nt1 {text-align:center; padding-top: 20px;}    
-    .nt2, .ort2, .obt1, .dt3 {font-size: 11px;}
-    .nt1, .nt2, .opt1, .pmt1, .pmt2 {font-weight:bold;}  
-    .obt1, .pmt3, .dt2 {text-align:center;}
-    .opt1 {font-size: 30px; font-weight:bold; text-align:center;} 
-   /* .opt3 {font-size: 13px; text-align:center;}   */ 
-    .pmt3, .dt1 {font-size: 14px;}
-    .pt1 {font-size: 24px;}
-    .pt2 {font-size: 15px;}
-    .it1, .ort3 {font-size: 12px;}
-    .it2 {font-size: 14px; color: #666666; line-height: 22px; font-weight:bold;}
-    .it3, .pmt1, .pmt2, .pmt3 {line-height: 20px;}
-    
-    .pgt1, .ort1, .opt2 {font-size: 20px; text-align:center;}
-    
-    
-    .bt2, .it3, .ot3, .ot5, .pt1, .nt1, .opt1, .opt2, .opt3 { color: #cc0000;}
-    .ot6.current, .ort1, .pt2, .pmt2, .pmt3 {color: #999999;}
-    .it1, .nt2, .pgt1, .obt1, .pmt1, .dt1, .dt2, .dt3 {color: black;}
-    
-    /*----------------внутренность------------------------------------------------*/  
-    
-    /*центр главной страницы*/
-    #ctr {margin-left: auto; margin-right: auto; width: 602px;  
-          background: url('./img/mainBoxCenter.gif') repeat-y; margin-bottom: 50px;} 
-    #ctr .top{background: url('./img/mainBoxTop.gif') no-repeat; width:auto; height:113px; margin-bottom: 20px;}      
-    #ctr .bottom{background: url('./img/mainBoxBottom.gif') no-repeat; width:auto; height:112px;}      
-    #contName {width: 600px; height: 130px;}      
-    #pagePic{float: left; padding: 28px 0px 0px 33px; width: 89px;position:absolute;} 
-    #pageName {padding: 58px 0px 0px 125px;}
-    
-    #pager {padding-top: 30px; }
-         
-    /*центр страници заказов*/     
-    #ctrOrder {margin-left: auto; margin-right: auto; width: 602px; height: 1316px; 
-         background: url('./img/mainBoxOrder.png') no-repeat;} 
-    #pageNameOrder {padding: 58px 0px 0px 40px;}
-    #OrderItems {margin: 70px 0px 0px 0px;}
-    #orderItem {margin-top: 30px;}
-    #imgOrderItem {float: left; width: 98px; height: 99px; border: 1px solid #999999;}
-    #priceOrderItem {float: right; margin: 25px 0px 0px 0px;}
-    #txtOrderItem {margin-left: 125px; width: 220px; height: 99px; text-align: justify; overflow: hidden;}
-    #nameOrderItem {margin-bottom: 8px;}
-    #removeOrderItem {margin-top: 10px;}
-    #crossOrderItem {float: left;}
-    #txtRemoveOrderItem {padding-left: 17px;}
-    #payment {margin: 30px 0px 0px 10px;}
-    
-    #offer {margin: 40px 0px 0px -20px;}
-    #txtOffer {margin: 0px 0px 5px 25px;}
-    #bubbleOffer {height: 612px; width: 505px; background: url('./img/bubbleOffer.gif') no-repeat;}
-    #bubOfferAll {padding: 40px 30px 0px 30px;}
-    #bubOfferTop, #bubOfferCenter, #bubOfferBottom {margin-top: 30px;}
-    .bubOfferItem {width: 148px;}
-    .bubOfferImg {margin-left: auto; margin-right: auto; width: 98px; height: 99px; border: 1px solid #999999;}  
-    .bubOfferTRight{float: right;}
-    .bubOfferTLeft{float: left;}
-    .bubOfferTCenter {margin-left: auto; margin-right: auto; width: 148px;} 
-    .bubOfferName {}
-    #pagerOrder {margin: 40px 33px 0px 0px;} 
-    
-    /*О товаре*/    
-    #imgProduct {width: 358px; margin-left: auto; margin-right: auto; border: 1px solid #999999;}
-    #productMenu {margin-top: 10px; /*height: 50px;*/ width: 240px; margin-left: auto; margin-right: auto;}
-    #smalProduct {float: right;}
-    #bigProduct {float: left;}
-    #midProduct {/*margin-left: auto; margin-right: auto; width: 148px;*/}
-    #productDescr {margin-top: 5px; margin-left: auto; margin-right: auto; width: 340px;}
-    #individual {margin: 25px 0px 0px 60px; height: 80px;}
-    
-    /*Новости*/
-    #newsContent {/*height: 640px; */width: 470px; margin: 20px 0px 0px 0px;}
-    #news1 {margin-top: 10px; border-bottom: 1px solid #cc0000;}
-    .imgNewsContent {margin-right: 40px;}
-    
-   /* #productItem{width: 196px;} */       
-   
-   .price span{display:block;}
-   .priceNonBlock span{display:inline;}
+*
+{
+    margin: 0px;
+    padding: 0px;
+}
+img
+{
+    border: 0px;
+}
+html, body
+{
+    background: #fff;
+}
+
+/*----------------внешность--------------------------------------------------*/
+#all
+{
+    width: 1000px;
+    margin: 0px auto;
+    background: #fff;
+}
+#mainBkg
+{
+    width: 1000px;
+    background: url('./img/allBkg.gif') no-repeat;
+    background-position: bottom;
+    padding-bottom: 45px;
+}
+
+#contentWrapper
+{
+    padding: 0 70px 0 75px;
+    min-height: 600px;
+}
+
+
+/*шапка*/
+#top
+{
+    height: 257px;
+    width: 1000px;
+    background: url('./img/top_bkg.gif') no-repeat;
+}
+#topLeft
+{
+    float: left;
+    padding: 15px 0px 0px 25px;
+}
+#topInfoMenu
+{
+    padding: 55px 0px 0px 20px;
+}
+#topCurrencyCB
+{
+    padding: 80px 0px 0px 20px;
+}
+/* #topCentral {margin-left: 350px; width: 293px; position: absolute; }*/
+#inRussian
+{
+    float: right;
+    padding: 20px 50px 0px 0px;
+}
+#inEnglish
+{
+    float: left;
+    padding: 20px 0px 0px 70px;
+}
+#topRight
+{
+    float: right;
+    padding: 65px 90px 0px 0px;
+}
+
+/*контейнер*/
+#ctrLeft
+{
+    float: left;
+    padding: 20px 0px 0px 25px;
+    position: absolute;
+}
+#ctrRight
+{
+    float: right;
+    width: 199px;
+}
+
+/*левый блок*/
+#bubGift
+{
+    margin-left: 5px;
+    margin-top: 10px;
+    height: 46px;
+    width: 113px;
+    background: url('./img/bubbleGift.gif') no-repeat;
+    line-height: 18px;
+}
+#giftMenu
+{
+    margin-left: 20px;
+    margin-top: 5px;
+    width: 130px;
+}
+#txtBlkGift
+{
+    padding: 8px 0px 0px 0px;
+}
+#bubReason
+{
+    margin-left: 5px;
+    margin-top: 20px;
+    height: 47px;
+    width: 135px;
+    background: url('./img/bubbleReason.gif') no-repeat;
+    line-height: 35px;
+}
+#reasonMenu
+{
+    margin-left: 20px;
+    margin-top: 5px;
+    width: 130px;
+}
+#reasonMenu div, #giftMenu div
+{
+    padding-bottom: 15px;
+    line-height: 14px;
+}
+#txtBlkReason
+{
+    padding: 6px 0px 6px 0px;
+}
+#bubAndWe
+{
+    margin-left: 5px;
+    margin-top: 15px;
+    height: 47px;
+    width: 135px;
+    background: url('./img/bubbleReason.png') no-repeat;
+    line-height: 18px;
+}
+#txtBlkAndWe
+{
+    padding: 20px 0px 0px 15px;
+}
+
+/*правый блок*/
+#basket
+{
+    height: 87px;
+    width: 140px;
+    margin-left: 20px;
+    background: url('./img/basket.gif') no-repeat;
+}
+#basketText
+{
+    padding: 5px 0px 0px 0px;
+}
+#point_basket, #point_baner, #pointNews
+{
+    margin: 10px 0px 0px 80px;
+    background: url('./img/point.gif') no-repeat;
+    height: 22px;
+    width: 29px;
+}
+#bubNews
+{
+    margin-top: 10px;
+    margin-left: 10px;
+    height: 139px;
+    width: 172px;
+    height: 133px;
+    background: url('./img/bubbleNews.gif') no-repeat;
+}
+#pointNews
+{
+    margin-top: 0px;
+}
+#txtBlkNews
+{
+    margin: 15px 0px 0px 30px;
+    width: 130px;
+}
+#msgOfDay
+{
+    margin: 15px 7px 0px 0px;
+}
+#baner
+{
+    margin: 10px 0px 0px 22px;
+    border: 1px solid #999999;
+    width: 148px;
+    height: 209px;
+}
+
+/*подвал*/
+#footer
+{
+    height: 104;
+}
+#desBy
+{
+    margin-top: 40px;
+}
+
+/*шрифты*/
+.ot1, .ot2, .ot3, .ot4, .ot5, .ot6, ot6.current, .ot7, .bt1, .bt2, .bt3, .pt1, .pt2, .pgt1
+{
+    font-family: Georgia, 'Times New Roman' , Times, serif;
+    color: Black;
+}
+
+.ot1
+{
+    font-size: 25px;
+}
+.ot2, .dt2
+{
+    font-size: 16px;
+}
+.ot3
+{
+    padding-left: 15px;
+    font-weight: 600;
+}
+.ot4, .ot5, .opt3, .pmt1, .pmt2
+{
+    font-size: 13px;
+    text-align: center;
+}
+.ot6, .ot6.current, .ot7, .bt3
+{
+    font-size: 13px;
+    font-weight: bold;
+}
+.ot7
+{
+    line-height: 15px;
+}
+.bt1, .bt2, .bt3
+{
+    font-size: 12px;
+    text-align: center;
+}
+
+.nt1, .nt2, .it1, .it2, .it3, .ort1, .ort2, .opt1, .opt2, .opt3, .obt1, .pmt1, .pmt2, .pmt3, .dt1, .dt2, .dt3, .au1
+{
+    font-family: Tahoma, Veranda, sans-serif;
+}
+.nt1, .it3, .au1
+{
+    font-size: 10px;
+}
+.nt1
+{
+    text-align: center;
+    padding-top: 20px;
+}
+.nt2, .ort2, .obt1, .dt3
+{
+    font-size: 11px;
+}
+.nt1, .nt2, .opt1, .pmt1, .pmt2
+{
+    font-weight: bold;
+}
+.obt1, .pmt3, .dt2
+{
+    text-align: center;
+}
+.opt1
+{
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+}
+/* .opt3 {font-size: 13px; text-align:center;}   */
+.pmt3, .dt1
+{
+    font-size: 14px;
+}
+.pt1
+{
+    font-size: 24px;
+}
+.pt2
+{
+    font-size: 15px;
+}
+.it1, .ort3
+{
+    font-size: 12px;
+}
+.it2
+{
+    font-size: 14px;
+    color: #666666;
+    line-height: 22px;
+    font-weight: bold;
+}
+.it3, .pmt1, .pmt2, .pmt3
+{
+    line-height: 20px;
+}
+
+.pgt1, .ort1, .opt2
+{
+    font-size: 20px;
+    text-align: center;
+}
+
+
+.bt2, .it3, .ot3, .ot5, .pt1, .nt1, .opt1, .opt2, .opt3
+{
+    color: #cc0000;
+}
+.ot6.current, .ort1, .pt2, .pmt2, .pmt3
+{
+    color: #999999;
+}
+.it1, .nt2, .pgt1, .obt1, .pmt1, .dt1, .dt2, .dt3, .au1
+{
+    color: black;
+}
+
+/*----------------внутренность------------------------------------------------*/
+
+/*центр главной страницы*/
+#ctr
+{
+    margin-left: auto;
+    margin-right: auto;
+    width: 602px;
+    background: url('./img/mainBoxCenter.gif') repeat-y;
+    margin-bottom: 50px;
+}
+#ctr .top
+{
+    background: url('./img/mainBoxTop.gif') no-repeat;
+    width: auto;
+    height: 113px;
+    margin-bottom: 20px;
+}
+#ctr .bottom
+{
+    background: url('./img/mainBoxBottom.gif') no-repeat;
+    width: auto;
+    height: 112px;
+}
+#contName
+{
+    width: 600px;
+    height: 130px;
+}
+#pagePic
+{
+    float: left;
+    padding: 28px 0px 0px 33px;
+    width: 89px;
+    position: absolute;
+}
+#pageName
+{
+    padding: 58px 0px 0px 125px;
+}
+
+#pager
+{
+    padding-top: 30px;
+}
+
+/*центр страници заказов*/
+#ctrOrder
+{
+    margin-left: auto;
+    margin-right: auto;
+    width: 602px;
+    height: 1316px;
+    background: url('./img/mainBoxOrder.png') no-repeat;
+}
+#pageNameOrder
+{
+    padding: 58px 0px 0px 40px;
+}
+#OrderItems
+{
+    margin: 70px 0px 0px 0px;
+}
+#orderItem
+{
+    margin-top: 30px;
+}
+#imgOrderItem
+{
+    float: left;
+    width: 98px;
+    height: 99px;
+    border: 1px solid #999999;
+}
+#priceOrderItem
+{
+    float: right;
+    margin: 25px 0px 0px 0px;
+}
+#txtOrderItem
+{
+    margin-left: 125px;
+    width: 220px;
+    height: 99px;
+    text-align: justify;
+    overflow: hidden;
+}
+#nameOrderItem
+{
+    margin-bottom: 8px;
+}
+#removeOrderItem
+{
+    margin-top: 10px;
+}
+#crossOrderItem
+{
+    float: left;
+}
+#txtRemoveOrderItem
+{
+    padding-left: 17px;
+}
+#payment
+{
+    margin: 30px 0px 0px 10px;
+}
+
+#offer
+{
+    margin: 40px 0px 0px -20px;
+}
+#txtOffer
+{
+    margin: 0px 0px 5px 25px;
+}
+#bubbleOffer
+{
+    height: 612px;
+    width: 505px;
+    background: url('./img/bubbleOffer.gif') no-repeat;
+}
+#bubOfferAll
+{
+    padding: 40px 30px 0px 30px;
+}
+#bubOfferTop, #bubOfferCenter, #bubOfferBottom
+{
+    margin-top: 30px;
+}
+.bubOfferItem
+{
+    width: 148px;
+}
+.bubOfferImg
+{
+    margin-left: auto;
+    margin-right: auto;
+    width: 98px;
+    height: 99px;
+    border: 1px solid #999999;
+}
+.bubOfferTRight
+{
+    float: right;
+}
+.bubOfferTLeft
+{
+    float: left;
+}
+.bubOfferTCenter
+{
+    margin-left: auto;
+    margin-right: auto;
+    width: 148px;
+}
+.bubOfferName
+{
+}
+#pagerOrder
+{
+    margin: 40px 33px 0px 0px;
+}
+
+/*О товаре*/
+#imgProduct
+{
+    width: 358px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid #999999;
+}
+#productMenu
+{
+    margin-top: 10px; /*height: 50px;*/
+    width: 240px;
+    margin-left: auto;
+    margin-right: auto;
+}
+#smalProduct
+{
+    float: right;
+}
+#bigProduct
+{
+    float: left;
+}
+#midProduct
+{
+    /*margin-left: auto; margin-right: auto; width: 148px;*/
+}
+#productDescr
+{
+    margin-top: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 340px;
+}
+#individual
+{
+    margin: 25px 0px 0px 60px;
+    height: 80px;
+}
+
+/*Новости*/
+#newsContent
+{
+    /*height: 640px; */
+    width: 470px;
+    margin: 20px 0px 0px 0px;
+}
+#news1
+{
+    margin-top: 10px;
+    border-bottom: 1px solid #cc0000;
+}
+.imgNewsContent
+{
+    margin-right: 40px;
+}
+
+/* #productItem{width: 196px;} */
+
+.price span
+{
+    display: block;
+}
+.priceNonBlock span
+{
+    display: inline;
+}
+
+.hlColor
+{
+    color: Black;
+}
+
+
+/*Оформление заказа*/
+#infoLeft
+{
+    float: left;
+    width: 150px;
+}
+.infoTxt
+{
+    padding-bottom: 15px;
+}
+#infoRight
+{
+    margin-left: 175px;
+    width: 300px;
+}
+#cbDate, #cbPayment
+{
+    width: 133px;
+    height: 17px;
+    background: url('./img/cbDate.gif') no-repeat;
+}
+#inpCode
+{
+    padding-bottom: 10px;
+    width: 133px;
+    height: 17px;
+    background: url('./img/inputCode.gif') no-repeat;
+}
+#cbDate
+{
+    margin-top: 14px;
+}
+#cbPayment
+{
+    margin-top: 12px;
+}
+#inpCode
+{
+    margin-top: 24px;
+}
+#codeAbout
+{
+    float: right;
+    margin-top: 22px;
+    text-align: right;
+}
+
+
+.textCode
+{
+    padding: 0px 0px 5px 12px;
+    position: relative;
+    bottom: 3px;
+    font-size: 12px;
+    border: none;
+    background: none;
+    width: 110px;
+    height: 20px;
+}
+
+input:focus
+{
+    outline: none;
+}
+
+#cbReport
+{
+    margin-top: 17px;
+}
+#cbReportName
+{
+    margin-top: 17px;
+}
+
+#crossAuthorize
+{
+    margin: 20px 0px 20px 200px;
+}
+#zaebaliNahShrifty
+{
+    margin: 5px 0px 5px 0px;
+}
+
+.thumb img
+{
+    border: 1px solid #999999;
+}
+#bonus
+{
+    width: 473px;
+}
+#bonusRight
+{
+    float: right;
+    margin: 25px 0px 0px 10px;
+}
+#bonusLeft
+{
+    float: left;
+    margin: 25px 10px 0px 0px;
+}
+#bonusCenter
+{
+    margin-top: 20px;
+}

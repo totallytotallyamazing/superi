@@ -49,7 +49,6 @@
             О товаре
         </span>
         <div class="section">   
-            <%= Html.HiddenFor(model => model.Id) %>
 
             <%if (ViewData["id"] != null)
              {
@@ -62,6 +61,7 @@
         <%= Html.Hidden("cId") %>
         <%= Html.Hidden("bId") %>
         
+            <%= Html.HiddenFor(model => model.Id) %>
 
             <table>
                 <tr>

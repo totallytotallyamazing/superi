@@ -170,13 +170,54 @@ input:focus
 
 #inputCity
 {
-    margin-right: 70px;
+    margin-right: 75px;
     float: right;
     width: 126px;
     height: 17px;
     background: url('./img/inputCity.gif') no-repeat;
 }
 
+#inputStreet 
+{
+    float: left;
+    width: 166px;
+    height: 17px;
+    background: url('./img/inputStreet.gif') no-repeat;
+}
+
+#inputHomeNum
+{
+    margin-left: 175px;
+    width: 166px;
+    height: 17px;
+    background: url('./img/inputStreet.gif') no-repeat;
+}
+
+#inputFlat
+{
+    margin-right: 20px;
+    float: right;
+    width: 130px;
+    height: 17px;
+    background: url('./img/inputFlat.gif') no-repeat;
+}
+
+#inputIndex
+{
+    
+    float: left;
+    width: 130px;
+    height: 17px;
+    background: url('./img/inputFlat.gif') no-repeat;
+}
+
+#inputMail
+{
+    margin-left: 140px;
+    width: 166px;
+    height: 17px;
+    background: url('./img/inputStreet.gif') no-repeat;
+}
 
 /* inputs  */
 
@@ -200,7 +241,7 @@ input:focus
 }
 
 
-.textCode, .textNameSurname, .textCity
+.textCode, .textNameSurname, .textCity, .textStreet
 {
     padding: 0px 0px 0px 5px;
     bottom: 2px;
@@ -224,4 +265,10 @@ input:focus
 .textCity
 {
     width: 110px;
+}
+
+.textStreet
+
+{
+    width: 150px;
 }

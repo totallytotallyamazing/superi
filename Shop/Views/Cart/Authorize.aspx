@@ -143,13 +143,32 @@
                 <%--<input type="text" /> --%>
             </div>
             <div id="inputNameSurname">
-                <input class="textNameSurname" type="text" /> 
+                <input class="textNameSurname" type="text" />
             </div>
-
         </div>
+        <div class="infoInputLines">
+            <div id="inputFlat">
+                <input class="textCode" type="text" />
+            </div>
+            <div id="inputStreet">
+                <input class="textStreet" type="text" />
+            </div>
+            <div id="inputHomeNum">
+                <input class="textStreet" type="text" />
+            </div>
+        </div>
+        <div class="infoInputLines">
+            <div id="inputIndex">
+                <input class="textCode" type="text" />
+            </div>
+            <div id="inputMail">
+                <input class="textStreet" type="text" />
+            </div>            
+        </div>
+
         <%} %>
     </div>
-    <%--<div id="userInfoWrapper">
+    <%-- <div id="userInfoWrapper">
         <h2 class="cartPageTitle">Ваши контактные данные</h2>
         <% Html.EnableClientValidation(); %>
         <% using(Html.BeginForm("Authorize", "Cart", FormMethod.Post, new{id="authorizeForm"})){ %>
@@ -231,7 +250,8 @@
 <asp:Content ID="Content5" ContentPlaceHolderID="Footer" runat="server">
     <div id="pager" style="padding-left: 20px;">
         <p class="pgt1">
-            <a href="javascript:history.back();" class="pgt1">« Вернуться</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
-                href="#" class="pgt1">Продолжить »</a></p>
+            <a href="javascript:history.back();" class="pgt1">« Вернуться</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="#" class="pgt1">Продолжить »</a>
+        </p>
     </div>
 </asp:Content>

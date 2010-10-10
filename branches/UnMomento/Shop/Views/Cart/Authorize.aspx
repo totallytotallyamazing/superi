@@ -5,7 +5,7 @@
     Авторизация
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <div id="contentWrap">
+    <div id="userInfoWrapper">
         <% Html.EnableClientValidation(); %>
         <% using (Html.BeginForm("Authorize", "Cart", FormMethod.Post, new { id = "authorizeForm" }))
            { %>
@@ -63,34 +63,89 @@
         <div>
             <p class="au1">
                 К подарку обычно прилагается</p>
-            <div id ="zaebaliNahShrifty">
-            <p class="pt1">
-                Открытка</p>
+            <div id="zaebaliNahShrifty">
+                <p class="pt1">
+                    Открытка</p>
             </div>
             <p class="ort2">
                 (Стоимость открытки — 10 грн, автоматически включится в счёт)</p>
         </div>
         <div id="bonus">
-            <div id="bonusRight"> 
-            <img src="../../Content/UnMomentoStyles/img/RightArrow.gif" alt="разделитель" />   
-            </div>  
+            <div id="bonusRight">
+                <img src="../../Content/UnMomentoStyles/img/RightArrow.gif" alt="разделитель" />
+            </div>
             <div id="bonusLeft">
-            <img src="../../Content/UnMomentoStyles/img/LeftArrow.gif" alt="разделитель" />  
-            
-            </div> 
-            <div id="bonusCenter">  
-            <p class="thumb">
-            <img src="../../Content/UnMomentoStyles/img/faxGrey.gif" alt="разделитель" width="80" height="70" />
-         
-            <img src="../../Content/UnMomentoStyles/img/fax.gif" alt="разделитель" width="80" height="70" />
-        
-            <img src="../../Content/UnMomentoStyles/img/fax.gif" alt="разделитель" width="80" height="70" />
-        
-            <img src="../../Content/UnMomentoStyles/img/fax.gif" alt="разделитель" width="80" height="70" />
-           
-            <img src="../../Content/UnMomentoStyles/img/fax.gif" alt="разделитель" width="80" height="70" />
+                <img src="../../Content/UnMomentoStyles/img/LeftArrow.gif" alt="разделитель" />
+            </div>
+            <div id="bonusCenter">
+                <p class="thumb">
+                    <img src="../../Content/UnMomentoStyles/img/faxGrey.gif" alt="разделитель" width="80"
+                        height="70" />
+                    <img src="../../Content/UnMomentoStyles/img/fax.gif" alt="разделитель" width="80"
+                        height="70" />
+                    <img src="../../Content/UnMomentoStyles/img/fax.gif" alt="разделитель" width="80"
+                        height="70" />
+                    <img src="../../Content/UnMomentoStyles/img/fax.gif" alt="разделитель" width="80"
+                        height="70" />
+                    <img src="../../Content/UnMomentoStyles/img/fax.gif" alt="разделитель" width="80"
+                        height="70" />
+                </p>
+            </div>
+        </div>
+        <div id="greetingsLeft">
+            <div class="greetingsInfo">
+                <p class="it1">
+                    <b>Введите поздравительный текст,</b></p>
+                <span class="ort2">или выберите из</span> <a href="#" class="dt3"><b>предлагаемых нами.</b>
+                </a>
+            </div>
+            <div class="greetingsInfo">
+                <p class="ort2">
+                    Введенный текст будет печататься на обороте открытки.</p>
+            </div>
+            <div class="greetingsInfo">
+                <p class="ort2">
+                    Текст вводить не обязательно, можно ограничиться подписью.</p>
+            </div>
+        </div>
+        <div id="greetingsRight">
+            <div id="inpGreetings">
+                <%--<input class="textGreetings" type="text" />--%>
+                <textarea class="textGreetings"></textarea>
+            </div>
+            <div id="subscribe">
+                <p class="au1">
+                    &nbsp; Подпишите открытку:</p>
+                <div id="inpSubscribe">
+                    <input class="textCode" type="text" />
+                </div>
+            </div>
+        </div>
+        <div id="autoSelect">
+            <div id="cbAutoSelect">
+                <input type="checkbox" name="ch3" />
+            </div>
+            <p class="au2">
+                Поставьте галочку, если желаете, чтобы мы подобрали открытку самостоятельно.</p>
+        </div>
+        <div id="deliveryInfo">
+            <p class="pt1">
+                Кому и куда доставляем?</p>
+            <p class="au1">
+                Пожалуйста, заполните все поля.
             </p>
-            </div> 
+        </div>
+        <div class="infoInputLines">
+            <div id="inputCity">
+                <input class="textCity" type="text" />
+            </div>
+            <div id="cbSex">
+                <%--<input type="text" /> --%>
+            </div>
+            <div id="inputNameSurname">
+                <input class="textNameSurname" type="text" /> 
+            </div>
+
         </div>
         <%} %>
     </div>
@@ -159,6 +214,7 @@
     <%= Ajax.ScriptInclude("/Scripts/MicrosoftAjax.js")%>
     <%= Ajax.ScriptInclude("/Scripts/MicrosoftMvcValidation.js")%>
     <%= Ajax.DynamicCssInclude("/Content/Cart.css") %>
+    <link href="/Content/UnMomentoStyles/Authorize.css" rel="stylesheet" type="text/css" />
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentTitle" runat="server">
     <div id="contName">

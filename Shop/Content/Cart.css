@@ -35,7 +35,7 @@ table.userInfo{width:100%;}
 table.userInfo td{padding: 2px 3px;}
 
 h2.cartPageTitle{font-size:12px; font-weight:bold; color:#ff6600;}
-div#userInfoWrapper{width:585px; position:relative; margin:0 auto; padding:25px 0 50px 0;}
+div#userInfoWrapper{width:500px; /*position:relative; margin:0 auto; padding:25px 0 50px 0;*/}
 
 .labelCell{ font-size:12px; color:black; padding-right:10px; padding-bottom:5px; }
 .labelCell span.comments{color:#999; font-size:9px;}

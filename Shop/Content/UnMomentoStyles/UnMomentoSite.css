@@ -116,6 +116,8 @@ html, body
 {
     float: right;
     width: 199px;
+    margin-left: 800px;
+    position: absolute;
 }
 
 /*левый блок*/
@@ -275,7 +277,7 @@ html, body
     text-align: center;
 }
 
-.nt1, .nt2, .it1, .it2, .it3, .ort1, .ort2, .opt1, .opt2, .opt3, .obt1, .pmt1, .pmt2, .pmt3, .dt1, .dt2, .dt3, .au1
+.nt1, .nt2, .it1, .it2, .it3, .ort1, .ort2, .opt1, .opt2, .opt3, .obt1, .pmt1, .pmt2, .pmt3, .dt1, .dt2, .dt3, .au1, .au2
 {
     font-family: Tahoma, Veranda, sans-serif;
 }
@@ -288,7 +290,7 @@ html, body
     text-align: center;
     padding-top: 20px;
 }
-.nt2, .ort2, .obt1, .dt3
+.nt2, .ort2, .obt1, .dt3, .au2
 {
     font-size: 11px;
 }
@@ -342,7 +344,7 @@ html, body
 }
 
 
-.bt2, .it3, .ot3, .ot5, .pt1, .nt1, .opt1, .opt2, .opt3
+.bt2, .it3, .ot3, .ot5, .pt1, .nt1, .opt1, .opt2, .opt3, .au2
 {
     color: #cc0000;
 }
@@ -360,6 +362,7 @@ html, body
 /*центр главной страницы*/
 #ctr
 {
+    
     margin-left: auto;
     margin-right: auto;
     width: 602px;
@@ -593,108 +596,3 @@ html, body
 }
 
 
-/*Оформление заказа*/
-#infoLeft
-{
-    float: left;
-    width: 150px;
-}
-.infoTxt
-{
-    padding-bottom: 15px;
-}
-#infoRight
-{
-    margin-left: 175px;
-    width: 300px;
-}
-#cbDate, #cbPayment
-{
-    width: 133px;
-    height: 17px;
-    background: url('./img/cbDate.gif') no-repeat;
-}
-#inpCode
-{
-    padding-bottom: 10px;
-    width: 133px;
-    height: 17px;
-    background: url('./img/inputCode.gif') no-repeat;
-}
-#cbDate
-{
-    margin-top: 14px;
-}
-#cbPayment
-{
-    margin-top: 12px;
-}
-#inpCode
-{
-    margin-top: 24px;
-}
-#codeAbout
-{
-    float: right;
-    margin-top: 22px;
-    text-align: right;
-}
-
-
-.textCode
-{
-    padding: 0px 0px 5px 12px;
-    position: relative;
-    bottom: 3px;
-    font-size: 12px;
-    border: none;
-    background: none;
-    width: 110px;
-    height: 20px;
-}
-
-input:focus
-{
-    outline: none;
-}
-
-#cbReport
-{
-    margin-top: 17px;
-}
-#cbReportName
-{
-    margin-top: 17px;
-}
-
-#crossAuthorize
-{
-    margin: 20px 0px 20px 200px;
-}
-#zaebaliNahShrifty
-{
-    margin: 5px 0px 5px 0px;
-}
-
-.thumb img
-{
-    border: 1px solid #999999;
-}
-#bonus
-{
-    width: 473px;
-}
-#bonusRight
-{
-    float: right;
-    margin: 25px 0px 0px 10px;
-}
-#bonusLeft
-{
-    float: left;
-    margin: 25px 10px 0px 0px;
-}
-#bonusCenter
-{
-    margin-top: 20px;
-}

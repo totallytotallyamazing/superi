@@ -62,7 +62,7 @@ namespace Shop.Controllers
                         ProductId = product.Id,
                         Quantity = 1,
                         Image = (image != null) ? image.ImageSource : null,
-                        Description = product.Description
+                        Description = product.ShortDescription
                     };
                     if (product.ProductAttributeValues.Count > 0)
                     {

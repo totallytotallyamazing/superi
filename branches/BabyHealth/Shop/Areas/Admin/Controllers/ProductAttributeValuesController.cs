@@ -40,15 +40,24 @@ namespace Shop.Areas.Admin.Controllers
             {
                 Product product = context.Products.Include("ProductAttributeValues").Where(p => p.Id == productId).First();
 
-                product.ProductAttributeValues.Clear();
-
                 PostData postData = form.ProcessPostData("productId", "categoryId");
                 int[] items = (from item in postData where item.Value["attr"] == "true" select int.Parse(item.Key)).ToArray();
+
+                // Remove excess attribute values from the product 
+                for (int i = product.ProductAttributeValues.Count - 1; i >= 0; i--)
+                {
+                    ProductAttributeValue val =  product.ProductAttributeValues.ElementAt(i);
+                    if (!items.Contains(val.Id))
+                    {
+                        product.ProductAttributeValues.Remove(val);
+                    }
+                }
+
+                //Add new values
                 foreach (int id in items)
                 {
                     ProductAttributeValue val = new ProductAttributeValue();
-                    
-                    if (product.ProductAttributeValues.Where(pv => pv.Id == id).Count() == 0)
+                    if (!product.ProductAttributeValues.Any(pav => pav.Id == id))
                     {
                         val.Id = id;
                         val.EntityKey = new System.Data.EntityKey("ShopStorage.ProductAttributeValues", "Id", id);

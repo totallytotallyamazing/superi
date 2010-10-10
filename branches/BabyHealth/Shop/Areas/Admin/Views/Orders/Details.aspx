@@ -66,6 +66,9 @@
     <p>
         <%: Html.ActionLink("Вернуться к списку", "Index") %>
     </p>
+    <p>
+        <%: Html.ActionLink("Удалить", "Delete", new { id = Model.Id }, new { onclick = "return confirm('Вы уверены?')" })%>
+    </p>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentTitle" runat="server">
 </asp:Content>

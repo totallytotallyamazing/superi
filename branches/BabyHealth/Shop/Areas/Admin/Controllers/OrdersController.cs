@@ -34,5 +34,16 @@ namespace Shop.Areas.Admin.Controllers
                 return View(order);
             }
         }
+
+        public ActionResult Delete(int id)
+        {
+            using (OrdersStorage context = new OrdersStorage())
+            {
+                Order order = context.Orders.Single(o => o.Id == id);
+                context.DeleteObject(order);
+                context.SaveChanges();
+            }
+            return RedirectToAction("Index");
+        }
     }
 }

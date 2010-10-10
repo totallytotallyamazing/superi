@@ -32,7 +32,8 @@
     
         <tr>
             <td>
-                <%: Html.ActionLink("Детали", "Details", new { id=item.Id })%>
+                <%: Html.ActionLink("Детали", "Details", new { id=item.Id })%> | 
+                <%: Html.ActionLink("X", "Delete", new { id = item.Id }, new { onclick = "return confirm('Вы уверены?')" }) %> 
             </td>
             <td>
                 <%: item.Id %>
@@ -64,9 +65,8 @@
 </asp:Content>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="includes" runat="server">
-    <style>
+    <style type="text/css">
         #ordersTable{font-size:10px; width:100%;}
         #ordersTable td{padding-right:10px;}
     </style>
 </asp:Content>
-

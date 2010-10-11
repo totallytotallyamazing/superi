@@ -145,8 +145,8 @@
                         Покупець:
                     </td>
                     <td valign="top">
-                        <%= WebSession.Order.BillingName %><br />
-                        Замовлення №<%= WebSession.Order.Id %>
+                        <%= order.BillingName %><br />
+                        Замовлення №<%= order.Id %>
                     </td>
                 </tr>
             </table>

@@ -63,8 +63,6 @@
         </strong>
     </div>
     
-    <% Html.RenderPartial("PrintDocument"); %>
-    
     <div class="backAndForward">
         <div class="back">
             <a href="javascript:history.back();">Вернуться</a>

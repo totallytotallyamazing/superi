@@ -89,6 +89,9 @@ namespace Shop.Controllers
 
         public ActionResult Authorize()
         {
+            if (WebSession.OrderItems.Count == 0)
+                return RedirectToAction("Index", "Home", null);
+
             AuthorizeModel authorizeModel = null;
 
             if (WebSession.IsBillingInfoFilled())
@@ -145,6 +148,9 @@ namespace Shop.Controllers
 
         public ActionResult DeliveryAndPayment()
         {
+            if (WebSession.OrderItems.Count == 0)
+                return RedirectToAction("Index", "Home", null);
+
             AuthorizeModel model = null;
             if (WebSession.IsBillingInfoFilled())
             {
@@ -225,6 +231,9 @@ namespace Shop.Controllers
         [OutputCache(NoStore = true, VaryByParam = "*", Duration = 1)]
         public ActionResult Approve()
         {
+            if (WebSession.OrderItems.Count == 0)
+                return RedirectToAction("Index", "Home", null);
+
             return View();
         }
 
@@ -257,14 +266,12 @@ namespace Shop.Controllers
             SaveOrder();
             SendOrderMail();
             if(!string.IsNullOrEmpty(WebSession.Order.BillingEmail))
-                SedClientMail();
-
-            WebSession.ClearOrder();
+                SendClientMail();
 
             return RedirectToAction("OrderSent");
         }
 
-        private void SedClientMail()
+        private void SendClientMail()
         {
             string link = string.Empty;
             if (WebSession.PaymentType.HasDocument)
@@ -315,6 +322,9 @@ namespace Shop.Controllers
 
         public ActionResult OrderSent()
         {
+            if (WebSession.OrderItems.Count == 0)
+                return RedirectToAction("Index", "Home", null);
+
             return View();
         }
 

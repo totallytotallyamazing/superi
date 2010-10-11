@@ -1,12 +1,13 @@
 ﻿/*Оформление заказа*/
-#userInfoWrapper{width:500px;}
+#userInfoWrapper
+{
+    width: 500px;
+}
 
 #infoLeft
 {
-    
     float: left;
     width: 150px;
-    
 }
 .infoTxt
 {
@@ -14,8 +15,6 @@
 }
 #infoRight
 {
-    
-   
     margin-left: 175px;
     width: 300px;
 }
@@ -102,7 +101,6 @@ input:focus
 
 #greetingsLeft
 {
-    
     float: left;
     margin: 20px 15px 0px 0px;
 }
@@ -115,12 +113,11 @@ input:focus
 #greetingsRight
 {
     margin: 20px 0px 0px 230px;
-    width: 224px;   
+    width: 224px;
 }
 
 #inpGreetings
 {
-    
     padding-bottom: 10px;
     width: 224px;
     height: 87px;
@@ -134,15 +131,20 @@ input:focus
     margin-top: 2px;
 }
 
+#autoSelect
+{
+    margin-bottom: 30px;
+}
+
 #cbAutoSelect
 {
     float: left;
     margin: -1px 7px 0px 0px;
 }
 
-#deliveryInfo
+.deliveryInfo
 {
-    margin: 40px 0px 5px 0px;
+    margin: 20px 0px 5px 0px;
 }
 
 
@@ -177,7 +179,7 @@ input:focus
     background: url('./img/inputCity.gif') no-repeat;
 }
 
-#inputStreet 
+.inputStreet
 {
     float: left;
     width: 166px;
@@ -185,7 +187,7 @@ input:focus
     background: url('./img/inputStreet.gif') no-repeat;
 }
 
-#inputHomeNum
+.inputHomeNum
 {
     margin-left: 175px;
     width: 166px;
@@ -193,7 +195,7 @@ input:focus
     background: url('./img/inputStreet.gif') no-repeat;
 }
 
-#inputFlat
+.inputFlat
 {
     margin-right: 20px;
     float: right;
@@ -202,46 +204,43 @@ input:focus
     background: url('./img/inputFlat.gif') no-repeat;
 }
 
-#inputIndex
+.inputIndex
 {
-    
     float: left;
     width: 130px;
     height: 17px;
     background: url('./img/inputFlat.gif') no-repeat;
 }
 
-#inputMail
+.inputMail
 {
-    margin-left: 140px;
+    margin-left: 144px;
     width: 166px;
     height: 17px;
     background: url('./img/inputStreet.gif') no-repeat;
+}
+
+#inputPhoneNum
+{
+    width: 310px;
+    height: 17px;
+    background: url('./img/inputPhoneNum.gif') no-repeat;
 }
 
 /* inputs  */
 
 .textGreetings
 {
-   margin-top: 3px;
-    /*position: relative;
-    font-size: 12px;
-    border: none;
-    background: none;
-    padding: 0px 0px 0px 10px;
-    bottom: 90px;
-    width: 212px;
-    height: 79px;*/
+    margin-top: 3px; /*position: relative;     font-size: 12px;     border: none;     background: none;     padding: 0px 0px 0px 10px;     bottom: 90px;     width: 212px;     height: 79px;*/
     width: 217px;
     height: 81px;
     border: none;
     background: none;
     font-size: 12px;
-    
 }
 
 
-.textCode, .textNameSurname, .textCity, .textStreet
+.textCode, .textNameSurname, .textCity, .textStreet, .textPhoneNum, .textPhone
 {
     padding: 0px 0px 0px 5px;
     bottom: 2px;
@@ -268,7 +267,81 @@ input:focus
 }
 
 .textStreet
-
 {
     width: 150px;
+}
+
+.textPhoneNum
+{
+    width: 295px;
+}
+
+textPhone
+{
+    width: 130px;
+}
+
+
+.inputDescription
+{
+    margin: 5px 0px 0px 5px;
+    width: 450px;
+}
+#additionalInfo
+{
+    margin: 12px 0px 0px 5px;
+    width: 450px;
+}
+
+/*user info*/
+
+#memoAdditionalInfo
+{
+    margin-top: 5px;
+    padding-bottom: 10px;
+    width: 484;
+    height: 57px;
+    background: url('./img/inputAdditionalInfo.gif') no-repeat;
+}
+
+.textAdditionalInfo
+{
+    margin-top: 2px;
+    margin-left: 5px;
+    width: 477px;
+    height: 51px;
+    border: none;
+    background: none;
+    font-size: 12px;
+}
+
+#userNameSurname
+{
+    float: left;
+    width: 196px;
+    height: 17px;
+    background: url('./img/cbNameSurname.gif') no-repeat;
+}
+
+#userCity
+{
+    margin-left: 210px;
+    width: 126px;
+    height: 17px;
+    background: url('./img/inputCity.gif') no-repeat;
+}
+
+#inputPhone
+{
+    float: left;
+    width: 138px;
+    height: 17px;
+    background: url('./img/inputPhone.gif') no-repeat;
+}
+
+#inputMailIndex
+{
+    width: 130px;
+    height: 17px;
+    background: url('./img/inputFlat.gif') no-repeat;
 }

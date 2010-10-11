@@ -47,7 +47,7 @@ using (ShopStorage context = new ShopStorage())
     <div id="txtBlkAndWe">
         <p class="ot7">
             <a href="#" class="ot7">индивидуальные
-                <br />
+                <%--<br />--%>
                 заказы</a>
         </p>
     </div>

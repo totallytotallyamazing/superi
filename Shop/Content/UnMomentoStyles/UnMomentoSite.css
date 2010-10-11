@@ -97,7 +97,7 @@ html, body
 #inEnglish
 {
     float: left;
-    padding: 20px 0px 0px 70px;
+    padding: 20px 0px 0px 30px;
 }
 #topRight
 {
@@ -277,11 +277,17 @@ html, body
     text-align: center;
 }
 
-.nt1, .nt2, .it1, .it2, .it3, .ort1, .ort2, .opt1, .opt2, .opt3, .obt1, .pmt1, .pmt2, .pmt3, .dt1, .dt2, .dt3, .au1, .au2
+.nt1, .nt2, .it1, .it2, .it3, .ort1, .ort2, .opt1, .opt2, .opt3, .obt1, .pmt1, .pmt2, .pmt3, .dt1, .dt2, .dt3, .au1, .au2, .au3
 {
     font-family: Tahoma, Veranda, sans-serif;
 }
-.nt1, .it3, .au1
+
+.au1, .au3
+{
+    letter-spacing: 1px;
+}
+
+.nt1, .it3, .au1, .au3
 {
     font-size: 10px;
 }
@@ -344,7 +350,7 @@ html, body
 }
 
 
-.bt2, .it3, .ot3, .ot5, .pt1, .nt1, .opt1, .opt2, .opt3, .au2
+.bt2, .it3, .ot3, .ot5, .pt1, .nt1, .opt1, .opt2, .opt3, .au2, .au3
 {
     color: #cc0000;
 }
@@ -362,7 +368,6 @@ html, body
 /*центр главной страницы*/
 #ctr
 {
-    
     margin-left: auto;
     margin-right: auto;
     width: 602px;

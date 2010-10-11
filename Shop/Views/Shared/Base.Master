@@ -56,7 +56,7 @@
                 <% Html.RenderPartial("CurrencyConverter"); %>
             </div>
             <div id="inRussian">
-                <p class="ot6Selected">
+                <p class="ot6 current">
                     <b>По-русски</b></p>
             </div>
             <div id="inEnglish">

@@ -28,8 +28,8 @@
                     swfobject = new SWFObject("newBanner1.swf", "b1", "235", "360", "9.0.0");
                     swfobject.write("b1");
 
-                    swfobject1 = new SWFObject("newBanner1.swf", "b1", "235", "360", "9.0.0");
-                    swfobject.write("br1");
+                    swfobject1 = new SWFObject("newBanner2.swf", "b1", "235", "360", "9.0.0");
+                    swfobject1.write("br1");
                 });
         </script>
    <%-- <%= Ajax.MicrosoftMvcAjaxLibraryInclude() %>--%>

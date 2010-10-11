@@ -128,7 +128,7 @@
             <p class="au2">
                 Поставьте галочку, если желаете, чтобы мы подобрали открытку самостоятельно.</p>
         </div>
-        <div id="deliveryInfo">
+        <div class="deliveryInfo">
             <p class="pt1">
                 Кому и куда доставляем?</p>
             <p class="au1">
@@ -147,25 +147,92 @@
             </div>
         </div>
         <div class="infoInputLines">
-            <div id="inputFlat">
+            <div class="inputFlat">
                 <input class="textCode" type="text" />
             </div>
-            <div id="inputStreet">
+            <div class="inputStreet">
                 <input class="textStreet" type="text" />
             </div>
-            <div id="inputHomeNum">
+            <div class="inputHomeNum">
                 <input class="textStreet" type="text" />
             </div>
         </div>
         <div class="infoInputLines">
-            <div id="inputIndex">
+            <div class="inputIndex">
                 <input class="textCode" type="text" />
             </div>
-            <div id="inputMail">
+            <div class="inputMail">
                 <input class="textStreet" type="text" />
+            </div>
+        </div>
+        <div class="infoInputLines">
+            <div id="inputPhoneNum">
+                <input class="textPhoneNum" type="text" />
+            </div>
+        </div>
+        <div class="inputDescription">
+            <p class="au3">
+                Необходимо указать все возможные номера, по которыми можно связаться с получателем.
+                От этого зависит качество доставки.</p>
+            <p class="au1">
+                Например: (123) 456-78-90, (044) 123-12-22
+            </p>
+        </div>
+        <div id="additionalInfo">
+            <p class="it1">
+                <b>Дополнительная информация</b></p>
+            <p class="au1">
+                (пароль для вахтёрши, код домофона, злая собака...)
+            </p>
+        </div>
+        <div id="memoAdditionalInfo">
+            <textarea class="textAdditionalInfo"></textarea>
+        </div>
+        <div class="deliveryInfo">
+            <p class="pt1">
+                Информация о вас</p>
+            <p class="au1">
+                Пожалуйста, заполните все поля.
+            </p>
+        </div>
+        <div class="infoInputLines">
+            <div id="userNameSurname">
+                <input class="textNameSurname" type="text" />
+            </div>
+            <div id="userCity">
+                <input class="textCity" type="text" />
+            </div>
+            
+        </div>
+        <div class="infoInputLines">
+            <div class="inputFlat">
+                <input class="textCode" type="text" />
+            </div>
+            <div class="inputStreet">
+                <input class="textStreet" type="text" />
+            </div>
+            <div class="inputHomeNum">
+                <input class="textStreet" type="text" />
+            </div>
+        </div>
+        <div class="infoInputLines">
+            <div id="inputMailIndex">
+                <input class="textCode" type="text" />
             </div>            
         </div>
-
+        <div class="infoInputLines">
+            <div id="inputPhone">
+                <input class="textPhone" type="text" />
+            </div>
+            <div class="inputMail">
+                <input class="textStreet" type="text" />
+            </div>
+        </div>
+        <div class="inputDescription">
+            <p class="au3">
+                Вводимая информация абсолютно конфеденциальна.</p>
+            
+        </div>
         <%} %>
     </div>
     <%-- <div id="userInfoWrapper">

@@ -1,0 +1,463 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{23DA4593-7387-41F6-9F71-A865049A33D3}</ProjectGuid>
+    <ProjectTypeGuids>{F85E285D-A4E0-4152-9332-AB1D724D3325};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Shop</RootNamespace>
+    <AssemblyName>Shop</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.ComponentModel.DataAnnotations">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Entity">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.Abstractions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Mvc, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\..\Program Files\Microsoft ASP.NET\ASP.NET MVC 2\\Assemblies\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Routing, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.Mobile" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WriteEncoder, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\ArticlesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\AttributesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\AttributeValuesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\BrandsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CategoriesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ContentController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductCategoriesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductVariantsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\OrdersController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SettingsController.cs" />
+    <Compile Include="Controllers\CaptchaController.cs" />
+    <Compile Include="Controllers\GraphicsController.cs" />
+    <Compile Include="Controllers\InvoiceController.cs" />
+    <Compile Include="Controllers\TitleAttribute.cs" />
+    <Compile Include="Helpers\CacheExtensions.cs" />
+    <Compile Include="Helpers\Captcha\CaptchaAttribute.cs" />
+    <Compile Include="Helpers\Captcha\CaptchaAttributeAdapter.cs" />
+    <Compile Include="Helpers\Captcha\CaptchaImageHandler.cs" />
+    <Compile Include="Helpers\FormCollectionExtender.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductAttributeValuesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductTagsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TagsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ArticlesController.cs" />
+    <Compile Include="Controllers\BrandsController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
+    <Compile Include="Controllers\ContentAttribute.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="Controllers\WidgetsController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\AjaxExtensions.cs" />
+    <Compile Include="Helpers\Captcha\CaptchaExtensions.cs" />
+    <Compile Include="Helpers\Captcha\CaptchaImage.cs" />
+    <Compile Include="Helpers\Captcha\CaptchaValidationAttribute.cs" />
+    <Compile Include="Helpers\CkExtensions.cs" />
+    <Compile Include="Helpers\DateTimeExtensions.cs" />
+    <Compile Include="Helpers\GraphicsHelper.cs" />
+    <Compile Include="Helpers\HtmlHelpers.cs" />
+    <Compile Include="Helpers\IOHelper.cs" />
+    <Compile Include="Helpers\JqueryUiExtensions.cs" />
+    <Compile Include="Helpers\MailHelper.cs" />
+    <Compile Include="Helpers\CurrencyHelper.cs" />
+    <Compile Include="Helpers\ResourceTracker.cs" />
+    <Compile Include="Helpers\ScriptExtensions.cs" />
+    <Compile Include="Helpers\Session.cs" />
+    <Compile Include="Helpers\TextHelper.cs" />
+    <Compile Include="Helpers\Validation\RemoteAttribute.cs" />
+    <Compile Include="Helpers\Validation\RemoteAttributeAdapter.cs" />
+    <Compile Include="Helpers\WebSession.cs" />
+    <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\ArticleValidation.cs" />
+    <Compile Include="Models\Brand.cs" />
+    <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\Content.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Content.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ContextExtensions.cs" />
+    <Compile Include="Models\OrderExtensions.cs" />
+    <Compile Include="Models\Orders.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Orders.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\ProductAttributeValueValidation.cs" />
+    <Compile Include="Models\ProductVariant.cs" />
+    <Compile Include="Models\ProfileCommon.cs" />
+    <Compile Include="Models\Shop.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Shop.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SiteSettings.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Runtime\Configurator.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Content\EditPartial.ascx" />
+    <Content Include="Areas\Admin\Views\ProductCategories\Index.ascx" />
+    <Content Include="Areas\Admin\Views\ProductVariants\AddEdit.ascx" />
+    <Content Include="Areas\Admin\Views\ProductVariants\Index.aspx" />
+    <Content Include="bin\Elmah.dll" />
+    <Content Include="Content\UnMomentoStyles\img\allBkg.gif" />
+    <Content Include="Content\UnMomentoStyles\img\baner.gif" />
+    <Content Include="Content\UnMomentoStyles\img\basket.gif" />
+    <Content Include="Content\UnMomentoStyles\img\bayan.gif" />
+    <Content Include="Content\UnMomentoStyles\img\bear.gif" />
+    <Content Include="Content\UnMomentoStyles\img\bearItem.gif" />
+    <Content Include="Content\UnMomentoStyles\img\bouquet.gif" />
+    <Content Include="Content\UnMomentoStyles\img\bubbleGift.gif" />
+    <Content Include="Content\UnMomentoStyles\img\bubbleNews.gif" />
+    <Content Include="Content\UnMomentoStyles\img\bubbleOffer.gif" />
+    <Content Include="Content\UnMomentoStyles\img\bubbleReason.gif" />
+    <Content Include="Content\UnMomentoStyles\img\bubbleReason.png" />
+    <Content Include="Content\UnMomentoStyles\img\caviarPail.gif" />
+    <Content Include="Content\UnMomentoStyles\img\conception.gif" />
+    <Content Include="Content\UnMomentoStyles\img\cow.gif" />
+    <Content Include="Content\UnMomentoStyles\img\crap.gif" />
+    <Content Include="Content\UnMomentoStyles\img\cross.gif" />
+    <Content Include="Content\UnMomentoStyles\img\elephant.gif" />
+    <Content Include="Content\UnMomentoStyles\img\invisible.gif" />
+    <Content Include="Content\UnMomentoStyles\img\JackSparrow.gif" />
+    <Content Include="Content\UnMomentoStyles\img\kittenPail.gif" />
+    <Content Include="Content\UnMomentoStyles\img\MainBoxBottom.gif" />
+    <Content Include="Content\UnMomentoStyles\img\MainBoxCenter.gif" />
+    <Content Include="Content\UnMomentoStyles\img\MainBoxTop.gif" />
+    <Content Include="Content\UnMomentoStyles\img\NewsPageImg.gif" />
+    <Content Include="Content\UnMomentoStyles\img\point.gif" />
+    <Content Include="Content\UnMomentoStyles\img\sheep.gif" />
+    <Content Include="Content\UnMomentoStyles\img\sheepClone.gif" />
+    <Content Include="Content\UnMomentoStyles\img\snail.gif" />
+    <Content Include="Content\UnMomentoStyles\img\something.gif" />
+    <Content Include="Content\UnMomentoStyles\img\top_bkg.gif" />
+    <Content Include="Content\UnMomentoStyles\img\tree.gif" />
+    <Content Include="Content\UnMomentoStyles\img\wonderingFace.gif" />
+    <Content Include="Content\UnMomentoStyles\products.css" />
+    <Content Include="Content\UnMomentoStyles\Authorize.css" />
+    <Content Include="Content\UnMomentoStyles\UnMomentoSite.css" />
+    <Content Include="Global.asax" />
+    <Content Include="Scripts\jquery.fancybox.js" />
+    <Content Include="Scripts\jquery.FCKEditor.js" />
+    <Content Include="Scripts\jquery.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\MicrosoftAjax.js" />
+    <Content Include="Scripts\MicrosoftMvcAjax.js" />
+    <Content Include="Scripts\MicrosoftMvcValidation.js" />
+    <Content Include="Views\Shared\ContentPartial.ascx" />
+    <Content Include="Views\Shared\LogOnOrSignUp.ascx" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\Account\ChangePassword.aspx" />
+    <Content Include="Views\Account\ChangePasswordSuccess.aspx" />
+    <Content Include="Views\Account\LogOn.aspx" />
+    <Content Include="Views\Account\Register.aspx" />
+    <Content Include="Views\Home\Index.aspx" />
+    <Content Include="Views\Shared\Error.aspx" />
+    <Content Include="Views\Shared\LogOnUserControl.ascx" />
+    <Content Include="Views\Shared\Site.Master" />
+    <Content Include="Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Models\Shop.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Shop.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Brands\AddEdit.aspx" />
+    <Content Include="Areas\Admin\Views\Brands\Index.aspx" />
+    <Content Include="Areas\Admin\Views\Categories\AddEdit.aspx" />
+    <Content Include="Areas\Admin\Views\Categories\AttributeDetails.ascx" />
+    <Content Include="Areas\Admin\Views\Categories\Attributes.ascx" />
+    <Content Include="Areas\Admin\Views\Content\Edit.aspx" />
+    <Content Include="Areas\Admin\Views\Products\AddEdit.aspx" />
+    <Content Include="Areas\Admin\Views\Products\Index.aspx" />
+    <Content Include="Areas\Admin\Views\Products\ProductImages.ascx" />
+    <Content Include="Areas\Admin\Views\Web.config" />
+    <Content Include="Content\AdminStyles\Admin.css" />
+    <Content Include="Content\LogOn.css" />
+    <Content Include="Content\fancybox\blank.gif" />
+    <Content Include="Content\fancybox\fancybox-x.png" />
+    <Content Include="Content\fancybox\fancybox-y.png" />
+    <Content Include="Content\fancybox\fancybox.png" />
+    <Content Include="Content\fancybox\fancy_close.png" />
+    <Content Include="Content\fancybox\fancy_loading.png" />
+    <Content Include="Content\fancybox\fancy_nav_left.png" />
+    <Content Include="Content\fancybox\fancy_nav_right.png" />
+    <Content Include="Content\fancybox\fancy_shadow_e.png" />
+    <Content Include="Content\fancybox\fancy_shadow_n.png" />
+    <Content Include="Content\fancybox\fancy_shadow_ne.png" />
+    <Content Include="Content\fancybox\fancy_shadow_nw.png" />
+    <Content Include="Content\fancybox\fancy_shadow_s.png" />
+    <Content Include="Content\fancybox\fancy_shadow_se.png" />
+    <Content Include="Content\fancybox\fancy_shadow_sw.png" />
+    <Content Include="Content\fancybox\fancy_shadow_w.png" />
+    <Content Include="Content\fancybox\fancy_title_left.png" />
+    <Content Include="Content\fancybox\fancy_title_main.png" />
+    <Content Include="Content\fancybox\fancy_title_over.png" />
+    <Content Include="Content\fancybox\fancy_title_right.png" />
+    <Content Include="Content\fancybox\jquery.fancybox.css" />
+    <Content Include="Scripts\jquery.mask.js" />
+    <Content Include="Scripts\Start.js" />
+    <Content Include="Views\Brands\Index.aspx" />
+    <Content Include="Views\Products\CategoriesAdmin.ascx" />
+    <Content Include="Views\Products\Index.aspx" />
+    <Content Include="Views\Products\Product.ascx" />
+    <Content Include="Views\Products\ProductAttributes.ascx" />
+    <Content Include="Views\Products\ProductsAdmin.ascx" />
+    <Content Include="Views\Shared\Categories.ascx" />
+    <Content Include="Views\Shared\Content.aspx" />
+    <Content Include="Views\Shared\CurrencyConverter.ascx" />
+    <Content Include="Views\Shared\MainMenu.ascx" />
+    <Content Include="Views\Shared\MetaTags.ascx" />
+    <Content Include="Views\Widgets\News.ascx" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Models\Content.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Content.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\Base.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Articles\AddEdit.aspx" />
+    <Content Include="Areas\Admin\Views\Attributes\AddEdit.aspx" />
+    <Content Include="Areas\Admin\Views\Attributes\Index.aspx" />
+    <Content Include="Areas\Admin\Views\AttributeValues\AddEdit.ascx" />
+    <Content Include="Areas\Admin\Views\AttributeValues\Index.ascx" />
+    <Content Include="Areas\Admin\Views\ProductAttributeValues\Index.ascx" />
+    <Content Include="Areas\Admin\Views\ProductAttributeValues\ProuctAttributeValue.ascx" />
+    <Content Include="Areas\Admin\Views\ProductTags\Index.ascx" />
+    <Content Include="Areas\Admin\Views\Tags\Index.aspx" />
+    <Content Include="Content\Articles.css" />
+    <Content Include="Content\catalog.css" />
+    <Content Include="Content\img\OrderBg.jpg" />
+    <Content Include="Content\Myths.css" />
+    <Content Include="Content\img\01-o-magazine.png" />
+    <Content Include="Content\img\02-o-razmere.png" />
+    <Content Include="Content\img\03-pay-deliver.png" />
+    <Content Include="Content\img\04-o-brendax.png" />
+    <Content Include="Content\img\05-partners.png" />
+    <Content Include="Content\img\blue.jpg" />
+    <Content Include="Content\img\book.jpg" />
+    <Content Include="Content\img\currency.jpg" />
+    <Content Include="Content\img\footerBg.jpg" />
+    <Content Include="Content\img\guest.jpg" />
+    <Content Include="Content\img\hand.jpg" />
+    <Content Include="Content\img\handLeft.jpg" />
+    <Content Include="Content\img\headerBg.jpg" />
+    <Content Include="Content\img\Inna.jpg" />
+    <Content Include="Content\img\jaket.jpg" />
+    <Content Include="Content\img\liBg.jpg" />
+    <Content Include="Content\img\liHeader.jpg" />
+    <Content Include="Content\img\logo.jpg" />
+    <Content Include="Content\img\logoBg.jpg" />
+    <Content Include="Content\img\mif.jpg" />
+    <Content Include="Content\img\new.jpg" />
+    <Content Include="Content\img\notes.jpg" />
+    <Content Include="Content\img\patefon.jpg" />
+    <Content Include="Content\img\pencil.jpg" />
+    <Content Include="Content\img\ramka.jpg" />
+    <Content Include="Content\img\rightSideFooterBg.jpg" />
+    <Content Include="Content\img\rightSideFooterBgL.jpg" />
+    <Content Include="Content\img\rightSideFooterBgR.jpg" />
+    <Content Include="Content\img\rightSideHeaderBg.jpg" />
+    <Content Include="Content\img\search.jpg" />
+    <Content Include="Content\img\tovar.jpg" />
+    <Content Include="Content\journal.css" />
+    <Content Include="Content\style.css" />
+    <Content Include="Content\sunny\images\ui-anim_basic_16x16.gif" />
+    <Content Include="Content\sunny\images\ui-bg_diagonals-medium_20_d34d17_40x40.png" />
+    <Content Include="Content\sunny\images\ui-bg_flat_30_cccccc_40x100.png" />
+    <Content Include="Content\sunny\images\ui-bg_flat_50_5c5c5c_40x100.png" />
+    <Content Include="Content\sunny\images\ui-bg_gloss-wave_45_817865_500x100.png" />
+    <Content Include="Content\sunny\images\ui-bg_gloss-wave_60_fece2f_500x100.png" />
+    <Content Include="Content\sunny\images\ui-bg_gloss-wave_70_ffdd57_500x100.png" />
+    <Content Include="Content\sunny\images\ui-bg_gloss-wave_90_fff9e5_500x100.png" />
+    <Content Include="Content\sunny\images\ui-bg_highlight-soft_100_feeebd_1x100.png" />
+    <Content Include="Content\sunny\images\ui-bg_inset-soft_30_ffffff_1x100.png" />
+    <Content Include="Content\sunny\images\ui-icons_3d3d3d_256x240.png" />
+    <Content Include="Content\sunny\images\ui-icons_bd7b00_256x240.png" />
+    <Content Include="Content\sunny\images\ui-icons_d19405_256x240.png" />
+    <Content Include="Content\sunny\images\ui-icons_eb990f_256x240.png" />
+    <Content Include="Content\sunny\images\ui-icons_ed9f26_256x240.png" />
+    <Content Include="Content\sunny\images\ui-icons_fadc7a_256x240.png" />
+    <Content Include="Content\sunny\images\ui-icons_ffe180_256x240.png" />
+    <Content Include="Content\sunny\jquery.css" />
+    <Content Include="Content\tovar.css" />
+    <Content Include="Scripts\jquery-vsdoc.js" />
+    <Content Include="Scripts\jquery.ui.datepicker-ru.js" />
+    <Content Include="Scripts\jquery.ui.js" />
+    <Content Include="SetCookie.aspx" />
+    <Content Include="Views\Articles\Article.ascx" />
+    <Content Include="Views\Articles\Index.aspx" />
+    <Content Include="Views\Cart\Index.aspx" />
+    <Content Include="Views\Products\ProductAttributesSelector.ascx" />
+    <Content Include="Views\Products\ProductImage.ascx" />
+    <Content Include="Views\Products\Products.Master" />
+    <Content Include="Views\Products\Show.aspx" />
+    <Content Include="Views\Shared\SubCategories.ascx" />
+    <Content Include="Views\Widgets\Myths.ascx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Content\Content.ascx" />
+    <Content Include="Areas\Admin\Views\Settings\Index.aspx" />
+    <Content Include="Content\Cart.css" />
+    <Content Include="Content\img\totalBg.png" />
+    <Content Include="Content\img\totalLeft.png" />
+    <Content Include="Content\img\totalRight.png" />
+    <Content Include="Content\MailTemplates\ClientMail.htm" />
+    <Content Include="Content\MailTemplates\FeedbackTemplate.htm" />
+    <Content Include="Content\orderSent.css" />
+    <Content Include="Scripts\MvcCaptchaValidation.js" />
+    <Content Include="Views\Cart\AvailablePaymentTypes.ascx" />
+    <Content Include="Views\Cart\DeliveryType.ascx" />
+    <Content Include="Views\Cart\OrderSent.aspx" />
+    <Content Include="Views\Cart\PaymentProperties.ascx" />
+    <Content Include="Views\Cart\PrintDocument.ascx" />
+    <Content Include="Views\Home\FeedbackForm.ascx" />
+    <Content Include="Views\Home\ShowContent.ascx" />
+    <Content Include="Views\Invoice\Invoice.aspx" />
+    <Content Include="Views\Invoice\InvoiceLegal.aspx" />
+    <Content Include="Views\Invoice\Receipt.aspx" />
+    <Content Include="Views\Products\ImagePreviews.ascx" />
+    <Content Include="Views\Products\Price.ascx" />
+    <Content Include="Views\Shared\AdminPanel.ascx" />
+    <Content Include="Content\AdminStyles\addEditProduct.css" />
+    <Content Include="Content\AdminStyles\img\handleBg.gif" />
+    <Content Include="Content\img\backArrow.jpg" />
+    <Content Include="Content\img\deleteFromCart.jpg" />
+    <Content Include="Content\img\proceedBg.jpg" />
+    <Content Include="Content\MailTemplates\MailTemplate.htm" />
+    <Content Include="Content\UserStatus.css" />
+    <Content Include="Scripts\MvcRemoteValidator.js" />
+    <Content Include="Views\Cart\Approve.aspx" />
+    <Content Include="Views\Cart\Authorize.aspx" />
+    <Content Include="Views\Cart\DeliveryAndPayment.aspx" />
+    <Content Include="Views\Cart\OrderItems.ascx" />
+    <Content Include="Views\Shared\BottomCategories.ascx" />
+    <Content Include="Views\Shared\CartBreadCrumb.ascx" />
+    <Content Include="Views\Shared\CartBreadCrumbs.ascx" />
+    <Content Include="Views\Cart\CartContent.ascx" />
+    <Content Include="Views\Shared\Logo.ascx" />
+    <Content Include="Views\Shared\Search.ascx" />
+    <Content Include="Views\Shared\Title.ascx" />
+    <Content Include="Views\Shared\UserStatus.ascx" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Models\Orders.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Orders.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Areas\Admin\Views\Shared\" />
+    <Folder Include="Configuration\" />
+    <Folder Include="Content\BrandLogos\" />
+    <Folder Include="Content\CategoryImages\" />
+    <Folder Include="Content\ProductImages\" />
+    <Folder Include="ImageCache\cartThumb\" />
+    <Folder Include="ImageCache\mainView\" />
+    <Folder Include="ImageCache\thumbnail1\" />
+    <Folder Include="ImageCache\thumbnail2\" />
+    <Folder Include="ImageCache\thumbnail3\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target> -->
+  <Target Name="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(ProjectDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>4693</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

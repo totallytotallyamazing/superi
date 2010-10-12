@@ -1,0 +1,11 @@
+﻿#guest1
+{
+	height:130px;
+	width:212px;
+	border:0px solid green;
+	background:url(img/guest.jpg) no-repeat center;
+    margin:18px 0px 0px 14px;
+}
+#guest1 p{font-size:9px;padding:5px 55px 0px 45px;margin:0px 0px 0px 10px; text-align:center; color:#d74f03;}
+#guest1 h2{font-size:13px;padding:30px 30px 0px 20px;margin:10px 0px 0px 10px; text-align:center; color:#d74f03;}
+#guest1 a{color:#d74f03;}

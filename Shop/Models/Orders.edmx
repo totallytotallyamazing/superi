@@ -1,0 +1,370 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="shop_Orders.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="shop_OrdersStoreContainer">
+          <EntitySet Name="DeliveryType" EntityType="shop_Orders.Store.DeliveryType" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Order" EntityType="shop_Orders.Store.Order" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="OrderItem" EntityType="shop_Orders.Store.OrderItem" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="PaymentProperty" EntityType="shop_Orders.Store.PaymentProperty" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="PaymentPropertyValue" EntityType="shop_Orders.Store.PaymentPropertyValue" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="PaymentType" EntityType="shop_Orders.Store.PaymentType" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="PaymentTypeAvailable" EntityType="shop_Orders.Store.PaymentTypeAvailable" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+        </EntityContainer>
+        <EntityType Name="DeliveryType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="AdditionalFee" Type="float" />
+          <Property Name="Disabled" Type="bit" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="AdditionalDeliveryInfo" Type="varchar" MaxLength="2000" />
+          <Property Name="AdditionalProperties" Type="varchar" />
+          <Property Name="BillingEmail" Type="varchar" MaxLength="2063" />
+          <Property Name="BillingName" Type="varchar" MaxLength="500" />
+          <Property Name="BillingPhone" Type="varchar" MaxLength="20" />
+          <Property Name="DeliveryAddress" Type="varchar" MaxLength="2000" />
+          <Property Name="DeliveryName" Type="varchar" MaxLength="500" />
+          <Property Name="DeliveryPhone" Type="varchar" MaxLength="20" />
+          <Property Name="DeliveryTypeId" Type="int" />
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="OrderDate" Type="datetime" />
+          <Property Name="PaymentTypeId" Type="int" />
+          <Property Name="UniqueId" Type="varchar" MaxLength="32" />
+        </EntityType>
+        <EntityType Name="OrderItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Description" Type="varchar" />
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Image" Type="varchar" MaxLength="2000" />
+          <Property Name="Name" Type="varchar" MaxLength="500" />
+          <Property Name="OrderId" Type="int" Nullable="false" />
+          <Property Name="Price" Type="float" Nullable="false" />
+          <Property Name="ProductAttributes" Type="varchar" />
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PaymentProperty">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Disabled" Type="bit" Nullable="false" />
+          <Property Name="FieldName" Type="varchar" MaxLength="45" />
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="500" />
+          <Property Name="PaymentTypeId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PaymentPropertyValue">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="OrderId" Type="int" Nullable="false" />
+          <Property Name="PaymentPropertyId" Type="int" Nullable="false" />
+          <Property Name="Value" Type="varchar" MaxLength="4000" />
+        </EntityType>
+        <EntityType Name="PaymentType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Disabled" Type="bit" Nullable="false" />
+          <Property Name="DocumentCaption" Type="varchar" MaxLength="500" />
+          <Property Name="DocumentName" Type="varchar" MaxLength="250" />
+          <Property Name="HasDocument" Type="bit" />
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="PaymentTypeAvailable">
+          <Key>
+            <PropertyRef Name="DeliveryTypeId" />
+            <PropertyRef Name="PaymentTypeId" />
+          </Key>
+          <Property Name="DeliveryTypeId" Type="int" Nullable="false" />
+          <Property Name="PaymentTypeId" Type="int" Nullable="false" />
+        </EntityType>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="shop_Orders" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="OrdersStorage">
+          <EntitySet Name="Orders" EntityType="shop_Orders.Order" />
+          <EntitySet Name="OrderItems" EntityType="shop_Orders.OrderItem" />
+          <AssociationSet Name="OrderOrderItem" Association="shop_Orders.OrderOrderItem">
+            <End Role="Order" EntitySet="Orders" />
+            <End Role="OrderItem" EntitySet="OrderItems" /></AssociationSet>
+          <EntitySet Name="DeliveryTypes" EntityType="shop_Orders.DeliveryType" />
+          <EntitySet Name="PaymentProperties" EntityType="shop_Orders.PaymentProperty" />
+          <EntitySet Name="PaymentPropertyValues" EntityType="shop_Orders.PaymentPropertyValue" />
+          <EntitySet Name="PaymentTypes" EntityType="shop_Orders.PaymentType" />
+          <AssociationSet Name="DeliveryTypeOrder" Association="shop_Orders.DeliveryTypeOrder">
+            <End Role="DeliveryType" EntitySet="DeliveryTypes" />
+            <End Role="Order" EntitySet="Orders" /></AssociationSet>
+          <AssociationSet Name="DeliveryTypePaymentType" Association="shop_Orders.DeliveryTypePaymentType">
+            <End Role="DeliveryType" EntitySet="DeliveryTypes" />
+            <End Role="PaymentType" EntitySet="PaymentTypes" /></AssociationSet>
+          <AssociationSet Name="PaymentTypeOrder" Association="shop_Orders.PaymentTypeOrder">
+            <End Role="PaymentType" EntitySet="PaymentTypes" />
+            <End Role="Order" EntitySet="Orders" /></AssociationSet>
+          <AssociationSet Name="PaymentTypePaymentProperty" Association="shop_Orders.PaymentTypePaymentProperty">
+            <End Role="PaymentType" EntitySet="PaymentTypes" />
+            <End Role="PaymentProperty" EntitySet="PaymentProperties" /></AssociationSet>
+          <AssociationSet Name="PaymentPropertyPaymentPropertyValue" Association="shop_Orders.PaymentPropertyPaymentPropertyValue">
+            <End Role="PaymentProperty" EntitySet="PaymentProperties" />
+            <End Role="PaymentPropertyValue" EntitySet="PaymentPropertyValues" /></AssociationSet>
+          <AssociationSet Name="OrderPaymentPropertyValue" Association="shop_Orders.OrderPaymentPropertyValue">
+            <End Role="Order" EntitySet="Orders" />
+            <End Role="PaymentPropertyValue" EntitySet="PaymentPropertyValues" /></AssociationSet></EntityContainer>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="AdditionalDeliveryInfo" Type="String" />
+          <Property Name="AdditionalProperties" Type="String" />
+          <Property Name="BillingEmail" Type="String" />
+          <Property Name="BillingName" Type="String" />
+          <Property Name="BillingPhone" Type="String" />
+          <Property Name="DeliveryAddress" Type="String" />
+          <Property Name="DeliveryName" Type="String" />
+          <Property Name="DeliveryPhone" Type="String" />
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="OrderItems" Relationship="shop_Orders.OrderOrderItem" FromRole="Order" ToRole="OrderItem" />
+          <NavigationProperty Name="DeliveryType" Relationship="shop_Orders.DeliveryTypeOrder" FromRole="Order" ToRole="DeliveryType" />
+          <NavigationProperty Name="PaymentType" Relationship="shop_Orders.PaymentTypeOrder" FromRole="Order" ToRole="PaymentType" />
+          <NavigationProperty Name="PaymentPropertyValues" Relationship="shop_Orders.OrderPaymentPropertyValue" FromRole="Order" ToRole="PaymentPropertyValue" />
+          <Property Name="OrderDate" Type="DateTime" Nullable="true" />
+          <Property Name="UniqueId" Type="String" Nullable="true" /></EntityType>
+        <EntityType Name="OrderItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Description" Type="String" />
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Image" Type="String" />
+          <Property Name="Price" Type="Single" Nullable="false" />
+          <Property Name="ProductAttributes" Type="String" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="true" />
+          <NavigationProperty Name="Order" Relationship="shop_Orders.OrderOrderItem" FromRole="OrderItem" ToRole="Order" /></EntityType>
+        <Association Name="OrderOrderItem">
+          <End Type="shop_Orders.Order" Role="Order" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="shop_Orders.OrderItem" Role="OrderItem" Multiplicity="*" /></Association>
+        <EntityType Name="DeliveryType">
+          <Key>
+            <PropertyRef Name="Id" /></Key>
+          <Property Name="Disabled" Type="Boolean" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <NavigationProperty Name="Orders" Relationship="shop_Orders.DeliveryTypeOrder" FromRole="DeliveryType" ToRole="Order" />
+          <NavigationProperty Name="PaymentTypes" Relationship="shop_Orders.DeliveryTypePaymentType" FromRole="DeliveryType" ToRole="PaymentType" />
+          <Property Name="AdditionalFee" Type="Single" Nullable="true" /></EntityType>
+        <EntityType Name="PaymentProperty">
+          <Key>
+            <PropertyRef Name="Id" /></Key>
+          <Property Name="Disabled" Type="Boolean" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <NavigationProperty Name="PaymentType" Relationship="shop_Orders.PaymentTypePaymentProperty" FromRole="PaymentProperty" ToRole="PaymentType" />
+          <NavigationProperty Name="PaymentPropertyValue" Relationship="shop_Orders.PaymentPropertyPaymentPropertyValue" FromRole="PaymentProperty" ToRole="PaymentPropertyValue" />
+          <Property Name="FieldName" Type="String" Nullable="true" /></EntityType>
+        <EntityType Name="PaymentPropertyValue">
+          <Key>
+            <PropertyRef Name="Id" /></Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Value" Type="String" Nullable="true" />
+          <NavigationProperty Name="PaymentProperty" Relationship="shop_Orders.PaymentPropertyPaymentPropertyValue" FromRole="PaymentPropertyValue" ToRole="PaymentProperty" />
+          <NavigationProperty Name="Order" Relationship="shop_Orders.OrderPaymentPropertyValue" FromRole="PaymentPropertyValue" ToRole="Order" /></EntityType>
+        <EntityType Name="PaymentType">
+          <Key>
+            <PropertyRef Name="Id" /></Key>
+          <Property Name="Disabled" Type="Boolean" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <NavigationProperty Name="DeliveryTypes" Relationship="shop_Orders.DeliveryTypePaymentType" FromRole="PaymentType" ToRole="DeliveryType" />
+          <NavigationProperty Name="Orders" Relationship="shop_Orders.PaymentTypeOrder" FromRole="PaymentType" ToRole="Order" />
+          <NavigationProperty Name="PaymentProperties" Relationship="shop_Orders.PaymentTypePaymentProperty" FromRole="PaymentType" ToRole="PaymentProperty" />
+          <Property Name="DocumentName" Type="String" Nullable="true" />
+          <Property Name="DocumentCaption" Type="String" Nullable="true" />
+          <Property Name="HasDocument" Type="Boolean" Nullable="false" /></EntityType>
+        <Association Name="DeliveryTypeOrder">
+          <End Type="shop_Orders.DeliveryType" Role="DeliveryType" Multiplicity="0..1" />
+          <End Type="shop_Orders.Order" Role="Order" Multiplicity="*" /></Association>
+        <Association Name="DeliveryTypePaymentType">
+          <End Type="shop_Orders.DeliveryType" Role="DeliveryType" Multiplicity="*" />
+          <End Type="shop_Orders.PaymentType" Role="PaymentType" Multiplicity="*" /></Association>
+        <Association Name="PaymentTypeOrder">
+          <End Type="shop_Orders.PaymentType" Role="PaymentType" Multiplicity="0..1" />
+          <End Type="shop_Orders.Order" Role="Order" Multiplicity="*" /></Association>
+        <Association Name="PaymentTypePaymentProperty">
+          <End Type="shop_Orders.PaymentType" Role="PaymentType" Multiplicity="1" />
+          <End Type="shop_Orders.PaymentProperty" Role="PaymentProperty" Multiplicity="*" /></Association>
+        <Association Name="PaymentPropertyPaymentPropertyValue">
+          <End Type="shop_Orders.PaymentProperty" Role="PaymentProperty" Multiplicity="1" />
+          <End Type="shop_Orders.PaymentPropertyValue" Role="PaymentPropertyValue" Multiplicity="*" /></Association>
+        <Association Name="OrderPaymentPropertyValue">
+          <End Type="shop_Orders.Order" Role="Order" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="shop_Orders.PaymentPropertyValue" Role="PaymentPropertyValue" Multiplicity="*" /></Association></Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="shop_OrdersStoreContainer" CdmEntityContainer="OrdersStorage">
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="IsTypeOf(shop_Orders.Order)">
+              <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="UniqueId" ColumnName="UniqueId" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="AdditionalDeliveryInfo" ColumnName="AdditionalDeliveryInfo" />
+                <ScalarProperty Name="AdditionalProperties" ColumnName="AdditionalProperties" />
+                <ScalarProperty Name="BillingEmail" ColumnName="BillingEmail" />
+                <ScalarProperty Name="BillingName" ColumnName="BillingName" />
+                <ScalarProperty Name="BillingPhone" ColumnName="BillingPhone" />
+                <ScalarProperty Name="DeliveryAddress" ColumnName="DeliveryAddress" />
+                <ScalarProperty Name="DeliveryName" ColumnName="DeliveryName" />
+                <ScalarProperty Name="DeliveryPhone" ColumnName="DeliveryPhone" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderItems">
+            <EntityTypeMapping TypeName="IsTypeOf(shop_Orders.OrderItem)">
+              <MappingFragment StoreEntitySet="OrderItem">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="ProductAttributes" ColumnName="ProductAttributes" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="OrderOrderItem" TypeName="shop_Orders.OrderOrderItem" StoreEntitySet="OrderItem">
+            <EndProperty Name="OrderItem">
+              <ScalarProperty Name="Id" ColumnName="Id" /></EndProperty>
+            <EndProperty Name="Order">
+              <ScalarProperty Name="Id" ColumnName="OrderId" /></EndProperty></AssociationSetMapping>
+          <EntitySetMapping Name="DeliveryTypes">
+            <EntityTypeMapping TypeName="IsTypeOf(shop_Orders.DeliveryType)">
+              <MappingFragment StoreEntitySet="DeliveryType">
+                <ScalarProperty Name="AdditionalFee" ColumnName="AdditionalFee" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Disabled" ColumnName="Disabled" /></MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="PaymentProperties">
+            <EntityTypeMapping TypeName="IsTypeOf(shop_Orders.PaymentProperty)">
+              <MappingFragment StoreEntitySet="PaymentProperty">
+                <ScalarProperty Name="FieldName" ColumnName="FieldName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Disabled" ColumnName="Disabled" /></MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="PaymentPropertyValues">
+            <EntityTypeMapping TypeName="IsTypeOf(shop_Orders.PaymentPropertyValue)">
+              <MappingFragment StoreEntitySet="PaymentPropertyValue">
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Id" ColumnName="Id" /></MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="PaymentTypes">
+            <EntityTypeMapping TypeName="IsTypeOf(shop_Orders.PaymentType)">
+              <MappingFragment StoreEntitySet="PaymentType">
+                <ScalarProperty Name="HasDocument" ColumnName="HasDocument" />
+                <ScalarProperty Name="DocumentCaption" ColumnName="DocumentCaption" />
+                <ScalarProperty Name="DocumentName" ColumnName="DocumentName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Disabled" ColumnName="Disabled" /></MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <AssociationSetMapping Name="DeliveryTypeOrder" TypeName="shop_Orders.DeliveryTypeOrder" StoreEntitySet="Order">
+            <EndProperty Name="Order">
+              <ScalarProperty Name="Id" ColumnName="Id" /></EndProperty>
+            <EndProperty Name="DeliveryType">
+              <ScalarProperty Name="Id" ColumnName="DeliveryTypeId" /></EndProperty>
+            <Condition ColumnName="DeliveryTypeId" IsNull="false" /></AssociationSetMapping>
+          <AssociationSetMapping Name="DeliveryTypePaymentType" TypeName="shop_Orders.DeliveryTypePaymentType" StoreEntitySet="PaymentTypeAvailable">
+            <EndProperty Name="PaymentType">
+              <ScalarProperty Name="Id" ColumnName="PaymentTypeId" /></EndProperty>
+            <EndProperty Name="DeliveryType">
+              <ScalarProperty Name="Id" ColumnName="DeliveryTypeId" /></EndProperty></AssociationSetMapping>
+          <AssociationSetMapping Name="PaymentTypeOrder" TypeName="shop_Orders.PaymentTypeOrder" StoreEntitySet="Order">
+            <EndProperty Name="Order">
+              <ScalarProperty Name="Id" ColumnName="Id" /></EndProperty>
+            <EndProperty Name="PaymentType">
+              <ScalarProperty Name="Id" ColumnName="PaymentTypeId" /></EndProperty>
+            <Condition ColumnName="PaymentTypeId" IsNull="false" /></AssociationSetMapping>
+          <AssociationSetMapping Name="PaymentTypePaymentProperty" TypeName="shop_Orders.PaymentTypePaymentProperty" StoreEntitySet="PaymentProperty">
+            <EndProperty Name="PaymentProperty">
+              <ScalarProperty Name="Id" ColumnName="Id" /></EndProperty>
+            <EndProperty Name="PaymentType">
+              <ScalarProperty Name="Id" ColumnName="PaymentTypeId" /></EndProperty></AssociationSetMapping>
+          <AssociationSetMapping Name="PaymentPropertyPaymentPropertyValue" TypeName="shop_Orders.PaymentPropertyPaymentPropertyValue" StoreEntitySet="PaymentPropertyValue">
+            <EndProperty Name="PaymentPropertyValue">
+              <ScalarProperty Name="Id" ColumnName="Id" /></EndProperty>
+            <EndProperty Name="PaymentProperty">
+              <ScalarProperty Name="Id" ColumnName="PaymentPropertyId" /></EndProperty></AssociationSetMapping>
+          <AssociationSetMapping Name="OrderPaymentPropertyValue" TypeName="shop_Orders.OrderPaymentPropertyValue" StoreEntitySet="PaymentPropertyValue">
+            <EndProperty Name="PaymentPropertyValue">
+              <ScalarProperty Name="Id" ColumnName="Id" /></EndProperty>
+            <EndProperty Name="Order">
+              <ScalarProperty Name="Id" ColumnName="OrderId" /></EndProperty></AssociationSetMapping></EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer>
+    <edmx:Connection>
+      <DesignerInfoPropertySet xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram Name="Orders" ZoomLevel="100" xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+        <EntityTypeShape EntityType="shop_Orders.Order" Width="2" PointX="5.125" PointY="0.5" Height="3.4737760416666656" IsExpanded="true" />
+        <EntityTypeShape EntityType="shop_Orders.OrderItem" Width="1.5" PointX="9.5" PointY="0.5" Height="2.7158007812499996" IsExpanded="true" />
+        <AssociationConnector Association="shop_Orders.OrderOrderItem">
+          <ConnectorPoint PointX="7.125" PointY="1.78125" />
+          <ConnectorPoint PointX="9.5" PointY="1.78125" /></AssociationConnector>
+        <EntityTypeShape EntityType="shop_Orders.DeliveryType" Width="1.5" PointX="7.875" PointY="3.125" Height="1.9578255208333326" />
+        <EntityTypeShape EntityType="shop_Orders.PaymentProperty" Width="1.75" PointX="0.75" PointY="3.125" Height="1.9578255208333326" />
+        <EntityTypeShape EntityType="shop_Orders.PaymentPropertyValue" Width="2.25" PointX="0.5" PointY="0.5" Height="1.7683317057291665" />
+        <EntityTypeShape EntityType="shop_Orders.PaymentType" Width="1.5" PointX="3" PointY="3.125" Height="2.1725878906249996" />
+        <AssociationConnector Association="shop_Orders.DeliveryTypeOrder">
+          <ConnectorPoint PointX="7.875" PointY="3.5493880208333328" />
+          <ConnectorPoint PointX="7.125" PointY="3.5493880208333328" /></AssociationConnector>
+        <AssociationConnector Association="shop_Orders.DeliveryTypePaymentType">
+          <ConnectorPoint PointX="7.875" PointY="4.5932421875" />
+          <ConnectorPoint PointX="4.5" PointY="4.5932421875" /></AssociationConnector>
+        <AssociationConnector Association="shop_Orders.PaymentTypeOrder">
+          <ConnectorPoint PointX="4.5" PointY="3.5718489583333333" />
+          <ConnectorPoint PointX="5.125" PointY="3.5718489583333333" />
+          </AssociationConnector>
+        <AssociationConnector Association="shop_Orders.PaymentTypePaymentProperty">
+          <ConnectorPoint PointX="3" PointY="4.2112939453125" />
+          <ConnectorPoint PointX="2.5" PointY="4.2112939453125" /></AssociationConnector>
+        <AssociationConnector Association="shop_Orders.PaymentPropertyPaymentPropertyValue">
+          <ConnectorPoint PointX="1.625" PointY="3.125" />
+          <ConnectorPoint PointX="1.625" PointY="2.2683317057291665" /></AssociationConnector>
+        <AssociationConnector Association="shop_Orders.OrderPaymentPropertyValue">
+          <ConnectorPoint PointX="5.125" PointY="1.3841658528645833" />
+          <ConnectorPoint PointX="2.75" PointY="1.3841658528645833" /></AssociationConnector></Diagram></edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

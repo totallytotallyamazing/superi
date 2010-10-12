@@ -36,7 +36,7 @@
         <%= (WebSession.DeliveryType.AdditionalFee.HasValue) ? WebSession.DeliveryType.AdditionalFee.Value.ToString("0.00", CultureInfo.CurrentUICulture) : "просчитывается отдельно"   %>
     </div>
 --%>    
-    <div class="section">
+   <%-- <div class="section">
         <span class="approveTitle">
             Способ оплаты:
         </span>
@@ -68,7 +68,7 @@
             <a href="javascript:history.back();">Вернуться</a>
         </div>
         Все верно, <%= Html.ActionLink("Отправить", "SendOrder") %>
-    </div>
+    </div>--%>
     
     
     

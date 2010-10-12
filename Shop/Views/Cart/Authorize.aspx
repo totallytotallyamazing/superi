@@ -318,7 +318,7 @@
     <div id="pager" style="padding-left: 20px;">
         <p class="pgt1">
             <a href="javascript:history.back();" class="pgt1">« Вернуться</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <a href="#" class="pgt1">Продолжить »</a>
+            <%: Html.ActionLink("Продолжить »", "Approve", null, new { @class = "pgt1" })%>
         </p>
     </div>
 </asp:Content>

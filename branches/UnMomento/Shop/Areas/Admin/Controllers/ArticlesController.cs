@@ -38,6 +38,7 @@ namespace Shop.Areas.Admin.Controllers
                     article.Id = Id.Value;
                     article.Name = article.Title;
                     article.Text = HttpUtility.HtmlDecode(article.Text);
+                    article.Language = "ru-RU";
                     object originalItem;
                     EntityKey entityKey = new EntityKey("ContentStorage.Articles", "Id", article.Id);
                     if (context.TryGetObjectByKey(entityKey, out originalItem))
@@ -47,6 +48,7 @@ namespace Shop.Areas.Admin.Controllers
                 }
                 else
                 {
+                    article.Text = HttpUtility.HtmlDecode(article.Text);
                     article.Language = "ru-RU";
                     article.Name = article.Title;
                     context.AddToArticles(article);

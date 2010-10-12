@@ -158,7 +158,9 @@
           <Property Name="Name" Type="String" Nullable="true" />
           <NavigationProperty Name="Order" Relationship="shop_Orders.OrderOrderItem" FromRole="OrderItem" ToRole="Order" /></EntityType>
         <Association Name="OrderOrderItem">
-          <End Type="shop_Orders.Order" Role="Order" Multiplicity="1" />
+          <End Type="shop_Orders.Order" Role="Order" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
           <End Type="shop_Orders.OrderItem" Role="OrderItem" Multiplicity="*" /></Association>
         <EntityType Name="DeliveryType">
           <Key>
@@ -213,7 +215,9 @@
           <End Type="shop_Orders.PaymentProperty" Role="PaymentProperty" Multiplicity="1" />
           <End Type="shop_Orders.PaymentPropertyValue" Role="PaymentPropertyValue" Multiplicity="*" /></Association>
         <Association Name="OrderPaymentPropertyValue">
-          <End Type="shop_Orders.Order" Role="Order" Multiplicity="1" />
+          <End Type="shop_Orders.Order" Role="Order" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
           <End Type="shop_Orders.PaymentPropertyValue" Role="PaymentPropertyValue" Multiplicity="*" /></Association></Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->

@@ -29,13 +29,13 @@
         <%= WebSession.Order.DeliveryAddress %>
     </div>
     
-    <div class="section">
+<%--    <div class="section">
         <span class="approveTitle">
             Стоимость доставки:
         </span>
         <%= (WebSession.DeliveryType.AdditionalFee.HasValue) ? WebSession.DeliveryType.AdditionalFee.Value.ToString("0.00", CultureInfo.CurrentUICulture) : "просчитывается отдельно"   %>
     </div>
-    
+--%>    
     <div class="section">
         <span class="approveTitle">
             Способ оплаты:
@@ -56,14 +56,12 @@
         <strong>
             <% 
                 float sum = WebSession.OrderItems.Sum(oi=>oi.Value.Price * oi.Value.Quantity); 
-                if(WebSession.DeliveryType.AdditionalFee.HasValue)
-                    sum += WebSession.DeliveryType.AdditionalFee.Value;
+                //if(WebSession.DeliveryType.AdditionalFee.HasValue)
+                //    sum += WebSession.DeliveryType.AdditionalFee.Value;
             %>
             <%= Html.RenderPrice(sum, WebSession.Currency, 2, "") %>
         </strong>
     </div>
-    
-    <% Html.RenderPartial("PrintDocument"); %>
     
     <div class="backAndForward">
         <div class="back">

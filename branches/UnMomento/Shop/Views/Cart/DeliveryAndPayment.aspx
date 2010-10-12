@@ -57,7 +57,7 @@
         <% Html.RenderPartial("DeliveryType"); %>
         <div class="backAndForward">
             <div class="back">
-                <a href="javascript:goBack();">Вернуться</a>
+                <a href="javascript:history.back();">Вернуться</a>
             </div>
             Все верно, <input type="submit" value="продолжаем!" />
         </div>

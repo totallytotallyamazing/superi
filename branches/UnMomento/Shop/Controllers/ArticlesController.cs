@@ -29,7 +29,7 @@ namespace Shop.Controllers
             ViewData["type"] = type;
             using (ContentStorage context = new ContentStorage())
             {
-                var articles = context.Articles.Where(a=>a.Type == type).ToList();
+                var articles = context.Articles.Where(a => a.Type == type).OrderByDescending(a => a.Date).ToList();
                 return View(articles);
             }
             

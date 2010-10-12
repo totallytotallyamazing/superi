@@ -9,6 +9,7 @@ using Shop.Models;
 
 namespace Shop.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Administrators")]
     public class SettingsController : Controller
     {
         //

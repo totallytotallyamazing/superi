@@ -8,6 +8,7 @@ using Dev.Helpers;
 
 namespace Shop.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Administrators")]
     public class ProductTagsController : Controller
     {
         [OutputCache(NoStore = true, VaryByParam = "*", Duration = 1)]

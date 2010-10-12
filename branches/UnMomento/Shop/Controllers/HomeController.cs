@@ -17,7 +17,6 @@ namespace Shop.Controllers
     {
         public ActionResult Index()
         {
-            throw new Exception("ex");
             return View();
         }
 

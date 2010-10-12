@@ -38,53 +38,48 @@ namespace Shop.Areas.Admin.Controllers
             {
                 var br = context.Brands.ToList();
 
-                List<SelectListItem> brands = br
-                    .Select(b => new SelectListItem { Text = b.Name, Value = b.Id.ToString() })
-                    .ToList();
-
-                ViewData["Brands"] = br;
+                int brandId = int.MinValue;
 
                 if (id.HasValue)
                 {
                     product = context.Products.Include("ProductImages").Include("Categories").Include("Brand").Where(p => p.Id == id.Value).First();
+                    if (product.Brand != null)
+                        brandId = product.Brand.Id;
                 }
+
+                List<SelectListItem> brands = br
+                .Select(b => new SelectListItem { Text = b.Name, Value = b.Id.ToString(), Selected = b.Id == brandId })
+                .ToList();
+
+                ViewData["Brands"] = brands;
+
             }
             return View(product);
         }
 
         [HttpPost]
-        public ActionResult AddEdit(Product product, int? Id, int? cId, int? bId, int? brandId)
+        public ActionResult AddEdit(FormCollection form, int? cId, int? bId, int brandId)
         {
+            Product product = null;
             using (ShopStorage context = new ShopStorage())
             {
-                if (Id.HasValue && Id > 0)
+                int id = int.MinValue;
+                if (int.TryParse(form["Id"], out id))
                 {
-                    product.Id = Id.Value;
-                    Product prod = context.Products.Include("Brand").Where(p => p.Id == Id.Value).First();
-                    prod.Name = product.Name;
-                    prod.OldPrice = product.OldPrice;
-                    prod.PartNumber = product.PartNumber;
-                    prod.SeoDescription = product.SeoDescription;
-                    prod.SeoKeywords = product.SeoKeywords;
-                    prod.ShortDescription = HttpUtility.HtmlDecode(product.ShortDescription);
-                    prod.Description = HttpUtility.HtmlDecode(product.Description);
-                    prod.IsNew = product.IsNew;
-                    prod.Price = product.Price;
-                    prod.SortOrder = product.SortOrder;
-                    prod.Color = product.Color;
-                    prod.Published = product.Published;
-
-                    if (brandId.HasValue && prod.Brand.Id != brandId)
+                    product = context.Products.Include("Brand").First(p => p.Id == id);
+                    if (product.Brand == null || product.Brand.Id != brandId)
                     {
-                        EntityKey brand = new EntityKey("ShopStorage.Brands", "Id", brandId);
-                        prod.Brand = null;
-                        prod.BrandReference.EntityKey = brand;
+                        Brand brand = new Brand { Id = brandId };
+                        brand.EntityKey = new EntityKey("ShopStorage.Brands", "Id", brandId);
+                        context.Attach(brand);
+                        product.Brand = brand;
                     }
                 }
                 else
                 {
                     if (!cId.HasValue)
                         throw new ArgumentNullException("cId");
+                    product = new Product();
                     EntityKey category = new EntityKey("ShopStorage.Categories", "Id", cId);
 
                     if (brandId.HasValue)
@@ -100,6 +95,20 @@ namespace Shop.Areas.Admin.Controllers
                     product.Brand = null;
                     context.AddToProducts(product);
                 }
+
+
+                TryUpdateModel(product,
+                    new string[] 
+                    { 
+                        "Name", "OldPrice", "PartNumber", "SeoDescription", "SeoKeywords", "ShortDescription",
+                        "Description", "IsNew", "Price", "SortOrder", "Color", "Published", "IsSpecialOffer", 
+                        "PersonalExperience", "PersonalExperienceSet"
+                    },
+                    form.ToValueProvider());
+
+                product.Description = HttpUtility.HtmlDecode(product.Description);
+                product.ShortDescription = HttpUtility.HtmlDecode(product.ShortDescription);
+
                 context.SaveChanges();
             }
 

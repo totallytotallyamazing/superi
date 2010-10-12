@@ -62,7 +62,7 @@ namespace Shop.Controllers
                         ProductId = product.Id,
                         Quantity = 1,
                         Image = (image != null) ? image.ImageSource : null,
-                        Description = product.Description
+                        Description = product.ShortDescription
                     };
                     if (product.ProductAttributeValues.Count > 0)
                     {
@@ -89,6 +89,9 @@ namespace Shop.Controllers
 
         public ActionResult Authorize()
         {
+            if (WebSession.OrderItems.Count == 0)
+                return RedirectToAction("Index", "Home", null);
+
             AuthorizeModel authorizeModel = null;
 
             if (WebSession.IsBillingInfoFilled())
@@ -120,12 +123,6 @@ namespace Shop.Controllers
             WebSession.Order.BillingEmail = authorizeModel.Email;
             WebSession.Order.BillingName = authorizeModel.Name;
             WebSession.Order.BillingPhone = authorizeModel.Phone;
-            using (OrdersStorage context = new OrdersStorage())
-            {
-                context.AddToOrders(WebSession.Order);
-                context.SaveChanges();
-                context.Detach(WebSession.Order);
-            }
             return RedirectToAction("DeliveryAndPayment");
         }
 
@@ -151,6 +148,9 @@ namespace Shop.Controllers
 
         public ActionResult DeliveryAndPayment()
         {
+            if (WebSession.OrderItems.Count == 0)
+                return RedirectToAction("Index", "Home", null);
+
             AuthorizeModel model = null;
             if (WebSession.IsBillingInfoFilled())
             {
@@ -181,7 +181,7 @@ namespace Shop.Controllers
         {
             using (OrdersStorage context = new OrdersStorage())
             {
-                context.Attach(WebSession.Order);
+              //  context.Attach(WebSession.Order);
             WebSession.Order.DeliveryAddress = model.DeliveryAddress;
             WebSession.Order.DeliveryName = model.Name;
             WebSession.Order.DeliveryPhone = model.Phone;
@@ -211,17 +211,18 @@ namespace Shop.Controllers
 
                         PaymentPropertyValue val = new PaymentPropertyValue
                         {
-                            PaymentProperty = paymentProperty,
+                            PaymentProperty =  paymentProperty,
                             Value = paymentPropertyValue
                         };
 
-                        context.Attach(paymentProperty);
-                        WebSession.Order.PaymentPropertyValues.Add(val);
+
+                        //context.Attach(paymentProperty);
+                        //WebSession.Order.PaymentPropertyValues.Add(val);
                         WebSession.PaymentProertyValues.Add(val);
                     }
                 }
-                context.SaveChanges();
-                context.Detach(WebSession.Order);
+                //context.SaveChanges();
+                //context.Detach(WebSession.Order);
             }
 
             return RedirectToAction("Approve");
@@ -230,31 +231,47 @@ namespace Shop.Controllers
         [OutputCache(NoStore = true, VaryByParam = "*", Duration = 1)]
         public ActionResult Approve()
         {
+            if (WebSession.OrderItems.Count == 0)
+                return RedirectToAction("Index", "Home", null);
+
+            return View();
+        }
+
+        private void SaveOrder()
+        {
             using (OrdersStorage context = new OrdersStorage())
             {
-                context.Attach(WebSession.Order);
-                foreach (var item in WebSession.OrderItems)
+                context.AddToOrders(WebSession.Order);
+                context.Attach(WebSession.DeliveryType);
+                context.Attach(WebSession.PaymentType);
+                foreach (var item in WebSession.PaymentProertyValues)
                 {
-                    WebSession.Order.OrderItems.Add(item.Value);
-                    WebSession.Order.OrderDate = DateTime.Now;
+                    PaymentPropertyValue val = new PaymentPropertyValue();
+                    val.Value = item.Value;
+                    val.PaymentPropertyReference.EntityKey = new EntityKey("OrdersStorage.PaymentProperties", "Id", item.PaymentProperty.Id);
+                    WebSession.Order.PaymentPropertyValues.Add(val);
                 }
+                WebSession.Order.DeliveryType = WebSession.DeliveryType;
+                WebSession.Order.PaymentType = WebSession.PaymentType;
+                WebSession.Order.UniqueId = Guid.NewGuid().ToString();
+                foreach (var item in WebSession.OrderItems)
+                    WebSession.Order.OrderItems.Add(item.Value);
+                WebSession.Order.OrderDate = DateTime.Now;
                 context.SaveChanges();
             }
-            return View();
         }
 
         public ActionResult SendOrder()
         {
+            SaveOrder();
             SendOrderMail();
             if(!string.IsNullOrEmpty(WebSession.Order.BillingEmail))
-                SedClientMail();
-
-            WebSession.ClearOrder();
+                SendClientMail();
 
             return RedirectToAction("OrderSent");
         }
 
-        private void SedClientMail()
+        private void SendClientMail()
         {
             string link = string.Empty;
             if (WebSession.PaymentType.HasDocument)
@@ -305,6 +322,9 @@ namespace Shop.Controllers
 
         public ActionResult OrderSent()
         {
+            if (WebSession.OrderItems.Count == 0)
+                return RedirectToAction("Index", "Home", null);
+
             return View();
         }
 
@@ -317,7 +337,6 @@ namespace Shop.Controllers
                 context.DeliveryTypes.MergeOption = System.Data.Objects.MergeOption.NoTracking;
                 var result = context.DeliveryTypes.Where(dt => dt.Id == id).Select(dt => new { paymentTypes = dt.PaymentTypes, deliveryType = dt }).First();
                 List<PaymentType> paymentTypes = result.paymentTypes.ToList();
-                WebSession.Order.DeliveryTypeReference.EntityKey = new EntityKey("OrdersStorage.DeliveryTypes", "Id", id);
                 WebSession.DeliveryType = result.deliveryType;
                 return View(paymentTypes);
             }
@@ -332,7 +351,6 @@ namespace Shop.Controllers
                 context.PaymentProperties.MergeOption = System.Data.Objects.MergeOption.NoTracking;
                 var result = context.PaymentTypes.Where(pt => pt.Id == id).Select(pt => new { paymentProperties = pt.PaymentProperties, paymentType = pt }).First();
                 List<PaymentProperty> paymentProperties = result.paymentProperties.ToList();
-                WebSession.Order.PaymentTypeReference.EntityKey = new EntityKey("OrdersStorage.PaymentTypes", "Id", id);
                 WebSession.PaymentType = result.paymentType;
                 return View(paymentProperties);
             }

@@ -12,10 +12,13 @@
       <p>
         С вами свяжется наш менеджер
       </p>
+          <% Html.RenderPartial("PrintDocument"); %>
+
     </div>
     <div class="goHome">
         <a href="/">В каталог</a>
     </div>
+    <%  Dev.Helpers.WebSession.ClearOrder(); %>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentTitle" runat="server">

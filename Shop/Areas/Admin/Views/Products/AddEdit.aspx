@@ -34,7 +34,6 @@
             О товаре
         </span>
         <div class="section">   
-            <%= Html.HiddenFor(model => model.Id) %>
 
             <%if (ViewData["id"] != null)
              {
@@ -47,6 +46,7 @@
         <%= Html.Hidden("cId") %>
         <%= Html.Hidden("bId") %>
         
+            <%= Html.HiddenFor(model => model.Id) %>
 
             <table>
                 <tr>
@@ -109,7 +109,8 @@
                         Бренд
                     </td>                
                     <td>
-                        <%= Html.DropDownList("brandId", new SelectList((IEnumerable)ViewData["Brands"], "Id", "Name")) %>
+                        
+                        <%= Html.DropDownList("brandId", (IEnumerable<SelectListItem>)ViewData["Brands"]) %>
                     </td>
                     <td class="explanation">
                         Добавить бренд можно, перейдя в <%= Html.ActionLink("область редактирования брендов", "Index", new { controller="Brands", area="Admin"})%>, находящуюся в разделе "О брендах"

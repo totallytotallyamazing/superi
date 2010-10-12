@@ -1,0 +1,347 @@
+﻿/*Оформление заказа*/
+#userInfoWrapper
+{
+    width: 500px;
+}
+
+#infoLeft
+{
+    float: left;
+    width: 150px;
+}
+.infoTxt
+{
+    padding-bottom: 15px;
+}
+#infoRight
+{
+    margin-left: 175px;
+    width: 300px;
+}
+#cbDate, #cbPayment
+{
+    width: 133px;
+    height: 17px;
+    background: url('./img/cbDate.gif') no-repeat;
+}
+#inpCode, #inpSubscribe
+{
+    padding-bottom: 10px;
+    width: 133px;
+    height: 17px;
+    background: url('./img/inputCode.gif') no-repeat;
+}
+#cbDate
+{
+    margin-top: 14px;
+}
+#cbPayment
+{
+    margin-top: 12px;
+}
+#inpCode
+{
+    margin-top: 24px;
+}
+#codeAbout
+{
+    float: right;
+    margin-top: 22px;
+    text-align: right;
+}
+
+
+
+
+input:focus
+{
+    outline: none;
+}
+
+#cbReport
+{
+    margin-top: 17px;
+}
+#cbReportName
+{
+    margin-top: 17px;
+}
+
+#crossAuthorize
+{
+    margin: 25px 0px 25px 200px;
+}
+#zaebaliNahShrifty
+{
+    margin: 5px 0px 5px 0px;
+}
+
+.thumb img
+{
+    border: 1px solid #999999; /*margin-right: 1px;*/
+}
+#bonus
+{
+    width: 473px;
+}
+#bonusRight
+{
+    float: right;
+    margin: 25px 0px 0px 10px;
+}
+#bonusLeft
+{
+    float: left;
+    margin: 25px 14px 0px -5px;
+}
+#bonusCenter
+{
+    margin-top: 20px;
+}
+
+#greetingsLeft
+{
+    float: left;
+    margin: 20px 15px 0px 0px;
+}
+.greetingsInfo
+{
+    margin-bottom: 7px;
+    width: 220px;
+    line-height: 12px;
+}
+#greetingsRight
+{
+    margin: 20px 0px 0px 230px;
+    width: 224px;
+}
+
+#inpGreetings
+{
+    padding-bottom: 10px;
+    width: 224px;
+    height: 87px;
+    background: url('./img/greetingsMemo.gif') no-repeat;
+}
+
+
+
+#inpSubscribe
+{
+    margin-top: 2px;
+}
+
+#autoSelect
+{
+    margin-bottom: 30px;
+}
+
+#cbAutoSelect
+{
+    float: left;
+    margin: -1px 7px 0px 0px;
+}
+
+.deliveryInfo
+{
+    margin: 20px 0px 5px 0px;
+}
+
+
+
+.infoInputLines
+{
+    margin-top: 10px;
+}
+
+#cbSex
+{
+    float: left;
+    width: 76px;
+    height: 17px;
+    background: url('./img/cbMr.gif') no-repeat;
+}
+
+#inputNameSurname
+{
+    margin-left: 90px;
+    width: 196px;
+    height: 17px;
+    background: url('./img/cbNameSurname.gif') no-repeat;
+}
+
+#inputCity
+{
+    margin-right: 75px;
+    float: right;
+    width: 126px;
+    height: 17px;
+    background: url('./img/inputCity.gif') no-repeat;
+}
+
+.inputStreet
+{
+    float: left;
+    width: 166px;
+    height: 17px;
+    background: url('./img/inputStreet.gif') no-repeat;
+}
+
+.inputHomeNum
+{
+    margin-left: 175px;
+    width: 166px;
+    height: 17px;
+    background: url('./img/inputStreet.gif') no-repeat;
+}
+
+.inputFlat
+{
+    margin-right: 20px;
+    float: right;
+    width: 130px;
+    height: 17px;
+    background: url('./img/inputFlat.gif') no-repeat;
+}
+
+.inputIndex
+{
+    float: left;
+    width: 130px;
+    height: 17px;
+    background: url('./img/inputFlat.gif') no-repeat;
+}
+
+.inputMail
+{
+    margin-left: 144px;
+    width: 166px;
+    height: 17px;
+    background: url('./img/inputStreet.gif') no-repeat;
+}
+
+#inputPhoneNum
+{
+    width: 310px;
+    height: 17px;
+    background: url('./img/inputPhoneNum.gif') no-repeat;
+}
+
+/* inputs  */
+
+.textGreetings
+{
+    margin-top: 3px; /*position: relative;     font-size: 12px;     border: none;     background: none;     padding: 0px 0px 0px 10px;     bottom: 90px;     width: 212px;     height: 79px;*/
+    width: 217px;
+    height: 81px;
+    border: none;
+    background: none;
+    font-size: 12px;
+}
+
+
+.textCode, .textNameSurname, .textCity, .textStreet, .textPhoneNum, .textPhone
+{
+    padding: 0px 0px 0px 5px;
+    bottom: 2px;
+    position: relative;
+    font-size: 12px;
+    border: none;
+    background: none;
+    height: 17px;
+}
+
+.textCode
+{
+    width: 120px;
+}
+
+.textNameSurname
+{
+    width: 180px;
+}
+
+.textCity
+{
+    width: 110px;
+}
+
+.textStreet
+{
+    width: 150px;
+}
+
+.textPhoneNum
+{
+    width: 295px;
+}
+
+textPhone
+{
+    width: 130px;
+}
+
+
+.inputDescription
+{
+    margin: 5px 0px 0px 5px;
+    width: 450px;
+}
+#additionalInfo
+{
+    margin: 12px 0px 0px 5px;
+    width: 450px;
+}
+
+/*user info*/
+
+#memoAdditionalInfo
+{
+    margin-top: 5px;
+    padding-bottom: 10px;
+    width: 484;
+    height: 57px;
+    background: url('./img/inputAdditionalInfo.gif') no-repeat;
+}
+
+.textAdditionalInfo
+{
+    margin-top: 2px;
+    margin-left: 5px;
+    width: 477px;
+    height: 51px;
+    border: none;
+    background: none;
+    font-size: 12px;
+}
+
+#userNameSurname
+{
+    float: left;
+    width: 196px;
+    height: 17px;
+    background: url('./img/cbNameSurname.gif') no-repeat;
+}
+
+#userCity
+{
+    margin-left: 210px;
+    width: 126px;
+    height: 17px;
+    background: url('./img/inputCity.gif') no-repeat;
+}
+
+#inputPhone
+{
+    float: left;
+    width: 138px;
+    height: 17px;
+    background: url('./img/inputPhone.gif') no-repeat;
+}
+
+#inputMailIndex
+{
+    width: 130px;
+    height: 17px;
+    background: url('./img/inputFlat.gif') no-repeat;
+}

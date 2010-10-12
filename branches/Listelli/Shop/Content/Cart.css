@@ -1,0 +1,66 @@
+﻿.cartBreadCrumb{color:#ccc; font-weight:normal;}
+.cartBreadCrumb.current{color:#FF6600; font-weight:bold;}
+#cartContainer{width:auto; margin:0 12px;}
+#cartContents td.productImage img{border:1px solid #999;}
+#cartContents{width:100%}
+
+#cartContents th div{ font-size:12px; position:relative; top:15px; font-weight:normal;}
+#cartContents th, #cartContents td{text-align:center; padding:0 9px;}
+#cartContents td.price,
+#cartContents td.quantity,
+#cartContents td.delete{padding-top:25px;}
+
+#cartContents td.quantity input{width:25px; text-align:right;}
+#cartContents td.name{text-align:left;}
+#cartContents td.productImage{width:62px;}
+
+#cartContents td.name div.name a{font-size:12px; color:Black; top:-5px; position:relative;}
+#cartContents td.name div.description{font-size:9px; padding-top:10px;}
+#cartContents td.price{font-size:18px;}
+
+#totalAmount .left{background:transparent url(img/totalLeft.png) no-repeat; height:24px; padding-left:8px;}
+#totalAmount .right{background:transparent url(img/totalRight.png) no-repeat top right; height:24px; padding-right:8px;}
+#totalAmount .bg{color:White; font-size:20px; background:transparent url(img/totalBg.png) repeat-x; height:24px;}
+#totalAmount .bg span{font-size:10px;}
+#totalAmount div{float:left;}
+.totalLabel{float:none; position:relative; font-size:9px; color:#FF6600; margin-top:-36px; height:0; clear:both; z-index:100;}
+
+div#totalLine{border-top:3px solid #ff6600; position:relative; top:-27px;}
+
+#proceedContainer{padding-top:2px; color:#ff6600; font-weight:bold; position:relative; margin:0 auto; margin-top:30px; margin-bottom:40px; padding-right:10px;  width:191px; height:24px; background:transparent url(img/proceedBg.jpg) no-repeat top right; font-size:14px;}
+#proceedContainer a{color:White; font-weight:normal;}
+
+table.userInfo{width:100%;}
+
+table.userInfo td{padding: 2px 3px;}
+
+h2.cartPageTitle{font-size:12px; font-weight:bold; color:#ff6600;}
+div#userInfoWrapper{width:500px; /*position:relative; margin:0 auto; padding:25px 0 50px 0;*/}
+
+.labelCell{ font-size:12px; color:black; padding-right:10px; padding-bottom:5px; }
+.labelCell span.comments{color:#999; font-size:9px;}
+.validationError{color:Red; font-size:9px;}
+td.validationError{width:200px;}
+td.registerMePlease a{font-size: 12px; font-weight:bold; color:#ff6600;}
+.approveTitle{font-weight:bold; color:#ff6600; padding-right:10px;}
+div.section{padding:10px 0; font-size:12px;}
+
+td.registerMePlease {font-weight:bold; font-size:12px; padding-top:25px !important;}
+
+div.backAndForward{background: transparent url(img/proceedBg.jpg) no-repeat right;  margin-top:40px; padding-left:10px; padding-top:2px; height:22px; font-size:14px; text-align:right; height:24px;}
+div.backAndForward{color:#ff6600; font-weight:bold;}
+div.backAndForward div{float:left; background: transparent url(img/backArrow.jpg) no-repeat left; height:24px; width:92px; text-align:left; padding-left:10px; padding-top:2px; }
+div.backAndForward input{border:0; background:transparent; text-decoration:underline; color:White;  width:110px; font-size:14px;}
+
+div.backAndForward a{color:White; font-size:14px; font-weight:normal; padding-left:10px; padding-right:25px;}
+div.backAndForward .back a{padding:0;}
+
+#deliveryTypes{margin-top:65px;}
+div.options{padding-left:86px; padding-top:20px;}
+
+div.options div{font-size:12px; color:#ff6600; margin-bottom:12px; }
+#paymentTypes{ padding-top:30px;}
+#paymentProperties{margin-top:40px;}
+
+table.orderItems{font-size:12px; margin:10px 0 10px 0;}
+table.orderItems tr td{padding:5px 50px 5px 0;}

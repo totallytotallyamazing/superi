@@ -1,0 +1,38 @@
+﻿/*.carAddAdminImage{float:left; margin-right:5px;}
+.carAddAdminImage img{float:left; display:block; margin-top:20px;}
+.carAddAdminImage input{position:relative; float:left; left:-150px; top:20px;}
+.carAddAdminImage a{display:block; float:left; margin-top:20px; margin-left:-24px; width:24px; height:24px; background:url(img/delete.gif)}
+*/
+
+
+.productImage{float:left;}
+.productImage img{float:left; display:block; margin-top:10px;}
+.productImage input{float:left; position:relative; left:-82px; top:8px;}
+.productImage a
+{
+    position:relative; 
+    float:left; 
+    margin-left:-85px; 
+    display:block; 
+    background:transparent url(/Content/img/deleteFromCart.jpg); 
+    width:15px; height:15px; 
+    margin-left:-15px; 
+    margin-top:10px;
+}
+
+td.images{padding:0 10px;}
+
+.section{border:1px solid #ff6600; padding:20px; margin-bottom:20px;}
+.sectionTitle{margin-left:10px; background: #ff6600; color:White; font-weight:bold; padding:0 5px;}
+#contentWrapper{padding-top:20px;}
+
+.labelCell{ padding:5px 10px 5px 0px; font-size:14px; font-weight:bold; color:#ff6600; }
+
+.comments{color:#888; font-size:10px;}
+
+.explanation{font-size:10px;}
+
+table{width:100%;}
+td textarea{width:100%;}
+
+#contentWrapper{padding: 0 20px;}

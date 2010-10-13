@@ -535,6 +535,8 @@ html, body
     margin-right: auto;
     border: 1px solid #999999;
 }
+#imgProduct img{display:block;}
+
 #productMenu
 {
     margin-top: 10px; /*height: 50px;*/

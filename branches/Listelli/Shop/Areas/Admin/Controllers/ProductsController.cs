@@ -58,7 +58,7 @@ namespace Shop.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddEdit(FormCollection form, int? cId, int? bId, int brandId)
+        public ActionResult AddEdit(FormCollection form, int? cId, int? bId, int? brandId)
         {
             Product product = null;
             using (ShopStorage context = new ShopStorage())
@@ -67,10 +67,10 @@ namespace Shop.Areas.Admin.Controllers
                 if (int.TryParse(form["Id"], out id))
                 {
                     product = context.Products.Include("Brand").First(p => p.Id == id);
-                    if (product.Brand == null || product.Brand.Id != brandId)
+                    if (product.Brand == null || product.Brand.Id != brandId && brandId.HasValue)
                     {
-                        Brand brand = new Brand { Id = brandId };
-                        brand.EntityKey = new EntityKey("ShopStorage.Brands", "Id", brandId);
+                        Brand brand = new Brand { Id = brandId.Value };
+                        brand.EntityKey = new EntityKey("ShopStorage.Brands", "Id", brandId.Value);
                         context.Attach(brand);
                         product.Brand = brand;
                     }

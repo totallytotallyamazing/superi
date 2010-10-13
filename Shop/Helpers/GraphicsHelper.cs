@@ -22,7 +22,7 @@ namespace Dev.Mvc.Helpers
             fixDimension.Add("mainView", FixedDimension.Width);
             maxDimensions.Add("thumbnail1", 79);
             fixDimension.Add("thumbnail1", FixedDimension.Width);
-            maxDimensions.Add("thumbnail2", 152);
+            maxDimensions.Add("thumbnail2", 196);
             fixDimension.Add("thumbnail2", FixedDimension.Width);
             maxDimensions.Add("thumbnail3", 85);
             fixDimension.Add("thumbnail3", FixedDimension.Width);

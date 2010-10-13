@@ -23,8 +23,9 @@ namespace Shop.Controllers
             {
                 List<Product> products = null;
                 Category category = context.Categories.Include("Parent").Include("Categories.Products.Brand")
-                    .Include("Products")
+                    .Include("Products.ProductImages")
                     .Include("Categories.Products.ProductImages")
+                    .Include("Products.ProductVariants")
                     //.Include("Categories.Products.ProductAttributeValues.ProductAttribute")
                     .First(c => c.Id == id);
                 if (category.Parent == null)

@@ -15,7 +15,23 @@
 
 
 <div class="productItem">
-    <img src="../../Content/UnMomentoStyles/img/sheep.gif" alt="Овца" />
+        <% 
+            Shop.Models.ProductImage img = Model.ProductImages.Where(pi => pi.Default).FirstOrDefault();
+            if (img != null)
+            {
+               %>
+        <%= Html.ActionLink("[IMAGE]", "Show", new { id = Model.Id }).ToString()
+            .Replace("[IMAGE]",
+                        Html.CachedImage("~/Content/ProductImages", img.ImageSource, "thumbnail2", Model.Name)) + "<br />"%>
+        <%}
+                 else
+           {
+                %>
+                <img src="../../Content/UnMomentoStyles/img/sheep.gif" alt="Овца" />
+                <%
+           }
+        %>
+
     <div id="item1Txt">
         <span class="it1"><b>
             <%= productClickLink.Replace("[IMAGE]", Model.Name)%>,</b></span>

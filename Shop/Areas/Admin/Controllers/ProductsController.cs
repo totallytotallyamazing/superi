@@ -137,7 +137,7 @@ namespace Shop.Areas.Admin.Controllers
             return RedirectToAction("AddEdit", new { id = productId, cId = categoryId });
         }
 
-        public ActionResult DeleteImage(int productId, int imageId, int cId)
+        public ActionResult DeleteImage(int productId, int imageId, int? cId)
         {
             DeleteProductImage(productId, imageId);
             return RedirectToAction("AddEdit", new { id = productId, cId = cId });
@@ -159,7 +159,7 @@ namespace Shop.Areas.Admin.Controllers
             }
         }
 
-        public ActionResult SetDefaultImage(long productId, long defaultImage, int cId)
+        public ActionResult SetDefaultImage(long productId, long defaultImage, int? cId)
         {
             using (ShopStorage context = new ShopStorage())
             {

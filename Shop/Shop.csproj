@@ -223,6 +223,11 @@
     <Content Include="Scripts\MicrosoftAjax.js" />
     <Content Include="Scripts\MicrosoftMvcAjax.js" />
     <Content Include="Scripts\MicrosoftMvcValidation.js" />
+    <Content Include="Scripts\PageScripts.js" />
+    <Content Include="Views\Products\MainImage.ascx" />
+    <Content Include="Views\Products\ProductMenu.ascx" />
+    <Content Include="Views\Products\ProductVariantImage.ascx" />
+    <Content Include="Views\Products\ProductVariants.ascx" />
     <Content Include="Views\Shared\ContentPartial.ascx" />
     <Content Include="Views\Shared\LogOnOrSignUp.ascx" />
     <Content Include="Web.config">

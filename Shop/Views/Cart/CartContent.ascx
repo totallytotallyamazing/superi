@@ -13,31 +13,6 @@
 
 
 <% foreach (var item in Model){%>
-        <%--<tr>
-            <td valign="top" class="productImage">
-                <%= Html.CachedImage("~/Content/ProductImages", item.Image, "cartThumb", "")%>
-            </td>
-            <td class="name" valign="top">
-                <div class="name">
-                    <%= Html.ActionLink(item.Name, "Show", new { controller="Products", area="", id=item.Id})%>
-                </div>  
-                <div class="description">
-                    <%= item.Description %>
-                </div>
-            </td>
-            <td class="quantity" valign="top">
-                <%= Html.TextBox("oi_" + item.ProductId, item.Quantity) %>
-            </td>
-            <td class="price" valign="top" id="Td1">
-                <%= Html.RenderPrice(item.Price * item.Quantity, WebSession.Currency, 0, ",") %>
-            </td>
-            <td class="delete" valign="top">
-                <%= Html.ActionLink("[IMAGE]", "Delete", new { id=item.ProductId }).ToString()
-                    .Replace("[IMAGE]", "<img style=\"border:0\" src=\"/Content/img/deleteFromCart.jpg\" alt=\"Удалить\" />") %>
-            </td>
-        </tr>--%>
-   
-
 <div id="orderItem">
         <div id="priceOrderItem">
         <div class="price">
@@ -67,7 +42,11 @@
 
  <%} %>
  <div id="payment">
-        <p class="opt1">=</p>         <div class="price">        <p class="opt2"><%= Html.RenderPrice((float)ViewData["totalAmount"], WebSession.Currency, 0, ",") %>  </p>        </div>        <p class="opt3">к оплате</p>
+        <p class="opt1">=</p> 
+        <div class="price">
+        <p class="opt2"><%= Html.RenderPrice((float)ViewData["totalAmount"], WebSession.Currency, 0, ",") %>  </p>
+        </div>
+        <p class="opt3">к оплате</p>
         
     </div>
 

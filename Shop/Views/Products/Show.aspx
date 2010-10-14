@@ -17,43 +17,16 @@
     <% using (Html.BeginForm(new { controller = "Cart", action = "Add", id = Model.Id }))
        { %>
     <div id="imgProduct">
-        <% Shop.Models.ProductImage img = Model.ProductImages.Where(m => m.Default).DefaultIfEmpty(new Shop.Models.ProductImage { Product = new Shop.Models.Product { Name = Model.Name } }).First();
-        %>
-        <% Html.RenderPartial("ProductImage", img); %>
+        <% Html.RenderPartial("MainImage", Model); %>
         <% if (Model.IsNew)
            { %>
         <div id="new1">
         </div>
         <%} %>
-        <% Html.RenderPartial("ImagePreviews", Model.ProductImages.OrderByDescending(pi => pi.Default)); %>
+        
     </div>
     <div id="productMenu">
-        <div id="smalProduct">
-            <p class="pmt1">
-                <a href="#" class="pmt1">Эконом </a>
-            </p>
-            <p class="pmt3">
-                70 грн.
-            </p>
-        </div>
-        <div id="bigProduct">
-            <p class="pmt2">
-                Большой
-            </p>
-            <div class="priceNonBlock">
-            <p class="pmt3">
-                <% Html.RenderPartial("Price", Model); %>
-            </p>
-            </div>
-        </div>
-        <div id="midProduct">
-            <p class="pmt1">
-                <a href="#" class="pmt1">Средний </a>
-            </p>
-            <p class="pmt3">
-                100 грн.
-            </p>
-        </div>
+        <% Html.RenderPartial("ProductMenu"); %>
     </div>
     <div id="productDescr">
         <p class="dt1">

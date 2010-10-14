@@ -540,22 +540,39 @@ html, body
 #productMenu
 {
     margin-top: 10px; /*height: 50px;*/
-    width: 240px;
+    width: auto;
+    text-align:center;
     margin-left: auto;
     margin-right: auto;
 }
-#smalProduct
+
+#productMenu table{position:relative; margin: 0 auto;}
+
+td.productVariant, td.productVariant *
 {
-    float: right;
+    line-height: 20px;
+    font-family: Tahoma;
 }
-#bigProduct
+
+td.productVariant .caption
 {
-    float: left;
+    padding: 0 13px;
+    font-size: 13px;
+    text-align: center;
+    font-weight:bold;
 }
-#midProduct
+
+td.productVariant .caption a    
 {
-    /*margin-left: auto; margin-right: auto; width: 148px;*/
+    color:black;
+    cursor:pointer;
+    text-decoration:underline;
 }
+
+td.productVariant .caption a.current{color:#999; text-decoration:none;cursor:default;}
+
+td.productVariant .price{color:#666; font-size:14px; white-space:nowrap;}
+
 #productDescr
 {
     margin-top: 5px;
@@ -588,7 +605,7 @@ html, body
 
 /* #productItem{width: 196px;} */
 
-.price span
+priceOrderItem .price span
 {
     display: block;
 }

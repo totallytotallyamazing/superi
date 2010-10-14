@@ -62,6 +62,7 @@ namespace Shop.Controllers
                     .Include("ProductImages")
                     .Include("ProductAttributeValues")
                     .Include("ProductAttributeValues.ProductAttribute")
+                    .Include("ProductVariants")
                     .Include("Brand")
                     .Where(p => p.Id == id).First();
                 ViewData["keywords"] = product.SeoKeywords;

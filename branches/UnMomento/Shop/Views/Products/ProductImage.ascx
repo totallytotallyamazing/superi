@@ -1,8 +1,8 @@
-﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<Shop.Models.ProductImage>" %>
+﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<Shop.Models.Product>" %>
 <%@ Import Namespace="Dev.Mvc.Helpers" %>
-
 <% 
-    var mainImage = Model;
+    Shop.Models.ProductImage img = Model.ProductImages.Where(m => m.Default).DefaultIfEmpty(new Shop.Models.ProductImage { Product = new Shop.Models.Product { Name = Model.Name } }).First();
+    var mainImage = img;
     string alt = (mainImage != null) ? mainImage.Product.Name : "";
 %>
 
@@ -11,10 +11,6 @@
             <% Html.RenderAction("ShowMain", new { controller = "Graphics", area = "", id = mainImage.ImageSource, alt = mainImage.Product.Name }); %>
         </a>
     <%} %>
-    <%--<div class="orderButton">
-        <a href="#" onclick="$(this).parents('form')[0].submit()" >Добавить в корзину</a>
-    </div>--%>
-
 
 <script type="text/javascript">
     $(function() {

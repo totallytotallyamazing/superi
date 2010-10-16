@@ -93,19 +93,23 @@ namespace Dev.Mvc.Ajax
 
         public static string ObjectToString(this object thing)
         {
-            var colProps = new List<string>();
-            var props = thing.GetType().GetProperties();
-            foreach (var prop in props)
+            if (thing != null)
             {
-                var val = prop.GetValue(thing, null);
-                if (val is string)
-                    colProps.Add(String.Format("{0}:'{1}'", prop.Name, prop.GetValue(thing, null)));
-                else if(val is bool)
-                    colProps.Add(String.Format("{0}:{1}", prop.Name, prop.GetValue(thing, null).ToString().ToLower()));
-                else
-                    colProps.Add(String.Format("{0}:{1}", prop.Name, prop.GetValue(thing, null)));
+                var colProps = new List<string>();
+                var props = thing.GetType().GetProperties();
+                foreach (var prop in props)
+                {
+                    var val = prop.GetValue(thing, null);
+                    if (val is string)
+                        colProps.Add(String.Format("{0}:'{1}'", prop.Name, prop.GetValue(thing, null)));
+                    else if (val is bool)
+                        colProps.Add(String.Format("{0}:{1}", prop.Name, prop.GetValue(thing, null).ToString().ToLower()));
+                    else
+                        colProps.Add(String.Format("{0}:{1}", prop.Name, prop.GetValue(thing, null)));
+                }
+                return "{" + String.Join(",", colProps.ToArray()) + "}";
             }
-            return "{" + String.Join(",", colProps.ToArray()) + "}";
+            return "{}";
         }
     }
 }

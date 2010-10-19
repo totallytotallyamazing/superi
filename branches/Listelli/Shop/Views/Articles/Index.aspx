@@ -20,9 +20,9 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentTitle" runat="server">
     <div id="contName">
-        <div id="pagePic">
+       <%-- <div id="pagePic">
             <img src="../../Content/UnMomentoStyles/img/NewsPageImg.gif" alt="Лого странички новостей" />
-        </div>
+        </div>--%>
         <div id="pageName">
             <p class="pt1">
                 Новости, <span class="pt2">страница 1</span>

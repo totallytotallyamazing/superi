@@ -31,9 +31,9 @@
 <asp:Content runat="server" ContentPlaceHolderID="ContentTitle">
     
     <div id="contName">
-                <div id="pagePic">
+                <%--<div id="pagePic">
                     <img src="../../Content/UnMomentoStyles/img/bear.gif" alt="Медведь" />     
-                </div>            
+                </div>        --%>    
                 <div id="pageName">
                     <p class="pt1">Вход</p>            
                 </div>

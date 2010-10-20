@@ -661,7 +661,9 @@
           <End Type="shop_model.Product" Role="Product" Multiplicity="*" />
           <End Type="shop_model.Product" Role="Product1" Multiplicity="*" /></Association>
         <Association Name="ProductAttributeProductAttributeValue">
-          <End Type="shop_model.ProductAttribute" Role="ProductAttribute" Multiplicity="1" />
+          <End Type="shop_model.ProductAttribute" Role="ProductAttribute" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
           <End Type="shop_model.ProductAttributeValue" Role="ProductAttributeValue" Multiplicity="*" /></Association>
         <Association Name="ProductProductImage">
           <End Type="shop_model.Product" Role="Product" Multiplicity="1">
@@ -735,7 +737,9 @@
           <Property Type="String" Name="Image" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_ProductVariant_ProductVariant">
-          <End Type="shop_model.Product" Role="Product" Multiplicity="1" />
+          <End Type="shop_model.Product" Role="Product" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
           <End Type="shop_model.ProductVariant" Role="ProductVariant" Multiplicity="*" />
         </Association>
         <Association Name="BrandDiscountMapping">

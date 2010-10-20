@@ -24,7 +24,7 @@
                 <%= Html.ValidationMessageFor(model => model.Name)%>
             </div>
             
-            <div class="labelCell">
+<%--            <div class="labelCell">
                 <%= Html.LabelFor(model => model.Image)%>
             </div>
                 <div class="editor-field">
@@ -33,19 +33,13 @@
             <div style="margin-left:101px">
                 <% if (Model != null && !string.IsNullOrWhiteSpace(Model.Image)) %>
                 <%= Html.Image("~/Content/CategoryImages/" + Model.Image, Model.Name)%>
-            </div>
+            </div>--%>
             <div class="editor-label">
-                <%= Html.LabelFor(model => model.Published)%>
+                <%= Html.CheckBoxFor(model => model.Published)%> <%= Html.LabelFor(model => model.Published)%>
             </div>
-            <div class="editor-field">
-                <%= Html.CheckBoxFor(model => model.Published)%>
-            </div>
-            <div class="editor-label">
-                <%= Html.LabelFor(model => model.ShowOnMainPage)%>
-            </div>
-            <div class="editor-field">
-                <%= Html.CheckBoxFor(model => model.ShowOnMainPage)%>
-            </div>
+<%--            <div class="editor-label">
+                <%= Html.CheckBoxFor(model => model.ShowOnMainPage)%> <%= Html.LabelFor(model => model.ShowOnMainPage)%>
+            </div>--%>
             <div class="editor-label">
                 <%= Html.LabelFor(model => model.SortOrder)%>
             </div>

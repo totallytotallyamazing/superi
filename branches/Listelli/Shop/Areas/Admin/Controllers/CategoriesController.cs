@@ -60,7 +60,7 @@ namespace Shop.Areas.Admin.Controllers
                 }
 
                 TryUpdateModel(category,
-                    new string[] { "Name", "SortOrder", "SeoKeywords", "SeoDescription" },
+                    new string[] { "Name", "SortOrder", "SeoKeywords", "SeoDescription", "Published" },
                     form.ToValueProvider());
 
                 if (Request.Files["logo"] != null && !string.IsNullOrEmpty(Request.Files["Image"].FileName))

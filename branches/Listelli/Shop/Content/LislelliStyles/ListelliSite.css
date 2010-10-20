@@ -370,3 +370,7 @@ html, body
     z-index: 2;
     padding: 50px 70px 0px 75px; /*min-height: 600px;*/
 }
+
+
+#leftMenu{z-index:100; width:160px; position:relative; padding-left:10px; color:Gray;}
+#leftMenu div.subMenuItem{text-align:right; padding:0 5px;}

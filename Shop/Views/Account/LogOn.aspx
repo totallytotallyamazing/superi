@@ -42,12 +42,10 @@
 
 <asp:Content runat="server" ContentPlaceHolderID="includes">
     <link rel="Stylesheet" href="/Content/LogOn.css" />
-    <%= Ajax.ScriptInclude("/Scripts/start.js") %>
-    <%= Ajax.ScriptInclude("/Scripts/extended/ExtendedControls.js")%>
-    <script type="text/javascript">
+<%--    <script type="text/javascript">
         Sys.require(Sys.components.watermark, function() {
             $("#UserName").watermark("Логин", "watermark");
             $("#Password").watermark("Пароль", "watermark");
         });   
-    </script>
+    </script>--%>
 </asp:Content>

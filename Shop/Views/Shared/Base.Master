@@ -10,7 +10,7 @@
         </asp:ContentPlaceHolder>
     </title>
     <%--<link rel="Stylesheet" href="/Content/UnMomentoStyles/UnMomentoSite.css" />--%>
-    <link href="../../Content/LislelliStyles/ListelliSite.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/LislelliStyles/ListelliSite.css" rel="stylesheet" type="text/css" />
     <%--<link href="/Content/style.css" rel="stylesheet" type="text/css" />--%>
     <% if (Roles.IsUserInRole("Administrators"))
        { %>
@@ -70,12 +70,12 @@
                 </div>
             </div>
             
-            <%--временно--%>
-            <% Html.RenderPartial("LogOnUserControl"); %>
+            <%--временно  для залогинивания заходить на Account/LogOn --%>
+<%--            <% Html.RenderPartial("LogOnUserControl"); %>--%>
         
         </div>
         
-       <%-- <% Html.RenderPartial("Categories"); %> --%>
+        <% Html.RenderPartial("Categories"); %>     
 
         <div id="contentBox">
             <div class="right">

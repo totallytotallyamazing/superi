@@ -125,7 +125,7 @@
             <img src="../../Content/UnMomentoStyles/img/tree.gif" alt="Древо" />
         </div>--%>
         <div id="pageName">
-            <p class="pt1">
+            <p class="txtPageName">
                 <%= Model.Name %></p>
         </div>
     </div>

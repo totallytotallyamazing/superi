@@ -24,8 +24,8 @@
             <img src="../../Content/UnMomentoStyles/img/NewsPageImg.gif" alt="Лого странички новостей" />
         </div>--%>
         <div id="pageName">
-            <p class="pt1">
-                Новости, <span class="pt2">страница 1</span>
+            <p class="txtPageName">
+                Новости<%--, <span class="pt2">страница 1</span>--%>
             </p>
         </div>
     </div>

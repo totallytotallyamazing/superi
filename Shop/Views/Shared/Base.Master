@@ -83,6 +83,9 @@
                     <div class="rightBottomBackground">
                         <%--Background--%>
                     </div>
+                    <%--<div id="bubbleNew">
+                        <p>Хочу быть в курсеновых поступлений!</p>
+                    </div>--%>
                 </div>
                 <div class="left">
                     <div class="leftTopBackground">

@@ -69,15 +69,19 @@ html, body
 
 #logoBox
 {
-    position: relative;
-    top: 30px;
-    left: 20px;
+    
+   /* position: relative;
+    top: 29px;
+    left: 20px;*/
+    margin: 29px 0px 0px 20px;
     width: 158px;
-    height: 100px;
+    height: 70px;
+    float: left;
 }
 
 #logoBox .slogan
 {
+    /*line-height: 12px;*/
     font-size: 12px;
     text-align: center;
     font-family: 'PT Sans' , arial, serif;
@@ -86,6 +90,7 @@ html, body
 
 #logo
 {
+    
     margin-left: auto;
     margin-right: auto;
     width: 124px;
@@ -93,15 +98,20 @@ html, body
     background: url('./img/logo.png') no-repeat;
 }
 
-#header
+#toper
 {
-    position: relative;
-    z-index: 0;
+    /*position: relative;*/
+   /* z-index: 0;*/
     min-width: 1100px;
-    height: 309px;
+    min-height: 1012px;
     background: url('./img/bkgHeader.gif') no-repeat;
     background-position: left top;
 }
+
+#header
+{
+    height: 105px;
+    }
 
 
 #headerRight
@@ -136,6 +146,10 @@ html, body
     text-align: center;
 }
 
+#leftItems
+{
+float: left;    
+    }
 
 #footer
 {
@@ -157,21 +171,25 @@ html, body
 }
 
 #menuMain
-{/*min-*/width: 570px;  height: 118px;}
+{/*min-*/width: 570px;  height: 110px;
+ position: absolute;
+   top: 80px;
+ }
 
 #menuBox
 {
+    
     /*min-*/width: 570px;
-    height: 118px;
-    position: absolute;
+    height: 110px;
+    
     margin-left: 260px; 
-    z-index: 1; 
+   /* z-index: 1; */
 }
 
 #firstTab, #secondTab, #thirdTab
 {
     /*margin-top: 74px;*/
-    bottom: 0px;
+   /* bottom: 0px;*/
     width: 184px;
     height: 43px;
     background: url('./img/firstTab.gif') no-repeat;
@@ -179,17 +197,17 @@ html, body
 
 #firstTab
 {
-    position: absolute;
-   /* float: left;*/
+   /* position: absolute;*/
+    float: left;
   
-    left: 0px;
+    /*left: 0px;*/
     
 }
 
 #secondTab
 {
     
-    margin: 74px auto 0px auto;
+    margin: 0px auto 0px auto;
    
     
  
@@ -198,9 +216,9 @@ html, body
 
 #thirdTab
 {
-    position: absolute;
-    /*float: right;*/
-    right: 0px;
+   /* position: absolute;*/
+    float: right;
+   /* right: 0px;*/
 }
 
 #menuBox .txtMenuItem
@@ -213,7 +231,7 @@ html, body
 
 #contentBox
 {
-    margin-top: -190px;
+    margin-top: 20px;
     position: relative;
     margin-left: 180px;
     z-index: 1;
@@ -274,7 +292,7 @@ html, body
 
 #contentBox .right
 {
-    /* float: right;*/
+     float: right;
     min-width: 295px;
     min-height: 890px;
     background: url('./img/bkgMainContentRight.gif') repeat-y;
@@ -329,7 +347,7 @@ html, body
 
 #searchBox
 {
-    margin: 70px 0px 0px 20px;
+    margin: 55px 0px 0px 20px;
     width: 150px;
 }
 
@@ -374,3 +392,12 @@ html, body
 
 #leftMenu{z-index:100; width:160px; position:relative; padding-left:10px; color:Gray;}
 #leftMenu div.subMenuItem{text-align:right; padding:0 5px;}
+
+#leftMenu .txtLeftMenu
+{
+  color: Gray;  
+    }
+    
+ #leftMenu .currentMain
+ 
+ { color: #999966;} 

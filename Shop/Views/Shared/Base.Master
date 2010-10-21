@@ -42,72 +42,71 @@
 <body>
     <%if (Roles.IsUserInRole("Administrators")) Html.RenderPartial("AdminPanel");  %>
     <div id="all">
-    <div id="menuBox">
-            <% Html.RenderPartial("MainMenu"); %>
-        </div>
-        <div id="header">
-        
-            <div id="headerRight">
-                <p class="mainPhone">
-                    (044) 390-76-29</p>
-                <p class="mainAdress">
-                    Киев, 01033, <a id="feedbackForm" href="/Home/FeedbackForm" class="mainAdress">ул. Жилянская,
-                        68</a>
-                </p>
-            </div>
-            <div id="logoBox">
-                <div id="logo">
-                    <%--Logo--%>
+        <div id="toper">
+            <div id="header">
+                <div id="headerRight">
+                    <p class="mainPhone">
+                        (044) 390-76-29</p>
+                    <p class="mainAdress">
+                        Киев, 01033, <a id="feedbackForm" href="/Home/FeedbackForm" class="mainAdress">ул. Жилянская,
+                            68</a>
+                    </p>
                 </div>
-                <p class="slogan">
-                    оформление интерьеров паркетом и мрамором</p>
-            </div>
-            <div id="searchBox">
-                <p class="searchTitle">
-                    Поиск по сайту</p>
-                <div id="bkgSearchField">
-                    <% Html.RenderPartial("Search"); %>
+                <div id="logoBox">
+                    <div id="logo">
+                        <%--Logo--%>
+                    </div>
+                    <p class="slogan">
+                        оформление интерьеров паркетом и мрамором</p>
+                </div>
+                <div id="menuBox">
+                    <% Html.RenderPartial("MainMenu"); %>
                 </div>
             </div>
-            
-            <%--временно  для залогинивания заходить на Account/LogOn --%>
-<%--            <% Html.RenderPartial("LogOnUserControl"); %>--%>
-        
-        </div>
-        
-        <% Html.RenderPartial("Categories"); %>     
-
-        <div id="contentBox">
-            <div class="right">
-                <div class="rightTopBackground">
-                    <%--Background--%>
-                </div>
-                <div class="rightBottomBackground">
-                    <%--Background--%>
-                </div>
-            </div>
-            <div class="left">
-                <div class="leftTopBackground">
-                    <%--Background--%>
-                </div>
-                <div class="leftBottomBackground">
-                    <%--Background--%>
-                </div>
-                <div class="leftTop">
-                    <div class="titleBox">
-                        <asp:ContentPlaceHolder runat="server" ID="ContentTitle">
-                        </asp:ContentPlaceHolder>
+            <div id="leftItems">
+                <div id="searchBox">
+                    <p class="searchTitle">
+                        Поиск по сайту</p>
+                    <div id="bkgSearchField">
+                        <% Html.RenderPartial("Search"); %>
                     </div>
                 </div>
-                <div class="leftMid">
-                <div id="contentWrapper">
-                    <asp:ContentPlaceHolder ID="MainContent" runat="server">
-                    </asp:ContentPlaceHolder>
+                <%--временно  для залогинивания заходить на Account/LogOn --%>
+                <%--            <% Html.RenderPartial("LogOnUserControl"); %>--%>
+                <% Html.RenderPartial("Categories"); %>
+            </div>
+            <div id="contentBox">
+                <div class="right">
+                    <div class="rightTopBackground">
+                        <%--Background--%>
+                    </div>
+                    <div class="rightBottomBackground">
+                        <%--Background--%>
+                    </div>
                 </div>
-                </div>
-                <div class="leftBottom">
-                    <asp:ContentPlaceHolder runat="server" ID="Footer">
-                    </asp:ContentPlaceHolder>
+                <div class="left">
+                    <div class="leftTopBackground">
+                        <%--Background--%>
+                    </div>
+                    <div class="leftBottomBackground">
+                        <%--Background--%>
+                    </div>
+                    <div class="leftTop">
+                        <div class="titleBox">
+                            <asp:ContentPlaceHolder runat="server" ID="ContentTitle">
+                            </asp:ContentPlaceHolder>
+                        </div>
+                    </div>
+                    <div class="leftMid">
+                        <div id="contentWrapper">
+                            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                            </asp:ContentPlaceHolder>
+                        </div>
+                    </div>
+                    <div class="leftBottom">
+                        <asp:ContentPlaceHolder runat="server" ID="footer">
+                        </asp:ContentPlaceHolder>
+                    </div>
                 </div>
             </div>
         </div>

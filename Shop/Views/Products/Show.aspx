@@ -121,9 +121,9 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentTitle" runat="server">
     <div id="contName">
-        <div id="pagePic">
+        <%--<div id="pagePic">
             <img src="../../Content/UnMomentoStyles/img/tree.gif" alt="Древо" />
-        </div>
+        </div>--%>
         <div id="pageName">
             <p class="pt1">
                 <%= Model.Name %></p>

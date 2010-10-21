@@ -54,7 +54,7 @@ html, body
     font-family: 'PT Sans' , arial, serif;
 }
 
-.mainPhone, .mainAdress, .footerText, .searchTitle
+.mainPhone, .mainAdress, .footerText, .searchTitle, .txtLeftMenu, .txtPageName, .txtSubMenuItem, .subMenuItem.current
 {
     font-family: Arial, Helvetica, sans-serif;
 }
@@ -69,10 +69,7 @@ html, body
 
 #logoBox
 {
-    
-   /* position: relative;
-    top: 29px;
-    left: 20px;*/
+    /* position: relative;     top: 29px;     left: 20px;*/
     margin: 29px 0px 0px 20px;
     width: 158px;
     height: 70px;
@@ -90,7 +87,6 @@ html, body
 
 #logo
 {
-    
     margin-left: auto;
     margin-right: auto;
     width: 124px;
@@ -100,8 +96,7 @@ html, body
 
 #toper
 {
-    /*position: relative;*/
-   /* z-index: 0;*/
+    /*position: relative;*/ /* z-index: 0;*/
     min-width: 1100px;
     min-height: 1012px;
     background: url('./img/bkgHeader.gif') no-repeat;
@@ -111,7 +106,7 @@ html, body
 #header
 {
     height: 105px;
-    }
+}
 
 
 #headerRight
@@ -148,8 +143,8 @@ html, body
 
 #leftItems
 {
-float: left;    
-    }
+    float: left;
+}
 
 #footer
 {
@@ -171,25 +166,25 @@ float: left;
 }
 
 #menuMain
-{/*min-*/width: 570px;  height: 110px;
- position: absolute;
-   top: 80px;
- }
+{
+    /*min-*/
+    width: 570px;
+    height: 110px;
+    position: absolute;
+    top: 80px;
+}
 
 #menuBox
 {
-    
-    /*min-*/width: 570px;
+    /*min-*/
+    width: 570px;
     height: 110px;
-    
-    margin-left: 260px; 
-   /* z-index: 1; */
+    margin-left: 260px; /* z-index: 1; */
 }
 
 #firstTab, #secondTab, #thirdTab
 {
-    /*margin-top: 74px;*/
-   /* bottom: 0px;*/
+    /*margin-top: 74px;*/ /* bottom: 0px;*/
     width: 184px;
     height: 43px;
     background: url('./img/firstTab.gif') no-repeat;
@@ -197,28 +192,19 @@ float: left;
 
 #firstTab
 {
-   /* position: absolute;*/
-    float: left;
-  
-    /*left: 0px;*/
-    
+    /* position: absolute;*/
+    float: left; /*left: 0px;*/
 }
 
 #secondTab
 {
-    
     margin: 0px auto 0px auto;
-   
-    
- 
-    
 }
 
 #thirdTab
 {
-   /* position: absolute;*/
-    float: right;
-   /* right: 0px;*/
+    /* position: absolute;*/
+    float: right; /* right: 0px;*/
 }
 
 #menuBox .txtMenuItem
@@ -292,7 +278,7 @@ float: left;
 
 #contentBox .right
 {
-     float: right;
+    float: right;
     min-width: 295px;
     min-height: 890px;
     background: url('./img/bkgMainContentRight.gif') repeat-y;
@@ -332,7 +318,7 @@ float: left;
 #contentBox .titleBox
 {
     /*z-index: 3;*/
-    margin-left: 100px;
+    margin-left: 75px;
     padding-top: 20px;
 }
 
@@ -347,7 +333,7 @@ float: left;
 
 #searchBox
 {
-    margin: 55px 0px 0px 20px;
+    margin: 55px 0px 0px 12px;
     width: 150px;
 }
 
@@ -390,14 +376,62 @@ float: left;
 }
 
 
-#leftMenu{z-index:100; width:160px; position:relative; padding-left:10px; color:Gray;}
-#leftMenu div.subMenuItem{text-align:right; padding:0 5px;}
+#leftMenu
+{
+    width: 145px;
+    padding: 20px 0px 0px 10px;
+    color: Gray;
+    text-align: right;
+}
+#leftMenu div.subMenuItem
+{
+    text-align: right;
+    padding: 0 5px;
+    width: 120px;
+    margin-top: 5px;
+    line-height: 13px;
+    
+}
 
 #leftMenu .txtLeftMenu
 {
-  color: Gray;  
-    }
+    color: #999999;
+    font-size: 13px;
+}
+
+#leftMenu .currentMain
+{
+    color: #999966;
+    font-weight: bold;
     
- #leftMenu .currentMain
- 
- { color: #999966;} 
+}
+
+#leftMenuElement
+{
+    margin-top: 12px;
+}
+
+#pageName
+{
+    padding-top: 40px;
+}
+
+#pageName .txtPageName
+{
+    font-style: italic;
+    font-size: 20px;
+    color: #666666;
+}
+
+
+
+#leftMenu div.subMenuItem.current
+{color: #ffffcc; font-size: 12px; font-weight: bold;}
+
+#leftMenu .txtSubMenuItem
+{color: #666666; font-size: 12px;}
+
+#subGroups
+{
+margin: 12px 0px 25px 0px;    
+    }

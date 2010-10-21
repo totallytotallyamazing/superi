@@ -85,9 +85,28 @@
                     </div>
                     <div id="bubbleNew">
                         <div id="bubbleText">
-                        <p class="txtbubbleNew">
-                            Хочу <a href="#" class="txtbubbleNew">быть в курсе</a> новых поступлений!</p>
+                       
+                            <span class="txtBubbleNew">Хочу</span> <a href="#" class="txtBubbleNew">быть в курсе</a> 
+                            <span class="txtBubbleNew">новых поступлений!</span>
                             </div>
+                    </div>
+                    <div id="brand">
+                        <a href="#" class="txtBrand">Брендовые каталоги</a>
+                    </div>
+                    <div id="brandBanners">
+
+                       <div class="banners">
+                        <img src="../../Content/LislelliStyles/img/bannerKreo.png" alt="Kreo"/>
+                        </div>
+                        <div class="banners">
+                            <img src="../../Content/LislelliStyles/img/bannerDecor.png" alt="Decor Marmi"/>
+                        </div>
+                        <div class="banners">
+                            <img src="../../Content/LislelliStyles/img/bannerLaperla.png"  alt=Laperla"/>
+                        </div>
+                        <div class="banners">
+                            <img src="../../Content/LislelliStyles/img/bannerFoglie.png"  alt="Foglie"/>
+                        </div>
                     </div>
                 </div>
                 <div class="left">

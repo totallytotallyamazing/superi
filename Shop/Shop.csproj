@@ -164,6 +164,10 @@
     <Content Include="Areas\Admin\Views\ProductVariants\AddEdit.ascx" />
     <Content Include="Areas\Admin\Views\ProductVariants\Index.aspx" />
     <Content Include="bin\Elmah.dll" />
+    <Content Include="Content\LislelliStyles\img\bannerDecor.png" />
+    <Content Include="Content\LislelliStyles\img\bannerFoglie.png" />
+    <Content Include="Content\LislelliStyles\img\bannerKreo.png" />
+    <Content Include="Content\LislelliStyles\img\bannerLaperla.png" />
     <Content Include="Content\LislelliStyles\img\bkgFooter.gif" />
     <Content Include="Content\LislelliStyles\img\bkgHeader.gif" />
     <Content Include="Content\LislelliStyles\img\bkgMainContent.gif" />

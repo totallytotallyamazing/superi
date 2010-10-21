@@ -219,7 +219,7 @@
             <img src="../../Content/UnMomentoStyles/img/bear.gif" alt="Медведь" />
         </div>
         <div id="pageName">
-            <p class="pt1">
+            <p class="txtPageName">
                 У вас в корзинке:</p>
         </div>
     </div>

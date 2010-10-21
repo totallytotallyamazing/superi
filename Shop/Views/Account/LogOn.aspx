@@ -35,7 +35,7 @@
                     <img src="../../Content/UnMomentoStyles/img/bear.gif" alt="Медведь" />     
                 </div>        --%>    
                 <div id="pageName">
-                    <p class="pt1">Вход</p>            
+                    <p class="txtPageName">Вход</p>            
                 </div>
             </div>
 </asp:Content>

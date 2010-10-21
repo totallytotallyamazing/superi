@@ -50,7 +50,7 @@
                 actionLink = Html.ActionLink(item.Name, "Index", "Products", new { id = item.Id, area = "" }, new { @class = "txtLeftMenu" }).ToString();
             }
             %>
-    <div>
+    <div id="leftMenuElement">
     
         <%= actionLink %>
 

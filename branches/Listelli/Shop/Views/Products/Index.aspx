@@ -6,11 +6,11 @@
 
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentTitle" runat="server">
  <div id="contName">
-                <div id="pagePic">
+               <%-- <div id="pagePic">
                     <img src="../../Content/UnMomentoStyles/img/bear.gif" alt="Медведь" />     
-                </div>            
+                </div>    --%>        
                 <div id="pageName">
-                    <p class="pt1"><%= ViewData["title"] %>, <span class="pt2" >страница 1</span> </p>            
+                    <p class="txtPageName"><%= ViewData["title"] %></p>            
                 </div>
             </div>
 

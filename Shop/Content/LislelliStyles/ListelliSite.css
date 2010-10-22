@@ -449,6 +449,8 @@ html, body
     margin: 12px 0px 25px 0px;
 }
 
+#subGroups li{list-style-type:none;}
+
 #bubbleNew
 {
     position: relative;

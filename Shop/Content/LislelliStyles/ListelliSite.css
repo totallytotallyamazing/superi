@@ -349,12 +349,8 @@ html, body
 {
     /*display: inline;*/
     background: url('./img/currentBorder.png') no-repeat;
-    
-    width: 87px;
-   /* padding: 5px 0px 0px -5px;*/
-    /*margin-right: 25px;*/
+    width: 87px; /* padding: 5px 0px 0px -5px;*/ /*margin-right: 25px;*/
     margin-top: 5px;
-    
 }
 
 
@@ -363,23 +359,19 @@ html, body
 
 #sortBy .menu
 {
-    /*width: 100px;*/
-    /*display: inline;*/
+    /*width: 100px;*/ /*display: inline;*/
     height: 16px;
     float: left;
     margin-right: 20px;
     text-align: center;
-    
 }
 
 #sortBy .current
 {
-    font-weight: bolder;
-    /*display: inline;*/
+    font-weight: bolder; /*display: inline;*/
     color: Black;
     font-style: italic;
     font-size: 11px;
-    
 }
 
 #sortBy .txt
@@ -388,7 +380,6 @@ html, body
     font-size: 11px;
     color: #666666;
     padding-bottom: 5px;
-    
 }
 
 
@@ -534,13 +525,18 @@ html, body
 
 
 #rightBox
-{width: 295;
- position: relative; z-index: 2;}
+{
+    width: 295px;
+    position: relative;
+    z-index: 2;
+}
 
-#subGroups li{list-style-type:none;}
+#subGroups li
+{
+    list-style-type: none;
+}
 
 #bubbleNew
-
 {
     position: relative;
     z-index: 2;

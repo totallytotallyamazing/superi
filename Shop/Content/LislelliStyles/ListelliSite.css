@@ -54,8 +54,7 @@ html, body
     font-family: 'PT Sans' , arial, serif;
 }
 
-.mainPhone, .mainAdress, .footerText, .searchTitle, .txtLeftMenu, .txtPageName, 
-.txtSubMenuItem, .subMenuItem.current, .txtPager, .txtBubbleNew, .txtBrand
+.mainPhone, .mainAdress, .footerText, .searchTitle, .txtLeftMenu, .txtPageName, .txtSubMenuItem, .subMenuItem.current, .txtPager, .txtBubbleNew, .txtBrand, .txtSortBy, .txtSortByTitle, .txtSortByCurrent
 {
     font-family: Arial, Helvetica, sans-serif;
 }
@@ -319,8 +318,102 @@ html, body
 #contentBox .titleBox
 {
     /*z-index: 3;*/
-    margin-left: 75px;
+    margin-left: 55px;
     padding-top: 20px;
+    width: 215px;
+    float: left;
+}
+
+#contentBox .sortingBox
+{
+    padding-left: 5px;
+    padding-top: 55px; /*float: right;*/
+    min-width: 300px;
+    margin-left: 275px;
+}
+
+#contentBox .txtSortByTitle
+{
+    font-size: 9px;
+    color: Black;
+}
+
+#sortBy
+{
+    margin: 0px 0px 0px -10px;
+    height: 16px;
+    min-width: 100px;
+}
+
+#sortBy .bkgCurrent
+{
+    /*display: inline;*/
+    background: url('./img/currentBorder.png') no-repeat;
+    
+    width: 87px;
+   /* padding: 5px 0px 0px -5px;*/
+    /*margin-right: 25px;*/
+    margin-top: 5px;
+    
+}
+
+
+
+
+
+#sortBy .menu
+{
+    /*width: 100px;*/
+    /*display: inline;*/
+    height: 16px;
+    float: left;
+    margin-right: 20px;
+    text-align: center;
+    
+}
+
+#sortBy .current
+{
+    font-weight: bolder;
+    /*display: inline;*/
+    color: Black;
+    font-style: italic;
+    font-size: 11px;
+    
+}
+
+#sortBy .txt
+{
+    font-style: italic;
+    font-size: 11px;
+    color: #666666;
+    padding-bottom: 5px;
+    
+}
+
+
+
+#contName
+{
+    padding-top: 25px;
+}
+
+#pageName
+{
+    padding: 15px 12px 10px 0px;
+    width: 190px;
+    min-height: 30px;
+    border-right: 4px solid #999999;
+    text-align: right;
+}
+
+#pageName .txtPageName
+{
+    font-style: italic;
+    font-size: 20px;
+    color: #666666;
+    font-weight: bold;
+    line-height: 20px;
 }
 
 
@@ -416,18 +509,8 @@ html, body
     margin-top: 12px;
 }
 
-#pageName
-{
-    padding-top: 40px;
-}
 
-#pageName .txtPageName
-{
-    font-style: italic;
-    font-size: 20px;
-    color: #666666;
-    font-weight: bolder;
-}
+
 
 
 
@@ -449,20 +532,31 @@ html, body
     margin: 12px 0px 25px 0px;
 }
 
+
+#rightBox
+{width: 295;
+ position: relative; z-index: 2;}
+
 #subGroups li{list-style-type:none;}
 
 #bubbleNew
+
 {
     position: relative;
     z-index: 2;
+    width: 295px;
+}
+
+#bubbleNew
+{
+    /*position: relative;     z-index: 2;*/
     width: 172px;
     height: 54px;
     background: url('./img/bubbleNew.png') no-repeat;
     margin-left: auto;
-    /*margin-top: 55px;*/
+    margin-top: 55px;
     text-align: center;
-    line-height: 17px;
-    top: 55px;
+    line-height: 17px; /*top: 55px;*/
 }
 
 #bubbleNew .txtBubbleNew
@@ -475,33 +569,36 @@ html, body
     width: 140px;
     height: 45px;
     margin-left: 12px;
+    margin-right: 12px;
     padding-top: 7px;
 }
 
 
 #brand
 {
-margin: 115px 0px 0px 155px;
-width: 120px;
-    
+    /* position: relative;     z-index: 2; */
+    margin: 115px 0px 0px 155px;
+    width: 120px;
 }
 
 #brand .txtBrand
-{font-size: 15px;
- font-weight: bold;
- color: #3399ff;}
- 
- #brandBanners
- {
-   position: relative;
-    z-index: 2;  
-  width: 128px;   
-  margin-top: 15px;  
-  margin-left: auto;
-     }
-     
- .banners
- 
- {width: 128px;
-  height: 37px;
-     margin-bottom: 7px;}    
+{
+    font-size: 15px;
+    font-weight: bold;
+    color: #3399ff;
+}
+
+#brandBanners
+{
+    /* position: relative;     z-index: 2;  */
+    width: 128px;
+    margin-top: 15px;
+    margin-left: auto;
+}
+
+.banners
+{
+    width: 128px;
+    height: 37px;
+    margin-bottom: 7px;
+}

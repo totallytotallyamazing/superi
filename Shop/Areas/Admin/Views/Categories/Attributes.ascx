@@ -4,8 +4,12 @@
         int[] attributesSelected = (int[])ViewData["attributesSelected"];
         foreach (var item in Model)
         {%>
-            <%= Html.Hidden("id") %>
-            <%= Html.CheckBox("attribute_" + item.Id, attributesSelected.Contains(item.Id))%> <%= item.Name %>
+            <span style="white-space:nowrap">
+                <%= Html.Hidden("id") %>
+                <%= Html.CheckBox("attribute_" + item.Id, attributesSelected.Contains(item.Id))%> <%= item.Name %>
+            </span>
       <%}%>
-      <input type="submit" value="Сохранить" />
+      <div>
+        <input type="submit" value="Сохранить" />
+      </div>
   <%} %>

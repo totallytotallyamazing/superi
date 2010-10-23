@@ -26,9 +26,12 @@
             <%= Html.ValidationMessageFor(model => model.SortOrder)%>
         </div>
         <div>
-        <%= Html.RadioButtonFor(model=> model.ValueType, "TEXT") %> Текстовое значение
-        <%= Html.RadioButtonFor(model=> model.ValueType, "DROPDOWN") %> Выпадающий список
-        <%= Html.ValidationMessageFor(model => model.ValueType)%>
+            <%= Html.RadioButtonFor(model=> model.ValueType, "TEXT") %> Текстовое значение
+            <%= Html.RadioButtonFor(model=> model.ValueType, "DROPDOWN") %> Выпадающий список
+            <%= Html.ValidationMessageFor(model => model.ValueType)%>
+        </div>
+        <div>
+            <%= Html.CheckBoxFor(model=>model.Static) %><%= Html.LabelFor(model => model.Static) %>
         </div>
         <input type="submit" value="Сохранить" />
     <% } %>

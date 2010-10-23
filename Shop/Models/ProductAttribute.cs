@@ -25,6 +25,10 @@ namespace Shop.Models
         [Required(ErrorMessage = "Тип значения не указан")]
         [DisplayName("Тип значения")]
         public string ValueType { get; set; }
+
+        [DisplayName("Изменяет администратор")]
+        [DefaultValue(true)]
+        public bool Static { get; set; }
     }
 
 }

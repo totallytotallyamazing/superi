@@ -32,7 +32,7 @@ namespace Shop.Areas.Admin.Controllers
             {
                 Product product = context.Products.Include("Categories").Where(p => p.Id == id).First();
 
-                PostData postData = form.ProcessPostData("id");
+                PostData postData = form.ProcessPostData(excludeFields: "id");
                 int[] items = (from item in postData where item.Value["category"] == "true" select int.Parse(item.Key)).ToArray();
                 int[] itemsToRemove = (from item in postData where item.Value["category"] == "false" select int.Parse(item.Key)).ToArray();
                 foreach (int categoryId in items)

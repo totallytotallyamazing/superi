@@ -40,12 +40,29 @@ namespace Shop.Areas.Admin.Controllers
 
                 int brandId = int.MinValue;
 
+
+                List<ProductAttribute> attributes = null;
+
                 if (id.HasValue)
                 {
-                    product = context.Products.Include("ProductImages").Include("Categories").Include("Brand").Where(p => p.Id == id.Value).First();
+                    product = context.Products.Include("ProductImages")
+                        .Include("Categories.ProductAttributes.ProductAttributeValues")
+                        .Include("ProductAttributeStaticValues")
+                        .Include("Brand")
+                        .Where(p => p.Id == id.Value).First();
                     if (product.Brand != null)
                         brandId = product.Brand.Id;
+
+                    attributes = product.Categories.SelectMany(c => c.ProductAttributes.Where(pa => pa.Static)).ToList();
                 }
+
+                if(attributes == null && cId.HasValue)
+                    attributes = context.ProductAttributes.Where(pa=>pa.Categories.Any(c=>c.Id == cId.Value)).ToList();
+
+                var attributesData = new KeyValuePair<Product, IEnumerable<ProductAttribute>>(
+                    product,
+                    attributes);
+                ViewData["attributesData"] = attributesData;
 
                 List<SelectListItem> brands = br
                 .Select(b => new SelectListItem { Text = b.Name, Value = b.Id.ToString(), Selected = b.Id == brandId })
@@ -67,7 +84,7 @@ namespace Shop.Areas.Admin.Controllers
                 if (int.TryParse(form["Id"], out id))
                 {
                     product = context.Products.Include("Brand").First(p => p.Id == id);
-                    if (product.Brand == null || product.Brand.Id != brandId && brandId.HasValue)
+                    if ((product.Brand == null || product.Brand.Id != brandId) && brandId.HasValue)
                     {
                         Brand brand = new Brand { Id = brandId.Value };
                         brand.EntityKey = new EntityKey("ShopStorage.Brands", "Id", brandId.Value);
@@ -109,10 +126,33 @@ namespace Shop.Areas.Admin.Controllers
                 product.Description = HttpUtility.HtmlDecode(product.Description);
                 product.ShortDescription = HttpUtility.HtmlDecode(product.ShortDescription);
 
+                UpdateProductAttributes(product, form);
+
                 context.SaveChanges();
             }
 
             return RedirectToAction("AddEdit", new { id = product.Id, cId = cId, bId = bId });
+        }
+
+        private void UpdateProductAttributes(Product product, FormCollection form)
+        {
+            PostData postData = form.ProcessPostData(prefix: "pa_");
+    
+            foreach (var item in postData)
+            {
+                int attributeId = int.Parse(item.Key);
+                string attributeValue = item.Value["pa"];
+
+                ProductAttributeStaticValue value = product.ProductAttributeStaticValues
+                    .FirstOrDefault(p => p.ProductAttributeReference.GetReferenceId() == attributeId);
+                if (value == null)
+                {
+                    value = new ProductAttributeStaticValue();
+                    value.ProductAttributeReference.EntityKey = new EntityKey("ShopStorage.ProductAttributes", "Id", attributeId);
+                    product.ProductAttributeStaticValues.Add(value);
+                }
+                value.Value = attributeValue;
+            }
         }
 
         public ActionResult AddProductImage(int productId, bool isDefault, int? categoryId)

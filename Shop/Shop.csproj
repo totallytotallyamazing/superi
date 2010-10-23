@@ -139,6 +139,7 @@
       <DependentUpon>Content.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\ContextExtensions.cs" />
+    <Compile Include="Models\EFExtensions.cs" />
     <Compile Include="Models\OrderExtensions.cs" />
     <Compile Include="Models\Orders.Designer.cs">
       <AutoGen>True</AutoGen>

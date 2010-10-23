@@ -1,25 +1,21 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<KeyValuePair<Shop.Models.Product, IEnumerable<Shop.Models.ProductAttribute>>>" %>
-
+<%@ Import Namespace="Shop.Models" %>
 <table>
 <% 
-    Func<Shop.Models.ProductAttributeStaticValue, int> getAttributeId = value =>
-        {
-            return Convert.ToInt32(value.ProductAttributeReference.EntityKey.EntityKeyValues[0]);
-        };
-    
-    Shop.Models.Product product = Model.Key;
-    IEnumerable<Shop.Models.ProductAttribute> attributes = Model.Value;
-    
-    
+    Product product = Model.Key;
+    IEnumerable<ProductAttribute> attributes = Model.Value;
     
     foreach (var item in attributes.Where(m=>m.Static)){
         string attributeValue  = null;
-        var pasv = product.ProductAttributeStaticValues.FirstOrDefault(p=>getAttributeId(p) == item.Id);
-        if(pasv != null)
-            attributeValue = pasv.Value;
+        if (product != null)
+        {
+            var pasv = product.ProductAttributeStaticValues.FirstOrDefault(p => p.ProductAttributeReference.GetReferenceId() == item.Id);
+            if (pasv != null)
+                attributeValue = pasv.Value;
+        }
 %>
     <tr>
-        <td>
+        <td class="labelCell">
             <%= item.Name %>
         </td>
         <td>

@@ -13,11 +13,15 @@ namespace Dev.Helpers
     
     public static class FormCollectionExtender
     {
-        public static PostData ProcessPostData(this FormCollection form, params string[] excludeFields)
+        public static PostData ProcessPostData(this FormCollection form, string prefix = "", params string[] excludeFields)
         {
             PostData result = new PostData();
+
             foreach (string key in form.Keys)
             {
+                if (!string.IsNullOrEmpty(prefix) && !key.StartsWith(prefix))
+                    continue;
+
                 if (excludeFields == null || !excludeFields.Contains(key))
                 {
                     string[] item = key.Split('_');

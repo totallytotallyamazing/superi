@@ -40,7 +40,7 @@ namespace Shop.Areas.Admin.Controllers
             {
                 Product product = context.Products.Include("ProductAttributeValues").Where(p => p.Id == productId).First();
 
-                PostData postData = form.ProcessPostData("productId", "categoryId");
+                PostData postData = form.ProcessPostData(excludeFields: new string[]{"productId", "categoryId"});
                 int[] items = (from item in postData where item.Value["attr"] == "true" select int.Parse(item.Key)).ToArray();
 
                 // Remove excess attribute values from the product 

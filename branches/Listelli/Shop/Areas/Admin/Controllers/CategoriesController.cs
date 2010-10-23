@@ -115,7 +115,7 @@ namespace Shop.Areas.Admin.Controllers
         {
             using (ShopStorage context = new ShopStorage())
             {
-                PostData data = form.ProcessPostData("id");
+                PostData data = form.ProcessPostData(excludeFields: "id");
                 Category category = context.Categories
                     .Include("Categories.ProductAttributes").Include("Parent").Include("ProductAttributes")
                     .Where(c => c.Id == id).First();

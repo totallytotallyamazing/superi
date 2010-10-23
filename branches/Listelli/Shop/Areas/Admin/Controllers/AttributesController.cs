@@ -19,7 +19,7 @@ namespace Shop.Areas.Admin.Controllers
             }
             using (ShopStorage context = new ShopStorage())
             {
-                List<ProductAttribute> attributes = context.ProductAttributes.ToList();
+                List<ProductAttribute> attributes = context.ProductAttributes.OrderBy(pa=>pa.SortOrder).ToList();
                 return View(attributes);
             }
         }
@@ -57,10 +57,20 @@ namespace Shop.Areas.Admin.Controllers
                 {
                     context.AddToProductAttributes(attribute);
                 }
-                attribute.ValueType = "DROPDOWN";
                 context.SaveChanges();
             }
             return RedirectToAction("Index", "Attributes", new { id = attribute.Id, area = "Admin" });
+        }
+
+        public ActionResult Delete(int id)
+        {
+            using (ShopStorage context = new ShopStorage())
+            {
+                ProductAttribute attribute = context.ProductAttributes.First(pa => pa.Id == id);
+                context.DeleteObject(attribute);
+                context.SaveChanges();
+            }
+            return RedirectToAction("Index");
         }
     }
 }

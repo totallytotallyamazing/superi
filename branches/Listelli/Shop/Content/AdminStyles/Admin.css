@@ -6,5 +6,4 @@
 
 .categoriesAdmin{padding-left:25px; padding-top:5px;}
 .rootCategoriesAdmin{padding-left:10px; padding-top:5px;}
-.adminLink{}
-.adminLink a{color:Red !important; font-weight:normal !important; font-size:11px !important;}
+.adminLink a, .adminLink{ color:Red !important; font-weight:normal !important; font-size:11px !important;}

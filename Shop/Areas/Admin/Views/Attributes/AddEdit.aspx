@@ -18,7 +18,18 @@
             <%= Html.TextBoxFor(model => model.Name) %>
             <%= Html.ValidationMessageFor(model => model.Name) %>
         </div>
-        
+        <div class="editor-label">
+            <%= Html.LabelFor(model => model.SortOrder) %>
+        </div>
+        <div class="editor-field">
+            <%= Html.TextBoxFor(model => model.SortOrder) %>
+            <%= Html.ValidationMessageFor(model => model.SortOrder)%>
+        </div>
+        <div>
+        <%= Html.RadioButtonFor(model=> model.ValueType, "TEXT") %> Текстовое значение
+        <%= Html.RadioButtonFor(model=> model.ValueType, "DROPDOWN") %> Выпадающий список
+        <%= Html.ValidationMessageFor(model => model.ValueType)%>
+        </div>
         <input type="submit" value="Сохранить" />
     <% } %>
 </asp:Content>
@@ -27,5 +38,7 @@
 </asp:Content>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="includes" runat="server">
+  <script type="text/javascript" src="/Scripts/MicrosoftAjax.js"></script>
+  <script type="text/javascript" src="/Scripts/MicrosoftMvcValidation.js"></script>
 </asp:Content>
 

@@ -7,12 +7,19 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 <% foreach (var item in Model){%>
     <div>
-        <%= Html.ActionLink(item.Name, "Index", new{id=item.Id }) %>
+<% if(item.ValueType == "DROPDOWN"){ %>
+        <%= Html.ActionLink(item.Name, "Index", new{id=item.Id }) %> | 
+<%} else{ %>
+       <span><%= item.Name %></span> | 
+<%} %>
+    
+        <%= Html.ActionLink("Удалить", "Delete", new { id = item.Id }, new { @class="adminLink", onclick="return confirm('Вы уверены?')" })%> |
+        <%= Html.ActionLink("Редактировать", "AddEdit", new { id = item.Id }, new { @class="adminLink"})%>
     </div>       
 <%} %>
-
-<%= Html.ActionLink("Создать", "AddEdit") %>
-
+<p class="adminLink">
+    <%= Html.ActionLink("Создать", "AddEdit")%>
+</p>
 <% 
     if(ViewData["id"]!=null)
     {
@@ -35,3 +42,4 @@
         })
     </script>
 </asp:Content>
+

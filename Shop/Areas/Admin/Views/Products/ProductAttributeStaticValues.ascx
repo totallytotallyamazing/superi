@@ -23,8 +23,14 @@
             <%= item.Name %>
         </td>
         <td>
-<%if(item.ValueType == "TEXT"){%>      
-            <%= Html.TextBox("pa_" + item.Id, attributeValue) %>
+<%switch(item.ValueType){
+      case "TEXT":
+          %><%= Html.TextBox("pa_" + item.Id, attributeValue)%><%
+          break;
+      case "DROPDOWN":
+          %><%= Html.DropDownList("pa_" + item.Id, new SelectList(item.ProductAttributeValues.OrderBy(pav => pav.SortOrder), "Value", "Value"), attributeValue)%><%
+          break;
+} %>
         </td>
     </tr>
 <%} %>

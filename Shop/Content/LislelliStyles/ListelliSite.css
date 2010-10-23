@@ -495,13 +495,15 @@ html, body
     font-weight: bold;
 }
 
-#leftMenuElement
+.leftMenuElement
 {
     margin-top: 12px;
 }
 
-
-
+.leftMenuElement span{
+    color: #999966;
+    font-weight: bold;
+}
 
 
 

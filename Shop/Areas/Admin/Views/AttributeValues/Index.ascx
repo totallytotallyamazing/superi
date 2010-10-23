@@ -19,7 +19,7 @@
             <td>
                 <%= Html.Encode(item.SortOrder) %>
             </td>
-            <td>
+            <td class="adminLink">
                 <%= Html.ActionLink("Изменть", "AddEdit", new { controller = "AttributeValues", valueId = item.Id, attributeId = ViewData["attributeId"] }, new { @class = "fancyAttributeValue" })%> |
                 <%= Html.ActionLink("Удалить", "Delete", new { controller = "AttributeValues", id = item.Id }, new { onclick="return confirm('Вы уверены?')"})%>
             </td>
@@ -29,5 +29,5 @@
     </table>
 
     <p>
-        <%= Html.ActionLink("Добавить значение", "AddEdit", new { controller = "AttributeValues", attributeId = ViewData["attributeId"] }, new { @class = "fancyAttributeValue" })%>
+        <%= Html.ActionLink("Добавить значение", "AddEdit", new { controller = "AttributeValues", attributeId = ViewData["attributeId"] }, new { @class = "fancyAttributeValue adminLink" })%>
     </p>

@@ -202,6 +202,7 @@
           <Property Name="Name" Type="varchar" Nullable="false" MaxLength="250" />
           <Property Name="ValueType" Type="varchar" Nullable="false" MaxLength="20" />
           <Property Name="Static" Type="bit" Nullable="false" />
+          <Property Name="SortOrder" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="ProductAttributeStaticValue">
           <Key>
@@ -688,10 +689,11 @@
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" Nullable="false" />
           <Property Name="ValueType" Type="String" Nullable="false" />
-          <NavigationProperty Name="ProductAttributeValue" Relationship="shop_model.ProductAttributeProductAttributeValue" FromRole="ProductAttribute" ToRole="ProductAttributeValue" />
+          <NavigationProperty Name="ProductAttributeValues" Relationship="shop_model.ProductAttributeProductAttributeValue" FromRole="ProductAttribute" ToRole="ProductAttributeValue" />
           <NavigationProperty Name="Categories" Relationship="shop_model.CategoryProductAttribute" FromRole="ProductAttribute" ToRole="Category" />
           <Property Type="Boolean" Name="Static" Nullable="false" />
-          <NavigationProperty Name="ProductAttributeStaticValue" Relationship="shop_model.FK_ProductAttributeStaticValues_ProductAttribute" FromRole="ProductAttribute" ToRole="ProductAttributeStaticValue" /></EntityType>
+          <NavigationProperty Name="ProductAttributeStaticValue" Relationship="shop_model.FK_ProductAttributeStaticValues_ProductAttribute" FromRole="ProductAttribute" ToRole="ProductAttributeStaticValue" />
+          <Property Type="Int32" Name="SortOrder" Nullable="false" /></EntityType>
         <EntityType Name="ProductAttributeValue">
           <Key>
             <PropertyRef Name="Id" />
@@ -713,7 +715,9 @@
           <End Type="shop_model.Product" Role="Product" Multiplicity="*" />
           <End Type="shop_model.Product" Role="Product1" Multiplicity="*" /></Association>
         <Association Name="ProductAttributeProductAttributeValue">
-          <End Type="shop_model.ProductAttribute" Role="ProductAttribute" Multiplicity="1" />
+          <End Type="shop_model.ProductAttribute" Role="ProductAttribute" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
           <End Type="shop_model.ProductAttributeValue" Role="ProductAttributeValue" Multiplicity="*" /></Association>
         <Association Name="ProductProductImage">
           <End Type="shop_model.Product" Role="Product" Multiplicity="1">
@@ -816,7 +820,9 @@
           <End Type="shop_model.ProductAttributeStaticValue" Role="ProductAttributeStaticValue" Multiplicity="*" />
         </Association>
         <Association Name="FK_ProductAttributeStaticValues_ProductAttribute">
-          <End Type="shop_model.ProductAttribute" Role="ProductAttribute" Multiplicity="1" />
+          <End Type="shop_model.ProductAttribute" Role="ProductAttribute" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
           <End Type="shop_model.ProductAttributeStaticValue" Role="ProductAttributeStaticValue" Multiplicity="*" />
         </Association></Schema>
     </edmx:ConceptualModels>
@@ -860,6 +866,7 @@
           <EntitySetMapping Name="ProductAttributes">
             <EntityTypeMapping TypeName="IsTypeOf(shop_model.ProductAttribute)">
               <MappingFragment StoreEntitySet="ProductAttribute">
+                <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
                 <ScalarProperty Name="Static" ColumnName="Static" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />

@@ -2,3 +2,5 @@
 #login{padding-top:20px;}
 
 div#login input[type='text'], div#login input[type='password']{width:150px;}
+
+.watermark{color:Gray;}

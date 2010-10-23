@@ -22,7 +22,7 @@ namespace Shop.Areas.Admin.Controllers
                     .Where(c => c.Id == id).SelectMany(c => c.ProductAttributes).ToList();
                 
                 foreach (var item in values)
-                    item.ProductAttributeValue.Load();
+                    item.ProductAttributeValues.Load();
 
                 Product product = context.Products.Include("ProductAttributeValues").Where(p => p.Id == productId).First();
 

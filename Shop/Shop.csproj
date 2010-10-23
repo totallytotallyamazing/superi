@@ -146,7 +146,8 @@
       <DependentUpon>Orders.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Product.cs" />
-    <Compile Include="Models\ProductAttributeValueValidation.cs" />
+    <Compile Include="Models\ProductAttribute.cs" />
+    <Compile Include="Models\ProductAttributeValue.cs" />
     <Compile Include="Models\ProductVariant.cs" />
     <Compile Include="Models\ProfileCommon.cs" />
     <Compile Include="Models\Shop.Designer.cs">
@@ -161,7 +162,7 @@
   <ItemGroup>
     <Content Include="Areas\Admin\Views\Content\EditPartial.ascx" />
     <Content Include="Areas\Admin\Views\ProductCategories\Index.ascx" />
-    <Content Include="Areas\Admin\Views\Products\EditorTemplates\ProductAttributeStaticValues.ascx" />
+    <Content Include="Areas\Admin\Views\Products\ProductAttributeStaticValues.ascx" />
     <Content Include="Areas\Admin\Views\ProductVariants\AddEdit.ascx" />
     <Content Include="Areas\Admin\Views\ProductVariants\Index.aspx" />
     <Content Include="bin\Elmah.dll" />
@@ -223,10 +224,12 @@
     <Content Include="Content\UnMomentoStyles\UnMomentoSite.css" />
     <Content Include="Global.asax" />
     <Content Include="index.html" />
+    <Content Include="Scripts\ck.extensions.js" />
     <Content Include="Scripts\jquery.fancybox.js" />
     <Content Include="Scripts\jquery.FCKEditor.js" />
     <Content Include="Scripts\jquery.js" />
     <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.watermark.js" />
     <Content Include="Scripts\MicrosoftAjax.js" />
     <Content Include="Scripts\MicrosoftMvcAjax.js" />
     <Content Include="Scripts\MicrosoftMvcValidation.js" />

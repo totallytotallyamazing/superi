@@ -15,7 +15,7 @@
 
 
 <div class="productItem">
-  
+  <div class="img">
      
      <% 
             Shop.Models.ProductImage img = Model.ProductImages.Where(pi => pi.Default).FirstOrDefault();
@@ -32,17 +32,16 @@
                Response.Write(productClickLink.Replace("[IMAGE]", Model.Name));
            }
         %>
-       
-  <%--<img src="../../Content/LislelliStyles/img/imgMaple.gif" alt="Клён" />--%>
-    <div class="text">
+         <%if (Model.IsNew){ %>
+            <div class="newItem">
+            </div>
+        <%} %>
+        <div class="text">
         <span class="it1"><b>
             <%= productClickLink.Replace("[IMAGE]", Model.Name)%></b></span>
         <%= Model.ShortDescription %>
         
-         <%if (Model.IsNew){ %>
-            <div class="new">
-            </div>
-        <%} %>
+        
 
        <%--<div class="priceNonBlock">
             <p class="it2">
@@ -59,6 +58,9 @@
        
 
     </div>
+    </div>   
+  <%--<img src="../../Content/LislelliStyles/img/imgMaple.gif" alt="Клён" />--%>
+    
 </div>
 
 

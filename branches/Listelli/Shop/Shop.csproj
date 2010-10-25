@@ -183,10 +183,17 @@
     <Content Include="Content\LislelliStyles\img\bkgMainContentRightBottom.png" />
     <Content Include="Content\LislelliStyles\img\bkgMainContentRightTop.png" />
     <Content Include="Content\LislelliStyles\img\bubbleNew.png" />
+    <Content Include="Content\LislelliStyles\img\currentBorder.png" />
+    <Content Include="Content\LislelliStyles\img\designedBy.png" />
     <Content Include="Content\LislelliStyles\img\firstTab.gif" />
+    <Content Include="Content\LislelliStyles\img\imgBeech.gif" />
+    <Content Include="Content\LislelliStyles\img\imgMaple.gif" />
+    <Content Include="Content\LislelliStyles\img\imgOak.gif" />
     <Content Include="Content\LislelliStyles\img\Logo.png" />
+    <Content Include="Content\LislelliStyles\img\new.gif" />
     <Content Include="Content\LislelliStyles\img\searchField.gif" />
     <Content Include="Content\LislelliStyles\ListelliSite.css" />
+    <Content Include="Content\LislelliStyles\products.css" />
     <Content Include="Content\UnMomentoStyles\img\allBkg.gif" />
     <Content Include="Content\UnMomentoStyles\img\baner.gif" />
     <Content Include="Content\UnMomentoStyles\img\basket.gif" />

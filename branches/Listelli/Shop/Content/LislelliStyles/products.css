@@ -1,0 +1,15 @@
+﻿.txtDescription, .txtLink
+{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.productItem {margin-bottom:50px; float: left; margin-right:20px;}
+ .productItem .text{/*padding: 10px 0px 0px 10px; width: 160px;*/ position: relative;}
+  #contentWrapper{padding-right:0;}
+  
+  .productItem .txtLink
+  { color: #3399ff; font-size: 12px;}
+  
+  .productItem .txtDescription
+  
+  { font-size: 11px;}

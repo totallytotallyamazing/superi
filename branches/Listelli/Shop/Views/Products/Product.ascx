@@ -9,18 +9,42 @@
     string additionalClass = string.Empty;
     if (!Model.Published && isAdmin)
         additionalClass = " translucent";
-    string productClickLink = Html.ActionLink("[IMAGE]", "Show", new { id = Model.Id }, new { @class = "hlColor" }).ToString();
+    string productClickLink = Html.ActionLink("[IMAGE]", "Show", new { id = Model.Id }, new { @class = "txtLink" }).ToString();
 %>
 
 
 
 <div class="productItem">
-    <img src="../../Content/UnMomentoStyles/img/sheep.gif" alt="Овца" />
-    <div id="item1Txt">
+  
+     
+     <% 
+            Shop.Models.ProductImage img = Model.ProductImages.Where(pi => pi.Default).FirstOrDefault();
+            if (img != null)
+            {
+               %>
+               
+        <%= Html.ActionLink("[IMAGE]", "Show", new { id = Model.Id }).ToString()
+            .Replace("[IMAGE]",
+                        Html.CachedImage("~/Content/ProductImages", img.ImageSource, "thumbnail2", Model.Name)) + "<br />"%>
+        <%}
+           else
+           {
+               Response.Write(productClickLink.Replace("[IMAGE]", Model.Name));
+           }
+        %>
+       
+  <%--<img src="../../Content/LislelliStyles/img/imgMaple.gif" alt="Клён" />--%>
+    <div class="text">
         <span class="it1"><b>
-            <%= productClickLink.Replace("[IMAGE]", Model.Name)%>,</b></span>
+            <%= productClickLink.Replace("[IMAGE]", Model.Name)%></b></span>
         <%= Model.ShortDescription %>
-        <div class="priceNonBlock">
+        
+         <%if (Model.IsNew){ %>
+            <div class="new">
+            </div>
+        <%} %>
+
+       <%--<div class="priceNonBlock">
             <p class="it2">
             
                 <% Html.RenderPartial("Price", Model); %>
@@ -29,9 +53,8 @@
        </div>
 
       
-     <a href="#"  class="it3">Заказать »</a>
-      
-    
+     <a href="#"  class="it3">Заказать »</a>--%>
+   
              
        
 

@@ -3,8 +3,15 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.productItem {margin-bottom:50px; float: left; margin-right:20px;}
- .productItem .text{/*padding: 10px 0px 0px 10px; width: 160px;*/ position: relative;}
+.productItem {margin-bottom:50px; float: left; margin-right: 62px;}
+ .productItem .text{/*padding: 10px 0px 0px 10px; width: 160px;*/ position:absolute; }
+ .productItem .img{position: relative;}
+ .productItem .newItem
+{
+     height:9px; width: 43px; right:0px; position:absolute;
+     bottom: 5px;
+     background:url(../../Content/LislelliStyles/img/new.gif) no-repeat;
+     }
   #contentWrapper{padding-right:0;}
   
   .productItem .txtLink

@@ -8,11 +8,9 @@
 .item a img{border:1px solid #999999;}
 .new
 {
-    /*height:15px; width:76px;position:relative; bottom:14px; right:1px; */
-     /*background:url(img/new.jpg) no-repeat;*/
-     height:9px; width: 43px; left:1px; position:absolute;
-     top: -15px;
-     background:url(../../Content/LislelliStyles/img/new.gif) no-repeat;
+    height:15px; width:76px;position:relative; bottom:14px; right:1px; 
+     background:url(img/new.jpg) no-repeat;
+    
      }
 
 

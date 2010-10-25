@@ -483,7 +483,9 @@ html, body
 {
     position: relative;
     z-index: 2;
-    padding: 50px 70px 0px 75px; /*min-height: 600px;*/
+    padding: 65px 70px 0px 0px; /*min-height: 600px;*/
+    left: 75px;
+    
 }
 
 

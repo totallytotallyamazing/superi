@@ -6,7 +6,16 @@
 .nazva a{font-weight:bold;font-size:11px;color:#6699cc;}
 .item{width:152px;}
 .item a img{border:1px solid #999999;}
-.new{height:15px; width:76px;position:relative; bottom:14px; right:1px; background:url(img/new.jpg) no-repeat;}
+.new
+{
+    /*height:15px; width:76px;position:relative; bottom:14px; right:1px; */
+     /*background:url(img/new.jpg) no-repeat;*/
+     height:9px; width: 43px; left:1px; position:absolute;
+     top: -15px;
+     background:url(../../Content/LislelliStyles/img/new.gif) no-repeat;
+     }
+
+
 .itemDesc{/*height:156px;width:152px;*/ padding-bottom: 20px;}
 .itemDesc div.productName{}
 .itemDesc a{color:#6699cc;margin:0px 0px 0px 2px;font-size:12px;font-weight:bold;}

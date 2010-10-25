@@ -22,8 +22,8 @@ namespace Dev.Mvc.Helpers
             fixDimension.Add("mainView", FixedDimension.Width);
             maxDimensions.Add("thumbnail1", 79);
             fixDimension.Add("thumbnail1", FixedDimension.Width);
-            maxDimensions.Add("thumbnail2", 152);
-            fixDimension.Add("thumbnail2", FixedDimension.Width);
+            maxDimensions.Add("thumbnail2", 110);
+            fixDimension.Add("thumbnail2", FixedDimension.Height);
             maxDimensions.Add("thumbnail3", 85);
             fixDimension.Add("thumbnail3", FixedDimension.Width);
             maxDimensions.Add("cartThumb", 60);
@@ -36,17 +36,20 @@ namespace Dev.Mvc.Helpers
             int height;
             if ((fixedDimension.HasValue && fixedDimension.Value == FixedDimension.Width) || (image.Width > image.Height))
             {
-                width = maxDimension;
-                height = (maxDimension * image.Height) / image.Width;
-
+                //width = maxDimension;
+                //height = (maxDimension * image.Height) / image.Width;
+                height = maxDimension;
+                width = (maxDimension * image.Width) / image.Height; 
             }
             else if ((fixedDimension.HasValue && fixedDimension.Value == FixedDimension.Height) || (image.Height > image.Width))
             {
-                height = maxDimension;
-                width = (maxDimension * image.Width) / image.Height;
+                //height = maxDimension;
+                //width = (maxDimension * image.Width) / image.Height;
+                width = maxDimension;               
+                height = (maxDimension * image.Height) / image.Width;
             }
             else
-                width = height = maxDimension;
+                width = height = maxDimension; 
 
             return new Size(width, height);
         }

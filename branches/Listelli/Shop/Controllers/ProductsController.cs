@@ -25,6 +25,7 @@ namespace Shop.Controllers
                 Category category = context.Categories.Include("Parent").Include("Categories.Products.Brand")
                     .Include("Products")
                     .Include("Categories.Products.ProductImages")
+                    .Include("Categories.Products.ProductAttributeStaticValues.ProductAttribute")
                     //.Include("Categories.Products.ProductAttributeValues.ProductAttribute")
                     .First(c => c.Id == id);
                 if (category.Parent == null)
@@ -61,11 +62,12 @@ namespace Shop.Controllers
                     .Include("ProductImages")
                     .Include("ProductAttributeValues")
                     .Include("ProductAttributeValues.ProductAttribute")
+                    .Include("ProductAttributeStaticValues.ProductAttribute")
                     .Include("Brand")
                     .Where(p => p.Id == id).First();
                 ViewData["keywords"] = product.SeoKeywords;
                 ViewData["description"] = product.SeoDescription;
-                return View(product); 
+                return View("ShowModal", product); 
             }
         }
 

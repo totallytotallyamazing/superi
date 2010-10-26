@@ -124,13 +124,12 @@
                 </td>
             </tr>
         </table>
-        <%--            <%if (Model!=null){ %>
-                <div class="productLinks">
-                    <%= Html.ActionLink("Дополнительные категории", "Index", "ProductCategories", new { id = Model.Id }, new { @class = "fancyAdmin iframe" })%>
-                    <%= Html.ActionLink("Теги", "Index", "ProductTags", new { id = Model.Id }, new { @class = "fancyAdmin iframe" })%>
-                </div>
-            <%} %>
-        --%>
+<%if (Model!=null){ %>
+        <div class="productLinks">
+            <%--<%= Html.ActionLink("Дополнительные категории", "Index", "ProductCategories", new { id = Model.Id }, new { @class = "fancyAdmin iframe" })%>--%>
+            <%= Html.ActionLink("Теги", "Index", "ProductTags", new { id = Model.Id }, new { @class = "fancyAdmin iframe" })%>
+        </div>
+<%} %>
         <div class="labelCell" style="margin-bottom: 0px; margin-top: 20px;">
             <%= Html.LabelFor(model => model.IsNew) %>
             <%= Html.CheckBoxFor(m => m.IsNew) %>

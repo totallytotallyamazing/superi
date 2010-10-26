@@ -83,7 +83,9 @@ namespace Shop.Areas.Admin.Controllers
                 int id = int.MinValue;
                 if (int.TryParse(form["Id"], out id))
                 {
-                    product = context.Products.Include("Brand").First(p => p.Id == id);
+                    product = context.Products.Include("Brand")
+                        .Include("ProductAttributeStaticValues")
+                        .First(p => p.Id == id);
                     if ((product.Brand == null || product.Brand.Id != brandId) && brandId.HasValue)
                     {
                         Brand brand = new Brand { Id = brandId.Value };

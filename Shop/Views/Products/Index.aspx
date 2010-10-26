@@ -32,10 +32,15 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="includes" runat="server">
     <link rel="Stylesheet" href="/Content/catalog.css" />
     <link href="/Content/LislelliStyles/products.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript">
+        $(function () {
+            $(".productFancy").fancybox({ titlePosition: "over", hideOnOverlayClick: false });
+        })    
+    </script>
 </asp:Content>
 
 <asp:Content ID="Content5" runat="server" ContentPlaceHolderID="Footer">
     <div id="pager">
                 <p class="txtPager">1 ... <a href="#" class="txtPager">2</a> ... <a href="#" class="txtPager">3</a></p>
-            </div>
+    </div>
 </asp:Content>

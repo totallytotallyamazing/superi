@@ -9,7 +9,8 @@
     string additionalClass = string.Empty;
     if (!Model.Published && isAdmin)
         additionalClass = " translucent";
-    string productClickLink = Html.ActionLink("[IMAGE]", "Show", new { id = Model.Id }, new { @class = "txtLink" }).ToString();
+    string title = Model.Categories.First().Name + " " + Model.Name;
+    string productClickLink = Html.ActionLink("[IMAGE]", "Show", new { id = Model.Id }, new { @class = "txtLink productFancy", title = title }).ToString();
 %>
 
 
@@ -23,7 +24,7 @@
             {
                %>
                
-        <%= Html.ActionLink("[IMAGE]", "Show", new { id = Model.Id }).ToString()
+        <%= Html.ActionLink("[IMAGE]", "Show", new { id = Model.Id }, new { @class = "productFancy", title = title }).ToString()
             .Replace("[IMAGE]",
                         Html.CachedImage("~/Content/ProductImages", img.ImageSource, "thumbnail2", Model.Name)) + "<br />"%>
         <%}
@@ -39,67 +40,8 @@
         <div class="text">
         <span class="it1"><b>
             <%= productClickLink.Replace("[IMAGE]", Model.Name)%></b></span>
-        <%= Model.ShortDescription %>
-        
-        
-
-       <%--<div class="priceNonBlock">
-            <p class="it2">
-            
-                <% Html.RenderPartial("Price", Model); %>
-                 
-                </p>
-       </div>
-
-      
-     <a href="#"  class="it3">Заказать »</a>--%>
-   
-             
-       
-
+            <% Html.RenderPartial("ProductStaticAttributes", Model.ProductAttributeStaticValues); %>
     </div>
     </div>   
-  <%--<img src="../../Content/LislelliStyles/img/imgMaple.gif" alt="Клён" />--%>
-    
 </div>
-
-
-
-
-<%--<div class="tovarBox<%= additionalClass %>">
-
-
-    <div class="nazva">
-        <p>
-            <%= Html.ActionLink("™" + ((Model.Brand != null) ? Model.Brand.Name : string.Empty), "Index", new { controller = "Products", area = "", id = WebSession.CurrentCategory, brandId = (Model.Brand != null) ? Model.Brand.Id : (int?)null })%>
-        </p>
-    </div>
-    <div class="item">
-        <% 
-            Shop.Models.ProductImage img = Model.ProductImages.Where(pi => pi.Default).FirstOrDefault();
-            if (img != null)
-            {
-               %>
-               
-        <%= Html.ActionLink("[IMAGE]", "Show", new { id = Model.Id }).ToString()
-            .Replace("[IMAGE]",
-                        Html.CachedImage("~/Content/ProductImages", img.ImageSource, "thumbnail2", Model.Name)) + "<br />"%>
-        <%}
-           else
-           {
-               Response.Write(productClickLink.Replace("[IMAGE]", Model.Name));
-           }
-        %>
-        <%if (Model.IsNew){ %>
-            <div class="new">
-            </div>
-        <%} %>
-        jg,fhj,fhj,fhj.,fhj.fhk.
-    </div>
-    <div class="itemDesc">
-        <div class="productName"><%= productClickLink.Replace("[IMAGE]", Model.Name) %></div>
-        <p><%= Model.ShortDescription %></p>
-        <h4><% Html.RenderPartial("Price", Model); %></h4>
-    </div>
-</div>--%>
 <%} %>

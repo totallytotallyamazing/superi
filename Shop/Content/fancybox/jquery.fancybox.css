@@ -87,7 +87,7 @@
 	position: absolute;
 	top: 0;
 	left: 0;
-	width: 1px;
+	width: 600px;
 	height: 1px;
 	padding: 0;
 	margin: 0;
@@ -365,7 +365,7 @@
 }
 
 /* IE */
-
+/*
 #fancybox-loading.fancybox-ie div	{ background: transparent; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/Content/fancybox/fancy_loading.png', sizingMethod='scale'); }
 .fancybox-ie #fancybox-close		{ background: transparent; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/Content/fancybox/fancy_close.png', sizingMethod='scale'); }
 
@@ -387,3 +387,4 @@
 .fancybox-ie #fancy-bg-sw	{ filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/Content/fancybox/fancy_shadow_sw.png', sizingMethod='scale'); }
 .fancybox-ie #fancy-bg-w	{ filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/Content/fancybox/fancy_shadow_w.png', sizingMethod='scale'); }
 .fancybox-ie #fancy-bg-nw	{ filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/Content/fancybox/fancy_shadow_nw.png', sizingMethod='scale'); }
+*/

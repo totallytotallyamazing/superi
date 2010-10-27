@@ -195,8 +195,13 @@
     <Content Include="Content\LislelliStyles\img\designedBy.png" />
     <Content Include="Content\LislelliStyles\img\firstTab.gif" />
     <Content Include="Content\LislelliStyles\img\imgBeech.gif" />
+    <Content Include="Content\LislelliStyles\img\imgBeechPrev.gif" />
+    <Content Include="Content\LislelliStyles\img\imgBeechPrev2.gif" />
     <Content Include="Content\LislelliStyles\img\imgMaple.gif" />
     <Content Include="Content\LislelliStyles\img\imgOak.gif" />
+    <Content Include="Content\LislelliStyles\img\imgOakPrev.gif" />
+    <Content Include="Content\LislelliStyles\img\imgOakPrev2.gif" />
+    <Content Include="Content\LislelliStyles\img\imgOakPrev3.gif" />
     <Content Include="Content\LislelliStyles\img\Logo.png" />
     <Content Include="Content\LislelliStyles\img\new.gif" />
     <Content Include="Content\LislelliStyles\img\searchField.gif" />

@@ -1,10 +1,10 @@
-﻿.txtDescription, .txtLink
+﻿.titleLink, .attributeLabel, .attributeValue, .txtDetails, .linkDetails
 {
     font-family: Arial, Helvetica, sans-serif;
 }
 
 .productItem {margin-bottom:50px; float: left; margin-right: 62px;}
- .productItem .text{/*padding: 10px 0px 0px 10px; width: 160px;*/ position:absolute; }
+ .productItem .text{/*padding: 10px 0px 0px 10px; width: 160px;*/ position:absolute; line-height: 12px;}
  .productItem .img{position: relative;}
  .productItem .newItem
 {
@@ -14,9 +14,29 @@
      }
   #contentWrapper{padding-right:0;}
   
-  .productItem .txtLink
+  .productItem .titleLink
   { color: #3399ff; font-size: 12px;}
   
-  .productItem .txtDescription
+  .productItem .itemDescription
   
-  { font-size: 11px;}
+  { padding-top: 5px;}
+  
+  
+  
+  .productItem .attributeLabel {color: #999999; font-size: 11px;}
+  .productItem .attributeValue {color: Black; font-size: 11px;}
+  
+  
+  #imgProduct {float: left; width: 370px;}
+  #imgProductMid {}
+  #productDescription {width: 220px; margin-left: 371px;}
+  
+  #productDescription .title {padding-bottom: 15px;}
+  #productDescription .attributes {line-height: 20px;}
+  #productDescription .titleLink { color: #3399ff; font-size: 18px;}
+  #productDescription .attributeLabel {color: #999999; font-size: 15px;}
+  #productDescription .attributeValue {color: Black; font-size: 15px;}
+  
+  #productDescription .details {padding-top: 40px;}
+  #productDescription .txtDetails {font-size: 12px;}
+  #productDescription .linkDetails {font-size: 12px; color: #3399ff;}

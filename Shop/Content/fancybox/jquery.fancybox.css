@@ -93,6 +93,7 @@
 	margin: 0;
 	outline: none;
 	overflow: hidden;
+	
 }
 
 #fancybox-hide-sel-frame {
@@ -106,12 +107,13 @@
 
 #fancybox-close {
 	position: absolute;
-	top: -15px;
-	right: -15px;
-	width: 30px;
-	height: 30px;
-	background-image: url('fancybox.png');
-	background-position: -40px 0px;
+	top: -34px;
+	right: -12px;
+	width: 22px;
+	height: 22px;
+	background-image: url('fancybox_Listelli_close.png');
+	/*background-image: url('fancybox.png');
+	background-position: -40px 0px;*/
 	cursor: pointer;
 	z-index: 1103;
 	display: none;
@@ -152,11 +154,13 @@
 }
 
 #fancybox-title {
-	position: absolute;
-	bottom: 0;
+	position: relative;
+	top: -35px;
 	left: 0;
 	font-family: Arial;
-	font-size: 12px;
+	font-size: 20px;
+	color: #cccccc;
+	text-align: center;
 	z-index: 1102;
 }
 
@@ -174,14 +178,14 @@
 }
 
 .fancybox-title-over {
-	color: #FFF;
-	text-align: left;
+	/*color: #FFF;
+	text-align: left;*/
 }
 
 #fancybox-title-over {
-	padding: 10px;
+	/*padding: 10px;
 	background-image: url('fancy_title_over.png');
-	display: block;
+	display: block;*/
 }
 
 #fancybox-title-wrap {
@@ -275,67 +279,89 @@
 	padding: 0;
 	margin: 0;
 	border: 0;
-	width: 20px;
-	height: 20px;
+	/*width: 20px;
+	height: 20px;*/
 	z-index: 1001;
 }
 
 #fancy-bg-n {
-	top: -20px;
+	top: -47px;
 	left: 0;
 	width: 100%;
-	background-image: url('fancybox-x.png');
+	background-color: Black;
+	height: 47px;
+	/*background-image: url('fancybox-x.png');*/
+	
 }
 
 #fancy-bg-ne {
-	top: -20px;
-	right: -20px;
-	background-image: url('fancybox.png');
-	background-position: -40px -162px;
+	top: -47px;
+	right: -32px;
+	background-image: url('fancy_Listelli_ne.png');
+	width: 32px;
+	height: 47px;
+	/*background-image: url('fancybox.png');
+	background-position: -40px -162px;*/
 }
 
 #fancy-bg-e {
 	top: 0;
-	right: -20px;
+	right: -32px;
 	height: 100%;
-	background-image: url('fancybox-y.png');
-	background-position: -20px 0px;
+	width: 32px;
+	background-image: url('fancy_Listelli_e.png');
+	/*background-image: url('fancybox-y.png');
+	background-position: -20px 0px;*/
 }
 
 #fancy-bg-se {
-	bottom: -20px;
-	right: -20px;
-	background-image: url('fancybox.png');
-	background-position: -40px -182px; 
+	bottom: -31px;
+	right: -32px;
+	width: 32px;
+	height: 31px;
+	background-image: url('fancy_Listelli_se.png');
+	/*background-image: url('fancybox.png');
+	background-position: -40px -182px; */
 }
 
 #fancy-bg-s {
-	bottom: -20px;
+	bottom: -31px;
 	left: 0;
 	width: 100%;
-	background-image: url('fancybox-x.png');
-	background-position: 0px -20px;
+	height: 31px;
+	background-image: url('fancy_Listelli_s.png');
+	/*background-image: url('fancybox-x.png');
+	background-position: 0px -20px;*/
 }
 
 #fancy-bg-sw {
-	bottom: -20px;
-	left: -20px;
-	background-image: url('fancybox.png');
-	background-position: -40px -142px;
+	bottom: -31px;
+	left: -32px;
+	width: 32px;
+	height: 31px;
+	background-image: url('fancy_Listelli_sw.png');
+	/*background-image: url('fancybox.png');
+	background-position: -40px -142px;*/
 }
 
 #fancy-bg-w {
 	top: 0;
-	left: -20px;
+	left: -32px;
 	height: 100%;
-	background-image: url('fancybox-y.png');
+	width: 32px;
+	background-image: url('fancy_Listelli_w.png');
+	/*background-image: url('fancybox-y.png');*/
 }
 
 #fancy-bg-nw {
-	top: -20px;
-	left: -20px;
-	background-image: url('fancybox.png');
-	background-position: -40px -122px;
+	top: -47px;
+	left: -32px;
+	background-image: url('fancy_Listelli_nw.png');
+	width: 32px;
+	height: 47px;
+	/*background-image: url('fancybox.png');*/
+	/*background-position: -40px -122px;*/
+	
 }
 
 /* IE */

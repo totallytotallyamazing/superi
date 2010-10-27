@@ -167,6 +167,14 @@
     <Content Include="Areas\Admin\Views\ProductVariants\AddEdit.ascx" />
     <Content Include="Areas\Admin\Views\ProductVariants\Index.aspx" />
     <Content Include="bin\Elmah.dll" />
+    <Content Include="Content\fancybox\fancybox_Listelli_close.png" />
+    <Content Include="Content\fancybox\fancy_Listelli_e.png" />
+    <Content Include="Content\fancybox\fancy_Listelli_ne.png" />
+    <Content Include="Content\fancybox\fancy_Listelli_nw.png" />
+    <Content Include="Content\fancybox\fancy_Listelli_s.png" />
+    <Content Include="Content\fancybox\fancy_Listelli_se.png" />
+    <Content Include="Content\fancybox\fancy_Listelli_sw.png" />
+    <Content Include="Content\fancybox\fancy_Listelli_w.png" />
     <Content Include="Content\LislelliStyles\img\bannerDecor.png" />
     <Content Include="Content\LislelliStyles\img\bannerFoglie.png" />
     <Content Include="Content\LislelliStyles\img\bannerKreo.png" />

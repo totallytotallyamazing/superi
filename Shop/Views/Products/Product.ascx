@@ -10,7 +10,7 @@
     if (!Model.Published && isAdmin)
         additionalClass = " translucent";
     string title = Model.Categories.First().Name + " " + Model.Name;
-    string productClickLink = Html.ActionLink("[IMAGE]", "Show", new { id = Model.Id }, new { @class = "txtLink productFancy", title = title }).ToString();
+    string productClickLink = Html.ActionLink("[IMAGE]", "Show", new { id = Model.Id }, new { @class = "titleLink productFancy", title = title }).ToString();
 %>
 
 
@@ -38,9 +38,11 @@
             </div>
         <%} %>
         <div class="text">
-        <span class="it1"><b>
+       <span><b>
             <%= productClickLink.Replace("[IMAGE]", Model.Name)%></b></span>
-            <% Html.RenderPartial("ProductStaticAttributes", Model.ProductAttributeStaticValues); %>
+             <div class="itemDescription">
+                <% Html.RenderPartial("ProductStaticAttributes", Model.ProductAttributeStaticValues); %>
+             </div>
     </div>
     </div>   
 </div>

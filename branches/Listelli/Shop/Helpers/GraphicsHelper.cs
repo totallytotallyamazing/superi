@@ -18,8 +18,8 @@ namespace Dev.Mvc.Helpers
 
         static GraphicsHelper()
         {
-            maxDimensions.Add("mainView", 358);
-            fixDimension.Add("mainView", FixedDimension.Width);
+            maxDimensions.Add("mainView", 220);
+            fixDimension.Add("mainView", FixedDimension.Width);            
             maxDimensions.Add("thumbnail1", 79);
             fixDimension.Add("thumbnail1", FixedDimension.Width);
             maxDimensions.Add("thumbnail2", 110);
@@ -34,6 +34,7 @@ namespace Dev.Mvc.Helpers
         {
             int width;
             int height;
+            
             if ((fixedDimension.HasValue && fixedDimension.Value == FixedDimension.Width) || (image.Width > image.Height))
             {
                 //width = maxDimension;

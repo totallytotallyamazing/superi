@@ -1,5 +1,4 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<Shop.Models.Product>" %>
-
 <div class="productModal">
     <% if (Roles.IsUserInRole("Administrators"))
        { %>
@@ -10,6 +9,7 @@
     </div>
     <%} %>
     <div id="imgProduct">
+        <div id="imgProductMid">
         <% Shop.Models.ProductImage img = Model.ProductImages.Where(m => m.Default).DefaultIfEmpty(new Shop.Models.ProductImage { Product = new Shop.Models.Product { Name = Model.Name } }).First();
         %>
         <% Html.RenderPartial("ProductImage", img); %>
@@ -19,14 +19,21 @@
         </div>
         <%} %>
         <% Html.RenderPartial("ImagePreviews", Model.ProductImages.OrderByDescending(pi => pi.Default)); %>
+        </div>
     </div>
     <div id="productDescription">
         <div class="title">
-            <%= Model.Name %>    
+            <p class="titleLink">
+                <b>
+                    <%= Model.Name %></b></p>
         </div>
         <div class="attributes">
             <% Html.RenderPartial("ProductStaticAttributes", Model.ProductAttributeStaticValues); %>
         </div>
+        <div class="details">
+            <p class="txtDetails">
+                Узнать подробнее об этом товаре можно, позвонив к нам, или просто сейчас <a href='#' class="linkDetails">отправив
+                быстрый вопрос</a></p>
+        </div>
     </div>
-
 </div>

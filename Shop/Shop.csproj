@@ -205,6 +205,7 @@
     <Content Include="Content\LislelliStyles\img\Logo.png" />
     <Content Include="Content\LislelliStyles\img\new.gif" />
     <Content Include="Content\LislelliStyles\img\searchField.gif" />
+    <Content Include="Content\LislelliStyles\img\separator.png" />
     <Content Include="Content\LislelliStyles\ListelliSite.css" />
     <Content Include="Content\LislelliStyles\products.css" />
     <Content Include="Content\UnMomentoStyles\img\allBkg.gif" />

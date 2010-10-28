@@ -37,4 +37,36 @@
     <div id="similarItems">
     <p class="txtSimilarItems">Похожие товары:</p>
     </div>
+    <div id ="similarItemsBox">
+        <div class="itemBox"> 
+            <a href='#' class="titleLink"><b>Terhurne</b></a> 
+            <div class="similarImg">
+                <img src="../../Content/LislelliStyles/img/imgBeech.gif" alt="Сцуко" />
+            </div>
+            <a href='#' class="titleLink"><b>Европейский клён</b></a> 
+            <div class="similarDescription">
+                <% Html.RenderPartial("ProductStaticAttributes", Model.ProductAttributeStaticValues); %>
+            </div>
+        </div>
+        <div class="itemBox"> 
+            <a href='#' class="titleLink"><b>Terhurne</b></a> 
+            <div class="similarImg">
+                <img src="../../Content/LislelliStyles/img/imgBeech.gif" alt="Сцуко" />
+            </div>
+            <a href='#' class="titleLink"><b>Европейский клён</b></a> 
+            <div class="similarDescription">
+                <% Html.RenderPartial("ProductStaticAttributes", Model.ProductAttributeStaticValues); %>
+            </div>
+        </div>
+        <div class="itemBox"> 
+            <a href='#' class="titleLink"><b>Terhurne</b></a> 
+            <div class="similarImg">
+                <img src="../../Content/LislelliStyles/img/imgBeech.gif" alt="Сцуко" />
+            </div>
+            <a href='#' class="titleLink"><b>Европейский клён</b></a> 
+            <div class="similarDescription">
+                <% Html.RenderPartial("ProductStaticAttributes", Model.ProductAttributeStaticValues); %>
+            </div>
+        </div>
+    </div>
 </div>

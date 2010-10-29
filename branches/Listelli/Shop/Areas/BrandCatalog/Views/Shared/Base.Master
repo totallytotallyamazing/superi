@@ -1,0 +1,96 @@
+﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
+
+<%@ Import Namespace="Dev.Mvc.Ajax" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+    <% Html.RenderPartial("MetaTags"); %>
+    <title>
+        <asp:ContentPlaceHolder runat="server" ID="TitleContent">
+        </asp:ContentPlaceHolder>
+    </title>
+    <link href="/Content/LislelliStyles/ListelliSite.css" rel="stylesheet" type="text/css" />
+    <% if (Roles.IsUserInRole("Administrators"))
+       { %>
+    <link href="/Content/AdminStyles/Admin.css" rel="stylesheet" type="text/css" />
+    <%} %>
+    <%if (false)
+      {%>
+    <script type="text/javascript" src="../../Scripts/jquery-vsdoc.js"></script>
+    <script type="text/javascript">
+        /// <reference path="jquery.js" />
+    </script>
+    <%} %>
+    <script type="text/javascript" src="/Scripts/jquery.js"></script>
+    <%= Ajax.DynamicCssInclude("/Content/fancybox/jquery.fancybox.css") %>
+    <%= Ajax.ScriptInclude("/Scripts/jquery.fancybox.js")%>
+    <script type="text/javascript">
+        $(function () {
+            $("#feedbackForm, .editContentLink").fancybox(
+            {
+                hideOnContentClick: false,
+                hideOnOverlayClick: false,
+                showCloseButton: true
+            });
+        });
+    </script>
+    <asp:ContentPlaceHolder runat="server" ID="includes">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <%if (Roles.IsUserInRole("Administrators")) Html.RenderPartial("AdminPanel");  %>
+    <div id="all">
+        <div id="toperBrandCatalog">
+            <div id="header">
+                <div id="headerRight">
+                    <p class="mainAdress">
+                        <a href="/Home/Index" class="mainAdress">На основной сайт »</a>
+                    </p>
+                </div>
+                <div id="logoBox">
+                    <div id="logoBrandCatalog">
+                        <%--Logo--%>
+                    </div>
+                    <p class="slogan">
+                        оформление интерьеров паркетом и мрамором</p>
+                </div>
+            </div>
+            <div id="titleBoxBrandCatalog">
+                    <asp:ContentPlaceHolder runat="server" ID="ContentTitle">
+                    </asp:ContentPlaceHolder>
+                </div>
+            <div id="contentBoxBrandCatalog">
+                
+                <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                </asp:ContentPlaceHolder>
+                <asp:ContentPlaceHolder runat="server" ID="footer">
+                </asp:ContentPlaceHolder>
+            </div>
+        </div>
+    <div id="footerBrandCatalog">
+        <div id="designedBy">
+            <p class="footerText">
+                © 2010, компания “Listelli”
+                <br />
+                Дизайн сайта — <a href="http://m-brand.com.ua" class="footerMiller">Евгений Миллер</a>
+            </p>
+        </div>
+        <div id="strip">
+            <%-- прокладка--%>
+        </div>
+    </div>
+    </div>
+    <!-- Google Analytics code -->
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-18722609-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function () {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+</body>
+</html>

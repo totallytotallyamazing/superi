@@ -85,6 +85,8 @@
     <Compile Include="Areas\Admin\Controllers\ProductVariantsController.cs" />
     <Compile Include="Areas\Admin\Controllers\OrdersController.cs" />
     <Compile Include="Areas\Admin\Controllers\SettingsController.cs" />
+    <Compile Include="Areas\BrandCatalog\BrandCatalogAreaRegistration.cs" />
+    <Compile Include="Areas\BrandCatalog\Controllers\HomeController.cs" />
     <Compile Include="Controllers\CaptchaController.cs" />
     <Compile Include="Controllers\GraphicsController.cs" />
     <Compile Include="Controllers\InvoiceController.cs" />
@@ -166,6 +168,7 @@
     <Content Include="Areas\Admin\Views\Products\ProductAttributeStaticValues.ascx" />
     <Content Include="Areas\Admin\Views\ProductVariants\AddEdit.ascx" />
     <Content Include="Areas\Admin\Views\ProductVariants\Index.aspx" />
+    <Content Include="Areas\BrandCatalog\Views\Home\Index.aspx" />
     <Content Include="bin\Elmah.dll" />
     <Content Include="Content\fancybox\fancybox_Listelli_close.png" />
     <Content Include="Content\fancybox\fancy_Listelli_e.png" />
@@ -182,6 +185,7 @@
     <Content Include="Content\LislelliStyles\img\bkgFooter.gif" />
     <Content Include="Content\LislelliStyles\img\bkgHeader.gif" />
     <Content Include="Content\LislelliStyles\img\bkgMainContent.gif" />
+    <Content Include="Content\LislelliStyles\img\bkgMainContentBrandCatalog.gif" />
     <Content Include="Content\LislelliStyles\img\bkgMainContentLeft.gif" />
     <Content Include="Content\LislelliStyles\img\bkgMainContentLeftBottom.gif" />
     <Content Include="Content\LislelliStyles\img\bkgMainContentLeftBottom.png" />
@@ -203,6 +207,7 @@
     <Content Include="Content\LislelliStyles\img\imgOakPrev2.gif" />
     <Content Include="Content\LislelliStyles\img\imgOakPrev3.gif" />
     <Content Include="Content\LislelliStyles\img\Logo.png" />
+    <Content Include="Content\LislelliStyles\img\LogoBrandCatalog.png" />
     <Content Include="Content\LislelliStyles\img\new.gif" />
     <Content Include="Content\LislelliStyles\img\searchField.gif" />
     <Content Include="Content\LislelliStyles\img\separator.png" />
@@ -472,6 +477,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Admin\Views\Shared\" />
+    <Folder Include="Areas\BrandCatalog\Models\" />
     <Folder Include="Configuration\" />
     <Folder Include="Content\BrandLogos\" />
     <Folder Include="Content\CategoryImages\" />
@@ -481,6 +487,12 @@
     <Folder Include="ImageCache\thumbnail1\" />
     <Folder Include="ImageCache\thumbnail2\" />
     <Folder Include="ImageCache\thumbnail3\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\BrandCatalog\Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\BrandCatalog\Views\Shared\Base.Master" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

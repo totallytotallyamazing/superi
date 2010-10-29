@@ -42,43 +42,56 @@
     <div id="all">
         <div id="toperBrandCatalog">
             <div id="header">
-                <div id="headerRight">
+                <div id="forwardBack">
                     <p class="mainAdress">
                         <a href="/Home/Index" class="mainAdress">На основной сайт »</a>
                     </p>
                 </div>
-                <div id="logoBox">
+                <div id="logoBoxBrandCatalog">
                     <div id="logoBrandCatalog">
                         <%--Logo--%>
                     </div>
+                    <div class="pipec">
                     <p class="slogan">
-                        оформление интерьеров паркетом и мрамором</p>
+                        г&nbsp;а&nbsp;л&nbsp;е&nbsp;р&nbsp;е&nbsp;я <br/> б&nbsp;р&nbsp;е&nbsp;н&nbsp;д&nbsp;о&nbsp;в</p>
+                        </div>
                 </div>
             </div>
             <div id="titleBoxBrandCatalog">
-                    <asp:ContentPlaceHolder runat="server" ID="ContentTitle">
-                    </asp:ContentPlaceHolder>
-                </div>
+                <asp:ContentPlaceHolder runat="server" ID="ContentTitle">
+                </asp:ContentPlaceHolder>
+            </div>
             <div id="contentBoxBrandCatalog">
-                
+            <div class="corner_ne">
+            <%--corner--%>
+            </div>
+            <div class="corner_nw">
+            <%--corner--%>
+            </div>
+            <div class="corner_se">
+            <%--corner--%>
+            </div>
+            <div class="corner_sw">
+            <%--corner--%>
+            </div>
                 <asp:ContentPlaceHolder ID="MainContent" runat="server">
                 </asp:ContentPlaceHolder>
                 <asp:ContentPlaceHolder runat="server" ID="footer">
                 </asp:ContentPlaceHolder>
             </div>
         </div>
-    <div id="footerBrandCatalog">
-        <div id="designedBy">
-            <p class="footerText">
-                © 2010, компания “Listelli”
-                <br />
-                Дизайн сайта — <a href="http://m-brand.com.ua" class="footerMiller">Евгений Миллер</a>
-            </p>
+        <div id="footerBrandCatalog">
+            <div id="designedBy">
+                <p class="footerText">
+                    © 2010, компания “Listelli”
+                    <br />
+                    Дизайн сайта — <a href="http://m-brand.com.ua" class="footerMiller">Евгений Миллер</a>
+                </p>
+            </div>
+            <div id="strip">
+                <%-- прокладка--%>
+            </div>
         </div>
-        <div id="strip">
-            <%-- прокладка--%>
-        </div>
-    </div>
     </div>
     <!-- Google Analytics code -->
     <script type="text/javascript">

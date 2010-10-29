@@ -76,6 +76,25 @@ html, body
     float: left;
 }
 
+#logoBoxBrandCatalog
+{
+    /* position: relative;     top: 29px;     left: 20px;*/
+    margin: 40px 0px 0px 50px;
+    width: 84px;
+    height: 70px;
+    float: left;
+    
+}
+#logoBoxBrandCatalog .pipec{text-align: center; width: 84px;}
+#logoBoxBrandCatalog .slogan
+{
+    /*line-height: 12px;*/
+    font-size: 12px;
+    
+    font-family: Arial, Helvetica, sans-serif;
+    color: White;
+}
+
 #logoBox .slogan
 {
     /*line-height: 12px;*/
@@ -131,6 +150,12 @@ html, body
 {
     float: right;
     margin: 40px 50px 0px 0px;
+}
+
+#forwardBack
+{
+    float: right;
+    margin: 60px 50px 0px 0px;
 }
 
 
@@ -280,6 +305,43 @@ html, body
     /*background: white;  */
     }
 
+#contentBoxBrandCatalog .corner_ne
+{ width: 21px;
+    height: 24px;
+    position: absolute; /*z-index: 2;*/
+    top: 0px;
+    right: 0px;
+    background: url('./img/corner_ne.png') no-repeat;
+    background-position: right top;}
+    
+    
+#contentBoxBrandCatalog .corner_nw
+{ width: 21px;
+    height: 29px;
+    position: absolute; /*z-index: 2;*/
+    top: 0px;
+    left: 0px;
+    background: url('./img/corner_nw.png') no-repeat;
+    background-position: left top;}
+    
+    #contentBoxBrandCatalog .corner_sw
+{ width: 26px;
+    height: 26px;
+    position: absolute; /*z-index: 2;*/
+    bottom: 0px;
+    left: 0px;
+    background: url('./img/corner_sw.png') no-repeat;
+    background-position: left bottom;}
+    
+    #contentBoxBrandCatalog .corner_se
+{ width: 24px;
+    height: 25px;
+    position: absolute; /*z-index: 2;*/
+    bottom: 0px;
+    right: 0px;
+    background: url('./img/corner_se.png') no-repeat;
+    background-position: right bottom;}
+    
 #contentBox
 {
     margin-top: 20px;

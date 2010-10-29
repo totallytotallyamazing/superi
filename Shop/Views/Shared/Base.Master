@@ -91,7 +91,7 @@
                             </div>
                         </div>
                         <div id="brand">
-                            <a href="#" class="txtBrand">Брендовые каталоги</a>
+                            <a href="/BrandCatalog/Home/Index" class="txtBrand">Брендовые каталоги</a>
                         </div>
                         <div id="brandBanners">
                             <div class="banners">

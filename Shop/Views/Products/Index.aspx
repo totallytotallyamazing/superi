@@ -30,21 +30,10 @@
     <link rel="Stylesheet" href="/Content/catalog.css" />
     <link href="/Content/LislelliStyles/products.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript">
-        function bindFancy() {
-            $(".productFancy").fancybox({
-                titlePosition: "over",
-                hideOnOverlayClick: false,
-                autoScale: false,
-                onComplete: function () {
-                    window.setTimeout($.fancybox.resize, 200);
-                    bindFancy();
-                }
-            });
-        
-        }
+
 
         $(function () {
-            bindFancy();
+            ProductClientExtensions.bindFancy();
         })    
     </script>
 </asp:Content>

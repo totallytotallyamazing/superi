@@ -12,12 +12,6 @@
             .OrderBy(c => c.SortOrder).ToList();
     }
 %>
-<%--<div id="bubGift">
-    <p class="ot3">
-        Выберите
-        <br />
-        подарок...</p>
-</div>--%>
 <div id="leftMenu">
 <%      string[] listPages = { "index", "search", "tags" };
         foreach (var item in categories)
@@ -26,6 +20,7 @@
             string actionLink = "";
             string extraClass = "";
             bool isProductList = listPages.Contains(ViewContext.RouteData.Values["action"].ToString().ToLower());
+            isProductList = isProductList & ViewContext.RouteData.Values["controller"].ToString().ToLower() == "products";
             if (item.Id == WebSession.CurrentCategory )
             {
                 if (isProductList && ViewData["brandId"] == null)

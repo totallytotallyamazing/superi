@@ -26,6 +26,7 @@
     <script type="text/javascript" src="/Scripts/jquery.js"></script>
     <%= Ajax.DynamicCssInclude("/Content/fancybox/jquery.fancybox.css") %>
     <%= Ajax.ScriptInclude("/Scripts/jquery.fancybox.js")%>
+    <%= Ajax.ScriptInclude("/Scripts/PageScripts.js")%>
     <script type="text/javascript">
         $(function () {
             $("#feedbackForm, .editContentLink").fancybox(

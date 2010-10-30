@@ -265,6 +265,7 @@
     <Content Include="Scripts\MicrosoftAjax.js" />
     <Content Include="Scripts\MicrosoftMvcAjax.js" />
     <Content Include="Scripts\MicrosoftMvcValidation.js" />
+    <Content Include="Scripts\PageScripts.js" />
     <Content Include="Stub.jpg" />
     <Content Include="Views\Products\ProductStaticAttributes.ascx" />
     <Content Include="Views\Products\ShowModal.ascx" />
@@ -325,7 +326,6 @@
     <Content Include="Content\fancybox\fancy_title_right.png" />
     <Content Include="Content\fancybox\jquery.fancybox.css" />
     <Content Include="Scripts\jquery.mask.js" />
-    <Content Include="Scripts\Start.js" />
     <Content Include="Views\Brands\Index.aspx" />
     <Content Include="Views\Products\CategoriesAdmin.ascx" />
     <Content Include="Views\Products\Index.aspx" />

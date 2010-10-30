@@ -5,5 +5,7 @@
     string alt = (mainImage != null) ? mainImage.Product.Name : "";
 %>
 <%if (mainImage != null){ %>
-    <% Html.RenderAction("ShowMain", new { controller = "Graphics", area = "", id = mainImage.ImageSource, alt = mainImage.Product.Name }); %>
+    <a class="mi">
+        <% Html.RenderAction("ShowMain", new { controller = "Graphics", area = "", id = mainImage.ImageSource, alt = mainImage.Product.Name }); %>
+    </a>
 <%} %>

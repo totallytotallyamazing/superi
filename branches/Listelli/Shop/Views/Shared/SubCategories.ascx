@@ -11,6 +11,7 @@
         string actionLink = Html.ActionLink(item.Name, "Index", "Products", new { id = item.Id, area = "" }, new { @class = "txtSubMenuItem" }).ToString();
         string currentAction = ViewContext.RouteData.Values["action"].ToString().ToLower();
         bool isProductList = listPages.Contains(currentAction);
+        isProductList = isProductList & ViewContext.RouteData.Values["controller"].ToString().ToLower() == "products";
         if (item.Id == WebSession.CurrentCategory)
         {
             extraClass = " current";

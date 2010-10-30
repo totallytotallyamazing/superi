@@ -24,7 +24,7 @@
             {
                %>
                
-        <%= Html.ActionLink("[IMAGE]", "Show", new { id = Model.Id }, new { @class = "productFancy", title = title }).ToString()
+        <%= productClickLink.Replace("titleLink ", string.Empty)
             .Replace("[IMAGE]",
                         Html.CachedImage("~/Content/ProductImages", img.ImageSource, "thumbnail2", Model.Name)) + "<br />"%>
         <%}

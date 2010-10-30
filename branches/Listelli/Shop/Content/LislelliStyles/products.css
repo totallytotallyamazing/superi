@@ -54,7 +54,7 @@
   
   #similarItemsBox .itemBox{float: left; margin-right: 22px;}
   #similarItemsBox .titleLink { color: #3399ff; font-size: 12px;}
-  #similarItemsBox .similarImg {width: 160px; height: 107px;}
+  #similarItemsBox .similarImg {width: 160px;}
   #similarItemsBox .similarDescription {width: 160px;}
   
   #similarItemsBox .similarDescription {line-height: 12px;}

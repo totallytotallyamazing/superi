@@ -6,9 +6,6 @@
 
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentTitle" runat="server">
  <div id="contName">
-               <%-- <div id="pagePic">
-                    <img src="../../Content/UnMomentoStyles/img/bear.gif" alt="Медведь" />     
-                </div>    --%>        
                 <div id="pageName">
                     <p class="txtPageName"><%= ViewData["title"] %></p>            
                 </div>
@@ -33,8 +30,21 @@
     <link rel="Stylesheet" href="/Content/catalog.css" />
     <link href="/Content/LislelliStyles/products.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript">
+        function bindFancy() {
+            $(".productFancy").fancybox({
+                titlePosition: "over",
+                hideOnOverlayClick: false,
+                autoScale: false,
+                onComplete: function () {
+                    window.setTimeout($.fancybox.resize, 200);
+                    bindFancy();
+                }
+            });
+        
+        }
+
         $(function () {
-            $(".productFancy").fancybox({ titlePosition: "over", hideOnOverlayClick: false });
+            bindFancy();
         })    
     </script>
 </asp:Content>

@@ -17,7 +17,7 @@ namespace Shop.Areas.BrandCatalog
             context.MapRoute(
                 "BrandCatalog_default",
                 "BrandCatalog/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
+                new { controller = "Home",  action = "Index", id = UrlParameter.Optional }
             );
         }
     }

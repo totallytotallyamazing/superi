@@ -592,7 +592,7 @@ html, body
 #searchField
 {
     bottom: 2px;
-    position: relative;
+    display: block;
     height: 17px;
     width: 120px; /*float: left;*/
     padding: 0px 0px 0px 5px;

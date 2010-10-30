@@ -6,7 +6,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <img src="../../../../Content/LislelliStyles/img/bkgMainContentBrandCatalog.gif" />
+    <img src="/Content/LislelliStyles/img/bkgMainContentBrandCatalog.gif" />
 
 </asp:Content>
 

@@ -29,7 +29,7 @@
   
   
   .productModal {margin-top: 50px; width: 600px;}
-  #imgProduct {float: left; width: 365px;}
+  #imgProduct {float: left; width: 365px; text-align:center;}
  
   #productDescription {width: 210px; margin-left: 375px;}
   
@@ -46,13 +46,13 @@
   #imagePreviews { margin: 10px 0px 0px 14px; width: 262px; }
   .imageItem {float:left; margin-left: 12px; /*width: 110px;*/} 
   
-  #similarItems {margin-top: 70px; background:url(../../Content/LislelliStyles/img/separator.png) no-repeat; width: 570px; height: 20px; background-position: bottom;}
+  #similarItems { clear:both; margin-top: 70px; background:url(../../Content/LislelliStyles/img/separator.png) no-repeat; width: 570px; height: 20px; background-position: bottom;}
   
   #similarItems .txtSimilarItems {font-size: 15px; color: #666666; font-style: italic;} 
   
   #similarItemsBox { margin: 20px 0px 20px 20px;}
   
-  #similarItemsBox .itemBox{float: left; margin-right: 22px;}
+  #similarItemsBox .itemBox{float: left; margin-right: 22px; position:relative;}
   #similarItemsBox .titleLink { color: #3399ff; font-size: 12px;}
   #similarItemsBox .similarImg {width: 160px;}
   #similarItemsBox .similarDescription {width: 160px;}

@@ -9,8 +9,7 @@
     </div>
     <%} %>
     <div id="imgProduct">
-        <% Shop.Models.ProductImage img = Model.ProductImages.Where(m => m.Default).DefaultIfEmpty(new Shop.Models.ProductImage { Product = new Shop.Models.Product { Name = Model.Name } }).First();
-        %>
+        <% Shop.Models.ProductImage img = Model.ProductImages.Where(m => m.Default).DefaultIfEmpty(new Shop.Models.ProductImage { Product = new Shop.Models.Product { Name = Model.Name } }).First();%>
         <% Html.RenderPartial("ProductImage", img); %>
         <% if (Model.IsNew)
            { %>
@@ -34,39 +33,5 @@
                     class="linkDetails">отправив быстрый вопрос</a></p>
         </div>
     </div>
-    <div id="similarItems">
-    <p class="txtSimilarItems">Похожие товары:</p>
-    </div>
-    <div id ="similarItemsBox">
-        <div class="itemBox"> 
-            <a href='#' class="titleLink"><b>Terhurne</b></a> 
-            <div class="similarImg">
-                <img src="../../Content/LislelliStyles/img/imgBeech.gif" alt="Сцуко" />
-            </div>
-            <a href='#' class="titleLink"><b>Европейский клён</b></a> 
-            <div class="similarDescription">
-                <% Html.RenderPartial("ProductStaticAttributes", Model.ProductAttributeStaticValues); %>
-            </div>
-        </div>
-        <div class="itemBox"> 
-            <a href='#' class="titleLink"><b>Terhurne</b></a> 
-            <div class="similarImg">
-                <img src="../../Content/LislelliStyles/img/imgBeech.gif" alt="Сцуко" />
-            </div>
-            <a href='#' class="titleLink"><b>Европейский клён</b></a> 
-            <div class="similarDescription">
-                <% Html.RenderPartial("ProductStaticAttributes", Model.ProductAttributeStaticValues); %>
-            </div>
-        </div>
-        <div class="itemBox"> 
-            <a href='#' class="titleLink"><b>Terhurne</b></a> 
-            <div class="similarImg">
-                <img src="../../Content/LislelliStyles/img/imgBeech.gif" alt="Сцуко" />
-            </div>
-            <a href='#' class="titleLink"><b>Европейский клён</b></a> 
-            <div class="similarDescription">
-                <% Html.RenderPartial("ProductStaticAttributes", Model.ProductAttributeStaticValues); %>
-            </div>
-        </div>
-    </div>
+    <% Html.RenderPartial("SimilarProducts", Model.Tags.SelectMany(t=>t.Products).Where(p=>p.Id != Model.Id)); %>
 </div>

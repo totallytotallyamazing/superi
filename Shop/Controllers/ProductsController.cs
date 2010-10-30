@@ -33,6 +33,7 @@ namespace Shop.Controllers
                     ViewData["showAdminLinks"] = false;
                     products = category.Categories.SelectMany(c => c.Products)
                         .Where(p => (!brandId.HasValue || p.Brand.Id == brandId.Value))
+                        .Where(p=>p.ShowInRoot)
                         .Union(category.Products)
                         .OrderBy(p => p.SortOrder)
                         .ToList();
@@ -42,6 +43,7 @@ namespace Shop.Controllers
                     products = context.Products
                         .Include("Brand")
                         .Include("ProductAttributeValues.ProductAttribute")
+                        .Include("ProductAttributeStaticValues.ProductAttribute")
                         .Include("ProductImages")
                         .Where(p => p.Categories.Any(c=>c.Id == id))
                         .Where(p => (!brandId.HasValue || p.Brand.Id == brandId.Value))
@@ -53,6 +55,7 @@ namespace Shop.Controllers
             }
         }
 
+        [OutputCache(NoStore=true, Duration=1, VaryByParam="*")]
         public ActionResult Show(int id)
         {
             HttpContext.Items["IsProductView"] = true;
@@ -63,6 +66,9 @@ namespace Shop.Controllers
                     .Include("ProductAttributeValues")
                     .Include("ProductAttributeValues.ProductAttribute")
                     .Include("ProductAttributeStaticValues.ProductAttribute")
+                    .Include("Tags.Products.ProductImages")
+                    .Include("Tags.Products.ProductAttributeStaticValues.ProductAttribute")
+                    .Include("Tags.Products.Categories")
                     .Include("Brand")
                     .Where(p => p.Id == id).First();
                 ViewData["keywords"] = product.SeoKeywords;

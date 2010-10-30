@@ -1159,7 +1159,8 @@ namespace Shop.Models
         /// <param name="isNew">Исходное значение свойства IsNew.</param>
         /// <param name="sortOrder">Исходное значение свойства SortOrder.</param>
         /// <param name="published">Исходное значение свойства Published.</param>
-        public static Product CreateProduct(global::System.Int32 id, global::System.String name, global::System.Single price, global::System.Boolean isNew, global::System.Int32 sortOrder, global::System.Boolean published)
+        /// <param name="showInRoot">Исходное значение свойства ShowInRoot.</param>
+        public static Product CreateProduct(global::System.Int32 id, global::System.String name, global::System.Single price, global::System.Boolean isNew, global::System.Int32 sortOrder, global::System.Boolean published, global::System.Boolean showInRoot)
         {
             Product product = new Product();
             product.Id = id;
@@ -1168,6 +1169,7 @@ namespace Shop.Models
             product.IsNew = isNew;
             product.SortOrder = sortOrder;
             product.Published = published;
+            product.ShowInRoot = showInRoot;
             return product;
         }
 
@@ -1488,6 +1490,30 @@ namespace Shop.Models
         private global::System.Boolean _Published;
         partial void OnPublishedChanging(global::System.Boolean value);
         partial void OnPublishedChanged();
+    
+        /// <summary>
+        /// Нет доступной документации по метаданным.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean ShowInRoot
+        {
+            get
+            {
+                return _ShowInRoot;
+            }
+            set
+            {
+                OnShowInRootChanging(value);
+                ReportPropertyChanging("ShowInRoot");
+                _ShowInRoot = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ShowInRoot");
+                OnShowInRootChanged();
+            }
+        }
+        private global::System.Boolean _ShowInRoot;
+        partial void OnShowInRootChanging(global::System.Boolean value);
+        partial void OnShowInRootChanged();
 
         #endregion
     

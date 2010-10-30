@@ -195,6 +195,7 @@
     <Content Include="Content\LislelliStyles\img\bkgMainContentRightBottom.png" />
     <Content Include="Content\LislelliStyles\img\bkgMainContentRightTop.png" />
     <Content Include="Content\LislelliStyles\img\bubbleNew.png" />
+    <Content Include="Content\LislelliStyles\img\cbBrand.gif" />
     <Content Include="Content\LislelliStyles\img\corner_ne.png" />
     <Content Include="Content\LislelliStyles\img\corner_nw.png" />
     <Content Include="Content\LislelliStyles\img\corner_se.png" />

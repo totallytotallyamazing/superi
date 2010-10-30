@@ -54,7 +54,7 @@ html, body
     font-family: 'PT Sans' , arial, serif;
 }
 
-.mainPhone, .mainAdress, .footerText, .searchTitle, .txtLeftMenu, .txtPageName, .txtSubMenuItem, .subMenuItem.current, .txtPager, .txtBubbleNew, .txtBrand, .txtSortBy, .txtSortByTitle, .txtSortByCurrent
+.mainPhone, .mainAdress, .footerText, .searchTitle, .txtLeftMenu, .txtPageName, .txtSubMenuItem, .subMenuItem.current, .txtPager, .txtBubbleNew, .txtBrand, .txtSortBy, .txtSortByTitle, .txtSortByCurrent, .txtDescription
 {
     font-family: Arial, Helvetica, sans-serif;
 }
@@ -80,9 +80,10 @@ html, body
 {
     /* position: relative;     top: 29px;     left: 20px;*/
     margin: 40px 0px 0px 50px;
-    width: 84px;
+    width: 120px;
     height: 70px;
     float: left;
+    border-right: 4px solid #999999;
     
 }
 #logoBoxBrandCatalog .pipec{text-align: center; width: 84px;}
@@ -115,12 +116,34 @@ html, body
 
 #logoBrandCatalog
 {
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 2px;
+    /*margin-right: auto;*/
     width: 84px;
     height: 37px;
     background: url('./img/logoBrandCatalog.png') no-repeat;
+    
 }
+
+#cbBrandBox {float: left; margin: 55px 0px 0px 20px; }
+#cbBrandBox, #topMenu .txtLeftMenu {font-size: 10px; font-weight: bold; color: #999999;}
+#cbBrand 
+{   margin: 3px 0px 0px 10px;
+    width: 153px;
+    height: 19px;
+    background: url('./img/cbBrand.gif') no-repeat;}
+
+#topMenu {float: left; margin: 55px 0px 0px 50px; }
+#topMenu .menu
+{
+    /*width: 100px;*/ /*display: inline;*/
+    height: 16px;
+    float: left;
+    margin: 3px 0px 0px 15px;
+    text-align: center;
+}
+
+#topMenu .txtSubMenuItem {color: White; font-size: 13px;}
+#topMenu .current {font-weight: bold;}
 
 #toperBrandCatalog
 {
@@ -192,6 +215,7 @@ html, body
 #titleBoxBrandCatalog {margin: 20px 0px 40px 150px;}
 #titleBoxBrandCatalog .txtPageName
 { font-size: 22px; color: #ffffff;}
+#titleBoxBrandCatalog .txtDescription{font-size: 12px; color: #cccccc; font-style: italic;}
 
 #footer
 {

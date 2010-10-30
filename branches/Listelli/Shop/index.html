@@ -6,18 +6,21 @@
     </title>
     <style type="text/css">
         *{padding:0; margin:0; font-family:Arial;}
+        html, body, #main{height:100%;}
         #main
         {
-            width:478px; height:418px;
-            position:relative; margin:120px auto 0;      
-            background: transparent url(stub.jpg) no-repeat 50% 0    
+            width:478px; min-height:418px;
+            position:relative; margin:0 auto;      
+            bottom:0;
+            background: transparent url(stub.jpg) no-repeat 50% 80%;    
         }
         #mbrand
         {
-            width:auto;        
+            width:100%;        
             text-align:center;
-            padding-top:400px;
-            font-size:12pt;
+            position:absolute;
+            bottom:5%;
+            font-size:11pt;
         }
     </style>
 </head>

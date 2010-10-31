@@ -91,7 +91,7 @@ a.languageSwitch.en-US{background-position:52px -22px;}
 #leftMenu a.month {font-size:13px; font-weight:normal; color:Black; text-decoration:underline;}
 #leftMenu a.month.current{text-decoration:none; color:Black;}
 #leftMenu .broadcast{ padding:5px 0 5px 5px;}
-#leftMenu .broadcast div{height:5px; width:10px;}
+#leftMenu .broadcast div{height:25px; width:10px;}
 #leftMenu .broadcast, #leftMenu .broadcast a{font-size:10px; font-weight:bold; color:Black;}
 
 

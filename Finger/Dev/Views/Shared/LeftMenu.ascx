@@ -135,14 +135,19 @@
                         <br />
                         <%if(broadcast){ %>
                             <div class="broadcast">
-                                <%foreach (Article item in monthArticles[year + "-" + month])
-                                  {%>
+                                <%
+                                    bool first = true;
+                                  foreach (Article item in monthArticles[year + "-" + month])
+                                  {
+                                      if(!first){
+                                      %>
+                                    <div>
+                                    </div>
+                                    <%} first = false; %>
                                     <%= item.Title %><br />
                                     <a href="/<%= currentCulture %>/Home/Broadcast/<%= item.Name %>">
                                         <%= item.SubTitle %>
                                     </a>
-                                    <div>
-                                    </div>
                                 <%} %>
                             </div>
                         <%} %>

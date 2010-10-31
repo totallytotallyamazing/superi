@@ -119,8 +119,8 @@ namespace Shop.Areas.Admin.Controllers
                 TryUpdateModel(product,
                     new string[] 
                     { 
-                        "Name", "OldPrice", "PartNumber", "SeoDescription", "SeoKeywords", "ShortDescription",
-                        "Description", "IsNew", "Price", "SortOrder", "Color", "Published", "IsSpecialOffer", 
+                        "Name", "PartNumber", "SeoDescription", "SeoKeywords", /*"ShortDescription",
+                        "Description", */"IsNew", "SortOrder", "Color", "Published", "IsSpecialOffer", 
                         "PersonalExperience", "PersonalExperienceSet"
                     },
                     form.ToValueProvider());

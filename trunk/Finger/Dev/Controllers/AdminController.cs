@@ -73,7 +73,7 @@ namespace Dev.Controllers
             {
                 foreach (string key in articleTranslations.Keys)
                 {
-                    articleTranslations[key].Name = TextHelper.Transliterate(articleTranslations[key].Title);
+                    articleTranslations[key].Name = TextHelper.Transliterate(articleTranslations["ru-RU"].Title);
                     articleTranslations[key].Date = DateTime.Parse(date, CultureInfo.GetCultureInfo("ru-RU"));
                     articleTranslations[key].Type = (int)type;
                     if (articleTranslations[key].Id > 0)

@@ -36,7 +36,7 @@ namespace Shop.Models
         public string SeoDescription { get; set; }
 
         [DisplayName("Цена")]
-        [Required(ErrorMessage = "*")]
+//        [Required(ErrorMessage = "*")]
         public float Price { get; set; }
 
         [DisplayName("Старая цена")]
@@ -51,10 +51,15 @@ namespace Shop.Models
 
         [DisplayName("Номер по порядку")]
         [RegularExpression(@"\d+", ErrorMessage = "Введите число")]
+        [Required(ErrorMessage = "*")]
         public int SortOrder { get; set; }
 
         [DisplayName("Показывать на сайте")]
         public bool Published { get; set; }
+
+        [DisplayName("Включить товар в афиши")]
+        [DefaultValue(true)]
+        public bool ShowInRoot { get; set; }
     }
 
 }

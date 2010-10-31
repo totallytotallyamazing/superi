@@ -172,6 +172,13 @@
     <Content Include="Areas\BrandCatalog\Views\Brands\Index.aspx" />
     <Content Include="Areas\BrandCatalog\Views\Home\Index.aspx" />
     <Content Include="bin\Elmah.dll" />
+    <Content Include="Content\AdminStyles\img\leftSectionCorner.jpg" />
+    <Content Include="Content\AdminStyles\img\leftSectionFooter.jpg" />
+    <Content Include="Content\AdminStyles\img\rightSectionCorner.jpg" />
+    <Content Include="Content\AdminStyles\img\rightSectionFooter.jpg" />
+    <Content Include="Content\AdminStyles\img\sectionBottom.jpg" />
+    <Content Include="Content\AdminStyles\img\sectionLeft.jpg" />
+    <Content Include="Content\AdminStyles\img\sectionRight.jpg" />
     <Content Include="Content\fancybox\fancybox_Listelli_close.png" />
     <Content Include="Content\fancybox\fancy_Listelli_e.png" />
     <Content Include="Content\fancybox\fancy_Listelli_ne.png" />

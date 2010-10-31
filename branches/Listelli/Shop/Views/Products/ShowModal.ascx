@@ -1,4 +1,8 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<Shop.Models.Product>" %>
+
+<%--<div class="bkgLeftTop">
+  
+</div>--%>
 <div class="productModal">
     <% if (Roles.IsUserInRole("Administrators"))
        { %>

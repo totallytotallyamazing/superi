@@ -214,7 +214,7 @@ html, body
     float: left;
 }
 
-#titleBoxBrandCatalog {margin: 20px 0px 40px 150px;}
+#titleBoxBrandCatalog {margin: 25px 0px 25px 150px;}
 #titleBoxBrandCatalog .txtPageName
 { font-size: 22px; color: #ffffff;}
 #titleBoxBrandCatalog .txtDescription{font-size: 12px; color: #cccccc; font-style: italic;}
@@ -319,6 +319,8 @@ html, body
     font-weight: 900;
 }
 
+#tmp {width: 100%; text-align: center;}
+
 #contentBoxBrandCatalog
 {
     margin-top: 20px;
@@ -326,9 +328,11 @@ html, body
     margin-left: auto;
     margin-right: auto;
     z-index: 1;
-    width: 1007px;
-    height: 650px;
+    /*width: 1007px;
+    height: 650px;*/
     /*background: white;  */
+    
+    display: inline-block;
     }
 
 #contentBoxBrandCatalog .corner_ne
@@ -354,8 +358,8 @@ html, body
 { width: 26px;
     height: 26px;
     position: absolute; /*z-index: 2;*/
-    bottom: 0px;
-    left: 0px;
+    bottom: 4px;
+    left: -1px;
     background: url('./img/corner_sw.png') no-repeat;
     background-position: left bottom;}
     
@@ -363,8 +367,8 @@ html, body
 { width: 24px;
     height: 25px;
     position: absolute; /*z-index: 2;*/
-    bottom: 0px;
-    right: 0px;
+    bottom: 4px;
+    right: -1px;
     background: url('./img/corner_se.png') no-repeat;
     background-position: right bottom;}
     

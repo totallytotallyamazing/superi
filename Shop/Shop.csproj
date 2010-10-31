@@ -183,8 +183,10 @@
     <Content Include="Content\fancybox\fancy_Listelli_e.png" />
     <Content Include="Content\fancybox\fancy_Listelli_ne.png" />
     <Content Include="Content\fancybox\fancy_Listelli_nw.png" />
+    <Content Include="Content\fancybox\fancy_Listelli_nw_bkg.png" />
     <Content Include="Content\fancybox\fancy_Listelli_s.png" />
     <Content Include="Content\fancybox\fancy_Listelli_se.png" />
+    <Content Include="Content\fancybox\fancy_Listelli_se_bkg.png" />
     <Content Include="Content\fancybox\fancy_Listelli_sw.png" />
     <Content Include="Content\fancybox\fancy_Listelli_w.png" />
     <Content Include="Content\LislelliStyles\img\bannerDecor.png" />

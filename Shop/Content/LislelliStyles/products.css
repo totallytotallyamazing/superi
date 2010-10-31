@@ -28,7 +28,7 @@
   
   
   
-  .productModal {margin-top: 50px; width: 600px;}
+  .productModal {margin-top: 50px; width: 600px; position: relative; z-index: 1250;}
   #imgProduct {float: left; width: 365px; text-align:center;}
  
   #productDescription {width: 210px; margin-left: 375px;}
@@ -50,13 +50,15 @@
   
   #similarItems .txtSimilarItems {font-size: 15px; color: #666666; font-style: italic;} 
   
-  #similarItemsBox { margin: 20px 0px 20px 20px;}
+  #similarItemsBox { margin: 20px 0px 20px 20px; /*display: inline-block;*/ }
   
-  #similarItemsBox .itemBox{float: left; margin-right: 22px; position:relative;}
+  #similarItemsBox .itemBox{float: left; margin-right: 22px;}
+  
+  .itemBox .similarImg {/*width: 160px; */ position: relative;  margin-top: 5px;}  
+  .itemBox .similarDescription {line-height: 12px; position: absolute; /*z-index:1250;*/ /*left: 0px; bottom: -90px*/}
+  
   #similarItemsBox .titleLink { color: #3399ff; font-size: 12px;}
-  #similarItemsBox .similarImg {width: 160px;}
-  #similarItemsBox .similarDescription {width: 160px;}
-  
-  #similarItemsBox .similarDescription {line-height: 12px;}
   #similarItemsBox .attributeLabel {color: #999999; font-size: 11px;}
   #similarItemsBox .attributeValue {color: Black; font-size: 11px;}
+  
+  #similarItemsBox .title {padding-bottom: 5px;}

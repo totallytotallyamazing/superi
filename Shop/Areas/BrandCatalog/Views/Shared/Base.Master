@@ -52,20 +52,25 @@
                         <%--Logo--%>
                     </div>
                     <div class="pipec">
-                    <p class="slogan">
-                        г&nbsp;а&nbsp;л&nbsp;е&nbsp;р&nbsp;е&nbsp;я <br/> б&nbsp;р&nbsp;е&nbsp;н&nbsp;д&nbsp;о&nbsp;в</p>
-                        </div>
+                        <p class="slogan">
+                            г&nbsp;а&nbsp;л&nbsp;е&nbsp;р&nbsp;е&nbsp;я
+                            <br />
+                            б&nbsp;р&nbsp;е&nbsp;н&nbsp;д&nbsp;о&nbsp;в</p>
+                    </div>
                 </div>
                 <div id="cbBrandBox">
-                    <p class="txtLeftMenu">Группа каталогов:</p>
+                    <p class="txtLeftMenu">
+                        Группа каталогов:</p>
                     <div id="cbBrand">
-                         <%--выпадалка--%>
+                        <%--выпадалка--%>
                     </div>
                 </div>
                 <div id="topMenu">
-                    <p class="txtLeftMenu">Бренды:</p>
+                    <p class="txtLeftMenu">
+                        Бренды:</p>
                     <div class="menu">
-                        <p class="current txtSubMenuItem">Kreoo</p>
+                        <p class="current txtSubMenuItem">
+                            Kreoo</p>
                     </div>
                     <div class="menu">
                         <a href='#' class="txtSubMenuItem">Foglie D’oro</a>
@@ -82,23 +87,25 @@
                 <asp:ContentPlaceHolder runat="server" ID="ContentTitle">
                 </asp:ContentPlaceHolder>
             </div>
+            <div id="tmp">
             <div id="contentBoxBrandCatalog">
-            <div class="corner_ne">
-            <%--corner--%>
-            </div>
-            <div class="corner_nw">
-            <%--corner--%>
-            </div>
-            <div class="corner_se">
-            <%--corner--%>
-            </div>
-            <div class="corner_sw">
-            <%--corner--%>
-            </div>
+                <div class="corner_ne">
+                    <%--corner--%>
+                </div>
+                <div class="corner_nw">
+                    <%--corner--%>
+                </div>
+                <div class="corner_se">
+                    <%--corner--%>
+                </div>
+                <div class="corner_sw">
+                    <%--corner--%>
+                </div>
                 <asp:ContentPlaceHolder ID="MainContent" runat="server">
                 </asp:ContentPlaceHolder>
                 <asp:ContentPlaceHolder runat="server" ID="footer">
                 </asp:ContentPlaceHolder>
+            </div>
             </div>
         </div>
         <div id="footerBrandCatalog">

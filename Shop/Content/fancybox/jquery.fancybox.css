@@ -93,8 +93,18 @@
 	margin: 0;
 	outline: none;
 	overflow: hidden;
+	z-index: 1250;
 	
 }
+
+#fancybox-inner .bkgLeftTop { /*margin-left: 106px;*/ /*z-index: 2;*/
+    width: 291px;
+    height: 357px;
+    position: absolute;
+    background: url('/Content/LislelliStyles/img/bkgModalLeftTop.png') no-repeat;
+    background-position: right bottom;
+    top: 0px;
+    left: -31px; z-index: 1003;}
 
 #fancybox-hide-sel-frame {
 	position: absolute;
@@ -317,11 +327,14 @@
 #fancy-bg-se {
 	bottom: -31px;
 	right: -32px;
-	width: 32px;
-	height: 31px;
-	background-image: url('fancy_Listelli_se.png');
+	/*width: 32px;
+	height: 31px;*/
+	width: 165px;
+	height: 134px;
+	background-image: url('fancy_Listelli_se_bkg.png');
 	/*background-image: url('fancybox.png');
 	background-position: -40px -182px; */
+	z-index: 1200;
 }
 
 #fancy-bg-s {
@@ -356,11 +369,13 @@
 #fancy-bg-nw {
 	top: -47px;
 	left: -32px;
-	background-image: url('fancy_Listelli_nw.png');
-	width: 32px;
-	height: 47px;
+	background-image: url('fancy_Listelli_nw_bkg.png');
+	width: 293px;
+	height: 404px;
 	/*background-image: url('fancybox.png');*/
 	/*background-position: -40px -122px;*/
+	position: absolute;
+	z-index: 1100;
 	
 }
 

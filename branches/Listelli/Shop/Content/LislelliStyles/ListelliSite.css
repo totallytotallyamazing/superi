@@ -480,6 +480,7 @@ html, body
     padding-top: 20px;
     width: 215px;
     float: left;
+    position:relative;
 }
 
 #contentBox .sortingBox

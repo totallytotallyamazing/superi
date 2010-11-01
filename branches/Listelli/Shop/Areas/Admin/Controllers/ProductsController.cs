@@ -179,7 +179,7 @@ namespace Shop.Areas.Admin.Controllers
             return RedirectToAction("AddEdit", new { id = productId, cId = categoryId });
         }
 
-        public ActionResult DeleteImage(int productId, int imageId, int cId)
+        public ActionResult DeleteImage(int productId, int imageId, int? cId)
         {
             DeleteProductImage(productId, imageId);
             return RedirectToAction("AddEdit", new { id = productId, cId = cId });

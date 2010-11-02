@@ -333,6 +333,7 @@ html, body
     /*background: white;  */
     
     display: inline-block;
+    
     }
 
 #contentBoxBrandCatalog .corner_ne
@@ -764,3 +765,27 @@ html, body
 
 .productItem
 {}
+
+
+/*----------------Brands----------------*/
+
+#dock
+{
+    clear: both;
+position: relative;    
+top: 20px;
+}
+
+#dock .dock-container
+{
+ position: relative;
+ padding-left: 20px;
+ height: 110px;
+ top: -8px;   
+ }
+ 
+ #dock .dock-item
+ {
+ text-align: center;
+ text-decoration: none;    
+ }

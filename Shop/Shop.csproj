@@ -205,6 +205,7 @@
     <Content Include="Content\LislelliStyles\img\bkgMainContentRight.gif" />
     <Content Include="Content\LislelliStyles\img\bkgMainContentRightBottom.png" />
     <Content Include="Content\LislelliStyles\img\bkgMainContentRightTop.png" />
+    <Content Include="Content\LislelliStyles\img\BrandCatalogItem.png" />
     <Content Include="Content\LislelliStyles\img\bubbleNew.png" />
     <Content Include="Content\LislelliStyles\img\cbBrand.gif" />
     <Content Include="Content\LislelliStyles\img\corner_ne.png" />
@@ -213,6 +214,12 @@
     <Content Include="Content\LislelliStyles\img\corner_sw.png" />
     <Content Include="Content\LislelliStyles\img\currentBorder.png" />
     <Content Include="Content\LislelliStyles\img\designedBy.png" />
+    <Content Include="Content\LislelliStyles\img\dockItem1.gif" />
+    <Content Include="Content\LislelliStyles\img\dockItem2.gif" />
+    <Content Include="Content\LislelliStyles\img\dockItem3.gif" />
+    <Content Include="Content\LislelliStyles\img\dockItem4.gif" />
+    <Content Include="Content\LislelliStyles\img\dockItem5.gif" />
+    <Content Include="Content\LislelliStyles\img\dockItem6.gif" />
     <Content Include="Content\LislelliStyles\img\firstTab.gif" />
     <Content Include="Content\LislelliStyles\img\imgBeech.gif" />
     <Content Include="Content\LislelliStyles\img\imgBeechPrev.gif" />
@@ -229,6 +236,7 @@
     <Content Include="Content\LislelliStyles\img\separator.png" />
     <Content Include="Content\LislelliStyles\ListelliSite.css" />
     <Content Include="Content\LislelliStyles\products.css" />
+    <Content Include="Content\LislelliStyles\ie7.css" />
     <Content Include="Content\UnMomentoStyles\img\allBkg.gif" />
     <Content Include="Content\UnMomentoStyles\img\baner.gif" />
     <Content Include="Content\UnMomentoStyles\img\basket.gif" />

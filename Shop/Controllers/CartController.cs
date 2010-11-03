@@ -335,7 +335,11 @@ namespace Shop.Controllers
             {
                 context.PaymentTypes.MergeOption = System.Data.Objects.MergeOption.NoTracking;
                 context.DeliveryTypes.MergeOption = System.Data.Objects.MergeOption.NoTracking;
-                var result = context.DeliveryTypes.Where(dt => dt.Id == id).Select(dt => new { paymentTypes = dt.PaymentTypes, deliveryType = dt }).First();
+                var result = context.DeliveryTypes
+                    .Where(dt => dt.Id == id)
+                    //.OrderBy(dt => dt.SortOrder)
+                    .Select(dt => new { paymentTypes = dt.PaymentTypes, deliveryType = dt })
+                    .First();
                 List<PaymentType> paymentTypes = result.paymentTypes.ToList();
                 WebSession.DeliveryType = result.deliveryType;
                 return View(paymentTypes);

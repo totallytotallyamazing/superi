@@ -4,7 +4,9 @@
     <h2 class="cartPageTitle">Вид доставки:</h2>
     <div class="options">
         <% using(OrdersStorage context = new OrdersStorage()){
-               var types = context.DeliveryTypes;
+               context.DeliveryTypes.MergeOption = System.Data.Objects.MergeOption.NoTracking;
+               var types = context.DeliveryTypes.OrderBy(dt => dt.SortOrder)
+                   .Select(dt => new { Id = dt.Id, Name = dt.Name });
                bool first = true;
                foreach (var item in types)
                    

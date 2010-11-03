@@ -244,12 +244,14 @@ namespace Shop.Models
         /// <param name="disabled">Исходное значение свойства Disabled.</param>
         /// <param name="id">Исходное значение свойства Id.</param>
         /// <param name="name">Исходное значение свойства Name.</param>
-        public static DeliveryType CreateDeliveryType(global::System.Boolean disabled, global::System.Int32 id, global::System.String name)
+        /// <param name="sortOrder">Исходное значение свойства SortOrder.</param>
+        public static DeliveryType CreateDeliveryType(global::System.Boolean disabled, global::System.Int32 id, global::System.String name, global::System.Int32 sortOrder)
         {
             DeliveryType deliveryType = new DeliveryType();
             deliveryType.Disabled = disabled;
             deliveryType.Id = id;
             deliveryType.Name = name;
+            deliveryType.SortOrder = sortOrder;
             return deliveryType;
         }
 
@@ -354,6 +356,30 @@ namespace Shop.Models
         private Nullable<global::System.Single> _AdditionalFee;
         partial void OnAdditionalFeeChanging(Nullable<global::System.Single> value);
         partial void OnAdditionalFeeChanged();
+    
+        /// <summary>
+        /// Нет доступной документации по метаданным.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 SortOrder
+        {
+            get
+            {
+                return _SortOrder;
+            }
+            set
+            {
+                OnSortOrderChanging(value);
+                ReportPropertyChanging("SortOrder");
+                _SortOrder = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SortOrder");
+                OnSortOrderChanged();
+            }
+        }
+        private global::System.Int32 _SortOrder;
+        partial void OnSortOrderChanging(global::System.Int32 value);
+        partial void OnSortOrderChanged();
 
         #endregion
     
@@ -1463,13 +1489,15 @@ namespace Shop.Models
         /// <param name="id">Исходное значение свойства Id.</param>
         /// <param name="name">Исходное значение свойства Name.</param>
         /// <param name="hasDocument">Исходное значение свойства HasDocument.</param>
-        public static PaymentType CreatePaymentType(global::System.Boolean disabled, global::System.Int32 id, global::System.String name, global::System.Boolean hasDocument)
+        /// <param name="sortOrder">Исходное значение свойства SortOrder.</param>
+        public static PaymentType CreatePaymentType(global::System.Boolean disabled, global::System.Int32 id, global::System.String name, global::System.Boolean hasDocument, global::System.Int32 sortOrder)
         {
             PaymentType paymentType = new PaymentType();
             paymentType.Disabled = disabled;
             paymentType.Id = id;
             paymentType.Name = name;
             paymentType.HasDocument = hasDocument;
+            paymentType.SortOrder = sortOrder;
             return paymentType;
         }
 
@@ -1622,6 +1650,30 @@ namespace Shop.Models
         private global::System.Boolean _HasDocument;
         partial void OnHasDocumentChanging(global::System.Boolean value);
         partial void OnHasDocumentChanged();
+    
+        /// <summary>
+        /// Нет доступной документации по метаданным.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 SortOrder
+        {
+            get
+            {
+                return _SortOrder;
+            }
+            set
+            {
+                OnSortOrderChanging(value);
+                ReportPropertyChanging("SortOrder");
+                _SortOrder = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SortOrder");
+                OnSortOrderChanged();
+            }
+        }
+        private global::System.Int32 _SortOrder;
+        partial void OnSortOrderChanging(global::System.Int32 value);
+        partial void OnSortOrderChanged();
 
         #endregion
     

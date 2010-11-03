@@ -175,80 +175,8 @@
         
         </div>
     </div>
-    <%-- <div id="all">
-        <div id="top">
-            <div id="topRight">
-                <p class="ot1">
-                    (063) 211-85-34</p>
-                <p class="ot1">
-                    (044) 233-11-99</p>
-                <p class="ot2">
-                    <a id="feedbackForm" href="/Home/FeedbackForm" class="ot2 iframe">Задать быстрый вопрос</a>
-                </p>
-            </div>
-            <div id="topLeft">
-                <% Html.RenderPartial("MainMenu"); %>
-                <% Html.RenderPartial("CurrencyConverter"); %>
-            </div>
-            <div id="inRussian">
-                <p class="ot6 current">
-                    <b>По-русски</b></p>
-            </div>
-            <div id="inEnglish">
-                <a href="#" class="ot6"><b>In english</b></a>
-            </div>
-        </div>
-        <div id="ctrRight"> <% Html.RenderPartial("LogOnUserControl"); %>
-            
-            <div id="point_basket">
-                <!--point-->
-            </div>
-            <% Html.RenderAction("News", "Widgets", new { area = "" }); %>
-            <div id="pointNews">
-                <!--point-->
-            </div>
-            <div id="msgOfDay">
-                <p class="bt2">Сообщение дня</p>
-                <div id="baner">
-                    <img src="../../Content/UnMomentoStyles/img/baner.gif" alt="Подарки по низким ценам" />
-                </div>
-            </div>
-            <div id="point_baner">
-                <!--point-->
-            </div>
-        </div>
-        <div id="ctrLeft">
-            <% Html.RenderPartial("Categories"); %>
-            <% Html.RenderPartial("BottomCategories"); %>
-        </div>
-        <div id="mainBkg">
-            <div id="ctr">
-                <div class="top">
-                    <asp:ContentPlaceHolder runat="server" ID="ContentTitle">
-                    </asp:ContentPlaceHolder>
-                </div>
-                <div id="contentWrapper">
-                    <asp:ContentPlaceHolder ID="MainContent" runat="server">
-                    </asp:ContentPlaceHolder>
-                </div>
-                <div class="bottom">
-                    <asp:ContentPlaceHolder runat="server" ID="Footer">
-                    </asp:ContentPlaceHolder>
-                </div>
-            </div>
-            <div id="footer">
-                <div id="desBy">
-                    <p class="ot4">
-                        © 2010 Служба моментальной доставки цветов и подарков “<b>— Un momento!</b>”
-                        <br />
-                        Дизайн сайта — <a href="http://m-brand.com.ua" class="ot5"><b>Евгений Миллер</b> </a>
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>--%>
     <!-- Google Analytics code -->
-    <script type="text/javascript">
+<%--    <script type="text/javascript">
         var _gaq = _gaq || [];
         _gaq.push(['_setAccount', 'UA-18722609-1']);
         _gaq.push(['_trackPageview']);
@@ -258,6 +186,6 @@
             ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
             var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
         })();
-    </script>
+    </script>--%>
 </body>
 </html>

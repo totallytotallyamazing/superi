@@ -4,15 +4,15 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="shop_Orders.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.0" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="shop_Orders.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.0" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="shop_OrdersStoreContainer">
-          <EntitySet Name="DeliveryType" EntityType="shop_Orders.Store.DeliveryType" store:Type="Tables" Schema="gbua_x_baby_583" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Order" EntityType="shop_Orders.Store.Order" store:Type="Tables" Schema="gbua_x_baby_583" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="OrderItem" EntityType="shop_Orders.Store.OrderItem" store:Type="Tables" Schema="gbua_x_baby_583" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="PaymentProperty" EntityType="shop_Orders.Store.PaymentProperty" store:Type="Tables" Schema="gbua_x_baby_583" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="PaymentPropertyValue" EntityType="shop_Orders.Store.PaymentPropertyValue" store:Type="Tables" Schema="gbua_x_baby_583" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="PaymentType" EntityType="shop_Orders.Store.PaymentType" store:Type="Tables" Schema="gbua_x_baby_583" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="PaymentTypeAvailable" EntityType="shop_Orders.Store.PaymentTypeAvailable" store:Type="Tables" Schema="gbua_x_baby_583" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="DeliveryType" EntityType="shop_Orders.Store.DeliveryType" store:Type="Tables" Schema="gbua_x_baby_583" />
+          <EntitySet Name="Order" EntityType="shop_Orders.Store.Order" store:Type="Tables" Schema="gbua_x_baby_583" />
+          <EntitySet Name="OrderItem" EntityType="shop_Orders.Store.OrderItem" store:Type="Tables" Schema="gbua_x_baby_583" />
+          <EntitySet Name="PaymentProperty" EntityType="shop_Orders.Store.PaymentProperty" store:Type="Tables" Schema="gbua_x_baby_583" />
+          <EntitySet Name="PaymentPropertyValue" EntityType="shop_Orders.Store.PaymentPropertyValue" store:Type="Tables" Schema="gbua_x_baby_583" />
+          <EntitySet Name="PaymentType" EntityType="shop_Orders.Store.PaymentType" store:Type="Tables" Schema="gbua_x_baby_583" />
+          <EntitySet Name="PaymentTypeAvailable" EntityType="shop_Orders.Store.PaymentTypeAvailable" store:Type="Tables" Schema="gbua_x_baby_583" />
         </EntityContainer>
         <EntityType Name="DeliveryType">
           <Key>
@@ -22,6 +22,7 @@
           <Property Name="Disabled" Type="bit" Nullable="false" />
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="varchar" Nullable="false" MaxLength="500" />
+          <Property Name="SortOrder" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Order">
           <Key>
@@ -39,7 +40,7 @@
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="OrderDate" Type="datetime" />
           <Property Name="PaymentTypeId" Type="int" />
-          <Property Name="UniqueId" Type="varchar" MaxLength="32" />
+          <Property Name="UniqueId" Type="varchar" MaxLength="36" />
         </EntityType>
         <EntityType Name="OrderItem">
           <Key>
@@ -84,6 +85,7 @@
           <Property Name="HasDocument" Type="bit" />
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="varchar" Nullable="false" MaxLength="500" />
+          <Property Name="SortOrder" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="PaymentTypeAvailable">
           <Key>
@@ -170,7 +172,8 @@
           <Property Name="Name" Type="String" Nullable="false" />
           <NavigationProperty Name="Orders" Relationship="shop_Orders.DeliveryTypeOrder" FromRole="DeliveryType" ToRole="Order" />
           <NavigationProperty Name="PaymentTypes" Relationship="shop_Orders.DeliveryTypePaymentType" FromRole="DeliveryType" ToRole="PaymentType" />
-          <Property Name="AdditionalFee" Type="Single" Nullable="true" /></EntityType>
+          <Property Name="AdditionalFee" Type="Single" Nullable="true" />
+          <Property Type="Int32" Name="SortOrder" Nullable="false" /></EntityType>
         <EntityType Name="PaymentProperty">
           <Key>
             <PropertyRef Name="Id" /></Key>
@@ -198,7 +201,8 @@
           <NavigationProperty Name="PaymentProperties" Relationship="shop_Orders.PaymentTypePaymentProperty" FromRole="PaymentType" ToRole="PaymentProperty" />
           <Property Name="DocumentName" Type="String" Nullable="true" />
           <Property Name="DocumentCaption" Type="String" Nullable="true" />
-          <Property Name="HasDocument" Type="Boolean" Nullable="false" /></EntityType>
+          <Property Name="HasDocument" Type="Boolean" Nullable="false" />
+          <Property Type="Int32" Name="SortOrder" Nullable="false" /></EntityType>
         <Association Name="DeliveryTypeOrder">
           <End Type="shop_Orders.DeliveryType" Role="DeliveryType" Multiplicity="0..1" />
           <End Type="shop_Orders.Order" Role="Order" Multiplicity="*" /></Association>
@@ -263,6 +267,7 @@
           <EntitySetMapping Name="DeliveryTypes">
             <EntityTypeMapping TypeName="IsTypeOf(shop_Orders.DeliveryType)">
               <MappingFragment StoreEntitySet="DeliveryType">
+                <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
                 <ScalarProperty Name="AdditionalFee" ColumnName="AdditionalFee" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -282,6 +287,7 @@
           <EntitySetMapping Name="PaymentTypes">
             <EntityTypeMapping TypeName="IsTypeOf(shop_Orders.PaymentType)">
               <MappingFragment StoreEntitySet="PaymentType">
+                <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
                 <ScalarProperty Name="HasDocument" ColumnName="HasDocument" />
                 <ScalarProperty Name="DocumentCaption" ColumnName="DocumentCaption" />
                 <ScalarProperty Name="DocumentName" ColumnName="DocumentName" />
@@ -333,6 +339,8 @@
     <edmx:Options>
       <DesignerInfoPropertySet xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
       </DesignerInfoPropertySet>
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->

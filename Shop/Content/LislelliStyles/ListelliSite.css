@@ -217,7 +217,12 @@ html, body
 #titleBoxBrandCatalog {margin: 25px 0px 25px 150px;}
 #titleBoxBrandCatalog .txtPageName
 { font-size: 22px; color: #ffffff;}
-#titleBoxBrandCatalog .txtDescription{font-size: 12px; color: #cccccc; font-style: italic;}
+#titleBoxBrands .txtPageName
+{ font-size: 22px; color: #ffffff;}
+#titleBoxBrandCatalog, #titleBoxBrands .txtDescription{font-size: 12px; color: #cccccc; font-style: italic;}
+
+#titleBoxBrands {margin: 25px 0px 25px 220px;}
+
 
 #footer
 {
@@ -772,20 +777,34 @@ html, body
 #dock
 {
     clear: both;
-position: relative;    
-top: 20px;
+    position: relative;    
+    top: 20px;
 }
 
 #dock .dock-container
 {
- position: relative;
- padding-left: 20px;
- height: 110px;
- top: -8px;   
+    width: 800px; /*временно*/
+    position: relative;
+    /*padding-left: 185px;*/
+    margin-left: auto;
+    margin-right: auto;
+    height: 110px;
+    top: -8px;   
  }
+ 
+ .dock-container .leftArrow
+ {float: left; width: 36px;
+    height: 83px;
+    background: url('./img/leftArrow.png') no-repeat;}
+ 
+  .dock-container .rightArrow
+ {float: right; width: 38px;
+    height: 83px;
+    background: url('./img/rightArrow.png') no-repeat;} 
+ 
  
  #dock .dock-item
  {
- text-align: center;
- text-decoration: none;    
+    text-align: center;
+    text-decoration: none;    
  }

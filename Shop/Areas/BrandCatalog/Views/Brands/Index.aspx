@@ -14,11 +14,18 @@
 </asp:Content>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentTitle" runat="server">
-<div id="titleBoxBrandCatalog">
+<div id="titleBoxBrands">
 <p><span class="txtPageName">KREOO</span> &nbsp&nbsp&nbsp&nbsp&nbsp<span class="txtDescription">Нидерландская компания, владелец одной из крупнейших в мире торговых сетей по продаже мебели</span> </p>
 </div>
 <div id="dock">
     <div class="dock-container">
+    <div class="rightArrow">
+        <%--right arrow--%>
+    </div>
+
+    <div class="leftArrow">
+        <%--left arrow--%>
+    </div>
         <a href='#' class="dock-item">
             <img src="/Content/LislelliStyles/img/dockItem1.gif" alt="dockItem1" />
         </a>

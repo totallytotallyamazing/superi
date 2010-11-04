@@ -11,7 +11,6 @@
         <asp:ContentPlaceHolder runat="server" ID="TitleContent">
         </asp:ContentPlaceHolder>
     </title>
-    <%--<link rel="Stylesheet" href="/Content/UnMomentoStyles/UnMomentoSite.css" />--%>
     <link href="/Content/LislelliStyles/ListelliSite.css" rel="stylesheet" type="text/css" />
     <%--<link href="/Content/style.css" rel="stylesheet" type="text/css" />--%>
     <% if (Roles.IsUserInRole("Administrators"))

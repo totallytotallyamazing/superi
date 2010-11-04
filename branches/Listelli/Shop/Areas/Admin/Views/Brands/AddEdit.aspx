@@ -43,6 +43,10 @@
                 <%= Html.TextAreaFor(model => model.Description)%>
                 <%= Html.ValidationMessageFor(model => model.Description)%>
             </div>
+            <div>
+                <%= Html.CheckBoxFor(model => model.HasCatalogue)%>
+                <%= Html.LabelFor(model=>model.HasCatalogue) %>
+            </div>
             <div class="editor-label">
                 <%= Html.LabelFor(model => model.SeoDescription)%>
             </div>

@@ -1,5 +1,6 @@
 ﻿using System.Text;
 using System.Web.Mvc;
+using System.Web;
 
 namespace Dev.Mvc.Ajax
 {
@@ -7,7 +8,17 @@ namespace Dev.Mvc.Ajax
     {
         public static string ScriptInclude(this AjaxHelper helper, params string[] url)
         {
-            var tracker = new ResourceTracker(helper.ViewContext.HttpContext);
+            return ScriptInclude(helper.ViewContext.HttpContext, url);
+        }
+
+        public static string ScriptInclude(this HtmlHelper helper, params string[] url)
+        {
+            return ScriptInclude(helper.ViewContext.HttpContext, url);
+        }
+
+        private static string ScriptInclude(HttpContextBase context, params string[] url)
+        {
+            var tracker = new ResourceTracker(context);
 
             var sb = new StringBuilder();
             foreach (var item in url)
@@ -20,6 +31,7 @@ namespace Dev.Mvc.Ajax
                 }
             }
             return sb.ToString();
+           
         }
 
         public static string IncludeAjax(this AjaxHelper helper, string scriptFolder)

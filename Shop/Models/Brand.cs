@@ -31,5 +31,8 @@ namespace Shop.Models
 
         [DisplayName("Лого")]
         public string Logo { get; set; }
+
+        [DisplayName("Создать каталог")]
+        public bool HasCatalogue { get; set; }
     }
 }

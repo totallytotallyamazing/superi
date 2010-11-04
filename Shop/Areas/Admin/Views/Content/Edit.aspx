@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<Shop.Models.Content>" %>
-
+<%@ Import Namespace="Dev.Mvc.Ajax" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	<%= Model.Title %>
 </asp:Content>
@@ -13,6 +13,7 @@
     <div>
     <p>Текст:</p>
     <%= Html.TextAreaFor(m=>m.Text)  %>
+    <%= Ajax.CkEditor("Text", "null", "mySettings"); %>
     </div>
 
     <div>
@@ -29,13 +30,11 @@
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="includes" runat="server">
-    <script type="text/javascript" src="/Scripts/jquery.FCKEditor.js"></script>
-    
+    <script type="text/javascript" src="/Scripts/ck.settings.js"></script>
     <script type="text/javascript">
-            $(function() {
-                $.fck.config = { path: '<%= VirtualPathUtility.ToAbsolute("~/Controls/fckeditor/") %>', config: { SkinPath: "skins/office2003/", DefaultLanguage: "ru", AutoDetectLanguage: false, EnterMode: "br", ShiftEnterMode: "p", HtmlEncodeOutput: true} };
-                $("#Text").fck({ toolbar: "Common", height: 400 });
-            });
+        /// <reference path="ck.settings.js"
+        var mySettings = new ck();
+        settings.settings.extend({ toolbar: ck.toolbars.media });
     </script>
 </asp:Content>
 

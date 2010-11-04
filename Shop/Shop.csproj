@@ -172,6 +172,8 @@
     <Content Include="Areas\BrandCatalog\Views\Brands\Index.aspx" />
     <Content Include="Areas\BrandCatalog\Views\Home\Index.aspx" />
     <Content Include="bin\Elmah.dll" />
+    <Content Include="bin\FredCK.FCKeditorV2.dll" />
+    <Content Include="bin\WriteEncoder.dll" />
     <Content Include="Content\AdminStyles\img\leftSectionCorner.jpg" />
     <Content Include="Content\AdminStyles\img\leftSectionFooter.jpg" />
     <Content Include="Content\AdminStyles\img\rightSectionCorner.jpg" />
@@ -510,6 +512,7 @@
     <Folder Include="Content\BrandLogos\" />
     <Folder Include="Content\CategoryImages\" />
     <Folder Include="Content\ProductImages\" />
+    <Folder Include="Controls\" />
     <Folder Include="ImageCache\cartThumb\" />
     <Folder Include="ImageCache\mainView\" />
     <Folder Include="ImageCache\thumbnail1\" />

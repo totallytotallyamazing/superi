@@ -127,6 +127,7 @@
           <Property Name="SeoDescription" Type="varchar" MaxLength="500" />
           <Property Name="Description" Type="varchar" />
           <Property Name="Logo" Type="varchar" MaxLength="250" />
+          <Property Name="HasCatalogue" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="BrandDiscountMapping">
           <Key>
@@ -742,7 +743,8 @@
           <Property Name="SeoDescription" Type="String" Nullable="true" />
           <Property Name="SeoKeywords" Type="String" Nullable="true" />
           <NavigationProperty Name="Products" Relationship="shop_model.BrandProduct" FromRole="Brand" ToRole="Product" />
-          <NavigationProperty Name="Discount" Relationship="shop_model.BrandDiscountMapping" FromRole="Brand" ToRole="Discount" /></EntityType>
+          <NavigationProperty Name="Discount" Relationship="shop_model.BrandDiscountMapping" FromRole="Brand" ToRole="Discount" />
+          <Property Type="Boolean" Name="HasCatalogue" Nullable="false" /></EntityType>
         <Association Name="CategoryProductAttribute">
           <End Type="shop_model.Category" Role="Category" Multiplicity="*" />
           <End Type="shop_model.ProductAttribute" Role="ProductAttribute" Multiplicity="*" />
@@ -919,6 +921,7 @@
           <EntitySetMapping Name="Brands">
             <EntityTypeMapping TypeName="IsTypeOf(shop_model.Brand)">
               <MappingFragment StoreEntitySet="Brand">
+                <ScalarProperty Name="HasCatalogue" ColumnName="HasCatalogue" />
                 <ScalarProperty Name="SeoKeywords" ColumnName="SeoKeywords" />
                 <ScalarProperty Name="SeoDescription" ColumnName="SeoDescription" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -1077,14 +1080,14 @@
           <ConnectorPoint PointX="1.7455769230769231" PointY="0.375" />
           <ConnectorPoint PointX="2.2665384615384614" PointY="0.375" />
           <ConnectorPoint PointX="2.2665384615384614" PointY="0.625" /></AssociationConnector>
-        <EntityTypeShape EntityType="shop_model.Brand" Width="1.5" PointX="5.375" PointY="1.375" Height="2.5571907552083331" />
+        <EntityTypeShape EntityType="shop_model.Brand" Width="1.5" PointX="5.375" PointY="1" Height="2.7494921874999996" />
         <AssociationConnector Association="shop_model.CategoryProductAttribute">
           <ConnectorPoint PointX="2" PointY="4.1436979166666656" />
           <ConnectorPoint PointX="2" PointY="4.75" /></AssociationConnector>
         <EntityTypeShape EntityType="shop_model.Discount" Width="1.5" PointX="3.625" PointY="1.25" Height="2.364889322916667" />
         <AssociationConnector Association="shop_model.ProductDiscount" ManuallyRouted="false">
-          <ConnectorPoint PointX="7.5" PointY="4.0285953776041667" />
-          <ConnectorPoint PointX="3.71875" PointY="4.0285953776041667" />
+          <ConnectorPoint PointX="7.5" PointY="3.93724609375" />
+          <ConnectorPoint PointX="3.71875" PointY="3.93724609375" />
           <ConnectorPoint PointX="3.71875" PointY="3.614889322916667" />
           </AssociationConnector>
         <AssociationConnector Association="shop_model.ProductProductAttributeValue">
@@ -1096,8 +1099,8 @@
           <ConnectorPoint PointX="10" PointY="3.547841796875" />
           <ConnectorPoint PointX="10.75" PointY="3.547841796875" /></AssociationConnector>
         <AssociationConnector Association="shop_model.BrandProduct">
-          <ConnectorPoint PointX="6.875" PointY="2.7785953776041667" />
-          <ConnectorPoint PointX="7.5" PointY="2.7785953776041667" />
+          <ConnectorPoint PointX="6.875" PointY="2.68724609375" />
+          <ConnectorPoint PointX="7.5" PointY="2.68724609375" />
           </AssociationConnector>
         <EntityTypeShape EntityType="shop_model.ProductVariant" Width="1.5" PointX="10.75" PointY="4.5" Height="2.9417936197916656" />
         <AssociationConnector Association="shop_model.FK_ProductVariant_ProductVariant" >
@@ -1105,8 +1108,8 @@
           <ConnectorPoint PointX="10.75" PointY="5.7833561197916659" />
         </AssociationConnector>
         <AssociationConnector Association="shop_model.BrandDiscountMapping" >
-          <ConnectorPoint PointX="5.375" PointY="2.4949446614583337" />
-          <ConnectorPoint PointX="5.125" PointY="2.4949446614583337" />
+          <ConnectorPoint PointX="5.375" PointY="2.4324446614583337" />
+          <ConnectorPoint PointX="5.125" PointY="2.4324446614583337" />
         </AssociationConnector>
         <AssociationConnector Association="shop_model.CategoryDiscountMapping" >
           <ConnectorPoint PointX="2.875" PointY="2.4324446614583337" />
@@ -1114,8 +1117,8 @@
         </AssociationConnector>
         <AssociationConnector Association="shop_model.ProductCategoryMapping" >
           <ConnectorPoint PointX="8.75" PointY="1.625" />
-          <ConnectorPoint PointX="8.75" PointY="0.90625" />
-          <ConnectorPoint PointX="2.875" PointY="0.90625" />
+          <ConnectorPoint PointX="8.75" PointY="0.78125" />
+          <ConnectorPoint PointX="2.875" PointY="0.78125" />
         </AssociationConnector>
         <EntityTypeShape EntityType="shop_model.ProductAttributeStaticValue" Width="2.25" PointX="3.875" PointY="4.125" Height="1.7879850260416674" />
         <AssociationConnector Association="shop_model.FK_ProductAttributeStaticValues_Product" >

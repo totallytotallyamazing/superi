@@ -369,11 +369,13 @@ namespace Shop.Models
         /// </summary>
         /// <param name="id">Исходное значение свойства Id.</param>
         /// <param name="name">Исходное значение свойства Name.</param>
-        public static Brand CreateBrand(global::System.Int32 id, global::System.String name)
+        /// <param name="hasCatalogue">Исходное значение свойства HasCatalogue.</param>
+        public static Brand CreateBrand(global::System.Int32 id, global::System.String name, global::System.Boolean hasCatalogue)
         {
             Brand brand = new Brand();
             brand.Id = id;
             brand.Name = name;
+            brand.HasCatalogue = hasCatalogue;
             return brand;
         }
 
@@ -526,6 +528,30 @@ namespace Shop.Models
         private global::System.String _SeoKeywords;
         partial void OnSeoKeywordsChanging(global::System.String value);
         partial void OnSeoKeywordsChanged();
+    
+        /// <summary>
+        /// Нет доступной документации по метаданным.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean HasCatalogue
+        {
+            get
+            {
+                return _HasCatalogue;
+            }
+            set
+            {
+                OnHasCatalogueChanging(value);
+                ReportPropertyChanging("HasCatalogue");
+                _HasCatalogue = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("HasCatalogue");
+                OnHasCatalogueChanged();
+            }
+        }
+        private global::System.Boolean _HasCatalogue;
+        partial void OnHasCatalogueChanging(global::System.Boolean value);
+        partial void OnHasCatalogueChanged();
 
         #endregion
     

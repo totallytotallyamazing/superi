@@ -277,6 +277,7 @@
     <Content Include="Content\UnMomentoStyles\products.css" />
     <Content Include="Content\UnMomentoStyles\Authorize.css" />
     <Content Include="Content\UnMomentoStyles\UnMomentoSite.css" />
+    <Content Include="Controls\ckeditor\config.js" />
     <Content Include="Global.asax" />
     <Content Include="index.html" />
     <Content Include="Scripts\ck.extensions.js" />
@@ -512,7 +513,6 @@
     <Folder Include="Content\BrandLogos\" />
     <Folder Include="Content\CategoryImages\" />
     <Folder Include="Content\ProductImages\" />
-    <Folder Include="Controls\" />
     <Folder Include="ImageCache\cartThumb\" />
     <Folder Include="ImageCache\mainView\" />
     <Folder Include="ImageCache\thumbnail1\" />

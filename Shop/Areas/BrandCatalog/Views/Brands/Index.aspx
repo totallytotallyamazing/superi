@@ -14,7 +14,7 @@
 </asp:Content>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentTitle" runat="server">
-<div id="titleBoxBrands">
+<div id="titleBoxBrandCatalog">
 <p><span class="txtPageName">KREOO</span> &nbsp&nbsp&nbsp&nbsp&nbsp<span class="txtDescription">Нидерландская компания, владелец одной из крупнейших в мире торговых сетей по продаже мебели</span> </p>
 </div>
 <div id="dock">

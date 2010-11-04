@@ -214,14 +214,13 @@ html, body
     float: left;
 }
 
-#titleBoxBrandCatalog {margin: 25px 0px 25px 150px;}
+#titleBoxBrandCatalog {margin: 25px 0px 25px 0px; text-align: center; width: auto;}
 #titleBoxBrandCatalog .txtPageName
 { font-size: 22px; color: #ffffff;}
-#titleBoxBrands .txtPageName
-{ font-size: 22px; color: #ffffff;}
-#titleBoxBrandCatalog, #titleBoxBrands .txtDescription{font-size: 12px; color: #cccccc; font-style: italic;}
 
-#titleBoxBrands {margin: 25px 0px 25px 220px;}
+#titleBoxBrandCatalog .txtDescription{font-size: 12px; color: #cccccc; font-style: italic;}
+
+
 
 
 #footer

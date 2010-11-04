@@ -229,9 +229,11 @@
     <Content Include="Content\LislelliStyles\img\imgOakPrev.gif" />
     <Content Include="Content\LislelliStyles\img\imgOakPrev2.gif" />
     <Content Include="Content\LislelliStyles\img\imgOakPrev3.gif" />
+    <Content Include="Content\LislelliStyles\img\leftArrow.png" />
     <Content Include="Content\LislelliStyles\img\Logo.png" />
     <Content Include="Content\LislelliStyles\img\LogoBrandCatalog.png" />
     <Content Include="Content\LislelliStyles\img\new.gif" />
+    <Content Include="Content\LislelliStyles\img\rightArrow.png" />
     <Content Include="Content\LislelliStyles\img\searchField.gif" />
     <Content Include="Content\LislelliStyles\img\separator.png" />
     <Content Include="Content\LislelliStyles\ListelliSite.css" />
@@ -276,6 +278,7 @@
     <Content Include="Global.asax" />
     <Content Include="index.html" />
     <Content Include="Scripts\ck.extensions.js" />
+    <Content Include="Scripts\jquery.dimensions.js" />
     <Content Include="Scripts\jquery.fancybox.js" />
     <Content Include="Scripts\jquery.FCKEditor.js" />
     <Content Include="Scripts\jquery.js" />

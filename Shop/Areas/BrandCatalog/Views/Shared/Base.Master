@@ -10,13 +10,14 @@
         </asp:ContentPlaceHolder>
     </title>
     <link href="/Content/LislelliStyles/ListelliSite.css" rel="stylesheet" type="text/css" />
-
+   
+    
     <!--[if IE 7]>
 
     <link rel="stylesheet" media="all" type="text/css" href="/Content/LislelliStyles/ie7.css" />
 
-    <![endif]--> 
-    
+    <![endif]-->
+
 
     <% if (Roles.IsUserInRole("Administrators"))
        { %>
@@ -70,7 +71,8 @@
                     <p class="txtLeftMenu">
                         Группа каталогов:</p>
                     <div id="cbBrand">
-                        <%--выпадалка--%>
+                        
+                        
                     </div>
                 </div>
                 <div id="topMenu">
@@ -91,29 +93,27 @@
                     </div>
                 </div>
             </div>
-            
-                <asp:ContentPlaceHolder runat="server" ID="ContentTitle">
-                </asp:ContentPlaceHolder>
-            
+            <asp:ContentPlaceHolder runat="server" ID="ContentTitle">
+            </asp:ContentPlaceHolder>
             <div id="tmp">
-            <div id="contentBoxBrandCatalog">
-                <div class="corner_ne">
-                    <%--corner--%>
+                <div id="contentBoxBrandCatalog">
+                    <div class="corner_ne">
+                        <%--corner--%>
+                    </div>
+                    <div class="corner_nw">
+                        <%--corner--%>
+                    </div>
+                    <div class="corner_se">
+                        <%--corner--%>
+                    </div>
+                    <div class="corner_sw">
+                        <%--corner--%>
+                    </div>
+                    <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                    </asp:ContentPlaceHolder>
+                    <asp:ContentPlaceHolder runat="server" ID="footer">
+                    </asp:ContentPlaceHolder>
                 </div>
-                <div class="corner_nw">
-                    <%--corner--%>
-                </div>
-                <div class="corner_se">
-                    <%--corner--%>
-                </div>
-                <div class="corner_sw">
-                    <%--corner--%>
-                </div>
-                <asp:ContentPlaceHolder ID="MainContent" runat="server">
-                </asp:ContentPlaceHolder>
-                <asp:ContentPlaceHolder runat="server" ID="footer">
-                </asp:ContentPlaceHolder>
-            </div>
             </div>
         </div>
         <div id="footerBrandCatalog">
@@ -130,7 +130,7 @@
         </div>
     </div>
     <!-- Google Analytics code -->
-<%--    <script type="text/javascript">
+    <%--    <script type="text/javascript">
         var _gaq = _gaq || [];
         _gaq.push(['_setAccount', 'UA-18722609-1']);
         _gaq.push(['_trackPageview']);

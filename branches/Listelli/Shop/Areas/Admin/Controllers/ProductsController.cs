@@ -219,7 +219,8 @@ namespace Shop.Areas.Admin.Controllers
         {
             using (ShopStorage context = new ShopStorage())
             {
-                Product product = context.Products.Include("ProductImages").Where(p => p.Id == id).First();
+                Product product = context.Products.Include("ProductImages").Include("Categories").Where(p => p.Id == id).First();
+                product.Categories.Clear();
                 foreach (var item in product.ProductImages)
                 {
                     DeleteProductImage(id, item.Id);

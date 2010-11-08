@@ -10,10 +10,16 @@ namespace Shop.Controllers
 {
     public class ContentAttribute : ActionFilterAttribute
     {
+        public string ContentName { get; set; }
+
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             base.OnActionExecuting(filterContext);
-            string contentName = filterContext.RouteData.Values["id"].ToString();
+            string contentName = string.Empty;
+            if (string.IsNullOrEmpty(ContentName))
+                contentName = filterContext.RouteData.Values["id"].ToString();
+            else
+                contentName = ContentName;
 
             if (contentName != null)
             {

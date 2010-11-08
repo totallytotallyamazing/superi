@@ -17,7 +17,7 @@ CKEDITOR.editorConfig = function (config) {
     config.filebrowserUploadUrl = '/Controls/filemanager/connectors/' + _QuickUploadLanguage + '/upload.' + _QuickUploadExtension;
     config.filebrowserImageUploadUrl = '/Controls/filemanager/connectors/' + _QuickUploadLanguage + '/upload.' + _QuickUploadExtension + '?Type=Image';
     config.filebrowserFlashUploadUrl = '/Controls/filemanager/connectors/' + _QuickUploadLanguage + '/upload.' + _QuickUploadExtension + '?Type=Flash';
-    config.extraPlugins = 'MediaEmbed';
+    //config.extraPlugins = 'MediaEmbed';
     config.htmlEncodeOutput = true;
     config.language = "ru";
     config.toolbar_Media =
@@ -30,7 +30,7 @@ CKEDITOR.editorConfig = function (config) {
     ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', 'Blockquote'],
     ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
     ['Link', 'Unlink', 'Anchor'],
-    ['Image', 'MediaEmbed', 'Flash', 'Table', 'HorizontalRule'],
+    ['Image',/* 'MediaEmbed',*/ 'Flash', 'Table', 'HorizontalRule'],
     '/',
     ['Styles', 'Format', 'Font', 'FontSize'],
     ['TextColor', 'BGColor'],

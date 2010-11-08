@@ -671,8 +671,6 @@ html, body
     font-weight: bold;
 }
 
-
-
 #leftMenu div.subMenuItem.current
 {
     color: #ffffcc;
@@ -766,9 +764,6 @@ html, body
     height: 37px;
     margin-bottom: 7px;
 }
-
-.productItem
-{}
 
 
 /*----------------Brands----------------*/

@@ -1,7 +1,6 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<Shop.Models.Content>" %>
 <%@ Import Namespace="Dev.Mvc.Ajax" %>
 
-<%= Ajax.ScriptInclude("/Scripts/jquery.js")%>
 <%= Ajax.ScriptInclude("/Controls/ckeditor/ckeditor.js")%>
 <%= Ajax.ScriptInclude("/Controls/ckeditor/adapters/jquery.js")%>
 

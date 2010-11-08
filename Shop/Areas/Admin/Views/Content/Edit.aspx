@@ -13,7 +13,6 @@
     <div>
     <p>Текст:</p>
     <%= Html.TextAreaFor(m=>m.Text)  %>
-    <%= Ajax.CkEditor("Text", "null", "mySettings"); %>
     </div>
 
     <div>
@@ -30,11 +29,18 @@
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="includes" runat="server">
+    <%= Ajax.ScriptInclude("/Controls/ckeditor/ckeditor.js")%>
+    <%= Ajax.ScriptInclude("/Controls/ckeditor/adapters/jquery.js")%>
+
     <script type="text/javascript" src="/Scripts/ck.settings.js"></script>
     <script type="text/javascript">
-        /// <reference path="ck.settings.js"
-        var mySettings = new ck();
-        settings.settings.extend({ toolbar: ck.toolbars.media });
+        $(function () {
+            //$("#Text").ckeditor(null, {toolbar: "Media"})
+            CKEDITOR.replace("Text", { toolbar: "Media" });
+            CKEDITOR.on("instanceReady", function (e) {
+
+            })
+        })
     </script>
 </asp:Content>
 

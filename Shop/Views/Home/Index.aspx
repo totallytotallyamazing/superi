@@ -10,22 +10,26 @@
 
 <asp:Content runat="server" ContentPlaceHolderID="ContentTitle">
             <div id="contName">
-                <%--<div id="pagePic">
-                    <img src="../../Content/UnMomentoStyles/img/bear.gif" alt="Медведь" />     
-                </div>--%>            
                 <div id="pageName">
-                    <p class="txtPageName">Listelli <span class="pt2" ><%--страница 1--%></span> </p>            
+                    <p class="txtPageName">
+                        <%= ViewData["title"] %>
+                    </p>            
                 </div>
             </div>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <%  Html.RenderPartial("ContentPartial", "MainTop"); %>
+    <% if(Roles.IsUserInRole("Administrators")){ %>
+        <p class="adminLink">
+            <%= Html.ActionLink("редактировать", "Edit", "Content", new { area="Admin", id=ViewData["contentName"] }, null)%>
+        </p>
+    <%} %>
+    <%= ViewData["text"] %>
     <div style="clear:both"></div>
 </asp:Content>
 
 <asp:Content ID="Content3" runat="server" ContentPlaceHolderID="Footer">
-    <div id="pager">
+<%--    <div id="pager">
                 <p class="txtPager">1 ... <a href="#" class="txtPager">2</a> ... <a href="#" class="txtPager">3</a></p>
-    </div>
+    </div>--%>
 </asp:Content>

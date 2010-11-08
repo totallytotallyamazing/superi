@@ -3,9 +3,8 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.productItem {margin-bottom:50px; float: left; margin-right: 62px;}
- .productItem .text{/*padding: 10px 0px 0px 10px; width: 160px;*/ position:absolute; line-height: 12px;}
- .productItem .img{position: relative;}
+.productItem {margin-bottom:50px; float: left; margin-right: 62px; position:relative;}
+ .productItem .text{/*padding: 10px 0px 0px 10px; width: 160px;*/  line-height: 12px;}
  .productItem .newItem
 {
      height:9px; width: 43px; right:0px; position:absolute;
@@ -17,11 +16,7 @@
   .productItem .titleLink
   { color: #3399ff; font-size: 12px;}
   
-  .productItem .itemDescription
-  
-  { padding-top: 5px;}
-  
-  
+  .productItem .itemDescription{ padding-top: 5px;}
   
   .productItem .attributeLabel {color: #999999; font-size: 11px;}
   .productItem .attributeValue {color: Black; font-size: 11px;}

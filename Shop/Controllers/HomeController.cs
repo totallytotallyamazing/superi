@@ -15,9 +15,10 @@ namespace Shop.Controllers
 {
     public class HomeController : Controller
     {
+        [Content(ContentName="Index")]
         public ActionResult Index()
         {
-            return View();
+            return View("Content");
         }
 
 
@@ -26,11 +27,6 @@ namespace Shop.Controllers
         {
             return View("Content");
         }
-
-        //[ChildActionOnly]
-        //public ActionResult Categories()
-        //{
-        //}
 
         [Content]
         public ActionResult ShowContent(string id)

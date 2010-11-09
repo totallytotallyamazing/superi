@@ -201,7 +201,7 @@ namespace Shop.Areas.Admin.Controllers
             }
         }
 
-        public ActionResult SetDefaultImage(long productId, long defaultImage, int cId)
+        public ActionResult SetDefaultImage(long productId, long defaultImage, int? cId)
         {
             using (ShopStorage context = new ShopStorage())
             {

@@ -1,0 +1,212 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="shop_brandCatalogue.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="shop_brandCatalogueStoreContainer">
+          <EntitySet Name="Brand" EntityType="shop_brandCatalogue.Store.Brand" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="CatalogueGroup" EntityType="shop_brandCatalogue.Store.CatalogueGroup" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="CatalogueImage" EntityType="shop_brandCatalogue.Store.CatalogueImage" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_CatalogueImage_Brand" Association="shop_brandCatalogue.Store.FK_CatalogueImage_Brand">
+            <End Role="Brand" EntitySet="Brand" />
+            <End Role="CatalogueImage" EntitySet="CatalogueImage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CatalogueImage_CatalogueGroup" Association="shop_brandCatalogue.Store.FK_CatalogueImage_CatalogueGroup">
+            <End Role="CatalogueGroup" EntitySet="CatalogueGroup" />
+            <End Role="CatalogueImage" EntitySet="CatalogueImage" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Brand">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="500" />
+          <Property Name="SeoKeywords" Type="varchar" MaxLength="500" />
+          <Property Name="SeoDescription" Type="varchar" MaxLength="500" />
+          <Property Name="Description" Type="varchar" />
+          <Property Name="Logo" Type="varchar" MaxLength="250" />
+          <Property Name="HasCatalogue" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CatalogueGroup">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="CatalogueImage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Image" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="DeepZoomFile" Type="varchar" MaxLength="255" />
+          <Property Name="CatalogueGroupId" Type="int" Nullable="false" />
+          <Property Name="BrandId" Type="int" Nullable="false" />
+          <Property Name="SortOrder" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_CatalogueImage_Brand">
+          <End Role="Brand" Type="shop_brandCatalogue.Store.Brand" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="CatalogueImage" Type="shop_brandCatalogue.Store.CatalogueImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Brand">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CatalogueImage">
+              <PropertyRef Name="BrandId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CatalogueImage_CatalogueGroup">
+          <End Role="CatalogueGroup" Type="shop_brandCatalogue.Store.CatalogueGroup" Multiplicity="1" />
+          <End Role="CatalogueImage" Type="shop_brandCatalogue.Store.CatalogueImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CatalogueGroup">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CatalogueImage">
+              <PropertyRef Name="CatalogueGroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="shop_brandCatalogue" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="BrandCatalogue" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Brands" EntityType="shop_brandCatalogue.Brand" />
+          <EntitySet Name="CatalogueGroups" EntityType="shop_brandCatalogue.CatalogueGroup" />
+          <EntitySet Name="CatalogueImages" EntityType="shop_brandCatalogue.CatalogueImage" />
+          <AssociationSet Name="FK_CatalogueImage_Brand" Association="shop_brandCatalogue.FK_CatalogueImage_Brand">
+            <End Role="Brand" EntitySet="Brands" />
+            <End Role="CatalogueImage" EntitySet="CatalogueImages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CatalogueImage_CatalogueGroup" Association="shop_brandCatalogue.FK_CatalogueImage_CatalogueGroup">
+            <End Role="CatalogueGroup" EntitySet="CatalogueGroups" />
+            <End Role="CatalogueImage" EntitySet="CatalogueImages" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Brand">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="500" Unicode="false" FixedLength="false" />
+          <Property Name="SeoKeywords" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
+          <Property Name="SeoDescription" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" />
+          <Property Name="Logo" Type="String" MaxLength="250" Unicode="false" FixedLength="false" />
+          <Property Name="HasCatalogue" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="CatalogueImages" Relationship="shop_brandCatalogue.FK_CatalogueImage_Brand" FromRole="Brand" ToRole="CatalogueImage" />
+        </EntityType>
+        <EntityType Name="CatalogueGroup">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="250" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="CatalogueImages" Relationship="shop_brandCatalogue.FK_CatalogueImage_CatalogueGroup" FromRole="CatalogueGroup" ToRole="CatalogueImage" />
+        </EntityType>
+        <EntityType Name="CatalogueImage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Image" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="DeepZoomFile" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Brand" Relationship="shop_brandCatalogue.FK_CatalogueImage_Brand" FromRole="CatalogueImage" ToRole="Brand" />
+          <NavigationProperty Name="CatalogueGroup" Relationship="shop_brandCatalogue.FK_CatalogueImage_CatalogueGroup" FromRole="CatalogueImage" ToRole="CatalogueGroup" />
+          <Property Type="Int32" Name="SortOrder" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_CatalogueImage_Brand">
+          <End Role="Brand" Type="shop_brandCatalogue.Brand" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="CatalogueImage" Type="shop_brandCatalogue.CatalogueImage" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_CatalogueImage_CatalogueGroup">
+          <End Role="CatalogueGroup" Type="shop_brandCatalogue.CatalogueGroup" Multiplicity="1" />
+          <End Role="CatalogueImage" Type="shop_brandCatalogue.CatalogueImage" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="shop_brandCatalogueStoreContainer" CdmEntityContainer="BrandCatalogue">
+          <EntitySetMapping Name="Brands"><EntityTypeMapping TypeName="shop_brandCatalogue.Brand"><MappingFragment StoreEntitySet="Brand">
+            <ScalarProperty Name="Id" ColumnName="Id" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="SeoKeywords" ColumnName="SeoKeywords" />
+            <ScalarProperty Name="SeoDescription" ColumnName="SeoDescription" />
+            <ScalarProperty Name="Description" ColumnName="Description" />
+            <ScalarProperty Name="Logo" ColumnName="Logo" />
+            <ScalarProperty Name="HasCatalogue" ColumnName="HasCatalogue" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="CatalogueGroups"><EntityTypeMapping TypeName="shop_brandCatalogue.CatalogueGroup"><MappingFragment StoreEntitySet="CatalogueGroup">
+            <ScalarProperty Name="Id" ColumnName="Id" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="CatalogueImages"><EntityTypeMapping TypeName="shop_brandCatalogue.CatalogueImage"><MappingFragment StoreEntitySet="CatalogueImage">
+            <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+            <ScalarProperty Name="Image" ColumnName="Image" />
+            <ScalarProperty Name="DeepZoomFile" ColumnName="DeepZoomFile" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <AssociationSetMapping Name="FK_CatalogueImage_Brand" TypeName="shop_brandCatalogue.FK_CatalogueImage_Brand" StoreEntitySet="CatalogueImage">
+            <EndProperty Name="Brand">
+              <ScalarProperty Name="Id" ColumnName="BrandId" />
+            </EndProperty>
+            <EndProperty Name="CatalogueImage">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_CatalogueImage_CatalogueGroup" TypeName="shop_brandCatalogue.FK_CatalogueImage_CatalogueGroup" StoreEntitySet="CatalogueImage">
+            <EndProperty Name="CatalogueGroup">
+              <ScalarProperty Name="Id" ColumnName="CatalogueGroupId" />
+            </EndProperty>
+            <EndProperty Name="CatalogueImage">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="False" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="BrandCatalogue">
+        <EntityTypeShape EntityType="shop_brandCatalogue.Brand" Width="1.5" PointX="0.75" PointY="1" Height="2.5571907552083335" IsExpanded="true" />
+        <EntityTypeShape EntityType="shop_brandCatalogue.CatalogueGroup" Width="1.5" PointX="5.375" PointY="1.375" Height="1.5956835937499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="shop_brandCatalogue.CatalogueImage" Width="1.5" PointX="3" PointY="1.25" Height="1.9802864583333326" IsExpanded="true" />
+        <AssociationConnector Association="shop_brandCatalogue.FK_CatalogueImage_Brand" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="2.2401432291666663" />
+          <ConnectorPoint PointX="3" PointY="2.2401432291666663" />
+        </AssociationConnector>
+        <AssociationConnector Association="shop_brandCatalogue.FK_CatalogueImage_CatalogueGroup" ManuallyRouted="false">
+          <ConnectorPoint PointX="5.375" PointY="2.172841796875" />
+          <ConnectorPoint PointX="4.5" PointY="2.172841796875" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

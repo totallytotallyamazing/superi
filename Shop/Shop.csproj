@@ -78,6 +78,7 @@
     <Compile Include="Areas\Admin\Controllers\ArticlesController.cs" />
     <Compile Include="Areas\Admin\Controllers\AttributesController.cs" />
     <Compile Include="Areas\Admin\Controllers\AttributeValuesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\BrandCatalogueController.cs" />
     <Compile Include="Areas\Admin\Controllers\BrandsController.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoriesController.cs" />
     <Compile Include="Areas\Admin\Controllers\ContentController.cs" />
@@ -88,6 +89,11 @@
     <Compile Include="Areas\BrandCatalog\BrandCatalogAreaRegistration.cs" />
     <Compile Include="Areas\BrandCatalog\Controllers\BrandsController.cs" />
     <Compile Include="Areas\BrandCatalog\Controllers\HomeController.cs" />
+    <Compile Include="Areas\BrandCatalog\Models\BrandCatalogue.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BrandCatalogue.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\CaptchaController.cs" />
     <Compile Include="Controllers\GraphicsController.cs" />
     <Compile Include="Controllers\InvoiceController.cs" />
@@ -508,9 +514,9 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Admin\Views\Shared\" />
-    <Folder Include="Areas\BrandCatalog\Models\" />
     <Folder Include="Configuration\" />
     <Folder Include="Content\BrandLogos\" />
+    <Folder Include="Content\CatalogueImages\" />
     <Folder Include="Content\CategoryImages\" />
     <Folder Include="Content\ProductImages\" />
     <Folder Include="ImageCache\cartThumb\" />
@@ -524,6 +530,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\BrandCatalog\Views\Shared\Base.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Areas\BrandCatalog\Models\BrandCatalogue.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>BrandCatalogue.Designer.cs</LastGenOutput>
+    </EntityDeploy>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

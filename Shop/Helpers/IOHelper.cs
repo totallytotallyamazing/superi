@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.IO;
 
-namespace Trips.Mvc.Helpers
+namespace Dev.Mvc.Helpers
 {
     public static class IOHelper
     {

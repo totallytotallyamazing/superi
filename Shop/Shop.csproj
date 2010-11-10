@@ -287,7 +287,9 @@
     <Content Include="Controls\ckeditor\config.js" />
     <Content Include="Global.asax" />
     <Content Include="index.html" />
+    <Content Include="Scripts\BrandCatalogue.js" />
     <Content Include="Scripts\ck.extensions.js" />
+    <Content Include="Scripts\jquery.combobox.js" />
     <Content Include="Scripts\jquery.dimensions.js" />
     <Content Include="Scripts\jquery.fancybox.js" />
     <Content Include="Scripts\jquery.FCKEditor.js" />

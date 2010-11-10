@@ -40,23 +40,6 @@
 
     </script>
     <%-- суперскрипт--%>
-    <script type="text/javascript">
-
-        $(document).ready(function () {
-            function showWidth(ele, w) {
-                $(".showMe").text("Ширина элемента " + ele + " равна " + w + "px.");
-            }
-            $(".getp").click(function () {
-                showWidth("paragraph", $(".pid").width());
-            });
-            $(".getd").click(function () {
-                showWidth("document", $(document).width());
-            });
-            $(".getw").click(function () {
-                showWidth("window", $(window).width());
-            });
-        });
-    </script>
     <asp:ContentPlaceHolder runat="server" ID="includes">
     </asp:ContentPlaceHolder>
 </head>

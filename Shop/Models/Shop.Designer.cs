@@ -370,12 +370,14 @@ namespace Shop.Models
         /// <param name="id">Initial value of the Id property.</param>
         /// <param name="name">Initial value of the Name property.</param>
         /// <param name="hasCatalogue">Initial value of the HasCatalogue property.</param>
-        public static Brand CreateBrand(global::System.Int32 id, global::System.String name, global::System.Boolean hasCatalogue)
+        /// <param name="sortOrder">Initial value of the SortOrder property.</param>
+        public static Brand CreateBrand(global::System.Int32 id, global::System.String name, global::System.Boolean hasCatalogue, global::System.Int32 sortOrder)
         {
             Brand brand = new Brand();
             brand.Id = id;
             brand.Name = name;
             brand.HasCatalogue = hasCatalogue;
+            brand.SortOrder = sortOrder;
             return brand;
         }
 
@@ -552,6 +554,30 @@ namespace Shop.Models
         private global::System.Boolean _HasCatalogue;
         partial void OnHasCatalogueChanging(global::System.Boolean value);
         partial void OnHasCatalogueChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 SortOrder
+        {
+            get
+            {
+                return _SortOrder;
+            }
+            set
+            {
+                OnSortOrderChanging(value);
+                ReportPropertyChanging("SortOrder");
+                _SortOrder = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SortOrder");
+                OnSortOrderChanged();
+            }
+        }
+        private global::System.Int32 _SortOrder;
+        partial void OnSortOrderChanging(global::System.Int32 value);
+        partial void OnSortOrderChanged();
 
         #endregion
     

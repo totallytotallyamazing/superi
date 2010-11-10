@@ -1,8 +1,8 @@
 ﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
+
 <%@ Import Namespace="Dev.Mvc.Ajax" %>
 <% if (Request.Cookies["listelliShow"] == null)
        Response.Redirect("~/index.html"); %>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
 <head>
@@ -37,6 +37,25 @@
                 showCloseButton: true
             });
         });
+
+    </script>
+    <%-- суперскрипт--%>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            function showWidth(ele, w) {
+                $(".showMe").text("Ширина элемента " + ele + " равна " + w + "px.");
+            }
+            $(".getp").click(function () {
+                showWidth("paragraph", $(".pid").width());
+            });
+            $(".getd").click(function () {
+                showWidth("document", $(document).width());
+            });
+            $(".getw").click(function () {
+                showWidth("window", $(window).width());
+            });
+        });
     </script>
     <asp:ContentPlaceHolder runat="server" ID="includes">
     </asp:ContentPlaceHolder>
@@ -44,6 +63,7 @@
 <body>
     <%if (Roles.IsUserInRole("Administrators")) Html.RenderPartial("AdminPanel");  %>
     <div id="all">
+    
         <div id="toper">
             <div id="header">
                 <div id="headerRight">
@@ -78,6 +98,7 @@
                 <% Html.RenderPartial("Categories"); %>
             </div>
             <div id="contentBox">
+            
                 <div class="right">
                     <div class="rightTopBackground">
                         <%--Background--%>
@@ -119,7 +140,6 @@
                         <%--Background--%>
                     </div>
                     <div class="leftTop">
-                        
                         <div class="titleBox">
                             <asp:ContentPlaceHolder runat="server" ID="ContentTitle">
                             </asp:ContentPlaceHolder>
@@ -129,7 +149,8 @@
                                 Сортировка:</p>
                             <div id="sortBy">
                                 <div class="menu bkgCurrent">
-                                    <p class="txt current">По названию</p>
+                                    <p class="txt current">
+                                        По названию</p>
                                 </div>
                                 <div class="menu">
                                     <a href="#" class="txt">По бренду</a>
@@ -140,13 +161,12 @@
                                 <div class="menu">
                                     <a href="#" class="txt">Только новое</a>
                                 </div>
-                                
                             </div>
-                            
                         </div>
                     </div>
                     <div class="leftMid">
                         <div id="contentWrapper">
+                        
                             <asp:ContentPlaceHolder ID="MainContent" runat="server">
                             </asp:ContentPlaceHolder>
                         </div>
@@ -159,23 +179,20 @@
             </div>
         </div>
         <div id="footer">
-        <div id="designedBy">
+            <div id="designedBy">
                 <p class="footerText">
                     © 2010, компания “Listelli”
                     <br />
                     Дизайн сайта — <a href="http://m-brand.com.ua" class="footerMiller">Евгений Миллер</a>
                 </p>
-                
             </div>
             <div id="strip">
-        <%-- прокладка--%>   
-        </div>
-        
-        
+                <%-- прокладка--%>
+            </div>
         </div>
     </div>
     <!-- Google Analytics code -->
-<%--    <script type="text/javascript">
+    <%--    <script type="text/javascript">
         var _gaq = _gaq || [];
         _gaq.push(['_setAccount', 'UA-18722609-1']);
         _gaq.push(['_trackPageview']);

@@ -28,21 +28,13 @@
     <script type="text/javascript" src="../../../Scripts/jquery-vsdoc.js"></script>
     <script type="text/javascript">
         /// <reference path="jquery.js" />
+        /// <reference path="BrandCatalogue.js" />
     </script>
     <%} %>
     <script type="text/javascript" src="/Scripts/jquery.js"></script>
-    <%= Ajax.DynamicCssInclude("/Content/fancybox/jquery.fancybox.css") %>
-    <%= Ajax.ScriptInclude("/Scripts/jquery.fancybox.js")%>
-    <script type="text/javascript">
-        $(function () {
-            $("#feedbackForm, .editContentLink").fancybox(
-            {
-                hideOnContentClick: false,
-                hideOnOverlayClick: false,
-                showCloseButton: true
-            });
-        });
-    </script>
+    <script type="text/javascript" src="/Scripts/jquery.combobox.js"></script>
+    <script type="text/javascript" src="/Scripts/BrandCatalogue.js"></script>
+    <script type="text/javascript">        BrandCatalogue.initialize();</script>
     <asp:ContentPlaceHolder runat="server" ID="includes">
     </asp:ContentPlaceHolder>
 </head>
@@ -71,7 +63,10 @@
                     <p class="txtLeftMenu">
                         Группа каталогов:</p>
                     <div id="cbBrand">
-                        
+                        <select id="id">
+                            <option value="1">bla</option>
+                            <option value="2">bla-bla</option>
+                        </select>                        
                         
                     </div>
                 </div>

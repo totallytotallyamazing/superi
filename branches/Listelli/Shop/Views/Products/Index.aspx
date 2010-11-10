@@ -33,6 +33,7 @@
 
 
         $(function () {
+            ProductClientExtensions.initialize();
             ProductClientExtensions.bindFancy();
         })    
     </script>

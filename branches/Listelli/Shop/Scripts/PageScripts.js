@@ -19,6 +19,29 @@ ProductClientExtensions = {
                 ImagePreviews.Initialize();
             }
         });
+    },
+
+    _adjustedCount: 0,
+
+    _adjustProductContainerWidth: function () {
+        $(".productItem").each(function () {
+            var width = $(this).find("img").width();
+            if (width) {
+                $(this).width(width);
+            }
+        })
+        ProductClientExtensions._adjustedCount++;
+        if (ProductClientExtensions._adjustedCount > 10) {
+            window.clearInterval(ProductClientExtensions._intervalId);
+        }
+    },
+
+    _intervalId: 0,
+
+    initialize: function () {
+        $(function () {
+            ProductClientExtensions._intervalId = window.setInterval(ProductClientExtensions._adjustProductContainerWidth, 500);
+        })
     }
 };
 
@@ -57,7 +80,7 @@ ImagePreviews = {
 
         $(".fadeImage").eq(0).fadeTo(0, 0.5);
     }
-}
+};
 
 ProductVariant = {
     Initialize: function () {

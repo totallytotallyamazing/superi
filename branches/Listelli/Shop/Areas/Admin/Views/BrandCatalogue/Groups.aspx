@@ -14,6 +14,7 @@
                 Порядок вывода        
             </th>
             <th></th>
+            <th></th>
         </tr>
 
     <% foreach (var item in Model) {
@@ -28,6 +29,9 @@
             </td>
             <td>
                 <input type="submit" value="Сохранить" />
+            </td>
+            <td>
+                <%= Html.ActionLink("Удалить", "DeleteGroup", new { id = item.Id }, new { onclick = "return confirm('Вы уверены?')" }) %>
             </td>
         </tr>
     <% }} %>

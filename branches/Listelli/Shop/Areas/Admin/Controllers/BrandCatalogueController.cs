@@ -50,6 +50,10 @@ namespace Shop.Areas.Admin.Controllers
             using (BrandCatalogue context = new BrandCatalogue())
             {
                 CatalogueGroup group = context.CatalogueGroups.First(g => g.Id == id);
+                foreach (var image in group.CatalogueImages)
+                {
+
+                }
                 context.DeleteObject(group);
                 context.SaveChanges();
             }

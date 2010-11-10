@@ -103,7 +103,7 @@ namespace Shop.Areas.Admin.Controllers
 
                     if (brandId.HasValue)
                     {
-                        EntityKey brand = new EntityKey("ShopStorage.Brands", "Id", brandId);
+                        EntityKey brand = new EntityKey("ShopStorage.Brands", "Id", brandId.Value);
                         product.BrandReference.EntityKey = brand; 
                     }
                     
@@ -196,6 +196,8 @@ namespace Shop.Areas.Admin.Controllers
                     if (newDefaultImage != null)
                         newDefaultImage.Default = true;
                 }
+                if(!string.IsNullOrEmpty(image.ImageSource))
+                    System.IO.File.Delete(Server.MapPath("~/Content/ProductImages/" + image.ImageSource));
                 context.DeleteObject(image);
                 context.SaveChanges();
             }
@@ -223,7 +225,9 @@ namespace Shop.Areas.Admin.Controllers
                 product.Categories.Clear();
                 foreach (var item in product.ProductImages)
                 {
-                    DeleteProductImage(id, item.Id);
+                    if (!string.IsNullOrEmpty(item.ImageSource))
+                        System.IO.File.Delete(Server.MapPath("~/Content/ProductImages/" + item.ImageSource));
+
                 }
                 context.DeleteObject(product);
                 context.SaveChanges();

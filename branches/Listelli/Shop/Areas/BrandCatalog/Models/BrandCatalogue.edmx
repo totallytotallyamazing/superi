@@ -29,6 +29,7 @@
           <Property Name="Description" Type="varchar" />
           <Property Name="Logo" Type="varchar" MaxLength="250" />
           <Property Name="HasCatalogue" Type="bit" Nullable="false" />
+          <Property Name="SortOrder" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="CatalogueGroup">
           <Key>
@@ -36,6 +37,7 @@
           </Key>
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="250" />
+          <Property Name="SortOrder" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="CatalogueImage">
           <Key>
@@ -103,6 +105,7 @@
           <Property Name="Logo" Type="String" MaxLength="250" Unicode="false" FixedLength="false" />
           <Property Name="HasCatalogue" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="CatalogueImages" Relationship="shop_brandCatalogue.FK_CatalogueImage_Brand" FromRole="Brand" ToRole="CatalogueImage" />
+          <Property Type="Int32" Name="SortOrder" Nullable="false" />
         </EntityType>
         <EntityType Name="CatalogueGroup">
           <Key>
@@ -111,6 +114,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="250" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="CatalogueImages" Relationship="shop_brandCatalogue.FK_CatalogueImage_CatalogueGroup" FromRole="CatalogueGroup" ToRole="CatalogueImage" />
+          <Property Type="Int32" Name="SortOrder" Nullable="false" />
         </EntityType>
         <EntityType Name="CatalogueImage">
           <Key>
@@ -140,7 +144,8 @@
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="shop_brandCatalogueStoreContainer" CdmEntityContainer="BrandCatalogue">
           <EntitySetMapping Name="Brands"><EntityTypeMapping TypeName="shop_brandCatalogue.Brand"><MappingFragment StoreEntitySet="Brand">
-            <ScalarProperty Name="Id" ColumnName="Id" />
+            <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
             <ScalarProperty Name="Name" ColumnName="Name" />
             <ScalarProperty Name="SeoKeywords" ColumnName="SeoKeywords" />
             <ScalarProperty Name="SeoDescription" ColumnName="SeoDescription" />
@@ -149,7 +154,8 @@
             <ScalarProperty Name="HasCatalogue" ColumnName="HasCatalogue" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="CatalogueGroups"><EntityTypeMapping TypeName="shop_brandCatalogue.CatalogueGroup"><MappingFragment StoreEntitySet="CatalogueGroup">
-            <ScalarProperty Name="Id" ColumnName="Id" />
+            <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
             <ScalarProperty Name="Name" ColumnName="Name" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="CatalogueImages"><EntityTypeMapping TypeName="shop_brandCatalogue.CatalogueImage"><MappingFragment StoreEntitySet="CatalogueImage">

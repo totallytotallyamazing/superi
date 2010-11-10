@@ -20,26 +20,13 @@ namespace Shop.Areas.Admin.Controllers
             using (BrandCatalogue context = new BrandCatalogue())
             {
                 context.CatalogueGroups.MergeOption = System.Data.Objects.MergeOption.NoTracking;
-                List<CatalogueGroup> groups = context.CatalogueGroups.ToList();
+                List<CatalogueGroup> groups = context.CatalogueGroups.OrderBy(g=>g.SortOrder).ToList();
                 return View(groups); 
             }
         }
 
-        public ActionResult AddEditGroup(int? id)
-        {
-            CatalogueGroup group = null;
-            if (id.HasValue)
-                using (BrandCatalogue context = new BrandCatalogue())
-                {
-                    context.CatalogueGroups.MergeOption = System.Data.Objects.MergeOption.NoTracking;
-                    group = context.CatalogueGroups.First(g => g.Id == id.Value);
-                }
-
-            return View(group);
-        }
-
         [HttpPost]
-        public ActionResult AddEditGroup(FormCollection form)
+        public ActionResult Groups(FormCollection form)
         {
             int id = 0;
             using (BrandCatalogue context = new BrandCatalogue())
@@ -48,11 +35,14 @@ namespace Shop.Areas.Admin.Controllers
                 if (int.TryParse(form["Id"], out id))
                     group = context.CatalogueGroups.First(g => g.Id == id);
                 else
+                {
                     group = new CatalogueGroup();
-                TryUpdateModel(group, new string[] { "Name" }, form.ToValueProvider());
+                    context.AddToCatalogueGroups(group);
+                }
+                TryUpdateModel(group, new string[] { "Name", "SortOrder" }, form.ToValueProvider());
                 context.SaveChanges();
             }
-            return View();
+            return RedirectToAction("Groups");
         }
 
         public ActionResult DeleteGroup(int id)

@@ -171,6 +171,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Views\BrandCatalogue\Groups.aspx" />
+    <Content Include="Areas\Admin\Views\BrandCatalogue\ManageImages.aspx" />
     <Content Include="Areas\Admin\Views\Content\EditPartial.ascx" />
     <Content Include="Areas\Admin\Views\ProductCategories\Index.ascx" />
     <Content Include="Areas\Admin\Views\Products\ProductAttributeStaticValues.ascx" />
@@ -181,6 +182,7 @@
     <Content Include="bin\Elmah.dll" />
     <Content Include="bin\FredCK.FCKeditorV2.dll" />
     <Content Include="bin\WriteEncoder.dll" />
+    <Content Include="Content\AdminStyles\img\cancel.png" />
     <Content Include="Content\AdminStyles\img\leftSectionCorner.jpg" />
     <Content Include="Content\AdminStyles\img\leftSectionFooter.jpg" />
     <Content Include="Content\AdminStyles\img\rightSectionCorner.jpg" />
@@ -188,6 +190,8 @@
     <Content Include="Content\AdminStyles\img\sectionBottom.jpg" />
     <Content Include="Content\AdminStyles\img\sectionLeft.jpg" />
     <Content Include="Content\AdminStyles\img\sectionRight.jpg" />
+    <Content Include="Content\AdminStyles\manageCatalogue.css" />
+    <Content Include="Content\AdminStyles\uploadify.css" />
     <Content Include="Content\fancybox\fancybox_Listelli_close.png" />
     <Content Include="Content\fancybox\fancy_Listelli_e.png" />
     <Content Include="Content\fancybox\fancy_Listelli_ne.png" />
@@ -289,17 +293,22 @@
     <Content Include="index.html" />
     <Content Include="Scripts\BrandCatalogue.js" />
     <Content Include="Scripts\ck.extensions.js" />
+    <Content Include="Scripts\expressInstall.swf" />
     <Content Include="Scripts\jquery.combobox.js" />
     <Content Include="Scripts\jquery.dimensions.js" />
     <Content Include="Scripts\jquery.fancybox.js" />
     <Content Include="Scripts\jquery.FCKEditor.js" />
     <Content Include="Scripts\jquery.js" />
+    <Content Include="Scripts\jquery.uploadify.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.watermark.js" />
     <Content Include="Scripts\MicrosoftAjax.js" />
     <Content Include="Scripts\MicrosoftMvcAjax.js" />
     <Content Include="Scripts\MicrosoftMvcValidation.js" />
     <Content Include="Scripts\PageScripts.js" />
+    <Content Include="Scripts\swfobject.js" />
+    <Content Include="Scripts\uploadify.allglyphs.swf" />
+    <Content Include="Scripts\uploadify.swf" />
     <Content Include="Stub.jpg" />
     <Content Include="Views\Products\ProductStaticAttributes.ascx" />
     <Content Include="Views\Products\ShowModal.ascx" />

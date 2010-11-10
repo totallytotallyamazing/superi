@@ -43,7 +43,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Image" Type="varchar" Nullable="false" MaxLength="255" />
           <Property Name="DeepZoomFile" Type="varchar" MaxLength="255" />
           <Property Name="CatalogueGroupId" Type="int" Nullable="false" />
@@ -120,7 +120,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Image" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
           <Property Name="DeepZoomFile" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
           <NavigationProperty Name="Brand" Relationship="shop_brandCatalogue.FK_CatalogueImage_Brand" FromRole="CatalogueImage" ToRole="Brand" />

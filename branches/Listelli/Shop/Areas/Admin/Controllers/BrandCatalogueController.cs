@@ -20,8 +20,8 @@ namespace Shop.Areas.Admin.Controllers
             using (BrandCatalogue context = new BrandCatalogue())
             {
                 context.CatalogueGroups.MergeOption = System.Data.Objects.MergeOption.NoTracking;
-                List<CatalogueGroup> groups = context.CatalogueGroups.OrderBy(g=>g.SortOrder).ToList();
-                return View(groups); 
+                List<CatalogueGroup> groups = context.CatalogueGroups.OrderBy(g => g.SortOrder).ToList();
+                return View(groups);
             }
         }
 
@@ -49,10 +49,16 @@ namespace Shop.Areas.Admin.Controllers
         {
             using (BrandCatalogue context = new BrandCatalogue())
             {
-                CatalogueGroup group = context.CatalogueGroups.First(g => g.Id == id);
+                CatalogueGroup group = context.CatalogueGroups
+                    .Include("CatalogueImages").Include("Brand")
+                    .First(g => g.Id == id);
                 foreach (var image in group.CatalogueImages)
                 {
-
+                    if (!string.IsNullOrEmpty(image.Image))
+                    {
+                        string relativePath = string.Format("~/Content/CatalogueImages/Brand{0}Group{1}/{2}", image.Brand.Id, id, image.Image);
+                        System.IO.File.Delete(Server.MapPath(relativePath));
+                    }
                 }
                 context.DeleteObject(group);
                 context.SaveChanges();
@@ -60,22 +66,44 @@ namespace Shop.Areas.Admin.Controllers
             return RedirectToAction("Groups");
         }
 
-        struct UploadedImageProperties 
-        {
-            public int BrandId { get; set; }
-            public int GroupId { get; set; }
-        }
-
         public ActionResult ManageImages(int? groupId, int? brandId)
         {
             List<CatalogueImage> images = new List<CatalogueImage>();
-            if (groupId.HasValue && brandId.HasValue)
+            using (BrandCatalogue context = new BrandCatalogue())
             {
-                using (BrandCatalogue context = new BrandCatalogue())
-                {
-                    images = context.CatalogueImages.Where(ci => ci.Brand.Id == brandId.Value)
-                        .Where(ci => ci.CatalogueGroup.Id == groupId.Value).ToList();
-                }
+                context.Brands.MergeOption = System.Data.Objects.MergeOption.NoTracking;
+                context.CatalogueGroups.MergeOption = System.Data.Objects.MergeOption.NoTracking;
+
+                var brands = context.Brands.Where(b => b.HasCatalogue).OrderBy(b => b.SortOrder).ToList();
+
+                ViewData["brands"] = brands
+                    .Select(b => new SelectListItem
+                    {
+                        Text = b.Name,
+                        Value = b.Id.ToString(),
+                        Selected = brandId == b.Id
+                    })
+                    .ToList();
+
+                var groups = context.CatalogueGroups.OrderBy(b => b.SortOrder).ToList();
+
+                ViewData["groups"] = groups
+                    .Select(g => new SelectListItem
+                    {
+                        Text = g.Name,
+                        Value = g.Id.ToString(),
+                        Selected = groupId == g.Id
+                    })
+                    .ToList();
+
+                int bId = brandId ?? brands.First().Id;
+                int gId = groupId ?? groups.First().Id;
+
+                context.CatalogueImages.MergeOption = System.Data.Objects.MergeOption.NoTracking;
+                images = context.CatalogueImages.Where(ci => ci.Brand.Id == bId)
+                    .Where(ci => ci.CatalogueGroup.Id == gId).ToList();
+
+                ViewData["scriptData"] = string.Format("{{BrandId: {0}, GroupId: {1}}}", bId, gId);
             }
             return View(images);
         }
@@ -90,7 +118,7 @@ namespace Shop.Areas.Admin.Controllers
                     context.DeleteObject(item);
                 context.SaveChanges();
             }
-            return RedirectToAction("ManageImages", new { groupId = form["groupId"], brandId = form["brandId"]});
+            return RedirectToAction("ManageImages", new { groupId = form["groupId"], brandId = form["brandId"] });
         }
 
         public ActionResult UpdateSortOrder(FormCollection form)
@@ -101,32 +129,20 @@ namespace Shop.Areas.Admin.Controllers
                 var images = context.CatalogueImages.Where(ContextExtension.BuildContainsExpression<CatalogueImage, int>(ci => ci.Id, sortOrderUpdates.Keys));
                 foreach (var item in images)
                     item.SortOrder = sortOrderUpdates[item.Id];
-                
+
                 context.SaveChanges();
             }
             return RedirectToAction("ManageImages", new { groupId = form["groupId"], brandId = form["brandId"] });
         }
 
-        public ActionResult UploadImages()
-        {
-            using (BrandCatalogue context = new BrandCatalogue())
-            {
-                ViewData["brands"] = context.Brands.Where(b => b.HasCatalogue).ToList();
-                ViewData["groups"] = context.CatalogueGroups.ToList();
-            }
-            return View();
-        }
+        static object lockobj = 1;
 
         [HttpPost]
         public void UploadImage(FormCollection form)
         {
-            string scriptData = form["scriptDataVariable"];
-            JavaScriptSerializer serializer = new JavaScriptSerializer();
-            var imageProperties = serializer.Deserialize<UploadedImageProperties>(scriptData);
-
-            string folderRelativePath = string.Format("~/Content/CatalogueImages/Brand{0}Group{1}", imageProperties.BrandId, imageProperties.GroupId);
+            string folderRelativePath = string.Format("~/Content/CatalogueImages/Brand{0}Group{1}", form["BrandId"], form["GroupId"]);
             string folderAbsolutePath = Server.MapPath(folderRelativePath);
-            
+
             if (!Directory.Exists(folderAbsolutePath)) Directory.CreateDirectory(folderAbsolutePath);
 
             HttpPostedFileBase file = Request.Files["Filedata"];
@@ -136,15 +152,17 @@ namespace Shop.Areas.Admin.Controllers
             string targetFilePath = Path.Combine(folderAbsolutePath, fileName);
 
             file.SaveAs(targetFilePath);
-
-            using (BrandCatalogue context = new BrandCatalogue())
+            lock (lockobj)
             {
-                CatalogueImage image = new CatalogueImage();
-                image.BrandReference.EntityKey = new EntityKey("BrandCatalogue.Brands", "Id", imageProperties.BrandId);
-                image.CatalogueGroupReference.EntityKey = new EntityKey("BrandCatalogue.CatalogueGroups", "Id", imageProperties.GroupId);
-                image.Image = fileName;
-                context.AddToCatalogueImages(image);
-                context.SaveChanges();
+                using (BrandCatalogue context = new BrandCatalogue())
+                {
+                    CatalogueImage image = new CatalogueImage();
+                    image.BrandReference.EntityKey = new EntityKey("BrandCatalogue.Brands", "Id", int.Parse(form["BrandId"]));
+                    image.CatalogueGroupReference.EntityKey = new EntityKey("BrandCatalogue.CatalogueGroups", "Id", int.Parse(form["GroupId"]));
+                    image.Image = fileName;
+                    context.AddToCatalogueImages(image);
+                    context.SaveChanges();
+                }
             }
             Response.Write("1");
         }

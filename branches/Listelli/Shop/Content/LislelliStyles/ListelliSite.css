@@ -341,8 +341,8 @@ html, body
     }
 
 #contentBoxBrandCatalog .corner_ne
-{ width: 21px;
-    height: 24px;
+{ width: 28px;
+    height: 26px;
     position: absolute; /*z-index: 2;*/
     top: 0px;
     right: 0px;
@@ -351,8 +351,8 @@ html, body
     
     
 #contentBoxBrandCatalog .corner_nw
-{ width: 21px;
-    height: 29px;
+{ width: 28px;
+    height: 26px;
     position: absolute; /*z-index: 2;*/
     top: 0px;
     left: 0px;
@@ -360,7 +360,7 @@ html, body
     background-position: left top;}
     
     #contentBoxBrandCatalog .corner_sw
-{ width: 26px;
+{ width: 28px;
     height: 26px;
     position: absolute; /*z-index: 2;*/
     bottom: 4px;
@@ -369,8 +369,8 @@ html, body
     background-position: left bottom;}
     
     #contentBoxBrandCatalog .corner_se
-{ width: 24px;
-    height: 25px;
+{ width: 28px;
+    height: 26px;
     position: absolute; /*z-index: 2;*/
     bottom: 4px;
     right: -1px;

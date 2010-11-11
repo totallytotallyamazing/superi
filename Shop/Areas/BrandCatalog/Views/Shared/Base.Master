@@ -10,7 +10,7 @@
         </asp:ContentPlaceHolder>
     </title>
     <link href="/Content/LislelliStyles/ListelliSite.css" rel="stylesheet" type="text/css" />
-    <link href="/Content/LislelliStyles/BrandsComboBox.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/LislelliStyles/brandsComboBox.css" rel="stylesheet" type="text/css" />
     
     <!--[if IE 7]>
 

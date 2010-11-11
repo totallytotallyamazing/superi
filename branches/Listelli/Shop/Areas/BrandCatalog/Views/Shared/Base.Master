@@ -10,7 +10,7 @@
         </asp:ContentPlaceHolder>
     </title>
     <link href="/Content/LislelliStyles/ListelliSite.css" rel="stylesheet" type="text/css" />
-   
+    <link href="/Content/LislelliStyles/BrandsComboBox.css" rel="stylesheet" type="text/css" />
     
     <!--[if IE 7]>
 
@@ -63,7 +63,7 @@
                     <p class="txtLeftMenu">
                         Группа каталогов:</p>
                     <div id="cbBrand">
-                        <select id="id">
+                        <select id="selectBrand">
                             <option value="1">bla</option>
                             <option value="2">bla-bla</option>
                         </select>                        

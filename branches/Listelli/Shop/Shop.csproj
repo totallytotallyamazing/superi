@@ -221,6 +221,11 @@
     <Content Include="Content\LislelliStyles\img\BrandCatalogItem.png" />
     <Content Include="Content\LislelliStyles\img\bubbleNew.png" />
     <Content Include="Content\LislelliStyles\img\cbBrand.gif" />
+    <Content Include="Content\LislelliStyles\img\cbBrandButton.gif" />
+    <Content Include="Content\LislelliStyles\img\cbButton.png" />
+    <Content Include="Content\LislelliStyles\img\cbContainer.png" />
+    <Content Include="Content\LislelliStyles\img\cbDropDown.png" />
+    <Content Include="Content\LislelliStyles\img\cbValueContainer.png" />
     <Content Include="Content\LislelliStyles\img\corner_ne.png" />
     <Content Include="Content\LislelliStyles\img\corner_nw.png" />
     <Content Include="Content\LislelliStyles\img\corner_se.png" />
@@ -252,6 +257,7 @@
     <Content Include="Content\LislelliStyles\ListelliSite.css" />
     <Content Include="Content\LislelliStyles\products.css" />
     <Content Include="Content\LislelliStyles\ie7.css" />
+    <Content Include="Content\LislelliStyles\BrandsComboBox.css" />
     <Content Include="Content\UnMomentoStyles\img\allBkg.gif" />
     <Content Include="Content\UnMomentoStyles\img\baner.gif" />
     <Content Include="Content\UnMomentoStyles\img\basket.gif" />

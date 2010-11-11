@@ -130,9 +130,9 @@ html, body
 #cbBrandBox, #topMenu .txtLeftMenu {font-size: 10px; font-weight: bold; color: #999999;}
 #cbBrand 
 {   margin: 3px 0px 0px 10px;
-    width: 153px;
+    /*width: 153px;
     height: 19px;
-    background: url('./img/cbBrand.gif') no-repeat;}
+    background: url('./img/cbBrand.gif') no-repeat;*/}
 
 #topMenu {float: left; margin: 55px 0px 0px 50px; }
 #topMenu .menu

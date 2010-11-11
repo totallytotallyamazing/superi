@@ -172,6 +172,7 @@
   <ItemGroup>
     <Content Include="Areas\Admin\Views\BrandCatalogue\Groups.aspx" />
     <Content Include="Areas\Admin\Views\BrandCatalogue\ManageImages.aspx" />
+    <Content Include="Areas\Admin\Views\BrandCatalogue\UploadControl.ascx" />
     <Content Include="Areas\Admin\Views\Content\EditPartial.ascx" />
     <Content Include="Areas\Admin\Views\ProductCategories\Index.ascx" />
     <Content Include="Areas\Admin\Views\Products\ProductAttributeStaticValues.ascx" />
@@ -297,6 +298,7 @@
     <Content Include="Controls\ckeditor\config.js" />
     <Content Include="Global.asax" />
     <Content Include="index.html" />
+    <Content Include="Scripts\AdminScripts.js" />
     <Content Include="Scripts\BrandCatalogue.js" />
     <Content Include="Scripts\ck.extensions.js" />
     <Content Include="Scripts\expressInstall.swf" />

@@ -1,0 +1,7 @@
+﻿var BrandCatalogue = {
+    initialize: function () { 
+        
+    },
+
+
+}

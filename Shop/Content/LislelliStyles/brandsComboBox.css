@@ -1,0 +1,46 @@
+﻿
+
+.cbBrandButton
+{
+    width: 16px;
+    height: 19px;
+    background: url('./img/cbButton.png') no-repeat;
+}
+
+.cbBrandContainer
+{
+  
+    height: 19px;
+    background: url('./img/cbContainer.png') no-repeat;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    color: black;
+}
+
+.cbBrandValueContainer
+{
+    width: 136px;
+    height: 19px;
+    background: url('./img/cbValueContainer.png') no-repeat;
+}
+
+.cbBrandDropDown
+{
+    width: 148px !important;
+    /*height: 19px;*/
+    background: url('./img/cbDropDown.png') no-repeat;
+    background-position: bottom;
+    background-color: White;
+    border-left: 4px solid black;
+    border-right: 1px solid black;
+    padding-bottom: 4px;
+}
+
+.cbBrandValueContent
+{font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    color: black;}
+    
+    
+    
+   

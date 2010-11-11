@@ -78,8 +78,12 @@ namespace Dev.Mvc.Helpers
                     return null;
                 }
             }
+
             string result = Path.Combine("/ImageCache/" + cacheFolder + "/", fileName);
             string cachePath = HttpContext.Current.Server.MapPath("~/ImageCache/" + cacheFolder);
+
+            if (!Directory.Exists(cachePath)) Directory.CreateDirectory(cachePath);
+
             string cachedImagePath = Path.Combine(cachePath, fileName);
             if (File.Exists(cachedImagePath))
             {

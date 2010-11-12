@@ -30,7 +30,7 @@
         })
     </script>
 
-<a onclick="$('#upload').show();" href="#" >Загрузить фото</a>
+<a onclick="$('#upload').show('normal');" href="#" >Загрузить фото</a>
 <div id="upload" >
     <div id="myQueue"></div>
     <input type="file" id="file_upload" name="Filedata" /><br />

@@ -6,15 +6,12 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div id="selects">
-        <% using(Html.BeginForm()){ %>
+        <% using(Html.BeginForm("ManageImages", "BrandCatalogue", FormMethod.Get)){ %>
             Бренды:<%= Html.DropDownList("brandId", (IEnumerable<SelectListItem>)ViewData["brands"]) %>
             Группы:<%= Html.DropDownList("groupId", (IEnumerable<SelectListItem>)ViewData["groups"]) %>
         <%} %>
     </div>
     <% Html.RenderPartial("UploadControl"); %>
-    <div id="images">
-        
-    </div>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentTitle" runat="server">

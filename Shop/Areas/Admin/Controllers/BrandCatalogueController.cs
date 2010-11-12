@@ -66,6 +66,7 @@ namespace Shop.Areas.Admin.Controllers
             return RedirectToAction("Groups");
         }
 
+        [HttpGet]
         public ActionResult ManageImages(int? groupId, int? brandId)
         {
             List<CatalogueImage> images = new List<CatalogueImage>();
@@ -108,27 +109,20 @@ namespace Shop.Areas.Admin.Controllers
             return View(images);
         }
 
-        public ActionResult DeleteImages(FormCollection form)
-        {
-            int[] imagesToDelete = form.GetArray<int>("imageDelete_");
-            using (BrandCatalogue context = new BrandCatalogue())
-            {
-                var images = context.CatalogueImages.Where(ContextExtension.BuildContainsExpression<CatalogueImage, int>(ci => ci.Id, imagesToDelete));
-                foreach (var item in images)
-                    context.DeleteObject(item);
-                context.SaveChanges();
-            }
-            return RedirectToAction("ManageImages", new { groupId = form["groupId"], brandId = form["brandId"] });
-        }
-
-        public ActionResult UpdateSortOrder(FormCollection form)
+        [HttpPost]
+        public ActionResult ManageImages(FormCollection form)
         {
             using (BrandCatalogue context = new BrandCatalogue())
             {
                 Dictionary<int, int> sortOrderUpdates = form.GetDictionary<int, int>("imageSortOrder_");
-                var images = context.CatalogueImages.Where(ContextExtension.BuildContainsExpression<CatalogueImage, int>(ci => ci.Id, sortOrderUpdates.Keys));
-                foreach (var item in images)
+                var updatedImages = context.CatalogueImages.Where(ContextExtension.BuildContainsExpression<CatalogueImage, int>(ci => ci.Id, sortOrderUpdates.Keys));
+                foreach (var item in updatedImages)
                     item.SortOrder = sortOrderUpdates[item.Id];
+
+                int[] imagesToDelete = form.GetArray<int>("imageDelete_");
+                var deletedImages = updatedImages.Where(ContextExtension.BuildContainsExpression<CatalogueImage, int>(ci => ci.Id, imagesToDelete));
+                foreach (var item in deletedImages)
+                    context.DeleteObject(item);
 
                 context.SaveChanges();
             }

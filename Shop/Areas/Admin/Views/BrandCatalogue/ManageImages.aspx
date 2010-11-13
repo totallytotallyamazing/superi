@@ -12,12 +12,18 @@
         <%} %>
     </div>
     <% Html.RenderPartial("UploadControl"); %>
+    <% Html.RenderPartial("Images"); %>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentTitle" runat="server">
 </asp:Content>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="includes" runat="server">
+    <script type="text/javascript">
+        $("#selects select").change(function () {
+            $("#selects form").get(0).submit();
+        });
+    </script>
 </asp:Content>
 
 <asp:Content ID="Content5" ContentPlaceHolderID="Footer" runat="server">

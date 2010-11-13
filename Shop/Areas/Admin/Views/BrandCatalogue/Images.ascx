@@ -2,9 +2,12 @@
 <%
     using (Html.BeginForm())
     {
+        %><%= Html.Hidden("brandId") %><%
+        %><%= Html.Hidden("groupId") %><%
         foreach (var image in Model)
         {
             Html.RenderPartial("Image", image);
         }
+        %><input type="submit" value="Сохраниить порядок и удалить отмеченные" /><%
     }
 %>

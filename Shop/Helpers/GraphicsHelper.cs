@@ -24,10 +24,10 @@ namespace Dev.Mvc.Helpers
             fixDimension.Add("thumbnail1", FixedDimension.Width);
             maxDimensions.Add("thumbnail2", 110);
             fixDimension.Add("thumbnail2", FixedDimension.Height);
-            maxDimensions.Add("thumbnail3", 85);
-            fixDimension.Add("thumbnail3", FixedDimension.Height);
-            maxDimensions.Add("cartThumb", 60);
-            fixDimension.Add("cartThumb", FixedDimension.Width);
+            maxDimensions.Add("catalogueThumb", 83);
+            fixDimension.Add("catalogueThumb", FixedDimension.Height);
+            maxDimensions.Add("catalogueMain", 60);
+            fixDimension.Add("catalogueMain", FixedDimension.Height);
         }
 
         private static Size CalculateSize(Size image, FixedDimension? fixedDimension, int maxDimension)
@@ -124,12 +124,12 @@ namespace Dev.Mvc.Helpers
             }
         }
 
-        public static string CachedImage(this HtmlHelper helper, string originalPath, string fileName, string cacheFolder, string alt)
+        public static string CachedImage(this HtmlHelper helper, string imageFolder, string fileName, string cacheFolder, string alt)
         {
             StringBuilder sb = new StringBuilder();
             string formatString = "<img src=\"{0}\" alt=\"{1}\" />";
 
-            sb.AppendFormat(formatString, GetCachedImage(originalPath, fileName, cacheFolder), alt);
+            sb.AppendFormat(formatString, GetCachedImage(imageFolder, fileName, cacheFolder), alt);
 
             return sb.ToString();
         }

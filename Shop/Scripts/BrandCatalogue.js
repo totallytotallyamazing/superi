@@ -34,7 +34,6 @@ the maximum height of the drop-down list.
 var BrandCatalogue = {
     initialize: function () {
         $(function () {
-            try {
                 $('#selectBrand').combobox({
                     comboboxContainerClass: "cbBrandContainer",
                     comboboxValueContainerClass: "cbBrandValueContainer",
@@ -43,11 +42,7 @@ var BrandCatalogue = {
                     comboboxValueContentClass: "cbBrandValueContent",
                     animationType: "fade",
                     width: "153px"
-
                 });
-
-            }
-            catch (e) { /*whatever*/ }
         });
         
     }

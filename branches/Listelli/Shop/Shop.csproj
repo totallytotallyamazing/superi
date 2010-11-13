@@ -180,6 +180,7 @@
     <Content Include="Areas\Admin\Views\Products\ProductAttributeStaticValues.ascx" />
     <Content Include="Areas\Admin\Views\ProductVariants\AddEdit.ascx" />
     <Content Include="Areas\Admin\Views\ProductVariants\Index.aspx" />
+    <Content Include="Areas\BrandCatalog\Views\Brands\BrandLinks.ascx" />
     <Content Include="Areas\BrandCatalog\Views\Brands\Index.aspx" />
     <Content Include="Areas\BrandCatalog\Views\Home\Index.aspx" />
     <Content Include="bin\Elmah.dll" />

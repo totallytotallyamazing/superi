@@ -101,10 +101,14 @@ namespace Shop.Areas.Admin.Controllers
                 int gId = groupId ?? groups.First().Id;
 
                 context.CatalogueImages.MergeOption = System.Data.Objects.MergeOption.NoTracking;
-                images = context.CatalogueImages.Where(ci => ci.Brand.Id == bId)
+                images = context.CatalogueImages.OrderBy(i=>i.SortOrder).Where(ci => ci.Brand.Id == bId)
                     .Where(ci => ci.CatalogueGroup.Id == gId).ToList();
 
                 ViewData["scriptData"] = string.Format("{{BrandId: {0}, GroupId: {1}}}", bId, gId);
+
+                ViewData["groupId"] = gId;
+                ViewData["brandId"] = bId;
+
             }
             return View(images);
         }
@@ -122,7 +126,10 @@ namespace Shop.Areas.Admin.Controllers
                 int[] imagesToDelete = form.GetArray<int>("imageDelete_");
                 var deletedImages = updatedImages.Where(ContextExtension.BuildContainsExpression<CatalogueImage, int>(ci => ci.Id, imagesToDelete));
                 foreach (var item in deletedImages)
+                {
+                    System.IO.File.Delete(Server.MapPath("~/Content/CatalogueImages/Brand" + form["brandId"] + "Group" + form["groupId"] +"/" + item.Image));
                     context.DeleteObject(item);
+                }
 
                 context.SaveChanges();
             }

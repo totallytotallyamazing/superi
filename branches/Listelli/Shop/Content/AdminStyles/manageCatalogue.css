@@ -1,2 +1,8 @@
 ﻿#myQueue{width:400px; height:400px; border:1px solid #aaa; overflow:auto;}
-#upload{position:absolute; margin-top:20px; z-index:200;}
+#upload{position:absolute; margin-top:20px; z-index:200; background:white;}
+
+.catalogueImage{float:left; position : relative;}
+.catalogueImage div{position:absolute;}
+.catalogueImage div.sortOrder{left:0;}
+.catalogueImage div.delete{right:0;}
+.catalogueImage div.sortOrder input{width:20px;}

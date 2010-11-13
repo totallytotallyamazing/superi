@@ -33,5 +33,6 @@
 <a onclick="$('#upload').show('normal');" href="#" >Загрузить фото</a>
 <div id="upload" >
     <div id="myQueue"></div>
-    <input type="file" id="file_upload" name="Filedata" /><br />
+    <input type="file" id="file_upload" name="Filedata" />
+    <a href="#" onclick="$('#upload').hide('normal');">Отмена</a>
 </div>

@@ -31,7 +31,8 @@
         <%= Html.ActionLink("Атрибуты", "Index", new {controller="Attributes", Area="Admin"}) %> | 
         <%= Html.ActionLink("Бренды", "Index", new { controller = "Brands", Area = "Admin", id = 2 })%> |
         <%= Html.ActionLink("Теги", "Index", new { controller = "Tags", Area = "Admin", id = 2 })%> |
-        <%= Html.ActionLink("Каталог брендов", "Index", new { controller = "BrandCatalogue", Area = "Admin", id = 2 })%> |
+        <%= Html.ActionLink("Группы каталога", "Groups", new { controller = "BrandCatalogue", Area = "Admin" })%> |
+        <%= Html.ActionLink("Каталог", "ManageImages", new { controller = "BrandCatalogue", Area = "Admin", id = 2 })%> |
         <%= Html.ActionLink("Выход", "LogOff", new {controller="Account", Area=""}) %> 
     </div>
     <div class="handle">

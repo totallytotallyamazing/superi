@@ -22,7 +22,7 @@
                 simUploadLimit : 3, 
                 scriptData: <%= ViewData["scriptData"] %>,
                 scriptAccess : 'always',
-                buttonText: "KAPTUHKU",
+                buttonImg   : '/Content/AdminStyles/img/button.jpg',
                 auto: true,
                 onAllComplete: function(){ $("#selects form").get(0).submit(); }
             });

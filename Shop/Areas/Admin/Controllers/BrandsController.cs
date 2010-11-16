@@ -37,26 +37,20 @@ namespace Shop.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddEdit(Brand brand, int? Id)
+        public ActionResult AddEdit(FormCollection form)
         {
             using (ShopStorage context = new ShopStorage())
             {
-                if (Id.HasValue && Id > 0)
-                {
-                   //brand.Id = Id;
-                    EntityKey key = new EntityKey("ShopStorage.Brands", "Id", Id.Value);
-                    brand.Id = Id.Value;
-                    brand.Description = HttpUtility.HtmlDecode(brand.Description);
-                    object originalItem = null;
-                    if(context.TryGetObjectByKey(key, out originalItem))
-                    {
-                        context.ApplyCurrentValues("Brands", brand);
-                    }
-                }
+                int id = 0;
+                Brand brand = null;
+                if (int.TryParse(form["Id"], out id))
+                    brand = context.Brands.First(b => b.Id == id);
                 else
                 {
+                    brand = new Brand();
                     context.AddToBrands(brand);
                 }
+                brand.Description = HttpUtility.HtmlDecode(form["Description"]);
 
                 if (Request.Files["logo"] != null && !string.IsNullOrEmpty(Request.Files["logo"].FileName))
                 {

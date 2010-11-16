@@ -23,6 +23,26 @@ ProductClientExtensions = {
 
     _adjustedCount: 0,
 
+    _adjustDimensions: function () {
+        ProductClientExtensions._adjustProductContainerHeight();
+        ProductClientExtensions._adjustProductContainerWidth();
+
+        ProductClientExtensions._adjustedCount++;
+        if (ProductClientExtensions._adjustedCount > 10) {
+            window.clearInterval(ProductClientExtensions._intervalId);
+        }
+
+    },
+
+    _adjustProductContainerHeight: function () {
+        var maxHeight = 0;
+        $(".productItem").each(function () {
+            if (this.offsetHeight > maxHeight)
+                maxHeight = this.offsetHeight;
+        });
+        $(".productItem").height(maxHeight);
+    },
+
     _adjustProductContainerWidth: function () {
         $(".productItem").each(function () {
             var width = $(this).find("img").width();
@@ -30,17 +50,13 @@ ProductClientExtensions = {
                 $(this).width(width);
             }
         })
-        ProductClientExtensions._adjustedCount++;
-        if (ProductClientExtensions._adjustedCount > 10) {
-            window.clearInterval(ProductClientExtensions._intervalId);
-        }
     },
 
     _intervalId: 0,
 
     initialize: function () {
         $(function () {
-            ProductClientExtensions._intervalId = window.setInterval(ProductClientExtensions._adjustProductContainerWidth, 500);
+            ProductClientExtensions._intervalId = window.setInterval(ProductClientExtensions._adjustDimensions, 500);
         })
     }
 };

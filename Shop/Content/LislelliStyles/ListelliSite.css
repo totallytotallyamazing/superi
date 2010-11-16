@@ -212,6 +212,7 @@ html, body
 #leftItems
 {
     float: left;
+    clear:both;
 }
 
 #titleBoxBrandCatalog {margin: 25px 0px 25px 0px; text-align: center; width: auto;}
@@ -273,55 +274,41 @@ html, body
     
 }
 
-#menuMain
+#menuMain div.mainMenuItem
 {
-    /*min-*/
-    width: 570px;
-    height: 110px;
-    position: absolute;
-    top: 80px;
+    /*margin-top: 74px;*/ /* bottom: 0px;*/
+    width: 184px;
+    margin-top:80px;
+    height: 43px;
+    background: url('./img/firstTab.gif') no-repeat;
+    float:left;
+    margin-right:7px;
+    padding-top:15px;
+    text-align:center;
+}
+
+
+#menuMain div.current
+{
+    height: 63px;
+    margin-top:60px;
+    background-color:#333332;
 }
 
 #menuBox
 {
     /*min-*/
-    width: 570px;
-    height: 110px;
     margin-left: 260px; /* z-index: 1; */
 }
 
-#firstTab, #secondTab, #thirdTab
+#menuBox a.txtMenuItem
 {
-    /*margin-top: 74px;*/ /* bottom: 0px;*/
-    width: 184px;
-    height: 43px;
-    background: url('./img/firstTab.gif') no-repeat;
-}
-
-#firstTab
-{
-    /* position: absolute;*/
-    float: left; /*left: 0px;*/
-}
-
-#secondTab
-{
-    margin: 0px auto 0px auto;
-}
-
-#thirdTab
-{
-    /* position: absolute;*/
-    float: right; /* right: 0px;*/
-}
-
-#menuBox .txtMenuItem
-{
-    padding-top: 15px;
-    text-align: center;
     font-size: 11px;
     font-weight: 900;
+    text-decoration:none;
 }
+
+#menuBox a.txtMenuItem:hover{text-decoration:underline}
 
 #tmp {width: 100%; text-align: center;}
 

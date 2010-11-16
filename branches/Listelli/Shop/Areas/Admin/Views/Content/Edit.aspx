@@ -7,8 +7,12 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <% using(Html.BeginForm()){ %>
     <%= Html.HiddenFor(m=>m.Name) %>
-    <%= Html.HiddenFor(m=>m.Title) %>
     <%= Html.HiddenFor(m=>m.Language) %>
+
+    <div>
+    <p>Заглавие:</p>
+    <%= Html.TextBoxFor(m=>m.Title)  %>
+    </div>
 
     <div>
     <p>Текст:</p>

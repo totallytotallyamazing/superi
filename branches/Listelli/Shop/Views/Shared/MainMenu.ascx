@@ -12,28 +12,16 @@
         Func<string, string> isCurrent = (location) => (location == currenLocation) ? " current" : string.Empty;
     %>
 
-    <div id="thirdTab">
-        <p class="txtMenuItem">ОБРАТНАЯ СВЯЗЬ</p>
+    <div class="mainMenuItem<%= isCurrent("possibilities") %>">
+        <a href="/Go/Possibilities" class="txtMenuItem">НАШИ ВОЗМОЖНОСТИ</a>
     </div>
-    <div id="firstTab">
-        <p class="txtMenuItem">НАШИ ВОЗМОЖНОСТИ</p>
+    <div class="mainMenuItem<%= isCurrent("events")%>">
+        <a href="/Go/Events" class="txtMenuItem">НАШИ СОБЫТИЯ</a>
     </div>
-    <div id="secondTab">
-        <p class="txtMenuItem">НАШИ СОБЫТИЯ</p>
+    <div class="mainMenuItem<%= isCurrent("feedback")%>">
+        <a href="/Go/Feedback" class="txtMenuItem">ОБРАТНАЯ СВЯЗЬ</a>
     </div>
 
-    <%--<p class="ot2 capital">
-        
-        <a href="/Go/About" class="ot2"><b>О НОВОМ СЕРВИСЕ</b></a>
-        <br />
-        <a href="/Go/PaymentAndDelivery" class="ot2"><b>ОПЛАТА И ДОСТАВКА</b></a>
-        <br />
-        <a href="/Go/Partners" class="ot2"><b>ПАРТНЕРАМ</b></a>
-        <br />
-        <a href="/Go/GiftedGuys" class="ot2"><b>ОДАРЕННЫЕ НАМИ ЛЮДИ</b></a>
-    </p>--%>
 
-
-  
 </div>
 

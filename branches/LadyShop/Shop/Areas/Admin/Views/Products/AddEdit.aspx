@@ -115,7 +115,7 @@
             </table>
             <%if (Model!=null){ %>
                 <div class="productLinks">
-                    <%= Html.ActionLink("Размеры в наличии", "Index", "ProductAttributeValues", new { id = Model.Category.Id,productId=Model.Id }, new { @class = "fancyAdmin iframe" })%>
+                    <%= Html.ActionLink("Дополнительные свойства", "Index", "ProductAttributeValues", new { id = Model.Category.Id,productId=Model.Id }, new { @class = "fancyAdmin iframe" })%>
                 </div>
             <%} %>
 

@@ -15,12 +15,11 @@
     </p>
     <%} %>
     <div id="SlotH">
-        <h1>
-            Куртка “Roca Wear”</h1>
+        <h1><%= Model.Name %></h1>
     </div>
 
     <div id="SlotProduct">
-        <% Html.RenderPartial("ProductImage", Model.ProductImages.Where(m => m.Default).FirstOrDefault()); %>
+        <% Html.RenderPartial("ProductImage", Model.ProductImages.Where(m => m.Default).DefaultIfEmpty(new Shop.Models.ProductImage { Product  = Model })); %>
         <div id="SlotProductText">
             <p>
                 <%= Model.Description %>
@@ -34,7 +33,7 @@
             </p>
         </div>
     </div>
-    <% Html.RenderPartial("ImagePreviews", Model.ProductImages.Where(m => !m.Default)); %>
+    <% Html.RenderPartial("ImagePreviews", Model.ProductImages.OrderByDescending(m => m.Default)); %>
     
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentTitle" runat="server">

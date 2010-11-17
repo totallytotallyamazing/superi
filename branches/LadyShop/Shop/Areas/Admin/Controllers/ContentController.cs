@@ -28,7 +28,7 @@ namespace Shop.Areas.Admin.Controllers
                 Content originalItem = context.Contents.Where(c => c.Name == content.Name).First();
                 content.Id = originalItem.Id;
                 content.Text = HttpUtility.HtmlDecode(content.Text);
-                context.ApplyPropertyChanges("Contents", content);
+                context.ApplyCurrentValues("Contents", content);
 
                 context.SaveChanges();
             }

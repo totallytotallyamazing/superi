@@ -39,7 +39,7 @@ namespace Shop.Areas.Admin.Controllers
                     EntityKey entityKey = new EntityKey("ContentStorage.Articles", "Id", article.Id);
                     if (context.TryGetObjectByKey(entityKey, out originalItem))
                     {
-                        context.ApplyPropertyChanges(entityKey.EntitySetName, article);
+                        context.ApplyCurrentValues(entityKey.EntitySetName, article);
                     }
                 }
                 else

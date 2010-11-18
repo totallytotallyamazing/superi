@@ -37,6 +37,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.ComponentModel.DataAnnotations">
@@ -183,6 +184,7 @@
     <Content Include="Areas\BrandCatalog\Views\Brands\BrandLinks.ascx" />
     <Content Include="Areas\BrandCatalog\Views\Brands\Index.aspx" />
     <Content Include="Areas\BrandCatalog\Views\Home\Index.aspx" />
+    <Content Include="Areas\BrandCatalog\Views\Shared\CatalogueGroups.ascx" />
     <Content Include="bin\Elmah.dll" />
     <Content Include="bin\FredCK.FCKeditorV2.dll" />
     <Content Include="bin\WriteEncoder.dll" />

@@ -15,6 +15,5 @@ namespace Shop.Areas.BrandCatalog.Controllers
         {
             return View();
         }
-
     }
 }

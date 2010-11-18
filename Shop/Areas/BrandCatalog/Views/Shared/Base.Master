@@ -59,34 +59,7 @@
                             б&nbsp;р&nbsp;е&nbsp;н&nbsp;д&nbsp;о&nbsp;в</p>
                     </div>
                 </div>
-                <div id="cbBrandBox">
-                    <p class="txtLeftMenu">
-                        Группа каталогов:</p>
-                    <div id="cbBrand">
-                        <select id="selectBrand">
-                            <option value="1">bla</option>
-                            <option value="2">bla-bla</option>
-                        </select>                        
-                        
-                    </div>
-                </div>
-                <div id="topMenu">
-                    <p class="txtLeftMenu">
-                        Бренды:</p>
-                    <div class="menu">
-                        <p class="current txtSubMenuItem">
-                            Kreoo</p>
-                    </div>
-                    <div class="menu">
-                        <a href='#' class="txtSubMenuItem">Foglie D’oro</a>
-                    </div>
-                    <div class="menu">
-                        <a href='#' class="txtSubMenuItem">Decor Marmi</a>
-                    </div>
-                    <div class="menu">
-                        <a href='#' class="txtSubMenuItem">Laperla</a>
-                    </div>
-                </div>
+                <% Html.RenderPartial("CatalogueGroups"); %>
             </div>
             <asp:ContentPlaceHolder runat="server" ID="ContentTitle">
             </asp:ContentPlaceHolder>

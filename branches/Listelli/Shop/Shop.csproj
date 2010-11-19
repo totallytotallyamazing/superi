@@ -182,7 +182,7 @@
     <Content Include="Areas\Admin\Views\ProductVariants\AddEdit.ascx" />
     <Content Include="Areas\Admin\Views\ProductVariants\Index.aspx" />
     <Content Include="Areas\BrandCatalog\Views\Brands\BrandLinks.ascx" />
-    <Content Include="Areas\BrandCatalog\Views\Brands\Index.aspx" />
+    <Content Include="Areas\BrandCatalog\Views\Brands\Index.ascx" />
     <Content Include="Areas\BrandCatalog\Views\Home\Index.aspx" />
     <Content Include="Areas\BrandCatalog\Views\Shared\CatalogueGroups.ascx" />
     <Content Include="bin\Elmah.dll" />
@@ -308,6 +308,7 @@
     <Content Include="Scripts\BrandCatalogue.js" />
     <Content Include="Scripts\ck.extensions.js" />
     <Content Include="Scripts\expressInstall.swf" />
+    <Content Include="Scripts\fisheye-iutil.js" />
     <Content Include="Scripts\jquery.combobox.js" />
     <Content Include="Scripts\jquery.dimensions.js" />
     <Content Include="Scripts\jquery.fancybox.js" />

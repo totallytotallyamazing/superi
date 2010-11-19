@@ -15,9 +15,15 @@ namespace Shop.Areas.BrandCatalog.Controllers
 
         public ActionResult Index(int groupId, int brandId)
         {
-            ViewData["brandId"] = brandId;
             using (BrandCatalogue context = new BrandCatalogue())
             {
+                context.Brands.MergeOption = System.Data.Objects.MergeOption.NoTracking;
+                context.CatalogueImages.MergeOption = System.Data.Objects.MergeOption.NoTracking;
+                var brand = context.Brands.Select(b=>new {Name=  b.Name, Id= b.Id, Description = b.Description}).First(b => b.Id == brandId);
+                ViewData["brandName"] = brand.Name;
+                ViewData["brandDescription"] = brand.Description;
+                ViewData["brandId"] = brand.Id;
+                ViewData["groupId"] = groupId;
                 var images = context.CatalogueImages.Where(c => c.CatalogueGroup.Id == groupId && c.Brand.Id == brandId).OrderBy(c => c.SortOrder).ToList();
                 return View(images);
             }

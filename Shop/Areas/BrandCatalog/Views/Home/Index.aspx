@@ -6,7 +6,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <img src="/Content/LislelliStyles/img/bkgMainContentBrandCatalog.gif" />
+    <img src="/Content/LislelliStyles/img/bkgMainContentBrandCatalog.gif" alt="" />
 
 </asp:Content>
 
@@ -14,8 +14,11 @@
 </asp:Content>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentTitle" runat="server">
-<div id="titleBoxBrandCatalog">
+<%--<div id="titleBoxBrandCatalog">
 <p><span class="txtPageName">Здравствуйте!</span> &nbsp&nbsp&nbsp&nbsp&nbsp<span class="txtDescription">Просмотреть каталог бренда можно, выбрав катогорию товаров бренда в меню выше</span> </p>
+</div>--%>
+<div id="dockItems">
+
 </div>
 </asp:Content>
 

@@ -755,18 +755,21 @@ html, body
 
 /*----------------Brands----------------*/
 
-#dock
+/*#dock
 {
     clear: both;
     position: relative;    
     top: 20px;
+    overflow:hidden;
 }
+
+#dockWrapper{width:auto; overflow:hidden; width:726px;}
+#dockContent{}
 
 #dock .dock-container
 {
-    width: 800px; /*временно*/
+    width: 800px; временно
     position: relative;
-    /*padding-left: 185px;*/
     margin-left: auto;
     margin-right: auto;
     height: 110px;
@@ -788,4 +791,10 @@ html, body
  {
     text-align: center;
     text-decoration: none;    
- }
+ }*/
+ 
+.dock-container { position: relative; top: -8px; height: 50px; padding-left: 20px; }   
+a.dock-item { display: block; width: 50px; position: absolute; bottom: 0; text-align: center; text-decoration: none; color: #333; }   
+.dock-item span { display: none; padding-left: 20px; }   
+.dock-item img { border: 0; margin: 5px 10px 0px; width: 100%; } 
+ 

@@ -17,5 +17,11 @@ namespace Shop.Controllers
             Response.Write(GraphicsHelper.CachedImage(null, "~/Content/ProductImages", id, "mainView", alt));
         }
 
+        [OutputCache(NoStore = true, Duration = 1, VaryByParam = "*")]
+        public void ShowCatalogueMain(string id, string alt, int brandId, int groupId)
+        {
+            string path = string.Format("~/Content/CatalogueImages/Brand{0}Group{1}", brandId, groupId);
+            Response.Write(GraphicsHelper.CachedImage(null, path, id, "catalogueMain", alt));
+        }
     }
 }

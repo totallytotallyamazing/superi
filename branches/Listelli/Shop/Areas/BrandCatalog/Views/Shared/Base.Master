@@ -80,10 +80,10 @@
                     <div class="corner_sw">
                         <%--corner--%>
                     </div>
-                    <asp:ContentPlaceHolder ID="MainContent" runat="server">
-                    </asp:ContentPlaceHolder>
-                    <asp:ContentPlaceHolder runat="server" ID="footer">
-                    </asp:ContentPlaceHolder>
+                    <div id="mainCatalogImage">
+                        <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                        </asp:ContentPlaceHolder>
+                    </div>
                 </div>
             </div>
         </div>

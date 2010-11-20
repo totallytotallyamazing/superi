@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using Shop.Areas.BrandCatalog.Models;
 using System.Dynamic;
+using System.Text;
+using Dev.Mvc.Helpers;
 
 namespace Shop.Areas.BrandCatalog.Controllers
 {
@@ -12,9 +14,11 @@ namespace Shop.Areas.BrandCatalog.Controllers
     {
         //
         // GET: /BrandCatalog/Brands/
-
-        public ActionResult Index(int groupId, int brandId)
+        [OutputCache(VaryByParam="*", Duration=600)]
+        [HttpPost]
+        public ActionResult Index(int groupId, int brandId, int? page)
         {
+            int currentPage = page ?? 0;
             using (BrandCatalogue context = new BrandCatalogue())
             {
                 context.Brands.MergeOption = System.Data.Objects.MergeOption.NoTracking;
@@ -22,10 +26,41 @@ namespace Shop.Areas.BrandCatalog.Controllers
                 var brand = context.Brands.Select(b=>new {Name=  b.Name, Id= b.Id, Description = b.Description}).First(b => b.Id == brandId);
                 ViewData["brandName"] = brand.Name;
                 ViewData["brandDescription"] = brand.Description;
-                ViewData["brandId"] = brand.Id;
-                ViewData["groupId"] = groupId;
-                var images = context.CatalogueImages.Where(c => c.CatalogueGroup.Id == groupId && c.Brand.Id == brandId).OrderBy(c => c.SortOrder).ToList();
-                return View(images);
+                int skip = currentPage * 7;
+                int imagesOverall = context.CatalogueImages.Where(c => c.CatalogueGroup.Id == groupId && c.Brand.Id == brandId).Count();
+                var images = context.CatalogueImages.Where(c => c.CatalogueGroup.Id == groupId && c.Brand.Id == brandId)
+                    .OrderBy(c => c.SortOrder)
+                    .Skip(skip)
+                    .Take(7)
+                    .Select(i => new { Id = i.Id, Image = i.Image });
+
+                StringBuilder dockContent = new StringBuilder();
+                dockContent.Append(@"<div id=""dock"">");
+                dockContent.Append(@"<div class=""dock-container"">");
+                foreach (var item in images)
+                {
+                    dockContent.AppendFormat(@"<a href='/Graphics/ShowCatalogueMain/{0}?alt=""""&brandId={1}&groupId={2}' class=""dock-item"">",
+                        item.Image, brandId, groupId);
+                    dockContent.Append("<span></span>");
+                    
+                    dockContent.Append(GraphicsHelper.CachedImage(null, "~/Content/CatalogueImages/Brand" + brandId + "Group" + groupId, item.Image, "catalogueThumb", item.Image));
+                    dockContent.Append("</a>");
+                }
+                dockContent.Append("</div></div>");
+
+                var result = new
+                {
+                    BrandDescription = brand.Description,
+                    BrandName = brand.Name,
+                    ThumbnailsLayout = dockContent.ToString(),
+                    ShowPrev = currentPage != 0,
+                    ShowNext = (int)(imagesOverall / 7) + 7 > currentPage * 7 + 7,
+                    Page = currentPage,
+                    BrandId = brandId, 
+                    GroupId = groupId
+                };
+
+                return Json(result, "text/x-json");
             }
         }
 

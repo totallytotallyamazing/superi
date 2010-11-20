@@ -1,5 +1,7 @@
 ﻿body{background:black;}
 
+*{font-family:Arial, Helvetica, sans-serif;}
+
 /* Стили для вспомогательных объектов проверки
 -----------------------------------------------------------*/
 .field-validation-error
@@ -150,8 +152,6 @@ html, body
 #toperBrandCatalog
 {
     /*position: relative;*/ /* z-index: 0;*/
-    min-width: 1100px;
-    min-height: 850px;
     background: url('./img/bkgHeader.gif') no-repeat;
     background-position: left top;
 }
@@ -310,7 +310,7 @@ html, body
 
 #menuBox a.txtMenuItem:hover{text-decoration:underline}
 
-#tmp {width: 100%; text-align: center;}
+#tmp {width: 100%; text-align: center; min-height:650px;}
 
 #contentBoxBrandCatalog
 {
@@ -350,7 +350,7 @@ html, body
 { width: 28px;
     height: 26px;
     position: absolute; /*z-index: 2;*/
-    bottom: 4px;
+    bottom: 0px;
     left: -1px;
     background: url('./img/corner_sw.png') no-repeat;
     background-position: left bottom;}
@@ -359,7 +359,7 @@ html, body
 { width: 28px;
     height: 26px;
     position: absolute; /*z-index: 2;*/
-    bottom: 4px;
+    bottom: 0px;
     right: -1px;
     background: url('./img/corner_se.png') no-repeat;
     background-position: right bottom;}
@@ -792,6 +792,32 @@ html, body
     text-align: center;
     text-decoration: none;    
  }*/
+ 
+ #thumbnails
+ {
+    clear: both;
+    position: relative;    
+    padding-top:20px;
+    overflow:hidden;
+    width:810px;
+    margin:0 auto;
+}
+
+#leftArrow, #rightArrow{ height:83px; cursor:pointer;}
+
+#leftArrow
+{
+    float: left; width: 36px;
+    background: url('img/leftArrow.png') no-repeat;
+}
+ 
+#rightArrow
+{
+    float: right; width: 38px;
+    background: url('img/rightArrow.png') no-repeat;
+} 
+    
+#dock{margin-top:35px; margin-left:-20px;}
  
 .dock-container { position: relative; top: -8px; height: 50px; padding-left: 20px; }   
 a.dock-item { display: block; width: 50px; position: absolute; bottom: 0; text-align: center; text-decoration: none; color: #333; }   

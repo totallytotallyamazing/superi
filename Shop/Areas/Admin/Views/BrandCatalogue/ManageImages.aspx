@@ -7,8 +7,8 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div id="selects">
         <% using(Html.BeginForm("ManageImages", "BrandCatalogue", FormMethod.Get)){ %>
+            Группа каталогов:<%= Html.DropDownList("groupId", (IEnumerable<SelectListItem>)ViewData["groups"]) %>
             Бренды:<%= Html.DropDownList("brandId", (IEnumerable<SelectListItem>)ViewData["brands"]) %>
-            Группы:<%= Html.DropDownList("groupId", (IEnumerable<SelectListItem>)ViewData["groups"]) %>
         <%} %>
     </div>
     <% Html.RenderPartial("UploadControl"); %>
@@ -20,8 +20,10 @@
 
 <asp:Content ID="Content4" ContentPlaceHolderID="includes" runat="server">
     <script type="text/javascript">
-        $("#selects select").change(function () {
-            $("#selects form").get(0).submit();
+        $(function () {
+            $("#selects select").change(function () {
+                $("#selects form").get(0).submit();
+            });
         });
     </script>
 </asp:Content>

@@ -20,12 +20,12 @@ namespace Shop.Helpers
         {
             switch (currency)
             {
-                case Currencies.Dollar:
-                    return amount / WebSession.Settings.DollarRate;
-                case Currencies.Euro:
-                    return amount / WebSession.Settings.EuroRate;
-                case Currencies.Ruble:
-                    return amount / WebSession.Settings.RubleRate;
+                //case Currencies.Dollar:
+                //    return amount / WebSession.Settings.DollarRate;
+                //case Currencies.Euro:
+                //    return amount / WebSession.Settings.EuroRate;
+                //case Currencies.Ruble:
+                //    return amount / WebSession.Settings.RubleRate;
                 default:
                     return amount;
             }

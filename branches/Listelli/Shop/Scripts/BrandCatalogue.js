@@ -31,7 +31,6 @@ var BrandCatalogue = {
     },
 
     fetchBrands: function () {
-        debugger;
         var element = document.getElementById("selectBrand")
         var id = element.options[element.selectedIndex].value;
         $.get("/BrandCatalog/Brands/BrandLinks/" + id, function (data) { $("#topMenu").html(data); });

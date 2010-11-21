@@ -19,7 +19,6 @@ namespace Dev.Helpers
                 message.Body = body;
                 message.Subject = subject;
                 to.ForEach(t => message.To.Add(t));
-                message.From = new MailAddress("mailer@baby-health.org.ua");
                 message.IsBodyHtml = isBodyHtml;
                 client.Send(message);
             }

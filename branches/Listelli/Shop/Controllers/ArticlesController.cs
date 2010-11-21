@@ -12,12 +12,13 @@ namespace Shop.Controllers
         //
         // GET: /Articles/
 
-        public ActionResult Index(int type)
+        public ActionResult Index(int? type)
         {
+            type = type ?? 1;
             switch (type)
             {
                 case 1:
-                    ViewData["title"] = "Новости";
+                    ViewData["title"] = "НАШИ СОБЫТИЯ";
                     ViewData["css"] = "/Content/Articles.css";
                     break;
                 case 2:

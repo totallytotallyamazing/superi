@@ -9,7 +9,7 @@ using Shop.Models;
 using System.Reflection;
 using System.Globalization;
 
-namespace Trips.Mvc.Runtime
+namespace Dev.Mvc.Runtime
 {
     public static class Configurator
     {

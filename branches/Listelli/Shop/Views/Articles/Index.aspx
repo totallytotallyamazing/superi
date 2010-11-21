@@ -5,6 +5,11 @@
     <%= ViewData["title"] %>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+<% if(Roles.IsUserInRole("Administrators")){ %>
+    <div class="adminLink" style="float:left; width:110px;">
+        <%= Html.ActionLink("Создать", "AddEdit", "Articles", new { area = "Admin", type = ViewData["type"] }, null)%>
+    </div>
+<%} %>
 <div id="newsContent">
     <% if(Model != null)
        foreach (var item in Model)
@@ -12,20 +17,12 @@
            Html.RenderPartial("Article", item);
        } %>
 </div>
-<% if(Roles.IsUserInRole("Administrators")){ %>
-    <div class="adminLink">
-        <%= Html.ActionLink("Создать", "AddEdit", "Articles", new { area = "Admin", type = ViewData["type"] }, null)%>
-    </div>
-<%} %>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentTitle" runat="server">
     <div id="contName">
-       <%-- <div id="pagePic">
-            <img src="../../Content/UnMomentoStyles/img/NewsPageImg.gif" alt="Лого странички новостей" />
-        </div>--%>
         <div id="pageName">
             <p class="txtPageName">
-                Новости<%--, <span class="pt2">страница 1</span>--%>
+                Наши события
             </p>
         </div>
     </div>
@@ -33,8 +30,7 @@
 
 <asp:Content ID="Content5" runat="server" ContentPlaceHolderID="Footer">
     <div id="pager">
-        <p class="txtPager">
-            1 ... <a href="#" class="txtPager">2</a> ... <a href="#" class="txtPager">3</a></p>
+        <p class="txtPager">1 ... <a href="#" class="txtPager">2</a> ... <a href="#" class="txtPager">3</a></p>
     </div>
 </asp:Content>
 

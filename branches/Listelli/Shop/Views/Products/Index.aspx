@@ -40,7 +40,10 @@
 </asp:Content>
 
 <asp:Content ID="Content5" runat="server" ContentPlaceHolderID="Footer">
-    <div id="pager">
-                <p class="txtPager">1 ... <a href="#" class="txtPager">2</a> ... <a href="#" class="txtPager">3</a></p>
-    </div>
+    <% Html.RenderPartial("Pager"); %>
+</asp:Content>
+
+
+<asp:Content runat="server" ContentPlaceHolderID="SortingPanel">
+    <% Html.RenderPartial("SortingPanel"); %>
 </asp:Content>

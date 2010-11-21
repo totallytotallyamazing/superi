@@ -11,7 +11,7 @@ using System.Web.Security;
 using System.Web.Script.Serialization;
 using System.Text;
 using System.Net.Mail;
-using Trips.Mvc.Runtime;
+using Dev.Mvc.Runtime;
 using System.Data;
 
 namespace Shop.Controllers

@@ -72,14 +72,6 @@
             <End Role="Tag" EntitySet="Tag" />
             <End Role="ProductTagMapping" EntitySet="ProductTagMapping" />
           </AssociationSet>
-          <AssociationSet Name="FK__SimilalPr__Produ__1A34DF26" Association="shop_model.Store.FK__SimilalPr__Produ__1A34DF26">
-            <End Role="Product" EntitySet="Product" />
-            <End Role="SimilalProduct" EntitySet="SimilalProduct" />
-          </AssociationSet>
-          <AssociationSet Name="FK__SimilalPr__Simil__1B29035F" Association="shop_model.Store.FK__SimilalPr__Simil__1B29035F">
-            <End Role="Product" EntitySet="Product" />
-            <End Role="SimilalProduct" EntitySet="SimilalProduct" />
-          </AssociationSet>
           <AssociationSet Name="FK_BrandDiscountMapping_Brand" Association="shop_model.Store.FK_BrandDiscountMapping_Brand">
             <End Role="Brand" EntitySet="Brand" />
             <End Role="BrandDiscountMapping" EntitySet="BrandDiscountMapping" />
@@ -333,7 +325,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Product__BrandId__4DE98D56">
-          <End Role="Brand" Type="shop_model.Store.Brand" Multiplicity="0..1" />
+          <End Role="Brand" Type="shop_model.Store.Brand" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Product" Type="shop_model.Store.Product" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Brand">
@@ -357,7 +351,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__ProductAt__Produ__7F2BE32F">
-          <End Role="ProductAttributeValue" Type="shop_model.Store.ProductAttributeValue" Multiplicity="1" />
+          <End Role="ProductAttributeValue" Type="shop_model.Store.ProductAttributeValue" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="ProductAttributeValueAvailable" Type="shop_model.Store.ProductAttributeValueAvailable" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ProductAttributeValue">
@@ -369,7 +365,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__ProductAt__Produ__7F80E8EA">
-          <End Role="Product" Type="shop_model.Store.Product" Multiplicity="1" />
+          <End Role="Product" Type="shop_model.Store.Product" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="ProductAttributeValueAvailable" Type="shop_model.Store.ProductAttributeValueAvailable" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Product">
@@ -405,7 +403,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__ProductIm__Produ__0AF29B96">
-          <End Role="Product" Type="shop_model.Store.Product" Multiplicity="1" />
+          <End Role="Product" Type="shop_model.Store.Product" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="ProductImage" Type="shop_model.Store.ProductImage" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Product">
@@ -417,7 +417,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__ProductTa__Produ__147C05D0">
-          <End Role="Product" Type="shop_model.Store.Product" Multiplicity="1" />
+          <End Role="Product" Type="shop_model.Store.Product" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="ProductTagMapping" Type="shop_model.Store.ProductTagMapping" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Product">
@@ -429,7 +431,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__ProductTa__TagId__49C3F6B7">
-          <End Role="Tag" Type="shop_model.Store.Tag" Multiplicity="1" />
+          <End Role="Tag" Type="shop_model.Store.Tag" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="ProductTagMapping" Type="shop_model.Store.ProductTagMapping" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Tag">
@@ -437,30 +441,6 @@
             </Principal>
             <Dependent Role="ProductTagMapping">
               <PropertyRef Name="TagId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__SimilalPr__Produ__1A34DF26">
-          <End Role="Product" Type="shop_model.Store.Product" Multiplicity="1" />
-          <End Role="SimilalProduct" Type="shop_model.Store.SimilalProduct" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Product">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="SimilalProduct">
-              <PropertyRef Name="ProductId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__SimilalPr__Simil__1B29035F">
-          <End Role="Product" Type="shop_model.Store.Product" Multiplicity="1" />
-          <End Role="SimilalProduct" Type="shop_model.Store.SimilalProduct" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Product">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="SimilalProduct">
-              <PropertyRef Name="SimilarProductId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -513,7 +493,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ProductAttributeStaticValues_Product">
-          <End Role="Product" Type="shop_model.Store.Product" Multiplicity="1" />
+          <End Role="Product" Type="shop_model.Store.Product" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="ProductAttributeStaticValue" Type="shop_model.Store.ProductAttributeStaticValue" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Product">
@@ -525,7 +507,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ProductAttributeStaticValues_ProductAttribute">
-          <End Role="ProductAttribute" Type="shop_model.Store.ProductAttribute" Multiplicity="1" />
+          <End Role="ProductAttribute" Type="shop_model.Store.ProductAttribute" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="ProductAttributeStaticValue" Type="shop_model.Store.ProductAttributeStaticValue" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ProductAttribute">
@@ -537,7 +521,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ProductCategoryMapping_ProductCategoryMapping">
-          <End Role="Product" Type="shop_model.Store.Product" Multiplicity="1" />
+          <End Role="Product" Type="shop_model.Store.Product" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="ProductCategoryMapping" Type="shop_model.Store.ProductCategoryMapping" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Product">
@@ -549,7 +535,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ProductCategoryMapping_ProductCategoryMapping1">
-          <End Role="Category" Type="shop_model.Store.Category" Multiplicity="1" />
+          <End Role="Category" Type="shop_model.Store.Category" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="ProductCategoryMapping" Type="shop_model.Store.ProductCategoryMapping" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Category">
@@ -572,6 +560,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="searchProducts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="searchString" Type="varchar" Mode="In" />
+        </Function>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -1039,7 +1030,8 @@
             <EndProperty Name="ProductAttribute">
               <ScalarProperty Name="Id" ColumnName="ProductAttributeId" />
             </EndProperty>
-          </AssociationSetMapping></EntityContainerMapping>
+          </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="searchProducts" FunctionName="shop_model.Store.searchProducts" /></EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Trips.Mvc.Runtime;
+using Dev.Mvc.Runtime;
 using System.Globalization;
 using Shop.Models;
 

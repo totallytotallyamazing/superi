@@ -29,15 +29,7 @@
     <%= Ajax.ScriptInclude("/Scripts/jquery.fancybox.js")%>
     <%= Ajax.ScriptInclude("/Scripts/PageScripts.js")%>
     <script type="text/javascript">
-        $(function () {
-            $("#feedbackForm, .editContentLink").fancybox(
-            {
-                hideOnContentClick: false,
-                hideOnOverlayClick: false,
-                showCloseButton: true
-            });
-        });
-
+        BasePageExtender.initialize();
     </script>
     <%-- суперскрипт--%>
     <asp:ContentPlaceHolder runat="server" ID="includes">
@@ -51,10 +43,9 @@
             <div id="header">
                 <div id="headerRight">
                     <p class="mainPhone">
-                        (044) 390-76-29</p>
+                        (044) 286-55-42</p>
                     <p class="mainAdress">
-                        Киев, 01033, <a id="feedbackForm" href="/Home/FeedbackForm" class="mainAdress">ул. Жилянская,
-                            68</a>
+                        Киев, <a id="ourCoords" title="Наши координаты" href="/Home/Map" class="mainAdress">б-р Леси Украинки, 19</a>
                     </p>
                 </div>
                 <div id="logoBox">
@@ -76,8 +67,6 @@
                         <% Html.RenderPartial("Search"); %>
                     </div>
                 </div>
-                <%--временно  для залогинивания заходить на Account/LogOn --%>
-                <%--            <% Html.RenderPartial("LogOnUserControl"); %>--%>
                 <% Html.RenderPartial("Categories"); %>
             </div>
             <div id="contentBox">
@@ -90,12 +79,6 @@
                         <%--Background--%>
                     </div>
                     <div id="rightBox">
-                        <div id="bubbleNew">
-                            <div id="bubbleText">
-                                <span class="txtBubbleNew">Хочу</span> <a href="#" class="txtBubbleNew">быть в курсе</a>
-                                <span class="txtBubbleNew">новых поступлений!</span>
-                            </div>
-                        </div>
                         <div id="brand">
                             <a href="/BrandCatalog/Home/Index" class="txtBrand">Брендовые каталоги</a>
                         </div>
@@ -127,25 +110,7 @@
                             <asp:ContentPlaceHolder runat="server" ID="ContentTitle">
                             </asp:ContentPlaceHolder>
                         </div>
-                        <div class="sortingBox">
-                            <p class="txtSortByTitle">
-                                Сортировка:</p>
-                            <div id="sortBy">
-                                <div class="menu bkgCurrent">
-                                    <p class="txt current">
-                                        По названию</p>
-                                </div>
-                                <div class="menu">
-                                    <a href="#" class="txt">По бренду</a>
-                                </div>
-                                <div class="menu">
-                                    <a href="#" class="txt">По породе</a>
-                                </div>
-                                <div class="menu">
-                                    <a href="#" class="txt">Только новое</a>
-                                </div>
-                            </div>
-                        </div>
+                        <asp:ContentPlaceHolder runat="server" ID="SortingPanel"></asp:ContentPlaceHolder>
                     </div>
                     <div class="leftMid">
                         <div id="contentWrapper">

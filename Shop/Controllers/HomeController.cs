@@ -7,7 +7,7 @@ using Shop.Models;
 using System.ComponentModel.DataAnnotations;
 using Shop.Helpers.Validation;
 using Dev.Helpers;
-using Trips.Mvc.Runtime;
+using Dev.Mvc.Runtime;
 using System.Net.Mail;
 using System.ComponentModel;
 
@@ -36,19 +36,30 @@ namespace Shop.Controllers
 
         public ActionResult FeedbackForm()
         {
-
             return View();
         }
-
+        
         [HttpPost]
-        public void FeedbackForm(FeedbackFormModel feedbackFormModel)
+        public ActionResult FeedbackForm(FeedbackFormModel feedbackFormModel)
         {
             SiteSettings settings = Configurator.LoadSettings();
             MailHelper.SendTemplate(new List<MailAddress> { new MailAddress(settings.ReceiverMail) }, 
                 "Форма обратной связи", "FeedbackTemplate.htm", 
                 null, true, feedbackFormModel.Name, feedbackFormModel.Email, feedbackFormModel.Text);
-            Response.Write("<script>window.top.$.fancybox.close()</script>");
+            return RedirectToAction("FeedbackSent");
         }
+
+        public ActionResult FeedbackSent()
+        {
+            return View();
+        }
+
+        [OutputCache(NoStore = true, VaryByParam = "*", Duration = 1)]
+        public ActionResult Map()
+        {
+            return View();
+        }
+
     }
 }
 

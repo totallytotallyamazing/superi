@@ -10,8 +10,9 @@
         <b>
             <%=Model.Title %></b></p>
     <br />
-    <p class="dt3">
-        <%=Model.Text %></p>
+    <div class="dt3">
+        <%=Model.Text %>
+    </div>
     <% if (Roles.IsUserInRole("Administrators"))
         { %>
     <p class="adminLink">

@@ -1,13 +1,10 @@
-﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<Shop.Models.FeedbackFormModel>" %>
-    <script type="text/javascript" src="/Scripts/MicrosoftAjax.js"></script>
-    <script type="text/javascript" src="/Scripts/MicrosoftMvcValidation.js"></script>
-    <script type="text/javascript" src="/Scripts/MvcCaptchaValidation.js"></script>
-    <script type="text/javascript" src="/Scripts/jquery.js"></script>
-    <script type="text/javascript">
-        function OnCaptchaValidationError() {
-            $.get("/Captcha/Draw", function(data) { $("#captchaImage").html(data); });
-        }
-    </script>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<Shop.Models.FeedbackFormModel>" %>
+<%@ Import Namespace="Dev.Mvc.Ajax" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
+	Обратная связь
+</asp:Content>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <% Html.EnableClientValidation(); %>
     <% using (Html.BeginForm()) {%>
         <%= Html.ValidationSummary(true) %>
@@ -30,10 +27,10 @@
             
             <div class="editor-label">
                 <%= Html.LabelFor(model => model.Text) %>
+                <%= Html.ValidationMessageFor(model => model.Text) %>
             </div>
             <div class="editor-field">
-                <%= Html.TextAreaFor(model => model.Text) %>
-                <%= Html.ValidationMessageFor(model => model.Text) %>
+                <%= Html.TextAreaFor(model => model.Text, 5, 80, null) %>
             </div>
             <div id="captchaImage">
                 <%= Html.Action("Draw", new {area="", controller="Captcha"})%>
@@ -52,4 +49,28 @@
             </div>
 
     <% } %>
+</asp:Content>
 
+<asp:Content ID="Content3" ContentPlaceHolderID="ContentTitle" runat="server">
+    <div id="contName">
+        <div id="pageName">
+            <p class="txtPageName">
+                    Обратная связь  
+            </p>
+        </div>
+    </div>
+</asp:Content>
+
+<asp:Content ID="Content4" ContentPlaceHolderID="includes" runat="server">
+    <%= Ajax.ScriptInclude("/Scripts/MicrosoftAjax.js") %>
+    <%= Ajax.ScriptInclude("/Scripts/MicrosoftMvcValidation.js")%>
+    <%= Ajax.ScriptInclude("/Scripts/MvcCaptchaValidation.js")%>
+    <script type="text/javascript">
+        function OnCaptchaValidationError() {
+            $.get("/Captcha/Draw", function (data) { $("#captchaImage").html(data); });
+        }
+    </script>
+</asp:Content>
+
+<asp:Content ID="Content5" ContentPlaceHolderID="Footer" runat="server">
+</asp:Content>

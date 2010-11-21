@@ -67,17 +67,18 @@
 </asp:Content>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="includes" runat="server">  
-<script type="text/javascript" src="/Scripts/jquery.FCKEditor.js"></script>
-  <script type="text/javascript" src="/Scripts/MicrosoftAjax.js"></script>
+    <script type="text/javascript" src="/Scripts/MicrosoftAjax.js"></script>
     <script type="text/javascript" src="/Scripts/MicrosoftMvcValidation.js"></script>
     <%= Ajax.ScriptInclude("/Scripts/jquery.ui.js") %>
     <%= Ajax.ScriptInclude("/Scripts/jquery.ui.datepicker-ru.js")%>
-    <%= Ajax.DynamicCssInclude("/Content/sunny/jquery.css") %>
+    <%= Ajax.DynamicCssInclude("/Content/blitzer/jquery.css")%>
+    <%= Ajax.ScriptInclude("/Controls/ckeditor/ckeditor.js")%>
+    <%= Ajax.ScriptInclude("/Controls/ckeditor/adapters/jquery.js")%>
 
     <script type="text/javascript">
         $(function() {
-            $.fck.config = { path: '<%= VirtualPathUtility.ToAbsolute("~/Controls/fckeditor/") %>', config: { SkinPath: "skins/office2003/", DefaultLanguage: "ru", AutoDetectLanguage: false, EnterMode: "br", ShiftEnterMode: "p", HtmlEncodeOutput: true} };
-            $("#Text").fck({ toolbar: "Basic", height: 200 });
+
+            CKEDITOR.replace("Text", { toolbar: "Media" });
 
             if ($("#Date").val() === '') {
                 $("#Date").val('<%= DateTime.Now.ToString("dd.MM.yyyy") %>');

@@ -30,6 +30,6 @@
 </div>
 <% if(Roles.IsUserInRole("Administrators")){ %>    
     <p class="adminLink categoriesAdmin">   
-        <%= Html.ActionLink("Добавить категорию", "AddEdit", "Categories", new { area="admin", parentId=WebSession.CurrentCategory }, null)%>
+        <%= Html.ActionLink("Добавить подкатегорию", "AddEdit", "Categories", new { area="admin", parentId=WebSession.CurrentCategory }, null)%>
     </p>
 <%} %>

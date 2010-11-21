@@ -167,6 +167,11 @@
       <DependentUpon>Shop.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\SiteSettings.cs" />
+    <Compile Include="Models\Clients.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Clients.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Runtime\Configurator.cs" />
   </ItemGroup>
@@ -199,34 +204,19 @@
     <Content Include="Content\AdminStyles\img\sectionRight.jpg" />
     <Content Include="Content\AdminStyles\manageCatalogue.css" />
     <Content Include="Content\AdminStyles\uploadify.css" />
-    <Content Include="Content\CatalogueImages\Brand3Group1\01643_goodmorning_1920x1080.jpg" />
-    <Content Include="Content\CatalogueImages\Brand3Group1\01643_goodmorning_1920x10801.jpg" />
-    <Content Include="Content\CatalogueImages\Brand3Group1\01643_goodmorning_1920x108011.jpg" />
-    <Content Include="Content\CatalogueImages\Brand3Group1\01689_beautifulmorning_1920x1080.jpg" />
-    <Content Include="Content\CatalogueImages\Brand3Group1\01689_beautifulmorning_1920x10801.jpg" />
-    <Content Include="Content\CatalogueImages\Brand3Group1\01689_beautifulmorning_1920x108011.jpg" />
-    <Content Include="Content\CatalogueImages\Brand3Group1\02153_maldiviannight_1920x1080.jpg" />
-    <Content Include="Content\CatalogueImages\Brand3Group1\02153_maldiviannight_1920x10801.jpg" />
-    <Content Include="Content\CatalogueImages\Brand3Group1\02153_maldiviannight_1920x108011.jpg" />
-    <Content Include="Content\CatalogueImages\Brand3Group1\1111111.jpg" />
-    <Content Include="Content\CatalogueImages\Brand3Group1\11111111.jpg" />
-    <Content Include="Content\CatalogueImages\Brand3Group1\111111111.jpg" />
-    <Content Include="Content\CatalogueImages\Brand3Group1\376843_35_212_artfile_ru.jpg" />
-    <Content Include="Content\CatalogueImages\Brand3Group1\376843_35_212_artfile_ru1.jpg" />
-    <Content Include="Content\CatalogueImages\Brand3Group1\496135_242_503_artfile_ru.jpg" />
-    <Content Include="Content\CatalogueImages\Brand3Group1\496135_242_503_artfile_ru1.jpg" />
-    <Content Include="Content\CatalogueImages\Brand3Group1\496135_242_503_artfile_ru11.jpg" />
-    <Content Include="Content\CatalogueImages\Brand3Group1\500922_251_590_artfile_ru.jpg" />
-    <Content Include="Content\CatalogueImages\Brand3Group1\500922_251_590_artfile_ru1.jpg" />
-    <Content Include="Content\CatalogueImages\Brand3Group1\7908_01338_crazysun_1920x1080.jpg" />
-    <Content Include="Content\CatalogueImages\Brand3Group1\7908_01338_crazysun_1920x10801.jpg" />
-    <Content Include="Content\CatalogueImages\Brand3Group1\7908_01338_crazysun_1920x108011.jpg" />
-    <Content Include="Content\CatalogueImages\Brand3Group1\9555_01324_newyorkcitybypaulobarcellosjr_1920x1080.jpg" />
-    <Content Include="Content\CatalogueImages\Brand3Group1\9555_01324_newyorkcitybypaulobarcellosjr_1920x10801.jpg" />
-    <Content Include="Content\CatalogueImages\Brand3Group1\9555_01324_newyorkcitybypaulobarcellosjr_1920x108011.jpg" />
-    <Content Include="Content\CatalogueImages\Brand3Group1\Image%2801%29.jpg" />
-    <Content Include="Content\CatalogueImages\Brand3Group1\Image%2812%29.jpg" />
-    <Content Include="Content\CatalogueImages\Brand3Group2\1111111.jpg" />
+    <Content Include="Content\blitzer\images\ui-bg_diagonals-thick_75_f3d8d8_40x40.png" />
+    <Content Include="Content\blitzer\images\ui-bg_dots-small_65_a6a6a6_2x2.png" />
+    <Content Include="Content\blitzer\images\ui-bg_flat_0_333333_40x100.png" />
+    <Content Include="Content\blitzer\images\ui-bg_flat_65_ffffff_40x100.png" />
+    <Content Include="Content\blitzer\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\blitzer\images\ui-bg_glass_55_fbf8ee_1x400.png" />
+    <Content Include="Content\blitzer\images\ui-bg_highlight-hard_100_eeeeee_1x100.png" />
+    <Content Include="Content\blitzer\images\ui-bg_highlight-hard_100_f6f6f6_1x100.png" />
+    <Content Include="Content\blitzer\images\ui-bg_highlight-soft_15_cc0000_1x100.png" />
+    <Content Include="Content\blitzer\images\ui-icons_004276_256x240.png" />
+    <Content Include="Content\blitzer\images\ui-icons_cc0000_256x240.png" />
+    <Content Include="Content\blitzer\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\blitzer\jquery.css" />
     <Content Include="Content\fancybox\fancybox_Listelli_close.png" />
     <Content Include="Content\fancybox\fancy_Listelli_e.png" />
     <Content Include="Content\fancybox\fancy_Listelli_ne.png" />
@@ -353,11 +343,17 @@
     <Content Include="Scripts\uploadify.allglyphs.swf" />
     <Content Include="Scripts\uploadify.swf" />
     <Content Include="Stub.jpg" />
+    <Content Include="Views\Home\FeedbackForm.aspx" />
+    <Content Include="Views\Home\FeedbackSent.aspx" />
+    <Content Include="Views\Home\Map.ascx" />
     <Content Include="Views\Products\ProductStaticAttributes.ascx" />
     <Content Include="Views\Products\ShowModal.ascx" />
     <Content Include="Views\Products\SimilarProducts.ascx" />
+    <Content Include="Views\Products\SortingPanel.ascx" />
     <Content Include="Views\Shared\ContentPartial.ascx" />
     <Content Include="Views\Shared\LogOnOrSignUp.ascx" />
+    <Content Include="Views\Products\Pager.ascx" />
+    <Content Include="Views\Shared\Subscribe.ascx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -481,24 +477,6 @@
     <Content Include="Content\img\tovar.jpg" />
     <Content Include="Content\journal.css" />
     <Content Include="Content\style.css" />
-    <Content Include="Content\sunny\images\ui-anim_basic_16x16.gif" />
-    <Content Include="Content\sunny\images\ui-bg_diagonals-medium_20_d34d17_40x40.png" />
-    <Content Include="Content\sunny\images\ui-bg_flat_30_cccccc_40x100.png" />
-    <Content Include="Content\sunny\images\ui-bg_flat_50_5c5c5c_40x100.png" />
-    <Content Include="Content\sunny\images\ui-bg_gloss-wave_45_817865_500x100.png" />
-    <Content Include="Content\sunny\images\ui-bg_gloss-wave_60_fece2f_500x100.png" />
-    <Content Include="Content\sunny\images\ui-bg_gloss-wave_70_ffdd57_500x100.png" />
-    <Content Include="Content\sunny\images\ui-bg_gloss-wave_90_fff9e5_500x100.png" />
-    <Content Include="Content\sunny\images\ui-bg_highlight-soft_100_feeebd_1x100.png" />
-    <Content Include="Content\sunny\images\ui-bg_inset-soft_30_ffffff_1x100.png" />
-    <Content Include="Content\sunny\images\ui-icons_3d3d3d_256x240.png" />
-    <Content Include="Content\sunny\images\ui-icons_bd7b00_256x240.png" />
-    <Content Include="Content\sunny\images\ui-icons_d19405_256x240.png" />
-    <Content Include="Content\sunny\images\ui-icons_eb990f_256x240.png" />
-    <Content Include="Content\sunny\images\ui-icons_ed9f26_256x240.png" />
-    <Content Include="Content\sunny\images\ui-icons_fadc7a_256x240.png" />
-    <Content Include="Content\sunny\images\ui-icons_ffe180_256x240.png" />
-    <Content Include="Content\sunny\jquery.css" />
     <Content Include="Content\tovar.css" />
     <Content Include="Scripts\jquery-vsdoc.js" />
     <Content Include="Scripts\jquery.ui.datepicker-ru.js" />
@@ -589,6 +567,12 @@
     <EntityDeploy Include="Areas\BrandCatalog\Models\BrandCatalogue.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>BrandCatalogue.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Models\Clients.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Clients.Designer.cs</LastGenOutput>
     </EntityDeploy>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

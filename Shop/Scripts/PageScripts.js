@@ -1,5 +1,20 @@
 ﻿/// <reference path="jquery.js" /
 
+var BasePageExtender = {
+    initialize: function BasePageExtender_initialize() {
+        $(function () {
+            $("#ourCoords, .editContentLink").fancybox(
+            {
+                hideOnContentClick: false,
+                hideOnOverlayClick: false,
+                showCloseButton: true,
+                titlePosition: "over"
+            });
+        });
+    }
+};
+
+
 ProductClientExtensions = {
     updateMainImage: function (src) {
         var href = "/Content/ProductImages/" + src;

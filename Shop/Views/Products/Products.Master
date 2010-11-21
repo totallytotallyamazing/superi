@@ -29,3 +29,7 @@
     <asp:ContentPlaceHolder runat="server" ID="Footer">
     </asp:ContentPlaceHolder>
 </asp:Content>
+
+<asp:Content runat="server" ContentPlaceHolderID="SortingPanel">
+    <asp:ContentPlaceHolder runat="server" ID="SortingPanel"></asp:ContentPlaceHolder>
+</asp:Content>

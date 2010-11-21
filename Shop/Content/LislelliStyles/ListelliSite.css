@@ -1,6 +1,12 @@
-﻿body{background:black;}
+﻿body
+{
+    background: black;
+}
 
-*{font-family:Arial, Helvetica, sans-serif;}
+*
+{
+    font-family: Arial, Helvetica, sans-serif;
+}
 
 /* Стили для вспомогательных объектов проверки
 -----------------------------------------------------------*/
@@ -88,14 +94,16 @@ html, body
     height: 70px;
     float: left;
     border-right: 4px solid #999999;
-    
 }
-#logoBoxBrandCatalog .pipec{text-align: center; width: 84px;}
+#logoBoxBrandCatalog .pipec
+{
+    text-align: center;
+    width: 84px;
+}
 #logoBoxBrandCatalog .slogan
 {
     /*line-height: 12px;*/
     font-size: 12px;
-    
     font-family: Arial, Helvetica, sans-serif;
     color: White;
 }
@@ -120,23 +128,33 @@ html, body
 
 #logoBrandCatalog
 {
-    margin-left: 2px;
-    /*margin-right: auto;*/
+    margin-left: 2px; /*margin-right: auto;*/
     width: 84px;
     height: 37px;
     background: url('./img/logoBrandCatalog.png') no-repeat;
-    
 }
 
-#cbBrandBox {float: left; margin: 55px 0px 0px 20px; }
-#cbBrandBox, #topMenu .txtLeftMenu {font-size: 10px; font-weight: bold; color: #999999;}
-#cbBrand 
-{   margin: 3px 0px 0px 10px;
-    /*width: 153px;
-    height: 19px;
-    background: url('./img/cbBrand.gif') no-repeat;*/}
+#cbBrandBox
+{
+    float: left;
+    margin: 55px 0px 0px 20px;
+}
+#cbBrandBox, #topMenu .txtLeftMenu
+{
+    font-size: 10px;
+    font-weight: bold;
+    color: #999999;
+}
+#cbBrand
+{
+    margin: 3px 0px 0px 10px; /*width: 153px;     height: 19px;     background: url('./img/cbBrand.gif') no-repeat;*/
+}
 
-#topMenu {float: left; margin: 55px 0px 0px 50px; }
+#topMenu
+{
+    float: left;
+    margin: 55px 0px 0px 50px;
+}
 #topMenu .menu
 {
     /*width: 100px;*/ /*display: inline;*/
@@ -146,8 +164,15 @@ html, body
     text-align: center;
 }
 
-#topMenu .txtSubMenuItem {color: White; font-size: 13px;}
-#topMenu .current {font-weight: bold;}
+#topMenu .txtSubMenuItem
+{
+    color: White;
+    font-size: 13px;
+}
+#topMenu .current
+{
+    font-weight: bold;
+}
 
 #toperBrandCatalog
 {
@@ -212,14 +237,27 @@ html, body
 #leftItems
 {
     float: left;
-    clear:both;
+    clear: both;
 }
 
-#titleBoxBrandCatalog {margin: 25px 0px 25px 0px; text-align: center; width: auto;}
+#titleBoxBrandCatalog
+{
+    margin: 25px 0px 25px 0px;
+    text-align: center;
+    width: auto;
+}
 #titleBoxBrandCatalog .txtPageName
-{ font-size: 22px; color: #ffffff;}
+{
+    font-size: 22px;
+    color: #ffffff;
+}
 
-#titleBoxBrandCatalog .txtDescription{font-size: 12px; color: #cccccc; font-style: italic;}
+#titleBoxBrandCatalog .txtDescription
+{
+    font-size: 12px;
+    color: #cccccc;
+    font-style: italic;
+}
 
 
 
@@ -241,58 +279,58 @@ html, body
     z-index: 0;
     margin-top: -150px;
     min-width: 1100px;
-    min-height: 312px;
+    height: 312px;
     background: url('./img/bkgFooter.gif') no-repeat;
     background-position: left bottom;
 }
 
 #strip
-
 {
-  opacity:0.7; filter:alpha(opacity=70); 
- z-index: 1;
- position: relative;  
- top: 153px;
- background-color:#333332;
- width: 100%;
- height: 40px;
- 
-    }
+    opacity: 0.7;
+    filter: alpha(opacity=70);
+    z-index: 1;
+    position: relative;
+    top: 153px;
+    background-color: #333332;
+    width: 100%;
+    height: 40px;
+}
+
 
 #designedBy
 {
-  position: relative;
-  z-index: 2;
+    position: relative;
+    z-index: 2;
     background: url('./img/designedBy.png') no-repeat;
     padding-top: 10px;
     top: 210px;
-     
     margin-left: auto;
     margin-right: auto;
     width: 224px;
     height: 54px;
-    
 }
+
+
 
 #menuMain div.mainMenuItem
 {
     /*margin-top: 74px;*/ /* bottom: 0px;*/
     width: 184px;
-    margin-top:80px;
+    margin-top: 80px;
     height: 43px;
     background: url('./img/firstTab.gif') no-repeat;
-    float:left;
-    margin-right:7px;
-    padding-top:15px;
-    text-align:center;
+    float: left;
+    margin-right: 7px;
+    padding-top: 15px;
+    text-align: center;
 }
 
 
 #menuMain div.current
 {
     height: 63px;
-    margin-top:60px;
-    background-color:#333332;
+    margin-top: 60px;
+    background-color: #333332;
 }
 
 #menuBox
@@ -305,12 +343,20 @@ html, body
 {
     font-size: 11px;
     font-weight: 900;
-    text-decoration:none;
+    text-decoration: none;
 }
 
-#menuBox a.txtMenuItem:hover{text-decoration:underline}
+#menuBox a.txtMenuItem:hover
+{
+    text-decoration: underline;
+}
 
-#tmp {width: 100%; text-align: center; min-height:650px;}
+#tmp
+{
+    width: 100%;
+    text-align: center;
+    min-height: 350px;
+}
 
 #contentBoxBrandCatalog
 {
@@ -318,52 +364,55 @@ html, body
     position: relative;
     margin-left: auto;
     margin-right: auto;
-    z-index: 1;
-    /*width: 1007px;
-    height: 650px;*/
-    /*background: white;  */
-    
+    z-index: 1; /*width: 1007px;     height: 650px;*/ /*background: white;  */
     display: inline-block;
-    
-    }
+}
 
 #contentBoxBrandCatalog .corner_ne
-{ width: 28px;
+{
+    width: 28px;
     height: 26px;
     position: absolute; /*z-index: 2;*/
     top: 0px;
     right: 0px;
     background: url('./img/corner_ne.png') no-repeat;
-    background-position: right top;}
-    
-    
+    background-position: right top;
+}
+
+
 #contentBoxBrandCatalog .corner_nw
-{ width: 28px;
+{
+    width: 28px;
     height: 26px;
     position: absolute; /*z-index: 2;*/
     top: 0px;
     left: 0px;
     background: url('./img/corner_nw.png') no-repeat;
-    background-position: left top;}
-    
-    #contentBoxBrandCatalog .corner_sw
-{ width: 28px;
+    background-position: left top;
+}
+
+#contentBoxBrandCatalog .corner_sw
+{
+    width: 28px;
     height: 26px;
     position: absolute; /*z-index: 2;*/
     bottom: 0px;
     left: -1px;
     background: url('./img/corner_sw.png') no-repeat;
-    background-position: left bottom;}
-    
-    #contentBoxBrandCatalog .corner_se
-{ width: 28px;
+    background-position: left bottom;
+}
+
+#contentBoxBrandCatalog .corner_se
+{
+    width: 28px;
     height: 26px;
     position: absolute; /*z-index: 2;*/
     bottom: 0px;
     right: -1px;
     background: url('./img/corner_se.png') no-repeat;
-    background-position: right bottom;}
-    
+    background-position: right bottom;
+}
+
 #contentBox
 {
     margin-top: 20px;
@@ -472,7 +521,7 @@ html, body
     padding-top: 20px;
     width: 215px;
     float: left;
-    position:relative;
+    position: relative;
 }
 
 #contentBox .sortingBox
@@ -616,7 +665,6 @@ html, body
     z-index: 2;
     padding: 65px 70px 0px 0px; /*min-height: 600px;*/
     left: 75px;
-    
 }
 
 
@@ -653,7 +701,8 @@ html, body
     margin-top: 12px;
 }
 
-.leftMenuElement span{
+.leftMenuElement span
+{
     color: #999966;
     font-weight: bold;
 }
@@ -792,35 +841,70 @@ html, body
     text-align: center;
     text-decoration: none;    
  }*/
- 
- #thumbnails
- {
+
+#thumbnails
+{
     clear: both;
-    position: relative;    
-    padding-top:20px;
-    overflow:hidden;
-    width:810px;
-    margin:0 auto;
+    position: relative;
+    padding-top: 20px;
+    overflow: hidden;
+    width: 810px;
+    margin: 0 auto;
 }
 
-#leftArrow, #rightArrow{ height:83px; cursor:pointer;}
+#leftArrow, #rightArrow
+{
+    height: 83px;
+    cursor: pointer;
+}
 
 #leftArrow
 {
-    float: left; width: 36px;
+    float: left;
+    width: 36px;
     background: url('img/leftArrow.png') no-repeat;
 }
- 
+
 #rightArrow
 {
-    float: right; width: 38px;
+    float: right;
+    width: 38px;
     background: url('img/rightArrow.png') no-repeat;
-} 
-    
-#dock{margin-top:35px; margin-left:-20px;}
- 
-.dock-container { position: relative; top: -8px; height: 50px; padding-left: 20px; }   
-a.dock-item { display: block; width: 50px; position: absolute; bottom: 0; text-align: center; text-decoration: none; color: #333; }   
-.dock-item span { display: none; padding-left: 20px; }   
-.dock-item img { border: 0; margin: 5px 10px 0px; width: 100%; } 
- 
+}
+
+#dock
+{
+    margin-top: 35px;
+    margin-left: -20px;
+}
+
+.dock-container
+{
+    position: relative;
+    top: -8px;
+    height: 50px;
+    padding-left: 20px;
+    left: 15px !important; 
+    margin-left: 40px;
+}
+a.dock-item
+{
+    display: block;
+    width: 50px;
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    text-decoration: none;
+    color: #333;
+}
+.dock-item span
+{
+    display: none;
+    padding-left: 20px;
+}
+.dock-item img
+{
+    border: 0;
+    margin: 5px 10px 0px;
+    width: 100%;
+}

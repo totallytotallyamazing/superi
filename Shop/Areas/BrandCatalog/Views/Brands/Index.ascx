@@ -11,13 +11,16 @@
     <div id="rightArrow"></div>
     <div id="dockWrapper">
         <div id="dock">
+        
             <div class="dock-container">
+             
         <% foreach (var item in Model){%>
                     <a href='#' class="dock-item">
+                    
                         <span></span>
                         <%= Html.CachedImage("~/Content/CatalogueImages/Brand" + ViewData["brandId"] + "Group" + ViewData["groupId"], item.Image, "catalogueThumb", item.Image)%>
                     </a>
-        <%} %>
+        <%} %>                
             </div>
         </div>
     </div>

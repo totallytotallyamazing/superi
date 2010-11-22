@@ -75,6 +75,13 @@ html, body
 {
     margin: 0px auto;
     background: black; /* width: auto;*/
+   
+}
+
+#allBrandCatalog
+{
+    margin: 0px auto;
+    background: black; /* width: auto;*/
     padding-bottom: 150px;
 }
 

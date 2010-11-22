@@ -43,7 +43,7 @@
 </head>
 <body>
     <%if (Roles.IsUserInRole("Administrators")) Html.RenderPartial("AdminPanel");  %>
-    <div id="all">
+    <div id="allBrandCatalog">
         <div id="toperBrandCatalog">
             <div id="header">
                 <div id="forwardBack">

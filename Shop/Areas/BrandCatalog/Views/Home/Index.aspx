@@ -16,7 +16,7 @@
     <div id="titleBoxBrandCatalog">
         <p>
             <span class="txtPageName">Здравствуйте!</span> &nbsp&nbsp&nbsp&nbsp&nbsp
-            <span class="txtDescription">Просмотреть каталог бренда можно, выбрав катогорию товаров бренда в меню выше</span> 
+            <span class="txtDescription">Просмотреть каталог бренда можно, выбрав категорию товаров бренда в меню выше</span> 
         </p>
     </div>
     <div id="thumbnails" style="display:none">

@@ -359,6 +359,7 @@ html, body
     margin-right: auto;
     z-index: 1; /*width: 1007px;     height: 650px;*/ /*background: white;  */
     display: inline-block;
+    height:650px;
 }
 
 #contentBoxBrandCatalog .corner_ne
@@ -839,15 +840,16 @@ html, body
     clear: both;
     position: relative;
     padding-top: 20px;
-    overflow: hidden;
-    width: 810px;
+    width: 850px;
     margin: 0 auto;
+    left:-40px;
 }
 
 #leftArrow, #rightArrow
 {
     height: 83px;
     cursor: pointer;
+    position:relative;
 }
 
 #leftArrow
@@ -862,6 +864,7 @@ html, body
     float: right;
     width: 38px;
     background: url('img/rightArrow.png') no-repeat;
+    position:relative; left:40px;
 }
 
 #dock
@@ -876,7 +879,7 @@ html, body
     top: -8px;
     height: 50px;
     padding-left: 20px;
-    left: 15px !important; 
+   /* left: 15px !important; */
     margin-left: 40px;
 }
 a.dock-item

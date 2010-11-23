@@ -1,6 +1,10 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<dynamic>" %>
 <%@ Import Namespace="Dev.Mvc.Runtime" %>
+
 <% 
+    bool showPager = ViewData["showPager"] != null;
+    if(showPager)
+    {
     int pageSize = Configurator.LoadSettings().PageSize;
     int totalCount = (int)ViewData["totalCount"];
     int pageCount = totalCount / pageSize;
@@ -30,3 +34,4 @@
       } %>
     </p>
 </div>
+<%} %>

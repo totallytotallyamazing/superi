@@ -16,6 +16,35 @@ var BasePageExtender = {
 
 
 ProductClientExtensions = {
+    validateQuestion: function () {
+        var url = "/Captcha/ValidateCaptcha";
+        var result = true;
+
+        var captchaGuid = document.getElementById("captcha_guid").value;
+        var body = null;
+        eval('body = {' + encodeURIComponent("value") + ' : "' + encodeURIComponent($("#Captcha").val()) + '", "captcha-guid": "' + captchaGuid + '"}');
+
+
+        var completedCallback = function (data) {
+            var responseData = data;
+            if (responseData != 'true') {
+                result = false;
+            }
+        };
+
+        $.ajax({ type: "POST", url: url, success: completedCallback, async: false, data: body });
+        if (!result) {
+            alert("Неправильно введены символы!");
+            OnCaptchaValidationError();
+        }
+        return result;
+    },
+
+    questionSend: function () {
+        $("#quickQuestion").empty();
+        $("<div>Запрос отправлен</div>").appendTo("#quickQuestion");
+    },
+
     updateMainImage: function (src) {
         var href = "/Content/ProductImages/" + src;
         $.get("/Graphics/ShowMain/" + src + "?alt=" + this.alt, function (data) {
@@ -33,6 +62,10 @@ ProductClientExtensions = {
                 ProductClientExtensions.bindFancy();
                 ImagePreviews.Initialize();
             }
+        });
+        $("#quickQuestionLink").click(function () {
+            $("#quickQuestion").css("display", "block");
+            $.fancybox.resize();
         });
     },
 
@@ -137,5 +170,40 @@ ProductVariant = {
 
     _updateVariantSelection: function (id, src) {
         ProductClientExtensions.updateMainImage(src);
+    }
+};
+
+var Subscribe = {
+    initialize: function () {
+        $(function () {
+            $("#subscribeMe").click(function () {
+                Subscribe._showEditor();
+            });
+        })
+    },
+
+    _showEditor: function () {
+        $("#bubbleText").empty();
+        $('<input type="text" id="subscribeEmail" style="width:135px;" />').appendTo("#bubbleText");
+        $('<input type="button" value="Подписаться" style="font-size:10px;" />').click(function () {
+            var value = $("#subscribeEmail").val();
+            var regex = /^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+            if (regex.test(value)) {
+                $.post("/Clients/Subscribe/" + $("#subscribeEmail").val(), function (data) {
+                    $("#bubbleText").empty();
+                    if (data == 0)
+                        $('<span class="txtBubbleNew">Поздравляем, вы подписались на нашу рассылку</span>').appendTo("#bubbleText");
+                    else if (data == 1)
+                        $('<span class="txtBubbleNew">Вы уже подписаны</span>').appendTo("#bubbleText");
+                    else if (data == 2) {
+                        $('<span class="txtBubbleNew">Произошла ошибка</span>').appendTo("#bubbleText");
+                        $('<span class="txtBubbleNew">Попробуйте позже</span>').appendTo("#bubbleText");
+                    }
+                });
+            }
+            else {
+                alert("Email введен неправильно");
+            }
+        }).appendTo("#bubbleText");
     }
 };

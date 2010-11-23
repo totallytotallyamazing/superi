@@ -96,6 +96,7 @@
       <DependentUpon>BrandCatalogue.edmx</DependentUpon>
     </Compile>
     <Compile Include="Controllers\CaptchaController.cs" />
+    <Compile Include="Controllers\ClientsController.cs" />
     <Compile Include="Controllers\GraphicsController.cs" />
     <Compile Include="Controllers\InvoiceController.cs" />
     <Compile Include="Controllers\TitleAttribute.cs" />
@@ -283,6 +284,7 @@
     <Content Include="Content\LislelliStyles\products.css" />
     <Content Include="Content\LislelliStyles\ie7.css" />
     <Content Include="Content\LislelliStyles\brandsComboBox.css" />
+    <Content Include="Content\MailTemplates\QuestionTemplate.htm" />
     <Content Include="Content\UnMomentoStyles\img\allBkg.gif" />
     <Content Include="Content\UnMomentoStyles\img\baner.gif" />
     <Content Include="Content\UnMomentoStyles\img\basket.gif" />
@@ -347,6 +349,7 @@
     <Content Include="Views\Home\FeedbackSent.aspx" />
     <Content Include="Views\Home\Map.ascx" />
     <Content Include="Views\Products\ProductStaticAttributes.ascx" />
+    <Content Include="Views\Products\QuickQuestion.ascx" />
     <Content Include="Views\Products\ShowModal.ascx" />
     <Content Include="Views\Products\SimilarProducts.ascx" />
     <Content Include="Views\Products\SortingPanel.ascx" />

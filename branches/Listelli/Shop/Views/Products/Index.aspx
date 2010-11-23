@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Products/Products.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<Shop.Models.Product>>" %>
-
+<%@ Import Namespace="Dev.Mvc.Ajax" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	<%= ViewData["title"] %>
 </asp:Content>
@@ -15,14 +15,19 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+<% Html.EnableClientValidation(); %> 
     <% if(Roles.IsUserInRole("Administrators") && ViewData["tags"] == null){ %>
         <% Html.RenderPartial("CategoriesAdmin"); %>
     <%} %>
-    <% if(Model!=null)
+    <% if (Model != null && Model.Count() > 0)
            foreach (var item in Model)
            {
                Html.RenderPartial("Product", item);
-           } %>
+           }
+       else
+       { 
+        %>Извините, по вашему запросу ничего не найдено<%
+       } %>
            <div style="clear:both"></div>
 </asp:Content>
 
@@ -37,6 +42,14 @@
             ProductClientExtensions.bindFancy();
         })    
     </script>
+    <%= Ajax.ScriptInclude("/Scripts/MicrosoftAjax.js") %>
+    <%= Ajax.ScriptInclude("/Scripts/MicrosoftMvcAjax.js")%>
+    <script type="text/javascript">
+        function OnCaptchaValidationError() {
+            $.get("/Captcha/DrawForFeedback", function (data) { $("#captchaImage").html(data); });
+        }
+    </script>
+
 </asp:Content>
 
 <asp:Content ID="Content5" runat="server" ContentPlaceHolderID="Footer">

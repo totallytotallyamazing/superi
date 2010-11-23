@@ -14,6 +14,12 @@ namespace Shop.Controllers
         {
             Response.Write(CaptchaExtensions.CaptchaImage(200, 60));
         }
+        
+        [OutputCache(NoStore = true, Duration = 1, VaryByParam = "*")]
+        public void DrawForFeedback()
+        {
+            Response.Write(CaptchaExtensions.CaptchaImage(125, 40));
+        }
 
         [CaptchaValidation("value")]
         public string ValidateCaptcha(bool captchaValid)

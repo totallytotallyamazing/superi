@@ -21,9 +21,9 @@
     <edmx:ConceptualModels>
       <Schema Namespace="shop_subscribersModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
         <EntityContainer Name="Clients" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Subscribers" EntityType="shop_subscribersModel.Subscribers" />
+          <EntitySet Name="Subscribers" EntityType="shop_subscribersModel.Subscriber" />
         </EntityContainer>
-        <EntityType Name="Subscribers">
+        <EntityType Name="Subscriber">
           <Key>
             <PropertyRef Name="Email" />
           </Key>
@@ -36,7 +36,7 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="shop_subscribersModelStoreContainer" CdmEntityContainer="Clients">
-          <EntitySetMapping Name="Subscribers"><EntityTypeMapping TypeName="shop_subscribersModel.Subscribers"><MappingFragment StoreEntitySet="Subscribers">
+          <EntitySetMapping Name="Subscribers"><EntityTypeMapping TypeName="shop_subscribersModel.Subscriber"><MappingFragment StoreEntitySet="Subscribers">
             <ScalarProperty Name="Email" ColumnName="Email" />
             <ScalarProperty Name="UniqueId" ColumnName="UniqueId" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
@@ -61,7 +61,7 @@
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="Subscribers">
-        <EntityTypeShape EntityType="shop_subscribersModel.Subscribers" Width="1.5" PointX="0.75" PointY="0.75" Height="1.4033821614583331" IsExpanded="true" />
+        <EntityTypeShape EntityType="shop_subscribersModel.Subscriber" Width="1.5" PointX="0.75" PointY="0.75" Height="1.4033821614583331" IsExpanded="true" />
       </Diagram>
     </Diagrams>
   </Designer>

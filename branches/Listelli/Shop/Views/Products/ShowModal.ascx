@@ -1,8 +1,4 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<Shop.Models.Product>" %>
-
-<%--<div class="bkgLeftTop">
-  
-</div>--%>
 <div class="productModal">
     <% if (Roles.IsUserInRole("Administrators"))
        { %>
@@ -33,9 +29,10 @@
         </div>
         <div class="details">
             <p class="txtDetails">
-                Узнать подробнее об этом товаре можно, позвонив к нам, или просто сейчас <a href='#'
+                Узнать подробнее об этом товаре можно, позвонив к нам, или просто сейчас <a id="quickQuestionLink" href='#'
                     class="linkDetails">отправив быстрый вопрос</a></p>
         </div>
     </div>
+    <% Html.RenderPartial("QuickQuestion", ViewData["quickQuestion"]); %>
     <% Html.RenderPartial("SimilarProducts", Model.Tags.SelectMany(t=>t.Products).Where(p=>p.Id != Model.Id)); %>
 </div>

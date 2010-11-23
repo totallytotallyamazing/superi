@@ -70,7 +70,6 @@
                 <% Html.RenderPartial("Categories"); %>
             </div>
             <div id="contentBox">
-            
                 <div class="right">
                     <div class="rightTopBackground">
                         <%--Background--%>
@@ -79,6 +78,7 @@
                         <%--Background--%>
                     </div>
                     <div id="rightBox">
+                        <% Html.RenderPartial("Subscribe"); %>
                         <div id="brand">
                             <a href="/BrandCatalog/Home/Index" class="txtBrand">Брендовые каталоги</a>
                         </div>

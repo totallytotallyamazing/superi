@@ -4,14 +4,6 @@
 var BrandCatalogue = {
     initialize: function () {
         $(function () {
-            $("#contentBoxBrandCatalog").css("position", "static");
-            window.setTimeout(function () {
-                $("#contentBoxBrandCatalog").css("position", "static");
-            }, 150);
-            window.setTimeout(function () {
-                $("#contentBoxBrandCatalog").css("position", "relative");
-            }, 300);
-
             $('#selectBrand')
             .combobox({
                 comboboxContainerClass: "cbBrandContainer",
@@ -81,12 +73,9 @@ var BrandCatalogue = {
             //mainCatalogImage
             $.post(this.href, function (data) {
                 $("#mainCatalogImage").html(data);
-                window.setTimeout(function () {
-                    $("#contentBoxBrandCatalog").css("position", "static");
-                }, 150);
-                window.setTimeout(function () {
-                    $("#contentBoxBrandCatalog").css("position", "relative");
-                }, 300);
+                $("#mainCatalogImage img").load(function () {
+                    $("#contentBoxBrandCatalog").height(this.offsetHeight);
+                });
             });
             this.blur();
             return false;

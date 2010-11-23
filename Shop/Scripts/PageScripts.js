@@ -69,17 +69,11 @@ ProductClientExtensions = {
         });
     },
 
-    _adjustedCount: 0,
-
     _adjustDimensions: function () {
-        ProductClientExtensions._adjustProductContainerHeight();
         ProductClientExtensions._adjustProductContainerWidth();
-
-        ProductClientExtensions._adjustedCount++;
-        if (ProductClientExtensions._adjustedCount > 10) {
-            window.clearInterval(ProductClientExtensions._intervalId);
-        }
-
+        ProductClientExtensions._adjustProductContainerHeight();
+        $("#footer").hide();
+        $("#footer").show();
     },
 
     _adjustProductContainerHeight: function () {
@@ -100,11 +94,9 @@ ProductClientExtensions = {
         })
     },
 
-    _intervalId: 0,
-
     initialize: function () {
         $(function () {
-            ProductClientExtensions._intervalId = window.setInterval(ProductClientExtensions._adjustDimensions, 500);
+            $(window).load(ProductClientExtensions._adjustDimensions);
         })
     }
 };

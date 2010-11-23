@@ -607,6 +607,7 @@ html, body
     text-align:center;
     width:auto;
     margin-left:100px;
+    padding-top: 15px;
 }
 
 #pager .txtPager
@@ -658,6 +659,7 @@ html, body
     z-index: 2;
     padding: 65px 70px 0px 0px; /*min-height: 600px;*/
     left: 75px;
+    min-height: 700px;
 }
 
 
@@ -792,6 +794,16 @@ html, body
     width: 128px;
     height: 37px;
     margin-bottom: 7px;
+}
+
+
+#dotA
+{
+    height: 6px;
+    background: url('./img/dotA.png') repeat-x;
+    width: 100%; 
+    position: absolute;
+    bottom: 0px;  
 }
 
 

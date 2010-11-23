@@ -13,6 +13,7 @@
 %>
 
 <div id="pager">
+
     <p class="txtPager">
     <%for (int i = 0; i < pageCount; i++)
       {

@@ -264,6 +264,7 @@
     <Content Include="Content\LislelliStyles\img\dockItem4.gif" />
     <Content Include="Content\LislelliStyles\img\dockItem5.gif" />
     <Content Include="Content\LislelliStyles\img\dockItem6.gif" />
+    <Content Include="Content\LislelliStyles\img\dotA.png" />
     <Content Include="Content\LislelliStyles\img\firstTab.gif" />
     <Content Include="Content\LislelliStyles\img\imgBeech.gif" />
     <Content Include="Content\LislelliStyles\img\imgBeechPrev.gif" />

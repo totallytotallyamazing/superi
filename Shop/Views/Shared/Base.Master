@@ -114,9 +114,14 @@
                         </asp:ContentPlaceHolder>
                     </div>
                     <div class="leftMid">
+                    
                         <div id="contentWrapper">
                             <asp:ContentPlaceHolder ID="MainContent" runat="server">
                             </asp:ContentPlaceHolder>
+                            <div id="dotA">
+                                <%--. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . --%>
+                            </div>
+                            
                         </div>
                     </div>
                     <div class="leftBottom">

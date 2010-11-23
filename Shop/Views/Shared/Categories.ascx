@@ -29,7 +29,7 @@
                 }
                 else
                 {
-                    actionLink = Html.ActionLink(item.Name, "Index", "Products", new { id = item.Id, area="" }, null).ToString();
+                    actionLink = Html.ActionLink(item.Name, "Index", "Products", new { id = item.Id, area = "" }, new { @class = "currentMain" }).ToString();
                 }
                 extraClass = " current";
                 expandCategory = true;

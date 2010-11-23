@@ -8,6 +8,7 @@
 <head>
     <% Html.RenderPartial("MetaTags"); %>
     <title>
+        Listelli - 
         <asp:ContentPlaceHolder runat="server" ID="TitleContent">
         </asp:ContentPlaceHolder>
     </title>
@@ -29,6 +30,7 @@
     <%= Ajax.ScriptInclude("/Scripts/jquery.fancybox.js")%>
     <%= Ajax.ScriptInclude("/Scripts/PageScripts.js")%>
     <script type="text/javascript">
+        var isHomePage = <%= (ViewData["isHomePage"]!=null).ToString().ToLowerInvariant() %>;
         BasePageExtender.initialize();
     </script>
     <%-- суперскрипт--%>

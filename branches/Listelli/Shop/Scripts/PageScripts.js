@@ -10,6 +10,10 @@ var BasePageExtender = {
                 showCloseButton: true,
                 titlePosition: "over"
             });
+
+            if (!isHomePage) {
+                $("#logoBox").css("cursor", "pointer").click(function () { location.href = "/"; });
+            }
         });
     }
 };
@@ -70,29 +74,35 @@ ProductClientExtensions = {
     },
 
     _adjustDimensions: function () {
-        ProductClientExtensions._adjustProductContainerWidth();
         ProductClientExtensions._adjustProductContainerHeight();
         $("#footer").hide();
         $("#footer").show();
     },
 
     _adjustProductContainerHeight: function () {
-        var maxHeight = 0;
-        $(".productItem").each(function () {
-            if (this.offsetHeight > maxHeight)
-                maxHeight = this.offsetHeight;
+        var maxImgHeight = 0;
+        $(".productItem .img").each(function () {
+            if (this.offsetHeight > maxImgHeight)
+                maxImgHeight = this.offsetHeight;
         });
-        $(".productItem").height(maxHeight);
+        var maxTextHeight = 0;
+        $(".productItem .text").each(function () {
+            if (this.offsetHeight > maxTextHeight)
+                maxTextHeight = this.offsetHeight;
+        });
+
+        $(".productItem .img").height(maxImgHeight);
+        $(".productItem .text").height(maxTextHeight);
     },
 
-    _adjustProductContainerWidth: function () {
-        $(".productItem").each(function () {
-            var width = $(this).find("img").width();
-            if (width) {
-                $(this).width(width);
-            }
-        })
-    },
+//    _adjustProductContainerWidth: function () {
+//        $(".productItem").each(function () {
+//            var width = $(this).find("img").width();
+//            if (width) {
+//                $(this).width(width);
+//            }
+//        })
+//    },
 
     initialize: function () {
         $(function () {

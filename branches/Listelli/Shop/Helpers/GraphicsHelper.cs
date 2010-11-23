@@ -22,8 +22,8 @@ namespace Dev.Mvc.Helpers
             fixDimension.Add("mainView", FixedDimension.Width);            
             maxDimensions.Add("thumbnail1", 50);
             fixDimension.Add("thumbnail1", FixedDimension.Width);
-            maxDimensions.Add("thumbnail2", 110);
-            fixDimension.Add("thumbnail2", FixedDimension.Height);
+            maxDimensions.Add("thumbnail2", 160);
+            fixDimension.Add("thumbnail2", FixedDimension.Width);
             maxDimensions.Add("catalogueThumb", 83);
             fixDimension.Add("catalogueThumb", FixedDimension.Height);
             maxDimensions.Add("catalogueMain", 1005);

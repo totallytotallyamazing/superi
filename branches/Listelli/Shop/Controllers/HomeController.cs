@@ -18,6 +18,7 @@ namespace Shop.Controllers
         [Content(ContentName="Index")]
         public ActionResult Index()
         {
+            ViewData["isHomePage"] = true;
             return View("Content");
         }
 

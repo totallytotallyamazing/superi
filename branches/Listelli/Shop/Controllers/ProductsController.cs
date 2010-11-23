@@ -139,20 +139,36 @@ namespace Shop.Controllers
             WebSession.CurrentTag = int.MinValue;
             WebSession.CurrentCategory = int.MinValue;
 
-            using (ShopStorage context = new ShopStorage())
+            ViewData["title"] = "Результаты поиска";
+
+            string processedString = string.Join(" or ",
+                        searchField.Split(' ').Where(a => !a.Equals("or", StringComparison.OrdinalIgnoreCase)).ToArray());
+
+            List<Product> products = null;
+
+            if (!string.IsNullOrWhiteSpace(processedString))
             {
-                int[] ids = context.GetSearchResults(searchField);
-                var products = context.Products
-                    .Include("ProductAttributeValues")
-                    .Include("Categories")
-                    .Include("ProductImages")
-                    .Include("ProductAttributeStaticValues.ProductAttribute")
-                    .Where(ContextExtension.BuildContainsExpression<Product, int>(p => p.Id, ids))
-                    .OrderBy(p => p.SortOrder)
-                    .ToList();
-                ViewData["title"] = "Результаты поиска";
-                return View("Index", products);
+                using (ShopStorage context = new ShopStorage())
+                {
+                    try
+                    {
+                        int[] ids = context.GetSearchResults(processedString);
+                        products = context.Products
+                            .Include("ProductAttributeValues")
+                            .Include("Categories")
+                            .Include("ProductImages")
+                            .Include("ProductAttributeStaticValues.ProductAttribute")
+                            .Where(ContextExtension.BuildContainsExpression<Product, int>(p => p.Id, ids))
+                            .OrderBy(p => p.SortOrder)
+                            .ToList();
+                    }
+                    catch
+                    {
+
+                    }
+                }
             }
+            return View("Index", products);
         }
 
         [HttpPost]

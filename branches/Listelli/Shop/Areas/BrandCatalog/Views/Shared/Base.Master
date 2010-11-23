@@ -11,14 +11,11 @@
     </title>
     <link href="/Content/LislelliStyles/ListelliSite.css" rel="stylesheet" type="text/css" />
     <link href="/Content/LislelliStyles/brandsComboBox.css" rel="stylesheet" type="text/css" />
-    
     <!--[if IE 7]>
 
     <link rel="stylesheet" media="all" type="text/css" href="/Content/LislelliStyles/ie7.css" />
 
     <![endif]-->
-
-
     <% if (Roles.IsUserInRole("Administrators"))
        { %>
     <link href="/Content/AdminStyles/Admin.css" rel="stylesheet" type="text/css" />
@@ -43,7 +40,7 @@
 </head>
 <body>
     <%if (Roles.IsUserInRole("Administrators")) Html.RenderPartial("AdminPanel");  %>
-    <div id="allBrandCatalog">
+    <div id="all">
         <div id="toperBrandCatalog">
             <div id="header">
                 <div id="forwardBack">
@@ -84,26 +81,21 @@
                         <asp:ContentPlaceHolder ID="MainContent" runat="server">
                         </asp:ContentPlaceHolder>
                     </div>
-
-                    
                 </div>
-                <div id="footerBrandCatalog">
-            <div id="designedBy">
-                <p class="footerText">
-                    © 2010, компания “Listelli”
-                    <br />
-                    Дизайн сайта — <a href="http://m-brand.com.ua" class="footerMiller">Евгений Миллер</a>
-                </p>
-            </div>
-            <div id="strip">
-                <%-- прокладка--%>
+                <div id="footer">
+                    <div id="designedBy">
+                        <p class="footerText">
+                            © 2010, компания “Listelli”
+                            <br />
+                            Дизайн сайта — <a href="http://m-brand.com.ua" class="footerMiller">Евгений Миллер</a>
+                        </p>
+                    </div>
+                    <div id="strip">
+                        <%-- прокладка--%>
+                    </div>
+                </div>
             </div>
         </div>
-            </div>
-        </div>
-        
-
-
     </div>
     <!-- Google Analytics code -->
     <%--    <script type="text/javascript">

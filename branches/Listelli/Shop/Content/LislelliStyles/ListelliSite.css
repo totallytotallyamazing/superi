@@ -75,15 +75,9 @@ html, body
 {
     margin: 0px auto;
     background: black; /* width: auto;*/
-   
+    padding-bottom: 150px;   
 }
 
-#allBrandCatalog
-{
-    margin: 0px auto;
-    background: black; /* width: auto;*/
-    padding-bottom: 150px;
-}
 
 #logoBox
 {
@@ -196,6 +190,7 @@ html, body
     min-height: 1012px;
     background: url('./img/bkgHeader.gif') no-repeat;
     background-position: left top;
+    position: relative;
 }
 
 #header
@@ -268,28 +263,14 @@ html, body
 }
 
 
-
-
-#footer
-{
-    position: relative;
-    z-index: 0;
-    margin-top: -165px;
-    min-width: 1100px;
-    min-height: 312px;
-    background: url('./img/bkgFooter.gif') no-repeat;
-    background-position: left bottom;
-}
-
-#footerBrandCatalog
+#footer 
 {
     position: absolute;
     bottom: -150px;
     left: 0px;
     z-index: 0;
     margin-top: -150px;
-    width: 100%;
-    /*min-width: 1100px;*/
+    width: 100%;    
     height: 312px;
     background: url('./img/bkgFooter.gif') no-repeat;
     background-position: left bottom;

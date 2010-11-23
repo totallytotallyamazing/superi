@@ -2,7 +2,7 @@
 <%@ Import Namespace="Dev.Mvc.Helpers" %>
 <% if (Model.Count() > 0)
    { %>
-<div id="similarItems">
+<div class="similarItems">
     <p class="txtSimilarItems">
         Похожие товары:</p>
 </div>

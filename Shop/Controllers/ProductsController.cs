@@ -7,6 +7,10 @@ using Shop.Models;
 using Dev.Helpers;
 using System.Web.Security;
 using Dev.Mvc.Runtime;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel;
+using Shop.Helpers.Validation;
+using System.Net.Mail;
 
 namespace Shop.Controllers
 {
@@ -21,6 +25,8 @@ namespace Shop.Controllers
             ViewData["page"] = page ?? 0;
             ViewData["orderBy"] = orderBy;
             ViewData["action"] = "Index";
+            ViewData["showPager"] = true;
+            ViewData["showSorting"] = true;
             WebSession.CurrentCategory = id;
 
             using (ShopStorage context = new ShopStorage())
@@ -101,6 +107,9 @@ namespace Shop.Controllers
                     .Where(p => p.Id == id).First();
                 ViewData["keywords"] = product.SeoKeywords;
                 ViewData["description"] = product.SeoDescription;
+
+                ViewData["quickQuestion"] = new QuickQuestionModel { ProductName = product.PartNumber + " " + product.Categories.First().Name + " " + product.Name };
+
                 return View("ShowModal", product); 
             }
         }
@@ -141,8 +150,39 @@ namespace Shop.Controllers
                     .Where(ContextExtension.BuildContainsExpression<Product, int>(p => p.Id, ids))
                     .OrderBy(p => p.SortOrder)
                     .ToList();
+                ViewData["title"] = "Результаты поиска";
                 return View("Index", products);
             }
         }
+
+        [HttpPost]
+        public void QuickQuestion(QuickQuestionModel model)
+        {
+            SiteSettings settings = Configurator.LoadSettings();
+            MailHelper.SendTemplate(new List<MailAddress> { new MailAddress(settings.ReceiverMail) },
+                "Форма обратной связи", "QuestionTemplate.htm",
+                null, true, model.Name, model.Email, model.Text, model.ProductName);
+        }
+    }
+}
+
+namespace Shop.Models 
+{
+    public class QuickQuestionModel
+    {
+        [Required(ErrorMessage = "Обязательно!")]
+        [DisplayName("Назовитесь")]
+        public string Name { get; set; }
+        [DisplayName("Контактный email")]
+        [RegularExpression(@"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$", ErrorMessage = "Неверно введен адрес почты. Формат: name@domain.com")]
+        public string Email { get; set; }
+        [Required(ErrorMessage = "Обязательно!")]
+        [DisplayName("Ваш вопрос")]
+        public string Text { get; set; }
+        public string ProductName { get; set; }
+        [Captcha("ValidateCaptcha", "Captcha", "value", ErrorMessage = "Неправильно введены символы с картинки!")]
+        [Required(ErrorMessage = "Введите символы с картинки")]
+        [DisplayName("")]
+        public string Captcha { get; set; }
     }
 }

@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<dynamic>" %>
-
+<% if(ViewData["showSorting"]!=null){ %>
 <% 
     Func<string, string, string> generateSortLink = (caption, mode) =>
     {
@@ -37,3 +37,4 @@
         <%= generateSortLink("Только новое", "onlynew")%>
     </div>
 </div>
+<%} %>

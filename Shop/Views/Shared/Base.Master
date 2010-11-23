@@ -38,14 +38,14 @@
 <body>
     <%if (Roles.IsUserInRole("Administrators")) Html.RenderPartial("AdminPanel");  %>
     <div id="all">
-    
         <div id="toper">
             <div id="header">
                 <div id="headerRight">
                     <p class="mainPhone">
                         (044) 286-55-42</p>
                     <p class="mainAdress">
-                        Киев, <a id="ourCoords" title="Наши координаты" href="/Home/Map" class="mainAdress">б-р Леси Украинки, 19</a>
+                        Киев, <a id="ourCoords" title="Наши координаты" href="/Home/Map" class="mainAdress">
+                            б-р Леси Украинки, 19</a>
                     </p>
                 </div>
                 <div id="logoBox">
@@ -110,11 +110,11 @@
                             <asp:ContentPlaceHolder runat="server" ID="ContentTitle">
                             </asp:ContentPlaceHolder>
                         </div>
-                        <asp:ContentPlaceHolder runat="server" ID="SortingPanel"></asp:ContentPlaceHolder>
+                        <asp:ContentPlaceHolder runat="server" ID="SortingPanel">
+                        </asp:ContentPlaceHolder>
                     </div>
                     <div class="leftMid">
                         <div id="contentWrapper">
-                        
                             <asp:ContentPlaceHolder ID="MainContent" runat="server">
                             </asp:ContentPlaceHolder>
                         </div>
@@ -124,19 +124,20 @@
                         </asp:ContentPlaceHolder>
                     </div>
                 </div>
+               
             </div>
-        </div>
-        <div id="footer">
-            <div id="designedBy">
-                <p class="footerText">
-                    © 2010, компания “Listelli”
-                    <br />
-                    Дизайн сайта — <a href="http://m-brand.com.ua" class="footerMiller">Евгений Миллер</a>
-                </p>
-            </div>
-            <div id="strip">
-                <%-- прокладка--%>
-            </div>
+             <div id="footer">
+                    <div id="designedBy">
+                        <p class="footerText">
+                            © 2010, компания “Listelli”
+                            <br />
+                            Дизайн сайта — <a href="http://m-brand.com.ua" class="footerMiller">Евгений Миллер</a>
+                        </p>
+                    </div>
+                    <div id="strip">
+                        <%-- прокладка--%>
+                    </div>
+                </div>
         </div>
     </div>
     <!-- Google Analytics code -->

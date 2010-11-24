@@ -25,7 +25,10 @@ var BrandCatalogue = {
     fetchBrands: function () {
         var element = document.getElementById("selectBrand")
         var id = element.options[element.selectedIndex].value;
-        $.get("/BrandCatalog/Brands/BrandLinks/" + id, function (data) { $("#topMenu").html(data); });
+        $.get("/BrandCatalog/Brands/BrandLinks/" + id, function (data) {
+            $("#topMenu").html(data);
+            //$("a.txtSubMenuItem").click(function () { debugger;  this.style.textDecoration = "none"; href = ""; return false; })
+        });
     },
 
     updateDockContent: function (params) {

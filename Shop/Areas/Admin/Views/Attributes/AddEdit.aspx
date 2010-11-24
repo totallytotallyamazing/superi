@@ -30,7 +30,7 @@
             <%= Html.RadioButtonFor(model=> model.ValueType, "DROPDOWN") %> Выпадающий список
             <%= Html.ValidationMessageFor(model => model.ValueType)%>
         </div>
-        <div>
+        <div style="display:none";>
             <%= Html.CheckBoxFor(model=>model.Static) %><%= Html.LabelFor(model => model.Static) %>
         </div>
         <input type="submit" value="Сохранить" />

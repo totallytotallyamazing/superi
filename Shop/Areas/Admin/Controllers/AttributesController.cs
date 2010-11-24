@@ -57,6 +57,7 @@ namespace Shop.Areas.Admin.Controllers
                 {
                     context.AddToProductAttributes(attribute);
                 }
+                attribute.Static = true;
                 context.SaveChanges();
             }
             return RedirectToAction("Index", "Attributes", new { id = attribute.Id, area = "Admin" });

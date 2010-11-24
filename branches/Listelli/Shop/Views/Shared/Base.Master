@@ -29,6 +29,7 @@
     <%= Ajax.DynamicCssInclude("/Content/fancybox/jquery.fancybox.css") %>
     <%= Ajax.ScriptInclude("/Scripts/jquery.fancybox.js")%>
     <%= Ajax.ScriptInclude("/Scripts/PageScripts.js")%>
+    <%= Ajax.ScriptInclude("/Scripts/jquery.watermark.js")%>
     <script type="text/javascript">
         var isHomePage = <%= (ViewData["isHomePage"]!=null).ToString().ToLowerInvariant() %>;
         BasePageExtender.initialize();

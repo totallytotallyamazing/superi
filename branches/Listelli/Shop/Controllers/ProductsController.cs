@@ -56,6 +56,8 @@ namespace Shop.Controllers
                 orderBy = orderBy ?? string.Empty;
                 products = ApplyOrdering(products, orderBy.ToLowerInvariant());
 
+                if (!Roles.IsUserInRole("Administrators"))
+                    products = products.Where(p => p.Published);
                 ViewData["totalCount"] = products.Count();
                 products = ApplyPaging(products, page);
                 ViewData["title"] = category.Name;

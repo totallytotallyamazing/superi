@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using Shop.Models;
 using System.Data;
+using Dev.Helpers;
+using System.Net.Mail;
 
 namespace Shop.Areas.Admin.Controllers
 {
@@ -29,7 +31,7 @@ namespace Shop.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddEdit(Article article, int? Id)
+        public ActionResult AddEdit(Article article, int? Id, bool send)
         {
             using (ContentStorage context = new ContentStorage())
             {
@@ -57,6 +59,13 @@ namespace Shop.Areas.Admin.Controllers
             }
 
             return RedirectToAction("Index", "Articles", new { area = "", type = article.Type });
+        }
+
+        private void SendArticle(Article article)
+        {
+            using (Clients context = new Clients())
+                foreach (var item in context.Subscribers)
+                    MailHelper.SendTemplate(new List<MailAddress> { new MailAddress(item.Email) }, article.Title, "Newsletter.htm", null, true, article.Text);
         }
 
         public ActionResult Delete(int id)

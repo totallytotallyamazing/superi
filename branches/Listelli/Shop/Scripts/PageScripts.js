@@ -14,6 +14,8 @@ var BasePageExtender = {
             if (!isHomePage) {
                 $("#logoBox").css("cursor", "pointer").click(function () { location.href = "/"; });
             }
+
+            $("#searchField").watermark({ html: "Слово + Enter", cls: "watermark small" });
         });
     }
 };
@@ -194,7 +196,7 @@ var Subscribe = {
                 $.post("/Clients/Subscribe/" + $("#subscribeEmail").val(), function (data) {
                     $("#bubbleText").empty();
                     if (data == 0)
-                        $('<span class="txtBubbleNew">Поздравляем, вы подписались на нашу рассылку</span>').appendTo("#bubbleText");
+                        $('<span class="txtBubbleNew">Вы подписаны на новости!</span>').appendTo("#bubbleText");
                     else if (data == 1)
                         $('<span class="txtBubbleNew">Вы уже подписаны</span>').appendTo("#bubbleText");
                     else if (data == 2) {

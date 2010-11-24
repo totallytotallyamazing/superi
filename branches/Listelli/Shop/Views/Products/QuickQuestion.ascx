@@ -1,14 +1,12 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<Shop.Models.QuickQuestionModel>" %>
 
 <div id="quickQuestion" style="display:none">
-    <% using (Ajax.BeginForm("QuickQuestion", new AjaxOptions { OnSuccess = "ProductClientExtensions.questionSend", OnBegin = "ProductClientExtensions.validateQuestion" }))
-       { %>
-
-
     <div class="similarItems">
         <p class="txtSimilarItems">
             Быстрый запрос:</p>
     </div>
+    <% using (Ajax.BeginForm("QuickQuestion", new AjaxOptions { OnSuccess = "ProductClientExtensions.questionSend", OnBegin = "ProductClientExtensions.validateQuestion" }))
+       { %>
     <table border="0" cellpadding="0" cellspacing="0">
         <tr>
             <td>
@@ -35,7 +33,7 @@
             </td>
         </tr>
     </table>
-    <div>
+    <div class="sendLabel">
         Введите проверочное число, и нажмите “Отправить”
     </div>
     <table border="0" cellpadding="0" cellspacing="0">

@@ -47,8 +47,8 @@ ProductClientExtensions = {
     },
 
     questionSend: function () {
-        $("#quickQuestion").empty();
-        $("<div>Запрос отправлен</div>").appendTo("#quickQuestion");
+        $("#quickQuestion form").replaceWith('<div class="questionSend">Запрос отправлен</div>');
+        $.fancybox.resize();
     },
 
     updateMainImage: function (src) {
@@ -65,6 +65,7 @@ ProductClientExtensions = {
             autoScale: false,
             onComplete: function () {
                 window.setTimeout($.fancybox.resize, 200);
+                //$(window).load
                 ProductClientExtensions.bindFancy();
                 ImagePreviews.Initialize();
             }
@@ -97,14 +98,14 @@ ProductClientExtensions = {
         $(".productItem .text").height(maxTextHeight);
     },
 
-//    _adjustProductContainerWidth: function () {
-//        $(".productItem").each(function () {
-//            var width = $(this).find("img").width();
-//            if (width) {
-//                $(this).width(width);
-//            }
-//        })
-//    },
+    //    _adjustProductContainerWidth: function () {
+    //        $(".productItem").each(function () {
+    //            var width = $(this).find("img").width();
+    //            if (width) {
+    //                $(this).width(width);
+    //            }
+    //        })
+    //    },
 
     initialize: function () {
         $(function () {

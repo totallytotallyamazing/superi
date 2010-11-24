@@ -63,5 +63,6 @@
 #quickQuestion table td input{font-weight:normal; margin-left:20px;}
 #quickQuestion table td textarea{font-weight:normal; margin-left:20px; width:250px;}
 #quickQuestion table{margin-top:15px; margin-bottom:15px; margin:15px 0px 15px 40px;}
-#quickQuestion div{font-size:12px; font-weight:bold; padding-left:40px; width:350px;}
-  
+#quickQuestion div.sendLabel{font-size:12px; font-weight:bold; padding-left:40px; width:350px;}
+#quickQuestion input[type='submit']{margin-left:40px;}
+#quickQuestion .questionSend{text-align:center; padding:50px 0; font-size:16px; font-weight:bold; color:#999;}

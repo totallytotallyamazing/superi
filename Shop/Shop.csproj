@@ -194,6 +194,7 @@
     <Content Include="bin\Elmah.dll" />
     <Content Include="bin\FredCK.FCKeditorV2.dll" />
     <Content Include="bin\WriteEncoder.dll" />
+    <Content Include="Content\AdminStyles\img\browseButton.jpg" />
     <Content Include="Content\AdminStyles\img\button.jpg" />
     <Content Include="Content\AdminStyles\img\cancel.png" />
     <Content Include="Content\AdminStyles\img\leftSectionCorner.jpg" />
@@ -203,6 +204,7 @@
     <Content Include="Content\AdminStyles\img\sectionBottom.jpg" />
     <Content Include="Content\AdminStyles\img\sectionLeft.jpg" />
     <Content Include="Content\AdminStyles\img\sectionRight.jpg" />
+    <Content Include="Content\AdminStyles\img\uploadPhoto.jpg" />
     <Content Include="Content\AdminStyles\manageCatalogue.css" />
     <Content Include="Content\AdminStyles\uploadify.css" />
     <Content Include="Content\blitzer\images\ui-bg_diagonals-thick_75_f3d8d8_40x40.png" />
@@ -285,6 +287,7 @@
     <Content Include="Content\LislelliStyles\products.css" />
     <Content Include="Content\LislelliStyles\ie7.css" />
     <Content Include="Content\LislelliStyles\brandsComboBox.css" />
+    <Content Include="Content\MailTemplates\Newsletter.htm" />
     <Content Include="Content\MailTemplates\QuestionTemplate.htm" />
     <Content Include="Content\UnMomentoStyles\img\allBkg.gif" />
     <Content Include="Content\UnMomentoStyles\img\baner.gif" />

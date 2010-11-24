@@ -168,7 +168,7 @@ html, body
 #topMenu .txtSubMenuItem
 {
     color: White;
-    font-size: 13px;
+    font-size: 12px;
 }
 #topMenu .current
 {
@@ -693,6 +693,7 @@ html, body
 .leftMenuElement
 {
     margin-top: 12px;
+    font-size:13px;
 }
 
 .leftMenuElement span
@@ -914,3 +915,6 @@ a.dock-item
     margin: 5px 10px 0px;
     width: 100%;
 }
+
+.watermark{color:Gray; white-space:nowrap;}
+.watermark.small{font-size:12px; margin-top:16px; margin-left:20px;}

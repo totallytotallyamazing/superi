@@ -33,6 +33,7 @@
                 <%= Html.TextAreaFor(model => model.Text)%>
                 <%= Html.ValidationMessageFor(model => model.Text) %>
             </div>
+            <div>Отправить подписчикам <%= Html.CheckBox("send") %></div>
         </fieldset>
         
         <fieldset>

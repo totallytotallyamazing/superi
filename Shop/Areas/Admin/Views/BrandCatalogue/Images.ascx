@@ -8,6 +8,8 @@
         {
             Html.RenderPartial("Image", image);
         }
-        %><input type="submit" value="Сохраниить порядок и удалить отмеченные" /><%
+        %>
+        <div style="clear:both"></div>
+        <input type="submit" value="Сохраниить порядок и удалить отмеченные" /><%
     }
 %>

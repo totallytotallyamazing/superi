@@ -325,9 +325,7 @@
         <Association Name="ProductTag">
           <End Type="shop_model.Product" Role="Product" Multiplicity="*" />
           <End Type="shop_model.Tag" Role="Tag" Multiplicity="*" /></Association>
-        <Association Name="BrandProduct">
-          <End Type="shop_model.Brand" Role="Brand" Multiplicity="1" />
-          <End Type="shop_model.Product" Role="Product" Multiplicity="*" /></Association></Schema>
+      </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>

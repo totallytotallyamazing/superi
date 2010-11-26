@@ -87,43 +87,22 @@ namespace Dev.Helpers
 
 
         #region Methods
-        public static void ClearOrder()
-        {
-            Session.Remove("order");
-        }
-
         public static bool IsBillingInfoFilled()
         { 
             return (order!=null && !string.IsNullOrEmpty(order.BillingPhone) && !string.IsNullOrEmpty(order.BillingName));
         }
 
         public static bool IsDeliveryInfoFilled()
-        public static string Currency
         {
-            get
-            {
-                return (string)Session["Currency"];
-            }
-            set
-            {
-                Session["Currency"] = value;
-            }
-        }
-
-        public static int CurrentCategory
-        {
-            get 
-            {
-                if (Session["CurrentCategory"] != null)
-                    return Convert.ToInt32(Session["CurrentCategory"]);
-                return int.MinValue;
-            }
-            set { Session["CurrentCategory"] = value; }
+            return (Order != null && !string.IsNullOrEmpty(Order.DeliveryPhone) && !string.IsNullOrEmpty(Order.DeliveryName));
         }
 
         internal static void ClearOrder()
         {
-            return (order != null && !string.IsNullOrEmpty(order.DeliveryPhone) && !string.IsNullOrEmpty(order.DeliveryName));
+            Session.Remove("order");
+            Session.Remove("orderItems");
+            Session["orderItems"] = null;
+            Session["order"] = null;
         }
 
         public static void ClearSettings() { settings = null; }

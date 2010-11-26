@@ -26,18 +26,9 @@ namespace Shop.Controllers
                     .Include("ProductAttributeValues")
                     .Include("ProductImages")
                     .Where(p => p.Category.Id == id).ToList();
-                    products = category.Categories.SelectMany(c => c.Products).Union(category.Products).ToList();
-                }
-                else
-                {
-                    products = context.Products
-                        .Include("Brand")
-                        .Include("ProductAttributeValues.ProductAttribute")
-                        .Include("ProductImages")
-                        .Where(p => p.Category.Id == id)
-                        .Where(p => (!brandId.HasValue || p.Brand.Id == brandId.Value))
-                        .ToList();
-                }
+
+                products.ForEach(p => p.ProductAttributeValues.ToList()
+                    .ForEach(pav => pav.ProductAttributeReference.Load()));
 
                 return View(products);
             }

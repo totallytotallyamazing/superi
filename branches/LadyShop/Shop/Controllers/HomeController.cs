@@ -18,7 +18,7 @@ namespace Shop.Controllers
     {
         public ActionResult Index()
         {
-            return RedirectToAction("Go", new { id = "home" });
+            return View();
         }
 
         [Content]
@@ -32,7 +32,7 @@ namespace Shop.Controllers
         {
             using (ShopStorage context = new ShopStorage())
             {
-                List<Category> categories = context.Categories.Include("Categories").Where(c => c.Parent == null).OrderBy(c=>c.SortOrder).ToList();
+                List<Category> categories = context.Categories.Include("Categories").Where(c => c.Parent == null).ToList();
                 return View(categories);
             }
         }

@@ -20,6 +20,11 @@ namespace Shop.Models
         [DisplayName("Название")]
         public string Name { get; set; }
 
+        [Required(ErrorMessage = "Введите порядок в списке")]
+        [DataType(DataType.Currency, ErrorMessage="Введите число")]
+        [DisplayName("Номер по порядку")]
+        public string SortOrder { get; set; }
+
         [DisplayName("Keywords")]
         public string SeoKeywords { get; set; }
 

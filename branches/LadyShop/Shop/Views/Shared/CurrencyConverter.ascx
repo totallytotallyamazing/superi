@@ -45,7 +45,7 @@
 %>
     
 <div id="currency">
-    <p>Считаем в:</p>
+    <p>Цены отображаются в:</p>
     <h3>
         <asp:HyperLink runat="server" ID="hrnLink" Text="ГРН"></asp:HyperLink> | <asp:HyperLink runat="server" ID="usdLink" Text="USD"></asp:HyperLink> | <asp:HyperLink runat="server" ID="euroLink" Text="EUR"></asp:HyperLink> | <asp:HyperLink runat="server" ID="rubleLink" Text="РУБ"></asp:HyperLink>
     </h3>

@@ -30,10 +30,4 @@
             </div>
         </div>
     </div>
-    <div id="contentFooterBg">
-        <div class="left">
-        </div>
-        <div class="right">
-        </div>
-    </div>
 </asp:Content>

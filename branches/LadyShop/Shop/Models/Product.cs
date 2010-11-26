@@ -26,7 +26,10 @@ namespace Shop.Models
         [DisplayName("Наименование товара")]
         public string Name { get; set; }
 
-        [DisplayName("Ключевые слова страницы")]
+        [DisplayName("Артикул")]
+        public string PartNumber { get; set; }
+
+        [DisplayName("Keywords")]
         public string SeoKeywords { get; set; }
 
         [DisplayName("Описание страницы")]

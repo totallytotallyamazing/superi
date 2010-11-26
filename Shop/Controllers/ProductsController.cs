@@ -16,6 +16,7 @@ namespace Shop.Controllers
             ViewData["brandId"] = brandId;
             WebSession.CurrentCategory = id;
 
+            ViewData["showAdminLinks"] = true;
             using (ShopStorage context = new ShopStorage())
             {
                 ViewData["title"] = context.Categories.Where(c => c.Id == id).Select(c => c.Name).First();
@@ -25,8 +26,19 @@ namespace Shop.Controllers
                     .Include("ProductAttributeValues")
                     .Include("ProductImages")
                     .Where(p => p.Category.Id == id).ToList();
-                products.ForEach(p => p.ProductAttributeValues.ToList()
-                    .ForEach(pav => pav.ProductAttributeReference.Load()));
+                    products = category.Categories.SelectMany(c => c.Products).Union(category.Products).ToList();
+                }
+                else
+                {
+                    products = context.Products
+                        .Include("Brand")
+                        .Include("ProductAttributeValues.ProductAttribute")
+                        .Include("ProductImages")
+                        .Where(p => p.Category.Id == id)
+                        .Where(p => (!brandId.HasValue || p.Brand.Id == brandId.Value))
+                        .ToList();
+                }
+
                 return View(products);
             }
         }
@@ -45,23 +57,6 @@ namespace Shop.Controllers
                 return View(product); 
             }
         }
-
-        public ActionResult Tags(int id)
-        {
-            ViewData["tags"] = true;
-            ViewData["showAdminLinks"] = false;
-            using (ShopStorage context = new ShopStorage())
-            {
-                var products = context.Products
-                    .Include("Brand")
-                    .Include("ProductImages")
-                    .Include("ProductAttributeValues.ProductAttribute")
-                    .Where(p=>p.Tags.Where(t=>t.Id == id).Count()>0)
-                    .ToList();
-                return View("Index", products); 
-            }
-        }
-
         public ActionResult Search(string searchField)
         {
             ViewData["tags"] = true;

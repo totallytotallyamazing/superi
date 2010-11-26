@@ -5,6 +5,15 @@
 <% 
     string productClickLink = Html.ActionLink("[IMAGE]", "Show", new { id=Model.Id }).ToString();
 %>
+<%@ Import Namespace="Dev.Mvc.Helpers" %>
+
+<% 
+    string productClickLink = Html.ActionLink("[IMAGE]", "Show", new { id=Model.Id }).ToString();
+    if (Roles.IsUserInRole("Administrators"))
+    {
+        productClickLink = Html.ActionLink("[IMAGE]", "AddEdit", "Products", new { area = "Admin", id = Model.Id, cId = ViewData["categoryId"], bId = ViewData["brandId"] }, null).ToString();
+    }
+%>
 
 <div id="contentItemBox">
     <div id="contentItemBoxHeader">
@@ -26,11 +35,9 @@
         </div>
         <div class="contentItemText">
             <p><%= Model.Name %></p>
+            <h2>Цвет: <strong>Синий</strong></h2>
             <% Html.RenderPartial("ProductAttributes", Model.ProductAttributeValues); %>
-            <% if (!string.IsNullOrEmpty(Model.Color)){ %>
-            <h2>Цвет: <strong><%= Model.Color %></strong></h2>
-            <%} %>
-            <h3><%= Html.RenderPrice(Model.Price, WebSession.Currency, 0, ",") %></h3>
+            <h3><%= Model.Price.ToString("#.##") %> <%= Dev.Helpers.WebSession.Currency %></h3>
         </div>
     </div>
     <div id="contentItemBoxFooter">

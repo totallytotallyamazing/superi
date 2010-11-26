@@ -9,7 +9,7 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <% if(Roles.IsUserInRole("Administrators") && ViewData["tags"] == null){ %>
+    <% if(Roles.IsUserInRole("Administrators")){ %>
         <% Html.RenderPartial("CategoriesAdmin"); %>
     <%} %>
     <% if(Model!=null)
@@ -21,4 +21,5 @@
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="includes" runat="server">
+    <link rel="Stylesheet" href="/Content/products.css" />
 </asp:Content>

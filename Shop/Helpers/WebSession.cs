@@ -98,6 +98,30 @@ namespace Dev.Helpers
         }
 
         public static bool IsDeliveryInfoFilled()
+        public static string Currency
+        {
+            get
+            {
+                return (string)Session["Currency"];
+            }
+            set
+            {
+                Session["Currency"] = value;
+            }
+        }
+
+        public static int CurrentCategory
+        {
+            get 
+            {
+                if (Session["CurrentCategory"] != null)
+                    return Convert.ToInt32(Session["CurrentCategory"]);
+                return int.MinValue;
+            }
+            set { Session["CurrentCategory"] = value; }
+        }
+
+        internal static void ClearOrder()
         {
             return (order != null && !string.IsNullOrEmpty(order.DeliveryPhone) && !string.IsNullOrEmpty(order.DeliveryName));
         }

@@ -293,6 +293,11 @@
           <Property Name="SeoDescription" Type="String" Nullable="true" />
           <Property Name="SeoKeywords" Type="String" Nullable="true" />
           <NavigationProperty Name="Products" Relationship="shop_model.BrandProduct" FromRole="Brand" ToRole="Product" /></EntityType>
+        <Association Name="BrandProduct">
+          <End Type="shop_model.Brand" Role="Brand" Multiplicity="1">
+            <OnDelete Action="Cascade"></OnDelete>
+          </End>
+          <End Type="shop_model.Product" Role="Product" Multiplicity="*" /></Association>
         <Association Name="CategoryProductAttribute">
           <End Type="shop_model.Category" Role="Category" Multiplicity="*" />
           <End Type="shop_model.ProductAttribute" Role="ProductAttribute" Multiplicity="*" />

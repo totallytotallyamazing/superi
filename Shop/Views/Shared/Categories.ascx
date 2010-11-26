@@ -1,5 +1,6 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<IEnumerable<Shop.Models.Category>>" %>
 <%@ Import Namespace="Shop.Models" %>
+<%@ Import Namespace="Lady.Models" %>
     <ul>
     <% foreach (var item in Model){ %>
         <li>

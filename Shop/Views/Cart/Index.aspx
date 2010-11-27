@@ -7,18 +7,16 @@
 
 <asp:Content ID="Content4" ContentPlaceHolderID="includes" runat="server">
     <%= Ajax.DynamicCssInclude("/Content/Cart.css") %>
-    <%= Ajax.ScriptInclude("/Scripts/start.js") %>
-    <%= Ajax.ScriptInclude("/Scripts/extended/ExtendedControls.js")%>
 
     <script type="text/javascript">
-        Sys.require(Sys.components.maskedEdit, function() {
-            $("#cartContents td input[type='text']").maskedEdit({
-                Mask: "9",
-                AcceptNegative: 0,
-                MaskType: Sys.Extended.UI.MaskedEditType.Number,
-                PromptChararacter: ""
-            });
-        });
+//        Sys.require(Sys.components.maskedEdit, function() {
+//            $("#cartContents td input[type='text']").maskedEdit({
+//                Mask: "9",
+//                AcceptNegative: 0,
+//                MaskType: Sys.Extended.UI.MaskedEditType.Number,
+//                PromptChararacter: ""
+//            });
+//        });
 
         function bindEvents() {
             $("td input[type='text']").keyup(function(ev) {

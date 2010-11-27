@@ -1,8 +1,9 @@
 ﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
-
+<%@ Import Namespace="Dev.Mvc.Ajax" %>
 <% 
-    if (Request.Cookies["baby"] == null)
+    if (Request.Cookies["lady"] == null)
         Response.Redirect("~/index.html");%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
 <head>
@@ -14,17 +15,21 @@
     <% if(Roles.IsUserInRole("Administrators")){ %>
         <link href="/Content/AdminStyles/Admin.css" rel="stylesheet" type="text/css" />    
     <%} %>
+    
     <script type="text/javascript" src="/Scripts/jquery.js"></script>
+    <script type="text/javascript" src="/Scripts/PageScripts.js"></script>
+    <%= Ajax.ScriptInclude("/Scripts/jquery.watermark.js") %>
+    <script type="text/javascript">
+        BasePageExtender.initialize();
+    </script>
     <asp:ContentPlaceHolder runat="server" ID="includes"></asp:ContentPlaceHolder>
 </head>
 <body>
     <%if (Roles.IsUserInRole("Administrators")) Html.RenderPartial("AdminPanel");  %>
     <div id="header">
-        <div id="logoBox">
-            <% Html.RenderAction("News", "Widgets", new { area = "" }); %>
-            <a href="#">
-                <img src="/Content/img/logo.jpg" alt="babyHealth" />
-            </a>
+        <div id="headerLinks">
+            <h2>УГОЛОК ПОКУПАТЕЛЯ</h2>
+            <% Html.RenderPartial("MainMenu"); %>
         </div>
         <div id="headerContacts">
             <h3>(097) 400-19-77</h3>
@@ -41,24 +46,24 @@
         <div>
             <% Html.RenderPartial("LogOnUserControl"); %>
             <% Html.RenderPartial("FeedbackLink"); %>
-            <% Html.RenderPartial("MainMenu"); %>
         </div>
     </div>
     <% Html.RenderPartial("Search"); %>    
-    <div id="preFooter">
-        <% Html.RenderAction("Myths", "Widgets", new { area = "" }); %>
-        <div id="notes">
-            <div id="tapki">
-                <p>
-                    <a href="#">Тапочки</a></p>
+    <div id="contentBox">
+        <div id="string">
+            <% Html.RenderPartial("CurrencyConverter"); %>
+            <div id="blueText">
+                <p><asp:ContentPlaceHolder runat="server" ID="ContentTitle"></asp:ContentPlaceHolder></p>
             </div>
-            <div id="pizhama">
+            <div id="basket">
                 <p>
-                    <a href="#">Пижамки</a></p>
+                    В <a href="#">корзинке</a> 3 товара на 2,300 грн.
+                </p>
             </div>
-            <div id="kurtka">
-                <p>
-                    <a href="#">Курточки</a></p>
+        </div>
+        <div id="leftSide">
+            <div id="leftSideLiBox">
+                <% Html.RenderAction("Categories", "Home", new { area = "" }); %>
             </div>
             <% Html.RenderAction("News", "Widgets", new { area = "" }); %>
         </div>
@@ -70,39 +75,15 @@
             <div id="girl">
                 <img src="/Content/img/girl1.png" alt="jeans">
             </div>
-            <div id="kor">
+            <div id="footerCopy">
                 <p>
-                    <a href="#">Коротыши</a></p>
+                    © 2010 Студия стиля Людмилы Захаренко «Модная Леди»</p>
             </div>
-            <div id="shapki">
+            <div id="footerRightBox">
                 <p>
-                    <a href="#">Шапочки</a></p>
-            </div>
-            <div id="pugovka">
-                <p>
-                    <a href="#">Пуговички</a></p>
-            </div>
-            <div id="chep">
-                <p>
-                    <a href="#">Чепчики</a></p>
-            </div>
-            <div id="vorot">
-                <p>
-                    <a href="#">Воротнички</a></p>
+                    Дизвйн сайта - <span class="colortext">Евгений Миллер</span></p>
             </div>
         </div>
-    </div>
-    <div id="footer">
-        <div id="book">
-        </div>
-        <div id="ramka">
-        </div>
-        <div id="copy">
-            <p>
-                © 2010 Магазин родительского опыта <span id="babyCopy">“Baby Health”</span></p>
-            <h5>
-                Дизайн сайта — <a href="#">Евгений Миллер</a></h5>
-        </div>
-    </div>
+
 </body>
 </html>

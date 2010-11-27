@@ -2,9 +2,6 @@
 <%@ Import Namespace="Shop.Helpers" %>
 <%@ Import Namespace="Dev.Mvc.Helpers" %>
 <%@ Import Namespace="Dev.Helpers" %>
-<% 
-    string productClickLink = Html.ActionLink("[IMAGE]", "Show", new { id=Model.Id }).ToString();
-%>
 <%@ Import Namespace="Dev.Mvc.Helpers" %>
 
 <% 

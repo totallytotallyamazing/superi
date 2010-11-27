@@ -56,9 +56,9 @@ namespace Dev.Mvc.Ajax
 
         public static string DynamicCssInclude(this AjaxHelper helper, string url)
         {
-            var tracker = new ResourceTracker(helper.ViewContext.HttpContext);
-            if (tracker.Contains(url))
-                return String.Empty;
+            //var tracker = new ResourceTracker(helper.ViewContext.HttpContext);
+            //if (tracker.Contains(url))
+            //    return String.Empty;
 
             var sb = new StringBuilder();
             sb.AppendLine("<script type='text/javascript'>");

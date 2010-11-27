@@ -37,13 +37,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MySql.Data, Version=6.2.3.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+    <Reference Include="MySql.Data, Version=6.3.4.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <Private>True</Private>
     </Reference>
-    <Reference Include="MySql.Data.Entity, Version=6.2.3.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+    <Reference Include="MySql.Data.Entity, Version=6.3.4.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <Private>True</Private>
     </Reference>
-    <Reference Include="MySql.Web, Version=6.2.3.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+    <Reference Include="MySql.Web, Version=6.3.4.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -160,9 +163,11 @@
     <Content Include="Scripts\jquery.FCKEditor.js" />
     <Content Include="Scripts\jquery.js" />
     <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.watermark.js" />
     <Content Include="Scripts\MicrosoftAjax.js" />
     <Content Include="Scripts\MicrosoftMvcAjax.js" />
     <Content Include="Scripts\MicrosoftMvcValidation.js" />
+    <Content Include="Scripts\PageScripts.js" />
     <Content Include="Web.config" />
     <Content Include="Views\Account\ChangePassword.aspx" />
     <Content Include="Views\Account\ChangePasswordSuccess.aspx" />
@@ -263,28 +268,7 @@
     <Content Include="Content\img\stub.jpg" />
     <Content Include="Content\style.css" />
     <Content Include="index.html" />
-    <Content Include="Scripts\Date.HijriCalendar.js" />
-    <Content Include="Scripts\Date.UmAlQuraCalendar.js" />
-    <Content Include="Scripts\extended\Common\Common.js" />
-    <Content Include="Scripts\extended\Common\DateTime.js" />
-    <Content Include="Scripts\extended\Common\Threading.js" />
-    <Content Include="Scripts\extended\ExtenderBase\BaseScripts.js" />
-    <Content Include="Scripts\extended\TextboxWatermark\TextboxWatermark.js" />
     <Content Include="Scripts\jquery.mask.js" />
-    <Content Include="Scripts\MicrosoftAjaxAdoNet.js" />
-    <Content Include="Scripts\MicrosoftAjaxApplicationServices.js" />
-    <Content Include="Scripts\MicrosoftAjaxComponentModel.js" />
-    <Content Include="Scripts\MicrosoftAjaxCore.js" />
-    <Content Include="Scripts\MicrosoftAjaxDataContext.js" />
-    <Content Include="Scripts\MicrosoftAjaxGlobalization.js" />
-    <Content Include="Scripts\MicrosoftAjaxHistory.js" />
-    <Content Include="Scripts\MicrosoftAjaxNetwork.js" />
-    <Content Include="Scripts\MicrosoftAjaxSerialization.js" />
-    <Content Include="Scripts\MicrosoftAjaxTemplates.js" />
-    <Content Include="Scripts\MicrosoftAjaxTimer.js" />
-    <Content Include="Scripts\MicrosoftAjaxWebForms.js" />
-    <Content Include="Scripts\MicrosoftAjaxWebServices.js" />
-    <Content Include="Scripts\Start.js" />
     <Content Include="Views\Brands\Index.aspx" />
     <Content Include="Views\Products\CategoriesAdmin.ascx" />
     <Content Include="Views\Products\Index.aspx" />
@@ -374,9 +358,6 @@
     <Content Include="Content\img\proceedBg.jpg" />
     <Content Include="Content\MailTemplates\MailTemplate.htm" />
     <Content Include="Content\UserStatus.css" />
-    <Content Include="Scripts\extended\ExtendedControls.js" />
-    <Content Include="Scripts\extended\MaskedEdit\MaskedEditBehavior.js" />
-    <Content Include="Scripts\extended\MaskedEdit\MaskedEditValidator.js" />
     <Content Include="Scripts\MvcRemoteValidator.js" />
     <Content Include="Views\Cart\Approve.aspx" />
     <Content Include="Views\Cart\Authorize.aspx" />

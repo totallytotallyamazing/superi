@@ -16,9 +16,10 @@ namespace Shop.Controllers
     [HandleError]
     public class HomeController : Controller
     {
+        [Content(ContentName = "home")]
         public ActionResult Index()
         {
-            return View();
+            return View("Content");
         }
 
         [Content]

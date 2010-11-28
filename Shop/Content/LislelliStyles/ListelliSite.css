@@ -633,7 +633,6 @@ html, body
 #searchField
 {
     bottom: 2px;
-    display: block;
     height: 17px;
     width: 120px; /*float: left;*/
     padding: 0px 0px 0px 5px;
@@ -917,4 +916,4 @@ a.dock-item
 }
 
 .watermark{color:Gray; white-space:nowrap;}
-.watermark.small{font-size:12px; margin-top:16px; margin-left:20px;}
+.watermark.small{font-size:12px; margin-left:20px; margin-top:2px}

@@ -51,7 +51,8 @@ namespace Shop.Controllers
                         .Where(p => p.ShowInRoot);
                 }
                 else
-                    products = products.Where(p => (!brandId.HasValue || p.Brand.Id == brandId.Value));
+                    products = products.Where(p => (!brandId.HasValue || p.Brand.Id == brandId.Value))
+                        .Where(p=>p.Categories.Any(c=>c.Id == id));
 
                 orderBy = orderBy ?? string.Empty;
                 products = ApplyOrdering(products, orderBy.ToLowerInvariant());

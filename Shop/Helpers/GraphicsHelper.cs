@@ -18,11 +18,11 @@ namespace Dev.Mvc.Helpers
 
         static GraphicsHelper()
         {
-            maxDimensions.Add("mainView", 400);
+            maxDimensions.Add("mainView", 396);
             fixDimension.Add("mainView", FixedDimension.Width);
             maxDimensions.Add("thumbnail1", 112);
             fixDimension.Add("thumbnail1", FixedDimension.Width);
-            maxDimensions.Add("thumbnail2", 193);
+            maxDimensions.Add("thumbnail2", 152);
             fixDimension.Add("thumbnail2", FixedDimension.Width);
             maxDimensions.Add("thumbnail3", 85);
             fixDimension.Add("thumbnail3", FixedDimension.Width);
@@ -76,6 +76,9 @@ namespace Dev.Mvc.Helpers
             }
             string result = Path.Combine("/ImageCache/" + cacheFolder + "/", fileName);
             string cachePath = HttpContext.Current.Server.MapPath("~/ImageCache/" + cacheFolder);
+            
+            if (!Directory.Exists(cachePath)) Directory.CreateDirectory(cachePath);
+
             string cachedImagePath = Path.Combine(cachePath, fileName);
             if (File.Exists(cachedImagePath))
             {

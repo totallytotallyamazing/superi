@@ -19,7 +19,7 @@
     </div>
 
     <div id="SlotProduct">
-        <% Html.RenderPartial("ProductImage", Model.ProductImages.Where(m => m.Default).DefaultIfEmpty(new Shop.Models.ProductImage { Product  = Model })); %>
+        <% Html.RenderPartial("ProductImage", Model.ProductImages.Where(m => m.Default).DefaultIfEmpty(new Shop.Models.ProductImage { Product = new Shop.Models.Product { Name = Model.Name } }).First()); %>
         <div id="SlotProductText">
             <p>
                 <%= Model.Description %>

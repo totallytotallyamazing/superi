@@ -50,8 +50,10 @@ ProductClientExtensions = {
     updateMainImage: function (src) {
         var href = "/Content/ProductImages/" + src;
         $.get("/Graphics/ShowMain/" + src + "?alt=" + this.alt, function (data) {
-            $(".productModal #imgProduct a.mi").html(data);
+            $("#SlotProductFoto a#mi").html(data);
         });
+
+        $("#SlotProductFoto a#mi").attr("href", href);
     },
 
     bindFancy: function () {
@@ -114,7 +116,6 @@ ImagePreviews = {
             ProductClientExtensions.updateMainImage(src);
             $(".fadeImage").fadeOut(0);
             $(this).next("div").css("display", "block").fadeTo(0, 0.5);
-
         });
 
         window.setTimeout(ImagePreviews._calculateDimensions, 500);
@@ -126,9 +127,9 @@ ImagePreviews = {
             var height = $(this).prev("img").height() + 5;
             this.style.width = width + "px";
             this.style.height = height + "px";
-            this.style.position = "relative";
+            this.style.position = "absolute";
             this.style.left = 0 + "px";
-            this.style.top = -height + "px";
+            this.style.top = 0 + "px";
             $(this).fadeTo(0.3);
             this.style.background = "White";
             this.style.display = "none";

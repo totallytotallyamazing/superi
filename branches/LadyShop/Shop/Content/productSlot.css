@@ -15,10 +15,9 @@ img{display:block}
 	text-align:center; 
 	padding-top:10px; 
 	clear:both;
-	height:155px;
 } 
 #imagePreviews img{border:1px solid #0099cc;}
-#imagePreviews div.imageItem{float:left; margin-right:10px;}
+#imagePreviews div.imageItem{float:left; margin-right:10px; position:relative;}
 
 .orderButton{left:400px;margin-top:-22px; position:relative;}
 .orderButton input{background:transparent url(img/addToBasket.jpg); color:White;  border:0; text-align:center; width:196px; height:22px; text-decoration:underline;  }

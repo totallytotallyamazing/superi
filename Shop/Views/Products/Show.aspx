@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<Shop.Models.Product>" %>
-
+<%@ Import Namespace="Dev.Mvc.Ajax" %>
 <%@ Import Namespace="Dev.Helpers" %>
 <%@ Import Namespace="Shop.Helpers" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
@@ -41,4 +41,12 @@
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="includes" runat="server">
     <link rel="Stylesheet" href="/Content/productSlot.css" />
+    <%= Ajax.ScriptInclude("/Scripts.jquery.fancybox.js") %>
+    <%= Ajax.DynamicCssInclude("/Content/fancybox/jquery.fancybox.css")%>
+    <script type="text/javascript">
+        $(function () {
+            ProductClientExtensions.bindFancy();
+        });
+    </script>
+
 </asp:Content>

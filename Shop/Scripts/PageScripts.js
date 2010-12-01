@@ -18,35 +18,6 @@ var BasePageExtender = {
 
 
 ProductClientExtensions = {
-    validateQuestion: function () {
-        var url = "/Captcha/ValidateCaptcha";
-        var result = true;
-
-        var captchaGuid = document.getElementById("captcha_guid").value;
-        var body = null;
-        eval('body = {' + encodeURIComponent("value") + ' : "' + encodeURIComponent($("#Captcha").val()) + '", "captcha-guid": "' + captchaGuid + '"}');
-
-
-        var completedCallback = function (data) {
-            var responseData = data;
-            if (responseData != 'true') {
-                result = false;
-            }
-        };
-
-        $.ajax({ type: "POST", url: url, success: completedCallback, async: false, data: body });
-        if (!result) {
-            alert("Неправильно введены символы!");
-            OnCaptchaValidationError();
-        }
-        return result;
-    },
-
-    questionSend: function () {
-        $("#quickQuestion form").replaceWith('<div class="questionSend">Запрос отправлен</div>');
-        $.fancybox.resize();
-    },
-
     updateMainImage: function (src) {
         var href = "/Content/ProductImages/" + src;
         $.get("/Graphics/ShowMain/" + src + "?alt=" + this.alt, function (data) {
@@ -57,20 +28,9 @@ ProductClientExtensions = {
     },
 
     bindFancy: function () {
-        $(".productFancy").fancybox({
-            titlePosition: "over",
+        $("a#mi").fancybox({
             hideOnOverlayClick: false,
-            autoScale: false,
-            onComplete: function () {
-                window.setTimeout($.fancybox.resize, 200);
-                //$(window).load
-                ProductClientExtensions.bindFancy();
-                ImagePreviews.Initialize();
-            }
-        });
-        $("#quickQuestionLink").click(function () {
-            $("#quickQuestion").css("display", "block");
-            $.fancybox.resize();
+            autoScale: false
         });
     },
 

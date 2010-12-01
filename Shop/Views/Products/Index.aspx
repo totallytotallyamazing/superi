@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Products/Products.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<Shop.Models.Product>>" %>
-
+<%@ Import Namespace="Dev.Mvc.Ajax" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	<%= ViewData["title"] %>
 </asp:Content>

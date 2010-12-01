@@ -3,6 +3,7 @@
 <% 
     var pav = Model
         .Where(m => m.ProductAttribute.ShowInCommonView)
+        .OrderBy(m => m.SortOrder)
         .GroupBy(m => m.ProductAttribute, m => m.Value);
 
     foreach (var item in pav)

@@ -63,7 +63,7 @@ namespace Shop.Controllers
                         Image = (image != null) ? image.ImageSource : null,
                         Description = product.Description
                     };
-                    if (product.ProductAttributeValues.Count > 0)
+                    if (attributeValues.Count > 0)
                     {
                         JavaScriptSerializer serializer = new JavaScriptSerializer();
                         string serializedAttributeValues = serializer.Serialize(

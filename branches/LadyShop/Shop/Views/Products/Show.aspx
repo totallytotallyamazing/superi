@@ -17,7 +17,7 @@
     <div id="SlotH">
         <h1><%= Model.Name %></h1>
     </div>
-
+    <% using(Html.BeginForm(new {controller="Cart", action="Add", id=Model.Id})){ %>
     <div id="SlotProduct">
         <% Html.RenderPartial("ProductImage", Model.ProductImages.Where(m => m.Default).DefaultIfEmpty(new Shop.Models.ProductImage { Product = new Shop.Models.Product { Name = Model.Name } }).First()); %>
         <div id="SlotProductText">
@@ -34,7 +34,7 @@
         </div>
     </div>
     <% Html.RenderPartial("ImagePreviews", Model.ProductImages.OrderByDescending(m => m.Default)); %>
-    
+    <%} %>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentTitle" runat="server">
     <%= Model.Name %>

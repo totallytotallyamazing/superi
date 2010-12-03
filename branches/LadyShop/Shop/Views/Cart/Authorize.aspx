@@ -5,6 +5,9 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+    <% Html.RenderPartial("CartBreadCrumbs", 1); %>
+
+
     <div id="userInfoWrapper">
         <h2 class="cartPageTitle">Ваши контактные данные</h2>
         <% Html.EnableClientValidation(); %>
@@ -80,5 +83,4 @@
 </asp:Content>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentTitle" runat="server">
-    <% Html.RenderPartial("CartBreadCrumbs", 1); %>
 </asp:Content>

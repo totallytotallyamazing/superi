@@ -6,6 +6,9 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+    <% Html.RenderPartial("CartBreadCrumbs", 3); %>
+
+
     <div class="section">
         <div class="approveTitle">
             Ваш заказ:
@@ -37,7 +40,6 @@
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentTitle" runat="server">
-    <% Html.RenderPartial("CartBreadCrumbs", 3); %>
 </asp:Content>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="includes" runat="server">

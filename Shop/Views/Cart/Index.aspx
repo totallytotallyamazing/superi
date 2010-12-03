@@ -47,6 +47,9 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+
+    <% Html.RenderPartial("CartBreadCrumbs", 0); %>
+
     <div id="cartContainer">
         <% Html.RenderPartial("CartContent", Model); %>
     </div>
@@ -56,7 +59,6 @@
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentTitle" runat="server">
-    <% Html.RenderPartial("CartBreadCrumbs", 0); %>
 </asp:Content>
 
 

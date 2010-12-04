@@ -7,6 +7,7 @@
 <asp:Content ID="loginContent" ContentPlaceHolderID="MainContent" runat="server">
     <% using (Html.BeginForm()) { %>
         <%= Html.ValidationSummary(true, "Вы стратили.")%>
+        <%= Html.Hidden("returnUrl")%>
         <div id="login">
             <p>
                 <%= Html.TextBoxFor(m => m.UserName) %>

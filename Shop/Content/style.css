@@ -1,5 +1,6 @@
 *{margin:0; padding:0; font-family:Verdana;}
 body{background:url(img/bg.jpg);}
+#header, #underHeader, #searchText, #search, #contentBox, #footer{min-width:1190px;}
 #header{height:92px; width:auto;background:#75ae39;}
 #headerLinks{height:92px;width:345px;float:left;}
 #headerLinks a{color:#cccccc;}
@@ -9,7 +10,7 @@ body{background:url(img/bg.jpg);}
 #headerLogo{width:304px;color:#ffffff;margin:0 auto; padding-top:30px;}
 #headerContacts{height:52px;width:250px;float:right;margin: 10px 0 0 0px;}
 #headerContacts h3{font-family:Verdana, Arial, Helvetica, sans-serif;font-size:25px; color:#ffffff; margin: 7px 0 0 0px;}
-#underHeader{height:30px; width:auto; background:white;}
+#underHeader{height:35px; width:auto; background:white;}
 #wellcome{height:30px; width:410px;float:left;}
 #wellcome p{font:Verdana, sans-serif; font-size:10px; font-weight:bold; color:#669933;margin:10px 0px 0px 21px;}
 #wellcome a, #wellcome span{color:#0099cc;}

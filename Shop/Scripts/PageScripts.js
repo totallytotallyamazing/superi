@@ -98,15 +98,6 @@ ProductClientExtensions = {
         $(".productItem .text").height(maxTextHeight);
     },
 
-    //    _adjustProductContainerWidth: function () {
-    //        $(".productItem").each(function () {
-    //            var width = $(this).find("img").width();
-    //            if (width) {
-    //                $(this).width(width);
-    //            }
-    //        })
-    //    },
-
     initialize: function () {
         $(function () {
             $(window).load(ProductClientExtensions._adjustDimensions);

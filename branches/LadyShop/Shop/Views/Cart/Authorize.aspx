@@ -6,15 +6,12 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <% Html.RenderPartial("CartBreadCrumbs", 1); %>
-
+    <div id="basketH"><h1>Ваши контактные данные:</h1></div>
 
     <div id="userInfoWrapper">
         <h2 class="cartPageTitle">Ваши контактные данные</h2>
         <% Html.EnableClientValidation(); %>
         <% using(Html.BeginForm("Authorize", "Cart", FormMethod.Post, new{id="authorizeForm"})){ %>
-        <div style="display:none">
-            <%= Html.CheckBox("back", false) %>
-        </div>
         <table class="userInfo">
             <tr>
                 <td class="labelCell">
@@ -52,7 +49,7 @@
                     <%= Html.ValidationMessageFor(model => model.Phone)%>
                 </td>
             </tr>
-            <% if(Request.IsAuthenticated){ %>
+            <% if(!Request.IsAuthenticated){ %>
             <tr>
                 <td class="registerMePlease" colspan="3">
                     <%= Html.ActionLink("Зарегистрируйте меня как пользователя,", "Register", new {controller="Account", area="", redirectTo = "~/Cart/DeliveryAndPayment"}, new {@class="pleaseRegister"})%> пожалуйста

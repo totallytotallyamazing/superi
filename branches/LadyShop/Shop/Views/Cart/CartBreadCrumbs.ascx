@@ -2,7 +2,7 @@
 
 <div id="menu"> 
     <div class="menuBox">
-        <% Html.RenderPartial("CartBreadCrumb", new KeyValuePair<string, bool>("Корзина", Model == 0)); %> 
+        <% Html.RenderPartial("CartBreadCrumb", new KeyValuePair<string, bool>("О покупках", Model == 0)); %> 
     </div>
     <div class="menuBox">
         <% Html.RenderPartial("CartBreadCrumb", new KeyValuePair<string, bool>(@"» Авторизация", Model == 1)); %> 

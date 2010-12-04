@@ -1,10 +1,9 @@
 ﻿#menu{height:40px; margin:50px; text-align:center;}
-.menuBox{height:35px; border:0px solid green; padding-left:50px; display:inline;}
+.menuBox{height:35px; border:0px solid green; padding-left:20px; display:inline;}
 .menuBox span{text-decoration:none;color:#000000;font:Verdana, sans-serif;font-size:12px; font-weight:normal;}
 .menuBox span.current{font:Verdana, sans-serif; font-size:18px; font-weight:normal;padding:5px 0px 10px 0px;}
-#basketH{height:25px; width:711px;float:left;margin:10px 0px 0px 75px;}
 #basketH h1{font:Verdana, sans-serif; font-size:18px; font-weight:normal; color:#0099ff;padding:0px 0px 0px 47px;}
-#basketBox{height:224px;width:565px;float:left;margin:10px 0px 0px 150px; padding:20px 0px 0px 0px;border-top: 3px solid #0099ff;border-left: 3px solid #0099ff;border-right: 3px solid #0099ff; background:#f2f2f2;}
+#basketBox{width:565px;position:relative; margin:0 auto; margin-top:10px; padding:20px 0px 30px 0px;border-top: 3px solid #0099ff;border-left: 3px solid #0099ff;border-right: 3px solid #0099ff; background:#f2f2f2;}
 .basketItem{min-height:20px;height:auto;width:565px;float:left;margin:20px 0px 0px 0px;}
 .basketItemText{min-height:20px;height:auto;width:180px;float:left;padding:0px 40px 0px 45px;}
 .basketItemText a{font:Verdana, sans-serif; font-size:12px; font-weight:bold; color:#000000;}
@@ -16,15 +15,15 @@
 .price p{font:Verdana, sans-serif; font-size:12px; font-weight:bold; color:#000000;}
 .deleteItem{min-height:20px;height:auto;width:70px;float:left;padding:0px 0px 0px 10px;}
 .deleteItem a{font:Verdana, sans-serif; font-size:11px; font-weight:bold; color:#ff0000;}
-#itogiBox{height:47px;width:565px;float:left;margin:0px 0px 0px 150px;border-bottom:3px solid #0099ff;border-left:3px solid #0099ff;border-right:3px solid #0099ff;background-color:#f2f2f2;}
+#itogiBox{height:47px;width:565px;position:relative; margin:0 auto;border-bottom:3px solid #0099ff;border-left:3px solid #0099ff;border-right:3px solid #0099ff;background-color:#f2f2f2;}
 #itogi{height:20px;width:565px;float:left;margin:0px 0px 0px 0px;}
 #itogi p{font:Verdana, sans-serif; font-size:15px; font-weight:bold; color:#669933; text-align:center;}
 #itogiSummBox{height:27px;width:565px;float:left;margin:0px 0px 0px 0px;}
 #itogiSumm{height:27px;width:170px;float:left;margin:0px 0px 0px 195px;background-color:#669933;}
 #itogiSumm p{font:Verdana, sans-serif; font-size:17px; font-weight:normal; color:#ffffff; text-align:center;padding:3px 0px 0px 0px;}
-#allrightBox{height:140px;width:240px;float:left;margin:0px 0px 0px 335px;}
-#allright{height:24px;width:196px;float:left;margin:43px 0px 0px 0px;}
-#heartBasket{height:150px; width:250px;float:left;margin:0px 0px 0px 0px;}
+#allrightBox{height:140px;width:240px;position:relative; margin:0 auto; padding-left:40px;}
+#allright{height:24px;width:196px;margin:43px 0px 0px 0px;}
+#heartBasket{height:150px; width:250px;margin:0px 0px 0px 0px;}
 #heartBasket p{margin:0px 0px 0px 160px;}
 
 /*.cartBreadCrumb{color:#ccc; font-weight:normal;}

@@ -31,8 +31,9 @@ namespace Shop.Controllers
         // URL: /Account/LogOn
         // **************************************
 
-        public ActionResult LogOn()
+        public ActionResult LogOn(string id)
         {
+            ViewData["returnUrl"] = id;
             return View();
         }
 
@@ -45,13 +46,9 @@ namespace Shop.Controllers
                 {
                     FormsService.SignIn(model.UserName, model.RememberMe);
                     if (!String.IsNullOrEmpty(returnUrl))
-                    {
                         return Redirect(returnUrl);
-                    }
                     else
-                    {
                         return RedirectToAction("Index", "Home");
-                    }
                 }
                 else
                 {

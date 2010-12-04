@@ -26,7 +26,31 @@
 #heartBasket{height:150px; width:250px;margin:0px 0px 0px 0px;}
 #heartBasket p{margin:0px 0px 0px 160px;}
 
-/*.cartBreadCrumb{color:#ccc; font-weight:normal;}
+#basketBox2{min-height:430px;height:auto;width:565px;float:left;margin:10px 0px 0px 150px; padding:20px 0px 0px 0px;border:3px solid #0099ff;background:#f2f2f2;}
+#basketBox2 p{font:Verdana, sans-serif; font-size:13px; font-weight:normal; color:#000000;padding:0px 0px 0px 40px;}
+#basketBox2 a{font:Verdana, sans-serif; font-size:12px; font-weight:bold; color:#006699;}
+.formTextBox2{min-height:20px;height:auto;width:565px;float:left;margin:20px 0px 0px 0px;}
+.formTextBox2 p{font:Verdana, sans-serif; font-size:13px; font-weight:normal; color:#000000;padding:0px 0px 0px 40px;}
+.formText{min-height:20px;height:auto;width:160px;float:left;margin:0px 0px 0px 0px;}
+.formItem{width:200px;float:left;margin:0px 0px 0px 0px;}
+.bigFieldBox{height:85px;width:400px;float:left;margin:0px 0px 0px 0px;}
+.bigFieldBox p{font:Verdana, sans-serif; font-size:13px; font-weight:normal; color:#000000;padding:0px 0px 0px 0px;}
+.bigFieldBox h6{font:Verdana, sans-serif; font-size:11px; font-weight:normal; color:#000000;padding:0px 0px 0px 40px;}
+.bigField{height:50px;width:320px;float:left;margin:0px 0px 0px 40px;}
+#registerBox{height:30px; width:500px;float:left;margin:40px 0px 0px 0px;}
+#registerFoto{height:20px; width:25px;float:left;margin:3px 0px 0px 40px;}
+#registerBox p{font:Verdana, sans-serif; font-size:13px; font-weight:normal; color:#666666;padding:0px 0px 0px 0px;}
+#nextPreviews{min-height:90px; height:auto;width:620px;float:left;margin:40px 0px 0px 140px;}
+#backBox{height:40px;width:240px;float:left;margin:0px 0px 0px 0px;}
+#back{height:24px;width:196px;float:left;margin:0px 0px 0px 0px;}
+#allrightBox2{height:90px;width:230px;float:right;margin:0px 0px 0px 0px;}
+#allright2{height:24px;width:196px;float:left;margin:0px 0px 0px 0px;}
+#heartBasket2{height:60px; width:230px;float:left;margin:0px 0px 0px 0px;}
+#heartBasket2 p{margin:0px 0px 0px 160px;}
+
+
+
+.cartBreadCrumb{color:#ccc; font-weight:normal;}
 .cartBreadCrumb.current{color:#FF6600; font-weight:bold;}
 #cartContainer{width:auto; margin:0 12px;}
 #cartContents td.productImage img{border:1px solid #999;}
@@ -76,4 +100,4 @@ div.backAndForward{background: transparent url(img/proceedBg.jpg) no-repeat righ
 div.backAndForward{color:#ff6600; font-weight:bold;}
 div.backAndForward div{float:left; background: transparent url(img/backArrow.jpg) no-repeat left; height:24px; width:92px; text-align:left; padding-left:10px; padding-top:2px; }
 div.backAndForward input{border:0; background:transparent; text-decoration:underline; color:White;  width:110px; font-size:14px;}
-div.backAndForward a{color:White; font-size:14px; font-weight:normal;}*/
+div.backAndForward a{color:White; font-size:14px; font-weight:normal;}

@@ -8,11 +8,15 @@
     <% Html.RenderPartial("CartBreadCrumbs", 1); %>
     <div id="basketH"><h1>Ваши контактные данные:</h1></div>
 
-    <div id="userInfoWrapper">
-        <h2 class="cartPageTitle">Ваши контактные данные</h2>
-        <% Html.EnableClientValidation(); %>
-        <% using(Html.BeginForm("Authorize", "Cart", FormMethod.Post, new{id="authorizeForm"})){ %>
-        <table class="userInfo">
+    <% Html.EnableClientValidation(); %>
+    <% using(Html.BeginForm("Authorize", "Cart", FormMethod.Post, new{id="authorizeForm"})){ %>
+    <div id="basketBox">
+        <% if(!Request.IsAuthenticated){ %>
+            <div class="labelCell" style="padding-left:3px;">
+                Уже регистрировались? <%= Html.ActionLink("Войдите", "LogOn", "Account", new { id="~/Cart/Authorize"})%>
+            </div>
+        <%} %>
+        <table class="userInfo" cellpadding="0" cellspacing="0" border="0">
             <tr>
                 <td class="labelCell">
                     Адрес элентропочты:<br />
@@ -57,14 +61,24 @@
             </tr>
             <%} %>
         </table>
-        <div class="backAndForward">
-            <div class="back">
-                <a href="javascript:goBack();">Вернуться</a>
+    </div>
+
+
+        <div id="nextPreviews">
+            <div id="backBox">
+                <div id="back">
+                    <input alt="Вернуться" src="/Content/img/back.jpg" type="image" onclick="goBack(); return false;" /></div>
             </div>
-            Все верно, <input type="submit" value="продолжаем!" />
+            <div id="allrightBox2">
+                <div id="allright2">
+                    <input alt="Все правильно" src="/Content/img/allright.jpg" type="image" />
+                    <div id="heartBasket2">
+                        <p><img alt="heart" src="/Content/img/heart.jpg" /></p>
+                    </div>
+                </div>
+            </div>
         </div>
         <%} %>
-    </div>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="includes" runat="server">

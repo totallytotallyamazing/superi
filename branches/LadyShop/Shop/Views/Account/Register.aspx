@@ -75,8 +75,6 @@
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentTitle" runat="server">
-    <% Html.RenderPartial("CartBreadCrumbs", 0); %>
-    
 </asp:Content>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="includes" runat="server">

@@ -2,10 +2,12 @@
 .menuBox{height:35px; border:0px solid green; padding-left:20px; display:inline;}
 .menuBox span{text-decoration:none;color:#000000;font:Verdana, sans-serif;font-size:12px; font-weight:normal;}
 .menuBox span.current{font:Verdana, sans-serif; font-size:18px; font-weight:normal;padding:5px 0px 10px 0px;}
-#basketH h1{font:Verdana, sans-serif; font-size:18px; font-weight:normal; color:#0099ff;padding:0px 0px 0px 47px;}
-#basketBox{width:565px;position:relative; margin:0 auto; margin-top:10px; padding:20px 0px 30px 0px;border-top: 3px solid #0099ff;border-left: 3px solid #0099ff;border-right: 3px solid #0099ff; background:#f2f2f2;}
-.basketItem{min-height:20px;height:auto;width:565px;float:left;margin:20px 0px 0px 0px;}
-.basketItemText{min-height:20px;height:auto;width:180px;float:left;padding:0px 40px 0px 45px;}
+#basketH h1{font:Verdana, sans-serif; font-size:18px; font-weight:normal; color:#0099ff;padding:0px 0px 0px 37px;}
+#basketBox{width:565px;position:relative; margin:0 auto; margin-top:25px; padding:45px 0px 45px 40px;border: 3px solid #0099ff; background:#f2f2f2;}
+#basketBox.noMargin{padding-bottom:0;}
+#basketBox a{font-weight:bold; color:#006699}
+.basketItem{min-height:20px;height:auto;width:565px;float:left;margin-bottom:20px;}
+.basketItemText{min-height:20px;height:auto;width:180px;float:left;padding:0px 40px 0px 0px;}
 .basketItemText a{font:Verdana, sans-serif; font-size:12px; font-weight:bold; color:#000000;}
 .basketItemField{height:20px;height:auto;width:27px;float:left;margin:0px 0px 0px 0px;}
 .itemField{width:22px;}
@@ -15,8 +17,8 @@
 .price p{font:Verdana, sans-serif; font-size:12px; font-weight:bold; color:#000000;}
 .deleteItem{min-height:20px;height:auto;width:70px;float:left;padding:0px 0px 0px 10px;}
 .deleteItem a{font:Verdana, sans-serif; font-size:11px; font-weight:bold; color:#ff0000;}
-#itogiBox{height:47px;width:565px;position:relative; margin:0 auto;border-bottom:3px solid #0099ff;border-left:3px solid #0099ff;border-right:3px solid #0099ff;background-color:#f2f2f2;}
-#itogi{height:20px;width:565px;float:left;margin:0px 0px 0px 0px;}
+
+#itogi{height:20px;width:565px;float:left;margin-top:10px;}
 #itogi p{font:Verdana, sans-serif; font-size:15px; font-weight:bold; color:#669933; text-align:center;}
 #itogiSummBox{height:27px;width:565px;float:left;margin:0px 0px 0px 0px;}
 #itogiSumm{height:27px;width:170px;float:left;margin:0px 0px 0px 195px;background-color:#669933;}
@@ -40,7 +42,7 @@
 #registerBox{height:30px; width:500px;float:left;margin:40px 0px 0px 0px;}
 #registerFoto{height:20px; width:25px;float:left;margin:3px 0px 0px 40px;}
 #registerBox p{font:Verdana, sans-serif; font-size:13px; font-weight:normal; color:#666666;padding:0px 0px 0px 0px;}
-#nextPreviews{min-height:90px; height:auto;width:620px;float:left;margin:40px 0px 0px 140px;}
+#nextPreviews{min-height:90px; height:auto;width:657px; position:relative; margin:65px auto 0; padding-left:35px;}
 #backBox{height:40px;width:240px;float:left;margin:0px 0px 0px 0px;}
 #back{height:24px;width:196px;float:left;margin:0px 0px 0px 0px;}
 #allrightBox2{height:90px;width:230px;float:right;margin:0px 0px 0px 0px;}
@@ -89,7 +91,7 @@ table.userInfo td{padding: 2px 3px;}
 h2.cartPageTitle{font-size:12px; font-weight:bold; color:#ff6600;}
 div#userInfoWrapper{width:585px; position:relative; margin:0 auto; padding:25px 0 50px 0;}
 
-.labelCell{ font-size:12px; color:black; }
+.labelCell{ font-size:12px; color:black; height:40px; }
 .labelCell span.comments{color:#999; font-size:9px;}
 .validationError{color:Red; font-size:9px;}
 td.validationError{width:200px;}

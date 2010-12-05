@@ -3,7 +3,7 @@
 <%@ Import Namespace="Shop.Helpers" %>
 <%@ Import Namespace="Dev.Mvc.Helpers" %>
 
-<div id="basketBox">
+<div id="basketBox" class="noMargin">
 <% foreach (var item in Model)
    {%>
 <div class="basketItem">
@@ -24,10 +24,8 @@
     <div class="deleteItem">
         <p><%= Html.ActionLink("удалить :(", "Delete", new { id=item.ProductId })%></p>
     </div>
-</div>
 <%} %>
 </div>
-<div id="itogiBox">
     <div id="itogi">
         <p>МОДНЫЕ ИТОГИ:</p>
     </div>

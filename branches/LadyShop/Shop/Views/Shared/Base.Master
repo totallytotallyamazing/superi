@@ -55,11 +55,7 @@
             <div id="blueText">
                 <p><asp:ContentPlaceHolder runat="server" ID="ContentTitle"></asp:ContentPlaceHolder></p>
             </div>
-            <div id="basket">
-                <p>
-                    В <a href="#">корзинке</a> 3 товара на 2,300 грн.
-                </p>
-            </div>
+            <% Html.RenderPartial("CartContent"); %>
         </div>
         <div id="leftSide">
             <div id="leftSideLiBox">

@@ -12,7 +12,6 @@ namespace Dev.Helpers
     public static class WebSession
     {
         private static SiteSettings settings = null;
-        private static Order order = null;
 
         static HttpSessionState Session
         {
@@ -41,10 +40,9 @@ namespace Dev.Helpers
         {
             get
             {
-                if (order == null)
+                if (Session["order"] == null)
                 {
-                    order = new Order();
-                    Session["order"] = order;
+                    Session["order"] = new Order();
                 }
                 return (Shop.Models.Order)Session["order"];
             }
@@ -85,24 +83,56 @@ namespace Dev.Helpers
             set { Session["CurrentCategory"] = value; }
         }
 
+        public static DeliveryType DeliveryType
+        {
+            get
+            {
+                if (Session["DeliveryType"] != null)
+                    return (DeliveryType)Session["DeliveryType"];
+                return null;
+            }
+            set { Session["DeliveryType"] = value; }
+        }
+
+        public static PaymentType PaymentType
+        {
+            get
+            {
+                if (Session["PaymentType"] != null)
+                    return (PaymentType)Session["PaymentType"];
+                return null;
+            }
+            set { Session["PaymentType"] = value; }
+        }
+
+        public static List<PaymentPropertyValue> PaymentProertyValues
+        {
+            get 
+            {
+                if (Session["PaymentProertyValues"] == null)
+                   Session["PaymentProertyValues"] = new List<PaymentPropertyValue>();
+                return (List<PaymentPropertyValue>)Session["PaymentProertyValues"];
+            }
+        }
+
 
         #region Methods
-        public static bool IsBillingInfoFilled()
-        { 
-            return (order!=null && !string.IsNullOrEmpty(order.BillingPhone) && !string.IsNullOrEmpty(order.BillingName));
-        }
-
-        public static bool IsDeliveryInfoFilled()
-        {
-            return (Order != null && !string.IsNullOrEmpty(Order.DeliveryPhone) && !string.IsNullOrEmpty(Order.DeliveryName));
-        }
-
-        internal static void ClearOrder()
+        public static void ClearOrder()
         {
             Session.Remove("order");
             Session.Remove("orderItems");
             Session["orderItems"] = null;
             Session["order"] = null;
+        }
+
+        public static bool IsBillingInfoFilled()
+        {
+            return (Order != null && !string.IsNullOrEmpty(Order.BillingPhone) && !string.IsNullOrEmpty(Order.BillingName));
+        }
+
+        public static bool IsDeliveryInfoFilled()
+        {
+            return (Order != null && !string.IsNullOrEmpty(Order.DeliveryPhone) && !string.IsNullOrEmpty(Order.DeliveryName));
         }
 
         public static void ClearSettings() { settings = null; }

@@ -15,7 +15,7 @@
             </h4>
         <%} %>
         <br />
-        <h4><a href="#" style="color: #3366ff">Все новости</a></h4>
+        <h4><a href="/Articles" style="color: #3366ff">Все новости</a></h4>
     </div>
     <div id="newsFooter">
     </div>

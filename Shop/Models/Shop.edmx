@@ -151,6 +151,10 @@
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Value" Type="varchar" Nullable="false" MaxLength="500" />
         </EntityType>
+      <Function Name="searchProducts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="gbua_maldy">
+        <Parameter Type="varchar" Name="searchString"></Parameter>
+      </Function>
+
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -472,6 +476,7 @@
               <ScalarProperty Name="Id" ColumnName="Id" /></EndProperty>
             <EndProperty Name="Brand">
               <ScalarProperty Name="Id" ColumnName="BrandId" /></EndProperty></AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="searchProducts" FunctionName="shop_model.Store.searchProducts" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

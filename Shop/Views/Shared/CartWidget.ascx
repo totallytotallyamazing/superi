@@ -13,9 +13,9 @@
     <p>
         В <%= Html.ActionLink("корзинке", "Index", new { controller = "Cart" }) %> 
         <%if(WebSession.OrderItems.Count > 0){ %>
-        WebSession.OrderItems.Count <%= getEnding(WebSession.OrderItems.Count, "товар")%> на <%= Html.RenderPrice(WebSession.TotalAmount, WebSession.Currency, 0, ",") %>
+        <%= WebSession.OrderItems.Count %> <%= getEnding(WebSession.OrderItems.Count(), "товар")%> на <%= Html.RenderPrice(WebSession.TotalAmount, WebSession.Currency, 0, ",") %>
         <%}else{ %>
             пусто
         <%} %>
     </p>
-</div>
+</div>`

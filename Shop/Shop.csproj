@@ -188,7 +188,8 @@
     <Content Include="Scripts\MicrosoftMvcAjax.js" />
     <Content Include="Scripts\MicrosoftMvcValidation.js" />
     <Content Include="Scripts\PageScripts.js" />
-    <Content Include="Views\Shared\CartContent.ascx" />
+    <Content Include="Views\Products\Price.ascx" />
+    <Content Include="Views\Shared\CartWidget.ascx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -368,7 +369,7 @@
     <Content Include="Views\Cart\OrderSent.aspx" />
     <Content Include="Views\Home\FeedbackForm.ascx" />
     <Content Include="Views\Products\DetailViewAttributes.ascx" />
-    <Content Include="Views\Products\DiscountOfTheDay.ascx" />
+    <Content Include="Views\Shared\DiscountOfTheDay.ascx" />
     <Content Include="Views\Products\ImagePreviews.ascx" />
     <Content Include="Views\Products\Show.aspx" />
     <Content Include="Views\Shared\AdminPanel.ascx" />

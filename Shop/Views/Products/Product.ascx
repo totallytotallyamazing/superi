@@ -6,17 +6,19 @@
 
 <% 
     string productClickLink = Html.ActionLink("[IMAGE]", "Show", new { id=Model.Id }).ToString();
+
+    string className = Model.OldPrice.HasValue ? (Model.IsSpecialOffer ? "contentItemBox dayDiscount" : "contentItemBox lowPrice") : "contentItemBox";
     //if (Roles.IsUserInRole("Administrators"))
     //{
     //    productClickLink = Html.ActionLink("[IMAGE]", "AddEdit", "Products", new { area = "Admin", id = Model.Id, cId = ViewData["categoryId"], bId = ViewData["brandId"] }, null).ToString();
     //}
 %>
 
-<div id="contentItemBox">
-    <div id="contentItemBoxHeader">
+<div class="<%= className %>">
+    <div class="contentItemBoxHeader">
         <p><a href="#">&trade; <%= Model.Brand.Name %></a></p>
     </div>
-    <div id="contentItemBoxBg">
+    <div class="contentItemBoxBg">
         <div class="contentItemPhoto">
             <% if (Model.ProductImages.Count > 0)
                { %>
@@ -31,12 +33,14 @@
                 
         </div>
         <div class="contentItemText">
-            <p><%= Model.Name %></p>
-            <h2>Цвет: <strong>Синий</strong></h2>
+            <p><%= productClickLink.Replace("[IMAGE]", Model.Name)%></p>
+            <%if(!string.IsNullOrWhiteSpace(Model.Color)){ %>
+            <div>Цвет: <strong><%= Model.Color %></strong></div>
+            <%} %>
             <% Html.RenderPartial("ProductAttributes", Model.ProductAttributeValues); %>
-            <h3><%= Model.Price.ToString("#.##") %> <%= Dev.Helpers.WebSession.Currency %></h3>
+            <h3><% Html.RenderPartial("Price", Model); %></h3>
         </div>
     </div>
-    <div id="contentItemBoxFooter">
+    <div class="contentItemBoxFooter">
     </div>
 </div>

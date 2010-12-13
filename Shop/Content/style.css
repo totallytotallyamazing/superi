@@ -29,9 +29,9 @@ body{background:url(img/bg.jpg);}
 #skidki p{margin:4px 0px 0px 85px;font:Verdana, sans-serif; font-size:12px;}
 #skidki h4{margin:4px 0px 0px 85px;font:Verdana, sans-serif; font-size:13px; font-weight:bold;color:#c70067}
 #skidki a{color:#000000;font:Verdana, sans-serif; font-size:12px; font-weight:bold;}
-#skidkiBox{height:97px; width:250px;float:left; margin:5px 0px 0px 65px; float:left;}
-#imgBox{height:97px; width:76px;float:left;border: 1px solid #c70067;margin:-5px 0px 0px 0px;}
-#contentBox {min-height:900px; height:auto; width:auto; }
+.skidkiBox{height:97px; width:250px;float:left; margin:5px 0px 0px 65px; float:left;}
+.skidkiBox .imgBox{height:97px; width:76px;float:left;border: 1px solid #c70067;margin:-5px 0px 0px 0px;}
+#contentBox {min-height:1000px; height:auto; width:auto; }
 #string {height:39px; width:auto; border-top:1px solid #000000; border-bottom: 1px solid #000000; margin:25px 57px; background:#FFFFFF;}
 #currency{height:39px; width:240px;float:left;}
 #currency p {font:Verdana, sans-serif; font-size:11px; font-weight:bold; color:#669933;margin:3px 0px 0px 20px;}

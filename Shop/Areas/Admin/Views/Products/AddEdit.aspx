@@ -103,6 +103,14 @@
                 </tr>
                 <tr>
                     <td class="labelCell">
+                        <%= Html.LabelFor(model => model.IsSpecialOffer) %>
+                    </td>
+                    <td>
+                        <%= Html.CheckBoxFor(model => model.IsSpecialOffer) %>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="labelCell">
                         <%= Html.LabelFor(model => model.Color) %>
                     </td>                
                     <td>

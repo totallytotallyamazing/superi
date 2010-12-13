@@ -45,6 +45,9 @@ namespace Shop.Models
         [DisplayName("Цвет")]
         [StringLength(100, ErrorMessage="Максимум 100 символов.")]
         public string Color { get; set; }
+
+        [DisplayName("Скидка дня")]
+        public bool IsSpecialOffer { get; set; }
     }
 
 }

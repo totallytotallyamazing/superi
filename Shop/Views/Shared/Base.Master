@@ -49,13 +49,14 @@
         </div>
     </div>
     <% Html.RenderPartial("Search"); %>    
+    <% Html.RenderPartial("DiscountOfTheDay"); %>    
     <div id="contentBox">
         <div id="string">
             <% Html.RenderPartial("CurrencyConverter"); %>
             <div id="blueText">
                 <p><asp:ContentPlaceHolder runat="server" ID="ContentTitle"></asp:ContentPlaceHolder></p>
             </div>
-            <% Html.RenderPartial("CartContent"); %>
+            <% Html.RenderPartial("CartWidget"); %>
         </div>
         <div id="leftSide">
             <div id="leftSideLiBox">

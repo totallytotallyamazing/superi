@@ -1,17 +1,38 @@
 #girl2{height:350px; width:162px;float:left;margin:350px 0px 8px 35px;}
 #contentContact{min-height:800px; height:auto; width:669px;float:left;margin:27px 0px 0px 20px;}
-#contentItemBox{width:174px;border:0px solid #006699;float:left;margin:38px 35px 0px 10px;}
-#contentItemBoxHeader{height:15px; width:174px;background:url(img/contentItemHeaderBg.jpg) no-repeat;}
-#contentItemBoxHeader p{font:Verdana, sans-serif; font-size:10px; font-weight:bold;margin:2px 0px 0px 14px;}
-#contentItemBoxHeader a{color:#666666;}
-#contentItemBoxBg{width:174px;border:0px solid #006699; background:url(img/contentItemBg.jpg) repeat-y;}
+.contentItemBox{width:174px;border:0px solid #006699;float:left;margin:38px 35px 0px 10px; height:340px;}
+.contentItemBoxHeader{height:15px; width:174px;background:url(img/contentItemHeaderBg.jpg) no-repeat;}
+.contentItemBoxHeader p{font:Verdana, sans-serif; font-size:10px; font-weight:bold;margin:2px 0px 0px 14px;}
+.contentItemBoxHeader a{color:#666666;}
+.contentItemBoxBg{width:174px;border:0px solid #006699; background:url(img/contentItemBg.jpg) repeat-y;}
 .contentItemPhoto{width:152px;border:0px solid #000000;margin:0px 0px 0px 11px;}
 .contentItemPhoto img{border:0;}
 .contentItemText{width:152px;border:0px solid #000000;margin:0px 0px 0px 11px;font-size:12px;}
-.contentItemText p{font:Verdana, sans-serif; font-size:12px; font-weight:bold;margin:2px 0px 0px 0px;text-align:center;}
-.contentItemText h2{font:Verdana, sans-serif; font-size:12px; font-weight:normal;margin:2px 0px 0px 0px; text-align:center;}
-.contentItemText h3{font:Verdana, sans-serif; font-size:13px; font-weight:bold;margin:10px 0px 0px 0px; text-align:center;}
-#contentItemBoxFooter{height:15px; width:174px;border:0px solid #006699;background:url(img/contentItemFooterBg.jpg) no-repeat;}
+.contentItemText p{font:Verdana, sans-serif; font-size:12px; font-weight:bold;padding:2px 0px 10px 0px;text-align:center;}
+.contentItemText p a{color:Black;}
+.contentItemText div{font:Verdana, sans-serif; font-size:11px; font-weight:normal;margin:2px 0px 0px 0px; text-align:center; padding:0 5px;}
+.contentItemText h3 {padding:10px 0px; text-align:center;}
+.contentItemText h3 span{font:Verdana, sans-serif; font-size:13px; font-weight:bold;}
+.contentItemText h3 span.price{display:block;}
+.contentItemText h3 span.oldPrice{text-decoration:line-through;}
+.contentItemText h3 span.price.single{color:Black;}
+.contentItemBoxFooter{height:15px; width:174px;border:0px solid #006699;background:url(img/contentItemFooterBg.jpg) no-repeat;}
+
+.contentItemBox.dayDiscount .contentItemBoxHeader{background:url(img/headerDayDiscount.jpg) no-repeat;}
+.contentItemBox.dayDiscount .contentItemBoxBg{background:url(img/contentItemBgDiscount.jpg) repeat-y;}
+.contentItemBox.dayDiscount .contentItemBoxFooter{background:url(img/contentDiscountFoot.jpg) no-repeat; height:19px;}
+.contentItemBox.dayDiscount .contentItemPhoto{margin-left:6px;}
+.contentItemBox.dayDiscount .contentItemText{margin-left:6px;}
+.contentItemBox.dayDiscount .contentItemText h3 span.price{color:#cc0066;}
+
+.contentItemBox.lowPrice .contentItemBoxHeader{background:url(img/headerLowPrice.jpg) no-repeat;}
+.contentItemBox.lowPrice .contentItemBoxBg{background:url(img/itemLowPriceBg.jpg) repeat-y;}
+.contentItemBox.lowPrice .contentItemBoxFooter{background:url(img/contentLowPriceFoot.jpg) no-repeat; height:19px;}
+.contentItemBox.lowPrice .contentItemPhoto{margin-left:6px;}
+.contentItemBox.lowPrice .contentItemText{margin-left:6px;}
+.contentItemBox.lowPrice .contentItemText h3 span.price{color:#669933;}
+
+
 #contentContactSelectors{height:50px; width:669px;margin:30px 0px 8px 35px;text-align:center;}
 #contentContactSelectors p{font:Verdana, sans-serif; font-size:14px; font-weight:bold; color:#0099ff;}
 #contentContactSelectors a{background:#0099ff;font:Verdana, sans-serif; font-size:14px; font-weight:bold; color:#FFFFFF; padding:2px 5px 2px 5px;}

@@ -69,6 +69,7 @@ namespace Shop.Areas.Admin.Controllers
                     prod.ShortDescription = HttpUtility.HtmlDecode(product.ShortDescription);
                     prod.Description = HttpUtility.HtmlDecode(product.Description);
                     prod.Price = product.Price;
+                    prod.IsSpecialOffer = product.IsSpecialOffer;
 
                     if (prod.Brand.Id != brandId)
                     {
@@ -157,7 +158,8 @@ namespace Shop.Areas.Admin.Controllers
                 Product product = context.Products.Include("ProductImages").Where(p => p.Id == id).First();
                 foreach (var item in product.ProductImages)
                 {
-                    DeleteProductImage(id, item.Id);
+                    if (!string.IsNullOrEmpty(item.ImageSource))
+                        System.IO.File.Delete(Server.MapPath("~/Content/ProductImages/" + item.ImageSource));
                 }
                 context.DeleteObject(product);
                 context.SaveChanges();

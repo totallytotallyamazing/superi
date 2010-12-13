@@ -178,6 +178,11 @@
     <Compile Include="Runtime\Configurator.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\img\contentDiscountFoot.jpg" />
+    <Content Include="Content\img\contentItemBgDiscount.jpg" />
+    <Content Include="Content\img\contentLowPriceFoot.jpg" />
+    <Content Include="Content\img\headerDayDiscount.jpg" />
+    <Content Include="Content\img\headerLowPrice.jpg" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\jquery.fancybox.js" />
     <Content Include="Scripts\jquery.FCKEditor.js" />

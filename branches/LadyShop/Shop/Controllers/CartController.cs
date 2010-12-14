@@ -63,7 +63,7 @@ namespace Shop.Controllers
                         Image = (image != null) ? image.ImageSource : null,
                         Description = product.Description
                     };
-                    if (attributeValues.Count > 0)
+                    if (attributeValues != null && attributeValues.Count > 0)
                     {
                         JavaScriptSerializer serializer = new JavaScriptSerializer();
                         string serializedAttributeValues = serializer.Serialize(
@@ -204,14 +204,15 @@ namespace Shop.Controllers
 
         private void SendOrderMail()
         {
+            string address = WebSession.Order.DeliveryAddress ?? string.Empty;
+            string deliveryInfo = WebSession.Order.AdditionalDeliveryInfo ?? string.Empty;
             List<MailAddress> to = new List<MailAddress>();
             to.Add(new MailAddress(Configurator.GetSetting("ReceiverMail")));
             MailHelper.SendTemplate(to, "Заказ на сайте baby-health.org.ua",
                 "MailTemplate.htm", null, true, WebSession.Order.BillingEmail, 
                 WebSession.Order.BillingName, WebSession.Order.BillingPhone,
-                WebSession.Order.DeliveryName, WebSession.Order.DeliveryPhone, 
-                WebSession.Order.DeliveryAddress.Replace("\r", "<br />"),
-                WebSession.Order.AdditionalDeliveryInfo.Replace("\r", "<br />"),
+                WebSession.Order.DeliveryName, WebSession.Order.DeliveryPhone,
+                address.Replace("\r", "<br />"), deliveryInfo.Replace("\r", "<br />"),
                 CreateOrderPresentation());
 
         }

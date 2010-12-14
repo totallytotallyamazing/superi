@@ -6,7 +6,7 @@
 #basketBox{width:565px;position:relative; margin:0 auto; margin-top:25px; padding:45px 0px 45px 40px;border: 3px solid #0099ff; background:#f2f2f2;}
 #basketBox.noMargin{padding-bottom:0;}
 #basketBox a{font-weight:bold; color:#006699}
-.basketItem{min-height:20px;height:auto;width:565px;float:left;margin-bottom:20px;}
+.basketItem{min-height:20px;height:auto;width:565px;margin-bottom:20px;}
 .basketItemText{min-height:20px;height:auto;width:180px;float:left;padding:0px 40px 0px 0px;}
 .basketItemText a{font:Verdana, sans-serif; font-size:12px; font-weight:bold; color:#000000;}
 .basketItemField{height:20px;height:auto;width:27px;float:left;margin:0px 0px 0px 0px;}
@@ -18,15 +18,16 @@
 .deleteItem{min-height:20px;height:auto;width:70px;float:left;padding:0px 0px 0px 10px;}
 .deleteItem a{font:Verdana, sans-serif; font-size:11px; font-weight:bold; color:#ff0000;}
 
-#itogi{height:20px;width:565px;float:left;margin-top:10px;}
+#itogi{height:20px;width:565px;margin-top:10px;}
 #itogi p{font:Verdana, sans-serif; font-size:15px; font-weight:bold; color:#669933; text-align:center;}
-#itogiSummBox{height:27px;width:565px;float:left;margin:0px 0px 0px 0px;}
-#itogiSumm{height:27px;width:170px;float:left;margin:0px 0px 0px 195px;background-color:#669933;}
+#itogiSummBox{height:27px;width:565px;margin:0px 0px 0px 0px;}
+#itogiSumm{height:27px;width:170px;margin:0px 0px 0px 195px;background-color:#669933;}
 #itogiSumm p{font:Verdana, sans-serif; font-size:17px; font-weight:normal; color:#ffffff; text-align:center;padding:3px 0px 0px 0px;}
 #allrightBox{height:140px;width:240px;position:relative; margin:0 auto; padding-left:40px;}
 #allright{height:24px;width:196px;margin:43px 0px 0px 0px;}
 #heartBasket{height:150px; width:250px;margin:0px 0px 0px 0px;}
 #heartBasket p{margin:0px 0px 0px 160px;}
+
 
 #basketBox2{min-height:430px;height:auto;width:565px;float:left;margin:10px 0px 0px 150px; padding:20px 0px 0px 0px;border:3px solid #0099ff;background:#f2f2f2;}
 #basketBox2 p{font:Verdana, sans-serif; font-size:13px; font-weight:normal; color:#000000;padding:0px 0px 0px 40px;}
@@ -51,6 +52,21 @@
 #heartBasket2 p{margin:0px 0px 0px 160px;}
 
 
+
+.finishItem{min-height:20px;height:auto;width:565px;margin:15px 0px 0px 0px;}
+.finishItemText{min-height:20px;height:auto;width:190px;float:left;padding:0px 0px 0px 45px;}
+.finishItemText h2{font:Verdana, sans-serif; font-size:13px; font-weight:bold; color:#000000;}
+.odFinish{min-height:20px;height:auto;width:100px;float:left;margin:0px 0px 0px 40px;}
+.odFinish h3{font:Verdana, sans-serif; font-size:12px; font-weight:normal; color:#000000;}
+.priceFinish{min-height:20px;height:auto;width:100px;float:left;margin:0px 0px 0px 30px;}
+.priceFinish h2{font:Verdana, sans-serif; font-size:13px; font-weight:bold; color:#000000;}
+#summBox{height:30px;width:430px;float:left;margin:20px 0px 40px 30px;}
+#summFinish{height:40px;width:85px;float:right;margin:0px 0px 0px 0px;border-top: 1px solid black;}
+#summFinish h4{font:Verdana, sans-serif; font-size:13px; font-weight:bold; color:#000000;margin:3px 0px 0px 30px;}
+#contactsFinishBox{height:40px;width:500px;float:left;margin:0px 0px 0px 35px;}
+.contactsFinish{height:40px;width:auto;float:left;margin:0px 0px 0px 5px;}
+.contactsFinish h3{font:Verdana, sans-serif; font-size:13px; font-weight:normal; color:#000000;}
+.contactsFinish h4{font:Verdana, sans-serif; font-size:13px; font-weight:bold; color:#000000;margin:0px 0px 0px 0px;}
 
 .cartBreadCrumb{color:#ccc; font-weight:normal;}
 .cartBreadCrumb.current{color:#FF6600; font-weight:bold;}
@@ -91,7 +107,7 @@ table.userInfo td{padding: 2px 3px;}
 h2.cartPageTitle{font-size:12px; font-weight:bold; color:#ff6600;}
 div#userInfoWrapper{width:585px; position:relative; margin:0 auto; padding:25px 0 50px 0;}
 
-.labelCell{ font-size:12px; color:black; height:40px; }
+.labelCell{ font-size:12px; color:black; height:40px;}
 .labelCell span.comments{color:#999; font-size:9px;}
 .validationError{color:Red; font-size:9px;}
 td.validationError{width:200px;}
@@ -103,3 +119,14 @@ div.backAndForward{color:#ff6600; font-weight:bold;}
 div.backAndForward div{float:left; background: transparent url(img/backArrow.jpg) no-repeat left; height:24px; width:92px; text-align:left; padding-left:10px; padding-top:2px; }
 div.backAndForward input{border:0; background:transparent; text-decoration:underline; color:White;  width:110px; font-size:14px;}
 div.backAndForward a{color:White; font-size:14px; font-weight:normal;}
+
+
+.approveTitle{font-weight:bold; color:#0099ff; padding-right:10px;}
+div.section{padding:10px 0; font-size:12px;}
+table.orderItems{font-size:12px; margin:10px 0 10px 0;}
+table.orderItems tr td{padding:5px 50px 5px 0;}
+
+
+.acceptWrapper{width: auto; height: 250px; text-align:center; padding-top:150px;}
+.orderAccepted{ color:#0099ff; font-size:35px; }
+.youWillBeContacted{font-size:12px; padding-top:20px;}

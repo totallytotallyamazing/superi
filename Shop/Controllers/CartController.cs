@@ -208,7 +208,7 @@ namespace Shop.Controllers
             string deliveryInfo = WebSession.Order.AdditionalDeliveryInfo ?? string.Empty;
             List<MailAddress> to = new List<MailAddress>();
             to.Add(new MailAddress(Configurator.GetSetting("ReceiverMail")));
-            MailHelper.SendTemplate(to, "Заказ на сайте baby-health.org.ua",
+            MailHelper.SendTemplate(to, "Заказ на сайте modnaya-ledi.com.ua",
                 "MailTemplate.htm", null, true, WebSession.Order.BillingEmail, 
                 WebSession.Order.BillingName, WebSession.Order.BillingPhone,
                 WebSession.Order.DeliveryName, WebSession.Order.DeliveryPhone,

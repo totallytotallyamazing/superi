@@ -301,7 +301,7 @@
     <Content Include="Views\Products\CategoriesAdmin.ascx" />
     <Content Include="Views\Products\Index.aspx" />
     <Content Include="Views\Products\Product.ascx" />
-    <Content Include="Views\Products\ProductAttributes.ascx" />
+    <Content Include="Views\Shared\ProductAttributes.ascx" />
     <Content Include="Views\Products\ProductsAdmin.ascx" />
     <Content Include="Views\Shared\Categories.ascx" />
     <Content Include="Views\Shared\Content.aspx" />

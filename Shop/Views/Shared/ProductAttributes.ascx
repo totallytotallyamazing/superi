@@ -8,7 +8,7 @@
 
     foreach (var item in pav)
     {%>
-        <div>
+        <div class="productAttributesList">
             <%= item.Key.ListName %>: <strong><%= string.Join(", ", item.ToArray()) %></strong>
         </div>
   <%}

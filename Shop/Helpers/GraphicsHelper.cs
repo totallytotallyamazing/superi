@@ -32,6 +32,9 @@ namespace Dev.Mvc.Helpers
             fixDimension.Add("thumbnail3", FixedDimension.Width);
             maxDimensions.Add("cartThumb", 60);
             fixDimension.Add("cartThumb", FixedDimension.Width);
+            maxDimensions.Add("dayDiscount", 76);
+            fixDimension.Add("dayDiscount", FixedDimension.Width);
+            limitHeight.Add("dayDiscount", 97);
         }
 
         private static Rectangle CalculateSourceRect(string name, Size image, Size calulatedSize)

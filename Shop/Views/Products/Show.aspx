@@ -35,6 +35,7 @@
     </div>
     <% Html.RenderPartial("ImagePreviews", Model.ProductImages.OrderByDescending(m => m.Default)); %>
     <%} %>
+    <% Html.RenderPartial("SimilarProducts", Model.Tags.SelectMany(t=>t.Products).Where(p=>p.Id != Model.Id)); %>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentTitle" runat="server">
     <%= Model.Name %>

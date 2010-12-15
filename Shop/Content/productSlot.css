@@ -24,6 +24,13 @@ img{display:block}
 #contentAfterItems{clear:both;}
 
 
+#skidkiSlot {height:99px; width:715px;float:left;background:url(img/skidkiBgSlot.jpg);margin:30px 0px 30px 45px;}
+#skidkiSlot p,#skidkiSlot div.productAttributesList {margin:4px 0px 0px 85px;font:Verdana, sans-serif; font-size:12px;}
+#skidkiSlot h4{margin:4px 0px 0px 85px;font:Verdana, sans-serif; font-size:13px; font-weight:bold;color:#c70067}
+#skidkiSlot a{color:#000000;font:Verdana, sans-serif; font-size:12px; font-weight:bold;}
+#skidkiBoxSlot{height:97px; width:210px;float:left; margin:5px 0px 0px 25px; float:left;}
+#imgBoxSlot{height:97px; width:76px;float:left;border: 1px solid #0099cc;margin:-5px 0px 0px 0px;}
+
 /*
 #previewFoto{height:150px; width:320px;float:left;margin:0px 0px 0px 120px;}
 #previewFotoBox{height:100px; width:100px;float:left;border:1px solid #0099cc;margin:16px 0px 0px 14px;}

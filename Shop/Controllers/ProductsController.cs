@@ -38,13 +38,18 @@ namespace Shop.Controllers
         {
             using (ShopStorage context = new ShopStorage())
             {
-                Product product = context.Products
+                var product = context.Products
                     .Include("ProductImages")
                     .Include("ProductAttributeValues")
                     .Include("ProductAttributeValues.ProductAttribute")
                     .Include("Category")
                     .Include("Brand")
                     .Where(p => p.Id == id).First();
+                product.Tags.Load();
+                product.Tags.ToList().ForEach(t => t.Products.Load());
+                product.Tags.SelectMany(t => t.Products).ToList().ForEach(p => p.ProductAttributeValues.Load());
+                product.Tags.SelectMany(t => t.Products).ToList().ForEach(p => p.ProductImages.Load());
+                product.Tags.SelectMany(t => t.Products.SelectMany(p => p.ProductAttributeValues)).ToList().ForEach(pav => pav.ProductAttributeReference.Load());
                 return View(product); 
             }
         }

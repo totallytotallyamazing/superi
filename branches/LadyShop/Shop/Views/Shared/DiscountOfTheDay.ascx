@@ -28,7 +28,7 @@
         <% foreach (var item in items){%>
         <div class="skidkiBox">
             <div class="imgBox"><%= Html.CachedImage("~/Content/ProductImages", (item.ProductImages.Where(pi => pi.Default).Count() > 0) ? item.ProductImages.First(pi => pi.Default).ImageSource : "", "dayDiscount", item.Name)%></div>
-            <p><%= Html.ActionLink(item.Name, "Show", new { controller = "Products", id = item.Id }) %></p>
+            <p><%= Html.ActionLink(item.Name, "Show", new { area="", controller = "Products", id = item.Id }) %></p>
             <% Html.RenderPartial("ProductAttributes", item.Sizes); %>
             <% if(!string.IsNullOrWhiteSpace(item.Color)){ %>
             <p>Цвет: <strong><%= item.Color %></strong></p>

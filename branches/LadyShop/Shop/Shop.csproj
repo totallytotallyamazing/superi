@@ -194,6 +194,7 @@
     <Content Include="Scripts\MicrosoftMvcValidation.js" />
     <Content Include="Scripts\PageScripts.js" />
     <Content Include="Views\Products\Price.ascx" />
+    <Content Include="Views\Products\SimilarProducts.ascx" />
     <Content Include="Views\Shared\CartWidget.ascx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

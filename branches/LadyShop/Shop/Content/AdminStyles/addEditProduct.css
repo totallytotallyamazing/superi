@@ -5,19 +5,16 @@
 */
 
 
-.productImage{float:left;}
+.productImage{float:left; position:relative}
 .productImage img{float:left; display:block; margin-top:10px;}
-.productImage input{float:left; position:relative; left:-82px; top:8px;}
+.productImage input{left:-82px; top:8px; position:absolute; left:0px; top:10px;}
 .productImage a
 {
-    position:relative; 
-    float:left; 
-    margin-left:-85px; 
+    position:absolute; 
     display:block; 
     background:transparent url(/Content/img/deleteFromCart.jpg); 
     width:15px; height:15px; 
-    margin-left:-15px; 
-    margin-top:10px;
+    right:0px;top:10px;
 }
 
 td.images{padding:0 10px;}

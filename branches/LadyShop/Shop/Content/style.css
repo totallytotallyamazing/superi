@@ -26,7 +26,8 @@ body{background:url(img/bg.jpg);}
 #skidki {height:107px; width:auto;background:url(img/skidkiBg.jpg);}
 #skidki h2{font:Verdana, sans-serif; font-size:15px; font-weight:bold; color:#cc0066; padding-left:45px; display:block; height:0px; position:relative; top:-20px;}
 
-#skidki p{margin:4px 0px 0px 85px;font:Verdana, sans-serif; font-size:12px;}
+#skidki p, #skidki .productAttributesList{margin:4px 0px 0px 85px;font:Verdana, sans-serif; font-size:12px;}
+/*#skidki .productAttributesList{font-size:12px; margin:4px 0px 0px 85px;}*/
 #skidki h4{margin:4px 0px 0px 85px;font:Verdana, sans-serif; font-size:13px; font-weight:bold;color:#c70067}
 #skidki a{color:#000000;font:Verdana, sans-serif; font-size:12px; font-weight:bold;}
 .skidkiBox{height:97px; width:250px;float:left; margin:5px 0px 0px 65px; float:left;}

@@ -28,15 +28,15 @@ namespace Shop.Controllers
             return View("Content");
         }
 
-        [ChildActionOnly]
-        public ActionResult Categories()
-        {
-            using (ShopStorage context = new ShopStorage())
-            {
-                List<Category> categories = context.Categories.Include("Categories").Where(c => c.Parent == null).ToList();
-                return View(categories);
-            }
-        }
+        //[ChildActionOnly]
+        //public ActionResult Categories()
+        //{
+        //    using (ShopStorage context = new ShopStorage())
+        //    {
+        //        List<Category> categories = context.Categories.Include("Categories").Where(c => c.Parent == null).ToList();
+        //        return View(categories);
+        //    }
+        //}
 
         public ActionResult FeedbackForm()
         {

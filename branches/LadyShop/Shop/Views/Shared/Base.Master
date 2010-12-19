@@ -60,7 +60,7 @@
         </div>
         <div id="leftSide">
             <div id="leftSideLiBox">
-                <% Html.RenderAction("Categories", "Home", new { area = "" }); %>
+                <% Html.RenderPartial("Categories"); %>
             </div>
             <% Html.RenderAction("News", "Widgets", new { area = "" }); %>
         </div>

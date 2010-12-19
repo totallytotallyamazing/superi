@@ -50,6 +50,7 @@ namespace Shop.Controllers
                 product.Tags.SelectMany(t => t.Products).ToList().ForEach(p => p.ProductAttributeValues.Load());
                 product.Tags.SelectMany(t => t.Products).ToList().ForEach(p => p.ProductImages.Load());
                 product.Tags.SelectMany(t => t.Products.SelectMany(p => p.ProductAttributeValues)).ToList().ForEach(pav => pav.ProductAttributeReference.Load());
+                ViewData["categoryId"] = product.Category.Id;
                 return View(product); 
             }
         }

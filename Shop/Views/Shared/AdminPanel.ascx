@@ -28,6 +28,7 @@
 <div id="adminPanel">
     <div class="links">
         <%= Html.ActionLink("Настройки", "Index", new {controller="Settings", Area="Admin"}) %> | 
+        <%= Html.ActionLink("Заказы", "Index", new {controller="Orders", Area="Admin", id = 1}) %> |
         <%= Html.ActionLink("Размеры", "Index", new {controller="Attributes", Area="Admin", id = 1}) %> |
         <%= Html.ActionLink("Производство", "Index", new {controller="Attributes", Area="Admin", id = 2}) %> | 
         <%= Html.ActionLink("Состав", "Index", new {controller="Attributes", Area="Admin", id = 3}) %> | 

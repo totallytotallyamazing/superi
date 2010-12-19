@@ -25,10 +25,11 @@
 <% if(items.Count()>0){ %>
     <div id="skidki">
         <h2>СКИДКА ДНЯ</h2>
-        <% foreach (var item in items){%>
+        <% foreach (var item in items){
+               string link = Html.ActionLink("[CONTENT]", "Show", new { area = "", controller = "Products", id = item.Id }).ToString(); %>
         <div class="skidkiBox">
-            <div class="imgBox"><%= Html.CachedImage("~/Content/ProductImages", (item.ProductImages.Where(pi => pi.Default).Count() > 0) ? item.ProductImages.First(pi => pi.Default).ImageSource : "", "dayDiscount", item.Name)%></div>
-            <p><%= Html.ActionLink(item.Name, "Show", new { area="", controller = "Products", id = item.Id }) %></p>
+            <div class="imgBox"><%= link.Replace("[CONTENT]", Html.CachedImage("~/Content/ProductImages", (item.ProductImages.Where(pi => pi.Default).Count() > 0) ? item.ProductImages.First(pi => pi.Default).ImageSource : "", "dayDiscount", item.Name))%></div>
+            <p><%= link.Replace("[CONTENT]", item.Name) %></p>
             <% Html.RenderPartial("ProductAttributes", item.Sizes); %>
             <% if(!string.IsNullOrWhiteSpace(item.Color)){ %>
             <p>Цвет: <strong><%= item.Color %></strong></p>

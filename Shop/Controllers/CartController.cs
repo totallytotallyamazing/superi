@@ -187,6 +187,7 @@ namespace Shop.Controllers
             foreach (var item in WebSession.OrderItems)
             {
                 WebSession.Order.OrderItems.Add(item.Value);
+                WebSession.Order.OrderDate = DateTime.Now;
             }
 
             using (OrdersStorage context = new OrdersStorage())

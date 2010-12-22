@@ -87,5 +87,6 @@ body{background:url(img/bg.jpg);}
 #footerRightBox p{padding: 12px 0px 0px 8px;font-family:Tahoma, sans-serif;text-decoration:none;font-size:12px;color:#ffffff;font-weight:100;}
 .colortext{background:#ffffff;color:#75ae39;padding:0px 3px 3px 3px;}
 
-.watermark, .searchWatermark{color:Gray; z-index:100;}
+.watermark, .searchWatermark, .extSearchWatermark{color:Gray; z-index:100;}
 .searchWatermark{text-align:center; left:80px !important;}
+.extSearchWatermark{left:210px !important;}

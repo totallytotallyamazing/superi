@@ -130,3 +130,16 @@ table.orderItems tr td{padding:5px 50px 5px 0;}
 .acceptWrapper{width: auto; height: 250px; text-align:center; padding-top:150px;}
 .orderAccepted{ color:#0099ff; font-size:35px; }
 .youWillBeContacted{font-size:12px; padding-top:20px;}
+
+.extendedSearchField{padding-bottom: 30px;}
+.extendedSearchField input{width:515px;}
+.extendedSearchField input:focus{border:1px solid #75ae39}
+.extendedSearchButton{width:605px; position:relative; margin:0 auto; text-align:center;}
+.userInfo select{width:150px;}
+
+.searchCell{width:150px;font-size:12px; color:black; height:40px; font-weight:bold;}
+.priceRange input{width:60px;}
+.priceRange{font-size:12px; color:black; position:relative; left:-20px;}
+
+.userInfo.extSearch .searchCellField{width:180px;}
+.validationError .currency{font-size:12px; font-weight:bold; position:relative; left:-30px; color:#75ae39;}

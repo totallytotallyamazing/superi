@@ -70,5 +70,70 @@ namespace Shop.Controllers
                 return View("Index", products);
             }
         }
+
+        public ActionResult ExtendedSearch() 
+        {
+            using (ShopStorage context= new ShopStorage())
+            {
+                var categories = context.Categories.Select(c => new { Name = c.Name, Id = c.Id }).ToList();
+                ViewData["CategoryId"] = new List<SelectListItem> { new SelectListItem { Text = null, Value = null, Selected = true } }.Union(categories.Select(c => new SelectListItem
+                {
+                    Value = c.Id.ToString(),
+                    Text = c.Name,
+                    Selected = false
+                })).ToList();
+
+                var brands = context.Brands.Select(c => new { Name = c.Name, Id = c.Id }).ToList();
+                ViewData["BrandId"] = new List<SelectListItem> { new SelectListItem { Text = null, Value = null, Selected = true } }.Union(brands.Select(c => new SelectListItem
+                {
+                    Value = c.Id.ToString(),
+                    Text = c.Name,
+                    Selected = false
+                })).ToList();
+
+                var sizes = context.ProductAttributeValues.Where(pav => pav.ProductAttribute.Id == 1).Select(pav => new { Value = pav.Value, Id = pav.Id }).ToList();
+                ViewData["SizeId"] = new List<SelectListItem> { new SelectListItem { Text = null, Value = null, Selected = true } }.Union(sizes.Select(c => new SelectListItem
+                {
+                    Value = c.Id.ToString(),
+                    Text = c.Value,
+                    Selected = false
+                })).ToList();
+
+                var contents = context.ProductAttributeValues.Where(pav => pav.ProductAttribute.Id == 3).Select(pav => new { Value = pav.Value, Id = pav.Id }).ToList();
+                ViewData["ContentId"] = new List<SelectListItem> { new SelectListItem { Text = null, Value = null, Selected = true } }.Union(contents.Select(c => new SelectListItem
+                {
+                    Value = c.Id.ToString(),
+                    Text = c.Value,
+                    Selected = false
+                })).ToList();
+            }
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult ExtendedSearch(ExtendedSearchModel extendedSearchModel)
+        { 
+            ViewData["tags"] = true;
+            using (ShopStorage context = new ShopStorage())
+            {
+                int[] ids = { };
+                if(!string.IsNullOrWhiteSpace(extendedSearchModel.Phrase))
+                    ids = context.GetSearchResults(extendedSearchModel.Phrase);
+                var products = context.Products
+                    .Include("Brand")
+                    .Include("ProductImages")
+                    .Include("ProductAttributeValues.ProductAttribute")
+                    .Where(p => extendedSearchModel.BrandId == null || p.Brand.Id == extendedSearchModel.BrandId)
+                    .Where(p => extendedSearchModel.CategoryId == null || p.Category.Id == extendedSearchModel.CategoryId)
+                    .Where(p => extendedSearchModel.SizeId == null || p.ProductAttributeValues.Any(pav => pav.ProductAttribute.Id == 1 && pav.Id == extendedSearchModel.SizeId))
+                    .Where(p => extendedSearchModel.ContentId == null || p.ProductAttributeValues.Any(pav => pav.ProductAttribute.Id == 3 && pav.Id == extendedSearchModel.ContentId))
+                    .Where(p => extendedSearchModel.PriceFrom == null || p.Price > extendedSearchModel.PriceFrom)
+                    .Where(p => extendedSearchModel.PriceTo == null || p.Price < extendedSearchModel.PriceTo);
+                if (!string.IsNullOrWhiteSpace(extendedSearchModel.Phrase))
+                    products = products.Where(ContextExtension.BuildContainsExpression<Product, int>(p => p.Id, ids));
+
+                return View("Index", products.ToList());
+            }
+        }
     }
 }

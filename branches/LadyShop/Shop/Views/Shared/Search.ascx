@@ -12,7 +12,7 @@
     <% using(Html.BeginForm("Search", "Products", FormMethod.Get, null)){ %>
         <%= Html.TextBox("searchField") %>
     <%} %>
-<%--    <p>
-        <a href="#">Расширенный поиск</a>
-    </p>--%>
+    <p>
+        <a href="/Products/ExtendedSearch">Расширенный поиск</a>
+    </p>
 </div>

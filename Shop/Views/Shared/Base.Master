@@ -20,7 +20,7 @@
     <script type="text/javascript" src="/Scripts/PageScripts.js"></script>
     <%= Ajax.ScriptInclude("/Scripts/jquery.watermark.js") %>
     <script type="text/javascript">
-        BasePageExtender.initialize();рас
+        BasePageExtender.initialize();
     </script>
     <asp:ContentPlaceHolder runat="server" ID="includes"></asp:ContentPlaceHolder>
 </head>

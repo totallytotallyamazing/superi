@@ -5,10 +5,12 @@
     {
          var categories = context.Categories.Include("Categories").Where(c => c.Parent == null);
 
-        int? categoryId = (int?)ViewData["categoryId"];
-        string controller = ViewContext.RouteData.Values["controller"].ToString().ToLower();
+        int? categoryId = null;
+        if (ViewData["categoryId"] is int?)
+            categoryId = (int?)ViewData["categoryId"];
+        var a = ViewContext.RouteData.Values["controller"].ToString().ToLower();
         string action = ViewContext.RouteData.Values["action"].ToString().ToLower();
-        bool isProductList = controller == "products" && action == "index";
+        bool isProductList = a == "products" && action == "index";
     
 %>
 <ul>

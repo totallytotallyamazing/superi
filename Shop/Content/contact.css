@@ -32,6 +32,13 @@
 .contentItemBox.lowPrice .contentItemText{margin-left:6px;}
 .contentItemBox.lowPrice .contentItemText h3 span.price{color:#669933;}
 
+.contentItemBox.productOfTheDay .contentItemBoxHeader{background:url(img/pdTop.png) no-repeat; height:14px; padding-top:22px;}
+.contentItemBox.productOfTheDay .contentItemBoxBg{background:url(img/pgBg.png) repeat-y;}
+.contentItemBox.productOfTheDay .contentItemBoxFooter{background:url(img/pdFooter.png) no-repeat; height:11px;}
+.contentItemBox.productOfTheDay .contentItemPhoto{margin-left:9px; border:0;}
+.contentItemBox.productOfTheDay .contentItemText{margin-left:9px;}
+.contentItemBox.productOfTheDay .contentItemText h3 span.price{color:#0099cc;}
+
 
 #contentContactSelectors{height:50px; width:669px;margin:30px 0px 8px 35px;text-align:center;}
 #contentContactSelectors p{font:Verdana, sans-serif; font-size:14px; font-weight:bold; color:#0099ff;}

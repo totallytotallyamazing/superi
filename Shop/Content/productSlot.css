@@ -1,17 +1,18 @@
 img{display:block}
 #SlotH{margin:10px 0px 0px 0px;}
-#SlotH h1{font:Verdana, sans-serif; font-size:18px; font-weight:normal;color:#0099ff;padding:0px 0px 0px 47px;}
-#SlotProduct{margin:0px 0px 0px 45px;}
-#SlotProductFoto{float:left; width:400px;}
+#SlotH h1{font:Verdana, sans-serif; font-size:18px; font-weight:normal;color:#0099ff;padding:0px 0px 0px 27px;}
+#SlotProduct{margin:0px 0px 0px 25px; }
+#SlotProduct, #imagePreviews{min-width:521px;}
+#SlotProductFoto{float:left; width:300px;}
 #SlotProductFoto img{border:3px solid #0099cc;}
-#SlotProductText{margin-left:420px;}
+#SlotProductText{margin-left:320px;}
 #SlotProductText p{font:Verdana, sans-serif; font-size:12px; font-weight:normal; color:#000000;}
 
 #imagePreviews
 {
-	background:transparent url(img/heart.jpg) no-repeat 555px top;
+	background:transparent url(img/heart.jpg) no-repeat 455px top;
 	width:auto; 
-	margin:0 45px; 
+	margin:0 25px; 
 	text-align:center; 
 	padding-top:10px; 
 	clear:both;
@@ -19,12 +20,12 @@ img{display:block}
 #imagePreviews img{border:1px solid #0099cc;}
 #imagePreviews div.imageItem{float:left; margin-right:10px; position:relative;}
 
-.orderButton{left:400px;margin-top:-22px; position:relative;}
+.orderButton{left:300px;margin-top:-22px; position:relative;}
 .orderButton input{background:transparent url(img/addToBasket.jpg); color:White;  border:0; text-align:center; width:196px; height:22px; text-decoration:underline;  }
 #contentAfterItems{clear:both;}
 
 
-#skidkiSlot {height:99px; width:715px;float:left;background:url(img/skidkiBgSlot.jpg);margin:30px 0px 30px 45px;}
+#skidkiSlot {height:99px; width:515px;float:left;background:url(img/skidkiBgSlot.jpg);margin:30px 0px 30px 25px;}
 #skidkiSlot p,#skidkiSlot div.productAttributesList {margin:4px 0px 0px 85px;font:Verdana, sans-serif; font-size:12px;}
 #skidkiSlot h4{margin:4px 0px 0px 85px;font:Verdana, sans-serif; font-size:13px; font-weight:bold;color:#c70067}
 #skidkiSlot a{color:#000000;font:Verdana, sans-serif; font-size:12px; font-weight:bold;}

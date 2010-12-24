@@ -190,6 +190,12 @@
     <Content Include="Content\img\contentLowPriceFoot.jpg" />
     <Content Include="Content\img\headerDayDiscount.jpg" />
     <Content Include="Content\img\headerLowPrice.jpg" />
+    <Content Include="Content\img\OrderBg.jpg" />
+    <Content Include="Content\img\pdFooter.jpg" />
+    <Content Include="Content\img\pdFooter.png" />
+    <Content Include="Content\img\pdTop.jpg" />
+    <Content Include="Content\img\pdTop.png" />
+    <Content Include="Content\img\pgBg.png" />
     <Content Include="Content\img\searchButton.jpg" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\jquery.fancybox.js" />
@@ -202,7 +208,7 @@
     <Content Include="Scripts\MicrosoftMvcValidation.js" />
     <Content Include="Scripts\PageScripts.js" />
     <Content Include="Views\Products\ExtendedSearch.aspx" />
-    <Content Include="Views\Products\Price.ascx" />
+    <Content Include="Views\Shared\Price.ascx" />
     <Content Include="Views\Products\SimilarProducts.ascx" />
     <Content Include="Views\Shared\CartWidget.ascx" />
     <Content Include="Views\Shared\ProductOfTheDay.ascx" />

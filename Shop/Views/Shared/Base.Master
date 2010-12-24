@@ -15,7 +15,9 @@
     <% if(Roles.IsUserInRole("Administrators")){ %>
         <link href="/Content/AdminStyles/Admin.css" rel="stylesheet" type="text/css" />    
     <%} %>
-    
+    <link rel="Stylesheet" href="/Content/products.css" />
+    <link rel="Stylesheet" href="/Content/contact.css" />
+
     <script type="text/javascript" src="/Scripts/jquery.js"></script>
     <script type="text/javascript" src="/Scripts/PageScripts.js"></script>
     <%= Ajax.ScriptInclude("/Scripts/jquery.watermark.js") %>
@@ -49,7 +51,7 @@
         </div>
     </div>
     <% Html.RenderPartial("Search"); %>    
-    <% Html.RenderPartial("DiscountOfTheDay"); %>    
+    <%--<% Html.RenderPartial("DiscountOfTheDay"); %>    --%>
     <div id="contentBox">
         <div id="string">
             <% Html.RenderPartial("CurrencyConverter"); %>
@@ -64,13 +66,16 @@
             </div>
             <% Html.RenderAction("News", "Widgets", new { area = "" }); %>
         </div>
+        <div id="rightmost">
+            <% Html.RenderPartial("ProductOfTheDay"); %>
+        </div>
         <div id="rightSide">
             <asp:ContentPlaceHolder runat="server" ID="MainContent"></asp:ContentPlaceHolder>
         </div>
     </div>
             <div id="footer">
             <div id="girl">
-                <img src="/Content/img/girl1.png" alt="jeans">
+                <img src="/Content/img/girl1.png" alt="jeans" />
             </div>
             <div id="footerCopy">
                 <p>

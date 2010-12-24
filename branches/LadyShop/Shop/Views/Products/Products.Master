@@ -5,7 +5,6 @@
     </asp:ContentPlaceHolder>
 </asp:Content>
 <asp:Content ID="Content2" runat="server" ContentPlaceHolderID="includes">
-    <link rel="Stylesheet" href="/Content/contact.css" />
     <asp:ContentPlaceHolder runat="server" ID="includes">
     </asp:ContentPlaceHolder>
 </asp:Content>

@@ -1,6 +1,6 @@
 *{margin:0; padding:0; font-family:Verdana;}
 body{background:url(img/bg.jpg);}
-#header, #underHeader, #searchText, #search, #contentBox, #footer{min-width:1190px;}
+#header, #underHeader, #searchText, #search, #contentBox, #footer{min-width:1340px;}
 #header{height:92px; width:auto;background:#75ae39;}
 #headerLinks{height:92px;width:345px;float:left;}
 #headerLinks a{color:#cccccc;}
@@ -47,10 +47,12 @@ body{background:url(img/bg.jpg);}
 #basket p{font:Verdana, sans-serif; font-size:14px;margin:8px 0px 0px 240px;}
 #basket a{color:#0099cc;font:Verdana, sans-serif; font-size:14px;}
 #leftSide{height:auto; width:257px;float:left; margin:27px 0px 0px 0px;}
-#rightSide{min-height:850px; height:auto; width:auto; margin-left:271px; margin-right:80px;}
+#rightSide{min-height:850px; height:auto; width:auto; margin-left:271px; margin-right:270px;}
+#rightmost{float:right; width:229px; padding-left:40px}
 #content{min-height:800px; height:auto; width:auto; margin:27px 0px 0px 20px; background:#e8e8e8 url(img/leftContentBg.jpg) repeat-y;}
 
 #content .contentWrapper{background:transparent url(img/rigthGridBg.jpg) repeat-y; min-height:800px; background-position:right top; padding:39px 82px 0px; padding-left:82px;}
+#content{min-width:800px;}
 
 #contentHeader{height:14px; background:url(img/contentHeaderBg.jpg) repeat-x; margin-right:2px;}
 #contentHeaderBgLeft{width:14px; height:14px;background:url(img/contentHeaderBgLeft.jpg); float:left;}
@@ -70,6 +72,8 @@ body{background:url(img/bg.jpg);}
 #leftSideLiBox{width:250px;}
 #leftSide li{margin:7px 0px 0px 85px;list-style-type:none;}
 #leftSide a{font:Verdana, sans-serif; font-size:12px; font-weight:bold; color:#0099cc;}
+#leftSide span.current{font-size:12px; font-weight:bold;}
+#leftSide a.current{font-size:12px; font-weight:bold; color:Black;}
 #newsBox{height:auto; width:200px;margin:30px 0px 0px 40px; position:absolute;}
 #newsHeader{height:20px;width:125px;background:url(img/leftBox1Header.jpg) no-repeat;font-family:Tahoma, sans-serif;text-decoration:none;font-size:13px;font-weight: bold;text-align:center;border-bottom:4px solid #336633;margin:0px 0px 0px 4px;}
 #newsHeader p{margin:2px 0px 0px -63px; padding-top:5px;color:#669933;}

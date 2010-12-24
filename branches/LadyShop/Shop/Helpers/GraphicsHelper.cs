@@ -20,9 +20,9 @@ namespace Dev.Mvc.Helpers
 
         static GraphicsHelper()
         {
-            maxDimensions.Add("mainView", 396);
+            maxDimensions.Add("mainView", 296);
             fixDimension.Add("mainView", FixedDimension.Width);
-            maxDimensions.Add("thumbnail1", 112);
+            maxDimensions.Add("thumbnail1", 82);
             fixDimension.Add("thumbnail1", FixedDimension.Width);
             limitHeight.Add("thumbnail1", 180);
             maxDimensions.Add("thumbnail2", 152);

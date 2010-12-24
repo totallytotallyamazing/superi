@@ -6,25 +6,15 @@
 
 <% 
     using(ShopStorage context =  new ShopStorage()){
-        var itemsList = context.Products.Include("Brand").Include("ProductImages").Include("ProductAttributeValues").Where(p => p.IsSpecialOffer).Select(p => new   
-        {
-            Id = p.Id,
-            Name = p.Name,
-            Price = p.Price,
-            ProductAttributeValues = p.ProductAttributeValues,
-            Color = p.Color,
-            ProductImages = p.ProductImages,
-            Brand = p.Brand,
-            OldPrice = p.OldPrice
-        }).ToList();
+        var itemsList = context.Products.Include("Brand").Include("ProductImages").Include("ProductAttributeValues").Where(p => p.IsSpecialOffer).Select(p => p).ToList();
         
         Random rnd= new Random();
         var product = itemsList.OrderBy(i => rnd.Next()).First();
         product.ProductAttributeValues.ToList().ForEach(pav => pav.ProductAttributeReference.Load());
 
-        string productClickLink = Html.ActionLink("[IMAGE]", "Show", new { id = product.Id }).ToString();
+        string productClickLink = Html.ActionLink("[IMAGE]", "Show", new { controller="Products", id = product.Id }).ToString();
 %>
-<div class="productOfTheDay">
+<div class="productOfTheDay contentItemBox">
     <div class="contentItemBoxHeader">
         <p><a href="#">&trade; <%= product.Brand.Name%></a></p>
     </div>

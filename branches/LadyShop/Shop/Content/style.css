@@ -54,9 +54,9 @@ body{background:url(img/bg.jpg);}
 #content .contentWrapper{background:transparent url(img/rigthGridBg.jpg) repeat-y; min-height:800px; background-position:right top; padding:39px 82px 0px; padding-left:82px;}
 #content{min-width:800px;}
 
-#contentHeader{height:14px; background:url(img/contentHeaderBg.jpg) repeat-x; margin-right:2px;}
+#contentHeader{height:14px; background:url(img/contentHeaderBg.jpg) repeat-x; margin-right:2px; position:relative;}
 #contentHeaderBgLeft{width:14px; height:14px;background:url(img/contentHeaderBgLeft.jpg); float:left;}
-#contentHeaderBgRight{width:14px; height:14px;background:url(img/contentHeaderBgRight.jpg); float:right;}
+#contentHeaderBgRight{width:14px; height:14px;background:url(img/contentHeaderBgRight.jpg); position:absolute; right:0;}
 #contentFooterBg{height:17px;background:url(img/contentFooterBg.jpg); margin:0px 0px 0px 20px;}
 #contentFooterBg .left{float:left; width:14px; height:17px; background:transparent url(img/contentFooterBgLeft.jpg)}
 #contentFooterBg .right{float:right; width:14px; height:17px; background:transparent url(img/contentFooterBgRight.jpg)}

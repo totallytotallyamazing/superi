@@ -24,7 +24,7 @@
                { %>
             <%= productClickLink
                 .Replace("[IMAGE]",
-                Html.CachedImage("~/Content/ProductImages", product.ProductImages.Where(pi => pi.Default).First().ImageSource, "thumbnail2", product.Name))%>
+                                Html.CachedImage("~/Content/ProductImages", product.ProductImages.Where(pi => pi.Default).First().ImageSource, "productOfTheDay", product.Name))%>
             <%}
                else {
                    Response.Write(productClickLink.Replace("[IMAGE]", "редактировать"));

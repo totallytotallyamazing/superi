@@ -35,6 +35,8 @@ namespace Dev.Mvc.Helpers
             maxDimensions.Add("dayDiscount", 76);
             fixDimension.Add("dayDiscount", FixedDimension.Width);
             limitHeight.Add("dayDiscount", 97);
+            maxDimensions.Add("productOfTheDay", 140);
+            fixDimension.Add("productOfTheDay", FixedDimension.Width);
         }
 
         private static Rectangle CalculateSourceRect(string name, Size image, Size calulatedSize)

@@ -86,6 +86,7 @@ body{background:url(img/bg.jpg);}
 #footerCopy{height:37px; width:500px; float:left;}
 #footerCopy p{font:Verdana, sans-serif; font-size:11px; font-weight:normal; color:#ffffff;margin:10px 0px 0px 80px;}
 #footerRightBox{height:50px;min-width:15px;width:auto;float:right;background:url(img/footerRight.jpg) no-repeat right;padding:0px 65px 0px 0px;}
+#footerRightBox a{color:White;}
 #footerRightBox p{padding: 12px 0px 0px 8px;font-family:Tahoma, sans-serif;text-decoration:none;font-size:12px;color:#ffffff;font-weight:100;}
 .colortext{background:#ffffff;color:#75ae39;padding:0px 3px 3px 3px;}
 

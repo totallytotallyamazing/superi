@@ -34,8 +34,8 @@
             <% Html.RenderPartial("MainMenu"); %>
         </div>
         <div id="headerContacts">
+            <h3>(063) 520-01-17</h3>
             <h3>(097) 400-19-77</h3>
-            <h3>(044) 123-45-67</h3>
         </div>
 
         <div id="headerLogo">

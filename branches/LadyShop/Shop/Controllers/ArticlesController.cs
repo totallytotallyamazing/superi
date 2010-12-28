@@ -14,6 +14,7 @@ namespace Shop.Controllers
 
         public ActionResult Index()
         {
+            ViewData["title"] = "Новости";
             using (ContentStorage context = new ContentStorage())
             {
                 var articles = context.Articles.ToList();

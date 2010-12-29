@@ -8,24 +8,26 @@ h2 a{font-size:20px !important;}
 h2 a:hover{}
 #main{width:998px; position:relative; margin:60px auto 0px;}
 #header{width:100%; height:77px;}
-#logo{float:left; width:74px; font-size:0px;}
+#logo{float:left; width:110px; font-size:0px; padding-top:18px;}
 #headerRight
 {
     width:auto; 
-    margin-left:90px; 
-    border-left:3px solid; 
+    margin-left:130px; 
+    border-left:1px solid; 
     padding-left:16px; 
     text-transform:uppercase; 
     padding-bottom:2px; 
     font-size:30px;
-    margin-top:20px;
+    margin-top:10px;
+    height:60px;
+    padding-top:26px;
 }
 .blackWhiteSwitch{margin-left:111px;}
 
 #left{float:left; width:245px; padding-top:100px; clear:both; min-height:400px;}
 #content{width:auto; padding-top:30px; float:left; width:752px;}
 #mainMenu{}
-.mainMenuItem{float:left; clear:both; padding:2px 5px 2px;}
+.mainMenuItem{clear:both; padding:2px 5px 2px; margin-right:120px;}
 .mainMenuItem a, .seeMenuItem a{font-size:12px;text-decoration:none;}
 .mainMenuItem.bold a {text-decoration:none;}
 .mainMenuItemSplitter{height:10px; float:left; clear:both; width:1px; border-left-style:solid; border-left-width:1px;}
@@ -52,6 +54,10 @@ a:visited{color:#808080;}
 .pagerDate{text-decoration:none !important; color:#808080; font-size:10px;}
 #noteHeader{font-size:14px; border-bottom:1px solid #808080; padding-bottom:10px; margin-bottom:10px;}
 #noteHeader .date{font-size:12px; color:#808080;}
+
+.millerStudio span{display:block; position:relative; top:-5px;}
+.millerStudio span.studio{font-size:15px; font-weight:normal; text-transform:none;}
+.millerStudio span.ofMiller{font-size:23px; font-weight:bold; text-transform:none;}
 
 #seeContainer{height:418px;}
 #seeMenu{padding-left:20px; clear:both; display:none; float:left;}

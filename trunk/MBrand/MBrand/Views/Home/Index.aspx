@@ -2,7 +2,7 @@
 <%@ Import Namespace="MBrand.Helpers" %>
 
 <asp:Content ID="indexTitle" ContentPlaceHolderID="TitleContent" runat="server">
-    Дизайн
+    Студия рекламы и дизайна Евгения Миллера
 </asp:Content>
 
 <asp:Content ID="indexContent" ContentPlaceHolderID="MainContent" runat="server">
@@ -21,5 +21,8 @@
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="HeaderTitle" runat="server">
-	Дизайн
+	    <div class="millerStudio">
+        <span class="studio">Студия рекламы и дизайна</span>
+        <span class="ofMiller">Евгения Миллера</span>
+    </div>
 </asp:Content>

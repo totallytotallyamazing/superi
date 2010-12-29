@@ -43,7 +43,7 @@
         <div id="header">
             <div id="logo">
                 <a href="/" style="font-size: 0px">
-                    <%= Html.Image("~/Content/img/logo" + color + ".jpg", new { id="logoImage"})%></a></div>
+                    <%= Html.Image("~/Content/img/logoNew.jpg", new { id="logoImage"})%></a></div>
             <div id="headerRight">
                 <asp:ContentPlaceHolder runat="server" ID="HeaderTitle">
                 </asp:ContentPlaceHolder>

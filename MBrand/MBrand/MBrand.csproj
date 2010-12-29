@@ -302,6 +302,7 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\img\logoNew.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="Views\See\Video.aspx" />
     <Content Include="Views\Shared\Common.Master" />

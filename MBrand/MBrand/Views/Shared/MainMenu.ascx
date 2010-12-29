@@ -59,10 +59,6 @@
 </script>
 
 <div id="mainMenu">
-    <div class="<%= eugeneClass %>">
-        <%= Html.ActionLink("Евгений Миллер", "Index", "Eugene") %>
-    </div>
-    <div class="mainMenuItemSplitter"></div>
     <div class="<%= seeClass %>">
         <a id="seeLink" href="#">
             Портфолио
@@ -70,6 +66,10 @@
     </div>
     <div class="mainMenuItemSplitter" id="seeMenuReplacer"></div>
     <% Html.RenderPartial("SeeMenu"); %>
+    <div class="<%= eugeneClass %>">
+        <%= Html.ActionLink("Студия", "Index", "Eugene") %>
+    </div>
+    <div class="mainMenuItemSplitter"></div>
     <div class="<%= clientsClass %>">
         <%= Html.ActionLink("Клиенты", "Index", "Clients")%>
     </div>

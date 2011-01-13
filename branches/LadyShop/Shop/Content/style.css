@@ -35,7 +35,7 @@ body{background:url(img/bg.jpg);}
 .skidkiBox .imgBox img{border:0;}
 .skidkiBox .imgBox{height:97px; width:76px;float:left;border: 1px solid #c70067;margin:-5px 0px 0px 0px;}
 #contentBox {min-height:1000px; height:auto; width:auto; }
-#string {height:39px; width:auto; border-top:1px solid #000000; border-bottom: 1px solid #000000; margin:25px 57px; background:#FFFFFF;}
+#string {height:39px; width:auto; border-top:1px solid #000000; border-bottom: 1px solid #000000; margin:25px 5px; background:#FFFFFF;}
 #currency{height:39px; width:240px;float:left;}
 #currency p {font:Verdana, sans-serif; font-size:11px; font-weight:bold; color:#669933;margin:3px 0px 0px 20px;}
 #currency h3 {font:Verdana, sans-serif; font-size:11px; font-weight:bold; color:#000000;margin:3px 0px 0px 20px;}
@@ -47,7 +47,7 @@ body{background:url(img/bg.jpg);}
 #basket p{font:Verdana, sans-serif; font-size:14px;margin:8px 0px 0px 240px;}
 #basket a{color:#0099cc;font:Verdana, sans-serif; font-size:14px;}
 #leftSide{height:auto; float:left; margin:27px 0px 0px 0px;}
-#rightSide{min-height:850px; height:auto; width:auto; margin-left:201px; margin-right:230px;}
+#rightSide{min-height:850px; height:auto; width:auto; margin-left:149px; margin-right:230px;}
 #rightmost{float:right; width:229px; padding-left:40px}
 #content{min-height:800px; height:auto; width:auto; margin:27px 0px 0px 20px; background:#e8e8e8 url(img/leftContentBg.jpg) repeat-y;}
 
@@ -75,11 +75,11 @@ body{background:url(img/bg.jpg);}
 #contentItemText p{font:Verdana, sans-serif; font-size:12px; font-weight:100; color:#000000;}
 #contentAfterItems{ height:30px;border-top:1px solid black;margin-top:50px}
 #contentAfterItemsFoto{width:485px; height:30px; background:url(img/fotoText.jpg) no-repeat;margin:5px 0px 0px 0px;}
-#leftSide li{margin:7px 0px 0px 57px;list-style-type:none;}
+#leftSide li{margin:7px 0px 0px 5px;list-style-type:none;}
 #leftSide a{font:Verdana, sans-serif; font-size:12px; font-weight:bold; color:#0099cc;}
 #leftSide span.current{font-size:12px; font-weight:bold;}
 #leftSide a.current{font-size:12px; font-weight:bold; color:Black;}
-#newsBox{height:auto;margin:30px 0px 0px 57px; position:absolute;}
+#newsBox{height:auto;margin:30px 0px 0px 5px; position:absolute;}
 #newsHeader{height:20px;width:125px;background:url(img/leftBox1Header.jpg) no-repeat;font-family:Tahoma, sans-serif;text-decoration:none;font-size:13px;font-weight: bold;text-align:center;border-bottom:4px solid #336633;margin:0px 0px 0px 4px;}
 #newsHeader p{margin:2px 0px 0px -63px; padding-top:5px;color:#669933;}
 #newsContent{min-height:170px;height:auto;width:132px;background:url(img/newsBg.jpg) repeat-y;}
@@ -87,7 +87,7 @@ body{background:url(img/bg.jpg);}
 #newsContent h4{margin: 3px 0px 0 8px;font-family:Verdana, sans-serif;text-decoration:none;color:#0099ff;}
 #newsContent a{color:#000000;font-size:10px;font-weight:100;}
 #newsFooter{float:left;height:20px;width:125px;background:url(img/newsFooterBg.jpg) repeat-x;margin:0px 0px 0px 4px;}
-#girl{height:350px; width:162px;float:left;margin:-350px 0px 0px 35px;}
+#girl{height:350px; width:162px;float:left;margin:-350px 0px 0px 35px; position:relative; left:50px;}
 #footer{height:37px; width:auto; margin:0px 0px 0px 0px; background:#75ae39;}
 #footerCopy{height:37px; width:500px; float:left;}
 #footerCopy p{font:Verdana, sans-serif; font-size:11px; font-weight:normal; color:#ffffff;margin:10px 0px 0px 80px;}

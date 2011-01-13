@@ -16,7 +16,7 @@
 %>
 <div class="productOfTheDay contentItemBox">
     <div class="contentItemBoxHeader">
-        <p><a href="#">&trade; <%= product.Brand.Name%></a></p>
+        <p><a href="#">&trade; <%= (product.Brand != null) ? product.Brand.Name : string.Empty %></a></p>
     </div>
     <div class="contentItemBoxBg">
         <div class="contentItemPhoto">

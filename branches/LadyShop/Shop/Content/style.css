@@ -1,6 +1,6 @@
 *{margin:0; padding:0; font-family:Verdana;}
 body{background:url(img/bg.jpg);}
-#header, #underHeader, #searchText, #search, #contentBox, #footer{min-width:1240px;}
+#header, #underHeader, #searchText, #search, #contentBox, #footer{min-width:1000px;}
 #header{height:92px; width:auto;background:#75ae39;}
 #headerLinks{height:92px;width:345px;float:left;}
 #headerLinks a{color:#cccccc;}
@@ -52,7 +52,7 @@ body{background:url(img/bg.jpg);}
 #content{min-height:800px; height:auto; width:auto; margin:27px 0px 0px 20px; background:#e8e8e8 url(img/leftContentBg.jpg) repeat-y;}
 
 #content .contentWrapper{background:transparent url(img/rigthGridBg.jpg) repeat-y; min-height:800px; background-position:right top; padding:39px 82px 0px; padding-left:82px;}
-#content{min-width:800px;}
+#content{min-width:600px;}
 
 #contentHeader{height:14px; background:url(img/contentHeaderBg.jpg) repeat-x; margin-right:2px; position:relative;}
 #contentHeaderBgLeft{width:14px; height:14px;background:url(img/contentHeaderBgLeft.jpg); position:absolute; left:0;}
@@ -69,9 +69,9 @@ body{background:url(img/bg.jpg);}
 
 #footerDate{height:17px; border-bottom:1px solid black; margin-bottom:50px;}
 #footerDate p{font:Verdana, sans-serif; font-size:10px; font-weight:bold; color:#666666;padding:3px 0px 0px 0px;}
-#contentItem{width:460px; height:120px;margin:25px 0px 0px 100px;}
+#contentItem{height:120px;margin:25px 0px 0px 100px;}
 #contentItemFoto{width:100px; height:100px;margin:8px 0px 0px 0px;float:left;border: 1px solid #666666;}
-#contentItemText{width:328px; height:120px;margin:1px 0px 0px 25px;float:left;}
+#contentItemText{width:328px; height:120px;margin:1px 0px 0px 125px;}
 #contentItemText p{font:Verdana, sans-serif; font-size:12px; font-weight:100; color:#000000;}
 #contentAfterItems{ height:30px;border-top:1px solid black;margin-top:50px}
 #contentAfterItemsFoto{width:485px; height:30px; background:url(img/fotoText.jpg) no-repeat;margin:5px 0px 0px 0px;}

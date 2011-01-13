@@ -16,7 +16,7 @@
 
 <div class="<%= className %>">
     <div class="contentItemBoxHeader">
-        <p><a href="#">&trade; <%= Model.Brand.Name %></a></p>
+        <p><a href="#">&trade; <%= (Model.Brand != null) ? Model.Brand.Name : string.Empty%></a></p>
     </div>
     <div class="contentItemBoxBg">
         <div class="contentItemPhoto">

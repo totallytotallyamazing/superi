@@ -50,6 +50,7 @@ namespace Shop.Areas.Admin.Controllers
                     brand = new Brand();
                     context.AddToBrands(brand);
                 }
+                TryUpdateModel(brand, new string[]{"Name", "Description", "HasCatalogue", "SeoKeywords", "SeoDescription"},form.ToValueProvider());
                 brand.Description = HttpUtility.HtmlDecode(form["Description"]);
 
                 if (Request.Files["logo"] != null && !string.IsNullOrEmpty(Request.Files["logo"].FileName))

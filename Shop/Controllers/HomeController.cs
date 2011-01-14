@@ -10,6 +10,7 @@ using Dev.Helpers;
 using Dev.Mvc.Runtime;
 using System.Net.Mail;
 using System.ComponentModel;
+using Superi.Web.Mvc.Localization;
 
 namespace Shop.Controllers
 {
@@ -18,6 +19,24 @@ namespace Shop.Controllers
         [Content(ContentName="Index")]
         public ActionResult Index()
         {
+
+            using (ShopStorage context = new ShopStorage())
+            {
+                //LocalResource res = new LocalResource();
+                //res.EntityId = 1;
+                //res.EntityName = "Product";
+                //res.FieldName = "Name";
+                //res.Language = "en-US";
+                //res.Text = "bla-bla1";
+                //LocalResource res1 = new LocalResource();
+                //res1.EntityId = 2;
+                //res1.EntityName = "Product";
+                //res1.FieldName = "Name";
+                //res1.Language = "en-US";
+                //res1.Text = "bla-bla2";
+                //LocalizationExtensions.SeveLocalization(new List<LocalResource> { res, res1 }, context.LocalResources); 
+                context.Products.Localize(
+                }
             ViewData["isHomePage"] = true;
             return View("Content");
         }

@@ -6,21 +6,61 @@ using System.Linq.Expressions;
 using System.Reflection;
 using System.Data.Objects;
 using System.Globalization;
+using System.Threading;
 
 namespace Superi.Web.Mvc.Localization
 {
-    static class LocalizationExtensions
+    public static class LocalizationExtensions
     {
-        public static void SeveLocalization<T>(IEnumerable<T> localization, ObjectSet<T> localizations)
+        public static void SeveLocalization<T>(IEnumerable<T> localization, ObjectSet<T> localizations) where T : class, new()
         {
-            //var objectQuery = (localization as ObjectQuery);
-            //if (objectQuery == null)
-            //    throw new ArgumentException("localizations must be ObjectQuery", "localizations");
-            //var param = Expression.Parameter(typeof(T), "l");
-            //int entityId = (int)((dynamic)localization).EntityId;
-            //int entityName = 
-            //var condition = Expression.And(Expression.Equal(Expression.MakeMemberAccess(param, typeof(T).GetProperty("EntityId")), Expression.Constant()),
-            //    )
+            var objectQuery = (localizations as ObjectQuery);
+            if (objectQuery == null)
+                throw new ArgumentException("localizations must be ObjectQuery", "localizations");
+            
+            foreach (T item in localization)
+            {
+                int entityId = (int)((dynamic)item).EntityId;
+                string entityName = (string)((dynamic)item).EntityName;
+                string language = (string)((dynamic)item).Language;
+                var param = Expression.Parameter(typeof(T), "l");
+                var condition = Expression.And(Expression.Equal(Expression.Property(param, typeof(T).GetProperty("EntityId")), Expression.Constant(entityId)),
+                    Expression.Equal(Expression.Property(param, typeof(T).GetProperty("EntityName")), Expression.Constant(entityName)));
+                MethodInfo where = typeof(Queryable).GetMethods().Where(m => m.Name == "Where").First().MakeGenericMethod(typeof(T));
+                condition = Expression.And(condition, Expression.Equal(Expression.Property(param, typeof(T).GetProperty("Language")), Expression.Constant(language)));
+
+                var conditionLambda = Expression.Lambda<Func<T, bool>>(condition, param);
+
+                var whereCall = Expression.Call(where, localizations.AsQueryable().Expression, conditionLambda);
+
+                IQueryable<T> query = (IQueryable<T>)whereCall.Method.Invoke(null, new object[] { localizations, conditionLambda });
+                var resource = query.FirstOrDefault();
+                if (resource == null)
+                    localizations.AddObject(item);
+                else
+                {
+                    ((dynamic)item).Id = ((dynamic)resource).Id;
+                    objectQuery.Context.ApplyCurrentValues(localizations.EntitySet.Name, item);
+                }
+            }
+            objectQuery.Context.SaveChanges();
+        }
+
+        public static IDictionary<string, T> Localizations<T, L>(this IQueryable<T> source, IEnumerable<L> localizations, string entityName = null)
+        {
+            ObjectQuery objectQuery = (source as ObjectQuery);
+            if (objectQuery == null)
+                throw new ArgumentException("source must be ObjectQuery", "source");
+            string eName = entityName ?? typeof(T).Name;
+
+            var locIdParam = Expression.Parameter(typeof(L), "l");
+            var localizationIdSelector = Expression.Lambda<Func<L, int>>((Expression)Expression.MakeMemberAccess(locIdParam, typeof(L).GetProperty("EntityId")), locIdParam);
+
+            var entityIdParam = Expression.Parameter(typeof(T), "e");
+            var entityIdSelector = Expression.Lambda<Func<T, int>>((Expression)Expression.MakeMemberAccess(entityIdParam, typeof(T).GetProperty("Id")), entityIdParam);
+
+            var param = Expression.Parameter(typeof(L));
+            var eNameEquals = Expression.Lambda<Func<L, bool>>(Expression.Equal(Expression.MakeMemberAccess(param, typeof(L).GetProperty("EntityName")), Expression.Constant(eName)), param);
 
         }
 

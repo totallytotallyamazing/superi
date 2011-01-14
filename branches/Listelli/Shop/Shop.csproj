@@ -582,6 +582,12 @@
       <LastGenOutput>Clients.Designer.cs</LastGenOutput>
     </EntityDeploy>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\MyProjects\Superi.Web.Mvc\Superi.Web.Mvc\Superi.Web.Mvc.csproj">
+      <Project>{543E8EC7-CD41-40EE-A510-29BC4C26A6C2}</Project>
+      <Name>Superi.Web.Mvc</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

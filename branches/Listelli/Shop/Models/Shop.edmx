@@ -12,6 +12,7 @@
           <EntitySet Name="CategoryDiscountMapping" EntityType="shop_model.Store.CategoryDiscountMapping" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="CategoryProductAttributeMapping" EntityType="shop_model.Store.CategoryProductAttributeMapping" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Discount" EntityType="shop_model.Store.Discount" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="LocalResource" EntityType="shop_model.Store.LocalResource" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Product" EntityType="shop_model.Store.Product" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ProductAttribute" EntityType="shop_model.Store.ProductAttribute" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ProductAttributeStaticValue" EntityType="shop_model.Store.ProductAttributeStaticValue" store:Type="Tables" Schema="dbo" />
@@ -168,6 +169,17 @@
           <Property Name="Amount" Type="float" Nullable="false" />
           <Property Name="Percentage" Type="bit" Nullable="false" />
           <Property Name="SpecialDiscount" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LocalResource">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="EntityName" Type="varchar" Nullable="false" MaxLength="250" />
+          <Property Name="EntityId" Type="int" Nullable="false" />
+          <Property Name="Language" Type="varchar" Nullable="false" MaxLength="5" />
+          <Property Name="Text" Type="varchar(max)" />
+          <Property Name="FieldName" Type="varchar" MaxLength="250" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
@@ -631,7 +643,8 @@
           <AssociationSet Name="FK_ProductAttributeStaticValues_ProductAttribute" Association="shop_model.FK_ProductAttributeStaticValues_ProductAttribute">
             <End Role="ProductAttribute" EntitySet="ProductAttributes" />
             <End Role="ProductAttributeStaticValue" EntitySet="ProductAttributeStaticValues" />
-          </AssociationSet></EntityContainer>
+          </AssociationSet>
+          <EntitySet Name="LocalResources" EntityType="shop_model.LocalResource" /></EntityContainer>
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="Id" />
@@ -729,7 +742,7 @@
           <Key>
             <PropertyRef Name="Id" /></Key>
           <Property Name="Description" Type="String" Nullable="true" />
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
           <Property Name="Logo" Type="String" Nullable="true" />
           <Property Name="Name" Type="String" Nullable="false" />
           <Property Name="SeoDescription" Type="String" Nullable="true" />
@@ -821,7 +834,18 @@
             <OnDelete Action="Cascade" />
           </End>
           <End Type="shop_model.ProductAttributeStaticValue" Role="ProductAttributeStaticValue" Multiplicity="*" />
-        </Association></Schema>
+        </Association>
+        <EntityType Name="LocalResource">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="EntityName" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="EntityId" Nullable="false" />
+          <Property Type="String" Name="Language" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Text" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="FieldName" MaxLength="250" FixedLength="false" Unicode="false" />
+        </EntityType></Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -1031,7 +1055,19 @@
               <ScalarProperty Name="Id" ColumnName="ProductAttributeId" />
             </EndProperty>
           </AssociationSetMapping>
-          <FunctionImportMapping FunctionImportName="searchProducts" FunctionName="shop_model.Store.searchProducts" /></EntityContainerMapping>
+          <FunctionImportMapping FunctionImportName="searchProducts" FunctionName="shop_model.Store.searchProducts" />
+          <EntitySetMapping Name="LocalResources">
+            <EntityTypeMapping TypeName="shop_model.LocalResource">
+              <MappingFragment StoreEntitySet="LocalResource">
+                <ScalarProperty Name="FieldName" ColumnName="FieldName" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="Language" ColumnName="Language" />
+                <ScalarProperty Name="EntityId" ColumnName="EntityId" />
+                <ScalarProperty Name="EntityName" ColumnName="EntityName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping></EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>
@@ -1123,6 +1159,7 @@
         <AssociationConnector Association="shop_model.FK_ProductAttributeStaticValues_ProductAttribute" >
           <ConnectorPoint PointX="3.125" PointY="5.3314925130208337" />
           <ConnectorPoint PointX="3.875" PointY="5.3314925130208337" />
-        </AssociationConnector></Diagram></edmx:Diagrams>
+        </AssociationConnector>
+        <EntityTypeShape EntityType="shop_model.LocalResource" Width="1.5" PointX="13.25" PointY="0.875" Height="2.1725878906250031" /></Diagram></edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

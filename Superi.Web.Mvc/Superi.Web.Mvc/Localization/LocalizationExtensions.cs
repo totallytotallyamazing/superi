@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Data.Objects;
 using System.Globalization;
 using System.Threading;
+using System.Data.Objects.DataClasses;
 
 namespace Superi.Web.Mvc.Localization
 {
@@ -46,22 +47,50 @@ namespace Superi.Web.Mvc.Localization
             objectQuery.Context.SaveChanges();
         }
 
-        public static IDictionary<string, T> Localizations<T, L>(this IQueryable<T> source, IEnumerable<L> localizations, string entityName = null)
+        public static IDictionary<string, T> Localizations<T, L>(this T source, IEnumerable<L> localizations, string entityName = null) where T:EntityObject, new()
         {
             ObjectQuery objectQuery = (source as ObjectQuery);
             if (objectQuery == null)
                 throw new ArgumentException("source must be ObjectQuery", "source");
             string eName = entityName ?? typeof(T).Name;
 
-            var locIdParam = Expression.Parameter(typeof(L), "l");
-            var localizationIdSelector = Expression.Lambda<Func<L, int>>((Expression)Expression.MakeMemberAccess(locIdParam, typeof(L).GetProperty("EntityId")), locIdParam);
+            string eId = ((dynamic)source).Id;
 
-            var entityIdParam = Expression.Parameter(typeof(T), "e");
-            var entityIdSelector = Expression.Lambda<Func<T, int>>((Expression)Expression.MakeMemberAccess(entityIdParam, typeof(T).GetProperty("Id")), entityIdParam);
+            //var locIdParam = Expression.Parameter(typeof(L), "l");
+            //var localizationIdSelector = Expression.Lambda<Func<L, int>>((Expression)Expression.MakeMemberAccess(locIdParam, typeof(L).GetProperty("EntityId")), locIdParam);
 
-            var param = Expression.Parameter(typeof(L));
-            var eNameEquals = Expression.Lambda<Func<L, bool>>(Expression.Equal(Expression.MakeMemberAccess(param, typeof(L).GetProperty("EntityName")), Expression.Constant(eName)), param);
+            var param = Expression.Parameter(typeof(L), "l");
+            var locCondition = Expression.Lambda<Func<L, bool>>(
+                Expression.And(
+                    Expression.Equal(Expression.MakeMemberAccess(param, typeof(L).GetProperty("EntityId")), Expression.Constant(eId)),
+                    Expression.Equal(Expression.MakeMemberAccess(param, typeof(L).GetProperty("EntityName")), Expression.Constant(eName))
+                ), param);
 
+            MethodInfo where = typeof(Queryable).GetMethods().Where(m => m.Name == "Where").First().MakeGenericMethod(typeof(T));
+
+            var whereCall = Expression.Call(where, localizations.AsQueryable().Expression, locCondition);
+
+
+
+            //var keySelector = Expression.Lambda<Func<L, string>>((Expression)Expression.MakeMemberAccess(param, typeof(L).GetProperty("Language")), param);
+            //var elementSelector = Expression.Lambda<Func<L, string>>(
+            //        Expression.New(
+            //    );
+
+            var resultParamE = Expression.Parameter(typeof(T), "e");
+            var resultParamL = Expression.Parameter(typeof(IEnumerable<L>), "L");
+
+            Type resultType =  typeof(KeyValuePair<T, IEnumerable<L>>);
+
+
+
+
+
+
+            //var lambda = Expression.Lambda<Func<T, IEnumerable<L>, KeyValuePair<T, IEnumerable<L>>>>
+            
+            //source.GroupJoin(localizations, entityIdSelector, localizationIdSelector, );
+            
         }
 
         public static IQueryable<TResult> Localize<T, L, TKey, TResult>(

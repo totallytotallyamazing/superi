@@ -70,12 +70,15 @@ namespace Superi.Web.Mvc.Localization
 
             var whereCall = Expression.Call(where, localizations.AsQueryable().Expression, locCondition);
 
+            Type elementType = typeof(KeyValuePair<string, string>);
+            elementType.GetConstructor(new Type[]{typeof(string), typeof(string)});
 
-
-            //var keySelector = Expression.Lambda<Func<L, string>>((Expression)Expression.MakeMemberAccess(param, typeof(L).GetProperty("Language")), param);
-            //var elementSelector = Expression.Lambda<Func<L, string>>(
-            //        Expression.New(
-            //    );
+            var keySelector = Expression.Lambda<Func<L, string>>((Expression)Expression.MakeMemberAccess(param, typeof(L).GetProperty("Language")), param);
+            var elementSelector = Expression.Lambda<Func<L, string>>(
+                    Expression.New(elementType.GetConstructor(new Type[]{typeof(string), typeof(string)}), 
+                        Expression.MakeMemberAccess(param, typeof(L).GetProperty("FieldName")), 
+                        Expression.MakeMemberAccess(param, typeof(L).GetProperty("Text")))
+                , param);
 
             var resultParamE = Expression.Parameter(typeof(T), "e");
             var resultParamL = Expression.Parameter(typeof(IEnumerable<L>), "L");

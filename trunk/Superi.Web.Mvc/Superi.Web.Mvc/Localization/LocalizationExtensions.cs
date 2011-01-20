@@ -8,6 +8,7 @@ using System.Data.Objects;
 using System.Globalization;
 using System.Threading;
 using System.Data.Objects.DataClasses;
+using System.Collections;
 
 namespace Superi.Web.Mvc.Localization
 {
@@ -49,16 +50,12 @@ namespace Superi.Web.Mvc.Localization
 
         public static IDictionary<string, T> Localizations<T, L>(this T source, IEnumerable<L> localizations, string entityName = null) where T:EntityObject, new()
         {
-            ObjectQuery objectQuery = (source as ObjectQuery);
-            if (objectQuery == null)
-                throw new ArgumentException("source must be ObjectQuery", "source");
             string eName = entityName ?? typeof(T).Name;
 
-            string eId = ((dynamic)source).Id;
+            int eId = ((dynamic)source).Id;
 
-            //var locIdParam = Expression.Parameter(typeof(L), "l");
-            //var localizationIdSelector = Expression.Lambda<Func<L, int>>((Expression)Expression.MakeMemberAccess(locIdParam, typeof(L).GetProperty("EntityId")), locIdParam);
 
+            //locCindition = (l=>l.EntityId == <eId> && l.EntityName == <eName>)
             var param = Expression.Parameter(typeof(L), "l");
             var locCondition = Expression.Lambda<Func<L, bool>>(
                 Expression.And(
@@ -66,34 +63,51 @@ namespace Superi.Web.Mvc.Localization
                     Expression.Equal(Expression.MakeMemberAccess(param, typeof(L).GetProperty("EntityName")), Expression.Constant(eName))
                 ), param);
 
-            MethodInfo where = typeof(Queryable).GetMethods().Where(m => m.Name == "Where").First().MakeGenericMethod(typeof(T));
-
+            MethodInfo where = typeof(Queryable).GetMethods().Where(m => m.Name == "Where").First().MakeGenericMethod(typeof(L));
+            
             var whereCall = Expression.Call(where, localizations.AsQueryable().Expression, locCondition);
 
-            Type elementType = typeof(KeyValuePair<string, string>);
-            elementType.GetConstructor(new Type[]{typeof(string), typeof(string)});
-
             var keySelector = Expression.Lambda<Func<L, string>>((Expression)Expression.MakeMemberAccess(param, typeof(L).GetProperty("Language")), param);
-            var elementSelector = Expression.Lambda<Func<L, string>>(
-                    Expression.New(elementType.GetConstructor(new Type[]{typeof(string), typeof(string)}), 
-                        Expression.MakeMemberAccess(param, typeof(L).GetProperty("FieldName")), 
-                        Expression.MakeMemberAccess(param, typeof(L).GetProperty("Text")))
+
+            var typeStub = new { FieldName = "", Text = "" };
+
+            var constructorArgs = new Expression[]{Expression.MakeMemberAccess(param, typeof(L).GetProperty("FieldName")), 
+                        Expression.MakeMemberAccess(param, typeof(L).GetProperty("Text"))};
+
+            var members = typeStub.GetType().GetMember("FieldName").Concat(typeStub.GetType().GetMember("Text"));
+            
+            var elementSelector = Expression.Lambda(
+                    Expression.New(typeStub.GetType().GetConstructor(new Type[] { typeof(string), typeof(string) }),
+                        constructorArgs, members
+                        )
                 , param);
-
-            var resultParamE = Expression.Parameter(typeof(T), "e");
-            var resultParamL = Expression.Parameter(typeof(IEnumerable<L>), "L");
-
-            Type resultType =  typeof(KeyValuePair<T, IEnumerable<L>>);
-
-
-
-
-
-
-            //var lambda = Expression.Lambda<Func<T, IEnumerable<L>, KeyValuePair<T, IEnumerable<L>>>>
             
-            //source.GroupJoin(localizations, entityIdSelector, localizationIdSelector, );
-            
+            MethodInfo groupBy = typeof(Queryable).GetMethods().Where(m => m.Name == "GroupBy" && m.GetParameters().Length == 3).First()
+                .MakeGenericMethod(typeof(L), typeof(string), typeStub.GetType());
+
+            var groupByCall = Expression.Call(groupBy, whereCall, keySelector, elementSelector);
+
+            IQueryable groupByResult = (IQueryable)groupByCall.Method.Invoke(null, new object[] { localizations, keySelector, elementSelector });
+
+            Dictionary<string, T> result = new Dictionary<string, T>();
+            foreach (object item in groupByResult)
+            {
+                string key = (string)item.GetType().GetProperty("Key").GetValue(item, null);
+                result.Add(key, Materialize<T>((IEnumerable)item.GetType().GetProperty("Group").GetValue(item, null)));
+            }
+
+            return result;
+        }
+
+        private static T Materialize<T>(IEnumerable presentations) where T : new()
+        {
+            T result = new T();
+            foreach (dynamic item in presentations)
+            {
+                PropertyInfo prop = typeof(T).GetProperty((string)item.FieldName);
+                prop.SetValue(result, item.Text, null);
+            }
+            return result;
         }
 
         public static IQueryable<TResult> Localize<T, L, TKey, TResult>(

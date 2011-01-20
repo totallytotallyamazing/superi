@@ -35,8 +35,10 @@ namespace Shop.Controllers
                 //res1.Language = "en-US";
                 //res1.Text = "bla-bla2";
                 //LocalizationExtensions.SeveLocalization(new List<LocalResource> { res, res1 }, context.LocalResources); 
-                context.LocalResources.Where(l => l.EntityId == 1 && l.EntityName == "E1").GroupBy(l => l.Language, l => new KeyValuePair<string, string>(l.FieldName, l.Text)).ToList();
-                }
+                //context.LocalResources.Where(l => l.EntityId == 1 && l.EntityName == "E1").GroupBy(l => l.Language, l => new KeyValuePair<string, string>(l.FieldName, l.Text)).ToList();
+              //  context.Products.Localize((e, l) => new { e = e, l = l }, context.LocalResources);
+                context.Products.First().Localizations(context.LocalResources);
+            }
             ViewData["isHomePage"] = true;
             return View("Content");
         }

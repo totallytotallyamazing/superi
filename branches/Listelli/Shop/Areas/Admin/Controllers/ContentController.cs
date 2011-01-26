@@ -35,6 +35,12 @@ namespace Shop.Areas.Admin.Controllers
             return RedirectToAction("Go", "Home", new { id = content.Name, area = "" });
         }
 
+        //[HttpPost]
+        //public ActionResult Edit(IList<LocalResource> localizations, int name)
+        //{
+        //    return RedirectToAction("Go", "Home", new { id = name, area = "" });
+        //}
+
         [HttpGet]
         public ActionResult EditPartial(string id)
         {

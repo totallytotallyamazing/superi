@@ -28,5 +28,7 @@ namespace Shop.Models
         [DisplayName("Размер страницы")]
         [Required(ErrorMessage = "*")]
         public int PageSize { get; set; }
+        [DisplayName("Языки")]
+        public string Languages { get; set; }
     }
 }

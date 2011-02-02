@@ -25,6 +25,11 @@ var BasePageExtender = {
 
 
 ProductClientExtensions = {
+
+    removeFromFavorites: function (id) {
+        alert(id);
+    },
+
     validateQuestion: function () {
         var url = "/Captcha/ValidateCaptcha";
         var result = true;

@@ -11,11 +11,23 @@
         additionalClass = " translucent";
     string title = Model.Categories.First().Name + " " + Model.Name;
     string productClickLink = Html.ActionLink("[IMAGE]", "Show", new { id = Model.Id }, new { @class = "titleLink productFancy", title = title }).ToString();
-    //ViewContext.HttpContext.Request.Cookies
+
+      string favoritesStr = string.Empty;
+      if (ViewContext.HttpContext.Request.Cookies["favorites"] != null)
+          favoritesStr = ViewContext.HttpContext.Request.Cookies["favorites"].Value;
+      int[] favorites = favoritesStr.Split(new[] { "," }, StringSplitOptions.RemoveEmptyEntries).Select(c=> Convert.ToInt32(c)).ToArray();
 %>
 <div class="productItem">
     
-    <div class="img">
+    <div class="img <%=favorites.Contains(Model.Id) ? "favorites" : ""%>">
+    <%if (favorites.Contains(Model.Id))
+    {%>
+    <div class="removeFromFavorites">
+    <a href="#" onclick="ProductClientExtensions.removeFromFavorites(<%=Model.Id%>)">[x]</a>
+    </div>
+    <%
+    }%>
+
         <% 
             Shop.Models.ProductImage img = Model.ProductImages.Where(pi => pi.Default).FirstOrDefault();
             if (img != null)

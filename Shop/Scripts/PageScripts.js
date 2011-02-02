@@ -1,6 +1,7 @@
 ﻿/// <reference path="jquery.js" /
 
 var BasePageExtender = {
+    favoritesCount: 0,
     initialize: function BasePageExtender_initialize() {
         $(function () {
             $("#ourCoords, .editContentLink").fancybox(
@@ -16,8 +17,10 @@ var BasePageExtender = {
             }
 
             $("#searchField").watermark({ html: "Слово + Enter", cls: "watermark small" });
+            
         });
     }
+
 };
 
 

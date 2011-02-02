@@ -33,6 +33,7 @@
     <script type="text/javascript">
         var isHomePage = <%= (ViewData["isHomePage"]!=null).ToString().ToLowerInvariant() %>;
         BasePageExtender.initialize();
+        BasePageExtender.favoritesCount = <%= (ViewContext.HttpContext.Request.Cookies["favorites"] != null)?ViewContext.HttpContext.Request.Cookies["favorites"].Value.Split(',').Length:0 %>;
     </script>
     <%-- суперскрипт--%>
     <asp:ContentPlaceHolder runat="server" ID="includes">

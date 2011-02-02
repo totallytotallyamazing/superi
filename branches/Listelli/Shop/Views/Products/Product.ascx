@@ -11,9 +11,10 @@
         additionalClass = " translucent";
     string title = Model.Categories.First().Name + " " + Model.Name;
     string productClickLink = Html.ActionLink("[IMAGE]", "Show", new { id = Model.Id }, new { @class = "titleLink productFancy", title = title }).ToString();
-    
+    //ViewContext.HttpContext.Request.Cookies
 %>
 <div class="productItem">
+    
     <div class="img">
         <% 
             Shop.Models.ProductImage img = Model.ProductImages.Where(pi => pi.Default).FirstOrDefault();

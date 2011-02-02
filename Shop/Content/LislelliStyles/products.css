@@ -5,6 +5,10 @@
 
 .productItem {margin-bottom:50px; float: left; margin-right: 62px; position:relative; width:160px;}
 .productItem .img {position: relative;}
+.productItem .favorites{border:1px solid #3399ff;}
+.removeFromFavorites{position:absolute;}
+.removeFromFavorites a{width:20px; height:20px;}
+
  .productItem .text{/*padding: 10px 0px 0px 10px; width: 160px;*/  line-height: 12px;}
  .productItem .newItem
 {

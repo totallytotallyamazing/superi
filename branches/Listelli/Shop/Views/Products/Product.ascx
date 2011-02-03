@@ -2,6 +2,7 @@
 <%@ Import Namespace="Shop.Helpers" %>
 <%@ Import Namespace="Dev.Mvc.Helpers" %>
 <%@ Import Namespace="Dev.Helpers" %>
+<%@ Import Namespace="Shop.Models" %>
 <% bool isAdmin = (bool)(ViewData["isAdmin"] ?? false); %>
 <%if (Model.Published || isAdmin)
   { %>
@@ -12,10 +13,8 @@
     string title = Model.Categories.First().Name + " " + Model.Name;
     string productClickLink = Html.ActionLink("[IMAGE]", "Show", new { id = Model.Id }, new { @class = "titleLink productFancy", title = title }).ToString();
 
-      string favoritesStr = string.Empty;
-      if (ViewContext.HttpContext.Request.Cookies["favorites"] != null)
-          favoritesStr = ViewContext.HttpContext.Request.Cookies["favorites"].Value;
-      int[] favorites = favoritesStr.Split(new[] { "," }, StringSplitOptions.RemoveEmptyEntries).Select(c=> Convert.ToInt32(c)).ToArray();
+
+      int[] favorites = Favorites.FavoritesProductIds;
 %>
 <div class="productItem">
     

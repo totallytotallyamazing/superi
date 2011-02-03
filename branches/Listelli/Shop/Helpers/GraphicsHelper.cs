@@ -127,9 +127,9 @@ namespace Dev.Mvc.Helpers
         public static string CachedImage(this HtmlHelper helper, string imageFolder, string fileName, string cacheFolder, string alt)
         {
             StringBuilder sb = new StringBuilder();
-            string formatString = "<img src=\"{0}\" alt=\"{1}\" />";
+            string formatString = "<img class=\"{2}\" src=\"{0}\" alt=\"{1}\" />";
 
-            sb.AppendFormat(formatString, GetCachedImage(imageFolder, fileName, cacheFolder), alt);
+            sb.AppendFormat(formatString, GetCachedImage(imageFolder, fileName, cacheFolder), alt,"mIm");
 
             return sb.ToString();
         }

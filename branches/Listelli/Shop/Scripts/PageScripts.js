@@ -1,5 +1,9 @@
 ﻿/// <reference path="jquery.js" /
 
+
+
+
+
 var BasePageExtender = {
     favoritesCount: 0,
     initialize: function BasePageExtender_initialize() {
@@ -17,7 +21,7 @@ var BasePageExtender = {
             }
 
             $("#searchField").watermark({ html: "Слово + Enter", cls: "watermark small" });
-            
+
         });
     }
 
@@ -27,8 +31,47 @@ var BasePageExtender = {
 ProductClientExtensions = {
 
     removeFromFavorites: function (id) {
-        alert(id);
+//        var cookies = this.getCookie("favorites");
+//        cookies = cookies.replace(id + ",", "");
+//        this.setCookie("favorites", cookies, "Mon, 01-Jan-2020 00:00:00 GMT", "/");
     },
+
+    addToFavorites: function (id) {
+//        var cookies = this.getCookie("favorites");
+//        cookies = cookies + id + ",";
+//        this.setCookie("favorites", cookies, "Mon, 01-Jan-2020 00:00:00 GMT", "/");
+//        alert("Позиция отмечена")
+    },
+
+
+    getCookie: function (name) {
+        var cookie = " " + document.cookie;
+        var search = " " + name + "=";
+        var setStr = null;
+        var offset = 0;
+        var end = 0;
+        if (cookie.length > 0) {
+            offset = cookie.indexOf(search);
+            if (offset != -1) {
+                offset += search.length;
+                end = cookie.indexOf(";", offset)
+                if (end == -1) {
+                    end = cookie.length;
+                }
+                setStr = unescape(cookie.substring(offset, end));
+            }
+        }
+        return (setStr);
+    },
+
+    setCookie: function (name, value, expires, path, domain, secure) {
+        document.cookie = name + "=" + escape(value) +
+        ((expires) ? "; expires=" + expires : "") +
+        ((path) ? "; path=" + path : "") +
+        ((domain) ? "; domain=" + domain : "") +
+        ((secure) ? "; secure" : "");
+    },
+
 
     validateQuestion: function () {
         var url = "/Captcha/ValidateCaptcha";

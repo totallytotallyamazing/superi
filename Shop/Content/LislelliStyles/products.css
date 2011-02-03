@@ -6,8 +6,12 @@
 .productItem {margin-bottom:50px; float: left; margin-right: 62px; position:relative; width:160px;}
 .productItem .img {position: relative;}
 .productItem .favorites{border:1px solid #3399ff;}
+
+
 .removeFromFavorites{position:absolute;}
 .removeFromFavorites a{width:20px; height:20px;}
+
+
 
  .productItem .text{/*padding: 10px 0px 0px 10px; width: 160px;*/  line-height: 12px;}
  .productItem .newItem
@@ -26,7 +30,8 @@
   .productItem .attributeLabel {color: #999999; font-size: 11px;}
   .productItem .attributeValue {color: Black; font-size: 11px;}
   
-  
+  .hide{display:none;}
+  .block{display:block;}
   
   .productModal {margin-top: 50px; width: 600px; position: relative; z-index: 1250;}
   #imgProduct {float: left; width: 365px; text-align:center;}
@@ -42,6 +47,13 @@
   #productDescription .details {padding-top: 40px;}
   #productDescription .txtDetails {font-size: 12px;}
   #productDescription .linkDetails {font-size: 12px; color: #3399ff;}
+  
+  #productDescription .addToFavorites {padding-top: 20px; }
+  #productDescription .addToFavorites a{background-color:#3399ff; color:#fff; font-size:12px; text-decoration:none;}
+  #productDescription .removeFromFavorites {padding-top: 20px; line-height:20px; }
+  #productDescription .removeFromFavorites a{}
+  #productDescription .removeFromFavorites a.removeLink{color:Red;}
+  
   
   #imagePreviews { margin: 10px 0px 0px 14px;  }
   .imageItem { margin-left: 12px; /*width: 110px;*/ display:inline;} 

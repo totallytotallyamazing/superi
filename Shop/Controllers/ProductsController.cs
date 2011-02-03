@@ -35,24 +35,24 @@ namespace Shop.Controllers
                 Category category = context.Categories.Include("Parent")
                     .First(c => c.Id == id);
 
-                 products = context.Products
-                        .Include("Brand")
-                        .Include("ProductAttributeValues.ProductAttribute")
-                        .Include("ProductAttributeStaticValues.ProductAttribute")
-                        .Include("ProductImages")
-                        .Include("Categories")
-                        .Where(p => (!brandId.HasValue || p.Brand.Id == brandId.Value));
+                products = context.Products
+                       .Include("Brand")
+                       .Include("ProductAttributeValues.ProductAttribute")
+                       .Include("ProductAttributeStaticValues.ProductAttribute")
+                       .Include("ProductImages")
+                       .Include("Categories")
+                       .Where(p => (!brandId.HasValue || p.Brand.Id == brandId.Value));
                 if (category.Parent == null)
                 {
                     ViewData["showAdminLinks"] = false;
 
-                    products = products.Where(p=>p.Categories.Any(
-                        c=>c.Id == id || (c.Parent!=null && c.Parent.Id == id)))
+                    products = products.Where(p => p.Categories.Any(
+                        c => c.Id == id || (c.Parent != null && c.Parent.Id == id)))
                         .Where(p => p.ShowInRoot);
                 }
                 else
                     products = products.Where(p => (!brandId.HasValue || p.Brand.Id == brandId.Value))
-                        .Where(p=>p.Categories.Any(c=>c.Id == id));
+                        .Where(p => p.Categories.Any(c => c.Id == id));
 
                 orderBy = orderBy ?? string.Empty;
                 products = ApplyOrdering(products, orderBy.ToLowerInvariant());
@@ -75,7 +75,7 @@ namespace Shop.Controllers
                 case "brand":
                     return products.OrderBy(p => p.Brand.Name);
                 case "onlynew":
-                    return products.OrderBy(p => p.SortOrder).Where(p=>p.IsNew);
+                    return products.OrderBy(p => p.SortOrder).Where(p => p.IsNew);
                 default:
                     return products.OrderBy(p => p.SortOrder);
             }
@@ -90,7 +90,7 @@ namespace Shop.Controllers
             return products.Skip(currentPage * pageSize).Take(pageSize);
         }
 
-        [OutputCache(NoStore=true, Duration=1, VaryByParam="*")]
+        [OutputCache(NoStore = true, Duration = 1, VaryByParam = "*")]
         public ActionResult Show(int id)
         {
             HttpContext.Items["IsProductView"] = true;
@@ -113,7 +113,7 @@ namespace Shop.Controllers
 
                 ViewData["quickQuestion"] = new QuickQuestionModel { ProductName = product.PartNumber + " " + product.Categories.First().Name + " " + product.Name };
 
-                return View("ShowModal", product); 
+                return View("ShowModal", product);
             }
         }
 
@@ -174,6 +174,40 @@ namespace Shop.Controllers
             return View("Index", products);
         }
 
+        public ActionResult Favorites()
+        {
+            ViewData["title"] = "Отмеченные позиции";
+            List<Product> products = null;
+
+            if (HttpContext.Request.Cookies["favorites"] != null)
+            {
+
+                using (ShopStorage context = new ShopStorage())
+                {
+                    try
+                    {
+
+                        products = context.Products
+                            .Include("ProductAttributeValues")
+                            .Include("Categories")
+                            .Include("ProductImages")
+                            .Include("ProductAttributeStaticValues.ProductAttribute")
+                            .Where(ContextExtension.BuildContainsExpression<Product, int>(p => p.Id, Models.Favorites.FavoritesProductIds))
+                            .OrderBy(p => p.SortOrder)
+                            .ToList();
+                    }
+                    catch
+                    {
+
+                    }
+                }
+            }
+            return View("Index", products);
+        }
+
+
+
+
         [HttpPost]
         public void QuickQuestion(QuickQuestionModel model)
         {
@@ -185,7 +219,7 @@ namespace Shop.Controllers
     }
 }
 
-namespace Shop.Models 
+namespace Shop.Models
 {
     public class QuickQuestionModel
     {

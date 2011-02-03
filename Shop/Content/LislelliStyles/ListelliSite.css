@@ -732,6 +732,9 @@ html, body
     list-style-type: none;
 }
 
+
+
+
 #bubbleNew
 {
     position: relative;
@@ -763,6 +766,18 @@ html, body
     margin-left: 12px;
     margin-right: 12px;
     padding-top: 7px;
+}
+
+
+.bubbleNewWithFavorites
+{
+	height: 94px !important;
+	background: url('./img/bubbleNew.png') no-repeat !important;
+}
+
+.txtBubbleNewFavorites
+{
+	
 }
 
 

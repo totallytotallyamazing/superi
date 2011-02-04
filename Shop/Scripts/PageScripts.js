@@ -31,16 +31,16 @@ var BasePageExtender = {
 ProductClientExtensions = {
 
     removeFromFavorites: function (id) {
-//        var cookies = this.getCookie("favorites");
-//        cookies = cookies.replace(id + ",", "");
-//        this.setCookie("favorites", cookies, "Mon, 01-Jan-2020 00:00:00 GMT", "/");
+        var cookies = this.getCookie("favorites");
+        cookies = cookies.replace(id + ",", "");
+        this.setCookie("favorites", cookies, "Mon, 01-Jan-2020 00:00:00 GMT", "/");
     },
 
     addToFavorites: function (id) {
-//        var cookies = this.getCookie("favorites");
-//        cookies = cookies + id + ",";
-//        this.setCookie("favorites", cookies, "Mon, 01-Jan-2020 00:00:00 GMT", "/");
-//        alert("Позиция отмечена")
+        var cookies = this.getCookie("favorites");
+        cookies = cookies + id + ",";
+        this.setCookie("favorites", cookies, "Mon, 01-Jan-2020 00:00:00 GMT", "/");
+        alert("Позиция отмечена")
     },
 
 
@@ -65,7 +65,8 @@ ProductClientExtensions = {
     },
 
     setCookie: function (name, value, expires, path, domain, secure) {
-        document.cookie = name + "=" + escape(value) +
+        //document.cookie = name + "=" + escape(value) +
+        document.cookie = name + "=" + value +
         ((expires) ? "; expires=" + expires : "") +
         ((path) ? "; path=" + path : "") +
         ((domain) ? "; domain=" + domain : "") +

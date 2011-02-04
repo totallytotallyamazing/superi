@@ -771,8 +771,8 @@ html, body
 
 .bubbleNewWithFavorites
 {
-	height: 94px !important;
-	background: url('./img/bubbleNew.png') no-repeat !important;
+	height: 100px !important;
+	background: url('./img/bubbleNew1.png') no-repeat !important;
 }
 
 .txtBubbleNewFavorites

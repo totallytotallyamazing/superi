@@ -23,7 +23,7 @@ namespace Shop.Models
             }
         }
 
-        public static string FavoriteNames
+        public static string PositionNames
         {
             get
             {
@@ -41,7 +41,17 @@ namespace Shop.Models
                     return "позиций";
                 return "позиции";
             }
+        }
 
+        public static string CheckedNames
+        {
+            get
+            {
+                if (FavoritesProductIds.Count() % 10 == 1)
+                    return "отмечена";
+                else
+                    return "отмечены";
+            }
         }
     }
 }

@@ -759,6 +759,8 @@ html, body
     color: #333333;
     font-size: 13px;
 }
+
+
 #bubbleText
 {
     width: 140px;
@@ -768,6 +770,10 @@ html, body
     padding-top: 7px;
 }
 
+#bubbleText .favBlock
+{
+    padding-top:10px;
+    }
 
 .bubbleNewWithFavorites
 {

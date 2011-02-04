@@ -18,7 +18,7 @@
 %>
 <div class="productItem">
     
-    <div class="img <%=favorites.Contains(Model.Id) ? "favorites" : ""%>">
+    <div class="img <%=favorites.Contains(Model.Id) ? "addedToFavorites" : "removedFromFavorites"%>">
     <%if (favorites.Contains(Model.Id))
     {%>
     <div class="removeFromFavorites">

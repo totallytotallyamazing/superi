@@ -5,7 +5,8 @@
 
 .productItem {margin-bottom:50px; float: left; margin-right: 62px; position:relative; width:160px;}
 .productItem .img {position: relative;}
-.productItem .favorites{border:1px solid #3399ff;}
+.productItem .addedToFavorites{border:1px solid #3399ff;}
+.productItem .removedFromFavorites{border:1px solid #ffffff;}
 
 
 .removeFromFavorites{position:absolute;}

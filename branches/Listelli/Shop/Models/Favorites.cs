@@ -50,7 +50,7 @@ namespace Shop.Models
                 if (FavoritesProductIds.Count() % 10 == 1)
                     return "отмечена";
                 else
-                    return "отмечены";
+                    return "отмечено";
             }
         }
     }

@@ -15,7 +15,9 @@
         <span class="txtBubbleNew">новых поступлений!</span>
         <%if (favoritesCount > 0)
           {%>
+          <div class="favBlock">
         <%=Html.ActionLink("Вами "+Favorites.CheckedNames, "Favorites", "Products", null, new { @class = "txtBubbleNew" })%> <span class="txtBubbleNew txtBubbleNewFavorites"><br /> <%=favoritesCount%> <%=Favorites.PositionNames%></span>
+        </div>
         <%
           }%>
     </div>

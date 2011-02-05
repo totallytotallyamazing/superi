@@ -136,7 +136,7 @@ ProductClientExtensions = {
 
     _adjustProductContainerHeight: function () {
         var maxImgHeight = 0;
-        $(".productItem .img").each(function () {
+        $(".productItem").each(function () {
             if (this.offsetHeight > maxImgHeight)
                 maxImgHeight = this.offsetHeight;
         });
@@ -146,7 +146,7 @@ ProductClientExtensions = {
                 maxTextHeight = this.offsetHeight;
         });
 
-        $(".productItem .img").height(maxImgHeight);
+        $(".productItem").height(maxImgHeight);
         $(".productItem .text").height(maxTextHeight);
     },
 

@@ -24,10 +24,11 @@ namespace Dev.Mvc.Helpers
             fixDimension.Add("mainView", FixedDimension.Width);
             maxDimensions.Add("thumbnail1", 50);
             fixDimension.Add("thumbnail1", FixedDimension.Width);
+            limitHeight.Add("thumbnail1", 50);
             maxDimensions.Add("thumbnail2", 160);
             fixDimension.Add("thumbnail2", FixedDimension.Width);
-            maxDimensions.Add("catalogueThumb", 83);
-            fixDimension.Add("catalogueThumb", FixedDimension.Height);
+            maxDimensions.Add("catalogueThumb", 120);
+            fixDimension.Add("catalogueThumb", FixedDimension.Width);
             limitHeight.Add("catalogueThumb", 82);
             maxDimensions.Add("catalogueMain", 1005);
             fixDimension.Add("catalogueMain", FixedDimension.Width);
@@ -66,9 +67,9 @@ namespace Dev.Mvc.Helpers
             {
                 int destHeight = calulatedSize.Height;
                 int destWidth = calulatedSize.Width;
-                if (height > 0 && calulatedSize.Height > height)
+                if (height > 0 /*&& calulatedSize.Height > height*/)
                     destHeight = height;
-                if (width > 0 && calulatedSize.Width > width)
+                if (width > 0 /*&& calulatedSize.Width > width*/)
                     destWidth = width;
                 return new Rectangle(0, 0, destWidth, destHeight);
             }
@@ -170,7 +171,7 @@ namespace Dev.Mvc.Helpers
         public static string CachedImage(this HtmlHelper helper, string originalPath, string fileName, string cacheFolder, string alt)
         {
             StringBuilder sb = new StringBuilder();
-            string formatString = "<img class=\"{2}\" src=\"{0}\" alt=\"{1}\" />";
+            string formatString = "<img src=\"{0}\" alt=\"{1}\" />";
 
             sb.AppendFormat(formatString, GetCachedImage(originalPath, fileName, cacheFolder), alt);
 

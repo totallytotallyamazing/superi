@@ -1,4 +1,4 @@
-﻿body
+﻿body, html
 {
     background: black;
 }
@@ -51,11 +51,11 @@ img
 {
     border: 0px;
 }
-html, body
+/*html, body
 {
     background: #fff;
 }
-
+*/
 
 
 /*----шрифты---------*/

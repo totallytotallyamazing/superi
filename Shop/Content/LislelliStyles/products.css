@@ -10,7 +10,7 @@
 .productItem .removedFromFavorites{border:1px solid #ffffff;}
 
 
-.removeButtonLink{ background:url(../../Content/LislelliStyles/img/close24.png) no-repeat; width:15px; height:15px; display:block;}
+.removeButtonLink{ background:url(../../Content/LislelliStyles/img/close24.png) no-repeat; width:15px; height:15px; display:block; position:absolute;}
 
 
 .removeFromFavorites{position:absolute;}

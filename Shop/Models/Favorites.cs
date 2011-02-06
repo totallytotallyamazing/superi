@@ -27,6 +27,7 @@ namespace Shop.Models
         {
             get
             {
+
                 if (FavoritesProductIds.Count() == 1)
                     return "позиция";
                 if (FavoritesProductIds.Count() > 1 && FavoritesProductIds.Count() <= 4)
@@ -39,7 +40,7 @@ namespace Shop.Models
                     return "позиции";
                 if (FavoritesProductIds.Count() % 10 > 4 && FavoritesProductIds.Count() <= 10)
                     return "позиций";
-                return "позиции";
+                return "позиция";
             }
         }
 
@@ -47,10 +48,9 @@ namespace Shop.Models
         {
             get
             {
-                if (FavoritesProductIds.Count() % 10 == 1)
+                if(FavoritesProductIds.Count()==0)
                     return "отмечена";
-                else
-                    return "отмечено";
+                return FavoritesProductIds.Count() % 10 == 1 ? "отмечена" : "отмечено";
             }
         }
     }

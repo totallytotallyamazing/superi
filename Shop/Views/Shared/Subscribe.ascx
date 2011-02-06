@@ -5,20 +5,19 @@
     BasePageExtender.initialize();
 
 </script>
-
 <%
     int favoritesCount = Shop.Models.Favorites.FavoritesProductIds.Count(); %>
-
 <div id="bubbleNew" class="<%=(favoritesCount>0?"bubbleNewWithFavorites":"") %>">
     <div id="bubbleText">
-        <span class="txtBubbleNew">Хочу</span> <a href="#" id="subscribeMe" class="txtBubbleNew">быть в курсе</a>
-        <span class="txtBubbleNew">новых поступлений!</span>
-        <%if (favoritesCount > 0)
-          {%>
-          <div class="favBlock">
-        <%=Html.ActionLink("Вами "+Favorites.CheckedNames, "Favorites", "Products", null, new { @class = "txtBubbleNew" })%> <span class="txtBubbleNew txtBubbleNewFavorites"><br /> <%=favoritesCount%> <%=Favorites.PositionNames%></span>
+        <span class="txtBubbleNew">Хочу</span> <a href="#" id="subscribeMe" class="txtBubbleNew">
+            быть в курсе</a> <span class="txtBubbleNew">новых поступлений!</span>
+        <div id="favBlock" class="favBlock <%=(favoritesCount == 0?"displayNone":"") %>">
+            <%=Html.ActionLink("Вами "+Favorites.CheckedNames, "Favorites", "Products", null, new { @class = "txtBubbleNew", id="favTextPrefix" })%>
+            <span class="txtBubbleNew txtBubbleNewFavorites">
+                <br />
+                <span id="favCount">
+                    <%=favoritesCount%></span> <span id="favTextSufix">
+                <%=Favorites.PositionNames%></span></span>
         </div>
-        <%
-          }%>
     </div>
 </div>

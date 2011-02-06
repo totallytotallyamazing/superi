@@ -34,15 +34,62 @@ ProductClientExtensions = {
         var cookies = this.getCookie("favorites");
         cookies = cookies.replace(id + ",", "");
         this.setCookie("favorites", cookies, "Mon, 01-Jan-2020 00:00:00 GMT", "/");
+        var x = cookies.split(",");
+        var favCount = x.length - 1;
+        $("#favCount").html(favCount);
+        $("#favTextPrefix").html(this.getFavPrefixText(favCount));
+        $("#favTextSufix").html(this.getFavSufixText(favCount));
+        if (favCount == 0) {
+            $("#bubbleNew").removeClass('bubbleNewWithFavorites');
+            $("#favBlock").addClass('displayNone');
+        }
+
+
     },
 
     addToFavorites: function (id) {
         var cookies = this.getCookie("favorites");
         cookies = cookies + id + ",";
         this.setCookie("favorites", cookies, "Mon, 01-Jan-2020 00:00:00 GMT", "/");
-        alert("Позиция отмечена")
+        var x = cookies.split(",");
+        var favCount = x.length - 1;
+        $("#bubbleNew").addClass('bubbleNewWithFavorites');
+        $("#favBlock").removeClass('displayNone');
+        $("#favCount").html(favCount);
+        $("#favTextPrefix").html(this.getFavPrefixText(favCount));
+        $("#favTextSufix").html(this.getFavSufixText(favCount));
+        //alert("Позиция отмечена");
     },
 
+    hideRemoveFromFavoritesButton: function (obj) {
+        $(obj).css("display", "none");
+        //$(obj.parentNode).css("display", "none");
+        $(obj.parentNode).removeClass('addedToFavorites');
+        $(obj.parentNode).addClass('removedFromFavorites');
+
+    },
+
+    getFavPrefixText: function (cnt) {
+        if (cnt % 10 == 1) {
+            return "Вами отмечена";
+        }
+        return "Вами отмечено";
+    },
+
+    getFavSufixText: function (cnt) {
+        if (cnt == 1)
+            return "позиция";
+        if (cnt > 1 && cnt <= 4)
+            return "позиции";
+        if (cnt > 4 && cnt <= 20)
+            return "позиций";
+        if (cnt % 10 == 1)
+            return "позиция";
+        if (cnt % 10 > 1 && cnt <= 4)
+            return "позиции";
+        if (cnt % 10 > 4 && cnt <= 10)
+            return "позиций";
+    },
 
     getCookie: function (name) {
         var cookie = " " + document.cookie;

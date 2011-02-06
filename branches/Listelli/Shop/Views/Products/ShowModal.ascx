@@ -48,13 +48,13 @@
             $("#remFromFav").click(function () {
                 $(".removeFromFavorites").css("display", "none");
                 $(".addToFavorites").css("display", "block");
-                $(".mIm").css("border", "none");
+                //$(".mIm").css("border", "none");
             })
 
             $("#addToFav").click(function () {
                 $(".addToFavorites").css("display", "none");
                 $(".removeFromFavorites").css("display", "block");
-                $(".mIm").css("border", "3px solid #3399ff");
+                //$(".mIm").css("border", "3px solid #3399ff");
             })
         </script>
     </div>

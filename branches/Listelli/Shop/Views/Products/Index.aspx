@@ -35,8 +35,6 @@
     <link rel="Stylesheet" href="/Content/catalog.css" />
     <link href="/Content/LislelliStyles/products.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript">
-
-
         $(function () {
             ProductClientExtensions.initialize();
             ProductClientExtensions.bindFancy();

@@ -774,6 +774,7 @@ img
 {
     padding-top:10px;
     }
+#bubbleText .displayNone{display:none;}    
 
 .bubbleNewWithFavorites
 {

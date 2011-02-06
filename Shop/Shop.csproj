@@ -256,6 +256,8 @@
     <Content Include="Content\LislelliStyles\img\cbContainer.png" />
     <Content Include="Content\LislelliStyles\img\cbDropDown.png" />
     <Content Include="Content\LislelliStyles\img\cbValueContainer.png" />
+    <Content Include="Content\LislelliStyles\img\close.png" />
+    <Content Include="Content\LislelliStyles\img\close24.png" />
     <Content Include="Content\LislelliStyles\img\corner_ne.png" />
     <Content Include="Content\LislelliStyles\img\corner_nw.png" />
     <Content Include="Content\LislelliStyles\img\corner_se.png" />

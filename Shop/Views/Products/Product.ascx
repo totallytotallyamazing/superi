@@ -22,7 +22,7 @@
     <%if (favorites.Contains(Model.Id))
     {%>
     <div class="removeFromFavorites">
-    <a href="#" onclick="ProductClientExtensions.removeFromFavorites(<%=Model.Id%>)">[x]</a>
+    <a href="#" title="Удалить из отмеченных" class="removeButtonLink" onclick="ProductClientExtensions.removeFromFavorites(<%=Model.Id%>)"></a>
     </div>
     <%
     }%>

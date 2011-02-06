@@ -28,6 +28,7 @@ var BrandCatalogue = {
         $.get("/BrandCatalog/Brands/BrandLinks/" + id, function (data) {
             $("#topMenu").html(data);
             //$("a.txtSubMenuItem").click(function () { debugger;  this.style.textDecoration = "none"; href = ""; return false; })
+            $("a.txtSubMenuItem").click(function () { $("a.txtSubMenuItem").css("text-decoration", "underline"); this.style.textDecoration = "none"; this.blur(); });
         });
     },
 

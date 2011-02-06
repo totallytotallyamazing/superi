@@ -113,7 +113,7 @@ ProductClientExtensions = {
     bindFancy: function () {
         $(".productFancy").fancybox({
             titlePosition: "over",
-            hideOnOverlayClick: false,
+            hideOnOverlayClick: true,
             autoScale: false,
             onComplete: function () {
                 window.setTimeout($.fancybox.resize, 200);

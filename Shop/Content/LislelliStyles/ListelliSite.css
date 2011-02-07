@@ -939,3 +939,5 @@ a.dock-item
 
 .watermark{color:Gray; white-space:nowrap;}
 .watermark.small{font-size:12px; margin-left:20px; margin-top:2px}
+
+.feedbackForm .editor-field{margin-bottom:20px;}

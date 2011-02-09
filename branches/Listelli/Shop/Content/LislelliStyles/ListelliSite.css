@@ -776,6 +776,9 @@ img
     }
 #bubbleText .displayNone{display:none;}    
 
+.displayNone{display:none !important;}    
+.displayBlock{display:block !important;}    
+
 .bubbleNewWithFavorites
 {
 	height: 100px !important;

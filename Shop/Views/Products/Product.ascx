@@ -19,11 +19,11 @@
 <div class="productItem">
     
     <div class="img <%=favorites.Contains(Model.Id) ? "addedToFavorites" : "removedFromFavorites"%>">
-    <%if (favorites.Contains(Model.Id))
-    {%>
-        <a href="#" title="Удалить из отмеченных" class="removeButtonLink" onclick="ProductClientExtensions.removeFromFavorites(<%=Model.Id%>); ProductClientExtensions.hideRemoveFromFavoritesButton(this)"></a>
+    <%//if (favorites.Contains(Model.Id))
+    //{%>
+        <a href="#" title="Удалить из отмеченных" id="hideItemLink<%=Model.Id%>" class="removeButtonLink <%=(favorites.Contains(Model.Id))?"displayBlock":"displayNone" %>" onclick="ProductClientExtensions.removeFromFavorites(<%=Model.Id%>); ProductClientExtensions.hideRemoveFromFavoritesButton(this)"></a>
     <%
-    }%>
+//    }%>
 
         <% 
             Shop.Models.ProductImage img = Model.ProductImages.Where(pi => pi.Default).FirstOrDefault();

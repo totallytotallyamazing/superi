@@ -39,6 +39,8 @@ ProductClientExtensions = {
         $("#favCount").html(favCount);
         $("#favTextPrefix").html(this.getFavPrefixText(favCount));
         $("#favTextSufix").html(this.getFavSufixText(favCount));
+        $("#hideItemLink" + id).removeClass("displayBlock")
+        $("#hideItemLink" + id).addClass("displayNone");
         if (favCount == 0) {
             $("#bubbleNew").removeClass('bubbleNewWithFavorites');
             $("#favBlock").addClass('displayNone');
@@ -58,15 +60,18 @@ ProductClientExtensions = {
         $("#favCount").html(favCount);
         $("#favTextPrefix").html(this.getFavPrefixText(favCount));
         $("#favTextSufix").html(this.getFavSufixText(favCount));
-        //alert("Позиция отмечена");
+
+        var obj = $("#hideItemLink" + id);
+        obj.removeClass("displayNone")
+        obj.addClass("displayBlock");
+        $(obj.parentNode).removeClass('removedFromFavorites');
+        $(obj.parentNode).addClass('addedToFavorites');
     },
 
     hideRemoveFromFavoritesButton: function (obj) {
         $(obj).css("display", "none");
-        //$(obj.parentNode).css("display", "none");
         $(obj.parentNode).removeClass('addedToFavorites');
         $(obj.parentNode).addClass('removedFromFavorites');
-
     },
 
     getFavPrefixText: function (cnt) {

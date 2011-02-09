@@ -54,7 +54,7 @@ namespace Shop.Areas.BrandCatalog.Controllers
                     BrandName = brand.Name,
                     ThumbnailsLayout = dockContent.ToString(),
                     ShowPrev = currentPage != 0,
-                    ShowNext = (int)(imagesOverall / 7) + 7 > currentPage * 7 + 7,
+                    ShowNext = (int)(imagesOverall / 7) + 7 > currentPage + 7,
                     Page = currentPage,
                     BrandId = brandId, 
                     GroupId = groupId

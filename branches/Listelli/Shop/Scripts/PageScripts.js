@@ -64,8 +64,8 @@ ProductClientExtensions = {
         var obj = $("#hideItemLink" + id);
         obj.removeClass("displayNone")
         obj.addClass("displayBlock");
-        $(obj.parentNode).removeClass('removedFromFavorites');
-        $(obj.parentNode).addClass('addedToFavorites');
+        $(obj).parent().removeClass('removedFromFavorites');
+        $(obj).parent().addClass('addedToFavorites');
     },
 
     hideRemoveFromFavoritesButton: function (obj) {

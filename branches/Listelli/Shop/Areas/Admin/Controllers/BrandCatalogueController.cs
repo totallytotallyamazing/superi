@@ -49,17 +49,18 @@ namespace Shop.Areas.Admin.Controllers
         {
             using (BrandCatalogue context = new BrandCatalogue())
             {
-                CatalogueGroup group = context.CatalogueGroups
-                    .Include("CatalogueImages").Include("Brand")
-                    .First(g => g.Id == id);
-                foreach (var image in group.CatalogueImages)
+                CatalogueGroup group = context.CatalogueGroups.First(g => g.Id == id);
+
+                var folders = context.CatalogueImages.Where(ci => ci.CatalogueGroup.Id == id)
+                    .GroupBy(ci => new { Group = ci.CatalogueGroup.Id, Brand = ci.Brand.Id }).Select(i=>i.Key);
+
+                foreach (var folder in folders)
                 {
-                    if (!string.IsNullOrEmpty(image.Image))
-                    {
-                        string relativePath = string.Format("~/Content/CatalogueImages/Brand{0}Group{1}/{2}", image.Brand.Id, id, image.Image);
-                        System.IO.File.Delete(Server.MapPath(relativePath));
-                    }
+                    string folderPath = Server.MapPath(string.Format("~/Content/CatalogueImages/Brand{0}Group{1}", folder.Brand, folder.Group));
+                    if (Directory.Exists(folderPath))
+                        Directory.Delete(folderPath, true);
                 }
+
                 context.DeleteObject(group);
                 context.SaveChanges();
             }

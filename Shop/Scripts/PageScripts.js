@@ -62,10 +62,8 @@ ProductClientExtensions = {
         $("#favTextSufix").html(this.getFavSufixText(favCount));
 
         var obj = $("#hideItemLink" + id);
-        obj.removeClass("displayNone")
-        obj.addClass("displayBlock");
-        $(obj).parent().removeClass('removedFromFavorites');
-        $(obj).parent().addClass('addedToFavorites');
+        obj.removeClass("displayNone").addClass("displayBlock");
+        $(obj).parent().removeClass('removedFromFavorites').addClass('addedToFavorites');
     },
 
     hideRemoveFromFavoritesButton: function (obj) {

@@ -18,7 +18,7 @@
 %>
 <div class="productItem">
     
-    <div class="img <%=favorites.Contains(Model.Id) ? "addedToFavorites" : "removedFromFavorites"%>">
+    <div class="img <%=favorites.Contains(Model.Id) ? "addedToFavorites" : "removedFromFavorites"%>" productId="<%= Model.Id %>">
     <%//if (favorites.Contains(Model.Id))
     //{%>
         <a href="#" title="Удалить из отмеченных" id="hideItemLink<%=Model.Id%>" class="removeButtonLink <%=(favorites.Contains(Model.Id))?"displayBlock":"displayNone" %>" onclick="ProductClientExtensions.removeFromFavorites(<%=Model.Id%>); ProductClientExtensions.hideRemoveFromFavoritesButton(this)"></a>

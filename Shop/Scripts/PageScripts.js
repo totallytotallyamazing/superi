@@ -46,7 +46,7 @@ ProductClientExtensions = {
             $("#favBlock").addClass('displayNone');
         }
 
-
+        $("div.productItem div.img[productId='" + id + "']").addClass("removedFromFavorites").removeClass("addedToFavorites");
     },
 
     addToFavorites: function (id) {

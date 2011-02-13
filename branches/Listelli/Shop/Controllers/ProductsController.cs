@@ -76,6 +76,8 @@ namespace Shop.Controllers
                     return products.OrderBy(p => p.Brand.Name);
                 case "onlynew":
                     return products.OrderBy(p => p.SortOrder).Where(p => p.IsNew);
+                case "tint":
+                    return products.OrderBy(p => p.Color).Where(p => p.Color != null && p.Color != "");
                 default:
                     return products.OrderBy(p => p.SortOrder);
             }

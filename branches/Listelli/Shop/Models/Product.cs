@@ -46,6 +46,10 @@ namespace Shop.Models
         [StringLength(100, ErrorMessage = "Максимум 100 символов.")]
         public string Color { get; set; }
 
+        [DisplayName("Оттенок")]
+        [StringLength(150, ErrorMessage = "Максимум 150 символов.")]
+        public string Tint { get; set; }
+
         [DisplayName("Новинка")]
         public bool IsNew { get; set; }
 

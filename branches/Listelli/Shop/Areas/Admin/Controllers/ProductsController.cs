@@ -121,7 +121,7 @@ namespace Shop.Areas.Admin.Controllers
                     { 
                         "Name", "PartNumber", "SeoDescription", "SeoKeywords", /*"ShortDescription",
                         "Description", */"IsNew", "SortOrder", "Color", "Published", "IsSpecialOffer", 
-                        "PersonalExperience", "PersonalExperienceSet", "ShowInRoot"
+                        "PersonalExperience", "PersonalExperienceSet", "ShowInRoot", "Tint"
                     },
                     form.ToValueProvider());
 

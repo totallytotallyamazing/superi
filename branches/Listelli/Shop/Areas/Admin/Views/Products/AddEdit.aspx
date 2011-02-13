@@ -95,12 +95,23 @@
                         <%= Html.LabelFor(model => model.Color) %>
                     </td>
                     <td>
-                        <%= Html.TextBoxFor(model => model.Color)%>
+                        <%= Html.DropDownListFor(model => model.Color, new List<SelectListItem> { new SelectListItem { Text = "", Value = "" }, new SelectListItem { Text = "Светлый", Value = "Светлый" }, new SelectListItem { Text = "Темный", Value = "Темный" } })%>
                     </td>
                     <td>
                         <%= Html.ValidationMessageFor(model => model.Color)%>
                     </td>
                 </tr>
+<%--                <tr>
+                    <td class="labelCell">
+                        <%= Html.LabelFor(model => model.Tint) %>
+                    </td>
+                    <td>
+                        <%= Html.TextBoxFor(model => model.Tint)%>
+                    </td>
+                    <td>
+                        <%= Html.ValidationMessageFor(model => model.Tint)%>
+                    </td>
+                </tr>--%>
             </table>
             <%if (Model != null)
               { %>

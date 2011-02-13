@@ -200,6 +200,7 @@
           <Property Name="SortOrder" Type="int" Nullable="false" />
           <Property Name="Published" Type="bit" Nullable="false" />
           <Property Name="ShowInRoot" Type="bit" Nullable="false" />
+          <Property Name="Tint" Type="varchar" MaxLength="150" />
         </EntityType>
         <EntityType Name="ProductAttribute">
           <Key>
@@ -689,7 +690,8 @@
           <NavigationProperty Name="ProductVariant" Relationship="shop_model.FK_ProductVariant_ProductVariant" FromRole="Product" ToRole="ProductVariant" />
           <NavigationProperty Name="Categories" Relationship="shop_model.ProductCategoryMapping" FromRole="Product" ToRole="Category" />
           <NavigationProperty Name="ProductAttributeStaticValues" Relationship="shop_model.FK_ProductAttributeStaticValues_Product" FromRole="Product" ToRole="ProductAttributeStaticValue" />
-          <Property Type="Boolean" Name="ShowInRoot" Nullable="false" /></EntityType>
+          <Property Type="Boolean" Name="ShowInRoot" Nullable="false" />
+          <Property Type="String" Name="Tint" MaxLength="150" FixedLength="false" Unicode="false" /></EntityType>
         <EntityType Name="ProductAttribute">
           <Key>
             <PropertyRef Name="Id" />
@@ -868,6 +870,7 @@
           <EntitySetMapping Name="Products">
             <EntityTypeMapping TypeName="IsTypeOf(shop_model.Product)">
               <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="Tint" ColumnName="Tint" />
                 <ScalarProperty Name="ShowInRoot" ColumnName="ShowInRoot" />
                 <ScalarProperty Name="Published" ColumnName="Published" />
                 <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />

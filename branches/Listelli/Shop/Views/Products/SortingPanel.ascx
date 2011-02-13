@@ -34,6 +34,7 @@
     <div id="sortBy">
         <%= generateSortLink("По названию", "name") %>
         <%= generateSortLink("По бренду", "brand")%>
+        <%= generateSortLink("По оттенку", "tint")%>
         <%= generateSortLink("Только новое", "onlynew")%>
     </div>
 </div>

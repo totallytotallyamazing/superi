@@ -50,6 +50,18 @@
             <span><b>
                 <%= productClickLink.Replace("[IMAGE]", Model.Name)%></b></span>
             <div class="itemDescription" >
+                <% if(!string.IsNullOrWhiteSpace(Model.Color)){ %>
+                <p>
+                    <span class="attributeLabel">Цвет:</span>
+                    <span class="attributeValue"><%= Model.Color %></span>
+                </p>
+                <%} %>
+                <%if(!string.IsNullOrWhiteSpace(Model.Tint)){ %>
+                <p>
+                    <span class="attributeLabel">Оттенок:</span>
+                    <span class="attributeValue"><%= Model.Tint %></span>
+                </p>
+                <%} %>
                 <% Html.RenderPartial("ProductStaticAttributes", Model.ProductAttributeStaticValues); %>
             </div>
         </div>

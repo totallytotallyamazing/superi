@@ -44,6 +44,20 @@ namespace Shop.Controllers
         }
 
 
+        [Content(ContentName = "Conditions")]
+        public ActionResult Conditions()
+        {
+
+            return View("Content");
+        }
+
+        [Content(ContentName = "Fond")]
+        public ActionResult Fond()
+        {
+
+            return View("Content");
+        }
+
         [Content]
         public ActionResult Go(string id)
         {

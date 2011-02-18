@@ -144,6 +144,7 @@
           <Property Name="Image" Type="varchar" MaxLength="500" />
           <Property Name="Published" Type="bit" Nullable="false" />
           <Property Name="ShowOnMainPage" Type="bit" Nullable="false" />
+          <Property Name="IsContest" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="CategoryDiscountMapping">
           <Key>
@@ -662,7 +663,8 @@
           <NavigationProperty Name="Products" Relationship="shop_model.ProductCategoryMapping" FromRole="Category" ToRole="Product" />
           <Property Type="String" Name="Image" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Type="Boolean" Name="Published" Nullable="false" />
-          <Property Type="Boolean" Name="ShowOnMainPage" Nullable="false" /></EntityType>
+          <Property Type="Boolean" Name="ShowOnMainPage" Nullable="false" />
+          <Property Type="Boolean" Name="IsContest" Nullable="false" /></EntityType>
         <EntityType Name="Product">
           <Key>
             <PropertyRef Name="Id" />
@@ -856,6 +858,7 @@
           <EntitySetMapping Name="Categories">
             <EntityTypeMapping TypeName="IsTypeOf(shop_model.Category)">
               <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="IsContest" ColumnName="IsContest" />
                 <ScalarProperty Name="ShowOnMainPage" ColumnName="ShowOnMainPage" />
                 <ScalarProperty Name="Published" ColumnName="Published" />
                 <ScalarProperty Name="Image" ColumnName="Image" />
@@ -1090,7 +1093,7 @@
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram Name="Shop" ZoomLevel="98" xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+      <Diagram Name="Shop" ZoomLevel="78" xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
         <EntityTypeShape EntityType="shop_model.Category" Width="1.75" PointX="1.125" PointY="0.625" Height="2.7494921875" IsExpanded="true" />
         <EntityTypeShape EntityType="shop_model.Product" Width="2.5" PointX="7.75" PointY="1.625" Height="5.634013671875" IsExpanded="true" />
         <EntityTypeShape EntityType="shop_model.ProductAttribute" Width="2.625" PointX="0.5" PointY="4.75" Height="1.9802864583333326" IsExpanded="true" />

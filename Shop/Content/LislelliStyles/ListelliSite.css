@@ -944,3 +944,6 @@ a.dock-item
 .watermark.small{font-size:12px; margin-left:20px; margin-top:2px}
 
 .feedbackForm .editor-field{margin-bottom:20px;}
+
+.selecteditem{z-index:99999;}
+.selecteditem img{border:2px solid white;}

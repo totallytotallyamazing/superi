@@ -90,7 +90,8 @@ namespace Shop.Controllers
             int currentPage = page ?? 0;
             SiteSettings settings = Configurator.LoadSettings();
             int pageSize = settings.PageSize;
-
+            if (page < 0)
+                return products;
             return products.Skip(currentPage * pageSize).Take(pageSize);
         }
 

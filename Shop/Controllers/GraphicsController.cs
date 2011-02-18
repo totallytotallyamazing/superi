@@ -21,7 +21,9 @@ namespace Shop.Controllers
         public void ShowCatalogueMain(string id, string alt, int brandId, int groupId)
         {
             string path = string.Format("~/Content/CatalogueImages/Brand{0}Group{1}", brandId, groupId);
-            Response.Write(GraphicsHelper.CachedImage(null, path, id, "catalogueMain", alt));
+            string format = "<a class=\"fancy\" href=\"{0}\"><img src=\"{1}\" alt=\"\"/></a>";
+            string imagePath = GraphicsHelper.GetCachedImage(path, id, "catalogueMain");
+            Response.Write(string.Format(format, imagePath, imagePath));
         }
     }
 }

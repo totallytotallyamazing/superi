@@ -11,6 +11,7 @@
     </title>
     <link href="/Content/LislelliStyles/ListelliSite.css" rel="stylesheet" type="text/css" />
     <link href="/Content/LislelliStyles/brandsComboBox.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/fbDefault/jquery.fancybox.css" rel="stylesheet" type="text/css" />
     <!--[if IE 7]>
 
     <link rel="stylesheet" media="all" type="text/css" href="/Content/LislelliStyles/ie7.css" />
@@ -34,6 +35,7 @@
     <script type="text/javascript" src="/Scripts/MicrosoftAjax.js"></script>
     <script type="text/javascript" src="/Scripts/MicrosoftMvcAjax.js"></script>
     <script type="text/javascript" src="/Scripts/fisheye-iutil.js"></script>
+    <script type="text/javascript" src="/Scripts/jquery.fancybox.js"></script>
     <script type="text/javascript">        BrandCatalogue.initialize();</script>
     <asp:ContentPlaceHolder runat="server" ID="includes">
     </asp:ContentPlaceHolder>

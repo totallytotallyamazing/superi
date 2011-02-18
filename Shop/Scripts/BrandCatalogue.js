@@ -77,10 +77,13 @@ var BrandCatalogue = {
             //mainCatalogImage
             $.post(this.href, function (data) {
                 $("#mainCatalogImage").html(data);
+                $(".fancy").fancybox({ hideOnContentClick: true, showCloseButton: false });
                 $("#mainCatalogImage img").load(function () {
-                    $("#contentBoxBrandCatalog").height(this.offsetHeight);
+                    $("#contentBoxBrandCatalog").height(this.offsetHeight); ;
                 });
             });
+            $(".dock-item").removeClass("selecteditem");
+            $(this).addClass("selecteditem");
             this.blur();
             return false;
         });

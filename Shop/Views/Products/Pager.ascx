@@ -34,5 +34,19 @@
               Response.Write(" ... ");
       } %>
     </p>
+    <div class="txtPager">
+    <% if(page >-1){ %>
+    <%= Html.ActionLink("Все одним списком", (string)ViewData["action"], new
+              {
+                  id = ViewData["categoryId"],
+                  brandId = ViewData["brandId"],
+                  orderBy = ViewData["orderBy"],
+                  page = -1
+              }, new { @class = "txtPager" })
+         %>
+         <% }else{ %>
+            Все одним списком
+         <%} %>
+    </div>
 </div>
 <%} %>

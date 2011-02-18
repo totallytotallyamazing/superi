@@ -1,8 +1,8 @@
 ﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
 
 <%@ Import Namespace="Dev.Mvc.Ajax" %>
-<% if (Request.Cookies["listelliShow"] == null)
-       Response.Redirect("~/index.html"); %>
+<%--<% if (Request.Cookies["listelliShow"] == null)
+       Response.Redirect("~/index.html"); %>--%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
 <head>
@@ -46,7 +46,8 @@
             <div id="header">
                 <div id="headerRight">
                     <p class="mainPhone">
-                        (044) 390-76-29</p>
+                        (044) 228-45-66, <br />(067) 225-55-52
+                    </p>
                     <p class="mainAdress">
                         Киев, <a id="ourCoords" title="Наши координаты" href="/Home/Map" class="mainAdress">
                             ул. Жилянская, 68</a>
@@ -138,7 +139,7 @@
              <div id="footer">
                     <div id="designedBy">
                         <p class="footerText">
-                            © 2010, компания “Listelli”
+                            © 2011, компания “Listelli”
                             <br />
                             Дизайн сайта — <a href="http://m-brand.com.ua" class="footerMiller">Евгений Миллер</a>
                         </p>

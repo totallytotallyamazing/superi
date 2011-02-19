@@ -133,6 +133,7 @@ img
     width: 84px;
     height: 37px;
     background: url('./img/logoBrandCatalog.png') no-repeat;
+    cursor:pointer;
 }
 
 #cbBrandBox

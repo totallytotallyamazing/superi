@@ -379,6 +379,7 @@
     <Content Include="Views\Products\ProductStaticAttributes.ascx" />
     <Content Include="Views\Products\QuickQuestion.ascx" />
     <Content Include="Views\Products\ShowModal.ascx" />
+    <Content Include="Views\Products\ShowModalContest.ascx" />
     <Content Include="Views\Products\SimilarProducts.ascx" />
     <Content Include="Views\Products\SortingPanel.ascx" />
     <Content Include="Views\Shared\ContentPartial.ascx" />
@@ -584,6 +585,7 @@
     <Folder Include="Content\ProductImages\" />
     <Folder Include="Controls\ckeditor\" />
     <Folder Include="ImageCache\cartThumb\" />
+    <Folder Include="ImageCache\mainViewContest\" />
     <Folder Include="ImageCache\mainView\" />
     <Folder Include="ImageCache\thumbnail1\" />
     <Folder Include="ImageCache\thumbnail2\" />

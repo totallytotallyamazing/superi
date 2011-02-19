@@ -47,11 +47,11 @@
             <div id="header">
                 <div id="forwardBack">
                     <p class="mainAdress">
-                        <a href="/Home/Index" class="mainAdress">На основной сайт »</a>
+                        <!--<a href="/Home/Index" class="mainAdress">На основной сайт »</a>-->
                     </p>
                 </div>
                 <div id="logoBoxBrandCatalog">
-                    <div id="logoBrandCatalog">
+                    <div id="logoBrandCatalog" onclick="location.href='/Home/Index'">
                         <%--Logo--%>
                     </div>
                     <div class="pipec">

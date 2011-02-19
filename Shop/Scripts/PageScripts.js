@@ -30,6 +30,18 @@ var BasePageExtender = {
 
 ProductClientExtensions = {
 
+    vote: function () {
+        this.setCookie("vote", "1", "Mon, 01-Jan-2020 00:00:00 GMT", "/");
+    },
+
+    voted: function () {
+        var cookies = this.getCookie("vote");
+        if (cookies != null)
+            return true;
+        return false;
+    },
+
+
     removeFromFavorites: function (id) {
         var cookies = this.getCookie("favorites");
         cookies = cookies.replace(id + ",", "");
@@ -153,7 +165,7 @@ ProductClientExtensions = {
         $.fancybox.resize();
     },
 
-    updateMainImage: function (src,methodName) {
+    updateMainImage: function (src, methodName) {
         var href = "/Content/ProductImages/" + src;
         $.get("/Graphics/" + methodName + "/" + src + "?alt=" + this.alt, function (data) {
             $(".productModal #imgProduct a.mi").html(data);

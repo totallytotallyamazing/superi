@@ -31,5 +31,27 @@
         <div class="attributes attributesContest">
             <% Html.RenderPartial("ProductStaticAttributes", Model.ProductAttributeStaticValues); %>
         </div>
+        <div id="vote">
+            
+                <a id="voteLink" href="#">Проголосовать!</a>
+                <span style="display:none" id="voted">Вы проголосовали, спасибо</span>
+            
+        </div>
+
+        <script type="text/javascript">
+
+
+            if (ProductClientExtensions.voted()) {
+                $("#voteLink").css("display", "none");
+                $("#voted").css("display", "block");
+            }
+
+            $("#voteLink").click(function () {
+                $("#voteLink").css("display", "none");
+                $("#voted").css("display", "block");
+                ProductClientExtensions.vote();
+            })
+            
+        </script>
     </div>
 </div>

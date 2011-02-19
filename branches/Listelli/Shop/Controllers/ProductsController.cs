@@ -35,6 +35,8 @@ namespace Shop.Controllers
                 Category category = context.Categories.Include("Parent")
                     .First(c => c.Id == id);
 
+                ViewData["isContest"] = category.IsContest;
+
                 products = context.Products
                        .Include("Brand")
                        .Include("ProductAttributeValues.ProductAttribute")
@@ -95,6 +97,35 @@ namespace Shop.Controllers
             return products.Skip(currentPage * pageSize).Take(pageSize);
         }
 
+
+
+        [OutputCache(NoStore = true, Duration = 1, VaryByParam = "*")]
+        public ActionResult ShowContest(int id)
+        {
+            HttpContext.Items["IsProductView"] = true;
+            using (ShopStorage context = new ShopStorage())
+            {
+                Product product = context.Products
+                    .Include("ProductImages")
+                    .Include("ProductAttributeValues")
+                    .Include("ProductAttributeValues.ProductAttribute")
+                    .Include("ProductAttributeStaticValues.ProductAttribute")
+                    .Include("Tags.Products.ProductImages")
+                    .Include("Tags.Products.ProductAttributeStaticValues.ProductAttribute")
+                    .Include("Tags.Products.Categories")
+                    .Include("Categories")
+                    .Include("Tags.Products.Brand")
+                    .Include("Brand")
+                    .Where(p => p.Id == id).First();
+                ViewData["keywords"] = product.SeoKeywords;
+                ViewData["description"] = product.SeoDescription;
+
+                ViewData["quickQuestion"] = new QuickQuestionModel { ProductName = product.PartNumber + " " + product.Categories.First().Name + " " + product.Name };
+
+                return View("ShowModalContest", product);
+            }
+        }
+
         [OutputCache(NoStore = true, Duration = 1, VaryByParam = "*")]
         public ActionResult Show(int id)
         {
@@ -117,7 +148,7 @@ namespace Shop.Controllers
                 ViewData["description"] = product.SeoDescription;
 
                 ViewData["quickQuestion"] = new QuickQuestionModel { ProductName = product.PartNumber + " " + product.Categories.First().Name + " " + product.Name };
-
+                
                 return View("ShowModal", product);
             }
         }

@@ -4,6 +4,7 @@
 <%@ Import Namespace="Dev.Helpers" %>
 <%@ Import Namespace="Shop.Models" %>
 <% bool isAdmin = (bool)(ViewData["isAdmin"] ?? false); %>
+<% bool isContest = (bool)(ViewData["isContest"] ?? false); %>
 <%if (Model.Published || isAdmin)
   { %>
 <%
@@ -11,7 +12,8 @@
     if (!Model.Published && isAdmin)
         additionalClass = " translucent";
     string title = Model.Categories.First().Name + " " + Model.Name;
-    string productClickLink = Html.ActionLink("[IMAGE]", "Show", new { id = Model.Id }, new { @class = "titleLink productFancy", title = title }).ToString();
+    string method = isContest ? "ShowContest" : "Show";
+    string productClickLink = Html.ActionLink("[IMAGE]", method, new { id = Model.Id }, new { @class = "titleLink productFancy", title = title }).ToString();
 
 
       int[] favorites = Favorites.FavoritesProductIds;

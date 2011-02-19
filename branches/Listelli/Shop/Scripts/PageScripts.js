@@ -153,9 +153,9 @@ ProductClientExtensions = {
         $.fancybox.resize();
     },
 
-    updateMainImage: function (src) {
+    updateMainImage: function (src,methodName) {
         var href = "/Content/ProductImages/" + src;
-        $.get("/Graphics/ShowMain/" + src + "?alt=" + this.alt, function (data) {
+        $.get("/Graphics/" + methodName + "/" + src + "?alt=" + this.alt, function (data) {
             $(".productModal #imgProduct a.mi").html(data);
         });
     },
@@ -217,7 +217,13 @@ ImagePreviews = {
     _initPreviews: function () {
         $(".imageItem img").click(function (ev, elem) {
             var src = this.src.substring(1 * this.src.lastIndexOf("/") + 1 * 1);
-            ProductClientExtensions.updateMainImage(src);
+
+            //var showMethod = $("#showMethod").val();
+            var showMethod = "ShowMain";
+            if ($("#showMethod").length > 0) {
+                showMethod = $("#showMethod").val();
+            }
+            ProductClientExtensions.updateMainImage(src, showMethod);
             $(".fadeImage").fadeOut(0);
             $(this).next("div").css("display", "block").fadeTo(0, 0.5);
 
@@ -267,7 +273,13 @@ ProductVariant = {
     },
 
     _updateVariantSelection: function (id, src) {
-        ProductClientExtensions.updateMainImage(src);
+        //var showMethod = $("#showMethod").val();
+        var showMethod = "ShowMain";
+        var showMethod = "ShowMain";
+        if ($("#showMethod").length > 0) {
+            showMethod = $("#showMethod").val();
+        }
+        ProductClientExtensions.updateMainImage(src, showMethod);
     }
 };
 

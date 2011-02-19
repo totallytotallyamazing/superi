@@ -1,6 +1,7 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<Shop.Models.Product>" %>
 <%@ Import Namespace="Shop.Models" %>
 <div class="productModal">
+
     <% if (Roles.IsUserInRole("Administrators"))
        { %>
     <div class="adminLink">

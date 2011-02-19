@@ -91,3 +91,19 @@
 #quickQuestion div.sendLabel{font-size:12px; font-weight:bold; padding-left:40px; width:350px;}
 #quickQuestion input[type='submit']{margin-left:40px;}
 #quickQuestion .questionSend{text-align:center; padding:50px 0; font-size:16px; font-weight:bold; color:#999;}
+
+#vote
+{
+    background:url(img/voteButton.gif) no-repeat;
+    width:136px;
+    height:44px;
+    text-align:center;
+    margin-top:20px;
+    margin-left:auto;
+    margin-right:auto;
+    position:relative;
+    font-size:12px;
+}
+
+#voteLink{position:relative;top:15px;}
+#voted{position:relative;top:8px;}

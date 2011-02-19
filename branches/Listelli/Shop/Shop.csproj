@@ -590,6 +590,7 @@
     <Folder Include="ImageCache\thumbnail1\" />
     <Folder Include="ImageCache\thumbnail2\" />
     <Folder Include="ImageCache\thumbnail3\" />
+    <Folder Include="ImageCache\thumbnail4\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\BrandCatalog\Views\Web.config" />

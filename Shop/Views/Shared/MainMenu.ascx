@@ -26,13 +26,13 @@
         if (currentUrl.Contains("contest") || currentUrl.Contains("conditions") || currentUrl.Contains("fond"))
         {
          %>
-            <div class="mainMenuItem<%= isCurrent("possibilities") %>">
+            <div class="mainMenuItem<%= currentUrl.Contains("contest")?" current":"" %>">
             <a href="/Contest" class="txtMenuItem">УЧАСТНИКИ КОНКУРСА</a>
             </div>
-            <div class="mainMenuItem<%= isCurrent("articles")%>">
+            <div class="mainMenuItem<%= currentUrl.Contains("conditions")?" current":""%>">
                 <a href="Home/Conditions" class="txtMenuItem">УСЛОВИЯ КОНКУРСА</a>
             </div>
-            <div class="mainMenuItem<%= isCurrent("feedback")%>">
+            <div class="mainMenuItem<%= currentUrl.Contains("fond")?" current":""%>">
                 <a href="/Home/Fond" class="txtMenuItem">ПРИЗОВОЙ ФОНД</a>
             </div>
          <%

@@ -46,7 +46,7 @@
             <div id="header">
                 <div id="headerRight">
                     <p class="mainPhone">
-                        (044) 228-45-66, <br />(067) 225-55-52
+                        (044) 228-45-66 <br />(067) 225-55-52
                     </p>
                     <p class="mainAdress">
                         Киев, <a id="ourCoords" title="Наши координаты" href="/Home/Map" class="mainAdress">

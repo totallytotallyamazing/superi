@@ -23,11 +23,11 @@
         string currentUrl = Request.Url.ToString().ToLower();
 
 
-        if (currentUrl.Contains("contest") || currentUrl.Contains("conditions") || currentUrl.Contains("fond"))
+        if (currentUrl.Contains("konkurs") || currentUrl.Contains("conditions") || currentUrl.Contains("fond"))
         {
          %>
-            <div class="mainMenuItem<%= currentUrl.Contains("contest")?" current":"" %>">
-            <a href="/Contest" class="txtMenuItem">УЧАСТНИКИ КОНКУРСА</a>
+            <div class="mainMenuItem<%= currentUrl.Contains("konkurs")?" current":"" %>">
+            <a href="/Konkurs" class="txtMenuItem">УЧАСТНИКИ КОНКУРСА</a>
             </div>
             <div class="mainMenuItem<%= currentUrl.Contains("conditions")?" current":""%>">
                 <a href="/Home/Conditions" class="txtMenuItem">УСЛОВИЯ КОНКУРСА</a>

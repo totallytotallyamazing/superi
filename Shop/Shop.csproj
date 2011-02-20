@@ -378,6 +378,7 @@
     <Content Include="Views\Home\FeedbackSent.aspx" />
     <Content Include="Views\Home\Map.ascx" />
     <Content Include="Views\Products\ProductStaticAttributes.ascx" />
+    <Content Include="Views\Products\ProductStaticAttributesModified.ascx" />
     <Content Include="Views\Products\QuickQuestion.ascx" />
     <Content Include="Views\Products\ShowModal.ascx" />
     <Content Include="Views\Products\ShowModalContest.ascx" />

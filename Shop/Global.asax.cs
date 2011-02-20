@@ -40,8 +40,8 @@ namespace Shop
 
             
             routes.MapRoute(
-                "Contest", // Route name
-                "Contest", // URL with parameters
+                "Konkurs", // Route name
+                "Konkurs", // URL with parameters
                 new { controller = "Products", action = "Index", id = "22" }, // Parameter defaults
                 new string[1] { "Shop.Controllers" }
             );

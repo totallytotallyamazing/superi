@@ -46,8 +46,11 @@
   #productDescription .title {padding-bottom: 15px;}
   #productDescription .attributes {line-height: 20px;}
   
-  #productDescription .attributesContest p {margin-top:10px;}
-  #productDescription .attributesContest p .attributeValue {font-size:14px !important;}
+  #productDescription .attributesContest p {margin-top:1px;}
+  #productDescription .attributesContest p .attributeValue {font-size:12px !important;}
+  #productDescription .attributesContest .attributeLabel {font-size:12px !important;}
+  
+  
   
   #productDescription .titleLink { color: #3399ff; font-size: 18px;}
   #productDescription .attributeLabel {color: #999999; font-size: 15px;}

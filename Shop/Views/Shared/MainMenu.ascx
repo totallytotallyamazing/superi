@@ -30,7 +30,7 @@
             <a href="/Contest" class="txtMenuItem">УЧАСТНИКИ КОНКУРСА</a>
             </div>
             <div class="mainMenuItem<%= currentUrl.Contains("conditions")?" current":""%>">
-                <a href="Home/Conditions" class="txtMenuItem">УСЛОВИЯ КОНКУРСА</a>
+                <a href="/Home/Conditions" class="txtMenuItem">УСЛОВИЯ КОНКУРСА</a>
             </div>
             <div class="mainMenuItem<%= currentUrl.Contains("fond")?" current":""%>">
                 <a href="/Home/Fond" class="txtMenuItem">ПРИЗОВОЙ ФОНД</a>

@@ -317,12 +317,31 @@ img
     text-align: center;
 }
 
+#menuMain div.mainMenuItemContest
+{
+    /*margin-top: 74px;*/ /* bottom: 0px;*/
+    width: 184px;
+    margin-top: 80px;
+    height: 43px;
+    background: url('./img/firstTab.gif') no-repeat;
+    float: left;
+    margin-right: 7px;
+    padding-top: 15px;
+    text-align: center;
+    /*text-decoration:underline;*/
+}
+
 
 #menuMain div.current
 {
     height: 63px;
     margin-top: 60px;
     background-color: #333332;
+}
+
+#menuMain div.current a
+{
+    text-decoration:none !important;
 }
 
 #menuBox
@@ -341,6 +360,11 @@ img
 #menuBox a.txtMenuItem:hover
 {
     text-decoration: underline;
+}
+
+.mainMenuItemContest a.txtMenuItem
+{
+	text-decoration: underline !important;
 }
 
 #tmp

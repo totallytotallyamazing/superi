@@ -946,5 +946,5 @@ a.dock-item
 
 .feedbackForm .editor-field{margin-bottom:20px;}
 
-.selecteditem{z-index:99999;}
+.selecteditem{/*z-index:99999;*/z-index:1;}
 .selecteditem img{border:2px solid white;}

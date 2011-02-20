@@ -12,6 +12,13 @@
             .OrderBy(c => c.SortOrder).ToList();
     }
 %>
+
+<%
+    string currentUrl = Request.Url.ToString().ToLower();
+    if (!currentUrl.Contains("konkurs") && !currentUrl.Contains("conditions") && !currentUrl.Contains("fond"))
+    {
+ %>
+
 <div id="leftMenu">
 <%      string[] listPages = { "index", "search", "tags" };
         foreach (var item in categories)
@@ -21,7 +28,7 @@
             string extraClass = "";
             bool isProductList = listPages.Contains(ViewContext.RouteData.Values["action"].ToString().ToLower());
             isProductList = isProductList & ViewContext.RouteData.Values["controller"].ToString().ToLower() == "products";
-            if (item.Id == WebSession.CurrentCategory )
+            if (item.Id == WebSession.CurrentCategory)
             {
                 if (isProductList && ViewData["brandId"] == null)
                 {
@@ -47,18 +54,21 @@
             %>
     <div class="leftMenuElement">
     
-        <%= actionLink %>
+        <%= actionLink%>
 
 
     </div>
-    <% if (WebSession.CurrentCategory == item.Id || expandCategory){
-        Html.RenderPartial("SubCategories", item.Categories.OrderBy(c=>c.SortOrder));
-    }
-} %>
+    <% if (WebSession.CurrentCategory == item.Id || expandCategory)
+       {
+           Html.RenderPartial("SubCategories", item.Categories.OrderBy(c => c.SortOrder));
+       }
+        } %>
 
-<% if(Roles.IsUserInRole("Administrators")){ %>    
+<% if (Roles.IsUserInRole("Administrators"))
+   { %>    
     <p class="adminLink rootCategoriesAdmin">   
-    <%= Html.ActionLink("Добавить категорию", "AddEdit", "Categories", new { area="admin" }, null)%>
+    <%= Html.ActionLink("Добавить категорию", "AddEdit", "Categories", new { area = "admin" }, null)%>
     </p>
 <%} %>
 </div>
+<%} %>

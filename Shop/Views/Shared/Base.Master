@@ -58,7 +58,20 @@
                         <%--Logo--%>
                     </div>
                     <p class="slogan">
-                        оформление интерьеров паркетом и мрамором</p>
+                    <%
+                        string currentUrl = Request.Url.ToString().ToLower();
+                        if (currentUrl.Contains("konkurs") || currentUrl.Contains("conditions") || currentUrl.Contains("fond"))
+                        {
+                            %>
+                            конкурс дизайнеров
+                            <%
+                        }else
+                        {
+                        %>
+                        оформление интерьеров паркетом и мрамором
+                        <%
+                        }%>
+                        </p>
                 </div>
                 <div id="menuBox">
                     <% Html.RenderPartial("MainMenu"); %>

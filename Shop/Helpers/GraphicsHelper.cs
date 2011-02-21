@@ -22,7 +22,7 @@ namespace Dev.Mvc.Helpers
         {
             maxDimensions.Add("mainView", 230);
             fixDimension.Add("mainView", FixedDimension.Width);
-            maxDimensions.Add("mainViewContest", 450);
+            maxDimensions.Add("mainViewContest", 600);
             fixDimension.Add("mainViewContest", FixedDimension.Width);
             maxDimensions.Add("thumbnail1", 50);
             fixDimension.Add("thumbnail1", FixedDimension.Width);

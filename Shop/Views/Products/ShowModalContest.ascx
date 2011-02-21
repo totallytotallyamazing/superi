@@ -10,7 +10,7 @@
         <%= Html.ActionLink("Удалить", "Delete", "Products", new { area = "Admin", id = Model.Id }, new { onclick="return confirm('Вы уверены?')" }).ToString()%>
     </div>
     <%} %>
-    <div id="imgProduct" style="float:none !important; margin:0 auto !important; width:535px !important">
+    <div id="imgProduct" style="float:none !important; margin:0 auto !important; width:600px !important">
         <% Shop.Models.ProductImage img = Model.ProductImages.Where(m => m.Default).DefaultIfEmpty(new Shop.Models.ProductImage { Product = new Shop.Models.Product { Name = Model.Name } }).First();%>
         
         <%

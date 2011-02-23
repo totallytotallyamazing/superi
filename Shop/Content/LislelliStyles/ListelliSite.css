@@ -758,6 +758,16 @@ img
 }
 
 
+#contestBubble
+{
+    width: 172px;
+    height: 54px;
+    background: url('./img/bubbleNew.png') no-repeat;
+    margin-left: auto;
+    margin-top: 30px;
+    text-align: center;
+    line-height: 17px;
+}
 
 
 #bubbleNew
@@ -785,14 +795,34 @@ img
     font-size: 13px;
 }
 
+.bubbleText a{color:#3399ff;}
+.bubbleText a:hover{color:#3399ff;}
+.bubbleText a:visited{color:#3399ff;}
+
+a.txtBubbleNew{color:#3399ff !important;}
+a.txtBubbleNew:hover{color:#3399ff !important;}
+a.txtBubbleNew:visited{color:#3399ff !important;}
 
 #bubbleText
 {
     width: 140px;
     height: 45px;
-    margin-left: 12px;
+    margin-left: 22px;
     margin-right: 12px;
     padding-top: 7px;
+    text-align:left;
+}
+
+.bubbleText
+{
+    width: 140px;
+    height: 45px;
+    margin-left: 22px;
+    margin-right: 12px;
+    padding-top: 7px;
+    line-height:17px;
+    font-size:13px;
+    text-align:left;
 }
 
 #bubbleText .favBlock

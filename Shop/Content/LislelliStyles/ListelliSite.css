@@ -1002,3 +1002,22 @@ a.dock-item
 
 .selecteditem{/*z-index:99999;*/z-index:1;}
 .selecteditem img{border:2px solid white;}
+
+#messageSent
+{
+	
+	width:650px;
+
+	position:absolute;
+	left:15%;
+	top:40%;
+	
+	color:#999999;
+	font-size:40px;
+	font-style:italic;
+	font-family:Tahoma;
+	
+	
+	
+}
+

@@ -54,6 +54,8 @@ namespace Shop.Areas.Admin.Controllers
                     article.Language = "ru-RU";
                     article.Name = article.Title;
                     context.AddToArticles(article);
+                    // TODO: Добавлена отправка новостей
+                    SendArticle(article);
                 }
                 context.SaveChanges();
             }
@@ -65,7 +67,8 @@ namespace Shop.Areas.Admin.Controllers
         {
             using (Clients context = new Clients())
                 foreach (var item in context.Subscribers)
-                    MailHelper.SendTemplate(new List<MailAddress> { new MailAddress(item.Email) }, article.Title, "Newsletter.htm", null, true, article.Text);
+                    //MailHelper.SendTemplate(new List<MailAddress> { new MailAddress(item.Email) }, article.Title, "Newsletter.htm", null, true, article.Text);
+                    MailHelper.SendTemplate(new List<MailAddress> { new MailAddress(item.Email) }, article.Title, "Newsletter.htm", null, true, HttpUtility.HtmlDecode(article.Text));
         }
 
         public ActionResult Delete(int id)
@@ -75,7 +78,7 @@ namespace Shop.Areas.Admin.Controllers
                 Article article = context.Articles.Where(a => a.Id == id).First();
                 context.DeleteObject(article);
                 context.SaveChanges();
-                return RedirectToAction("Index", "Articles", new { area = "", type = article.Type }); 
+                return RedirectToAction("Index", "Articles", new { area = "", type = article.Type });
             }
         }
     }

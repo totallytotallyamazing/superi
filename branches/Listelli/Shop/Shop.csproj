@@ -385,6 +385,7 @@
     <Content Include="Views\Products\SimilarProducts.ascx" />
     <Content Include="Views\Products\SortingPanel.ascx" />
     <Content Include="Views\Shared\ContentPartial.ascx" />
+    <Content Include="Views\Shared\ContestLinkBubble.ascx" />
     <Content Include="Views\Shared\LogOnOrSignUp.ascx" />
     <Content Include="Views\Products\Pager.ascx" />
     <Content Include="Views\Shared\Subscribe.ascx" />

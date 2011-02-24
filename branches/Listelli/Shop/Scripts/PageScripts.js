@@ -306,7 +306,7 @@ var Subscribe = {
 
     _showEditor: function () {
         $("#bubbleText").empty();
-        $('<input type="text" id="subscribeEmail" style="width:135px;" />').appendTo("#bubbleText");
+        $('<input type="text" value="введите email" onfocus="if(this.value==\'введите email\'){this.value=\'\'}" id="subscribeEmail" style="width:135px;" />').appendTo("#bubbleText");
         $('<input type="button" value="Подписаться" style="font-size:10px;" />').click(function () {
             var value = $("#subscribeEmail").val();
             var regex = /^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;

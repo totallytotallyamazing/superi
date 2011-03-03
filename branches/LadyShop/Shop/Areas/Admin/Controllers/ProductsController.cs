@@ -47,6 +47,7 @@ namespace Shop.Areas.Admin.Controllers
                 if (id.HasValue)
                 {
                     product = context.Products.Include("ProductImages").Include("Category").Include("Brand").Where(p => p.Id == id.Value).First();
+                    ViewData["brandId"] = (product.Brand != null) ? product.Brand.Id : 0;
                 }
             }
             return View(product);

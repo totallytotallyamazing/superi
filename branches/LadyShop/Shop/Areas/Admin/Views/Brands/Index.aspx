@@ -22,7 +22,8 @@
     <% foreach (var item in Model) { %>
         <tr>
             <td>
-                <%= Html.Image("~/Content/BrandLogos/" + item.Logo, item.Name)%>
+                <% string logo = string.IsNullOrWhiteSpace(item.Logo) ? "ladyNoBrandLogo.jpg" : item.Logo;  %>
+                <%= Html.Image("~/Content/BrandLogos/" + logo, item.Name)%>
             </td>
             <td>
                 <%= Html.Encode(item.Name) %>

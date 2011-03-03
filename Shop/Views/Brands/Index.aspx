@@ -12,7 +12,8 @@
 <% foreach (var item in Model){%>
 <div id="contentItem">
     <div id="contentItemFoto">
-        <img src="/Content/BrandLogos/<%= item.Logo %>" alt="jeans" />
+        <% string logo = string.IsNullOrWhiteSpace(item.Logo) ? "ladyNoBrandLogo.jpg" : item.Logo;  %>
+        <img src="/Content/BrandLogos/<%= logo %>" alt="jeans" />
     </div>
     <div id="contentItemText">
         <p>

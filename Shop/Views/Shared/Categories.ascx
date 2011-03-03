@@ -16,7 +16,7 @@
 <ul>
     <% foreach (var item in categories)
        {
-           string content = Html.ActionLink(item.Name, "Index", "Products", new { id = item.Id }, null).ToString();
+           string content = Html.ActionLink(item.Name, "Index", "Products", new { id = item.Id, area="" }, null).ToString();
            if (categoryId == item.Id)
            {
                if (isProductList)

@@ -185,6 +185,7 @@
     <Content Include="Areas\Admin\Views\Orders\Details.aspx" />
     <Content Include="Areas\Admin\Views\Orders\Index.aspx" />
     <Content Include="Areas\Admin\Views\Orders\OrderItems.ascx" />
+    <Content Include="Content\BrandLogos\ladyNoBrandLogo.jpg" />
     <Content Include="Content\img\contentDiscountFoot.jpg" />
     <Content Include="Content\img\contentFooter.png" />
     <Content Include="Content\img\contentFooterLeft.png" />
@@ -429,7 +430,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Admin\Views\Shared\" />
-    <Folder Include="Content\BrandLogos\" />
     <Folder Include="Content\ProductImages\" />
     <Folder Include="ImageCache\cartThumb\" />
     <Folder Include="ImageCache\mainView\" />

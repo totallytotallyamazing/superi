@@ -41,6 +41,7 @@ namespace Shop.Areas.Admin.Controllers
         {
             using (ShopStorage context = new ShopStorage())
             {
+                brand.Description = HttpUtility.HtmlDecode(brand.Description);
                 if (brand.Id > 0)
                 {
                    //brand.Id = Id;

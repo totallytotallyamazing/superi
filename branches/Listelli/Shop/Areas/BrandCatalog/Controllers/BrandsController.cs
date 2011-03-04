@@ -36,7 +36,7 @@ namespace Shop.Areas.BrandCatalog.Controllers
                     .Take(7)
                     .Select((img, i) => new { Id = img.Id, Image = img.Image, Index = i });
 
-                var imgArray = allImg.Select(i => "\"http://listelli.ua/ImageCache/catalogueMain/" + i.Image + "\"").ToArray();
+                var imgArray = allImg.Select(i => "http://listelli.ua/ImageCache/catalogueMain/" + i.Image).ToArray();
                 ViewData["imgArray"] = imgArray;
                 StringBuilder dockContent = new StringBuilder();
                 dockContent.Append(@"<div id=""dock"">");

@@ -75,9 +75,11 @@ var BrandCatalogue = {
 
         $(".dock-item").click(function () {
             //mainCatalogImage
+            var imgAnchor = this;
+            var imageArray = data.ImageArray;
             $.post(this.href, function (data) {
                 $("#mainCatalogImage").html(data);
-                $(".fancy").fancybox({ hideOnContentClick: true, showCloseButton: false });
+                $(".fancyCustom").click(function () { $.fancybox(imageArray, { index: 1*imgAnchor.getAttribute("index"), hideOnContentClick: true, showCloseButton: false, type: "image" }); });
                 $("#mainCatalogImage img").load(function () {
                     $("#contentBoxBrandCatalog").height(this.offsetHeight); ;
                 });

@@ -28,19 +28,23 @@ namespace Shop.Areas.BrandCatalog.Controllers
                 ViewData["brandDescription"] = brand.Description;
                 int skip = currentPage * 7;
                 int imagesOverall = context.CatalogueImages.Where(c => c.CatalogueGroup.Id == groupId && c.Brand.Id == brandId).Count();
-                var images = context.CatalogueImages.Where(c => c.CatalogueGroup.Id == groupId && c.Brand.Id == brandId)
-                    .OrderBy(c => c.SortOrder)
+                var allImg = context.CatalogueImages.Where(c => c.CatalogueGroup.Id == groupId && c.Brand.Id == brandId)
+                    .OrderBy(c => c.SortOrder).ToList();
+                
+                var images =allImg
                     .Skip(skip)
                     .Take(7)
-                    .Select(i => new { Id = i.Id, Image = i.Image });
+                    .Select((img, i) => new { Id = img.Id, Image = img.Image, Index = i });
 
+                var imgArray = allImg.Select(i => "\"http://listelli.ua/ImageCache/catalogueMain/" + i.Image + "\"").ToArray();
+                ViewData["imgArray"] = imgArray;
                 StringBuilder dockContent = new StringBuilder();
                 dockContent.Append(@"<div id=""dock"">");
                 dockContent.Append(@"<div class=""dock-container"">");
                 foreach (var item in images)
                 {
-                    dockContent.AppendFormat(@"<a href='/Graphics/ShowCatalogueMain/{0}?alt=""""&brandId={1}&groupId={2}' class=""dock-item"">",
-                        item.Image, brandId, groupId);
+                    dockContent.AppendFormat(@"<a href='/Graphics/ShowCatalogueMain/{0}?alt=""""&brandId={1}&groupId={2}' index=""{3}"" class=""dock-item"">",
+                        item.Image, brandId, groupId, item.Index);
                     dockContent.Append("<span></span>");
                     
                     dockContent.Append(GraphicsHelper.CachedImage(null, "~/Content/CatalogueImages/Brand" + brandId + "Group" + groupId, item.Image, "catalogueThumb", item.Image));
@@ -57,7 +61,8 @@ namespace Shop.Areas.BrandCatalog.Controllers
                     ShowNext = (int)(imagesOverall / 7) + 7 > currentPage + 7,
                     Page = currentPage,
                     BrandId = brandId, 
-                    GroupId = groupId
+                    GroupId = groupId,
+                    ImageArray = imgArray
                 };
 
                 return Json(result, "text/x-json");

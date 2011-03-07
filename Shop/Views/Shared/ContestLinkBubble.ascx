@@ -7,8 +7,12 @@
      %>
 <div id="contestBubble">
     <div class="bubbleText">
+    <!--
         <span class="txtBubbleNew">У нас начался</span><br />
         <a href="/Konkurs">конкурс дизайнеров</a>
+        -->
+        <span class="txtBubbleNew">Скоро начнется</span><br />
+        <span class="txtBubbleNew">конкурс дизайнеров</span>
     </div>
 </div>
 <%} %>

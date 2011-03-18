@@ -72,14 +72,21 @@ var BrandCatalogue = {
                valign: 'bottom',
                halign: 'center'
            });
-
+        var imageArray = null;
         $(".dock-item").click(function () {
             //mainCatalogImage
             var imgAnchor = this;
-            var imageArray = data.ImageArray;
+            imageArray = data.ImageArray;
             $.post(this.href, function (data) {
                 $("#mainCatalogImage").html(data);
-                $(".fancyCustom").click(function () { $.fancybox(imageArray, { index: 1*imgAnchor.getAttribute("index"), hideOnContentClick: true, showCloseButton: false, type: "image" }); });
+                var index = 1 * imgAnchor.getAttribute("index");
+                $(".fancyCustom").click(function () {
+                    var specialArray = new Array();
+                    for (var i = 0; i < imageArray.length; i++) {
+                        specialArray[i] = imageArray[i];
+                    }
+                    $.fancybox(specialArray, { index: index, hideOnContentClick: true, showCloseButton: false, type: "image", padding:0, margin:20 });
+                });
                 $("#mainCatalogImage img").load(function () {
                     $("#contentBoxBrandCatalog").height(this.offsetHeight); ;
                 });

@@ -284,7 +284,7 @@
 	right: 20px;
 }
 
-.fancy-bg {
+.fancybox-bg {
 	position: absolute;
 	padding: 0;
 	margin: 0;
@@ -294,7 +294,7 @@
 	z-index: 1001;
 }
 
-#fancy-bg-n {
+#fancybox-bg-n {
 	top: -47px;
 	left: 0;
 	width: 100%;
@@ -304,7 +304,7 @@
 	
 }
 
-#fancy-bg-ne {
+#fancybox-bg-ne {
 	top: -47px;
 	right: -32px;
 	background-image: url('fancy_Listelli_ne.png');
@@ -314,7 +314,7 @@
 	background-position: -40px -162px;*/
 }
 
-#fancy-bg-e {
+#fancybox-bg-e {
 	top: 0;
 	right: -32px;
 	height: 100%;
@@ -324,7 +324,7 @@
 	background-position: -20px 0px;*/
 }
 
-#fancy-bg-se {
+#fancybox-bg-se {
 	bottom: -31px;
 	right: -32px;
 	/*width: 32px;
@@ -337,7 +337,7 @@
 	z-index: 1200;
 }
 
-#fancy-bg-s {
+#fancybox-bg-s {
 	bottom: -31px;
 	left: 0;
 	width: 100%;
@@ -347,7 +347,7 @@
 	background-position: 0px -20px;*/
 }
 
-#fancy-bg-sw {
+#fancybox-bg-sw {
 	bottom: -31px;
 	left: -32px;
 	width: 32px;
@@ -357,7 +357,7 @@
 	background-position: -40px -142px;*/
 }
 
-#fancy-bg-w {
+#fancybox-bg-w {
 	top: 0;
 	left: -32px;
 	height: 100%;
@@ -366,7 +366,7 @@
 	/*background-image: url('fancybox-y.png');*/
 }
 
-#fancy-bg-nw {
+#fancybox-bg-nw {
 	top: -47px;
 	left: -32px;
 	background-image: url('fancy_Listelli_nw_bkg.png');

@@ -20,7 +20,7 @@
         {%>
             <div class="workGroupItem">
                 <div class="date">
-                    <%= item.Date.ToString("dd.MM.yyyy") %>
+                   <%-- <%= item.Date.ToString("dd.MM.yyyy") %>--%>
                 </div>
                 <%if(Request.IsAuthenticated){ %>
                 <div class="adminLinks">

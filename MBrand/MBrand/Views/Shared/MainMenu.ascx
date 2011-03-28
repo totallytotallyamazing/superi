@@ -73,10 +73,10 @@
     <div class="<%= clientsClass %>">
         <%= Html.ActionLink("Клиенты", "Index", "Clients")%>
     </div>
-    <div class="mainMenuItemSplitter"></div>
+<%--    <div class="mainMenuItemSplitter"></div>
     <div class="<%= notesClass %>">
         <%= Html.ActionLink("Заметки", "Index", "Notes")%>
-    </div>
+    </div>--%>
     <div class="mainMenuItemSplitter"></div>
     <div class="<%= contactsClass %>">
         <%= Html.ActionLink("Контакты", "Index", "Contacts")%>

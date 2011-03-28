@@ -108,14 +108,14 @@
     <div class="seeMenuItemSplitter">
         <%= polyContent %>
     </div>
-    <div class="<%= textClass %>">
+<%--    <div class="<%= textClass %>">
         <a href="/See/Text">
             Брендинг
         </a>
     </div>
     <div class="seeMenuItemSplitter">
         <%= textContent %>
-    </div>
+    </div>--%>
     <div class="<%= videoClass %>">
         <a href="/See/Video">
             Видеодизайн

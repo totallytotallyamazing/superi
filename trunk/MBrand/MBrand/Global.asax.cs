@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Shop.Helpers.Validation;
 
 namespace MBrand
 {
@@ -18,6 +19,7 @@ namespace MBrand
             routes.IgnoreRoute("{folder}/{*pathInfo}", new { folder = "lj" });
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             routes.IgnoreRoute("favicon.ico");
+            routes.IgnoreRoute("captcha.ashx");
 
             routes.MapRoute(
                 "DeleteWorkGroup",
@@ -55,6 +57,10 @@ namespace MBrand
         protected void Application_Start()
         {
             RegisterRoutes(RouteTable.Routes);
+
+            DataAnnotationsModelValidatorProvider.RegisterAdapter(typeof(RemoteAttribute), typeof(RemoteAttributeAdapter));
+            DataAnnotationsModelValidatorProvider.RegisterAdapter(typeof(CaptchaAttribute), typeof(CaptchaAttributeAdapter));
+
         }
     }
 }

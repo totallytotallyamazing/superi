@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MBrand", "MBrand\MBrand.csproj", "{50824CC9-E65D-4536-ACFC-7F2B59C26CB2}"
 EndProject
 Global

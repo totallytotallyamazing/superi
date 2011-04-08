@@ -66,7 +66,8 @@
         <div style="clear:both;"></div>
         <div id="footer">
             © <%= DateTime.Now.Year %> Бренд Евгения Миллера<br />
-            <a href="mailto:M@M-brand.com.ua">M@M-brand.com.ua</a> 
+            <%--<a href="mailto:m@eugene-miller.com">m@eugene-miller.com</a> --%>
+            <% Html.RenderPartial("FeedbackLink"); %>
         </div>
     </div>
 

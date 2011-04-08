@@ -1,17 +1,24 @@
-﻿<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{50824CC9-E65D-4536-ACFC-7F2B59C26CB2}</ProjectGuid>
-    <ProjectTypeGuids>{603c0e0b-db56-11dc-be95-000d561079b0};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <ProjectTypeGuids>{F85E285D-A4E0-4152-9332-AB1D724D3325};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MBrand</RootNamespace>
     <AssemblyName>MBrand</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <UseIISExpress>false</UseIISExpress>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,6 +28,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -29,16 +37,13 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Core">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="System.Data.DataSetExtensions">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data.Entity">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -46,13 +51,13 @@
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Security" />
-    <Reference Include="System.Web.Mvc, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="System.Xml.Linq">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Mvc, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
-    <Reference Include="System.Web.Extensions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.Abstractions" />
     <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml" />
@@ -60,14 +65,17 @@
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="System.Web.Mobile" />
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\CaptchaController.cs" />
     <Compile Include="Controllers\ClientsController.cs" />
     <Compile Include="Controllers\ContactsController.cs" />
     <Compile Include="Controllers\ErrorsController.cs" />
     <Compile Include="Controllers\EugeneController.cs" />
+    <Compile Include="Controllers\GraphicsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NotesController.cs" />
     <Compile Include="Controllers\SeeController.cs" />
@@ -79,12 +87,21 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\AjaxExtensions.cs" />
+    <Compile Include="Helpers\Captcha\CaptchaAttribute.cs" />
+    <Compile Include="Helpers\Captcha\CaptchaAttributeAdapter.cs" />
+    <Compile Include="Helpers\Captcha\CaptchaExtensions.cs" />
+    <Compile Include="Helpers\Captcha\CaptchaImage.cs" />
+    <Compile Include="Helpers\Captcha\CaptchaImageHandler.cs" />
+    <Compile Include="Helpers\Captcha\CaptchaValidationAttribute.cs" />
     <Compile Include="Helpers\Helpers.cs" />
+    <Compile Include="Helpers\MailHelper.cs" />
     <Compile Include="Helpers\MaskEditExtensions.cs" />
     <Compile Include="Helpers\ModalPopUpExtensions.cs" />
     <Compile Include="Helpers\ResourceTracker.cs" />
     <Compile Include="Helpers\ScriptExtensions.cs" />
     <Compile Include="Helpers\TextBoxWatermarkExtensions.cs" />
+    <Compile Include="Helpers\Validation\RemoteAttribute.cs" />
+    <Compile Include="Helpers\Validation\RemoteAttributeAdapter.cs" />
     <Compile Include="Models\Content.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -119,6 +136,8 @@
     <Content Include="Content\img\logoWhite.jpg" />
     <Content Include="Content\img\next.png" />
     <Content Include="Content\img\zoom.png" />
+    <Content Include="Content\MailTemplates\FeedbackTemplate.htm" />
+    <Content Include="Content\MailTemplates\MailTemplate.htm" />
     <Content Include="Content\theme\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\theme\images\ui-bg_flat_55_fbec88_40x100.png" />
     <Content Include="Content\theme\images\ui-bg_glass_75_d0e5f5_1x400.png" />
@@ -244,9 +263,21 @@
     <Content Include="Scripts\fckeditor.js" />
     <Content Include="Scripts\fckeditorapi.js" />
     <Content Include="Scripts\fcktools.js" />
+    <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
+    <Content Include="Scripts\jquery-1.4.1.js" />
+    <Content Include="Scripts\jquery-1.4.1.min.js" />
     <Content Include="Scripts\jquery.fancybox.js" />
     <Content Include="Scripts\jquery.FCKEditor.js" />
     <Content Include="Scripts\jquery.ui.js" />
+    <Content Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\MicrosoftAjax.debug.js" />
+    <Content Include="Scripts\MicrosoftMvcAjax.debug.js" />
+    <Content Include="Scripts\MicrosoftMvcValidation.debug.js" />
+    <Content Include="Scripts\MicrosoftMvcValidation.js" />
+    <Content Include="Scripts\MvcCaptchaValidation.js" />
+    <Content Include="Scripts\MvcRemoteValidator.js" />
     <Content Include="Scripts\ui.datepicker-ru.js" />
     <Content Include="Views\Admin\AddEditNote.aspx" />
     <Content Include="Views\Admin\AddEditWork.aspx" />
@@ -262,6 +293,7 @@
     <Content Include="Views\Errors\NotFound.aspx" />
     <Content Include="Views\Eugene\Index.aspx" />
     <Content Include="Views\Home\English.aspx" />
+    <Content Include="Views\Home\FeedbackForm.ascx" />
     <Content Include="Views\Notes\Index.aspx" />
     <Content Include="Views\Notes\Note.aspx" />
     <Content Include="Views\Notes\Pages.ascx" />
@@ -270,6 +302,7 @@
     <Content Include="Views\See\RandomImage.ascx" />
     <Content Include="Views\See\Thumbnails.ascx" />
     <Content Include="Views\See\WorkGroupContents.aspx" />
+    <Content Include="Views\Shared\FeedbackLink.ascx" />
     <Content Include="Views\Shared\LanguageSelector.ascx" />
     <Content Include="Views\Shared\SeeMenu.ascx" />
     <Content Include="Views\See\Site.aspx" />
@@ -317,7 +350,7 @@
     <Folder Include="Content\images\vcard\preview\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

@@ -4,17 +4,13 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="gb_listelliModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="gb_listelliModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="gb_listelliModelStoreContainer">
           <EntitySet Name="Portfolio" EntityType="gb_listelliModel.Store.Portfolio" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="PortfolioImage" EntityType="gb_listelliModel.Store.PortfolioImage" store:Type="Tables" Schema="dbo" />
           <AssociationSet Name="FK_PortfolioImage_Portfolio" Association="gb_listelliModel.Store.FK_PortfolioImage_Portfolio">
             <End Role="Portfolio" EntitySet="Portfolio" />
             <End Role="PortfolioImage" EntitySet="PortfolioImage" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PortfolioImage_PortfolioImage" Association="gb_listelliModel.Store.FK_PortfolioImage_PortfolioImage">
-            <End Role="PortfolioImage" EntitySet="PortfolioImage" />
-            <End Role="PortfolioImage1" EntitySet="PortfolioImage" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Portfolio">
@@ -23,6 +19,7 @@
           </Key>
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="UserName" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="Url" Type="varchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="PortfolioImage">
           <Key>
@@ -44,20 +41,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_PortfolioImage_PortfolioImage">
-          <End Role="PortfolioImage" Type="gb_listelliModel.Store.PortfolioImage" Multiplicity="1" />
-          <End Role="PortfolioImage1" Type="gb_listelliModel.Store.PortfolioImage" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="PortfolioImage">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="PortfolioImage1">
-              <PropertyRef Name="Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="gb_listelliModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
@@ -80,6 +64,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UserName" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
           <NavigationProperty Name="PortfolioImage" Relationship="gb_listelliModel.FK_PortfolioImage_Portfolio" FromRole="Portfolio" ToRole="PortfolioImage" />
+          <Property Type="String" Name="Url" MaxLength="500" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="PortfolioImage">
           <Key>
@@ -122,7 +107,8 @@
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="gb_listelliModelStoreContainer" CdmEntityContainer="PortfolioStorage">
           <EntitySetMapping Name="Portfolio"><EntityTypeMapping TypeName="gb_listelliModel.Portfolio"><MappingFragment StoreEntitySet="Portfolio">
-            <ScalarProperty Name="Id" ColumnName="Id" />
+            <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
             <ScalarProperty Name="UserName" ColumnName="UserName" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="PortfolioImage"><EntityTypeMapping TypeName="gb_listelliModel.PortfolioImage"><MappingFragment StoreEntitySet="PortfolioImage">

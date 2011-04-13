@@ -20,7 +20,7 @@ namespace Shop
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-            routes.IgnoreRoute("captcha.ashx"); 
+            routes.IgnoreRoute("captcha.ashx");
             routes.IgnoreRoute("elmah/default.aspx");
             routes.IgnoreRoute("elmah/default.aspx/detail");
             routes.IgnoreRoute("elmah/default.aspx/stylesheet");
@@ -38,14 +38,25 @@ namespace Shop
             routes.IgnoreRoute("elmah/default.aspx/about");
             routes.IgnoreRoute("elmah.axd");
 
-            
+
+
             routes.MapRoute(
                 "Konkurs", // Route name
                 "Konkurs", // URL with parameters
                 new { controller = "Products", action = "Index", id = "22" }, // Parameter defaults
                 new string[1] { "Shop.Controllers" }
             );
-            
+
+            /*
+            routes.MapRoute(
+                "Articles", // Route name
+                "Articles", // URL with parameters
+                new { controller = "Articles", action = "Index", id = UrlParameter.Optional }, // Parameter defaults
+                new string[1] { "Shop.Controllers" }
+            );
+            */
+
+
 
             routes.MapRoute(
                 "Go", // Route name
@@ -56,11 +67,23 @@ namespace Shop
 
 
             routes.MapRoute(
+             "Designers", // Route name
+             "Designers/{id}", // URL with parameters
+             new { controller = "Designers", action = "Index", id = "Fedorov" }, // Parameter defaults
+             new string[1] { "Shop.Controllers" }
+            );
+
+
+            routes.MapRoute(
                 "Default", // Route name
                 "{controller}/{action}/{id}", // URL with parameters
                 new { controller = "Home", action = "Index", id = UrlParameter.Optional }, // Parameter defaults
                 new string[1] { "Shop.Controllers" }
             );
+
+
+
+
 
         }
 

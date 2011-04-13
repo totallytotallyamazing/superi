@@ -21,5 +21,23 @@ namespace Shop.Controllers
             }
         }
 
+
+        public ActionResult ViewLiving(string id, string appartaments)
+        {
+            using (var context = new PortfolioStorage())
+            {
+                Portfolio portfolio = context.Portfolio.Include("PortfolioImage").First(p => p.Url == id);
+                return View("Details", portfolio);
+            }
+        }
+
+        public ActionResult ViewNotLiving(string id, string appartaments)
+        {
+            using (var context = new PortfolioStorage())
+            {
+                Portfolio portfolio = context.Portfolio.Include("PortfolioImage").First(p => p.Url == id);
+                return View("Details", portfolio);
+            }
+        }
     }
 }

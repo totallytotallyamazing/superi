@@ -18,7 +18,7 @@
              <td>
                 <%= Html.ActionLink("Редактировать", "AddEdit", new { id = item.Id }, new { @class="fancy"})%> |
                 <%= Html.ActionLink("Удалить", "Delete", new { id = item.Id }, new { onclick = "return confirm('При удалении пользователя, удаляются также все с ним связанные работы. Вы уверены что хотите удалить пользователя?')" })%>|
-                <%=Html.ActionLink("К странице пользователя", "Index", "Designers", new {id=item.Id }, null)%>
+                <%=Html.ActionLink("К странице пользователя", "Index", "Designers", new {area="", id=item.Url }, null)%>
             </td>
         </tr>
     

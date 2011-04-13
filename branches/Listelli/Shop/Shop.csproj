@@ -98,6 +98,7 @@
     </Compile>
     <Compile Include="Controllers\CaptchaController.cs" />
     <Compile Include="Controllers\ClientsController.cs" />
+    <Compile Include="Controllers\DesignersController.cs" />
     <Compile Include="Controllers\GraphicsController.cs" />
     <Compile Include="Controllers\InvoiceController.cs" />
     <Compile Include="Controllers\TitleAttribute.cs" />
@@ -383,6 +384,7 @@
     <Content Include="Scripts\uploadify.allglyphs.swf" />
     <Content Include="Scripts\uploadify.swf" />
     <Content Include="Stub.jpg" />
+    <Content Include="Views\Designers\Index.aspx" />
     <Content Include="Views\Home\FeedbackForm.aspx" />
     <Content Include="Views\Home\FeedbackSent.aspx" />
     <Content Include="Views\Home\Map.ascx" />

@@ -40,8 +40,8 @@ namespace Shop.Areas.Admin.Controllers
         {
             using (var context = new PortfolioStorage())
             {
-                int id = 0;
-                Portfolio portfolio = null;
+                int id;
+                Portfolio portfolio;
                 if (int.TryParse(form["Id"], out id))
                     portfolio = context.Portfolio.First(p => p.Id == id);
                 else

@@ -69,7 +69,21 @@ namespace Shop
             routes.MapRoute(
              "Designers", // Route name
              "Designers/{id}", // URL with parameters
-             new { controller = "Designers", action = "Index", id = "Fedorov" }, // Parameter defaults
+             new { controller = "Designers", action = "Index", id = UrlParameter.Optional }, // Parameter defaults
+             new string[1] { "Shop.Controllers" }
+            );
+
+            routes.MapRoute(
+             "DesignersLiving", // Route name
+             "Designers/{id}/living", // URL with parameters
+             new { controller = "Designers", action = "ViewLiving", id = UrlParameter.Optional }, // Parameter defaults
+             new string[1] { "Shop.Controllers" }
+            );
+
+            routes.MapRoute(
+             "DesignersNotLiving", // Route name
+             "Designers/{id}/notliving", // URL with parameters
+             new { controller = "Designers", action = "ViewNotLiving", id = UrlParameter.Optional }, // Parameter defaults
              new string[1] { "Shop.Controllers" }
             );
 

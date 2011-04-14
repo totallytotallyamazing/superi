@@ -18,6 +18,7 @@
     <OldToolsVersion>3.5</OldToolsVersion>
     <UpgradeBackupLocation />
     <TargetFrameworkProfile />
+    <UseIISExpress>false</UseIISExpress>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -269,6 +270,7 @@
     <Content Include="Content\fbDefault\jquery.fancybox.css" />
     <Content Include="Content\LislelliStyles\img\bannerDecor.png" />
     <Content Include="Content\LislelliStyles\img\bannerFoglie.png" />
+    <Content Include="Content\LislelliStyles\img\bannerHackwood.png" />
     <Content Include="Content\LislelliStyles\img\bannerKreo.png" />
     <Content Include="Content\LislelliStyles\img\bannerLaperla.png" />
     <Content Include="Content\LislelliStyles\img\bkgFooter.gif" />
@@ -377,6 +379,7 @@
     <Content Include="Scripts\jquery.dimensions.js" />
     <Content Include="Scripts\jquery.fancybox.js" />
     <Content Include="Scripts\jquery.FCKEditor.js" />
+    <Content Include="Scripts\jquery.history.js" />
     <Content Include="Scripts\jquery.js" />
     <Content Include="Scripts\jquery.uploadify.js" />
     <Content Include="Scripts\jquery.validate.js" />

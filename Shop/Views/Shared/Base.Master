@@ -57,7 +57,7 @@
                     <div id="logo">
                         <%--Logo--%>
                     </div>
-                    <p class="slogan">
+                    <p class="slogan">  
                     <%
                         string currentUrl = Request.Url.ToString().ToLower();
                         if (currentUrl.Contains("konkurs") || currentUrl.Contains("conditions") || currentUrl.Contains("fond"))
@@ -102,17 +102,30 @@
                             <a href="/BrandCatalog/Home/Index" class="txtBrand">Брендовые каталоги</a>
                         </div>
                         <div id="brandBanners">
-                            <div class="banners">
-                                <img src="../../Content/LislelliStyles/img/bannerKreo.png" alt="Kreo" />
+                            <div class="banners">   
+                                <a href="/BrandCatalog/Home/Index#2:1">
+                                    <img src="../../Content/LislelliStyles/img/bannerKreo.png" alt="Kreo" />
+                                </a>
                             </div>
                             <div class="banners">
-                                <img src="../../Content/LislelliStyles/img/bannerDecor.png" alt="Decor Marmi" />
+                                <a href="/BrandCatalog/Home/Index#2:10">
+                                    <img src="../../Content/LislelliStyles/img/bannerDecor.png" alt="Decor Marmi" />
+                                </a>
                             </div>
                             <div class="banners">
-                                <img src="../../Content/LislelliStyles/img/bannerLaperla.png" alt="Laperla" />
+                                <a href="/BrandCatalog/Home/Index#2:11">
+                                    <img src="../../Content/LislelliStyles/img/bannerLaperla.png" alt="Laperla" />
+                                </a>
                             </div>
                             <div class="banners">
-                                <img src="../../Content/LislelliStyles/img/bannerFoglie.png" alt="Foglie" />
+                                <a href="/BrandCatalog/Home/Index#1:1">
+                                    <img src="../../Content/LislelliStyles/img/bannerFoglie.png" alt="Foglie" />
+                                </a>
+                            </div>
+                            <div class="banners">
+                                <a href="/BrandCatalog/Home/Index#1:2">
+                                    <img src="../../Content/LislelliStyles/img/bannerHackwood.png" alt="Hackwood" />
+                                </a>
                             </div>
                         </div>
                     </div>

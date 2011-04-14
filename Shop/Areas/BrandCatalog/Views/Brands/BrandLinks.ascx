@@ -6,8 +6,8 @@
   {
       string actionLink = Ajax.ActionLink((string)item.Name, "Index", 
           new { controller = "Brands", brandId = item.Id, groupId = ViewData["groupId"] },
-          new AjaxOptions { OnSuccess = "BrandCatalogue.updateDockContent" }, 
-          new { @class = "txtSubMenuItem" }).ToString();
+          new AjaxOptions { OnSuccess = "BrandCatalogue.updateDockContent" },
+          new { @class = "txtSubMenuItem", brandId = item.Id, groupId = ViewData["groupId"] }).ToString();
       %>
     <div class="menu">
         <p class="txtSubMenuItem">

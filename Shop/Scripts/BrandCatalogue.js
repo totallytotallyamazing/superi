@@ -16,19 +16,50 @@ var BrandCatalogue = {
             });
             BrandCatalogue.fetchBrands();
 
+            var hash = location.href.replace(/^.*#/, '');
+            BrandCatalogue._historyCallback(hash);
+
             $(".cbBrandContainer ul li").click(function () {
                 window.setTimeout(BrandCatalogue.fetchBrands, 100);
             })
         });
     },
 
-    fetchBrands: function () {
+    _historyCallback: function (hash) {
+        if (hash) {
+            var groupId = 0;
+            var brandId = 0;
+            var hashItems = hash.split(":");
+            groupId = 1 * hashItems[0];
+            brandId = 1 * hashItems[1];
+
+            var selectBrand = document.getElementById("selectBrand");
+            var selectedIndexNew = 0;
+            for (var i = 0; i < selectBrand.options.length; i++) {
+                var option = selectBrand.options[i];
+                if (1 * option.value == groupId) {
+                    selectedIndexNew = i;
+                    break;
+                }
+            }
+            selectBrand.selectedIndex = selectedIndexNew;
+            $('#selectBrand').combobox.update();
+            BrandCatalogue.fetchBrands(function () {
+                $("a.txtSubMenuItem[groupId='" + groupId + "'][brandId='" + brandId + "']").click();
+            });
+        }
+    },
+
+
+    fetchBrands: function (callback) {
         var element = document.getElementById("selectBrand")
         var id = element.options[element.selectedIndex].value;
         $.get("/BrandCatalog/Brands/BrandLinks/" + id, function (data) {
             $("#topMenu").html(data);
             //$("a.txtSubMenuItem").click(function () { debugger;  this.style.textDecoration = "none"; href = ""; return false; })
             $("a.txtSubMenuItem").click(function () { $("a.txtSubMenuItem").css("text-decoration", "underline"); this.style.textDecoration = "none"; this.blur(); });
+            if (callback)
+                callback();
         });
     },
 
@@ -85,7 +116,7 @@ var BrandCatalogue = {
                     for (var i = 0; i < imageArray.length; i++) {
                         specialArray[i] = imageArray[i];
                     }
-                    $.fancybox(specialArray, { index: index, hideOnContentClick: true, showCloseButton: false, type: "image", padding:0, margin:20 });
+                    $.fancybox(specialArray, { index: index, hideOnContentClick: true, showCloseButton: false, type: "image", padding: 0, margin: 20 });
                 });
                 $("#mainCatalogImage img").load(function () {
                     $("#contentBoxBrandCatalog").height(this.offsetHeight); ;

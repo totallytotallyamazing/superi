@@ -1,50 +1,75 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<Shop.Models.Designer>" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<List<Shop.Models.DesignerContent>>" %>
 
+<%@ Import Namespace="Dev.Mvc.Ajax" %>
+
+<%@ Import Namespace="Dev.Mvc.Helpers" %>
+<%@ Import Namespace="Shop.Models" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Index
+    Index
 </asp:Content>
-
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-
-<%=Html.ActionLink("Жилые помещения", "Details", "Designers", new { id = Model.Url, appartaments ="living"}, null)%>
-
-<%=Html.ActionLink("Нежилые помещения", "Details", "Designers", new { id = Model.Url, appartaments = "notliving" }, null)%>
-
-
-
-    <h2><%=Model.Name%></h2>
+<script type="text/javascript">
+    $(function () {
+        $("#accordion").accordion({ animated: 'slide', collapsible: true });
+    });
+	</script>
 
     <%
-    
-       
-        
-        foreach (var dc in Model.DesignerContent)
+        if (Model.Count > 0)
         {
-
-            
-            
-            %>
-            
-            <div>
-            
-            <%=dc.DesignerRoom.Name%>
-            
+            Designer designer = Model[0].Designer;
+    %>
+    <div class="designerInfoContainer">
+        <div class="degignerName">
+            <%=Html.Encode(designer.Name)%></div>
+        <div class="designerInfoBlock">
+            <div class="designerLogo">
+                <%=Html.Image("~/Content/DesignerLogos/" + designer.Logo, designer.Name,150)%></div>
+            <div class="designerInfo">
+                <div class="designerTitle">
+                    <%=Html.Encode(designer.Title)%></div>
+                <div class="designerSummary">
+                    <%=Html.Encode(designer.Summary)%></div>
             </div>
+        </div>
+    </div>
 
-            <%
-        }
-            
+
+    <div id="accordion">
+
+    <%
+        foreach (var dc in Model)
+        {
     %>
 
-    
-</asp:Content>
+    <h3><a href="#"><%=dc.DesignerRoom.Name%></a></h3>
+	<div>
+    <% if (Roles.IsUserInRole("Administrators"))
+   { %>    
+    <p class="adminLink">   
+    <%= Html.ActionLink("Редактировать", "EditContent", "Designers", new { area = "Admin", id = dc.Id }, null)%>
+    </p>
+    <%} %>
+		qweqweqwe
+	</div>
 
+
+
+    <%
+        }
+        }
+    %>
+
+    </div>
+
+
+</asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentTitle" runat="server">
 </asp:Content>
-
 <asp:Content ID="Content4" ContentPlaceHolderID="includes" runat="server">
+    <link href="/Content/LislelliStyles/Designers.css" rel="stylesheet" type="text/css" />
+     <script type="text/javascript" src="/Scripts/jquery-ui-1.8.11.custom.min.js"></script>
 </asp:Content>
-
 <asp:Content ID="Content5" ContentPlaceHolderID="Footer" runat="server">
 </asp:Content>

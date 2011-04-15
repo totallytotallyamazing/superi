@@ -16,12 +16,18 @@ namespace Shop.Controllers
         {
             using (var context = new DesignerStorage())
             {
+                /*
                 Designer designer = context.Designer.Include("DesignerContent").First(d => d.Url == id);
                 foreach (var item in designer.DesignerContent)
                 {
                     //item.DesignerRoomReference.Load();
                 }
-                return View(designer);
+                return View(designer);*/
+
+
+
+                var dcList = context.DesignerContent.Include("Designer").Include("DesignerRoom").Include("DesignerContentImages").Where(d => d.Designer.Url == id).ToList();
+                return View(dcList);
             }
         }
 

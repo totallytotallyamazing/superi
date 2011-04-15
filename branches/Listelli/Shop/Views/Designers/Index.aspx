@@ -45,13 +45,18 @@
 
     <h3><a href="#"><%=dc.DesignerRoom.Name%></a></h3>
 	<div>
+
+    <div class="designerContentSummary">
+    <%=Html.Encode(dc.Summary) %>
+    </div>
+
+
     <% if (Roles.IsUserInRole("Administrators"))
    { %>    
     <p class="adminLink">   
     <%= Html.ActionLink("Редактировать", "EditContent", "Designers", new { area = "Admin", id = dc.Id }, null)%>
     </p>
     <%} %>
-		qweqweqwe
 	</div>
 
 

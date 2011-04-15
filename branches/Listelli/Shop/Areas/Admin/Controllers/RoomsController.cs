@@ -49,7 +49,7 @@ namespace Shop.Areas.Admin.Controllers
                     room = new DesignerRoom();
                     context.AddToDesignerRoom(room);
                 }
-                TryUpdateModel(room, new string[] { "Name" }, form.ToValueProvider());
+                TryUpdateModel(room, new string[] { "Name", "Type" }, form.ToValueProvider());
                 context.SaveChanges();
             }
 

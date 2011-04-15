@@ -13,6 +13,9 @@
     
         <tr>
             <td>
+                <%: item.Type %>
+            </td>
+            <td>
                 <%: item.Name %>
             </td>
              <td>

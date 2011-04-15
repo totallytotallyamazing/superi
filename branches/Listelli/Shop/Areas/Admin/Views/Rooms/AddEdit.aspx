@@ -14,6 +14,13 @@
         <fieldset>
         <%= Html.HiddenFor(model => model.Id)%>
             <div class="editor-label">
+                <%: Html.LabelFor(model => model.Type) %>
+            </div>
+            <div class="editor-field">
+                <%: Html.TextBoxFor(model => model.Type)%>
+                <%: Html.ValidationMessageFor(model => model.Type)%>
+            </div>
+            <div class="editor-label">
                 <%: Html.LabelFor(model => model.Name) %>
             </div>
             <div class="editor-field">

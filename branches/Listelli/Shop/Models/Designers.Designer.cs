@@ -18,9 +18,9 @@ using System.Runtime.Serialization;
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
 
-[assembly: EdmRelationshipAttribute("gb_listelliModel1", "FK_DesignerContent_Designer", "Designer", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Shop.Models.Designer), "DesignerContent", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Shop.Models.DesignerContent), true)]
-[assembly: EdmRelationshipAttribute("gb_listelliModel1", "FK_DesignerContent_DesignerRoom", "DesignerRoom", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Shop.Models.DesignerRoom), "DesignerContent", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Shop.Models.DesignerContent), true)]
-[assembly: EdmRelationshipAttribute("gb_listelliModel1", "FK_DesignerContentImages_DesignerContent", "DesignerContent", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Shop.Models.DesignerContent), "DesignerContentImages", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Shop.Models.DesignerContentImages), true)]
+[assembly: EdmRelationshipAttribute("gb_listelliModel", "FK_DesignerContent_Designer", "Designer", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Shop.Models.Designer), "DesignerContent", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Shop.Models.DesignerContent), true)]
+[assembly: EdmRelationshipAttribute("gb_listelliModel", "FK_DesignerContent_DesignerRoom", "DesignerRoom", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Shop.Models.DesignerRoom), "DesignerContent", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Shop.Models.DesignerContent), true)]
+[assembly: EdmRelationshipAttribute("gb_listelliModel", "FK_DesignerContentImages_DesignerContent", "DesignerContent", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Shop.Models.DesignerContent), "DesignerContentImages", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Shop.Models.DesignerContentImages), true)]
 
 #endregion
 
@@ -182,7 +182,7 @@ namespace Shop.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="gb_listelliModel1", Name="Designer")]
+    [EdmEntityTypeAttribute(NamespaceName="gb_listelliModel", Name="Designer")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class Designer : EntityObject
@@ -287,30 +287,6 @@ namespace Shop.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String Summary
-        {
-            get
-            {
-                return _Summary;
-            }
-            set
-            {
-                OnSummaryChanging(value);
-                ReportPropertyChanging("Summary");
-                _Summary = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("Summary");
-                OnSummaryChanged();
-            }
-        }
-        private global::System.String _Summary;
-        partial void OnSummaryChanging(global::System.String value);
-        partial void OnSummaryChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
         public global::System.String Title
         {
             get
@@ -335,24 +311,48 @@ namespace Shop.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String ImageSource
+        public global::System.String Summary
         {
             get
             {
-                return _ImageSource;
+                return _Summary;
             }
             set
             {
-                OnImageSourceChanging(value);
-                ReportPropertyChanging("ImageSource");
-                _ImageSource = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("ImageSource");
-                OnImageSourceChanged();
+                OnSummaryChanging(value);
+                ReportPropertyChanging("Summary");
+                _Summary = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Summary");
+                OnSummaryChanged();
             }
         }
-        private global::System.String _ImageSource;
-        partial void OnImageSourceChanging(global::System.String value);
-        partial void OnImageSourceChanged();
+        private global::System.String _Summary;
+        partial void OnSummaryChanging(global::System.String value);
+        partial void OnSummaryChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Logo
+        {
+            get
+            {
+                return _Logo;
+            }
+            set
+            {
+                OnLogoChanging(value);
+                ReportPropertyChanging("Logo");
+                _Logo = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Logo");
+                OnLogoChanged();
+            }
+        }
+        private global::System.String _Logo;
+        partial void OnLogoChanging(global::System.String value);
+        partial void OnLogoChanged();
 
         #endregion
     
@@ -364,18 +364,18 @@ namespace Shop.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("gb_listelliModel1", "FK_DesignerContent_Designer", "DesignerContent")]
+        [EdmRelationshipNavigationPropertyAttribute("gb_listelliModel", "FK_DesignerContent_Designer", "DesignerContent")]
         public EntityCollection<DesignerContent> DesignerContent
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<DesignerContent>("gb_listelliModel1.FK_DesignerContent_Designer", "DesignerContent");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<DesignerContent>("gb_listelliModel.FK_DesignerContent_Designer", "DesignerContent");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<DesignerContent>("gb_listelliModel1.FK_DesignerContent_Designer", "DesignerContent", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<DesignerContent>("gb_listelliModel.FK_DesignerContent_Designer", "DesignerContent", value);
                 }
             }
         }
@@ -386,7 +386,7 @@ namespace Shop.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="gb_listelliModel1", Name="DesignerContent")]
+    [EdmEntityTypeAttribute(NamespaceName="gb_listelliModel", Name="DesignerContent")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class DesignerContent : EntityObject
@@ -546,16 +546,16 @@ namespace Shop.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("gb_listelliModel1", "FK_DesignerContent_Designer", "Designer")]
+        [EdmRelationshipNavigationPropertyAttribute("gb_listelliModel", "FK_DesignerContent_Designer", "Designer")]
         public Designer Designer
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Designer>("gb_listelliModel1.FK_DesignerContent_Designer", "Designer").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Designer>("gb_listelliModel.FK_DesignerContent_Designer", "Designer").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Designer>("gb_listelliModel1.FK_DesignerContent_Designer", "Designer").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Designer>("gb_listelliModel.FK_DesignerContent_Designer", "Designer").Value = value;
             }
         }
         /// <summary>
@@ -567,13 +567,13 @@ namespace Shop.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Designer>("gb_listelliModel1.FK_DesignerContent_Designer", "Designer");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Designer>("gb_listelliModel.FK_DesignerContent_Designer", "Designer");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Designer>("gb_listelliModel1.FK_DesignerContent_Designer", "Designer", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Designer>("gb_listelliModel.FK_DesignerContent_Designer", "Designer", value);
                 }
             }
         }
@@ -584,16 +584,16 @@ namespace Shop.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("gb_listelliModel1", "FK_DesignerContent_DesignerRoom", "DesignerRoom")]
+        [EdmRelationshipNavigationPropertyAttribute("gb_listelliModel", "FK_DesignerContent_DesignerRoom", "DesignerRoom")]
         public DesignerRoom DesignerRoom
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<DesignerRoom>("gb_listelliModel1.FK_DesignerContent_DesignerRoom", "DesignerRoom").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<DesignerRoom>("gb_listelliModel.FK_DesignerContent_DesignerRoom", "DesignerRoom").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<DesignerRoom>("gb_listelliModel1.FK_DesignerContent_DesignerRoom", "DesignerRoom").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<DesignerRoom>("gb_listelliModel.FK_DesignerContent_DesignerRoom", "DesignerRoom").Value = value;
             }
         }
         /// <summary>
@@ -605,13 +605,13 @@ namespace Shop.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<DesignerRoom>("gb_listelliModel1.FK_DesignerContent_DesignerRoom", "DesignerRoom");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<DesignerRoom>("gb_listelliModel.FK_DesignerContent_DesignerRoom", "DesignerRoom");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<DesignerRoom>("gb_listelliModel1.FK_DesignerContent_DesignerRoom", "DesignerRoom", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<DesignerRoom>("gb_listelliModel.FK_DesignerContent_DesignerRoom", "DesignerRoom", value);
                 }
             }
         }
@@ -622,18 +622,18 @@ namespace Shop.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("gb_listelliModel1", "FK_DesignerContentImages_DesignerContent", "DesignerContentImages")]
+        [EdmRelationshipNavigationPropertyAttribute("gb_listelliModel", "FK_DesignerContentImages_DesignerContent", "DesignerContentImages")]
         public EntityCollection<DesignerContentImages> DesignerContentImages
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<DesignerContentImages>("gb_listelliModel1.FK_DesignerContentImages_DesignerContent", "DesignerContentImages");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<DesignerContentImages>("gb_listelliModel.FK_DesignerContentImages_DesignerContent", "DesignerContentImages");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<DesignerContentImages>("gb_listelliModel1.FK_DesignerContentImages_DesignerContent", "DesignerContentImages", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<DesignerContentImages>("gb_listelliModel.FK_DesignerContentImages_DesignerContent", "DesignerContentImages", value);
                 }
             }
         }
@@ -644,7 +644,7 @@ namespace Shop.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="gb_listelliModel1", Name="DesignerContentImages")]
+    [EdmEntityTypeAttribute(NamespaceName="gb_listelliModel", Name="DesignerContentImages")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class DesignerContentImages : EntityObject
@@ -754,16 +754,16 @@ namespace Shop.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("gb_listelliModel1", "FK_DesignerContentImages_DesignerContent", "DesignerContent")]
+        [EdmRelationshipNavigationPropertyAttribute("gb_listelliModel", "FK_DesignerContentImages_DesignerContent", "DesignerContent")]
         public DesignerContent DesignerContent
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<DesignerContent>("gb_listelliModel1.FK_DesignerContentImages_DesignerContent", "DesignerContent").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<DesignerContent>("gb_listelliModel.FK_DesignerContentImages_DesignerContent", "DesignerContent").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<DesignerContent>("gb_listelliModel1.FK_DesignerContentImages_DesignerContent", "DesignerContent").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<DesignerContent>("gb_listelliModel.FK_DesignerContentImages_DesignerContent", "DesignerContent").Value = value;
             }
         }
         /// <summary>
@@ -775,13 +775,13 @@ namespace Shop.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<DesignerContent>("gb_listelliModel1.FK_DesignerContentImages_DesignerContent", "DesignerContent");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<DesignerContent>("gb_listelliModel.FK_DesignerContentImages_DesignerContent", "DesignerContent");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<DesignerContent>("gb_listelliModel1.FK_DesignerContentImages_DesignerContent", "DesignerContent", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<DesignerContent>("gb_listelliModel.FK_DesignerContentImages_DesignerContent", "DesignerContent", value);
                 }
             }
         }
@@ -792,7 +792,7 @@ namespace Shop.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="gb_listelliModel1", Name="DesignerRoom")]
+    [EdmEntityTypeAttribute(NamespaceName="gb_listelliModel", Name="DesignerRoom")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class DesignerRoom : EntityObject
@@ -876,18 +876,18 @@ namespace Shop.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("gb_listelliModel1", "FK_DesignerContent_DesignerRoom", "DesignerContent")]
+        [EdmRelationshipNavigationPropertyAttribute("gb_listelliModel", "FK_DesignerContent_DesignerRoom", "DesignerContent")]
         public EntityCollection<DesignerContent> DesignerContent
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<DesignerContent>("gb_listelliModel1.FK_DesignerContent_DesignerRoom", "DesignerContent");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<DesignerContent>("gb_listelliModel.FK_DesignerContent_DesignerRoom", "DesignerContent");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<DesignerContent>("gb_listelliModel1.FK_DesignerContent_DesignerRoom", "DesignerContent", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<DesignerContent>("gb_listelliModel.FK_DesignerContent_DesignerRoom", "DesignerContent", value);
                 }
             }
         }

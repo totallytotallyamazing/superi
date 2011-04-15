@@ -1,0 +1,93 @@
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<Shop.Models.Designer>" %>
+<%@ Import Namespace="Dev.Mvc.Helpers" %>
+<%@ Import Namespace="Dev.Mvc.Ajax" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
+	<%= ViewData["title"]%>
+</asp:Content>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+
+    <% Html.EnableClientValidation(); %>
+
+    <% using (Html.BeginForm("AddEdit", "Designers", FormMethod.Post, new { enctype="multipart/form-data" })){%>
+        <%: Html.ValidationSummary(true) %>
+        
+        <fieldset>
+        <%= Html.HiddenFor(model => model.Id)%>
+            <div class="editor-label">
+                <%: Html.LabelFor(model => model.Name) %>
+            </div>
+            <div class="editor-field">
+                <%: Html.TextBoxFor(model => model.Name) %>
+                <%: Html.ValidationMessageFor(model => model.Name) %>
+            </div>
+            <div class="editor-label">
+                <%: Html.LabelFor(model => model.Url) %>
+            </div>
+            <div class="editor-field">
+                <%: Html.TextBoxFor(model => model.Url)%>
+                <%: Html.ValidationMessageFor(model => model.Url)%>
+            </div>
+            <div class="editor-label">
+                <%: Html.LabelFor(model => model.Logo)%>
+            </div>
+            <div class="editor-field">
+                <% if (Model != null) %>
+                        <%= Html.Image("~/Content/DesignerLogos/" + Model.Logo, Model.Name)%>
+                <input type="file" name="logo" />
+                
+            </div>
+
+            <div class="editor-label">
+                <%= Html.LabelFor(model => model.Summary)%>
+            </div>
+            <div class="editor-field">
+                <%= Html.TextAreaFor(model => model.Summary)%>
+                <%= Html.ValidationMessageFor(model => model.Summary)%>
+            </div>
+
+            <div class="editor-label">
+                <%= Html.LabelFor(model => model.Title)%>
+            </div>
+            <div class="editor-field">
+                <%= Html.TextAreaFor(model => model.Title)%>
+                <%= Html.ValidationMessageFor(model => model.Title)%>
+            </div>
+
+            <p>
+                <input type="submit" value="Сохранить" />
+            </p>
+        </fieldset>
+
+        <%= Html.ActionLink("Виды помещений", "Rooms", "Designers", new { area = "Admin", id = Model.Id }, new { @class = "fancyAdmin iframe"})%>
+
+    <% } %>
+
+    <div>
+        <%: Html.ActionLink("к списку", "Index") %>
+    </div>
+
+</asp:Content>
+
+<asp:Content ID="Content4" ContentPlaceHolderID="includes" runat="server">
+
+<%= Ajax.ScriptInclude("/Scripts/jquery.fancybox.js")  %>
+    <%= Ajax.DynamicCssInclude("/Content/fancybox/jquery.fancybox.css")%>
+<script type="text/javascript">
+    $(function () {
+        $(".fancyAdmin").fancybox({ hideOnOverlayClick: false, hideOnContentClick: false });
+    })
+</script>
+
+
+    <script type="text/javascript" src="/Scripts/jquery.FCKEditor.js"></script>
+    <script type="text/javascript" src="/Scripts/MicrosoftAjax.js"></script>
+    <script type="text/javascript" src="/Scripts/MicrosoftMvcValidation.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $.fck.config = { path: '<%= VirtualPathUtility.ToAbsolute("~/Controls/fckeditor/") %>', config: { SkinPath: "skins/office2003/", DefaultLanguage: "ru", AutoDetectLanguage: false, EnterMode: "br", ShiftEnterMode: "p", HtmlEncodeOutput: true} };
+            $("#Description").fck({ toolbar: "Basic", height: 200 });
+        });
+    </script>
+</asp:Content>

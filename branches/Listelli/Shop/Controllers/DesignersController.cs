@@ -14,29 +14,29 @@ namespace Shop.Controllers
 
         public ActionResult Index(string id)
         {
-            using (var context = new PortfolioStorage())
+            using (var context = new DesignerStorage())
             {
-                Portfolio portfolio = context.Portfolio.Include("PortfolioImage").First(p => p.Url == id);
-                return View(portfolio);
+                Designer designer = context.Designer.Include("DesignerContent").First(d => d.Url == id);
+                return View(designer);
             }
         }
 
 
         public ActionResult ViewLiving(string id, string appartaments)
         {
-            using (var context = new PortfolioStorage())
+            using (var context = new DesignerStorage())
             {
-                Portfolio portfolio = context.Portfolio.Include("PortfolioImage").First(p => p.Url == id);
-                return View("Details", portfolio);
+                Designer designer = context.Designer.Include("DesignerContent").First(d => d.Url == id);
+                return View("Details", designer);
             }
         }
 
         public ActionResult ViewNotLiving(string id, string appartaments)
         {
-            using (var context = new PortfolioStorage())
+            using (var context = new DesignerStorage())
             {
-                Portfolio portfolio = context.Portfolio.Include("PortfolioImage").First(p => p.Url == id);
-                return View("Details", portfolio);
+                Designer designer = context.Designer.Include("DesignerContent").First(d => d.Url == id);
+                return View("Details", designer);
             }
         }
     }

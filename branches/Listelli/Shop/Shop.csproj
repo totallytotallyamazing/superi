@@ -84,10 +84,11 @@
     <Compile Include="Areas\Admin\Controllers\BrandsController.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoriesController.cs" />
     <Compile Include="Areas\Admin\Controllers\ContentController.cs" />
-    <Compile Include="Areas\Admin\Controllers\PortfolioController.cs" />
+    <Compile Include="Areas\Admin\Controllers\DesignersController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductCategoriesController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductVariantsController.cs" />
     <Compile Include="Areas\Admin\Controllers\OrdersController.cs" />
+    <Compile Include="Areas\Admin\Controllers\RoomsController.cs" />
     <Compile Include="Areas\Admin\Controllers\SettingsController.cs" />
     <Compile Include="Areas\BrandCatalog\BrandCatalogAreaRegistration.cs" />
     <Compile Include="Areas\BrandCatalog\Controllers\BrandsController.cs" />
@@ -153,10 +154,12 @@
       <DependentUpon>Content.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\ContextExtensions.cs" />
-    <Compile Include="Models\Designer.Designer.cs">
+    <Compile Include="Models\Designer.cs" />
+    <Compile Include="Models\DesignerRoom.cs" />
+    <Compile Include="Models\Designers.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Designer.edmx</DependentUpon>
+      <DependentUpon>Designers.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\EFExtensions.cs" />
     <Compile Include="Models\Favorites.cs" />
@@ -165,12 +168,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Orders.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Portfolio.cs" />
-    <Compile Include="Models\Portfolio.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Portfolio.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductAttribute.cs" />
@@ -198,12 +195,15 @@
     <Content Include="Areas\Admin\Views\BrandCatalogue\UploadControl.ascx" />
     <Content Include="Areas\Admin\Views\BrandCatalogue\Images.ascx" />
     <Content Include="Areas\Admin\Views\Content\EditPartial.ascx" />
-    <Content Include="Areas\Admin\Views\Portfolio\AddEdit.aspx" />
-    <Content Include="Areas\Admin\Views\Portfolio\Index.aspx" />
+    <Content Include="Areas\Admin\Views\Designers\AddEdit.aspx" />
+    <Content Include="Areas\Admin\Views\Designers\Index.aspx" />
+    <Content Include="Areas\Admin\Views\Designers\Rooms.ascx" />
     <Content Include="Areas\Admin\Views\ProductCategories\Index.ascx" />
     <Content Include="Areas\Admin\Views\Products\ProductAttributeStaticValues.ascx" />
     <Content Include="Areas\Admin\Views\ProductVariants\AddEdit.ascx" />
     <Content Include="Areas\Admin\Views\ProductVariants\Index.aspx" />
+    <Content Include="Areas\Admin\Views\Rooms\AddEdit.aspx" />
+    <Content Include="Areas\Admin\Views\Rooms\Index.aspx" />
     <Content Include="Areas\BrandCatalog\Views\Brands\BrandLinks.ascx" />
     <Content Include="Areas\BrandCatalog\Views\Brands\Index.ascx" />
     <Content Include="Areas\BrandCatalog\Views\Home\Index.aspx" />
@@ -605,6 +605,7 @@
     <Folder Include="Configuration\" />
     <Folder Include="Content\BrandLogos\" />
     <Folder Include="Content\CategoryImages\" />
+    <Folder Include="Content\DesignerLogos\" />
     <Folder Include="Content\ProductImages\" />
     <Folder Include="Controls\ckeditor\" />
     <Folder Include="ImageCache\cartThumb\" />
@@ -640,15 +641,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="Models\Portfolio.edmx">
+    <EntityDeploy Include="Models\Designers.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Portfolio.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
-    <EntityDeploy Include="Models\Designer.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Designer.Designer.cs</LastGenOutput>
+      <LastGenOutput>Designers.Designer.cs</LastGenOutput>
     </EntityDeploy>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

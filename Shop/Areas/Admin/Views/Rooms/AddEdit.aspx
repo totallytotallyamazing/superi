@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<Shop.Models.Portfolio>" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<Shop.Models.DesignerRoom>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	<%= ViewData["title"]%>
@@ -6,21 +6,20 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <% Html.EnableClientValidation(); %>
+     <% Html.EnableClientValidation(); %>
 
-    <% using (Html.BeginForm()) {%>
+    <% using (Html.BeginForm()){%>
         <%: Html.ValidationSummary(true) %>
         
         <fieldset>
         <%= Html.HiddenFor(model => model.Id)%>
             <div class="editor-label">
-                <%: Html.LabelFor(model => model.UserName) %>
+                <%: Html.LabelFor(model => model.Name) %>
             </div>
             <div class="editor-field">
-                <%: Html.TextBoxFor(model => model.UserName) %>
-                <%: Html.ValidationMessageFor(model => model.UserName) %>
+                <%: Html.TextBoxFor(model => model.Name) %>
+                <%: Html.ValidationMessageFor(model => model.Name) %>
             </div>
-            
             <p>
                 <input type="submit" value="Сохранить" />
             </p>
@@ -34,15 +33,8 @@
 
 </asp:Content>
 
-<asp:Content ID="Content3" ContentPlaceHolderID="ContentTitle" runat="server">
-</asp:Content>
-
 <asp:Content ID="Content4" ContentPlaceHolderID="includes" runat="server">
-    <script type="text/javascript" src="/Scripts/MicrosoftAjax.js"></script>
+ <script type="text/javascript" src="/Scripts/MicrosoftAjax.js"></script>
     <script type="text/javascript" src="/Scripts/MicrosoftMvcValidation.js"></script>
-    
-</asp:Content>
-
-<asp:Content ID="Content5" ContentPlaceHolderID="Footer" runat="server">
 </asp:Content>
 

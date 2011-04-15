@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<Shop.Models.Portfolio>" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<Shop.Models.Designer>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	Index
@@ -13,7 +13,30 @@
 
 
 
-    <h2><%=Model.UserName%></h2>
+    <h2><%=Model.Name%></h2>
+
+    <%
+    
+       
+        
+        foreach (var dc in Model.DesignerContent)
+        {
+
+            
+            
+            %>
+            
+            <div>
+            
+            <%=dc.DesignerRoom.Name%>
+            
+            </div>
+
+            <%
+        }
+            
+    %>
+
     
 </asp:Content>
 

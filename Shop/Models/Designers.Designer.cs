@@ -399,14 +399,12 @@ namespace Shop.Models
         /// <param name="id">Initial value of the Id property.</param>
         /// <param name="designerId">Initial value of the DesignerId property.</param>
         /// <param name="roomId">Initial value of the RoomId property.</param>
-        /// <param name="isLiving">Initial value of the IsLiving property.</param>
-        public static DesignerContent CreateDesignerContent(global::System.Int32 id, global::System.Int32 designerId, global::System.Int32 roomId, global::System.Int16 isLiving)
+        public static DesignerContent CreateDesignerContent(global::System.Int32 id, global::System.Int32 designerId, global::System.Int32 roomId)
         {
             DesignerContent designerContent = new DesignerContent();
             designerContent.Id = id;
             designerContent.DesignerId = designerId;
             designerContent.RoomId = roomId;
-            designerContent.IsLiving = isLiving;
             return designerContent;
         }
 
@@ -487,30 +485,6 @@ namespace Shop.Models
         private global::System.Int32 _RoomId;
         partial void OnRoomIdChanging(global::System.Int32 value);
         partial void OnRoomIdChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int16 IsLiving
-        {
-            get
-            {
-                return _IsLiving;
-            }
-            set
-            {
-                OnIsLivingChanging(value);
-                ReportPropertyChanging("IsLiving");
-                _IsLiving = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("IsLiving");
-                OnIsLivingChanged();
-            }
-        }
-        private global::System.Int16 _IsLiving;
-        partial void OnIsLivingChanging(global::System.Int16 value);
-        partial void OnIsLivingChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -804,11 +778,13 @@ namespace Shop.Models
         /// </summary>
         /// <param name="id">Initial value of the Id property.</param>
         /// <param name="name">Initial value of the Name property.</param>
-        public static DesignerRoom CreateDesignerRoom(global::System.Int32 id, global::System.String name)
+        /// <param name="type">Initial value of the Type property.</param>
+        public static DesignerRoom CreateDesignerRoom(global::System.Int32 id, global::System.String name, global::System.Int32 type)
         {
             DesignerRoom designerRoom = new DesignerRoom();
             designerRoom.Id = id;
             designerRoom.Name = name;
+            designerRoom.Type = type;
             return designerRoom;
         }
 
@@ -865,6 +841,30 @@ namespace Shop.Models
         private global::System.String _Name;
         partial void OnNameChanging(global::System.String value);
         partial void OnNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 Type
+        {
+            get
+            {
+                return _Type;
+            }
+            set
+            {
+                OnTypeChanging(value);
+                ReportPropertyChanging("Type");
+                _Type = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Type");
+                OnTypeChanged();
+            }
+        }
+        private global::System.Int32 _Type;
+        partial void OnTypeChanging(global::System.Int32 value);
+        partial void OnTypeChanged();
 
         #endregion
     

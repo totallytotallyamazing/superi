@@ -154,6 +154,29 @@ namespace Shop.Areas.Admin.Controllers
         }
 
 
+        public ActionResult EditContent(int id)
+        {
+            using (var context = new DesignerStorage())
+            {
+                var dc = context.DesignerContent.Include("Designer").Include("DesignerContentImages").Where(c => c.Id == id).First();
+
+
+                return View(dc);
+            }
+           
+        }
+
+        [HttpPost]
+        public ActionResult EditContent(int id, FormCollection form)
+        {
+            using (var context = new DesignerStorage())
+            {
+                var dc = context.DesignerContent.Include("Designer").Where(c => c.Id == id).First();
+
+                return RedirectToAction("Index", "Designers", new {area = "", id = dc.Designer.Url});
+            }
+        }
+
 
     }
 }

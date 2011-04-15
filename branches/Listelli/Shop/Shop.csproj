@@ -196,6 +196,7 @@
     <Content Include="Areas\Admin\Views\BrandCatalogue\Images.ascx" />
     <Content Include="Areas\Admin\Views\Content\EditPartial.ascx" />
     <Content Include="Areas\Admin\Views\Designers\AddEdit.aspx" />
+    <Content Include="Areas\Admin\Views\Designers\EditContent.aspx" />
     <Content Include="Areas\Admin\Views\Designers\Index.aspx" />
     <Content Include="Areas\Admin\Views\Designers\Rooms.ascx" />
     <Content Include="Areas\Admin\Views\ProductCategories\Index.ascx" />
@@ -268,6 +269,7 @@
     <Content Include="Content\fbDefault\fancy_title_over.png" />
     <Content Include="Content\fbDefault\fancy_title_right.png" />
     <Content Include="Content\fbDefault\jquery.fancybox.css" />
+    <Content Include="Content\LislelliStyles\Designers.css" />
     <Content Include="Content\LislelliStyles\img\bannerDecor.png" />
     <Content Include="Content\LislelliStyles\img\bannerFoglie.png" />
     <Content Include="Content\LislelliStyles\img\bannerHackwood.png" />
@@ -375,6 +377,7 @@
     <Content Include="Scripts\ck.extensions.js" />
     <Content Include="Scripts\expressInstall.swf" />
     <Content Include="Scripts\fisheye-iutil.js" />
+    <Content Include="Scripts\jquery-ui-1.8.11.custom.min.js" />
     <Content Include="Scripts\jquery.combobox.js" />
     <Content Include="Scripts\jquery.dimensions.js" />
     <Content Include="Scripts\jquery.fancybox.js" />

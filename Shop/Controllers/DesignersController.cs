@@ -16,8 +16,13 @@ namespace Shop.Controllers
         {
             using (var context = new DesignerStorage())
             {
+                
                 Designer designer = context.Designer.Include("DesignerContent").First(d => d.Url == id);
+
+                context.DesignerContent.Include("DesignerContentImages").Where();
+
                 return View(designer);
+
             }
         }
 

@@ -176,6 +176,10 @@ namespace Shop.Areas.Admin.Controllers
             {
                 var dc = context.DesignerContent.Include("Designer").Where(c => c.Id == id).First();
 
+                TryUpdateModel(dc, new string[] { "Summary" }, form.ToValueProvider());
+                dc.Summary = HttpUtility.HtmlDecode(form["Summary"]);
+                context.SaveChanges();
+
                 return RedirectToAction("Index", "Designers", new {area = "", id = dc.Designer.Url});
             }
         }

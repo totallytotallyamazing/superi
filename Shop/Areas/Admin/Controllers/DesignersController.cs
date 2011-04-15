@@ -98,12 +98,12 @@ namespace Shop.Areas.Admin.Controllers
         [HttpPost]
         public void Rooms(int id, FormCollection form)
         {
-            using (DesignerStorage context = new DesignerStorage())
+            using (var context = new DesignerStorage())
             {
                 PostData data = form.ProcessPostData(excludeFields: "id");
 
-                Collection<int> addAttributeIds = new Collection<int>();
-                Collection<int> removeAttributeIds = new Collection<int>();
+                var addAttributeIds = new Collection<int>();
+                var removeAttributeIds = new Collection<int>();
                 foreach (var item in data)
                 {
                     int attributeId = int.Parse(item.Key);
@@ -125,28 +125,31 @@ namespace Shop.Areas.Admin.Controllers
         }
 
 
-        private void AddDesignerContentToDesigner(DesignerStorage context, Designer designer, Collection<int> roomIds)
+        private static void AddDesignerContentToDesigner(DesignerStorage context, Designer designer, IEnumerable<int> roomIds)
         {
             foreach (var roomId in roomIds)
             {
                 if (designer.DesignerContent.Where(r => r.RoomId == roomId).Count() == 0)
                 {
                     DesignerRoom room = context.DesignerRoom.Where(r => r.Id == roomId).First();
-                    DesignerContent dc = new DesignerContent();
-                    dc.DesignerRoom = room;
+                    var dc = new DesignerContent
+                                 {
+                                     DesignerRoom = room
+                                 };
                     designer.DesignerContent.Add(dc);
                 }
             }
 
         }
 
-        private void RemoveDesignerContentToDesigner(DesignerStorage context, Designer designer, Collection<int> roomIds)
+        private static void RemoveDesignerContentToDesigner(DesignerStorage context, Designer designer, IEnumerable<int> roomIds)
         {
             foreach (var roomId in roomIds)
             {
                 DesignerContent dc = designer.DesignerContent.Where(r => r.RoomId == roomId).FirstOrDefault();
                 if (dc != null)
                 {
+
                     dc.DesignerRoom = null;
                     designer.DesignerContent.Remove(dc);
                 }

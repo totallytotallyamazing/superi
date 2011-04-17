@@ -35,10 +35,14 @@
             <div class="editor-field">
                 <% if (Model != null) %>
                         <%= Html.Image("~/Content/DesignerLogos/" + Model.Logo, Model.Name)%>
+                        <br />
                 <input type="file" name="logo" />
                 
             </div>
 
+            <div class="editor-label">
+                <%= Html.LabelFor(model => model.Title)%>
+            </div>
             <div class="editor-label">
                 <%= Html.LabelFor(model => model.Summary)%>
             </div>
@@ -47,20 +51,15 @@
                 <%= Html.ValidationMessageFor(model => model.Summary)%>
             </div>
 
-            <div class="editor-label">
-                <%= Html.LabelFor(model => model.Title)%>
-            </div>
-            <div class="editor-field">
-                <%= Html.TextAreaFor(model => model.Title)%>
-                <%= Html.ValidationMessageFor(model => model.Title)%>
-            </div>
-
             <p>
                 <input type="submit" value="Сохранить" />
             </p>
         </fieldset>
-
-        <%= Html.ActionLink("Виды помещений", "Rooms", "Designers", new { area = "Admin", id = Model.Id }, new { @class = "fancyAdmin iframe"})%>
+        <%if (Model != null)
+        {%>
+        <%=Html.ActionLink("Виды помещений", "Rooms", "Designers", new {area = "Admin", id = Model.Id}, new {@class = "fancyAdmin iframe"})%>
+        <%
+        }%>
 
     <% } %>
 
@@ -72,22 +71,19 @@
 
 <asp:Content ID="Content4" ContentPlaceHolderID="includes" runat="server">
 
-<%= Ajax.ScriptInclude("/Scripts/jquery.fancybox.js")  %>
+    <%= Ajax.ScriptInclude("/Scripts/jquery.fancybox.js")  %>
     <%= Ajax.DynamicCssInclude("/Content/fancybox/jquery.fancybox.css")%>
+    <script type="text/javascript" src="/Scripts/MicrosoftAjax.js"></script>
+    <script type="text/javascript" src="/Scripts/MicrosoftMvcValidation.js"></script>
+      
+    <%= Ajax.ScriptInclude("/Controls/ckeditor/ckeditor.js")%>
+    <%= Ajax.ScriptInclude("/Controls/ckeditor/adapters/jquery.js")%>
+
 <script type="text/javascript">
     $(function () {
-        $(".fancyAdmin").fancybox({ hideOnOverlayClick: false, hideOnContentClick: false });
+        $(".fancyAdmin").fancybox({ showCloseButton: true, hideOnOverlayClick: false, hideOnContentClick: false });
+        CKEDITOR.replace("Summary", { toolbar: "Media" });
     })
 </script>
 
-
-    <script type="text/javascript" src="/Scripts/jquery.FCKEditor.js"></script>
-    <script type="text/javascript" src="/Scripts/MicrosoftAjax.js"></script>
-    <script type="text/javascript" src="/Scripts/MicrosoftMvcValidation.js"></script>
-    <script type="text/javascript">
-        $(function () {
-            $.fck.config = { path: '<%= VirtualPathUtility.ToAbsolute("~/Controls/fckeditor/") %>', config: { SkinPath: "skins/office2003/", DefaultLanguage: "ru", AutoDetectLanguage: false, EnterMode: "br", ShiftEnterMode: "p", HtmlEncodeOutput: true} };
-            $("#Description").fck({ toolbar: "Basic", height: 200 });
-        });
-    </script>
 </asp:Content>

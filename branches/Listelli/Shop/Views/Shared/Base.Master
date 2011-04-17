@@ -166,7 +166,7 @@
              <div id="footer">
                     <div id="designedBy">
                         <p class="footerText">
-                            © 2011, компания “Listelli”
+                            © <%=DateTime.Now.Year%>, компания “Listelli”
                             <br />
                             Дизайн сайта — <a href="http://m-brand.com.ua" class="footerMiller">Евгений Миллер</a>
                         </p>

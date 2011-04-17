@@ -395,7 +395,6 @@
     <Content Include="Scripts\uploadify.allglyphs.swf" />
     <Content Include="Scripts\uploadify.swf" />
     <Content Include="Stub.jpg" />
-    <Content Include="Views\Designers\Details.aspx" />
     <Content Include="Views\Designers\Index.aspx" />
     <Content Include="Views\Home\FeedbackForm.aspx" />
     <Content Include="Views\Home\FeedbackSent.aspx" />
@@ -609,9 +608,11 @@
     <Folder Include="Content\BrandLogos\" />
     <Folder Include="Content\CategoryImages\" />
     <Folder Include="Content\DesignerLogos\" />
+    <Folder Include="Content\DesignerPhotos\" />
     <Folder Include="Content\ProductImages\" />
     <Folder Include="Controls\ckeditor\" />
     <Folder Include="ImageCache\cartThumb\" />
+    <Folder Include="ImageCache\designerPhotosThumb\" />
     <Folder Include="ImageCache\mainViewContest\" />
     <Folder Include="ImageCache\mainView\" />
     <Folder Include="ImageCache\thumbnail1\" />
@@ -648,6 +649,9 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Designers.Designer.cs</LastGenOutput>
     </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\Designers.Master" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

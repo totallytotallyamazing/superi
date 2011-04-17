@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<Shop.Models.DesignerContent>" %>
+<%@ Import Namespace="Dev.Mvc.Ajax" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	EditContent
@@ -18,7 +19,7 @@
                 <%: Html.LabelFor(model => model.Summary) %>
             </div>
             <div class="editor-field">
-                <%: Html.TextBoxFor(model => model.Summary) %>
+                <%: Html.TextAreaFor(model => model.Summary) %>
                 <%: Html.ValidationMessageFor(model => model.Summary) %>
             </div>
             
@@ -36,6 +37,14 @@
 </asp:Content>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="includes" runat="server">
+  <%= Ajax.ScriptInclude("/Controls/ckeditor/ckeditor.js")%>
+<%= Ajax.ScriptInclude("/Controls/ckeditor/adapters/jquery.js")%>
+
+<script type="text/javascript">
+    $(function () {
+        CKEDITOR.replace("Summary", { toolbar: "Media" });
+    })
+</script>
 </asp:Content>
 
 <asp:Content ID="Content5" ContentPlaceHolderID="Footer" runat="server">

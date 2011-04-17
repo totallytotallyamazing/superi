@@ -53,9 +53,8 @@ namespace Shop.Areas.Admin.Controllers
                     designer = new Designer();
                     context.AddToDesigner(designer);
                 }
-                TryUpdateModel(designer, new string[] { "Name", "Url", "Summary", "Title" }, form.ToValueProvider());
+                TryUpdateModel(designer, new string[] { "Name", "Url", "Summary" }, form.ToValueProvider());
                 designer.Summary = HttpUtility.HtmlDecode(form["Summary"]);
-                designer.Title = HttpUtility.HtmlDecode(form["Title"]);
 
                 if (Request.Files["logo"] != null && !string.IsNullOrEmpty(Request.Files["logo"].FileName))
                 {
@@ -184,6 +183,25 @@ namespace Shop.Areas.Admin.Controllers
             }
         }
 
-
+        [HttpPost]
+        public ActionResult AddPhoto(int id, FormCollection form)
+        {
+            using (var context = new DesignerStorage())
+            {
+                var dc = context.DesignerContent.Include("Designer").Where(c => c.Id == id).First();
+                
+                if (Request.Files["logo"] != null && !string.IsNullOrEmpty(Request.Files["logo"].FileName))
+                {
+                    string fileName = IOHelper.GetUniqueFileName("~/Content/DesignerPhotos", Request.Files["logo"].FileName);
+                    string filePath = Server.MapPath("~/Content/DesignerPhotos");
+                    filePath = Path.Combine(filePath, fileName);
+                    Request.Files["logo"].SaveAs(filePath);
+                    dc.DesignerContentImages.Add(new DesignerContentImages {ImageSource = fileName});
+                    context.SaveChanges();
+                }
+                
+                return RedirectToAction("Index", "Designers", new { area = "", id = dc.Designer.Url });
+            }
+        }
     }
 }

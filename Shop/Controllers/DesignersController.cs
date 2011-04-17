@@ -24,29 +24,12 @@ namespace Shop.Controllers
                 }
                 return View(designer);*/
 
+                Designer designer = context.Designer.Where(d => d.Url == id).First();
 
+                ViewData["designer"] = designer;
 
                 var dcList = context.DesignerContent.Include("Designer").Include("DesignerRoom").Include("DesignerContentImages").Where(d => d.Designer.Url == id).ToList();
                 return View(dcList);
-            }
-        }
-
-
-        public ActionResult ViewLiving(string id, string appartaments)
-        {
-            using (var context = new DesignerStorage())
-            {
-                Designer designer = context.Designer.Include("DesignerContent").First(d => d.Url == id);
-                return View("Details", designer);
-            }
-        }
-
-        public ActionResult ViewNotLiving(string id, string appartaments)
-        {
-            using (var context = new DesignerStorage())
-            {
-                Designer designer = context.Designer.Include("DesignerContent").First(d => d.Url == id);
-                return View("Details", designer);
             }
         }
     }

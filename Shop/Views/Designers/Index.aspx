@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<List<Shop.Models.DesignerContent>>" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Designers.Master" Inherits="System.Web.Mvc.ViewPage<List<Shop.Models.DesignerContent>>" %>
 
 <%@ Import Namespace="Dev.Mvc.Ajax" %>
 <%@ Import Namespace="Dev.Mvc.Helpers" %>
@@ -9,13 +9,26 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <script type="text/javascript">
         $(function () {
-            $("#accordion").accordion({ animated: 'slide', collapsible: true });
+            $("#accordion").accordion(
+            {
+                animated: 'slide',
+                /*collapsible: true,*/
+                autoHeight: false,
+                active: false,
+                change: function (event, ui) {
+                    ui.newHeader.css("color", "#cc0000");
+                    ui.newHeader.css("text-decoration", "none");
+                    ui.oldHeader.css("color", "#a3a3a3");
+                    ui.oldHeader.css("text-decoration", "underline");
+                }
+
+
+            });
         });
     </script>
     <%
-        if (Model.Count > 0)
-        {
-            Designer designer = Model[0].Designer;
+        
+            var designer = (Designer)ViewData["designer"];
     %>
     <div class="designerInfoContainer">
         <div class="degignerName">
@@ -24,10 +37,7 @@
             <div class="designerLogo">
                 <%=Html.Image("~/Content/DesignerLogos/" + designer.Logo, designer.Name,150)%></div>
             <div class="designerInfo">
-                <div class="designerTitle">
-                    <%=Html.Encode(designer.Title)%></div>
-                <div class="designerSummary">
-                    <%=Html.Encode(designer.Summary)%></div>
+                <div class="designerSummary"><%=designer.Summary%></div>
             </div>
         </div>
     </div>
@@ -43,7 +53,7 @@
             <%if (!string.IsNullOrEmpty(dc.Summary))
               {%>
             <div class="designerContentSummary">
-                <%=Html.Encode(dc.Summary)%>
+                <%=dc.Summary%>
             </div>
             <%
                 }%>
@@ -52,11 +62,27 @@
             <p class="adminLink">
                 <%= Html.ActionLink("Редактировать", "EditContent", "Designers", new { area = "Admin", id = dc.Id }, null)%>
             </p>
-            <%} %>
+            <%}
+               foreach (var item in dc.DesignerContentImages)
+               {
+            %>
+            <%=Html.CachedImage("~/Content/DesignerPhotos/", item.ImageSource, "designerPhotosThumb", item.ImageSource)%>
+            <%
+                }
+
+               if (Roles.IsUserInRole("Administrators"))
+                   using (Html.BeginForm("AddPhoto", "Designers", new { area = "Admin", id = dc.Id }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+                   {
+            %>
+            Добавить фото: <input type="file" name="logo" /> <input type="submit" value="Загрузить" />
+            <%
+                }
+                
+            %>
         </div>
         <%
             }
-        }
+        
         %>
     </div>
 </asp:Content>

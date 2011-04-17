@@ -1,0 +1,33 @@
+﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
+<%@ Import Namespace="Dev.Mvc.Ajax" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <% Html.RenderPartial("MetaTags"); %>
+    <title>
+        Listelli - 
+        <asp:ContentPlaceHolder runat="server" ID="TitleContent">
+        </asp:ContentPlaceHolder>
+    </title>
+    <script type="text/javascript" src="/Scripts/jquery.js"></script>
+    <link href="/Content/LislelliStyles/Designers.css" rel="stylesheet" type="text/css" />
+     <asp:ContentPlaceHolder runat="server" ID="includes">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    
+    <div id="all">
+    
+    <asp:ContentPlaceHolder runat="server" ID="ContentTitle"></asp:ContentPlaceHolder>
+
+    <asp:ContentPlaceHolder runat="server" ID="MainContent"></asp:ContentPlaceHolder>
+    
+
+
+
+    <asp:ContentPlaceHolder runat="server" ID="Footer"></asp:ContentPlaceHolder>
+    </div>
+        
+</body>
+</html>

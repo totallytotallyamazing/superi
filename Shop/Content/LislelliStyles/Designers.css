@@ -24,14 +24,9 @@
 	margin-left:190px;
 }
 
-.designerTitle
-{
-	font-weight:bold;
-}
-
 .designerSummary
 {
-	margin-top:25px;
+	
 }
 
 
@@ -40,4 +35,28 @@
 	border:1px solid #a3a3a3;
 	margin:10px;
 	padding:10px;
+}
+
+.designerInfoContainer
+{
+	margin-bottom:20px;
+}
+
+#accordion h3 a
+{
+	color:inherit;
+	text-decoration:inherit;
+	font-size: 20px;
+	font-style: italic;
+}
+
+#accordion h3
+{
+	color:#a3a3a3;
+	text-decoration:underline;
+}
+
+.red
+{
+	color:#cc0000 !important;
 }

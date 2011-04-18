@@ -13,7 +13,10 @@ var BasePageExtender = {
                 hideOnContentClick: false,
                 hideOnOverlayClick: false,
                 showCloseButton: true,
-                titlePosition: "over"
+                titlePosition: "over",
+                onComplete: function () {
+                    $("#fancybox-content").get(0).children[0].style.zIndex = 100000000;
+                }
             });
 
             if (!isHomePage) {

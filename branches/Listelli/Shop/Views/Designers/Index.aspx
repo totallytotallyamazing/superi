@@ -11,6 +11,8 @@
     <script type="text/javascript">
         $(function () {
 
+            $(".fancy").fancybox({ showCloseButton: true, cyclic: true, showNavArrows: true, padding: 0, margin: 0,centerOnScroll:true });
+
             $("#livingRoom").click(function () {
                 $("#livingRoom").addClass("selected");
                 $("#notLivingRoom").removeClass("selected");
@@ -109,7 +111,9 @@
                {
             %>
             <div class="photoContainer">
+            <a rel="group<%=dc.Id%>" href="../../Content/DesignerPhotos/<%=item.ImageSource%>" class="fancy iframe">
             <%=Html.CachedImage("~/Content/DesignerPhotos/", item.ImageSource, "designerPhotosThumb", item.ImageSource)%>
+            </a>
             <%if (Roles.IsUserInRole("Administrators"))
               { %>
               <br />
@@ -169,9 +173,26 @@
                foreach (var item in dc.DesignerContentImages)
                {
             %>
+            <div class="photoContainer">
+            <a rel="group<%=dc.Id%>" href="../../Content/DesignerPhotos/<%=item.ImageSource%>" class="fancy iframe">
             <%=Html.CachedImage("~/Content/DesignerPhotos/", item.ImageSource, "designerPhotosThumb", item.ImageSource)%>
-            <%
-                }
+            </a>
+            <%if (Roles.IsUserInRole("Administrators"))
+              { %>
+              <br />
+            <span>
+                <%= Html.ActionLink("Удалить", "DeletePhoto", "Designers", new { area = "Admin", /*photoId = item.Id, designerContentId=dc.Id*/ id = item.Id }, new { onclick = "return confirm('Вы уверены что хотите удалить запись?')",@class="adminLink" })%>
+            </span>
+            <%}
+                   %> 
+                   </div>
+                   <%
+               }
+
+                %>
+                 <div style="clear:both;">
+                </div>
+                <%
 
                if (Roles.IsUserInRole("Administrators"))
                    using (Html.BeginForm("AddPhoto", "Designers", new { area = "Admin", id = dc.Id }, FormMethod.Post, new { enctype = "multipart/form-data" }))

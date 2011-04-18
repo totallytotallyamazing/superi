@@ -74,7 +74,7 @@ namespace Oksi.Controllers
         {
             using (DataStorage context = new DataStorage())
             {
-                List<Clip> clips = context.Clips.ToList();
+                List<Clip> clips = context.Clips.OrderBy(c => c.SortOrder).ToList();
                 return View(clips);
             }
         }
@@ -87,7 +87,59 @@ namespace Oksi.Controllers
                 return View(clip);
             }
         }
-        
+
+
+        public ActionResult CreateVideo()
+        {
+            return View();
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult CreateVideo(Clip c, FormCollection form)
+        {
+            using (DataStorage context = new DataStorage())
+            {
+                Clip clip = new Clip
+                                {
+                                    Comment = c.Comment,
+                                    Title = c.Title,
+                                    Year = c.Year,
+                                    SortOrder = c.SortOrder,
+                                    Description = c.Description
+                                };
+
+                if (!string.IsNullOrEmpty(form["newUrl"]))
+                {
+                    string newId = TextHelper.GetYoutubeId2(form["newUrl"]);
+                    clip.Source =
+                        string.Format(
+                            "<object width=\"640\" height=\"385\"><param name=\"movie\" value=\"http://www.youtube.com/v/{0}&hl=ru_RU&fs=1&\"></param><param name=\"allowFullScreen\" value=\"true\"></param><param name=\"allowscriptaccess\" value=\"always\"></param><embed src=\"http://www.youtube.com/v/{0}&hl=ru_RU&fs=1&\" type=\"application/x-shockwave-flash\" allowscriptaccess=\"always\" allowfullscreen=\"true\" width=\"640\" height=\"385\"></embed></object>",
+                            newId);
+                    clip.SmallSource =
+                        string.Format(
+                            "<object width=\"433\" height=\"250\"><param name=\"movie\" value=\"http://www.youtube.com/v/{0}&hl=ru_RU&fs=1&\"></param><param name=\"allowFullScreen\" value=\"true\"></param><param name=\"allowscriptaccess\" value=\"always\"></param><embed src=\"http://www.youtube.com/v/{0}&hl=ru_RU&fs=1&\" type=\"application/x-shockwave-flash\" allowscriptaccess=\"always\" allowfullscreen=\"true\" width=\"433\" height=\"250\"></embed></object>",
+                            newId);
+
+
+                    context.AddToClips(clip);
+
+                    context.SaveChanges();
+                }
+            }
+            return RedirectToAction("Video");
+        }
+
+        public ActionResult DeleteVideo(int id)
+        {
+            using (DataStorage context = new DataStorage())
+            {
+                Clip clip = context.Clips.Where(c => c.Id == id).First();
+                context.DeleteObject(clip);
+                context.SaveChanges();
+            }
+            return RedirectToAction("Video");
+        }
+
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult EditVideo(FormCollection form)
         {
@@ -98,13 +150,9 @@ namespace Oksi.Controllers
 
                 if (!string.IsNullOrEmpty(form["newUrl"]))
                 {
-                    string newId = ExtractIdFromUrl(form["newUrl"]);
-
-                    string s =
-                        string.Format(
-                            "<object width=\"640\" height=\"385\"><param name=\"movie\" value=\"http://www.youtube.com/v/{0}&hl=ru_RU&fs=1&\"></param><param name=\"allowFullScreen\" value=\"true\"></param><param name=\"allowscriptaccess\" value=\"always\"></param><embed src=\"http://www.youtube.com/v/{0}&hl=ru_RU&fs=1&\" type=\"application/x-shockwave-flash\" allowscriptaccess=\"always\" allowfullscreen=\"true\" width=\"640\" height=\"385\"></embed></object>",
-                            newId);
-                    clip.Source = s;
+                    string newId = TextHelper.GetYoutubeId2(form["newUrl"]);
+                    clip.Source  = string.Format("<object width=\"640\" height=\"385\"><param name=\"movie\" value=\"http://www.youtube.com/v/{0}&hl=ru_RU&fs=1&\"></param><param name=\"allowFullScreen\" value=\"true\"></param><param name=\"allowscriptaccess\" value=\"always\"></param><embed src=\"http://www.youtube.com/v/{0}&hl=ru_RU&fs=1&\" type=\"application/x-shockwave-flash\" allowscriptaccess=\"always\" allowfullscreen=\"true\" width=\"640\" height=\"385\"></embed></object>", newId);
+                    clip.SmallSource = string.Format("<object width=\"433\" height=\"250\"><param name=\"movie\" value=\"http://www.youtube.com/v/{0}&hl=ru_RU&fs=1&\"></param><param name=\"allowFullScreen\" value=\"true\"></param><param name=\"allowscriptaccess\" value=\"always\"></param><embed src=\"http://www.youtube.com/v/{0}&hl=ru_RU&fs=1&\" type=\"application/x-shockwave-flash\" allowscriptaccess=\"always\" allowfullscreen=\"true\" width=\"433\" height=\"250\"></embed></object>", newId);
                 }
 
                 context.SaveChanges();
@@ -112,11 +160,7 @@ namespace Oksi.Controllers
             return RedirectToAction("Video");
         }
 
-        private static string ExtractIdFromUrl(string url)
-        {
-            string[] x = url.Split(new[] { "watch?v=", "/v/" }, StringSplitOptions.RemoveEmptyEntries);
-            return x[1];
-        }
+        
 
         public ActionResult DeleteArticle(int id)
         {

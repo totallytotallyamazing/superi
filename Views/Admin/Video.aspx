@@ -34,7 +34,8 @@
                 <%= Html.Encode(item.Description) %>
             </td>
              <td>
-                <%= Html.ActionLink("Редактировать", "EditVideo", new { id=item.Id }) %>
+                <%= Html.ActionLink("Редактировать", "EditVideo", new { id=item.Id }) %>|
+                <%= Html.ActionLink("Удалить", "DeleteVideo", new { id=item.Id },new{onclick="return confirm('Are you sure?')"}) %>
             </td>
         </tr>
     <% } %>

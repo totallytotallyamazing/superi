@@ -21,6 +21,18 @@ namespace Helpers
             return result;
         }
 
+        public static string GetYoutubeId2(string url)
+        {
+            string[] x = url.Split(new[] { "watch?v=", "/v/" }, StringSplitOptions.RemoveEmptyEntries);
+            return x[1];
+        }
+
+        public static string GetYoutubeId3(string url)
+        {
+            string[] x = url.Split(new[] { "/v/", "&", "?" }, StringSplitOptions.RemoveEmptyEntries);
+            return x[1];
+        }
+
         public static string Transliterate(string source)
         {
             string[] russian = "aбвгдеёжзийклмнопрстуфхцчшщъыьэюя"

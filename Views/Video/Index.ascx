@@ -23,7 +23,7 @@
     <div id="clipThumbnails">
         <% foreach (var item in Model){%>
             <div class="thumbnail"> 
-                <%= Html.Image("http://img.youtube.com/vi/" + TextHelper.GetYoutubeId(item.Source) + "/default.jpg") %>
+                <%= Html.Image("http://img.youtube.com/vi/" + TextHelper.GetYoutubeId3(item.Source) + "/default.jpg") %>
                 <p class="title"><%= item.Title %></p>
                 <p class="clipComment"><%if(!string.IsNullOrEmpty(item.Comment)){ %> (<%= item.Comment %>)<%} %></p>
                 <p class="clipYear"><%= item.Year %></p>

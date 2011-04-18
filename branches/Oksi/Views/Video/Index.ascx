@@ -5,7 +5,12 @@
 <%
     var clip = Model.First();    
 %>
+
 <div id="video">
+              <% if(Request.IsAuthenticated){ %>
+            <%= Html.ActionLink("Редактировать", "Video", "Admin", null, new { @class = "adminLink" })%>
+            <%} %>
+
     <div id="currentVideo">
         <div id="clipDetails">
             <h1><%= clip.Title %></h1>

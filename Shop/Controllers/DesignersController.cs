@@ -32,5 +32,7 @@ namespace Shop.Controllers
                 return View(dcList);
             }
         }
+
+        
     }
 }

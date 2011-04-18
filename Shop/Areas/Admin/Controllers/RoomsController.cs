@@ -49,12 +49,26 @@ namespace Shop.Areas.Admin.Controllers
                     room = new DesignerRoom();
                     context.AddToDesignerRoom(room);
                 }
-                TryUpdateModel(room, new string[] { "Name", "Type" }, form.ToValueProvider());
+
+                TryUpdateModel(room, new string[] { "Name","Type" }, form.ToValueProvider());
+
                 context.SaveChanges();
             }
 
             return RedirectToAction("Index");
         }
 
+
+        public ActionResult Delete(int id)
+        {
+            using (var context = new DesignerStorage())
+            {
+                DesignerRoom d = context.DesignerRoom.Where(dr => dr.Id == id).First();
+                context.DeleteObject(d);
+                context.SaveChanges();
+            }
+
+            return RedirectToAction("Index");
+        }
     }
 }

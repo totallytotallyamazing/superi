@@ -89,7 +89,7 @@
                         <p class="footerText">
                             © <%=DateTime.Now.Year%>, компания “Listelli”
                             <br />
-                            Дизайн сайта — <a href="http://m-brand.com.ua" class="footerMiller">Евгений Миллер</a>
+                            Дизайн сайта — <a href="http://eugene-miller.com" class="footerMiller">Евгений Миллер</a>
                         </p>
                     </div>
                     <div id="strip">

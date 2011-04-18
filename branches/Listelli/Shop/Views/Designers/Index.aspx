@@ -217,7 +217,7 @@
         <span class="sign1">Портфоло дизайнера</span>
         <br />
         <a href="#" id="designerNameLink" class="sign2">
-            <%=((Designer)ViewData["designer"]).Name%></a>
+            <%=((Designer)ViewData["designer"]).NameF%></a>
     </div>
     <div id="roomsType">
         <a href="#" id="livingRoom">Жилые помещения</a> <a href="#" id="notLivingRoom">Нежилые

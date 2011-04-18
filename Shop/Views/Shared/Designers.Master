@@ -10,7 +10,9 @@
         </asp:ContentPlaceHolder>
     </title>
     <script type="text/javascript" src="/Scripts/jquery.js"></script>
+    <script type="text/javascript" src="/Scripts/jquery.fancybox.js"></script>
     <link href="/Content/LislelliStyles/Designers.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/fbDefault/jquery.fancybox.css" rel="stylesheet" type="text/css" />
     <asp:ContentPlaceHolder runat="server" ID="includes">
     </asp:ContentPlaceHolder>
 </head>

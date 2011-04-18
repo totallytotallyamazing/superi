@@ -275,6 +275,9 @@
     <Content Include="Content\LislelliStyles\img\bannerHackwood.png" />
     <Content Include="Content\LislelliStyles\img\bannerKreo.png" />
     <Content Include="Content\LislelliStyles\img\bannerLaperla.png" />
+    <Content Include="Content\LislelliStyles\img\bg-footer.gif" />
+    <Content Include="Content\LislelliStyles\img\bg-header.gif" />
+    <Content Include="Content\LislelliStyles\img\bg-middle.gif" />
     <Content Include="Content\LislelliStyles\img\bkgFooter.gif" />
     <Content Include="Content\LislelliStyles\img\bkgHeader.gif" />
     <Content Include="Content\LislelliStyles\img\bkgMainContent.gif" />

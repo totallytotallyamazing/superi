@@ -69,6 +69,55 @@ namespace Oksi.Controllers
             return View();
         }
 
+
+        public ActionResult Video()
+        {
+            using (DataStorage context = new DataStorage())
+            {
+                List<Clip> clips = context.Clips.ToList();
+                return View(clips);
+            }
+        }
+
+        public ActionResult EditVideo(int id)
+        {
+            using (DataStorage context = new DataStorage())
+            {
+                Clip clip = context.Clips.Where(c => c.Id == id).First();
+                return View(clip);
+            }
+        }
+        
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult EditVideo(FormCollection form)
+        {
+            int id = Convert.ToInt32(form["Id"]);
+            using (DataStorage context = new DataStorage())
+            {
+                Clip clip = context.Clips.Where(c => c.Id == id).First();
+
+                if (!string.IsNullOrEmpty(form["newUrl"]))
+                {
+                    string newId = ExtractIdFromUrl(form["newUrl"]);
+
+                    string s =
+                        string.Format(
+                            "<object width=\"640\" height=\"385\"><param name=\"movie\" value=\"http://www.youtube.com/v/{0}&hl=ru_RU&fs=1&\"></param><param name=\"allowFullScreen\" value=\"true\"></param><param name=\"allowscriptaccess\" value=\"always\"></param><embed src=\"http://www.youtube.com/v/{0}&hl=ru_RU&fs=1&\" type=\"application/x-shockwave-flash\" allowscriptaccess=\"always\" allowfullscreen=\"true\" width=\"640\" height=\"385\"></embed></object>",
+                            newId);
+                    clip.Source = s;
+                }
+
+                context.SaveChanges();
+            }
+            return RedirectToAction("Video");
+        }
+
+        private static string ExtractIdFromUrl(string url)
+        {
+            string[] x = url.Split(new[] { "watch?v=", "/v/" }, StringSplitOptions.RemoveEmptyEntries);
+            return x[1];
+        }
+
         public ActionResult DeleteArticle(int id)
         {
             using (DataStorage context = new DataStorage())

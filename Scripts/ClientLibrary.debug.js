@@ -863,7 +863,7 @@ ClientLibrary.PageManager.prototype = {
         if (this._currentTopImage$1 >= ClientLibrary.PageManager._imagesNumber$1) {
             this._currentTopImage$1 = 0;
         }
-        jQuery('#header').css('background', 'transparent url(/Content/topImages/top' + this._currentTopImage$1 + '.jpg) no-repeat');
+        jQuery('#header').css('background', 'transparent url(/Content/topImages/oksi-new-shapka' + '.jpg) no-repeat');
     },
     
     _createHistoryPoint$1: function ClientLibrary_PageManager$_createHistoryPoint$1(target, options) {
@@ -1324,7 +1324,7 @@ Jquery.JCarouselConfig.registerClass('Jquery.JCarouselConfig');
 Jquery.JPlayerOptions.registerClass('Jquery.JPlayerOptions');
 ClientLibrary.AudioPlayer._instance$2 = null;
 ClientLibrary.PageManager._instanse$1 = null;
-ClientLibrary.PageManager._imagesNumber$1 = 2;
+ClientLibrary.PageManager._imagesNumber$1 = 3;
 
 // ---- Do not remove this footer ----
 // This script was generated using Script# v0.5.5.0 (http://projects.nikhilk.net/ScriptSharp)

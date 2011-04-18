@@ -1,4 +1,5 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Designers.Master" Inherits="System.Web.Mvc.ViewPage<List<Shop.Models.DesignerContent>>" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Designers.Master"
+    Inherits="System.Web.Mvc.ViewPage<List<Shop.Models.DesignerContent>>" %>
 
 <%@ Import Namespace="Dev.Mvc.Ajax" %>
 <%@ Import Namespace="Dev.Mvc.Helpers" %>
@@ -9,10 +10,42 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <script type="text/javascript">
         $(function () {
-            $("#accordion").accordion(
+
+            $("#livingRoom").click(function () {
+                $("#livingRoom").addClass("selected");
+                $("#notLivingRoom").removeClass("selected");
+                $(".designerInfoContainer").css("display", "none");
+                $("#accordion1").css("display", "block");
+                $("#accordion2").css("display", "none");
+                $("#designerNameLink").css("text-decoration", "underline");
+                $("#designerNameLink").css("cursor", "pointer");
+            });
+
+            $("#notLivingRoom").click(function () {
+                $("#livingRoom").removeClass("selected");
+                $("#notLivingRoom").addClass("selected");
+                $(".designerInfoContainer").css("display", "none");
+                $("#accordion2").css("display", "block");
+                $("#accordion1").css("display", "none");
+                $("#designerNameLink").css("text-decoration", "underline");
+                $("#designerNameLink").css("cursor", "pointer");
+            });
+
+            $("#designerNameLink").click(function () {
+                $(".designerInfoContainer").css("display", "block");
+                $("#accordion1").css("display", "none");
+                $("#accordion2").css("display", "none");
+                $("#livingRoom").removeClass("selected");
+                $("#notLivingRoom").removeClass("selected");
+                $("#designerNameLink").css("text-decoration", "none");
+                $("#designerNameLink").css("cursor", "default");
+            });
+
+
+            $("#accordion1, #accordion2").accordion(
             {
                 animated: 'slide',
-                /*collapsible: true,*/
+                collapsible: true,
                 autoHeight: false,
                 active: false,
                 change: function (event, ui) {
@@ -28,7 +61,7 @@
     </script>
     <%
         
-            var designer = (Designer)ViewData["designer"];
+        var designer = (Designer)ViewData["designer"];
     %>
     <div class="designerInfoContainer">
         <div class="degignerName">
@@ -37,13 +70,83 @@
             <div class="designerLogo">
                 <%=Html.Image("~/Content/DesignerLogos/" + designer.Logo, designer.Name,150)%></div>
             <div class="designerInfo">
-                <div class="designerSummary"><%=designer.Summary%></div>
+                <div class="designerSummary">
+                    <%=designer.Summary%></div>
             </div>
         </div>
     </div>
-    <div id="accordion">
+    <div class="accordion" id="accordion1">
         <%
-            foreach (var dc in Model)
+            foreach (var dc in Model.Where(d => d.DesignerRoom.Type == 0))
+            {
+        %>
+        <h3>
+            <a href="#">
+                <%=dc.DesignerRoom.Name%></a></h3>
+        <div>
+            <%if (!string.IsNullOrEmpty(dc.Summary))
+              {%>
+            <div class="designerContentSummary">
+                <%=dc.Summary%>
+            </div>
+            <%
+                }%>
+            <% if (Roles.IsUserInRole("Administrators"))
+               { %>
+            <p class="adminLink">
+                <%= Html.ActionLink("Редактировать", "EditContent", "Designers", new { area = "Admin", id = dc.Id }, null)%>
+            </p>
+
+            
+
+            <%}
+                
+                %>
+              
+                <%
+                
+               foreach (var item in dc.DesignerContentImages)
+               {
+            %>
+            <div class="photoContainer">
+            <%=Html.CachedImage("~/Content/DesignerPhotos/", item.ImageSource, "designerPhotosThumb", item.ImageSource)%>
+            <%if (Roles.IsUserInRole("Administrators"))
+              { %>
+              <br />
+            <span>
+                <%= Html.ActionLink("Удалить", "DeletePhoto", "Designers", new { area = "Admin", /*photoId = item.Id, designerContentId=dc.Id*/ id = item.Id }, new { onclick = "return confirm('Вы уверены что хотите удалить запись?')",@class="adminLink" })%>
+            </span>
+            <%}
+                   %> 
+                   </div>
+                   <%
+               }
+
+                %>
+                 <div style="clear:both;">
+                </div>
+                <%
+                
+               if (Roles.IsUserInRole("Administrators"))
+                   using (Html.BeginForm("AddPhoto", "Designers", new { area = "Admin", id = dc.Id }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+                   {
+            %>
+            Добавить фото:
+            <input type="file" name="logo" />
+            <input type="submit" value="Загрузить" />
+            <%
+                }
+                
+            %>
+        </div>
+        <%
+            }
+        
+        %>
+    </div>
+    <div class="accordion" id="accordion2">
+        <%
+            foreach (var dc in Model.Where(d => d.DesignerRoom.Type == 1))
             {
         %>
         <h3>
@@ -74,7 +177,9 @@
                    using (Html.BeginForm("AddPhoto", "Designers", new { area = "Admin", id = dc.Id }, FormMethod.Post, new { enctype = "multipart/form-data" }))
                    {
             %>
-            Добавить фото: <input type="file" name="logo" /> <input type="submit" value="Загрузить" />
+            Добавить фото:
+            <input type="file" name="logo" />
+            <input type="submit" value="Загрузить" />
             <%
                 }
                 
@@ -84,6 +189,18 @@
             }
         
         %>
+    </div>
+</asp:Content>
+<asp:Content ID="Content6" ContentPlaceHolderID="ContentHeader" runat="server">
+    <div id="headerTitle">
+        <span class="sign1">Портфоло дизайнера</span>
+        <br />
+        <a href="#" id="designerNameLink" class="sign2">
+            <%=((Designer)ViewData["designer"]).Name%></a>
+    </div>
+    <div id="roomsType">
+        <a href="#" id="livingRoom">Жилые помещения</a> <a href="#" id="notLivingRoom">Нежилые
+            помещения</a>
     </div>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentTitle" runat="server">

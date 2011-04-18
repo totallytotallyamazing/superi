@@ -195,12 +195,14 @@ namespace Shop.Models
         /// <param name="id">Initial value of the Id property.</param>
         /// <param name="name">Initial value of the Name property.</param>
         /// <param name="url">Initial value of the Url property.</param>
-        public static Designer CreateDesigner(global::System.Int32 id, global::System.String name, global::System.String url)
+        /// <param name="nameF">Initial value of the NameF property.</param>
+        public static Designer CreateDesigner(global::System.Int32 id, global::System.String name, global::System.String url, global::System.String nameF)
         {
             Designer designer = new Designer();
             designer.Id = id;
             designer.Name = name;
             designer.Url = url;
+            designer.NameF = nameF;
             return designer;
         }
 
@@ -353,6 +355,30 @@ namespace Shop.Models
         private global::System.String _Logo;
         partial void OnLogoChanging(global::System.String value);
         partial void OnLogoChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String NameF
+        {
+            get
+            {
+                return _NameF;
+            }
+            set
+            {
+                OnNameFChanging(value);
+                ReportPropertyChanging("NameF");
+                _NameF = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("NameF");
+                OnNameFChanged();
+            }
+        }
+        private global::System.String _NameF;
+        partial void OnNameFChanging(global::System.String value);
+        partial void OnNameFChanged();
 
         #endregion
     

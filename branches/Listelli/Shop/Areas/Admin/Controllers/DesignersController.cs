@@ -53,7 +53,7 @@ namespace Shop.Areas.Admin.Controllers
                     designer = new Designer();
                     context.AddToDesigner(designer);
                 }
-                TryUpdateModel(designer, new string[] { "Name", "Url", "Summary" }, form.ToValueProvider());
+                TryUpdateModel(designer, new string[] { "Name","NameF", "Url", "Summary" }, form.ToValueProvider());
                 designer.Summary = HttpUtility.HtmlDecode(form["Summary"]);
 
                 if (Request.Files["logo"] != null && !string.IsNullOrEmpty(Request.Files["logo"].FileName))
@@ -201,6 +201,23 @@ namespace Shop.Areas.Admin.Controllers
                 }
                 
                 return RedirectToAction("Index", "Designers", new { area = "", id = dc.Designer.Url });
+            }
+        }
+
+        public ActionResult DeletePhoto(/*int photoId, int degignerContentId*/ int id)
+        {
+            using (var context = new DesignerStorage())
+            {
+                var photo = context.DesignerContentImages.Include("DesignerContent").Where(p => p.Id == id).First();
+                int dcId = photo.DesignerContent.Id;
+                var designerContent = context.DesignerContent.Include("Designer").Where(dc => dc.Id == dcId).First();
+                if (!string.IsNullOrEmpty(photo.ImageSource))
+                {
+                    IOHelper.DeleteFile("~/Content/DesignerPhotos", photo.ImageSource);
+                }
+                context.DeleteObject(photo);
+                context.SaveChanges();
+                return RedirectToAction("Index", "Designers", new { area = "", id = designerContent.Designer.Url });
             }
         }
     }

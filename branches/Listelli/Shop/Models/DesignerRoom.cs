@@ -22,6 +22,10 @@ namespace Shop.Models
             [Required(ErrorMessage = "Введите название")]
             [DisplayName("Название")]
             public string Name { get; set; }
+
+            [Required(ErrorMessage = "Выберите тип помещения")]
+            [DisplayName("Тип помещения")]
+            public string Type { get; set; }
         }
    
 }

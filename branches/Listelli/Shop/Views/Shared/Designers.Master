@@ -1,39 +1,41 @@
 ﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
+
 <%@ Import Namespace="Dev.Mvc.Ajax" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <% Html.RenderPartial("MetaTags"); %>
-    <title>
-        Listelli - 
+    <title>Listelli -
         <asp:ContentPlaceHolder runat="server" ID="TitleContent">
         </asp:ContentPlaceHolder>
     </title>
     <script type="text/javascript" src="/Scripts/jquery.js"></script>
     <link href="/Content/LislelliStyles/Designers.css" rel="stylesheet" type="text/css" />
-     <asp:ContentPlaceHolder runat="server" ID="includes">
+    <asp:ContentPlaceHolder runat="server" ID="includes">
     </asp:ContentPlaceHolder>
 </head>
 <body>
-    
     <div id="all">
-
-
-    <div id="header">
-    
+        <div id="header">
+            <asp:ContentPlaceHolder runat="server" ID="ContentHeader">
+            </asp:ContentPlaceHolder>
+        </div>
+        <div id="content">
+            <asp:ContentPlaceHolder runat="server" ID="ContentTitle">
+            </asp:ContentPlaceHolder>
+            <asp:ContentPlaceHolder runat="server" ID="MainContent">
+            </asp:ContentPlaceHolder>
+        </div>
+        <div id="footer">
+            <asp:ContentPlaceHolder runat="server" ID="Footer">
+            </asp:ContentPlaceHolder>
+            <div id="designedBy">
+                ©
+                <%=DateTime.Now.Year%>, компания <a href="http://listelli.ua">Listelli</a>
+                <br />
+                Сделано в <a href="http://eugene-miller.com">Студии Евгения Миллера</a>
+            </div>
+        </div>
     </div>
-
-    
-    <asp:ContentPlaceHolder runat="server" ID="ContentTitle"></asp:ContentPlaceHolder>
-
-    <asp:ContentPlaceHolder runat="server" ID="MainContent"></asp:ContentPlaceHolder>
-    
-
-
-
-    <asp:ContentPlaceHolder runat="server" ID="Footer"></asp:ContentPlaceHolder>
-    </div>
-        
 </body>
 </html>

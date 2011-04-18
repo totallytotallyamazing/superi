@@ -23,6 +23,13 @@
                 <%: Html.ValidationMessageFor(model => model.Name) %>
             </div>
             <div class="editor-label">
+                <%: Html.LabelFor(model => model.NameF) %>
+            </div>
+            <div class="editor-field">
+                <%: Html.TextBoxFor(model => model.NameF) %>
+                <%: Html.ValidationMessageFor(model => model.NameF) %>
+            </div>
+            <div class="editor-label">
                 <%: Html.LabelFor(model => model.Url) %>
             </div>
             <div class="editor-field">

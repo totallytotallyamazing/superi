@@ -1,71 +1,195 @@
-﻿.designerInfoBlock
+﻿body
 {
-	border:1px solid #a3a3a3;
-	margin-left:10px;
-	padding:40px;
+    background-color: #000;
+}
+
+.designerInfoBlock
+{
+    border: 1px solid #a3a3a3;
+    margin-left: 10px;
+    padding: 40px;
 }
 
 .degignerName
 {
-	font-size: 20px;
-	color: #cc0000;
-	font-style: italic;
-	padding-bottom:45px;
+    font-size: 25px;
+    color: #cc0000;
+    font-style: italic;
+    padding-bottom: 45px;
+    padding-top: 40px;
+    font-family: Georgia;
 }
 
 .designerLogo
 {
-	float:left;
+    float: left;
 }
 
-	
+
 .designerInfo
 {
-	margin-left:190px;
+    margin-left: 190px;
 }
 
 .designerSummary
 {
-	
 }
 
 
 .designerContentSummary
 {
-	border:1px solid #a3a3a3;
-	margin:10px;
-	padding:10px;
+    border: 1px solid #a3a3a3;
+    margin: 10px;
+    padding: 10px;
 }
 
 .designerInfoContainer
 {
-	margin-bottom:20px;
+    margin-bottom: 20px;
 }
 
-#accordion h3 a
+.accordion
 {
-	color:inherit;
-	text-decoration:inherit;
-	font-size: 20px;
-	font-style: italic;
+    display: none;
 }
 
-#accordion h3
+.accordion h3 a
 {
-	color:#a3a3a3;
-	text-decoration:underline;
+    color: inherit;
+    text-decoration: inherit;
+    font-size: 20px;
+    font-style: italic;
+}
+
+.accordion h3
+{
+    color: #a3a3a3;
+    text-decoration: underline;
 }
 
 .red
 {
-	color:#cc0000 !important;
+    color: #cc0000 !important;
 }
 
 
 
-.all
+#all
 {
-    width:1023px;
-    position:relative;
-    margin:0 auto;
+    width: 1023px;
+    position: relative;
+    margin: 0 auto;
+    background: url('img/bg-middle.gif') repeat-y;
+}
+
+#header
+{
+    background: url('img/bg-header.gif') no-repeat;
+    width: 1023px;
+    height: 272px;
+}
+
+#footer
+{
+    background: url('img/bg-footer.gif') no-repeat;
+    width: 1023px;
+    height: 253px;
+}
+
+#designedBy
+{
+    position: relative;
+    margin: 0 auto;
+    color: #fff;
+    text-align: center;
+    padding-top: 190px;
+    font-family: Georgia;
+    font-size: 13px;
+}
+
+#designedBy a
+{
+    color: #fff;
+}
+
+#content
+{
+    padding: 0 80px;
+}
+
+
+#roomsType
+{
+    position: relative;
+    margin-left: 30px;
+    padding-top: 108px;
+    text-align: center;
+}
+
+#roomsType a
+{
+    margin: 0 50px;
+    font-size: 20px;
+    font-style: italic;
+    color: #0066cc;
+    font-family: Georgia;
+}
+
+#roomsType a:hover
+{
+}
+
+#roomsType a.selected
+{
+    color: #cc0000;
+    text-decoration: none;
+    cursor: default;
+}
+
+
+#headerTitle
+{
+    text-align: center; /*position:relative; 	margin:0 auto;*/
+    padding-top: 30px;
+    line-height: 35px;
+}
+
+.sign1, .sign2
+{
+    font-size: 25px;
+    font-style: italic;
+    font-family: Georgia;
+}
+
+.sign1
+{
+    color: #fff;
+}
+
+.sign2
+{
+    color: #cc0000;
+}
+
+#designerNameLink
+{
+    text-decoration: none;
+    cursor: default;
+}
+
+.adminLink
+{
+    color: #ff0000;
+    z-index: 1000;
+}
+
+
+.photoContainer
+{
+    float: left;
+    border: 1px solid silver;
+    width: 400px;
+    height: 400px;
+    padding: 5px;
+    margin: 5px;
 }

@@ -8,19 +8,19 @@
 
     <h2>Виды помещений</h2>
 
-     <table>
+     <table class="adminTable">
     <% foreach (var item in Model) { %>
     
         <tr>
             <td>
-                <%: item.Type %>
+                <%=(item.Type==0?"Жилые помещения":"Нежилые помещения") %>
             </td>
             <td>
                 <%: item.Name %>
             </td>
              <td>
                 <%= Html.ActionLink("Редактировать", "AddEdit", new { id = item.Id }, new { @class="fancy"})%> |
-                <%= Html.ActionLink("Удалить", "Delete", new { id = item.Id }, new { onclick = "return confirm('Вы уверены что хотите удалить запись?')" })%>|
+                <%= Html.ActionLink("Удалить", "Delete", new { id = item.Id }, new { onclick = "return confirm('Вы уверены что хотите удалить запись?')" })%>
             </td>
         </tr>
     

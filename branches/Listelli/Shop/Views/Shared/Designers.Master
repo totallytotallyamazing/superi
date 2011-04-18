@@ -18,6 +18,12 @@
 <body>
     
     <div id="all">
+
+
+    <div id="header">
+    
+    </div>
+
     
     <asp:ContentPlaceHolder runat="server" ID="ContentTitle"></asp:ContentPlaceHolder>
 

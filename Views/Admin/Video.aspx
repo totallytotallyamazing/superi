@@ -11,13 +11,13 @@
     <table>
         <tr>
             <th>
-                Title
+                Заголовок
             </th>
             <th>
-                SortOrder
+                Порядок отображения
             </th>
             <th>
-                Description
+                Описание
             </th>
             <th></th>
         </tr>
@@ -35,7 +35,7 @@
             </td>
              <td>
                 <%= Html.ActionLink("Редактировать", "EditVideo", new { id=item.Id }) %>|
-                <%= Html.ActionLink("Удалить", "DeleteVideo", new { id=item.Id },new{onclick="return confirm('Are you sure?')"}) %>
+                <%= Html.ActionLink("Удалить", "DeleteVideo", new { id=item.Id },new{onclick="return confirm('Вы уыерены, что хотите удалить запись?')"}) %>
             </td>
         </tr>
     <% } %>
@@ -43,7 +43,7 @@
     </table>
 
     <p>
-        <%= Html.ActionLink("Создать", "CreateVideo") %>
+        <%= Html.ActionLink("Добавить запись", "CreateVideo") %>
     </p>
 
 </asp:Content>

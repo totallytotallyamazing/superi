@@ -100,6 +100,7 @@
     </Compile>
     <Compile Include="Helpers\AjaxExtensions.cs" />
     <Compile Include="Helpers\CkExtensions.cs" />
+    <Compile Include="Helpers\GraphicsHelper.cs" />
     <Compile Include="Helpers\IOHelper.cs" />
     <Compile Include="Helpers\JqueryUiExtensions.cs" />
     <Compile Include="Helpers\ResourceTracker.cs" />

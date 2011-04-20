@@ -110,6 +110,11 @@
     <Compile Include="Helpers\TextHelper.cs" />
     <Compile Include="Models\ArticleTranslations.cs" />
     <Compile Include="Models\ContextExtension.cs" />
+    <Compile Include="Models\Model1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\Structure.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -272,12 +277,20 @@
     <Content Include="newBanner2.swf" />
     <Content Include="Scripts\jquery.ui.js" />
     <Content Include="Scripts\jquery.ui.datepicker-ru.js" />
+    <Content Include="Views\Admin\BannerAddEdit.aspx" />
     <Content Include="Views\Admin\Admin.Master" />
     <Content Include="Views\Admin\Article.aspx" />
     <Content Include="Views\Admin\Articles.aspx" />
+    <Content Include="Views\Admin\Banners.aspx" />
     <Content Include="Views\Admin\CreateVideo.aspx" />
     <Content Include="Views\Admin\EditVideo.aspx" />
     <Content Include="Views\Admin\Video.aspx" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Models\Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\" />

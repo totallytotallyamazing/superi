@@ -2,6 +2,7 @@
 
 <%@ Import Namespace="Microsoft.Web.Mvc" %>
 <%@ Import Namespace="Oksi.Helpers" %>
+<%@ Import Namespace="Oksi.Models" %>
 <%@ Import Namespace="Oksi.Mvc.Ajax" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -59,11 +60,31 @@
     <%= Ajax.Create("ClientLibrary.PageManager", new { id = "OksiManager"}, null)%>
     <div id="mainWrapper">
         <div id="rightBanners" style="float: right;">
-            <%=Html.RegisterFlashScript("newBanner1.swf", "br1", 235, 360)%>
+        
+        
+        <% using (var context = new BannerStorage())
+    {
+        string rightBanner = context.Banner.Where(b => b.Position == 1).Select(b => b.ImageSource).FirstOrDefault();
+
+        %>
+            <%=Html.RegisterFlashScript(rightBanner, "br1", 235, 360)%>
+        <%} %>    
         </div>
+        
         <div id="main">
             <div id="leftBanners">
-                <%=Html.RegisterFlashScript("newBanner1.swf", "b1", 235, 360)%>
+             <% if (Request.IsAuthenticated)
+            {%>
+       <%=Html.ActionLink("Редактировать баннеры","Banners","Admin",null,new{style="color:red; top:30px;"}) %>
+       <%
+            }%>
+        <% using (var context = new BannerStorage())
+    {
+             string leftBanner = context.Banner.Where(b => b.Position == 2).Select(b => b.ImageSource).FirstOrDefault();
+               %>
+                <%=Html.RegisterFlashScript(leftBanner, "b1", 235, 360)%>
+                
+                <%} %> 
             </div>
             <div id="player">
                 <% if (Request.IsAuthenticated)

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<Shop.Models.Designer>" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Designers.Master" Inherits="System.Web.Mvc.ViewPage<Shop.Models.Designer>" %>
 <%@ Import Namespace="Dev.Mvc.Helpers" %>
 <%@ Import Namespace="Dev.Mvc.Ajax" %>
 
@@ -41,14 +41,10 @@
             </div>
             <div class="editor-field">
                 <% if (Model != null) %>
-                        <%= Html.Image("~/Content/DesignerLogos/" + Model.Logo, Model.Name)%>
+                        <%= Html.Image("~/Content/DesignerLogos/" + Model.Logo, Model.Name,200)%>
                         <br />
                 <input type="file" name="logo" />
                 
-            </div>
-
-            <div class="editor-label">
-                <%= Html.LabelFor(model => model.Title)%>
             </div>
             <div class="editor-label">
                 <%= Html.LabelFor(model => model.Summary)%>
@@ -58,15 +54,23 @@
                 <%= Html.ValidationMessageFor(model => model.Summary)%>
             </div>
 
+            <%if (Model != null)
+        {%>
+
+            <div class="editor-label">
+            Виды помещений:
+            </div>
+            <div class="editor-field">
+            <%=Html.ActionLink("Редактировать", "Rooms", "Designers", new {area = "Admin", id = Model.Id}, new {@class = "fancyAdmin iframe"})%>
+            </div>
+        <%
+        }%>
+
             <p>
                 <input type="submit" value="Сохранить" />
             </p>
         </fieldset>
-        <%if (Model != null)
-        {%>
-        <%=Html.ActionLink("Виды помещений", "Rooms", "Designers", new {area = "Admin", id = Model.Id}, new {@class = "fancyAdmin iframe"})%>
-        <%
-        }%>
+        
 
     <% } %>
 

@@ -82,12 +82,12 @@
     </div>
     <div class="accordion" id="accordion1">
         <%
-            foreach (var dc in Model.Where(d => d.DesignerRoom.Type == 0))
+            foreach (var dc in Model.Where(d => d.RoomType == 0))
             {
         %>
         <h3>
             <a href="#">
-                <%=dc.DesignerRoom.Name%></a></h3>
+                <%=dc.RoomName%></a></h3>
         <div>
             <%if (!string.IsNullOrEmpty(dc.Summary))
               {%>
@@ -155,14 +155,15 @@
         
         %>
     </div>
+
     <div class="accordion" id="accordion2">
         <%
-            foreach (var dc in Model.Where(d => d.DesignerRoom.Type == 1))
+            foreach (var dc in Model.Where(d => d.RoomType == 1))
             {
         %>
         <h3>
             <a href="#">
-                <%=dc.DesignerRoom.Name%></a></h3>
+                <%=dc.RoomName%></a></h3>
         <div>
             <%if (!string.IsNullOrEmpty(dc.Summary))
               {%>

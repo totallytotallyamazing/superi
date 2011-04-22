@@ -5,20 +5,19 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-
    <h2>Портфолио дизайнеров</h2>
-
     <table>
     <% foreach (var item in Model) { %>
     
         <tr>
             <td>
-                <%: item.Name %>
+                <%=Html.ActionLink(item.Name, "Index", "Designers", new { area = "", id = item.Url }, new{@class="adminDesignerLink"})%>
             </td>
              <td>
-                <%= Html.ActionLink("Редактировать", "AddEdit", new { id = item.Id }, new { @class="fancy"})%> |
-                <%= Html.ActionLink("Удалить", "Delete", new { id = item.Id }, new { onclick = "return confirm('При удалении пользователя, удаляются также все с ним связанные работы. Вы уверены что хотите удалить пользователя?')" })%>|
-                <%=Html.ActionLink("К странице пользователя", "Index", "Designers", new {area="", id=item.Url }, null)%>
+                <%= Html.ActionLink("Редактировать", "AddEdit", new { id = item.Id }, null)%> |
+                <%= Html.ActionLink("Список кпомещений", "Rooms", new { id = item.Id }, null)%> |
+                <%= Html.ActionLink("Удалить", "Delete", new { id = item.Id }, new { onclick = "return confirm('При удалении пользователя, удаляются также все с ним связанные работы. Вы уверены что хотите удалить пользователя?')" })%>
+                
             </td>
         </tr>
     
@@ -29,6 +28,10 @@
     <p>
         <%: Html.ActionLink("Создать", "AddEdit")%>
     </p>
+   
+    
+   
+
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentTitle" runat="server">

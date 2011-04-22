@@ -248,3 +248,23 @@
     margin-left:-10px;
     padding:5px;
 }
+
+a
+{
+	font-family:Arial;
+	font-size:12px;
+}
+
+a.adminDesignerLink
+{
+	font-family:Georgia;
+	font-style:italic;
+	color:Black;
+	font-size:20px;
+}
+
+.typeRoomLink
+{
+	color:#ff0000;
+	font-size:14px;
+}

@@ -1,7 +1,7 @@
 ﻿#adminPanel{width:100%; position:absolute; top:0px; left:0px; height:20px; z-index:200;}
 #adminPanel .links{background:red; text-align:center; color:White; padding-bottom:3px;}
-#adminPanel .links a{color:White;font-size:12px;}
-#adminPanel .handle{background:transparent url(img/handleBg.gif) no-repeat; width:200px; height:20px; position:relative; margin:0 auto; color:White; text-align:center; font-size:12px;}
+#adminPanel .links a{color:White;font-size:12px; font-family:Arial;}
+#adminPanel .handle{background:transparent url(img/handleBg.gif) no-repeat; width:200px; height:20px; position:relative; margin:0 auto; color:White; text-align:center; font-size:13px; font-family:Arial;}
 
 
 .categoriesAdmin{padding-left:25px; padding-top:5px;}

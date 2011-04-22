@@ -19,7 +19,6 @@ using System.Runtime.Serialization;
 #region EDM Relationship Metadata
 
 [assembly: EdmRelationshipAttribute("gb_listelliModel", "FK_DesignerContent_Designer", "Designer", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Shop.Models.Designer), "DesignerContent", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Shop.Models.DesignerContent), true)]
-[assembly: EdmRelationshipAttribute("gb_listelliModel", "FK_DesignerContent_DesignerRoom", "DesignerRoom", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Shop.Models.DesignerRoom), "DesignerContent", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Shop.Models.DesignerContent), true)]
 [assembly: EdmRelationshipAttribute("gb_listelliModel", "FK_DesignerContentImages_DesignerContent", "DesignerContent", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Shop.Models.DesignerContent), "DesignerContentImages", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Shop.Models.DesignerContentImages), true)]
 
 #endregion
@@ -119,22 +118,6 @@ namespace Shop.Models
             }
         }
         private ObjectSet<DesignerContentImages> _DesignerContentImages;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<DesignerRoom> DesignerRoom
-        {
-            get
-            {
-                if ((_DesignerRoom == null))
-                {
-                    _DesignerRoom = base.CreateObjectSet<DesignerRoom>("DesignerRoom");
-                }
-                return _DesignerRoom;
-            }
-        }
-        private ObjectSet<DesignerRoom> _DesignerRoom;
 
         #endregion
         #region AddTo Methods
@@ -161,14 +144,6 @@ namespace Shop.Models
         public void AddToDesignerContentImages(DesignerContentImages designerContentImages)
         {
             base.AddObject("DesignerContentImages", designerContentImages);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the DesignerRoom EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToDesignerRoom(DesignerRoom designerRoom)
-        {
-            base.AddObject("DesignerRoom", designerRoom);
         }
 
         #endregion
@@ -424,13 +399,11 @@ namespace Shop.Models
         /// </summary>
         /// <param name="id">Initial value of the Id property.</param>
         /// <param name="designerId">Initial value of the DesignerId property.</param>
-        /// <param name="roomId">Initial value of the RoomId property.</param>
-        public static DesignerContent CreateDesignerContent(global::System.Int32 id, global::System.Int32 designerId, global::System.Int32 roomId)
+        public static DesignerContent CreateDesignerContent(global::System.Int32 id, global::System.Int32 designerId)
         {
             DesignerContent designerContent = new DesignerContent();
             designerContent.Id = id;
             designerContent.DesignerId = designerId;
-            designerContent.RoomId = roomId;
             return designerContent;
         }
 
@@ -491,30 +464,6 @@ namespace Shop.Models
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 RoomId
-        {
-            get
-            {
-                return _RoomId;
-            }
-            set
-            {
-                OnRoomIdChanging(value);
-                ReportPropertyChanging("RoomId");
-                _RoomId = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("RoomId");
-                OnRoomIdChanged();
-            }
-        }
-        private global::System.Int32 _RoomId;
-        partial void OnRoomIdChanging(global::System.Int32 value);
-        partial void OnRoomIdChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
         public global::System.String Summary
@@ -535,6 +484,54 @@ namespace Shop.Models
         private global::System.String _Summary;
         partial void OnSummaryChanging(global::System.String value);
         partial void OnSummaryChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String RoomName
+        {
+            get
+            {
+                return _RoomName;
+            }
+            set
+            {
+                OnRoomNameChanging(value);
+                ReportPropertyChanging("RoomName");
+                _RoomName = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("RoomName");
+                OnRoomNameChanged();
+            }
+        }
+        private global::System.String _RoomName;
+        partial void OnRoomNameChanging(global::System.String value);
+        partial void OnRoomNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int16> RoomType
+        {
+            get
+            {
+                return _RoomType;
+            }
+            set
+            {
+                OnRoomTypeChanging(value);
+                ReportPropertyChanging("RoomType");
+                _RoomType = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("RoomType");
+                OnRoomTypeChanged();
+            }
+        }
+        private Nullable<global::System.Int16> _RoomType;
+        partial void OnRoomTypeChanging(Nullable<global::System.Int16> value);
+        partial void OnRoomTypeChanged();
 
         #endregion
     
@@ -574,44 +571,6 @@ namespace Shop.Models
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Designer>("gb_listelliModel.FK_DesignerContent_Designer", "Designer", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("gb_listelliModel", "FK_DesignerContent_DesignerRoom", "DesignerRoom")]
-        public DesignerRoom DesignerRoom
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<DesignerRoom>("gb_listelliModel.FK_DesignerContent_DesignerRoom", "DesignerRoom").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<DesignerRoom>("gb_listelliModel.FK_DesignerContent_DesignerRoom", "DesignerRoom").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<DesignerRoom> DesignerRoomReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<DesignerRoom>("gb_listelliModel.FK_DesignerContent_DesignerRoom", "DesignerRoom");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<DesignerRoom>("gb_listelliModel.FK_DesignerContent_DesignerRoom", "DesignerRoom", value);
                 }
             }
         }
@@ -782,138 +741,6 @@ namespace Shop.Models
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<DesignerContent>("gb_listelliModel.FK_DesignerContentImages_DesignerContent", "DesignerContent", value);
-                }
-            }
-        }
-
-        #endregion
-    }
-    
-    /// <summary>
-    /// No Metadata Documentation available.
-    /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="gb_listelliModel", Name="DesignerRoom")]
-    [Serializable()]
-    [DataContractAttribute(IsReference=true)]
-    public partial class DesignerRoom : EntityObject
-    {
-        #region Factory Method
-    
-        /// <summary>
-        /// Create a new DesignerRoom object.
-        /// </summary>
-        /// <param name="id">Initial value of the Id property.</param>
-        /// <param name="name">Initial value of the Name property.</param>
-        /// <param name="type">Initial value of the Type property.</param>
-        public static DesignerRoom CreateDesignerRoom(global::System.Int32 id, global::System.String name, global::System.Int32 type)
-        {
-            DesignerRoom designerRoom = new DesignerRoom();
-            designerRoom.Id = id;
-            designerRoom.Name = name;
-            designerRoom.Type = type;
-            return designerRoom;
-        }
-
-        #endregion
-        #region Primitive Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 Id
-        {
-            get
-            {
-                return _Id;
-            }
-            set
-            {
-                if (_Id != value)
-                {
-                    OnIdChanging(value);
-                    ReportPropertyChanging("Id");
-                    _Id = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("Id");
-                    OnIdChanged();
-                }
-            }
-        }
-        private global::System.Int32 _Id;
-        partial void OnIdChanging(global::System.Int32 value);
-        partial void OnIdChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.String Name
-        {
-            get
-            {
-                return _Name;
-            }
-            set
-            {
-                OnNameChanging(value);
-                ReportPropertyChanging("Name");
-                _Name = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("Name");
-                OnNameChanged();
-            }
-        }
-        private global::System.String _Name;
-        partial void OnNameChanging(global::System.String value);
-        partial void OnNameChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 Type
-        {
-            get
-            {
-                return _Type;
-            }
-            set
-            {
-                OnTypeChanging(value);
-                ReportPropertyChanging("Type");
-                _Type = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("Type");
-                OnTypeChanged();
-            }
-        }
-        private global::System.Int32 _Type;
-        partial void OnTypeChanging(global::System.Int32 value);
-        partial void OnTypeChanged();
-
-        #endregion
-    
-        #region Navigation Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("gb_listelliModel", "FK_DesignerContent_DesignerRoom", "DesignerContent")]
-        public EntityCollection<DesignerContent> DesignerContent
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<DesignerContent>("gb_listelliModel.FK_DesignerContent_DesignerRoom", "DesignerContent");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<DesignerContent>("gb_listelliModel.FK_DesignerContent_DesignerRoom", "DesignerContent", value);
                 }
             }
         }

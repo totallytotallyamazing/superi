@@ -34,7 +34,7 @@
         <%= Html.ActionLink("Группы каталога", "Groups", new { controller = "BrandCatalogue", Area = "Admin" })%> |
         <%= Html.ActionLink("Каталог", "ManageImages", new { controller = "BrandCatalogue", Area = "Admin", id = 2 })%> |
         <%= Html.ActionLink("Портфолио дизайнеров", "Index", new { controller = "Designers", Area = "Admin" })%> |
-        <%= Html.ActionLink("Виды помещений", "Index", new { controller = "Rooms", Area = "Admin" })%> |
+        
         <%= Html.ActionLink("Выход", "LogOff", new {controller="Account", Area=""}) %> 
     </div>
     <div class="handle">

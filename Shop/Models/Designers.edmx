@@ -9,13 +9,8 @@
           <EntitySet Name="Designer" EntityType="gb_listelliModel.Store.Designer" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="DesignerContent" EntityType="gb_listelliModel.Store.DesignerContent" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="DesignerContentImages" EntityType="gb_listelliModel.Store.DesignerContentImages" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="DesignerRoom" EntityType="gb_listelliModel.Store.DesignerRoom" store:Type="Tables" Schema="dbo" />
           <AssociationSet Name="FK_DesignerContent_Designer" Association="gb_listelliModel.Store.FK_DesignerContent_Designer">
             <End Role="Designer" EntitySet="Designer" />
-            <End Role="DesignerContent" EntitySet="DesignerContent" />
-          </AssociationSet>
-          <AssociationSet Name="FK_DesignerContent_DesignerRoom" Association="gb_listelliModel.Store.FK_DesignerContent_DesignerRoom">
-            <End Role="DesignerRoom" EntitySet="DesignerRoom" />
             <End Role="DesignerContent" EntitySet="DesignerContent" />
           </AssociationSet>
           <AssociationSet Name="FK_DesignerContentImages_DesignerContent" Association="gb_listelliModel.Store.FK_DesignerContentImages_DesignerContent">
@@ -41,8 +36,9 @@
           </Key>
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="DesignerId" Type="int" Nullable="false" />
-          <Property Name="RoomId" Type="int" Nullable="false" />
           <Property Name="Summary" Type="text" />
+          <Property Name="RoomName" Type="varchar" MaxLength="255" />
+          <Property Name="RoomType" Type="smallint" />
         </EntityType>
         <EntityType Name="DesignerContentImages">
           <Key>
@@ -51,14 +47,6 @@
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="DesignerContentId" Type="int" Nullable="false" />
           <Property Name="ImageSource" Type="varchar" Nullable="false" MaxLength="500" />
-        </EntityType>
-        <EntityType Name="DesignerRoom">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="255" />
-          <Property Name="Type" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_DesignerContent_Designer">
           <End Role="Designer" Type="gb_listelliModel.Store.Designer" Multiplicity="1" />
@@ -69,18 +57,6 @@
             </Principal>
             <Dependent Role="DesignerContent">
               <PropertyRef Name="DesignerId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_DesignerContent_DesignerRoom">
-          <End Role="DesignerRoom" Type="gb_listelliModel.Store.DesignerRoom" Multiplicity="1" />
-          <End Role="DesignerContent" Type="gb_listelliModel.Store.DesignerContent" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="DesignerRoom">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="DesignerContent">
-              <PropertyRef Name="RoomId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -104,13 +80,8 @@
           <EntitySet Name="Designer" EntityType="gb_listelliModel.Designer" />
           <EntitySet Name="DesignerContent" EntityType="gb_listelliModel.DesignerContent" />
           <EntitySet Name="DesignerContentImages" EntityType="gb_listelliModel.DesignerContentImages" />
-          <EntitySet Name="DesignerRoom" EntityType="gb_listelliModel.DesignerRoom" />
           <AssociationSet Name="FK_DesignerContent_Designer" Association="gb_listelliModel.FK_DesignerContent_Designer">
             <End Role="Designer" EntitySet="Designer" />
-            <End Role="DesignerContent" EntitySet="DesignerContent" />
-          </AssociationSet>
-          <AssociationSet Name="FK_DesignerContent_DesignerRoom" Association="gb_listelliModel.FK_DesignerContent_DesignerRoom">
-            <End Role="DesignerRoom" EntitySet="DesignerRoom" />
             <End Role="DesignerContent" EntitySet="DesignerContent" />
           </AssociationSet>
           <AssociationSet Name="FK_DesignerContentImages_DesignerContent" Association="gb_listelliModel.FK_DesignerContentImages_DesignerContent">
@@ -137,11 +108,11 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="DesignerId" Type="Int32" Nullable="false" />
-          <Property Name="RoomId" Type="Int32" Nullable="false" />
           <Property Name="Summary" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
           <NavigationProperty Name="Designer" Relationship="gb_listelliModel.FK_DesignerContent_Designer" FromRole="DesignerContent" ToRole="Designer" />
-          <NavigationProperty Name="DesignerRoom" Relationship="gb_listelliModel.FK_DesignerContent_DesignerRoom" FromRole="DesignerContent" ToRole="DesignerRoom" />
           <NavigationProperty Name="DesignerContentImages" Relationship="gb_listelliModel.FK_DesignerContentImages_DesignerContent" FromRole="DesignerContent" ToRole="DesignerContentImages" />
+          <Property Type="String" Name="RoomName" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="Int16" Name="RoomType" />
         </EntityType>
         <EntityType Name="DesignerContentImages">
           <Key>
@@ -152,15 +123,6 @@
           <Property Name="ImageSource" Type="String" Nullable="false" MaxLength="500" Unicode="false" FixedLength="false" />
           <NavigationProperty Name="DesignerContent" Relationship="gb_listelliModel.FK_DesignerContentImages_DesignerContent" FromRole="DesignerContentImages" ToRole="DesignerContent" />
         </EntityType>
-        <EntityType Name="DesignerRoom">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
-          <NavigationProperty Name="DesignerContent" Relationship="gb_listelliModel.FK_DesignerContent_DesignerRoom" FromRole="DesignerRoom" ToRole="DesignerContent" />
-          <Property Type="Int32" Name="Type" Nullable="false" />
-        </EntityType>
         <Association Name="FK_DesignerContent_Designer">
           <End Role="Designer" Type="gb_listelliModel.Designer" Multiplicity="1" />
           <End Role="DesignerContent" Type="gb_listelliModel.DesignerContent" Multiplicity="*" />
@@ -170,18 +132,6 @@
             </Principal>
             <Dependent Role="DesignerContent">
               <PropertyRef Name="DesignerId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_DesignerContent_DesignerRoom">
-          <End Role="DesignerRoom" Type="gb_listelliModel.DesignerRoom" Multiplicity="1" />
-          <End Role="DesignerContent" Type="gb_listelliModel.DesignerContent" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="DesignerRoom">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="DesignerContent">
-              <PropertyRef Name="RoomId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -213,20 +163,16 @@
             <ScalarProperty Name="Logo" ColumnName="Logo" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="DesignerContent"><EntityTypeMapping TypeName="gb_listelliModel.DesignerContent"><MappingFragment StoreEntitySet="DesignerContent">
-            <ScalarProperty Name="Id" ColumnName="Id" />
+            <ScalarProperty Name="RoomType" ColumnName="RoomType" />
+                <ScalarProperty Name="RoomName" ColumnName="RoomName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
             <ScalarProperty Name="DesignerId" ColumnName="DesignerId" />
-            <ScalarProperty Name="RoomId" ColumnName="RoomId" />
             <ScalarProperty Name="Summary" ColumnName="Summary" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="DesignerContentImages"><EntityTypeMapping TypeName="gb_listelliModel.DesignerContentImages"><MappingFragment StoreEntitySet="DesignerContentImages">
             <ScalarProperty Name="Id" ColumnName="Id" />
             <ScalarProperty Name="DesignerContentId" ColumnName="DesignerContentId" />
             <ScalarProperty Name="ImageSource" ColumnName="ImageSource" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="DesignerRoom"><EntityTypeMapping TypeName="gb_listelliModel.DesignerRoom"><MappingFragment StoreEntitySet="DesignerRoom">
-            <ScalarProperty Name="Type" ColumnName="Type" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-            <ScalarProperty Name="Name" ColumnName="Name" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
@@ -250,21 +196,15 @@
     <Diagrams>
       <Diagram Name="Designers">
         <EntityTypeShape EntityType="gb_listelliModel.Designer" Width="1.5" PointX="0.75" PointY="1" Height="2.0853483072916665" IsExpanded="true" />
-        <EntityTypeShape EntityType="gb_listelliModel.DesignerContent" Width="1.5" PointX="3" PointY="0.875" Height="2.085348307291667" IsExpanded="true" />
+        <EntityTypeShape EntityType="gb_listelliModel.DesignerContent" Width="1.5" PointX="3" PointY="0.875" Height="2.3648893229166661" IsExpanded="true" />
         <EntityTypeShape EntityType="gb_listelliModel.DesignerContentImages" Width="1.5" PointX="5.25" PointY="1.25" Height="1.5923063151041665" IsExpanded="true" />
-        <EntityTypeShape EntityType="gb_listelliModel.DesignerRoom" Width="1.5" PointX="0.75" PointY="5.375" Height="1.4279589843749996" IsExpanded="true" />
         <AssociationConnector Association="gb_listelliModel.FK_DesignerContent_Designer" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="1.9801741536458337" />
-          <ConnectorPoint PointX="3" PointY="1.9801741536458337" />
-        </AssociationConnector>
-        <AssociationConnector Association="gb_listelliModel.FK_DesignerContent_DesignerRoom" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="6.1711531575520837" />
-          <ConnectorPoint PointX="3.75" PointY="6.1711531575520837" />
-          <ConnectorPoint PointX="3.75" PointY="2.960348307291667" />
+          <ConnectorPoint PointX="2.25" PointY="2.1199446614583328" />
+          <ConnectorPoint PointX="3" PointY="2.1199446614583328" />
         </AssociationConnector>
         <AssociationConnector Association="gb_listelliModel.FK_DesignerContentImages_DesignerContent" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="2.0461531575520833" />
-          <ConnectorPoint PointX="5.25" PointY="2.0461531575520833" />
+          <ConnectorPoint PointX="4.5" PointY="2.1439925130208337" />
+          <ConnectorPoint PointX="5.25" PointY="2.1439925130208337" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

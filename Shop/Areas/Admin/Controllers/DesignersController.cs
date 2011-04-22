@@ -77,7 +77,7 @@ namespace Shop.Areas.Admin.Controllers
         }
 
 
-
+        /*
         [OutputCache(Duration = 1, NoStore = true, VaryByParam = "*")]
         public ActionResult Rooms(int id)
         {
@@ -91,70 +91,96 @@ namespace Shop.Areas.Admin.Controllers
                 return View(rooms);
             }
         }
+        */
 
-
-        [OutputCache(Duration = 1, NoStore = true, VaryByParam = "*")]
-        [HttpPost]
-        public void Rooms(int id, FormCollection form)
+        public ActionResult Rooms(int id)
         {
             using (var context = new DesignerStorage())
             {
-                PostData data = form.ProcessPostData(excludeFields: "id");
-
-                var addAttributeIds = new Collection<int>();
-                var removeAttributeIds = new Collection<int>();
-                foreach (var item in data)
-                {
-                    int attributeId = int.Parse(item.Key);
-                    bool contains = bool.Parse(item.Value["room"]);
-                    if (contains)
-                        addAttributeIds.Add(attributeId);
-                    else
-                        removeAttributeIds.Add(attributeId);
-                }
-
-                Designer designer = context.Designer.Where(d => d.Id == id).First();
-
-                AddDesignerContentToDesigner(context, designer, addAttributeIds);
-                RemoveDesignerContentToDesigner(context, designer, removeAttributeIds);
-
-                context.SaveChanges();
+                ViewData["designerId"] = id;
+                var dc = context.DesignerContent.Include("Designer").Where(d => d.Designer.Id == id).ToList();
+                return View(dc);
             }
-            Response.Write("<script type=\"text/javascript\">window.top.$.fancybox.close();</script>");
         }
 
-
-        private static void AddDesignerContentToDesigner(DesignerStorage context, Designer designer, IEnumerable<int> roomIds)
+        public ActionResult AddEditRoom(int designerId, int? id)
         {
-            foreach (var roomId in roomIds)
+            ViewData["designerId"] = designerId;
+            DesignerContent dc = null;
+            if (id.HasValue)
             {
-                if (designer.DesignerContent.Where(r => r.RoomId == roomId).Count() == 0)
+                using (var context = new DesignerStorage())
                 {
-                    DesignerRoom room = context.DesignerRoom.Where(r => r.Id == roomId).First();
-                    var dc = new DesignerContent
-                                 {
-                                     DesignerRoom = room
-                                 };
+                    dc = context.DesignerContent.First(d => d.Id == id.Value);
+                }
+            }
+            return View(dc);
+        }
+
+        [HttpPost]
+        public ActionResult AddEditRoom(FormCollection form)
+        {
+            using (var context = new DesignerStorage())
+            {
+                int designerId = Convert.ToInt32(form["designerId"]);
+
+                Designer designer = context.Designer.Where(d => d.Id == designerId).First();
+
+
+                int id;
+                DesignerContent dc;
+                if (int.TryParse(form["Id"], out id))
+                    dc = context.DesignerContent.First(d => d.Id == id);
+                else
+                {
+                    dc = new DesignerContent();
                     designer.DesignerContent.Add(dc);
                 }
-            }
+                TryUpdateModel(dc, new string[] { "RoomName","RoomType" }, form.ToValueProvider());
 
+                context.SaveChanges();
+
+                return RedirectToAction("Rooms", "Designers", new {area = "Admin", id = designer.Id});
+            }
         }
 
-        private static void RemoveDesignerContentToDesigner(DesignerStorage context, Designer designer, IEnumerable<int> roomIds)
+        
+        public ActionResult Delete(int id)
         {
-            foreach (var roomId in roomIds)
+            using (var context = new DesignerStorage())
             {
-                DesignerContent dc = designer.DesignerContent.Where(r => r.RoomId == roomId).FirstOrDefault();
-                if (dc != null)
-                {
-
-                    dc.DesignerRoom = null;
-                    designer.DesignerContent.Remove(dc);
-                }
+                // TODO: Нужна доработка
+                //var designer = context.Designer.Where(d => d.Id == id).First();
+                //context.DeleteObject(designer);
+                //context.SaveChanges();
             }
+            return RedirectToAction("Index");
         }
 
+        public ActionResult DeleteRoom(int designerId, int id)
+        {
+            using (var context = new DesignerStorage())
+            {
+                //var designer = context.Designer.Where(d => d.Id == designerId).First();
+                DesignerContent dc = context.DesignerContent.Include("DesignerContentImages").Where(d => d.Id == id).First();
+
+                foreach (var image in dc.DesignerContentImages)
+                {
+                    if (!string.IsNullOrEmpty(image.ImageSource))
+                    {
+                        IOHelper.DeleteFile("~/Content/DesignerPhotos", image.ImageSource);
+                    }
+                    image.DesignerContentReference = null;
+                    // TODO: Нужна доработка
+                    //context.DeleteObject(image);
+                }
+
+                dc.DesignerReference = null;
+                context.DeleteObject(dc);
+                context.SaveChanges();
+                return RedirectToAction("Rooms", "Designers", new { area = "Admin", id = designerId });
+            }
+        }
 
         public ActionResult EditContent(int id)
         {
@@ -220,5 +246,7 @@ namespace Shop.Areas.Admin.Controllers
                 return RedirectToAction("Index", "Designers", new { area = "", id = designerContent.Designer.Url });
             }
         }
+
+
     }
 }

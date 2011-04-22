@@ -3,7 +3,7 @@
 <%@ Import Namespace="Dev.Mvc.Ajax" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	<%= ViewData["title"]%>
+	<%= ViewData["Name"]%>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">

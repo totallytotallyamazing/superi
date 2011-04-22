@@ -222,7 +222,7 @@
 </asp:Content>
 <asp:Content ID="Content6" ContentPlaceHolderID="ContentHeader" runat="server">
     <div id="headerTitle">
-        <span class="sign1">Портфоло дизайнера</span>
+        <span class="sign1">Портфолио дизайнера</span>
         <br />
         <a href="#" id="designerNameLink" class="sign2">
             <%=((Designer)ViewData["designer"]).NameF%></a>

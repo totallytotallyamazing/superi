@@ -5,9 +5,52 @@
 
 .designerInfoBlock
 {
-    border: 1px solid #a3a3a3;
+    width:837px;
+    background:url('img/summary-bg.gif') repeat-y;
     margin-left: 10px;
-    padding: 40px;
+    padding: 0px;
+}
+
+.designerInfoBlockTop
+{
+    
+    width:837px;
+    background:url('img/summary-bg-top.gif');
+    height:18px;
+}
+
+.designerInfoBlockBottom
+{
+    width:837px;
+    background:url('img/summary-bg-bottom.gif');
+    height:12px;
+}
+
+.designerContentSummaryContainer
+{
+    padding:10px 30px;
+}
+
+.designerContentSummary
+{
+    width:837px;
+    background:url('img/summary-bg.gif') repeat-y;
+    margin: 10px;
+    padding: 0px;
+}
+
+.designerContentSummaryTop
+{
+    width:837px;
+    background:url('img/summary-bg-top.gif');
+    height:18px;
+}
+
+.designerContentSummaryBottom
+{
+   width:837px;
+    background:url('img/summary-bg-bottom.gif');
+    height:12px; 
 }
 
 .degignerName
@@ -23,6 +66,9 @@
 .designerLogo
 {
     float: left;
+    margin:30px;
+    margin-left:40px;
+    
 }
 
 
@@ -33,15 +79,14 @@
 
 .designerSummary
 {
+    margin-top:30px;
+    margin-right:30px;
+    margin-bottom:20px;
+  /* width:580px;*/
 }
 
 
-.designerContentSummary
-{
-    border: 1px solid #a3a3a3;
-    margin: 10px;
-    padding: 10px;
-}
+
 
 .designerInfoContainer
 {

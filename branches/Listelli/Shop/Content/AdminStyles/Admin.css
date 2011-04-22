@@ -1,9 +1,19 @@
 ﻿#adminPanel{width:100%; position:absolute; top:0px; left:0px; height:20px; z-index:200;}
 #adminPanel .links{background:red; text-align:center; color:White; padding-bottom:3px;}
-#adminPanel .links a{color:White;}
+#adminPanel .links a{color:White;font-size:12px;}
 #adminPanel .handle{background:transparent url(img/handleBg.gif) no-repeat; width:200px; height:20px; position:relative; margin:0 auto; color:White; text-align:center; font-size:12px;}
 
 
 .categoriesAdmin{padding-left:25px; padding-top:5px;}
 .rootCategoriesAdmin{padding-left:10px; padding-top:5px;}
 .adminLink a, .adminLink{ color:Red !important; font-weight:normal !important; font-size:11px !important;}
+
+.editor-label
+{
+    margin-top:10px;
+}
+
+.editor-field input[type="text"]
+{
+    width:98%;
+}

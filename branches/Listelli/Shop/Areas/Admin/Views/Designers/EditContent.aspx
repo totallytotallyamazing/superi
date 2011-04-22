@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<Shop.Models.DesignerContent>" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Designers.Master" Inherits="System.Web.Mvc.ViewPage<Shop.Models.DesignerContent>" %>
 <%@ Import Namespace="Dev.Mvc.Ajax" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">

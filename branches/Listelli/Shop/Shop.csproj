@@ -88,7 +88,6 @@
     <Compile Include="Areas\Admin\Controllers\ProductCategoriesController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductVariantsController.cs" />
     <Compile Include="Areas\Admin\Controllers\OrdersController.cs" />
-    <Compile Include="Areas\Admin\Controllers\RoomsController.cs" />
     <Compile Include="Areas\Admin\Controllers\SettingsController.cs" />
     <Compile Include="Areas\BrandCatalog\BrandCatalogAreaRegistration.cs" />
     <Compile Include="Areas\BrandCatalog\Controllers\BrandsController.cs" />
@@ -155,7 +154,7 @@
     </Compile>
     <Compile Include="Models\ContextExtensions.cs" />
     <Compile Include="Models\Designer.cs" />
-    <Compile Include="Models\DesignerRoom.cs" />
+    <Compile Include="Models\DesignerContent.cs" />
     <Compile Include="Models\Designers.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -196,15 +195,14 @@
     <Content Include="Areas\Admin\Views\BrandCatalogue\Images.ascx" />
     <Content Include="Areas\Admin\Views\Content\EditPartial.ascx" />
     <Content Include="Areas\Admin\Views\Designers\AddEdit.aspx" />
+    <Content Include="Areas\Admin\Views\Designers\AddEditRoom.aspx" />
     <Content Include="Areas\Admin\Views\Designers\EditContent.aspx" />
     <Content Include="Areas\Admin\Views\Designers\Index.aspx" />
-    <Content Include="Areas\Admin\Views\Designers\Rooms.ascx" />
+    <Content Include="Areas\Admin\Views\Designers\Rooms.aspx" />
     <Content Include="Areas\Admin\Views\ProductCategories\Index.ascx" />
     <Content Include="Areas\Admin\Views\Products\ProductAttributeStaticValues.ascx" />
     <Content Include="Areas\Admin\Views\ProductVariants\AddEdit.ascx" />
     <Content Include="Areas\Admin\Views\ProductVariants\Index.aspx" />
-    <Content Include="Areas\Admin\Views\Rooms\AddEdit.aspx" />
-    <Content Include="Areas\Admin\Views\Rooms\Index.aspx" />
     <Content Include="Areas\BrandCatalog\Views\Brands\BrandLinks.ascx" />
     <Content Include="Areas\BrandCatalog\Views\Brands\Index.ascx" />
     <Content Include="Areas\BrandCatalog\Views\Home\Index.aspx" />

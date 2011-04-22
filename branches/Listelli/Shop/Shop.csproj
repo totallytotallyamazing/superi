@@ -330,6 +330,9 @@
     <Content Include="Content\LislelliStyles\img\rightArrow.png" />
     <Content Include="Content\LislelliStyles\img\searchField.gif" />
     <Content Include="Content\LislelliStyles\img\separator.png" />
+    <Content Include="Content\LislelliStyles\img\summary-bg-bottom.gif" />
+    <Content Include="Content\LislelliStyles\img\summary-bg-top.gif" />
+    <Content Include="Content\LislelliStyles\img\summary-bg.gif" />
     <Content Include="Content\LislelliStyles\img\voteButton.gif" />
     <Content Include="Content\LislelliStyles\ListelliSite.css" />
     <Content Include="Content\LislelliStyles\products.css" />

@@ -69,12 +69,15 @@
         <div class="degignerName">
             <%=Html.Encode(designer.Name)%></div>
         <div class="designerInfoBlock">
+            <div class="designerInfoBlockTop"></div>
             <div class="designerLogo">
                 <%=Html.Image("~/Content/DesignerLogos/" + designer.Logo, designer.Name,150)%></div>
             <div class="designerInfo">
                 <div class="designerSummary">
-                    <%=designer.Summary%></div>
+                    <%=designer.Summary%>
+                </div>
             </div>
+            <div class="designerInfoBlockBottom"></div>
         </div>
     </div>
     <div class="accordion" id="accordion1">
@@ -89,8 +92,13 @@
             <%if (!string.IsNullOrEmpty(dc.Summary))
               {%>
             <div class="designerContentSummary">
+            <div class="designerContentSummaryTop"></div>
+                <div class="designerContentSummaryContainer">
                 <%=dc.Summary%>
+                </div>
+            <div class="designerContentSummaryBottom"></div>
             </div>
+
             <%
                 }%>
             <% if (Roles.IsUserInRole("Administrators"))

@@ -124,10 +124,9 @@
             </a>
             <%if (Roles.IsUserInRole("Administrators"))
               { %>
-              <br />
-            <span>
-                <%= Html.ActionLink("Удалить", "DeletePhoto", "Designers", new { area = "Admin", /*photoId = item.Id, designerContentId=dc.Id*/ id = item.Id }, new { onclick = "return confirm('Вы уверены что хотите удалить запись?')",@class="adminLink" })%>
-            </span>
+              
+                <%= Html.ActionLink(".", "DeletePhoto", "Designers", new { area = "Admin", id = item.Id }, new { title = "Удалить фото", onclick = "return confirm('Вы уверены что хотите удалить запись?')", @class = "deletePhotoLink adminLink" })%>
+           
             <%}
                    %> 
                    </div>

@@ -224,7 +224,7 @@
 
 .adminLink
 {
-    color: #ff0000;
+    /*color: #ff0000;*/
     z-index: 1000;
 }
 
@@ -232,9 +232,19 @@
 .photoContainer
 {
     float: left;
-    border: 1px solid silver;
+    /*border: 1px solid silver;*/
     width: 400px;
     height: 400px;
     padding: 5px;
     margin: 5px;
+}
+
+.deletePhotoLink
+{
+    background: url('img/close.png') no-repeat;
+    width:10px;
+    height:10px;
+    position:absolute;
+    margin-left:-10px;
+    padding:5px;
 }

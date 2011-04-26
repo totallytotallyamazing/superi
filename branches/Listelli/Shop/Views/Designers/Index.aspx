@@ -11,7 +11,7 @@
     <script type="text/javascript">
         $(function () {
 
-            $(".fancy").fancybox({ showCloseButton: true, cyclic: true, showNavArrows: true, padding: 0, margin: 0,centerOnScroll:true });
+            $(".fancy").fancybox({ showCloseButton: true, cyclic: true, showNavArrows: true, padding: 0, margin: 0, centerOnScroll: true });
 
             $("#livingRoom").click(function () {
                 $("#livingRoom").addClass("selected");
@@ -59,6 +59,17 @@
 
 
             });
+
+
+            $("#accordion1, #accordion2").bind("accordionchange", function (event, ui) {
+                $(".accordion h3 a").each(function () {
+                    alert(this.href);
+                    this.blur();
+                });
+                //$(".accordion h3 a").blur();
+            });
+
+
         });
     </script>
     <%

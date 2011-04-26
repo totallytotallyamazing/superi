@@ -5,7 +5,7 @@
 <%@ Import Namespace="Dev.Mvc.Helpers" %>
 <%@ Import Namespace="Shop.Models" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-    <%=((Designer)ViewData["designer"]).Name%>
+    Портфолио дизайнера <%=((Designer)ViewData["designer"]).NameF%>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <script type="text/javascript">

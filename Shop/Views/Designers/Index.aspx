@@ -120,7 +120,7 @@
             %>
             <div class="photoContainer">
             <a rel="group<%=dc.Id%>" href="../../Content/DesignerPhotos/<%=item.ImageSource%>" class="fancy iframe">
-            <%=Html.CachedImage("~/Content/DesignerPhotos/", item.ImageSource, "designerPhotosThumb", item.ImageSource)%>
+            <%=Html.CachedImage("~/Content/DesignerPhotos/", item.ImageSource, "designerPhotosThumb", item.ImageSource,true)%>
             </a>
             <%if (Roles.IsUserInRole("Administrators"))
               { %>
@@ -183,7 +183,7 @@
             %>
             <div class="photoContainer">
             <a rel="group<%=dc.Id%>" href="../../Content/DesignerPhotos/<%=item.ImageSource%>" class="fancy iframe">
-            <%=Html.CachedImage("~/Content/DesignerPhotos/", item.ImageSource, "designerPhotosThumb", item.ImageSource)%>
+            <%=Html.CachedImage("~/Content/DesignerPhotos/", item.ImageSource, "designerPhotosThumb", item.ImageSource,true)%>
             </a>
             <%if (Roles.IsUserInRole("Administrators"))
               { %>

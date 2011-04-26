@@ -21,15 +21,15 @@ namespace Shop.Models
         [DisplayName("Имя:")]
         public string Name { get; set; }
 
-        [Required(ErrorMessage = "Введите имя в родительном падеже")]
-        [DisplayName("Имя в родительном падеже:")]
+        [Required(ErrorMessage = "Введите имя в поле \"Портфолио дизайнера\"")]
+        [DisplayName("Портфолио дизайнера:")]
         public string NameF { get; set; }
 
         [Required(ErrorMessage = "Введите адрес ссылки дизайнера (должен быть уникальным)")]
         [DisplayName("Имя в строке адреса браузера:")]
         public string Url { get; set; }
 
-        [DisplayName("Лого:")]
+        [DisplayName("Фото:")]
         public string Logo { get; set; }
 
         [DisplayName("Описание:")]

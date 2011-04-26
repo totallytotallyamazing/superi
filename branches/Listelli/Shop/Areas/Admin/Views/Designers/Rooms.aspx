@@ -44,8 +44,9 @@
     <p>
         <%: Html.ActionLink("Создать новое помещение", "AddEditRoom", new { designerId = dId })%>
     </p>
+    
     <p>
-        <%: Html.ActionLink("К списку дизайнеров", "Index")%>
+        <%: Html.ActionLink("« К списку дизайнеров", "Index", null, new {@class="toList" })%>
     </p>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="includes" runat="server">

@@ -104,6 +104,14 @@ namespace Dev.Mvc.Helpers
             return new Size(width, height);
         }
 
+        private static Size CalculateSize(Size image)
+        {
+            int maxValue = image.Height;
+            if (image.Width < maxValue)
+                maxValue = image.Width;
+            return new Size(maxValue, maxValue);
+        }
+
         public static void ScaleImage(string name, Bitmap image, FixedDimension? fixedDimension, int maxDimension, Stream saveTo)
         {
             Size imageSize = CalculateSize(image.Size, fixedDimension, maxDimension);
@@ -118,7 +126,21 @@ namespace Dev.Mvc.Helpers
             saveTo.Position = 0;
         }
 
-        public static string GetCachedImage(string originalPath, string fileName, string cacheFolder)
+        public static void ScaleImage(string name, Bitmap image, int maxDimension, Stream saveTo)
+        {
+            Size imageSize = CalculateSize(image.Size);
+            Rectangle sourceRect = new Rectangle(0, 0, imageSize.Width, imageSize.Height);// CalculateSourceRect(name, image.Size, imageSize);
+            Rectangle destRect = new Rectangle(0, 0, maxDimension, maxDimension); //CalculateDestRect(name, image.Size, imageSize);
+
+            Bitmap thumbnailImage = new Bitmap(destRect.Width, destRect.Height);
+            Graphics graphics = Graphics.FromImage(thumbnailImage);
+            graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+            graphics.DrawImage(image, destRect, sourceRect, GraphicsUnit.Pixel);
+            thumbnailImage.Save(saveTo, System.Drawing.Imaging.ImageFormat.Jpeg);
+            saveTo.Position = 0;
+        }
+
+        public static string GetCachedImage(string originalPath, string fileName, string cacheFolder, bool forDesigners = false)
         {
             if (string.IsNullOrEmpty(fileName) ||
                 !File.Exists(Path.Combine(HttpContext.Current.Server.MapPath(originalPath), fileName)))
@@ -143,7 +165,7 @@ namespace Dev.Mvc.Helpers
             {
                 try
                 {
-                    CacheImage(originalPath, fileName, cacheFolder);
+                    CacheImage(originalPath, fileName, cacheFolder, forDesigners);
                 }
                 catch
                 {
@@ -153,7 +175,7 @@ namespace Dev.Mvc.Helpers
             }
         }
 
-        private static void CacheImage(string originalPath, string fileName, string cacheFolder)
+        private static void CacheImage(string originalPath, string fileName, string cacheFolder, bool forDesigners)
         {
             string sourcePath = Path.Combine(HttpContext.Current.Server.MapPath(originalPath), fileName);
             Bitmap image;
@@ -170,7 +192,10 @@ namespace Dev.Mvc.Helpers
                 FixedDimension? fixedDimension = null;
                 if (fixDimension.ContainsKey(cacheFolder))
                     fixedDimension = fixDimension[cacheFolder];
-                ScaleImage(cacheFolder, image, fixedDimension, maxDimensions[cacheFolder], stream);
+                if (forDesigners)
+                    ScaleImage(cacheFolder, image, maxDimensions[cacheFolder], stream);
+                else
+                    ScaleImage(cacheFolder, image, fixedDimension, maxDimensions[cacheFolder], stream);
             }
         }
 

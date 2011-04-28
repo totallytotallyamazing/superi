@@ -21,6 +21,7 @@
                 $("#accordion2").css("display", "none");
                 $("#designerNameLink").css("text-decoration", "underline");
                 $("#designerNameLink").css("cursor", "pointer");
+                this.blur();
             });
 
             $("#notLivingRoom").click(function () {
@@ -31,6 +32,7 @@
                 $("#accordion1").css("display", "none");
                 $("#designerNameLink").css("text-decoration", "underline");
                 $("#designerNameLink").css("cursor", "pointer");
+                this.blur();
             });
 
             $("#designerNameLink").click(function () {
@@ -60,14 +62,19 @@
 
             });
 
-
-            $("#accordion1, #accordion2").bind("accordionchange", function (event, ui) {
-                $(".accordion h3 a").each(function () {
-                    alert(this.href);
-                    this.blur();
-                });
-                //$(".accordion h3 a").blur();
+            $("#accordion1 h3, #accordion2 h3").click(function () {
+               
+                this.blur();
             });
+
+
+            //$("#accordion1, #accordion2").bind("accordionchange", function (event, ui) {
+               // $(".accordion h3 a").each(function () {
+                    //alert(this.href);
+                    //this.blur();
+               // });
+                //$(".accordion h3 a").blur();
+            //});
 
 
         });
@@ -130,7 +137,7 @@
                {
             %>
             <div class="photoContainer">
-            <a rel="group<%=dc.Id%>" href="../../Content/DesignerPhotos/<%=item.ImageSource%>" class="fancy iframe">
+            <a rel="group<%=dc.Id%>" href="../../Content/DesignerPhotos/<%=item.ImageSource%>" class="fancy">
             <%=Html.CachedImage("~/Content/DesignerPhotos/", item.ImageSource, "designerPhotosThumb", item.ImageSource,true)%>
             </a>
             <%if (Roles.IsUserInRole("Administrators"))

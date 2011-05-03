@@ -17,7 +17,7 @@
             <%= Model.Comments.Replace(Environment.NewLine, "<br />")%>
             
             <div class="shareButtons galleryShareButtons">
-                <%string url = ""; %>
+                <%string url = "http://oksi.com.ua/#url=%2FGallery"; %>
             <div>
                 <a href="<%=url%>"  target="_blank" rel="nofollow" onclick="ODKL.Share(this);return false;" title="Поделиться в Одноклассниках" class="shareButton odnoklassnikiButton"></a>
             </div>
@@ -25,7 +25,7 @@
                 <a href="http://www.facebook.com/sharer.php?u=<%=url%>" title="Поделиться в Facebook" rel="nofollow" target="blank" class="shareButton fbButton"></a>
             </div>  
             <div>
-                <a href="http://twitter.com/home?status=RT @OKSI_OKSI <%=url%>"  target="_blank" rel="nofollow" class="shareButton twitterButton"></a>
+                <a href="http://twitter.com/home?status=<%=HttpUtility.UrlPathEncode(Model.Name.Trim())%> <%=HttpUtility.UrlEncode(url)%>"  target="_blank" rel="nofollow" class="shareButton twitterButton"></a>
             </div>                      
             <div>
                 <a href="http://vkontakte.ru/share.php?url=<%=url%>" target="_blank" rel="nofollow" class="shareButton vkButton"></a>

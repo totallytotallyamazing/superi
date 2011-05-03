@@ -63,6 +63,16 @@ img{border:0;}
 .newsTitle{font-size:20px; margin:5px 0;}
 .newsContent{ font-size:12px;}
 
+.shareButtons{height:26px;}
+.shareButton{float:right; display:block; width:26px; height:26px; margin:0 2px;}
+.shareButton.vkButton{background-image:url(img/vkbutton.jpg)}
+.shareButton.twitterButton{background-image:url(img/twitterbutton.jpg)}
+.shareButton.fbButton{background-image:url(img/fbbutton.jpg)}
+.shareButton.odnoklassnikiButton{background-image:url(img/odnoklassnikibutton.jpg)}
+
+.galleryShareButtons{float:right; padding-right:50px;}
+/*.galleryShareButtons .shareButton{padding-bottom:5px; margin-bottom:5px;}*/
+
 #recentNews{min-height:200px;}
 
 /*Audio*/
@@ -103,7 +113,14 @@ a.bottomLogo{height:37px; float:left; display:block;}
 .bottomLogo.youtubeLogo{width:86px; background:black url(img/youtubeLogo.jpg) no-repeat 0 -37px;}
 .bottomLogo.vkLogo{width:100px; background:black url(img/vkLogo.jpg) no-repeat 0 -37px;}
 .bottomLogo.twitterLogo{width:103px; background:black url(img/twitterLogo.jpg) no-repeat 0 -37px;}
+.bottomLogo.facebookLogo{width:109px;background:black url(img/facebooklogo.jpg) no-repeat 0 -37px;}
+
 a.bottomLogo:hover{background-position:0 0;}
+
+
+.bottomLogo1.odnoklassnikiLogo{width:63px;background:black url(img/odnoklassnikilogo.jpg) no-repeat 0 -45px;}
+a.bottomLogo1{height:45px; float:left; display:block;}
+a.bottomLogo1:hover{background-position:0 0;}
 
 #officialSite{position:relative; line-height:11px; height:0px; color:White; z-index:800; left:130px; top:5px; width:60px;}
 #officialSite #official{font-size:13px}

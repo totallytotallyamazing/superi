@@ -19,7 +19,7 @@
             <div class="shareButtons galleryShareButtons">
                 <%string url = "http://oksi.com.ua/#url=%2FGallerys%2FIndex%2F"+Model.Id; %>
                 <div>
-                    <a href="<%=url%>"  target="_blank" rel="nofollow" onclick="ODKL.Share(this);return false;" title="Поделиться в Одноклассниках" class="shareButton odnoklassnikiButton"></a>
+                    <a href="<%=HttpUtility.UrlEncode(url)%>"  target="_blank" rel="nofollow" onclick="ODKL.Share(this);return false;" title="Поделиться в Одноклассниках" class="shareButton odnoklassnikiButton"></a>
                 </div>
                 <div>
                     <a href="http://www.facebook.com/sharer.php?u=<%=HttpUtility.UrlEncode(url)%>" title="Поделиться в Facebook" rel="nofollow" target="blank" class="shareButton fbButton"></a>

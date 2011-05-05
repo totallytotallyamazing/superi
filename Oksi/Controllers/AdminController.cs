@@ -69,6 +69,14 @@ namespace Oksi.Controllers
             return View();
         }
 
+
+
+
+
+
+
+
+
         public ActionResult DeleteArticle(int id)
         {
             using (DataStorage context = new DataStorage())
@@ -132,6 +140,185 @@ namespace Oksi.Controllers
             return RedirectToAction("Articles", new { id = article.Type });
         }
 
+
+        public ActionResult Banners()
+        {
+            using (BannerStorage context = new BannerStorage())
+            {
+                List<Banner> banners = context.Banner.ToList();
+                return View(banners);
+            }
+        }
+        
+        
+        public ActionResult DeleteBanner(int id)
+        {
+            using (var context = new BannerStorage())
+            {
+                Banner banner = context.Banner.First(b => b.id == id);
+
+                if (!string.IsNullOrEmpty(banner.ImageSource))
+                {
+                    IOHelper.DeleteFile("~/Content/Banners", banner.ImageSource);
+                }
+
+                context.DeleteObject(banner);
+                context.SaveChanges();
+            }
+            return RedirectToAction("Banners");
+        }
+
+        public ActionResult BannerAddEdit(int? id)
+        {
+
+            Banner banner = null;
+            if (id.HasValue)
+            {
+                using (var context = new BannerStorage())
+                {
+                    banner = context.Banner.First(b => b.id == id.Value);
+                }
+            }
+            return View(banner);
+        }
+
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult BannerAddEdit(FormCollection form)
+        {
+            using (var context = new BannerStorage())
+            {
+                int id;
+                Banner banner;
+                if (int.TryParse(form["Id"], out id))
+                    banner = context.Banner.First(b => b.id == id);
+                else
+                {
+                    banner = new Banner();
+                    context.AddToBanner(banner);
+                }
+
+                TryUpdateModel(banner, new string[] { "Position" }, form.ToValueProvider());
+
+
+                if (Request.Files["logo"] != null && !string.IsNullOrEmpty(Request.Files["logo"].FileName))
+                {
+                    if (!string.IsNullOrEmpty(banner.ImageSource))
+                    {
+                        IOHelper.DeleteFile("~/Content/Banners", banner.ImageSource);
+                    }
+                    string fileName = IOHelper.GetUniqueFileName("~/Content/Banners", Request.Files["logo"].FileName);
+                    string filePath = Server.MapPath("~/Content/Banners");
+                    filePath = Path.Combine(filePath, fileName);
+                    Request.Files["logo"].SaveAs(filePath);
+                    banner.ImageSource = fileName;
+                }
+
+                context.SaveChanges();
+            }
+
+            return RedirectToAction("Banners");
+        }
+
+
+
+
+
+        #region Videos
+
+        public ActionResult Video()
+        {
+            using (DataStorage context = new DataStorage())
+            {
+                List<Clip> clips = context.Clips.OrderBy(c => c.SortOrder).ToList();
+                return View(clips);
+            }
+        }
+
+        public ActionResult EditVideo(int id)
+        {
+            using (DataStorage context = new DataStorage())
+            {
+                Clip clip = context.Clips.Where(c => c.Id == id).First();
+                return View(clip);
+            }
+        }
+
+
+        public ActionResult CreateVideo()
+        {
+            return View();
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult CreateVideo(Clip c, FormCollection form)
+        {
+            using (DataStorage context = new DataStorage())
+            {
+                Clip clip = new Clip
+                {
+                    Comment = c.Comment,
+                    Title = c.Title,
+                    Year = c.Year,
+                    SortOrder = c.SortOrder,
+                    Description = c.Description
+                };
+
+                if (!string.IsNullOrEmpty(form["newUrl"]))
+                {
+                    string newId = TextHelper.GetYoutubeId2(form["newUrl"]);
+                    clip.Source =
+                        string.Format(
+                            "<object width=\"640\" height=\"385\"><param name=\"movie\" value=\"http://www.youtube.com/v/{0}&hl=ru_RU&fs=1&\"></param><param name=\"allowFullScreen\" value=\"true\"></param><param name=\"allowscriptaccess\" value=\"always\"></param><embed src=\"http://www.youtube.com/v/{0}&hl=ru_RU&fs=1&\" type=\"application/x-shockwave-flash\" allowscriptaccess=\"always\" allowfullscreen=\"true\" width=\"640\" height=\"385\"></embed></object>",
+                            newId);
+                    clip.SmallSource =
+                        string.Format(
+                            "<object width=\"433\" height=\"250\"><param name=\"movie\" value=\"http://www.youtube.com/v/{0}&hl=ru_RU&fs=1&\"></param><param name=\"allowFullScreen\" value=\"true\"></param><param name=\"allowscriptaccess\" value=\"always\"></param><embed src=\"http://www.youtube.com/v/{0}&hl=ru_RU&fs=1&\" type=\"application/x-shockwave-flash\" allowscriptaccess=\"always\" allowfullscreen=\"true\" width=\"433\" height=\"250\"></embed></object>",
+                            newId);
+
+
+                    context.AddToClips(clip);
+
+                    context.SaveChanges();
+                }
+            }
+            return RedirectToAction("Video");
+        }
+
+        public ActionResult DeleteVideo(int id)
+        {
+            using (DataStorage context = new DataStorage())
+            {
+                Clip clip = context.Clips.Where(c => c.Id == id).First();
+                context.DeleteObject(clip);
+                context.SaveChanges();
+            }
+            return RedirectToAction("Video");
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult EditVideo(FormCollection form)
+        {
+            int id = Convert.ToInt32(form["Id"]);
+            using (DataStorage context = new DataStorage())
+            {
+                Clip clip = context.Clips.Where(c => c.Id == id).First();
+
+                if (!string.IsNullOrEmpty(form["newUrl"]))
+                {
+                    string newId = TextHelper.GetYoutubeId2(form["newUrl"]);
+                    clip.Source = string.Format("<object width=\"640\" height=\"385\"><param name=\"movie\" value=\"http://www.youtube.com/v/{0}&hl=ru_RU&fs=1&\"></param><param name=\"allowFullScreen\" value=\"true\"></param><param name=\"allowscriptaccess\" value=\"always\"></param><embed src=\"http://www.youtube.com/v/{0}&hl=ru_RU&fs=1&\" type=\"application/x-shockwave-flash\" allowscriptaccess=\"always\" allowfullscreen=\"true\" width=\"640\" height=\"385\"></embed></object>", newId);
+                    clip.SmallSource = string.Format("<object width=\"433\" height=\"250\"><param name=\"movie\" value=\"http://www.youtube.com/v/{0}&hl=ru_RU&fs=1&\"></param><param name=\"allowFullScreen\" value=\"true\"></param><param name=\"allowscriptaccess\" value=\"always\"></param><embed src=\"http://www.youtube.com/v/{0}&hl=ru_RU&fs=1&\" type=\"application/x-shockwave-flash\" allowscriptaccess=\"always\" allowfullscreen=\"true\" width=\"433\" height=\"250\"></embed></object>", newId);
+                }
+
+                context.SaveChanges();
+            }
+            return RedirectToAction("Video");
+        }
+
+        #endregion
+
+
         #region Galleries
         public ActionResult AddEditGallery(int? id)
         {
@@ -191,7 +378,7 @@ namespace Oksi.Controllers
         {
             IOHelper.DeleteFile("~/Content/GalleryContent", fileName);
         }
-       
+
         public ActionResult DeleteImage(int id)
         {
             using (DataStorage context = new DataStorage())

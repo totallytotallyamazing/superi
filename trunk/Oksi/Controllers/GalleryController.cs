@@ -11,11 +11,11 @@ namespace Oksi.Controllers
 {
     public class GalleryController : Controller
     {
-        public ActionResult Index()
+        public ActionResult Index(int? id)
         {
             using (DataStorage context = new DataStorage())
             {
-                List<Gallery> galleries = context.Galleries.Include("Images").OrderByDescending(g => g.Id).Select(g => g).ToList();
+                List<Gallery> galleries = context.Galleries.Include("Images").OrderByDescending(g => g.Id).Where(g=>!id.HasValue||g.Id==id.Value).Select(g => g).ToList();
                 long[] galleryIds = galleries.Select(g => g.Id).ToArray();
                 JavaScriptSerializer serializer = new JavaScriptSerializer();
                 ViewData["serializedGalleriesId"] = serializer.Serialize(galleryIds);

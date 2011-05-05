@@ -100,6 +100,7 @@
     </Compile>
     <Compile Include="Helpers\AjaxExtensions.cs" />
     <Compile Include="Helpers\CkExtensions.cs" />
+    <Compile Include="Helpers\GraphicsHelper.cs" />
     <Compile Include="Helpers\IOHelper.cs" />
     <Compile Include="Helpers\JqueryUiExtensions.cs" />
     <Compile Include="Helpers\ResourceTracker.cs" />
@@ -109,6 +110,11 @@
     <Compile Include="Helpers\TextHelper.cs" />
     <Compile Include="Models\ArticleTranslations.cs" />
     <Compile Include="Models\ContextExtension.cs" />
+    <Compile Include="Models\Model1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\Structure.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -231,10 +237,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="bleft.swf" />
-    <Content Include="Content\Banners\playboy.jpg" />
     <Content Include="Content\img\banners.jpg" />
+    <Content Include="Content\img\facebooklogo.jpg" />
+    <Content Include="Content\img\fbbutton.jpg" />
     <Content Include="Content\img\logo.png" />
+    <Content Include="Content\img\odnoklassnikibutton.jpg" />
+    <Content Include="Content\img\odnoklassnikilogo.jpg" />
+    <Content Include="Content\img\twitterbutton.jpg" />
     <Content Include="Content\img\twitterLogo.jpg" />
+    <Content Include="Content\img\vkbutton.jpg" />
     <Content Include="Content\img\vkLogo.jpg" />
     <Content Include="Content\img\youtubeLogo.jpg" />
     <Content Include="Content\topImages\top0.jpg" />
@@ -271,14 +282,26 @@
     <Content Include="newBanner2.swf" />
     <Content Include="Scripts\jquery.ui.js" />
     <Content Include="Scripts\jquery.ui.datepicker-ru.js" />
+    <Content Include="Views\Admin\BannerAddEdit.aspx" />
     <Content Include="Views\Admin\Admin.Master" />
     <Content Include="Views\Admin\Article.aspx" />
     <Content Include="Views\Admin\Articles.aspx" />
+    <Content Include="Views\Admin\Banners.aspx" />
+    <Content Include="Views\Admin\CreateVideo.aspx" />
+    <Content Include="Views\Admin\EditVideo.aspx" />
+    <Content Include="Views\Admin\Video.aspx" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Models\Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\" />
     <Folder Include="Content\Articles\News\" />
     <Folder Include="Content\Articles\Press\" />
+    <Folder Include="Content\Banners\" />
     <Folder Include="Content\Gallery\" />
     <Folder Include="GalleryContent\" />
     <Folder Include="Songs\" />
@@ -298,7 +321,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>1719</DevelopmentServerPort>
+          <DevelopmentServerPort>32999</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

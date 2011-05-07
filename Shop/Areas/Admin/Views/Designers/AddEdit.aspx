@@ -53,25 +53,10 @@
                 <%= Html.TextAreaFor(model => model.Summary)%>
                 <%= Html.ValidationMessageFor(model => model.Summary)%>
             </div>
-
-            <%if (Model != null)
-        {%>
-
-            <div class="editor-label">
-            Виды помещений:
-            </div>
-            <div class="editor-field">
-            <%=Html.ActionLink("Редактировать", "Rooms", "Designers", new {area = "Admin", id = Model.Id}, new {@class = "fancyAdmin iframe"})%>
-            </div>
-        <%
-        }%>
-
             <p>
                 <input type="submit" value="Сохранить" />
             </p>
         </fieldset>
-        
-
     <% } %>
 
     <div>

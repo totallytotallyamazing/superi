@@ -18,7 +18,7 @@ namespace Shop.Models
     public class DesignerValidation
     {
         [Required(ErrorMessage = "Введите имя")]
-        [DisplayName("Имя:")]
+        [DisplayName("Имя и фамилия:")]
         public string Name { get; set; }
 
         [Required(ErrorMessage = "Введите имя в поле \"Портфолио дизайнера\"")]

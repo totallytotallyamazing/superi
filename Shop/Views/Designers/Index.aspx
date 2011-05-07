@@ -122,7 +122,7 @@
             <% if (Roles.IsUserInRole("Administrators"))
                { %>
             <p class="adminLink">
-                <%= Html.ActionLink("Редактировать", "EditContent", "Designers", new { area = "Admin", id = dc.Id }, null)%>
+                <%= Html.ActionLink("Добавить/Редактировать ", "EditContent", "Designers", new { area = "Admin", id = dc.Id }, null)%>
             </p>
 
             
@@ -137,16 +137,18 @@
                {
             %>
             <div class="photoContainer">
+             <%if (Roles.IsUserInRole("Administrators"))
+              { %>
+           <div class="deletePhotoLinkContainer">   
+                <%= Html.ActionLink("[Удалить фото]", "DeletePhoto", "Designers", new { area = "Admin", id = item.Id }, new { title = "Удалить фото", onclick = "return confirm('Вы уверены что хотите удалить запись?')", @class = "deletePhotoLink adminLink" })%>
+           </div>
+           <div style="clear:both;"></div>
+            <%}
+                   %> 
             <a rel="group<%=dc.Id%>" href="../../Content/DesignerPhotos/<%=item.ImageSource%>" class="fancy">
             <%=Html.CachedImage("~/Content/DesignerPhotos/", item.ImageSource, "designerPhotosThumb", item.ImageSource,true)%>
             </a>
-            <%if (Roles.IsUserInRole("Administrators"))
-              { %>
-              
-                <%= Html.ActionLink(".", "DeletePhoto", "Designers", new { area = "Admin", id = item.Id }, new { title = "Удалить фото", onclick = "return confirm('Вы уверены что хотите удалить запись?')", @class = "deletePhotoLink adminLink" })%>
            
-            <%}
-                   %> 
                    </div>
                    <%
                }

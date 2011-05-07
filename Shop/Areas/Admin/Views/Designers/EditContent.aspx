@@ -7,25 +7,21 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>EditContent</h2>
+    <h2>Редактирование информации о помещении "<%=Model.RoomName%>" дизайнера <%=Model.Designer.NameF %></h2>
 
     <% using (Html.BeginForm()) {%>
         <%: Html.ValidationSummary(true) %>
         
         <fieldset>
-            <legend>Fields</legend>
             <%=Html.HiddenFor(model => model.Id)%>
-            <div class="editor-label">
-                <%: Html.LabelFor(model => model.Summary) %>
-            </div>
             <div class="editor-field">
                 <%: Html.TextAreaFor(model => model.Summary) %>
                 <%: Html.ValidationMessageFor(model => model.Summary) %>
             </div>
-            
             <p>
-                <input type="submit" value="Save" />
+                <input type="submit" value="Сохранить" /> 
             </p>
+            <%=Html.ActionLink("Назад к странице дизайнера","Index","Designers",new{Area="",id=Model.Designer.Url},null) %>
         </fieldset>
 
     <% } %>

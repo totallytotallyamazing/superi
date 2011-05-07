@@ -11,7 +11,7 @@
     <%
         int dId = (int)ViewData["designerId"];
     %>
-    <table>
+    <table class="editRoomsTable">
         <tr>
            
             <th>

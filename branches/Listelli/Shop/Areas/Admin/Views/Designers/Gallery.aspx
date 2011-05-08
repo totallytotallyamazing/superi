@@ -8,8 +8,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
     <h2>Фотогаллерея помещения "<%=Model.RoomName%>" дизайнера <%=ViewData["designerNameF"]%></h2>
-    <% using (Html.BeginForm())
-       {%>
+   
     <%=Html.HiddenFor(model => model.Id)%>
             <%=Html.Hidden("designerId")%>           
 
@@ -58,8 +57,6 @@
         <%: Html.ActionLink("Назад к списку помещений", "Rooms", new { id = dId })%>
     </div>
 
-<%
-       }%>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentTitle" runat="server">

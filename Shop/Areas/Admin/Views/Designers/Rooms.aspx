@@ -36,6 +36,10 @@
              <td>
                 <%: Html.ActionLink("Редактировать", "AddEditRoom", new { designerId = dId, id = item.Id })%>
                 |
+                <%: Html.ActionLink("Фотогаллерея", "Gallery", new { designerId = dId, id = item.Id })%>
+                |
+                <%: Html.ActionLink("Информация", "EditContent", new { designerId = dId, id = item.Id })%>
+                |
                 <%= Html.ActionLink("Удалить", "DeleteRoom", new { id = item.Id,designerId=dId }, new { onclick = "return confirm('При удалении помещения, удаляются также все с ним связанные работы. Вы уверены что хотите удалить помещение?')" })%>
             </td>
         </tr>

@@ -103,25 +103,38 @@
 .accordion h3 a
 {
     color: inherit;
-    text-decoration: inherit;
+    /*text-decoration: inherit;*/
     font-size: 20px;
     font-style: italic;
+    border-bottom:1px solid #0066cc;
+    text-decoration:none;
 }
 
 .accordion h3 a:hover
 {
     color: #cc0000;
+    border-bottom:1px solid #cc0000;
 }
 
 .accordion h3
 {
     color: #a3a3a3;
     text-decoration: underline;
+    
 }
 
 .red
 {
     color: #cc0000 !important;
+}
+
+.ui-state-active a
+{
+	text-decoration:none !important;
+	border-bottom-width:1px !important;
+	border-bottom-color: #cc0000 !important;
+	border-bottom-style:dashed !important;
+	color:#cc0000 !important;
 }
 
 

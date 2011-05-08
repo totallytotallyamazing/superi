@@ -54,9 +54,9 @@
                 active: false,
                 change: function (event, ui) {
                     ui.newHeader.css("color", "#cc0000");
-                    ui.newHeader.css("text-decoration", "none");
+                    //ui.newHeader.css("text-decoration", "none");
                     ui.oldHeader.css("color", "#a3a3a3");
-                    ui.oldHeader.css("text-decoration", "underline");
+                    //ui.oldHeader.css("text-decoration", "underline");
                 }
 
 

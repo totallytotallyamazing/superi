@@ -144,7 +144,84 @@ namespace Shop.Areas.Admin.Controllers
             }
         }
 
-        
+         public ActionResult Gallery(int designerId, int id)
+         {
+             ViewData["designerId"] = designerId;
+             using (var context = new DesignerStorage())
+             {
+                 Designer designer = context.Designer.Where(d => d.Id == designerId).First();
+                 ViewData["designerNameF"] = designer.NameF;
+                 DesignerContent dc = context.DesignerContent.Include("DesignerContentImages").First(d => d.Id == id);
+                 return View(dc);
+             }
+         }
+
+         [HttpPost]
+         public ActionResult AddPhoto(int id, FormCollection form, int designerId)
+         {
+             using (var context = new DesignerStorage())
+             {
+                 var dc = context.DesignerContent.Include("Designer").Where(c => c.Id == id).First();
+
+                 if (Request.Files["logo"] != null && !string.IsNullOrEmpty(Request.Files["logo"].FileName))
+                 {
+                     string fileName = IOHelper.GetUniqueFileName("~/Content/DesignerPhotos", Request.Files["logo"].FileName);
+                     string filePath = Server.MapPath("~/Content/DesignerPhotos");
+                     filePath = Path.Combine(filePath, fileName);
+                     Request.Files["logo"].SaveAs(filePath);
+                     dc.DesignerContentImages.Add(new DesignerContentImages { ImageSource = fileName });
+                     context.SaveChanges();
+                 }
+
+                 return RedirectToAction("Gallery", "Designers", new { area = "Admin", id = id, designerId =designerId });
+             }
+         }
+
+         public ActionResult DeletePhoto(int id, int roomId, int designerId)
+         {
+             using (var context = new DesignerStorage())
+             {
+                 var photo = context.DesignerContentImages.Include("DesignerContent").Where(p => p.Id == id).First();
+                 int dcId = photo.DesignerContent.Id;
+                 var designerContent = context.DesignerContent.Include("Designer").Where(dc => dc.Id == dcId).First();
+                 if (!string.IsNullOrEmpty(photo.ImageSource))
+                 {
+                     IOHelper.DeleteFile("~/Content/DesignerPhotos", photo.ImageSource);
+                 }
+                 context.DeleteObject(photo);
+                 context.SaveChanges();
+                 return RedirectToAction("Gallery", "Designers", new { area = "Admin", id = roomId, designerId = designerId });
+             }
+         }
+
+         public ActionResult EditContent(int id, int designerId)
+         {
+             ViewData["designerId"] = designerId;
+             using (var context = new DesignerStorage())
+             {
+                 var dc = context.DesignerContent.Include("Designer").Include("DesignerContentImages").Where(c => c.Id == id).First();
+
+
+                 return View(dc);
+             }
+
+         }
+
+         [HttpPost]
+         public ActionResult EditContent(int id, FormCollection form, int designerId)
+         {
+             using (var context = new DesignerStorage())
+             {
+                 var dc = context.DesignerContent.Include("Designer").Where(c => c.Id == id).First();
+
+                 TryUpdateModel(dc, new string[] { "Summary" }, form.ToValueProvider());
+                 dc.Summary = HttpUtility.HtmlDecode(form["Summary"]);
+                 context.SaveChanges();
+
+                 return RedirectToAction("Rooms", "Designers", new { area = "Admin", id = designerId });
+             }
+         }
+
         public ActionResult Delete(int id)
         {
             using (var context = new DesignerStorage())
@@ -182,70 +259,9 @@ namespace Shop.Areas.Admin.Controllers
             }
         }
 
-        public ActionResult EditContent(int id)
-        {
-            using (var context = new DesignerStorage())
-            {
-                var dc = context.DesignerContent.Include("Designer").Include("DesignerContentImages").Where(c => c.Id == id).First();
+       
 
-
-                return View(dc);
-            }
-           
-        }
-
-        [HttpPost]
-        public ActionResult EditContent(int id, FormCollection form)
-        {
-            using (var context = new DesignerStorage())
-            {
-                var dc = context.DesignerContent.Include("Designer").Where(c => c.Id == id).First();
-
-                TryUpdateModel(dc, new string[] { "Summary" }, form.ToValueProvider());
-                dc.Summary = HttpUtility.HtmlDecode(form["Summary"]);
-                context.SaveChanges();
-
-                return RedirectToAction("Index", "Designers", new {area = "", id = dc.Designer.Url});
-            }
-        }
-
-        [HttpPost]
-        public ActionResult AddPhoto(int id, FormCollection form)
-        {
-            using (var context = new DesignerStorage())
-            {
-                var dc = context.DesignerContent.Include("Designer").Where(c => c.Id == id).First();
-                
-                if (Request.Files["logo"] != null && !string.IsNullOrEmpty(Request.Files["logo"].FileName))
-                {
-                    string fileName = IOHelper.GetUniqueFileName("~/Content/DesignerPhotos", Request.Files["logo"].FileName);
-                    string filePath = Server.MapPath("~/Content/DesignerPhotos");
-                    filePath = Path.Combine(filePath, fileName);
-                    Request.Files["logo"].SaveAs(filePath);
-                    dc.DesignerContentImages.Add(new DesignerContentImages {ImageSource = fileName});
-                    context.SaveChanges();
-                }
-                
-                return RedirectToAction("Index", "Designers", new { area = "", id = dc.Designer.Url });
-            }
-        }
-
-        public ActionResult DeletePhoto(/*int photoId, int degignerContentId*/ int id)
-        {
-            using (var context = new DesignerStorage())
-            {
-                var photo = context.DesignerContentImages.Include("DesignerContent").Where(p => p.Id == id).First();
-                int dcId = photo.DesignerContent.Id;
-                var designerContent = context.DesignerContent.Include("Designer").Where(dc => dc.Id == dcId).First();
-                if (!string.IsNullOrEmpty(photo.ImageSource))
-                {
-                    IOHelper.DeleteFile("~/Content/DesignerPhotos", photo.ImageSource);
-                }
-                context.DeleteObject(photo);
-                context.SaveChanges();
-                return RedirectToAction("Index", "Designers", new { area = "", id = designerContent.Designer.Url });
-            }
-        }
+       
 
 
     }

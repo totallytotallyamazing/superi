@@ -11,6 +11,12 @@
 
     <% using (Html.BeginForm()) {%>
         <%: Html.ValidationSummary(true) %>
+
+         <%=Html.Hidden("designerId")%>           
+
+            <%
+           int dId = (int)ViewData["designerId"];
+            %>
         
         <fieldset>
             <%=Html.HiddenFor(model => model.Id)%>
@@ -21,7 +27,7 @@
             <p>
                 <input type="submit" value="Сохранить" /> 
             </p>
-            <%=Html.ActionLink("Назад к странице дизайнера","Index","Designers",new{Area="",id=Model.Designer.Url},null) %>
+            <%: Html.ActionLink("Назад к списку помещений", "Rooms", new { id = dId })%>
         </fieldset>
 
     <% } %>

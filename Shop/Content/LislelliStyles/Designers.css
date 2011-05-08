@@ -106,7 +106,7 @@
     /*text-decoration: inherit;*/
     font-size: 20px;
     font-style: italic;
-    border-bottom:1px solid #0066cc;
+    border-bottom:1px solid #a3a3a3;
     text-decoration:none;
 }
 
@@ -114,12 +114,14 @@
 {
     color: #cc0000;
     border-bottom:1px solid #cc0000;
+    text-decoration:none;
 }
 
 .accordion h3
 {
     color: #a3a3a3;
-    text-decoration: underline;
+    /*text-decoration: underline;*/
+    text-decoration:none;
     
 }
 

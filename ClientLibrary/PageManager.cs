@@ -245,6 +245,10 @@ namespace ClientLibrary
             Application.EnableHistory = true;
             Application.Navigate += new HistoryEventHandler(Application_Navigate);
 
+            string url = Window.Location.Href.Replace(new RegularExpression("^.*#url="), "");
+            Dictionary state = new Dictionary();
+            state["url"] = url;
+            RestoreSateFromHistory(state);
         }
 
         private void InitializeMainMenu()

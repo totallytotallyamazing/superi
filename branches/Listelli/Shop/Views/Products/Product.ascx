@@ -54,7 +54,10 @@
     </div>
     <div class="text">
         <span><b>
-            <%= productClickLink.Replace("[IMAGE]", Model.Name)%></b></span>
+            <%= productClickLink.Replace("[IMAGE]", Model.Name)%></b></span><br />
+            <span class="brandName"><sup>TM</sup>
+            <%= productClickLink.Replace("[IMAGE]", Model.Brand.Name)%></span>
+
         <div class="itemDescription">
             <% if (!string.IsNullOrWhiteSpace(Model.Color))
                { %>

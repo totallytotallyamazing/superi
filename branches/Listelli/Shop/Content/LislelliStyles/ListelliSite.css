@@ -680,7 +680,7 @@ img
 {
     position: relative;
     z-index: 2;
-    padding: 65px 70px 0px 0px; /*min-height: 600px;*/
+    padding: 65px 70px 0px 50px; /*min-height: 600px;*/
     left: 75px;
     min-height: 700px;
     font-size:14px;

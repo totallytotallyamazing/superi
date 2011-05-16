@@ -19,19 +19,19 @@
         int workGroupId = int.MinValue;
         if (ViewContext.RouteData.Values["id"] != null && !string.IsNullOrEmpty(ViewContext.RouteData.Values["id"].ToString()))
             workGroupId = Convert.ToInt32(ViewContext.RouteData.Values["id"]);
-        using (DataStorage context = new DataStorage())
-        {
-            int workTypeId = (int)workType;
-            var items = context.WorkGroups.Where(wg => wg.Type == workTypeId).OrderByDescending(wg=>wg.Date).Select(wg => new { Id = wg.Id, Name = wg.Name });
-            string linkFormat = "<a href=\"/{0}/{1}/{2}\" {4}>{3}</a>";
-            string linkClass = "class=\"current\"";
-            foreach (var item in items)
-            {
-                string finalLinkClass = (item.Id == workGroupId) ? linkClass : string.Empty;
-                sb.AppendFormat(linkFormat, "See", workType.ToString(), item.Id, item.Name, finalLinkClass);
-                sb.Append("<br />");
-            }
-        }
+        //using (DataStorage context = new DataStorage())
+        //{
+        //    int workTypeId = (int)workType;
+        //    var items = context.WorkGroups.Where(wg => wg.Type == workTypeId).OrderByDescending(wg=>wg.Date).Select(wg => new { Id = wg.Id, Name = wg.Name });
+        //    string linkFormat = "<a href=\"/{0}/{1}/{2}\" {4}>{3}</a>";
+        //    string linkClass = "class=\"current\"";
+        //    foreach (var item in items)
+        //    {
+        //        string finalLinkClass = (item.Id == workGroupId) ? linkClass : string.Empty;
+        //        sb.AppendFormat(linkFormat, "See", workType.ToString(), item.Id, item.Name, finalLinkClass);
+        //        sb.Append("<br />");
+        //    }
+        //}
         if (Request.IsAuthenticated)
         {
             sb.Append(Html.ActionLink("Добавить", "AddEditWorkGroup", "Admin", new { workType = workType }, new { @class="adminLink", id = "addWorkGroup" }));

@@ -92,7 +92,7 @@ namespace MBrand.Models
         [Required(ErrorMessage = "Обязательно!")]
         [DisplayName("Текст запроса")]
         public string Text { get; set; }
-        [Captcha("ValidateCaptcha", "Captcha", "value", ErrorMessage = "Неправильно введены символы с картинки!")]
+        [Captcha("ValidateCaptcha", "Captcha", "value", ErrorMessage = "Неправильные символы!")]
         [Required(ErrorMessage = "Введите символы с картинки")]
         [DisplayName("")]
         public string Captcha { get; set; }

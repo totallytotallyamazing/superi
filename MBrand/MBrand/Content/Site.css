@@ -118,3 +118,7 @@ a:visited{color:#808080;}
 .commonContentWrapper{padding-top:70px;}
 
 .editor-field{margin-bottom:20px;}
+
+.editor-field textarea{width:320px;}
+.editor-field input{width:200px;}
+.field-validation-error{color:Red; font-size:10px;}

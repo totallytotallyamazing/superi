@@ -8,7 +8,8 @@
             {
                 hideOnContentClick: false,
                 hideOnOverlayClick: false,
-                showCloseButton: true
+                showCloseButton: true,
+                padding:20
             });
         });
     </script>

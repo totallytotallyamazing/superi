@@ -4,12 +4,12 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="ModelStoreContainer">
-          <EntitySet Name="Notes" EntityType="Model.Store.Notes" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Texts" EntityType="Model.Store.Texts" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="WorkGroups" EntityType="Model.Store.WorkGroups" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Works" EntityType="Model.Store.Works" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Notes" EntityType="Model.Store.Notes" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Texts" EntityType="Model.Store.Texts" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="WorkGroups" EntityType="Model.Store.WorkGroups" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Works" EntityType="Model.Store.Works" store:Type="Tables" Schema="dbo" />
           <AssociationSet Name="FK_Works_WorkGroups" Association="Model.Store.FK_Works_WorkGroups">
             <End Role="WorkGroups" EntitySet="WorkGroups" />
             <End Role="Works" EntitySet="Works" />
@@ -33,6 +33,8 @@
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="nvarchar" MaxLength="255" />
           <Property Name="Content" Type="nvarchar(max)" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Keywords" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="WorkGroups">
           <Key>
@@ -44,6 +46,8 @@
           <Property Name="Image" Type="varchar" MaxLength="500" />
           <Property Name="Type" Type="int" Nullable="false" />
           <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="SeoDescription" Type="nvarchar(max)" />
+          <Property Name="SeoKeywords" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Works">
           <Key>
@@ -100,6 +104,8 @@
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
           <Property Name="Content" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Type="String" Name="Description" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Keywords" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Work">
           <Key>
@@ -120,7 +126,9 @@
           <Property Name="Image" Type="String" Nullable="true" />
           <Property Name="Type" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Works" Relationship="Model.FK_Works_WorkGroups" FromRole="WorkGroups" ToRole="Work" />
-          <Property Name="Date" Type="DateTime" Nullable="false" /></EntityType>
+          <Property Name="Date" Type="DateTime" Nullable="false" />
+          <Property Type="String" Name="SeoDescription" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="SeoKeywords" MaxLength="Max" FixedLength="false" Unicode="true" /></EntityType>
         <Association Name="FK_Works_WorkGroups">
           <End Type="Model.WorkGroup" Role="WorkGroups" Multiplicity="0..1" />
           <End Type="Model.Work" Role="Work" Multiplicity="*" /></Association></Schema>
@@ -144,6 +152,8 @@
           <EntitySetMapping Name="Texts">
             <EntityTypeMapping TypeName="IsTypeOf(Model.Text)">
               <MappingFragment StoreEntitySet="Texts">
+                <ScalarProperty Name="Keywords" ColumnName="Keywords" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Content" ColumnName="Content" />
@@ -164,6 +174,8 @@
           <EntitySetMapping Name="WorkGroups">
             <EntityTypeMapping TypeName="IsTypeOf(Model.WorkGroup)">
               <MappingFragment StoreEntitySet="WorkGroups">
+                <ScalarProperty Name="SeoKeywords" ColumnName="SeoKeywords" />
+                <ScalarProperty Name="SeoDescription" ColumnName="SeoDescription" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="Type" ColumnName="Type" />
                 <ScalarProperty Name="Image" ColumnName="Image" />
@@ -189,6 +201,8 @@
     <edmx:Options>
       <DesignerInfoPropertySet xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
       </DesignerInfoPropertySet>
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->

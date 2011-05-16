@@ -15,6 +15,7 @@
     <% using (Html.BeginForm())
        { %>
        <%= Html.TextArea("text") %>
+       <% Html.RenderPartial("SeoEditor"); %>
        <input type="submit" value="Сохранить" />
     <%} %>
 </asp:Content>

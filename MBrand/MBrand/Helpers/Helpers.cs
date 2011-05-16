@@ -17,6 +17,14 @@ namespace MBrand.Helpers
             }
         }
 
+        public static Text GetContent(string textName)
+        {
+            using (DataStorage context = new DataStorage())
+            {
+                return context.Texts.FirstOrDefault(c => c.Name == textName);
+            }
+        }
+
         public static string WriteText(this HtmlHelper helper, string textName)
         {
             return GetText(textName);

@@ -54,4 +54,6 @@
         <td><input type="submit" value="Сохранить" /></td>
     </tr>
 </table>
+
+<% Html.RenderPartial("SeoEditor"); %>
 <%} %>

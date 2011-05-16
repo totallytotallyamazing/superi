@@ -287,6 +287,7 @@
     <Content Include="Views\Admin\Eugene.aspx" />
     <Content Include="Views\Admin\Index.aspx" />
     <Content Include="Views\Admin\See.aspx" />
+    <Content Include="Views\Admin\SeoEditor.ascx" />
     <Content Include="Views\Clients\Index.aspx" />
     <Content Include="Views\Contacts\Index.aspx" />
     <Content Include="Views\Errors\Default.aspx" />

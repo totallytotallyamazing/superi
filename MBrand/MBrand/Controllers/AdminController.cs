@@ -14,53 +14,64 @@ namespace MBrand.Controllers
     [Authorize]
     public class AdminController : Controller
     {
-        private void UpdateText(string textName, string text)
+        private void UpdateText(string textName, string text, string seoKeywords, string seoDescription)
         {
             using (DataStorage context = new DataStorage())
             {
                 Text clilents = context.Texts.Where(c => c.Name == textName).Select(c => c).First();
                 clilents.Content = HttpUtility.HtmlDecode(text);
+                clilents.Keywords = seoKeywords;
+                clilents.Description = seoDescription;
                 context.SaveChanges();
             }
         }
 
         public ActionResult Index()
         {
-            ViewData["text"] = Helpers.Helpers.GetText("Index");
+            Text text = Helpers.Helpers.GetContent("Index");
+            ViewData["text"] = text.Content;
+            ViewData["seoKeywords"] = text.Keywords;
+            ViewData["seoDescription"] = text.Description;
             return View();
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Index(string text)
+        public ActionResult Index(string text, string seoKeywords, string seoDescription)
         {
-            UpdateText("Index", text);
+            UpdateText("Index", text, seoKeywords, seoDescription);
             return RedirectToAction("Index", "Home");
         }
 
         public ActionResult Eugene()
         {
-            ViewData["text"] = Helpers.Helpers.GetText("Eugene");
+            Text text = Helpers.Helpers.GetContent("Eugene");
+            ViewData["text"] = text.Content;
+            ViewData["seoKeywords"] = text.Keywords;
+            ViewData["seoDescription"] = text.Description;
             return View();
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Eugene(string text)
+        public ActionResult Eugene(string text, string seoKeywords, string seoDescription)
         {
-            UpdateText("Eugene", text);
+            UpdateText("Eugene", text, seoKeywords, seoDescription);
             return RedirectToAction("Index", "Eugene");
         }
 
 
         public ActionResult Clients()
         {
-            ViewData["text"] = Helpers.Helpers.GetText("Clients");
+            Text text = Helpers.Helpers.GetContent("Clients");
+            ViewData["text"] = text.Content;
+            ViewData["seoKeywords"] = text.Keywords;
+            ViewData["seoDescription"] = text.Description;
             return View();
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Clients(string text)
+        public ActionResult Clients(string text, string seoKeywords, string seoDescription)
         {
-            UpdateText("Clients", text);
+            UpdateText("Clients", text, seoKeywords, seoDescription);
             return RedirectToAction("Index", "Clients");
         }
 
@@ -151,14 +162,17 @@ namespace MBrand.Controllers
 
         public ActionResult Contacts()
         {
-            ViewData["text"] = Helpers.Helpers.GetText("Contacts");
+            Text text = Helpers.Helpers.GetContent("Contacts");
+            ViewData["text"] = text.Content;
+            ViewData["seoKeywords"] = text.Keywords;
+            ViewData["seoDescription"] = text.Description;
             return View();
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Contacts(string text)
+        public ActionResult Contacts(string text, string seoKeywords, string seoDescription)
         {
-            UpdateText("Contacts", text);
+            UpdateText("Contacts", text, seoKeywords, seoDescription);
             return RedirectToAction("Index", "Contacts");
         }
 
@@ -175,13 +189,15 @@ namespace MBrand.Controllers
                     ViewData["name"] = workGroup.Name;
                     ViewData["date"] = workGroup.Date.ToString("dd.MM.yyyy");
                     ViewData["description"] = workGroup.Description;
+                    ViewData["seoKeywords"] = workGroup.SeoKeywords;
+                    ViewData["seoDescription"] = workGroup.SeoDescription;
                 }
             }
             return View();            
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult AddEditWorkGroup(WorkType workType, int? id, string name, string date, string description) 
+        public ActionResult AddEditWorkGroup(WorkType workType, int? id, string name, string date, string description, string seoKeywords, string seoDescription) 
         {
             using (DataStorage context = new DataStorage())
             {
@@ -198,6 +214,8 @@ namespace MBrand.Controllers
                 workGroup.Date = DateTime.Parse(date, cultureInfo);
                 workGroup.Name = name;
                 workGroup.Description = description;
+                workGroup.SeoKeywords = seoKeywords;
+                workGroup.SeoDescription = seoDescription;
                 string previewName = Request.Files["preview"].FileName;
                 if (!string.IsNullOrEmpty(previewName))
                 {

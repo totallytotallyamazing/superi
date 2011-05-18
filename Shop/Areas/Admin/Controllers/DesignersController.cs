@@ -243,6 +243,11 @@ namespace Shop.Areas.Admin.Controllers
                     context.DeleteObject(designer.DesignerContent.First());
                 }
 
+                if(!string.IsNullOrEmpty(designer.Logo))
+                {
+                    IOHelper.DeleteFile("~/Content/DesignerLogos", designer.Logo);
+                }
+
                 context.DeleteObject(designer);
                 context.SaveChanges();
             }

@@ -226,10 +226,25 @@ namespace Shop.Areas.Admin.Controllers
         {
             using (var context = new DesignerStorage())
             {
-                // TODO: Нужна доработка
-                //var designer = context.Designer.Where(d => d.Id == id).First();
-                //context.DeleteObject(designer);
-                //context.SaveChanges();
+                var designer = context.Designer.Include("DesignerContent").Where(d => d.Id == id).First();
+                foreach (var dc in designer.DesignerContent.Select(dc => dc.Id).Select(dcId => context.DesignerContent.Include("DesignerContentImages").Where(d => d.Id == dcId).First()))
+                {
+                    foreach (var image in dc.DesignerContentImages.Where(image => !string.IsNullOrEmpty(image.ImageSource)))
+                    {
+                        IOHelper.DeleteFile("~/Content/DesignerPhotos", image.ImageSource);
+                    }
+                    while (dc.DesignerContentImages.Any())
+                    {
+                        context.DeleteObject(dc.DesignerContentImages.First());
+                    }
+                }
+                while (designer.DesignerContent.Any())
+                {
+                    context.DeleteObject(designer.DesignerContent.First());
+                }
+
+                context.DeleteObject(designer);
+                context.SaveChanges();
             }
             return RedirectToAction("Index");
         }
@@ -238,21 +253,17 @@ namespace Shop.Areas.Admin.Controllers
         {
             using (var context = new DesignerStorage())
             {
-                //var designer = context.Designer.Where(d => d.Id == designerId).First();
-                DesignerContent dc = context.DesignerContent.Include("DesignerContentImages").Where(d => d.Id == id).First();
+                var dc = context.DesignerContent.Include("DesignerContentImages").Where(d => d.Id == id).First();
 
-                foreach (var image in dc.DesignerContentImages)
+                foreach (var image in dc.DesignerContentImages.Where(image => !string.IsNullOrEmpty(image.ImageSource)))
                 {
-                    if (!string.IsNullOrEmpty(image.ImageSource))
-                    {
-                        IOHelper.DeleteFile("~/Content/DesignerPhotos", image.ImageSource);
-                    }
-                    image.DesignerContentReference = null;
-                    // TODO: Нужна доработка
-                    //context.DeleteObject(image);
+                    IOHelper.DeleteFile("~/Content/DesignerPhotos", image.ImageSource);
                 }
 
-                dc.DesignerReference = null;
+                while (dc.DesignerContentImages.Any())
+                {
+                    context.DeleteObject(dc.DesignerContentImages.First());
+                }
                 context.DeleteObject(dc);
                 context.SaveChanges();
                 return RedirectToAction("Rooms", "Designers", new { area = "Admin", id = designerId });

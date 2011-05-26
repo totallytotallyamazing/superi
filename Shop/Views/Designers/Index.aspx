@@ -155,7 +155,11 @@
             <%if (!string.IsNullOrEmpty(dc.Summary))
               {%>
             <div class="designerContentSummary">
+            <div class="designerContentSummaryTop"></div>
+                <div class="designerContentSummaryContainer">
                 <%=dc.Summary%>
+                </div>
+            <div class="designerContentSummaryBottom"></div>
             </div>
             <%
                 }

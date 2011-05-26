@@ -36,7 +36,7 @@
              <td>
                 <%: Html.ActionLink("Редактировать", "AddEditRoom", new { designerId = dId, id = item.Id })%>
                 |
-                <%: Html.ActionLink("Фотогаллерея", "Gallery", new { designerId = dId, id = item.Id })%>
+                <%: Html.ActionLink("Фотогалерея", "Gallery", new { designerId = dId, id = item.Id })%>
                 |
                 <%: Html.ActionLink("Информация", "EditContent", new { designerId = dId, id = item.Id })%>
                 |

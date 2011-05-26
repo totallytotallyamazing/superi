@@ -14,7 +14,7 @@ namespace MBrand.Controllers
     [Authorize]
     public class AdminController : Controller
     {
-        private void UpdateText(string textName, string text, string seoKeywords, string seoDescription)
+        private void UpdateText(string textName, string text, string seoKeywords, string seoDescription, string seoCustomText)
         {
             using (DataStorage context = new DataStorage())
             {
@@ -22,6 +22,7 @@ namespace MBrand.Controllers
                 clilents.Content = HttpUtility.HtmlDecode(text);
                 clilents.Keywords = seoKeywords;
                 clilents.Description = seoDescription;
+                clilents.SeoCustomText = seoCustomText;
                 context.SaveChanges();
             }
         }
@@ -32,13 +33,14 @@ namespace MBrand.Controllers
             ViewData["text"] = text.Content;
             ViewData["seoKeywords"] = text.Keywords;
             ViewData["seoDescription"] = text.Description;
+            ViewData["seoCustomText"] = text.SeoCustomText;
             return View();
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Index(string text, string seoKeywords, string seoDescription)
+        public ActionResult Index(string text, string seoKeywords, string seoDescription, string seoCustomText)
         {
-            UpdateText("Index", text, seoKeywords, seoDescription);
+            UpdateText("Index", text, seoKeywords, seoDescription, seoCustomText);
             return RedirectToAction("Index", "Home");
         }
 
@@ -48,13 +50,14 @@ namespace MBrand.Controllers
             ViewData["text"] = text.Content;
             ViewData["seoKeywords"] = text.Keywords;
             ViewData["seoDescription"] = text.Description;
+            ViewData["seoCustomText"] = text.SeoCustomText;
             return View();
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Eugene(string text, string seoKeywords, string seoDescription)
+        public ActionResult Eugene(string text, string seoKeywords, string seoDescription, string seoCustomText)
         {
-            UpdateText("Eugene", text, seoKeywords, seoDescription);
+            UpdateText("Eugene", text, seoKeywords, seoDescription, seoCustomText);
             return RedirectToAction("Index", "Eugene");
         }
 
@@ -65,13 +68,14 @@ namespace MBrand.Controllers
             ViewData["text"] = text.Content;
             ViewData["seoKeywords"] = text.Keywords;
             ViewData["seoDescription"] = text.Description;
+            ViewData["seoCustomText"] = text.SeoCustomText;
             return View();
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Clients(string text, string seoKeywords, string seoDescription)
+        public ActionResult Clients(string text, string seoKeywords, string seoDescription, string seoCustomText)
         {
-            UpdateText("Clients", text, seoKeywords, seoDescription);
+            UpdateText("Clients", text, seoKeywords, seoDescription, seoCustomText);
             return RedirectToAction("Index", "Clients");
         }
 
@@ -166,13 +170,14 @@ namespace MBrand.Controllers
             ViewData["text"] = text.Content;
             ViewData["seoKeywords"] = text.Keywords;
             ViewData["seoDescription"] = text.Description;
+            ViewData["seoCustomText"] = text.SeoCustomText;
             return View();
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Contacts(string text, string seoKeywords, string seoDescription)
+        public ActionResult Contacts(string text, string seoKeywords, string seoDescription, string seoCustomText)
         {
-            UpdateText("Contacts", text, seoKeywords, seoDescription);
+            UpdateText("Contacts", text, seoKeywords, seoDescription, seoCustomText);
             return RedirectToAction("Index", "Contacts");
         }
 
@@ -191,13 +196,14 @@ namespace MBrand.Controllers
                     ViewData["description"] = workGroup.Description;
                     ViewData["seoKeywords"] = workGroup.SeoKeywords;
                     ViewData["seoDescription"] = workGroup.SeoDescription;
+                    ViewData["seoCustomText"] = workGroup.SeoCustomText;
                 }
             }
             return View();            
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult AddEditWorkGroup(WorkType workType, int? id, string name, string date, string description, string seoKeywords, string seoDescription) 
+        public ActionResult AddEditWorkGroup(WorkType workType, int? id, string name, string date, string description, string seoKeywords, string seoDescription, string seoCustomText) 
         {
             using (DataStorage context = new DataStorage())
             {
@@ -216,6 +222,7 @@ namespace MBrand.Controllers
                 workGroup.Description = description;
                 workGroup.SeoKeywords = seoKeywords;
                 workGroup.SeoDescription = seoDescription;
+                workGroup.SeoCustomText = seoCustomText;
                 string previewName = Request.Files["preview"].FileName;
                 if (!string.IsNullOrEmpty(previewName))
                 {
@@ -277,7 +284,7 @@ namespace MBrand.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult AddEditWork(int? id, string description, int groupId)
+        public ActionResult AddEditWork(int? id, string description, int groupId, string seoCustomText)
         {
             using (DataStorage context = new DataStorage())
             {
@@ -293,6 +300,7 @@ namespace MBrand.Controllers
                     work.WorkGroup = workGroup;
                 }
                 work.Description = HttpUtility.HtmlDecode(description);
+                work.SeoCustomText = HttpUtility.HtmlDecode(seoCustomText);
                 string image = Request.Files["image"].FileName;
                 if (!string.IsNullOrEmpty(image))
                 {

@@ -346,6 +346,30 @@ namespace MBrand.Models
         private global::System.String _Image;
         partial void OnImageChanging(global::System.String value);
         partial void OnImageChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String SeoCustomText
+        {
+            get
+            {
+                return _SeoCustomText;
+            }
+            set
+            {
+                OnSeoCustomTextChanging(value);
+                ReportPropertyChanging("SeoCustomText");
+                _SeoCustomText = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("SeoCustomText");
+                OnSeoCustomTextChanged();
+            }
+        }
+        private global::System.String _SeoCustomText;
+        partial void OnSeoCustomTextChanging(global::System.String value);
+        partial void OnSeoCustomTextChanged();
 
         #endregion
     
@@ -497,6 +521,30 @@ namespace MBrand.Models
         private global::System.String _Keywords;
         partial void OnKeywordsChanging(global::System.String value);
         partial void OnKeywordsChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String SeoCustomText
+        {
+            get
+            {
+                return _SeoCustomText;
+            }
+            set
+            {
+                OnSeoCustomTextChanging(value);
+                ReportPropertyChanging("SeoCustomText");
+                _SeoCustomText = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("SeoCustomText");
+                OnSeoCustomTextChanged();
+            }
+        }
+        private global::System.String _SeoCustomText;
+        partial void OnSeoCustomTextChanging(global::System.String value);
+        partial void OnSeoCustomTextChanged();
 
         #endregion
     
@@ -648,6 +696,30 @@ namespace MBrand.Models
         private global::System.String _Image;
         partial void OnImageChanging(global::System.String value);
         partial void OnImageChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String SeoCustomText
+        {
+            get
+            {
+                return _SeoCustomText;
+            }
+            set
+            {
+                OnSeoCustomTextChanging(value);
+                ReportPropertyChanging("SeoCustomText");
+                _SeoCustomText = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("SeoCustomText");
+                OnSeoCustomTextChanged();
+            }
+        }
+        private global::System.String _SeoCustomText;
+        partial void OnSeoCustomTextChanging(global::System.String value);
+        partial void OnSeoCustomTextChanged();
 
         #endregion
     
@@ -916,6 +988,30 @@ namespace MBrand.Models
         private global::System.String _SeoKeywords;
         partial void OnSeoKeywordsChanging(global::System.String value);
         partial void OnSeoKeywordsChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String SeoCustomText
+        {
+            get
+            {
+                return _SeoCustomText;
+            }
+            set
+            {
+                OnSeoCustomTextChanging(value);
+                ReportPropertyChanging("SeoCustomText");
+                _SeoCustomText = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("SeoCustomText");
+                OnSeoCustomTextChanged();
+            }
+        }
+        private global::System.String _SeoCustomText;
+        partial void OnSeoCustomTextChanging(global::System.String value);
+        partial void OnSeoCustomTextChanged();
 
         #endregion
     

@@ -9,13 +9,14 @@
     <script type="text/javascript">
         $(function() {
             $.fck.config = { path: '<%= VirtualPathUtility.ToAbsolute("~/Controls/fckeditor/") %>', config: {DefaultLanguage:"ru", AutoDetectLanguage:false, SkinPath: "/Controls/fckeditor/editor/skins/office2003/"} };
-            $("#text").fck({ height: 500, width: 700 });
+            $("#text, #seoCustomText").fck({ height: 500, width: 700 });
         })
     </script>
     <% using (Html.BeginForm())
        { %>
        <%= Html.TextArea("text") %>
        <% Html.RenderPartial("SeoEditor"); %>
+       <%= Html.TextArea("seoCustomText")%>
        <input type="submit" value="Сохранить" />
     <%} %>
 </asp:Content>

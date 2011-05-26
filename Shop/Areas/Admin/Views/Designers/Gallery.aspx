@@ -7,7 +7,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Фотогаллерея помещения "<%=Model.RoomName%>" дизайнера <%=ViewData["designerNameF"]%></h2>
+    <h2>Фотогалерея помещения "<%=Model.RoomName%>" дизайнера <%=ViewData["designerNameF"]%></h2>
    
     <%=Html.HiddenFor(model => model.Id)%>
             <%=Html.Hidden("designerId")%>           

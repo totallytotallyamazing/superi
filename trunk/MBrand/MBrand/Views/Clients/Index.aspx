@@ -15,6 +15,8 @@
     
     <%= Html.WriteText("Clients") %>
     
+
+    <% Html.RenderPartial("SeoText", "Clients"); %>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="HeaderTitle" runat="server">

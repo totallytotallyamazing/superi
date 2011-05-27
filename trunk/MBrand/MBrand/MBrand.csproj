@@ -314,6 +314,7 @@
     <Content Include="Views\See\Vcard.aspx" />
     <Content Include="Views\Shared\BlackWhiteSwitch.ascx" />
     <Content Include="Views\Shared\MainMenu.ascx" />
+    <Content Include="Views\Shared\SeoText.ascx" />
     <Content Include="Web.config" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\jquery.js" />

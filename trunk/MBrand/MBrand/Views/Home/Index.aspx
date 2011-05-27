@@ -17,7 +17,9 @@
         </LoggedInTemplate>
     </asp:LoginView>
     
+
     <%= Html.WriteText("Index")%>
+     <% Html.RenderPartial("SeoText", "Index"); %>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="HeaderTitle" runat="server">

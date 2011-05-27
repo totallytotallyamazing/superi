@@ -22,7 +22,7 @@ namespace MBrand.Controllers
                 clilents.Content = HttpUtility.HtmlDecode(text);
                 clilents.Keywords = seoKeywords;
                 clilents.Description = seoDescription;
-                clilents.SeoCustomText = seoCustomText;
+                clilents.SeoCustomText = HttpUtility.HtmlDecode(seoCustomText);
                 context.SaveChanges();
             }
         }

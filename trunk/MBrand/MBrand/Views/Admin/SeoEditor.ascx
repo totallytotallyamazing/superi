@@ -3,10 +3,18 @@
 <table>
  <tr>
     <td>
+        Title
+    </td>
+    <td>
+        <%= Html.TextBox("title", ViewData["title"], new { style="width:600px" })%>
+    </td>
+ </tr>
+ <tr>
+    <td>
         Keywords
     </td>
     <td>
-        <%= Html.TextBox("seoKeywords")%>
+        <%= Html.TextBox("seoKeywords", ViewData["seoKeywords"], new { style = "width:600px" })%>
     </td>
  </tr>
  <tr>
@@ -14,7 +22,7 @@
         Description
     </td>
     <td>
-        <%= Html.TextBox("seoDescription")%>
+        <%= Html.TextBox("seoDescription", ViewData["seoDescription"], new { style = "width:600px" })%>
     </td>
  </tr>
 </table>

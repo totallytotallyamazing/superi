@@ -545,6 +545,54 @@ namespace MBrand.Models
         private global::System.String _SeoCustomText;
         partial void OnSeoCustomTextChanging(global::System.String value);
         partial void OnSeoCustomTextChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Text_1
+        {
+            get
+            {
+                return _Text_1;
+            }
+            set
+            {
+                OnText_1Changing(value);
+                ReportPropertyChanging("Text_1");
+                _Text_1 = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Text_1");
+                OnText_1Changed();
+            }
+        }
+        private global::System.String _Text_1;
+        partial void OnText_1Changing(global::System.String value);
+        partial void OnText_1Changed();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Title
+        {
+            get
+            {
+                return _Title;
+            }
+            set
+            {
+                OnTitleChanging(value);
+                ReportPropertyChanging("Title");
+                _Title = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Title");
+                OnTitleChanged();
+            }
+        }
+        private global::System.String _Title;
+        partial void OnTitleChanging(global::System.String value);
+        partial void OnTitleChanged();
 
         #endregion
     
@@ -720,6 +768,30 @@ namespace MBrand.Models
         private global::System.String _SeoCustomText;
         partial void OnSeoCustomTextChanging(global::System.String value);
         partial void OnSeoCustomTextChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Title
+        {
+            get
+            {
+                return _Title;
+            }
+            set
+            {
+                OnTitleChanging(value);
+                ReportPropertyChanging("Title");
+                _Title = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Title");
+                OnTitleChanged();
+            }
+        }
+        private global::System.String _Title;
+        partial void OnTitleChanging(global::System.String value);
+        partial void OnTitleChanged();
 
         #endregion
     
@@ -1012,6 +1084,30 @@ namespace MBrand.Models
         private global::System.String _SeoCustomText;
         partial void OnSeoCustomTextChanging(global::System.String value);
         partial void OnSeoCustomTextChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Title
+        {
+            get
+            {
+                return _Title;
+            }
+            set
+            {
+                OnTitleChanging(value);
+                ReportPropertyChanging("Title");
+                _Title = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Title");
+                OnTitleChanged();
+            }
+        }
+        private global::System.String _Title;
+        partial void OnTitleChanging(global::System.String value);
+        partial void OnTitleChanged();
 
         #endregion
     

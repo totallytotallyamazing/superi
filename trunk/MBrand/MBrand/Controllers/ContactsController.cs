@@ -14,7 +14,7 @@ namespace MBrand.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            return View(Helpers.Helpers.GetContent("Contacts"));
         }
 
     }

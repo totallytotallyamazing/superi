@@ -14,7 +14,7 @@ namespace MBrand.Controllers
     [Authorize]
     public class AdminController : Controller
     {
-        private void UpdateText(string textName, string text, string seoKeywords, string seoDescription, string seoCustomText)
+        private void UpdateText(string textName, string text, string seoKeywords, string seoDescription, string seoCustomText, string title)
         {
             using (DataStorage context = new DataStorage())
             {
@@ -23,6 +23,7 @@ namespace MBrand.Controllers
                 clilents.Keywords = seoKeywords;
                 clilents.Description = seoDescription;
                 clilents.SeoCustomText = HttpUtility.HtmlDecode(seoCustomText);
+                clilents.Title = title;
                 context.SaveChanges();
             }
         }
@@ -30,6 +31,7 @@ namespace MBrand.Controllers
         public ActionResult Index()
         {
             Text text = Helpers.Helpers.GetContent("Index");
+            ViewData["title"] = text.Title;
             ViewData["text"] = text.Content;
             ViewData["seoKeywords"] = text.Keywords;
             ViewData["seoDescription"] = text.Description;
@@ -38,15 +40,16 @@ namespace MBrand.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Index(string text, string seoKeywords, string seoDescription, string seoCustomText)
+        public ActionResult Index(string text, string seoKeywords, string seoDescription, string seoCustomText, string title)
         {
-            UpdateText("Index", text, seoKeywords, seoDescription, seoCustomText);
+            UpdateText("Index", text, seoKeywords, seoDescription, seoCustomText,title);
             return RedirectToAction("Index", "Home");
         }
 
         public ActionResult Eugene()
         {
             Text text = Helpers.Helpers.GetContent("Eugene");
+            ViewData["title"] = text.Title;
             ViewData["text"] = text.Content;
             ViewData["seoKeywords"] = text.Keywords;
             ViewData["seoDescription"] = text.Description;
@@ -55,9 +58,9 @@ namespace MBrand.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Eugene(string text, string seoKeywords, string seoDescription, string seoCustomText)
+        public ActionResult Eugene(string text, string seoKeywords, string seoDescription, string seoCustomText, string title)
         {
-            UpdateText("Eugene", text, seoKeywords, seoDescription, seoCustomText);
+            UpdateText("Eugene", text, seoKeywords, seoDescription, seoCustomText,title);
             return RedirectToAction("Index", "Eugene");
         }
 
@@ -65,6 +68,7 @@ namespace MBrand.Controllers
         public ActionResult Clients()
         {
             Text text = Helpers.Helpers.GetContent("Clients");
+            ViewData["title"] = text.Title;
             ViewData["text"] = text.Content;
             ViewData["seoKeywords"] = text.Keywords;
             ViewData["seoDescription"] = text.Description;
@@ -73,9 +77,9 @@ namespace MBrand.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Clients(string text, string seoKeywords, string seoDescription, string seoCustomText)
+        public ActionResult Clients(string text, string seoKeywords, string seoDescription, string seoCustomText, string title)
         {
-            UpdateText("Clients", text, seoKeywords, seoDescription, seoCustomText);
+            UpdateText("Clients", text, seoKeywords, seoDescription, seoCustomText,title);
             return RedirectToAction("Index", "Clients");
         }
 
@@ -167,6 +171,7 @@ namespace MBrand.Controllers
         public ActionResult Contacts()
         {
             Text text = Helpers.Helpers.GetContent("Contacts");
+            ViewData["title"] = text.Title;
             ViewData["text"] = text.Content;
             ViewData["seoKeywords"] = text.Keywords;
             ViewData["seoDescription"] = text.Description;
@@ -175,9 +180,9 @@ namespace MBrand.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Contacts(string text, string seoKeywords, string seoDescription, string seoCustomText)
+        public ActionResult Contacts(string text, string seoKeywords, string seoDescription, string seoCustomText, string title)
         {
-            UpdateText("Contacts", text, seoKeywords, seoDescription, seoCustomText);
+            UpdateText("Contacts", text, seoKeywords, seoDescription, seoCustomText,title);
             return RedirectToAction("Index", "Contacts");
         }
 
@@ -191,6 +196,7 @@ namespace MBrand.Controllers
                 using (DataStorage context = new DataStorage())
                 {
                     WorkGroup workGroup = context.WorkGroups.Where(wg => wg.Id == id.Value).Select(wg => wg).First();
+                    ViewData["title"] = workGroup.Title;
                     ViewData["name"] = workGroup.Name;
                     ViewData["date"] = workGroup.Date.ToString("dd.MM.yyyy");
                     ViewData["description"] = workGroup.Description;
@@ -203,7 +209,7 @@ namespace MBrand.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult AddEditWorkGroup(WorkType workType, int? id, string name, string date, string description, string seoKeywords, string seoDescription, string seoCustomText) 
+        public ActionResult AddEditWorkGroup(WorkType workType, int? id, string name, string date, string description, string seoKeywords, string seoDescription, string seoCustomText, string title) 
         {
             using (DataStorage context = new DataStorage())
             {
@@ -223,6 +229,7 @@ namespace MBrand.Controllers
                 workGroup.SeoKeywords = seoKeywords;
                 workGroup.SeoDescription = seoDescription;
                 workGroup.SeoCustomText = seoCustomText;
+                workGroup.Title = title;
                 string previewName = Request.Files["preview"].FileName;
                 if (!string.IsNullOrEmpty(previewName))
                 {
@@ -284,7 +291,7 @@ namespace MBrand.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult AddEditWork(int? id, string description, int groupId, string seoCustomText)
+        public ActionResult AddEditWork(int? id, string description, int groupId, string seoCustomText,string title)
         {
             using (DataStorage context = new DataStorage())
             {
@@ -301,6 +308,7 @@ namespace MBrand.Controllers
                 }
                 work.Description = HttpUtility.HtmlDecode(description);
                 work.SeoCustomText = HttpUtility.HtmlDecode(seoCustomText);
+                work.Title = title;
                 string image = Request.Files["image"].FileName;
                 if (!string.IsNullOrEmpty(image))
                 {

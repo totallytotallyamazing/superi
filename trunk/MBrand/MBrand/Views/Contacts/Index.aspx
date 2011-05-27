@@ -1,8 +1,8 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Common.Master" Inherits="System.Web.Mvc.ViewPage" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Common.Master" Inherits="System.Web.Mvc.ViewPage<MBrand.Models.Text>" %>
 <%@ Import Namespace="MBrand.Helpers" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Контакты
+	<%= Model.Title%>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
@@ -14,12 +14,13 @@
         </LoggedInTemplate>
     </asp:LoginView>
     
-    <%= Html.WriteText("Contacts")%>
-
-   <% Html.RenderPartial("SeoText", "Contacts"); %>
-
+    <%= Model.Content%>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="HeaderTitle" runat="server">
 	Контакты
+</asp:Content>
+
+<asp:Content ContentPlaceHolderID="SeoCustomTextContainer" runat="server">
+<% Html.RenderPartial("SeoText", Model.SeoCustomText ?? ""); %>
 </asp:Content>

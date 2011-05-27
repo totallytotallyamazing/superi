@@ -37,6 +37,8 @@
           <Property Name="Description" Type="nvarchar(max)" />
           <Property Name="Keywords" Type="nvarchar(max)" />
           <Property Name="SeoCustomText" Type="nvarchar(max)" />
+          <Property Name="Text" Type="nvarchar(max)" />
+          <Property Name="Title" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="WorkGroups">
           <Key>
@@ -51,6 +53,7 @@
           <Property Name="SeoDescription" Type="nvarchar(max)" />
           <Property Name="SeoKeywords" Type="nvarchar(max)" />
           <Property Name="SeoCustomText" Type="nvarchar(max)" />
+          <Property Name="Title" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Works">
           <Key>
@@ -63,6 +66,7 @@
           <Property Name="Image" Type="nvarchar" MaxLength="500" />
           <Property Name="GroupId" Type="int" />
           <Property Name="SeoCustomText" Type="nvarchar(max)" />
+          <Property Name="Title" Type="nvarchar(max)" />
         </EntityType>
         <Association Name="FK_Works_WorkGroups">
           <End Role="WorkGroups" Type="Model.Store.WorkGroups" Multiplicity="0..1">
@@ -112,6 +116,8 @@
           <Property Type="String" Name="Description" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Keywords" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="SeoCustomText" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Text_1" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Title" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Work">
           <Key>
@@ -123,7 +129,8 @@
           <Property Name="Preview" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
           <Property Name="Image" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="WorkGroup" Relationship="Model.FK_Works_WorkGroups" FromRole="Work" ToRole="WorkGroups" />
-          <Property Type="String" Name="SeoCustomText" MaxLength="Max" FixedLength="false" Unicode="true" /></EntityType>
+          <Property Type="String" Name="SeoCustomText" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Title" MaxLength="Max" FixedLength="false" Unicode="true" /></EntityType>
         <EntityType Name="WorkGroup">
           <Key>
             <PropertyRef Name="Id" /></Key>
@@ -136,7 +143,8 @@
           <Property Name="Date" Type="DateTime" Nullable="false" />
           <Property Type="String" Name="SeoDescription" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="SeoKeywords" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="SeoCustomText" MaxLength="Max" FixedLength="false" Unicode="true" /></EntityType>
+          <Property Type="String" Name="SeoCustomText" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Title" MaxLength="Max" FixedLength="false" Unicode="true" /></EntityType>
         <Association Name="FK_Works_WorkGroups">
           <End Type="Model.WorkGroup" Role="WorkGroups" Multiplicity="0..1" />
           <End Type="Model.Work" Role="Work" Multiplicity="*" /></Association></Schema>
@@ -161,6 +169,8 @@
           <EntitySetMapping Name="Texts">
             <EntityTypeMapping TypeName="IsTypeOf(Model.Text)">
               <MappingFragment StoreEntitySet="Texts">
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Text_1" ColumnName="Text" />
                 <ScalarProperty Name="SeoCustomText" ColumnName="SeoCustomText" />
                 <ScalarProperty Name="Keywords" ColumnName="Keywords" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
@@ -173,6 +183,7 @@
           <EntitySetMapping Name="Works">
             <EntityTypeMapping TypeName="IsTypeOf(Model.Work)">
               <MappingFragment StoreEntitySet="Works">
+                <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="SeoCustomText" ColumnName="SeoCustomText" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Type" ColumnName="Type" />
@@ -185,6 +196,7 @@
           <EntitySetMapping Name="WorkGroups">
             <EntityTypeMapping TypeName="IsTypeOf(Model.WorkGroup)">
               <MappingFragment StoreEntitySet="WorkGroups">
+                <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="SeoCustomText" ColumnName="SeoCustomText" />
                 <ScalarProperty Name="SeoKeywords" ColumnName="SeoKeywords" />
                 <ScalarProperty Name="SeoDescription" ColumnName="SeoDescription" />

@@ -44,9 +44,9 @@
             <div id="logo">
                 <a href="/" style="font-size: 0px">
                     <%= Html.Image("~/Content/img/logoNew.jpg", new { id="logoImage"})%></a></div>
-            <div id="headerRight">
+            <div id="headerRight"><h1>
                 <asp:ContentPlaceHolder runat="server" ID="HeaderTitle">
-                </asp:ContentPlaceHolder>
+                </asp:ContentPlaceHolder></h1>
             </div>
             <div class="blackWhiteSwitch">
                 <% Html.RenderPartial("BlackWhiteSwitch"); %>
@@ -68,6 +68,11 @@
             © <%= DateTime.Now.Year %> Студия Евгения Миллера<br />
             <%--<a href="mailto:m@eugene-miller.com">m@eugene-miller.com</a> --%>
             <% Html.RenderPartial("FeedbackLink"); %>
+        </div>
+        <div style="clear:both;"></div>
+        <div id="seoFooter">
+            <asp:ContentPlaceHolder runat="server" ID="SeoCustomTextContainer">
+                </asp:ContentPlaceHolder>
         </div>
     </div>
 

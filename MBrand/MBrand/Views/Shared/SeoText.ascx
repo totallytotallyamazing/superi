@@ -1,17 +1,10 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<string>" %>
 <%@ Import Namespace="MBrand.Helpers" %>
-
-
-<%
-    string seoText = Html.WriteSeoText(Model);
-    
- %>
-
-    
-    <%if (!string.IsNullOrEmpty(seoText))
+   
+    <%if (!string.IsNullOrEmpty(Model))
       { %>
       <div class="seoCustomText">
-        <%=seoText%>
+        <%=Model%>
         </div>
         <%} %>
     

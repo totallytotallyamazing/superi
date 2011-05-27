@@ -1,8 +1,8 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Views/Shared/Common.Master" Inherits="System.Web.Mvc.ViewPage" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Views/Shared/Common.Master" Inherits="System.Web.Mvc.ViewPage<MBrand.Models.Text>" %>
 <%@ Import Namespace="MBrand.Helpers" %>
 
 <asp:Content ID="indexTitle" ContentPlaceHolderID="TitleContent" runat="server">
-    Студия рекламы и дизайна Евгения Миллера
+    <%= Model.Title%>
 </asp:Content>
 
 <asp:Content ID="indexContent" ContentPlaceHolderID="MainContent" runat="server">
@@ -18,8 +18,8 @@
     </asp:LoginView>
     
 
-    <%= Html.WriteText("Index")%>
-     <% Html.RenderPartial("SeoText", "Index"); %>
+    <%= Model.Content%>
+     
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="HeaderTitle" runat="server">
@@ -27,4 +27,8 @@
         <span class="studio">Студия рекламы и дизайна</span>
         <span class="ofMiller">Евгения Миллера</span>
     </div>
+</asp:Content>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="SeoCustomTextContainer" runat="server">
+<% Html.RenderPartial("SeoText", Model.SeoCustomText ?? ""); %>
 </asp:Content>

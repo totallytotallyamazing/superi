@@ -16,3 +16,7 @@
         <asp:ContentPlaceHolder runat="server" ID="MainContent"></asp:ContentPlaceHolder>
     </div>
 </asp:Content>
+
+<asp:Content runat="server" ContentPlaceHolderID="SeoCustomTextContainer">
+    <asp:ContentPlaceHolder runat="server" ID="SeoCustomTextContainer"></asp:ContentPlaceHolder>
+</asp:Content>

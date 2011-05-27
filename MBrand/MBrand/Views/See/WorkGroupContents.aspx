@@ -1,9 +1,7 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<MBrand.Models.Work>>" %>
 <%@ Import Namespace="MBrand.Models" %>
 <%@ Import Namespace="Microsoft.Web.Mvc" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-    [<%= ViewData["title"] %>] <%= ViewData["workGroupName"] %>
-</asp:Content>
+<asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server"><%= ViewData["title"] %></asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <%

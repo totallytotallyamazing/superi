@@ -340,5 +340,32 @@ namespace MBrand.Controllers
                 return RedirectToAction(type.ToString(), "See", new { id = groupId });
             }
         }
+
+        public ActionResult EditSeoContent(int workType, string returnUrl)
+        {
+            using (DataStorage context = new DataStorage())
+            {
+                SeoContent content = context.SeoContent.Where(s => s.WorkType == workType).First();
+                ViewData["seoKeywords"] = content.Keywords;
+                ViewData["seoDescription"] = content.Description;
+                return View(content);
+            }
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult EditSeoContent(int workType, string returnUrl, string title, string seoDescription, string seoKeywords, string seoCustomText)
+        {
+            using (DataStorage context = new DataStorage())
+            {
+                SeoContent content = context.SeoContent.Where(s => s.WorkType == workType).First();
+                content.Title = title;
+                content.Description = seoDescription;
+                content.Keywords = seoKeywords;
+                content.SeoCustomText = HttpUtility.HtmlDecode(seoCustomText);
+                context.SaveChanges();
+            }
+
+            return RedirectToAction(returnUrl, "See");
+        }
     }
 }

@@ -7,6 +7,7 @@
     <Schema Namespace="Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="ModelStoreContainer">
           <EntitySet Name="Notes" EntityType="Model.Store.Notes" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SeoContent" EntityType="Model.Store.SeoContent" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Texts" EntityType="Model.Store.Texts" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="WorkGroups" EntityType="Model.Store.WorkGroups" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Works" EntityType="Model.Store.Works" store:Type="Tables" Schema="dbo" />
@@ -25,6 +26,16 @@
           <Property Name="Text" Type="nvarchar(max)" />
           <Property Name="Date" Type="datetime" Nullable="false" />
           <Property Name="Image" Type="nvarchar" MaxLength="500" />
+          <Property Name="SeoCustomText" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="SeoContent">
+          <Key>
+            <PropertyRef Name="WorkType" />
+          </Key>
+          <Property Name="WorkType" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar(max)" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Keywords" Type="nvarchar(max)" />
           <Property Name="SeoCustomText" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Texts">
@@ -93,7 +104,8 @@
           <EntitySet Name="WorkGroups" EntityType="Model.WorkGroup" />
           <AssociationSet Name="FK_Works_WorkGroups" Association="Model.FK_Works_WorkGroups">
             <End Role="WorkGroups" EntitySet="WorkGroups" />
-            <End Role="Work" EntitySet="Works" /></AssociationSet></EntityContainer>
+            <End Role="Work" EntitySet="Works" /></AssociationSet>
+          <EntitySet Name="SeoContent" EntityType="Model.SeoContent" /></EntityContainer>
         <EntityType Name="Note">
           <Key>
             <PropertyRef Name="Id" />
@@ -147,7 +159,17 @@
           <Property Type="String" Name="Title" MaxLength="Max" FixedLength="false" Unicode="true" /></EntityType>
         <Association Name="FK_Works_WorkGroups">
           <End Type="Model.WorkGroup" Role="WorkGroups" Multiplicity="0..1" />
-          <End Type="Model.Work" Role="Work" Multiplicity="*" /></Association></Schema>
+          <End Type="Model.Work" Role="Work" Multiplicity="*" /></Association>
+        <EntityType Name="SeoContent">
+          <Key>
+            <PropertyRef Name="WorkType" />
+          </Key>
+          <Property Type="Int32" Name="WorkType" Nullable="false" />
+          <Property Type="String" Name="Title" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Description" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Keywords" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="SeoCustomText" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType></Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -211,7 +233,18 @@
               <ScalarProperty Name="Id" ColumnName="Id" /></EndProperty>
             <EndProperty Name="WorkGroups">
               <ScalarProperty Name="Id" ColumnName="GroupId" /></EndProperty>
-            <Condition ColumnName="GroupId" IsNull="false" /></AssociationSetMapping></EntityContainerMapping>
+            <Condition ColumnName="GroupId" IsNull="false" /></AssociationSetMapping>
+          <EntitySetMapping Name="SeoContent">
+            <EntityTypeMapping TypeName="Model.SeoContent">
+              <MappingFragment StoreEntitySet="SeoContent">
+                <ScalarProperty Name="SeoCustomText" ColumnName="SeoCustomText" />
+                <ScalarProperty Name="Keywords" ColumnName="Keywords" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="WorkType" ColumnName="WorkType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping></EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>
@@ -239,6 +272,7 @@
         <AssociationConnector Association="Model.FK_Works_WorkGroups">
           <ConnectorPoint PointX="7.5" PointY="2.0862939453125" />
           <ConnectorPoint PointX="6.625" PointY="2.0862939453125" />
-          </AssociationConnector></Diagram></edmx:Diagrams>
+          </AssociationConnector>
+        <EntityTypeShape EntityType="Model.SeoContent" Width="1.5" PointX="0.75" PointY="4.75" Height="1.9802864583333317" /></Diagram></edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

@@ -18,7 +18,10 @@ namespace MBrand.Controllers
         public ActionResult Index()
         {
             ViewData["Message"] = "Welcome to ASP.NET MVC!";
-            return View(Helpers.Helpers.GetContent("Index"));
+            Text text = Helpers.Helpers.GetContent("Index");
+            ViewData["keywords"] = text.Keywords;
+            ViewData["description"] = text.Description;
+            return View(text);
         }
 
         public ActionResult White(string redirectUrl)

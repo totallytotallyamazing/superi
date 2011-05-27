@@ -26,6 +26,8 @@ namespace MBrand.Controllers
                 ViewData["workGroupName"] = group.Name;
                 ViewData["title"] = group.Title;
                 ViewData["groupId"] = id;
+                ViewData["keywords"] = group.SeoKeywords;
+                ViewData["description"] = group.SeoDescription;
                 return View("WorkGroupContents", group.Works);
             }
         }
@@ -36,7 +38,13 @@ namespace MBrand.Controllers
 
             if (id == null)
             {
-                return View();
+                using (DataStorage context = new DataStorage())
+                {
+                    SeoContent sc = context.SeoContent.Where(c => c.WorkType == (int) WorkType.Site).First();
+                    ViewData["keywords"] = sc.Keywords;
+                    ViewData["description"] = sc.Description;
+                    return View(sc);
+                }
             }
             else
             {
@@ -50,7 +58,13 @@ namespace MBrand.Controllers
 
             if (id == null)
             {
-                return View();
+                using (DataStorage context = new DataStorage())
+                {
+                    SeoContent sc = context.SeoContent.Where(c => c.WorkType == (int)WorkType.Vcard).First();
+                    ViewData["keywords"] = sc.Keywords;
+                    ViewData["description"] = sc.Description;
+                    return View(sc);
+                }
             }
             else
             {
@@ -78,7 +92,13 @@ namespace MBrand.Controllers
 
             if (id == null)
             {
-                return View();
+                using (DataStorage context = new DataStorage())
+                {
+                    SeoContent sc = context.SeoContent.Where(c => c.WorkType == (int)WorkType.Poly).First();
+                    ViewData["keywords"] = sc.Keywords;
+                    ViewData["description"] = sc.Description;
+                    return View(sc);
+                }
             }
             else
             {
@@ -106,7 +126,13 @@ namespace MBrand.Controllers
 
             if (id == null)
             {
-                return View();
+                using (DataStorage context = new DataStorage())
+                {
+                    SeoContent sc = context.SeoContent.Where(c => c.WorkType == (int)WorkType.Video).First();
+                    ViewData["keywords"] = sc.Keywords;
+                    ViewData["description"] = sc.Description;
+                    return View(sc);
+                }
             }
             else
             {

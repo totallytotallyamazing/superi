@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
+using MBrand.Models;
 
 namespace MBrand.Controllers
 {
@@ -14,7 +15,10 @@ namespace MBrand.Controllers
 
         public ActionResult Index()
         {
-            return View(Helpers.Helpers.GetContent("Clients"));
+            Text text = Helpers.Helpers.GetContent("Clients");
+            ViewData["keywords"] = text.Keywords;
+            ViewData["description"] = text.Description;
+            return View(text);
         }
 
     }

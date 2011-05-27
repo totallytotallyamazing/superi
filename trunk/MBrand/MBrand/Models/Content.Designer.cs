@@ -130,6 +130,22 @@ namespace MBrand.Models
             }
         }
         private ObjectSet<WorkGroup> _WorkGroups;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<SeoContent> SeoContent
+        {
+            get
+            {
+                if ((_SeoContent == null))
+                {
+                    _SeoContent = base.CreateObjectSet<SeoContent>("SeoContent");
+                }
+                return _SeoContent;
+            }
+        }
+        private ObjectSet<SeoContent> _SeoContent;
 
         #endregion
         #region AddTo Methods
@@ -164,6 +180,14 @@ namespace MBrand.Models
         public void AddToWorkGroups(WorkGroup workGroup)
         {
             base.AddObject("WorkGroups", workGroup);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the SeoContent EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToSeoContent(SeoContent seoContent)
+        {
+            base.AddObject("SeoContent", seoContent);
         }
 
         #endregion
@@ -346,6 +370,157 @@ namespace MBrand.Models
         private global::System.String _Image;
         partial void OnImageChanging(global::System.String value);
         partial void OnImageChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String SeoCustomText
+        {
+            get
+            {
+                return _SeoCustomText;
+            }
+            set
+            {
+                OnSeoCustomTextChanging(value);
+                ReportPropertyChanging("SeoCustomText");
+                _SeoCustomText = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("SeoCustomText");
+                OnSeoCustomTextChanged();
+            }
+        }
+        private global::System.String _SeoCustomText;
+        partial void OnSeoCustomTextChanging(global::System.String value);
+        partial void OnSeoCustomTextChanged();
+
+        #endregion
+    
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="Model", Name="SeoContent")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class SeoContent : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new SeoContent object.
+        /// </summary>
+        /// <param name="workType">Initial value of the WorkType property.</param>
+        public static SeoContent CreateSeoContent(global::System.Int32 workType)
+        {
+            SeoContent seoContent = new SeoContent();
+            seoContent.WorkType = workType;
+            return seoContent;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 WorkType
+        {
+            get
+            {
+                return _WorkType;
+            }
+            set
+            {
+                if (_WorkType != value)
+                {
+                    OnWorkTypeChanging(value);
+                    ReportPropertyChanging("WorkType");
+                    _WorkType = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("WorkType");
+                    OnWorkTypeChanged();
+                }
+            }
+        }
+        private global::System.Int32 _WorkType;
+        partial void OnWorkTypeChanging(global::System.Int32 value);
+        partial void OnWorkTypeChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Title
+        {
+            get
+            {
+                return _Title;
+            }
+            set
+            {
+                OnTitleChanging(value);
+                ReportPropertyChanging("Title");
+                _Title = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Title");
+                OnTitleChanged();
+            }
+        }
+        private global::System.String _Title;
+        partial void OnTitleChanging(global::System.String value);
+        partial void OnTitleChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Description
+        {
+            get
+            {
+                return _Description;
+            }
+            set
+            {
+                OnDescriptionChanging(value);
+                ReportPropertyChanging("Description");
+                _Description = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Description");
+                OnDescriptionChanged();
+            }
+        }
+        private global::System.String _Description;
+        partial void OnDescriptionChanging(global::System.String value);
+        partial void OnDescriptionChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Keywords
+        {
+            get
+            {
+                return _Keywords;
+            }
+            set
+            {
+                OnKeywordsChanging(value);
+                ReportPropertyChanging("Keywords");
+                _Keywords = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Keywords");
+                OnKeywordsChanged();
+            }
+        }
+        private global::System.String _Keywords;
+        partial void OnKeywordsChanging(global::System.String value);
+        partial void OnKeywordsChanged();
     
         /// <summary>
         /// No Metadata Documentation available.

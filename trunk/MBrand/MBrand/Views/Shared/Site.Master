@@ -14,9 +14,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <link rel="shortcut icon" type="image/ico" href="/favicon.ico" />
-    <title>
-        <asp:ContentPlaceHolder ID="TitleContent" runat="server" />
-    </title>
+    <title><asp:ContentPlaceHolder ID="TitleContent" runat="server" /></title>
+
+    <meta name="description" content="<%=ViewData["keywords"]%>"/> 
+    <meta name="keywords" content="<%=ViewData["description"]%>"/> 
+
     <link href="/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="/Content/<%= color %>.css" rel="stylesheet" type="text/css" />
     <link href="/Content/theme/jquery.ui.css" rel="Stylesheet" />

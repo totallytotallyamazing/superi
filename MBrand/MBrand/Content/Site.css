@@ -122,3 +122,11 @@ a:visited{color:#808080;}
 .editor-field textarea{width:320px;}
 .editor-field input{width:200px;}
 .field-validation-error{color:Red; font-size:10px;}
+
+.seoCustomText
+{
+    margin-top:10px;
+    background-color:#f8f3dd;
+    border:3px solid #f0ede8;
+    padding:30px;
+}

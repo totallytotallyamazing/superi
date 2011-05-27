@@ -17,6 +17,15 @@ namespace MBrand.Helpers
             }
         }
 
+        public static string GetSeoText(string textName)
+        {
+            using (DataStorage context = new DataStorage())
+            {
+                return context.Texts.Where(c => c.Name == textName).Select(c => c.SeoCustomText).First();
+            }
+        }
+
+
         public static Text GetContent(string textName)
         {
             using (DataStorage context = new DataStorage())
@@ -28,6 +37,11 @@ namespace MBrand.Helpers
         public static string WriteText(this HtmlHelper helper, string textName)
         {
             return GetText(textName);
+        }
+
+        public static string WriteSeoText(this HtmlHelper helper, string textName)
+        {
+            return GetSeoText(textName);
         }
     }
 }

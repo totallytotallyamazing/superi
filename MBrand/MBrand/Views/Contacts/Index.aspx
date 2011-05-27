@@ -15,6 +15,9 @@
     </asp:LoginView>
     
     <%= Html.WriteText("Contacts")%>
+
+   <% Html.RenderPartial("SeoText", "Contacts"); %>
+
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="HeaderTitle" runat="server">

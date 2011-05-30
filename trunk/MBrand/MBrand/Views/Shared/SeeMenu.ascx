@@ -76,7 +76,7 @@
 
 <script type="text/javascript">
     $(function() {
-        $("#addWorkGroup").fancybox({ hideOnContentClick: false, frameWidth: 400, frameHeight: 150 });
+        $("#addWorkGroup").fancybox({ hideOnContentClick: false, frameWidth: 700, frameHeight: 250 });
     })    
 </script>
 

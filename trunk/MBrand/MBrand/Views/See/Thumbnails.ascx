@@ -4,7 +4,7 @@
 <% if(Request.IsAuthenticated){ %>
     <script type="text/javascript">
         $(function() {
-            $(".editWorkGroup").fancybox({ hideOnContentClick: false, frameWidth: 400, frameHeight: 150 });
+            $(".editWorkGroup").fancybox({ hideOnContentClick: false, frameWidth: 700, frameHeight: 250 });
         })
     </script>
 <%} %>

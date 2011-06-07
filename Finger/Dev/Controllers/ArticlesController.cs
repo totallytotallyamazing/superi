@@ -58,7 +58,7 @@ namespace Dev.Controllers
             using (DataStorage context = new DataStorage())
             {
                 string cultureName = LocaleHelper.GetCultureName();
-                Article article = context.Articles.Where(a => a.Language == cultureName && a.Type == (int)ArticleType.Note).Select(a => a).First();
+                Article article = context.Articles.First(a => a.Language == cultureName && a.Type == (int)ArticleType.Note && a.Name == name);
                 return View(article);
             }
         }

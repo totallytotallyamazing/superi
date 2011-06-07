@@ -211,6 +211,7 @@
     <Content Include="Views\Shared\LeftMenuCollapsed.ascx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\Microsoft.Web.Mvc.dll" />
     <Content Include="captcha.ashx" />
     <Content Include="Content\img\menuBottom.png" />
     <Content Include="Content\img\en-US\tv.gif" />
@@ -218,7 +219,6 @@
     <Content Include="Views\Shared\GoogleAnalytics.ascx" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="bin\" />
     <Folder Include="Controls\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

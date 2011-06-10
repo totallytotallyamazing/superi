@@ -15,8 +15,8 @@ namespace Oksi.Controllers
         {
             using (DataStorage context = new DataStorage())
             {
-                List<Gallery> galleries = context.Galleries.Include("Images").OrderByDescending(g => g.Id).Where(g=>!id.HasValue||g.Id==id.Value).Select(g => g).ToList();
-                long[] galleryIds = galleries.Select(g => g.Id).ToArray();
+                List<Gallery> galleries = context.Galleries.Include("Images").Where(g => !id.HasValue || g.Id == id.Value).Select(g => g).OrderByDescending(g => g.Id).ToList();
+                long[] galleryIds = galleries.OrderByDescending(g => g.Id).Select(g => g.Id).ToArray();
                 JavaScriptSerializer serializer = new JavaScriptSerializer();
                 ViewData["serializedGalleriesId"] = serializer.Serialize(galleryIds);
                 return View(galleries);

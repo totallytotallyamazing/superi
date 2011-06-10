@@ -1023,6 +1023,12 @@ ClientLibrary.PageManager.prototype = {
         ClientLibrary.PageManager.callBaseMethod(this, 'initialize');
         Sys.Application.set_enableHistory(true);
         Sys.Application.add_navigate(Function.createDelegate(this, this._application_Navigate$1));
+        if (window.location.href.indexOf('#') > -1) {
+            var url = window.location.href.replace(new RegExp('^.*#url='), '');
+            var state = {};
+            state['url'] = url;
+            this._restoreSateFromHistory$1(state);
+        }
     },
     
     _initializeMainMenu$1: function ClientLibrary_PageManager$_initializeMainMenu$1() {
@@ -1324,7 +1330,7 @@ Jquery.JCarouselConfig.registerClass('Jquery.JCarouselConfig');
 Jquery.JPlayerOptions.registerClass('Jquery.JPlayerOptions');
 ClientLibrary.AudioPlayer._instance$2 = null;
 ClientLibrary.PageManager._instanse$1 = null;
-ClientLibrary.PageManager._imagesNumber$1 = 2;
+ClientLibrary.PageManager._imagesNumber$1 = 0;
 
 // ---- Do not remove this footer ----
 // This script was generated using Script# v0.5.5.0 (http://projects.nikhilk.net/ScriptSharp)

@@ -16,7 +16,7 @@ namespace ClientLibrary
         private bool linkNavigation = false;
         AsyncRequestHandler asyncRequestHandler = null;
         int currentTopImage = 0;
-        const int imagesNumber = 2;
+        const int imagesNumber = 0;
 
         public bool IsAuthenticated
         {
@@ -245,10 +245,13 @@ namespace ClientLibrary
             Application.EnableHistory = true;
             Application.Navigate += new HistoryEventHandler(Application_Navigate);
 
-            string url = Window.Location.Href.Replace(new RegularExpression("^.*#url="), "");
-            Dictionary state = new Dictionary();
-            state["url"] = url;
-            RestoreSateFromHistory(state);
+            if (Window.Location.Href.IndexOf("#") > -1)
+            {
+                string url = Window.Location.Href.Replace(new RegularExpression("^.*#url="), "");
+                Dictionary state = new Dictionary();
+                state["url"] = url;
+                RestoreSateFromHistory(state);
+            }
         }
 
         private void InitializeMainMenu()

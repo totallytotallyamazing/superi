@@ -17,15 +17,18 @@
             <%= Model.Comments.Replace(Environment.NewLine, "<br />")%>
             
             <div class="shareButtons galleryShareButtons">
-                <%string url = "http://oksi.com.ua/#url=%2FGallerys%2FIndex%2F"+Model.Id; %>
+                <%
+                    string url ="http://oksi.com.ua/#url=%2FGallerys%2FIndex%2F"+Model.Id;
+                    //string url = "http://1gb.ua";
+                     %>
                 <div>
-                    <a href="<%=HttpUtility.UrlEncode(url)%>"  target="_blank" rel="nofollow" onclick="ODKL.Share(this);return false;" title="Поделиться в Одноклассниках" class="shareButton odnoklassnikiButton"></a>
+                    <a href="<%=url%>"  target="_blank" rel="nofollow" onclick="ODKL.Share(this);return false;" title="Поделиться в Одноклассниках" class="shareButton odnoklassnikiButton"></a>
                 </div>
                 <div>
                     <a href="http://www.facebook.com/sharer.php?u=<%=HttpUtility.UrlEncode(url)%>" title="Поделиться в Facebook" rel="nofollow" target="blank" class="shareButton fbButton"></a>
                 </div>  
                 <div>
-                    <a href="http://twitter.com/home?status=<%=HttpUtility.UrlPathEncode(Model.Name.Trim())%> <%=HttpUtility.UrlEncode(url)%>"  target="_blank" rel="nofollow" class="shareButton twitterButton"></a>
+                    <a href="http://twitter.com/intent/tweet?text=<%=HttpUtility.UrlPathEncode(Model.Name.Trim())%> <%=HttpUtility.UrlEncode(url)%>"  target="_blank" rel="nofollow" class="shareButton twitterButton"></a>
                 </div>                      
                 <div>
                     <a href="http://vkontakte.ru/share.php?url=<%=HttpUtility.UrlEncode(url)%>" target="_blank" rel="nofollow" class="shareButton vkButton"></a>

@@ -66,16 +66,17 @@
             </div>
         </div>
         <div style="clear:both;"></div>
+        <div id="seoFooter">
+            <asp:ContentPlaceHolder runat="server" ID="SeoCustomTextContainer">
+                </asp:ContentPlaceHolder>
+        </div>
+        <div style="clear:both;"></div>
         <div id="footer">
             © <%= DateTime.Now.Year %> Студия Евгения Миллера<br />
             <%--<a href="mailto:m@eugene-miller.com">m@eugene-miller.com</a> --%>
             <% Html.RenderPartial("FeedbackLink"); %>
         </div>
-        <div style="clear:both;"></div>
-        <div id="seoFooter">
-            <asp:ContentPlaceHolder runat="server" ID="SeoCustomTextContainer">
-                </asp:ContentPlaceHolder>
-        </div>
+        
     </div>
 
     <script type="text/javascript">

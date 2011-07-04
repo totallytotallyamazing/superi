@@ -66,9 +66,10 @@ namespace Shop.Areas.Admin.Controllers
         private void SendArticle(Article article)
         {
             using (Clients context = new Clients())
+            {
                 foreach (var item in context.Subscribers)
-                    //MailHelper.SendTemplate(new List<MailAddress> { new MailAddress(item.Email) }, article.Title, "Newsletter.htm", null, true, article.Text);
                     MailHelper.SendTemplate(new List<MailAddress> { new MailAddress(item.Email) }, article.Title, "Newsletter.htm", null, true, HttpUtility.HtmlDecode(article.Text));
+            }
         }
 
         public ActionResult Delete(int id)

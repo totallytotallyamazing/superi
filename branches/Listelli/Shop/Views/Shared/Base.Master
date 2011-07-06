@@ -97,7 +97,7 @@
                     </div>
                     <div id="rightBox">
                         <% Html.RenderPartial("Subscribe"); %>
-                        <% Html.RenderPartial("ContestLinkBubble"); %>
+                        <% //Html.RenderPartial("ContestLinkBubble"); %>
                         <div id="brand">
                             <a href="/BrandCatalog/Home/Index" class="txtBrand">Брендовые каталоги</a>
                         </div>

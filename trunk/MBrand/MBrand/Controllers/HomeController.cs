@@ -73,10 +73,10 @@ namespace MBrand.Controllers
         [HttpPost]
         public void FeedbackForm(FeedbackFormModel feedbackFormModel)
         {
-            MailHelper.SendTemplate(new List<MailAddress> { new MailAddress("miller.kak.miller@gmail.com") },
-                "Форма обратной связи", "FeedbackTemplate.htm",
-                null, true, feedbackFormModel.Name, feedbackFormModel.Email, feedbackFormModel.Text);
-            Response.Write("<script>window.top.$.fancybox.close()</script>");
+            MailHelper.SendTemplate(new List<MailAddress> { new MailAddress("miller.kak.miller@gmail.com") },"Форма обратной связи", "FeedbackTemplate.htm",null, true, feedbackFormModel.Name, feedbackFormModel.Email, feedbackFormModel.Text);
+            
+            //Response.Write("<script>window.top.$.fancybox.close()</script>");
+            Response.Write("<script>window.top.location.href=window.top.location.href</script>");
         }
     }
 }

@@ -407,6 +407,7 @@
     <Content Include="Views\Products\ProductStaticAttributes.ascx" />
     <Content Include="Views\Products\ProductStaticAttributesModified.ascx" />
     <Content Include="Views\Products\QuickQuestion.ascx" />
+    <Content Include="Views\Products\Show1.aspx" />
     <Content Include="Views\Products\ShowModal.ascx" />
     <Content Include="Views\Products\ShowModalContest.ascx" />
     <Content Include="Views\Products\SimilarProducts.ascx" />

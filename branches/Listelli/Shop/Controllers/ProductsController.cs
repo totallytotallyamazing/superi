@@ -149,7 +149,7 @@ namespace Shop.Controllers
 
                 ViewData["quickQuestion"] = new QuickQuestionModel { ProductName = product.PartNumber + " " + product.Categories.First().Name + " " + product.Name };
                 
-                return View("ShowModal", product);
+                return View("Show1", product);
             }
         }
 

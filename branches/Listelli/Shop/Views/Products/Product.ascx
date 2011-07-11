@@ -17,7 +17,7 @@
     if (!currentUrl.Contains("konkurs"))
         title = Model.Categories.First().Name + " " + Model.Name;
     string method = isContest ? "ShowContest" : "Show";
-    string productClickLink = Html.ActionLink("[IMAGE]", method, new { id = Model.Id }, new { @class = "titleLink productFancy", title = title }).ToString();
+    string productClickLink = Html.ActionLink("[IMAGE]", method, new { id = Model.Id }, new { @class = "titleLink", title = title }).ToString();
 
 
     int[] favorites = Favorites.FavoritesProductIds;

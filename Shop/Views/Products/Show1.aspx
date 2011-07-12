@@ -52,6 +52,8 @@
             <a href="#" id="remFromFav" class="removeLink" onclick="ProductClientExtensions.removeFromFavorites(<%=Model.Id%>)">Убрать</a>  из "Отмеченных"
         </div>
 
+        <a href="#" id="returnToCatalogueLink" onclick="javascript:history.back();">&laquo; Вернуться в каталог</a>
+
         <script type="text/javascript">
             $("#remFromFav").click(function () {
                 $(".removeFromFavorites").css("display", "none");

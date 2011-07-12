@@ -31,7 +31,7 @@
                 <%: item.RoomName %>
             </td>
             <td>
-                <%=(item.RoomType==0?"Жилые помещения":"Нежилые помещения") %>
+                <%=(item.RoomType==0?item.Designer.Room0:item.Designer.Room1) %>
             </td>
              <td>
                 <%: Html.ActionLink("Редактировать", "AddEditRoom", new { designerId = dId, id = item.Id })%>

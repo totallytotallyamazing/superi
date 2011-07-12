@@ -33,7 +33,7 @@
                 <%: Html.LabelFor(model => model.RoomType) %>
             </div>
             <div class="editor-field">
-                <%=Html.DropDownList("RoomType", new List<SelectListItem>() { new SelectListItem { Text = "Жилые помещения", Value = "0", Selected = Model != null && Model.RoomType == 0 }, new SelectListItem { Text = "Нежилые помещения", Value = "1", Selected = Model != null && Model.RoomType == 1 } })%>
+                <%=Html.DropDownList("RoomType", new List<SelectListItem>() { new SelectListItem { Text = ViewData["room0"].ToString(), Value = "0", Selected = Model != null && Model.RoomType == 0 }, new SelectListItem { Text = ViewData["room1"].ToString(), Value = "1", Selected = Model != null && Model.RoomType == 1 } })%>
                 <%: Html.ValidationMessageFor(model => model.RoomType) %>
             </div>
             

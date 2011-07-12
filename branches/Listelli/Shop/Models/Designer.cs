@@ -32,6 +32,14 @@ namespace Shop.Models
         [DisplayName("Фото:")]
         public string Logo { get; set; }
 
+        [Required(ErrorMessage = "Введите тип помещения")]
+        [DisplayName("Тип помещения 1:")]
+        public string Room0 { get; set; }
+
+        [Required(ErrorMessage = "Введите тип помещения")]
+        [DisplayName("Тип помещения 2:")]
+        public string Room1 { get; set; }
+
         [DisplayName("Описание:")]
         public string Summary { get; set; }
 

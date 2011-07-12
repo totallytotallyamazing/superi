@@ -354,6 +354,54 @@ namespace Shop.Models
         private global::System.String _NameF;
         partial void OnNameFChanging(global::System.String value);
         partial void OnNameFChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Room1
+        {
+            get
+            {
+                return _Room1;
+            }
+            set
+            {
+                OnRoom1Changing(value);
+                ReportPropertyChanging("Room1");
+                _Room1 = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Room1");
+                OnRoom1Changed();
+            }
+        }
+        private global::System.String _Room1;
+        partial void OnRoom1Changing(global::System.String value);
+        partial void OnRoom1Changed();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Room0
+        {
+            get
+            {
+                return _Room0;
+            }
+            set
+            {
+                OnRoom0Changing(value);
+                ReportPropertyChanging("Room0");
+                _Room0 = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Room0");
+                OnRoom0Changed();
+            }
+        }
+        private global::System.String _Room0;
+        partial void OnRoom0Changing(global::System.String value);
+        partial void OnRoom0Changed();
 
         #endregion
     

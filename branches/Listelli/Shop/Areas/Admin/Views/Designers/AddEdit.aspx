@@ -37,6 +37,20 @@
                 <%: Html.ValidationMessageFor(model => model.Url)%>
             </div>
             <div class="editor-label">
+                <%: Html.LabelFor(model => model.Room0) %>
+            </div>
+            <div class="editor-field">
+                <%: Html.TextBoxFor(model => model.Room0)%>
+                <%: Html.ValidationMessageFor(model => model.Room0)%>
+            </div>
+            <div class="editor-label">
+                <%: Html.LabelFor(model => model.Room1) %>
+            </div>
+            <div class="editor-field">
+                <%: Html.TextBoxFor(model => model.Room1)%>
+                <%: Html.ValidationMessageFor(model => model.Room1)%>
+            </div>
+            <div class="editor-label">
                 <%: Html.LabelFor(model => model.Logo)%>
             </div>
             <div class="editor-field">

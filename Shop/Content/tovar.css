@@ -11,7 +11,7 @@
 #borderLine h1{color:#39b54a;}
 #borderLine, #borderLine2 {border-bottom:#39b54a solid 3px; }
 
-#imagePreviews{width:365px; text-align:center; padding-top:10px;} 
+#imagePreviews{width:500px; text-align:center; padding-top:10px;} 
 #imagePreviews img{border:1px solid #39b54a;}
 #imagePreviews div.imageItem{float:left; margin-right:10px;}
 

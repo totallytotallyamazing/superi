@@ -195,8 +195,7 @@
             <%=((Designer)ViewData["designer"]).NameF%></a>
     </div>
     <div id="roomsType">
-        <a href="#" id="livingRoom">Жилые помещения</a> <a href="#" id="notLivingRoom">Нежилые
-            помещения</a>
+        <a href="#" id="livingRoom"><%=((Designer)ViewData["designer"]).Room0%></a> <a href="#" id="notLivingRoom"><%=((Designer)ViewData["designer"]).Room1%></a>
     </div>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentTitle" runat="server">

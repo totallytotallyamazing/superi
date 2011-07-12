@@ -29,6 +29,8 @@
           <Property Name="Summary" Type="text" />
           <Property Name="Logo" Type="varchar" MaxLength="500" />
           <Property Name="NameF" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="Room1" Type="varchar" MaxLength="255" />
+          <Property Name="Room0" Type="varchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="DesignerContent">
           <Key>
@@ -101,6 +103,8 @@
           <Property Name="Logo" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
           <NavigationProperty Name="DesignerContent" Relationship="gb_listelliModel.FK_DesignerContent_Designer" FromRole="Designer" ToRole="DesignerContent" />
           <Property Type="String" Name="NameF" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Room1" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Room0" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="DesignerContent">
           <Key>
@@ -154,7 +158,9 @@
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="gb_listelliModelStoreContainer" CdmEntityContainer="DesignerStorage">
           <EntitySetMapping Name="Designer"><EntityTypeMapping TypeName="gb_listelliModel.Designer"><MappingFragment StoreEntitySet="Designer">
-            <ScalarProperty Name="NameF" ColumnName="NameF" />
+            <ScalarProperty Name="Room0" ColumnName="Room0" />
+                <ScalarProperty Name="Room1" ColumnName="Room1" />
+                <ScalarProperty Name="NameF" ColumnName="NameF" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
             <ScalarProperty Name="Name" ColumnName="Name" />
             <ScalarProperty Name="Url" ColumnName="Url" />

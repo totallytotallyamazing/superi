@@ -53,7 +53,7 @@ namespace Shop.Areas.Admin.Controllers
                     designer = new Designer();
                     context.AddToDesigner(designer);
                 }
-                TryUpdateModel(designer, new string[] { "Name","NameF", "Url", "Summary" }, form.ToValueProvider());
+                TryUpdateModel(designer, new string[] { "Name","NameF", "Url", "Summary","Room0","Room1" }, form.ToValueProvider());
                 designer.Summary = HttpUtility.HtmlDecode(form["Summary"]);
 
                 if (Request.Files["logo"] != null && !string.IsNullOrEmpty(Request.Files["logo"].FileName))
@@ -106,15 +106,23 @@ namespace Shop.Areas.Admin.Controllers
         public ActionResult AddEditRoom(int designerId, int? id)
         {
             ViewData["designerId"] = designerId;
-            DesignerContent dc = null;
-            if (id.HasValue)
+
+
+            using (var context = new DesignerStorage())
             {
-                using (var context = new DesignerStorage())
+                Designer designer = context.Designer.Where(d => d.Id == designerId).First();
+                ViewData["room0"] = designer.Room0;
+                ViewData["room1"] = designer.Room1;
+
+                DesignerContent dc = null;
+                if (id.HasValue)
                 {
+
                     dc = context.DesignerContent.First(d => d.Id == id.Value);
                 }
+
+                return View(dc);
             }
-            return View(dc);
         }
 
         [HttpPost]

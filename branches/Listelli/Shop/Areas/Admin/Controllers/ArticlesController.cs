@@ -67,8 +67,11 @@ namespace Shop.Areas.Admin.Controllers
         {
             using (Clients context = new Clients())
             {
+                string articleText = HttpUtility.HtmlDecode(article.Text).Replace("src=\"", "src=\"http://listelli.ua");
+                List<MailAddress> addresses = new List<MailAddress>();
                 foreach (var item in context.Subscribers)
-                    MailHelper.SendTemplate(new List<MailAddress> { new MailAddress(item.Email) }, article.Title, "Newsletter.htm", null, true, HttpUtility.HtmlDecode(article.Text));
+                    addresses.Add(new MailAddress(item.Email));
+                MailHelper.SendTemplate(addresses, article.Title, "Newsletter.htm", null, true, articleText);
             }
         }
 

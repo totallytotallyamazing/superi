@@ -16,7 +16,7 @@ namespace Dev.Helpers
             try
             {
                 MailMessage message = new MailMessage();
-                message.Headers["Content-base"] = "http://listelli.ua/";
+                message.Headers["Content-Base"] = "http://listelli.ua";
                 message.Body = body;
                 message.Subject = subject;
                 to.ForEach(t => message.To.Add(t));

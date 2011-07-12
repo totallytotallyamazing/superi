@@ -41,10 +41,10 @@
   .hide{display:none;}
   .block{display:block;}
   
-  .productModal {margin-top: 50px; width: 600px; position: relative; z-index: 1250;}
-  #imgProduct {float: left; width: 365px; text-align:center;}
+  .productModal {margin-top: 50px; width: 800px; position: relative; z-index: 1250;}
+  #imgProduct {float: left; width: 500px; text-align:center;}
  
-  #productDescription {width: 210px; margin-left: 375px;}
+  #productDescription {width: 210px; margin-left: 535px;}
   
   #productDescription .title {padding-bottom: 15px;}
   #productDescription .attributes {line-height: 20px;}
@@ -105,3 +105,11 @@
 #vote{ background:url(img/voteButton.gif) no-repeat; width:136px; height:44px; text-align:center; margin-top:20px; margin-left:auto; margin-right:auto; position:relative; font-size:12px; }
 #voteLink{ position:relative; top:15px; }
 #voted{ position:relative; top:8px;}
+
+
+#returnToCatalogueLink
+{
+    display:block;
+    margin-top:30px;
+    color:#3399ff;
+}

@@ -20,7 +20,7 @@ namespace Dev.Mvc.Helpers
 
         static GraphicsHelper()
         {
-            maxDimensions.Add("mainView", 230);
+            maxDimensions.Add("mainView", 500);
             fixDimension.Add("mainView", FixedDimension.Width);
             maxDimensions.Add("mainViewContest", 600);
             fixDimension.Add("mainViewContest", FixedDimension.Width);

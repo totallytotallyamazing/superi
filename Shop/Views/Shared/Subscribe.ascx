@@ -9,8 +9,20 @@
     int favoritesCount = Shop.Models.Favorites.FavoritesProductIds.Count(); %>
 <div id="bubbleNew" class="<%=(favoritesCount>0?"bubbleNewWithFavorites":"") %>">
     <div id="bubbleText">
+
+    <div id="subscribeContainer">
+    <%if (Subscribers.IsSubscribed)
+
+      { %>
+      <span class="txtBubbleNew">Вы подписаны на новости!</span>
+      &nbsp;<a href="#" id="unSubscribeMe" class="txtBubbleNew">Отписаться</a>
+      <% }else{ %>
         <a href="#" id="subscribeMe" class="txtBubbleNew">
             Будьте в курсе</a><br /> <span class="txtBubbleNew">новых поступлений</span>
+            <% } %>
+            </div>
+
+
         <div id="favBlock" class="favBlock <%=(favoritesCount == 0?"displayNone":"") %>">
             <%=Html.ActionLink("Вами "+Favorites.CheckedNames, "Favorites", "Products", null, new { @class = "txtBubbleNew", id="favTextPrefix" })%>
             <span class="txtBubbleNew txtBubbleNewFavorites">

@@ -184,6 +184,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Clients.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Subscribers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Runtime\Configurator.cs" />
   </ItemGroup>

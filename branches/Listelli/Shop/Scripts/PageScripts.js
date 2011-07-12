@@ -44,6 +44,21 @@ ProductClientExtensions = {
         return false;
     },
 
+    subscribe: function () {
+        this.setCookie("subscribe", "1", "Mon, 01-Jan-2020 00:00:00 GMT", "/");
+    },
+
+    subscribed: function () {
+        var cookies = this.getCookie("subscribe");
+        if (cookies != null)
+            return true;
+        return false;
+    },
+    
+    unsubscribe: function () {
+        this.setCookie("subscribe", "", "Mon, 03-Jan-2011 00:00:00 GMT", "/");
+    },
+
 
     removeFromFavorites: function (id) {
         var cookies = this.getCookie("favorites");
@@ -304,31 +319,81 @@ var Subscribe = {
             $("#subscribeMe").click(function () {
                 Subscribe._showEditor();
             });
-        })
+           
+            $("#unSubscribeMe").click(function () {
+                Subscribe._showEditorUnsubscribe();
+            });
+            
+        });
     },
 
-    _showEditor: function () {
-        $("#bubbleText").empty();
-        $('<input type="text" value="введите email" onfocus="if(this.value==\'введите email\'){this.value=\'\'}" id="subscribeEmail" style="width:135px;" />').appendTo("#bubbleText");
-        $('<input type="button" value="Подписаться" style="font-size:10px;" />').click(function () {
-            var value = $("#subscribeEmail").val();
+
+
+    _showEditorUnsubscribe: function () {
+        $("#subscribeContainer").empty();
+
+        $('<span class="txtBubbleNew">Отписаться<br/><span><input type="text" value="введите email" onfocus="if(this.value==\'введите email\'){this.value=\'\'}" id="unSubscribeEmail" style="width:135px;" />').appendTo("#subscribeContainer");
+
+        $('<input type="button" value="Отписаться" style="font-size:10px;" />').click(function () {
+            var value = $("#unSubscribeEmail").val();
             var regex = /^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
             if (regex.test(value)) {
-                $.post("/Clients/Subscribe/" + $("#subscribeEmail").val(), function (data) {
-                    $("#bubbleText").empty();
-                    if (data == 0)
-                        $('<span class="txtBubbleNew">Вы подписаны на новости!</span>').appendTo("#bubbleText");
-                    else if (data == 1)
-                        $('<span class="txtBubbleNew">Вы уже подписаны</span>').appendTo("#bubbleText");
+                $.post("/Clients/UnSubscribe/" + $("#unSubscribeEmail").val(), function (data) {
+                    $("#subscribeContainer").empty();
+                    if (data == 0) {
+                        ProductClientExtensions.unsubscribe();
+                        $('<span class="txtBubbleNew">Вы отписаны!</span>').appendTo("#subscribeContainer");
+                    }
+                    else if (data == 1) {
+                        $('<span class="txtBubbleNew">Этот email небыл подписан</span>').appendTo("#subscribeContainer");
+                    }
                     else if (data == 2) {
-                        $('<span class="txtBubbleNew">Произошла ошибка</span>').appendTo("#bubbleText");
-                        $('<span class="txtBubbleNew">Попробуйте позже</span>').appendTo("#bubbleText");
+                        $('<span class="txtBubbleNew">Произошла ошибка</span>').appendTo("#subscribeContainer");
+                        $('<span class="txtBubbleNew">Попробуйте позже</span>').appendTo("#subscribeContainer");
                     }
                 });
             }
             else {
                 alert("Email введен неправильно");
             }
-        }).appendTo("#bubbleText");
+        }).appendTo("#subscribeContainer");
+        
+    },
+    
+    _showEditor: function () {
+        $("#subscribeContainer").empty();
+
+
+        if (!ProductClientExtensions.subscribed()) {
+            $('<input type="text" value="введите email" onfocus="if(this.value==\'введите email\'){this.value=\'\'}" id="subscribeEmail" style="width:135px;" />').appendTo("#subscribeContainer");
+        } else {
+            $('Вы уже подписаны!!!').appendTo("#subscribeContainer");
+        };
+
+
+        $('<input type="button" value="Подписаться" style="font-size:10px;" />').click(function () {
+            var value = $("#subscribeEmail").val();
+            var regex = /^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+            if (regex.test(value)) {
+                $.post("/Clients/Subscribe/" + $("#subscribeEmail").val(), function (data) {
+                    $("#subscribeContainer").empty();
+                    if (data == 0) {
+                        ProductClientExtensions.subscribe();
+                        $('<span class="txtBubbleNew">Вы подписаны на новости!</span>').appendTo("#subscribeContainer");
+                    }
+                    else if (data == 1) {
+                        $('<span class="txtBubbleNew">Вы уже подписаны</span>').appendTo("#subscribeContainer");
+                        ProductClientExtensions.subscribe();
+                    }
+                    else if (data == 2) {
+                        $('<span class="txtBubbleNew">Произошла ошибка</span>').appendTo("#subscribeContainer");
+                        $('<span class="txtBubbleNew">Попробуйте позже</span>').appendTo("#subscribeContainer");
+                    }
+                });
+            }
+            else {
+                alert("Email введен неправильно");
+            }
+        }).appendTo("#subscribeContainer");
     }
 };

@@ -37,5 +37,34 @@ namespace Shop.Controllers
             }   
         }
 
+        [HttpPost, OutputCache(NoStore = true, Duration = 1, VaryByParam = "*")]
+        public void UnSubscribe(string id)
+        {
+            using (Clients context = new Clients())
+            {
+                try
+                {
+                    Subscriber subscriber = context.Subscribers.Where(s => s.Email == id).FirstOrDefault();
+                    if (subscriber == null)
+                    {
+                        Response.Write(1);
+                    }
+                    else
+                    {
+                        context.DeleteObject(subscriber);
+                        context.SaveChanges();
+                        Response.Write(0);
+                    }
+                }
+                catch (UpdateException e)
+                {
+                    if (e.InnerException is SqlException)
+                        Response.Write(1);
+                    else
+                        Response.Write(2);
+                }
+            }
+        }
+
     }
 }

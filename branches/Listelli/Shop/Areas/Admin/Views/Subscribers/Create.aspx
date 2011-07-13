@@ -1,0 +1,53 @@
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<Shop.Models.Subscriber>" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
+	Добавить email-адрес рассылки
+</asp:Content>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+
+    <h2>Добавить email-адрес рассылки</h2>
+    <br />
+    <% using (Html.BeginForm()) {%>
+        <%: Html.ValidationSummary(true) %>
+
+        <fieldset>
+           
+            
+            <div class="editor-label">
+                <%: Html.LabelFor(model => model.Email) %>
+            </div>
+            <div class="editor-field">
+                <%: Html.TextBoxFor(model => model.Email) %>
+                <%: Html.ValidationMessageFor(model => model.Email) %>
+            </div>
+
+             <div class="editor-label">
+                <%: Html.LabelFor(model => model.IsActive) %>
+            </div>
+            <div class="editor-field">
+                <%: Html.CheckBoxFor(model => model.IsActive)%>
+                <%: Html.ValidationMessageFor(model => model.IsActive)%>
+            </div>
+            <p>
+                <input type="submit" value="Create" />
+            </p>
+        </fieldset>
+
+    <% } %>
+
+    <div>
+        <%: Html.ActionLink("Назад к списку", "Index") %>
+    </div>
+
+</asp:Content>
+
+<asp:Content ID="Content3" ContentPlaceHolderID="ContentTitle" runat="server">
+</asp:Content>
+
+<asp:Content ID="Content4" ContentPlaceHolderID="includes" runat="server">
+</asp:Content>
+
+<asp:Content ID="Content5" ContentPlaceHolderID="Footer" runat="server">
+</asp:Content>
+

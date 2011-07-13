@@ -87,8 +87,8 @@
     <script type="text/javascript">
         $(function () {
             ImagePreviews.Initialize();
-            //ProductClientExtensions.initialize();
-            //ProductClientExtensions.bindFancy();
+            ProductClientExtensions.initialize();
+            ProductClientExtensions.bindFancy();
         })    
     </script>
     <%= Ajax.ScriptInclude("/Scripts/MicrosoftAjax.js") %>

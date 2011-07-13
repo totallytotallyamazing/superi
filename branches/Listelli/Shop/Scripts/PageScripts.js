@@ -54,7 +54,7 @@ ProductClientExtensions = {
             return true;
         return false;
     },
-    
+
     unsubscribe: function () {
         this.setCookie("subscribe", "", "Mon, 03-Jan-2011 00:00:00 GMT", "/");
     },
@@ -231,9 +231,9 @@ ProductClientExtensions = {
     },
 
     initialize: function () {
-        $(function () {
+        $(function() {
             $(window).load(ProductClientExtensions._adjustDimensions);
-        })
+        });
     }
 };
 

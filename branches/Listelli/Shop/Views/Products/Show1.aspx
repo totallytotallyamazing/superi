@@ -82,13 +82,13 @@
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="includes" runat="server">
     <link rel="Stylesheet" href="/Content/tovar.css" />
-    <link rel="Stylesheet" href="/Content/tovar.css" />
-    <link href="/Content/LislelliStyles/products.css" rel="stylesheet" type="text/css" />
     <link rel="Stylesheet" href="/Content/catalog.css" />
     <link href="/Content/LislelliStyles/products.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript">
         $(function () {
             ImagePreviews.Initialize();
+            ProductClientExtensions.initialize();
+            ProductClientExtensions.bindFancy();
         })    
     </script>
     <%= Ajax.ScriptInclude("/Scripts/MicrosoftAjax.js") %>

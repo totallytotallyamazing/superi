@@ -115,11 +115,13 @@ namespace Shop.Models
         /// </summary>
         /// <param name="email">Initial value of the Email property.</param>
         /// <param name="uniqueId">Initial value of the UniqueId property.</param>
-        public static Subscriber CreateSubscriber(global::System.String email, global::System.Guid uniqueId)
+        /// <param name="isActive">Initial value of the IsActive property.</param>
+        public static Subscriber CreateSubscriber(global::System.String email, global::System.Guid uniqueId, global::System.Boolean isActive)
         {
             Subscriber subscriber = new Subscriber();
             subscriber.Email = email;
             subscriber.UniqueId = uniqueId;
+            subscriber.IsActive = isActive;
             return subscriber;
         }
 
@@ -176,6 +178,30 @@ namespace Shop.Models
         private global::System.Guid _UniqueId;
         partial void OnUniqueIdChanging(global::System.Guid value);
         partial void OnUniqueIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean IsActive
+        {
+            get
+            {
+                return _IsActive;
+            }
+            set
+            {
+                OnIsActiveChanging(value);
+                ReportPropertyChanging("IsActive");
+                _IsActive = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsActive");
+                OnIsActiveChanged();
+            }
+        }
+        private global::System.Boolean _IsActive;
+        partial void OnIsActiveChanging(global::System.Boolean value);
+        partial void OnIsActiveChanged();
 
         #endregion
     

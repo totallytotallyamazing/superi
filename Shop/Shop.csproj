@@ -89,6 +89,7 @@
     <Compile Include="Areas\Admin\Controllers\ProductVariantsController.cs" />
     <Compile Include="Areas\Admin\Controllers\OrdersController.cs" />
     <Compile Include="Areas\Admin\Controllers\SettingsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SubscribersController.cs" />
     <Compile Include="Areas\BrandCatalog\BrandCatalogAreaRegistration.cs" />
     <Compile Include="Areas\BrandCatalog\Controllers\BrandsController.cs" />
     <Compile Include="Areas\BrandCatalog\Controllers\HomeController.cs" />
@@ -205,6 +206,9 @@
     <Content Include="Areas\Admin\Views\Products\ProductAttributeStaticValues.ascx" />
     <Content Include="Areas\Admin\Views\ProductVariants\AddEdit.ascx" />
     <Content Include="Areas\Admin\Views\ProductVariants\Index.aspx" />
+    <Content Include="Areas\Admin\Views\Subscribers\Create.aspx" />
+    <Content Include="Areas\Admin\Views\Subscribers\Edit.aspx" />
+    <Content Include="Areas\Admin\Views\Subscribers\Index.aspx" />
     <Content Include="Areas\BrandCatalog\Views\Brands\BrandLinks.ascx" />
     <Content Include="Areas\BrandCatalog\Views\Brands\Index.ascx" />
     <Content Include="Areas\BrandCatalog\Views\Home\Index.aspx" />

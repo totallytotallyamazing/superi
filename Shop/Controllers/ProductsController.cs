@@ -224,6 +224,7 @@ namespace Shop.Controllers
                     {
 
                         products = context.Products
+                            .Include("Brand")
                             .Include("ProductAttributeValues")
                             .Include("Categories")
                             .Include("ProductImages")

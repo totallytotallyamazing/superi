@@ -11,7 +11,7 @@
     <div id="bubbleText">
 
     <div id="subscribeContainer">
-    <%if (Subscribers.IsSubscribed)
+    <%if (Subscriber.IsSubscribed)
 
       { %>
       <span class="txtBubbleNew">Вы подписаны на новости!</span>

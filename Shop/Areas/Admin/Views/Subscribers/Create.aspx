@@ -5,7 +5,7 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-
+<% Html.EnableClientValidation(); %>
     <h2>Добавить email-адрес рассылки</h2>
     <br />
     <% using (Html.BeginForm()) {%>
@@ -46,6 +46,8 @@
 </asp:Content>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="includes" runat="server">
+ <script type="text/javascript" src="/Scripts/MicrosoftAjax.js"></script>
+    <script type="text/javascript" src="/Scripts/MicrosoftMvcValidation.js"></script>
 </asp:Content>
 
 <asp:Content ID="Content5" ContentPlaceHolderID="Footer" runat="server">

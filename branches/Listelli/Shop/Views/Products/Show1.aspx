@@ -41,7 +41,7 @@
         </div>
         <div class="details">
             <p class="txtDetails">
-                Узнать подробнее об этом товаре можно, позвонив к нам, или просто сейчас <a id="quickQuestionLink" href='#'
+                Узнать подробнее об этом товаре можно, позвонив к нам, или просто сейчас <a id="quickQuestionLink" href="#quickQuestion"
                     class="linkDetails">отправив быстрый вопрос</a></p>
         </div>
         <div class="addToFavorites txtDetails <%=Favorites.FavoritesProductIds.Contains(Model.Id)?"hide":"block"%>">

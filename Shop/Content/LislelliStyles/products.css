@@ -42,7 +42,7 @@
   .block{display:block;}
   
   .productModal {margin-top: 50px; width: 800px; position: relative; z-index: 1250;}
-  #imgProduct {float: left; width: 500px; text-align:center;}
+  #imgProduct {float: left; width: 500px; text-align:center;padding-bottom: 40px;}
  
   #productDescription {width: 210px; margin-left: 535px;}
   
@@ -93,7 +93,7 @@
   #similarItemsBox .attributeValue {color: Black; font-size: 11px;}
   
   #similarItemsBox .title {padding-bottom: 5px;}
-#quickQuestion{clear:both; }
+#quickQuestion{clear:both;margin-top: 20px; }
 #quickQuestion table td{font-size:12px; font-weight:bold; padding-bottom:20px;}
 #quickQuestion table td input{font-weight:normal; margin-left:20px;}
 #quickQuestion table td textarea{font-weight:normal; margin-left:20px; width:250px;}

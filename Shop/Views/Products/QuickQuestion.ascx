@@ -1,5 +1,6 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<Shop.Models.QuickQuestionModel>" %>
 
+
 <div id="quickQuestion" style="display:none">
     <div class="similarItems">
         <p class="txtSimilarItems">

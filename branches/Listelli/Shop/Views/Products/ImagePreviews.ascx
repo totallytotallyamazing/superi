@@ -6,6 +6,7 @@
 <%foreach (var item in Model){%>
     <div class="imageItem">
         <%= Html.CachedImage("~/Content/ProductImages", item.ImageSource, "thumbnail1", item.Product.Name)%>
+        <div class="fadeImage"></div>
     </div>
 <%} %>
 </div>

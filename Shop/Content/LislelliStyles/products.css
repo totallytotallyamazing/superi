@@ -74,7 +74,8 @@
   
   
   #imagePreviews { margin: 10px 0px 0px 14px;  }
-  .imageItem { margin-left: 12px; /*width: 110px;*/ display:inline;} 
+  .imageItem { margin-left: 12px; /*width: 110px;*/ display:inline; position: relative;} 
+  .fadeImage{ position: absolute;top: 0;left: 0;width: 50px;height: 50px;}
   
   .similarItems { clear:both; margin-top: 70px; background:url(../../Content/LislelliStyles/img/separator.png) no-repeat; width: 570px; height: 20px; background-position: bottom;}
   

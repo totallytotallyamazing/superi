@@ -146,6 +146,22 @@ namespace MBrand.Models
             }
         }
         private ObjectSet<SeoContent> _SeoContent;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<SecretImages> SecretImages
+        {
+            get
+            {
+                if ((_SecretImages == null))
+                {
+                    _SecretImages = base.CreateObjectSet<SecretImages>("SecretImages");
+                }
+                return _SecretImages;
+            }
+        }
+        private ObjectSet<SecretImages> _SecretImages;
 
         #endregion
         #region AddTo Methods
@@ -188,6 +204,14 @@ namespace MBrand.Models
         public void AddToSeoContent(SeoContent seoContent)
         {
             base.AddObject("SeoContent", seoContent);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the SecretImages EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToSecretImages(SecretImages secretImages)
+        {
+            base.AddObject("SecretImages", secretImages);
         }
 
         #endregion
@@ -394,6 +418,87 @@ namespace MBrand.Models
         private global::System.String _SeoCustomText;
         partial void OnSeoCustomTextChanging(global::System.String value);
         partial void OnSeoCustomTextChanged();
+
+        #endregion
+    
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="Model", Name="SecretImages")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class SecretImages : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new SecretImages object.
+        /// </summary>
+        /// <param name="id">Initial value of the Id property.</param>
+        /// <param name="image">Initial value of the Image property.</param>
+        public static SecretImages CreateSecretImages(global::System.Int32 id, global::System.String image)
+        {
+            SecretImages secretImages = new SecretImages();
+            secretImages.Id = id;
+            secretImages.Image = image;
+            return secretImages;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 Id
+        {
+            get
+            {
+                return _Id;
+            }
+            set
+            {
+                if (_Id != value)
+                {
+                    OnIdChanging(value);
+                    ReportPropertyChanging("Id");
+                    _Id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("Id");
+                    OnIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _Id;
+        partial void OnIdChanging(global::System.Int32 value);
+        partial void OnIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Image
+        {
+            get
+            {
+                return _Image;
+            }
+            set
+            {
+                OnImageChanging(value);
+                ReportPropertyChanging("Image");
+                _Image = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Image");
+                OnImageChanged();
+            }
+        }
+        private global::System.String _Image;
+        partial void OnImageChanging(global::System.String value);
+        partial void OnImageChanged();
 
         #endregion
     

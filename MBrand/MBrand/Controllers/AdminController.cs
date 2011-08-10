@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
+using MBrand.Helpers;
 using MBrand.Models;
 using System.Globalization;
 using System.IO;
@@ -81,6 +82,70 @@ namespace MBrand.Controllers
         {
             UpdateText("Clients", text, seoKeywords, seoDescription, seoCustomText,title);
             return RedirectToAction("Index", "Clients");
+        }
+
+        public ActionResult Secret()
+        {
+            Text text = Helpers.Helpers.GetContent("Secret");
+            ViewData["title"] = text.Title;
+            ViewData["text"] = text.Content;
+            ViewData["seoKeywords"] = text.Keywords;
+            ViewData["seoDescription"] = text.Description;
+            ViewData["seoCustomText"] = text.SeoCustomText;
+            return View();
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Secret(string text, string seoKeywords, string seoDescription, string seoCustomText, string title)
+        {
+            UpdateText("Secret", text, seoKeywords, seoDescription, seoCustomText, title);
+            return RedirectToAction("Index", "Secret");
+        }
+
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult AddSecretImage()
+        {
+            string fileName = Request.Files["image"].FileName;
+            if (!string.IsNullOrEmpty(fileName))
+            {
+                //if (id > 0)
+                    //DeleteImage("~/Content/images/notes", note.Image);
+                
+                //fileName = Path.GetFileName(fileName);
+                fileName = IOHelper.GetUniqueFileName("~/Content/images/secret", Request.Files["image"].FileName);
+                //string filePath = Server.MapPath("~/Content/images/secret/" + fileName);
+                string filePath = Server.MapPath("~/Content/images/secret");
+                filePath = Path.Combine(filePath, fileName);
+
+                Request.Files["image"].SaveAs(filePath);
+                
+                //note.Image = fileName;
+
+                using (DataStorage context = new DataStorage())
+                {
+                    SecretImages image = new SecretImages();
+                    image.Image = fileName;
+                    context.AddToSecretImages(image);
+                    context.SaveChanges();
+                }
+            }
+            return RedirectToAction("Index", "Secret");
+        }
+
+        public ActionResult DeleteSecretImage(int id)
+        {
+            using (DataStorage context = new DataStorage())
+            {
+                var si = context.SecretImages.Where(s => s.Id == id).First();
+                IOHelper.DeleteFile("~/Content/images/secret/preview", si.Image);
+                IOHelper.DeleteFile("~/Content/images/secret", si.Image);
+                context.DeleteObject(si);
+                context.SaveChanges();
+            }
+
+
+            return RedirectToAction("Index", "Secret");
         }
 
         [OutputCache(VaryByParam = "*", NoStore = true, Duration = 1)]

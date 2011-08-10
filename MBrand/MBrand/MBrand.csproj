@@ -81,6 +81,7 @@
     <Compile Include="Controllers\GraphicsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NotesController.cs" />
+    <Compile Include="Controllers\SecretController.cs" />
     <Compile Include="Controllers\SeeController.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -96,7 +97,9 @@
     <Compile Include="Helpers\Captcha\CaptchaImage.cs" />
     <Compile Include="Helpers\Captcha\CaptchaImageHandler.cs" />
     <Compile Include="Helpers\Captcha\CaptchaValidationAttribute.cs" />
+    <Compile Include="Helpers\GraphicsHelper.cs" />
     <Compile Include="Helpers\Helpers.cs" />
+    <Compile Include="Helpers\IOHelper.cs" />
     <Compile Include="Helpers\MailHelper.cs" />
     <Compile Include="Helpers\MaskEditExtensions.cs" />
     <Compile Include="Helpers\ModalPopUpExtensions.cs" />
@@ -110,6 +113,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Content.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\ViewModel\SecretPresentation.cs" />
     <Compile Include="Models\WorkType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -290,6 +294,7 @@
     <Content Include="Views\Admin\EditSeoContent.aspx" />
     <Content Include="Views\Admin\Eugene.aspx" />
     <Content Include="Views\Admin\Index.aspx" />
+    <Content Include="Views\Admin\Secret.aspx" />
     <Content Include="Views\Admin\See.aspx" />
     <Content Include="Views\Admin\SeoEditor.ascx" />
     <Content Include="Views\Clients\Index.aspx" />
@@ -302,6 +307,7 @@
     <Content Include="Views\Notes\Index.aspx" />
     <Content Include="Views\Notes\Note.aspx" />
     <Content Include="Views\Notes\Pages.ascx" />
+    <Content Include="Views\Secret\Index.aspx" />
     <Content Include="Views\See\Logo.aspx" />
     <Content Include="Views\See\Poly.aspx" />
     <Content Include="Views\See\RandomImage.ascx" />
@@ -351,6 +357,7 @@
     <Folder Include="Content\images\logo\preview\" />
     <Folder Include="Content\images\notes\" />
     <Folder Include="Content\images\poly\preview\" />
+    <Folder Include="Content\images\secret\preview\" />
     <Folder Include="Content\images\site\preview\" />
     <Folder Include="Content\images\text\preview\" />
     <Folder Include="Content\images\vcard\preview\" />

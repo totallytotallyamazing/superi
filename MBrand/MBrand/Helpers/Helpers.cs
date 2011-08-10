@@ -34,6 +34,14 @@ namespace MBrand.Helpers
             }
         }
 
+        public static IEnumerable<SecretImages>  GetSecretImages()
+        {
+            using (DataStorage context = new DataStorage())
+            {
+                return context.SecretImages.ToList();
+            }
+        }
+
         public static string WriteText(this HtmlHelper helper, string textName)
         {
             return GetText(textName);

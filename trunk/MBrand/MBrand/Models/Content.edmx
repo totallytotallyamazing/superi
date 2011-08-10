@@ -7,6 +7,7 @@
     <Schema Namespace="Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="ModelStoreContainer">
           <EntitySet Name="Notes" EntityType="Model.Store.Notes" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SecretImages" EntityType="Model.Store.SecretImages" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="SeoContent" EntityType="Model.Store.SeoContent" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Texts" EntityType="Model.Store.Texts" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="WorkGroups" EntityType="Model.Store.WorkGroups" store:Type="Tables" Schema="dbo" />
@@ -27,6 +28,13 @@
           <Property Name="Date" Type="datetime" Nullable="false" />
           <Property Name="Image" Type="nvarchar" MaxLength="500" />
           <Property Name="SeoCustomText" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="SecretImages">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Image" Type="nvarchar" Nullable="false" MaxLength="500" />
         </EntityType>
         <EntityType Name="SeoContent">
           <Key>
@@ -105,7 +113,8 @@
           <AssociationSet Name="FK_Works_WorkGroups" Association="Model.FK_Works_WorkGroups">
             <End Role="WorkGroups" EntitySet="WorkGroups" />
             <End Role="Work" EntitySet="Works" /></AssociationSet>
-          <EntitySet Name="SeoContent" EntityType="Model.SeoContent" /></EntityContainer>
+          <EntitySet Name="SeoContent" EntityType="Model.SeoContent" />
+          <EntitySet Name="SecretImages" EntityType="Model.SecretImages" /></EntityContainer>
         <EntityType Name="Note">
           <Key>
             <PropertyRef Name="Id" />
@@ -169,6 +178,13 @@
           <Property Type="String" Name="Description" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Keywords" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="SeoCustomText" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SecretImages">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="Image" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
         </EntityType></Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -244,6 +260,14 @@
                 <ScalarProperty Name="WorkType" ColumnName="WorkType" />
               </MappingFragment>
             </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SecretImages">
+            <EntityTypeMapping TypeName="Model.SecretImages">
+              <MappingFragment StoreEntitySet="SecretImages">
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
           </EntitySetMapping></EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -273,6 +297,7 @@
           <ConnectorPoint PointX="7.5" PointY="2.0862939453125" />
           <ConnectorPoint PointX="6.625" PointY="2.0862939453125" />
           </AssociationConnector>
-        <EntityTypeShape EntityType="Model.SeoContent" Width="1.5" PointX="0.75" PointY="4.75" Height="1.9802864583333317" /></Diagram></edmx:Diagrams>
+        <EntityTypeShape EntityType="Model.SeoContent" Width="1.5" PointX="0.75" PointY="4.75" Height="1.9802864583333317" />
+        <EntityTypeShape EntityType="Model.SecretImages" Width="1.5" PointX="3.375" PointY="4.75" Height="1.4033821614583317" /></Diagram></edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

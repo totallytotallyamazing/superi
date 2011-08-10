@@ -146,3 +146,20 @@ a:visited{color:#808080;}
     margin-left:250px;
     margin-bottom:80px;
 }
+
+.secretImagesContainer
+{
+	padding-top: 60px;
+}
+
+.secretImagesContainer img
+{
+	border: 1px solid silver;
+}
+
+.secretImage
+{
+	padding-right: 64px;
+	padding-bottom: 64px;
+	display: inline-block;
+}

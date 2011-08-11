@@ -499,6 +499,30 @@ namespace MBrand.Models
         private global::System.String _Image;
         partial void OnImageChanging(global::System.String value);
         partial void OnImageChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String ImagePreview
+        {
+            get
+            {
+                return _ImagePreview;
+            }
+            set
+            {
+                OnImagePreviewChanging(value);
+                ReportPropertyChanging("ImagePreview");
+                _ImagePreview = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("ImagePreview");
+                OnImagePreviewChanged();
+            }
+        }
+        private global::System.String _ImagePreview;
+        partial void OnImagePreviewChanging(global::System.String value);
+        partial void OnImagePreviewChanged();
 
         #endregion
     

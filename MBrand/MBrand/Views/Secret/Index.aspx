@@ -58,7 +58,7 @@
 </asp:Content>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="HeaderTitle" runat="server">
-Секретная раздел
+Секретный раздел
 </asp:Content>
 
 <asp:Content ID="Content5" ContentPlaceHolderID="SeoCustomTextContainer" runat="server">

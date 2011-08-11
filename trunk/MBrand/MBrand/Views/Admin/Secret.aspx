@@ -27,5 +27,5 @@
 </asp:Content>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="HeaderTitle" runat="server">
-Секретная раздел
+Секретный раздел
 </asp:Content>

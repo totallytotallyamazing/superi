@@ -10,7 +10,7 @@
     <% foreach (var item in Model)
        {
            string title = item.Categories.First().Name + " " + item.Name;
-           string productClickLink = Html.ActionLink("[IMAGE]", "Show", new { id = item.Id }, new { @class = "titleLink productFancy", title = title }).ToString();
+           string productClickLink = Html.ActionLink("[IMAGE]", "Show", new { id = item.Id }, new { @class = "titleLink", title = title }).ToString();
     %>
     <div class="itemBox">
         <a href='#' class="titleLink"><b>

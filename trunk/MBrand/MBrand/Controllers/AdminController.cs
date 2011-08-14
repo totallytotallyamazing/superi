@@ -103,30 +103,52 @@ namespace MBrand.Controllers
         }
 
 
+        public ActionResult AddSecretImageOriginal(int id)
+        {
+            ViewData["id"] = id;
+            return View();
+        }
+
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult AddSecretImage()
+        public ActionResult AddSecretImageOriginal(int id, FormCollection form)
         {
             string fileName = Request.Files["image"].FileName;
             if (!string.IsNullOrEmpty(fileName))
             {
-                //if (id > 0)
-                    //DeleteImage("~/Content/images/notes", note.Image);
-                
-                //fileName = Path.GetFileName(fileName);
-                fileName = IOHelper.GetUniqueFileName("~/Content/images/secret", Request.Files["image"].FileName);
-                //string filePath = Server.MapPath("~/Content/images/secret/" + fileName);
-                string filePath = Server.MapPath("~/Content/images/secret");
-                filePath = Path.Combine(filePath, fileName);
-
-                Request.Files["image"].SaveAs(filePath);
-                
-                //note.Image = fileName;
-
-                using (DataStorage context = new DataStorage())
+                using (var context = new DataStorage())
                 {
-                    SecretImages image = new SecretImages();
-                    image.Image = fileName;
-                    context.AddToSecretImages(image);
+                    var img = context.SecretImages.Where(si => si.Id == id).First();
+                    if (!string.IsNullOrEmpty(img.Image))
+                        IOHelper.DeleteFile("~/Content/images/secret", img.Image);
+
+
+                    fileName = IOHelper.GetUniqueFileName("~/Content/images/secret", Request.Files["image"].FileName);
+                    string filePath = Server.MapPath("~/Content/images/secret");
+                    filePath = Path.Combine(filePath, fileName);
+                    Request.Files["image"].SaveAs(filePath);
+                    img.Image = fileName;
+                    context.SaveChanges();
+                }
+            }
+            return RedirectToAction("Index", "Secret");
+        }
+
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult AddSecretImagePreview()
+        {
+            string fileName = Request.Files["image"].FileName;
+            if (!string.IsNullOrEmpty(fileName))
+            {
+
+                fileName = IOHelper.GetUniqueFileName("~/Content/images/secret/preview", Request.Files["image"].FileName);
+                //string filePath = Server.MapPath("~/Content/images/secret/" + fileName);
+                string filePath = Server.MapPath("~/Content/images/secret/preview");
+                filePath = Path.Combine(filePath, fileName);
+                Request.Files["image"].SaveAs(filePath);
+                using (var context = new DataStorage())
+                {
+                    context.AddToSecretImages(new SecretImages {ImagePreview = fileName,Image = ""});
                     context.SaveChanges();
                 }
             }
@@ -138,8 +160,10 @@ namespace MBrand.Controllers
             using (DataStorage context = new DataStorage())
             {
                 var si = context.SecretImages.Where(s => s.Id == id).First();
-                IOHelper.DeleteFile("~/Content/images/secret/preview", si.Image);
-                IOHelper.DeleteFile("~/Content/images/secret", si.Image);
+                if (!string.IsNullOrEmpty(si.ImagePreview))
+                    IOHelper.DeleteFile("~/Content/images/secret/preview", si.ImagePreview);
+                if (!string.IsNullOrEmpty(si.Image))
+                    IOHelper.DeleteFile("~/Content/images/secret", si.Image);
                 context.DeleteObject(si);
                 context.SaveChanges();
             }

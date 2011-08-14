@@ -9,11 +9,12 @@
     <asp:LoginView ID="LoginView1" runat="server">
         <AnonymousTemplate></AnonymousTemplate>
         <LoggedInTemplate>
+            
             <%= Html.ActionLink("Редактировать", "Secret", "Admin", null, new { @class = "adminLink" })%>
             <br /><br />
-            <% using (Html.BeginForm("AddSecretImage", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            <% using (Html.BeginForm("AddSecretImagePreview", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
                { %>
-    <span style="color:Black">Изображение:</span> <input type="file" name="image" />
+    <span style="color:Black">Добавить превью изображения:</span> <input type="file" name="image" />
     <br />
     <input type="submit" value="Сохранить" />
 <%} %>
@@ -35,11 +36,13 @@
            
            <%if (Request.IsAuthenticated)
 { %>
-            <%=Html.ActionLink("удалить", "DeleteSecretImage", "Admin", new { id = item.Id }, new { @class = "adminLink", onclick = "return confirm('Вы действительно хотите удалить запись?')" })%>
+            <%= Html.ActionLink("[Добавить оригинал]", "AddSecretImageOriginal", "Admin",new{id=item.Id} , new { @class = "adminLink" })%>
+            <%=Html.ActionLink("[Удалить]", "DeleteSecretImage", "Admin", new { id = item.Id }, new { @class = "adminLink", onclick = "return confirm('Вы действительно хотите удалить запись?')" })%>
             <br/>
            <% } %>
             <a rel="group1" href="/Content/images/secret/<%=item.Image %>" class="fancy" >
-                       <%=Html.CachedImage("~/Content/images/secret", item.Image, "secret", item.Image)%>
+                       <%//=Html.CachedImage("~/Content/images/secret", item.Image, "secret", item.Image)%>
+                       <img src="/Content/images/secret/preview/<%=item.ImagePreview %>" alt=""/>
            </a>
            </div>
            <%

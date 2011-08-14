@@ -289,6 +289,7 @@
     <Content Include="Views\Admin\AddEditNote.aspx" />
     <Content Include="Views\Admin\AddEditWork.aspx" />
     <Content Include="Views\Admin\AddEditWorkGroup.aspx" />
+    <Content Include="Views\Admin\AddSecretImageOriginal.aspx" />
     <Content Include="Views\Admin\Clients.aspx" />
     <Content Include="Views\Admin\Contacts.aspx" />
     <Content Include="Views\Admin\EditSeoContent.aspx" />

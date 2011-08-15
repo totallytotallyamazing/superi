@@ -117,6 +117,31 @@ a:visited{color:#808080;}
 #footer{float:right; padding-bottom:30px; padding-top:30px; text-align:left; color:#808080; border-top-width:1px; border-top-style:solid; margin-top:10px; padding-top:5px;}
 #footer a{color:#808080;}
 
+a.secretButton
+{
+	float: left;
+	margin-top: 20px;
+	display: block;
+	font-family: Arial;
+	font-size: 13px;
+	color: #fff;
+	background-color: #c1c1c1;
+	text-decoration: none;
+	padding: 3px;
+	letter-spacing: 1px;
+}
+
+a.secretButton:hover
+{
+	color: #666666;
+}
+
+a.secretButtonCurrent
+{
+	font-weight: bold;
+	color: #666666 !important;
+}
+
 #languageSwitch{color:#808080; float:right;}
 #languageSwitch a{color:#808080;}
 #languageSwitch a:hover{text-decoration:underline;}

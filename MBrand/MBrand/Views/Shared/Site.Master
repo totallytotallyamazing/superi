@@ -14,27 +14,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <link rel="shortcut icon" type="image/ico" href="/favicon.ico" />
-    <title><asp:ContentPlaceHolder ID="TitleContent" runat="server" /></title>
-
-    <meta name="description" content="<%=ViewData["keywords"]%>"/> 
-    <meta name="keywords" content="<%=ViewData["description"]%>"/> 
-
+    <title>
+        <asp:ContentPlaceHolder ID="TitleContent" runat="server" />
+    </title>
+    <meta name="description" content="<%=ViewData["keywords"]%>" />
+    <meta name="keywords" content="<%=ViewData["description"]%>" />
     <link href="/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="/Content/<%= color %>.css" rel="stylesheet" type="text/css" />
     <link href="/Content/theme/jquery.ui.css" rel="Stylesheet" />
-
     <script type="text/javascript" src="/Scripts/jquery.js"></script>
-
     <script type="text/javascript" src="/Scripts/MicrosoftAjax.js"></script>
-
     <script type="text/javascript" src="/Scripts/MicrosoftMvcAjax.js"></script>
-
-    <%if(Request.IsAuthenticated){ %>
+    <%if (Request.IsAuthenticated)
+      { %>
     <script type="text/javascript" src="/Scripts/jquery.fancybox.js"></script>
     <link rel="Stylesheet" href="/Content/fancy/jquery.fancybox.css" />
     <link rel="Stylesheet" href="/Content/Admin.css" />
     <%} %>
-    
     <asp:ContentPlaceHolder ID="Includes" runat="server">
     </asp:ContentPlaceHolder>
 </head>
@@ -46,14 +42,15 @@
             <div id="logo">
                 <a href="/" style="font-size: 0px">
                     <%= Html.Image("~/Content/img/logoNew.jpg", new { id="logoImage"})%></a></div>
-            <div id="headerRight"><h1>
-                <asp:ContentPlaceHolder runat="server" ID="HeaderTitle">
-                </asp:ContentPlaceHolder></h1>
+            <div id="headerRight">
+                <h1>
+                    <asp:ContentPlaceHolder runat="server" ID="HeaderTitle">
+                    </asp:ContentPlaceHolder>
+                </h1>
             </div>
             <div class="blackWhiteSwitch">
                 <% Html.RenderPartial("BlackWhiteSwitch"); %>
-            <% Html.RenderPartial("LanguageSelector"); %>
-                
+                <% Html.RenderPartial("LanguageSelector"); %>
             </div>
         </div>
         <div id="middle">
@@ -65,25 +62,29 @@
                 </asp:ContentPlaceHolder>
             </div>
         </div>
-        <div style="clear:both;"></div>
+        <div style="clear: both;">
+        </div>
         <div id="seoFooter">
             <asp:ContentPlaceHolder runat="server" ID="SeoCustomTextContainer">
-                </asp:ContentPlaceHolder>
+            </asp:ContentPlaceHolder>
         </div>
-        <div style="clear:both;"></div>
-        <div id="footer">
-            © <%= DateTime.Now.Year %> Студия Евгения Миллера<br />
-            <%--<a href="mailto:m@eugene-miller.com">m@eugene-miller.com</a> --%>
-            <% Html.RenderPartial("FeedbackLink"); %>
+        <div style="clear: both;">
         </div>
-        
+        <div>
+            <%=Html.ActionLink("Секретная серая кнопка", "Index", "Secret", null, new { @class = "secretButton " + (ViewContext.RouteData.Values["controller"].ToString().ToLower() == "secret" ? "secretButtonCurrent" : "") })%>
+            <div id="footer">
+                ©
+                <%= DateTime.Now.Year %>
+                Студия Евгения Миллера<br />
+                <%--<a href="mailto:m@eugene-miller.com">m@eugene-miller.com</a> --%>
+                <% Html.RenderPartial("FeedbackLink"); %>
+            </div>
+        </div>
     </div>
-
     <script type="text/javascript">
         var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
         document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
     </script>
-
     <script type="text/javascript">
         try {
             var pageTracker = _gat._getTracker("UA-7333658-1");

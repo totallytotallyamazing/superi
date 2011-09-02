@@ -8,6 +8,9 @@
     //    black = bool.Parse(blackCookie.Value);
     //ViewData["black"] = black;
 
+    if (Request.Url.ToString().StartsWith("http://eugene-miller.com/"))
+        Response.Redirect("http://m-brand.com.ua/");
+    
     string color = "White";//(black) ? "Black" : "White";
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">

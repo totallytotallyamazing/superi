@@ -95,9 +95,9 @@
           <EntitySet Name="SeoContent" EntityType="gbua_mbrandModel.SeoContent" />
           <EntitySet Name="WorkGroups" EntityType="gbua_mbrandModel.WorkGroup" />
           <EntitySet Name="Works" EntityType="gbua_mbrandModel.Work" />
-          <AssociationSet Name="WorkWorkGroup" Association="gbua_mbrandModel.WorkWorkGroup">
-            <End Role="Work" EntitySet="Works" />
+          <AssociationSet Name="WorkGroupWork" Association="gbua_mbrandModel.WorkGroupWork">
             <End Role="WorkGroup" EntitySet="WorkGroups" />
+            <End Role="Work" EntitySet="Works" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Note">
@@ -157,7 +157,7 @@
           <Property Type="String" Name="SeoKeywords" />
           <Property Type="String" Name="Title" />
           <Property Type="Int64" Name="Type" Nullable="false" />
-          <NavigationProperty Name="Works" Relationship="gbua_mbrandModel.WorkWorkGroup" FromRole="WorkGroup" ToRole="Work" />
+          <NavigationProperty Name="Works" Relationship="gbua_mbrandModel.WorkGroupWork" FromRole="WorkGroup" ToRole="Work" />
         </EntityType>
         <EntityType Name="Work">
           <Key>
@@ -170,11 +170,11 @@
           <Property Type="String" Name="SeoCustomText" />
           <Property Type="String" Name="Title" />
           <Property Type="Int64" Name="Type" />
-          <NavigationProperty Name="WorkGroup" Relationship="gbua_mbrandModel.WorkWorkGroup" FromRole="Work" ToRole="WorkGroup" />
+          <NavigationProperty Name="WorkGroup" Relationship="gbua_mbrandModel.WorkGroupWork" FromRole="Work" ToRole="WorkGroup" />
         </EntityType>
-        <Association Name="WorkWorkGroup">
+        <Association Name="WorkGroupWork">
+          <End Type="gbua_mbrandModel.WorkGroup" Role="WorkGroup" Multiplicity="1" />
           <End Type="gbua_mbrandModel.Work" Role="Work" Multiplicity="*" />
-          <End Type="gbua_mbrandModel.WorkGroup" Role="WorkGroup" Multiplicity="0..1" />
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -254,14 +254,13 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="WorkWorkGroup" TypeName="gbua_mbrandModel.WorkWorkGroup" StoreEntitySet="Works">
-            <EndProperty Name="WorkGroup">
-              <ScalarProperty Name="Id" ColumnName="GroupId" />
-            </EndProperty>
+          <AssociationSetMapping Name="WorkGroupWork" TypeName="gbua_mbrandModel.WorkGroupWork" StoreEntitySet="Works">
             <EndProperty Name="Work">
               <ScalarProperty Name="Id" ColumnName="Id" />
             </EndProperty>
-            <Condition ColumnName="GroupId" IsNull="false" />
+            <EndProperty Name="WorkGroup">
+              <ScalarProperty Name="Id" ColumnName="GroupId" />
+            </EndProperty>
           </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
@@ -290,9 +289,9 @@
         <EntityTypeShape EntityType="gbua_mbrandModel.SeoContent" Width="1.5" PointX="3.375" PointY="3.75" Height="1.7566536458333317" />
         <EntityTypeShape EntityType="gbua_mbrandModel.WorkGroup" Width="1.5" PointX="5.375" PointY="0.75" Height="2.5783902994791674" />
         <EntityTypeShape EntityType="gbua_mbrandModel.Work" Width="1.5" PointX="5.375" PointY="4.75" Height="2.2496956380208335" />
-        <AssociationConnector Association="gbua_mbrandModel.WorkWorkGroup">
+        <AssociationConnector Association="gbua_mbrandModel.WorkGroupWork">
+          <ConnectorPoint PointX="6.125" PointY="3.8840950520833331" />
           <ConnectorPoint PointX="6.125" PointY="4.75" />
-          <ConnectorPoint PointX="6.125" PointY="3.4927376302083331" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

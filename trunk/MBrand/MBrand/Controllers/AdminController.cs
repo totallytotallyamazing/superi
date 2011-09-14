@@ -21,7 +21,7 @@ namespace MBrand.Controllers
         public ActionResult TransferData()
         {
 
-            /*
+            
             using (DataStorage context = new DataStorage())
             {
 
@@ -72,7 +72,7 @@ namespace MBrand.Controllers
                 }
             }
 
-            */
+            
 
 
 

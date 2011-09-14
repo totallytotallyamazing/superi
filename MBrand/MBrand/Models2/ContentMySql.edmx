@@ -164,7 +164,6 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Type="String" Name="Description" />
-          <Property Type="Int64" Name="GroupId" Nullable="false" />
           <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="Image" />
           <Property Type="String" Name="Preview" />
@@ -251,11 +250,19 @@
                 <ScalarProperty Name="Preview" ColumnName="Preview" />
                 <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <AssociationSetMapping Name="WorkWorkGroup" TypeName="gbua_mbrandModel.WorkWorkGroup" StoreEntitySet="Works">
+            <EndProperty Name="WorkGroup">
+              <ScalarProperty Name="Id" ColumnName="GroupId" />
+            </EndProperty>
+            <EndProperty Name="Work">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+            <Condition ColumnName="GroupId" IsNull="false" />
+          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -282,7 +289,7 @@
         <EntityTypeShape EntityType="gbua_mbrandModel.SecretImages" Width="1.5" PointX="0.75" PointY="3.75" Height="1.4279589843749996" />
         <EntityTypeShape EntityType="gbua_mbrandModel.SeoContent" Width="1.5" PointX="3.375" PointY="3.75" Height="1.7566536458333317" />
         <EntityTypeShape EntityType="gbua_mbrandModel.WorkGroup" Width="1.5" PointX="5.375" PointY="0.75" Height="2.5783902994791674" />
-        <EntityTypeShape EntityType="gbua_mbrandModel.Work" Width="1.5" PointX="5.375" PointY="4.75" Height="2.2496956380208317" />
+        <EntityTypeShape EntityType="gbua_mbrandModel.Work" Width="1.5" PointX="5.375" PointY="4.75" Height="2.2496956380208335" />
         <AssociationConnector Association="gbua_mbrandModel.WorkWorkGroup">
           <ConnectorPoint PointX="6.125" PointY="4.75" />
           <ConnectorPoint PointX="6.125" PointY="3.4927376302083331" />

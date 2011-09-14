@@ -35,9 +35,9 @@ namespace MBrand.Helpers
             }
         }
 
-        public static IEnumerable<MBrand.Models.SecretImages>  GetSecretImages()
+        public static IEnumerable<MBrand.Models2.SecretImages>  GetSecretImages()
         {
-            using (var context = new DataStorage())
+            using (var context = new DataStorage2())
             {
                 return context.SecretImages.ToList();
             }

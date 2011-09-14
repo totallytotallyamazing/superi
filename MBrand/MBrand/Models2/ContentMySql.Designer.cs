@@ -18,7 +18,7 @@ using System.Runtime.Serialization;
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
 
-[assembly: EdmRelationshipAttribute("gbua_mbrandModel", "WorkWorkGroup", "Work", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MBrand.Models2.Work), "WorkGroup", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MBrand.Models2.WorkGroup))]
+[assembly: EdmRelationshipAttribute("gbua_mbrandModel", "WorkGroupWork", "WorkGroup", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(MBrand.Models2.WorkGroup), "Work", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MBrand.Models2.Work))]
 
 #endregion
 
@@ -1110,16 +1110,16 @@ namespace MBrand.Models2
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("gbua_mbrandModel", "WorkWorkGroup", "WorkGroup")]
+        [EdmRelationshipNavigationPropertyAttribute("gbua_mbrandModel", "WorkGroupWork", "WorkGroup")]
         public WorkGroup WorkGroup
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<WorkGroup>("gbua_mbrandModel.WorkWorkGroup", "WorkGroup").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<WorkGroup>("gbua_mbrandModel.WorkGroupWork", "WorkGroup").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<WorkGroup>("gbua_mbrandModel.WorkWorkGroup", "WorkGroup").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<WorkGroup>("gbua_mbrandModel.WorkGroupWork", "WorkGroup").Value = value;
             }
         }
         /// <summary>
@@ -1131,13 +1131,13 @@ namespace MBrand.Models2
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<WorkGroup>("gbua_mbrandModel.WorkWorkGroup", "WorkGroup");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<WorkGroup>("gbua_mbrandModel.WorkGroupWork", "WorkGroup");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<WorkGroup>("gbua_mbrandModel.WorkWorkGroup", "WorkGroup", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<WorkGroup>("gbua_mbrandModel.WorkGroupWork", "WorkGroup", value);
                 }
             }
         }
@@ -1426,18 +1426,18 @@ namespace MBrand.Models2
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("gbua_mbrandModel", "WorkWorkGroup", "Work")]
+        [EdmRelationshipNavigationPropertyAttribute("gbua_mbrandModel", "WorkGroupWork", "Work")]
         public EntityCollection<Work> Works
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Work>("gbua_mbrandModel.WorkWorkGroup", "Work");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Work>("gbua_mbrandModel.WorkGroupWork", "Work");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Work>("gbua_mbrandModel.WorkWorkGroup", "Work", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Work>("gbua_mbrandModel.WorkGroupWork", "Work", value);
                 }
             }
         }

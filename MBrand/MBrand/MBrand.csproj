@@ -113,7 +113,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Content.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\ContentMySql.Designer.cs">
+    <Compile Include="Models2\ContentMySql.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ContentMySql.edmx</DependentUpon>
@@ -371,7 +371,7 @@
     <Folder Include="Content\images\vcard\preview\" />
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="Models\ContentMySql.edmx">
+    <EntityDeploy Include="Models2\ContentMySql.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>ContentMySql.Designer.cs</LastGenOutput>
     </EntityDeploy>

@@ -20,9 +20,65 @@ namespace MBrand.Controllers
 
         public ActionResult TransferData()
         {
+
+
             using (DataStorage context = new DataStorage())
             {
 
+                IEnumerable<MBrand.Models.WorkGroup> wgs = context.WorkGroups.Include("Works").ToList();
+
+                using (var context2 = new DataStorage2())
+                {
+
+                    foreach (var wg in wgs)
+                    {
+
+                        var workgroup = new MBrand.Models2.WorkGroup
+                        {
+
+                            Date = wg.Date,
+                            Description = wg.Description,
+                            Image = wg.Image,
+                            Name = wg.Name,
+                            SeoCustomText = wg.SeoCustomText,
+                            SeoDescription = wg.SeoDescription,
+                            SeoKeywords = wg.SeoKeywords,
+                            Title = wg.Title,
+                            Type = wg.Type
+                        };
+
+                        context2.AddToWorkGroups(workgroup);
+
+                        foreach (var w in wg.Works)
+                        {
+                            var work = new MBrand.Models2.Work
+                            {
+                                Description = w.Description,
+                                Image = w.Image,
+                                Preview = w.Preview,
+                                SeoCustomText = w.SeoCustomText,
+                                Title = w.Title,
+                                Type = w.Type,
+                                WorkGroup = workgroup
+                            };
+
+                            context2.AddToWorks(work);
+
+
+                        }
+                        
+                    }
+                    context2.SaveChanges();
+                }
+            }
+
+
+
+            /*
+            using (DataStorage context = new DataStorage())
+            {
+
+               
                 IEnumerable<MBrand.Models.SeoContent> seocontents = context.SeoContent.ToList();
 
                 using (var context2 = new DataStorage2())
@@ -47,6 +103,8 @@ namespace MBrand.Controllers
                     context2.SaveChanges();
                 }
             }
+            */
+
 
 
             //IEnumerable<MBrand.Models.SecretImages> images = MBrand.Helpers.Helpers.GetSecretImages();

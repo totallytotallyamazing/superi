@@ -18,7 +18,7 @@ using System.Runtime.Serialization;
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
 
-[assembly: EdmRelationshipAttribute("gbua_mbrandModel", "WorkWorkGroup", "Work", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MBrand.Models.Work), "WorkGroup", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MBrand.Models.WorkGroup))]
+[assembly: EdmRelationshipAttribute("gbua_mbrandModel", "WorkWorkGroup", "Work", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MBrand.Models2.Work), "WorkGroup", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MBrand.Models2.WorkGroup))]
 
 #endregion
 
@@ -918,10 +918,12 @@ namespace MBrand.Models2
         /// <summary>
         /// Create a new Work object.
         /// </summary>
+        /// <param name="groupId">Initial value of the GroupId property.</param>
         /// <param name="id">Initial value of the Id property.</param>
-        public static Work CreateWork(global::System.Int64 id)
+        public static Work CreateWork(global::System.Int64 groupId, global::System.Int64 id)
         {
             Work work = new Work();
+            work.GroupId = groupId;
             work.Id = id;
             return work;
         }
@@ -952,6 +954,30 @@ namespace MBrand.Models2
         private global::System.String _Description;
         partial void OnDescriptionChanging(global::System.String value);
         partial void OnDescriptionChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 GroupId
+        {
+            get
+            {
+                return _GroupId;
+            }
+            set
+            {
+                OnGroupIdChanging(value);
+                ReportPropertyChanging("GroupId");
+                _GroupId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("GroupId");
+                OnGroupIdChanged();
+            }
+        }
+        private global::System.Int64 _GroupId;
+        partial void OnGroupIdChanging(global::System.Int64 value);
+        partial void OnGroupIdChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -1415,30 +1441,6 @@ namespace MBrand.Models2
         private global::System.Int64 _Type;
         partial void OnTypeChanging(global::System.Int64 value);
         partial void OnTypeChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int64> WorkId
-        {
-            get
-            {
-                return _WorkId;
-            }
-            set
-            {
-                OnWorkIdChanging(value);
-                ReportPropertyChanging("WorkId");
-                _WorkId = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("WorkId");
-                OnWorkIdChanged();
-            }
-        }
-        private Nullable<global::System.Int64> _WorkId;
-        partial void OnWorkIdChanging(Nullable<global::System.Int64> value);
-        partial void OnWorkIdChanged();
 
         #endregion
     
@@ -1451,7 +1453,7 @@ namespace MBrand.Models2
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("gbua_mbrandModel", "WorkWorkGroup", "Work")]
-        public EntityCollection<Work> Work
+        public EntityCollection<Work> Works
         {
             get
             {

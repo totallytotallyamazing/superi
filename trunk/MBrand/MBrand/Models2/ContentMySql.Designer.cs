@@ -918,12 +918,10 @@ namespace MBrand.Models2
         /// <summary>
         /// Create a new Work object.
         /// </summary>
-        /// <param name="groupId">Initial value of the GroupId property.</param>
         /// <param name="id">Initial value of the Id property.</param>
-        public static Work CreateWork(global::System.Int64 groupId, global::System.Int64 id)
+        public static Work CreateWork(global::System.Int64 id)
         {
             Work work = new Work();
-            work.GroupId = groupId;
             work.Id = id;
             return work;
         }
@@ -954,30 +952,6 @@ namespace MBrand.Models2
         private global::System.String _Description;
         partial void OnDescriptionChanging(global::System.String value);
         partial void OnDescriptionChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int64 GroupId
-        {
-            get
-            {
-                return _GroupId;
-            }
-            set
-            {
-                OnGroupIdChanging(value);
-                ReportPropertyChanging("GroupId");
-                _GroupId = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("GroupId");
-                OnGroupIdChanged();
-            }
-        }
-        private global::System.Int64 _GroupId;
-        partial void OnGroupIdChanging(global::System.Int64 value);
-        partial void OnGroupIdChanged();
     
         /// <summary>
         /// No Metadata Documentation available.

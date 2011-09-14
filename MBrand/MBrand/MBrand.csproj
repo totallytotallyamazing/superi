@@ -113,6 +113,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Content.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\ContentMySql.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ContentMySql.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\ViewModel\SecretPresentation.cs" />
     <Compile Include="Models\WorkType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -323,7 +328,9 @@
     <Content Include="Views\Shared\BlackWhiteSwitch.ascx" />
     <Content Include="Views\Shared\MainMenu.ascx" />
     <Content Include="Views\Shared\SeoText.ascx" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\jquery.js" />
     <Content Include="Scripts\MicrosoftAjax.js" />
@@ -362,6 +369,12 @@
     <Folder Include="Content\images\site\preview\" />
     <Folder Include="Content\images\text\preview\" />
     <Folder Include="Content\images\vcard\preview\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Models\ContentMySql.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ContentMySql.Designer.cs</LastGenOutput>
+    </EntityDeploy>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

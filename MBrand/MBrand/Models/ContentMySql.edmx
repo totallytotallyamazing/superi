@@ -1,0 +1,301 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="gbua_mbrandModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.1" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="gbua_mbrandModelStoreContainer">
+          <EntitySet Name="Notes" EntityType="gbua_mbrandModel.Store.Notes" store:Type="Tables" Schema="gbua_mbrand" />
+          <EntitySet Name="SecretImages" EntityType="gbua_mbrandModel.Store.SecretImages" store:Type="Tables" Schema="gbua_mbrand" />
+          <EntitySet Name="SeoContent" EntityType="gbua_mbrandModel.Store.SeoContent" store:Type="Tables" Schema="gbua_mbrand" />
+          <EntitySet Name="Texts" EntityType="gbua_mbrandModel.Store.Texts" store:Type="Tables" Schema="gbua_mbrand" />
+          <EntitySet Name="WorkGroups" EntityType="gbua_mbrandModel.Store.WorkGroups" store:Type="Tables" Schema="gbua_mbrand" />
+          <EntitySet Name="Works" EntityType="gbua_mbrandModel.Store.Works" store:Type="Tables" Schema="gbua_mbrand" />
+        </EntityContainer>
+        <EntityType Name="Notes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="Description" Type="varchar" />
+          <Property Name="Id" Type="uint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Image" Type="varchar" MaxLength="500" />
+          <Property Name="SeoCustomText" Type="text" />
+          <Property Name="Text" Type="text" />
+          <Property Name="Title" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="SecretImages">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Image" Type="varchar" Nullable="false" MaxLength="500" />
+          <Property Name="ImagePreview" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="SeoContent">
+          <Key>
+            <PropertyRef Name="WorkType" />
+          </Key>
+          <Property Name="Description" Type="text" />
+          <Property Name="Keywords" Type="text" />
+          <Property Name="SeoCustomText" Type="text" />
+          <Property Name="Title" Type="text" />
+          <Property Name="WorkType" Type="uint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Texts">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Content" Type="text" />
+          <Property Name="Description" Type="text" />
+          <Property Name="Id" Type="uint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Keywords" Type="text" />
+          <Property Name="Name" Type="varchar" MaxLength="255" />
+          <Property Name="SeoCustomText" Type="text" />
+          <Property Name="Text" Type="text" />
+          <Property Name="Title" Type="text" />
+        </EntityType>
+        <EntityType Name="WorkGroups">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="Description" Type="text" />
+          <Property Name="Id" Type="uint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Image" Type="varchar" MaxLength="500" />
+          <Property Name="Name" Type="varchar" />
+          <Property Name="SeoCustomText" Type="text" />
+          <Property Name="SeoDescription" Type="text" />
+          <Property Name="SeoKeywords" Type="text" />
+          <Property Name="Title" Type="text" />
+          <Property Name="Type" Type="uint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Works">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Description" Type="text" />
+          <Property Name="GroupId" Type="uint" Nullable="false" />
+          <Property Name="Id" Type="uint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Image" Type="varchar" MaxLength="500" />
+          <Property Name="Preview" Type="varchar" MaxLength="500" />
+          <Property Name="SeoCustomText" Type="text" />
+          <Property Name="Title" Type="text" />
+          <Property Name="Type" Type="uint" />
+        </EntityType>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="gbua_mbrandModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="DataStorage2" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Notes" EntityType="gbua_mbrandModel.Note" />
+          <EntitySet Name="Texts" EntityType="gbua_mbrandModel.Text" />
+          <EntitySet Name="SecretImages" EntityType="gbua_mbrandModel.SecretImages" />
+          <EntitySet Name="SeoContent" EntityType="gbua_mbrandModel.SeoContent" />
+          <EntitySet Name="WorkGroups" EntityType="gbua_mbrandModel.WorkGroup" />
+          <EntitySet Name="Works" EntityType="gbua_mbrandModel.Work" />
+          <AssociationSet Name="WorkWorkGroup" Association="gbua_mbrandModel.WorkWorkGroup">
+            <End Role="Work" EntitySet="Works" />
+            <End Role="WorkGroup" EntitySet="WorkGroups" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Note">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Date" Type="DateTime" Nullable="false" />
+          <Property Name="Description" Type="String" />
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Image" Type="String" />
+          <Property Name="SeoCustomText" Type="String" />
+          <Property Name="Text" Type="String" />
+          <Property Name="Title" Type="String" />
+        </EntityType>
+        <EntityType Name="Text">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="String" Name="Content" />
+          <Property Type="String" Name="Description" />
+          <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Keywords" />
+          <Property Type="String" Name="Name" />
+          <Property Type="String" Name="SeoCustomText" />
+          <Property Type="String" Name="Text_1" />
+          <Property Type="String" Name="Title" />
+        </EntityType>
+        <EntityType Name="SecretImages">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Image" Nullable="false" />
+          <Property Type="String" Name="ImagePreview" />
+        </EntityType>
+        <EntityType Name="SeoContent">
+          <Key>
+            <PropertyRef Name="WorkType" />
+          </Key>
+          <Property Type="String" Name="Description" />
+          <Property Type="String" Name="Keywords" />
+          <Property Type="String" Name="SeoCustomText" />
+          <Property Type="String" Name="Title" />
+          <Property Type="Int64" Name="WorkType" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WorkGroup">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="DateTime" Name="Date" Nullable="false" />
+          <Property Type="String" Name="Description" />
+          <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Image" />
+          <Property Type="String" Name="Name" />
+          <Property Type="String" Name="SeoCustomText" />
+          <Property Type="String" Name="SeoDescription" />
+          <Property Type="String" Name="SeoKeywords" />
+          <Property Type="String" Name="Title" />
+          <Property Type="Int64" Name="Type" Nullable="false" />
+          <Property Type="Int64" Name="WorkId" Nullable="true" />
+          <NavigationProperty Name="Work" Relationship="gbua_mbrandModel.WorkWorkGroup" FromRole="WorkGroup" ToRole="Work" />
+        </EntityType>
+        <EntityType Name="Work">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="String" Name="Description" />
+          <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Image" />
+          <Property Type="String" Name="Preview" />
+          <Property Type="String" Name="SeoCustomText" />
+          <Property Type="String" Name="Title" />
+          <Property Type="Int64" Name="Type" />
+          <NavigationProperty Name="WorkGroup" Relationship="gbua_mbrandModel.WorkWorkGroup" FromRole="Work" ToRole="WorkGroup" />
+        </EntityType>
+        <Association Name="WorkWorkGroup">
+          <End Type="gbua_mbrandModel.Work" Role="Work" Multiplicity="*" />
+          <End Type="gbua_mbrandModel.WorkGroup" Role="WorkGroup" Multiplicity="0..1" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="gbua_mbrandModelStoreContainer" CdmEntityContainer="DataStorage2">
+          <EntitySetMapping Name="Notes"><EntityTypeMapping TypeName="gbua_mbrandModel.Note"><MappingFragment StoreEntitySet="Notes">
+            <ScalarProperty Name="Date" ColumnName="Date" />
+            <ScalarProperty Name="Description" ColumnName="Description" />
+            <ScalarProperty Name="Id" ColumnName="Id" />
+            <ScalarProperty Name="Image" ColumnName="Image" />
+            <ScalarProperty Name="SeoCustomText" ColumnName="SeoCustomText" />
+            <ScalarProperty Name="Text" ColumnName="Text" />
+            <ScalarProperty Name="Title" ColumnName="Title" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Texts">
+            <EntityTypeMapping TypeName="gbua_mbrandModel.Text">
+              <MappingFragment StoreEntitySet="Texts">
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Text_1" ColumnName="Text" />
+                <ScalarProperty Name="SeoCustomText" ColumnName="SeoCustomText" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Keywords" ColumnName="Keywords" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SecretImages">
+            <EntityTypeMapping TypeName="gbua_mbrandModel.SecretImages">
+              <MappingFragment StoreEntitySet="SecretImages">
+                <ScalarProperty Name="ImagePreview" ColumnName="ImagePreview" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SeoContent">
+            <EntityTypeMapping TypeName="gbua_mbrandModel.SeoContent">
+              <MappingFragment StoreEntitySet="SeoContent">
+                <ScalarProperty Name="WorkType" ColumnName="WorkType" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="SeoCustomText" ColumnName="SeoCustomText" />
+                <ScalarProperty Name="Keywords" ColumnName="Keywords" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WorkGroups">
+            <EntityTypeMapping TypeName="gbua_mbrandModel.WorkGroup">
+              <MappingFragment StoreEntitySet="WorkGroups">
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="SeoKeywords" ColumnName="SeoKeywords" />
+                <ScalarProperty Name="SeoDescription" ColumnName="SeoDescription" />
+                <ScalarProperty Name="SeoCustomText" ColumnName="SeoCustomText" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Works">
+            <EntityTypeMapping TypeName="gbua_mbrandModel.Work">
+              <MappingFragment StoreEntitySet="Works">
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="SeoCustomText" ColumnName="SeoCustomText" />
+                <ScalarProperty Name="Preview" ColumnName="Preview" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="WorkWorkGroup" TypeName="gbua_mbrandModel.WorkWorkGroup" StoreEntitySet="Works">
+            <EndProperty Name="WorkGroup">
+              <ScalarProperty Name="Id" ColumnName="GroupId" />
+            </EndProperty>
+            <EndProperty Name="Work">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+            <Condition ColumnName="GroupId" IsNull="false" />
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="ContentMySql">
+        <EntityTypeShape EntityType="gbua_mbrandModel.Note" Width="1.5" PointX="0.75" PointY="0.75" Height="2.085348307291667" IsExpanded="true" />
+        <EntityTypeShape EntityType="gbua_mbrandModel.Text" Width="1.5" PointX="3.375" PointY="0.75" Height="2.2496956380208335" />
+        <EntityTypeShape EntityType="gbua_mbrandModel.SecretImages" Width="1.5" PointX="0.75" PointY="3.75" Height="1.4279589843749996" />
+        <EntityTypeShape EntityType="gbua_mbrandModel.SeoContent" Width="1.5" PointX="3.375" PointY="3.75" Height="1.7566536458333317" />
+        <EntityTypeShape EntityType="gbua_mbrandModel.WorkGroup" Width="1.5" PointX="5.375" PointY="0.75" Height="2.5783902994791656" />
+        <EntityTypeShape EntityType="gbua_mbrandModel.Work" Width="1.5" PointX="5.375" PointY="4.75" Height="2.2496956380208335" />
+        <AssociationConnector Association="gbua_mbrandModel.WorkWorkGroup">
+          <ConnectorPoint PointX="6.125" PointY="4.75" />
+          <ConnectorPoint PointX="6.125" PointY="3.6570849609374996" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

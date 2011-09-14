@@ -9,17 +9,128 @@ using MBrand.Models;
 using System.Globalization;
 using System.IO;
 using System.Data;
+using MBrand.Models2;
 
 namespace MBrand.Controllers
 {
     [Authorize]
     public class AdminController : Controller
     {
-        private void UpdateText(string textName, string text, string seoKeywords, string seoDescription, string seoCustomText, string title)
+
+
+        public ActionResult TransferData()
         {
             using (DataStorage context = new DataStorage())
             {
-                Text clilents = context.Texts.Where(c => c.Name == textName).Select(c => c).First();
+
+                IEnumerable<MBrand.Models.SeoContent> seocontents = context.SeoContent.ToList();
+
+                using (var context2 = new DataStorage2())
+                {
+
+                    foreach (var s in seocontents)
+                    {
+                        
+                        var seo = new MBrand.Models2.SeoContent
+                        {
+                           Description= s.Description,
+                           Keywords=s.Keywords,
+                           SeoCustomText=s.SeoCustomText,
+                           Title=s.Title,
+                           WorkType=s.WorkType
+
+
+                        };
+
+                        context2.AddToSeoContent(seo);
+                    }
+                    context2.SaveChanges();
+                }
+            }
+
+
+            //IEnumerable<MBrand.Models.SecretImages> images = MBrand.Helpers.Helpers.GetSecretImages();
+
+            //using (var context = new DataStorage2())
+            //{
+
+            //    foreach (var image in images)
+            //    {
+
+            //        var simage = new MBrand.Models2.SecretImages
+            //        {
+            //            Image = image.Image,
+            //            ImagePreview = image.ImagePreview
+
+
+            //        };
+
+            //        context.AddToSecretImages(simage);
+            //    }
+            //    context.SaveChanges();
+            //}
+
+
+
+
+            //var text = Helpers.Helpers.GetContent("Index");
+            //UpdateText("Index", text.Content, text.Keywords, text.Description, text.SeoCustomText, text.Title);
+
+            //text = Helpers.Helpers.GetContent("Clients");
+            //UpdateText("Clients", text.Content, text.Keywords, text.Description, text.SeoCustomText, text.Title);
+
+            //text = Helpers.Helpers.GetContent("Contacts");
+            //UpdateText("Contacts", text.Content, text.Keywords, text.Description, text.SeoCustomText, text.Title);
+
+            //text = Helpers.Helpers.GetContent("Eugene");
+            //UpdateText("Eugene", text.Content, text.Keywords, text.Description, text.SeoCustomText, text.Title);
+
+            //text = Helpers.Helpers.GetContent("Secret");
+            //UpdateText("Secret", text.Content, text.Keywords, text.Description, text.SeoCustomText, text.Title);
+
+
+
+
+
+
+
+
+            //using (DataStorage context = new DataStorage())
+            //{
+
+            //    var notes = context.notes.select(n => n).tolist();
+
+
+
+
+
+            //    using (DataStorage2 context2 = new DataStorage2())
+            //    {
+            //        foreach (MBrand.Models.Note note in notes)
+            //        {
+
+            //            var mnote = new Models2.Note();
+            //            mnote.Date = note.Date;
+            //            mnote.Description = note.Description;
+            //            mnote.Image = note.Image;
+            //            mnote.SeoCustomText = note.SeoCustomText;
+            //            mnote.Text = note.Text;
+            //            mnote.Title = note.Title;
+
+            //            context2.AddToNotes(mnote);
+            //            context2.SaveChanges();
+            //        }
+            //    }
+            //}
+            return RedirectToAction("Index");
+        }
+
+
+        private void UpdateText(string textName, string text, string seoKeywords, string seoDescription, string seoCustomText, string title)
+        {
+            using (var context = new DataStorage2())
+            {
+                var clilents = context.Texts.Where(c => c.Name == textName).Select(c => c).First();
                 clilents.Content = HttpUtility.HtmlDecode(text);
                 clilents.Keywords = seoKeywords;
                 clilents.Description = seoDescription;
@@ -31,7 +142,7 @@ namespace MBrand.Controllers
 
         public ActionResult Index()
         {
-            Text text = Helpers.Helpers.GetContent("Index");
+            var text = Helpers.Helpers.GetContent("Index");
             ViewData["title"] = text.Title;
             ViewData["text"] = text.Content;
             ViewData["seoKeywords"] = text.Keywords;
@@ -43,13 +154,13 @@ namespace MBrand.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Index(string text, string seoKeywords, string seoDescription, string seoCustomText, string title)
         {
-            UpdateText("Index", text, seoKeywords, seoDescription, seoCustomText,title);
+            UpdateText("Index", text, seoKeywords, seoDescription, seoCustomText, title);
             return RedirectToAction("Index", "Home");
         }
 
         public ActionResult Eugene()
         {
-            Text text = Helpers.Helpers.GetContent("Eugene");
+            var text = Helpers.Helpers.GetContent("Eugene");
             ViewData["title"] = text.Title;
             ViewData["text"] = text.Content;
             ViewData["seoKeywords"] = text.Keywords;
@@ -61,14 +172,14 @@ namespace MBrand.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Eugene(string text, string seoKeywords, string seoDescription, string seoCustomText, string title)
         {
-            UpdateText("Eugene", text, seoKeywords, seoDescription, seoCustomText,title);
+            UpdateText("Eugene", text, seoKeywords, seoDescription, seoCustomText, title);
             return RedirectToAction("Index", "Eugene");
         }
 
 
         public ActionResult Clients()
         {
-            Text text = Helpers.Helpers.GetContent("Clients");
+            var text = Helpers.Helpers.GetContent("Clients");
             ViewData["title"] = text.Title;
             ViewData["text"] = text.Content;
             ViewData["seoKeywords"] = text.Keywords;
@@ -80,13 +191,13 @@ namespace MBrand.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Clients(string text, string seoKeywords, string seoDescription, string seoCustomText, string title)
         {
-            UpdateText("Clients", text, seoKeywords, seoDescription, seoCustomText,title);
+            UpdateText("Clients", text, seoKeywords, seoDescription, seoCustomText, title);
             return RedirectToAction("Index", "Clients");
         }
 
         public ActionResult Secret()
         {
-            Text text = Helpers.Helpers.GetContent("Secret");
+            var text = Helpers.Helpers.GetContent("Secret");
             ViewData["title"] = text.Title;
             ViewData["text"] = text.Content;
             ViewData["seoKeywords"] = text.Keywords;
@@ -148,7 +259,7 @@ namespace MBrand.Controllers
                 Request.Files["image"].SaveAs(filePath);
                 using (var context = new DataStorage())
                 {
-                    context.AddToSecretImages(new SecretImages {ImagePreview = fileName,Image = ""});
+                    context.AddToSecretImages(new MBrand.Models.SecretImages { ImagePreview = fileName, Image = "" });
                     context.SaveChanges();
                 }
             }
@@ -180,7 +291,7 @@ namespace MBrand.Controllers
             {
                 using (DataStorage context = new DataStorage())
                 {
-                    Note note = context.Notes.Where(n => n.Id == id).Select(n => n).FirstOrDefault();
+                    var note = context.Notes.Where(n => n.Id == id).Select(n => n).FirstOrDefault();
                     ViewData["title"] = note.Title;
                     ViewData["description"] = note.Description;
                     ViewData["text"] = note.Text;
@@ -198,11 +309,11 @@ namespace MBrand.Controllers
         {
             using (DataStorage context = new DataStorage())
             {
-                Note note = null;
+                MBrand.Models.Note note = null;
                 if (id > 0)
                     note = context.Notes.Where(n => n.Id == id).Select(n => n).FirstOrDefault();
                 else
-                    note = new Note();
+                    note = new MBrand.Models.Note();
 
                 string fileName = Request.Files["image"].FileName;
                 if (!string.IsNullOrEmpty(fileName))
@@ -231,7 +342,7 @@ namespace MBrand.Controllers
         {
             using (DataStorage context = new DataStorage())
             {
-                Note note = context.Notes.Where(n => n.Id == id).Select(n => n).FirstOrDefault();
+                var note = context.Notes.Where(n => n.Id == id).Select(n => n).FirstOrDefault();
                 DeleteImage("~/Content/images/notes", note.Image);
                 note.Image = null;
                 context.SaveChanges();
@@ -248,7 +359,7 @@ namespace MBrand.Controllers
         {
             using (DataStorage context = new DataStorage())
             {
-                Note note = context.Notes.Where(n => n.Id == id).Select(n => n).FirstOrDefault();
+                var note = context.Notes.Where(n => n.Id == id).Select(n => n).FirstOrDefault();
                 if (!string.IsNullOrEmpty(note.Image))
                     DeleteImage("~/Content/images/notes", note.Image);
                 context.DeleteObject(note);
@@ -259,7 +370,7 @@ namespace MBrand.Controllers
 
         public ActionResult Contacts()
         {
-            Text text = Helpers.Helpers.GetContent("Contacts");
+            var text = Helpers.Helpers.GetContent("Contacts");
             ViewData["title"] = text.Title;
             ViewData["text"] = text.Content;
             ViewData["seoKeywords"] = text.Keywords;
@@ -271,7 +382,7 @@ namespace MBrand.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Contacts(string text, string seoKeywords, string seoDescription, string seoCustomText, string title)
         {
-            UpdateText("Contacts", text, seoKeywords, seoDescription, seoCustomText,title);
+            UpdateText("Contacts", text, seoKeywords, seoDescription, seoCustomText, title);
             return RedirectToAction("Index", "Contacts");
         }
 
@@ -284,7 +395,7 @@ namespace MBrand.Controllers
             {
                 using (DataStorage context = new DataStorage())
                 {
-                    WorkGroup workGroup = context.WorkGroups.Where(wg => wg.Id == id.Value).Select(wg => wg).First();
+                    var workGroup = context.WorkGroups.Where(wg => wg.Id == id.Value).Select(wg => wg).First();
                     ViewData["title"] = workGroup.Title;
                     ViewData["name"] = workGroup.Name;
                     ViewData["date"] = workGroup.Date.ToString("dd.MM.yyyy");
@@ -294,15 +405,15 @@ namespace MBrand.Controllers
                     ViewData["seoCustomText"] = workGroup.SeoCustomText;
                 }
             }
-            return View();            
+            return View();
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult AddEditWorkGroup(WorkType workType, int? id, string name, string date, string description, string seoKeywords, string seoDescription, string seoCustomText, string title) 
+        public ActionResult AddEditWorkGroup(WorkType workType, int? id, string name, string date, string description, string seoKeywords, string seoDescription, string seoCustomText, string title)
         {
             using (DataStorage context = new DataStorage())
             {
-                WorkGroup workGroup = new WorkGroup();
+                var workGroup = new MBrand.Models.WorkGroup();
                 if (id != null)
                 {
                     workGroup = context.WorkGroups.Where(wg => wg.Id == id.Value).Select(wg => wg).FirstOrDefault();
@@ -343,7 +454,7 @@ namespace MBrand.Controllers
             WorkType workType;
             using (DataStorage context = new DataStorage())
             {
-                WorkGroup workGroup = context.WorkGroups.Where(wg => wg.Id == id).Select(wg => wg).FirstOrDefault();
+                var workGroup = context.WorkGroups.Where(wg => wg.Id == id).Select(wg => wg).FirstOrDefault();
                 workType = (WorkType)(workGroup.Type);
                 context.DeleteObject(workGroup);
                 context.SaveChanges();
@@ -358,12 +469,12 @@ namespace MBrand.Controllers
             using (DataStorage context = new DataStorage())
             {
                 int typeId = (int)type;
-                List<Work> works = context.Works.Where(w => w.Type == typeId).Select(w => w).ToList();
+                List<MBrand.Models.Work> works = context.Works.Where(w => w.Type == typeId).Select(w => w).ToList();
                 return View(works);
             }
         }
 
-        [OutputCache(VaryByParam="*", NoStore=true, Duration=1)]
+        [OutputCache(VaryByParam = "*", NoStore = true, Duration = 1)]
         public ActionResult AddEditWork(int? id, int groupId)
         {
             ViewData["groupId"] = groupId;
@@ -371,7 +482,7 @@ namespace MBrand.Controllers
             {
                 using (DataStorage context = new DataStorage())
                 {
-                    Work work = context.Works.Where(w => w.Id == id).Select(w => w).FirstOrDefault();
+                    var work = context.Works.Where(w => w.Id == id).Select(w => w).FirstOrDefault();
                     ViewData["id"] = id;
                     ViewData["description"] = work.Description;
                 }
@@ -380,13 +491,13 @@ namespace MBrand.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult AddEditWork(int? id, string description, int groupId, string seoCustomText,string title)
+        public ActionResult AddEditWork(int? id, string description, int groupId, string seoCustomText, string title)
         {
             using (DataStorage context = new DataStorage())
             {
-                WorkGroup workGroup = context.WorkGroups.Where(wg => wg.Id == groupId).Select(wg => wg).First();
+                var workGroup = context.WorkGroups.Where(wg => wg.Id == groupId).Select(wg => wg).First();
                 WorkType type = (WorkType)workGroup.Type;
-                Work work = new Work();
+                var work = new MBrand.Models.Work();
                 if (id != null)
                 {
                     work = context.Works.Where(w => w.Id == id.Value).Select(w => w).FirstOrDefault();
@@ -402,13 +513,13 @@ namespace MBrand.Controllers
                 if (!string.IsNullOrEmpty(image))
                 {
                     if (id > 0)
-                        DeleteImage("~/Content/images/"+type.ToString().ToLower() +"/", work.Image);
-                    image = Path.GetFileName(image); 
-                    string imagePath = Server.MapPath("~/Content/images/"+type.ToString().ToLower()+"/" + image);
+                        DeleteImage("~/Content/images/" + type.ToString().ToLower() + "/", work.Image);
+                    image = Path.GetFileName(image);
+                    string imagePath = Server.MapPath("~/Content/images/" + type.ToString().ToLower() + "/" + image);
                     Request.Files["image"].SaveAs(imagePath);
                     work.Image = image;
                 }
-                if(id == null)
+                if (id == null)
                     context.AddToWorks(work);
                 context.SaveChanges();
                 return RedirectToAction(type.ToString(), "See", new { id = groupId });
@@ -419,7 +530,7 @@ namespace MBrand.Controllers
         {
             using (DataStorage context = new DataStorage())
             {
-                Work work = context.Works.Include("WorkGroup").Where(w => w.Id == id).Select(w => w).FirstOrDefault();
+                var work = context.Works.Include("WorkGroup").Where(w => w.Id == id).Select(w => w).FirstOrDefault();
                 WorkType type = (WorkType)work.WorkGroup.Type;
                 int groupId = work.WorkGroup.Id;
                 DeleteImage("~/Content/images/" + type.ToString().ToLower() + "/preview", work.Preview);
@@ -432,9 +543,9 @@ namespace MBrand.Controllers
 
         public ActionResult EditSeoContent(int workType, string returnUrl)
         {
-            using (DataStorage context = new DataStorage())
+            using (var context = new DataStorage2())
             {
-                SeoContent content = context.SeoContent.Where(s => s.WorkType == workType).First();
+                var content = context.SeoContent.Where(s => s.WorkType == workType).First();
                 ViewData["seoKeywords"] = content.Keywords;
                 ViewData["seoDescription"] = content.Description;
                 return View(content);
@@ -444,9 +555,9 @@ namespace MBrand.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult EditSeoContent(int workType, string returnUrl, string title, string seoDescription, string seoKeywords, string seoCustomText)
         {
-            using (DataStorage context = new DataStorage())
+            using (var context = new DataStorage2())
             {
-                SeoContent content = context.SeoContent.Where(s => s.WorkType == workType).First();
+                var content = context.SeoContent.Where(s => s.WorkType == workType).First();
                 content.Title = title;
                 content.Description = seoDescription;
                 content.Keywords = seoKeywords;

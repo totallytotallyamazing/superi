@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 using MBrand.Models;
+using MBrand.Models2;
 
 namespace MBrand.Controllers
 {
@@ -22,7 +23,7 @@ namespace MBrand.Controllers
         {
             using (DataStorage context = new DataStorage())
             {
-                WorkGroup group = context.WorkGroups.Include("Works").Where(wg => wg.Id == id).Select(wg => wg).FirstOrDefault();
+                var group = context.WorkGroups.Include("Works").Where(wg => wg.Id == id).Select(wg => wg).FirstOrDefault();
                 ViewData["workGroupName"] = group.Name;
                 ViewData["title"] = group.Title;
                 ViewData["groupId"] = id;
@@ -38,9 +39,9 @@ namespace MBrand.Controllers
 
             if (id == null)
             {
-                using (DataStorage context = new DataStorage())
+                using (var context = new DataStorage2())
                 {
-                    SeoContent sc = context.SeoContent.Where(c => c.WorkType == (int) WorkType.Site).First();
+                    var sc = context.SeoContent.Where(c => c.WorkType == (int) WorkType.Site).First();
                     ViewData["keywords"] = sc.Keywords;
                     ViewData["description"] = sc.Description;
                     return View(sc);
@@ -58,9 +59,9 @@ namespace MBrand.Controllers
 
             if (id == null)
             {
-                using (DataStorage context = new DataStorage())
+                using (var context = new DataStorage2())
                 {
-                    SeoContent sc = context.SeoContent.Where(c => c.WorkType == (int)WorkType.Vcard).First();
+                    var sc = context.SeoContent.Where(c => c.WorkType == (int)WorkType.Vcard).First();
                     ViewData["keywords"] = sc.Keywords;
                     ViewData["description"] = sc.Description;
                     return View(sc);
@@ -92,9 +93,9 @@ namespace MBrand.Controllers
 
             if (id == null)
             {
-                using (DataStorage context = new DataStorage())
+                using (var context = new DataStorage2())
                 {
-                    SeoContent sc = context.SeoContent.Where(c => c.WorkType == (int)WorkType.Poly).First();
+                    var sc = context.SeoContent.Where(c => c.WorkType == (int)WorkType.Poly).First();
                     ViewData["keywords"] = sc.Keywords;
                     ViewData["description"] = sc.Description;
                     return View(sc);
@@ -126,9 +127,9 @@ namespace MBrand.Controllers
 
             if (id == null)
             {
-                using (DataStorage context = new DataStorage())
+                using (var context = new DataStorage2())
                 {
-                    SeoContent sc = context.SeoContent.Where(c => c.WorkType == (int)WorkType.Video).First();
+                    var sc = context.SeoContent.Where(c => c.WorkType == (int)WorkType.Video).First();
                     ViewData["keywords"] = sc.Keywords;
                     ViewData["description"] = sc.Description;
                     return View(sc);

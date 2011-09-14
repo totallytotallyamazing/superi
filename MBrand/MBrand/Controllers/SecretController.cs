@@ -15,7 +15,7 @@ namespace MBrand.Controllers
 
         public ActionResult Index()
         {
-            Text text = Helpers.Helpers.GetContent("Secret");
+            var text = Helpers.Helpers.GetContent("Secret");
             ViewData["keywords"] = text.Keywords;
             ViewData["description"] = text.Description;
 

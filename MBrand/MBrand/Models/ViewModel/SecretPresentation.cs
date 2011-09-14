@@ -7,7 +7,7 @@ namespace MBrand.Models.ViewModel
 {
     public class SecretPresentation
     {
-        public Text SecretText { get; set; }
+        public MBrand.Models2.Text SecretText { get; set; }
         public IEnumerable<SecretImages> Imageses { get; set; }
     }
 }

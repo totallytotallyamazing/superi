@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 using MBrand.Models;
-using MBrand.Models2;
+
 
 namespace MBrand.Controllers
 {
@@ -21,7 +21,7 @@ namespace MBrand.Controllers
 
         private ActionResult ShowGroupContent(int id)
         {
-            using (DataStorage context = new DataStorage())
+            using (var context = new DataStorage2())
             {
                 var group = context.WorkGroups.Include("Works").Where(wg => wg.Id == id).Select(wg => wg).FirstOrDefault();
                 ViewData["workGroupName"] = group.Name;

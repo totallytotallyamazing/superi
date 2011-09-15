@@ -9,7 +9,7 @@ using MBrand.Models;
 using System.Globalization;
 using System.IO;
 using System.Data;
-using MBrand.Models2;
+
 
 namespace MBrand.Controllers
 {
@@ -21,7 +21,7 @@ namespace MBrand.Controllers
         public ActionResult TransferData()
         {
 
-            
+            /*
             using (DataStorage context = new DataStorage())
             {
 
@@ -48,7 +48,8 @@ namespace MBrand.Controllers
                         };
 
                         context2.AddToWorkGroups(workgroup);
-
+                        context2.SaveChanges();
+                        
                         foreach (var w in wg.Works)
                         {
                             var work = new MBrand.Models2.Work
@@ -63,15 +64,15 @@ namespace MBrand.Controllers
                             };
 
                             context2.AddToWorks(work);
-
+                            context2.SaveChanges();
 
                         }
                         
                     }
-                    context2.SaveChanges();
+                    //context2.SaveChanges();
                 }
             }
-
+            */
             
 
 
@@ -287,7 +288,7 @@ namespace MBrand.Controllers
             string fileName = Request.Files["image"].FileName;
             if (!string.IsNullOrEmpty(fileName))
             {
-                using (var context = new DataStorage())
+                using (var context = new DataStorage2())
                 {
                     var img = context.SecretImages.Where(si => si.Id == id).First();
                     if (!string.IsNullOrEmpty(img.Image))
@@ -318,9 +319,9 @@ namespace MBrand.Controllers
                 string filePath = Server.MapPath("~/Content/images/secret/preview");
                 filePath = Path.Combine(filePath, fileName);
                 Request.Files["image"].SaveAs(filePath);
-                using (var context = new DataStorage())
+                using (var context = new DataStorage2())
                 {
-                    context.AddToSecretImages(new MBrand.Models.SecretImages { ImagePreview = fileName, Image = "" });
+                    context.AddToSecretImages(new SecretImages { ImagePreview = fileName, Image = "" });
                     context.SaveChanges();
                 }
             }
@@ -329,7 +330,7 @@ namespace MBrand.Controllers
 
         public ActionResult DeleteSecretImage(int id)
         {
-            using (DataStorage context = new DataStorage())
+            using (var context = new DataStorage2())
             {
                 var si = context.SecretImages.Where(s => s.Id == id).First();
                 if (!string.IsNullOrEmpty(si.ImagePreview))
@@ -350,7 +351,7 @@ namespace MBrand.Controllers
             ViewData["id"] = id;
             if (id > 0)
             {
-                using (DataStorage context = new DataStorage())
+                using (var context = new DataStorage2())
                 {
                     var note = context.Notes.Where(n => n.Id == id).Select(n => n).FirstOrDefault();
                     ViewData["title"] = note.Title;
@@ -368,13 +369,13 @@ namespace MBrand.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult AddEditNote(int id, string title, string date, string description, string text, int? currentPage)
         {
-            using (DataStorage context = new DataStorage())
+            using (var context = new DataStorage2())
             {
-                MBrand.Models.Note note = null;
+                Note note = null;
                 if (id > 0)
                     note = context.Notes.Where(n => n.Id == id).Select(n => n).FirstOrDefault();
                 else
-                    note = new MBrand.Models.Note();
+                    note = new Note();
 
                 string fileName = Request.Files["image"].FileName;
                 if (!string.IsNullOrEmpty(fileName))
@@ -401,7 +402,7 @@ namespace MBrand.Controllers
 
         public void DeleteNoteImage(int id)
         {
-            using (DataStorage context = new DataStorage())
+            using (var context = new DataStorage2())
             {
                 var note = context.Notes.Where(n => n.Id == id).Select(n => n).FirstOrDefault();
                 DeleteImage("~/Content/images/notes", note.Image);
@@ -418,7 +419,7 @@ namespace MBrand.Controllers
 
         public ActionResult DeleteNote(int id)
         {
-            using (DataStorage context = new DataStorage())
+            using (var context = new DataStorage2())
             {
                 var note = context.Notes.Where(n => n.Id == id).Select(n => n).FirstOrDefault();
                 if (!string.IsNullOrEmpty(note.Image))
@@ -454,7 +455,7 @@ namespace MBrand.Controllers
             ViewData["id"] = id;
             if (id != null)
             {
-                using (DataStorage context = new DataStorage())
+                using (var context = new DataStorage2())
                 {
                     var workGroup = context.WorkGroups.Where(wg => wg.Id == id.Value).Select(wg => wg).First();
                     ViewData["title"] = workGroup.Title;
@@ -472,7 +473,7 @@ namespace MBrand.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult AddEditWorkGroup(WorkType workType, int? id, string name, string date, string description, string seoKeywords, string seoDescription, string seoCustomText, string title)
         {
-            using (DataStorage context = new DataStorage())
+            using (var context = new DataStorage2())
             {
                 var workGroup = new MBrand.Models.WorkGroup();
                 if (id != null)
@@ -513,7 +514,7 @@ namespace MBrand.Controllers
         public ActionResult DeleteWorkGroup(int id)
         {
             WorkType workType;
-            using (DataStorage context = new DataStorage())
+            using (var context = new DataStorage2())
             {
                 var workGroup = context.WorkGroups.Where(wg => wg.Id == id).Select(wg => wg).FirstOrDefault();
                 workType = (WorkType)(workGroup.Type);
@@ -527,7 +528,7 @@ namespace MBrand.Controllers
         {
             ViewData["baseFolder"] = "~/Content/Images/" + type.ToString().ToLower() + "/";
             ViewData["type"] = type;
-            using (DataStorage context = new DataStorage())
+            using (var context = new DataStorage2())
             {
                 int typeId = (int)type;
                 List<MBrand.Models.Work> works = context.Works.Where(w => w.Type == typeId).Select(w => w).ToList();
@@ -541,7 +542,7 @@ namespace MBrand.Controllers
             ViewData["groupId"] = groupId;
             if (id != null)
             {
-                using (DataStorage context = new DataStorage())
+                using (var context = new DataStorage2())
                 {
                     var work = context.Works.Where(w => w.Id == id).Select(w => w).FirstOrDefault();
                     ViewData["id"] = id;
@@ -554,7 +555,7 @@ namespace MBrand.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult AddEditWork(int? id, string description, int groupId, string seoCustomText, string title)
         {
-            using (DataStorage context = new DataStorage())
+            using (var context = new DataStorage2())
             {
                 var workGroup = context.WorkGroups.Where(wg => wg.Id == groupId).Select(wg => wg).First();
                 WorkType type = (WorkType)workGroup.Type;
@@ -589,11 +590,11 @@ namespace MBrand.Controllers
 
         public ActionResult DeleteWork(int id)
         {
-            using (DataStorage context = new DataStorage())
+            using (var context = new DataStorage2())
             {
                 var work = context.Works.Include("WorkGroup").Where(w => w.Id == id).Select(w => w).FirstOrDefault();
                 WorkType type = (WorkType)work.WorkGroup.Type;
-                int groupId = work.WorkGroup.Id;
+                int groupId = Convert.ToInt32( work.WorkGroup.Id);
                 DeleteImage("~/Content/images/" + type.ToString().ToLower() + "/preview", work.Preview);
                 DeleteImage("~/Content/images/" + type.ToString().ToLower(), work.Image);
                 context.DeleteObject(work);

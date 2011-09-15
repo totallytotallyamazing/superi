@@ -13,7 +13,7 @@
     WorkType workType = (WorkType)ViewData["workType"];
     int workTypeId = (int)workType;
 
-    using (DataStorage context = new DataStorage())
+    using (var context = new DataStorage2())
     {
         var workGroups = context.WorkGroups.Where(wg => wg.Type == workTypeId).OrderByDescending(wg => wg.Date).Select(wg => wg);
         foreach (var item in workGroups)

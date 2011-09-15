@@ -108,12 +108,7 @@
     <Compile Include="Helpers\TextBoxWatermarkExtensions.cs" />
     <Compile Include="Helpers\Validation\RemoteAttribute.cs" />
     <Compile Include="Helpers\Validation\RemoteAttributeAdapter.cs" />
-    <Compile Include="Models\Content.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Content.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models2\ContentMySql.Designer.cs">
+    <Compile Include="Models\ContentMySql.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ContentMySql.edmx</DependentUpon>
@@ -346,12 +341,6 @@
     <Content Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="Models\Content.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Content.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
@@ -371,7 +360,7 @@
     <Folder Include="Content\images\vcard\preview\" />
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="Models2\ContentMySql.edmx">
+    <EntityDeploy Include="Models\ContentMySql.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>ContentMySql.Designer.cs</LastGenOutput>
     </EntityDeploy>

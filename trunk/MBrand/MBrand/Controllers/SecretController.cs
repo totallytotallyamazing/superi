@@ -19,7 +19,7 @@ namespace MBrand.Controllers
             ViewData["keywords"] = text.Keywords;
             ViewData["description"] = text.Description;
 
-            IEnumerable<MBrand.Models2.SecretImages> images = Helpers.Helpers.GetSecretImages();
+            IEnumerable<MBrand.Models.SecretImages> images = Helpers.Helpers.GetSecretImages();
 
             SecretPresentation sp = new SecretPresentation {SecretText = text, Imageses = images};
 

@@ -7,6 +7,7 @@ using System.Web.Mvc.Ajax;
 using MBrand.Models;
 using System.Configuration;
 
+
 namespace MBrand.Controllers
 {
     public class NotesController : Controller
@@ -24,7 +25,7 @@ namespace MBrand.Controllers
                 ViewData["currentPage"] = 1;
             else
                 ViewData["currentPage"] = id;
-            using (DataStorage context = new DataStorage())
+            using (var context = new DataStorage2())
             {
                 List<Note> notes = (from note in context.Notes orderby note.Date descending select note).Skip(currentPage*pageSize).Take(pageSize).ToList();
                 return View(notes);
@@ -37,7 +38,7 @@ namespace MBrand.Controllers
                 ViewData["currentPage"] = 1;
             else
                 ViewData["currentPage"] = currentPage;
-            using (DataStorage context = new DataStorage())
+            using (var context = new DataStorage2())
             {
                 Note note = context.Notes.Where(n => n.Id == id).Select(n=>n).FirstOrDefault();
                 ViewData["date"] = note.Date.ToString("dd.MM.yyyy");

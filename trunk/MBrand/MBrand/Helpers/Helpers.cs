@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MBrand.Models;
-using MBrand.Models2;
+
 
 namespace MBrand.Helpers
 {
@@ -27,7 +27,7 @@ namespace MBrand.Helpers
         }
 
 
-        public static MBrand.Models2.Text GetContent(string textName)
+        public static MBrand.Models.Text GetContent(string textName)
         {
             using (var context = new DataStorage2())
             {
@@ -35,7 +35,7 @@ namespace MBrand.Helpers
             }
         }
 
-        public static IEnumerable<MBrand.Models2.SecretImages>  GetSecretImages()
+        public static IEnumerable<MBrand.Models.SecretImages>  GetSecretImages()
         {
             using (var context = new DataStorage2())
             {

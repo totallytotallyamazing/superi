@@ -18,7 +18,7 @@ using System.Runtime.Serialization;
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
 
-[assembly: EdmRelationshipAttribute("Model", "FK_Works_WorkGroups", "WorkGroups", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MBrand.Models.WorkGroup), "Work", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MBrand.Models.Work))]
+[assembly: EdmRelationshipAttribute("gbua_mbrandModel", "WorkGroupWork", "WorkGroup", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(MBrand.Models.WorkGroup), "Work", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MBrand.Models.Work))]
 
 #endregion
 
@@ -29,31 +29,34 @@ namespace MBrand.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    public partial class DataStorage : ObjectContext
+    public partial class DataStorage2 : ObjectContext
     {
         #region Constructors
     
         /// <summary>
-        /// Initializes a new DataStorage object using the connection string found in the 'DataStorage' section of the application configuration file.
+        /// Initializes a new DataStorage2 object using the connection string found in the 'DataStorage2' section of the application configuration file.
         /// </summary>
-        public DataStorage() : base("name=DataStorage", "DataStorage")
+        public DataStorage2() : base("name=DataStorage2", "DataStorage2")
         {
+            this.ContextOptions.LazyLoadingEnabled = true;
             OnContextCreated();
         }
     
         /// <summary>
-        /// Initialize a new DataStorage object.
+        /// Initialize a new DataStorage2 object.
         /// </summary>
-        public DataStorage(string connectionString) : base(connectionString, "DataStorage")
+        public DataStorage2(string connectionString) : base(connectionString, "DataStorage2")
         {
+            this.ContextOptions.LazyLoadingEnabled = true;
             OnContextCreated();
         }
     
         /// <summary>
-        /// Initialize a new DataStorage object.
+        /// Initialize a new DataStorage2 object.
         /// </summary>
-        public DataStorage(EntityConnection connection) : base(connection, "DataStorage")
+        public DataStorage2(EntityConnection connection) : base(connection, "DataStorage2")
         {
+            this.ContextOptions.LazyLoadingEnabled = true;
             OnContextCreated();
         }
     
@@ -102,34 +105,18 @@ namespace MBrand.Models
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<Work> Works
+        public ObjectSet<SecretImages> SecretImages
         {
             get
             {
-                if ((_Works == null))
+                if ((_SecretImages == null))
                 {
-                    _Works = base.CreateObjectSet<Work>("Works");
+                    _SecretImages = base.CreateObjectSet<SecretImages>("SecretImages");
                 }
-                return _Works;
+                return _SecretImages;
             }
         }
-        private ObjectSet<Work> _Works;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<WorkGroup> WorkGroups
-        {
-            get
-            {
-                if ((_WorkGroups == null))
-                {
-                    _WorkGroups = base.CreateObjectSet<WorkGroup>("WorkGroups");
-                }
-                return _WorkGroups;
-            }
-        }
-        private ObjectSet<WorkGroup> _WorkGroups;
+        private ObjectSet<SecretImages> _SecretImages;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -150,18 +137,34 @@ namespace MBrand.Models
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<SecretImages> SecretImages
+        public ObjectSet<WorkGroup> WorkGroups
         {
             get
             {
-                if ((_SecretImages == null))
+                if ((_WorkGroups == null))
                 {
-                    _SecretImages = base.CreateObjectSet<SecretImages>("SecretImages");
+                    _WorkGroups = base.CreateObjectSet<WorkGroup>("WorkGroups");
                 }
-                return _SecretImages;
+                return _WorkGroups;
             }
         }
-        private ObjectSet<SecretImages> _SecretImages;
+        private ObjectSet<WorkGroup> _WorkGroups;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Work> Works
+        {
+            get
+            {
+                if ((_Works == null))
+                {
+                    _Works = base.CreateObjectSet<Work>("Works");
+                }
+                return _Works;
+            }
+        }
+        private ObjectSet<Work> _Works;
 
         #endregion
         #region AddTo Methods
@@ -183,19 +186,11 @@ namespace MBrand.Models
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the Works EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// Deprecated Method for adding a new object to the SecretImages EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToWorks(Work work)
+        public void AddToSecretImages(SecretImages secretImages)
         {
-            base.AddObject("Works", work);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the WorkGroups EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToWorkGroups(WorkGroup workGroup)
-        {
-            base.AddObject("WorkGroups", workGroup);
+            base.AddObject("SecretImages", secretImages);
         }
     
         /// <summary>
@@ -207,11 +202,19 @@ namespace MBrand.Models
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the SecretImages EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// Deprecated Method for adding a new object to the WorkGroups EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToSecretImages(SecretImages secretImages)
+        public void AddToWorkGroups(WorkGroup workGroup)
         {
-            base.AddObject("SecretImages", secretImages);
+            base.AddObject("WorkGroups", workGroup);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Works EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToWorks(Work work)
+        {
+            base.AddObject("Works", work);
         }
 
         #endregion
@@ -225,7 +228,7 @@ namespace MBrand.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="Model", Name="Note")]
+    [EdmEntityTypeAttribute(NamespaceName="gbua_mbrandModel", Name="Note")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class Note : EntityObject
@@ -235,13 +238,13 @@ namespace MBrand.Models
         /// <summary>
         /// Create a new Note object.
         /// </summary>
-        /// <param name="id">Initial value of the Id property.</param>
         /// <param name="date">Initial value of the Date property.</param>
-        public static Note CreateNote(global::System.Int32 id, global::System.DateTime date)
+        /// <param name="id">Initial value of the Id property.</param>
+        public static Note CreateNote(global::System.DateTime date, global::System.Int64 id)
         {
             Note note = new Note();
-            note.Id = id;
             note.Date = date;
+            note.Id = id;
             return note;
         }
 
@@ -251,53 +254,26 @@ namespace MBrand.Models
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int32 Id
+        public global::System.DateTime Date
         {
             get
             {
-                return _Id;
+                return _Date;
             }
             set
             {
-                if (_Id != value)
-                {
-                    OnIdChanging(value);
-                    ReportPropertyChanging("Id");
-                    _Id = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("Id");
-                    OnIdChanged();
-                }
+                OnDateChanging(value);
+                ReportPropertyChanging("Date");
+                _Date = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Date");
+                OnDateChanged();
             }
         }
-        private global::System.Int32 _Id;
-        partial void OnIdChanging(global::System.Int32 value);
-        partial void OnIdChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String Title
-        {
-            get
-            {
-                return _Title;
-            }
-            set
-            {
-                OnTitleChanging(value);
-                ReportPropertyChanging("Title");
-                _Title = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("Title");
-                OnTitleChanged();
-            }
-        }
-        private global::System.String _Title;
-        partial void OnTitleChanging(global::System.String value);
-        partial void OnTitleChanged();
+        private global::System.DateTime _Date;
+        partial void OnDateChanging(global::System.DateTime value);
+        partial void OnDateChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -326,50 +302,29 @@ namespace MBrand.Models
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.String Text
+        public global::System.Int64 Id
         {
             get
             {
-                return _Text;
+                return _Id;
             }
             set
             {
-                OnTextChanging(value);
-                ReportPropertyChanging("Text");
-                _Text = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("Text");
-                OnTextChanged();
+                if (_Id != value)
+                {
+                    OnIdChanging(value);
+                    ReportPropertyChanging("Id");
+                    _Id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("Id");
+                    OnIdChanged();
+                }
             }
         }
-        private global::System.String _Text;
-        partial void OnTextChanging(global::System.String value);
-        partial void OnTextChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.DateTime Date
-        {
-            get
-            {
-                return _Date;
-            }
-            set
-            {
-                OnDateChanging(value);
-                ReportPropertyChanging("Date");
-                _Date = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("Date");
-                OnDateChanged();
-            }
-        }
-        private global::System.DateTime _Date;
-        partial void OnDateChanging(global::System.DateTime value);
-        partial void OnDateChanged();
+        private global::System.Int64 _Id;
+        partial void OnIdChanging(global::System.Int64 value);
+        partial void OnIdChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -418,6 +373,54 @@ namespace MBrand.Models
         private global::System.String _SeoCustomText;
         partial void OnSeoCustomTextChanging(global::System.String value);
         partial void OnSeoCustomTextChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Text
+        {
+            get
+            {
+                return _Text;
+            }
+            set
+            {
+                OnTextChanging(value);
+                ReportPropertyChanging("Text");
+                _Text = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Text");
+                OnTextChanged();
+            }
+        }
+        private global::System.String _Text;
+        partial void OnTextChanging(global::System.String value);
+        partial void OnTextChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Title
+        {
+            get
+            {
+                return _Title;
+            }
+            set
+            {
+                OnTitleChanging(value);
+                ReportPropertyChanging("Title");
+                _Title = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Title");
+                OnTitleChanged();
+            }
+        }
+        private global::System.String _Title;
+        partial void OnTitleChanging(global::System.String value);
+        partial void OnTitleChanged();
 
         #endregion
     
@@ -426,7 +429,7 @@ namespace MBrand.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="Model", Name="SecretImages")]
+    [EdmEntityTypeAttribute(NamespaceName="gbua_mbrandModel", Name="SecretImages")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class SecretImages : EntityObject
@@ -438,7 +441,7 @@ namespace MBrand.Models
         /// </summary>
         /// <param name="id">Initial value of the Id property.</param>
         /// <param name="image">Initial value of the Image property.</param>
-        public static SecretImages CreateSecretImages(global::System.Int32 id, global::System.String image)
+        public static SecretImages CreateSecretImages(global::System.Int64 id, global::System.String image)
         {
             SecretImages secretImages = new SecretImages();
             secretImages.Id = id;
@@ -454,7 +457,7 @@ namespace MBrand.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int32 Id
+        public global::System.Int64 Id
         {
             get
             {
@@ -472,8 +475,8 @@ namespace MBrand.Models
                 }
             }
         }
-        private global::System.Int32 _Id;
-        partial void OnIdChanging(global::System.Int32 value);
+        private global::System.Int64 _Id;
+        partial void OnIdChanging(global::System.Int64 value);
         partial void OnIdChanged();
     
         /// <summary>
@@ -531,7 +534,7 @@ namespace MBrand.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="Model", Name="SeoContent")]
+    [EdmEntityTypeAttribute(NamespaceName="gbua_mbrandModel", Name="SeoContent")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class SeoContent : EntityObject
@@ -542,7 +545,7 @@ namespace MBrand.Models
         /// Create a new SeoContent object.
         /// </summary>
         /// <param name="workType">Initial value of the WorkType property.</param>
-        public static SeoContent CreateSeoContent(global::System.Int32 workType)
+        public static SeoContent CreateSeoContent(global::System.Int64 workType)
         {
             SeoContent seoContent = new SeoContent();
             seoContent.WorkType = workType;
@@ -551,57 +554,6 @@ namespace MBrand.Models
 
         #endregion
         #region Primitive Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 WorkType
-        {
-            get
-            {
-                return _WorkType;
-            }
-            set
-            {
-                if (_WorkType != value)
-                {
-                    OnWorkTypeChanging(value);
-                    ReportPropertyChanging("WorkType");
-                    _WorkType = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("WorkType");
-                    OnWorkTypeChanged();
-                }
-            }
-        }
-        private global::System.Int32 _WorkType;
-        partial void OnWorkTypeChanging(global::System.Int32 value);
-        partial void OnWorkTypeChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String Title
-        {
-            get
-            {
-                return _Title;
-            }
-            set
-            {
-                OnTitleChanging(value);
-                ReportPropertyChanging("Title");
-                _Title = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("Title");
-                OnTitleChanged();
-            }
-        }
-        private global::System.String _Title;
-        partial void OnTitleChanging(global::System.String value);
-        partial void OnTitleChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -674,6 +626,57 @@ namespace MBrand.Models
         private global::System.String _SeoCustomText;
         partial void OnSeoCustomTextChanging(global::System.String value);
         partial void OnSeoCustomTextChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Title
+        {
+            get
+            {
+                return _Title;
+            }
+            set
+            {
+                OnTitleChanging(value);
+                ReportPropertyChanging("Title");
+                _Title = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Title");
+                OnTitleChanged();
+            }
+        }
+        private global::System.String _Title;
+        partial void OnTitleChanging(global::System.String value);
+        partial void OnTitleChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 WorkType
+        {
+            get
+            {
+                return _WorkType;
+            }
+            set
+            {
+                if (_WorkType != value)
+                {
+                    OnWorkTypeChanging(value);
+                    ReportPropertyChanging("WorkType");
+                    _WorkType = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("WorkType");
+                    OnWorkTypeChanged();
+                }
+            }
+        }
+        private global::System.Int64 _WorkType;
+        partial void OnWorkTypeChanging(global::System.Int64 value);
+        partial void OnWorkTypeChanged();
 
         #endregion
     
@@ -682,7 +685,7 @@ namespace MBrand.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="Model", Name="Text")]
+    [EdmEntityTypeAttribute(NamespaceName="gbua_mbrandModel", Name="Text")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class Text : EntityObject
@@ -693,7 +696,7 @@ namespace MBrand.Models
         /// Create a new Text object.
         /// </summary>
         /// <param name="id">Initial value of the Id property.</param>
-        public static Text CreateText(global::System.Int32 id)
+        public static Text CreateText(global::System.Int64 id)
         {
             Text text = new Text();
             text.Id = id;
@@ -702,57 +705,6 @@ namespace MBrand.Models
 
         #endregion
         #region Primitive Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 Id
-        {
-            get
-            {
-                return _Id;
-            }
-            set
-            {
-                if (_Id != value)
-                {
-                    OnIdChanging(value);
-                    ReportPropertyChanging("Id");
-                    _Id = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("Id");
-                    OnIdChanged();
-                }
-            }
-        }
-        private global::System.Int32 _Id;
-        partial void OnIdChanging(global::System.Int32 value);
-        partial void OnIdChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String Name
-        {
-            get
-            {
-                return _Name;
-            }
-            set
-            {
-                OnNameChanging(value);
-                ReportPropertyChanging("Name");
-                _Name = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("Name");
-                OnNameChanged();
-            }
-        }
-        private global::System.String _Name;
-        partial void OnNameChanging(global::System.String value);
-        partial void OnNameChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -805,6 +757,33 @@ namespace MBrand.Models
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 Id
+        {
+            get
+            {
+                return _Id;
+            }
+            set
+            {
+                if (_Id != value)
+                {
+                    OnIdChanging(value);
+                    ReportPropertyChanging("Id");
+                    _Id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("Id");
+                    OnIdChanged();
+                }
+            }
+        }
+        private global::System.Int64 _Id;
+        partial void OnIdChanging(global::System.Int64 value);
+        partial void OnIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
         public global::System.String Keywords
@@ -825,6 +804,30 @@ namespace MBrand.Models
         private global::System.String _Keywords;
         partial void OnKeywordsChanging(global::System.String value);
         partial void OnKeywordsChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Name
+        {
+            get
+            {
+                return _Name;
+            }
+            set
+            {
+                OnNameChanging(value);
+                ReportPropertyChanging("Name");
+                _Name = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Name");
+                OnNameChanged();
+            }
+        }
+        private global::System.String _Name;
+        partial void OnNameChanging(global::System.String value);
+        partial void OnNameChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -905,7 +908,7 @@ namespace MBrand.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="Model", Name="Work")]
+    [EdmEntityTypeAttribute(NamespaceName="gbua_mbrandModel", Name="Work")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class Work : EntityObject
@@ -916,7 +919,7 @@ namespace MBrand.Models
         /// Create a new Work object.
         /// </summary>
         /// <param name="id">Initial value of the Id property.</param>
-        public static Work CreateWork(global::System.Int32 id)
+        public static Work CreateWork(global::System.Int64 id)
         {
             Work work = new Work();
             work.Id = id;
@@ -925,57 +928,6 @@ namespace MBrand.Models
 
         #endregion
         #region Primitive Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 Id
-        {
-            get
-            {
-                return _Id;
-            }
-            set
-            {
-                if (_Id != value)
-                {
-                    OnIdChanging(value);
-                    ReportPropertyChanging("Id");
-                    _Id = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("Id");
-                    OnIdChanged();
-                }
-            }
-        }
-        private global::System.Int32 _Id;
-        partial void OnIdChanging(global::System.Int32 value);
-        partial void OnIdChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int32> Type
-        {
-            get
-            {
-                return _Type;
-            }
-            set
-            {
-                OnTypeChanging(value);
-                ReportPropertyChanging("Type");
-                _Type = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("Type");
-                OnTypeChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _Type;
-        partial void OnTypeChanging(Nullable<global::System.Int32> value);
-        partial void OnTypeChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -1004,26 +956,29 @@ namespace MBrand.Models
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.String Preview
+        public global::System.Int64 Id
         {
             get
             {
-                return _Preview;
+                return _Id;
             }
             set
             {
-                OnPreviewChanging(value);
-                ReportPropertyChanging("Preview");
-                _Preview = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("Preview");
-                OnPreviewChanged();
+                if (_Id != value)
+                {
+                    OnIdChanging(value);
+                    ReportPropertyChanging("Id");
+                    _Id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("Id");
+                    OnIdChanged();
+                }
             }
         }
-        private global::System.String _Preview;
-        partial void OnPreviewChanging(global::System.String value);
-        partial void OnPreviewChanged();
+        private global::System.Int64 _Id;
+        partial void OnIdChanging(global::System.Int64 value);
+        partial void OnIdChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -1048,6 +1003,30 @@ namespace MBrand.Models
         private global::System.String _Image;
         partial void OnImageChanging(global::System.String value);
         partial void OnImageChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Preview
+        {
+            get
+            {
+                return _Preview;
+            }
+            set
+            {
+                OnPreviewChanging(value);
+                ReportPropertyChanging("Preview");
+                _Preview = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Preview");
+                OnPreviewChanged();
+            }
+        }
+        private global::System.String _Preview;
+        partial void OnPreviewChanging(global::System.String value);
+        partial void OnPreviewChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -1096,6 +1075,30 @@ namespace MBrand.Models
         private global::System.String _Title;
         partial void OnTitleChanging(global::System.String value);
         partial void OnTitleChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int64> Type
+        {
+            get
+            {
+                return _Type;
+            }
+            set
+            {
+                OnTypeChanging(value);
+                ReportPropertyChanging("Type");
+                _Type = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Type");
+                OnTypeChanged();
+            }
+        }
+        private Nullable<global::System.Int64> _Type;
+        partial void OnTypeChanging(Nullable<global::System.Int64> value);
+        partial void OnTypeChanged();
 
         #endregion
     
@@ -1107,16 +1110,16 @@ namespace MBrand.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Model", "FK_Works_WorkGroups", "WorkGroups")]
+        [EdmRelationshipNavigationPropertyAttribute("gbua_mbrandModel", "WorkGroupWork", "WorkGroup")]
         public WorkGroup WorkGroup
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<WorkGroup>("Model.FK_Works_WorkGroups", "WorkGroups").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<WorkGroup>("gbua_mbrandModel.WorkGroupWork", "WorkGroup").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<WorkGroup>("Model.FK_Works_WorkGroups", "WorkGroups").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<WorkGroup>("gbua_mbrandModel.WorkGroupWork", "WorkGroup").Value = value;
             }
         }
         /// <summary>
@@ -1128,13 +1131,13 @@ namespace MBrand.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<WorkGroup>("Model.FK_Works_WorkGroups", "WorkGroups");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<WorkGroup>("gbua_mbrandModel.WorkGroupWork", "WorkGroup");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<WorkGroup>("Model.FK_Works_WorkGroups", "WorkGroups", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<WorkGroup>("gbua_mbrandModel.WorkGroupWork", "WorkGroup", value);
                 }
             }
         }
@@ -1145,7 +1148,7 @@ namespace MBrand.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="Model", Name="WorkGroup")]
+    [EdmEntityTypeAttribute(NamespaceName="gbua_mbrandModel", Name="WorkGroup")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class WorkGroup : EntityObject
@@ -1155,15 +1158,15 @@ namespace MBrand.Models
         /// <summary>
         /// Create a new WorkGroup object.
         /// </summary>
+        /// <param name="date">Initial value of the Date property.</param>
         /// <param name="id">Initial value of the Id property.</param>
         /// <param name="type">Initial value of the Type property.</param>
-        /// <param name="date">Initial value of the Date property.</param>
-        public static WorkGroup CreateWorkGroup(global::System.Int32 id, global::System.Int32 type, global::System.DateTime date)
+        public static WorkGroup CreateWorkGroup(global::System.DateTime date, global::System.Int64 id, global::System.Int64 type)
         {
             WorkGroup workGroup = new WorkGroup();
+            workGroup.Date = date;
             workGroup.Id = id;
             workGroup.Type = type;
-            workGroup.Date = date;
             return workGroup;
         }
 
@@ -1173,9 +1176,57 @@ namespace MBrand.Models
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime Date
+        {
+            get
+            {
+                return _Date;
+            }
+            set
+            {
+                OnDateChanging(value);
+                ReportPropertyChanging("Date");
+                _Date = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Date");
+                OnDateChanged();
+            }
+        }
+        private global::System.DateTime _Date;
+        partial void OnDateChanging(global::System.DateTime value);
+        partial void OnDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Description
+        {
+            get
+            {
+                return _Description;
+            }
+            set
+            {
+                OnDescriptionChanging(value);
+                ReportPropertyChanging("Description");
+                _Description = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Description");
+                OnDescriptionChanged();
+            }
+        }
+        private global::System.String _Description;
+        partial void OnDescriptionChanging(global::System.String value);
+        partial void OnDescriptionChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int32 Id
+        public global::System.Int64 Id
         {
             get
             {
@@ -1193,9 +1244,33 @@ namespace MBrand.Models
                 }
             }
         }
-        private global::System.Int32 _Id;
-        partial void OnIdChanging(global::System.Int32 value);
+        private global::System.Int64 _Id;
+        partial void OnIdChanging(global::System.Int64 value);
         partial void OnIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Image
+        {
+            get
+            {
+                return _Image;
+            }
+            set
+            {
+                OnImageChanging(value);
+                ReportPropertyChanging("Image");
+                _Image = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Image");
+                OnImageChanged();
+            }
+        }
+        private global::System.String _Image;
+        partial void OnImageChanging(global::System.String value);
+        partial void OnImageChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -1226,96 +1301,24 @@ namespace MBrand.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String Description
+        public global::System.String SeoCustomText
         {
             get
             {
-                return _Description;
+                return _SeoCustomText;
             }
             set
             {
-                OnDescriptionChanging(value);
-                ReportPropertyChanging("Description");
-                _Description = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("Description");
-                OnDescriptionChanged();
+                OnSeoCustomTextChanging(value);
+                ReportPropertyChanging("SeoCustomText");
+                _SeoCustomText = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("SeoCustomText");
+                OnSeoCustomTextChanged();
             }
         }
-        private global::System.String _Description;
-        partial void OnDescriptionChanging(global::System.String value);
-        partial void OnDescriptionChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String Image
-        {
-            get
-            {
-                return _Image;
-            }
-            set
-            {
-                OnImageChanging(value);
-                ReportPropertyChanging("Image");
-                _Image = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("Image");
-                OnImageChanged();
-            }
-        }
-        private global::System.String _Image;
-        partial void OnImageChanging(global::System.String value);
-        partial void OnImageChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 Type
-        {
-            get
-            {
-                return _Type;
-            }
-            set
-            {
-                OnTypeChanging(value);
-                ReportPropertyChanging("Type");
-                _Type = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("Type");
-                OnTypeChanged();
-            }
-        }
-        private global::System.Int32 _Type;
-        partial void OnTypeChanging(global::System.Int32 value);
-        partial void OnTypeChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.DateTime Date
-        {
-            get
-            {
-                return _Date;
-            }
-            set
-            {
-                OnDateChanging(value);
-                ReportPropertyChanging("Date");
-                _Date = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("Date");
-                OnDateChanged();
-            }
-        }
-        private global::System.DateTime _Date;
-        partial void OnDateChanging(global::System.DateTime value);
-        partial void OnDateChanged();
+        private global::System.String _SeoCustomText;
+        partial void OnSeoCustomTextChanging(global::System.String value);
+        partial void OnSeoCustomTextChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -1370,30 +1373,6 @@ namespace MBrand.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String SeoCustomText
-        {
-            get
-            {
-                return _SeoCustomText;
-            }
-            set
-            {
-                OnSeoCustomTextChanging(value);
-                ReportPropertyChanging("SeoCustomText");
-                _SeoCustomText = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("SeoCustomText");
-                OnSeoCustomTextChanged();
-            }
-        }
-        private global::System.String _SeoCustomText;
-        partial void OnSeoCustomTextChanging(global::System.String value);
-        partial void OnSeoCustomTextChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
         public global::System.String Title
         {
             get
@@ -1412,6 +1391,30 @@ namespace MBrand.Models
         private global::System.String _Title;
         partial void OnTitleChanging(global::System.String value);
         partial void OnTitleChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 Type
+        {
+            get
+            {
+                return _Type;
+            }
+            set
+            {
+                OnTypeChanging(value);
+                ReportPropertyChanging("Type");
+                _Type = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Type");
+                OnTypeChanged();
+            }
+        }
+        private global::System.Int64 _Type;
+        partial void OnTypeChanging(global::System.Int64 value);
+        partial void OnTypeChanged();
 
         #endregion
     
@@ -1423,18 +1426,18 @@ namespace MBrand.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Model", "FK_Works_WorkGroups", "Work")]
+        [EdmRelationshipNavigationPropertyAttribute("gbua_mbrandModel", "WorkGroupWork", "Work")]
         public EntityCollection<Work> Works
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Work>("Model.FK_Works_WorkGroups", "Work");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Work>("gbua_mbrandModel.WorkGroupWork", "Work");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Work>("Model.FK_Works_WorkGroups", "Work", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Work>("gbua_mbrandModel.WorkGroupWork", "Work", value);
                 }
             }
         }

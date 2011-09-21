@@ -8,7 +8,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <h2>
-        » Фирменный стиль
+        <!--» Фирменный стиль-->&nbsp;
     </h2>
 
     <asp:LoginView ID="LoginView1" runat="server">

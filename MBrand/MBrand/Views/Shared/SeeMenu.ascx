@@ -82,11 +82,11 @@
 
 <%} %>
 <div id="seeMenu">
-    <div class="seeMenuItemSplitter">
+    <div class="seeMenuFirstItemSplitter">
     </div>
     <div class="<%= sitesClass %>">
         <a href="/See/Site">
-            Сайты
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Сайты
         </a>
     </div>
     <div class="seeMenuItemSplitter">
@@ -94,7 +94,7 @@
     </div>
     <div class="<%= vcardsClass %>">
         <a href="/See/Vcard">
-            Фирменный стиль
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Фирменные<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;стили
         </a>
     </div>
     <div class="seeMenuItemSplitter">
@@ -102,7 +102,7 @@
     </div>
     <div class="<%= polyClass %>">
         <a href="/See/Poly">
-            Реклама
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Реклама
         </a>
     </div>
     <div class="seeMenuItemSplitter">
@@ -118,10 +118,13 @@
     </div>--%>
     <div class="<%= videoClass %>">
         <a href="/See/Video">
-            Видеодизайн
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Видеодизайн
         </a>
     </div>
     <div class="seeMenuItemSplitter">
         <%= videoContent %>
     </div>
+    <div class="seeMenuLastItemSplitter">
+    </div>
+   
 </div>

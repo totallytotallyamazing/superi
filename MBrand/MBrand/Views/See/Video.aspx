@@ -6,8 +6,8 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <h2>
-        » Видеодизайн
+   <h2>
+         <!--» Видеодизайн-->&nbsp;
     </h2>
 
      <asp:LoginView ID="LoginView1" runat="server">

@@ -61,7 +61,7 @@
 <div id="mainMenu">
     <div class="<%= seeClass %>">
         <a id="seeLink" href="#">
-            Портфолио
+            Наши работы
         </a>
     </div>
     <div class="mainMenuItemSplitter" id="seeMenuReplacer"></div>
@@ -79,6 +79,6 @@
     </div>--%>
     <div class="mainMenuItemSplitter"></div>
     <div class="<%= contactsClass %>">
-        <%= Html.ActionLink("Контакты", "Index", "Contacts")%>
+        <%= Html.ActionLink("Связаться", "Index", "Contacts")%>
     </div>
 </div>

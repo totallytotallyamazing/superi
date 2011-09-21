@@ -10,7 +10,7 @@
 
     if (Request.Url.ToString().StartsWith("http://eugene-miller.com/"))
         Response.Redirect("http://m-brand.com.ua/");
-    
+
     string color = "White";//(black) ? "Black" : "White";
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -39,6 +39,21 @@
 </head>
 <body>
     <div id="shader">
+        <div id="innersHeader">
+            <%if(Request.IsAuthenticated){ %>
+            <%=Html.ActionLink("Выйти из админки", "LogOff", "Account", null, new { @class = "adminLink logOffLink" })%>
+            <%} %>
+            <% Html.RenderPartial("LanguageSelector"); %>
+            <div id="headerLogo">
+                <%
+                    if(Request.Url.AbsolutePath!="/")
+                  { %>
+                <a href="/" class="rootLink"><img src="../../Content/img/pixel.gif" alt="" /></a>
+                <%} %>
+            </div>
+            <div id="headerSign">
+                студия евгения миллера</div>
+        </div>
     </div>
     <div id="main">
         <div id="header">
@@ -53,7 +68,6 @@
             </div>
             <div class="blackWhiteSwitch">
                 <% Html.RenderPartial("BlackWhiteSwitch"); %>
-                <% Html.RenderPartial("LanguageSelector"); %>
             </div>
         </div>
         <div id="middle">
@@ -73,9 +87,18 @@
         </div>
         <div style="clear: both;">
         </div>
-        <div>
-            <%=Html.ActionLink("Секретная серая кнопка", "Index", "Secret", null, new { @class = "secretButton " + (ViewContext.RouteData.Values["controller"].ToString().ToLower() == "secret" ? "secretButtonCurrent" : "") })%>
-            <div id="footer">
+        
+            
+        
+    </div>
+    <div id="footer">
+        <div id="innerFooter">
+            
+            <span class="secretButtonContainer">
+                <%=Html.ActionLink("Секретная ссылка", "Index", "Secret", null, new { @class = "secretButton " + (ViewContext.RouteData.Values["controller"].ToString().ToLower() == "secret" ? "secretButtonCurrent" : "") })%>
+            </span>
+
+            <div id="copyBlock">
                 ©
                 <%= DateTime.Now.Year %>
                 Студия Евгения Миллера<br />

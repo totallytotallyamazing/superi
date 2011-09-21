@@ -4,9 +4,9 @@
     color:Black;
 }
 
-.mainMenuItem, .seeMenuItem{background:black;}
-.mainMenuItem a, .seeMenuItem a{color:White;}
-.mainMenuItem a:visited, .seeMenuItem a:visited{color:White;}
+.mainMenuItem, .seeMenuItem{/*background:black;*/ color:#666666}
+.mainMenuItem a, .seeMenuItem a{ color:#666666}
+.mainMenuItem a:visited, .seeMenuItem a:visited{ color:#666666}
 
 h2 a{color:Black !important;}
 
@@ -14,9 +14,9 @@ a{color:Black;}
 .inactiveBw{color:Black;}
 #headerRight{border-left-color:Black;}
 
-.mainMenuItemSplitter{border-left-color:Black;}
+.mainMenuItemSplitter{/*border-left-color:Black;*/}
 
-.seeMenuItemSplitter{border-left-color:Black;}
+.seeMenuItemSplitter{/*border-left-color:Black;*/}
 .seeMenuItemSplitter a{color:Black;}
 
 #footer{border-top-color:Black;}

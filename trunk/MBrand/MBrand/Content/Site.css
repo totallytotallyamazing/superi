@@ -179,10 +179,11 @@ a:visited{color:#808080;}
 a.secretButton
 {
     
-	font-size: 13px;
+	font-size: 10px;
 	/*color: #fff;*/
 	color: #666666;
-	
+	text-transform:uppercase;
+    font-family:Arial;
 }
 
 a.secretButton:hover
@@ -194,6 +195,7 @@ a.secretButtonCurrent
 {
 	font-weight: bold;
 	color: #666666 !important;
+	text-decoration:none;
 }
 
 #languageSwitch{ font-family:Arial; /*color:#808080;*/ color:#000; float:right; text-transform:uppercase; font-size:11px; padding-top:5px;}

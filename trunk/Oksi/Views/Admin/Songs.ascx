@@ -21,7 +21,6 @@
                 <%= Html.Encode(item.Title) %>
             </td>
              <td>
-                <%= Html.ActionLink("Редактировать", "EditSong", new { id=item.Id }) %> |
                 <%= Html.ActionLink("Удалить", "DeleteSong", new { id = item.Id }, new { onclick = "return confirm('Вы уверены?')" })%>
             </td>
         </tr>

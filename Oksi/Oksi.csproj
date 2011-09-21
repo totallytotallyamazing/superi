@@ -282,6 +282,7 @@
     <Content Include="newBanner2.swf" />
     <Content Include="Scripts\jquery.ui.js" />
     <Content Include="Scripts\jquery.ui.datepicker-ru.js" />
+    <Content Include="Views\Admin\Albums.aspx" />
     <Content Include="Views\Admin\BannerAddEdit.aspx" />
     <Content Include="Views\Admin\Admin.Master" />
     <Content Include="Views\Admin\Article.aspx" />
@@ -290,6 +291,7 @@
     <Content Include="Views\Admin\CreateVideo.aspx" />
     <Content Include="Views\Admin\EditVideo.aspx" />
     <Content Include="Views\Admin\NewArticle.aspx" />
+    <Content Include="Views\Admin\Songs.ascx" />
     <Content Include="Views\Admin\Video.aspx" />
   </ItemGroup>
   <ItemGroup>

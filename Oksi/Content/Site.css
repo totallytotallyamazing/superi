@@ -126,3 +126,14 @@ a.bottomLogo1:hover{background-position:0 0;}
 #officialSite{position:relative; line-height:11px; height:0px; color:White; z-index:800; left:130px; top:5px; width:60px;}
 #officialSite #official{font-size:13px}
 #officialSite #site{font-size:19px; text-align:right;}
+
+
+.adminAlbum
+{
+	border-collapse: collapse;
+}
+
+.adminAlbum td
+{
+	border: 1px solid black;
+}

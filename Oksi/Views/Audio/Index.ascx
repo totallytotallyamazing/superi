@@ -6,4 +6,11 @@
        Html.RenderPartial("Album", item);
    } %>
    
+   <%if(Request.IsAuthenticated)
+     {
+         %>
+         <%=Html.ActionLink("Редактировать","Albums","Admin") %>
+         <%
+     } %>
+   
 <%= Ajax.Create("ClientLibrary.AlbumExtender", new { id = "AlbumManager" }, null, "pageExtender")%>

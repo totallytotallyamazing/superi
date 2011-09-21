@@ -39,8 +39,7 @@
                 <%= Html.Encode(item.Year) %>
             </td>
               <td>
-                <%= Html.ActionLink("Редактировать", "EditAlbum", new { id = item.Id })%> |
-                <%= Html.ActionLink("Удалить", "DeleteAlbum", new { id = item.Id })%>
+                 <%= Html.ActionLink("Удалить", "DeleteAlbum", new { id = item.Id }, new { onclick = "return confirm('Удалить альбом? Будут также удалены все треки этого альбома!')" })%>
             </td>
         </tr>
         <tr>
@@ -60,10 +59,18 @@
 
     </table>
 
-    <p>
-        <%= Html.ActionLink("Добавить альбом", "AddAlbum")%>
+    <% using (Html.BeginForm("AddAlbum", "Admin", null, FormMethod.Post,  new { enctype = "multipart/form-data" }))
+       {
+           %>
+           <p>
+        Добавить альбом
     </p>
-
+          Год <%=Html.TextBox("AlbumYear")%><br/>
+          Название <%=Html.TextBox("AlbumTitle")%><br/>
+          Обложка <input type="file" name="cover" /><br/>
+          <input type="submit" value="Загрузить"/>
+           <%
+       } %>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="includes" runat="server">

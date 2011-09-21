@@ -176,6 +176,63 @@ namespace Oksi.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult AddAlbum(FormCollection form)
+        {
+            using (DataStorage context = new DataStorage())
+            {
+
+
+
+
+
+                if (Request.Files["cover"] != null && !string.IsNullOrEmpty(Request.Files["cover"].FileName))
+                {
+
+                    string fileName = Request.Files["cover"].FileName;
+                    string filePath = "~/Cover/";
+                    string newFilePath = Path.Combine(Server.MapPath(filePath), IOHelper.GetUniqueFileName(filePath, fileName));
+                   
+                    Request.Files["cover"].SaveAs(newFilePath);
+
+
+                    var album = new Album()
+                    {
+                        Cover = fileName,
+                        Year = Convert.ToInt32(form["AlbumYear"]),
+                        Title = form["AlbumTitle"]
+                    };
+
+
+                    context.AddToAlbums(album);
+                    context.SaveChanges();
+                }
+            }
+
+            return RedirectToAction("Albums");
+        }
+
+        public ActionResult DeleteAlbum(int id)
+        {
+            using (DataStorage context = new DataStorage())
+            {
+                string filePath = "~/Cover/";
+                var album = context.Albums.Include("Songs").Where(a => a.Id == id).First();
+
+                while (album.Songs.Any())
+                {
+                    var song = album.Songs.First();
+                    IOHelper.DeleteFile(filePath, song.Source);
+                    context.DeleteObject(song);
+                }
+
+                IOHelper.DeleteFile(filePath, album.Cover);
+                context.DeleteObject(album);
+                context.SaveChanges();
+            }
+            return RedirectToAction("Albums");
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult AddSong(FormCollection form, int albumId)
         {
             using (DataStorage context = new DataStorage())

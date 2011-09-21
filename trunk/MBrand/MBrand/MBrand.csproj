@@ -155,6 +155,7 @@
     <Content Include="Content\img\logoWhite.jpg" />
     <Content Include="Content\img\logo_new.gif" />
     <Content Include="Content\img\next.png" />
+    <Content Include="Content\img\pixel.gif" />
     <Content Include="Content\img\zoom.png" />
     <Content Include="Content\MailTemplates\FeedbackTemplate.htm" />
     <Content Include="Content\MailTemplates\MailTemplate.htm" />

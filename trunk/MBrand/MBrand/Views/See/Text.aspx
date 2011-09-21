@@ -6,7 +6,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <h2>
-        » Брендинг
+        <!--» Брендинг-->&nbsp;
     </h2>
     <div style="height:38px;"></div>
     <% Html.RenderPartial("Thumbnails"); %></asp:Content>

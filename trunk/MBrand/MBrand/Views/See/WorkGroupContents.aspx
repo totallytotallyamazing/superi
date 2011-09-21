@@ -36,8 +36,9 @@
         })
     </script>
     <%} %>
+    
     <h2>
-       » <a href="/See/<%= workType.ToString() %>"><%= chapterName %></a> » <%= ViewData["workGroupName"] %>
+       <!--» <a href="/See/<%= workType.ToString() %>"><%= chapterName %></a> » <%= ViewData["workGroupName"] %>-->&nbsp;
     </h2>
     <div style="padding-left:17px;">
         <%if(Request.IsAuthenticated){ %>

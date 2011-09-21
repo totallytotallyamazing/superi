@@ -69,8 +69,30 @@ namespace Oksi.Controllers
             return View();
         }
 
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult ProcessArticle(bool news, string description, string text)
+        {
+            ViewData["Id"] = 0;
+            ViewData["Image"] = "";
+            int type = (news) ? 1 : 2;
+            ViewData["type"] = type;
+            ViewData["pageTitle"] = (news) ? "Новости" : "Пресса";
+            ViewData["folder"] = (news) ? "News" : "Press";
+            return View("Article");
+        }
 
 
+        public ActionResult NewArticle(bool news)
+        {
+            ViewData["Id"] = 0;
+            ViewData["Image"] = "";
+            ViewData["News"] = news;
+            int type = (news) ? 1 : 2;
+            ViewData["type"] = type;
+            ViewData["pageTitle"] = (news) ? "Новости" : "Пресса";
+            ViewData["folder"] = (news) ? "News" : "Press";
+            return View();
+        }
 
 
 

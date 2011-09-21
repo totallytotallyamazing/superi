@@ -39,7 +39,7 @@
     </table>
 
     <p>
-        <%= Html.ActionLink("Создать", "Article", new { id = 0, news = ViewData["news"] })%>
+        <%= Html.ActionLink("Создать", "NewArticle", new { id = 0, news = ViewData["news"] })%>
     </p>
 
 </asp:Content>

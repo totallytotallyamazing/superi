@@ -289,6 +289,7 @@
     <Content Include="Views\Admin\Banners.aspx" />
     <Content Include="Views\Admin\CreateVideo.aspx" />
     <Content Include="Views\Admin\EditVideo.aspx" />
+    <Content Include="Views\Admin\NewArticle.aspx" />
     <Content Include="Views\Admin\Video.aspx" />
   </ItemGroup>
   <ItemGroup>

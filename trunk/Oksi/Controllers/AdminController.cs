@@ -70,12 +70,15 @@ namespace Oksi.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult ProcessArticle(bool news, string description, string text)
+        public ActionResult ProcessArticle(bool news, string title, string description, string text)
         {
             ViewData["Id"] = 0;
             ViewData["Image"] = "";
             int type = (news) ? 1 : 2;
             ViewData["type"] = type;
+            ViewData["Title"] = title;
+            ViewData["Description"] = description;
+            ViewData["Text"] = text;
             ViewData["pageTitle"] = (news) ? "Новости" : "Пресса";
             ViewData["folder"] = (news) ? "News" : "Press";
             return View("Article");
@@ -161,6 +164,71 @@ namespace Oksi.Controllers
             }
             return RedirectToAction("Articles", new { id = article.Type });
         }
+
+
+        public ActionResult Albums()
+        {
+            using (var context = new DataStorage())
+            {
+                var albums = context.Albums.Include("Songs").ToList();
+                return View(albums);
+            }
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult AddSong(FormCollection form, int albumId)
+        {
+            using (DataStorage context = new DataStorage())
+            {
+
+                var album = context.Albums.Where(a => a.Id == albumId).First();
+
+               
+
+                if (Request.Files["song"] != null && !string.IsNullOrEmpty(Request.Files["song"].FileName))
+                {
+
+                    string fileName = Request.Files["song"].FileName;
+                    string filePath = "~/Songs/";
+                    string newFilePath = Path.Combine(Server.MapPath(filePath), IOHelper.GetUniqueFileName(filePath, fileName));
+                    /*if (article.Id > 0)
+                    {
+                        IOHelper.DeleteFile(filePath, article.Image);
+                    }*/
+                    Request.Files["song"].SaveAs(newFilePath);
+                   
+
+                    var song = new Song
+                                   {
+                                       Album = album,
+                                       Source = Path.Combine("http://oksi-com-ua.1gb.ua/Songs/", Path.GetFileName(newFilePath)),
+                                       TrackNumber = Convert.ToInt32(form["TrackNumber"]),
+                                       Title = form["SongTitle"]
+                                   };
+
+
+                    context.AddToSongs(song);
+                    context.SaveChanges();
+                }
+            }
+
+            return RedirectToAction("Albums");
+        }
+
+        public ActionResult DeleteSong(int id)
+        {
+            using (DataStorage context = new DataStorage())
+            {
+                string filePath = "~/Songs/";
+                var song = context.Songs.Where(s => s.Id == id).First();
+                IOHelper.DeleteFile(filePath, song.Source);
+                context.DeleteObject(song);
+                context.SaveChanges();
+            }
+            return RedirectToAction("Albums");
+        }
+
+
 
 
         public ActionResult Banners()

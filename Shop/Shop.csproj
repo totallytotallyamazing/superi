@@ -82,6 +82,7 @@
     <Compile Include="Areas\Admin\Controllers\AttributeValuesController.cs" />
     <Compile Include="Areas\Admin\Controllers\BrandCatalogueController.cs" />
     <Compile Include="Areas\Admin\Controllers\BrandsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CatalogsController.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoriesController.cs" />
     <Compile Include="Areas\Admin\Controllers\ContentController.cs" />
     <Compile Include="Areas\Admin\Controllers\DesignersController.cs" />
@@ -98,6 +99,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BrandCatalogue.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\BrandCatalogController.cs" />
     <Compile Include="Controllers\CaptchaController.cs" />
     <Compile Include="Controllers\ClientsController.cs" />
     <Compile Include="Controllers\DesignersController.cs" />
@@ -147,6 +149,11 @@
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\ArticleValidation.cs" />
     <Compile Include="Models\Brand.cs" />
+    <Compile Include="Models\BrandCatalog.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BrandCatalog.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Content.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -195,6 +202,8 @@
     <Content Include="Areas\Admin\Views\BrandCatalogue\ManageImages.aspx" />
     <Content Include="Areas\Admin\Views\BrandCatalogue\UploadControl.ascx" />
     <Content Include="Areas\Admin\Views\BrandCatalogue\Images.ascx" />
+    <Content Include="Areas\Admin\Views\Catalogs\BrandCatalogFiles.ascx" />
+    <Content Include="Areas\Admin\Views\Catalogs\Index.aspx" />
     <Content Include="Areas\Admin\Views\Content\EditPartial.ascx" />
     <Content Include="Areas\Admin\Views\Designers\AddEdit.aspx" />
     <Content Include="Areas\Admin\Views\Designers\AddEditRoom.aspx" />
@@ -405,6 +414,8 @@
     <Content Include="Scripts\uploadify.allglyphs.swf" />
     <Content Include="Scripts\uploadify.swf" />
     <Content Include="Stub.jpg" />
+    <Content Include="Views\BrandCatalog\BrandCatalogFiles.ascx" />
+    <Content Include="Views\BrandCatalog\Index.aspx" />
     <Content Include="Views\Designers\Index.aspx" />
     <Content Include="Views\Home\FeedbackForm.aspx" />
     <Content Include="Views\Home\FeedbackSent.aspx" />
@@ -616,6 +627,7 @@
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Configuration\" />
+    <Folder Include="Content\BrandCatalogFiles\" />
     <Folder Include="Content\BrandLogos\" />
     <Folder Include="Content\CategoryImages\" />
     <Folder Include="Content\DesignerLogos\" />
@@ -663,6 +675,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\Designers.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Models\BrandCatalog.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>BrandCatalog.Designer.cs</LastGenOutput>
+    </EntityDeploy>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

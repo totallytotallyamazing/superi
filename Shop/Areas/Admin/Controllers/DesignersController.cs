@@ -11,6 +11,7 @@ using System.Collections.ObjectModel;
 
 namespace Shop.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Administrators")]
     public class DesignersController : Controller
     {
         //

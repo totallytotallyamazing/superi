@@ -12,22 +12,25 @@
         <%= Html.Hidden("Id")%>
         <fieldset>
             <legend><%= ViewData["pageTitle"]%></legend>
-            <p>
-                <label for="Title">Заголовок:</label>
-                <%= Html.TextBoxFor(m => m.Title, new { style="width:90%" })%>
-            </p>
-            <p>
-                <label for="Date">Дата:</label>
-                <%= Html.TextBoxFor(m => m.Date)%>
-            </p>
-            <p>
-                <label for="Description">Описание:</label>
-                <%= Html.TextAreaFor(m => m.Description)%>
-            </p>
-            <p>
-                <label for="Text">Текст:</label>
-                <%= Html.TextAreaFor(t=>t.Text)%>
-            </p>
+            <table>
+            <tr>
+                <td><label for="Title">Заголовок:</label></td>
+                <td> <%= Html.TextBoxFor(m => m.Title, new { style="width:99%" })%></td>
+            </tr>
+            <tr>
+                <td> <label for="Date">Дата:</label></td>
+                <td><%= Html.TextBoxFor(m => m.Date)%></td>
+            </tr>
+            <tr>
+                <td> <label for="Description">Описание:</label></td>
+                <td><%= Html.TextAreaFor(m => m.Description, 10, 130, null)%></td>
+            </tr>
+            <tr>
+                <td><label for="Text">Текст:</label></td>
+                <td> <%= Html.TextAreaFor(t => t.Text, 10, 130, null)%></td>
+            </tr>
+            </table>
+          
             <div id="invisible" style="display:none">
                 <p style="display:none">
                     <label for="Type">Type:</label>

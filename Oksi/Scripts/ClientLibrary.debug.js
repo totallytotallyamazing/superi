@@ -466,12 +466,7 @@ ClientLibrary.AudioPlayer.prototype = {
         this._setInitialControlState$2();
         if (this.get_songs() != null && this.get_songs().length > 0) {
             var firstSong = this.get_songs()[0];
-            if (!ClientLibrary.PageManager.get_current().get_isAuthenticated()) {
-                (jQuery(this.get_element())).setFile(firstSong['url']).play();
-            }
-            else {
-                (jQuery(this.get_element())).setFile(firstSong['url']);
-            }
+            (jQuery(this.get_element())).setFile(firstSong['url']).play();
             this._updateSongTitle$2(firstSong['name'], firstSong['album']);
             jQuery('a[rel=\'play\']').addClass('disabled');
         }

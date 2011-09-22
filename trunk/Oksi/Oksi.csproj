@@ -278,6 +278,7 @@
     <Content Include="Content\ui\jquery.ui.slider.css" />
     <Content Include="Content\ui\jquery.ui.tabs.css" />
     <Content Include="Content\ui\jquery.ui.theme.css" />
+    <Content Include="Cover\singles11.png" />
     <Content Include="newBanner.swf" />
     <Content Include="newBanner2.swf" />
     <Content Include="Scripts\jquery.ui.js" />

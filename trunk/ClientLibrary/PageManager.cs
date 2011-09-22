@@ -16,7 +16,7 @@ namespace ClientLibrary
         private bool linkNavigation = false;
         AsyncRequestHandler asyncRequestHandler = null;
         int currentTopImage = 0;
-        const int imagesNumber = 0;
+        const int imagesNumber = 2;
 
         public bool IsAuthenticated
         {

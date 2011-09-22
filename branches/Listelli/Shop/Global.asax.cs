@@ -65,6 +65,12 @@ namespace Shop
                 new string[1] { "Shop.Controllers" }
             );
 
+            routes.MapRoute(
+             "Catalogs", // Route name
+             "to/catalogs", // URL with parameters
+             new { controller = "BrandCatalog", action = "Index", id = UrlParameter.Optional }, // Parameter defaults
+             new string[1] { "Shop.Controllers" }
+            );
 
             routes.MapRoute(
              "Designers", // Route name

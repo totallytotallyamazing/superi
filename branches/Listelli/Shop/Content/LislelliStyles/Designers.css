@@ -308,3 +308,66 @@ a.toList{font-size:14px;margin-left:20px;}
 {
 	padding:0 20px;
 }
+
+
+.brandCatalogFilesTable
+{ border-collapse:collapse;}
+
+.brandCatalogFilesTable th, .brandCatalogFilesTable td
+{
+    border:1px solid silver;
+}
+
+
+.brandCatalogViewHeader
+{
+    position: relative;
+    /*margin-left: 30px;*/
+    
+    text-align: center;
+    
+    margin-top:145px;
+    
+    
+    font-size: 20px;
+    font-style: italic;
+    color: #cc0000;
+    font-family: Georgia;
+    font-weight:bold;
+}
+
+
+.brCatName
+{
+    font-size: 20px;
+    font-style: italic;
+    color: #cc0000;
+    font-family: Georgia;
+    font-weight:bold;
+    padding-bottom:15px;
+    padding-top:40px;
+    text-decoration:underline;
+}
+
+.brCatFile
+{
+    padding-left:40px;
+}
+
+.brCatFile a
+{
+    color:Black;
+    line-height:25px;
+    font-size:13px;
+    letter-spacing:1px;
+}
+
+.brCatFile a:hover
+{
+     color: #cc0000;
+}
+
+.brCatFileSeparator
+{
+    padding-top:12px;
+}

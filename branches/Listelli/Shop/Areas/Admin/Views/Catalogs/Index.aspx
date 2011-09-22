@@ -8,10 +8,16 @@
 
     <h2>Брендовые каталоги</h2>
 
-    <table>
+    <table class="brandCatCategoryTable">
     <% foreach (var item in Model) { %>
         <tr>
-            <td>
+        <td class="sep">
+        
+        </td>
+        </tr>
+        <tr>
+            <td class="title">
+            
                 <%: item.Title %>
             </td>
             <td>
@@ -21,7 +27,7 @@
         <tr>
         <td colspan="2">
             <%Html.RenderPartial("BrandCatalogFiles", item); %>
-            <hr />
+            
         </td>
         </tr>
         
@@ -29,7 +35,7 @@
 
     </table>
 
-    <p style="border:1px solid #ccc; padding:5px;">
+    <p class="addItem" style="border:1px solid #ccc; padding:5px;">
         <%using (Html.BeginForm("CreateNewCatalog", "Catalogs", FormMethod.Post))
           { %>
           Добавить новый раздел:<br />

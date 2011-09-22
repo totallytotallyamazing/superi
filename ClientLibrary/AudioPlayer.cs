@@ -234,7 +234,10 @@ namespace ClientLibrary
             if (Songs != null && Songs.Length > 0)
             {
                 Dictionary firstSong = (Dictionary)Songs[0];
-                ((JPlayer)(Object)JQueryProxy.jQuery(Element)).SetFile((string)firstSong["url"]).Play();
+                if(!PageManager.Current.IsAuthenticated)
+                    ((JPlayer)(Object)JQueryProxy.jQuery(Element)).SetFile((string)firstSong["url"]).Play();
+                else
+                    ((JPlayer)(Object)JQueryProxy.jQuery(Element)).SetFile((string)firstSong["url"]);
                 UpdateSongTitle((string)firstSong["name"], (string)firstSong["album"]);
                 JQueryProxy.jQuery("a[rel='play']").addClass("disabled");
             }

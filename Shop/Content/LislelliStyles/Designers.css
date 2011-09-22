@@ -310,11 +310,15 @@ a.toList{font-size:14px;margin-left:20px;}
 }
 
 
-p.addItem
+p.addItem, div.addItem
 {
-    font-style:italic;
+    /*font-style:italic;*/
+	letter-spacing: 1px;
     font-size:12px;
 }
+
+
+
 
 .brandCatCategoryTable td.sep
 {
@@ -351,7 +355,7 @@ p.addItem
 
 .brandCatalogFilesTable th, .brandCatalogFilesTable td
 {
-    border:1px solid silver;
+    /*border:1px solid silver;*/
     padding:4px;
 }
 
@@ -384,7 +388,7 @@ p.addItem
     font-weight:bold;
     padding-bottom:15px;
     padding-top:40px;
-    text-decoration:underline;
+    text-decoration:none;
 }
 
 .brCatFile
@@ -408,4 +412,10 @@ p.addItem
 .brCatFileSeparator
 {
     padding-top:12px;
+}
+
+.adminLink 
+{
+	font-size: 10px;
+	color: red;
 }

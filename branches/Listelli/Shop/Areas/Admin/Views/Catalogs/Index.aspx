@@ -21,7 +21,7 @@
                 <%: item.Title %>
             </td>
             <td>
-                <%: Html.ActionLink("Удалить", "DeleteCatalog", new { id = item.Id }, new { onclick = "return confirm('При удалении каталога, удаляются также все с ним связанные файлы. Вы уверены что хотите удалить каталог?')" })%>
+                <%: Html.ActionLink("Удалить", "DeleteCatalog", new { id = item.Id }, new { onclick = "return confirm('При удалении каталога, удаляются также все с ним связанные файлы. Вы уверены что хотите удалить каталог?')", @class = "adminLink" })%>
             </td>
         </tr>
         <tr>
@@ -38,9 +38,7 @@
     <p class="addItem" style="border:1px solid #ccc; padding:5px;">
         <%using (Html.BeginForm("CreateNewCatalog", "Catalogs", FormMethod.Post))
           { %>
-          Добавить новый раздел:<br />
-          Заголовок:<%=Html.TextBox("Title")%><br />
-          <input type="submit" value="Добавить" />
+          Добавить новый бренд: <%=Html.TextBox("Title")%> <input type="submit" value="Добавить" />
         <%} %>
     </p>
     

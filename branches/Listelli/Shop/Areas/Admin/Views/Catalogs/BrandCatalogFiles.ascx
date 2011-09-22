@@ -21,7 +21,7 @@
             <%=item.FileName %>
         </td>
         <td>
-            <%: Html.ActionLink("Удалить", "DeleteCatalogFile", new { id = item.Id }, new { onclick = "return confirm('Удалить файл?')" })%>
+            <%: Html.ActionLink("Удалить", "DeleteCatalogFile", new { id = item.Id }, new { onclick = "return confirm('Удалить файл?')", @class = "adminLink" })%>
         </td>
     </tr>
     <%
@@ -30,15 +30,25 @@
     <tr>
     <td colspan="3">
     
-     <p class="addItem">
+     <div class="addItem">
         <%using (Html.BeginForm("AddFileToCatalog", "Catalogs", new { catalogId = Model.Id }, FormMethod.Post, new { enctype = "multipart/form-data" }))
           { %>
-          Добавить файл:<br />
-          Заголовок: <%=Html.TextBox("FileTitle")%><br />
-          Файл: <input type="file" name="logo" /><br />
-          <input type="submit" value="Добавить" />
+          <table>
+          <tr>
+            <td>Имя ссылки-текста на pdf:</td>
+            <td><%=Html.TextBox("FileTitle","",new{style="width:230px;"})%></td>
+          </tr>
+          <tr>
+            <td>Выберите файл:</td>
+            <td><input type="file" name="logo" /></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><input type="submit" value="Добавить" /></td>
+          </tr>
+          </table>
         <%} %>
-    </p>
+    </div>
 
     </td>
     </tr>

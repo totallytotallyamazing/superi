@@ -310,13 +310,51 @@ a.toList{font-size:14px;margin-left:20px;}
 }
 
 
+p.addItem
+{
+    font-style:italic;
+    font-size:12px;
+}
+
+.brandCatCategoryTable td.sep
+{
+    padding-top:20px;
+    }
+
+.brandCatalogFilesTable td.catTitle
+{
+    font-weight:bold;
+    font-family:Georgia;
+    font-size:13px;
+}
+
+.brandCatCategoryTable td.title
+{
+    font-weight:bold;
+    color:#cc0000;
+    font-size:20px;
+    font-style:italic;
+    
+}
+
+.brandCatalogFilesTable th
+{
+    font-weight:normal !important;
+    font-size:12px;
+    font-style:italic;
+    background-color:#ddd;
+}
+
+
 .brandCatalogFilesTable
 { border-collapse:collapse;}
 
 .brandCatalogFilesTable th, .brandCatalogFilesTable td
 {
     border:1px solid silver;
+    padding:4px;
 }
+
 
 
 .brandCatalogViewHeader

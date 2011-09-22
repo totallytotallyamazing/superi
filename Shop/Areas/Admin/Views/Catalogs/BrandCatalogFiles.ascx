@@ -14,7 +14,7 @@
         {
     %>
     <tr>
-        <td>
+        <td class="catTitle">
             <%=item.Title %>
         </td>
         <td>
@@ -30,7 +30,7 @@
     <tr>
     <td colspan="3">
     
-     <p>
+     <p class="addItem">
         <%using (Html.BeginForm("AddFileToCatalog", "Catalogs", new { catalogId = Model.Id }, FormMethod.Post, new { enctype = "multipart/form-data" }))
           { %>
           Добавить файл:<br />

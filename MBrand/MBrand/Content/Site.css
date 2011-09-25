@@ -73,7 +73,7 @@ a:visited{color:#808080;}
 #seeContainer{height:418px;}
 #seeMenu{/*padding-left:20px;*/ clear:both; display:none; float:left;}
 .seeMenuItem{/*margin-left:10px;*/ padding: 2px 5px; float:left; clear:both; white-space:nowrap;}
-.seeMenuItem.bold a{text-decoration:none; background-color:Black; color:#fff !important; padding:3px;}
+.seeMenuItem.bold a{text-decoration:none; background-color:Black; color:#fff !important; padding:3px 3px 3px 0;}
 .seeMenuItemSplitter
 {
 	margin-left:10px; 

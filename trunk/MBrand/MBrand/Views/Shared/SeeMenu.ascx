@@ -93,9 +93,7 @@
         <%= sitesContent %>
     </div>
     <div class="<%= vcardsClass %>">
-        <a href="/See/Vcard">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Фирменные<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;стили
-        </a>
+        <a href="/See/Vcard">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Фирменные<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;стили</a>
     </div>
     <div class="seeMenuItemSplitter">
         <%= vcardsContent %>

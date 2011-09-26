@@ -39,11 +39,13 @@
         return sb.ToString();
     };
 
+    string id = ViewContext.RouteData.Values["id"].ToString();
+
     switch (chapter)
     {
         case "Sites":
         case "Site":
-            sitesClass += " bold";
+            sitesClass += " bold" + (!string.IsNullOrEmpty(id) ? " underlined" : "");
             sitesContent = CreateContent(WorkType.Site);
             break;
         case "Vcards":

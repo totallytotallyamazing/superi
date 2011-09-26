@@ -314,3 +314,6 @@ a.secretButtonCurrent
 	height:29px;
 	border:none;
 }
+
+.seeMenuItem.bold.underlined a
+{text-decoration:underline !important;}

@@ -458,6 +458,12 @@ namespace Oksi.Controllers
                     clip.SmallSource = string.Format("<object width=\"433\" height=\"250\"><param name=\"movie\" value=\"http://www.youtube.com/v/{0}&hl=ru_RU&fs=1&\"></param><param name=\"allowFullScreen\" value=\"true\"></param><param name=\"allowscriptaccess\" value=\"always\"></param><embed src=\"http://www.youtube.com/v/{0}&hl=ru_RU&fs=1&\" type=\"application/x-shockwave-flash\" allowscriptaccess=\"always\" allowfullscreen=\"true\" width=\"433\" height=\"250\"></embed></object>", newId);
                 }
 
+                clip.Comment = form["Comment"];
+                clip.Title = form["Title"];
+                clip.Year = Convert.ToInt32(form["Year"]);
+                clip.SortOrder = Convert.ToInt32(form["SortOrder"]);
+                clip.Description = form["Description"];
+
                 context.SaveChanges();
             }
             return RedirectToAction("Video");

@@ -39,7 +39,9 @@
         return sb.ToString();
     };
 
-    string id = ViewContext.RouteData.Values["id"].ToString();
+    string id = null;
+    if (ViewContext.RouteData.Values["id"] != null)
+        id = ViewContext.RouteData.Values["id"].ToString();
 
     switch (chapter)
     {

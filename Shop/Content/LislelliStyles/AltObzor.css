@@ -106,6 +106,9 @@ body
 }
 .customBlockContent {
 	padding: 20px 120px;
-	
+	font-family: Arial;
+	font-style: italic;
+	font-size: 12px;
+	line-height: 17px;
 	
 }

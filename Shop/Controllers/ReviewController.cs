@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace Shop.Controllers
 {
-    public class AltObzorController : Controller
+    public class ReviewController : Controller
     {
         //
         // GET: /AltObzor/

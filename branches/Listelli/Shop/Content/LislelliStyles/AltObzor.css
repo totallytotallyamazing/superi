@@ -68,7 +68,7 @@ body
     margin-right: auto;
     margin-top: -35px;
     width: 900px;
-    height: 500px;
+    
     /*background-color: red;*/
 }
 
@@ -103,4 +103,9 @@ body
 .customBlockTop {
     background: url('img/custom-block-bg-top.gif') no-repeat;
     height: 10px;
+}
+.customBlockContent {
+	padding: 20px 120px;
+	
+	
 }

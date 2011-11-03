@@ -71,3 +71,19 @@ body
     height: 500px;
     /*background-color: red;*/
 }
+
+#sign
+{
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    padding-top: 33px;
+}
+
+#sign, #sign a
+{
+    color: #fff;
+    font-family: Arial;
+    font-size: 12px;
+}

@@ -349,6 +349,8 @@
     <Content Include="Content\LislelliStyles\img\obzor-inner-bg-middle.gif" />
     <Content Include="Content\LislelliStyles\img\obzor-inner-bg-top.gif" />
     <Content Include="Content\LislelliStyles\img\obzor-logo.gif" />
+    <Content Include="Content\LislelliStyles\img\pattern1.gif" />
+    <Content Include="Content\LislelliStyles\img\pattern2.gif" />
     <Content Include="Content\LislelliStyles\img\rightArrow.png" />
     <Content Include="Content\LislelliStyles\img\searchField.gif" />
     <Content Include="Content\LislelliStyles\img\separator.png" />

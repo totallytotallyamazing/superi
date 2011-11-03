@@ -99,6 +99,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BrandCatalogue.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\AltObzorController.cs" />
     <Compile Include="Controllers\BrandCatalogController.cs" />
     <Compile Include="Controllers\CaptchaController.cs" />
     <Compile Include="Controllers\ClientsController.cs" />
@@ -137,6 +138,7 @@
     <Compile Include="Helpers\HtmlHelpers.cs" />
     <Compile Include="Helpers\IOHelper.cs" />
     <Compile Include="Helpers\JqueryUiExtensions.cs" />
+    <Compile Include="Helpers\LocalizationExtensions.cs" />
     <Compile Include="Helpers\MailHelper.cs" />
     <Compile Include="Helpers\CurrencyHelper.cs" />
     <Compile Include="Helpers\ResourceTracker.cs" />
@@ -282,6 +284,7 @@
     <Content Include="Content\fbDefault\fancy_title_over.png" />
     <Content Include="Content\fbDefault\fancy_title_right.png" />
     <Content Include="Content\fbDefault\jquery.fancybox.css" />
+    <Content Include="Content\LislelliStyles\AltObzor.css" />
     <Content Include="Content\LislelliStyles\Designers.css" />
     <Content Include="Content\LislelliStyles\img\bannerDecor.png" />
     <Content Include="Content\LislelliStyles\img\bannerFoglie.png" />
@@ -340,6 +343,12 @@
     <Content Include="Content\LislelliStyles\img\Logo.png" />
     <Content Include="Content\LislelliStyles\img\LogoBrandCatalog.png" />
     <Content Include="Content\LislelliStyles\img\new.gif" />
+    <Content Include="Content\LislelliStyles\img\obzor-bg-bottom.gif" />
+    <Content Include="Content\LislelliStyles\img\obzor-bg-top.gif" />
+    <Content Include="Content\LislelliStyles\img\obzor-inner-bg-bottom.gif" />
+    <Content Include="Content\LislelliStyles\img\obzor-inner-bg-middle.gif" />
+    <Content Include="Content\LislelliStyles\img\obzor-inner-bg-top.gif" />
+    <Content Include="Content\LislelliStyles\img\obzor-logo.gif" />
     <Content Include="Content\LislelliStyles\img\rightArrow.png" />
     <Content Include="Content\LislelliStyles\img\searchField.gif" />
     <Content Include="Content\LislelliStyles\img\separator.png" />
@@ -414,6 +423,7 @@
     <Content Include="Scripts\uploadify.allglyphs.swf" />
     <Content Include="Scripts\uploadify.swf" />
     <Content Include="Stub.jpg" />
+    <Content Include="Views\AltObzor\Index.aspx" />
     <Content Include="Views\BrandCatalog\BrandCatalogFiles.ascx" />
     <Content Include="Views\BrandCatalog\Index.aspx" />
     <Content Include="Views\Designers\Index.aspx" />
@@ -662,12 +672,6 @@
     </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\MyProjects\Superi.Web.Mvc\Superi.Web.Mvc\Superi.Web.Mvc.csproj">
-      <Project>{543E8EC7-CD41-40EE-A510-29BC4C26A6C2}</Project>
-      <Name>Superi.Web.Mvc</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <EntityDeploy Include="Models\Designers.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Designers.Designer.cs</LastGenOutput>
@@ -681,6 +685,9 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>BrandCatalog.Designer.cs</LastGenOutput>
     </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\AltObzor.Master" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

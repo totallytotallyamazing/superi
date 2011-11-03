@@ -1,0 +1,41 @@
+﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <% Html.RenderPartial("MetaTags"); %>
+    <title>Listelli -
+        <asp:ContentPlaceHolder runat="server" ID="TitleContent">
+        </asp:ContentPlaceHolder>
+    </title>
+    <script type="text/javascript" src="/Scripts/jquery.js"></script>
+    <script type="text/javascript" src="/Scripts/jquery.fancybox.js"></script>
+    <link href="/Content/LislelliStyles/AltObzor.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/fbDefault/jquery.fancybox.css" rel="stylesheet" type="text/css" />
+    <% if (Roles.IsUserInRole("Administrators"))
+       { %>
+    <link href="/Content/AdminStyles/Admin.css" rel="stylesheet" type="text/css" />
+    <%} %>
+    <asp:ContentPlaceHolder runat="server" ID="includes">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <div id="page">
+        <div id="header">
+            <div id="logo"></div>
+        </div>
+        <div id="main">
+            <div id="mainContentHead">
+            </div>
+            <div id="content">
+            <asp:ContentPlaceHolder runat="server" ID="MainContent">
+            </asp:ContentPlaceHolder>
+            </div>
+            <div id="mainContentBottom">
+            </div>
+        </div>
+        <div id="footer">
+        </div>
+    </div>
+</body>
+</html>

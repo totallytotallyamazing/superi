@@ -12,6 +12,8 @@ using System.Net.Mail;
 using System.ComponentModel;
 using Superi.Web.Mvc.Localization;
 
+//using Superi.Web.Mvc.Localization;
+
 namespace Shop.Controllers
 {
     public class HomeController : Controller

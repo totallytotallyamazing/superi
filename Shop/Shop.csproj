@@ -322,6 +322,9 @@
     <Content Include="Content\LislelliStyles\img\corner_se.png" />
     <Content Include="Content\LislelliStyles\img\corner_sw.png" />
     <Content Include="Content\LislelliStyles\img\currentBorder.png" />
+    <Content Include="Content\LislelliStyles\img\custom-block-bg-bottom.gif" />
+    <Content Include="Content\LislelliStyles\img\custom-block-bg-middle.gif" />
+    <Content Include="Content\LislelliStyles\img\custom-block-bg-top.gif" />
     <Content Include="Content\LislelliStyles\img\designedBy.png" />
     <Content Include="Content\LislelliStyles\img\dockItem1.gif" />
     <Content Include="Content\LislelliStyles\img\dockItem2.gif" />
@@ -425,6 +428,7 @@
     <Content Include="Scripts\uploadify.allglyphs.swf" />
     <Content Include="Scripts\uploadify.swf" />
     <Content Include="Stub.jpg" />
+    <Content Include="Views\AltObzor\CustomBlock.ascx" />
     <Content Include="Views\AltObzor\Index.aspx" />
     <Content Include="Views\BrandCatalog\BrandCatalogFiles.ascx" />
     <Content Include="Views\BrandCatalog\Index.aspx" />

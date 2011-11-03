@@ -87,3 +87,20 @@ body
     font-family: Arial;
     font-size: 12px;
 }
+
+.customBlock, .customBlockBottom, .customBlockTop
+{
+    width: 850px;
+}
+
+.customBlock {
+    background: url('img/custom-block-bg-middle.gif') repeat-y;
+} 
+.customBlockBottom {
+    background: url('img/custom-block-bg-bottom.gif') no-repeat;
+    height: 10px;
+} 
+.customBlockTop {
+    background: url('img/custom-block-bg-top.gif') no-repeat;
+    height: 10px;
+}

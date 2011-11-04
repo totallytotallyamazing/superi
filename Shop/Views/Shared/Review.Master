@@ -8,6 +8,7 @@
         <asp:ContentPlaceHolder runat="server" ID="TitleContent">
         </asp:ContentPlaceHolder>
     </title>
+     <link href="/Content/LislelliStyles/ListelliSite.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="/Scripts/jquery.js"></script>
     <script type="text/javascript" src="/Scripts/jquery.fancybox.js"></script>
     <link href="/Content/LislelliStyles/AltObzor.css" rel="stylesheet" type="text/css" />
@@ -22,14 +23,14 @@
 <body>
     <div id="page">
         <div id="header">
-            <div id="logo"></div>
+            <div id="reviewLogo"></div>
         </div>
         <div id="main">
             <div id="mainContentHead">
             </div>
             <div id="content">
-            <asp:ContentPlaceHolder runat="server" ID="MainContent">
-            </asp:ContentPlaceHolder>
+                <asp:ContentPlaceHolder runat="server" ID="MainContent">
+                </asp:ContentPlaceHolder>
             </div>
             <div id="mainContentBottom">
             </div>

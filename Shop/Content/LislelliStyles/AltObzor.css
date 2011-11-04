@@ -1,5 +1,9 @@
-﻿*{ margin: 0;padding: 0;}
-body 
+﻿*
+{
+    margin: 0;
+    padding: 0;
+}
+body
 {
     background-color: #000;
 }
@@ -46,15 +50,15 @@ body
 
 #footer
 {
-   height: 94px;
+    height: 94px;
     position: relative;
     margin: 0 auto;
     background: url('img/obzor-bg-bottom.gif');
     background-repeat: no-repeat;
-    background-position: 50% 0px; 
+    background-position: 50% 0px;
 }
 
-#logo
+#reviewLogo
 {
     height: 47px;
     background: url('img/obzor-logo.gif') no-repeat;
@@ -67,9 +71,7 @@ body
     margin-left: auto;
     margin-right: auto;
     margin-top: -35px;
-    width: 900px;
-    
-    /*background-color: red;*/
+    width: 900px; /*background-color: red;*/
 }
 
 #sign
@@ -93,22 +95,114 @@ body
     width: 850px;
 }
 
-.customBlock {
+.customBlock
+{
     background: url('img/custom-block-bg-middle.gif') repeat-y;
-} 
-.customBlockBottom {
+}
+.customBlockBottom
+{
     background: url('img/custom-block-bg-bottom.gif') no-repeat;
     height: 10px;
-} 
-.customBlockTop {
+}
+.customBlockTop
+{
     background: url('img/custom-block-bg-top.gif') no-repeat;
     height: 10px;
 }
-.customBlockContent {
-	padding: 20px 120px;
-	font-family: Arial;
-	font-style: italic;
-	font-size: 12px;
-	line-height: 17px;
-	
+.customBlockContent
+{
+    padding: 20px 120px;
+    font-family: Arial;
+    font-style: italic;
+    font-size: 12px;
+    line-height: 17px;
+}
+
+
+.reviewContent
+{
+    width: 440px;
+    margin-bottom: 150px;
+}
+
+.reviewContent .image
+{
+    float: left;
+}
+
+.reviewContent .content
+{
+    margin-left: 180px;
+    padding-left: 25px;
+}
+
+.reviewContent .content .title
+{
+    padding-top: 45px;
+}
+
+.reviewContent .content .title a
+{
+    text-transform: uppercase;
+    color: #000;
+    font-weight: bold;
+    font-family: Arial;
+    font-size: 17px;
+}
+
+.reviewContent .content .description
+{
+    padding-top: 10px;
+    padding-right: 30px;
+    font-family: Arial;
+    font-size: 12px;
+}
+
+.reviewThumbnailsTable td
+{
+    vertical-align: top;
+}
+
+
+.reviewDetails .title
+{
+    font-family: Georgia;
+    font-size: 60px;
+    color: #000;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom:30px;
+}
+
+.reviewDetails .description
+{
+    width: 500px;
+    position: relative;
+    margin: 0 auto;
+    font-family:Arial;
+    font-size:15px;
+    font-style:italic;
+}
+
+.pattern1, .pattern2
+{
+    position: relative;
+    margin: 0 auto;
+    margin-top:50px;
+    margin-bottom:50px;
+}
+
+.pattern1
+{
+    
+    width: 40px;
+    height: 16px;
+    background-image: url('img/pattern1.gif');
+}
+
+.pattern2
+{
+    width: 37px;
+    height: 14px;
+    background-image: url('img/pattern2.gif');
 }

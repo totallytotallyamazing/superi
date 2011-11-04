@@ -1,4 +1,5 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<Shop.Models.ReviewContentItem>" %>
+<%@ Import Namespace="Dev.Mvc.Helpers" %>
 <%if (Model.ContentType == 1)
   {
   %>
@@ -23,12 +24,20 @@
     </div>
 </div>
 <%
+  }else
+  {
+      %>
+          <%=Html.ActionLink("Добавить изображение", "AddReviewContentItemImage", "Review", new { Area = "Admin", reviewContentId = ViewData["reviewContentId"], reviewContentItemId = Model.Id }, new { @class = "adminLink" })%>
+          <%
+      
+      if (Model.ReviewContentItemImages.Count() > 0)
+      {
+          foreach (var image in Model.ReviewContentItemImages)
+          {
+            %>
+            <%= Html.Image("~/Content/ReviewImages/" + image.ImageSource, "", 200)%>
+            <%
+          }
+      }
   }
-    if (Model.ReviewContentItemImages.Count() > 0)
-    {
-        foreach (var image in Model.ReviewContentItemImages)
-        {
-
-        }
-    }
 %>

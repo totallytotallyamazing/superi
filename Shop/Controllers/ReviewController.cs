@@ -30,6 +30,7 @@ namespace Shop.Controllers
                 {
                     item.ReviewContentItemImages.Load();
                 }
+                ViewData["reviewContentId"] = content.Id;
                 return View(content);
             }
         }

@@ -184,6 +184,13 @@ body
     font-style:italic;
 }
 
+
+.reviewDetails .contentBlock
+{
+    padding:20px 0;
+}
+
+
 .pattern1, .pattern2
 {
     position: relative;

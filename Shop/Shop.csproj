@@ -224,6 +224,8 @@
     <Content Include="Areas\Admin\Views\ProductVariants\AddEdit.ascx" />
     <Content Include="Areas\Admin\Views\ProductVariants\Index.aspx" />
     <Content Include="Areas\Admin\Views\Review\Add.aspx" />
+    <Content Include="Areas\Admin\Views\Review\AddReviewConentItem.aspx" />
+    <Content Include="Areas\Admin\Views\Review\AddReviewContentItemImage.aspx" />
     <Content Include="Areas\Admin\Views\Review\Edit.aspx" />
     <Content Include="Areas\Admin\Views\Subscribers\Create.aspx" />
     <Content Include="Areas\Admin\Views\Subscribers\Edit.aspx" />

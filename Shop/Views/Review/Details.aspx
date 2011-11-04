@@ -13,10 +13,23 @@
         </div>
         <div class="pattern1">
         </div>
+
+        <%if (Roles.IsUserInRole("Administrators")) { 
+              %>
+              <%=Html.ActionLink("Добавить текстовый блок", "AddReviewConentItem", "Review", new { Area = "Admin", id = Model.Id }, new { @class="adminLink"})%>
+              <%=Html.ActionLink("Добавить блок изображений", "AddReviewContentItemImage", "Review", new { Area = "Admin", reviewContentId = Model.Id }, new { @class = "adminLink" })%>
+              
+              <%
+          } %>
+
         <%
             foreach (var item in Model.ReviewContentItems.OrderBy(c => c.SortOrder))
             {
-                Html.RenderPartial("CustomBlock",item);
+                %>
+                <div class="contentBlock">
+                <%Html.RenderPartial("CustomBlock", item);%>
+                </div>
+                <%
             }
         %>
         <div class="pattern1">

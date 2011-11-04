@@ -224,6 +224,7 @@
     <Content Include="Areas\Admin\Views\ProductVariants\AddEdit.ascx" />
     <Content Include="Areas\Admin\Views\ProductVariants\Index.aspx" />
     <Content Include="Areas\Admin\Views\Review\Add.aspx" />
+    <Content Include="Areas\Admin\Views\Review\Edit.aspx" />
     <Content Include="Areas\Admin\Views\Subscribers\Create.aspx" />
     <Content Include="Areas\Admin\Views\Subscribers\Edit.aspx" />
     <Content Include="Areas\Admin\Views\Subscribers\Index.aspx" />
@@ -436,7 +437,7 @@
     <Content Include="Scripts\uploadify.swf" />
     <Content Include="Stub.jpg" />
     <Content Include="Views\Review\CustomBlock.ascx" />
-    <Content Include="Views\Review\Index.aspx" />
+    <Content Include="Views\Review\Details.aspx" />
     <Content Include="Views\BrandCatalog\BrandCatalogFiles.ascx" />
     <Content Include="Views\BrandCatalog\Index.aspx" />
     <Content Include="Views\Designers\Index.aspx" />
@@ -451,6 +452,7 @@
     <Content Include="Views\Products\ShowModalContest.ascx" />
     <Content Include="Views\Products\SimilarProducts.ascx" />
     <Content Include="Views\Products\SortingPanel.ascx" />
+    <Content Include="Views\Review\Index.aspx" />
     <Content Include="Views\Shared\ContentPartial.ascx" />
     <Content Include="Views\Shared\ContestLinkBubble.ascx" />
     <Content Include="Views\Shared\LogOnOrSignUp.ascx" />
@@ -656,6 +658,7 @@
     <Folder Include="Content\DesignerLogos\" />
     <Folder Include="Content\DesignerPhotos\" />
     <Folder Include="Content\ProductImages\" />
+    <Folder Include="Content\ReviewImages\" />
     <Folder Include="Controls\ckeditor\" />
     <Folder Include="ImageCache\cartThumb\" />
     <Folder Include="ImageCache\designerPhotosThumb\" />

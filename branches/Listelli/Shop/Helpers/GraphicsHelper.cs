@@ -35,9 +35,15 @@ namespace Dev.Mvc.Helpers
             maxDimensions.Add("catalogueMain", 1005);
             fixDimension.Add("catalogueMain", FixedDimension.Width);
 
-            maxDimensions.Add("designerPhotosThumb",390);
+            maxDimensions.Add("designerPhotosThumb", 390);
             fixDimension.Add("designerPhotosThumb", FixedDimension.Width);
             limitHeight.Add("designerPhotosThumb", 390);
+
+            maxDimensions.Add("reviewImagesThumb", 175);
+            fixDimension.Add("reviewImagesThumb", FixedDimension.Width);
+            limitHeight.Add("reviewImagesThumb", 175);
+
+
         }
 
         private static Rectangle CalculateSourceRect(string name, Size image, Size calulatedSize)

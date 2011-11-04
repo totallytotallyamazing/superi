@@ -15,7 +15,6 @@
         <fieldset>
             <legend>Fields</legend>
             
-          
             
             <div class="editor-label">
                 <%: Html.LabelFor(model => model.Title) %>
@@ -29,7 +28,7 @@
                 <%: Html.LabelFor(model => model.Description) %>
             </div>
             <div class="editor-field">
-                <%: Html.TextBoxFor(model => model.Description) %>
+                <%: Html.TextAreaFor(model => model.Description) %>
                 <%: Html.ValidationMessageFor(model => model.Description) %>
             </div>
             
@@ -37,8 +36,7 @@
                 <%: Html.LabelFor(model => model.ImageSource) %>
             </div>
             <div class="editor-field">
-                <%: Html.TextBoxFor(model => model.ImageSource) %>
-                <%: Html.ValidationMessageFor(model => model.ImageSource) %>
+               <input type="file" name="logo" />
             </div>
             
             <div class="editor-label">

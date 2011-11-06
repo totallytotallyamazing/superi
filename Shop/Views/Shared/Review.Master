@@ -21,6 +21,7 @@
     </asp:ContentPlaceHolder>
 </head>
 <body>
+ <%if (Roles.IsUserInRole("Administrators")) Html.RenderPartial("AdminPanel");  %>
     <div id="page">
         <div id="header">
             <div id="reviewLogo"></div>

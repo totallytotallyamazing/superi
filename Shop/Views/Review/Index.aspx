@@ -33,6 +33,7 @@
         <% if (Roles.IsUserInRole("Administrators"))
        { %>
     <%=Html.ActionLink("Редактировать", "Edit", "Review", new { Area = "Admin",id=item.Id }, new { @class="adminLink"})%>
+    <%=Html.ActionLink("Удалить", "Delete", "Review", new { Area = "Admin", id = item.Id }, new { @class = "adminLink", onclick = "return confirm('Удалить раздел?')" })%>
     <%} %>
         <div class="title">
         <%=Html.ActionLink(item.Title, "Details", "Review", new { id=item.Id},null)%>

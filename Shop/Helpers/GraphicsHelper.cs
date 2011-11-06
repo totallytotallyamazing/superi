@@ -43,6 +43,11 @@ namespace Dev.Mvc.Helpers
             fixDimension.Add("reviewImagesThumb", FixedDimension.Width);
             limitHeight.Add("reviewImagesThumb", 175);
 
+            maxDimensions.Add("reviewImagesDetailsThumb", 215);
+            fixDimension.Add("reviewImagesDetailsThumb", FixedDimension.Width);
+            limitHeight.Add("reviewImagesDetailsThumb", 150);
+            
+
 
         }
 

@@ -73,6 +73,21 @@ namespace Shop
             );
 
             routes.MapRoute(
+                "AltObzor", // Route name
+                "to/alt-obzor", // URL with parameters
+                new { controller = "Review", action = "Index", id = UrlParameter.Optional }, // Parameter defaults
+                new string[1] { "Shop.Controllers" }
+            );
+
+            routes.MapRoute(
+                "AltObzorDetails", // Route name
+                "to/alt-obzor/{id}", // URL with parameters
+                new { controller = "Review", action = "Details", id = UrlParameter.Optional }, // Parameter defaults
+                new string[1] { "Shop.Controllers" }
+            );
+
+
+            routes.MapRoute(
              "Designers", // Route name
              "to/{id}", // URL with parameters
              new { controller = "Designers", action = "Index", id = UrlParameter.Optional }, // Parameter defaults

@@ -2,10 +2,16 @@
 <%@ Import Namespace="Dev.Mvc.Helpers" %>
 <%if (Model.ContentType == 1)
   {
-  %>
-  
-  <%=Model.Text%>
-  <%
+%>
+<%if (Roles.IsUserInRole("Administrators"))
+  { %>
+<div>
+    <%=Html.ActionLink("Редактировать", "EditReviewConentItem", "Review", new { id = Model.Id, Area = "Admin" }, new { @class = "adminLink" })%>&nbsp;
+    <%=Html.ActionLink("Удалить", "DeleteReviewContentItem", "Review", new { id = Model.Id, contentId = ViewData["reviewContentId"],Area="Admin" }, new { @class = "adminLink", onclick = "return confirm('Удалить блок?')" })%>
+</div>
+<% } %>
+<%=Model.Text%>
+<%
   }
   else if (Model.ContentType == 2)
   {
@@ -14,30 +20,48 @@
     <div class="customBlockTop">
     </div>
     <div class="customBlockContent">
-    <%=Model.Text%> <br />
-        К слову, основными ингридиентами хорошей статьи являются правильно выдрессированные
-        журналистские замашки, сигара, ром, Рома, Игорь и Света на готовке чая. А то, что
-        вам кажется будто написание случайного текста — труд каторжный, это всё напускное.
-        Хотя, некоторые этим бравируют. А мы просто работаем.
+        <%if (Roles.IsUserInRole("Administrators"))
+          { %>
+        <div>
+            <%=Html.ActionLink("Редактировать", "EditReviewConentItem", "Review", new { id = Model.Id, Area = "Admin" }, new { @class = "adminLink" })%>&nbsp;
+            <%=Html.ActionLink("Удалить", "DeleteReviewContentItem", "Review", new { id = Model.Id, contentId = ViewData["reviewContentId"],Area="Admin" }, new { @class = "adminLink", onclick = "return confirm('Удалить блок?')" })%>
+        </div>
+        <% } %>
+        <%=Model.Text%>
     </div>
     <div class="customBlockBottom">
     </div>
 </div>
 <%
-  }else
+  }
+  else
   {
-      %>
-          <%=Html.ActionLink("Добавить изображение", "AddReviewContentItemImage", "Review", new { Area = "Admin", reviewContentId = ViewData["reviewContentId"], reviewContentItemId = Model.Id }, new { @class = "adminLink" })%>
-          <%
+%>
+<%=Html.ActionLink("Добавить изображение", "AddReviewContentItemImage", "Review", new { Area = "Admin", reviewContentId = ViewData["reviewContentId"], reviewContentItemId = Model.Id }, new { @class = "adminLink" })%>
+<div class="reviewDetailsImages">
+    <%
       
       if (Model.ReviewContentItemImages.Count() > 0)
       {
           foreach (var image in Model.ReviewContentItemImages)
           {
-            %>
-            <%= Html.Image("~/Content/ReviewImages/" + image.ImageSource, "", 200)%>
-            <%
+    %>
+    <div class="reviewDetailsImage">
+        <%if (Roles.IsUserInRole("Administrators"))
+          { %>
+        <div>
+            <%=Html.ActionLink("Удалить", "DeleteReviewContentItemImage", "Review", new { id = image.Id, contentId = ViewData["reviewContentId"],Area="Admin" }, new { @class = "adminLink", onclick = "return confirm('Удалить изображение?')" })%>
+        </div>
+        <% } %>
+        <%= Html.CachedImage("~/Content/ReviewImages/", image.ImageSource, "reviewImagesDetailsThumb", image.ImageSource)%>
+    </div>
+    <%
           }
       }
+    %>
+    <div style="clear: both;">
+    </div>
+</div>
+<%
   }
 %>

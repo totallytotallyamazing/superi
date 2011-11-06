@@ -227,6 +227,7 @@
     <Content Include="Areas\Admin\Views\Review\AddReviewConentItem.aspx" />
     <Content Include="Areas\Admin\Views\Review\AddReviewContentItemImage.aspx" />
     <Content Include="Areas\Admin\Views\Review\Edit.aspx" />
+    <Content Include="Areas\Admin\Views\Review\EditReviewConentItem.aspx" />
     <Content Include="Areas\Admin\Views\Subscribers\Create.aspx" />
     <Content Include="Areas\Admin\Views\Subscribers\Edit.aspx" />
     <Content Include="Areas\Admin\Views\Subscribers\Index.aspx" />
@@ -728,7 +729,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>22098</DevelopmentServerPort>
+          <DevelopmentServerPort>59534</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

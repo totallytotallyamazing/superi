@@ -32,7 +32,7 @@
                 <%
             }
         %>
-        <div class="pattern1">
+        <div class="pattern2">
         </div>
     </div>
 </asp:Content>

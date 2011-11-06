@@ -37,7 +37,16 @@
   else
   {
 %>
-<%=Html.ActionLink("Добавить изображение", "AddReviewContentItemImage", "Review", new { Area = "Admin", reviewContentId = ViewData["reviewContentId"], reviewContentItemId = Model.Id }, new { @class = "adminLink" })%>
+ <%if (Roles.IsUserInRole("Administrators"))
+{ %>
+<%=Html.ActionLink("Добавить изображение", "AddReviewContentItemImage", "Review",
+                                      new
+                                          {
+                                              Area = "Admin",
+                                              reviewContentId = ViewData["reviewContentId"],
+                                              reviewContentItemId = Model.Id
+                                          }, new {@class = "adminLink"})%>
+<% } %>
 <div class="reviewDetailsImages">
     <%
       

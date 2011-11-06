@@ -36,7 +36,7 @@
             <div id="mainContentBottom">
             </div>
         </div>
-        <div id="footer">
+        <div id="reviewFooter">
             <div id="sign">
             &copy; <%=DateTime.Now.Year %> компания "Listelli"<br/>Сделано в <a href="http://m-brand.com.ua">Студии Евгения Миллера</a>
             </div>

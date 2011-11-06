@@ -188,8 +188,27 @@ body
 .reviewDetails .contentBlock
 {
     padding:20px 0;
+	font-family: Arial;
+	font-size: 14px;
+	color: #666666;
 }
 
+
+.reviewDetails .reviewDetailsImage
+{
+	float: left;
+	margin: 15px;
+}
+
+.reviewDetails .reviewDetailsImages
+{
+	padding-left: 55px;
+}
+
+.reviewDetails .reviewDetailsImage img
+{
+	border: 7px solid #cccccc;
+}
 
 .pattern1, .pattern2
 {

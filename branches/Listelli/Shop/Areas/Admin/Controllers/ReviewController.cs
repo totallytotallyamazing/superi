@@ -85,6 +85,21 @@ namespace Shop.Areas.Admin.Controllers
             return RedirectToAction("Index", "Review", new { Area = "" });
         }
 
+        public ActionResult Delete(int id)
+        {
+            using (var context = new ReviewStorage())
+            {
+                var content = context.ReviewContent.Include("ReviewContentItems").Where(c => c.Id == id).First();
+
+                string imageSource = content.ImageSource;
+                
+                context.DeleteObject(content);
+                context.SaveChanges();
+                IOHelper.DeleteFile("~/Content/ReviewImages", imageSource);
+                return RedirectToAction("Index", "Review",new{Area=""});
+            }
+        }
+
         public ActionResult AddReviewConentItem(int id)
         {
             using (var context = new ReviewStorage())
@@ -112,14 +127,47 @@ namespace Shop.Areas.Admin.Controllers
             }
         }
 
-        public ActionResult AddReviewContentItemImage(int reviewContentId, int? reviewContentItemId)
+        public ActionResult EditReviewConentItem(int id)
         {
             using (var context = new ReviewStorage())
             {
+                var content = context.ReviewContentItem.Where(c => c.Id == id).First();
+                return View(content);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult EditReviewConentItem(FormCollection form)
+        {
+            using (var context = new ReviewStorage())
+            {
+                int id = Convert.ToInt32(form["Id"]);
+                var content = context.ReviewContentItem.Include("ReviewContent").Where(c => c.Id == id).First();
+                var contentId = content.ReviewContent.Id;
+                TryUpdateModel(content, new[] {"Text", "SortOrder"});
+                context.SaveChanges();
+                return RedirectToAction("Details", "Review", new {Area = "", id = contentId});
+            }
+            
+        }
+
+        public ActionResult DeleteReviewContentItem(int id, int contentId)
+        {
+            using (var context = new ReviewStorage())
+            {
+                var contentItem = context.ReviewContentItem.Where(c => c.Id == id).First();
+                context.DeleteObject(contentItem);
+                context.SaveChanges();
+
+            }
+            return RedirectToAction("Details", "Review", new { Area = "", id = contentId });
+        }
+
+        public ActionResult AddReviewContentItemImage(int reviewContentId, int? reviewContentItemId)
+        {
                 ViewData["reviewContentId"] = reviewContentId;
                 ViewData["reviewContentItemId"] = reviewContentItemId;
                 return View();
-            }
         }
 
         [HttpPost]
@@ -138,7 +186,7 @@ namespace Shop.Areas.Admin.Controllers
                     }
                     else
                     {
-                        contentItem = new ReviewContentItem { ContentType=3 };
+                        contentItem = new ReviewContentItem { ContentType = 3 };
                         content.ReviewContentItems.Add(contentItem);
                     }
 
@@ -163,6 +211,27 @@ namespace Shop.Areas.Admin.Controllers
                 return RedirectToAction("Details", "Review", new { Area = "", id = content.Id });
             }
 
+        }
+
+        public ActionResult DeleteReviewContentItemImage(int id, int contentId)
+        {
+            using (var context = new ReviewStorage())
+            {
+
+                var image = context.ReviewContentItemImage.Include("ReviewContentItem").Where(i => i.Id == id).First();
+                var contentItem = image.ReviewContentItem;
+
+                var contentItemImagesCount = image.ReviewContentItem.ReviewContentItemImages.Count();
+
+                IOHelper.DeleteFile("~/Content/ReviewImages", image.ImageSource);
+                context.DeleteObject(image);
+
+                if (contentItemImagesCount == 1)
+                    context.DeleteObject(contentItem);
+                context.SaveChanges();
+            }
+
+            return RedirectToAction("Details", "Review", new { Area = "", id = contentId });
         }
 
 

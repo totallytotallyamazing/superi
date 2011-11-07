@@ -251,16 +251,44 @@ body
  
     color:Black;
     float:right;
-    left:900px;
+    left:902px;
     width:1000px;
 }
 
+
+.menuLinkPlace
+{
+    width:1000px;
+    background-color:#0b0b0b;
+    margin-bottom:6px;
+}
+
+.menuLinkPlace.home
+{
+    margin-top:25px;
+}
 
 #reviewMenu
 {
-    height:100px;
     width:1000px;
-    background-color:Blue;
     margin-top:350px;
     position:relative;
 }
+
+#reviewMenuUp, #reviewMenuBack, #reviewMenuHome
+{
+    width:90px;
+    height:28px;
+    display:block;
+}
+
+#reviewMenuUp
+{
+    background-image:url('img/obzor-menu-up.gif');
+    } 
+#reviewMenuBack
+{background-image:url('img/obzor-menu-back.gif');
+    }
+#reviewMenuHome
+{background-image:url('img/obzor-menu-home.gif');
+    }

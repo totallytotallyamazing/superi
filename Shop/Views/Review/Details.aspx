@@ -48,3 +48,8 @@
 </script>
 
 </asp:Content>
+
+
+<asp:Content ContentPlaceHolderID="MenuPlaceHolder" runat="server">
+<% Html.RenderPartial("ReviewMenu"); %>
+</asp:Content>

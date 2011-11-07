@@ -37,4 +37,14 @@
     </div>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="includes" runat="server">
+
+<script type="text/javascript">
+    $(function () {
+        $(".fancy").fancybox({ showCloseButton: true, cyclic: true, showNavArrows: true, padding: 0, margin: 0, centerOnScroll: true });
+        $("#reviewMenu").scrollFollow({
+        offset:500
+        });
+    });
+</script>
+
 </asp:Content>

@@ -2,24 +2,32 @@
 <%@ Import Namespace="Dev.Mvc.Helpers" %>
 <%@ Import Namespace="Dev.Mvc.Ajax" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Edit
+	Редактирование содержимого
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Edit</h2>
+    <h2>Редактирование содержимого</h2>
 
     <% using (Html.BeginForm("Edit", "Review", FormMethod.Post, new { enctype = "multipart/form-data" }))
        {%>
         <%: Html.ValidationSummary(true) %>
         
         <fieldset>
-            <legend>Fields</legend>
+            
             
             <%:Html.HiddenFor(model=>model.Id) %>
             
             <div class="editor-label">
-                <%: Html.LabelFor(model => model.Title) %>
+                Адрес страницы (должен быть уникальным)
+            </div>
+            <div class="editor-field">
+                <%: Html.TextBoxFor(model => model.Name) %>
+                <%: Html.ValidationMessageFor(model => model.Name)%>
+            </div>
+
+            <div class="editor-label">
+                Заголовок
             </div>
             <div class="editor-field">
                 <%: Html.TextBoxFor(model => model.Title) %>
@@ -27,15 +35,15 @@
             </div>
             
             <div class="editor-label">
-                <%: Html.LabelFor(model => model.Description) %>
+                Описание
             </div>
             <div class="editor-field">
-                <%: Html.TextBoxFor(model => model.Description) %>
+                <%: Html.TextAreaFor(model => model.Description) %>
                 <%: Html.ValidationMessageFor(model => model.Description) %>
             </div>
             
             <div class="editor-label">
-                <%: Html.LabelFor(model => model.ImageSource) %>
+                Изображение
             </div>
             <div class="editor-field">
              <% if (Model != null) %>
@@ -45,7 +53,7 @@
             </div>
             
             <div class="editor-label">
-                <%: Html.LabelFor(model => model.SortOrder) %>
+                Порядок отображения
             </div>
             <div class="editor-field">
                 <%: Html.TextBoxFor(model => model.SortOrder) %>
@@ -53,18 +61,29 @@
             </div>
             
             <p>
-                <input type="submit" value="Save" />
+                <input type="submit" value="Сохранить" />
             </p>
         </fieldset>
 
     <% } %>
 
     <div>
-        <%: Html.ActionLink("Back to List", "Index", "Review", new { Area=""},null)%>
+        <%: Html.ActionLink("Назад к списку", "Details", "Review", new { Area = "", id = ViewData["reviewContentId"] }, null)%>
     </div>
 
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="includes" runat="server">
+    <script type="text/javascript" src="/Scripts/MicrosoftAjax.js"></script>
+    <script type="text/javascript" src="/Scripts/MicrosoftMvcValidation.js"></script>
+      
+    <%= Ajax.ScriptInclude("/Controls/ckeditor/ckeditor.js")%>
+    <%= Ajax.ScriptInclude("/Controls/ckeditor/adapters/jquery.js")%>
+
+    <script type="text/javascript">
+        $(function () {
+            CKEDITOR.replace("Description", { toolbar: "Media" });
+        })
+</script>
 </asp:Content>
 

@@ -8,6 +8,8 @@
 <div>
     <%=Html.ActionLink("Редактировать", "EditReviewConentItem", "Review", new { id = Model.Id, Area = "Admin" }, new { @class = "adminLink" })%>&nbsp;
     <%=Html.ActionLink("Удалить", "DeleteReviewContentItem", "Review", new { id = Model.Id, contentId = ViewData["reviewContentId"],Area="Admin" }, new { @class = "adminLink", onclick = "return confirm('Удалить блок?')" })%>
+    <div class="sOrderContaider"> <%=Model.SortOrder %></div>
+   
 </div>
 <% } %>
 <%=Model.Text%>
@@ -25,6 +27,7 @@
         <div>
             <%=Html.ActionLink("Редактировать", "EditReviewConentItem", "Review", new { id = Model.Id, Area = "Admin" }, new { @class = "adminLink" })%>&nbsp;
             <%=Html.ActionLink("Удалить", "DeleteReviewContentItem", "Review", new { id = Model.Id, contentId = ViewData["reviewContentId"],Area="Admin" }, new { @class = "adminLink", onclick = "return confirm('Удалить блок?')" })%>
+           <div class="sOrderContaider"> <%=Model.SortOrder %></div>
         </div>
         <% } %>
         <%=Model.Text%>
@@ -46,6 +49,11 @@
                                               reviewContentId = ViewData["reviewContentId"],
                                               reviewContentItemId = Model.Id
                                           }, new {@class = "adminLink"})%>
+
+<%=Html.ActionLink("Редактировать", "EditReviewConentItem", "Review", new { id = Model.Id, Area = "Admin" }, new { @class = "adminLink" })%>&nbsp;
+
+                                           <div class="sOrderContaider"> <%=Model.SortOrder %></div>
+
 <% } %>
 <div class="reviewDetailsImages">
     <%
@@ -62,7 +70,9 @@
             <%=Html.ActionLink("Удалить", "DeleteReviewContentItemImage", "Review", new { id = image.Id, contentId = ViewData["reviewContentId"],Area="Admin" }, new { @class = "adminLink", onclick = "return confirm('Удалить изображение?')" })%>
         </div>
         <% } %>
+        <a rel="group<%=Model.Id%>" href="../../Content/ReviewImages/<%=image.ImageSource%>" class="fancy">
         <%= Html.CachedImage("~/Content/ReviewImages/", image.ImageSource, "reviewImagesDetailsThumb", image.ImageSource)%>
+        </a>
     </div>
     <%
           }

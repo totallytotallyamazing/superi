@@ -10,6 +10,8 @@
     </title>
      <link href="/Content/LislelliStyles/ListelliSite.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="/Scripts/jquery.js"></script>
+    <script type="text/javascript" src="/Scripts/jquery.scrollFollow.js"></script>
+    <script type="text/javascript" src="/Scripts/jquery.cookie.js"></script>
     <script type="text/javascript" src="/Scripts/jquery.fancybox.js"></script>
     <link href="/Content/LislelliStyles/AltObzor.css" rel="stylesheet" type="text/css" />
     <link href="/Content/fbDefault/jquery.fancybox.css" rel="stylesheet" type="text/css" />
@@ -27,9 +29,13 @@
             <div id="reviewLogo"></div>
         </div>
         <div id="main">
+            
             <div id="mainContentHead">
             </div>
             <div id="content">
+            <div id="reviewMenuContainer">
+            <div id="reviewMenu"></div>
+            </div>
                 <asp:ContentPlaceHolder runat="server" ID="MainContent">
                 </asp:ContentPlaceHolder>
             </div>

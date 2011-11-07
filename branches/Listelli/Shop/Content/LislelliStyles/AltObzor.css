@@ -6,6 +6,8 @@
 body
 {
     background-color: #000;
+    overflow:auto;
+    overflow-x:hidden;
 }
 
 #page
@@ -72,6 +74,7 @@ body
     margin-right: auto;
     margin-top: -35px;
     width: 900px; /*background-color: red;*/
+    
 }
 
 #sign
@@ -232,4 +235,32 @@ body
     width: 37px;
     height: 14px;
     background-image: url('img/pattern2.gif');
+}
+
+.sOrderContaider
+{
+    color:Fuchsia;
+    font-weight:bold;
+    font-size:14px;
+}
+
+#reviewMenuContainer
+{
+    height:1000px;
+    position:absolute;
+ 
+    color:Black;
+    float:right;
+    left:900px;
+    width:1000px;
+}
+
+
+#reviewMenu
+{
+    height:100px;
+    width:1000px;
+    background-color:Blue;
+    margin-top:350px;
+    position:relative;
 }

@@ -423,11 +423,13 @@
     <Content Include="Scripts\fisheye-iutil.js" />
     <Content Include="Scripts\jquery-ui-1.8.11.custom.min.js" />
     <Content Include="Scripts\jquery.combobox.js" />
+    <Content Include="Scripts\jquery.cookie.js" />
     <Content Include="Scripts\jquery.dimensions.js" />
     <Content Include="Scripts\jquery.fancybox.js" />
     <Content Include="Scripts\jquery.FCKEditor.js" />
     <Content Include="Scripts\jquery.history.js" />
     <Content Include="Scripts\jquery.js" />
+    <Content Include="Scripts\jquery.scrollFollow.js" />
     <Content Include="Scripts\jquery.uploadify.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.watermark.js" />

@@ -34,7 +34,12 @@
             </div>
             <div id="content">
             <div id="reviewMenuContainer">
-            <div id="reviewMenu"></div>
+
+            <asp:ContentPlaceHolder runat="server" ID="MenuPlaceHolder">
+                
+                </asp:ContentPlaceHolder>
+
+            
             </div>
                 <asp:ContentPlaceHolder runat="server" ID="MainContent">
                 </asp:ContentPlaceHolder>

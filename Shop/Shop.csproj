@@ -363,6 +363,9 @@
     <Content Include="Content\LislelliStyles\img\obzor-inner-bg-middle.gif" />
     <Content Include="Content\LislelliStyles\img\obzor-inner-bg-top.gif" />
     <Content Include="Content\LislelliStyles\img\obzor-logo.gif" />
+    <Content Include="Content\LislelliStyles\img\obzor-menu-back.gif" />
+    <Content Include="Content\LislelliStyles\img\obzor-menu-home.gif" />
+    <Content Include="Content\LislelliStyles\img\obzor-menu-up.gif" />
     <Content Include="Content\LislelliStyles\img\pattern1.gif" />
     <Content Include="Content\LislelliStyles\img\pattern2.gif" />
     <Content Include="Content\LislelliStyles\img\rightArrow.png" />

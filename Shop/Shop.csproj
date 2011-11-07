@@ -142,6 +142,7 @@
     <Compile Include="Helpers\LocalizationExtensions.cs" />
     <Compile Include="Helpers\MailHelper.cs" />
     <Compile Include="Helpers\CurrencyHelper.cs" />
+    <Compile Include="Helpers\MyGraphicsHelper.cs" />
     <Compile Include="Helpers\ResourceTracker.cs" />
     <Compile Include="Helpers\ScriptExtensions.cs" />
     <Compile Include="Helpers\Session.cs" />
@@ -461,11 +462,11 @@
     <Content Include="Views\Products\SimilarProducts.ascx" />
     <Content Include="Views\Products\SortingPanel.ascx" />
     <Content Include="Views\Review\Index.aspx" />
+    <Content Include="Views\Shared\ReviewMenu.ascx" />
     <Content Include="Views\Shared\ContentPartial.ascx" />
     <Content Include="Views\Shared\ContestLinkBubble.ascx" />
     <Content Include="Views\Shared\LogOnOrSignUp.ascx" />
     <Content Include="Views\Products\Pager.ascx" />
-    <Content Include="Views\Shared\ReviewMenu.ascx" />
     <Content Include="Views\Shared\Subscribe.ascx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

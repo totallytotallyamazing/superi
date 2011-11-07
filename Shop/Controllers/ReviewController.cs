@@ -31,6 +31,7 @@ namespace Shop.Controllers
                     item.ReviewContentItemImages.Load();
                 }
                 ViewData["reviewContentId"] = content.Id;
+                ViewData["reviewContentName"] = content.Name;
                 return View(content);
             }
         }

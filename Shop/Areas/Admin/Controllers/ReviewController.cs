@@ -126,7 +126,7 @@ namespace Shop.Areas.Admin.Controllers
                 content.ReviewContentItems.Add(contentItem);
                 context.SaveChanges();
 
-                return RedirectToAction("Details", "Review", new { Area = "", id = content.Id });
+                return RedirectToAction("Details", "Review", new { Area = "", id = content.Name });
             }
         }
 
@@ -148,10 +148,10 @@ namespace Shop.Areas.Admin.Controllers
             {
                 int id = Convert.ToInt32(form["Id"]);
                 var content = context.ReviewContentItem.Include("ReviewContent").Where(c => c.Id == id).First();
-                var contentId = content.ReviewContent.Id;
+                var contentName = content.ReviewContent.Name;
                 TryUpdateModel(content, new[] {"Text", "SortOrder"});
                 context.SaveChanges();
-                return RedirectToAction("Details", "Review", new {Area = "", id = contentId});
+                return RedirectToAction("Details", "Review", new { Area = "", id = contentName });
             }
             
         }
@@ -160,12 +160,12 @@ namespace Shop.Areas.Admin.Controllers
         {
             using (var context = new ReviewStorage())
             {
-                var contentItem = context.ReviewContentItem.Where(c => c.Id == id).First();
+                var contentItem = context.ReviewContentItem.Include("ReviewContent").Where(c => c.Id == id).First();
+                string contentName = contentItem.ReviewContent.Name;
                 context.DeleteObject(contentItem);
                 context.SaveChanges();
-
+                return RedirectToAction("Details", "Review", new {Area = "", id = contentName});
             }
-            return RedirectToAction("Details", "Review", new { Area = "", id = contentId });
         }
 
         public ActionResult AddReviewContentItemImage(int reviewContentId, int? reviewContentItemId)
@@ -220,12 +220,12 @@ namespace Shop.Areas.Admin.Controllers
                 }
 
 
-                return RedirectToAction("Details", "Review", new { Area = "", id = content.Id });
+                return RedirectToAction("Details", "Review", new { Area = "", id = content.Name });
             }
 
         }
 
-        public ActionResult DeleteReviewContentItemImage(int id, int contentId)
+        public ActionResult DeleteReviewContentItemImage(int id, string contentName)
         {
             using (var context = new ReviewStorage())
             {
@@ -243,7 +243,7 @@ namespace Shop.Areas.Admin.Controllers
                 context.SaveChanges();
             }
 
-            return RedirectToAction("Details", "Review", new { Area = "", id = contentId });
+            return RedirectToAction("Details", "Review", new { Area = "", id = contentName });
         }
 
 

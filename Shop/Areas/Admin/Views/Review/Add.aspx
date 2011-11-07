@@ -1,23 +1,29 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Review.Master" Inherits="System.Web.Mvc.ViewPage<Shop.Models.ReviewContent>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Add
+	Добавление содержимого
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Add</h2>
+    <h2>Добавление содержимого</h2>
 
     <% using (Html.BeginForm("Add", "Review", FormMethod.Post, new { enctype = "multipart/form-data" }))
        {%>
         <%: Html.ValidationSummary(true) %>
 
         <fieldset>
-            <legend>Fields</legend>
-            
             
             <div class="editor-label">
-                <%: Html.LabelFor(model => model.Title) %>
+                Адрес страницы (должен быть уникальным)
+            </div>
+            <div class="editor-field">
+                <%: Html.TextBoxFor(model => model.Name) %>
+                <%: Html.ValidationMessageFor(model => model.Name)%>
+            </div>
+            
+            <div class="editor-label">
+                Заголовок
             </div>
             <div class="editor-field">
                 <%: Html.TextBoxFor(model => model.Title) %>
@@ -25,7 +31,7 @@
             </div>
             
             <div class="editor-label">
-                <%: Html.LabelFor(model => model.Description) %>
+                Описание
             </div>
             <div class="editor-field">
                 <%: Html.TextAreaFor(model => model.Description) %>
@@ -33,14 +39,14 @@
             </div>
             
             <div class="editor-label">
-                <%: Html.LabelFor(model => model.ImageSource) %>
+                Изображение
             </div>
             <div class="editor-field">
                <input type="file" name="logo" />
             </div>
             
             <div class="editor-label">
-                <%: Html.LabelFor(model => model.SortOrder) %>
+                Порядок отображения
             </div>
             <div class="editor-field">
                 <%: Html.TextBoxFor(model => model.SortOrder) %>
@@ -48,14 +54,14 @@
             </div>
             
             <p>
-                <input type="submit" value="Create" />
+               <input type="submit" value="Сохранить" />
             </p>
         </fieldset>
 
     <% } %>
 
     <div>
-        <%: Html.ActionLink("Back to List", "Index") %>
+       <%: Html.ActionLink("Назад к списку", "Index", "Review", new { Area=""},null)%>
     </div>
 
 </asp:Content>

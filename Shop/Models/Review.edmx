@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="gb_listelliModel2.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="gb_listelliModel2.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="gb_listelliModel2StoreContainer">
           <EntitySet Name="ReviewContent" EntityType="gb_listelliModel2.Store.ReviewContent" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ReviewContentItem" EntityType="gb_listelliModel2.Store.ReviewContentItem" store:Type="Tables" Schema="dbo" />
@@ -27,6 +27,7 @@
           <Property Name="Description" Type="varchar" MaxLength="1000" />
           <Property Name="ImageSource" Type="varchar" MaxLength="1000" />
           <Property Name="SortOrder" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="ReviewContentItem">
           <Key>
@@ -71,8 +72,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="gb_listelliModel2" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
@@ -99,6 +99,7 @@
           <Property Name="ImageSource" Type="String" MaxLength="1000" Unicode="false" FixedLength="false" />
           <Property Name="SortOrder" Type="Int32" Nullable="false" />
           <NavigationProperty Name="ReviewContentItems" Relationship="gb_listelliModel2.FK_ReviewContentItem_ReviewContent" FromRole="ReviewContent" ToRole="ReviewContentItem" />
+          <Property Type="String" Name="Name" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="ReviewContentItem">
           <Key>
@@ -153,7 +154,8 @@
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="gb_listelliModel2StoreContainer" CdmEntityContainer="ReviewStorage">
           <EntitySetMapping Name="ReviewContent"><EntityTypeMapping TypeName="gb_listelliModel2.ReviewContent"><MappingFragment StoreEntitySet="ReviewContent">
-            <ScalarProperty Name="Id" ColumnName="Id" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
             <ScalarProperty Name="Title" ColumnName="Title" />
             <ScalarProperty Name="Description" ColumnName="Description" />
             <ScalarProperty Name="ImageSource" ColumnName="ImageSource" />

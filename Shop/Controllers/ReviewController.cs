@@ -21,11 +21,11 @@ namespace Shop.Controllers
             }
         }
 
-        public ActionResult Details(int id)
+        public ActionResult Details(string id)
         {
             using (var context = new ReviewStorage())
             {
-                var content = context.ReviewContent.Include("ReviewContentItems").Where(c => c.Id == id).First();
+                var content = context.ReviewContent.Include("ReviewContentItems").Where(c => c.Name == id).First();
                 foreach (var item in content.ReviewContentItems)
                 {
                     item.ReviewContentItemImages.Load();

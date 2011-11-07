@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<Shop.Models.ReviewContentItem>" %>
-<%@ Import Namespace="Dev.Mvc.Helpers" %>
+<%@ Import Namespace="Shop.Helpers" %>
 <%if (Model.ContentType == 1)
   {
 %>
@@ -7,7 +7,7 @@
   { %>
 <div>
     <%=Html.ActionLink("Редактировать", "EditReviewConentItem", "Review", new { id = Model.Id, Area = "Admin" }, new { @class = "adminLink" })%>&nbsp;
-    <%=Html.ActionLink("Удалить", "DeleteReviewContentItem", "Review", new { id = Model.Id, contentId = ViewData["reviewContentId"],Area="Admin" }, new { @class = "adminLink", onclick = "return confirm('Удалить блок?')" })%>
+    <%=Html.ActionLink("Удалить", "DeleteReviewContentItem", "Review", new { id = Model.Id, Area="Admin" }, new { @class = "adminLink", onclick = "return confirm('Удалить блок?')" })%>
     <div class="sOrderContaider"> <%=Model.SortOrder %></div>
    
 </div>
@@ -26,7 +26,7 @@
           { %>
         <div>
             <%=Html.ActionLink("Редактировать", "EditReviewConentItem", "Review", new { id = Model.Id, Area = "Admin" }, new { @class = "adminLink" })%>&nbsp;
-            <%=Html.ActionLink("Удалить", "DeleteReviewContentItem", "Review", new { id = Model.Id, contentId = ViewData["reviewContentId"],Area="Admin" }, new { @class = "adminLink", onclick = "return confirm('Удалить блок?')" })%>
+            <%=Html.ActionLink("Удалить", "DeleteReviewContentItem", "Review", new { id = Model.Id,Area="Admin" }, new { @class = "adminLink", onclick = "return confirm('Удалить блок?')" })%>
            <div class="sOrderContaider"> <%=Model.SortOrder %></div>
         </div>
         <% } %>
@@ -67,7 +67,7 @@
         <%if (Roles.IsUserInRole("Administrators"))
           { %>
         <div>
-            <%=Html.ActionLink("Удалить", "DeleteReviewContentItemImage", "Review", new { id = image.Id, contentId = ViewData["reviewContentId"],Area="Admin" }, new { @class = "adminLink", onclick = "return confirm('Удалить изображение?')" })%>
+            <%=Html.ActionLink("Удалить", "DeleteReviewContentItemImage", "Review", new { id = image.Id, contentName = ViewData["reviewContentName"],Area="Admin" }, new { @class = "adminLink", onclick = "return confirm('Удалить изображение?')" })%>
         </div>
         <% } %>
         <a rel="group<%=Model.Id%>" href="../../Content/ReviewImages/<%=image.ImageSource%>" class="fancy">

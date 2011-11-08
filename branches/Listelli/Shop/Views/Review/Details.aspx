@@ -42,7 +42,7 @@
     $(function () {
         $(".fancy").fancybox({ showCloseButton: true, cyclic: true, showNavArrows: true, padding: 0, margin: 0, centerOnScroll: true });
         $("#reviewMenu").scrollFollow({
-        offset:500
+        offset:400
         });
     });
 </script>

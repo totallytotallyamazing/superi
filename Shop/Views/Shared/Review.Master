@@ -26,7 +26,12 @@
  <%if (Roles.IsUserInRole("Administrators")) Html.RenderPartial("AdminPanel");  %>
     <div id="page">
         <div id="header">
-            <div id="reviewLogo"></div>
+            <div id="reviewLogo">
+            <%if (ViewData["reviewContentId"]!=null)
+              { %>
+            <%=Html.ActionLink("[IMAGE]", "Index", "Review", new { Area = "" }, new { id="logoLink"}).ToString().Replace("[IMAGE]","")%>
+            <%} %>
+            </div>
         </div>
         <div id="main">
             

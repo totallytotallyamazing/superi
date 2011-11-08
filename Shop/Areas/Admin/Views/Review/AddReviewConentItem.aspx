@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Review.Master" Inherits="System.Web.Mvc.ViewPage<Shop.Models.ReviewContentItem>" %>
-
+<%@ Import Namespace="Dev.Mvc.Helpers" %>
+<%@ Import Namespace="Dev.Mvc.Ajax" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	Добавление содержимого
 </asp:Content>
@@ -54,5 +55,16 @@
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="includes" runat="server">
+<script type="text/javascript" src="/Scripts/MicrosoftAjax.js"></script>
+    <script type="text/javascript" src="/Scripts/MicrosoftMvcValidation.js"></script>
+      
+    <%= Ajax.ScriptInclude("/Controls/ckeditor/ckeditor.js")%>
+    <%= Ajax.ScriptInclude("/Controls/ckeditor/adapters/jquery.js")%>
+
+    <script type="text/javascript">
+        $(function () {
+            CKEDITOR.replace("Text", { toolbar: "Media" });
+        })
+</script>
 </asp:Content>
 

@@ -28,8 +28,10 @@ namespace Shop.Areas.Admin.Controllers
             {
 
                 ReviewContent content = new ReviewContent();
-                TryUpdateModel(content, new[] { "Title", "Description", "SortOrder", "Name" });
-                //designer.Summary = HttpUtility.HtmlDecode(form["Summary"]);
+                TryUpdateModel(content, new[] { "Title", "SortOrder", "Name" });
+                
+
+                content.Description = HttpUtility.HtmlDecode(form["Description"]);
 
                 if (Request.Files["logo"] != null && !string.IsNullOrEmpty(Request.Files["logo"].FileName))
                 {
@@ -65,7 +67,9 @@ namespace Shop.Areas.Admin.Controllers
             {
                 int id = Convert.ToInt32(form["Id"]);
                 var content = context.ReviewContent.Where(c => c.Id == id).First();
-                TryUpdateModel(content, new[] { "Title", "Description", "SortOrder", "Name" });
+                TryUpdateModel(content, new[] { "Title", "SortOrder", "Name" });
+
+                content.Description = HttpUtility.HtmlDecode(form["Description"]);
                 //designer.Summary = HttpUtility.HtmlDecode(form["Summary"]);
 
                 if (Request.Files["logo"] != null && !string.IsNullOrEmpty(Request.Files["logo"].FileName))
@@ -121,8 +125,8 @@ namespace Shop.Areas.Admin.Controllers
                 var content = context.ReviewContent.Where(c => c.Id == reviewContentId).First();
 
                 var contentItem = new ReviewContentItem();
-                TryUpdateModel(contentItem, new[] { "Text", "SortOrder", "ContentType" });
-
+                TryUpdateModel(contentItem, new[] {"SortOrder", "ContentType" });
+                contentItem.Text = HttpUtility.HtmlDecode(form["Text"]);
                 content.ReviewContentItems.Add(contentItem);
                 context.SaveChanges();
 
@@ -149,7 +153,8 @@ namespace Shop.Areas.Admin.Controllers
                 int id = Convert.ToInt32(form["Id"]);
                 var content = context.ReviewContentItem.Include("ReviewContent").Where(c => c.Id == id).First();
                 var contentName = content.ReviewContent.Name;
-                TryUpdateModel(content, new[] {"Text", "SortOrder"});
+                TryUpdateModel(content, new[] {"SortOrder"});
+                content.Text = HttpUtility.HtmlDecode(form["Text"]);
                 context.SaveChanges();
                 return RedirectToAction("Details", "Review", new { Area = "", id = contentName });
             }

@@ -6,8 +6,8 @@
 body
 {
     background-color: #000;
-    overflow:auto;
-    overflow-x:hidden;
+    overflow: auto;
+    overflow-x: hidden;
 }
 
 #page
@@ -74,7 +74,6 @@ body
     margin-right: auto;
     margin-top: -35px;
     width: 900px; /*background-color: red;*/
-    
 }
 
 #sign
@@ -174,7 +173,7 @@ body
     color: #000;
     font-weight: bold;
     text-align: center;
-    margin-bottom:30px;
+    margin-bottom: 30px;
 }
 
 .reviewDetails .description
@@ -182,52 +181,50 @@ body
     width: 500px;
     position: relative;
     margin: 0 auto;
-    font-family:Arial;
-    font-size:15px;
-    font-style:italic;
+    font-family: Arial;
+    font-size: 15px;
+    font-style: italic;
 }
 
 
 .reviewDetails .contentBlock
 {
-    padding:20px 0;
-	font-family: Arial;
-	font-size: 14px;
-	color: #666666;
+    padding: 20px 0;
+    font-family: Arial;
+    font-size: 14px;
+    color: #666666;
 }
 
 
 .reviewDetails .reviewDetailsImage
 {
-	float: left;
-	margin: 15px;
+    float: left;
+    margin: 15px;
 }
 
 .reviewDetails .reviewDetailsImages
 {
-	padding-left: 55px;
+    padding-left: 55px;
 }
 
 .reviewDetails .reviewDetailsImage img
 {
-	border: 7px solid #cccccc;
+    border: 7px solid #cccccc;
 }
 
 .pattern1, .pattern2
 {
     position: relative;
     margin: 0 auto;
-    margin-top:50px;
-    
+    margin-top: 50px;
 }
 
 .pattern1
 {
-    
     width: 40px;
     height: 16px;
     background-image: url('img/pattern1.gif');
-    margin-bottom:50px;
+    margin-bottom: 50px;
 }
 
 .pattern2
@@ -239,56 +236,68 @@ body
 
 .sOrderContaider
 {
-    color:Fuchsia;
-    font-weight:bold;
-    font-size:14px;
+    color: Fuchsia;
+    font-weight: bold;
+    font-size: 14px;
 }
 
 #reviewMenuContainer
 {
-    height:1000px;
-    position:absolute;
- 
-    color:Black;
-    float:right;
-    left:902px;
-    width:1000px;
+    height: 1000px;
+    position: absolute;
+    color: Black;
+    float: right;
+    left: 902px;
+    width: 1000px;
 }
 
 
 .menuLinkPlace
 {
-    width:1000px;
-    background-color:#0b0b0b;
-    margin-bottom:6px;
+    width: 1000px;
+    background-color: #0b0b0b;
+    margin-bottom: 6px;
 }
 
 .menuLinkPlace.home
 {
-    margin-top:25px;
+    margin-top: 25px;
 }
 
 #reviewMenu
 {
-    width:1000px;
-    margin-top:350px;
-    position:relative;
+    width: 1000px;
+    margin-top: 350px;
+    position: relative;
 }
 
 #reviewMenuUp, #reviewMenuBack, #reviewMenuHome
 {
-    width:90px;
-    height:28px;
-    display:block;
+    width: 90px;
+    height: 28px;
+    display: block;
 }
 
 #reviewMenuUp
 {
-    background-image:url('img/obzor-menu-up.gif');
-    } 
+    background-image: url('img/obzor-menu-up.gif');
+}
 #reviewMenuBack
-{background-image:url('img/obzor-menu-back.gif');
-    }
+{
+    background-image: url('img/obzor-menu-back.gif');
+}
 #reviewMenuHome
-{background-image:url('img/obzor-menu-home.gif');
-    }
+{
+    background-image: url('img/obzor-menu-home.gif');
+}
+
+
+
+#logoLink
+{
+    margin-left:87px;
+    width: 233px;
+    height: 47px;
+    display: block;
+    background: url('img/pixel.gif');
+}

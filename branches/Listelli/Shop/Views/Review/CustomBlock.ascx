@@ -71,7 +71,7 @@
         </div>
         <% } %>
         <a rel="group<%=Model.Id%>" href="../../Content/ReviewImages/<%=image.ImageSource%>" class="fancy">
-        <%= Html.CachedImage("~/Content/ReviewImages/", image.ImageSource, "reviewImagesDetailsThumb", image.ImageSource)%>
+        <%= Html.CachedImage1("~/Content/ReviewImages/", image.ImageSource, "reviewImagesDetailsThumb", image.ImageSource)%>
         </a>
     </div>
     <%

@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Review.Master" Inherits="System.Web.Mvc.ViewPage<Shop.Models.ReviewContent>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-    Details
+    <%=Model.Title %>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div class="reviewDetails">
@@ -52,4 +52,8 @@
 
 <asp:Content ContentPlaceHolderID="MenuPlaceHolder" runat="server">
 <% Html.RenderPartial("ReviewMenu"); %>
+</asp:Content>
+
+<asp:Content ID="Content4" ContentPlaceHolderID="HeaderTextPlaceHolder" runat="server">
+<%Html.RenderPartial("HeaderText"); %>
 </asp:Content>

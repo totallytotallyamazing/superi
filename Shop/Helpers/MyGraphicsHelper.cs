@@ -147,7 +147,7 @@ namespace Shop.Helpers
             }
         }
 
-        public static string CachedImage(this HtmlHelper helper, string originalPath, string fileName, string cacheFolder, string alt, bool forDesigners = false)
+        public static string CachedImage1(this HtmlHelper helper, string originalPath, string fileName, string cacheFolder, string alt, bool forDesigners = false)
         {
             StringBuilder sb = new StringBuilder();
             string formatString = "<img src=\"{0}\" alt=\"{1}\" />";

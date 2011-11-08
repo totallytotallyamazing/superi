@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Review.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<Shop.Models.ReviewContent>>" %>
 <%@ Import Namespace="Shop.Helpers" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Index
+	Альтернативный обзор
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
@@ -27,7 +27,7 @@
         <td>
       <div class="reviewContent">
         <div class="image">
-           <%=Html.ActionLink("[IMAGE]","Details","Review",new{id=item.Name},null).ToString().Replace("[IMAGE]", Html.CachedImage("~/Content/ReviewImages/", item.ImageSource, "reviewImagesThumb", item.ImageSource)) %>
+           <%=Html.ActionLink("[IMAGE]","Details","Review",new{id=item.Name},null).ToString().Replace("[IMAGE]", Html.CachedImage1("~/Content/ReviewImages/", item.ImageSource, "reviewImagesThumb", item.ImageSource)) %>
         </div>
         <div class="content">
         <% if (Roles.IsUserInRole("Administrators"))
@@ -55,3 +55,6 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="includes" runat="server">
 </asp:Content>
 
+<asp:Content ContentPlaceHolderID="HeaderTextPlaceHolder" runat="server">
+<%Html.RenderPartial("HeaderText"); %>
+</asp:Content>

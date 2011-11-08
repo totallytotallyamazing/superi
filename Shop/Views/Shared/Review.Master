@@ -31,6 +31,12 @@
               { %>
             <%=Html.ActionLink("[IMAGE]", "Index", "Review", new { Area = "" }, new { id="logoLink"}).ToString().Replace("[IMAGE]","")%>
             <%} %>
+            <div id="headerSign">
+                <asp:ContentPlaceHolder runat="server" ID="HeaderTextPlaceHolder">
+                
+                </asp:ContentPlaceHolder>
+                
+            </div>
             </div>
         </div>
         <div id="main">

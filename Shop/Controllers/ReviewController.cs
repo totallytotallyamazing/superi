@@ -16,7 +16,8 @@ namespace Shop.Controllers
         {
             using (var context = new ReviewStorage())
             {
-                var content = context.ReviewContent.ToList();
+                var content = context.ReviewContent.Where(c=>c.Id!=6).ToList();
+                ViewData["reviewHeaderText"] = context.ReviewContent.Where(c => c.Id == 6).Select(c => c.Description).FirstOrDefault();
                 return View(content);
             }
         }
@@ -32,6 +33,9 @@ namespace Shop.Controllers
                 }
                 ViewData["reviewContentId"] = content.Id;
                 ViewData["reviewContentName"] = content.Name;
+
+                ViewData["reviewHeaderText"] = context.ReviewContent.Where(c => c.Id == 6).Select(c=>c.Description).FirstOrDefault();
+
                 return View(content);
             }
         }

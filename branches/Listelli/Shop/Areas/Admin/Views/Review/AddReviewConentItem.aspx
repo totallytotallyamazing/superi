@@ -21,7 +21,7 @@
                 Тип содержимого
             </div>
             <div class="editor-field">
-                <%=Html.DropDownList("ContentType", new List<SelectListItem>() { new SelectListItem { Text = "Текстовый блок", Value = "1" }, new SelectListItem { Text = "Тестовый блок в рамке", Value = "2" } })%>
+                <%=Html.DropDownList("ContentType", new List<SelectListItem>() { new SelectListItem { Text = "Текстовый блок", Value = "1" }, new SelectListItem { Text = "Заметка", Value = "2" } })%>
             </div>
 
           

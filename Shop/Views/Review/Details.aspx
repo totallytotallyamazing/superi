@@ -16,7 +16,10 @@
 
         <%if (Roles.IsUserInRole("Administrators")) { 
               %>
-              <%=Html.ActionLink("Добавить текстовый блок", "AddReviewConentItem", "Review", new { Area = "Admin", id = Model.Id }, new { @class="adminLink"})%>
+              <%=Html.ActionLink("Добавить текстовый блок", "AddReviewConentItem", "Review", new { Area = "Admin", id = Model.Id, contentType = 1 }, new { @class = "adminLink" })%>
+              &nbsp;&nbsp;
+              <%=Html.ActionLink("Добавить заметку", "AddReviewConentItem", "Review", new { Area = "Admin", id = Model.Id, contentType=2 }, new { @class = "adminLink" })%>
+              &nbsp;&nbsp;
               <%=Html.ActionLink("Добавить блок изображений", "AddReviewContentItemImage", "Review", new { Area = "Admin", reviewContentId = Model.Id }, new { @class = "adminLink" })%>
               
               <%

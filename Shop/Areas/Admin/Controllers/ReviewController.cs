@@ -104,7 +104,7 @@ namespace Shop.Areas.Admin.Controllers
             }
         }
 
-        public ActionResult AddReviewConentItem(int id)
+        public ActionResult AddReviewConentItem(int id, int? contentType)
         {
             using (var context = new ReviewStorage())
             {
@@ -113,6 +113,7 @@ namespace Shop.Areas.Admin.Controllers
                 ViewData["reviewContentName"] = content.Name;
                 int maxSortOrder = content.ReviewContentItems.Count() > 0 ? content.ReviewContentItems.Max(c => c.SortOrder) : 0;
                 var contentItem = new ReviewContentItem { SortOrder = maxSortOrder + 1 };
+                ViewData["ContentType"] = contentType;
                 return View(contentItem);
             }
         }

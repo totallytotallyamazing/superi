@@ -85,16 +85,12 @@ namespace Shop.Helpers
             graphics.DrawImage(image, destRect, sourceRect, GraphicsUnit.Pixel);
 
 
-            ////
-            //Watermark watermark = new Watermark();
-            //string waterMarkText = "© Клафс Украина | www.klafs.in.ua";
-            //watermark.WaterMarkToImage(thumbnailImage, waterMarkText);
-            ////
+        
             thumbnailImage.Save(saveTo, System.Drawing.Imaging.ImageFormat.Jpeg);
             saveTo.Position = 0;
         }
 
-        public static string GetCachedImage(string originalPath, string fileName, string cacheFolder, bool forDesigners = false)
+        public static string GetCachedImage(string originalPath, string fileName, string cacheFolder)
         {
             if (string.IsNullOrEmpty(fileName) ||
                 !File.Exists(Path.Combine(HttpContext.Current.Server.MapPath(originalPath), fileName)))
@@ -119,7 +115,7 @@ namespace Shop.Helpers
             {
                 try
                 {
-                    CacheImage(originalPath, fileName, cacheFolder, forDesigners);
+                    CacheImage(originalPath, fileName, cacheFolder);
                 }
                 catch
                 {
@@ -129,7 +125,7 @@ namespace Shop.Helpers
             }
         }
 
-        private static void CacheImage(string originalPath, string fileName, string cacheFolder, bool forDesigners)
+        private static void CacheImage(string originalPath, string fileName, string cacheFolder)
         {
             string sourcePath = Path.Combine(HttpContext.Current.Server.MapPath(originalPath), fileName);
             Bitmap image;
@@ -147,12 +143,12 @@ namespace Shop.Helpers
             }
         }
 
-        public static string CachedImage1(this HtmlHelper helper, string originalPath, string fileName, string cacheFolder, string alt, bool forDesigners = false)
+        public static string CachedImage1(this HtmlHelper helper, string originalPath, string fileName, string cacheFolder, string alt)
         {
             StringBuilder sb = new StringBuilder();
             string formatString = "<img src=\"{0}\" alt=\"{1}\" />";
 
-            sb.AppendFormat(formatString, GetCachedImage(originalPath, fileName, cacheFolder, forDesigners), alt);
+            sb.AppendFormat(formatString, GetCachedImage(originalPath, fileName, cacheFolder), alt);
 
             return sb.ToString();
         }

@@ -69,14 +69,15 @@
     <div class="mainMenuItemSplitter" id="seeMenuReplacer">
     </div>
     <% Html.RenderPartial("SeeMenu"); %>
-    <div class="<%= eugeneClass %>">
-        <%= Html.ActionLink("Студия", "Index", "Eugene") %>
+    <div class="<%= clientsClass %>">
+        <%= Html.ActionLink("Как работаем", "Index", "Clients")%>
     </div>
     <div class="mainMenuItemSplitter">
     </div>
-    <div class="<%= clientsClass %>">
-        <%= Html.ActionLink("Клиенты", "Index", "Clients")%>
+    <div class="<%= eugeneClass %>">
+        <%= Html.ActionLink("Тарифы", "Index", "Eugene") %>
     </div>
+    
     <%--    <div class="mainMenuItemSplitter"></div>
     <div class="<%= notesClass %>">
         <%= Html.ActionLink("Заметки", "Index", "Notes")%>

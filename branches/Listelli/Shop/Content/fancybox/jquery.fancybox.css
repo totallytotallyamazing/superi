@@ -291,7 +291,7 @@
 	border: 0;
 	/*width: 20px;
 	height: 20px;*/
-	z-index: 1001;
+	/*z-index: 1001;*/
 }
 
 #fancybox-bg-n {
@@ -375,7 +375,7 @@
 	/*background-image: url('fancybox.png');*/
 	/*background-position: -40px -122px;*/
 	position: absolute;
-	z-index: 1100;
+	/*z-index: 1100;*/
 	
 }
 

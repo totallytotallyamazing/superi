@@ -162,7 +162,7 @@ namespace Shop.Areas.Admin.Controllers
             
         }
 
-        public ActionResult DeleteReviewContentItem(int id, int contentId)
+        public ActionResult DeleteReviewContentItem(int id)
         {
             using (var context = new ReviewStorage())
             {

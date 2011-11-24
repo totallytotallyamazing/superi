@@ -51,7 +51,7 @@
                                           }, new {@class = "adminLink"})%>
 
 <%=Html.ActionLink("Редактировать", "EditReviewConentItem", "Review", new { id = Model.Id, Area = "Admin" }, new { @class = "adminLink" })%>&nbsp;
-
+<%=Html.ActionLink("Удалить", "DeleteReviewContentItem", "Review", new { id = Model.Id,Area="Admin" }, new { @class = "adminLink", onclick = "return confirm('Удалить блок?')" })%>
                                            <div class="sOrderContaider"> <%=Model.SortOrder %></div>
 
 <% } %>

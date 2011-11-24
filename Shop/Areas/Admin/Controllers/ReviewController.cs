@@ -29,7 +29,7 @@ namespace Shop.Areas.Admin.Controllers
 
                 ReviewContent content = new ReviewContent();
                 TryUpdateModel(content, new[] { "Title", "SortOrder", "Name" });
-                
+
 
                 content.Description = HttpUtility.HtmlDecode(form["Description"]);
 
@@ -96,11 +96,11 @@ namespace Shop.Areas.Admin.Controllers
                 var content = context.ReviewContent.Include("ReviewContentItems").Where(c => c.Id == id).First();
 
                 string imageSource = content.ImageSource;
-                
+
                 context.DeleteObject(content);
                 context.SaveChanges();
                 IOHelper.DeleteFile("~/Content/ReviewImages", imageSource);
-                return RedirectToAction("Index", "Review",new{Area=""});
+                return RedirectToAction("Index", "Review", new { Area = "" });
             }
         }
 
@@ -126,7 +126,7 @@ namespace Shop.Areas.Admin.Controllers
                 var content = context.ReviewContent.Where(c => c.Id == reviewContentId).First();
 
                 var contentItem = new ReviewContentItem();
-                TryUpdateModel(contentItem, new[] {"SortOrder", "ContentType" });
+                TryUpdateModel(contentItem, new[] { "SortOrder", "ContentType" });
                 contentItem.Text = HttpUtility.HtmlDecode(form["Text"]);
                 content.ReviewContentItems.Add(contentItem);
                 context.SaveChanges();
@@ -154,12 +154,12 @@ namespace Shop.Areas.Admin.Controllers
                 int id = Convert.ToInt32(form["Id"]);
                 var content = context.ReviewContentItem.Include("ReviewContent").Where(c => c.Id == id).First();
                 var contentName = content.ReviewContent.Name;
-                TryUpdateModel(content, new[] {"SortOrder"});
+                TryUpdateModel(content, new[] { "SortOrder" });
                 content.Text = HttpUtility.HtmlDecode(form["Text"]);
                 context.SaveChanges();
                 return RedirectToAction("Details", "Review", new { Area = "", id = contentName });
             }
-            
+
         }
 
         public ActionResult DeleteReviewContentItem(int id)
@@ -170,22 +170,48 @@ namespace Shop.Areas.Admin.Controllers
                 string contentName = contentItem.ReviewContent.Name;
                 context.DeleteObject(contentItem);
                 context.SaveChanges();
-                return RedirectToAction("Details", "Review", new {Area = "", id = contentName});
+                return RedirectToAction("Details", "Review", new { Area = "", id = contentName });
+            }
+        }
+
+
+        public ActionResult CheckForEmptyEntriesAndDelete(int id)
+        {
+            using (var context = new ReviewStorage())
+            {
+                var contentItem = context.ReviewContentItem.Include("ReviewContent").Include("ReviewContentItemImages").Where(c => c.Id == id).First();
+                string contentName = contentItem.ReviewContent.Name;
+                if (contentItem.ReviewContentItemImages.Count() == 0)
+                {
+                    context.DeleteObject(contentItem);
+                    context.SaveChanges();
+                }
+                return RedirectToAction("Details", "Review", new { Area = "", id = contentName });
             }
         }
 
         public ActionResult AddReviewContentItemImage(int reviewContentId, int? reviewContentItemId)
         {
-             using (var context = new ReviewStorage())
+            using (var context = new ReviewStorage())
             {
-                ViewData["reviewContentId"] = reviewContentId;
-                ViewData["reviewContentItemId"] = reviewContentItemId;
-
                 var content = context.ReviewContent.Where(c => c.Id == reviewContentId).First();
+                if (!reviewContentItemId.HasValue)
+                {
+                    ReviewContentItem contentItem;
+                    contentItem = new ReviewContentItem { ContentType = 3 };
+                    content.ReviewContentItems.Add(contentItem);
+                    context.SaveChanges();
+                    reviewContentItemId = contentItem.Id;
+                }
+                
+                ViewData["reviewContentItemId"] = reviewContentItemId;
+                ViewData["reviewContentId"] = reviewContentId;
+
+                ViewData["scriptData"] = string.Format("{{ReviewContentId: {0}, ReviewContentItemId: {1}}}", reviewContentId, reviewContentItemId);
 
                 ViewData["reviewContentName"] = content.Name;
                 return View();
-             }
+            }
         }
 
         [HttpPost]
@@ -230,6 +256,79 @@ namespace Shop.Areas.Admin.Controllers
             }
 
         }
+
+
+        static object lockobj = 1;
+
+        [HttpPost]
+        public void UploadImage(FormCollection form)
+        {
+            lock (lockobj)
+            {
+                using (var context = new ReviewStorage())
+                {
+                    int reviewContentId = Convert.ToInt32(form["ReviewContentId"]);
+                    int reviewContentItemId = Convert.ToInt32(form["ReviewContentItemId"]);
+
+                    var content = context.ReviewContent.Where(c => c.Id == reviewContentId).First();
+
+                    ReviewContentItem contentItem;
+
+                    if (reviewContentItemId != 0)
+                    {
+                        contentItem = context.ReviewContentItem.Where(c => c.Id == reviewContentItemId).First();
+                    }
+                    else
+                    {
+                        contentItem = new ReviewContentItem { ContentType = 3 };
+                        content.ReviewContentItems.Add(contentItem);
+                    }
+
+
+                    /*
+                    string folderRelativePath = string.Format("~/Content/CatalogueImages/Brand{0}Group{1}", form["BrandId"], form["GroupId"]);
+                    string folderAbsolutePath = Server.MapPath(folderRelativePath);
+            
+                    if (!Directory.Exists(folderAbsolutePath)) Directory.CreateDirectory(folderAbsolutePath);
+                    */
+
+
+
+                    HttpPostedFileBase file = Request.Files["Filedata"];
+                    //string fileName = IOHelper.GetUniqueFileName(folderRelativePath, file.FileName);
+                    string fileName = IOHelper.GetUniqueFileName("~/Content/ReviewImages", file.FileName);
+                    string filePath = Server.MapPath("~/Content/ReviewImages");
+                    filePath = Path.Combine(filePath, fileName);
+
+                    //string targetFilePath = Path.Combine(folderAbsolutePath, fileName);
+
+                    file.SaveAs(filePath);
+
+
+                    var image = new ReviewContentItemImage();
+
+                    image.ImageSource = fileName;
+
+                    contentItem.ReviewContentItemImages.Add(image);
+
+                    context.SaveChanges();
+
+                    /*
+                    CatalogueImage image = new CatalogueImage();
+                    image.BrandReference.EntityKey = new EntityKey("BrandCatalogue.Brands", "Id", int.Parse(form["BrandId"]));
+                    image.CatalogueGroupReference.EntityKey = new EntityKey("BrandCatalogue.CatalogueGroups", "Id", int.Parse(form["GroupId"]));
+                    image.Image = fileName;
+                    context.AddToCatalogueImages(image);
+                    context.SaveChanges();
+                     */
+
+
+
+                }
+            }
+            Response.Write("1");
+        }
+
 
         public ActionResult DeleteReviewContentItemImage(int id, string contentName)
         {

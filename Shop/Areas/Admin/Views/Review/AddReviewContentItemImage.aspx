@@ -7,37 +7,39 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
     <h2>Добавление изображения</h2>
-
-    <% using (Html.BeginForm("AddReviewContentItemImage", "Review", FormMethod.Post, new { enctype = "multipart/form-data" }))
+     <div id="selects">
+    <% using (Html.BeginForm("AddReviewContentItemImage", "Review", FormMethod.Get /*FormMethod.Post, new { enctype = "multipart/form-data" }*/))
        {%>
         <%: Html.ValidationSummary(true) %>
 
-        <fieldset>
+       
            
             
             <%=Html.Hidden("reviewContentId")%>
             <%=Html.Hidden("reviewContentItemId")%>
 
-            <div class="editor-label">
-                Выберите файл
-            </div>
-            <div class="editor-field">
-                <input type="file" name="logo" />
-            </div>
-            
-            <p>
-                <input type="submit" value="Загрузить" />
-            </p>
-        </fieldset>
+           
+        
 
     <% } %>
-
+    </div>
     <div>
-       <%: Html.ActionLink("Назад к списку", "Details", "Review", new { Area = "", id = ViewData["reviewContentName"] }, null)%>
+            <% Html.RenderPartial("UploadControl"); %>
+    </div>
+    <div>
+       <%: Html.ActionLink("Назад к списку", "CheckForEmptyEntriesAndDelete", "Review", new { Area = "Admin", id = ViewData["reviewContentItemId"] }, null)%>
     </div>
 
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="includes" runat="server">
+
+ <script type="text/javascript">
+     $(function () {
+         $("#selects select").change(function () {
+             $("#selects form").get(0).submit();
+         });
+     });
+    </script>
 </asp:Content>
 

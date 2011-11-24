@@ -230,6 +230,7 @@
     <Content Include="Areas\Admin\Views\Review\AddReviewContentItemImage.aspx" />
     <Content Include="Areas\Admin\Views\Review\Edit.aspx" />
     <Content Include="Areas\Admin\Views\Review\EditReviewConentItem.aspx" />
+    <Content Include="Areas\Admin\Views\Review\UploadControl.ascx" />
     <Content Include="Areas\Admin\Views\Subscribers\Create.aspx" />
     <Content Include="Areas\Admin\Views\Subscribers\Edit.aspx" />
     <Content Include="Areas\Admin\Views\Subscribers\Index.aspx" />

@@ -166,10 +166,20 @@ namespace Shop.Areas.Admin.Controllers
         {
             using (var context = new ReviewStorage())
             {
-                var contentItem = context.ReviewContentItem.Include("ReviewContent").Where(c => c.Id == id).First();
+                var contentItem = context.ReviewContentItem.Include("ReviewContent").Include("ReviewContentItemImages").Where(c => c.Id == id).First();
                 string contentName = contentItem.ReviewContent.Name;
+
+                while (contentItem.ReviewContentItemImages.Any())
+                {
+                    var image = contentItem.ReviewContentItemImages.First();
+                    IOHelper.DeleteFile("~/Content/ReviewImages", image.ImageSource);
+                    context.DeleteObject(image);
+                }
+
+
                 context.DeleteObject(contentItem);
                 context.SaveChanges();
+
                 return RedirectToAction("Details", "Review", new { Area = "", id = contentName });
             }
         }
@@ -195,22 +205,30 @@ namespace Shop.Areas.Admin.Controllers
             using (var context = new ReviewStorage())
             {
                 var content = context.ReviewContent.Where(c => c.Id == reviewContentId).First();
+                ReviewContentItem contentItem;
+
                 if (!reviewContentItemId.HasValue)
                 {
-                    ReviewContentItem contentItem;
+
                     contentItem = new ReviewContentItem { ContentType = 3 };
                     content.ReviewContentItems.Add(contentItem);
                     context.SaveChanges();
                     reviewContentItemId = contentItem.Id;
+                    
                 }
-                
+                else
+                {
+                    contentItem = context.ReviewContentItem.Include("ReviewContentItemImages").Where(c => c.Id == reviewContentItemId).First();
+                    ViewData["hasImages"] = true;
+                }
+
                 ViewData["reviewContentItemId"] = reviewContentItemId;
                 ViewData["reviewContentId"] = reviewContentId;
 
                 ViewData["scriptData"] = string.Format("{{ReviewContentId: {0}, ReviewContentItemId: {1}}}", reviewContentId, reviewContentItemId);
 
                 ViewData["reviewContentName"] = content.Name;
-                return View();
+                return View(contentItem);
             }
         }
 

@@ -32,7 +32,7 @@ namespace Shop.Helpers
 
         private static Rectangle CalculateDestRect(int limWidth, int limHeight, Size imageSize)
         {
-            return imageSize.Width< imageSize.Height ? new Rectangle(0, 0, limHeight, limWidth) : new Rectangle(0, 0, limWidth, limHeight);
+            return /*imageSize.Width< imageSize.Height ? new Rectangle(0, 0, limHeight, limWidth) :*/ new Rectangle(0, 0, limWidth, limHeight);
         }
 
         private static Rectangle CalculateSourceRect(string name, Size sourceImage)
@@ -40,16 +40,16 @@ namespace Shop.Helpers
             int previewHeight;
             int previewWidth;
 
-            if (sourceImage.Width > sourceImage.Height)
-            {
+            //if (sourceImage.Width > sourceImage.Height)
+            //{
                 previewHeight = limitHeight.ContainsKey(name) ? limitHeight[name] : 0;
                 previewWidth = limitWidth.ContainsKey(name) ? limitWidth[name] : 0;
-            }
-            else
-            {
-                previewWidth = limitHeight.ContainsKey(name) ? limitHeight[name] : 0;
-                previewHeight = limitWidth.ContainsKey(name) ? limitWidth[name] : 0;
-            }
+            //}
+            //else
+            //{
+            //    previewWidth = limitHeight.ContainsKey(name) ? limitHeight[name] : 0;
+            //    previewHeight = limitWidth.ContainsKey(name) ? limitWidth[name] : 0;
+            //}
 
             int resultWidth;
             int resultHeight;

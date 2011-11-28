@@ -876,6 +876,26 @@ a.txtBubbleNew:visited{color:#3399ff !important;}
     margin-bottom: 7px;
 }
 
+#altButton
+{
+    width:128px;
+    height:48px;
+    background-color:Red;
+    margin: 70px 0px 0px 167px;
+}
+
+#altButton a
+{
+    display:block;
+     width:128px;
+    height:48px;
+    background:url('./img/alt-button.png') no-repeat;
+}
+
+#altButton a:hover
+{
+    background-position:0 -48px;
+}
 
 #dotA
 {

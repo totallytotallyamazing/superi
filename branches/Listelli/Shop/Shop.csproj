@@ -300,7 +300,6 @@
     <Content Include="Content\fbDefault\jquery.fancybox.css" />
     <Content Include="Content\LislelliStyles\AltObzor.css" />
     <Content Include="Content\LislelliStyles\Designers.css" />
-    <Content Include="Content\LislelliStyles\img\alt-button.png" />
     <Content Include="Content\LislelliStyles\img\bannerDecor.png" />
     <Content Include="Content\LislelliStyles\img\bannerFoglie.png" />
     <Content Include="Content\LislelliStyles\img\bannerHackwood.png" />

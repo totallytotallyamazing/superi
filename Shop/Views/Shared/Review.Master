@@ -27,6 +27,7 @@
     <div id="page">
         <div id="header">
             <div id="reviewLogo">
+            <a href="http://listelli.ua" id="mainSiteLogoLink"></a>
             <%if (ViewData["reviewContentId"]!=null)
               { %>
             <%=Html.ActionLink("[IMAGE]", "Index", "Review", new { Area = "" }, new { id="logoLink"}).ToString().Replace("[IMAGE]","")%>

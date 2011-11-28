@@ -305,6 +305,15 @@ body
     position:absolute;
 }
 
+#mainSiteLogoLink
+{
+    width: 85px;
+    height: 47px;
+    display: block;
+    position:absolute;
+        
+}
+
 
 #headerSign
 {

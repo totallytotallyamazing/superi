@@ -7,7 +7,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
     <h2>Добавление изображений</h2>
-     <div>
+     <div style="margin-top:20px;">
             <% Html.RenderPartial("UploadControl"); %>
     </div>
      <div id="selects">
@@ -45,8 +45,8 @@
     </div>
     </div>
    
-    <div>
-       <%: Html.ActionLink("Назад к списку", "CheckForEmptyEntriesAndDelete", "Review", new { Area = "Admin", id = ViewData["reviewContentItemId"] }, null)%>
+    <div style="margin-top:20px;">
+       <%: Html.ActionLink("Назад к списку", "CheckForEmptyEntriesAndDelete", "Review", new { Area = "Admin", id = ViewData["reviewContentItemId"] }, new {@class="backLink" })%>
     </div>
 
 </asp:Content>

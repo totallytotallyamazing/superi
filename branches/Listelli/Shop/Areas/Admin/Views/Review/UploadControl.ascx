@@ -22,7 +22,7 @@
                 simUploadLimit : 3, 
                 scriptData: <%= ViewData["scriptData"] %>,
                 scriptAccess : 'always',
-                buttonImg   : '/Content/AdminStyles/img/browseButton.jpg',
+                //buttonImg   : '/Content/AdminStyles/img/browseButton.jpg',
                 auto: true,
                 onAllComplete: function(){ $("#selects form").get(0).submit(); }
             });
@@ -30,9 +30,9 @@
         })
     </script>
 
-<a onclick="$('#upload').show('normal');" href="#" ><img src="/Content/AdminStyles/img/uploadPhoto.jpg" alt="Загрузить фото"></a>
+<a onclick="$('#upload').show('normal');" href="#" class="backLink" >Загрузить фото</a>
 <div id="upload" >
     <div id="myQueue"></div>
     <input type="file" id="file_upload" name="Filedata" />
-    <a href="#" onclick="$('#upload').hide('normal');">Отмена</a>
+    <a href="#" onclick="$('#upload').hide('normal');" class="backLink">Отмена</a>
 </div>

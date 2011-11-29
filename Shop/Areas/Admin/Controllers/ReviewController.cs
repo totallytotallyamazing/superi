@@ -9,18 +9,18 @@ using System.IO;
 
 namespace Shop.Areas.Admin.Controllers
 {
-    [Authorize(Roles = "Administrators")]
+    
     public class ReviewController : Controller
     {
         //
         // GET: /Admin/Review/
-
+        [Authorize(Roles = "Administrators")]
         public ActionResult Add()
         {
 
             return View();
         }
-
+        [Authorize(Roles = "Administrators")]
         [HttpPost]
         public ActionResult Add(FormCollection form)
         {
@@ -50,7 +50,7 @@ namespace Shop.Areas.Admin.Controllers
         }
 
 
-
+        [Authorize(Roles = "Administrators")]
         public ActionResult Edit(int id)
         {
             using (var context = new ReviewStorage())
@@ -59,7 +59,7 @@ namespace Shop.Areas.Admin.Controllers
                 return View(content);
             }
         }
-
+        [Authorize(Roles = "Administrators")]
         [HttpPost]
         public ActionResult Edit(FormCollection form)
         {
@@ -88,7 +88,7 @@ namespace Shop.Areas.Admin.Controllers
             }
             return RedirectToAction("Index", "Review", new { Area = "" });
         }
-
+        [Authorize(Roles = "Administrators")]
         public ActionResult Delete(int id)
         {
             using (var context = new ReviewStorage())
@@ -103,7 +103,7 @@ namespace Shop.Areas.Admin.Controllers
                 return RedirectToAction("Index", "Review", new { Area = "" });
             }
         }
-
+        [Authorize(Roles = "Administrators")]
         public ActionResult AddReviewConentItem(int id, int? contentType)
         {
             using (var context = new ReviewStorage())
@@ -117,7 +117,7 @@ namespace Shop.Areas.Admin.Controllers
                 return View(contentItem);
             }
         }
-
+        [Authorize(Roles = "Administrators")]
         [HttpPost]
         public ActionResult AddReviewConentItem(int reviewContentId, FormCollection form)
         {
@@ -134,7 +134,7 @@ namespace Shop.Areas.Admin.Controllers
                 return RedirectToAction("Details", "Review", new { Area = "", id = content.Name });
             }
         }
-
+        [Authorize(Roles = "Administrators")]
         public ActionResult EditReviewConentItem(int id)
         {
             using (var context = new ReviewStorage())
@@ -145,7 +145,7 @@ namespace Shop.Areas.Admin.Controllers
                 return View(content);
             }
         }
-
+        [Authorize(Roles = "Administrators")]
         [HttpPost]
         public ActionResult EditReviewConentItem(FormCollection form)
         {
@@ -161,7 +161,7 @@ namespace Shop.Areas.Admin.Controllers
             }
 
         }
-
+        [Authorize(Roles = "Administrators")]
         public ActionResult DeleteReviewContentItem(int id)
         {
             using (var context = new ReviewStorage())
@@ -184,7 +184,7 @@ namespace Shop.Areas.Admin.Controllers
             }
         }
 
-
+        [Authorize(Roles = "Administrators")]
         public ActionResult CheckForEmptyEntriesAndDelete(int id)
         {
             using (var context = new ReviewStorage())

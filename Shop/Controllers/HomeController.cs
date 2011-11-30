@@ -21,9 +21,9 @@ namespace Shop.Controllers
         [Content(ContentName="Index")]
         public ActionResult Index()
         {
-
-            using (ShopStorage context = new ShopStorage())
-            {
+            //Don't deleate the following. Used as Localization reference.
+            //using (ShopStorage context = new ShopStorage())
+            //{
                 //LocalResource res = new LocalResource();
                 //res.EntityId = 1;
                 //res.EntityName = "Product";
@@ -39,8 +39,10 @@ namespace Shop.Controllers
                 //LocalizationExtensions.SeveLocalization(new List<LocalResource> { res, res1 }, context.LocalResources); 
                 //context.LocalResources.Where(l => l.EntityId == 1 && l.EntityName == "E1").GroupBy(l => l.Language, l => new KeyValuePair<string, string>(l.FieldName, l.Text)).ToList();
               //  context.Products.Localize((e, l) => new { e = e, l = l }, context.LocalResources);
-                context.Products.First().Localizations(context.LocalResources);
-            }
+                //context.Products.First().Localizations(context.LocalResources);
+
+               // context.Products.Localize((e, l) => new { e = e, l = l.First() });
+            //}
             ViewData["isHomePage"] = true;
             return View("Content");
         }

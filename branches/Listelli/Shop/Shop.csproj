@@ -140,6 +140,7 @@
     <Compile Include="Helpers\IOHelper.cs" />
     <Compile Include="Helpers\JqueryUiExtensions.cs" />
     <Compile Include="Helpers\LocalizationExtensions.cs" />
+    <Compile Include="Helpers\LocalizationHelpers.cs" />
     <Compile Include="Helpers\MailHelper.cs" />
     <Compile Include="Helpers\CurrencyHelper.cs" />
     <Compile Include="Helpers\MyGraphicsHelper.cs" />

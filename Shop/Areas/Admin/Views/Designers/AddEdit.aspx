@@ -29,13 +29,23 @@
                 <%: Html.TextBoxFor(model => model.NameF) %>
                 <%: Html.ValidationMessageFor(model => model.NameF) %>
             </div>
+
+            <%if (Roles.IsUserInRole(User.Identity.Name, "Administrators"))
+            { %>
             <div class="editor-label">
-                <%: Html.LabelFor(model => model.Url) %>
+                <%:Html.LabelFor(model => model.Url)%>
             </div>
             <div class="editor-field">
-                <%: Html.TextBoxFor(model => model.Url)%>
-                <%: Html.ValidationMessageFor(model => model.Url)%>
+                <%:Html.TextBoxFor(model => model.Url)%>
+                <%:Html.ValidationMessageFor(model => model.Url)%>
             </div>
+            <% }else
+{
+                  %>
+                  <%=Html.HiddenFor(model => model.Url)%>
+                  <%
+} %>
+
             <div class="editor-label">
                 <%: Html.LabelFor(model => model.Room0) %>
             </div>
@@ -74,7 +84,16 @@
     <% } %>
 
     <div>
-        <%: Html.ActionLink("к списку", "Index") %>
+        <% if (Roles.IsUserInRole(User.Identity.Name, "Administrators"))
+           { %>
+        <%:Html.ActionLink("к списку", "Index")%>
+        <% }else
+           {
+               %>
+               <%:Html.ActionLink("к списку", "UserCabinet")%>
+               <%
+               
+           } %>
     </div>
 
 </asp:Content>

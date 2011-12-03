@@ -419,3 +419,13 @@ p.addItem, div.addItem
 	font-size: 10px;
 	color: red;
 }
+
+.designerAccounts
+{
+	margin-top: 20px;
+}
+
+.designerAccounts td
+{
+	padding: 10px;
+}

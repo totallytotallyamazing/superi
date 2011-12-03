@@ -1,22 +1,22 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Views/Shared/Base.Master" Inherits="System.Web.Mvc.ViewPage<Shop.Models.RegisterModel>" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Views/Shared/Designers.Master" Inherits="System.Web.Mvc.ViewPage<Shop.Models.RegisterModel>" %>
 
 <%@ Import Namespace="Dev.Mvc.Ajax" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-    Регистрация
+    Регистрация аккаунта дизайнеров
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div id="userInfoWrapper">
-        <h2 class="cartPageTitle">
-            Ваши контактные данные</h2>
+        <h2>
+            Регистрация аккаунта дизайнеров</h2>
         <% Html.EnableClientValidation(); %>
         <% using (Html.BeginForm())
            { %>
            <%= Html.Hidden("redirectTo") %>
-        <table class="userInfo">
+        <table>
             <tr>
                 <td class="labelCell">
                     <%= Html.LabelFor(model=>model.Email) %>:<br />
-                    <span class="comments">(при регистрации является вашим логином) </span>
+                    <span class="comments">(он же является логином) </span>
                 </td>
                 <td>
                     <%= Html.TextBoxFor(model=>model.Email) %>
@@ -38,32 +38,6 @@
             </tr>
             <tr>
                 <td class="labelCell">
-                    <%= Html.LabelFor(model=>model.Phone) %>:
-                </td>
-                <td>
-                    <%= Html.TextBoxFor(model=>model.Phone) %>
-                </td>
-                <td class="validationError">
-                    <%= Html.ValidationMessageFor(model => model.Phone)%>
-                </td>
-            </tr>
-            <% if((bool)ViewData["redirect"]){ %>
-                <tr>
-                    <td class="registerMePlease" colspan="3">
-                        <span class="pleaseRegister">Зарегистрируйте меня как пользователя,</span> пожалуйста
-                    </td>
-                </tr>
-            <%} %>
-            <tr>
-                <td class="labelCell">
-                    <%= Html.LabelFor(model=>model.DeliveryAddress) %>
-                </td>
-                <td colspan="2">
-                    <%= Html.TextAreaFor(model=>model.DeliveryAddress) %>
-                </td>
-            </tr>
-            <tr>
-                <td class="labelCell">
                     <%= Html.LabelFor(model=>model.Password) %>
                 </td>
                 <td>
@@ -74,18 +48,14 @@
                 </td>
             </tr>
         </table>
-        <div class="backAndForward">
-            <div class="back">
-                <a href="javascript:history.back();">Вернуться</a>
-            </div>
-            Все верно,
-            <input type="submit" value="продолжаем!" />
+        <div>
+            <input type="submit" value="Зарегистрировать" />
         </div>
+        <p>
+            <%=Html.ActionLink("К списку аккаунтов","Accounts","Designers",new{Area="Admin"},null) %>
+        </p>
         <%} %>
     </div>
-</asp:Content>
-<asp:Content ID="Content3" ContentPlaceHolderID="ContentTitle" runat="server">
-    <% Html.RenderPartial("CartBreadCrumbs", 0); %>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="includes" runat="server">
     <%= Ajax.ScriptInclude("/Scripts/MicrosoftAjax.js")%>

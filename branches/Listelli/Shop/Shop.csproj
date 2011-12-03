@@ -139,6 +139,7 @@
     <Compile Include="Helpers\HtmlHelpers.cs" />
     <Compile Include="Helpers\IOHelper.cs" />
     <Compile Include="Helpers\JqueryUiExtensions.cs" />
+    <Compile Include="Helpers\LinqHelper.cs" />
     <Compile Include="Helpers\LocalizationExtensions.cs" />
     <Compile Include="Helpers\LocalizationHelpers.cs" />
     <Compile Include="Helpers\MailHelper.cs" />
@@ -173,6 +174,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Designers.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\DesignerUserPresentation.cs" />
     <Compile Include="Models\EFExtensions.cs" />
     <Compile Include="Models\Favorites.cs" />
     <Compile Include="Models\OrderExtensions.cs" />
@@ -222,6 +224,7 @@
     <Content Include="Areas\Admin\Views\Designers\Gallery.aspx" />
     <Content Include="Areas\Admin\Views\Designers\Index.aspx" />
     <Content Include="Areas\Admin\Views\Designers\Rooms.aspx" />
+    <Content Include="Areas\Admin\Views\Designers\Accounts.aspx" />
     <Content Include="Areas\Admin\Views\ProductCategories\Index.ascx" />
     <Content Include="Areas\Admin\Views\Products\ProductAttributeStaticValues.ascx" />
     <Content Include="Areas\Admin\Views\ProductVariants\AddEdit.ascx" />

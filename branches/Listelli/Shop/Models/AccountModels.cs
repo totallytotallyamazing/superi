@@ -53,22 +53,18 @@ namespace Shop.Models
         [Required(ErrorMessage = "Обязательно!")]
         [RegularExpression(@"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$", ErrorMessage = "Неверно введен адрес почты. Формат: name@domain.com")]
         [DataType(DataType.EmailAddress)]
-        [DisplayName("Адрес электропочты")]
+
+        [DisplayName("Адрес электронной почты")]
         [Remote("IsEmailUnique", "Account", "value", ErrorMessage = "Такой пользователь уже существует")]
         public string Email { get; set; }
+        
         [Required(ErrorMessage = "Обязательно!")]
-        [DisplayName("Имя, Фамилия")]
+        [DisplayName("Адрес в браузере")]
         public string Name { get; set; }
-        [Required(ErrorMessage = "Обязательно!")]
-        [RegularExpression(@"^(\(\d{3}\))?\s?((\d{3}(\s|-)?\d{2}(\s|-)\d{2})|(\d{3}(\s|-)?\d{4})|(\d{7}))$", ErrorMessage = "Неверно введен номер телефона. Формат: (123) 111-22-33")]
-        [DataType(DataType.PhoneNumber)]
-        [DisplayName("Номер телефона")]
-        public string Phone { get; set; }
-        [DisplayName("Ваш домашний адрес")]
-        public string DeliveryAddress { get; set; }
+        
         [Required(ErrorMessage = "Обязательно!")]
         [ValidatePasswordLength]
-        [DisplayName("Придумайте пароль для Вашей учетной записи")]
+        [DisplayName("Пароль")]
         public string Password { get; set; }
     }
     #endregion

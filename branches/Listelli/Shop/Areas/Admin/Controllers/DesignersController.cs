@@ -3,20 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Shop.Helpers;
 using Shop.Models;
 using Dev.Mvc.Helpers;
 using System.IO;
 using Dev.Helpers;
 using System.Collections.ObjectModel;
+using System.Web.Security;
 
 namespace Shop.Areas.Admin.Controllers
 {
-    [Authorize(Roles = "Administrators")]
+    [Authorize(Roles = "Administrators, Designers")]
     public class DesignersController : Controller
     {
         //
         // GET: /Admin/Designers/
-
+        [Authorize(Roles = "Administrators")]
         public ActionResult Index()
         {
             using (var context = new DesignerStorage())
@@ -25,9 +27,23 @@ namespace Shop.Areas.Admin.Controllers
                 return View(designers);
             }
         }
+        
+        public ActionResult UserCabinet()
+        {
+            using (var context = new DesignerStorage())
+            {
+                ProfileCommon profile = ProfileCommon.Create(User.Identity.Name);
+                var url = profile.Phone;
+                var designers = context.Designer.Where(u=>u.Url==url).Select(d => d).ToList();
+                ViewData["Url"] = url;
+                return View("Index", designers);
+            }
+        }
+
+
 
         [OutputCache(VaryByParam = "*", NoStore = true, Duration = 1)]
-        public ActionResult AddEdit(int? id)
+        public ActionResult AddEdit(int? id, string url)
         {
             Designer designer = null;
             if (id.HasValue)
@@ -37,6 +53,7 @@ namespace Shop.Areas.Admin.Controllers
                     designer = context.Designer.First(d => d.Id == id.Value);
                 }
             }
+            ViewData["Url"] = url;
             return View(designer);
         }
 
@@ -73,6 +90,10 @@ namespace Shop.Areas.Admin.Controllers
 
                 context.SaveChanges();
             }
+
+
+            if (Roles.IsUserInRole(User.Identity.Name, "Designers"))
+                return RedirectToAction("UserCabinet");
 
             return RedirectToAction("Index");
         }
@@ -260,6 +281,8 @@ namespace Shop.Areas.Admin.Controllers
                 context.DeleteObject(designer);
                 context.SaveChanges();
             }
+            if (Roles.IsUserInRole(User.Identity.Name, "Designers"))
+                return RedirectToAction("UserCabinet");
             return RedirectToAction("Index");
         }
 
@@ -284,10 +307,13 @@ namespace Shop.Areas.Admin.Controllers
             }
         }
 
-       
-
-       
-
-
+        [Authorize(Roles = "Administrators")]
+        public ActionResult Accounts()
+        {
+            MembershipUserCollection users = Membership.GetAllUsers();
+            string[] usersByRoleArray = Roles.GetUsersInRole("Designers");
+            List<DesignerUserPresentation> userList = (from MembershipUser user in users let profile = ProfileCommon.Create(user.Email) select new DesignerUserPresentation {Email = user.Email, Url = profile.Phone}).ToList();
+            return View(userList.Where(u=>u.Email.In(usersByRoleArray)).ToList());
+        }
     }
 }

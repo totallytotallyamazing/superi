@@ -25,9 +25,17 @@
 
     </table>
 
+    <%if (Roles.IsUserInRole(User.Identity.Name, "Administrators"))
+      { %>
     <p>
-        <%: Html.ActionLink("Создать", "AddEdit")%>
-    </p>
+      <%:Html.ActionLink("Создать", "AddEdit")%>  
+    </p>  
+    <% }else if (ViewData["Url"] != null && Model.Count() == 0)
+      { %>
+      <p>
+      <%:Html.ActionLink("Создать", "AddEdit", new { url = ViewData["Url"] })%>
+      </p>
+    <% }%>
    
     
    

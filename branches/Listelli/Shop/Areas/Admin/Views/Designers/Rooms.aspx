@@ -50,7 +50,16 @@
     </p>
     
     <p>
-        <%: Html.ActionLink("« К списку дизайнеров", "Index", null, new {@class="toList" })%>
+          <% if (Roles.IsUserInRole(User.Identity.Name, "Administrators"))
+           { %>
+        <%:Html.ActionLink("« К списку дизайнеров", "Index", null, new { @class = "toList" })%>
+        <% }else
+           {
+               %>
+               <%:Html.ActionLink("« К списку дизайнеров", "UserCabinet", null, new { @class = "toList" })%>
+               <%
+               
+           } %>
     </p>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="includes" runat="server">

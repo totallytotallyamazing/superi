@@ -43,12 +43,21 @@ namespace Shop.Controllers
                 if (MembershipService.ValidateUser(model.UserName, model.Password))
                 {
                     FormsService.SignIn(model.UserName, model.RememberMe);
+
+                    
+
+
                     if (!String.IsNullOrEmpty(returnUrl))
                     {
                         return Redirect(returnUrl);
                     }
                     else
                     {
+                        if (Roles.IsUserInRole(model.UserName, "Designers"))
+                        {
+                            
+                            return RedirectToAction("UserCabinet", "Designers", new { Area = "Admin" });
+                        }
                         return RedirectToAction("Index", "Home");
                     }
                 }
@@ -76,7 +85,7 @@ namespace Shop.Controllers
         // **************************************
         // URL: /Account/Register
         // **************************************
-
+        [Authorize(Roles = "Administrators")]
         public ActionResult Register(string redirectTo)
         {
             ViewData["PasswordLength"] = MembershipService.MinPasswordLength;
@@ -84,7 +93,7 @@ namespace Shop.Controllers
             ViewData["redirect"] = !string.IsNullOrEmpty(redirectTo);
             return View();
         }
-
+        [Authorize(Roles = "Administrators")]
         [HttpPost]
         public ActionResult Register(RegisterModel model, string redirectTo)
         {
@@ -98,10 +107,11 @@ namespace Shop.Controllers
                 if (createStatus == MembershipCreateStatus.Success)
                 {
                     ProfileCommon profile = ProfileCommon.Create(model.Email);
-                    profile.DeliveryAddress = model.DeliveryAddress;
-                    profile.Phone = model.Phone;
-                    profile.Name = model.Name;
+                    profile.Phone = model.Name;
                     profile.Save();
+
+                    Roles.AddUserToRole(model.Email, "Designers");
+
                     FormsService.SignIn(model.Email, false /* createPersistentCookie */);
                     if (!string.IsNullOrEmpty(redirectTo))
                     {

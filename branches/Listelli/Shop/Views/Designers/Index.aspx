@@ -9,9 +9,16 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <script type="text/javascript">
+
+
+
         $(function () {
 
-            $(".fancy").fancybox({ showCloseButton: true, cyclic: true, showNavArrows: true, padding: 0, margin: 0, centerOnScroll: true });
+            function formatTitle(title, currentArray, currentIndex, currentOpts) {
+                return (title == '' || title == null || title == ' ') ? '' : '<div id="fancy-title">' + title + '</div>';
+            };
+
+            $(".fancy").fancybox({ titlePosition: 'inside', titleFormat: formatTitle, titleShow: true, showCloseButton: true, cyclic: true, showNavArrows: true, padding: 0, margin: 0, centerOnScroll: true });
 
             $("#livingRoom").click(function () {
                 $("#livingRoom").addClass("selected");
@@ -63,17 +70,17 @@
             });
 
             $("#accordion1 h3, #accordion2 h3").click(function () {
-               
+
                 this.blur();
             });
 
 
             //$("#accordion1, #accordion2").bind("accordionchange", function (event, ui) {
-               // $(".accordion h3 a").each(function () {
-                    //alert(this.href);
-                    //this.blur();
-               // });
-                //$(".accordion h3 a").blur();
+            // $(".accordion h3 a").each(function () {
+            //alert(this.href);
+            //this.blur();
+            // });
+            //$(".accordion h3 a").blur();
             //});
 
 
@@ -125,10 +132,12 @@
                {
             %>
             <div class="photoContainer">
-            <a rel="group<%=dc.Id%>" href="../../Content/DesignerPhotos/<%=item.ImageSource%>" class="fancy">
+            <a title="<%=item.Description%>" rel="group<%=dc.Id%>" href="../../Content/DesignerPhotos/<%=item.ImageSource%>" class="fancy">
             <%=Html.CachedImage("~/Content/DesignerPhotos/", item.ImageSource, "designerPhotosThumb", item.ImageSource,true)%>
             </a>
-           
+           <div class="description">
+            <%=item.Description %>
+            </div>
                    </div>
                    <%
                }
@@ -168,10 +177,12 @@
                {
             %>
             <div class="photoContainer">
-            <a rel="group<%=dc.Id%>" href="../../Content/DesignerPhotos/<%=item.ImageSource%>" class="fancy iframe">
+            <a title="<%=item.Description%>" rel="group<%=dc.Id%>" href="../../Content/DesignerPhotos/<%=item.ImageSource%>" class="fancy iframe">
             <%=Html.CachedImage("~/Content/DesignerPhotos/", item.ImageSource, "designerPhotosThumb", item.ImageSource,true)%>
             </a>
-            
+            <div class="description">
+            <%=item.Description %>
+            </div>
                    </div>
                    <%
                }

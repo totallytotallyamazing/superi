@@ -20,7 +20,7 @@
                {
             %>
             <div class="photoContainer">
-             <%if (Roles.IsUserInRole("Administrators"))
+             <%if (Roles.IsUserInRole("Administrators") || Roles.IsUserInRole("Designers"))
               { %>
            <div class="deletePhotoLinkContainer">   
                 <%= Html.ActionLink("[Удалить фото]", "DeletePhoto", "Designers", new { area = "Admin", id = item.Id, roomId=Model.Id,  designerId = dId }, new { title = "Удалить фото", onclick = "return confirm('Вы уверены что хотите удалить запись?')", @class = "deletePhotoLink adminLink" })%>
@@ -31,7 +31,9 @@
             <a rel="group<%=Model.Id%>" href="../../Content/DesignerPhotos/<%=item.ImageSource%>" class="fancy">
             <%=Html.CachedImage("~/Content/DesignerPhotos/", item.ImageSource, "designerPhotosThumb", item.ImageSource,true)%>
             </a>
-           
+            <div class="description">
+            <%=item.Description %>
+            </div>
                    </div>
                    <%
                } %>
@@ -40,13 +42,19 @@
 
                 <%
                 
-               if (Roles.IsUserInRole("Administrators"))
+                    if (Roles.IsUserInRole("Administrators") || Roles.IsUserInRole("Designers"))
                    using (Html.BeginForm("AddPhoto", "Designers", new { area = "Admin", id = Model.Id, designerId = dId }, FormMethod.Post, new { enctype = "multipart/form-data" }))
                    {
             %>
-            Добавить фото:
-            <input type="file" name="logo" />
+            Добавить фото
+            <br/><br/>
+            Файл: <input type="file" name="logo" />
+            <br/><br/>
+            Описание:<br/>
+            <%=Html.TextArea("Description","",5,60,null) %>
+            <br/><br/>
             <input type="submit" value="Загрузить" />
+            <br/><br/>
             <%
                 }
                 

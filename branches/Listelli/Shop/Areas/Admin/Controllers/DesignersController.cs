@@ -203,7 +203,7 @@ namespace Shop.Areas.Admin.Controllers
                      string filePath = Server.MapPath("~/Content/DesignerPhotos");
                      filePath = Path.Combine(filePath, fileName);
                      Request.Files["logo"].SaveAs(filePath);
-                     dc.DesignerContentImages.Add(new DesignerContentImages { ImageSource = fileName });
+                     dc.DesignerContentImages.Add(new DesignerContentImages { ImageSource = fileName, Description = form["Description"] });
                      context.SaveChanges();
                  }
 

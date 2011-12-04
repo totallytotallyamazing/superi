@@ -49,6 +49,7 @@
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="DesignerContentId" Type="int" Nullable="false" />
           <Property Name="ImageSource" Type="varchar" Nullable="false" MaxLength="500" />
+          <Property Name="Description" Type="varchar" MaxLength="1000" />
         </EntityType>
         <Association Name="FK_DesignerContent_Designer">
           <End Role="Designer" Type="gb_listelliModel.Store.Designer" Multiplicity="1" />
@@ -126,6 +127,7 @@
           <Property Name="DesignerContentId" Type="Int32" Nullable="false" />
           <Property Name="ImageSource" Type="String" Nullable="false" MaxLength="500" Unicode="false" FixedLength="false" />
           <NavigationProperty Name="DesignerContent" Relationship="gb_listelliModel.FK_DesignerContentImages_DesignerContent" FromRole="DesignerContentImages" ToRole="DesignerContent" />
+          <Property Type="String" Name="Description" MaxLength="1000" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_DesignerContent_Designer">
           <End Role="Designer" Type="gb_listelliModel.Designer" Multiplicity="1" />
@@ -176,7 +178,8 @@
             <ScalarProperty Name="Summary" ColumnName="Summary" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="DesignerContentImages"><EntityTypeMapping TypeName="gb_listelliModel.DesignerContentImages"><MappingFragment StoreEntitySet="DesignerContentImages">
-            <ScalarProperty Name="Id" ColumnName="Id" />
+            <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
             <ScalarProperty Name="DesignerContentId" ColumnName="DesignerContentId" />
             <ScalarProperty Name="ImageSource" ColumnName="ImageSource" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>

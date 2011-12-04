@@ -16,14 +16,14 @@
         <fieldset>
         <%= Html.HiddenFor(model => model.Id)%>
             <div class="editor-label">
-                <%: Html.LabelFor(model => model.Name) %>
+                <b>Ваши имя и фамилия:</b>
             </div>
             <div class="editor-field">
                 <%: Html.TextBoxFor(model => model.Name) %>
                 <%: Html.ValidationMessageFor(model => model.Name) %>
             </div>
             <div class="editor-label">
-                <%: Html.LabelFor(model => model.NameF) %>
+               <b> Портфолио дизайнера...</b> (Ваше имя в родительном падеже &mdash; например, "Михаила Задорнова")
             </div>
             <div class="editor-field">
                 <%: Html.TextBoxFor(model => model.NameF) %>
@@ -39,14 +39,7 @@
                 <%:Html.TextBoxFor(model => model.Url)%>
                 <%:Html.ValidationMessageFor(model => model.Url)%>
             </div>
-            <% }else
-{
-                  %>
-                  <%=Html.HiddenFor(model => model.Url)%>
-                  <%
-} %>
-
-            <div class="editor-label">
+             <div class="editor-label">
                 <%: Html.LabelFor(model => model.Room0) %>
             </div>
             <div class="editor-field">
@@ -60,8 +53,18 @@
                 <%: Html.TextBoxFor(model => model.Room1)%>
                 <%: Html.ValidationMessageFor(model => model.Room1)%>
             </div>
+            <% }else
+{
+                  %>
+                  <%=Html.HiddenFor(model => model.Url)%>
+                  <%=Html.HiddenFor(model => model.Room0)%>
+                  <%=Html.HiddenFor(model => model.Room1)%>
+                  <%
+} %>
+
+           
             <div class="editor-label">
-                <%: Html.LabelFor(model => model.Logo)%>
+                <b>Ваше фото</b> (jpg размером не больше 500 кб):
             </div>
             <div class="editor-field">
                 <% if (Model != null) %>
@@ -71,7 +74,7 @@
                 
             </div>
             <div class="editor-label">
-                <%= Html.LabelFor(model => model.Summary)%>
+                <b>Информация о Вас:</b>
             </div>
             <div class="editor-field">
                 <%= Html.TextAreaFor(model => model.Summary)%>

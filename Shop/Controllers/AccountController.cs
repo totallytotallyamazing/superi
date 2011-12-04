@@ -112,7 +112,10 @@ namespace Shop.Controllers
 
                     Roles.AddUserToRole(model.Email, "Designers");
 
-                    FormsService.SignIn(model.Email, false /* createPersistentCookie */);
+                    //FormsService.SignIn(model.Email, false /* createPersistentCookie */);
+
+                    return RedirectToAction("ThanksForRegister", new { url = model.Name });
+
                     if (!string.IsNullOrEmpty(redirectTo))
                     {
                         return Redirect(redirectTo);
@@ -129,6 +132,13 @@ namespace Shop.Controllers
             ViewData["PasswordLength"] = MembershipService.MinPasswordLength;
             return View(model);
         }
+
+        public ActionResult ThanksForRegister(string url)
+        {
+            ViewData["url"] = url;
+            return View();
+        }
+
 
         public string IsEmailUnique(string value)
         {

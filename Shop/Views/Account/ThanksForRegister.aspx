@@ -1,0 +1,26 @@
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<dynamic>" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
+	Регистрация завершена
+</asp:Content>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+
+    <h2>Спасибо за регистрацию</h2>
+
+    <div style="margin-top: 20px; line-height:25px;">
+    Адрес созданного пользователя: <a href="http://listelli.ua/to/<%=ViewData["url"]%>">http://listelli.ua/to/<%=ViewData["url"]%></a>
+    <br/>
+    Вход в админку портфолио: <a href="http://www.listelli.ua/to/login">http://www.listelli.ua/to/login</a>
+    </div>
+
+</asp:Content>
+
+<asp:Content ID="Content3" ContentPlaceHolderID="ContentTitle" runat="server">
+</asp:Content>
+
+<asp:Content ID="Content4" ContentPlaceHolderID="includes" runat="server">
+</asp:Content>
+
+<asp:Content ID="Content5" ContentPlaceHolderID="Footer" runat="server">
+</asp:Content>

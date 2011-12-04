@@ -453,6 +453,7 @@
     <Content Include="Scripts\uploadify.allglyphs.swf" />
     <Content Include="Scripts\uploadify.swf" />
     <Content Include="Stub.jpg" />
+    <Content Include="Views\Account\ThanksForRegister.aspx" />
     <Content Include="Views\Review\CustomBlock.ascx" />
     <Content Include="Views\Review\Details.aspx" />
     <Content Include="Views\BrandCatalog\BrandCatalogFiles.ascx" />

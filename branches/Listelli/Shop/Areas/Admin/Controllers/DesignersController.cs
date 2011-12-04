@@ -73,6 +73,10 @@ namespace Shop.Areas.Admin.Controllers
                 }
                 TryUpdateModel(designer, new string[] { "Name","NameF", "Url", "Summary","Room0","Room1" }, form.ToValueProvider());
                 designer.Summary = HttpUtility.HtmlDecode(form["Summary"]);
+                if (string.IsNullOrEmpty(designer.Room0))
+                    designer.Room0 = "Жилые помещения";
+                if (string.IsNullOrEmpty(designer.Room1))
+                    designer.Room1 = "Нежилые помещения";
 
                 if (Request.Files["logo"] != null && !string.IsNullOrEmpty(Request.Files["logo"].FileName))
                 {

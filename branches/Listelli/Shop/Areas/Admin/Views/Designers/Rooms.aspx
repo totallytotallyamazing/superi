@@ -56,7 +56,7 @@
         <% }else
            {
                %>
-               <%:Html.ActionLink("« К списку дизайнеров", "UserCabinet", null, new { @class = "toList" })%>
+               <%:Html.ActionLink("« К списку", "UserCabinet", null, new { @class = "toList" })%>
                <%
                
            } %>

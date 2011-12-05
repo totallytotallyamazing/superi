@@ -13,7 +13,7 @@
     <br />
     <span style="color:Red; font-size:11px;">*будет доступен после заполнения информации о дизайнере</span>
     <br/><br/>
-    Вход в админку портфолио: <a href="http://www.listelli.ua/to/login">http://www.listelli.ua/to/login</a>
+    Вход в админку портфолио: <a href="http://www.listelli.ua/to/logon">http://www.listelli.ua/to/login</a>
     </div>
 
 </asp:Content>

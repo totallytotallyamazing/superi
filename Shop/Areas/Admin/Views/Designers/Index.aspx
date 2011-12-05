@@ -35,8 +35,11 @@
       <p>
       <%:Html.ActionLink("Создать", "AddEdit", new { url = ViewData["Url"] })%>
       </p>
+     
     <% }%>
-   
+    <p>
+      <%:Html.ActionLink("Выйти из режима администрирования", "LogOff", "Account", new { area=""},null)%>
+      </p>
     
    
 

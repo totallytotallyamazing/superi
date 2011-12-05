@@ -8,9 +8,11 @@
 
     <h2>Спасибо за регистрацию</h2>
 
-    <div style="margin-top: 20px; line-height:25px;">
-    Адрес созданного пользователя: <a href="http://listelli.ua/to/<%=ViewData["url"]%>">http://listelli.ua/to/<%=ViewData["url"]%></a>
-    <br/>
+    <div style="margin-top: 20px;">
+    Адрес созданного пользователя: <a href="http://listelli.ua/to/<%=ViewData["url"]%>">http://listelli.ua/to/<%=ViewData["url"]%></a> 
+    <br />
+    <span style="color:Red; font-size:11px;">*будет доступен после заполнения информации о дизайнере</span>
+    <br/><br/>
     Вход в админку портфолио: <a href="http://www.listelli.ua/to/login">http://www.listelli.ua/to/login</a>
     </div>
 

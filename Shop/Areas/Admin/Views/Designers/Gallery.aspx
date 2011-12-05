@@ -28,9 +28,8 @@
            <div style="clear:both;"></div>
             <%}
                    %> 
-            <a rel="group<%=Model.Id%>" href="../../Content/DesignerPhotos/<%=item.ImageSource%>" class="fancy">
-            <%=Html.CachedImage("~/Content/DesignerPhotos/", item.ImageSource, "designerPhotosThumb", item.ImageSource,true)%>
-            </a>
+             <%=Html.CachedImage("~/Content/DesignerPhotos/", item.ImageSource, "designerPhotosThumb", item.ImageSource,true)%>
+            
             <div class="description">
             <%=item.Description %>
             </div>

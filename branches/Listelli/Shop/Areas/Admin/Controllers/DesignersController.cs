@@ -319,5 +319,11 @@ namespace Shop.Areas.Admin.Controllers
             List<DesignerUserPresentation> userList = (from MembershipUser user in users let profile = ProfileCommon.Create(user.Email) select new DesignerUserPresentation {Email = user.Email, Url = profile.Phone}).ToList();
             return View(userList.Where(u=>u.Email.In(usersByRoleArray)).ToList());
         }
+
+        public ActionResult DeleteAccount(string id)
+        {
+            Membership.DeleteUser(id, true);
+            return RedirectToAction("Index");
+        }
     }
 }

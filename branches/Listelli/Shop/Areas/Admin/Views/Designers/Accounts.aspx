@@ -23,6 +23,7 @@
                 <tr>
                 <td><%=item.Email%></td>
                 <td><%=Html.ActionLink(item.Url, "Index", "Designers", new { area = "", id = item.Url }, new{@class="adminDesignerLink"})%></td>
+                <td><%=Html.ActionLink("удалить", "DeleteAccount", "Designers", new { id = item.Email }, new { @class = "adminLink", onclick = "return confirm('Удалить аккаунт?')" })%></td>
                 </tr>
                 <%
         }

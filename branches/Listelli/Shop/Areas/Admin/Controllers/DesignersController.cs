@@ -27,14 +27,14 @@ namespace Shop.Areas.Admin.Controllers
                 return View(designers);
             }
         }
-        
+
         public ActionResult UserCabinet()
         {
             using (var context = new DesignerStorage())
             {
                 ProfileCommon profile = ProfileCommon.Create(User.Identity.Name);
                 var url = profile.Phone;
-                var designers = context.Designer.Where(u=>u.Url==url).Select(d => d).ToList();
+                var designers = context.Designer.Where(u => u.Url == url).Select(d => d).ToList();
                 ViewData["Url"] = url;
                 return View("Index", designers);
             }
@@ -71,7 +71,7 @@ namespace Shop.Areas.Admin.Controllers
                     designer = new Designer();
                     context.AddToDesigner(designer);
                 }
-                TryUpdateModel(designer, new string[] { "Name","NameF", "Url", "Summary","Room0","Room1" }, form.ToValueProvider());
+                TryUpdateModel(designer, new string[] { "Name", "NameF", "Url", "Summary", "Room0", "Room1" }, form.ToValueProvider());
                 designer.Summary = HttpUtility.HtmlDecode(form["Summary"]);
                 if (string.IsNullOrEmpty(designer.Room0))
                     designer.Room0 = "Жилые помещения";
@@ -170,91 +170,134 @@ namespace Shop.Areas.Admin.Controllers
                     dc = new DesignerContent();
                     designer.DesignerContent.Add(dc);
                 }
-                TryUpdateModel(dc, new string[] { "RoomName","RoomType" }, form.ToValueProvider());
+                TryUpdateModel(dc, new string[] { "RoomName", "RoomType" }, form.ToValueProvider());
 
                 context.SaveChanges();
 
-                return RedirectToAction("Rooms", "Designers", new {area = "Admin", id = designer.Id});
+                return RedirectToAction("Rooms", "Designers", new { area = "Admin", id = designer.Id });
             }
         }
 
-         public ActionResult Gallery(int designerId, int id)
-         {
-             ViewData["designerId"] = designerId;
-             using (var context = new DesignerStorage())
-             {
-                 Designer designer = context.Designer.Where(d => d.Id == designerId).First();
-                 ViewData["designerNameF"] = designer.NameF;
-                 DesignerContent dc = context.DesignerContent.Include("DesignerContentImages").First(d => d.Id == id);
-                 return View(dc);
-             }
-         }
+        public ActionResult Gallery(int designerId, int id)
+        {
+            ViewData["designerId"] = designerId;
+            using (var context = new DesignerStorage())
+            {
+                Designer designer = context.Designer.Where(d => d.Id == designerId).First();
+                ViewData["designerNameF"] = designer.NameF;
+                DesignerContent dc = context.DesignerContent.Include("DesignerContentImages").First(d => d.Id == id);
+                ViewData["SortOrder"] = dc.DesignerContentImages.Count() + 1;
+                return View(dc);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult AddPhoto(int id, FormCollection form, int designerId)
+        {
+            using (var context = new DesignerStorage())
+            {
+                var dc = context.DesignerContent.Include("Designer").Where(c => c.Id == id).First();
+
+                if (Request.Files["logo"] != null && !string.IsNullOrEmpty(Request.Files["logo"].FileName))
+                {
+                    string fileName = IOHelper.GetUniqueFileName("~/Content/DesignerPhotos", Request.Files["logo"].FileName);
+                    string filePath = Server.MapPath("~/Content/DesignerPhotos");
+                    filePath = Path.Combine(filePath, fileName);
+                    Request.Files["logo"].SaveAs(filePath);
+                    dc.DesignerContentImages.Add(new DesignerContentImages { ImageSource = fileName, Description = form["Description"], SortOrder = Convert.ToInt32(form["SortOrder"]) });
+                    context.SaveChanges();
+                }
+
+                return RedirectToAction("Gallery", "Designers", new { area = "Admin", id = id, designerId = designerId });
+            }
+        }
+
+        public ActionResult EditPhoto(int id, int roomId, int designerId)
+        {
+            using (var context = new DesignerStorage())
+            {
+                ViewData["roomId"] = roomId;
+                ViewData["designerId"] = designerId;
+                var image = context.DesignerContentImages.Where(c => c.Id == id).First();
+
+
+                return View(image);
+            }
+        }
 
          [HttpPost]
-         public ActionResult AddPhoto(int id, FormCollection form, int designerId)
-         {
-             using (var context = new DesignerStorage())
-             {
-                 var dc = context.DesignerContent.Include("Designer").Where(c => c.Id == id).First();
+        public ActionResult EditPhoto(int id, int roomId, int designerId, FormCollection form)
+        {
+            using (var context = new DesignerStorage())
+            {
+                var photo = context.DesignerContentImages.Where(c => c.Id == id).First();
 
-                 if (Request.Files["logo"] != null && !string.IsNullOrEmpty(Request.Files["logo"].FileName))
-                 {
-                     string fileName = IOHelper.GetUniqueFileName("~/Content/DesignerPhotos", Request.Files["logo"].FileName);
-                     string filePath = Server.MapPath("~/Content/DesignerPhotos");
-                     filePath = Path.Combine(filePath, fileName);
-                     Request.Files["logo"].SaveAs(filePath);
-                     dc.DesignerContentImages.Add(new DesignerContentImages { ImageSource = fileName, Description = form["Description"] });
-                     context.SaveChanges();
-                 }
+                if (Request.Files["logo"] != null && !string.IsNullOrEmpty(Request.Files["logo"].FileName))
+                {
+                    if (!string.IsNullOrEmpty(photo.ImageSource))
+                    {
+                        IOHelper.DeleteFile("~/Content/DesignerPhotos", photo.ImageSource);
+                    }
+                    string fileName = IOHelper.GetUniqueFileName("~/Content/DesignerPhotos", Request.Files["logo"].FileName);
+                    string filePath = Server.MapPath("~/Content/DesignerPhotos");
+                    filePath = Path.Combine(filePath, fileName);
+                    Request.Files["logo"].SaveAs(filePath);
+                    photo.ImageSource = fileName;
+                }
 
-                 return RedirectToAction("Gallery", "Designers", new { area = "Admin", id = id, designerId =designerId });
-             }
-         }
+                photo.Description = form["Description"];
+                photo.SortOrder = Convert.ToInt32(form["SortOrder"]);
+                
+                context.SaveChanges();
 
-         public ActionResult DeletePhoto(int id, int roomId, int designerId)
-         {
-             using (var context = new DesignerStorage())
-             {
-                 var photo = context.DesignerContentImages.Include("DesignerContent").Where(p => p.Id == id).First();
-                 int dcId = photo.DesignerContent.Id;
-                 var designerContent = context.DesignerContent.Include("Designer").Where(dc => dc.Id == dcId).First();
-                 if (!string.IsNullOrEmpty(photo.ImageSource))
-                 {
-                     IOHelper.DeleteFile("~/Content/DesignerPhotos", photo.ImageSource);
-                 }
-                 context.DeleteObject(photo);
-                 context.SaveChanges();
-                 return RedirectToAction("Gallery", "Designers", new { area = "Admin", id = roomId, designerId = designerId });
-             }
-         }
+                return RedirectToAction("Gallery", "Designers", new { area = "Admin", id = roomId, designerId = designerId });
+            }
+        }
 
-         public ActionResult EditContent(int id, int designerId)
-         {
-             ViewData["designerId"] = designerId;
-             using (var context = new DesignerStorage())
-             {
-                 var dc = context.DesignerContent.Include("Designer").Include("DesignerContentImages").Where(c => c.Id == id).First();
+        public ActionResult DeletePhoto(int id, int roomId, int designerId)
+        {
+            using (var context = new DesignerStorage())
+            {
+                var photo = context.DesignerContentImages.Include("DesignerContent").Where(p => p.Id == id).First();
+                int dcId = photo.DesignerContent.Id;
+                var designerContent = context.DesignerContent.Include("Designer").Where(dc => dc.Id == dcId).First();
+                if (!string.IsNullOrEmpty(photo.ImageSource))
+                {
+                    IOHelper.DeleteFile("~/Content/DesignerPhotos", photo.ImageSource);
+                }
+                context.DeleteObject(photo);
+                context.SaveChanges();
+                return RedirectToAction("Gallery", "Designers", new { area = "Admin", id = roomId, designerId = designerId });
+            }
+        }
+
+        public ActionResult EditContent(int id, int designerId)
+        {
+            ViewData["designerId"] = designerId;
+            using (var context = new DesignerStorage())
+            {
+                var dc = context.DesignerContent.Include("Designer").Include("DesignerContentImages").Where(c => c.Id == id).First();
 
 
-                 return View(dc);
-             }
+                return View(dc);
+            }
 
-         }
+        }
 
-         [HttpPost]
-         public ActionResult EditContent(int id, FormCollection form, int designerId)
-         {
-             using (var context = new DesignerStorage())
-             {
-                 var dc = context.DesignerContent.Include("Designer").Where(c => c.Id == id).First();
+        [HttpPost]
+        public ActionResult EditContent(int id, FormCollection form, int designerId)
+        {
+            using (var context = new DesignerStorage())
+            {
+                var dc = context.DesignerContent.Include("Designer").Where(c => c.Id == id).First();
 
-                 TryUpdateModel(dc, new string[] { "Summary" }, form.ToValueProvider());
-                 dc.Summary = HttpUtility.HtmlDecode(form["Summary"]);
-                 context.SaveChanges();
+                TryUpdateModel(dc, new string[] { "Summary" }, form.ToValueProvider());
+                dc.Summary = HttpUtility.HtmlDecode(form["Summary"]);
+                context.SaveChanges();
 
-                 return RedirectToAction("Rooms", "Designers", new { area = "Admin", id = designerId });
-             }
-         }
+                return RedirectToAction("Rooms", "Designers", new { area = "Admin", id = designerId });
+            }
+        }
 
         public ActionResult Delete(int id)
         {
@@ -277,7 +320,7 @@ namespace Shop.Areas.Admin.Controllers
                     context.DeleteObject(designer.DesignerContent.First());
                 }
 
-                if(!string.IsNullOrEmpty(designer.Logo))
+                if (!string.IsNullOrEmpty(designer.Logo))
                 {
                     IOHelper.DeleteFile("~/Content/DesignerLogos", designer.Logo);
                 }
@@ -316,8 +359,8 @@ namespace Shop.Areas.Admin.Controllers
         {
             MembershipUserCollection users = Membership.GetAllUsers();
             string[] usersByRoleArray = Roles.GetUsersInRole("Designers");
-            List<DesignerUserPresentation> userList = (from MembershipUser user in users let profile = ProfileCommon.Create(user.Email) select new DesignerUserPresentation {Email = user.Email, Url = profile.Phone}).ToList();
-            return View(userList.Where(u=>u.Email.In(usersByRoleArray)).ToList());
+            List<DesignerUserPresentation> userList = (from MembershipUser user in users let profile = ProfileCommon.Create(user.Email) select new DesignerUserPresentation { Email = user.Email, Url = profile.Phone }).ToList();
+            return View(userList.Where(u => u.Email.In(usersByRoleArray)).ToList());
         }
 
         [Authorize(Roles = "Administrators")]

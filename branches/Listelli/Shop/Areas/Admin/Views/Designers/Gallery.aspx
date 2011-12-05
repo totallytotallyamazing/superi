@@ -23,7 +23,9 @@
              <%if (Roles.IsUserInRole("Administrators") || Roles.IsUserInRole("Designers"))
               { %>
            <div class="deletePhotoLinkContainer">   
-                <%= Html.ActionLink("[Удалить фото]", "DeletePhoto", "Designers", new { area = "Admin", id = item.Id, roomId=Model.Id,  designerId = dId }, new { title = "Удалить фото", onclick = "return confirm('Вы уверены что хотите удалить запись?')", @class = "deletePhotoLink adminLink" })%>
+                <span style="color: red;font-weight: bold;"> <%=item.SortOrder %></span>
+                <%= Html.ActionLink("[Редактировать]", "EditPhoto", "Designers", new { area = "Admin", id = item.Id, roomId = Model.Id, designerId = dId }, new { title = "Удалить фото", @class = "deletePhotoLink adminLink" })%>
+                 <%= Html.ActionLink("[Удалить]", "DeletePhoto", "Designers", new { area = "Admin", id = item.Id, roomId=Model.Id,  designerId = dId }, new { title = "Удалить фото", onclick = "return confirm('Вы уверены что хотите удалить запись?')", @class = "deletePhotoLink adminLink" })%>
            </div>
            <div style="clear:both;"></div>
             <%}
@@ -44,6 +46,7 @@
                     if (Roles.IsUserInRole("Administrators") || Roles.IsUserInRole("Designers"))
                    using (Html.BeginForm("AddPhoto", "Designers", new { area = "Admin", id = Model.Id, designerId = dId }, FormMethod.Post, new { enctype = "multipart/form-data" }))
                    {
+                       
             %>
             Добавить фото
             <br/><br/>
@@ -51,6 +54,8 @@
             <br/><br/>
             Описание:<br/>
             <%=Html.TextArea("Description","",5,60,null) %>
+            <br/><br/>
+            Порядок отображения: <%=Html.TextBox("SortOrder") %>
             <br/><br/>
             <input type="submit" value="Загрузить" />
             <br/><br/>

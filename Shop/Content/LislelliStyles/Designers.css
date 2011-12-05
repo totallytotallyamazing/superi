@@ -444,3 +444,15 @@ p.addItem, div.addItem
 	margin:5px 15px 5px 15px;
 	text-align:left;
 }
+
+
+.adminTable td
+{
+    border:1px dotted #cccccc;
+    padding: 3px 5px;
+}
+
+.adminTable td.title
+{
+	text-align: right;
+}

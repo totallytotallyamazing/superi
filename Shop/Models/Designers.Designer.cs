@@ -664,12 +664,14 @@ namespace Shop.Models
         /// <param name="id">Initial value of the Id property.</param>
         /// <param name="designerContentId">Initial value of the DesignerContentId property.</param>
         /// <param name="imageSource">Initial value of the ImageSource property.</param>
-        public static DesignerContentImages CreateDesignerContentImages(global::System.Int32 id, global::System.Int32 designerContentId, global::System.String imageSource)
+        /// <param name="sortOrder">Initial value of the SortOrder property.</param>
+        public static DesignerContentImages CreateDesignerContentImages(global::System.Int32 id, global::System.Int32 designerContentId, global::System.String imageSource, global::System.Int32 sortOrder)
         {
             DesignerContentImages designerContentImages = new DesignerContentImages();
             designerContentImages.Id = id;
             designerContentImages.DesignerContentId = designerContentId;
             designerContentImages.ImageSource = imageSource;
+            designerContentImages.SortOrder = sortOrder;
             return designerContentImages;
         }
 
@@ -774,6 +776,30 @@ namespace Shop.Models
         private global::System.String _Description;
         partial void OnDescriptionChanging(global::System.String value);
         partial void OnDescriptionChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 SortOrder
+        {
+            get
+            {
+                return _SortOrder;
+            }
+            set
+            {
+                OnSortOrderChanging(value);
+                ReportPropertyChanging("SortOrder");
+                _SortOrder = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SortOrder");
+                OnSortOrderChanged();
+            }
+        }
+        private global::System.Int32 _SortOrder;
+        partial void OnSortOrderChanging(global::System.Int32 value);
+        partial void OnSortOrderChanged();
 
         #endregion
     

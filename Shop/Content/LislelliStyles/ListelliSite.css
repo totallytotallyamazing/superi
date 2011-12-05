@@ -1047,3 +1047,8 @@ a.dock-item
     border:1px dotted #cccccc;
     padding: 3px 5px;
 }
+
+.adminTable td.title
+{
+	text-align: right;
+}

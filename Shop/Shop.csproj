@@ -221,6 +221,7 @@
     <Content Include="Areas\Admin\Views\Designers\AddEdit.aspx" />
     <Content Include="Areas\Admin\Views\Designers\AddEditRoom.aspx" />
     <Content Include="Areas\Admin\Views\Designers\EditContent.aspx" />
+    <Content Include="Areas\Admin\Views\Designers\EditPhoto.aspx" />
     <Content Include="Areas\Admin\Views\Designers\Gallery.aspx" />
     <Content Include="Areas\Admin\Views\Designers\Index.aspx" />
     <Content Include="Areas\Admin\Views\Designers\Rooms.aspx" />

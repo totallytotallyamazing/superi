@@ -320,10 +320,11 @@ namespace Shop.Areas.Admin.Controllers
             return View(userList.Where(u=>u.Email.In(usersByRoleArray)).ToList());
         }
 
+        [Authorize(Roles = "Administrators")]
         public ActionResult DeleteAccount(string id)
         {
             Membership.DeleteUser(id, true);
-            return RedirectToAction("Index");
+            return RedirectToAction("Accounts");
         }
     }
 }

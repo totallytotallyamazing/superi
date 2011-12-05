@@ -102,6 +102,7 @@
                     <%=designer.Summary%>
                 </div>
             </div>
+            <div style="clear:both"></div>
             <div class="designerInfoBlockBottom"></div>
         </div>
     </div>

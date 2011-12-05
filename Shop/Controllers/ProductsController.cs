@@ -197,6 +197,7 @@ namespace Shop.Controllers
                             .Include("Categories")
                             .Include("ProductImages")
                             .Include("ProductAttributeStaticValues.ProductAttribute")
+                            .Include("Brand")
                             .Where(ContextExtension.BuildContainsExpression<Product, int>(p => p.Id, ids))
                             .OrderBy(p => p.SortOrder)
                             .ToList();

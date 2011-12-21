@@ -9,20 +9,52 @@ namespace Dev.Helpers
 {
     public class MailHelper
     {
+
+        private static int _portionSize = 10;
+
+        private static IEnumerable<List<MailAddress>> SplitMailAdresses(List<MailAddress> source)
+        {
+            int numberOfPortions;
+            if (source.Count % _portionSize > 0)
+                numberOfPortions = (source.Count / _portionSize) + 1;
+            else
+                numberOfPortions = (source.Count / _portionSize);
+            
+            List<MailAddress>[] portions = new List<MailAddress>[numberOfPortions];
+
+            for (int i = 0; i < source.Count; i++)
+            {
+                int currentPortion = i / _portionSize;
+                var currentItem = source[i];
+
+                if (portions[currentPortion] == null)
+                    portions[currentPortion] = new List<MailAddress>();
+
+                portions[currentPortion].Add(currentItem);
+            }
+
+            return portions;
+        }
+
         public static bool SendMessage(List<MailAddress> to, string body, string subject, bool isBodyHtml)
         {
             SmtpClient client = new SmtpClient();
             bool result = true;
             try
             {
-                MailMessage message = new MailMessage();
-                message.Headers["Content-Base"] = "http://listelli.ua";
-                message.Body = body;
-                message.Subject = subject;
-                to.ForEach(t => message.To.Add(t));
-                message.From = new MailAddress("site@listelli.ua");
-                message.IsBodyHtml = isBodyHtml;
-                client.Send(message);
+                var portions = SplitMailAdresses(to);
+                foreach (List<MailAddress> mailAddresses in portions)
+                {
+                    MailMessage message = new MailMessage();
+                    message.Headers["Content-Base"] = "http://listelli.ua";
+                    message.Body = body;
+                    message.Subject = subject;
+
+                    mailAddresses.ForEach(t => message.To.Add(t));
+                    message.From = new MailAddress("site@listelli.ua");
+                    message.IsBodyHtml = isBodyHtml;
+                    client.Send(message);
+                }
             }
             catch
             {

@@ -4,10 +4,10 @@
 
 <%foreach (var item in Model)
   {
-      string actionLink = Ajax.ActionLink((string)item.Name, "Index", 
+      string actionLink = Html.ActionLink((string)item.Name, "Index", 
           new { controller = "Brands", brandId = item.Id, groupId = ViewData["groupId"] },
-          new AjaxOptions { OnSuccess = "BrandCatalogue.updateDockContent" },
-          new { @class = "txtSubMenuItem", brandId = item.Id, groupId = ViewData["groupId"] }).ToString();
+          //new AjaxOptions { OnSuccess = "BrandCatalogue.updateDockContent" },
+          new { @class = "txtSubMenuItem", brandId = item.Id, groupId = ViewData["groupId"], onclick="return false;" }).ToString();
       %>
     <div class="menu">
         <p class="txtSubMenuItem">

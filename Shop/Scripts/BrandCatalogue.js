@@ -1,7 +1,10 @@
 ﻿/// <reference path="jquery.js"/>
 /// <reference path="jquery.combobox.js"/>
 
+
+
 var BrandCatalogue = {
+
     initialize: function () {
         $(function () {
             $('#selectBrand')
@@ -22,6 +25,7 @@ var BrandCatalogue = {
             $(".cbBrandContainer ul li").click(function () {
                 window.setTimeout(BrandCatalogue.fetchBrands, 100);
             })
+
         });
     },
 
@@ -58,6 +62,9 @@ var BrandCatalogue = {
             $("#topMenu").html(data);
             //$("a.txtSubMenuItem").click(function () { debugger;  this.style.textDecoration = "none"; href = ""; return false; })
             $("a.txtSubMenuItem").click(function () { $("a.txtSubMenuItem").css("text-decoration", "underline"); this.style.textDecoration = "none"; this.blur(); });
+            $("a.txtSubMenuItem").click(function (ev) {
+                $.ajax({ url: ev.currentTarget.href, type: "POST", success: BrandCatalogue.updateDockContent });
+            });
             if (callback)
                 callback();
         });

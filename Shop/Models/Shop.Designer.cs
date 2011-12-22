@@ -244,18 +244,18 @@ namespace Shop.Models
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<LocalResource> LocalResources
+        public ObjectSet<ShopLocalResource> ShopLocalResources
         {
             get
             {
-                if ((_LocalResources == null))
+                if ((_ShopLocalResources == null))
                 {
-                    _LocalResources = base.CreateObjectSet<LocalResource>("LocalResources");
+                    _ShopLocalResources = base.CreateObjectSet<ShopLocalResource>("ShopLocalResources");
                 }
-                return _LocalResources;
+                return _ShopLocalResources;
             }
         }
-        private ObjectSet<LocalResource> _LocalResources;
+        private ObjectSet<ShopLocalResource> _ShopLocalResources;
 
         #endregion
         #region AddTo Methods
@@ -341,11 +341,11 @@ namespace Shop.Models
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the LocalResources EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// Deprecated Method for adding a new object to the ShopLocalResources EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToLocalResources(LocalResource localResource)
+        public void AddToShopLocalResources(ShopLocalResource shopLocalResource)
         {
-            base.AddObject("LocalResources", localResource);
+            base.AddObject("ShopLocalResources", shopLocalResource);
         }
 
         #endregion
@@ -1240,187 +1240,6 @@ namespace Shop.Models
         }
 
         #endregion
-    }
-    
-    /// <summary>
-    /// No Metadata Documentation available.
-    /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="shop_model", Name="LocalResource")]
-    [Serializable()]
-    [DataContractAttribute(IsReference=true)]
-    public partial class LocalResource : EntityObject
-    {
-        #region Factory Method
-    
-        /// <summary>
-        /// Create a new LocalResource object.
-        /// </summary>
-        /// <param name="id">Initial value of the Id property.</param>
-        /// <param name="entityName">Initial value of the EntityName property.</param>
-        /// <param name="entityId">Initial value of the EntityId property.</param>
-        /// <param name="language">Initial value of the Language property.</param>
-        public static LocalResource CreateLocalResource(global::System.Int32 id, global::System.String entityName, global::System.Int32 entityId, global::System.String language)
-        {
-            LocalResource localResource = new LocalResource();
-            localResource.Id = id;
-            localResource.EntityName = entityName;
-            localResource.EntityId = entityId;
-            localResource.Language = language;
-            return localResource;
-        }
-
-        #endregion
-        #region Primitive Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 Id
-        {
-            get
-            {
-                return _Id;
-            }
-            set
-            {
-                if (_Id != value)
-                {
-                    OnIdChanging(value);
-                    ReportPropertyChanging("Id");
-                    _Id = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("Id");
-                    OnIdChanged();
-                }
-            }
-        }
-        private global::System.Int32 _Id;
-        partial void OnIdChanging(global::System.Int32 value);
-        partial void OnIdChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.String EntityName
-        {
-            get
-            {
-                return _EntityName;
-            }
-            set
-            {
-                OnEntityNameChanging(value);
-                ReportPropertyChanging("EntityName");
-                _EntityName = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("EntityName");
-                OnEntityNameChanged();
-            }
-        }
-        private global::System.String _EntityName;
-        partial void OnEntityNameChanging(global::System.String value);
-        partial void OnEntityNameChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 EntityId
-        {
-            get
-            {
-                return _EntityId;
-            }
-            set
-            {
-                OnEntityIdChanging(value);
-                ReportPropertyChanging("EntityId");
-                _EntityId = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("EntityId");
-                OnEntityIdChanged();
-            }
-        }
-        private global::System.Int32 _EntityId;
-        partial void OnEntityIdChanging(global::System.Int32 value);
-        partial void OnEntityIdChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.String Language
-        {
-            get
-            {
-                return _Language;
-            }
-            set
-            {
-                OnLanguageChanging(value);
-                ReportPropertyChanging("Language");
-                _Language = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("Language");
-                OnLanguageChanged();
-            }
-        }
-        private global::System.String _Language;
-        partial void OnLanguageChanging(global::System.String value);
-        partial void OnLanguageChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String Text
-        {
-            get
-            {
-                return _Text;
-            }
-            set
-            {
-                OnTextChanging(value);
-                ReportPropertyChanging("Text");
-                _Text = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("Text");
-                OnTextChanged();
-            }
-        }
-        private global::System.String _Text;
-        partial void OnTextChanging(global::System.String value);
-        partial void OnTextChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String FieldName
-        {
-            get
-            {
-                return _FieldName;
-            }
-            set
-            {
-                OnFieldNameChanging(value);
-                ReportPropertyChanging("FieldName");
-                _FieldName = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("FieldName");
-                OnFieldNameChanged();
-            }
-        }
-        private global::System.String _FieldName;
-        partial void OnFieldNameChanging(global::System.String value);
-        partial void OnFieldNameChanged();
-
-        #endregion
-    
     }
     
     /// <summary>
@@ -3067,6 +2886,187 @@ namespace Shop.Models
         }
 
         #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="shop_model", Name="ShopLocalResource")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class ShopLocalResource : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new ShopLocalResource object.
+        /// </summary>
+        /// <param name="id">Initial value of the Id property.</param>
+        /// <param name="entityName">Initial value of the EntityName property.</param>
+        /// <param name="entityId">Initial value of the EntityId property.</param>
+        /// <param name="language">Initial value of the Language property.</param>
+        public static ShopLocalResource CreateShopLocalResource(global::System.Int32 id, global::System.String entityName, global::System.Int32 entityId, global::System.String language)
+        {
+            ShopLocalResource shopLocalResource = new ShopLocalResource();
+            shopLocalResource.Id = id;
+            shopLocalResource.EntityName = entityName;
+            shopLocalResource.EntityId = entityId;
+            shopLocalResource.Language = language;
+            return shopLocalResource;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 Id
+        {
+            get
+            {
+                return _Id;
+            }
+            set
+            {
+                if (_Id != value)
+                {
+                    OnIdChanging(value);
+                    ReportPropertyChanging("Id");
+                    _Id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("Id");
+                    OnIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _Id;
+        partial void OnIdChanging(global::System.Int32 value);
+        partial void OnIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String EntityName
+        {
+            get
+            {
+                return _EntityName;
+            }
+            set
+            {
+                OnEntityNameChanging(value);
+                ReportPropertyChanging("EntityName");
+                _EntityName = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("EntityName");
+                OnEntityNameChanged();
+            }
+        }
+        private global::System.String _EntityName;
+        partial void OnEntityNameChanging(global::System.String value);
+        partial void OnEntityNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 EntityId
+        {
+            get
+            {
+                return _EntityId;
+            }
+            set
+            {
+                OnEntityIdChanging(value);
+                ReportPropertyChanging("EntityId");
+                _EntityId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("EntityId");
+                OnEntityIdChanged();
+            }
+        }
+        private global::System.Int32 _EntityId;
+        partial void OnEntityIdChanging(global::System.Int32 value);
+        partial void OnEntityIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Language
+        {
+            get
+            {
+                return _Language;
+            }
+            set
+            {
+                OnLanguageChanging(value);
+                ReportPropertyChanging("Language");
+                _Language = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Language");
+                OnLanguageChanged();
+            }
+        }
+        private global::System.String _Language;
+        partial void OnLanguageChanging(global::System.String value);
+        partial void OnLanguageChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Text
+        {
+            get
+            {
+                return _Text;
+            }
+            set
+            {
+                OnTextChanging(value);
+                ReportPropertyChanging("Text");
+                _Text = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Text");
+                OnTextChanged();
+            }
+        }
+        private global::System.String _Text;
+        partial void OnTextChanging(global::System.String value);
+        partial void OnTextChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String FieldName
+        {
+            get
+            {
+                return _FieldName;
+            }
+            set
+            {
+                OnFieldNameChanging(value);
+                ReportPropertyChanging("FieldName");
+                _FieldName = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("FieldName");
+                OnFieldNameChanged();
+            }
+        }
+        private global::System.String _FieldName;
+        partial void OnFieldNameChanging(global::System.String value);
+        partial void OnFieldNameChanged();
+
+        #endregion
+    
     }
     
     /// <summary>

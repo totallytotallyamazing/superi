@@ -11,11 +11,13 @@ namespace Shop.Areas.Admin.Controllers
     [Authorize(Roles = "Administrators")]
     public class ContentController : Controller
     {
+        ContentStorage context = new ContentStorage();
+
         public ActionResult Edit(string id)
         {
-            using (ContentStorage context = new ContentStorage())
             {
                 Content content = context.GetContent(id);
+                ViewData["context"] = context;
                 return View(content);
             }
         }
@@ -23,7 +25,6 @@ namespace Shop.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Edit(Content content)
         {
-            using (ContentStorage context = new ContentStorage())
             {
                 Models.Content originalItem = context.Contents.Where(c => c.Name == content.Name).First();
                 content.Id = originalItem.Id;
@@ -44,7 +45,6 @@ namespace Shop.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult EditPartial(string id)
         {
-            using (ContentStorage context = new ContentStorage())
             {
                 Content content = context.GetContent(id);
                 return View(content);
@@ -54,7 +54,6 @@ namespace Shop.Areas.Admin.Controllers
         [HttpPost]
         public void EditPartial(FormCollection form)
         {
-            using (ContentStorage context = new ContentStorage())
             {
                 string name = form["Name"];
                 Content content = context.Contents.First(c => c.Name == name);

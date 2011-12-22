@@ -5,36 +5,36 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <% Html.EnableClientValidation(); %>
-    <% using (Html.BeginForm()) {%>
-        <%= Html.ValidationSummary(true) %>
-        
-        <%= Html.HiddenFor(model => model.Id) %>
-        
-        <div class="editor-label">
-            <%= Html.LabelFor(model => model.Name) %>
-        </div>
-        <div class="editor-field">
-            <%= Html.TextBoxFor(model => model.Name) %>
-            <%= Html.ValidationMessageFor(model => model.Name) %>
-        </div>
-        <div class="editor-label">
-            <%= Html.LabelFor(model => model.SortOrder) %>
-        </div>
-        <div class="editor-field">
-            <%= Html.TextBoxFor(model => model.SortOrder) %>
-            <%= Html.ValidationMessageFor(model => model.SortOrder)%>
-        </div>
-        <div>
-            <%= Html.RadioButtonFor(model=> model.ValueType, "TEXT") %> Текстовое значение
-            <%= Html.RadioButtonFor(model=> model.ValueType, "DROPDOWN") %> Выпадающий список
-            <%= Html.ValidationMessageFor(model => model.ValueType)%>
-        </div>
-        <div style="display:none";>
-            <%= Html.CheckBoxFor(model=>model.Static) %><%= Html.LabelFor(model => model.Static) %>
-        </div>
-        <input type="submit" value="Сохранить" />
-    <% } %>
+	<% Html.EnableClientValidation(); %>
+	<% using (Html.BeginForm()) {%>
+		<%= Html.ValidationSummary(true) %>
+		
+		<%= Html.HiddenFor(model => model.Id) %>
+		
+		<div class="editor-label">
+			<%= Html.LabelFor(model => model.Name) %>
+		</div>
+		<div class="editor-field">
+			<%= Html.TextBoxFor(model => model.Name) %>
+			<%= Html.ValidationMessageFor(model => model.Name) %>
+		</div>
+		<div class="editor-label">
+			<%= Html.LabelFor(model => model.SortOrder) %>
+		</div>
+		<div class="editor-field">
+			<%= Html.TextBoxFor(model => model.SortOrder) %>
+			<%= Html.ValidationMessageFor(model => model.SortOrder)%>
+		</div>
+		<div>
+			<%= Html.RadioButtonFor(model=> model.ValueType, "TEXT") %> Текстовое значение
+			<%= Html.RadioButtonFor(model=> model.ValueType, "DROPDOWN") %> Выпадающий список
+			<%= Html.ValidationMessageFor(model => model.ValueType)%>
+		</div>
+		<div style="display:none";>
+			<%= Html.CheckBoxFor(model=>model.Static) %><%= Html.LabelFor(model => model.Static) %>
+		</div>
+		<input type="submit" value="Сохранить" />
+	<% } %>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentTitle" runat="server">

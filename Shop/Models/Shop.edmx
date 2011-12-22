@@ -646,7 +646,7 @@
             <End Role="ProductAttribute" EntitySet="ProductAttributes" />
             <End Role="ProductAttributeStaticValue" EntitySet="ProductAttributeStaticValues" />
           </AssociationSet>
-          <EntitySet Name="LocalResources" EntityType="shop_model.LocalResource" /></EntityContainer>
+          <EntitySet Name="ShopLocalResources" EntityType="shop_model.ShopLocalResource" /></EntityContainer>
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="Id" />
@@ -839,7 +839,7 @@
           </End>
           <End Type="shop_model.ProductAttributeStaticValue" Role="ProductAttributeStaticValue" Multiplicity="*" />
         </Association>
-        <EntityType Name="LocalResource">
+        <EntityType Name="ShopLocalResource">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -1062,8 +1062,8 @@
             </EndProperty>
           </AssociationSetMapping>
           <FunctionImportMapping FunctionImportName="searchProducts" FunctionName="shop_model.Store.searchProducts" />
-          <EntitySetMapping Name="LocalResources">
-            <EntityTypeMapping TypeName="shop_model.LocalResource">
+          <EntitySetMapping Name="ShopLocalResources">
+            <EntityTypeMapping TypeName="shop_model.ShopLocalResource">
               <MappingFragment StoreEntitySet="LocalResource">
                 <ScalarProperty Name="FieldName" ColumnName="FieldName" />
                 <ScalarProperty Name="Text" ColumnName="Text" />
@@ -1093,7 +1093,7 @@
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram Name="Shop" ZoomLevel="78" xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+      <Diagram Name="Shop" ZoomLevel="100" xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
         <EntityTypeShape EntityType="shop_model.Category" Width="1.75" PointX="1.125" PointY="0.625" Height="2.7494921875" IsExpanded="true" />
         <EntityTypeShape EntityType="shop_model.Product" Width="2.5" PointX="7.75" PointY="1.625" Height="5.634013671875" IsExpanded="true" />
         <EntityTypeShape EntityType="shop_model.ProductAttribute" Width="2.625" PointX="0.5" PointY="4.75" Height="1.9802864583333326" IsExpanded="true" />
@@ -1166,6 +1166,6 @@
           <ConnectorPoint PointX="3.125" PointY="5.3314925130208337" />
           <ConnectorPoint PointX="3.875" PointY="5.3314925130208337" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="shop_model.LocalResource" Width="1.5" PointX="13.25" PointY="0.875" Height="2.1725878906250031" /></Diagram></edmx:Diagrams>
+        <EntityTypeShape EntityType="shop_model.ShopLocalResource" Width="1.5" PointX="13.25" PointY="0.875" Height="2.1725878906250031" /></Diagram></edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

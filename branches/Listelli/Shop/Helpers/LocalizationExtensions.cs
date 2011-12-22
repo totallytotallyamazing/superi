@@ -9,7 +9,6 @@ using System.Globalization;
 using System.Threading;
 using System.Data.Objects.DataClasses;
 using System.Collections;
-using Shop.Models;
 
 namespace Superi.Web.Mvc.Localization
 {
@@ -186,13 +185,13 @@ namespace Superi.Web.Mvc.Localization
             return source.Localize(resultSelector, localizations, entityIdSelector);
         }
 
-        public static IQueryable<TResult> Localize<T, TResult>(
+        public static IQueryable<TResult> Localize<T, L,TResult>(
             this IQueryable<T> source,
-            Expression<Func<T, IEnumerable<LocalResource>, TResult>> resultSelector
+            Expression<Func<T, IEnumerable<L>, TResult>> resultSelector,
+            L localizationType
             )
         {
-            return source.Localize<T, LocalResource, TResult>(resultSelector);
+            return source.Localize<T, L, TResult>(resultSelector);
         }
-
     }
 }

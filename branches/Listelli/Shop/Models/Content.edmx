@@ -8,7 +8,8 @@
         <EntityContainer Name="shop_contentModelStoreContainer">
           <EntitySet Name="Article" EntityType="shop_contentModel.Store.Article" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Content" EntityType="shop_contentModel.Store.Content" store:Type="Tables" Schema="dbo" />
-          <AssociationSet Name="FK__Content__ParentI__220B0B18" Association="shop_contentModel.Store.FK__Content__ParentI__220B0B18">
+          <EntitySet Name="LocalResource" EntityType="shop_contentModel.Store.LocalResource" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK__Content__ParentI__07020F21" Association="shop_contentModel.Store.FK__Content__ParentI__07020F21">
             <End Role="Content" EntitySet="Content" />
             <End Role="Content1" EntitySet="Content" />
           </AssociationSet>
@@ -41,7 +42,18 @@
           <Property Name="Text" Type="varchar(max)" />
           <Property Name="Keywords" Type="varchar(max)" />
         </EntityType>
-        <Association Name="FK__Content__ParentI__220B0B18">
+        <EntityType Name="LocalResource">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="EntityName" Type="varchar" Nullable="false" MaxLength="250" />
+          <Property Name="EntityId" Type="int" Nullable="false" />
+          <Property Name="Language" Type="varchar" Nullable="false" MaxLength="5" />
+          <Property Name="Text" Type="varchar(max)" />
+          <Property Name="FieldName" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <Association Name="FK__Content__ParentI__07020F21">
           <End Role="Content" Type="shop_contentModel.Store.Content" Multiplicity="0..1" />
           <End Role="Content1" Type="shop_contentModel.Store.Content" Multiplicity="*" />
           <ReferentialConstraint>
@@ -62,7 +74,8 @@
           <AssociationSet Name="ContentContent" Association="shop_contentModel.ContentContent">
             <End Role="Content" EntitySet="Contents" />
             <End Role="Content1" EntitySet="Contents" /></AssociationSet>
-          <EntitySet Name="Articles" EntityType="shop_contentModel.Article" /></EntityContainer>
+          <EntitySet Name="Articles" EntityType="shop_contentModel.Article" />
+          <EntitySet Name="ContentLocalResource" EntityType="shop_contentModel.ContentLocalResource" /></EntityContainer>
         <EntityType Name="Content">
           <Key>
             <PropertyRef Name="Id" />
@@ -93,6 +106,17 @@
           <Property Type="String" Name="Preview" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="Title" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Type="Int32" Name="Type" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ContentLocalResource">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="EntityName" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="EntityId" Nullable="false" />
+          <Property Type="String" Name="Language" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Text" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="FieldName" MaxLength="250" FixedLength="false" Unicode="false" />
         </EntityType></Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -132,6 +156,18 @@
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ContentLocalResource">
+            <EntityTypeMapping TypeName="shop_contentModel.ContentLocalResource">
+              <MappingFragment StoreEntitySet="LocalResource">
+                <ScalarProperty Name="FieldName" ColumnName="FieldName" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="Language" ColumnName="Language" />
+                <ScalarProperty Name="EntityId" ColumnName="EntityId" />
+                <ScalarProperty Name="EntityName" ColumnName="EntityName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
           </EntitySetMapping></EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -160,6 +196,7 @@
           <ConnectorPoint PointX="4.8534615384615378" PointY="3.8408007812499996" />
           <ConnectorPoint PointX="4.8534615384615378" PointY="3.59080078125" /></AssociationConnector>
         <EntityTypeShape EntityType="shop_contentModel.Article" Width="1.5" PointX="1.375" PointY="0.875" Height="2.9417936197916656" />
+        <EntityTypeShape EntityType="shop_contentModel.ContentLocalResource" Width="1.5" PointX="0.75" PointY="4.75" Height="2.1725878906249996" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -17,7 +17,7 @@
         </div>
         <div style="clear:both;"></div>
         <div class="shareButtons">
-        <%string url = "http://oksi.com.ua/#url=%2FArticles%2FIndex%2F"+item.Id; %>
+        <%string url = "http://oksi.com.ua/Articles/ArticlesFull/"+item.Id; %>
             <div>
                 <a href="<%=url%>"  target="_blank" rel="nofollow" onclick="ODKL.Share(this);return false;" title="Поделиться в Одноклассниках" class="shareButton odnoklassnikiButton"></a>
             </div>

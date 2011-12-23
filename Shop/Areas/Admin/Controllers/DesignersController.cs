@@ -237,6 +237,7 @@ namespace Shop.Areas.Admin.Controllers
                     if (!string.IsNullOrEmpty(photo.ImageSource))
                     {
                         IOHelper.DeleteFile("~/Content/DesignerPhotos", photo.ImageSource);
+                        IOHelper.DeleteFile("~/ImageCache/DesignerPhotosThumb", photo.ImageSource);
                     }
                     string fileName = IOHelper.GetUniqueFileName("~/Content/DesignerPhotos", Request.Files["logo"].FileName);
                     string filePath = Server.MapPath("~/Content/DesignerPhotos");
@@ -264,6 +265,7 @@ namespace Shop.Areas.Admin.Controllers
                 if (!string.IsNullOrEmpty(photo.ImageSource))
                 {
                     IOHelper.DeleteFile("~/Content/DesignerPhotos", photo.ImageSource);
+                    IOHelper.DeleteFile("~/ImageCache/DesignerPhotosThumb", photo.ImageSource);
                 }
                 context.DeleteObject(photo);
                 context.SaveChanges();
@@ -309,6 +311,7 @@ namespace Shop.Areas.Admin.Controllers
                     foreach (var image in dc.DesignerContentImages.Where(image => !string.IsNullOrEmpty(image.ImageSource)))
                     {
                         IOHelper.DeleteFile("~/Content/DesignerPhotos", image.ImageSource);
+                        IOHelper.DeleteFile("~/ImageCache/DesignerPhotosThumb", image.ImageSource);
                     }
                     while (dc.DesignerContentImages.Any())
                     {

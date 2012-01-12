@@ -9,6 +9,8 @@ using Shop.Helpers;
 using System.IO;
 using Dev.Mvc.Helpers;
 using Shop.Helpers.Validation;
+using System.Globalization;
+using System.Threading;
 
 namespace Shop
 {
@@ -122,11 +124,13 @@ namespace Shop
                 new { controller = "Home", action = "Index", id = UrlParameter.Optional }, // Parameter defaults
                 new string[1] { "Shop.Controllers" }
             );
+        }
 
-
-
-
-
+        protected void Application_BeginRequest()
+        {
+            string lang = Request.QueryString["lang"];
+            if (!string.IsNullOrEmpty(lang) && lang != CultureInfo.CurrentUICulture.Name)
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(lang);
         }
 
         protected void Application_AcquireRequestState()

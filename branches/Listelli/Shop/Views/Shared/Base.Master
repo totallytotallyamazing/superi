@@ -7,8 +7,7 @@
 <html>
 <head>
     <% Html.RenderPartial("MetaTags"); %>
-    <title>
-        Listelli - 
+    <title>Listelli -
         <asp:ContentPlaceHolder runat="server" ID="TitleContent">
         </asp:ContentPlaceHolder>
     </title>
@@ -46,7 +45,9 @@
             <div id="header">
                 <div id="headerRight">
                     <p class="mainPhone">
-                        (044) 228-45-66 <br />(067) 225-55-52
+                        (044) 228-45-66
+                        <br />
+                        (067) 225-55-52
                     </p>
                     <p class="mainAdress">
                         Киев, <a id="ourCoords" title="Наши координаты" href="/Home/Map" class="mainAdress">
@@ -57,21 +58,8 @@
                     <div id="logo">
                         <%--Logo--%>
                     </div>
-                    <p class="slogan">  
-                    <%
-                        string currentUrl = Request.Url.ToString().ToLower();
-                        if (currentUrl.Contains("konkurs") || currentUrl.Contains("conditions") || currentUrl.Contains("fond"))
-                        {
-                            %>
-                            конкурс дизайнеров
-                            <%
-                        }else
-                        {
-                        %>
-                        оформление интерьеров паркетом и мрамором
-                        <%
-                        }%>
-                        </p>
+                    <% Html.RenderPartial("LogoTitle"); %>
+                    <% Html.RenderPartial("LanguageSwitch"); %>
                 </div>
                 <div id="menuBox">
                     <% Html.RenderPartial("MainMenu"); %>
@@ -102,7 +90,7 @@
                             <a href="/BrandCatalog/Home/Index" class="txtBrand">Брендовые каталоги</a>
                         </div>
                         <div id="brandBanners">
-                            <div class="banners">   
+                            <div class="banners">
                                 <a href="/BrandCatalog/Home/Index#2:12">
                                     <img src="../../Content/LislelliStyles/img/bannerKreo.png" alt="Kreo" />
                                 </a>
@@ -149,14 +137,12 @@
                         </asp:ContentPlaceHolder>
                     </div>
                     <div class="leftMid">
-                    
                         <div id="contentWrapper">
                             <asp:ContentPlaceHolder ID="MainContent" runat="server">
                             </asp:ContentPlaceHolder>
                             <div id="dotA">
                                 <%--. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . --%>
                             </div>
-                            
                         </div>
                     </div>
                     <div class="leftBottom">
@@ -164,36 +150,35 @@
                         </asp:ContentPlaceHolder>
                     </div>
                 </div>
-               
             </div>
-             <div id="footer">
-                    <div id="designedBy">
-                        <p class="footerText">
-                            © <%=DateTime.Now.Year%>, компания “Listelli”
-                            <br />
-                            Дизайн сайта — <a href="http://eugene-miller.com" class="footerMiller">Евгений Миллер</a>
-                        </p>
-                    </div>
-                    <div id="strip">
-                        <%-- прокладка--%>
-                    </div>
+            <div id="footer">
+                <div id="designedBy">
+                    <p class="footerText">
+                        ©
+                        <%=DateTime.Now.Year%>, компания “Listelli”
+                        <br />
+                        Дизайн сайта — <a href="http://eugene-miller.com" class="footerMiller">Евгений Миллер</a>
+                    </p>
                 </div>
+                <div id="strip">
+                    <%-- прокладка--%>
+                </div>
+            </div>
         </div>
     </div>
     <!-- Google Analytics code -->
-<script type="text/javascript">
+    <script type="text/javascript">
 
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-22654910-1']);
-    _gaq.push(['_trackPageview']);
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-22654910-1']);
+        _gaq.push(['_trackPageview']);
 
-    (function () {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
+        (function () {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
  
-</script>
-
+    </script>
 </body>
 </html>

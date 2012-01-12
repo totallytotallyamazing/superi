@@ -29,7 +29,7 @@ namespace Shop.Helpers
                 string entityName = typeof(TModel).Name;
                 string entityId = ((dynamic)model).Id.ToString();
                 string fieldName = (expression.Body as MemberExpression).Member.Name;
-                string defaultValue = expression.Compile().Invoke(model).ToString();
+                string defaultValue = expression.Compile().Invoke(model) as string;
 
                 return new ModelDetails { DefaultValue = defaultValue, EntityId = entityId, EntityName = entityName, FieldName = fieldName };
             }
@@ -87,13 +87,23 @@ namespace Shop.Helpers
             object a = new object();
             string elementName = name ?? "localizations";
             var model = (htmlHelper.ViewData.Model as TModel);
-            IDictionary<string, TModel> localizedModels = model.Localizations(localizations);
 
             ModelDetails details = ModelDetails.Create(model, expression);
 
+            var param = Expression.Parameter(typeof(L), "l");
+            var wherePredicate = Expression.Lambda<Func<L, bool>>(
+                Expression.Equal(
+                    Expression.MakeMemberAccess(param, typeof(L).GetProperty("FieldName")), 
+                    Expression.Constant(details.FieldName)), param);
+
+            var keySelector = Expression.Lambda<Func<L, string>>(
+                Expression.MakeMemberAccess(param, typeof(L).GetProperty("Language")), param);
+
+            IQueryable<IGrouping<string, L>> localizedModels = model.Localizations(localizations).Where(wherePredicate).GroupBy(keySelector);
+
             string propertyKey = string.Format("{0}_{1}_{2}", details.EntityName, details.EntityId, details.FieldName);
 
-            string defaultValue = expression.Compile().Invoke(model).ToString();
+            string defaultValue = expression.Compile().Invoke(model) as string;
             StringWriter stringWriter = new StringWriter();
             HtmlTextWriter writer = new HtmlTextWriter(stringWriter);
 
@@ -119,11 +129,10 @@ namespace Shop.Helpers
                 writer.RenderBeginTag(HtmlTextWriterTag.Div);
                 string textBoxName = string.Format(FieldNameFormat, namePrefix, "Text");
                 string value = null;
-                if (localizedModels.ContainsKey(lang) && localizedModels[lang] != null)
+                if (localizedModels.Any(lm=>lm.Key == lang))
                 {
-                    TModel item = localizedModels[lang];
-                    PropertyInfo info = typeof(TModel).GetProperty(details.FieldName);
-                    value = (string)info.GetValue(item, null);
+                    dynamic item = localizedModels.First(lm => lm.Key == lang).First();
+                    value = (string)item.Text;
                 }
                 value = value ?? defaultValue;
                 writer.WriteHiddens(details, htmlHelper, lang, namePrefix);
@@ -153,10 +162,11 @@ namespace Shop.Helpers
 
         static void WriteLangLink(this HtmlTextWriter writer, string language, string propertyKey, bool first)
         {
+            string linkClass = "localization";
             if (first)
-            {
-                writer.AddAttribute(HtmlTextWriterAttribute.Class, "current");
-            }
+                linkClass += " current";
+
+            writer.AddAttribute(HtmlTextWriterAttribute.Class, linkClass);
             writer.AddAttribute(HtmlTextWriterAttribute.Href, "#");
             writer.AddAttribute(HtmlTextWriterAttribute.Rel, language);
             writer.AddAttribute("data-localization-for", propertyKey);

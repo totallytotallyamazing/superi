@@ -66,7 +66,22 @@ namespace Shop.Helpers
 
         }
 
-        public static MvcHtmlString LocalizedTextBox<TModel, TProperty, L>(this HtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TProperty>> expression, IEnumerable<L> localizations, string name = null) where TModel : EntityObject, new()
+        public static MvcHtmlString LocalizedTextAreaFor<TModel, TProperty, L>(this HtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TProperty>> expression, IEnumerable<L> localizations, string name = null) where TModel : EntityObject, new()
+        {
+            return htmlHelper.LocalizedInputFor(expression, localizations, TextAreaExtensions.TextArea, name);
+        }
+
+        public static MvcHtmlString LocalizedTextBoxFor<TModel, TProperty, L>(this HtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TProperty>> expression, IEnumerable<L> localizations, string name = null) where TModel : EntityObject, new()
+        {
+            return htmlHelper.LocalizedInputFor(expression, localizations, InputExtensions.TextBox, name);
+        }
+
+        private static MvcHtmlString LocalizedInputFor<TModel, TProperty, L>(
+            this HtmlHelper<TModel> htmlHelper,
+            Expression<Func<TModel, TProperty>> expression,
+            IEnumerable<L> localizations,
+            Func<HtmlHelper, string, string, MvcHtmlString> inputRenderDelegate,
+            string name = null) where TModel : EntityObject, new()
         {
             string[] languages = Configurator.LoadSettings().Languages.Split(';');
             object a = new object();
@@ -76,37 +91,43 @@ namespace Shop.Helpers
 
             ModelDetails details = ModelDetails.Create(model, expression);
 
-            string namePrefix = string.Format(FieldPrefixFormat, elementName, CurrentItemIndex);
+            string propertyKey = string.Format("{0}_{1}_{2}", details.EntityName, details.EntityId, details.FieldName);
+
             string defaultValue = expression.Compile().Invoke(model).ToString();
             StringWriter stringWriter = new StringWriter();
             HtmlTextWriter writer = new HtmlTextWriter(stringWriter);
-            
+
             writer.RenderBeginTag(HtmlTextWriterTag.Div);
 
             bool first = true;
 
             foreach (string lang in languages)
             {
-                WriteLangLink(writer, lang);
+                WriteLangLink(writer, lang, propertyKey, first);
+                first = false;
             }
 
-            foreach (string  lang in languages)
+            first = true;
+
+            foreach (string lang in languages)
             {
+                string namePrefix = string.Format(FieldPrefixFormat, elementName, CurrentItemIndex);
                 writer.AddAttribute(HtmlTextWriterAttribute.Rel, lang);
                 if (!first)
                     writer.AddStyleAttribute(HtmlTextWriterStyle.Display, "none");
+                writer.AddAttribute("data-localization-for", propertyKey);
                 writer.RenderBeginTag(HtmlTextWriterTag.Div);
                 string textBoxName = string.Format(FieldNameFormat, namePrefix, "Text");
                 string value = null;
-                if (localizedModels[lang] != null)
+                if (localizedModels.ContainsKey(lang) && localizedModels[lang] != null)
                 {
                     TModel item = localizedModels[lang];
-                    PropertyInfo info = typeof(TModel).GetProperty(details.FieldName, BindingFlags.Public);
+                    PropertyInfo info = typeof(TModel).GetProperty(details.FieldName);
                     value = (string)info.GetValue(item, null);
                 }
                 value = value ?? defaultValue;
-                writer.WriteHiddens(details, htmlHelper, lang);
-                writer.Write(htmlHelper.TextBox(textBoxName, value));
+                writer.WriteHiddens(details, htmlHelper, lang, namePrefix);
+                writer.Write(inputRenderDelegate(htmlHelper, textBoxName, value));
                 writer.RenderEndTag();
                 first = false;
             }
@@ -116,10 +137,9 @@ namespace Shop.Helpers
             return result;
         }
 
-        static void WriteHiddens(this HtmlTextWriter writer, ModelDetails details, HtmlHelper htmlHelper, string language, string elementName = "localizations")
-        {
-            string namePrefix = string.Format(FieldPrefixFormat, elementName, CurrentItemIndex);
 
+        static void WriteHiddens(this HtmlTextWriter writer, ModelDetails details, HtmlHelper htmlHelper, string language, string namePrefix, string elementName = "localizations")
+        {
             string hiddenFieldName = string.Format(FieldNameFormat, namePrefix, "FieldName");
             string hiddenEntityId = string.Format(FieldNameFormat, namePrefix, "EntityId");
             string hiddenLangId = string.Format(FieldNameFormat, namePrefix, "Language");
@@ -131,14 +151,19 @@ namespace Shop.Helpers
             writer.Write(htmlHelper.Hidden(hiddenEntityName, details.EntityName));
         }
 
-        static void WriteLangLink(this HtmlTextWriter writer, string language)
+        static void WriteLangLink(this HtmlTextWriter writer, string language, string propertyKey, bool first)
         {
-                writer.AddAttribute(HtmlTextWriterAttribute.Href, "#");
-                writer.AddAttribute(HtmlTextWriterAttribute.Rel, language);
-                writer.RenderBeginTag(HtmlTextWriterTag.A);
-                writer.Write(language);
-                writer.RenderEndTag();
-                writer.Write("&nbsp;");
+            if (first)
+            {
+                writer.AddAttribute(HtmlTextWriterAttribute.Class, "current");
+            }
+            writer.AddAttribute(HtmlTextWriterAttribute.Href, "#");
+            writer.AddAttribute(HtmlTextWriterAttribute.Rel, language);
+            writer.AddAttribute("data-localization-for", propertyKey);
+            writer.RenderBeginTag(HtmlTextWriterTag.A);
+            writer.Write(language);
+            writer.RenderEndTag();
+            writer.Write("&nbsp;");
         }
 
     }

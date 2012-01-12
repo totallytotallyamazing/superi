@@ -1,5 +1,7 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<Shop.Models.Content>" %>
 <%@ Import Namespace="Dev.Mvc.Ajax" %>
+<%@ Import Namespace="Shop.Helpers" %>
+<%@ Import Namespace="Shop.Models" %>
 
 <%= Ajax.ScriptInclude("/Controls/ckeditor/ckeditor.js")%>
 <%= Ajax.ScriptInclude("/Controls/ckeditor/adapters/jquery.js")%>
@@ -14,9 +16,11 @@
     })
 </script>
 
-<% using (Html.BeginForm())
+<% 
+    ContentStorage context = (ContentStorage)ViewData["context"];
+    using (Html.BeginForm())
    { %>
-    <%: Html.TextAreaFor(model=>model.Text) %>
+    <%: Html.LocalizedTextAreaFor(m => m.Text, context.ContentLocalResource) %>
     
     <%: Html.HiddenFor(model=>model.Name) %>
     <input type="submit" value="Сохранить" />

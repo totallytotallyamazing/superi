@@ -246,6 +246,7 @@
     <Content Include="bin\Elmah.dll" />
     <Content Include="bin\FredCK.FCKeditorV2.dll" />
     <Content Include="bin\WriteEncoder.dll" />
+    <Content Include="Content\admin.css" />
     <Content Include="Content\AdminStyles\img\browseButton.jpg" />
     <Content Include="Content\AdminStyles\img\button.jpg" />
     <Content Include="Content\AdminStyles\img\cancel.png" />
@@ -446,6 +447,7 @@
     <Content Include="Scripts\jquery.uploadify.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.watermark.js" />
+    <Content Include="Scripts\localization.js" />
     <Content Include="Scripts\MicrosoftAjax.js" />
     <Content Include="Scripts\MicrosoftMvcAjax.js" />
     <Content Include="Scripts\MicrosoftMvcValidation.js" />

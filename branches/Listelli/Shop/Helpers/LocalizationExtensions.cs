@@ -14,11 +14,11 @@ namespace Superi.Web.Mvc.Localization
 {
     public static class LocalizationExtensions
     {
-        public static void SeveLocalization<T>(IEnumerable<T> localization, ObjectSet<T> localizations) where T : class, new()
+        public static void SeveLocalizationsTo<T>(this IEnumerable<T> localization, ObjectSet<T> localizations, bool immediateSave = true) where T : class, new()
         {
             var objectQuery = (localizations as ObjectQuery);
             if (objectQuery == null)
-                throw new ArgumentException("localizations must be ObjectQuery", "localizations");
+                throw new ArgumentException("must be ObjectQuery", "localizations");
 
             foreach (T item in localization)
             {
@@ -45,7 +45,8 @@ namespace Superi.Web.Mvc.Localization
                     objectQuery.Context.ApplyCurrentValues(localizations.EntitySet.Name, item);
                 }
             }
-            objectQuery.Context.SaveChanges();
+            if (immediateSave)
+                objectQuery.Context.SaveChanges();
         }
 
         public static IDictionary<string, T> Localizations<T, L>(this T source, IEnumerable<L> localizations, string entityName = null) where T : EntityObject, new()
@@ -108,6 +109,20 @@ namespace Superi.Web.Mvc.Localization
                 prop.SetValue(result, item.Text, null);
             }
             return result;
+        }
+
+        public static void UpdateValues<T, L>(this T item, IEnumerable<L> localizations) where T: EntityObject
+        {
+            foreach (var localizationItem in localizations)
+            {
+                if ((int)((dynamic)localizationItem).EntityId == (int)((dynamic)item).Id && typeof(T).Name == ((dynamic)localizationItem).EntityName)
+                {
+                    string fieldName = (string)((dynamic)localizationItem).FieldName;
+                    string text = (string)((dynamic)localizationItem).Text;
+                    PropertyInfo info = typeof(T).GetProperty(fieldName);
+                    info.SetValue(item, text, null);
+                }
+            }
         }
 
         public static IQueryable<TResult> Localize<T, L, TKey, TResult>(

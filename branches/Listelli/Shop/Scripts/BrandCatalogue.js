@@ -53,8 +53,7 @@ var BrandCatalogue = {
             });
         }
     },
-
-
+    
     fetchBrands: function (callback) {
         var element = document.getElementById("selectBrand")
         var id = element.options[element.selectedIndex].value;

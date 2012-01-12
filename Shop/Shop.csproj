@@ -476,6 +476,8 @@
     <Content Include="Views\Products\SortingPanel.ascx" />
     <Content Include="Views\Review\HeaderText.ascx" />
     <Content Include="Views\Review\Index.aspx" />
+    <Content Include="Views\Shared\LanguageSwitch.ascx" />
+    <Content Include="Views\Shared\LogoTitle.ascx" />
     <Content Include="Views\Shared\ReviewMenu.ascx" />
     <Content Include="Views\Shared\ContentPartial.ascx" />
     <Content Include="Views\Shared\ContestLinkBubble.ascx" />

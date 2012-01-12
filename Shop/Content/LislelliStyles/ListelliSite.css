@@ -87,6 +87,10 @@ img
     float: left;
 }
 
+.languageSwitch{ color: White; font-size:10px; text-align: center; padding-top:20px;}
+
+.languageSwitch a{color:White; font-weight: bold; }
+
 #logoBoxBrandCatalog
 {
     /* position: relative;     top: 29px;     left: 20px;*/

@@ -3,6 +3,7 @@
 #adminPanel .links a{color:White;font-size:12px; font-family:Arial;}
 #adminPanel .handle{background:transparent url(img/handleBg.gif) no-repeat; width:200px; height:20px; position:relative; margin:0 auto; color:White; text-align:center; font-size:13px; font-family:Arial;}
 
+a.localization.current{text-decoration:none; background-color:#999; cursor:default; color:White; }
 
 .categoriesAdmin{padding-left:25px; padding-top:5px;}
 .rootCategoriesAdmin{padding-left:10px; padding-top:5px;}

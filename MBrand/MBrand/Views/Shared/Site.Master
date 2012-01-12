@@ -28,6 +28,7 @@
     <script type="text/javascript" src="/Scripts/jquery.js"></script>
     <script type="text/javascript" src="/Scripts/MicrosoftAjax.js"></script>
     <script type="text/javascript" src="/Scripts/MicrosoftMvcAjax.js"></script>
+   
     <%if (Request.IsAuthenticated)
       { %>
     <script type="text/javascript" src="/Scripts/jquery.fancybox.js"></script>
@@ -36,6 +37,9 @@
     <%} %>
     <asp:ContentPlaceHolder ID="Includes" runat="server">
     </asp:ContentPlaceHolder>
+    
+    <script type="text/javascript" src="/Scripts/typeface-0.15.js"></script>
+    <script type="text/javascript" src="/Scripts/pf_din_text_comp_pro_regular.typeface.js"></script>
 </head>
 <body>
     <div id="shader">

@@ -24,3 +24,9 @@
 <asp:Content ContentPlaceHolderID="SeoCustomTextContainer" runat="server">
 <% Html.RenderPartial("SeoText", Model.SeoCustomText ?? ""); %>
 </asp:Content>
+
+<asp:Content ContentPlaceHolderID="Includes" runat="server">
+<style type="text/css">
+body{/*font-family:PF Din Text Comp Pro !important;*/}
+</style>
+</asp:Content>

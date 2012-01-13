@@ -18,7 +18,7 @@
       &nbsp;<a href="#" id="unSubscribeMe" class="txtBubbleNew">Отписаться</a>
       <% }else{ %>
         <a href="#" id="subscribeMe" class="txtBubbleNew">
-            Будьте в курсе</a><br /> <span class="txtBubbleNew">новых поступлений</span>
+            <%: Shop.Resources.Global.KeepInTouch %></a><br /> <span class="txtBubbleNew"><%: Shop.Resources.Global.NewReceipes %></span>
             <% } %>
             </div>
 

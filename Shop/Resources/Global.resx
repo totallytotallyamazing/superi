@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="BrandCatalogues" xml:space="preserve">
+    <value>Брендовые каталоги</value>
+  </data>
   <data name="Email" xml:space="preserve">
     <value>Электропочта</value>
   </data>
@@ -132,11 +135,20 @@
   <data name="InvalidEmail" xml:space="preserve">
     <value>Неверно введен адрес почты. Формат: name@domain.com</value>
   </data>
+  <data name="KeepInTouch" xml:space="preserve">
+    <value>Будьте в курсе</value>
+  </data>
   <data name="LogoTitle" xml:space="preserve">
     <value>оформление интерьеров паркетом и мрамором</value>
   </data>
   <data name="NameLastName" xml:space="preserve">
     <value>Имя, фамилия</value>
+  </data>
+  <data name="NewReceipes" xml:space="preserve">
+    <value>новых поступлений</value>
+  </data>
+  <data name="Ok" xml:space="preserve">
+    <value>Все верно</value>
   </data>
   <data name="Possibilities" xml:space="preserve">
     <value>Наши возможности</value>
@@ -149,5 +161,11 @@
   </data>
   <data name="RequiredCaptcha" xml:space="preserve">
     <value>Введите символы с картинки</value>
+  </data>
+  <data name="Send" xml:space="preserve">
+    <value>Отправить</value>
+  </data>
+  <data name="SiteSearch" xml:space="preserve">
+    <value>Поиск по сайту</value>
   </data>
 </root>

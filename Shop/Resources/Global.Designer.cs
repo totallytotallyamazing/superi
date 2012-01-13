@@ -61,6 +61,15 @@ namespace Shop.Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Брендовые каталоги.
+        /// </summary>
+        public static string BrandCatalogues {
+            get {
+                return ResourceManager.GetString("BrandCatalogues", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Электропочта.
         /// </summary>
         public static string Email {
@@ -106,6 +115,15 @@ namespace Shop.Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Будьте в курсе.
+        /// </summary>
+        public static string KeepInTouch {
+            get {
+                return ResourceManager.GetString("KeepInTouch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на оформление интерьеров паркетом и мрамором.
         /// </summary>
         public static string LogoTitle {
@@ -120,6 +138,24 @@ namespace Shop.Resources {
         public static string NameLastName {
             get {
                 return ResourceManager.GetString("NameLastName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на новых поступлений.
+        /// </summary>
+        public static string NewReceipes {
+            get {
+                return ResourceManager.GetString("NewReceipes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Все верно.
+        /// </summary>
+        public static string Ok {
+            get {
+                return ResourceManager.GetString("Ok", resourceCulture);
             }
         }
         
@@ -156,6 +192,24 @@ namespace Shop.Resources {
         public static string RequiredCaptcha {
             get {
                 return ResourceManager.GetString("RequiredCaptcha", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Отправить.
+        /// </summary>
+        public static string Send {
+            get {
+                return ResourceManager.GetString("Send", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Поиск по сайту.
+        /// </summary>
+        public static string SiteSearch {
+            get {
+                return ResourceManager.GetString("SiteSearch", resourceCulture);
             }
         }
     }

@@ -39,13 +39,13 @@
         {
          %>
             <div class="mainMenuItem<%= isCurrent("possibilities") %>">
-                <a href="/Go/Possibilities" class="txtMenuItem">НАШИ ВОЗМОЖНОСТИ</a>
+                <a href="/Go/Possibilities" class="txtMenuItem"><%: Shop.Resources.Global.Possibilities %></a>
             </div>
             <div class="mainMenuItem<%= isCurrent("articles")%>">
-                <a href="/Articles" class="txtMenuItem">НАШИ СОБЫТИЯ</a>
+                <a href="/Articles" class="txtMenuItem"><%: Shop.Resources.Global.Events %></a>
             </div>
             <div class="mainMenuItem<%= isCurrent("feedback")%>">
-                <a href="/Home/FeedbackForm" class="txtMenuItem">ОБРАТНАЯ СВЯЗЬ</a>
+                <a href="/Home/FeedbackForm" class="txtMenuItem"><%: Shop.Resources.Global.Feedback %></a>
             </div>
     <%} %>
 

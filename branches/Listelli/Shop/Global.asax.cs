@@ -129,6 +129,10 @@ namespace Shop
         protected void Application_BeginRequest()
         {
             string lang = Request.QueryString["lang"];
+            if (string.IsNullOrEmpty(lang) && Request.Cookies["lang"] != null)
+                lang = Request.Cookies["lang"].Value;
+            else
+                Response.Cookies.Set(new HttpCookie("lang", lang) { Expires = DateTime.Now.AddDays(365) });
             if (!string.IsNullOrEmpty(lang) && lang != CultureInfo.CurrentUICulture.Name)
                 Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(lang);
         }

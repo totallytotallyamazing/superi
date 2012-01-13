@@ -45,7 +45,7 @@
 				</div>
 			
 				<div>
-					Всё верно, <input type="submit" value="Отправить" />
+					<%: Shop.Resources.Global.Ok %>, <input type="submit" value="<%: Shop.Resources.Global.Send %>" />
 				</div>
 			</div>        
 	<% } %>

@@ -11,6 +11,8 @@ using Dev.Mvc.Runtime;
 using System.Net.Mail;
 using System.ComponentModel;
 using Superi.Web.Mvc.Localization;
+using Shop.Resources;
+using Shop.Helpers;
 
 //using Superi.Web.Mvc.Localization;
 
@@ -99,7 +101,6 @@ namespace Shop.Controllers
         {
             return View();
         }
-
     }
 }
 
@@ -107,17 +108,18 @@ namespace Shop.Models
 {
     public class FeedbackFormModel
     {
-        [Required(ErrorMessage = "Обязательно!")]
-        [DisplayName("Имя, фамилия")]
+        [Required(ErrorMessageResourceName = "Required", ErrorMessageResourceType = typeof(Global))]
+        [LocalizedDisplayName("NameLastName", NameResourceType = typeof(Global))]
         public string Name { get; set; }
-        [DisplayName("Электропочта")]
-        [RegularExpression(@"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$", ErrorMessage = "Неверно введен адрес почты. Формат: name@domain.com")]
+        [LocalizedDisplayName("Email", NameResourceType=typeof(Global))]
+        [RegularExpression(@"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$", 
+            ErrorMessageResourceName = "InvalidEmail", ErrorMessageResourceType=typeof(Global))]
         public string Email { get; set; }
-        [Required(ErrorMessage = "Обязательно!")]
-        [DisplayName("Текст запроса")]
+        [Required(ErrorMessageResourceName = "Required", ErrorMessageResourceType = typeof(Global))]
+        [LocalizedDisplayName("QueryText", NameResourceType=typeof(Global))]
         public string Text { get; set; }
-        [Captcha("ValidateCaptcha", "Captcha", "value", ErrorMessage="Неправильно введены символы с картинки!")]
-        [Required(ErrorMessage = "Введите символы с картинки")]
+        [Captcha("ValidateCaptcha", "Captcha", "value", ErrorMessageResourceName="InvalidCaptcha", ErrorMessageResourceType = typeof(Global))]
+        [Required(ErrorMessageResourceName = "RequiredCaptcha", ErrorMessageResourceType = typeof(Global))]
         [DisplayName("")]
         public string Captcha { get; set; }
     }

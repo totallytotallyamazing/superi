@@ -100,6 +100,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BrandCatalogue.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\LocalizedDisplayNameAttribute.cs" />
+    <Compile Include="Resources\Global.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Global.resx</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\ReviewController.cs" />
     <Compile Include="Controllers\BrandCatalogController.cs" />
     <Compile Include="Controllers\CaptchaController.cs" />
@@ -736,6 +742,13 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Review.Designer.cs</LastGenOutput>
     </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Global.en-US.resx" />
+    <EmbeddedResource Include="Resources\Global.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Global.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

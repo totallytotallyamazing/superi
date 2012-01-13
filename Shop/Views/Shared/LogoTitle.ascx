@@ -11,7 +11,7 @@
                             else
                             {
     %>
-    оформление интерьеров паркетом и мрамором
+    <%: Shop.Resources.Global.LogoTitle %>
     <%
                         }%>
 </p>

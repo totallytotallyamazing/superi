@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Shop.Models;
+using Superi.Web.Mvc.Localization;
 
 namespace Shop.Controllers
 {
@@ -15,23 +16,19 @@ namespace Shop.Controllers
         public ActionResult Index(int? type)
         {
             type = type ?? 1;
-            switch (type)
-            {
-                case 1:
-                    ViewData["title"] = "НАШИ СОБЫТИЯ";
-                    ViewData["css"] = "/Content/Articles.css";
-                    break;
-                case 2:
-                    ViewData["title"] = "Мифы";
-                    ViewData["css"] = "/Content/Myths.css";
-                    break;
-            }
+
+            ViewData["css"] = "/Content/Articles.css";
+            ViewData["title"] = Shop.Resources.Global.Events;
 
             ViewData["type"] = type;
             using (ContentStorage context = new ContentStorage())
             {
-                var articles = context.Articles.Where(a => a.Type == type).OrderByDescending(a => a.Date).ToList();
-                return View(articles);
+                var articles = context.Articles.Where(a => a.Type == type)
+                    .OrderByDescending(a => a.Date)
+                    .Localize((a, l) => new { Article = a, Localizations = l}, context.ContentLocalResource, null)
+                    .ToList();
+                articles.ForEach(item => item.Article.UpdateValues(item.Localizations));
+                return View(articles.Select(item=>item.Article).OrderByDescending(a=>a.Date));
             }
             
         }

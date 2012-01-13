@@ -7,58 +7,62 @@ using Shop.Models;
 using System.Data;
 using Dev.Helpers;
 using System.Net.Mail;
+using Superi.Web.Mvc.Localization;
 
 namespace Shop.Areas.Admin.Controllers
 {
     [Authorize(Roles = "Administrators")]
     public class ArticlesController : Controller
     {
+        ContentStorage context = new ContentStorage();
         //
         // GET: /Admin/Articles/
         [HttpGet]
         public ActionResult AddEdit(int? id, int type)
         {
+            ViewData["context"] = context;
             Article article = null;
             ViewData["type"] = type;
             if (id.HasValue)
-            {
-                using (ContentStorage context = new ContentStorage())
-                {
-                    article = context.Articles.Select(a => a).Where(a => a.Id == id.Value).First();
-                }
-            }
+                article = context.Articles.Select(a => a).Where(a => a.Id == id.Value).First();
             return View(article);
         }
 
         [HttpPost]
-        public ActionResult AddEdit(Article article, int? Id, bool send)
+        public ActionResult AddEdit(Article article, int? Id, bool send, ContentLocalResource[] localizations)
         {
-            using (ContentStorage context = new ContentStorage())
+            if (Id.HasValue && Id.Value > 0)
             {
-                if (Id.HasValue && Id.Value > 0)
-                {
-                    article.Id = Id.Value;
-                    article.Name = article.Title;
-                    article.Text = HttpUtility.HtmlDecode(article.Text);
-                    article.Language = "ru-RU";
-                    object originalItem;
-                    EntityKey entityKey = new EntityKey("ContentStorage.Articles", "Id", article.Id);
-                    if (context.TryGetObjectByKey(entityKey, out originalItem))
-                    {
-                        context.ApplyCurrentValues(entityKey.EntitySetName, article);
-                    }
-                }
-                else
-                {
-                    article.Text = HttpUtility.HtmlDecode(article.Text);
-                    article.Language = "ru-RU";
-                    article.Name = article.Title;
-                    context.AddToArticles(article);
-                    // TODO: Добавлена отправка новостей
-                    SendArticle(article);
-                }
-                context.SaveChanges();
+                article.Id = Id.Value;
+                article.Name = article.Title ?? string.Empty;
+                article.Title = article.Title ?? string.Empty;
+                article.Text = HttpUtility.HtmlDecode(article.Text);
+                article.Language = "ru-RU";
+                object originalItem;
+                EntityKey entityKey = new EntityKey("ContentStorage.Articles", "Id", article.Id);
+                if (context.TryGetObjectByKey(entityKey, out originalItem))
+                    context.ApplyCurrentValues(entityKey.EntitySetName, article);
             }
+            else
+            {
+                article.Text = HttpUtility.HtmlDecode(article.Text);
+                article.Language = "ru-RU";
+                article.Name = article.Title ?? string.Empty;
+                article.Title = article.Title ?? string.Empty;
+                context.AddToArticles(article);
+                // TODO: Добавлена отправка новостей
+                if (send)
+                    SendArticle(article);
+            }
+
+            if (localizations != null && localizations.Length > 0)
+            {
+                localizations.ToList().ForEach(l => l.Text = HttpUtility.HtmlDecode(l.Text));
+                localizations.SaveLocalizationsTo(context.ContentLocalResource, false);
+                article.UpdateValues(localizations.Where(l => l.Language == "ru-RU"));
+            }
+
+            context.SaveChanges();
 
             return RedirectToAction("Index", "Articles", new { area = "", type = article.Type });
         }
@@ -69,7 +73,7 @@ namespace Shop.Areas.Admin.Controllers
             {
                 string articleText = HttpUtility.HtmlDecode(article.Text).Replace("src=\"", "src=\"http://listelli.ua");
                 List<MailAddress> addresses = new List<MailAddress>();
-                foreach (var item in context.Subscribers.Where(s=>s.IsActive))
+                foreach (var item in context.Subscribers.Where(s => s.IsActive))
                     addresses.Add(new MailAddress(item.Email));
                 MailHelper.SendTemplate(addresses, article.Title, "Newsletter.htm", null, true, articleText);
             }
@@ -77,13 +81,10 @@ namespace Shop.Areas.Admin.Controllers
 
         public ActionResult Delete(int id)
         {
-            using (ContentStorage context = new ContentStorage())
-            {
-                Article article = context.Articles.Where(a => a.Id == id).First();
-                context.DeleteObject(article);
-                context.SaveChanges();
-                return RedirectToAction("Index", "Articles", new { area = "", type = article.Type });
-            }
+            Article article = context.Articles.Where(a => a.Id == id).First();
+            context.DeleteObject(article);
+            context.SaveChanges();
+            return RedirectToAction("Index", "Articles", new { area = "", type = article.Type });
         }
     }
 }

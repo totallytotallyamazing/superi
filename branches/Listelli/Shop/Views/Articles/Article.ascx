@@ -2,10 +2,12 @@
 <%@ Import Namespace="Dev.Helpers" %>
 <div id="news1">
     <p class="it3">
-        <%= Model.Date.Day%>
+<%--        <%= Model.Date.Day%>
         <%= Model.Date.GetMonthName() %>
         <%= Model.Date.Year %>
-        года</p>
+        года--%>
+        <%= Model.Date.ToString("D", System.Globalization.CultureInfo.CurrentUICulture) %>
+    </p>
     <p class="it1">
         <b>
             <%=Model.Title %></b></p>

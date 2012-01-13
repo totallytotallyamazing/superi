@@ -14,7 +14,7 @@ namespace Superi.Web.Mvc.Localization
 {
     public static class LocalizationExtensions
     {
-        public static void SeveLocalizationsTo<T>(this IEnumerable<T> localization, ObjectSet<T> localizations, bool immediateSave = true) where T : class, new()
+        public static void SaveLocalizationsTo<T>(this IEnumerable<T> localization, ObjectSet<T> localizations, bool immediateSave = true) where T : class, new()
         {
             var objectQuery = (localizations as ObjectQuery);
             if (objectQuery == null)

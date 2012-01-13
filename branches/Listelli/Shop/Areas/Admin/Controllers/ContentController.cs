@@ -33,7 +33,7 @@ namespace Shop.Areas.Admin.Controllers
             if (localizations != null && localizations.Length > 0)
             {
                 localizations.ToList().ForEach(l => l.Text = HttpUtility.HtmlDecode(l.Text));
-                localizations.SeveLocalizationsTo(context.ContentLocalResource, false);
+                localizations.SaveLocalizationsTo(context.ContentLocalResource, false);
             }
             context.SaveChanges();
             return RedirectToAction("Go", "Home", new { id = content.Name, area = "" });
@@ -56,7 +56,7 @@ namespace Shop.Areas.Admin.Controllers
             if (localizations != null && localizations.Length > 0)
             {
                 localizations.ToList().ForEach(l => l.Text = HttpUtility.HtmlDecode(l.Text));
-                localizations.SeveLocalizationsTo(context.ContentLocalResource, false);
+                localizations.SaveLocalizationsTo(context.ContentLocalResource, false);
             }
             context.SaveChanges();
             Response.Write("<script type=\"text/javascript\">window.top.$.fancybox.close();</script>");

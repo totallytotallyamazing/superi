@@ -40,6 +40,62 @@ namespace Shop.Areas.Admin.Controllers
             }
         }
 
+        public ActionResult EditDesignersUrl(int id)
+        {
+            using (var context = new DesignerStorage())
+            {
+                var designer = context.Designer.Where(d => d.Id == id).First();
+                string url = designer.Url;
+
+                MembershipUserCollection users = Membership.GetAllUsers();
+                //string[] usersByRoleArray = Roles.GetUsersInRole("Designers");
+                List<DesignerUserPresentation> userList = (from MembershipUser user in users let profile = ProfileCommon.Create(user.Email) select new DesignerUserPresentation { Email = user.Email, Url = profile.Phone }).ToList();
+
+                string email = userList.Where(u => u.Url == url).Select(u => u.Email).First();
+
+                ViewData["id"] = id;
+                ViewData["email"] = email;
+                ViewData["url"] = url;
+                //MembershipUser user1 = Membership.GetUser(email);
+
+
+                //Membership.UpdateUser();
+
+                //return View(userList.Where(u => u.Email.In(usersByRoleArray)).ToList());
+
+
+                return View();
+            }
+        }
+
+        [HttpPost]
+        public ActionResult EditDesignersUrl(int id, string email, string url)
+        {
+            using (var context = new DesignerStorage())
+            {
+                var designer = context.Designer.Where(d => d.Id == id).First();
+                designer.Url = url;
+                context.SaveChanges();
+
+                MembershipUser user = Membership.GetUser(email);
+                var profile = ProfileCommon.Create(user.Email);
+                profile.Phone = url;
+                profile.Save();
+                
+                Membership.UpdateUser(user);
+
+                if(Roles.IsUserInRole(User.Identity.Name, "Administrators"))
+                {
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return RedirectToAction("UserCabinet");
+                }
+            }
+        }
+
+
 
 
         [OutputCache(VaryByParam = "*", NoStore = true, Duration = 1)]

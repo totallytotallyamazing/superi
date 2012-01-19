@@ -11,14 +11,17 @@
     
         <tr>
             <td>
+                <%=Html.ActionLink(item.Url, "EditDesignersUrl", "Designers", new { area = "Admin", id = item.Id }, new { @class = "adminDesignerLink" })%>
+            </td>
+            <td>
                 <%=Html.ActionLink(item.Name, "Index", "Designers", new { area = "", id = item.Url }, new{@class="adminDesignerLink"})%>
             </td>
-             <td>
+            <td>
                 <%= Html.ActionLink("Редактировать", "AddEdit", new { id = item.Id }, null)%> |
                 <%= Html.ActionLink("Список помещений", "Rooms", new { id = item.Id }, null)%> |
                 <%= Html.ActionLink("Удалить", "Delete", new { id = item.Id }, new { onclick = "return confirm('При удалении пользователя, удаляются также все с ним связанные работы. Вы уверены что хотите удалить пользователя?')" })%>
-                
             </td>
+            
         </tr>
     
     <% } %>

@@ -299,8 +299,6 @@
     <Content Include="Scripts\MicrosoftMvcValidation.js" />
     <Content Include="Scripts\MvcCaptchaValidation.js" />
     <Content Include="Scripts\MvcRemoteValidator.js" />
-    <Content Include="Scripts\pf_din_text_comp_pro_regular.typeface.js" />
-    <Content Include="Scripts\typeface-0.15.js" />
     <Content Include="Scripts\ui.datepicker-ru.js" />
     <Content Include="Views\Admin\AddEditNote.aspx" />
     <Content Include="Views\Admin\AddEditWork.aspx" />

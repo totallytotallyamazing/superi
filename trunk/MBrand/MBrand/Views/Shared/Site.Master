@@ -37,9 +37,6 @@
     <%} %>
     <asp:ContentPlaceHolder ID="Includes" runat="server">
     </asp:ContentPlaceHolder>
-    
-    <script type="text/javascript" src="/Scripts/typeface-0.15.js"></script>
-    <script type="text/javascript" src="/Scripts/pf_din_text_comp_pro_regular.typeface.js"></script>
 </head>
 <body>
     <div id="shader">

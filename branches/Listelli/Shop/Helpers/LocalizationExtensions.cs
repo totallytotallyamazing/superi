@@ -9,6 +9,7 @@ using System.Globalization;
 using System.Threading;
 using System.Data.Objects.DataClasses;
 using System.Collections;
+using Shop.Models;
 
 namespace Superi.Web.Mvc.Localization
 {
@@ -66,40 +67,40 @@ namespace Superi.Web.Mvc.Localization
                 ), param);
 
             return localizations.AsQueryable().Where(locCondition);
-           // MethodInfo where = typeof(Queryable).GetMethods().Where(m => m.Name == "Where").First().MakeGenericMethod(typeof(L));
+            // MethodInfo where = typeof(Queryable).GetMethods().Where(m => m.Name == "Where").First().MakeGenericMethod(typeof(L));
 
-//            var whereCall = Expression.Call(where, localizations.AsQueryable().Expression, locCondition);
+            //            var whereCall = Expression.Call(where, localizations.AsQueryable().Expression, locCondition);
 
-//            var keySelector = Expression.Lambda<Func<L, string>>((Expression)Expression.MakeMemberAccess(param, typeof(L).GetProperty("Language")), param);
+            //            var keySelector = Expression.Lambda<Func<L, string>>((Expression)Expression.MakeMemberAccess(param, typeof(L).GetProperty("Language")), param);
 
-//            var typeStub = new { FieldName = "", Text = "" };
+            //            var typeStub = new { FieldName = "", Text = "" };
 
-//            var constructorArgs = new Expression[]{Expression.MakeMemberAccess(param, typeof(L).GetProperty("FieldName")), 
-//                        Expression.MakeMemberAccess(param, typeof(L).GetProperty("Text"))};
+            //            var constructorArgs = new Expression[]{Expression.MakeMemberAccess(param, typeof(L).GetProperty("FieldName")), 
+            //                        Expression.MakeMemberAccess(param, typeof(L).GetProperty("Text"))};
 
-//            var members = typeStub.GetType().GetMember("FieldName").Concat(typeStub.GetType().GetMember("Text"));
+            //            var members = typeStub.GetType().GetMember("FieldName").Concat(typeStub.GetType().GetMember("Text"));
 
-//            var elementSelector = Expression.Lambda(
-//                    Expression.New(typeStub.GetType().GetConstructor(new Type[] { typeof(string), typeof(string) }),
-//                        constructorArgs, members
-//                        )
-//                , param);
+            //            var elementSelector = Expression.Lambda(
+            //                    Expression.New(typeStub.GetType().GetConstructor(new Type[] { typeof(string), typeof(string) }),
+            //                        constructorArgs, members
+            //                        )
+            //                , param);
 
-//            MethodInfo groupBy = typeof(Queryable).GetMethods().Where(m => m.Name == "GroupBy" && m.GetParameters().Length == 3).First()
-//                .MakeGenericMethod(typeof(L), typeof(string), typeStub.GetType());
+            //            MethodInfo groupBy = typeof(Queryable).GetMethods().Where(m => m.Name == "GroupBy" && m.GetParameters().Length == 3).First()
+            //                .MakeGenericMethod(typeof(L), typeof(string), typeStub.GetType());
 
-//            var groupByCall = Expression.Call(groupBy, whereCall, keySelector, elementSelector);
-//            IQueryable groupByResult = (IQueryable)Expression.Lambda(groupByCall).Compile().Method.Invoke(null, null);
-////            IQueryable groupByResult = (IQueryable)groupByCall.Method.Invoke(null, new object[] { whereCall, keySelector, elementSelector });
+            //            var groupByCall = Expression.Call(groupBy, whereCall, keySelector, elementSelector);
+            //            IQueryable groupByResult = (IQueryable)Expression.Lambda(groupByCall).Compile().Method.Invoke(null, null);
+            ////            IQueryable groupByResult = (IQueryable)groupByCall.Method.Invoke(null, new object[] { whereCall, keySelector, elementSelector });
 
-//            Dictionary<string, T> result = new Dictionary<string, T>();
-//            foreach (object item in groupByResult)
-//            {
-//                string key = (string)item.GetType().GetProperty("Key").GetValue(item, null);
-//                result.Add(key, Materialize<T>((IEnumerable)item.GetType().GetProperty("Group").GetValue(item, null)));
-//            }
+            //            Dictionary<string, T> result = new Dictionary<string, T>();
+            //            foreach (object item in groupByResult)
+            //            {
+            //                string key = (string)item.GetType().GetProperty("Key").GetValue(item, null);
+            //                result.Add(key, Materialize<T>((IEnumerable)item.GetType().GetProperty("Group").GetValue(item, null)));
+            //            }
 
-//            return result;
+            //            return result;
         }
 
         private static T Materialize<T>(IEnumerable presentations) where T : new()
@@ -113,7 +114,7 @@ namespace Superi.Web.Mvc.Localization
             return result;
         }
 
-        public static void UpdateValues<T, L>(this T item, IEnumerable<L> localizations) where T: EntityObject
+        public static T UpdateValues<T, L>(this T item, IEnumerable<L> localizations) where T : EntityObject
         {
             foreach (var localizationItem in localizations)
             {
@@ -125,6 +126,7 @@ namespace Superi.Web.Mvc.Localization
                     info.SetValue(item, text, null);
                 }
             }
+            return item;
         }
 
         public static IQueryable<TResult> Localize<T, L, TKey, TResult>(
@@ -202,13 +204,38 @@ namespace Superi.Web.Mvc.Localization
             return source.Localize(resultSelector, localizations, entityIdSelector);
         }
 
-        public static IQueryable<TResult> Localize<T, L,TResult>(
-            this IQueryable<T> source,
-            Expression<Func<T, IEnumerable<L>, TResult>> resultSelector,
-            L localizationType
-            )
+        public static IQueryable<L> GetLocalizations<T, L>(this IQueryable<T> entities, IQueryable<L> localizations)
+            where T : EntityObject
+            where L : EntityObject
         {
-            return source.Localize<T, L, TResult>(resultSelector);
+            string entityName = typeof(T).Name;
+            IEnumerable<string> fieldNames = typeof(T).GetProperties().Where(pi=>pi.PropertyType == typeof(string)).Select(pi => pi.Name);
+            var param = Expression.Parameter(typeof(L));
+
+            string lang = CultureInfo.CurrentUICulture.Name;
+
+            var langEquals = Expression.Lambda<Func<L, bool>>(Expression.Equal(
+                Expression.MakeMemberAccess(
+                param, 
+                typeof(L).GetProperty("Language")), Expression.Constant(lang)), 
+                    param);
+            var eNameEquals = Expression.Lambda<Func<L, bool>>(Expression.Equal(
+                Expression.MakeMemberAccess(param, typeof(L).GetProperty("EntityName")),
+                Expression.Constant(entityName)), 
+                param);
+
+            var fieldNameAccess = Expression.Lambda<Func<L, string>>(Expression.MakeMemberAccess(param, typeof(L).GetProperty("FieldName")), param);
+            var inFieldNames = ContextExtension.BuildContainsExpression<L, string>(fieldNameAccess, fieldNames);
+
+            var localizationIdAccess = Expression.Lambda<Func<L, int>>(Expression.MakeMemberAccess(param, typeof(L).GetProperty("EntityId")), param);
+
+            var entityParam = Expression.Parameter(typeof(T));
+            var entityIdAccess = Expression.Lambda<Func<T, int>>(Expression.MakeMemberAccess(entityParam, typeof(T).GetProperty("Id")), entityParam);
+            IEnumerable<int> entityIds = entities.Select(entityIdAccess);
+            var inId = ContextExtension.BuildContainsExpression(localizationIdAccess, entityIds);
+
+            MethodInfo where = typeof(Queryable).GetMethods().Where(m => m.Name == "Where").First().MakeGenericMethod(typeof(L));
+            return localizations.Where(langEquals).Where(eNameEquals).Where(inFieldNames).Where(inId);
         }
     }
 }

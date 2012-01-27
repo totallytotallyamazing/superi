@@ -5,12 +5,15 @@ using System.Web;
 using System.Web.Mvc;
 using Shop.Models;
 using System.Data;
+using Superi.Web.Mvc.Localization;
 
 namespace Shop.Areas.Admin.Controllers
 {
-    [Authorize(Roles="Administrators")]
+    [Authorize(Roles = "Administrators")]
     public class AttributesController : Controller
     {
+        ShopStorage context = new ShopStorage();
+
         public ActionResult Index(int? id)
         {
             if (id.HasValue)
@@ -19,7 +22,11 @@ namespace Shop.Areas.Admin.Controllers
             }
             using (ShopStorage context = new ShopStorage())
             {
-                List<ProductAttribute> attributes = context.ProductAttributes.OrderBy(pa=>pa.SortOrder).ToList();
+                List<ProductAttribute> attributes = context.ProductAttributes
+                    .Localize((a, l) => new { Attribute = a, Localization = l }, context.ShopLocalResources, null)
+                    .ToList()
+                    .Select(i => i.Attribute.UpdateValues(i.Localization))
+                    .OrderBy(pa => pa.SortOrder).ToList();
                 return View(attributes);
             }
         }
@@ -27,20 +34,18 @@ namespace Shop.Areas.Admin.Controllers
         public ActionResult AddEdit(int? id)
         {
             ViewData["title"] = "Создать атрибут";
+            ViewData["Context"] = context;
             ProductAttribute attribute = null;
             if (id.HasValue)
             {
-                using (ShopStorage context = new ShopStorage())
-                {
-                    attribute = context.ProductAttributes.Where(pa => pa.Id == id.Value).First();
-                    ViewData["title"] = "Редактировать " + attribute.Name;
-                }
+                attribute = context.ProductAttributes.Where(pa => pa.Id == id.Value).First();
+                ViewData["title"] = "Редактировать " + attribute.Name;
             }
             return View(attribute);
         }
 
         [HttpPost]
-        public ActionResult AddEdit(ProductAttribute attribute)
+        public ActionResult AddEdit(ProductAttribute attribute, ShopLocalResource[] localizations)
         {
             using (ShopStorage context = new ShopStorage())
             {
@@ -58,6 +63,7 @@ namespace Shop.Areas.Admin.Controllers
                     context.AddToProductAttributes(attribute);
                 }
                 attribute.Static = true;
+                localizations.SaveLocalizationsTo(context.ShopLocalResources, false);
                 context.SaveChanges();
             }
             return RedirectToAction("Index", "Attributes", new { id = attribute.Id, area = "Admin" });

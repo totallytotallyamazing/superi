@@ -26,9 +26,10 @@ namespace Shop.Controllers
                 var articles = context.Articles.Where(a => a.Type == type)
                     .OrderByDescending(a => a.Date)
                     .Localize((a, l) => new { Article = a, Localizations = l}, context.ContentLocalResource, null)
-                    .ToList();
-                articles.ForEach(item => item.Article.UpdateValues(item.Localizations));
-                return View(articles.Select(item=>item.Article).OrderByDescending(a=>a.Date));
+                    .ToList()
+                    .Select(item=>item.Article.UpdateValues(item.Localizations))
+                    .OrderByDescending(a => a.Date);
+                return View(articles);
             }
             
         }

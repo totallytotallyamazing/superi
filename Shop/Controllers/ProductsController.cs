@@ -11,11 +11,15 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
 using Shop.Helpers.Validation;
 using System.Net.Mail;
+using Superi.Web.Mvc.Localization;
+using System.Data.Objects;
 
 namespace Shop.Controllers
 {
     public class ProductsController : Controller
     {
+        ShopStorage context = new ShopStorage();
+
         public ActionResult Index(int id, int? brandId, int? page, string orderBy)
         {
             ViewData["categoryId"] = id;
@@ -27,45 +31,55 @@ namespace Shop.Controllers
             ViewData["action"] = "Index";
             ViewData["showPager"] = true;
             ViewData["showSorting"] = true;
+            ViewData["context"] = context;
             WebSession.CurrentCategory = id;
 
-            using (ShopStorage context = new ShopStorage())
+            context.Products.MergeOption = MergeOption.NoTracking;
+            context.Brands.MergeOption = MergeOption.NoTracking;
+            context.ProductAttributeValues.MergeOption = MergeOption.NoTracking;
+            context.ProductAttributeStaticValues.MergeOption = MergeOption.NoTracking;
+            context.ProductImages.MergeOption = MergeOption.NoTracking;
+            context.Categories.MergeOption = MergeOption.NoTracking;
+
+            IQueryable<Product> products = null;
+            Category category = context.Categories.Include("Parent")
+                .First(c => c.Id == id);
+
+            ViewData["isContest"] = category.IsContest;
+
+            products = context.Products
+                   .Include("Brand")
+                   .Include("ProductAttributeValues.ProductAttribute")
+                   .Include("ProductAttributeStaticValues.ProductAttribute")
+                   .Include("ProductImages")
+                   .Include("Categories")
+                   .Where(p => (!brandId.HasValue || p.Brand.Id == brandId.Value));
+            if (category.Parent == null)
             {
-                IQueryable<Product> products = null;
-                Category category = context.Categories.Include("Parent")
-                    .First(c => c.Id == id);
+                ViewData["showAdminLinks"] = false;
 
-                ViewData["isContest"] = category.IsContest;
-
-                products = context.Products
-                       .Include("Brand")
-                       .Include("ProductAttributeValues.ProductAttribute")
-                       .Include("ProductAttributeStaticValues.ProductAttribute")
-                       .Include("ProductImages")
-                       .Include("Categories")
-                       .Where(p => (!brandId.HasValue || p.Brand.Id == brandId.Value));
-                if (category.Parent == null)
-                {
-                    ViewData["showAdminLinks"] = false;
-
-                    products = products.Where(p => p.Categories.Any(
-                        c => c.Id == id || (c.Parent != null && c.Parent.Id == id)))
-                        .Where(p => p.ShowInRoot);
-                }
-                else
-                    products = products.Where(p => (!brandId.HasValue || p.Brand.Id == brandId.Value))
-                        .Where(p => p.Categories.Any(c => c.Id == id));
-
-                orderBy = orderBy ?? string.Empty;
-                products = ApplyOrdering(products, orderBy.ToLowerInvariant());
-
-                if (!Roles.IsUserInRole("Administrators"))
-                    products = products.Where(p => p.Published);
-                ViewData["totalCount"] = products.Count();
-                products = ApplyPaging(products, page);
-                ViewData["title"] = category.Name;
-                return View(products.ToList());
+                products = products.Where(p => p.Categories.Any(
+                    c => c.Id == id || (c.Parent != null && c.Parent.Id == id)))
+                    .Where(p => p.ShowInRoot);
             }
+            else
+                products = products.Where(p => (!brandId.HasValue || p.Brand.Id == brandId.Value))
+                    .Where(p => p.Categories.Any(c => c.Id == id));
+
+            orderBy = orderBy ?? string.Empty;
+            products = ApplyOrdering(products, orderBy.ToLowerInvariant());
+
+            if (!Roles.IsUserInRole("Administrators"))
+                products = products.Where(p => p.Published);
+
+
+            ViewData["totalCount"] = products.Count();
+            products = ApplyPaging(products, page);
+            ViewData["title"] = category.Name;
+
+            var productLocalization = products.GetLocalizations(context.ShopLocalResources).ToList();
+            products.Select(p => p.UpdateValues(productLocalization.Where(l => l.EntityId == p.Id)));
+            return View(products);
         }
 
         IQueryable<Product> ApplyOrdering(IQueryable<Product> products, string orderBy)
@@ -148,7 +162,7 @@ namespace Shop.Controllers
                 ViewData["description"] = product.SeoDescription;
 
                 ViewData["quickQuestion"] = new QuickQuestionModel { ProductName = product.PartNumber + " " + product.Categories.First().Name + " " + product.Name };
-                
+
                 return View("Show1", product);
             }
         }

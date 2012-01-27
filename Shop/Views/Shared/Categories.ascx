@@ -1,5 +1,6 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl" %>
 <%@ Import Namespace="Dev.Helpers" %>
+<%@ Import Namespace="Superi.Web.Mvc.Localization" %>
 <%@ Import Namespace="Shop.Models" %>
 <% 
     List<Category> categories;
@@ -9,6 +10,8 @@
         categories = context.Categories.Include("Categories")
             .Where(c => c.Parent == null)
             .Where(c => c.Published)
+            .Localize((c, l) => new { Category = c, Localizations = l}, context.ShopLocalResources, null).ToList()
+            .Select(c=>c.Category.UpdateValues(c.Localizations))
             .OrderBy(c => c.SortOrder).ToList();
     }
 %>

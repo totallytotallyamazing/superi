@@ -15,7 +15,7 @@ using System.Reflection;
 
 namespace Shop.Helpers
 {
-    public static class LocalizationHelpers
+    public static class Localizationup
     {
         struct ModelDetails
         {

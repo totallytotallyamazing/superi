@@ -1,11 +1,15 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<Shop.Models.Category>" %>
 <%@ Import Namespace="Dev.Mvc.Helpers" %>
+<%@ Import Namespace="Shop.Helpers" %>
+<%@ Import Namespace="Shop.Models" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	<%= ViewData["title"] %>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-
+    <% 
+        ShopStorage context = (ShopStorage)ViewData["context"];
+    %>
     <% Html.EnableClientValidation(); %>
 
     <% using (Html.BeginForm("AddEdit", "Categories", FormMethod.Post, new { enctype = "multipart/form-data" }))
@@ -20,7 +24,7 @@
                 <%= Html.LabelFor(model => model.Name)%>
             </div>
             <div class="editor-field">
-                <%= Html.TextBoxFor(model => model.Name)%>
+                <%= Html.LocalizedTextBoxFor(model => model.Name, context.ShopLocalResources)%>
                 <%= Html.ValidationMessageFor(model => model.Name)%>
             </div>
             
@@ -72,5 +76,9 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="includes" runat="server">
     <script type="text/javascript" src="/Scripts/MicrosoftAjax.js"></script>
     <script type="text/javascript" src="/Scripts/MicrosoftMvcValidation.js"></script>
+    <script type="text/javascript" src="/Scripts/localization.js"></script>
+    <script type="text/javascript">
+        Localization.bindLocalizationSwitch();
+    </script>
 </asp:Content>
 

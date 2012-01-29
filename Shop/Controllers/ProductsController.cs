@@ -13,6 +13,7 @@ using Shop.Helpers.Validation;
 using System.Net.Mail;
 using Superi.Web.Mvc.Localization;
 using System.Data.Objects;
+using System.Globalization;
 
 namespace Shop.Controllers
 {
@@ -58,7 +59,7 @@ namespace Shop.Controllers
                 else
                     products = products.Where(p => (!brandId.HasValue || p.Brand.Id == brandId.Value))
                         .Where(p => p.Categories.Any(c => c.Id == id));
-
+                category.UpdateValues(category.Localizations(context.ShopLocalResources).Where(l => l.Language == CultureInfo.CurrentUICulture.Name));
                 orderBy = orderBy ?? string.Empty;
                 products = ApplyOrdering(products, orderBy.ToLowerInvariant());
 

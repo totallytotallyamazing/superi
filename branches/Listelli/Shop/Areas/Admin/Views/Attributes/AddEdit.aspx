@@ -6,7 +6,7 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-<% var context = ViewData["Context"] as ShopStorage %>
+<% var context = ViewData["Context"] as ShopStorage; %>
 
 	<% Html.EnableClientValidation(); %>
 	<% using (Html.BeginForm()) {%>
@@ -46,5 +46,9 @@
 <asp:Content ID="Content4" ContentPlaceHolderID="includes" runat="server">
   <script type="text/javascript" src="/Scripts/MicrosoftAjax.js"></script>
   <script type="text/javascript" src="/Scripts/MicrosoftMvcValidation.js"></script>
+    <script type="text/javascript" src="/Scripts/localization.js"></script>
+    <script type="text/javascript">
+        Localization.bindLocalizationSwitch();
+    </script>
 </asp:Content>
 

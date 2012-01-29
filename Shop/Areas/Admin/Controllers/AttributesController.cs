@@ -49,6 +49,7 @@ namespace Shop.Areas.Admin.Controllers
         {
             using (ShopStorage context = new ShopStorage())
             {
+                attribute.UpdateValues(localizations.Where(l=>l.Language == "ru-RU"));
                 if (attribute.Id > 0)
                 {
                     object originalItem;
@@ -63,7 +64,8 @@ namespace Shop.Areas.Admin.Controllers
                     context.AddToProductAttributes(attribute);
                 }
                 attribute.Static = true;
-                localizations.SaveLocalizationsTo(context.ShopLocalResources, false);
+                if (localizations != null)
+                    localizations.SaveLocalizationsTo(context.ShopLocalResources, false);
                 context.SaveChanges();
             }
             return RedirectToAction("Index", "Attributes", new { id = attribute.Id, area = "Admin" });

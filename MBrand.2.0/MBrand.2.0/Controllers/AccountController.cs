@@ -5,9 +5,9 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Security;
-using MBrand._2._0.Models;
+using MBrand.Models;
 
-namespace MBrand._2._0.Controllers
+namespace MBrand.Controllers
 {
     public class AccountController : Controller
     {

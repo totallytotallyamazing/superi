@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace MBrand._2._0.Controllers
+namespace MBrand.Controllers
 {
     public class HomeController : Controller
     {

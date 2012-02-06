@@ -5,7 +5,7 @@ using System.Globalization;
 using System.Web.Mvc;
 using System.Web.Security;
 
-namespace MBrand._2._0.Models
+namespace MBrand.Models
 {
 
     public class ChangePasswordModel

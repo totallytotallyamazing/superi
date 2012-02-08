@@ -5,5 +5,5 @@ body{background: black; color:#999;}
 .commingIn, .currentPage, .commingOut{ border:1px solid red;}
 
 .commingIn{opacity:0.0;}
-.currentPage{opacity:1;min-height:500px;}
+.currentPage{opacity:1;height:500px;}
 .commingOut{opacity:0.0; height:0;}

@@ -1,0 +1,10 @@
+﻿@model IEnumerable<MBrand.Models.Statement>
+
+<div id="statements">
+    @foreach (var statement in Model)
+    {
+        <div>
+            @statement.Text
+        </div>
+    }
+</div>

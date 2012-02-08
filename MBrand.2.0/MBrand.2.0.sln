@@ -3,6 +3,10 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MBrand.2.0", "MBrand.2.0\MBrand.2.0.csproj", "{131529B2-04E2-49E1-A61F-62160A4ED3CE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MBrand.Client", "MBrand.Client\MBrand.Client.csproj", "{132ED614-A4E5-4C3A-975F-B87E924565EA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stubs", "Stubs\Stubs.csproj", "{572B4730-6482-4012-92F1-C680524FE8F3}"
+EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
@@ -17,6 +21,14 @@ Global
 		{131529B2-04E2-49E1-A61F-62160A4ED3CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{131529B2-04E2-49E1-A61F-62160A4ED3CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{131529B2-04E2-49E1-A61F-62160A4ED3CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{132ED614-A4E5-4C3A-975F-B87E924565EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{132ED614-A4E5-4C3A-975F-B87E924565EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{132ED614-A4E5-4C3A-975F-B87E924565EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{132ED614-A4E5-4C3A-975F-B87E924565EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{572B4730-6482-4012-92F1-C680524FE8F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{572B4730-6482-4012-92F1-C680524FE8F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{572B4730-6482-4012-92F1-C680524FE8F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{572B4730-6482-4012-92F1-C680524FE8F3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

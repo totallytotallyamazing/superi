@@ -3,21 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MBrand.Models;
 
 namespace MBrand.Controllers
 {
     public class HomeController : Controller
     {
+        ContentContainer context = new ContentContainer();
         public ActionResult Index()
         {
-            ViewBag.Message = "Welcome to ASP.NET MVC!";
-
             return View();
         }
 
-        public ActionResult About()
+        public PartialViewResult Start()
         {
-            return View();
+            return PartialView(context.Statements);
+        }
+
+        public PartialViewResult Contacts()
+        {
+            return PartialView();
         }
     }
 }

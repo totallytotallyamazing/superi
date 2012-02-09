@@ -1,0 +1,47 @@
+﻿@model MBrand.Models.Statement
+
+@section Scripts{
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.validate.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Controls/ckeditor/ckeditor.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Controls/ckeditor/adapters/jquery.js")"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            $("textarea").ckeditor(function () { }, { toolbar: "Tiny", uiColor: "#999", contentsCss: "/Content/Site.css" });
+        });
+    </script>
+}
+
+@{
+    ViewBag.Title = "CreateEdit";
+}
+
+<h2>CreateEdit</h2>
+
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Statement</legend>
+        @if (Model != null)
+        { 
+            @Html.HiddenFor(model => model.Id)
+        }
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Text)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.Text)
+            @Html.ValidationMessageFor(model => model.Text)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("К списку", "Index")
+</div>

@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections.Generic;
+using jQueryApi.BxSlider;
 
 namespace MBrand.Client.Pages
 {
@@ -16,6 +17,11 @@ namespace MBrand.Client.Pages
         public override string Name
         {
             get { return "StartPage"; }
+        }
+
+        protected override void Initialize()
+        {
+            BxSlider.Select("#statements").BxSlider();
         }
     }
 }

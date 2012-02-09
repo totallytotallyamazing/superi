@@ -17,5 +17,10 @@ namespace MBrand.Client.Pages
         {
             get { return "/Home/Contacts"; }
         }
+
+        protected override void Initialize()
+        {
+            
+        }
     }
 }

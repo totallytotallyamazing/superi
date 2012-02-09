@@ -63,7 +63,7 @@ namespace MBrand.Controllers
 
         //
         // GET: /Account/Register
-
+        [Authorize]
         public ActionResult Register()
         {
             return View();
@@ -72,7 +72,7 @@ namespace MBrand.Controllers
         //
         // POST: /Account/Register
 
-        [HttpPost]
+        [Authorize, HttpPost]
         public ActionResult Register(RegisterModel model)
         {
             if (ModelState.IsValid)

@@ -1,0 +1,31 @@
+﻿@model IEnumerable<MBrand.Models.Statement>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Добавить", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            Text
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.Raw(item.Text)
+        </td>
+        <td>
+            @Html.ActionLink("Редактировать", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Удалить", "Delete", new { id=item.Id }) |
+        </td>
+    </tr>
+}
+
+</table>

@@ -11,6 +11,10 @@
     <script type="text/javascript" src="http://bxslider.com/sites/default/files/jquery.bxSlider.min.js"></script>
     <script type="text/javascript" src="/Scripts/mscorlib.js"></script>
     <script type="text/javascript" src="/Scripts/MBrand.Client.debug.js"></script>
+    @if(Request.IsAuthenticated){
+        @:<link href="@Url.Content("~/Content/Admin.css")" rel="stylesheet" type="text/css" />
+    }
+    @RenderSection("Scripts", required: false)
 </head>
 <body>
     @{Html.RenderPartial("TopMenu");}

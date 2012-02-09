@@ -15,11 +15,13 @@ namespace MBrand.Controllers
             return View();
         }
 
+        [OutputCache(NoStore = true, Duration = 1, VaryByParam = "*")]
         public PartialViewResult Start()
         {
             return PartialView(context.Statements);
         }
 
+        [OutputCache(NoStore = true, Duration = 1, VaryByParam = "*")]
         public PartialViewResult Contacts()
         {
             return PartialView();

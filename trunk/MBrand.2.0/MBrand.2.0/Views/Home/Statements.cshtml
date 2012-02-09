@@ -4,7 +4,11 @@
     @foreach (var statement in Model)
     {
         <div>
-            @statement.Text
+            @Html.Raw(statement.Text)
         </div>
     }
 </div>
+
+@if (Request.IsAuthenticated) { 
+    @Html.ActionLink("Редактировать", "Index", new { area = "Admin", controller = "Statements" }, new { @class = "adminLink"});
+}

@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Address.cs" />
+    <Compile Include="BxSlider.cs" />
     <Compile Include="ChangeOptions.cs" />
     <Compile Include="jQueryUi.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

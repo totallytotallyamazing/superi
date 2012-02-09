@@ -25,6 +25,7 @@ namespace MBrand.Client.Pages
         public abstract string Url { get; }
         public abstract string Name { get; }
 
+        #region Static Methods
         public static Page Create(Type page)
         {
             string key = page.Name;
@@ -49,6 +50,8 @@ namespace MBrand.Client.Pages
             pageInstance.LoadContent(container);
         }
 
+        #endregion
+
         private void LoadContent(jQueryObject container)
         {
             _container = container;
@@ -58,6 +61,7 @@ namespace MBrand.Client.Pages
 
         private void Loaded(object data, string status, jQueryDataHttpRequest<object> request)
         {
+            Initialize();
             if (Current != null)
             {
                 jQueryUiObject oldObject = ((jQueryUiObject)jQuery.Select("#" + Current.Name));
@@ -74,7 +78,12 @@ namespace MBrand.Client.Pages
             _loadedHandler = null;
             _current = this;
             ((jQueryUiObject)_container).SwitchClass("commingIn", "currentPage", _transitionDuration);
+            Window.SetTimeout(TransitionComplete, _transitionDuration);
         }
+
+        protected abstract void Initialize();
+
+        protected virtual void TransitionComplete() { }
     }
 
 }

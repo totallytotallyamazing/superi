@@ -1,10 +1,9 @@
 ﻿@model IEnumerable<MBrand.Models.Statement>
-
-<div class="maks">
+<div id="maks">
     <div class="maks-caption">
-        <p>Максим Ярошенко</p>,
+        <p>МАКСИМ ЯРОШЕНКО,</p>
         руководитель проектов
     </div>
-    @{Html.RenderPartial("Statements", Model);}
-    @{Html.RenderPartial("WeCreate");}
 </div>
+@*@{Html.RenderPartial("Statements", Model);}*@
+@{Html.RenderPartial("WeCreate");}

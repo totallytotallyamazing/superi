@@ -45,6 +45,7 @@
     <Reference Include="Script.jQuery" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ContentScroller.cs" />
     <Compile Include="PageManager.cs" />
     <Compile Include="Pages\ContactsPage.cs" />
     <Compile Include="ScriptManager.cs" />

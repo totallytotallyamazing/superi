@@ -1,22 +1,88 @@
-﻿*{margin:0; padding:0;}
+﻿html, body{height:100%; overflow:hidden;}
 
-#statements{margin:20px; margin-right:200px;}
+.trace{position:absolute; color:Lime; border: 1px solid lime; width: 300px; height:100px; left:0; top:0;}
 
-body{background: black; color:#999;}
+#page{min-height:800px; position:relative; min-width:1180px;}
+
+*
+{
+    margin: 0;
+    padding: 0;
+}
+
+#page > div{min-height:500px;}
+
+#statements
+{
+    margin: 20px;
+    margin-right: 200px;
+}
+
+body
+{
+    background: black;
+    color: #999;
+}
+
+#mainNav
+{
+    margin: 46px 60px 0;
+    white-space: nowrap;
+    min-width:1210px;
+}
+
+#mainNav > a{text-decoration:none; display:inline-block; border-bottom:3px solid #faaf4c; margin-top:-12px;}
+
+#logo
+{
+    display: block;
+    float:left;
+    width: 75px;
+    font-family: PFDinTextCondPro;
+    font-size: 20px;
+    white-space: normal;
+    padding:13px 0 0 29px;
+    padding-top:10px;
+    background:url(img/logo.png) no-repeat;
+}
+#logo a
+{
+    color: #faaf4c;
+}
+#logo span
+{
+    border-bottom: 1px solid #faaf4c;
+    text-decoration:underline;
+    display:inline-block;
+}
+
+#mainNav > a, #mainNav>div{display:inline-block; margin-right: 100px;}
+
+#mainNav > a
+{
+    font-family: PFDinTextCondProLight;
+    font-size: 81px;
+    color: #faaf4c;
+    opacity: 0.5;
+    filter: alpha(opacity=50);
+}
 
 .commingIn
 {
-    opacity:0.0;
+    opacity:0;
+    filter: alpha(opacity=0);
 }
-.bx-wrapper{margin-left:20px;  border:1px solid Olive; position:relative;}
+.bx-wrapper
+{
+    margin-left: 20px;
+    position: relative;
+}
 .currentPage
 {
-    opacity:1;
-    height:500px;
+    height: 500px;
 }
 
 .commingOut
 {
-    opacity:0.0; 
-    height:0;
+    height: 0;
 }

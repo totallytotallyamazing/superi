@@ -9,7 +9,7 @@ namespace MBrand.Client.Pages
 {
     public abstract class Page
     {
-        const int _transitionDuration = 500;
+        public const int TransitionDuration = 500;
 
         static Dictionary<string, Page> pageCache = new Dictionary<string, Page>();
         AjaxRequestCallback<object> _loadedHandler;
@@ -64,11 +64,20 @@ namespace MBrand.Client.Pages
             Initialize();
             if (Current != null)
             {
+                Type.InvokeMethod(_current, "beforeChange");
                 jQueryUiObject oldObject = ((jQueryUiObject)jQuery.Select("#" + Current.Name));
-                oldObject.SwitchClass("currentPage", "commingOut", _transitionDuration);
+                Dictionary vanishProps = new Dictionary();
+                vanishProps["opacity"] = 0;
+                vanishProps["height"] = "toggle";
+                vanishProps["minHeight"] = "toggle";
+                oldObject.Animate(vanishProps, TransitionDuration);
                 Window.SetTimeout
                     (
-                        delegate() { oldObject.Remove(); }, _transitionDuration
+                        delegate() 
+                        {
+                            oldObject.Remove(); 
+                        }, 
+                        TransitionDuration
                     );
             }
             else
@@ -77,13 +86,17 @@ namespace MBrand.Client.Pages
             }
             _loadedHandler = null;
             _current = this;
-            ((jQueryUiObject)_container).SwitchClass("commingIn", "currentPage", _transitionDuration);
-            Window.SetTimeout(TransitionComplete, _transitionDuration);
+            Dictionary comeInProps = new Dictionary();
+            comeInProps["opacity"] = 1;
+            _container.Animate(comeInProps, TransitionDuration);
+            Window.SetTimeout(TransitionComplete, TransitionDuration);
         }
 
         protected abstract void Initialize();
 
         protected virtual void TransitionComplete() { }
+
+        protected virtual void BeforeChange() { }
     }
 
 }

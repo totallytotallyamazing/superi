@@ -26,5 +26,10 @@ namespace MBrand.Controllers
         {
             return PartialView();
         }
+
+        public PartialViewResult SecretLink()
+        {
+            return PartialView();
+        }
     }
 }

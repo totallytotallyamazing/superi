@@ -27,7 +27,6 @@ namespace MBrand.Client
         const int ScrollMargin = 100;
         
         ScrollDirection _scrollDirection = ScrollDirection.None;
-
         Array _topIntervals = new Array();
         Array _rightIntervals = new Array();
         Array _bottomIntervals = new Array();

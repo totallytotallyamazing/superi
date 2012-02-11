@@ -1,14 +1,17 @@
 ﻿@model IEnumerable<MBrand.Models.Statement>
-
-<div id="statements">
-    @foreach (var statement in Model)
-    {
-        <div>
-            @Html.Raw(statement.Text)
-        </div>
-    }
+<div id="statementsWrapper">
+    <div id="statements">
+        @foreach (var statement in Model)
+        {
+            <div>
+                @Html.Raw(statement.Text)
+            </div>
+        }
+    </div>
 </div>
-
-@if (Request.IsAuthenticated) { 
-    @Html.ActionLink("Редактировать", "Index", new { area = "Admin", controller = "Statements" }, new { @class = "adminLink"});
+@if (Request.IsAuthenticated)
+{ 
+    <p>
+        @Html.ActionLink("Редактировать", "Index", new { area = "Admin", controller = "Statements" }, new { @class = "adminLink" })
+    </p>
 }

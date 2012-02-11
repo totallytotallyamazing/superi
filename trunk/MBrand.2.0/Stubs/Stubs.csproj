@@ -48,6 +48,7 @@
     <Compile Include="ChangeOptions.cs" />
     <Compile Include="jQueryUi.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SliderOptions.cs" />
     <ScriptInfo Include="Properties\ScriptInfo.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

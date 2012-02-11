@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using jQueryApi.Address;
 using MBrand.Client.Pages;
+using jQueryApi;
 
 namespace MBrand.Client
 {
@@ -22,6 +23,10 @@ namespace MBrand.Client
         {
             Address.Make.Change(AddressChanged);
             ContentScroller.Enable();
+            jQuery.Document.Click(delegate
+                                      {
+                                          jQuery.Select("a").Blur();
+                                      });
         }
 
         private void AddressChanged(ChangeOptions options)

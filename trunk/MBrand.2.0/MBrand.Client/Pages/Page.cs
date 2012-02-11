@@ -29,7 +29,7 @@ namespace MBrand.Client.Pages
         public static Page Create(Type page)
         {
             string key = page.Name;
-            Page result = null;
+            Page result;
             if (!pageCache.ContainsKey(key))
             {
                 result = (Page)Type.CreateInstance(page);
@@ -42,7 +42,7 @@ namespace MBrand.Client.Pages
 
         public static void ChangePage(Type page)
         {
-            Page pageInstance = (Page)Create(page);
+            Page pageInstance = Create(page);
             Dictionary pageProperties = new Dictionary();
             pageProperties["id"] = pageInstance.Name;
             pageProperties["class"] = "commingIn";
@@ -55,7 +55,7 @@ namespace MBrand.Client.Pages
         private void LoadContent(jQueryObject container)
         {
             _container = container;
-            _loadedHandler = new AjaxRequestCallback<object>(Loaded);
+            _loadedHandler = Loaded;
             _container.Load(Url, null, _loadedHandler);
         }
 
@@ -73,8 +73,7 @@ namespace MBrand.Client.Pages
                 oldObject.Animate(vanishProps, TransitionDuration);
                 Window.SetTimeout
                     (
-                        delegate() 
-                        {
+                        delegate {
                             oldObject.Remove(); 
                         }, 
                         TransitionDuration

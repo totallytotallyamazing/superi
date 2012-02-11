@@ -2,7 +2,6 @@
 //
 
 using System;
-using System.Collections.Generic;
 using jQueryApi;
 using System.Html;
 
@@ -18,15 +17,17 @@ namespace MBrand.Client
         Left = 8
     }
 
+    public delegate void ScrollCallback();
 
     public class ContentScroller
     {
         const int ScrollSpeed = 100;
-        const int ScrollStep = 3    ;
+        const int ScrollStep = 3;
         const int IntervalsQuantity = 20;
+        const int ScrollMargin = 100;
+        
         ScrollDirection _scrollDirection = ScrollDirection.None;
 
-        int _scrollMargin = 100;
         Array _topIntervals = new Array();
         Array _rightIntervals = new Array();
         Array _bottomIntervals = new Array();
@@ -45,7 +46,7 @@ namespace MBrand.Client
 
         private void MouseMove(jQueryEvent e)
         {
-            ScrollDirection scrollDirection = GetScrollDirection(e.PageX, e.PageY);
+            ScrollDirection scrollDirection = GetScrollDirection(e.ClientX, e.ClientY);
 
             if (scrollDirection == ScrollDirection.None || scrollDirection != _scrollDirection)
             {
@@ -54,14 +55,25 @@ namespace MBrand.Client
             }
             StartScrolling(scrollDirection);
             _scrollDirection = scrollDirection;
+
+            //jQuery.Select(".trace").Html("scrollTop: " +
+            //    jQuery.Select("body").GetScrollTop() + "<br/>" +
+            //    "scrollDirection: " + scrollDirection + "<br/>" +
+            //        "scrollHeight: " + Document.Body.ScrollHeight + "<br/>" +
+            //        "clientX: " + e.ClientX + "<br/>" +
+            //        "clientY: " + e.ClientY
+            //    );
         }
 
         private ScrollDirection GetScrollDirection(int x, int y)
         {
+            int bodyScrollLeft = jQuery.Select("body").GetScrollLeft();
+            int bodyScrollTop = jQuery.Select("body").GetScrollTop();
+
             ScrollDirection result = ScrollDirection.None;
-            if (x < _scrollMargin && Document.Body.ScrollLeft > 0)
+            if (x < ScrollMargin && bodyScrollLeft > 0)
                 result = ScrollDirection.Left;
-            if (y < _scrollMargin && Document.Body.ScrollTop > 0)
+            if (y < ScrollMargin && bodyScrollTop > 0)
                 result |= ScrollDirection.Top;
             if (result != ScrollDirection.None)
                 return result;
@@ -69,9 +81,9 @@ namespace MBrand.Client
             int height = jQuery.FromElement(Document.Body).GetHeight();
             int width = jQuery.FromElement(Document.Body).GetWidth();
 
-            if (x > width - _scrollMargin && Document.Body.ScrollLeft < Document.Body.ScrollWidth)
+            if (x > width - ScrollMargin && bodyScrollLeft < Document.Body.ScrollWidth)
                 result = ScrollDirection.Right;
-            if (y > height - _scrollMargin && Document.Body.ScrollTop < Document.Body.ScrollHeight)
+            if (y > height - ScrollMargin && bodyScrollTop < Document.Body.ScrollHeight)
                 result |= ScrollDirection.Bottom;
 
             return result;
@@ -88,7 +100,7 @@ namespace MBrand.Client
                     _scrollDirection = ScrollDirection.None;
                     ClearInterval(_topIntervals);
                 }
-                else if (!((_scrollDirection & ScrollDirection.Top) == ScrollDirection.Top))
+                else if ((_scrollDirection & ScrollDirection.Top) != ScrollDirection.Top)
                     SetInterval(delegate
                                 {
                                     Document.Body.ScrollTop -= ScrollStep;
@@ -101,7 +113,7 @@ namespace MBrand.Client
                     _scrollDirection = ScrollDirection.None;
                     ClearInterval(_rightIntervals);
                 }
-                else if (!((_scrollDirection & ScrollDirection.Right) == ScrollDirection.Right))
+                else if ((_scrollDirection & ScrollDirection.Right) != ScrollDirection.Right)
                     SetInterval(delegate
                     {
                         Document.Body.ScrollLeft += ScrollStep;
@@ -114,7 +126,7 @@ namespace MBrand.Client
                     _scrollDirection = ScrollDirection.None;
                     ClearInterval(_bottomIntervals);
                 }
-                else if (!((_scrollDirection & ScrollDirection.Bottom) == ScrollDirection.Bottom))
+                else if ((_scrollDirection & ScrollDirection.Bottom) != ScrollDirection.Bottom)
                     SetInterval(delegate
                     {
                         Document.Body.ScrollTop += ScrollStep;
@@ -127,7 +139,7 @@ namespace MBrand.Client
                     _scrollDirection = ScrollDirection.None;
                     ClearInterval(_leftIntervals);
                 }
-                else if (!((_scrollDirection & ScrollDirection.Left) == ScrollDirection.Left))
+                else if ((_scrollDirection & ScrollDirection.Left) != ScrollDirection.Left)
                     SetInterval(delegate
                     {
                         Document.Body.ScrollLeft -= ScrollStep;
@@ -139,7 +151,7 @@ namespace MBrand.Client
         {
             for (int i = 0; i < IntervalsQuantity; i++)
             {
-                interval[i] = Window.SetInterval(callback, ScrollSpeed + i*10);
+                interval[i] = Window.SetInterval(callback, ScrollSpeed + i * 10);
             }
         }
 
@@ -153,9 +165,9 @@ namespace MBrand.Client
 
         private void ClearInterval(Array interval)
         {
-            for (int i = 0; i < interval.Length; i++)
+            foreach (int i in interval)
             {
-                Window.ClearInterval((int)interval[i]);
+                Window.ClearInterval(i);
             }
         }
     }

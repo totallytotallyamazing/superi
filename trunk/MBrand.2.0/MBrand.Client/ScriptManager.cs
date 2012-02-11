@@ -1,9 +1,6 @@
 // ScriptManager.cs
 //
 
-using System;
-using System.Collections.Generic;
-using System.Html;
 using System.Runtime.CompilerServices;
 using jQueryApi;
 
@@ -14,8 +11,8 @@ namespace MBrand.Client
     {
         static ScriptManager()
         {
-            jQuery.OnDocumentReady(delegate()
-            {
+            jQuery.OnDocumentReady(delegate
+                                       {
                 PageManager manager = new PageManager();
                 manager.Initialize();
             });

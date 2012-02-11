@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using jQueryApi.Address;
 using MBrand.Client.Pages;
-using jQueryApi;
 
 namespace MBrand.Client
 {

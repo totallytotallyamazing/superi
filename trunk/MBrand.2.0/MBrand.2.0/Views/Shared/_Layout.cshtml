@@ -11,14 +11,34 @@
     <script type="text/javascript" src="http://bxslider.com/sites/default/files/jquery.bxSlider.min.js"></script>
     <script type="text/javascript" src="/Scripts/mscorlib.js"></script>
     <script type="text/javascript" src="/Scripts/MBrand.Client.debug.js"></script>
-    @if(Request.IsAuthenticated){
-        @:<link href="@Url.Content("~/Content/Admin.css")" rel="stylesheet" type="text/css" />
-    }
+    @if (Request.IsAuthenticated)
+    {
+        @:<link href="@Url.Content("~/Content/Admin.css")" rel="stylesheet" type="text/css"/>
+        }
+    @if (Request.UserAgent.ToLowerInvariant().Contains("webkit"))
+    { 
+        @:<link href="@Url.Content("~/Content/Webkit.css")" rel="stylesheet" type="text/css"/>
+        }
     @RenderSection("Scripts", required: false)
 </head>
 <body>
     @*<div class="trace"></div>*@
     @{Html.RenderPartial("TopMenu");}
-    @RenderBody()
+    <div id="page">
+        @RenderBody()
+    </div>
+    <div id="footer">
+        <div id="copyright">
+            <p class="large">
+                ©
+            </p>
+            <p class="small">
+                СТУДИЯ ЕВГЕНИЯ МИЛЛЕРА
+            </p>
+            <p class="large">
+                @DateTime.Now.Year
+            </p>
+        </div>
+    </div>
 </body>
 </html>

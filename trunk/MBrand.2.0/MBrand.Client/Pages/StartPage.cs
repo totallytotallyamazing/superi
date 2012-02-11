@@ -1,12 +1,9 @@
 // StartPage.cs
 //
 
-using System;
-using System.Collections.Generic;
 using jQueryApi.BxSlider;
 using jQueryApi;
 using System.Collections;
-using System.Html;
 
 namespace MBrand.Client.Pages
 {
@@ -33,7 +30,7 @@ namespace MBrand.Client.Pages
             Dictionary maxAnimation = new Dictionary();
             maxAnimation["opacity"] = 1;
             maxAnimation["right"] = 0;
-            jQuery.Select("#maks").Animate(maxAnimation, Page.TransitionDuration);
+            jQuery.Select("#maks").Animate(maxAnimation, TransitionDuration);
         }
 
         protected override void BeforeChange()

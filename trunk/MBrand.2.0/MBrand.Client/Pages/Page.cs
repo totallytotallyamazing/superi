@@ -45,7 +45,7 @@ namespace MBrand.Client.Pages
             Page pageInstance = Create(page);
             Dictionary pageProperties = new Dictionary();
             pageProperties["id"] = pageInstance.Name;
-            pageProperties["class"] = "commingIn";
+            pageProperties["class"] = "commingIn content";
             jQueryObject container = jQuery.FromHtml("<div>", pageProperties).AppendTo("#page");
             pageInstance.LoadContent(container);
         }

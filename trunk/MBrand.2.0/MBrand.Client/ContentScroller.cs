@@ -54,14 +54,6 @@ namespace MBrand.Client
             }
             StartScrolling(scrollDirection);
             _scrollDirection = scrollDirection;
-
-            //jQuery.Select(".trace").Html("scrollTop: " +
-            //    jQuery.Select("body").GetScrollTop() + "<br/>" +
-            //    "scrollDirection: " + scrollDirection + "<br/>" +
-            //        "scrollHeight: " + Document.Body.ScrollHeight + "<br/>" +
-            //        "clientX: " + e.ClientX + "<br/>" +
-            //        "clientY: " + e.ClientY
-            //    );
         }
 
         private ScrollDirection GetScrollDirection(int x, int y)

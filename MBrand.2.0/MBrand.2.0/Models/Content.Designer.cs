@@ -18,7 +18,7 @@ using System.Runtime.Serialization;
 [assembly: EdmSchemaAttribute()]
 #region Метаданные связи EDM
 
-[assembly: EdmRelationshipAttribute("Content", "WorkGroupWork", "WorkGroup", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(MBrand.Models.WorkGroup), "Work", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MBrand.Models.Work), true)]
+[assembly: EdmRelationshipAttribute("Content", "WorkGroupWork", "WorkGroup", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(MBrand.Models.WorkGroup), "Work", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MBrand.Models.Work))]
 
 #endregion
 
@@ -73,22 +73,6 @@ namespace MBrand.Models
         /// <summary>
         /// Нет доступной документации по метаданным.
         /// </summary>
-        public ObjectSet<Content> Contents
-        {
-            get
-            {
-                if ((_Contents == null))
-                {
-                    _Contents = base.CreateObjectSet<Content>("Contents");
-                }
-                return _Contents;
-            }
-        }
-        private ObjectSet<Content> _Contents;
-    
-        /// <summary>
-        /// Нет доступной документации по метаданным.
-        /// </summary>
         public ObjectSet<Statement> Statements
         {
             get
@@ -101,17 +85,25 @@ namespace MBrand.Models
             }
         }
         private ObjectSet<Statement> _Statements;
+    
+        /// <summary>
+        /// Нет доступной документации по метаданным.
+        /// </summary>
+        public ObjectSet<Content> Contents
+        {
+            get
+            {
+                if ((_Contents == null))
+                {
+                    _Contents = base.CreateObjectSet<Content>("Contents");
+                }
+                return _Contents;
+            }
+        }
+        private ObjectSet<Content> _Contents;
 
         #endregion
         #region Методы AddTo
-    
-        /// <summary>
-        /// Устаревший метод для добавления новых объектов в набор EntitySet Contents. Взамен можно использовать метод .Add связанного свойства ObjectSet&lt;T&gt;.
-        /// </summary>
-        public void AddToContents(Content content)
-        {
-            base.AddObject("Contents", content);
-        }
     
         /// <summary>
         /// Устаревший метод для добавления новых объектов в набор EntitySet Statements. Взамен можно использовать метод .Add связанного свойства ObjectSet&lt;T&gt;.
@@ -119,6 +111,14 @@ namespace MBrand.Models
         public void AddToStatements(Statement statement)
         {
             base.AddObject("Statements", statement);
+        }
+    
+        /// <summary>
+        /// Устаревший метод для добавления новых объектов в набор EntitySet Contents. Взамен можно использовать метод .Add связанного свойства ObjectSet&lt;T&gt;.
+        /// </summary>
+        public void AddToContents(Content content)
+        {
+            base.AddObject("Contents", content);
         }
 
         #endregion
@@ -145,22 +145,14 @@ namespace MBrand.Models
         /// Создание нового объекта Content.
         /// </summary>
         /// <param name="id">Исходное значение свойства Id.</param>
-        /// <param name="text">Исходное значение свойства Text.</param>
         /// <param name="name">Исходное значение свойства Name.</param>
-        /// <param name="seoDescription">Исходное значение свойства SeoDescription.</param>
-        /// <param name="seoKeywords">Исходное значение свойства SeoKeywords.</param>
         /// <param name="title">Исходное значение свойства Title.</param>
-        /// <param name="desctiption">Исходное значение свойства Desctiption.</param>
-        public static Content CreateContent(global::System.Int32 id, global::System.String text, global::System.String name, global::System.String seoDescription, global::System.String seoKeywords, global::System.String title, global::System.String desctiption)
+        public static Content CreateContent(global::System.Int32 id, global::System.String name, global::System.String title)
         {
             Content content = new Content();
             content.Id = id;
-            content.Text = text;
             content.Name = name;
-            content.SeoDescription = seoDescription;
-            content.SeoKeywords = seoKeywords;
             content.Title = title;
-            content.Desctiption = desctiption;
             return content;
         }
 
@@ -197,7 +189,7 @@ namespace MBrand.Models
         /// <summary>
         /// Нет доступной документации по метаданным.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
         public global::System.String Text
         {
@@ -209,7 +201,7 @@ namespace MBrand.Models
             {
                 OnTextChanging(value);
                 ReportPropertyChanging("Text");
-                _Text = StructuralObject.SetValidValue(value, false);
+                _Text = StructuralObject.SetValidValue(value, true);
                 ReportPropertyChanged("Text");
                 OnTextChanged();
             }
@@ -247,54 +239,6 @@ namespace MBrand.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.String SeoDescription
-        {
-            get
-            {
-                return _SeoDescription;
-            }
-            set
-            {
-                OnSeoDescriptionChanging(value);
-                ReportPropertyChanging("SeoDescription");
-                _SeoDescription = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("SeoDescription");
-                OnSeoDescriptionChanged();
-            }
-        }
-        private global::System.String _SeoDescription;
-        partial void OnSeoDescriptionChanging(global::System.String value);
-        partial void OnSeoDescriptionChanged();
-    
-        /// <summary>
-        /// Нет доступной документации по метаданным.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.String SeoKeywords
-        {
-            get
-            {
-                return _SeoKeywords;
-            }
-            set
-            {
-                OnSeoKeywordsChanging(value);
-                ReportPropertyChanging("SeoKeywords");
-                _SeoKeywords = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("SeoKeywords");
-                OnSeoKeywordsChanged();
-            }
-        }
-        private global::System.String _SeoKeywords;
-        partial void OnSeoKeywordsChanging(global::System.String value);
-        partial void OnSeoKeywordsChanged();
-    
-        /// <summary>
-        /// Нет доступной документации по метаданным.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
         public global::System.String Title
         {
             get
@@ -317,26 +261,74 @@ namespace MBrand.Models
         /// <summary>
         /// Нет доступной документации по метаданным.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String Desctiption
+        public global::System.String SeoDescription
         {
             get
             {
-                return _Desctiption;
+                return _SeoDescription;
             }
             set
             {
-                OnDesctiptionChanging(value);
-                ReportPropertyChanging("Desctiption");
-                _Desctiption = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("Desctiption");
-                OnDesctiptionChanged();
+                OnSeoDescriptionChanging(value);
+                ReportPropertyChanging("SeoDescription");
+                _SeoDescription = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("SeoDescription");
+                OnSeoDescriptionChanged();
             }
         }
-        private global::System.String _Desctiption;
-        partial void OnDesctiptionChanging(global::System.String value);
-        partial void OnDesctiptionChanged();
+        private global::System.String _SeoDescription;
+        partial void OnSeoDescriptionChanging(global::System.String value);
+        partial void OnSeoDescriptionChanged();
+    
+        /// <summary>
+        /// Нет доступной документации по метаданным.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String SeoKeywords
+        {
+            get
+            {
+                return _SeoKeywords;
+            }
+            set
+            {
+                OnSeoKeywordsChanging(value);
+                ReportPropertyChanging("SeoKeywords");
+                _SeoKeywords = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("SeoKeywords");
+                OnSeoKeywordsChanged();
+            }
+        }
+        private global::System.String _SeoKeywords;
+        partial void OnSeoKeywordsChanging(global::System.String value);
+        partial void OnSeoKeywordsChanged();
+    
+        /// <summary>
+        /// Нет доступной документации по метаданным.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Description
+        {
+            get
+            {
+                return _Description;
+            }
+            set
+            {
+                OnDescriptionChanging(value);
+                ReportPropertyChanging("Description");
+                _Description = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Description");
+                OnDescriptionChanged();
+            }
+        }
+        private global::System.String _Description;
+        partial void OnDescriptionChanging(global::System.String value);
+        partial void OnDescriptionChanged();
 
         #endregion
     
@@ -437,24 +429,14 @@ namespace MBrand.Models
         /// Создание нового объекта Work.
         /// </summary>
         /// <param name="id">Исходное значение свойства Id.</param>
-        /// <param name="text">Исходное значение свойства Text.</param>
         /// <param name="name">Исходное значение свойства Name.</param>
-        /// <param name="seoDescription">Исходное значение свойства SeoDescription.</param>
-        /// <param name="seoKeywords">Исходное значение свойства SeoKeywords.</param>
         /// <param name="title">Исходное значение свойства Title.</param>
-        /// <param name="desctiption">Исходное значение свойства Desctiption.</param>
-        /// <param name="workGroupId">Исходное значение свойства WorkGroupId.</param>
-        public static Work CreateWork(global::System.Int32 id, global::System.String text, global::System.String name, global::System.String seoDescription, global::System.String seoKeywords, global::System.String title, global::System.String desctiption, global::System.Int32 workGroupId)
+        public static Work CreateWork(global::System.Int32 id, global::System.String name, global::System.String title)
         {
             Work work = new Work();
             work.Id = id;
-            work.Text = text;
             work.Name = name;
-            work.SeoDescription = seoDescription;
-            work.SeoKeywords = seoKeywords;
             work.Title = title;
-            work.Desctiption = desctiption;
-            work.WorkGroupId = workGroupId;
             return work;
         }
 
@@ -464,26 +446,26 @@ namespace MBrand.Models
         /// <summary>
         /// Нет доступной документации по метаданным.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.Int32 WorkGroupId
+        public global::System.String Image
         {
             get
             {
-                return _WorkGroupId;
+                return _Image;
             }
             set
             {
-                OnWorkGroupIdChanging(value);
-                ReportPropertyChanging("WorkGroupId");
-                _WorkGroupId = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("WorkGroupId");
-                OnWorkGroupIdChanged();
+                OnImageChanging(value);
+                ReportPropertyChanging("Image");
+                _Image = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Image");
+                OnImageChanged();
             }
         }
-        private global::System.Int32 _WorkGroupId;
-        partial void OnWorkGroupIdChanging(global::System.Int32 value);
-        partial void OnWorkGroupIdChanged();
+        private global::System.String _Image;
+        partial void OnImageChanging(global::System.String value);
+        partial void OnImageChanged();
 
         #endregion
     
@@ -544,53 +526,16 @@ namespace MBrand.Models
         /// Создание нового объекта WorkGroup.
         /// </summary>
         /// <param name="id">Исходное значение свойства Id.</param>
-        /// <param name="text">Исходное значение свойства Text.</param>
         /// <param name="name">Исходное значение свойства Name.</param>
-        /// <param name="seoDescription">Исходное значение свойства SeoDescription.</param>
-        /// <param name="seoKeywords">Исходное значение свойства SeoKeywords.</param>
         /// <param name="title">Исходное значение свойства Title.</param>
-        /// <param name="desctiption">Исходное значение свойства Desctiption.</param>
-        /// <param name="workId">Исходное значение свойства WorkId.</param>
-        public static WorkGroup CreateWorkGroup(global::System.Int32 id, global::System.String text, global::System.String name, global::System.String seoDescription, global::System.String seoKeywords, global::System.String title, global::System.String desctiption, global::System.Int32 workId)
+        public static WorkGroup CreateWorkGroup(global::System.Int32 id, global::System.String name, global::System.String title)
         {
             WorkGroup workGroup = new WorkGroup();
             workGroup.Id = id;
-            workGroup.Text = text;
             workGroup.Name = name;
-            workGroup.SeoDescription = seoDescription;
-            workGroup.SeoKeywords = seoKeywords;
             workGroup.Title = title;
-            workGroup.Desctiption = desctiption;
-            workGroup.WorkId = workId;
             return workGroup;
         }
-
-        #endregion
-        #region Свойства-примитивы
-    
-        /// <summary>
-        /// Нет доступной документации по метаданным.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 WorkId
-        {
-            get
-            {
-                return _WorkId;
-            }
-            set
-            {
-                OnWorkIdChanging(value);
-                ReportPropertyChanging("WorkId");
-                _WorkId = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("WorkId");
-                OnWorkIdChanged();
-            }
-        }
-        private global::System.Int32 _WorkId;
-        partial void OnWorkIdChanging(global::System.Int32 value);
-        partial void OnWorkIdChanged();
 
         #endregion
     

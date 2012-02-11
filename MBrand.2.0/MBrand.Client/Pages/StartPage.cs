@@ -23,7 +23,12 @@ namespace MBrand.Client.Pages
 
         protected override void Initialize()
         {
-            BxSlider.Select("#statements").BxSlider();
+            SliderOptions options = new SliderOptions();
+            options.OnNextSlide = options.OnPrevSlide = delegate
+                                                            {
+                                                                jQuery.Select("a.bx-prev, a.bx-next").Blur();
+                                                            };
+            BxSlider.Select("#statements").BxSlider(options);
         }
 
         protected override void TransitionComplete()

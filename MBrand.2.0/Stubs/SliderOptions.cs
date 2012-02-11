@@ -31,6 +31,7 @@ namespace jQueryApi.BxSlider
 	public delegate void BxSlideDelegate(int currentSlideNumber, int totalSlideQty, int currentSlideHtmlObject);
 
 	[ScriptName("Object")]
+	[IgnoreNamespace]
 	public class SliderOptions
 	{
 

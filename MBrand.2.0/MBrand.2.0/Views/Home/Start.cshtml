@@ -5,5 +5,7 @@
         руководитель проектов
     </div>
 </div>
-@{Html.RenderPartial("Statements", Model);}
-@{Html.RenderPartial("WeCreate");}
+<div id="statementsWrapper">
+    @{Html.RenderPartial("Statements", Model);}
+    @{Html.RenderPartial("WeCreate");}
+</div>

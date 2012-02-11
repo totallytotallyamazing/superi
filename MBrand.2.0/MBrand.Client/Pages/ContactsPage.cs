@@ -1,9 +1,6 @@
 // ContactsPage.cs
 //
 
-using System;
-using System.Collections.Generic;
-
 namespace MBrand.Client.Pages
 {
     public class ContactsPage : Page

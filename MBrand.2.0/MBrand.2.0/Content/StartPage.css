@@ -1,5 +1,4 @@
-﻿
-#StartPage
+﻿#StartPage
 {
 }
 #maks
@@ -24,3 +23,10 @@
 }
 
 #maks .maks-caption p{ font-size:16px; }
+
+#statementsWrapper
+{
+    width:752px;
+    margin-top:180px;
+    margin-left:145px;  
+}

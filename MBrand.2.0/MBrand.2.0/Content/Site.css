@@ -1,8 +1,19 @@
 ﻿html, body{height:100%; overflow:hidden;}
+.trace{position:fixed; color:Lime; border: 1px solid lime; width: 300px; left:0; top:0; background:black;}
 
-.trace{position:absolute; color:Lime; border: 1px solid lime; width: 300px; height:100px; left:0; top:0;}
+#page, #footer, #mainNav{min-width:1210px;}
+#page{min-height:800px; position:relative; padding:1px;}
+#footer
+{
+    background: #6f2c8a;
+    padding:2px 60px;
+    height:62px;    
+}
 
-#page{min-height:800px; position:relative; min-width:1180px;}
+#footer #copyright{font-family:PFDinDisplayProBlack; color:Black;}
+
+#footer #copyright p.large{font-size:52px; display:inline-block;}
+#footer #copyright p.small{font-size:11px; display:inline-block; width:60px;}
 
 *
 {
@@ -26,9 +37,8 @@ body
 
 #mainNav
 {
-    margin: 46px 60px 0;
+    padding: 46px 60px 0;
     white-space: nowrap;
-    min-width:1210px;
 }
 
 #mainNav > a{text-decoration:none; display:inline-block; border-bottom:3px solid #faaf4c; margin-top:-12px;}

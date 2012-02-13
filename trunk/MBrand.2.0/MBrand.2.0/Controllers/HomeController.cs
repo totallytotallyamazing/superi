@@ -31,5 +31,11 @@ namespace MBrand.Controllers
         {
             return PartialView();
         }
+
+        protected override void Dispose(bool disposing)
+        {
+            context.Dispose();
+            base.Dispose(disposing);
+        }
     }
 }

@@ -1,0 +1,20 @@
+﻿@model IEnumerable<MBrand.Models.WorkGroup>
+
+<div id="workGroups">
+    <ul>
+        @foreach (var workGroup in Model)
+        {
+            <li>
+                <a href="/works/@workGroup.Name" rel="address:/works/@workGroup.Name">@workGroup.Title</a>
+            </li>
+        }
+    </ul>
+    @if (Request.IsAuthenticated)
+    {
+        @:<a href="javascript:location.href='/Admin/WorkGroups/Create?redirectTo='+escape(location.href);">Добавить</a>
+    }
+</div>
+
+<div id="worksContent">
+    Загрузка...
+</div>

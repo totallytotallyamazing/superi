@@ -49,5 +49,11 @@ namespace MBrand.Areas.Admin.Controllers
             context.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        protected override void Dispose(bool disposing)
+        {
+            context.Dispose();
+            base.Dispose(disposing);
+        }
     }
 }

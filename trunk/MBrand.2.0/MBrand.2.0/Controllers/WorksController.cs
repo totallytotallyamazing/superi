@@ -14,11 +14,18 @@ namespace MBrand.Controllers
         //
         // GET: /Works/
 
-        public ActionResult Index()
+        [OutputCache(Duration = 1, VaryByParam = "*", NoStore = true)]
+        public PartialViewResult Index()
         {
             var groups = context.Contents.OfType<WorkGroup>();
-            ViewBag.WorkGroups = groups;
-            return View();
+
+            return PartialView(groups);
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            context.Dispose();
+            base.Dispose(disposing);
         }
 
     }

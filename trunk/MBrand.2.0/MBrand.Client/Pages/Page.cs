@@ -13,6 +13,7 @@ namespace MBrand.Client.Pages
 
         static Dictionary<string, Page> pageCache = new Dictionary<string, Page>();
         AjaxRequestCallback<object> _loadedHandler;
+        private Array _path = new Array();
         private static Page _current;
 
         public static Page Current
@@ -25,8 +26,13 @@ namespace MBrand.Client.Pages
         public abstract string Url { get; }
         public abstract string Name { get; }
 
+        public Array Path
+        {
+            get { return _path; }
+        }
+
         #region Static Methods
-        public static Page Create(Type page)
+        public static Page Create(Type page, string[] values)
         {
             string key = page.Name;
             Page result;
@@ -37,12 +43,19 @@ namespace MBrand.Client.Pages
             }
             else
                 result = pageCache[key];
+
+            for (int i = 0; values != null && i < values.Length; i++)
+            {
+                result.Path[i] = values[i];
+            }
             return result;
         }
 
-        public static void ChangePage(Type page)
+        public static void ChangePage(Type page, string[] values)
         {
-            Page pageInstance = Create(page);
+            Page pageInstance = Create(page, values);
+            for (int i = 0; values != null && i < values.Length; i++)
+                pageInstance.Path[i] = values[i];
             Dictionary pageProperties = new Dictionary();
             pageProperties["id"] = pageInstance.Name;
             pageProperties["class"] = "commingIn content";
@@ -73,9 +86,10 @@ namespace MBrand.Client.Pages
                 oldObject.Animate(vanishProps, TransitionDuration);
                 Window.SetTimeout
                     (
-                        delegate {
-                            oldObject.Remove(); 
-                        }, 
+                        delegate
+                        {
+                            oldObject.Remove();
+                        },
                         TransitionDuration
                     );
             }
@@ -96,6 +110,8 @@ namespace MBrand.Client.Pages
         protected virtual void TransitionComplete() { }
 
         protected virtual void BeforeChange() { }
+
+        public virtual void SetPath(string[] values) { }
     }
 
 }

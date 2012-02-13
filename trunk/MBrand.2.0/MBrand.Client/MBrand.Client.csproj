@@ -50,6 +50,7 @@
     <Compile Include="Pages\ContactsPage.cs" />
     <Compile Include="ScriptManager.cs" />
     <Compile Include="Utility\Uri.cs" />
+    <Compile Include="Pages\WorksPage.cs" />
     <Content Include="Properties\MBrand.Client.ruleset" />
     <Content Include="Properties\MBrand.Client.script" />
     <Compile Include="Pages\Page.cs" />

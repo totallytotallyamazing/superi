@@ -12,12 +12,14 @@ namespace MBrand.Client
 {
     public class PageManager
     {
-        Dictionary<string, Type> pages = new Dictionary<string, Type>();
+        private Dictionary<string, Type> pages = new Dictionary<string, Type>();
+        private string[] currentPathNames;
 
         public PageManager()
         {
-            pages["/"] = typeof(StartPage);
-            pages["/contacts"] = typeof(ContactsPage);
+            pages[""] = typeof (StartPage);
+            pages["contacts"] = typeof (ContactsPage);
+            pages["works"] = typeof (WorksPage);
         }
 
         public void Initialize()
@@ -37,8 +39,29 @@ namespace MBrand.Client
                 .FadeTo(Page.TransitionDuration, 1)
                 .Parents("#logo")
                 .FadeTo(Page.TransitionDuration, 1);
-            if (pages.ContainsKey(options.Value))
-                Page.ChangePage(pages[options.Value]);
+            string a = options.PathNames[0] ?? string.Empty;
+            if (pages.ContainsKey(a))
+            {
+                int depth = GetPathDifferenceDepth(currentPathNames, options.PathNames);
+                if (depth < 1)
+                    Page.ChangePage(pages[a], (string[])options.PathNames.Extract(1));
+                else
+                    Page.Current.SetPath((string[])options.PathNames.Extract(1));
+                currentPathNames = options.PathNames;
+            }
+        }
+
+        private static int GetPathDifferenceDepth(string[] pathNamesA, string[] pathNamesB)
+        {
+            if (pathNamesA == null || pathNamesB == null)
+                return 0;
+            int count = (pathNamesA.Length > pathNamesB.Length) ? pathNamesA.Length : pathNamesB.Length;
+            for (int i = 0; i < count; i++)
+            {
+                if (pathNamesA[i] != pathNamesB[i])
+                    return i;
+            }
+            return -1;
         }
     }
 }

@@ -75,6 +75,7 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\ContentController.cs" />
     <Compile Include="Areas\Admin\Controllers\StatementsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\WorkGroupsController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\WorksController.cs" />
@@ -216,6 +217,9 @@
     <Content Include="Views\_ViewStart.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Admin\Views\WorkGroups\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\WorkGroups\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\WorkGroups\Delete.cshtml" />
     <None Include="Content\Fonts\pfdindisplaypro-black-webfont.eot" />
     <None Include="Content\Fonts\pfdindisplaypro-black-webfont.ttf" />
     <None Include="Content\Fonts\pfdindisplaypro-black-webfont.woff" />
@@ -240,6 +244,7 @@
     <None Include="Content\Fonts\pfdintextcondpro-regular-webfont.eot" />
     <None Include="Content\Fonts\pfdintextcondpro-regular-webfont.ttf" />
     <None Include="Content\Fonts\pfdintextcondpro-regular-webfont.woff" />
+    <Content Include="Views\Works\Index.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

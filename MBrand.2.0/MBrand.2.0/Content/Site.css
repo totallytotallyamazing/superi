@@ -23,8 +23,6 @@
     padding: 0;
 }
 
-#page > div{min-height:500px;}
-
 #statements
 {
     margin: 20px;
@@ -101,4 +99,13 @@ body
 .commingOut
 {
     height: 0;
+}
+
+/* Pages */
+
+#WorksPage {
+    margin-bottom: 80px;
+    min-height: 718px;
+    border-top: 1px solid #faaf4c;
+    border-bottom: 1px solid #faaf4c;
 }

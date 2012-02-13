@@ -7,10 +7,13 @@
     <link href="@Url.Content("~/Content/StartPage.css")" rel="stylesheet" type="text/css" />
     <link href="@Url.Content("~/Content/Fonts/fonts.css")" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.1.min.js"></script>
-    <script type="text/javascript" src="/Scripts/jquery.address-1.4.min.js"></script>
-    <script type="text/javascript" src="http://bxslider.com/sites/default/files/jquery.bxSlider.min.js"></script>
-    <script type="text/javascript" src="/Scripts/mscorlib.js"></script>
-    <script type="text/javascript" src="/Scripts/MBrand.Client.debug.js"></script>
+    @if (!((Route)ViewContext.RouteData.Route).Url.StartsWith("Admin"))
+    {
+        <script type="text/javascript" src="/Scripts/jquery.address-1.4.min.js"> </script>
+        <script type="text/javascript" src="http://bxslider.com/sites/default/files/jquery.bxSlider.min.js"> </script>
+        <script type="text/javascript" src="/Scripts/mscorlib.js"> </script>
+        <script type="text/javascript" src="/Scripts/MBrand.Client.debug.js"> </script>
+    }
     @if (Request.IsAuthenticated)
     {
         @:<link href="@Url.Content("~/Content/Admin.css")" rel="stylesheet" type="text/css"/>
@@ -29,7 +32,7 @@
     </div>
     <div id="footer">
         <div id="secretLink">
-            <a href="/SecretLink" rel="address:/secretLink">СЕКРЕТНАЯ ССЫЛКА</a>
+            <a href="/Home/SecretLink" rel="address:/secretLink">СЕКРЕТНАЯ ССЫЛКА</a>
         </div>
         <div id="copyright">
             <p class="large">

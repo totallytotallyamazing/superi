@@ -12,6 +12,7 @@ namespace MBrand.Controllers
         ContentContainer context = new ContentContainer();
         public ActionResult Index()
         {
+
             return View();
         }
 

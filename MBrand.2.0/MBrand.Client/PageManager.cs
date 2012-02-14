@@ -12,14 +12,14 @@ namespace MBrand.Client
 {
     public class PageManager
     {
-        private Dictionary<string, Type> pages = new Dictionary<string, Type>();
-        private string[] currentPathNames;
+        private Dictionary<string, Type> _pages = new Dictionary<string, Type>();
+        private string[] _currentPathNames;
 
         public PageManager()
         {
-            pages[""] = typeof (StartPage);
-            pages["contacts"] = typeof (ContactsPage);
-            pages["works"] = typeof (WorksPage);
+            _pages[""] = typeof (StartPage);
+            _pages["contacts"] = typeof (ContactsPage);
+            _pages["works"] = typeof (WorksPage);
         }
 
         public void Initialize()
@@ -40,14 +40,14 @@ namespace MBrand.Client
                 .Parents("#logo")
                 .FadeTo(Page.TransitionDuration, 1);
             string a = options.PathNames[0] ?? string.Empty;
-            if (pages.ContainsKey(a))
+            if (_pages.ContainsKey(a))
             {
-                int depth = GetPathDifferenceDepth(currentPathNames, options.PathNames);
+                int depth = GetPathDifferenceDepth(_currentPathNames, options.PathNames);
                 if (depth < 1)
-                    Page.ChangePage(pages[a], (string[])options.PathNames.Extract(1));
+                    Page.ChangePage(_pages[a], (string[])options.PathNames.Extract(1));
                 else
                     Page.Current.SetPath((string[])options.PathNames.Extract(1));
-                currentPathNames = options.PathNames;
+                _currentPathNames = options.PathNames;
             }
         }
 

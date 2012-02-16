@@ -137,6 +137,7 @@ namespace MBrand.Models
     [DataContractAttribute(IsReference=true)]
     [KnownTypeAttribute(typeof(WorkGroup))]
     [KnownTypeAttribute(typeof(Work))]
+    [KnownTypeAttribute(typeof(TextContent))]
     public partial class Content : EntityObject
     {
         #region Фабричный метод
@@ -410,6 +411,35 @@ namespace MBrand.Models
         private global::System.String _Text;
         partial void OnTextChanging(global::System.String value);
         partial void OnTextChanged();
+
+        #endregion
+    
+    }
+    
+    /// <summary>
+    /// Нет доступной документации по метаданным.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="Content", Name="TextContent")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class TextContent : Content
+    {
+        #region Фабричный метод
+    
+        /// <summary>
+        /// Создание нового объекта TextContent.
+        /// </summary>
+        /// <param name="id">Исходное значение свойства Id.</param>
+        /// <param name="name">Исходное значение свойства Name.</param>
+        /// <param name="title">Исходное значение свойства Title.</param>
+        public static TextContent CreateTextContent(global::System.Int32 id, global::System.String name, global::System.String title)
+        {
+            TextContent textContent = new TextContent();
+            textContent.Id = id;
+            textContent.Name = name;
+            textContent.Title = title;
+            return textContent;
+        }
 
         #endregion
     

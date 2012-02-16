@@ -1,14 +1,16 @@
 ﻿@model IEnumerable<MBrand.Models.WorkGroup>
-
+<link href="@Url.Content("~/Content/Works.css")" rel="stylesheet" type="text/css" />
 <div id="workGroups">
     <ul>
         @foreach (var workGroup in Model)
         {
             <li>
-                <a href="/works/@workGroup.Name" rel="address:/works/@workGroup.Name">@workGroup.Title</a>
+                <a href="/works/@workGroup.Name" rel="address:/works/@workGroup.Name">@workGroup.Title.ToUpper()</a>
             </li>
         }
     </ul>
+    
+    //////////
     @if (Request.IsAuthenticated)
     {
         @:<a class="adminLink" href="javascript:location.href='/Admin/WorkGroups/Create?redirectTo='+escape(location.href);">Добавить</a>

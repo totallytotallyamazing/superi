@@ -34,12 +34,13 @@ namespace MBrand.Client
 
         private void AddressChanged(ChangeOptions options)
         {
+            string a = options.PathNames[0] ?? string.Empty;
             jQuery.Select("#mainNav > *").FadeTo(Page.TransitionDuration, 0.5);
-            jQuery.Select("[rel='address:" + options.Value + "']", Document.GetElementById("mainNav"))
+            jQuery.Select("[rel='address:" + "/" + a + "']", Document.GetElementById("mainNav"))
                 .FadeTo(Page.TransitionDuration, 1)
                 .Parents("#logo")
                 .FadeTo(Page.TransitionDuration, 1);
-            string a = options.PathNames[0] ?? string.Empty;
+            
             if (_pages.ContainsKey(a))
             {
                 int depth = GetPathDifferenceDepth(_currentPathNames, options.PathNames);

@@ -77,6 +77,7 @@
     <Compile Include="Areas\Admin\Controllers\StatementsController.cs" />
     <Compile Include="Areas\Admin\Controllers\WorkGroupsController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ContentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\WorksController.cs" />
     <Compile Include="Global.asax.cs">
@@ -135,6 +136,7 @@
     <Content Include="Content\themes\base\jquery.ui.tabs.css" />
     <Content Include="Content\themes\base\jquery.ui.theme.css" />
     <Content Include="Content\Webkit.css" />
+    <Content Include="Content\Works.css" />
     <Content Include="Global.asax" />
     <Content Include="HTMLPage1.htm" />
     <Content Include="Models\Content.edmx.sql" />

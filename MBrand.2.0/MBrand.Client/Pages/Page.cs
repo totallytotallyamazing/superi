@@ -111,10 +111,13 @@ namespace MBrand.Client.Pages
 
         protected virtual void BeforeChange() { }
 
-        public virtual void SetPath(string[] values)
+        internal virtual void SetPath(string[] values)
         {
             _path = values;
+            PathSet();
         }
+
+        protected virtual void PathSet() { }
     }
 
 }

@@ -1,0 +1,23 @@
+﻿#workGroups {
+    font-family: PFDinTextCondPro;
+    width: 221px;
+    padding: 23px 7px;
+    float: left;
+    color: #faaf4c;
+    font-size: 30px;
+}
+
+#workGroups ul {
+    list-style: none;
+}
+
+#workGroups li{ padding-bottom: 20px;}
+
+#workGroups a {
+    color: #faaf4c;
+}
+
+#worksContent {
+    margin-left: 235px;
+    padding: 55px 60px;
+}

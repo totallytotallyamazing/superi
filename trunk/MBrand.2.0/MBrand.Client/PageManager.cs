@@ -12,7 +12,7 @@ namespace MBrand.Client
 {
     public class PageManager
     {
-        private Dictionary<string, Type> _pages = new Dictionary<string, Type>();
+        private readonly Dictionary<string, Type> _pages = new Dictionary<string, Type>();
         private string[] _currentPathNames;
 
         public PageManager()
@@ -26,10 +26,7 @@ namespace MBrand.Client
         {
             Address.Make.Change(AddressChanged);
             ContentScroller.Enable();
-            jQuery.Document.Click(delegate
-                                      {
-                                          jQuery.Select("a").Blur();
-                                      });
+            jQuery.Document.Click(delegate { jQuery.Select("a").Blur(); });
         }
 
         private void AddressChanged(ChangeOptions options)

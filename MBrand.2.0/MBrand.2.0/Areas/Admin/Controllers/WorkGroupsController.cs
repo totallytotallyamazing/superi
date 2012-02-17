@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+﻿using System.Data;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using MBrand.Models;
 
@@ -11,7 +7,7 @@ namespace MBrand.Areas.Admin.Controllers
 { 
     public class WorkGroupsController : Controller
     {
-        private ContentContainer db = new ContentContainer();
+        private readonly ContentContainer _db = new ContentContainer();
 
         //
         // GET: /Admin/WorkGroups/Create
@@ -30,8 +26,8 @@ namespace MBrand.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Contents.AddObject(workgroup);
-                db.SaveChanges();
+                _db.Contents.AddObject(workgroup);
+                _db.SaveChanges();
                 return Redirect((string)TempData["redirectTo"]);  
             }
 
@@ -43,7 +39,7 @@ namespace MBrand.Areas.Admin.Controllers
  
         public ActionResult Edit(int id, string redirectTo)
         {
-            WorkGroup workgroup = db.Contents.OfType<WorkGroup>().Single(w => w.Id == id);
+            WorkGroup workgroup = _db.Contents.OfType<WorkGroup>().Single(w => w.Id == id);
             return View(workgroup);
         }
 
@@ -55,9 +51,9 @@ namespace MBrand.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Contents.Attach(workgroup);
-                db.ObjectStateManager.ChangeObjectState(workgroup, EntityState.Modified);
-                db.SaveChanges();
+                _db.Contents.Attach(workgroup);
+                _db.ObjectStateManager.ChangeObjectState(workgroup, EntityState.Modified);
+                _db.SaveChanges();
                 return Redirect((string)TempData["redirectTo"]);  
             }
             return View(workgroup);
@@ -69,15 +65,15 @@ namespace MBrand.Areas.Admin.Controllers
 
         public ActionResult Delete(int id, string redirectTo)
         {
-            WorkGroup workgroup = db.Contents.OfType<WorkGroup>().Single(w => w.Id == id);
-            db.Contents.DeleteObject(workgroup);
-            db.SaveChanges();
+            WorkGroup workgroup = _db.Contents.OfType<WorkGroup>().Single(w => w.Id == id);
+            _db.Contents.DeleteObject(workgroup);
+            _db.SaveChanges();
             return Redirect(redirectTo);
         }
 
         protected override void Dispose(bool disposing)
         {
-            db.Dispose();
+            _db.Dispose();
             base.Dispose(disposing);
         }
     }

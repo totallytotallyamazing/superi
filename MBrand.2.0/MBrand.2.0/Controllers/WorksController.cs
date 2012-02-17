@@ -9,22 +9,21 @@ namespace MBrand.Controllers
 {
     public class WorksController : Controller
     {
-
-        ContentContainer context = new ContentContainer();
+        readonly ContentContainer _context = new ContentContainer();
         //
         // GET: /Works/
 
         [OutputCache(Duration = 1, VaryByParam = "*", NoStore = true)]
         public PartialViewResult Index()
         {
-            var groups = context.Contents.OfType<WorkGroup>();
+            var groups = _context.Contents.OfType<WorkGroup>();
 
             return PartialView(groups);
         }
 
         protected override void Dispose(bool disposing)
         {
-            context.Dispose();
+            _context.Dispose();
             base.Dispose(disposing);
         }
 

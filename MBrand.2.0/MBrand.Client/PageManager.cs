@@ -17,9 +17,9 @@ namespace MBrand.Client
 
         public PageManager()
         {
-            _pages[""] = typeof (StartPage);
-            _pages["contacts"] = typeof (ContactsPage);
-            _pages["works"] = typeof (WorksPage);
+            _pages[""] = typeof(StartPage);
+            _pages["works"] = typeof(WorksPage);
+            _pages["content"] = typeof(ContentPage);
         }
 
         public void Initialize()
@@ -36,11 +36,11 @@ namespace MBrand.Client
         {
             string a = options.PathNames[0] ?? string.Empty;
             jQuery.Select("#mainNav > *").FadeTo(Page.TransitionDuration, 0.5);
-            jQuery.Select("[rel='address:" + "/" + a + "']", Document.GetElementById("mainNav"))
+            jQuery.Select("[rel='address:/" + a + "'], [rel='address:" + options.Value + "']", Document.GetElementById("mainNav"))
                 .FadeTo(Page.TransitionDuration, 1)
                 .Parents("#logo")
                 .FadeTo(Page.TransitionDuration, 1);
-            
+
             if (_pages.ContainsKey(a))
             {
                 int depth = GetPathDifferenceDepth(_currentPathNames, options.PathNames);

@@ -3,7 +3,7 @@ namespace MBrand.Client.Pages
 {
     public class WorksPage :Page
     {
-        private const string WorkContentUrl = "/Content/Get/Works";
+        private const string WorkContentUrl = "/Content/Get/worksIntro";
         private const string WorksUrlFormat = "/Works/Items/{0}?page={1}";
 
         public override string Url

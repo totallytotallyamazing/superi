@@ -27,10 +27,10 @@ namespace MBrand.Client
         const int ScrollMargin = 100;
         
         ScrollDirection _scrollDirection = ScrollDirection.None;
-        Array _topIntervals = new Array();
-        Array _rightIntervals = new Array();
-        Array _bottomIntervals = new Array();
-        Array _leftIntervals = new Array();
+        static Array _topIntervals = new Array();
+        static Array _rightIntervals = new Array();
+        static Array _bottomIntervals = new Array();
+        static Array _leftIntervals = new Array();
 
         public static void Enable()
         {
@@ -146,7 +146,7 @@ namespace MBrand.Client
             }
         }
 
-        private void ClearIntervals()
+        public static void ClearIntervals()
         {
             ClearInterval(_topIntervals);
             ClearInterval(_rightIntervals);
@@ -154,7 +154,7 @@ namespace MBrand.Client
             ClearInterval(_leftIntervals);
         }
 
-        private void ClearInterval(Array interval)
+        private static void ClearInterval(Array interval)
         {
             foreach (int i in interval)
             {

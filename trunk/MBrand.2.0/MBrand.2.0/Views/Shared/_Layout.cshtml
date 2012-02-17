@@ -29,21 +29,6 @@
     <div id="page">
         @RenderBody()
     </div>
-    <div id="footer">
-        <div id="secretLink">
-            <a href="/Home/SecretLink" rel="address:/secretLink">СЕКРЕТНАЯ ССЫЛКА</a>
-        </div>
-        <div id="copyright">
-            <p class="large">
-                ©
-            </p>
-            <p class="small">
-                СТУДИЯ ЕВГЕНИЯ МИЛЛЕРА
-            </p>
-            <p class="large">
-                @DateTime.Now.Year
-            </p>
-        </div>
-    </div>
+    @{Html.RenderPartial("Footer");}
 </body>
 </html>

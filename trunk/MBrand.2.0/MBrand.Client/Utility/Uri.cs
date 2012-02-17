@@ -8,6 +8,8 @@ namespace MBrand.Client.Utility
 {
     public static class Uri
     {
+        private const string PageNamePattern = "[a-zA-Z/:0-9.]*/(\\w+\\.html)";
+
         public static string GetQueryString(WindowInstance window, string key)
         {
             string value = string.Empty;
@@ -26,7 +28,7 @@ namespace MBrand.Client.Utility
 
         public static string GetPage(WindowInstance window)
         {
-            RegularExpression pageNameMatch = new RegularExpression("[a-zA-Z/:0-9.]*/(\\w+\\.html)");
+            RegularExpression pageNameMatch = new RegularExpression(PageNamePattern);
 
             string[] groups = pageNameMatch.Exec(window.Location.Href);
             return (groups != null) ? groups[1] : string.Empty;

@@ -9,40 +9,48 @@ namespace MBrand.Client.Pages
 {
     public abstract class Page
     {
+        #region Constants
         public const int TransitionDuration = 500;
+        #endregion
 
-        static Dictionary<string, Page> pageCache = new Dictionary<string, Page>();
+        #region Fields
+        static readonly Dictionary<string, Page> PageCache = new Dictionary<string, Page>();
         AjaxRequestCallback<object> _loadedHandler;
         private Array _path = new Array();
         private static Page _current;
+        private jQueryObject _container;
+        #endregion
 
+        #region Properties
         public static Page Current
         {
             get { return _current; }
         }
 
-        private jQueryObject _container;
-
-        public abstract string Url { get; }
-        public abstract string Name { get; }
-
         public Array Path
         {
             get { return _path; }
-        }
+        } 
+        #endregion
+
+        #region Abstract members
+        public abstract string Url { get; }
+        public abstract string Name { get; }
+        protected abstract void Initialize(); 
+        #endregion
 
         #region Static Methods
         public static Page Create(Type page, string[] values)
         {
             string key = page.Name;
             Page result;
-            if (!pageCache.ContainsKey(key))
+            if (!PageCache.ContainsKey(key))
             {
                 result = (Page)Type.CreateInstance(page);
-                pageCache[key] = result;
+                PageCache[key] = result;
             }
             else
-                result = pageCache[key];
+                result = PageCache[key];
 
             for (int i = 0; values != null && i < values.Length; i++)
             {
@@ -54,16 +62,27 @@ namespace MBrand.Client.Pages
         public static void ChangePage(Type page, string[] values)
         {
             Page pageInstance = Create(page, values);
-            for (int i = 0; values != null && i < values.Length; i++)
-                pageInstance.Path[i] = values[i];
-            Dictionary pageProperties = new Dictionary();
-            pageProperties["id"] = pageInstance.Name;
-            pageProperties["class"] = "commingIn content";
-            jQueryObject container = jQuery.FromHtml("<div>", pageProperties).AppendTo("#page");
+            pageInstance._path = values;
+            jQueryObject container = CreateContainer(pageInstance);
             pageInstance.LoadContent(container);
         }
 
+        protected static jQueryObject CreateContainer(Page pageInstance)
+        {
+            Dictionary pageProperties = new Dictionary();
+            pageProperties["id"] = pageInstance.Name;
+            pageProperties["class"] = "commingIn content";
+            return jQuery.FromHtml("<div>", pageProperties).AppendTo("#page");
+        }
         #endregion
+
+        #region Interna, private and protected methods
+        internal void SetPath(string[] values)
+        {
+            BeforePathSet();
+            _path = values;
+            PathSet();
+        }
 
         private void LoadContent(jQueryObject container)
         {
@@ -75,10 +94,26 @@ namespace MBrand.Client.Pages
         private void Loaded(object data, string status, jQueryDataHttpRequest<object> request)
         {
             Initialize();
+            jQueryUiObject oldObject = null;
             if (Current != null)
             {
                 Type.InvokeMethod(_current, "beforeChange");
-                jQueryUiObject oldObject = ((jQueryUiObject)jQuery.Select("#" + Current.Name));
+                oldObject = ((jQueryUiObject)jQuery.Select("#" + Current.Name));
+            }
+            else
+            {
+                jQuery.Select("#defaultContent").Remove();
+            }
+            _loadedHandler = null;
+            _current = this;
+
+            PerformTransition(oldObject, _container);
+        }
+
+        protected void PerformTransition(jQueryObject oldObject, jQueryObject newObject)
+        {
+            if (oldObject != null)
+            {
                 Dictionary vanishProps = new Dictionary();
                 vanishProps["opacity"] = 0;
                 vanishProps["height"] = "toggle";
@@ -93,31 +128,25 @@ namespace MBrand.Client.Pages
                         TransitionDuration
                     );
             }
-            else
-            {
-                jQuery.Select("#defaultContent").Remove();
-            }
-            _loadedHandler = null;
-            _current = this;
+
             Dictionary comeInProps = new Dictionary();
             comeInProps["opacity"] = 1;
-            _container.Animate(comeInProps, TransitionDuration);
+            Document.Body.ScrollTop = 0;
+            newObject.Animate(comeInProps, TransitionDuration);
+            ContentScroller.ClearIntervals();
             Window.SetTimeout(TransitionComplete, TransitionDuration);
         }
+        #endregion
 
-        protected abstract void Initialize();
-
+        #region Virtual Methods
         protected virtual void TransitionComplete() { }
 
         protected virtual void BeforeChange() { }
 
-        internal virtual void SetPath(string[] values)
-        {
-            _path = values;
-            PathSet();
-        }
-
         protected virtual void PathSet() { }
+
+        protected virtual void BeforePathSet() { }
+        #endregion
     }
 
 }

@@ -50,7 +50,9 @@ namespace MBrand.Client.Pages
                 PageCache[key] = result;
             }
             else
+            {
                 result = PageCache[key];
+            }
 
             for (int i = 0; values != null && i < values.Length; i++)
             {

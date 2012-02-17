@@ -222,6 +222,7 @@
     <Content Include="Areas\Admin\Views\WorkGroups\Create.cshtml" />
     <Content Include="Areas\Admin\Views\WorkGroups\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\WorkGroups\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Content\Edit.cshtml" />
     <None Include="Content\Fonts\pfdindisplaypro-black-webfont.eot" />
     <None Include="Content\Fonts\pfdindisplaypro-black-webfont.ttf" />
     <None Include="Content\Fonts\pfdindisplaypro-black-webfont.woff" />

@@ -33,6 +33,7 @@ body
 {
     background: black;
     color: #999;
+    font-family: PFDinTextCondPro;
 }
 
 #mainNav
@@ -63,7 +64,7 @@ body
     display: block;
     float:left;
     width: 75px;
-    font-family: PFDinTextCondPro;
+    font-family: PFDinTextCondProMedium;
     font-size: 20px;
     white-space: normal;
     padding:13px 0 0 29px;

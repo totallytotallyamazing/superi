@@ -58,8 +58,9 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Image" Type="longtext" Nullable="true" />
+    <Property Name="BottomImage" Type="longtext" Nullable="true" />
     <Property Name="Id" Type="int" Nullable="false" />
-    <Property Name="WorkGroup_Id" Type="int" Nullable="false" />
+    <Property Name="WorkGroupId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Contents_TextContent">
     <Key>
@@ -75,7 +76,7 @@
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="Work">
-        <PropertyRef Name="WorkGroup_Id" />
+        <PropertyRef Name="WorkGroupId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -149,12 +150,15 @@
         <EntityType Name="Work" BaseType="Content.Content" >
           <NavigationProperty Name="WorkGroup" Relationship="Content.WorkGroupWork" FromRole="Work" ToRole="WorkGroup" />
           <Property Type="String" Name="Image" />
+          <Property Type="String" Name="BottomImage" />
         </EntityType>
         <EntityType Name="WorkGroup" BaseType="Content.Content" >
           <NavigationProperty Name="Works" Relationship="Content.WorkGroupWork" FromRole="WorkGroup" ToRole="Work" />
         </EntityType>
         <Association Name="WorkGroupWork">
-          <End Type="Content.WorkGroup" Role="WorkGroup" Multiplicity="1" />
+          <End Type="Content.WorkGroup" Role="WorkGroup" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
           <End Type="Content.Work" Role="Work" Multiplicity="*" />
         </Association>
         <EntityType Name="TextContent" BaseType="Content.Content" />
@@ -193,6 +197,7 @@
         <MappingFragment StoreEntitySet="Contents_Work">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="BottomImage" ColumnName="BottomImage" />
         </MappingFragment>
       </EntityTypeMapping>
       <EntityTypeMapping TypeName="IsTypeOf(Content.TextContent)">
@@ -203,7 +208,7 @@
     </EntitySetMapping>
     <AssociationSetMapping Name="WorkGroupWork" TypeName="Content.WorkGroupWork" StoreEntitySet="Contents_Work">
       <EndProperty Name="WorkGroup">
-        <ScalarProperty Name="Id" ColumnName="WorkGroup_Id" />
+        <ScalarProperty Name="Id" ColumnName="WorkGroupId" />
       </EndProperty>
       <EndProperty Name="Work">
         <ScalarProperty Name="Id" ColumnName="Id" />
@@ -230,7 +235,7 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram Name="Content" >
-        <EntityTypeShape EntityType="Content.Statement" PointX="7" PointY="2.875" Width="1.5" Height="1.4033821614583326" />
+        <EntityTypeShape EntityType="Content.Statement" PointX="5.625" PointY="0.5" Width="1.5" Height="1.4033821614583326" />
         <EntityTypeShape EntityType="Content.Content" Width="1.5" PointX="2.875" PointY="0.5" Height="1.9802864583333331" />
         <EntityTypeShape EntityType="Content.Work" Width="1.5" PointX="4.875" PointY="3.625" Height="1.2110807291666665" />
         <InheritanceConnector EntityType="Content.Work">
@@ -250,10 +255,12 @@
           <ConnectorPoint PointX="2.25" PointY="4.2305403645833337" />
           <ConnectorPoint PointX="4.875" PointY="4.2305403645833337" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="Content.TextContent" Width="1.5" PointX="5.375" PointY="0.625" Height="1.0187792968749996" />
-        <InheritanceConnector EntityType="Content.TextContent" >
-          <ConnectorPoint PointX="4.375" PointY="1.1343896484374998" />
-          <ConnectorPoint PointX="5.375" PointY="1.1343896484374998" />
+        <EntityTypeShape EntityType="Content.TextContent" Width="1.5" PointX="7.25" PointY="3.625" Height="1.0187792968749996" />
+        <InheritanceConnector EntityType="Content.TextContent" ManuallyRouted="false" >
+          <ConnectorPoint PointX="3.625" PointY="2.8648893229166665" />
+          <ConnectorPoint PointX="3.625" PointY="3.25" />
+          <ConnectorPoint PointX="8" PointY="3.25" />
+          <ConnectorPoint PointX="8" PointY="3.625" />
         </InheritanceConnector>
         </Diagram>
     </edmx:Diagrams>

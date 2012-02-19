@@ -5,11 +5,13 @@
     <title>@ViewBag.Title</title>
     <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
     <link href="@Url.Content("~/Content/Fonts/fonts.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/Works.css")" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.1.min.js"></script>
     @if (!((Route)ViewContext.RouteData.Route).Url.StartsWith("Admin"))
     {
         <script type="text/javascript" src="/Scripts/jquery.address-1.4.min.js"> </script>
         <script type="text/javascript" src="http://bxslider.com/sites/default/files/jquery.bxSlider.min.js"> </script>
+        <script type="text/javascript" src="/Scripts/jsrender.js"></script>
         <script type="text/javascript" src="/Scripts/mscorlib.js"> </script>
         <script type="text/javascript" src="/Scripts/MBrand.Client.debug.js"> </script>
     }
@@ -20,7 +22,7 @@
     @if (Request.UserAgent.ToLowerInvariant().Contains("webkit"))
     { 
         @:<link href="@Url.Content("~/Content/Webkit.css")" rel="stylesheet" type="text/css"/>
-        }
+    }
     @RenderSection("Scripts", required: false)
 </head>
 <body>

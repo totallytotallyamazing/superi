@@ -1,22 +1,35 @@
 ﻿@model IEnumerable<MBrand.Models.WorkGroup>
-<link href="@Url.Content("~/Content/Works.css")" rel="stylesheet" type="text/css" />
 <div id="workGroups">
     <ul>
         @foreach (var workGroup in Model)
         {
-            <li>
-                <a href="/works/@workGroup.Name" rel="address:/works/@workGroup.Name">@workGroup.Title.ToUpper()</a>
+            <li><a href="/works/@workGroup.Name" rel="address:/works/@workGroup.Name">@workGroup.Title.ToUpper()</a>
+                @if (Request.IsAuthenticated)
+                {
+                    @:&nbsp;&nbsp;<a class="adminLink" onclick="return confirm('Точно?')" href="javascript:location.href='/Admin/WorkGroups/Delete/@workGroup.Id?redirectTo='+escape(location.href);">x</a>
+                                }
             </li>
         }
     </ul>
-    
-    //////////
     @if (Request.IsAuthenticated)
     {
-        @:<a class="adminLink" href="javascript:location.href='/Admin/WorkGroups/Create?redirectTo='+escape(location.href);">Добавить</a>
+        <div>
+            <a class="adminLink" href="javascript:location.href='/Admin/WorkGroups/Create?redirectTo='+escape(location.href);">Добавить</a>
+        </div>
     }
+    //////////
 </div>
-
 <div id="worksContent">
     Загрузка...
 </div>
+<div id="worksPager">
+    
+</div>
+
+<!-- Templates -->
+<script type="text/x-jquery-tmpl" id="workItemTemplate">
+    <div class="workItem" title="{{=Title}}" data-name="{{=Name}}">
+        <div><img src="/Content/workImages/{{=Image}}" alt="{{=Title}}" /></div>
+        <div class="description">{{=Description}}</div>
+    </div>
+</script>

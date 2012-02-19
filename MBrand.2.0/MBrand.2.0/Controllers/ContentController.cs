@@ -14,8 +14,16 @@ namespace MBrand.Controllers
         public ActionResult Get(string id)
         {
             var content = _context.Contents.OfType<TextContent>().FirstOrDefault(c => c.Name == id);
-
-            return Content(content != null ? content.Text : string.Empty);
+            string contentText = string.Empty;
+            if (content != null)
+            {
+                contentText = content.Text;
+                if(Request.IsAuthenticated)
+                {
+                    contentText+="<div><a class=\"adminLink\" href=\"javascript:location.href='/Admin/Content/Edit/" + id + "?redirectTo='+escape(location.href);\">Редактировать</a></div>";
+                }
+            }
+            return Content(contentText);
         }
 
     }

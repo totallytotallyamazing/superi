@@ -78,7 +78,7 @@ namespace MBrand.Client.Pages
         }
         #endregion
 
-        #region Interna, private and protected methods
+        #region Internal, private and protected methods
         internal void SetPath(string[] values)
         {
             BeforePathSet();

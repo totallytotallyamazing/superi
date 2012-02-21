@@ -146,12 +146,18 @@ namespace MBrand.Client
             }
         }
 
-        public static void ClearIntervals()
+        private static void ClearIntervals()
         {
             ClearInterval(_topIntervals);
             ClearInterval(_rightIntervals);
             ClearInterval(_bottomIntervals);
             ClearInterval(_leftIntervals);
+        }
+
+        public static void GoToTop()
+        {
+            ClearIntervals();
+            Document.Body.ScrollTop = 0;
         }
 
         private static void ClearInterval(Array interval)

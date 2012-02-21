@@ -135,7 +135,7 @@ namespace MBrand.Client.Pages
             comeInProps["opacity"] = 1;
             Document.Body.ScrollTop = 0;
             newObject.Animate(comeInProps, TransitionDuration);
-            ContentScroller.ClearIntervals();
+            ContentScroller.GoToTop();
             Window.SetTimeout(TransitionComplete, TransitionDuration);
         }
         #endregion

@@ -3,6 +3,7 @@ using jQueryApi;
 using System;
 using System.Runtime.CompilerServices;
 using jQueryApi.JsRender;
+using System.Collections;
 namespace MBrand.Client.Pages
 {
     public class WorksPage : Page
@@ -10,12 +11,15 @@ namespace MBrand.Client.Pages
         private const string WorkContentUrl = "/Content/Get/worksIntro";
         private const string WorksUrlFormat = "/Works/Items/{0}";
         private const int WorkItemWidth = 290;
+        private const string WorkItemTemplateSelector = "#workItemTemplate";
+        private const string WorksContentSelector = "#worksContent";
+        private const string PagerTemplateSelector = "#pagerTemplate";
 
         private int _pageWidth;
         private int _currentPage;
         private int _pageSize;
         private int _pageCount;
-        
+
         Array _works = new Array();
 
         public override string Url
@@ -47,7 +51,7 @@ namespace MBrand.Client.Pages
         {
             if (Path.Length == 0)
             {
-                jQuery.Select("#worksContent")
+                jQuery.Select(WorksContentSelector)
                     .Load(WorkContentUrl);
             }
             else
@@ -62,7 +66,7 @@ namespace MBrand.Client.Pages
             Array works = (Array)worksData;
             if (works == null || works.Length == 0)
             {
-                jQuery.Select("#worksContent").Empty();
+                jQuery.Select(WorksContentSelector).Empty();
                 return;
             }
 
@@ -72,16 +76,18 @@ namespace MBrand.Client.Pages
             jQuery.Window.Resize(WindowResized);
 
             RenderWorks(_works);
+
+            RenderPager();
         }
 
         private void RenderWorks(Array works)
         {
-            _pageWidth = jQuery.Select("#worksContent").GetWidth();
+            _pageWidth = jQuery.Select(WorksContentSelector).GetWidth();
             UpdatePageSize();
             UpdatePageCount(works);
 
             Array page = GetCurrentPage(works);
-            string layout = JsRender.Select("#workItemTemplate").Render(page);
+            string layout = JsRender.Select(WorkItemTemplateSelector).Render(page);
             jQuery.Select("#worksContent").Empty().Html(layout);
 
             jQuery.Select(".workItem *").Each(delegate(int index, Element element)
@@ -108,12 +114,45 @@ namespace MBrand.Client.Pages
 
         private void UpdatePageCount(Array items)
         {
-            _pageCount = Math.Floor(items.Length/_pageSize) + ((items.Length%_pageSize > 0) ? 1 : 0);
+            _pageCount = Math.Floor(items.Length / _pageSize) + ((items.Length % _pageSize > 0) ? 1 : 0);
         }
+
+        private void RenderPager()
+        {
+            if (_pageCount > 1)
+            {
+                Array pages = new Array();
+                for (int i = 1; i <= _pageCount; i++)
+                {
+                    Dictionary item = new Dictionary();
+                    item["Text"] = i;
+                    item["Value"] = (i - 1).ToString();
+                    item["Class"] = (i - 1) == _currentPage ? "pagerItem current" : "pagerItem";
+                    pages[i - 1] = item;
+                }
+                string pagesLayout = JsRender.Select(PagerTemplateSelector).Render(pages);
+                jQuery.Select("#worksPager").Html(pagesLayout);
+                jQuery.Select("#worksPager a").Click(ChangePage);
+            }
+        }
+
+        private void ChangePage(jQueryEvent e)
+        {
+            int page = int.Parse((string) e.CurrentTarget.GetAttribute("data-page-index"));
+            if(page == _currentPage)
+                return;
+            _currentPage = page;
+            RenderWorks(_works);
+            jQuery.Select("#worksPager a").RemoveClass("current");
+            jQuery.FromElement(e.CurrentTarget).AddClass("current");
+            ContentScroller.GoToTop();
+        }
+
+
 
         private Array GetCurrentPage(Array items)
         {
-            int startIndex = _pageSize*_currentPage;
+            int startIndex = _pageSize * _currentPage;
             return items.Extract(startIndex, _pageSize);
         }
 

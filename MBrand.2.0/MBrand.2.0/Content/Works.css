@@ -1,4 +1,5 @@
-﻿#workGroups {
+﻿#workGroups
+{
     font-family: PFDinTextCondProMedium;
     width: 221px;
     padding: 23px 7px;
@@ -7,22 +8,31 @@
     font-size: 30px;
 }
 
-#workGroups ul {
+#workGroups ul
+{
     list-style: none;
 }
 
-#workGroups li{ padding-bottom: 20px;}
+#workGroups li
+{
+    padding-bottom: 20px;
+}
 
-#workGroups a {
+#workGroups a
+{
     color: #faaf4c;
 }
 
-#worksContent, #worksPager {
+#worksContent, #worksPager
+{
     margin-left: 235px;
     min-width: 910px;
 }
 
-#worksPager{ text-align: center;}
+#worksPager
+{
+    text-align: center;
+}
 
 #worksContent > p
 {
@@ -30,7 +40,8 @@
     font-size: 40px;
 }
 
-.workItem {
+.workItem
+{
     font-size: 15px;
     cursor: pointer;
     display: inline-block;
@@ -40,10 +51,40 @@
     width: 180px;
 }
 
-.workItem * {
+.workItem *
+{
     display: none;
 }
 
-.workItem .description{ height: 30px; padding-top: 15px;}
+.workItem .description
+{
+    height: 30px;
+    padding-top: 15px;
+}
 
-#worksPager{}
+#worksPager
+{
+    padding-bottom: 40px;
+}
+
+#worksPager a
+{
+    display: inline-block;
+    margin: 0 6px;
+    width: 17px;
+    height: 17px;
+    background: transparent url(img/page.png) no-repeat;
+    background-position: 0 0;
+    font-family: PFDinTextCondProMedium;
+    font-size: 8.55pt;
+    color: black;
+    line-height: 17px;
+    cursor: pointer;
+}
+
+#worksPager a.current
+{
+    color: #faaf4c;
+    background-position: -17px 0;
+    cursor: default;
+}

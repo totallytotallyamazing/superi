@@ -25,8 +25,10 @@ namespace MBrand.Controllers
         public JsonResult Items (string id)
         {
 
-            var works = Enumerable.Range(0,20).Select(w=>new {Name = "name" + w, Title="Title" + w, Description = "Description" + w, Image="oldDick.png"})
-                .ToArray();//_context.Contents.OfType<Work>().Where(w => w.WorkGroup.Name == id)
+            var works = //Enumerable.Range(0,20).Select(w=>new {Name = "name" + w, Title="Title" + w, Description = "Description" + w, Image="oldDick.png"})
+                _context.Contents.OfType<Work>().Where(w => w.WorkGroup.Name == id)
+                .Select(w => new {w.Name, w.Title, w.Description, w.Image})
+                .ToArray();//
                 //.Select(w => new {w.Name, w.Title, w.Description, w.Image}).ToArray();
 
             return Json(works, JsonRequestBehavior.AllowGet);

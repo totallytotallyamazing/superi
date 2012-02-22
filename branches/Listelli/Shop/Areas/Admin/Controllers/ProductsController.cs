@@ -18,7 +18,7 @@ namespace Shop.Areas.Admin.Controllers
         {
             ViewData["cId"] = categoryId;
             ViewData["bId"] = brandId;
-            using (ShopStorage context = new ShopStorage())
+            using (var context = new ShopStorage())
             {
                 List<Product> products = context.Products.Where(p => p.Categories.Any(c=>c.Id == categoryId))
                     .Where(p => (!brandId.HasValue || p.Brand.Id == brandId.Value)).ToList();
@@ -34,7 +34,7 @@ namespace Shop.Areas.Admin.Controllers
             ViewData["id"] = id;
 
             Product product = null;
-            using (ShopStorage context = new ShopStorage())
+            using (var context = new ShopStorage())
             {
                 var br = context.Brands.ToList();
 
@@ -48,8 +48,7 @@ namespace Shop.Areas.Admin.Controllers
                     product = context.Products.Include("ProductImages")
                         .Include("Categories.ProductAttributes.ProductAttributeValues")
                         .Include("ProductAttributeStaticValues")
-                        .Include("Brand")
-                        .Where(p => p.Id == id.Value).First();
+                        .Include("Brand").First(p => p.Id == id.Value);
                     if (product.Brand != null)
                         brandId = product.Brand.Id;
 
@@ -77,10 +76,10 @@ namespace Shop.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult AddEdit(FormCollection form, int? cId, int? bId, int? brandId)
         {
-            Product product = null;
-            using (ShopStorage context = new ShopStorage())
+            Product product;
+            using (var context = new ShopStorage())
             {
-                int id = int.MinValue;
+                int id;
                 if (int.TryParse(form["Id"], out id))
                 {
                     product = context.Products.Include("Brand")
@@ -88,7 +87,7 @@ namespace Shop.Areas.Admin.Controllers
                         .First(p => p.Id == id);
                     if ((product.Brand == null || product.Brand.Id != brandId) && brandId.HasValue)
                     {
-                        Brand brand = new Brand { Id = brandId.Value };
+                        var brand = new Brand { Id = brandId.Value };
                         brand.EntityKey = new EntityKey("ShopStorage.Brands", "Id", brandId.Value);
                         context.Attach(brand);
                         product.Brand = brand;
@@ -107,7 +106,7 @@ namespace Shop.Areas.Admin.Controllers
                         product.BrandReference.EntityKey = brand; 
                     }
                     
-                    object categoryItem = null;
+                    object categoryItem;
                     context.TryGetObjectByKey(category, out categoryItem);
 
                     product.Categories.Add((Category)categoryItem);
@@ -117,7 +116,7 @@ namespace Shop.Areas.Admin.Controllers
 
 
                 TryUpdateModel(product,
-                    new string[] 
+                    new[] 
                     { 
                         "Name", "PartNumber", "SeoDescription", "SeoKeywords", /*"ShortDescription",
                         "Description", */"IsNew", "SortOrder", "Color", "Published", "IsSpecialOffer", 
@@ -133,7 +132,7 @@ namespace Shop.Areas.Admin.Controllers
                 context.SaveChanges();
             }
 
-            return RedirectToAction("AddEdit", new { id = product.Id, cId = cId, bId = bId });
+            return RedirectToAction("AddEdit", new { id = product.Id, cId, bId });
         }
 
         private void UpdateProductAttributes(Product product, FormCollection form)
@@ -182,7 +181,7 @@ namespace Shop.Areas.Admin.Controllers
         public ActionResult DeleteImage(int productId, int imageId, int? cId)
         {
             DeleteProductImage(productId, imageId);
-            return RedirectToAction("AddEdit", new { id = productId, cId = cId });
+            return RedirectToAction("AddEdit", new { id = productId, cId });
         }
 
         private void DeleteProductImage(int productId, int imageId)
@@ -214,7 +213,7 @@ namespace Shop.Areas.Admin.Controllers
                 }
                 context.SaveChanges();
             }
-            return RedirectToAction("AddEdit", new { id = productId, cId = cId });
+            return RedirectToAction("AddEdit", new { id = productId, cId });
         }
 
         public ActionResult Delete(int id)

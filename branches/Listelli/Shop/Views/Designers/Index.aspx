@@ -129,7 +129,7 @@
                 } 
                 
                
-               foreach (var item in dc.DesignerContentImages)
+               foreach (var item in dc.DesignerContentImages.OrderBy(image=>image.SortOrder))
                {
             %>
             <div class="photoContainer">
@@ -173,8 +173,8 @@
             </div>
             <%
                 }
-                
-               foreach (var item in dc.DesignerContentImages)
+
+                foreach (var item in dc.DesignerContentImages.OrderBy(image => image.SortOrder))
                {
             %>
             <div class="photoContainer">

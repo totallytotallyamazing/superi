@@ -16,7 +16,7 @@
            int dId = (int)ViewData["designerId"];
             %>
 
-            <%foreach (var item in Model.DesignerContentImages)
+            <%foreach (var item in Model.DesignerContentImages.OrderBy(image=>image.SortOrder))
                {
             %>
             <div class="photoContainer">

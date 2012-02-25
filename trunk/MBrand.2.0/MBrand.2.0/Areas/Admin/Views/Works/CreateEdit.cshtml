@@ -1,0 +1,83 @@
+﻿@model MBrand.Models.Work
+@{
+    ViewBag.Title = "Работа, а не хрен собачий";
+}
+@section Scripts
+{
+    <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+    <script src="/Controls/ckeditor/ckeditor.js" type="text/javascript"></script>
+    <script src="/Controls/ckeditor/adapters/jquery.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#Text").ckeditor(function () { }, { toolbar: "Media" });
+            $("#Description").ckeditor(function () { }, { toolbar: "Basic" });
+            $("#SideBarText").ckeditor(function () { }, { toolbar: "Tiny", uiColor: "#fff" });
+        })
+    </script>
+}
+@using (Html.BeginForm((string)ViewContext.RouteData.Values["action"], "Works", new { area = "Admin" }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.Hidden("redirectTo", (string)ViewBag.RedirecTo)
+    @Html.ValidationSummary(true)
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Name)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.Name)
+        @Html.ValidationMessageFor(model => model.Name)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Title)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.Title)
+        @Html.ValidationMessageFor(model => model.Title)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Description)
+    </div>
+    <div class="editor-field">
+        @Html.TextAreaFor(model => model.Description)
+        @Html.ValidationMessageFor(model => model.Description)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.SideBarText)
+    </div>
+    <div class="editor-field">
+        @Html.TextAreaFor(model => model.SideBarText)
+        @Html.ValidationMessageFor(model => model.SideBarText)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Text)
+    </div>
+    <div class="editor-field">
+        @Html.TextAreaFor(model => model.Text)
+        @Html.ValidationMessageFor(model => model.Text)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Image)
+    </div>
+    <div class="editor-field">
+        <input type="file" name="Image" id="Image" />
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.BottomImage)
+    </div>
+    <div class="editor-field">
+        <input type="file" name="BottomImage" id="BottomImage" />
+    </div>
+
+    <p>
+        <input type="submit" value="Сохранить" />
+    </p>
+}
+<div>
+    <a href="@ViewBag.RedirecTo">Нозад</a>
+</div>

@@ -7,14 +7,15 @@
                 @if (Request.IsAuthenticated)
                 {
                     @:&nbsp;&nbsp;<a class="adminLink" onclick="return confirm('Точно?')" href="javascript:location.href='/Admin/WorkGroups/Delete/@workGroup.Id?redirectTo='+escape(location.href);">x</a>
-                                }
+                                                }
             </li>
         }
     </ul>
     @if (Request.IsAuthenticated)
     {
         <div>
-            <a class="adminLink" href="javascript:location.href='/Admin/WorkGroups/Create?redirectTo='+escape(location.href);">Добавить</a>
+            <a class="adminLink" href="javascript:location.href='/Admin/WorkGroups/Create?redirectTo='+escape(location.href);">
+                Добавить</a>
         </div>
     }
     //////////
@@ -23,17 +24,27 @@
     Загрузка...
 </div>
 <div id="worksPager">
-    
 </div>
-
+@if (Request.IsAuthenticated)
+{ 
+    <div id="addLink" style="display: none">
+        <a href="javascript:location.href='/Admin/Works/Create?redirectTo='+escape(location.href)" class="adminLink">Плюсадин</a>
+    </div>
+}
 <!-- Templates -->
 <script type="text/x-jquery-tmpl" id="workItemTemplate">
     <div class="workItem" title="{{=Title}}" data-name="{{=Name}}">
         <div><img src="/Content/workImages/{{=Image}}" alt="{{=Title}}" /></div>
         <div class="description">{{=Description}}</div>
+        @if (Request.IsAuthenticated)
+        {
+            <div>
+                <a href="javascript:location.href='/Admin/Works/Edit/{{=Name}}?redirectTo='+escape(location.href)" class="adminLink">Править</a>&nbsp;|&nbsp;
+                <a href="javascript:location.href='/Admin/Works/Delete/{{=Name}}?redirectTo='+escape(location.href)" class="adminLink" onclick="return confirm('Точно удалить?')">x</a>
+            </div>
+        }
     </div>
 </script>
-
 <script type="text/x-jquery-tmpl" id="pagerTemplate">
     <a class="{{=Class}}" data-page-index={{=Value}}>{{=Text}}</a>
 </script>

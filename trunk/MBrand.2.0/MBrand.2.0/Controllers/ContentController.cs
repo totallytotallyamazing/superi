@@ -20,7 +20,7 @@ namespace MBrand.Controllers
                 contentText = content.Text;
                 if(Request.IsAuthenticated)
                 {
-                    contentText+="<div><a class=\"adminLink\" href=\"javascript:location.href='/Admin/Content/Edit/" + id + "?redirectTo='+escape(location.href);\">Редактировать</a></div>";
+                    contentText+="<div><a class=\"adminLink\" href=\"javascript:location.href='/Admin/Content/Edit/" + id + "?redirectTo='+escape(location.href);\">Править</a></div>";
                 }
             }
             return Content(contentText);

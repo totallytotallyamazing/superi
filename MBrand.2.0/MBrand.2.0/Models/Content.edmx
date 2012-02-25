@@ -52,6 +52,7 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="SortOrder" Type="int" Nullable="true" />
   </EntityType>
   <EntityType Name="Contents_Work">
     <Key>
@@ -59,8 +60,10 @@
     </Key>
     <Property Name="Image" Type="longtext" Nullable="true" />
     <Property Name="BottomImage" Type="longtext" Nullable="true" />
+    <Property Name="SideBarText" Type="longtext" Nullable="true" />
     <Property Name="Id" Type="int" Nullable="false" />
     <Property Name="WorkGroupId" Type="int" Nullable="false" />
+    <Property Name="SortOrder" Type="int" Nullable="true" />
   </EntityType>
   <EntityType Name="Contents_TextContent">
     <Key>
@@ -151,9 +154,12 @@
           <NavigationProperty Name="WorkGroup" Relationship="Content.WorkGroupWork" FromRole="Work" ToRole="WorkGroup" />
           <Property Type="String" Name="Image" />
           <Property Type="String" Name="BottomImage" />
+          <Property Type="String" Name="SideBarText" Nullable="true" />
+          <Property Type="Int32" Name="SortOrder" Nullable="true" />
         </EntityType>
         <EntityType Name="WorkGroup" BaseType="Content.Content" >
           <NavigationProperty Name="Works" Relationship="Content.WorkGroupWork" FromRole="WorkGroup" ToRole="Work" />
+          <Property Type="Int32" Name="SortOrder" Nullable="true" />
         </EntityType>
         <Association Name="WorkGroupWork">
           <End Type="Content.WorkGroup" Role="WorkGroup" Multiplicity="1" >
@@ -190,12 +196,15 @@
       </EntityTypeMapping>
       <EntityTypeMapping TypeName="IsTypeOf(Content.WorkGroup)">
         <MappingFragment StoreEntitySet="Contents_WorkGroup">
-          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
       <EntityTypeMapping TypeName="IsTypeOf(Content.Work)">
         <MappingFragment StoreEntitySet="Contents_Work">
-          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+                <ScalarProperty Name="SideBarText" ColumnName="SideBarText" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Image" ColumnName="Image" />
           <ScalarProperty Name="BottomImage" ColumnName="BottomImage" />
         </MappingFragment>
@@ -237,9 +246,9 @@
       <Diagram Name="Content" >
         <EntityTypeShape EntityType="Content.Statement" PointX="5.625" PointY="0.5" Width="1.5" Height="1.4033821614583326" />
         <EntityTypeShape EntityType="Content.Content" Width="1.5" PointX="2.875" PointY="0.5" Height="1.9802864583333331" />
-        <EntityTypeShape EntityType="Content.Work" Width="1.5" PointX="4.875" PointY="3.625" Height="1.2110807291666665" />
-        <InheritanceConnector EntityType="Content.Work">
-          <ConnectorPoint PointX="3.625" PointY="2.4802864583333331" />
+        <EntityTypeShape EntityType="Content.Work" Width="1.5" PointX="4.875" PointY="3.625" Height="1.9802864583333335" />
+        <InheritanceConnector EntityType="Content.Work" ManuallyRouted="false">
+          <ConnectorPoint PointX="3.625" PointY="2.8648893229166665" />
           <ConnectorPoint PointX="3.625" PointY="3.25" />
           <ConnectorPoint PointX="5.625" PointY="3.25" />
           <ConnectorPoint PointX="5.625" PointY="3.625" />

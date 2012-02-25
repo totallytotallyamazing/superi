@@ -520,6 +520,54 @@ namespace MBrand.Models
         private global::System.String _BottomImage;
         partial void OnBottomImageChanging(global::System.String value);
         partial void OnBottomImageChanged();
+    
+        /// <summary>
+        /// Нет доступной документации по метаданным.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String SideBarText
+        {
+            get
+            {
+                return _SideBarText;
+            }
+            set
+            {
+                OnSideBarTextChanging(value);
+                ReportPropertyChanging("SideBarText");
+                _SideBarText = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("SideBarText");
+                OnSideBarTextChanged();
+            }
+        }
+        private global::System.String _SideBarText;
+        partial void OnSideBarTextChanging(global::System.String value);
+        partial void OnSideBarTextChanged();
+    
+        /// <summary>
+        /// Нет доступной документации по метаданным.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> SortOrder
+        {
+            get
+            {
+                return _SortOrder;
+            }
+            set
+            {
+                OnSortOrderChanging(value);
+                ReportPropertyChanging("SortOrder");
+                _SortOrder = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SortOrder");
+                OnSortOrderChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _SortOrder;
+        partial void OnSortOrderChanging(Nullable<global::System.Int32> value);
+        partial void OnSortOrderChanged();
 
         #endregion
     
@@ -590,6 +638,33 @@ namespace MBrand.Models
             workGroup.Title = title;
             return workGroup;
         }
+
+        #endregion
+        #region Свойства-примитивы
+    
+        /// <summary>
+        /// Нет доступной документации по метаданным.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> SortOrder
+        {
+            get
+            {
+                return _SortOrder;
+            }
+            set
+            {
+                OnSortOrderChanging(value);
+                ReportPropertyChanging("SortOrder");
+                _SortOrder = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SortOrder");
+                OnSortOrderChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _SortOrder;
+        partial void OnSortOrderChanging(Nullable<global::System.Int32> value);
+        partial void OnSortOrderChanged();
 
         #endregion
     

@@ -76,9 +76,11 @@
     <Compile Include="Areas\Admin\Controllers\ContentController.cs" />
     <Compile Include="Areas\Admin\Controllers\StatementsController.cs" />
     <Compile Include="Areas\Admin\Controllers\WorkGroupsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\WorksController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ContentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ValidationController.cs" />
     <Compile Include="Controllers\WorksController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -90,11 +92,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Content.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\ContentValidation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Admin.css" />
-    <Content Include="Content\Fonts\fonts.css" />
+    <Content Include="Content\AdminPage.css" />
     <Content Include="Content\Fonts\pfdindisplaypro-black-webfont.svg" />
     <Content Include="Content\Fonts\pfdintextcomppro-regular-webfont.svg" />
     <Content Include="Content\Fonts\pfdintextcomppro-thin-webfont.svg" />
@@ -228,6 +231,7 @@
     <Content Include="Areas\Admin\Views\WorkGroups\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\WorkGroups\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Content\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Works\CreateEdit.cshtml" />
     <None Include="Content\Fonts\pfdindisplaypro-black-webfont.eot" />
     <None Include="Content\Fonts\pfdindisplaypro-black-webfont.ttf" />
     <None Include="Content\Fonts\pfdindisplaypro-black-webfont.woff" />

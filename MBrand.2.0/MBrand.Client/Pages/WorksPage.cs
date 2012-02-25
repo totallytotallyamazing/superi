@@ -99,6 +99,8 @@ namespace MBrand.Client.Pages
                 }, 100);
             });
 
+            jQuery.Select("#addLink").AppendTo("#worksContent").Show(0);
+
             BindWorkEvents();
         }
 

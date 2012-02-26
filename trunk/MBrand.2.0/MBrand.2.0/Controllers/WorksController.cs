@@ -21,12 +21,11 @@ namespace MBrand.Controllers
         [OutputCache(Duration = 1, VaryByParam = "*", NoStore = true)]
         public JsonResult Items(string id)
         {
-            var works =
-                _context.Contents.OfType<Work>().Where(w => w.WorkGroup.Name == id)
-                    .Select(w => new {w.Name, w.Title, w.Description, w.Image})
-                    .ToArray();
+            var workGroup =
+                _context.Contents.OfType<WorkGroup>().Include("Works").Single(w => w.Name == id);
+            var result = new { workGroup.Id, works = workGroup.Works.Select(w => new { w.Name, w.Title, w.Description, w.Image }).ToArray() };
 
-            return Json(works, JsonRequestBehavior.AllowGet);
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
 
         protected override void Dispose(bool disposing)

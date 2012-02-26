@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
 using System.Web.Mvc;
 using MBrand.Models;
 
-namespace MBrand.Controllers
+namespace MBrand.Areas.Admin.Controllers
 {
     public class ValidationController : Controller
     {

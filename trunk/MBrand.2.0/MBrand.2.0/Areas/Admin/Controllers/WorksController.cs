@@ -2,21 +2,27 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MBrand.Models;
+using MBrand.Helpers;
 
 namespace MBrand.Areas.Admin.Controllers
 { 
     public class WorksController : Controller
     {
+        private const string WorkImagesLocation = "~/Content/workImages";
+        private const string WorkBottomImagesLocation = "~/Content/workBottomImages";
+
+
         private readonly ContentContainer _db = new ContentContainer();
 
         //
         // GET: /Admin/Works/Create
 
-        public ActionResult Create(string redirectTo)
+        public ActionResult Create(int workGroupId, string redirectTo)
         {
             ViewBag.RedirecTo = redirectTo;
             return View("CreateEdit");
@@ -25,13 +31,29 @@ namespace MBrand.Areas.Admin.Controllers
         //
         // POST: /Admin/Works/Create
 
-        [HttpPost]
-        public ActionResult Create(Work work, string redirectTo, HttpPostedFileBase image, HttpPostedFileBase bottomImage)
+        [HttpPost, ValidateInput(false)]
+        public ActionResult Create(Work work, int workGroupId, string redirectTo, HttpPostedFileBase workImage, HttpPostedFileBase workBottomImage)
         {
             if (ModelState.IsValid)
             {
+                if (workImage != null)
+                {
+                    string fileName = Path.GetFileName(workImage.FileName);
+                    fileName = IOHelper.GetUniqueFileName(WorkImagesLocation, fileName);
+                    workImage.SaveFile(WorkImagesLocation, fileName);
+                    work.Image = fileName;
+                }
+
+                if (workBottomImage != null)
+                {
+                    string fileName = Path.GetFileName(workBottomImage.FileName);
+                    fileName = IOHelper.GetUniqueFileName(WorkBottomImagesLocation, fileName);
+                    workImage.SaveFile(WorkImagesLocation, fileName);
+                    work.BottomImage = fileName;
+                }
+                work.WorkGroupReference.EntityKey = new EntityKey("ContentContainer.Contents", "Id", workGroupId);
                 _db.Contents.AddObject(work);
-                //_db.SaveChanges();
+                _db.SaveChanges();
                 return Redirect(redirectTo);  
             }
 
@@ -40,9 +62,10 @@ namespace MBrand.Areas.Admin.Controllers
         
         //
         // GET: /Admin/Works/Edit/5
- 
-        public ActionResult Edit(string id)
+
+        public ActionResult Edit(string id, string redirectTo)
         {
+            ViewBag.RedirecTo = redirectTo;
             Work work = _db.Contents.OfType<Work>().Single(w => w.Name == id);
             return View("CreateEdit", work);
         }
@@ -50,13 +73,39 @@ namespace MBrand.Areas.Admin.Controllers
         //
         // POST: /Admin/Works/Edit/5
 
-        [HttpPost]
-        public ActionResult Edit(Work work, string redirectTo, HttpPostedFileBase image, HttpPostedFileBase bottomImage)
+        [HttpPost, ValidateInput(false)]
+        public ActionResult Edit(FormCollection form, string redirectTo, HttpPostedFileBase workImage, HttpPostedFileBase workBottomImage)
         {
+            int id = int.Parse(form["_id"]);
+            Work work = _db.Contents.OfType<Work>().Single(w => w.Id == id);
             if (ModelState.IsValid)
             {
-                _db.Contents.Attach(work);
-                _db.ObjectStateManager.ChangeObjectState(work, EntityState.Modified);
+                TryUpdateModel(work, new[] { "Text", "Description", "Name", "Title", "SideBarText" });
+                if (workImage != null)
+                {
+                    if(!string.IsNullOrEmpty(work.Image))
+                    {
+                        IOHelper.DeleteFile(WorkImagesLocation, work.Image);
+                    }
+
+                    string fileName = Path.GetFileName(workImage.FileName);
+                    fileName = IOHelper.GetUniqueFileName(WorkImagesLocation, fileName);
+                    workImage.SaveFile(WorkImagesLocation, fileName);
+                    work.Image = fileName;
+                }
+
+                if (workBottomImage != null)
+                {
+                    if (!string.IsNullOrEmpty(work.Image))
+                    {
+                        IOHelper.DeleteFile(WorkBottomImagesLocation, work.BottomImage);
+                    }
+
+                    string fileName = Path.GetFileName(workBottomImage.FileName);
+                    fileName = IOHelper.GetUniqueFileName(WorkBottomImagesLocation, fileName);
+                    workImage.SaveFile(WorkImagesLocation, fileName);
+                    work.BottomImage = fileName;
+                }
                 _db.SaveChanges();
                 return Redirect(redirectTo);
             }
@@ -69,6 +118,14 @@ namespace MBrand.Areas.Admin.Controllers
         public ActionResult Delete(string id, string redirectTo)
         {
             Work work = _db.Contents.OfType<Work>().Single(w => w.Name == id);
+            if (!string.IsNullOrEmpty(work.Image))
+            {
+                IOHelper.DeleteFile(WorkBottomImagesLocation, work.BottomImage);
+            }
+            if (!string.IsNullOrEmpty(work.Image))
+            {
+                IOHelper.DeleteFile(WorkImagesLocation, work.Image);
+            }
             _db.Contents.DeleteObject(work);
             _db.SaveChanges();
             return Redirect(redirectTo);

@@ -1,6 +1,7 @@
 ﻿@model MBrand.Models.Work
 @{
     ViewBag.Title = "Работа, а не хрен собачий";
+    string actionName = (string)ViewContext.RouteData.Values["action"];
 }
 @section Scripts
 {
@@ -15,10 +16,29 @@
             $("#SideBarText").ckeditor(function () { }, { toolbar: "Tiny", uiColor: "#fff" });
         })
     </script>
+    @if (actionName == "Edit")
+    {
+        <script type="text/javascript">
+            $(function () {
+                $("#Name").attr("data-val", false);
+                $('form').removeData('unobtrusiveValidation');
+                $('form').removeData('validator');
+                $.validator.unobtrusive.parse('form');
+            });
+        </script>
+    }
 }
-@using (Html.BeginForm((string)ViewContext.RouteData.Values["action"], "Works", new { area = "Admin" }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm(actionName, "Works", new { area = "Admin" }, FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.Hidden("redirectTo", (string)ViewBag.RedirecTo)
+    if (Model != null)
+    {
+        @Html.Hidden("_id", Model.Id)
+    }
+    else
+    {
+        @Html.Hidden("workGroupId")
+    }
     @Html.ValidationSummary(true)
     <div class="editor-label">
         @Html.LabelFor(model => model.Name)
@@ -64,14 +84,14 @@
         @Html.LabelFor(model => model.Image)
     </div>
     <div class="editor-field">
-        <input type="file" name="Image" id="Image" />
+        <input type="file" name="workImage" id="workImage" />
     </div>
 
     <div class="editor-label">
         @Html.LabelFor(model => model.BottomImage)
     </div>
     <div class="editor-field">
-        <input type="file" name="BottomImage" id="BottomImage" />
+        <input type="file" name="workBottomImage" id="workBottomImage" />
     </div>
 
     <p>

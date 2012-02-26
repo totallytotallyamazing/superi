@@ -28,14 +28,14 @@
 @if (Request.IsAuthenticated)
 { 
     <div id="addLink" style="display: none">
-        <a href="javascript:location.href='/Admin/Works/Create?redirectTo='+escape(location.href)" class="adminLink">Плюсадин</a>
+        <a class="adminLink">Плюсадин</a>
     </div>
 }
 <!-- Templates -->
 <script type="text/x-jquery-tmpl" id="workItemTemplate">
     <div class="workItem" title="{{=Title}}" data-name="{{=Name}}">
         <div><img src="/Content/workImages/{{=Image}}" alt="{{=Title}}" /></div>
-        <div class="description">{{=Description}}</div>
+        <div class="description">{{=Description!}}</div>
         @if (Request.IsAuthenticated)
         {
             <div>

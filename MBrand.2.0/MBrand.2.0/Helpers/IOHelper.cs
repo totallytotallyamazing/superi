@@ -16,6 +16,11 @@ namespace MBrand.Helpers
             return Path.Combine(HttpContext.Current.Server.MapPath(relativePath), fileName);
         }
 
+        public static void SaveFile(this HttpPostedFileBase file, string relativePath, string fileName)
+        {
+            file.SaveAs(CreateAbsolutePath(relativePath, fileName));
+        }
+
         public static string GetUniqueFileName(string relativePath, string initialName)
         {
             string result = initialName;

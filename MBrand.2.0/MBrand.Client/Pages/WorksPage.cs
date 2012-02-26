@@ -19,6 +19,7 @@ namespace MBrand.Client.Pages
         private int _currentPage;
         private int _pageSize;
         private int _pageCount;
+        private int _workGroupId;
 
         Array _works = new Array();
 
@@ -63,7 +64,9 @@ namespace MBrand.Client.Pages
 
         private void LoadWorks(object worksData)
         {
-            Array works = (Array)worksData;
+            Dictionary workGroup = (Dictionary) worksData;
+            _workGroupId = (int)workGroup["Id"];
+            Array works = (Array)workGroup["works"];
             if (works == null || works.Length == 0)
             {
                 jQuery.Select(WorksContentSelector).Empty();
@@ -140,8 +143,8 @@ namespace MBrand.Client.Pages
 
         private void ChangePage(jQueryEvent e)
         {
-            int page = int.Parse((string) e.CurrentTarget.GetAttribute("data-page-index"));
-            if(page == _currentPage)
+            int page = int.Parse((string)e.CurrentTarget.GetAttribute("data-page-index"));
+            if (page == _currentPage)
                 return;
             _currentPage = page;
             RenderWorks(_works);
@@ -179,6 +182,15 @@ namespace MBrand.Client.Pages
                 .MouseOver(delegate { jQuery.FromElement(currentOver).FadeTo(TransitionDuration / 2, 0.7); });
 
             jQuery.Select(".workItem").MouseOut(delegate(jQueryEvent @event) { @event.StopPropagation(); });
+
+            jQuery.Select("#addLink a")
+                .Click(delegate
+                       {
+                           Window.Location.Href = string.Format(
+                               "/Admin/Works/Create?workGroupId={0}&redirectTo={1}",
+                               _workGroupId,
+                               Window.Location.Href.EncodeUri());
+                       });
         }
 
         protected override void PathSet()

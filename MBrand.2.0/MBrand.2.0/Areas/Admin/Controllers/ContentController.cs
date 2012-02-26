@@ -19,11 +19,11 @@ namespace MBrand.Areas.Admin.Controllers
             return View(content);
         }
 
-        [HttpPost]
+        [HttpPost, ValidateInput(false)]
         public ActionResult Edit(string name, string text, string redirectTo)
         {
             TextContent content = _db.Contents.OfType<TextContent>().Single(c=>c.Name == name);
-            content.Text = HttpUtility.HtmlDecode(text);
+            content.Text =text;
             _db.SaveChanges();
             return Redirect(string.IsNullOrEmpty(redirectTo) ? "~/" : redirectTo);
         }

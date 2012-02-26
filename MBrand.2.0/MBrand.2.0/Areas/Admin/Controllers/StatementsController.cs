@@ -21,10 +21,10 @@ namespace MBrand.Areas.Admin.Controllers
             return View("CreateEdit");
         }
 
-        [HttpPost]
+        [HttpPost, ValidateInput(false)]
         public ActionResult Create(string text)
         {
-            Statement statement = new Statement { Text = HttpUtility.HtmlDecode(text) };
+            Statement statement = new Statement { Text = text };
             context.AddToStatements(statement);
             context.SaveChanges();
             return RedirectToAction("Index");
@@ -35,10 +35,10 @@ namespace MBrand.Areas.Admin.Controllers
             return View("CreateEdit", context.Statements.First(s => s.Id == id));
         }
 
-        [HttpPost]
+        [HttpPost, ValidateInput(false)]
         public ActionResult Edit(int id, string text)
         {
-            context.Statements.First(s => s.Id == id).Text = HttpUtility.HtmlDecode(text);
+            context.Statements.First(s => s.Id == id).Text = text;
             context.SaveChanges();
             return RedirectToAction("Index");
         }

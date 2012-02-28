@@ -1,4 +1,4 @@
-﻿#workGroups
+﻿#workGroups, .works-side-bar
 {
     font-family: PFDinTextCondProMedium;
     width: 221px;
@@ -18,12 +18,25 @@
     padding-bottom: 20px;
 }
 
-#workGroups a
+#workGroups a, .works-side-bar > a, .works-side-bar > p
 {
     color: #faaf4c;
 }
 
-#worksContent, #worksPager
+.works-side-bar > p {
+     padding-top: 20px;
+}
+
+.works-side-bar > p, .works-side-bar .side-bar-text  {
+    font-size: 15px;
+}
+
+.works-side-bar .side-bar-text {
+    color: white;
+    margin-top: 240px;
+}
+
+#worksContent, #worksPager, .works-content
 {
     margin-left: 235px;
     min-width: 910px;

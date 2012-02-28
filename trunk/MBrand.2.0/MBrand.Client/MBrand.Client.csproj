@@ -48,6 +48,7 @@
     <Compile Include="ContentScroller.cs" />
     <Compile Include="PageManager.cs" />
     <Compile Include="Pages\ContentPage.cs" />
+    <Compile Include="Pages\WorkPage.cs" />
     <Compile Include="ScriptManager.cs" />
     <Compile Include="Utility\Uri.cs" />
     <Compile Include="Pages\WorksPage.cs" />
@@ -63,5 +64,6 @@
       <Name>Stubs</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(ProgramFiles)\ScriptSharp\v1.0\ScriptSharp.targets" />
 </Project>

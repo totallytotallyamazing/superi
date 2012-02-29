@@ -5,18 +5,21 @@
 <%@ Import Namespace="Dev.Mvc.Helpers" %>
 
 <% 
-    using(ShopStorage context =  new ShopStorage()){
+    using (ShopStorage context = new ShopStorage())
+    {
         var itemsList = context.Products.Include("Brand").Include("ProductImages").Include("ProductAttributeValues").Where(p => p.IsSpecialOffer).Select(p => p).ToList();
-        
-        Random rnd= new Random();
-        var product = itemsList.OrderBy(i => rnd.Next()).First();
-        product.ProductAttributeValues.ToList().ForEach(pav => pav.ProductAttributeReference.Load());
 
-        string productClickLink = Html.ActionLink("[IMAGE]", "Show", new { controller="Products", id = product.Id }).ToString();
+        Random rnd = new Random();
+        var product = itemsList.OrderBy(i => rnd.Next()).FirstOrDefault();
+        if (product != null)
+        {
+            product.ProductAttributeValues.ToList().ForEach(pav => pav.ProductAttributeReference.Load());
+
+            string productClickLink = Html.ActionLink("[IMAGE]", "Show", new { controller = "Products", id = product.Id }).ToString();
 %>
 <div class="productOfTheDay contentItemBox">
     <div class="contentItemBoxHeader">
-        <p><a href="#">&trade; <%= (product.Brand != null) ? product.Brand.Name : string.Empty %></a></p>
+        <p><a href="#">&trade; <%= (product.Brand != null) ? product.Brand.Name : string.Empty%></a></p>
     </div>
     <div class="contentItemBoxBg">
         <div class="contentItemPhoto">
@@ -26,7 +29,8 @@
                 .Replace("[IMAGE]",
                                 Html.CachedImage("~/Content/ProductImages", product.ProductImages.Where(pi => pi.Default).First().ImageSource, "productOfTheDay", product.Name))%>
             <%}
-               else {
+               else
+               {
                    Response.Write(productClickLink.Replace("[IMAGE]", "редактировать"));
                }
                 %>
@@ -45,4 +49,5 @@
     <div class="contentItemBoxFooter">
     </div>
 </div>
-<%} %>
+<%}
+    }%>

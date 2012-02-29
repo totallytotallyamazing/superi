@@ -5,15 +5,18 @@ using System.Web;
 using System.Web.Mvc;
 using Shop.Models;
 using Dev.Helpers;
+using Trips.Mvc.Runtime;
 
 namespace Shop.Controllers
 {
     public class ProductsController : Controller
     {
-        public ActionResult Index(int id, int? brandId)
+        public ActionResult Index(int id, int? brandId, int? page)
         {
             ViewData["categoryId"] = id;
             ViewData["brandId"] = brandId;
+            ViewData["page"] = page ?? 0;
+            ViewData["showPager"] = true;
             WebSession.CurrentCategory = id;
 
             ViewData["showAdminLinks"] = true;
@@ -21,16 +24,19 @@ namespace Shop.Controllers
             {
                 ViewData["title"] = context.Categories.Where(c => c.Id == id).Select(c => c.Name).First();
 
-                List<Product> products = context.Products
+                IQueryable<Product> products = context.Products
                     .Include("Brand")
                     .Include("ProductAttributeValues")
                     .Include("ProductImages")
-                    .Where(p => p.Category.Id == id).ToList();
+                    .Where(p => p.Category.Id == id);
+                
+                ViewData["totalCount"] = products.Count();
 
-                products.ForEach(p => p.ProductAttributeValues.ToList()
+                var productList = products.ApplyPaging(page).ToList();
+
+                productList.ForEach(p => p.ProductAttributeValues.ToList()
                     .ForEach(pav => pav.ProductAttributeReference.Load()));
-
-                return View(products);
+                return View(productList);
             }
         }
 
@@ -67,6 +73,7 @@ namespace Shop.Controllers
                     .Include("ProductImages")
                     .Include("ProductAttributeValues.ProductAttribute")
                     .Where(ContextExtension.BuildContainsExpression<Product, int>(p => p.Id, ids))
+                    .OrderBy(p => p.SortOrder)
                     .ToList();
                 return View("Index", products);
             }
@@ -131,10 +138,23 @@ namespace Shop.Controllers
                     .Where(p => extendedSearchModel.PriceFrom == null || p.Price > extendedSearchModel.PriceFrom)
                     .Where(p => extendedSearchModel.PriceTo == null || p.Price < extendedSearchModel.PriceTo);
                 if (!string.IsNullOrWhiteSpace(extendedSearchModel.Phrase))
-                    products = products.Where(ContextExtension.BuildContainsExpression<Product, int>(p => p.Id, ids));
+                    products = products.Where(ContextExtension.BuildContainsExpression<Product, int>(p => p.Id, ids)).OrderBy(p => p.SortOrder);
 
                 return View("Index", products.ToList());
             }
+        }
+    }
+
+    public static class ProductExtensions
+    {
+        public static IQueryable<Product> ApplyPaging(this IQueryable<Product> products, int? page)
+        {
+            int currentPage = page ?? 0;
+            SiteSettings settings = Configurator.LoadSettings();
+            int pageSize = settings.PageSize;
+            if (page < 0)
+                return products;
+            return products.OrderBy(p=>p.SortOrder).Skip(currentPage * pageSize).Take(pageSize);
         }
     }
 }

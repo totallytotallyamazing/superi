@@ -4,39 +4,55 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="shop_contentModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.0" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
-        <EntityContainer Name="shop_contentModelStoreContainer">
-          <EntitySet Name="Articles" EntityType="shop_contentModel.Store.Articles" store:Type="Tables" Schema="gbua_mlady" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Content" EntityType="shop_contentModel.Store.Content" store:Type="Tables" Schema="gbua_mlady" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-        </EntityContainer>
-        <EntityType Name="Articles">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Date" Type="datetime" Nullable="false" />
-          <Property Name="Description" Type="text" />
-          <Property Name="Id" Type="uint" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Keywords" Type="text" />
-          <Property Name="Language" Type="varchar" Nullable="false" MaxLength="5" />
-          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="255" />
-          <Property Name="Preview" Type="varchar" MaxLength="500" />
-          <Property Name="Text" Type="text" />
-          <Property Name="Title" Type="varchar" Nullable="false" MaxLength="500" />
-        </EntityType>
-        <EntityType Name="Content">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Description" Type="text" />
-          <Property Name="Id" Type="uint" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Keywords" Type="text" />
-          <Property Name="Language" Type="varchar" MaxLength="5" />
-          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="255" />
-          <Property Name="ParentId" Type="uint" />
-          <Property Name="Text" Type="text" />
-          <Property Name="Title" Type="varchar" MaxLength="500" />
-        </EntityType>
-      </Schema></edmx:StorageModels>
+    <Schema Namespace="shop_contentModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.0" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="shop_contentModelStoreContainer">
+    <EntitySet Name="Articles" EntityType="shop_contentModel.Store.Articles" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Contents" EntityType="shop_contentModel.Store.Contents" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="ContentContent" Association="shop_contentModel.Store.ContentContent">
+      <End Role="Content" EntitySet="Contents" />
+      <End Role="Content1" EntitySet="Contents" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Articles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="Description" Type="longtext" Nullable="true" />
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Keywords" Type="longtext" Nullable="true" />
+    <Property Name="Language" Type="longtext" Nullable="false" />
+    <Property Name="Name" Type="longtext" Nullable="false" />
+    <Property Name="Preview" Type="longtext" Nullable="true" />
+    <Property Name="Text" Type="longtext" Nullable="true" />
+    <Property Name="Title" Type="longtext" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Contents">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Description" Type="longtext" Nullable="true" />
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Keywords" Type="longtext" Nullable="true" />
+    <Property Name="Language" Type="longtext" Nullable="true" />
+    <Property Name="Name" Type="longtext" Nullable="false" />
+    <Property Name="Text" Type="longtext" Nullable="true" />
+    <Property Name="Title" Type="longtext" Nullable="true" />
+    <Property Name="Children_Id" Type="bigint" Nullable="true" />
+  </EntityType>
+  <Association Name="ContentContent">
+    <End Role="Content" Type="shop_contentModel.Store.Contents" Multiplicity="0..1" />
+    <End Role="Content1" Type="shop_contentModel.Store.Contents" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Content">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Content1">
+        <PropertyRef Name="Children_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="shop_contentModel" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
@@ -52,7 +68,7 @@
           </Key>
           <Property Name="Date" Type="DateTime" Nullable="false" />
           <Property Name="Description" Type="String" />
-          <Property Name="Id" Type="Int64" Nullable="false" />
+          <Property Name="Id" Type="Int64" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
           <Property Name="Keywords" Type="String" />
           <Property Name="Language" Type="String" Nullable="false" />
           <Property Name="Name" Type="String" Nullable="false" />
@@ -65,7 +81,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Description" Type="String" />
-          <Property Name="Id" Type="Int64" Nullable="false" />
+          <Property Name="Id" Type="Int64" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
           <Property Name="Keywords" Type="String" />
           <Property Name="Language" Type="String" />
           <Property Name="Name" Type="String" Nullable="false" />
@@ -74,49 +90,52 @@
           <NavigationProperty Name="Parent" Relationship="shop_contentModel.ContentContent" FromRole="Content" ToRole="Content1" />
           <NavigationProperty Name="Children" Relationship="shop_contentModel.ContentContent" FromRole="Content1" ToRole="Content" /></EntityType>
         <Association Name="ContentContent">
-          <End Type="shop_contentModel.Content" Role="Content" Multiplicity="1" />
+          <End Type="shop_contentModel.Content" Role="Content" Multiplicity="0..1" />
           <End Type="shop_contentModel.Content" Role="Content1" Multiplicity="*" /></Association></Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="shop_contentModelStoreContainer" CdmEntityContainer="ContentStorage">
-          <EntitySetMapping Name="Articles">
-            <EntityTypeMapping TypeName="IsTypeOf(shop_contentModel.Article)">
-              <MappingFragment StoreEntitySet="Articles">
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Keywords" ColumnName="Keywords" />
-                <ScalarProperty Name="Language" ColumnName="Language" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Preview" ColumnName="Preview" />
-                <ScalarProperty Name="Text" ColumnName="Text" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Contents">
-            <EntityTypeMapping TypeName="IsTypeOf(shop_contentModel.Content)">
-              <MappingFragment StoreEntitySet="Content">
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Keywords" ColumnName="Keywords" />
-                <ScalarProperty Name="Language" ColumnName="Language" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Text" ColumnName="Text" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <AssociationSetMapping Name="ContentContent" TypeName="shop_contentModel.ContentContent" StoreEntitySet="Content">
-            <EndProperty Name="Content1">
-              <ScalarProperty Name="Id" ColumnName="Id" /></EndProperty>
-            <EndProperty Name="Content">
-              <ScalarProperty Name="Id" ColumnName="ParentId" /></EndProperty>
-            <Condition ColumnName="ParentId" IsNull="false" /></AssociationSetMapping></EntityContainerMapping>
-      </Mapping>
-    </edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="shop_contentModelStoreContainer" CdmEntityContainer="ContentStorage">
+    <EntitySetMapping Name="Articles">
+      <EntityTypeMapping TypeName="IsTypeOf(shop_contentModel.Article)">
+        <MappingFragment StoreEntitySet="Articles">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Keywords" ColumnName="Keywords" />
+          <ScalarProperty Name="Language" ColumnName="Language" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Preview" ColumnName="Preview" />
+          <ScalarProperty Name="Text" ColumnName="Text" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Contents">
+      <EntityTypeMapping TypeName="IsTypeOf(shop_contentModel.Content)">
+        <MappingFragment StoreEntitySet="Contents">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Keywords" ColumnName="Keywords" />
+          <ScalarProperty Name="Language" ColumnName="Language" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Text" ColumnName="Text" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="ContentContent" TypeName="shop_contentModel.ContentContent" StoreEntitySet="Contents">
+      <EndProperty Name="Content">
+        <ScalarProperty Name="Id" ColumnName="Children_Id" />
+      </EndProperty>
+      <EndProperty Name="Content1">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+      <Condition ColumnName="Children_Id" IsNull="false" />
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
   <edmx:Designer>
@@ -128,6 +147,7 @@
     <edmx:Options>
       <DesignerInfoPropertySet xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="DDLGenerationTemplate" Value="$(VSEFTools)\DBGen\SSDLToMySQL.tt" />
       </DesignerInfoPropertySet>
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->

@@ -170,6 +170,7 @@ namespace Shop.Areas.Admin.Controllers
 
             using (ShopStorage context = new ShopStorage())
             {
+                context.CleanupCategoryProducts(id);
                 Category category = context.Categories.Include("Parent").Where(c => c.Id == id).First();
                 if (category.Parent != null)
                 {

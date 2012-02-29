@@ -48,6 +48,10 @@ namespace Shop.Models
 
         [DisplayName("Скидка дня")]
         public bool IsSpecialOffer { get; set; }
+
+        [DisplayName("Номер п/п")]
+        public bool SortOrder { get; set; }
+
     }
 
 }

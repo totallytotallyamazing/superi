@@ -70,6 +70,7 @@ namespace Shop.Areas.Admin.Controllers
                     prod.ShortDescription = HttpUtility.HtmlDecode(product.ShortDescription);
                     prod.Description = HttpUtility.HtmlDecode(product.Description);
                     prod.Price = product.Price;
+                    prod.SortOrder = product.SortOrder;
                     prod.IsSpecialOffer = product.IsSpecialOffer;
 
                     if (prod.Brand.Id != brandId)

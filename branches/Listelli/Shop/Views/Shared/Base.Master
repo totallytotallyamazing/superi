@@ -33,6 +33,14 @@
         var isHomePage = <%= (ViewData["isHomePage"]!=null).ToString().ToLowerInvariant() %>;
         BasePageExtender.initialize();
         BasePageExtender.favoritesCount = <%= (ViewContext.HttpContext.Request.Cookies["favorites"] != null)?ViewContext.HttpContext.Request.Cookies["favorites"].Value.Split(',').Length:0 %>;
+
+        var wordEnter = '<%= Shop.Resources.Global.WordEnter %>';
+        var bookmark = [<%= Shop.Resources.Global.Bookmark %>];
+        var youHave = '<%= Shop.Resources.Global.YouHave %>';
+        var youHavea = '<%= Shop.Resources.Global.YouHavea %>';
+        var unsubscribeVal = '<%= Shop.Resources.Global.Unsubscribe %>';
+        var subscribeVal = '<%= Shop.Resources.Global.Subscribe %>';
+        var enterEmail = '<%= Shop.Resources.Global.EnterEmail %>';
     </script>
     <%-- суперскрипт--%>
     <asp:ContentPlaceHolder runat="server" ID="includes">
@@ -50,8 +58,7 @@
                         (067) 225-55-52
                     </p>
                     <p class="mainAdress">
-                        Киев, <a id="ourCoords" title="Наши координаты" href="/Home/Map" class="mainAdress">
-                            ул. Жилянская, 68</a>
+                        <%= Shop.Resources.Global.Address %>
                     </p>
                 </div>
                 <div id="logoBox">
@@ -117,7 +124,7 @@
                                 </a>
                             </div>
                         </div>
-                        <div id="altButton">
+                        <div id="altButton" class="<%= System.Globalization.CultureInfo.CurrentUICulture.Name %>">
                             <a href="/to/alt-obzor"></a>
                         </div>
                     </div>

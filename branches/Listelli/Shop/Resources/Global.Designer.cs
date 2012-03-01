@@ -61,6 +61,33 @@ namespace Shop.Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Киев, &lt;a id=&quot;ourCoords&quot; title=&quot;Наши координаты&quot; href=&quot;/Home/Map&quot; class=&quot;mainAdress&quot;&gt;ул. Жилянская, 68&lt;/a&gt;.
+        /// </summary>
+        public static string Address {
+            get {
+                return ResourceManager.GetString("Address", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Все одним списком.
+        /// </summary>
+        public static string AllInList {
+            get {
+                return ResourceManager.GetString("AllInList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на &apos;позиция&apos;, &apos;позиции&apos;, &apos;позиций&apos;, &apos;позиция&apos;, &apos;позиции&apos;, &apos;позиций&apos;.
+        /// </summary>
+        public static string Bookmark {
+            get {
+                return ResourceManager.GetString("Bookmark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Брендовые каталоги.
         /// </summary>
         public static string BrandCatalogues {
@@ -70,11 +97,29 @@ namespace Shop.Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Цвет.
+        /// </summary>
+        public static string Color {
+            get {
+                return ResourceManager.GetString("Color", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Электропочта.
         /// </summary>
         public static string Email {
             get {
                 return ResourceManager.GetString("Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на введите email.
+        /// </summary>
+        public static string EnterEmail {
+            get {
+                return ResourceManager.GetString("EnterEmail", resourceCulture);
             }
         }
         
@@ -124,11 +169,29 @@ namespace Shop.Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Посмотреть на карте побольше.
+        /// </summary>
+        public static string LargerMap {
+            get {
+                return ResourceManager.GetString("LargerMap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на оформление интерьеров паркетом и мрамором.
         /// </summary>
         public static string LogoTitle {
             get {
                 return ResourceManager.GetString("LogoTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Сообщеие отправлено, спасибо!.
+        /// </summary>
+        public static string MessageSent {
+            get {
+                return ResourceManager.GetString("MessageSent", resourceCulture);
             }
         }
         
@@ -210,6 +273,51 @@ namespace Shop.Resources {
         public static string SiteSearch {
             get {
                 return ResourceManager.GetString("SiteSearch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Подписаться.
+        /// </summary>
+        public static string Subscribe {
+            get {
+                return ResourceManager.GetString("Subscribe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Отписаться.
+        /// </summary>
+        public static string Unsubscribe {
+            get {
+                return ResourceManager.GetString("Unsubscribe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Слово + Enter.
+        /// </summary>
+        public static string WordEnter {
+            get {
+                return ResourceManager.GetString("WordEnter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Вами отмечено.
+        /// </summary>
+        public static string YouHave {
+            get {
+                return ResourceManager.GetString("YouHave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Вами отмечена.
+        /// </summary>
+        public static string YouHavea {
+            get {
+                return ResourceManager.GetString("YouHavea", resourceCulture);
             }
         }
     }

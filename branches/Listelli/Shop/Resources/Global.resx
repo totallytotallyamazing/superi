@@ -117,11 +117,26 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Address" xml:space="preserve">
+    <value>Киев, &lt;a id="ourCoords" title="Наши координаты" href="/Home/Map" class="mainAdress"&gt;ул. Жилянская, 68&lt;/a&gt;</value>
+  </data>
+  <data name="AllInList" xml:space="preserve">
+    <value>Все одним списком</value>
+  </data>
+  <data name="Bookmark" xml:space="preserve">
+    <value>'позиция', 'позиции', 'позиций', 'позиция', 'позиции', 'позиций'</value>
+  </data>
   <data name="BrandCatalogues" xml:space="preserve">
     <value>Брендовые каталоги</value>
   </data>
+  <data name="Color" xml:space="preserve">
+    <value>Цвет</value>
+  </data>
   <data name="Email" xml:space="preserve">
     <value>Электропочта</value>
+  </data>
+  <data name="EnterEmail" xml:space="preserve">
+    <value>введите email</value>
   </data>
   <data name="Events" xml:space="preserve">
     <value>Наши события</value>
@@ -138,8 +153,14 @@
   <data name="KeepInTouch" xml:space="preserve">
     <value>Будьте в курсе</value>
   </data>
+  <data name="LargerMap" xml:space="preserve">
+    <value>Посмотреть на карте побольше</value>
+  </data>
   <data name="LogoTitle" xml:space="preserve">
     <value>оформление интерьеров паркетом и мрамором</value>
+  </data>
+  <data name="MessageSent" xml:space="preserve">
+    <value>Сообщеие отправлено, спасибо!</value>
   </data>
   <data name="NameLastName" xml:space="preserve">
     <value>Имя, фамилия</value>
@@ -167,5 +188,20 @@
   </data>
   <data name="SiteSearch" xml:space="preserve">
     <value>Поиск по сайту</value>
+  </data>
+  <data name="Subscribe" xml:space="preserve">
+    <value>Подписаться</value>
+  </data>
+  <data name="Unsubscribe" xml:space="preserve">
+    <value>Отписаться</value>
+  </data>
+  <data name="WordEnter" xml:space="preserve">
+    <value>Слово + Enter</value>
+  </data>
+  <data name="YouHave" xml:space="preserve">
+    <value>Вами отмечено</value>
+  </data>
+  <data name="YouHavea" xml:space="preserve">
+    <value>Вами отмечена</value>
   </data>
 </root>

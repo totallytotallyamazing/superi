@@ -24,7 +24,7 @@
 
 
         <div id="favBlock" class="favBlock <%=(favoritesCount == 0?"displayNone":"") %>">
-            <%=Html.ActionLink("Вами "+Favorites.CheckedNames, "Favorites", "Products", null, new { @class = "txtBubbleNew", id="favTextPrefix" })%>
+            <%=Html.ActionLink(Favorites.CheckedNames, "Favorites", "Products", null, new { @class = "txtBubbleNew", id="favTextPrefix" })%>
             <span class="txtBubbleNew txtBubbleNewFavorites">
                 <br />
                 <span id="favCount">

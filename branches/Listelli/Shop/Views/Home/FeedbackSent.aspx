@@ -6,17 +6,17 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 <script type="text/javascript">
-    setTimeout(function () { location.href="/" }, 3000);
+    setTimeout(function () { location.href = "/"; }, 3000);
 </script>
 
-<div id="messageSent">Сообщеие отправлено, спасибо!</div>
+<div id="messageSent"><%= Shop.Resources.Global.MessageSent %></div>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentTitle" runat="server">
 <div id="contName">
         <div id="pageName">
             <p class="txtPageName">
-                    Обратная связь  
+                    <%= Shop.Resources.Global.Feedback %>  
             </p>
         </div>
     </div>

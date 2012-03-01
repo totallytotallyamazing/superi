@@ -881,6 +881,10 @@ a.txtBubbleNew:visited{color:#3399ff !important;}
     margin-bottom: 7px;
 }
 
+#altButton.en-US a {
+    background:url('./img/alt-button-en.png') no-repeat;
+}
+
 #altButton
 {
     width:128px;

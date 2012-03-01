@@ -36,7 +36,7 @@
     </p>
     <div class="txtPager">
     <% if(page >-1){ %>
-    <%= Html.ActionLink("Все одним списком", (string)ViewData["action"], new
+    <%= Html.ActionLink(Shop.Resources.Global.AllInList, (string)ViewData["action"], new
               {
                   id = ViewData["categoryId"],
                   brandId = ViewData["brandId"],
@@ -45,7 +45,7 @@
               }, new { @class = "txtPager" })
          %>
          <% }else{ %>
-            Все одним списком
+            <%= Shop.Resources.Global.AllInList%>
          <%} %>
     </div>
 </div>

@@ -64,7 +64,7 @@
             <% if (!string.IsNullOrWhiteSpace(Model.Color))
                { %>
             <p>
-                <span class="attributeLabel">Цвет:</span> <span class="attributeValue">
+                <span class="attributeLabel"><%= Shop.Resources.Global.Color %>:</span> <span class="attributeValue">
                     <%= Model.Color %></span>
             </p>
             <%} %>

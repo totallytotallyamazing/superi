@@ -27,20 +27,23 @@ namespace Shop.Models
         {
             get
             {
+                var bookmark = Resources.Global.Bookmark.Replace("'", string.Empty);
+                bookmark = bookmark.Replace(" ", string.Empty);
+                var bookmarks = bookmark.Split(',');
 
                 if (FavoritesProductIds.Count() == 1)
-                    return "позиция";
+                    return bookmarks[0];
                 if (FavoritesProductIds.Count() > 1 && FavoritesProductIds.Count() <= 4)
-                    return "позиции";
+                    return bookmarks[1];
                 if (FavoritesProductIds.Count() > 4 && FavoritesProductIds.Count() <= 20)
-                    return "позиций";
+                    return bookmarks[2];
                 if (FavoritesProductIds.Count() % 10 == 1)
-                    return "позиция";
+                    return bookmarks[3];
                 if (FavoritesProductIds.Count() % 10 > 1 && FavoritesProductIds.Count() <= 4)
-                    return "позиции";
+                    return bookmarks[4];
                 if (FavoritesProductIds.Count() % 10 > 4 && FavoritesProductIds.Count() <= 10)
-                    return "позиций";
-                return "позиция";
+                    return bookmarks[5];
+                return bookmarks[0];
             }
         }
 
@@ -48,9 +51,9 @@ namespace Shop.Models
         {
             get
             {
-                if(FavoritesProductIds.Count()==0)
-                    return "отмечена";
-                return FavoritesProductIds.Count() % 10 == 1 ? "отмечена" : "отмечено";
+                if(!FavoritesProductIds.Any())
+                    return Resources.Global.YouHavea;
+                return FavoritesProductIds.Count() % 10 == 1 ? Resources.Global.YouHavea : Resources.Global.YouHave;
             }
         }
     }

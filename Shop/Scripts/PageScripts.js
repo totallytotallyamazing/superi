@@ -1,4 +1,4 @@
-﻿/// <reference path="jquery.js" /
+﻿/// <reference path="jquery.js" />
 
 
 
@@ -19,11 +19,11 @@ var BasePageExtender = {
                 }
             });
 
-            if (!isHomePage) {
+            if (!window.isHomePage) {
                 $("#logoBox").css("cursor", "pointer").click(function () { location.href = "/"; });
             }
 
-            $("#searchField").watermark({ html: "Слово + Enter", cls: "watermark small" });
+            $("#searchField").watermark({ html: window.wordEnter, cls: "watermark small" });
 
         });
     }
@@ -69,7 +69,7 @@ ProductClientExtensions = {
         $("#favCount").html(favCount);
         $("#favTextPrefix").html(this.getFavPrefixText(favCount));
         $("#favTextSufix").html(this.getFavSufixText(favCount));
-        $("#hideItemLink" + id).removeClass("displayBlock")
+        $("#hideItemLink" + id).removeClass("displayBlock");
         $("#hideItemLink" + id).addClass("displayNone");
         if (favCount == 0) {
             $("#bubbleNew").removeClass('bubbleNewWithFavorites');
@@ -104,24 +104,25 @@ ProductClientExtensions = {
 
     getFavPrefixText: function (cnt) {
         if (cnt % 10 == 1) {
-            return "Вами отмечена";
+            return window.youHavea;
         }
-        return "Вами отмечено";
+        return window.youHave;
     },
 
     getFavSufixText: function (cnt) {
         if (cnt == 1)
-            return "позиция";
+            return window.bookmark[0];
         if (cnt > 1 && cnt <= 4)
-            return "позиции";
+            return window.bookmark[1];
         if (cnt > 4 && cnt <= 20)
-            return "позиций";
+            return window.bookmark[2];
         if (cnt % 10 == 1)
-            return "позиция";
+            return window.bookmark[3];
         if (cnt % 10 > 1 && cnt <= 4)
-            return "позиции";
+            return window.bookmark[4];
         if (cnt % 10 > 4 && cnt <= 10)
-            return "позиций";
+            return window.bookmark[5];
+        return '';
     },
 
     getCookie: function (name) {
@@ -134,7 +135,7 @@ ProductClientExtensions = {
             offset = cookie.indexOf(search);
             if (offset != -1) {
                 offset += search.length;
-                end = cookie.indexOf(";", offset)
+                end = cookie.indexOf(";", offset);
                 if (end == -1) {
                     end = cookie.length;
                 }
@@ -173,7 +174,7 @@ ProductClientExtensions = {
         $.ajax({ type: "POST", url: url, success: completedCallback, async: false, data: body });
         if (!result) {
             alert("Неправильно введены символы!");
-            OnCaptchaValidationError();
+            window.OnCaptchaValidationError();
         }
         return result;
     },
@@ -184,7 +185,6 @@ ProductClientExtensions = {
     },
 
     updateMainImage: function (src, methodName) {
-        var href = "/Content/ProductImages/" + src;
         $.get("/Graphics/" + methodName + "/" + src + "?alt=" + this.alt, function (data) {
             $(".productModal #imgProduct a.mi").html(data);
         });
@@ -231,7 +231,7 @@ ProductClientExtensions = {
     },
 
     initialize: function () {
-        $(function() {
+        $(function () {
             $(window).load(ProductClientExtensions._adjustDimensions);
         });
     }
@@ -245,7 +245,7 @@ ImagePreviews = {
     },
 
     _initPreviews: function () {
-        $(".imageItem img").click(function (ev, elem) {
+        $(".imageItem img").click(function () {
             var src = this.src.substring(1 * this.src.lastIndexOf("/") + 1 * 1);
 
             //var showMethod = $("#showMethod").val();
@@ -305,7 +305,6 @@ ProductVariant = {
     _updateVariantSelection: function (id, src) {
         //var showMethod = $("#showMethod").val();
         var showMethod = "ShowMain";
-        var showMethod = "ShowMain";
         if ($("#showMethod").length > 0) {
             showMethod = $("#showMethod").val();
         }
@@ -332,9 +331,9 @@ var Subscribe = {
     _showEditorUnsubscribe: function () {
         $("#subscribeContainer").empty();
 
-        $('<span class="txtBubbleNew">Отписаться<br/><span><input type="text" value="введите email" onfocus="if(this.value==\'введите email\'){this.value=\'\'}" id="unSubscribeEmail" style="width:135px;" />').appendTo("#subscribeContainer");
+        $('<span class="txtBubbleNew">' + window.unsubscribeVal + '<br/><span><input type="text" value="' + window.enterEmail + '" onfocus="if(this.value==\'' + window.enterEmail + '\'){this.value=\'\'}" id="unSubscribeEmail" style="width:135px;" />').appendTo("#subscribeContainer");
 
-        $('<input type="button" value="Отписаться" style="font-size:10px;" />').click(function () {
+        $('<input type="button" value="' + window.unsubscribeValunsu + '" style="font-size:10px;" />').click(function () {
             var value = $("#unSubscribeEmail").val();
             var regex = /^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
             if (regex.test(value)) {
@@ -365,13 +364,13 @@ var Subscribe = {
 
 
         if (!ProductClientExtensions.subscribed()) {
-            $('<input type="text" value="введите email" onfocus="if(this.value==\'введите email\'){this.value=\'\'}" id="subscribeEmail" style="width:135px;" />').appendTo("#subscribeContainer");
+            $('<input type="text" value="' + window.enterEmail + '" onfocus="if(this.value==\'' + window.enterEmail + '\'){this.value=\'\'}" id="subscribeEmail" style="width:135px;" />').appendTo("#subscribeContainer");
         } else {
             $('Вы уже подписаны!!!').appendTo("#subscribeContainer");
         };
 
 
-        $('<input type="button" value="Подписаться" style="font-size:10px;" />').click(function () {
+        $('<input type="button" value="' + window.subscribeVal + '" style="font-size:10px;" />').click(function () {
             var value = $("#subscribeEmail").val();
             var regex = /^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
             if (regex.test(value)) {

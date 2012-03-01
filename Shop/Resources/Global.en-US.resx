@@ -117,11 +117,26 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Address" xml:space="preserve">
+    <value>&lt;a id="ourCoords" title="Our coordinates" href="/Home/Map" class="mainAdress"&gt;68 Zhylianska St.&lt;/a&gt;, Kyiv</value>
+  </data>
+  <data name="AllInList" xml:space="preserve">
+    <value>On a single page</value>
+  </data>
+  <data name="Bookmark" xml:space="preserve">
+    <value>'bookmark', 'bookmarks', 'bookmarks', 'bookmarks', 'bookmarks', 'bookmarks'</value>
+  </data>
   <data name="BrandCatalogues" xml:space="preserve">
     <value>Brand catalogues</value>
   </data>
+  <data name="Color" xml:space="preserve">
+    <value>Color</value>
+  </data>
   <data name="Email" xml:space="preserve">
     <value>Email</value>
+  </data>
+  <data name="EnterEmail" xml:space="preserve">
+    <value>enter email</value>
   </data>
   <data name="Events" xml:space="preserve">
     <value>Our Events</value>
@@ -138,8 +153,14 @@
   <data name="KeepInTouch" xml:space="preserve">
     <value>Keep in touch</value>
   </data>
+  <data name="LargerMap" xml:space="preserve">
+    <value>Open larger map</value>
+  </data>
   <data name="LogoTitle" xml:space="preserve">
     <value>execution of interiors with parquet and marble</value>
+  </data>
+  <data name="MessageSent" xml:space="preserve">
+    <value>The message has been sent. Thank you!</value>
   </data>
   <data name="NameLastName" xml:space="preserve">
     <value>Name</value>
@@ -167,5 +188,20 @@
   </data>
   <data name="SiteSearch" xml:space="preserve">
     <value>Site search</value>
+  </data>
+  <data name="Subscribe" xml:space="preserve">
+    <value>Subscribe</value>
+  </data>
+  <data name="Unsubscribe" xml:space="preserve">
+    <value>Unsubscribe</value>
+  </data>
+  <data name="WordEnter" xml:space="preserve">
+    <value>Word + Enter</value>
+  </data>
+  <data name="YouHave" xml:space="preserve">
+    <value>You have</value>
+  </data>
+  <data name="YouHavea" xml:space="preserve">
+    <value>You have</value>
   </data>
 </root>

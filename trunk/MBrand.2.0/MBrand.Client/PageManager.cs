@@ -14,6 +14,24 @@ namespace MBrand.Client
     {
         private readonly Dictionary<string, Type> _pages = new Dictionary<string, Type>();
         private string[] _currentPathNames;
+        private static PageManager _instance;
+
+        public event Action<AddressChangeEventArgs> AddressChanged;
+
+        public static PageManager Current { get { return _instance; } }
+
+        public bool PreventChange
+        {
+            get { return _preventChange; }
+            set { _preventChange = value; }
+        }
+
+        private bool _preventChange;
+
+        public void Reset()
+        {
+            _currentPathNames = null;
+        }
 
         public PageManager()
         {
@@ -24,13 +42,25 @@ namespace MBrand.Client
 
         public void Initialize()
         {
-            Address.Make.Change(AddressChanged);
+            Address.Make.Change(OnAddressChanged);
             ContentScroller.Enable();
             jQuery.Document.Click(delegate { jQuery.Select("a").Blur(); });
+            _instance = this;
         }
 
-        private void AddressChanged(ChangeOptions options)
+        private void OnAddressChanged(ChangeOptions options)
         {
+            AddressChangeEventArgs callbackArgs = new AddressChangeEventArgs();
+            if (AddressChanged != null)
+            {
+                callbackArgs.Path = (string[])options.PathNames.Extract(1);
+                AddressChanged(callbackArgs);
+            }
+            if (callbackArgs.PreventDefault)
+            {
+                return;
+            }
+
             string a = options.PathNames[0] ?? string.Empty;
             jQuery.Select("#mainNav > *").FadeTo(Page.TransitionDuration, 0.5);
             jQuery.Select("[rel='address:/" + a + "'], [rel='address:" + options.Value + "']", Document.GetElementById("mainNav"))

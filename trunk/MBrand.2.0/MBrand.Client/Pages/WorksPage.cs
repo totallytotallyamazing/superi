@@ -4,6 +4,7 @@ using System;
 using System.Runtime.CompilerServices;
 using jQueryApi.JsRender;
 using System.Collections;
+using BasePage = MBrand.Client.Pages.Page;
 namespace MBrand.Client.Pages
 {
     public class WorksPage : Page
@@ -46,6 +47,21 @@ namespace MBrand.Client.Pages
         protected override void Initialize()
         {
             LoadContent();
+            PageManager.Current.AddressChanged += CurrentAddressChanged;
+        }
+
+        public override void Dispose()
+        {
+            PageManager.Current.AddressChanged -= CurrentAddressChanged;
+        }
+
+        void CurrentAddressChanged(AddressChangeEventArgs args)
+        {
+            if (args.Path.Length > 1)
+            {
+                args.PreventDefault = true;
+                BasePage.ChangePage(typeof(WorkPage), (string[])args.Path.Extract(1));
+            }
         }
 
         private void LoadContent()
@@ -64,7 +80,7 @@ namespace MBrand.Client.Pages
 
         private void LoadWorks(object worksData)
         {
-            Dictionary workGroup = (Dictionary) worksData;
+            Dictionary workGroup = (Dictionary)worksData;
             _workGroupId = (int)workGroup["Id"];
             Array works = (Array)workGroup["works"];
             if (works == null || works.Length == 0)

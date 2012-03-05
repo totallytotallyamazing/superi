@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ContentScroller.cs" />
+    <Compile Include="EventArgs.cs" />
     <Compile Include="PageManager.cs" />
     <Compile Include="Pages\ContentPage.cs" />
     <Compile Include="Pages\WorkPage.cs" />

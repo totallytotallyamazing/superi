@@ -7,7 +7,7 @@ using System.Html;
 
 namespace MBrand.Client.Pages
 {
-    public abstract class Page
+    public abstract class Page : IDisposable
     {
         #region Constants
         public const int TransitionDuration = 500;
@@ -30,13 +30,13 @@ namespace MBrand.Client.Pages
         public Array Path
         {
             get { return _path; }
-        } 
+        }
         #endregion
 
         #region Abstract members
         public abstract string Url { get; }
         public abstract string Name { get; }
-        protected abstract void Initialize(); 
+        protected abstract void Initialize();
         #endregion
 
         #region Static Methods
@@ -107,6 +107,10 @@ namespace MBrand.Client.Pages
                 jQuery.Select("#defaultContent").Remove();
             }
             _loadedHandler = null;
+            if (_current != null)
+            {
+                _current.Dispose();
+            }
             _current = this;
 
             PerformTransition(oldObject, _container);
@@ -149,6 +153,11 @@ namespace MBrand.Client.Pages
 
         protected virtual void BeforePathSet() { }
         #endregion
+
+        public virtual void Dispose()
+        {
+
+        }
     }
 
 }

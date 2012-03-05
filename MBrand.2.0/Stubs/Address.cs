@@ -17,5 +17,7 @@ namespace jQueryApi.Address
         public Address InternalChange(AddressChangeCallback callback) { return null; }
 
         public Address ExternalChange(AddressChangeCallback callback) { return null; }
+
+        public Address AutoUpdate(bool enable) { return null; }
     }
 }

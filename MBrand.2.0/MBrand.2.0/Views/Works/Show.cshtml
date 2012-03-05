@@ -4,16 +4,17 @@
         @Model.WorkGroupTitle.ToUpper()
     </a>
     <p>
-        @Model.Description
+        @Html.Raw(Model.Description)
+        <br/>
         <span>///////////</span>
     </p>
     
     <div class="side-bar-text">
-        @Model.SideBarText
+        @Html.Raw(Model.SideBarText)
     </div>
 </div>
 <div class="works-content">
-    @Model.Text
+    @Html.Raw(Model.Text)
     
     <div class="work-bottom-image">
         <img alt="@Model.Title" src="/Content/workBottomImages/@Model.BottomImage"/>

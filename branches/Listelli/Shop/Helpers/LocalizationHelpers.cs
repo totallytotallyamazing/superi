@@ -24,12 +24,17 @@ namespace Shop.Helpers
             public string FieldName;
             public string DefaultValue;
 
-            public static ModelDetails Create<TModel, TProperty>(TModel model, Expression<Func<TModel, TProperty>> expression)
+            public static ModelDetails Create<TModel, TProperty>(TModel model, Expression<Func<TModel, TProperty>> expression) where TModel : class
             {
+                string entityId = null;
+                string defaultValue = null;
+                if (model != null)
+                {
+                    entityId = ((dynamic)model).Id.ToString();
+                    defaultValue = expression.Compile().Invoke(model) as string;
+                }
                 string entityName = typeof(TModel).Name;
-                string entityId = ((dynamic)model).Id.ToString();
                 string fieldName = (expression.Body as MemberExpression).Member.Name;
-                string defaultValue = expression.Compile().Invoke(model) as string;
 
                 return new ModelDetails { DefaultValue = defaultValue, EntityId = entityId, EntityName = entityName, FieldName = fieldName };
             }
@@ -93,7 +98,7 @@ namespace Shop.Helpers
             var param = Expression.Parameter(typeof(L), "l");
             var wherePredicate = Expression.Lambda<Func<L, bool>>(
                 Expression.Equal(
-                    Expression.MakeMemberAccess(param, typeof(L).GetProperty("FieldName")), 
+                    Expression.MakeMemberAccess(param, typeof(L).GetProperty("FieldName")),
                     Expression.Constant(details.FieldName)), param);
 
             var keySelector = Expression.Lambda<Func<L, string>>(
@@ -103,7 +108,9 @@ namespace Shop.Helpers
 
             string propertyKey = string.Format("{0}_{1}_{2}", details.EntityName, details.EntityId, details.FieldName);
 
-            string defaultValue = expression.Compile().Invoke(model) as string;
+            string defaultValue = string.Empty;
+            if (model != null)
+                defaultValue = expression.Compile().Invoke(model) as string;
             StringWriter stringWriter = new StringWriter();
             HtmlTextWriter writer = new HtmlTextWriter(stringWriter);
 
@@ -129,7 +136,7 @@ namespace Shop.Helpers
                 writer.RenderBeginTag(HtmlTextWriterTag.Div);
                 string textBoxName = string.Format(FieldNameFormat, namePrefix, "Text");
                 string value = null;
-                if (localizedModels.Any(lm=>lm.Key == lang))
+                if (localizedModels.Any(lm => lm.Key == lang))
                 {
                     dynamic item = localizedModels.First(lm => lm.Key == lang).First();
                     value = (string)item.Text;

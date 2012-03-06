@@ -195,6 +195,14 @@ namespace Shop.Areas.Admin.Controllers
             {
                 parentId = category.Parent.Id;
             }
+
+            category.ProductAttributes.Load();
+            category.ProductAttributes.Clear();
+            category.Discount.Load();
+            category.Discount.Clear();
+            category.Products.Load();
+            category.Products.Clear();
+
             context.DeleteObject(category);
             context.SaveChanges();
             if (parentId.HasValue)

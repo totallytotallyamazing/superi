@@ -41,18 +41,21 @@
         </div>
         <div class="details">
             <p class="txtDetails">
-                Узнать подробнее об этом товаре можно, позвонив к нам, или просто сейчас <a id="quickQuestionLink" href="#quickQuestion"
-                    class="linkDetails">отправив быстрый вопрос</a></p>
+                <%= Shop.Resources.Global.LearnMore %>&nbsp;
+                <a id="quickQuestionLink" href="#quickQuestion" class="linkDetails">
+                    <%= Shop.Resources.Global.QuichQuestion %>
+                </a>
+            </p>
         </div>
         <div class="addToFavorites txtDetails <%=Favorites.FavoritesProductIds.Contains(Model.Id)?"hide":"block"%>">
-            <a href="#" id="addToFav" onclick="ProductClientExtensions.addToFavorites(<%=Model.Id%>)">Отметить товар</a>
+            <a href="#" id="addToFav" onclick="ProductClientExtensions.addToFavorites(<%=Model.Id%>)"><%= Shop.Resources.Global.AddToBookmarks %></a>
         </div>
         <div class="removeFromFavorites txtDetails <%=!Favorites.FavoritesProductIds.Contains(Model.Id)?"hide":"block"%>">
-            Товар добавлен в "<%=Html.ActionLink("Отмеченные", "Favorites", "Products", null, new { @class = "linkDetails" })%>"<br />
-            <a href="#" id="remFromFav" class="removeLink" onclick="ProductClientExtensions.removeFromFavorites(<%=Model.Id%>)">Убрать</a>  из "Отмеченных"
+            <%= Shop.Resources.Global.ProductIsAddedTo %> "<%=Html.ActionLink(Shop.Resources.Global.Bookmarks, "Favorites", "Products", null, new { @class = "linkDetails" })%>"<br />
+            <a href="#" id="remFromFav" class="removeLink" onclick="ProductClientExtensions.removeFromFavorites(<%=Model.Id%>)"><%= Shop.Resources.Global.Remove %></a>  <%= Shop.Resources.Global.FromBookmarks %>
         </div>
         <div style="padding-top:40px;">
-            <a href="javascript:history.back();" id="returnToCatalogueLink">&laquo; Вернуться в каталог</a>
+            <a href="javascript:history.back();" id="returnToCatalogueLink">&laquo; <%= Shop.Resources.Global.BackToCatalogue %></a>
         </div>
         <script type="text/javascript">
             $("#remFromFav").click(function () {
@@ -102,6 +105,6 @@
 <asp:Content ID="Content5" runat="server" ContentPlaceHolderID="Footer">
     <div id="pager">
         <p class="pgt1">
-            <a href="#" class="pgt1">« В каталог</a></p>
+            <a href="#" class="pgt1">« <%= Shop.Resources.Global.ToCatalogue %></a></p>
     </div>
 </asp:Content>

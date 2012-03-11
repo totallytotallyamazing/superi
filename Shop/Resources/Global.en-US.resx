@@ -120,11 +120,20 @@
   <data name="Address" xml:space="preserve">
     <value>&lt;a id="ourCoords" title="Our coordinates" href="/Home/Map" class="mainAdress"&gt;68 Zhylianska St.&lt;/a&gt;, Kyiv</value>
   </data>
+  <data name="AddToBookmarks" xml:space="preserve">
+    <value>Add to bookmarks</value>
+  </data>
   <data name="AllInList" xml:space="preserve">
     <value>On a single page</value>
   </data>
+  <data name="BackToCatalogue" xml:space="preserve">
+    <value>Back to the catalogue</value>
+  </data>
   <data name="Bookmark" xml:space="preserve">
     <value>'bookmark', 'bookmarks', 'bookmarks', 'bookmarks', 'bookmarks', 'bookmarks'</value>
+  </data>
+  <data name="Bookmarks" xml:space="preserve">
+    <value>bookmarks</value>
   </data>
   <data name="BrandCatalogues" xml:space="preserve">
     <value>Brand catalogues</value>
@@ -138,11 +147,17 @@
   <data name="EnterEmail" xml:space="preserve">
     <value>enter email</value>
   </data>
+  <data name="EnterImageText" xml:space="preserve">
+    <value>Enter the phrase you see on the image and click "Send"</value>
+  </data>
   <data name="Events" xml:space="preserve">
     <value>Our Events</value>
   </data>
   <data name="Feedback" xml:space="preserve">
     <value>Feedback</value>
+  </data>
+  <data name="FromBookmarks" xml:space="preserve">
+    <value>from bookmarks</value>
   </data>
   <data name="InvalidCaptcha" xml:space="preserve">
     <value>Symbols doesn't correspond with the ones on the picture</value>
@@ -155,6 +170,9 @@
   </data>
   <data name="LargerMap" xml:space="preserve">
     <value>Open larger map</value>
+  </data>
+  <data name="LearnMore" xml:space="preserve">
+    <value>Call us to learn more about this product, ur just</value>
   </data>
   <data name="LogoTitle" xml:space="preserve">
     <value>execution of interiors with parquet and marble</value>
@@ -174,8 +192,17 @@
   <data name="Possibilities" xml:space="preserve">
     <value>Our Possibilities</value>
   </data>
+  <data name="ProductIsAddedTo" xml:space="preserve">
+    <value>Product is added to</value>
+  </data>
   <data name="QueryText" xml:space="preserve">
     <value>Inquiry text</value>
+  </data>
+  <data name="QuichQuestion" xml:space="preserve">
+    <value>send us the quick question</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Remove</value>
   </data>
   <data name="Required" xml:space="preserve">
     <value>The field is required!</value>
@@ -192,11 +219,14 @@
   <data name="Subscribe" xml:space="preserve">
     <value>Subscribe</value>
   </data>
+  <data name="ToCatalogue" xml:space="preserve">
+    <value>To the catalogue</value>
+  </data>
   <data name="Unsubscribe" xml:space="preserve">
     <value>Unsubscribe</value>
   </data>
   <data name="WordEnter" xml:space="preserve">
-    <value>Word + Enter</value>
+    <value>Keyword + Enter</value>
   </data>
   <data name="YouHave" xml:space="preserve">
     <value>You have</value>

@@ -2,6 +2,8 @@
 
 <%@ Import Namespace="Shop.Models" %>
 <%@ Import Namespace="Dev.Mvc.Ajax" %>
+<%@ Import Namespace="Shop.Helpers" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
     <%= ViewData["title"]%>
 </asp:Content>
@@ -22,6 +24,10 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+    <%
+        var context = (ShopStorage) ViewData["context"];
+    %>
+
     <%= Html.ValidationSummary(true) %>
     <% Html.EnableClientValidation(); %>
     <div class="sectionTitle">
@@ -49,7 +55,7 @@
                         <%= Html.LabelFor(model => model.Name) %>
                     </td>
                     <td>
-                        <%= Html.TextBoxFor(model => model.Name) %>
+                        <%= Html.LocalizedTextBoxFor(model => model.Name, context.ShopLocalResources)%>
                     </td>
                     <td>
                         <%= Html.ValidationMessageFor(model => model.Name) %>

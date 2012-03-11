@@ -234,4 +234,10 @@
   <data name="YouHavea" xml:space="preserve">
     <value>Вами отмечена</value>
   </data>
+  <data name="Светлый" xml:space="preserve">
+    <value>Светлый</value>
+  </data>
+  <data name="Темный" xml:space="preserve">
+    <value>Темный</value>
+  </data>
 </root>

@@ -8,19 +8,22 @@ using System.Data;
 using System.IO;
 using Dev.Helpers;
 using Dev.Mvc.Helpers;
+using Superi.Web.Mvc.Localization;
 
 namespace Shop.Areas.Admin.Controllers
 {
     [Authorize(Roles = "Administrators")]
     public class ProductsController : Controller
     {
+        private ShopStorage _context = new ShopStorage();
+
         public ActionResult Index(int categoryId, int? brandId)
         {
             ViewData["cId"] = categoryId;
             ViewData["bId"] = brandId;
             using (var context = new ShopStorage())
             {
-                List<Product> products = context.Products.Where(p => p.Categories.Any(c=>c.Id == categoryId))
+                List<Product> products = context.Products.Where(p => p.Categories.Any(c => c.Id == categoryId))
                     .Where(p => (!brandId.HasValue || p.Brand.Id == brandId.Value)).ToList();
                 return View(products);
             }
@@ -34,51 +37,50 @@ namespace Shop.Areas.Admin.Controllers
             ViewData["id"] = id;
 
             Product product = null;
-            using (var context = new ShopStorage())
+            var br = _context.Brands.ToList();
+
+            int brandId = int.MinValue;
+
+            ViewData["context"] = _context;
+
+            List<ProductAttribute> attributes = null;
+
+            if (id.HasValue)
             {
-                var br = context.Brands.ToList();
+                product = _context.Products.Include("ProductImages")
+                    .Include("Categories.ProductAttributes.ProductAttributeValues")
+                    .Include("ProductAttributeStaticValues")
+                    .Include("Brand").First(p => p.Id == id.Value);
+                if (product.Brand != null)
+                    brandId = product.Brand.Id;
 
-                int brandId = int.MinValue;
-
-
-                List<ProductAttribute> attributes = null;
-
-                if (id.HasValue)
-                {
-                    product = context.Products.Include("ProductImages")
-                        .Include("Categories.ProductAttributes.ProductAttributeValues")
-                        .Include("ProductAttributeStaticValues")
-                        .Include("Brand").First(p => p.Id == id.Value);
-                    if (product.Brand != null)
-                        brandId = product.Brand.Id;
-
-                    attributes = product.Categories.SelectMany(c => c.ProductAttributes.Where(pa => pa.Static)).ToList();
-                }
-
-                if(attributes == null && cId.HasValue)
-                    attributes = context.ProductAttributes.Where(pa=>pa.Categories.Any(c=>c.Id == cId.Value)).ToList();
-
-                var attributesData = new KeyValuePair<Product, IEnumerable<ProductAttribute>>(
-                    product,
-                    attributes);
-                ViewData["attributesData"] = attributesData;
-
-                List<SelectListItem> brands = br
-                .Select(b => new SelectListItem { Text = b.Name, Value = b.Id.ToString(), Selected = b.Id == brandId })
-                .ToList();
-
-                ViewData["Brands"] = brands;
-
+                attributes = product.Categories.SelectMany(c => c.ProductAttributes.Where(pa => pa.Static)).ToList();
             }
+
+            if (attributes == null && cId.HasValue)
+                attributes = _context.ProductAttributes.Where(pa => pa.Categories.Any(c => c.Id == cId.Value)).ToList();
+
+            var attributesData = new KeyValuePair<Product, IEnumerable<ProductAttribute>>(
+                product,
+                attributes);
+            ViewData["attributesData"] = attributesData;
+
+            List<SelectListItem> brands = br
+            .Select(b => new SelectListItem { Text = b.Name, Value = b.Id.ToString(), Selected = b.Id == brandId })
+            .ToList();
+
+            ViewData["Brands"] = brands;
+
             return View(product);
         }
 
         [HttpPost]
-        public ActionResult AddEdit(FormCollection form, int? cId, int? bId, int? brandId)
+        public ActionResult AddEdit(FormCollection form, int? cId, int? bId, int? brandId, ShopLocalResource[] localizations)
         {
             Product product;
             using (var context = new ShopStorage())
             {
+                bool add = false;
                 int id;
                 if (int.TryParse(form["Id"], out id))
                 {
@@ -95,6 +97,7 @@ namespace Shop.Areas.Admin.Controllers
                 }
                 else
                 {
+                    add = true;
                     if (!cId.HasValue)
                         throw new ArgumentNullException("cId");
                     product = new Product();
@@ -103,9 +106,9 @@ namespace Shop.Areas.Admin.Controllers
                     if (brandId.HasValue)
                     {
                         EntityKey brand = new EntityKey("ShopStorage.Brands", "Id", brandId.Value);
-                        product.BrandReference.EntityKey = brand; 
+                        product.BrandReference.EntityKey = brand;
                     }
-                    
+
                     object categoryItem;
                     context.TryGetObjectByKey(category, out categoryItem);
 
@@ -129,6 +132,14 @@ namespace Shop.Areas.Admin.Controllers
 
                 UpdateProductAttributes(product, form);
 
+                if (add)
+                {
+                    context.SaveChanges();
+                }
+
+                localizations.SaveLocalizationsTo(context.ShopLocalResources, false);
+                product.UpdateValues(localizations.Where(l => l.Language == "ru-RU"));
+
                 context.SaveChanges();
             }
 
@@ -138,7 +149,7 @@ namespace Shop.Areas.Admin.Controllers
         private void UpdateProductAttributes(Product product, FormCollection form)
         {
             PostData postData = form.ProcessPostData(prefix: "pa_");
-    
+
             foreach (var item in postData)
             {
                 int attributeId = int.Parse(item.Key);
@@ -195,7 +206,7 @@ namespace Shop.Areas.Admin.Controllers
                     if (newDefaultImage != null)
                         newDefaultImage.Default = true;
                 }
-                if(!string.IsNullOrEmpty(image.ImageSource))
+                if (!string.IsNullOrEmpty(image.ImageSource))
                     System.IO.File.Delete(Server.MapPath("~/Content/ProductImages/" + image.ImageSource));
                 context.DeleteObject(image);
                 context.SaveChanges();
@@ -232,6 +243,12 @@ namespace Shop.Areas.Admin.Controllers
                 context.SaveChanges();
             }
             return RedirectToAction("Index", new { controller = "Products", area = "", id = WebSession.CurrentCategory });
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            base.Dispose(disposing);
+            _context.Dispose();
         }
     }
 }

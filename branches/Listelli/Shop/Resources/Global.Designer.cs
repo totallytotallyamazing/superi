@@ -410,5 +410,23 @@ namespace Shop.Resources {
                 return ResourceManager.GetString("YouHavea", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Светлый.
+        /// </summary>
+        public static string Светлый {
+            get {
+                return ResourceManager.GetString("Светлый", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Темный.
+        /// </summary>
+        public static string Темный {
+            get {
+                return ResourceManager.GetString("Темный", resourceCulture);
+            }
+        }
     }
 }

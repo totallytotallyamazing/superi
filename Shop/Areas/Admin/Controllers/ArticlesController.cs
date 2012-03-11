@@ -31,6 +31,7 @@ namespace Shop.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult AddEdit(Article article, int? Id, bool send, ContentLocalResource[] localizations)
         {
+            bool add = false;
             if (Id.HasValue && Id.Value > 0)
             {
                 article.Id = Id.Value;
@@ -45,6 +46,7 @@ namespace Shop.Areas.Admin.Controllers
             }
             else
             {
+                add = true;
                 article.Text = HttpUtility.HtmlDecode(article.Text);
                 article.Language = "ru-RU";
                 article.Name = article.Title ?? string.Empty;
@@ -57,7 +59,13 @@ namespace Shop.Areas.Admin.Controllers
 
             if (localizations != null && localizations.Length > 0)
             {
-                localizations.ToList().ForEach(l => l.Text = HttpUtility.HtmlDecode(l.Text));
+                if (add)
+                {
+                    context.SaveChanges();
+                }
+                localizations.ToList().ForEach(l => { l.Text = HttpUtility.HtmlDecode(l.Text);
+                                                        l.EntityId = article.Id;
+                });
                 localizations.SaveLocalizationsTo(context.ContentLocalResource, false);
                 article.UpdateValues(localizations.Where(l => l.Language == "ru-RU"));
             }

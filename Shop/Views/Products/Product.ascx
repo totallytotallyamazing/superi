@@ -65,7 +65,7 @@
                { %>
             <p>
                 <span class="attributeLabel"><%= Shop.Resources.Global.Color %>:</span> <span class="attributeValue">
-                    <%= Model.Color %></span>
+                    <%= typeof(Shop.Resources.Global).GetProperty(Model.Color).GetValue(null, null) %></span>
             </p>
             <%} %>
             <%if (!string.IsNullOrWhiteSpace(Model.Tint))

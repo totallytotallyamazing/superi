@@ -78,11 +78,13 @@ namespace Shop.Controllers
 
                 var productAttributes = products.SelectMany(p => p.ProductAttributeStaticValues.Select(pasv => pasv.ProductAttribute)).Distinct();
                 var localizaions = productAttributes.GetLocalizations(context.ShopLocalResources).ToList();
+                var productLocalizations = products.GetLocalizations(context.ShopLocalResources);
 
                 foreach (var product in products)
                 {
                     var pas = product.ProductAttributeStaticValues.AsQueryable().Select(pasv => pasv.ProductAttribute);
                     pas.ToList().ForEach(pa => pa.UpdateValues(localizaions));
+                    product.UpdateValues(productLocalizations);
                 }
 
             }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Shop.Helpers;
 using Shop.Models;
 using Dev.Helpers;
 using System.Web.Security;
@@ -11,6 +12,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
 using Shop.Helpers.Validation;
 using System.Net.Mail;
+using Shop.Resources;
 using Superi.Web.Mvc.Localization;
 using System.Data.Objects;
 using System.Globalization;
@@ -134,8 +136,7 @@ namespace Shop.Controllers
                     .Include("Tags.Products.Categories")
                     .Include("Categories")
                     .Include("Tags.Products.Brand")
-                    .Include("Brand")
-                    .Where(p => p.Id == id).First();
+                    .Include("Brand").First(p => p.Id == id);
                 ViewData["keywords"] = product.SeoKeywords;
                 ViewData["description"] = product.SeoDescription;
 
@@ -161,8 +162,7 @@ namespace Shop.Controllers
                     .Include("Tags.Products.Categories")
                     .Include("Categories")
                     .Include("Tags.Products.Brand")
-                    .Include("Brand")
-                    .Where(p => p.Id == id).First();
+                    .Include("Brand").First(p => p.Id == id);
 
                 ViewData["keywords"] = product.SeoKeywords;
                 ViewData["description"] = product.SeoDescription;
@@ -284,18 +284,19 @@ namespace Shop.Models
 {
     public class QuickQuestionModel
     {
-        [Required(ErrorMessage = "Обязательно!")]
-        [DisplayName("Назовитесь")]
+        [Required(ErrorMessageResourceName = "Required", ErrorMessageResourceType = typeof(Global))]
+        [LocalizedDisplayName("NameLastName", NameResourceType = typeof(Global))]
         public string Name { get; set; }
-        [DisplayName("Контактный email")]
-        [RegularExpression(@"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$", ErrorMessage = "Неверно введен адрес почты. Формат: name@domain.com")]
+        [LocalizedDisplayName("Email", NameResourceType = typeof(Global))]
+        [RegularExpression(@"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$",
+            ErrorMessageResourceName = "InvalidEmail", ErrorMessageResourceType = typeof(Global))]
         public string Email { get; set; }
-        [Required(ErrorMessage = "Обязательно!")]
-        [DisplayName("Ваш вопрос")]
+        [Required(ErrorMessageResourceName = "Required", ErrorMessageResourceType = typeof(Global))]
+        [LocalizedDisplayName("QueryText", NameResourceType = typeof(Global))]
         public string Text { get; set; }
         public string ProductName { get; set; }
-        [Captcha("ValidateCaptcha", "Captcha", "value", ErrorMessage = "Неправильно введены символы с картинки!")]
-        [Required(ErrorMessage = "Введите символы с картинки")]
+        [Captcha("ValidateCaptcha", "Captcha", "value", ErrorMessageResourceName = "InvalidCaptcha", ErrorMessageResourceType = typeof(Global))]
+        [Required(ErrorMessageResourceName = "RequiredCaptcha", ErrorMessageResourceType = typeof(Global))]
         [DisplayName("")]
         public string Captcha { get; set; }
     }

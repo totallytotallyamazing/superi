@@ -35,7 +35,7 @@
         </tr>
     </table>
     <div class="sendLabel">
-        Введите проверочное число, и нажмите “Отправить”
+        <%= Shop.Resources.Global.EnterImageText %>
     </div>
     <table border="0" cellpadding="0" cellspacing="0">
         <tr>
@@ -47,6 +47,6 @@
             </td>
         </tr>
     </table>
-    <input type="submit" value="Отправить" />
+    <input type="submit" value="<%= Shop.Resources.Global.Send %>" />
     <% } %>
 </div>

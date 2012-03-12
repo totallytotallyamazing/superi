@@ -91,7 +91,7 @@ namespace Shop.Helpers
             string[] languages = Configurator.LoadSettings().Languages.Split(';');
             object a = new object();
             string elementName = name ?? "localizations";
-            var model = (htmlHelper.ViewData.Model as TModel);
+            var model = htmlHelper.ViewData.Model;
 
             ModelDetails details = ModelDetails.Create(model, expression);
 

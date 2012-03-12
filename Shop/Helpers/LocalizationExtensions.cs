@@ -90,6 +90,7 @@ namespace Superi.Web.Mvc.Localization
                     string fieldName = (string)((dynamic)localizationItem).FieldName;
                     string text = (string)((dynamic)localizationItem).Text;
                     PropertyInfo info = typeof(T).GetProperty(fieldName);
+                    text = text ?? string.Empty;
                     info.SetValue(item, text, null);
                 }
             }

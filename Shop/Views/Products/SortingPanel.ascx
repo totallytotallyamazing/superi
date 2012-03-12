@@ -30,12 +30,12 @@
 
 <div class="sortingBox">
     <p class="txtSortByTitle">
-        Сортировка:</p>
+        <%= Shop.Resources.Global.Sorting %>:</p>
     <div id="sortBy">
-        <%= generateSortLink("По бренду", "brand")%>
-        <%= generateSortLink("Темные", "tintdark")%>
-        <%= generateSortLink("Светлые", "tintlight")%>
-        <%= generateSortLink("Только новое", "onlynew")%>
+        <%= generateSortLink(Shop.Resources.Global.ByBrand, "brand")%>
+        <%= generateSortLink(Shop.Resources.Global.Dark, "tintdark")%>
+        <%= generateSortLink(Shop.Resources.Global.Light, "tintlight")%>
+        <%= generateSortLink(Shop.Resources.Global.OnlyNew, "onlynew")%>
     </div>
 </div>
 <%} %>

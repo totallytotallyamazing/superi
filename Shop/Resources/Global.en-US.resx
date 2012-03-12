@@ -240,4 +240,19 @@
   <data name="Темный" xml:space="preserve">
     <value>Dark</value>
   </data>
+  <data name="ByBrand" xml:space="preserve">
+    <value>By brand</value>
+  </data>
+  <data name="Dark" xml:space="preserve">
+    <value>Dark</value>
+  </data>
+  <data name="Light" xml:space="preserve">
+    <value>Light</value>
+  </data>
+  <data name="OnlyNew" xml:space="preserve">
+    <value>New only</value>
+  </data>
+  <data name="Sorting" xml:space="preserve">
+    <value>Display</value>
+  </data>
 </root>

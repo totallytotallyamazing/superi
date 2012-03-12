@@ -7,12 +7,17 @@
     $(function() {
         $("#adminPanel .links").slideUp(0);
 
-        $("#adminPanel .handle").mouseover(function() {
+//        $("#adminPanel .handle").mouseover(function() {
+//            hidePanel = false;
+//            $("#adminPanel .links").slideDown();
+//        });
+
+        $("#adminPanel").mouseover(function () {
             hidePanel = false;
             $("#adminPanel .links").slideDown();
         });
 
-        $("#adminPanel, #adminPanel .links").mouseover(function() { hidePanel = false; })
+        $("#adminPanel, #adminPanel .links").mouseover(function() { hidePanel = false; });
 
         $("#adminPanel, #adminPanel .links, #adminPanel .handle").mouseout(function() {
             hidePanel = true;
@@ -22,7 +27,7 @@
                 }
             }, 1000);
         });
-    })
+    });
 </script>
 
 <div id="adminPanel">

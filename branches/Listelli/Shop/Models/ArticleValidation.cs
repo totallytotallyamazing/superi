@@ -19,6 +19,7 @@ namespace Shop.Models
     {
         [Required(ErrorMessage="*")]
         [DisplayName("Заголовок")]
+        [DisplayFormat(ConvertEmptyStringToNull = false)] 
         public string Title { get; set; }
 
         [Required(ErrorMessage="*")]

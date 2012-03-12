@@ -53,8 +53,7 @@ namespace Shop.Areas.Admin.Controllers
                 article.Title = article.Title ?? string.Empty;
                 context.AddToArticles(article);
                 // TODO: Добавлена отправка новостей
-                if (send)
-                    SendArticle(article);
+
             }
 
             if (localizations != null && localizations.Length > 0)
@@ -71,7 +70,8 @@ namespace Shop.Areas.Admin.Controllers
             }
 
             context.SaveChanges();
-
+            if (send)
+                SendArticle(article);
             return RedirectToAction("Index", "Articles", new { area = "", type = article.Type });
         }
 
@@ -90,6 +90,11 @@ namespace Shop.Areas.Admin.Controllers
         public ActionResult Delete(int id)
         {
             Article article = context.Articles.Where(a => a.Id == id).First();
+            var localizations = article.Localizations(context.ContentLocalResource);
+            foreach (var item in localizations)
+            {
+                context.DeleteObject(item);
+            }
             context.DeleteObject(article);
             context.SaveChanges();
             return RedirectToAction("Index", "Articles", new { area = "", type = article.Type });

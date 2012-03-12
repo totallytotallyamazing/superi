@@ -124,11 +124,29 @@ namespace Shop.Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на По бренду.
+        /// </summary>
+        public static string ByBrand {
+            get {
+                return ResourceManager.GetString("ByBrand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Цвет.
         /// </summary>
         public static string Color {
             get {
                 return ResourceManager.GetString("Color", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Темные.
+        /// </summary>
+        public static string Dark {
+            get {
+                return ResourceManager.GetString("Dark", resourceCulture);
             }
         }
         
@@ -232,6 +250,15 @@ namespace Shop.Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Светлые.
+        /// </summary>
+        public static string Light {
+            get {
+                return ResourceManager.GetString("Light", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на оформление интерьеров паркетом и мрамором.
         /// </summary>
         public static string LogoTitle {
@@ -273,6 +300,15 @@ namespace Shop.Resources {
         public static string Ok {
             get {
                 return ResourceManager.GetString("Ok", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Только новое.
+        /// </summary>
+        public static string OnlyNew {
+            get {
+                return ResourceManager.GetString("OnlyNew", resourceCulture);
             }
         }
         
@@ -354,6 +390,15 @@ namespace Shop.Resources {
         public static string SiteSearch {
             get {
                 return ResourceManager.GetString("SiteSearch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Сортировка.
+        /// </summary>
+        public static string Sorting {
+            get {
+                return ResourceManager.GetString("Sorting", resourceCulture);
             }
         }
         

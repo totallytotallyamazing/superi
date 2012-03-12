@@ -64,7 +64,9 @@ namespace Shop.Areas.Admin.Controllers
         {
             using (var context = new ReviewStorage())
             {
-                var content = context.ReviewContent.Include("ReviewContentItems").Where(c => c.Id == id).First();
+                var content = context.ReviewContent
+                    //.Include("ReviewContentItems")
+                    .First(c => c.Id == id);
                 return View(content);
             }
         }
@@ -75,7 +77,7 @@ namespace Shop.Areas.Admin.Controllers
             using (var context = new ReviewStorage())
             {
                 int id = Convert.ToInt32(form["Id"]);
-                var content = context.ReviewContent.Where(c => c.Id == id).First();
+                var content = context.ReviewContent.First(c => c.Id == id);
                 TryUpdateModel(content, new[] { "Title", "SortOrder", "Name" });
 
                 content.Description = HttpUtility.HtmlDecode(form["Description"]);
@@ -102,13 +104,14 @@ namespace Shop.Areas.Admin.Controllers
         {
             using (var context = new ReviewStorage())
             {
-                var content = context.ReviewContent.Include("ReviewContentItems").Where(c => c.Id == id).First();
+                var content = context.ReviewContent.Include("ReviewContentItems").First(c => c.Id == id);
 
                 string imageSource = content.ImageSource;
 
                 context.DeleteObject(content);
                 context.SaveChanges();
-                IOHelper.DeleteFile("~/Content/ReviewImages", imageSource);
+                if (!string.IsNullOrEmpty(imageSource))
+                    IOHelper.DeleteFile("~/Content/ReviewImages", imageSource);
                 return RedirectToAction("Index", "Review", new { Area = "" });
             }
         }
@@ -117,10 +120,10 @@ namespace Shop.Areas.Admin.Controllers
         {
             using (var context = new ReviewStorage())
             {
-                var content = context.ReviewContent.Include("ReviewContentItems").Where(c => c.Id == id).First();
+                var content = context.ReviewContent.Include("ReviewContentItems").First(c => c.Id == id);
                 ViewData["reviewContentId"] = content.Id;
                 ViewData["reviewContentName"] = content.Name;
-                int maxSortOrder = content.ReviewContentItems.Count() > 0 ? content.ReviewContentItems.Max(c => c.SortOrder) : 0;
+                int maxSortOrder = content.ReviewContentItems.Any() ? content.ReviewContentItems.Max(c => c.SortOrder) : 0;
                 var contentItem = new ReviewContentItem { SortOrder = maxSortOrder + 1 };
                 ViewData["ContentType"] = contentType;
                 return View(contentItem);
@@ -132,7 +135,7 @@ namespace Shop.Areas.Admin.Controllers
         {
             using (var context = new ReviewStorage())
             {
-                var content = context.ReviewContent.Where(c => c.Id == reviewContentId).First();
+                var content = context.ReviewContent.First(c => c.Id == reviewContentId);
 
                 var contentItem = new ReviewContentItem();
                 TryUpdateModel(contentItem, new[] { "SortOrder", "ContentType" });

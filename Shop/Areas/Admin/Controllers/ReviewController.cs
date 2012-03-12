@@ -6,44 +6,53 @@ using System.Web.Mvc;
 using Shop.Models;
 using Dev.Mvc.Helpers;
 using System.IO;
+using Superi.Web.Mvc.Localization;
 
 namespace Shop.Areas.Admin.Controllers
 {
-    
+
     public class ReviewController : Controller
     {
+        private readonly ReviewStorage _context = new ReviewStorage();
+
         //
         // GET: /Admin/Review/
         [Authorize(Roles = "Administrators")]
         public ActionResult Add()
         {
-
+            ViewData["context"] = _context;
             return View();
         }
         [Authorize(Roles = "Administrators")]
         [HttpPost]
-        public ActionResult Add(FormCollection form)
+        public ActionResult Add(ReviewContent content, ReviewLocalResource[] localizations)
         {
-            using (var context = new ReviewStorage())
+            content.Description = HttpUtility.HtmlDecode(content.Description);
+
+            if (Request.Files["logo"] != null && !string.IsNullOrEmpty(Request.Files["logo"].FileName))
             {
+                string fileName = IOHelper.GetUniqueFileName("~/Content/ReviewImages", Request.Files["logo"].FileName);
+                string filePath = Server.MapPath("~/Content/ReviewImages");
+                filePath = Path.Combine(filePath, fileName);
+                Request.Files["logo"].SaveAs(filePath);
+                content.ImageSource = fileName;
+            }
 
-                ReviewContent content = new ReviewContent();
-                TryUpdateModel(content, new[] { "Title", "SortOrder", "Name" });
+            _context.AddToReviewContent(content);
+            _context.SaveChanges();
 
-
-                content.Description = HttpUtility.HtmlDecode(form["Description"]);
-
-                if (Request.Files["logo"] != null && !string.IsNullOrEmpty(Request.Files["logo"].FileName))
+            if (localizations != null && localizations.Length > 0)
+            {
+                localizations.ToList().ForEach(l =>
                 {
-                    string fileName = IOHelper.GetUniqueFileName("~/Content/ReviewImages", Request.Files["logo"].FileName);
-                    string filePath = Server.MapPath("~/Content/ReviewImages");
-                    filePath = Path.Combine(filePath, fileName);
-                    Request.Files["logo"].SaveAs(filePath);
-                    content.ImageSource = fileName;
-                }
+                    l.Text = HttpUtility.HtmlDecode(l.Text);
+                    l.EntityId = content.Id;
+                });
 
-                context.AddToReviewContent(content);
-                context.SaveChanges();
+                localizations.SaveLocalizationsTo(_context.ReviewLocalResources, false);
+                content.UpdateValues(localizations.Where(l => l.Language == "ru-RU"));
+
+                _context.SaveChanges();
             }
 
             return RedirectToAction("Index", "Review", new { Area = "" });
@@ -214,7 +223,7 @@ namespace Shop.Areas.Admin.Controllers
                     content.ReviewContentItems.Add(contentItem);
                     context.SaveChanges();
                     reviewContentItemId = contentItem.Id;
-                    
+
                 }
                 else
                 {
@@ -369,6 +378,11 @@ namespace Shop.Areas.Admin.Controllers
             return RedirectToAction("Details", "Review", new { Area = "", id = contentName });
         }
 
+        protected override void Dispose(bool disposing)
+        {
+            base.Dispose(disposing);
+            _context.Dispose();
+        }
 
     }
 }

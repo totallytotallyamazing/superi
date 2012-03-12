@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Shop.Models;
+using Superi.Web.Mvc.Localization;
+
 
 namespace Shop.Controllers
 {
@@ -16,9 +18,12 @@ namespace Shop.Controllers
         {
             using (var context = new ReviewStorage())
             {
-                var content = context.ReviewContent.Where(c=>c.Id!=6).ToList();
-                ViewData["reviewHeaderText"] = context.ReviewContent.Where(c => c.Id == 6).Select(c => c.Description).FirstOrDefault();
-                return View(content);
+                var content = context.ReviewContent//.Where(c=>c.Id!=6)
+                    .Localize((c, l) => new { Content = c, Localizations = l }, context.ReviewLocalResources, null)
+                    .ToList()
+                    .Select(item => item.Content.UpdateValues(item.Localizations));
+                ViewData["reviewHeaderText"] = content.First(c => c.Id == 6).Description;
+                return View(content.Where(c => c.Id != 6));
             }
         }
 

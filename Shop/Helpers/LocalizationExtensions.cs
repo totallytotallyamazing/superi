@@ -202,7 +202,7 @@ namespace Superi.Web.Mvc.Localization
             IEnumerable<int> entityIds = entities.Select(entityIdAccess);
             var inId = ContextExtension.BuildContainsExpression(localizationIdAccess, entityIds);
 
-            MethodInfo where = typeof(Queryable).GetMethods().Where(m => m.Name == "Where").First().MakeGenericMethod(typeof(L));
+            //MethodInfo where = typeof(Queryable).GetMethods().Where(m => m.Name == "Where").First().MakeGenericMethod(typeof(L));
             return localizations.Where(langEquals).Where(eNameEquals).Where(inFieldNames).Where(inId);
         }
     }

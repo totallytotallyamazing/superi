@@ -24,7 +24,6 @@ namespace Shop.Controllers
             using (ContentStorage context = new ContentStorage())
             {
                 var articles = context.Articles.Where(a => a.Type == type)
-                    .OrderByDescending(a => a.Date)
                     .Localize((a, l) => new { Article = a, Localizations = l}, context.ContentLocalResource, null)
                     .ToList()
                     .Select(item=>item.Article.UpdateValues(item.Localizations))

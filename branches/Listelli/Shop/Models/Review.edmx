@@ -6,6 +6,7 @@
     <edmx:StorageModels>
     <Schema Namespace="gb_listelliModel2.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="gb_listelliModel2StoreContainer">
+          <EntitySet Name="LocalResource" EntityType="gb_listelliModel2.Store.LocalResource" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ReviewContent" EntityType="gb_listelliModel2.Store.ReviewContent" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ReviewContentItem" EntityType="gb_listelliModel2.Store.ReviewContentItem" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ReviewContentItemImage" EntityType="gb_listelliModel2.Store.ReviewContentItemImage" store:Type="Tables" Schema="dbo" />
@@ -18,6 +19,17 @@
             <End Role="ReviewContentItemImage" EntitySet="ReviewContentItemImage" />
           </AssociationSet>
         </EntityContainer>
+        <EntityType Name="LocalResource">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="EntityName" Type="varchar" Nullable="false" MaxLength="250" />
+          <Property Name="EntityId" Type="int" Nullable="false" />
+          <Property Name="Language" Type="varchar" Nullable="false" MaxLength="5" />
+          <Property Name="Text" Type="varchar(max)" />
+          <Property Name="FieldName" Type="varchar" MaxLength="250" />
+        </EntityType>
         <EntityType Name="ReviewContent">
           <Key>
             <PropertyRef Name="Id" />
@@ -88,6 +100,7 @@
             <End Role="ReviewContentItem" EntitySet="ReviewContentItem" />
             <End Role="ReviewContentItemImage" EntitySet="ReviewContentItemImage" />
           </AssociationSet>
+          <EntitySet Name="ReviewLocalResources" EntityType="gb_listelliModel2.ReviewLocalResource" />
         </EntityContainer>
         <EntityType Name="ReviewContent">
           <Key>
@@ -147,6 +160,17 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="ReviewLocalResource">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="EntityName" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="EntityId" Nullable="false" />
+          <Property Type="String" Name="Language" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Text" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="FieldName" MaxLength="250" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -174,6 +198,18 @@
             <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
             <ScalarProperty Name="ReviewContentItemId" ColumnName="ReviewContentItemId" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="ReviewLocalResources">
+            <EntityTypeMapping TypeName="gb_listelliModel2.ReviewLocalResource">
+              <MappingFragment StoreEntitySet="LocalResource">
+                <ScalarProperty Name="FieldName" ColumnName="FieldName" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="Language" ColumnName="Language" />
+                <ScalarProperty Name="EntityId" ColumnName="EntityId" />
+                <ScalarProperty Name="EntityName" ColumnName="EntityName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -188,8 +224,8 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="False" />
-        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="False" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->
@@ -206,6 +242,7 @@
           <ConnectorPoint PointX="4.5" PointY="2.1151432291666667" />
           <ConnectorPoint PointX="5.25" PointY="2.1151432291666667" />
         </AssociationConnector>
+        <EntityTypeShape EntityType="gb_listelliModel2.ReviewLocalResource" Width="1.5" PointX="8.375" PointY="2" Height="2.1725878906249996" />
       </Diagram>
     </Diagrams>
   </Designer>

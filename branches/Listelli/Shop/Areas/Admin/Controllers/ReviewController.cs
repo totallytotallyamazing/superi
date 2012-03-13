@@ -150,11 +150,11 @@ namespace Shop.Areas.Admin.Controllers
                 localizations.ToList().ForEach(l =>
                 {
                     l.Text = HttpUtility.HtmlDecode(l.Text);
-                    l.EntityId = content.Id;
+                    l.EntityId = contentItem.Id;
                 });
 
                 localizations.SaveLocalizationsTo(_context.ReviewLocalResources, false);
-                content.UpdateValues(localizations.Where(l => l.Language == "ru-RU"));
+                contentItem.UpdateValues(localizations.Where(l => l.Language == "ru-RU"));
 
                 _context.SaveChanges();
             }

@@ -1,12 +1,16 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Review.Master" Inherits="System.Web.Mvc.ViewPage<Shop.Models.ReviewContent>" %>
 <%@ Import Namespace="Dev.Mvc.Helpers" %>
 <%@ Import Namespace="Dev.Mvc.Ajax" %>
+<%@ Import Namespace="Shop.Helpers" %>
+<%@ Import Namespace="Shop.Models" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	Редактирование содержимого
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-
+<%
+	ReviewStorage context = (ReviewStorage)ViewData["context"];
+	 %>
     <h2>Редактирование содержимого</h2>
 
     <% using (Html.BeginForm("Edit", "Review", FormMethod.Post, new { enctype = "multipart/form-data" }))
@@ -30,7 +34,7 @@
                 Заголовок
             </div>
             <div class="editor-field">
-                <%: Html.TextBoxFor(model => model.Title) %>
+                <%: Html.LocalizedTextBoxFor(model => model.Title, context.ReviewLocalResources) %>
                 <%: Html.ValidationMessageFor(model => model.Title) %>
             </div>
             
@@ -38,7 +42,7 @@
                 Описание
             </div>
             <div class="editor-field">
-                <%: Html.TextAreaFor(model => model.Description) %>
+                <%: Html.LocalizedTextAreaFor(model => model.Description, context.ReviewLocalResources)%>
                 <%: Html.ValidationMessageFor(model => model.Description) %>
             </div>
             
@@ -74,16 +78,20 @@
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="includes" runat="server">
-    <script type="text/javascript" src="/Scripts/MicrosoftAjax.js"></script>
-    <script type="text/javascript" src="/Scripts/MicrosoftMvcValidation.js"></script>
-      
-    <%= Ajax.ScriptInclude("/Controls/ckeditor/ckeditor.js")%>
-    <%= Ajax.ScriptInclude("/Controls/ckeditor/adapters/jquery.js")%>
+<script type="text/javascript" src="/Scripts/MicrosoftAjax.js"></script>
+	<script type="text/javascript" src="/Scripts/MicrosoftMvcValidation.js"></script>
+	  
+	<%= Ajax.ScriptInclude("/Controls/ckeditor/ckeditor.js")%>
+	<%= Ajax.ScriptInclude("/Controls/ckeditor/adapters/jquery.js")%>
+    
+	<script type="text/javascript" src="/Scripts/localization.js"></script>
 
-    <script type="text/javascript">
-        $(function () {
-            CKEDITOR.replace("Description", { toolbar: "Media" });
-        })
+	<script type="text/javascript">
+	    $(function () {
+	        $("textarea").ckeditor(function () { }, { toolbar: "Media" });
+	    });
+
+	    Localization.bindLocalizationSwitch();
 </script>
 </asp:Content>
 

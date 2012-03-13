@@ -1,11 +1,16 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Review.Master" Inherits="System.Web.Mvc.ViewPage<Shop.Models.ReviewContentItem>" %>
 <%@ Import Namespace="Dev.Mvc.Helpers" %>
 <%@ Import Namespace="Dev.Mvc.Ajax" %>
+<%@ Import Namespace="Shop.Helpers" %>
+<%@ Import Namespace="Shop.Models" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	Редактирование содержимого
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+<%
+	ReviewStorage context = (ReviewStorage)ViewData["context"];
+	 %>
 
     <h2>Редактирование содержимого</h2>
 
@@ -23,7 +28,7 @@
                 Текст
             </div>
             <div class="editor-field">
-                <%: Html.TextAreaFor(model => model.Text)%>
+                <%: Html.LocalizedTextAreaFor(model => model.Text, context.ReviewLocalResources)%>
                 <%: Html.ValidationMessageFor(model => model.Text) %>
             </div>
             
@@ -50,15 +55,20 @@
 
 <asp:Content ID="Content3" ContentPlaceHolderID="includes" runat="server">
 <script type="text/javascript" src="/Scripts/MicrosoftAjax.js"></script>
-    <script type="text/javascript" src="/Scripts/MicrosoftMvcValidation.js"></script>
-      
-    <%= Ajax.ScriptInclude("/Controls/ckeditor/ckeditor.js")%>
-    <%= Ajax.ScriptInclude("/Controls/ckeditor/adapters/jquery.js")%>
+	<script type="text/javascript" src="/Scripts/MicrosoftMvcValidation.js"></script>
+	  
+	<%= Ajax.ScriptInclude("/Controls/ckeditor/ckeditor.js")%>
+	<%= Ajax.ScriptInclude("/Controls/ckeditor/adapters/jquery.js")%>
+    
+	<script type="text/javascript" src="/Scripts/localization.js"></script>
 
-    <script type="text/javascript">
-        $(function () {
-            CKEDITOR.replace("Text", { toolbar: "Media" });
-        })
+	<script type="text/javascript">
+	    $(function () {
+	        $("textarea").ckeditor(function () { }, { toolbar: "Media" });
+	    });
+
+	    Localization.bindLocalizationSwitch();
 </script>
+
 </asp:Content>
 

@@ -32,6 +32,7 @@
               { %>
             <%=Html.ActionLink("[IMAGE]", "Index", "Review", new { Area = "" }, new { id="logoLink"}).ToString().Replace("[IMAGE]","")%>
             <%} %>
+            
             <div id="headerSign">
                 <asp:ContentPlaceHolder runat="server" ID="HeaderTextPlaceHolder">
                 
@@ -39,6 +40,11 @@
                 
             </div>
             </div>
+            <div style="width: 200px;">
+            <% Html.RenderPartial("LanguageSwitch"); %>    
+
+            </div>
+            
         </div>
         <div id="main">
             

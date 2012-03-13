@@ -18,7 +18,7 @@ namespace Shop.Controllers
         {
             using (var context = new ReviewStorage())
             {
-                var contents = context.ReviewContent//.Where(c=>c.Id!=6)
+                var contents = context.ReviewContent
                     .Localize((c, l) => new { Content = c, Localizations = l }, context.ReviewLocalResources, null)
                     .ToList()
                     .Select(item => item.Content.UpdateValues(item.Localizations));
@@ -32,6 +32,9 @@ namespace Shop.Controllers
             using (var context = new ReviewStorage())
             {
                 var content = context.ReviewContent.Include("ReviewContentItems").First(c => c.Name == id);
+
+
+
                 foreach (var item in content.ReviewContentItems)
                 {
                     item.ReviewContentItemImages.Load();

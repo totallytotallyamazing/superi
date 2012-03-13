@@ -30,8 +30,6 @@ namespace Shop.Controllers
                     .OrderByDescending(a => a.Date);
                 return View(articles);
             }
-            
         }
-
     }
 }

@@ -41,6 +41,7 @@
           <Property Name="Description" Type="varchar(max)" />
           <Property Name="Text" Type="varchar(max)" />
           <Property Name="Keywords" Type="varchar(max)" />
+          <Property Name="PageTitle" Type="varchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="LocalResource">
           <Key>
@@ -88,7 +89,8 @@
           <Property Name="Text" Type="String" />
           <Property Name="Title" Type="String" />
           <NavigationProperty Name="Parent" Relationship="shop_contentModel.ContentContent" FromRole="Content" ToRole="Content1" />
-          <NavigationProperty Name="Children" Relationship="shop_contentModel.ContentContent" FromRole="Content1" ToRole="Content" /></EntityType>
+          <NavigationProperty Name="Children" Relationship="shop_contentModel.ContentContent" FromRole="Content1" ToRole="Content" />
+          <Property Type="String" Name="PageTitle" MaxLength="500" FixedLength="false" Unicode="false" /></EntityType>
         <Association Name="ContentContent">
           <End Type="shop_contentModel.Content" Role="Content" Multiplicity="1" />
           <End Type="shop_contentModel.Content" Role="Content1" Multiplicity="*" /></Association>
@@ -126,6 +128,7 @@
           <EntitySetMapping Name="Contents">
             <EntityTypeMapping TypeName="IsTypeOf(shop_contentModel.Content)">
               <MappingFragment StoreEntitySet="Content">
+                <ScalarProperty Name="PageTitle" ColumnName="PageTitle" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Keywords" ColumnName="Keywords" />

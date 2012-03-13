@@ -12,8 +12,13 @@
     %>
     <% using (Html.BeginForm())
        { %>
-    <%= Html.HiddenFor(m=>m.Name) %>
     <%= Html.HiddenFor(m=>m.Language) %>
+    <%= Html.HiddenFor(m=>m.Name) %>
+
+    <div>
+        <p>Title:</p>
+        <%= Html.LocalizedTextBoxFor(m=>m.PageTitle, context.ContentLocalResource)  %>
+    </div>
     <div>
         <p>
             Заглавие:</p>
@@ -27,12 +32,12 @@
     <div>
         <p>
             Keywords:</p>
-        <%= Html.TextBoxFor(m=>m.Keywords)  %>
+        <%= Html.LocalizedTextBoxFor(m => m.Keywords, context.ContentLocalResource)%>
     </div>
     <div>
         <p>
             Description:</p>
-        <%= Html.TextAreaFor(m=>m.Description)  %>
+        <%= Html.LocalizedTextAreaFor(m => m.Description, context.ContentLocalResource)%>
     </div>
     <input type="submit" value="Сохранить" />
     <%} %>

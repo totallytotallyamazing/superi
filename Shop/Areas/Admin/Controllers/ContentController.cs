@@ -26,7 +26,7 @@ namespace Shop.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Edit(Content content, ContentLocalResource[] localizations)
         {
-            Models.Content originalItem = context.Contents.Where(c => c.Name == content.Name).First();
+            Content originalItem = context.Contents.Where(c => c.Name == content.Name).First();
             content.Id = originalItem.Id;
             content.Text = HttpUtility.HtmlDecode(content.Text);
             context.ApplyCurrentValues("Contents", content);
@@ -34,6 +34,7 @@ namespace Shop.Areas.Admin.Controllers
             {
                 localizations.ToList().ForEach(l => l.Text = HttpUtility.HtmlDecode(l.Text));
                 localizations.SaveLocalizationsTo(context.ContentLocalResource, false);
+                content.UpdateValues(localizations.Where(l => l.Language == "ru-RU"));
             }
             context.SaveChanges();
             return RedirectToAction("Go", "Home", new { id = content.Name, area = "" });

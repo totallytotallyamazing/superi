@@ -172,24 +172,64 @@ namespace Superi.Web.Mvc.Localization
             return source.Localize(resultSelector, localizations, entityIdSelector);
         }
 
-        public static IQueryable<L> GetLocalizations<T, L>(this IQueryable<T> entities, IQueryable<L> localizations)
-            where T : EntityObject
-            where L : EntityObject
+        public static void Localize<TModel, L>(this TModel source, IQueryable<L> localizations) 
+            where TModel:EntityObject 
+            where L:EntityObject
         {
-            string entityName = typeof(T).Name;
-            IEnumerable<string> fieldNames = typeof(T).GetProperties().Where(pi=>pi.PropertyType == typeof(string)).Select(pi => pi.Name);
+            string entityName = typeof(TModel).Name;
+            int entityId = ((dynamic) source).Id;
+            IEnumerable<string> fieldNames = typeof(TModel).GetProperties().Where(pi => pi.PropertyType == typeof(string)).Select(pi => pi.Name);
             var param = Expression.Parameter(typeof(L));
 
             string lang = CultureInfo.CurrentUICulture.Name;
 
             var langEquals = Expression.Lambda<Func<L, bool>>(Expression.Equal(
                 Expression.MakeMemberAccess(
-                param, 
-                typeof(L).GetProperty("Language")), Expression.Constant(lang)), 
+                param,
+                typeof(L).GetProperty("Language")), Expression.Constant(lang)),
+                    param);
+
+            var eNameEquals = Expression.Lambda<Func<L, bool>>(Expression.Equal(
+                Expression.MakeMemberAccess(param, typeof(L).GetProperty("EntityName")),
+                Expression.Constant(entityName)),
+                param);
+
+            var fieldNameAccess = Expression.Lambda<Func<L, string>>(Expression.MakeMemberAccess(param, typeof(L).GetProperty("FieldName")), param);
+            var inFieldNames = ContextExtension.BuildContainsExpression<L, string>(fieldNameAccess, fieldNames);
+
+            var localizationIdAccess = Expression.Lambda<Func<L, int>>(Expression.MakeMemberAccess(param, typeof(L).GetProperty("EntityId")), param);
+
+            var idEqualsExpression = Expression.Lambda<Func<L, bool>>(Expression.Equal(
+                localizationIdAccess, Expression.Constant(entityId)));
+
+            var loc = localizations
+                .Where(langEquals)
+                .Where(eNameEquals)
+                .Where(inFieldNames)
+                .Where(idEqualsExpression)
+                .ToList();
+
+            source.UpdateValues(loc);
+        }
+
+        public static IQueryable<L> GetLocalizations<T, L>(this IQueryable<T> entities, IQueryable<L> localizations)
+            where T : EntityObject
+            where L : EntityObject
+        {
+            string entityName = typeof(T).Name;
+            IEnumerable<string> fieldNames = typeof(T).GetProperties().Where(pi => pi.PropertyType == typeof(string)).Select(pi => pi.Name);
+            var param = Expression.Parameter(typeof(L));
+
+            string lang = CultureInfo.CurrentUICulture.Name;
+
+            var langEquals = Expression.Lambda<Func<L, bool>>(Expression.Equal(
+                Expression.MakeMemberAccess(
+                param,
+                typeof(L).GetProperty("Language")), Expression.Constant(lang)),
                     param);
             var eNameEquals = Expression.Lambda<Func<L, bool>>(Expression.Equal(
                 Expression.MakeMemberAccess(param, typeof(L).GetProperty("EntityName")),
-                Expression.Constant(entityName)), 
+                Expression.Constant(entityName)),
                 param);
 
             var fieldNameAccess = Expression.Lambda<Func<L, string>>(Expression.MakeMemberAccess(param, typeof(L).GetProperty("FieldName")), param);

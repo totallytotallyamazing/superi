@@ -43,7 +43,7 @@ namespace Shop.Controllers
                         viewData["keywords"] = content.Keywords;
                     if (string.IsNullOrEmpty((string)viewData["description"]) && !string.IsNullOrEmpty(content.Description))
                         viewData["description"] = content.Description;
-
+                    viewData["pageTitle"] = content.PageTitle;
                     viewData["contentName"] = content.Name;
                 }
             }

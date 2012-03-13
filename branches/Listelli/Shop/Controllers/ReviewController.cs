@@ -49,8 +49,6 @@ namespace Shop.Controllers
                 ViewData["reviewContentName"] = content.Name;
                 
                 ViewData["reviewHeaderText"] = context.ReviewContent.Where(c => c.Id == 6).Select(c=>c.Description).FirstOrDefault();
-                
-
 
                 return View(content);
             }

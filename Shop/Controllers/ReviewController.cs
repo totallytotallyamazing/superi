@@ -34,7 +34,7 @@ namespace Shop.Controllers
                 var content = context.ReviewContent.Include("ReviewContentItems")
                     //.Localize((c, l) => new { Content = c, Localizations = l }, context.ReviewLocalResources, null)
                     //.Select(item => item.Content.UpdateValues(item.Localizations))
-                    .First(c => c.Name == id);
+                    .First(c => c.Name == id).Localize(context.ReviewLocalResources);
 
                
                 foreach (var item in content.ReviewContentItems)

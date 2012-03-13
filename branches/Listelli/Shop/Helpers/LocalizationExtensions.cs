@@ -197,10 +197,10 @@ namespace Superi.Web.Mvc.Localization
             var fieldNameAccess = Expression.Lambda<Func<L, string>>(Expression.MakeMemberAccess(param, typeof(L).GetProperty("FieldName")), param);
             var inFieldNames = ContextExtension.BuildContainsExpression<L, string>(fieldNameAccess, fieldNames);
 
-            var localizationIdAccess = Expression.Lambda<Func<L, int>>(Expression.MakeMemberAccess(param, typeof(L).GetProperty("EntityId")), param);
+            var localizationIdAccess = Expression.MakeMemberAccess(param, typeof(L).GetProperty("EntityId"));
 
             var idEqualsExpression = Expression.Lambda<Func<L, bool>>(Expression.Equal(
-                localizationIdAccess, Expression.Constant(entityId)));
+                localizationIdAccess, Expression.Constant(entityId)), param);
 
             var loc = localizations
                 .Where(langEquals)

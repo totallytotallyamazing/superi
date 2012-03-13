@@ -32,13 +32,18 @@ namespace Shop.Controllers
             using (var context = new ReviewStorage())
             {
                 var content = context.ReviewContent.Include("ReviewContentItems").First(c => c.Name == id);
-
+                
+                
 
 
                 foreach (var item in content.ReviewContentItems)
                 {
                     item.ReviewContentItemImages.Load();
                 }
+
+                var localizations = content.ReviewContentItems.AsQueryable().GetLocalizations(context.ReviewLocalResources);
+                content.ReviewContentItems.ToList().ForEach(ci=>ci.UpdateValues(localizations));
+
                 ViewData["reviewContentId"] = content.Id;
                 ViewData["reviewContentName"] = content.Name;
 

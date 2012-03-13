@@ -32,23 +32,21 @@ namespace Shop.Controllers
             using (var context = new ReviewStorage())
             {
                 var content = context.ReviewContent.Include("ReviewContentItems")
-                    //.Localize((c, l) => new { Content = c, Localizations = l }, context.ReviewLocalResources, null)
-                    //.Select(item => item.Content.UpdateValues(item.Localizations))
-                    .First(c => c.Name == id).Localize(context.ReviewLocalResources);
+                    .First(c => c.Name == id)
+                    .Localize(context.ReviewLocalResources);
 
-               
                 foreach (var item in content.ReviewContentItems)
                 {
                     item.ReviewContentItemImages.Load();
                 }
 
                 var localizations = content.ReviewContentItems.AsQueryable().GetLocalizations(context.ReviewLocalResources);
-                content.ReviewContentItems.ToList().ForEach(ci=>ci.UpdateValues(localizations));
-                
+                content.ReviewContentItems.ToList().ForEach(ci => ci.UpdateValues(localizations));
+
                 ViewData["reviewContentId"] = content.Id;
                 ViewData["reviewContentName"] = content.Name;
-                
-                ViewData["reviewHeaderText"] = context.ReviewContent.Where(c => c.Id == 6).Select(c=>c.Description).FirstOrDefault();
+
+                ViewData["reviewHeaderText"] = context.ReviewContent.Where(c => c.Id == 6).Select(c => c.Description).FirstOrDefault();
 
                 return View(content);
             }

@@ -172,7 +172,7 @@ namespace Superi.Web.Mvc.Localization
             return source.Localize(resultSelector, localizations, entityIdSelector);
         }
 
-        public static void Localize<TModel, L>(this TModel source, IQueryable<L> localizations) 
+        public static TModel Localize<TModel, L>(this TModel source, IQueryable<L> localizations) 
             where TModel:EntityObject 
             where L:EntityObject
         {
@@ -209,7 +209,7 @@ namespace Superi.Web.Mvc.Localization
                 .Where(idEqualsExpression)
                 .ToList();
 
-            source.UpdateValues(loc);
+            return source.UpdateValues(loc);
         }
 
         public static IQueryable<L> GetLocalizations<T, L>(this IQueryable<T> entities, IQueryable<L> localizations)

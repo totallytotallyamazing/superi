@@ -73,7 +73,7 @@ namespace Shop.Areas.Admin.Controllers
 
             int id = Convert.ToInt32(form["Id"]);
             var content = _context.ReviewContent.First(c => c.Id == id);
-            TryUpdateModel(content, new[] { "Title", "SortOrder", "Name" });
+            TryUpdateModel(content, new[] { "Title", "SortOrder", "Name","PageTitle","SeoDescription" });
 
             content.Description = HttpUtility.HtmlDecode(form["Description"]);
 

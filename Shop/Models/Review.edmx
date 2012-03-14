@@ -40,6 +40,8 @@
           <Property Name="ImageSource" Type="varchar" MaxLength="1000" />
           <Property Name="SortOrder" Type="int" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="100" />
+          <Property Name="PageTitle" Type="varchar" MaxLength="1000" />
+          <Property Name="SeoDescription" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="ReviewContentItem">
           <Key>
@@ -113,6 +115,8 @@
           <Property Name="SortOrder" Type="Int32" Nullable="false" />
           <NavigationProperty Name="ReviewContentItems" Relationship="gb_listelliModel2.FK_ReviewContentItem_ReviewContent" FromRole="ReviewContent" ToRole="ReviewContentItem" />
           <Property Type="String" Name="Name" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="PageTitle" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="SeoDescription" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="ReviewContentItem">
           <Key>
@@ -178,7 +182,9 @@
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="gb_listelliModel2StoreContainer" CdmEntityContainer="ReviewStorage">
           <EntitySetMapping Name="ReviewContent"><EntityTypeMapping TypeName="gb_listelliModel2.ReviewContent"><MappingFragment StoreEntitySet="ReviewContent">
-            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="SeoDescription" ColumnName="SeoDescription" />
+                <ScalarProperty Name="PageTitle" ColumnName="PageTitle" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
             <ScalarProperty Name="Title" ColumnName="Title" />
             <ScalarProperty Name="Description" ColumnName="Description" />

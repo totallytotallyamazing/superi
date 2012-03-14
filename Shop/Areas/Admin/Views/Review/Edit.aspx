@@ -38,6 +38,14 @@
                 <%: Html.ValidationMessageFor(model => model.Title) %>
             </div>
             
+             <div class="editor-label">
+				Заголовок в шапке обозревателя
+			</div>
+			<div class="editor-field">
+				<%: Html.LocalizedTextBoxFor(model => model.PageTitle, context.ReviewLocalResources) %>
+				<%: Html.ValidationMessageFor(model => model.PageTitle)%>
+			</div>
+
             <div class="editor-label">
                 Описание
             </div>
@@ -45,6 +53,14 @@
                 <%: Html.LocalizedTextAreaFor(model => model.Description, context.ReviewLocalResources)%>
                 <%: Html.ValidationMessageFor(model => model.Description) %>
             </div>
+            
+             <div class="editor-label">
+				Описание для поисковиков
+			</div>
+			<div class="editor-field">
+				<%: Html.TextBoxFor(model => model.SeoDescription)%>
+				<%: Html.ValidationMessageFor(model => model.SeoDescription) %>
+			</div>
             
             <div class="editor-label">
                 Изображение

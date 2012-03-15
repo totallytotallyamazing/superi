@@ -36,7 +36,7 @@
     <%=Html.ActionLink("Удалить", "Delete", "Review", new { Area = "Admin", id = item.Id }, new { @class = "adminLink", onclick = "return confirm('Удалить раздел?')" })%>
     <%} %>
         <div class="title">
-        <%=Html.ActionLink(item.Title, "Details", "Review", new { id=item.Name},null)%>
+        <%=Html.ActionLink(!string.IsNullOrEmpty(item.Title)?item.Title:"-", "Details", "Review", new { id=item.Name},null)%>
         </div>
         <div class="description">
         <%=item.Description%>

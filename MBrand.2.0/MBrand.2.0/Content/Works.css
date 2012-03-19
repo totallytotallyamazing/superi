@@ -8,6 +8,9 @@
     font-size: 30px;
 }
 
+#page{ padding-bottom: 0;}
+.content{ padding-bottom: 0;}
+
 #workGroups ul
 {
     list-style: none;
@@ -41,7 +44,9 @@
     margin-left: 235px;
     min-width: 910px;
 }
-
+.works-content{ min-height: 472px;}
+.work-bottom-image{text-align: center;}
+.work-bottom-image img { position: relative;margin: 0 auto;display: block;}
 #worksPager
 {
     text-align: center;

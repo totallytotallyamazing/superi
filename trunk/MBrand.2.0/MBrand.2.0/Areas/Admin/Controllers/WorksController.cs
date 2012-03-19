@@ -96,14 +96,14 @@ namespace MBrand.Areas.Admin.Controllers
 
                 if (workBottomImage != null)
                 {
-                    if (!string.IsNullOrEmpty(work.Image))
+                    if (!string.IsNullOrEmpty(work.BottomImage))
                     {
                         IOHelper.DeleteFile(WorkBottomImagesLocation, work.BottomImage);
                     }
 
                     string fileName = Path.GetFileName(workBottomImage.FileName);
                     fileName = IOHelper.GetUniqueFileName(WorkBottomImagesLocation, fileName);
-                    workImage.SaveFile(WorkImagesLocation, fileName);
+                    workBottomImage.SaveFile(WorkBottomImagesLocation, fileName);
                     work.BottomImage = fileName;
                 }
                 _db.SaveChanges();

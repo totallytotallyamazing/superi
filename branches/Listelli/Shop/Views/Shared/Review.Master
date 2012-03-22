@@ -40,7 +40,7 @@
                 
             </div>
             </div>
-            <div style="width: 200px;">
+            <div class="reviewLanguageSwitchBox">
             <% Html.RenderPartial("LanguageSwitch"); %>    
 
             </div>

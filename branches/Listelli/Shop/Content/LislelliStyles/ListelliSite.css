@@ -87,6 +87,16 @@ img
     float: left;
 }
 
+.reviewLanguageSwitchBox
+{
+    width: 95px;
+}
+
+.reviewLanguageSwitchBox .languageSwitch
+{
+    padding-top:7px;
+}
+
 .languageSwitch{ color: White; font-size:10px; text-align: center; padding-top:20px;}
 
 .languageSwitch a{color:White; font-weight: bold; }

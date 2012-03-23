@@ -60,8 +60,17 @@ namespace MBrand.Client.Pages
             if (args.Path.Length > 1)
             {
                 args.PreventDefault = true;
-                BasePage.ChangePage(typeof(WorkPage), (string[])args.Path.Extract(1));
+                ChangePage(typeof(WorkPage), (string[])args.Path.Extract(1));
             }
+        }
+
+        public override Page UpdateInstance()
+        {
+            if (Path.Length > 1)
+            {
+                return Create(typeof (WorkPage), (string[])Path.Extract(1));
+            }
+            return base.UpdateInstance();
         }
 
         private void LoadContent()

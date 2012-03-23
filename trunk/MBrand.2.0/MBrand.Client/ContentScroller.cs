@@ -4,6 +4,7 @@
 using System;
 using jQueryApi;
 using System.Html;
+using jQueryApi.MouseWheel;
 
 namespace MBrand.Client
 {
@@ -35,6 +36,10 @@ namespace MBrand.Client
         public static void Enable()
         {
             ContentScroller scroller = new ContentScroller();
+            MouseWheel.Select("body").MouseWheel(delegate(jQueryEvent e, int delta)
+                                                 {
+                                                     Document.Body.ScrollTop -= delta*40;
+                                                 });
             scroller.Attach();
         }
 

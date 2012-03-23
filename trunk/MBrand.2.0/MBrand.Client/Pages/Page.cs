@@ -65,6 +65,7 @@ namespace MBrand.Client.Pages
         {
             Page pageInstance = Create(page, values);
             pageInstance._path = values;
+            pageInstance = pageInstance.UpdateInstance();
             jQueryObject container = CreateContainer(pageInstance);
             pageInstance.LoadContent(container);
         }
@@ -157,6 +158,11 @@ namespace MBrand.Client.Pages
         public virtual void Dispose()
         {
 
+        }
+
+        public virtual Page UpdateInstance()
+        {
+            return this;
         }
     }
 

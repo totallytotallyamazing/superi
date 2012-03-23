@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Web;
 using System.IO;
@@ -131,7 +132,7 @@ namespace Dev.Mvc.Helpers
 
             Bitmap thumbnailImage = new Bitmap(destRect.Width, destRect.Height);
             Graphics graphics = Graphics.FromImage(thumbnailImage);
-            graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+            graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
             graphics.DrawImage(image, destRect, sourceRect, GraphicsUnit.Pixel);
             thumbnailImage.Save(saveTo, System.Drawing.Imaging.ImageFormat.Jpeg);
             saveTo.Position = 0;
@@ -145,7 +146,7 @@ namespace Dev.Mvc.Helpers
 
             Bitmap thumbnailImage = new Bitmap(destRect.Width, destRect.Height);
             Graphics graphics = Graphics.FromImage(thumbnailImage);
-            graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+            graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
             graphics.DrawImage(image, destRect, sourceRect, GraphicsUnit.Pixel);
             thumbnailImage.Save(saveTo, System.Drawing.Imaging.ImageFormat.Jpeg);
             saveTo.Position = 0;

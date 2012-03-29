@@ -118,14 +118,15 @@
     <div class="seeMenuItemSplitter">
         <%= textContent %>
     </div>--%>
-    <div class="<%= videoClass %>">
+
+    <%--<div class="<%= videoClass %>">
         <a href="/See/Video">
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Видеодизайн
         </a>
     </div>
     <div class="seeMenuItemSplitter">
         <%= videoContent %>
-    </div>
+    </div>--%>
     <div class="seeMenuLastItemSplitter">
     </div>
    

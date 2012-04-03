@@ -1,11 +1,10 @@
 ﻿@model dynamic
-<div class="works-side-bar">
-    <a href="/Works/Items/@Model.WorkGroupId" rel="address:/works/@Model.WorkGroupName">
+<div class="work-side-bar">
+    <a href="/Works/Items/@Model.WorkGroupId" rel="address:/works/@Model.WorkGroupName" class="group-name">
         @Model.WorkGroupTitle.ToUpper()
     </a>
     <p>
         @Html.Raw(Model.Description)
-        <br/>
         <span>///////////</span>
     </p>
     
@@ -15,10 +14,11 @@
 </div>
 <div class="works-content">
     @Html.Raw(Model.Text)
-    
-
 </div>
 
-<div class="work-bottom-image">
-    <img alt="@Model.Title" src="/Content/workBottomImages/@Model.BottomImage"/>
-</div>
+@if (!string.IsNullOrEmpty(Model.BottomImage))
+{
+    <div class="work-bottom-image">
+        <img alt="@Model.Title" src="/Content/workBottomImages/@Model.BottomImage"/>
+    </div>
+}

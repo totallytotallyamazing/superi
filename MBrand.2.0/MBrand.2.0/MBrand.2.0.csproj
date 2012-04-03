@@ -103,6 +103,7 @@
   <ItemGroup>
     <Content Include="Content\Admin.css" />
     <Content Include="Content\AdminPage.css" />
+    <Content Include="Content\CkAdmin.css" />
     <Content Include="Content\Fonts\pfdindisplaypro-black-webfont.svg" />
     <Content Include="Content\Fonts\pfdintextcomppro-regular-webfont.svg" />
     <Content Include="Content\Fonts\pfdintextcomppro-thin-webfont.svg" />

@@ -43,7 +43,9 @@ namespace MBrand.Client
         public void Initialize()
         {
             Address.Make.Change(OnAddressChanged);
-            ContentScroller.Enable();
+            ScrollerOptions options = new ScrollerOptions();
+            options.MouseScrollVertically = false;
+            ContentScroller.Enable(options);
             jQuery.Document.Click(delegate { jQuery.Select("a").Blur(); });
             _instance = this;
         }

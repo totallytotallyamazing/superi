@@ -21,7 +21,7 @@ namespace MBrand.Client.Pages
 
         public override string Name
         {
-            get { return "WorkPage" + Path[0]; }
+            get { return "WorkPage"; }
         }
 
         protected override void Initialize()

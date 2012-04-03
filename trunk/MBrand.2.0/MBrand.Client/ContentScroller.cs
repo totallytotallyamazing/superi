@@ -18,6 +18,13 @@ namespace MBrand.Client
         Left = 8
     }
 
+    public class ScrollerOptions
+    {
+        public bool MouseScrollHorizontally = true;
+        public bool MouseScrollVertically = true;
+        public bool WheelScroll = true;
+    }
+
     public delegate void ScrollCallback();
 
     public class ContentScroller
@@ -26,21 +33,36 @@ namespace MBrand.Client
         const int ScrollStep = 3;
         const int IntervalsQuantity = 20;
         const int ScrollMargin = 100;
-        
+
         ScrollDirection _scrollDirection = ScrollDirection.None;
         static Array _topIntervals = new Array();
         static Array _rightIntervals = new Array();
         static Array _bottomIntervals = new Array();
         static Array _leftIntervals = new Array();
 
-        public static void Enable()
+        private ScrollerOptions options;
+
+        public static void Enable(ScrollerOptions options)
         {
-            ContentScroller scroller = new ContentScroller();
-            MouseWheel.Select("body").MouseWheel(delegate(jQueryEvent e, int delta)
-                                                 {
-                                                     Document.Body.ScrollTop -= delta*40;
-                                                 });
-            scroller.Attach();
+            if (options == null)
+            {
+                options = new ScrollerOptions();
+            }
+
+
+            if (options.WheelScroll)
+            {
+                MouseWheel.Select("body").MouseWheel(delegate(jQueryEvent e, int delta)
+                                                     {
+                                                         Document.Body.ScrollTop -= delta * 40;
+                                                     });
+            }
+            if (options.MouseScrollHorizontally || options.MouseScrollVertically)
+            {
+                ContentScroller scroller = new ContentScroller();
+                scroller.options = options;
+                scroller.Attach();
+            }
         }
 
         protected void Attach()
@@ -89,7 +111,7 @@ namespace MBrand.Client
         {
             if (scrollDirection == ScrollDirection.None)
                 return;
-            if ((scrollDirection & ScrollDirection.Top) == ScrollDirection.Top)
+            if (options.MouseScrollVertically && (scrollDirection & ScrollDirection.Top) == ScrollDirection.Top)
             {
                 if (Document.Body.ScrollTop == 0)
                 {
@@ -102,7 +124,7 @@ namespace MBrand.Client
                                     Document.Body.ScrollTop -= ScrollStep;
                                 }, _topIntervals);
             }
-            if ((scrollDirection & ScrollDirection.Right) == ScrollDirection.Right)
+            if (options.MouseScrollHorizontally && (scrollDirection & ScrollDirection.Right) == ScrollDirection.Right)
             {
                 if (Document.Body.ScrollLeft == Document.Body.ScrollWidth)
                 {
@@ -115,7 +137,7 @@ namespace MBrand.Client
                         Document.Body.ScrollLeft += ScrollStep;
                     }, _rightIntervals);
             }
-            if ((scrollDirection & ScrollDirection.Bottom) == ScrollDirection.Bottom)
+            if (options.MouseScrollVertically && (scrollDirection & ScrollDirection.Bottom) == ScrollDirection.Bottom)
             {
                 if (Document.Body.ScrollTop == Document.Body.ScrollHeight)
                 {
@@ -128,7 +150,7 @@ namespace MBrand.Client
                         Document.Body.ScrollTop += ScrollStep;
                     }, _bottomIntervals);
             }
-            if ((scrollDirection & ScrollDirection.Left) == ScrollDirection.Left)
+            if (options.MouseScrollHorizontally && (scrollDirection & ScrollDirection.Left) == ScrollDirection.Left)
             {
                 if (Document.Body.ScrollLeft == 0)
                 {

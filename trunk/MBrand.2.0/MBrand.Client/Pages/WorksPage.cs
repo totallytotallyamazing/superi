@@ -60,7 +60,7 @@ namespace MBrand.Client.Pages
             if (args.Path.Length > 1)
             {
                 args.PreventDefault = true;
-                ChangePage(typeof(WorkPage), (string[])args.Path.Extract(1));
+                BasePage.ChangePage(typeof(WorkPage), (string[])args.Path.Extract(1));
             }
         }
 
@@ -194,7 +194,7 @@ namespace MBrand.Client.Pages
                 .MouseOver(delegate(jQueryEvent @event)
                                {
                                    currentOver = @event.CurrentTarget;
-                                   jQuery.FromElement(@event.CurrentTarget).FadeTo(TransitionDuration / 2, 1);
+                                   jQuery.FromElement(@event.CurrentTarget).FadeTo(TransitionDuration / 2, 0.7);
                                    @event.StopPropagation();
                                })
                 .Click(delegate(jQueryEvent @event)
@@ -204,7 +204,7 @@ namespace MBrand.Client.Pages
                            });
 
             jQuery.Select(".workItem").Parent()
-                .MouseOver(delegate { jQuery.FromElement(currentOver).FadeTo(TransitionDuration / 2, 0.7); });
+                .MouseOver(delegate { jQuery.FromElement(currentOver).FadeTo(TransitionDuration / 2, 1); });
 
             jQuery.Select(".workItem").MouseOut(delegate(jQueryEvent @event) { @event.StopPropagation(); });
 

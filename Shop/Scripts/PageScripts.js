@@ -333,7 +333,7 @@ var Subscribe = {
 
         $('<span class="txtBubbleNew">' + window.unsubscribeVal + '<br/><span><input type="text" value="' + window.enterEmail + '" onfocus="if(this.value==\'' + window.enterEmail + '\'){this.value=\'\'}" id="unSubscribeEmail" style="width:135px;" />').appendTo("#subscribeContainer");
 
-        $('<input type="button" value="' + window.unsubscribeValunsu + '" style="font-size:10px;" />').click(function () {
+        $('<input type="button" value="' + window.unsubscribeVal + '" style="font-size:10px;" />').click(function () {
             var value = $("#unSubscribeEmail").val();
             var regex = /^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
             if (regex.test(value)) {
@@ -353,7 +353,7 @@ var Subscribe = {
                 });
             }
             else {
-                alert("Email введен неправильно");
+                alert(incorrectEmailEntered);
             }
         }).appendTo("#subscribeContainer");
         

@@ -14,8 +14,8 @@
     <%if (Subscriber.IsSubscribed)
 
       { %>
-      <span class="txtBubbleNew">Вы подписаны на новости!</span>
-      &nbsp;<a href="#" id="unSubscribeMe" class="txtBubbleNew">Отписаться</a>
+      <span class="txtBubbleNew"><%= Shop.Resources.Global.YouAreSubscribed %></span>
+      &nbsp;<a href="#" id="unSubscribeMe" class="txtBubbleNew"><%= Shop.Resources.Global.Unsubscribe %></a>
       <% }else{ %>
         <a href="#" id="subscribeMe" class="txtBubbleNew">
             <%: Shop.Resources.Global.KeepInTouch %></a><br /> <span class="txtBubbleNew"><%: Shop.Resources.Global.NewReceipes %></span>

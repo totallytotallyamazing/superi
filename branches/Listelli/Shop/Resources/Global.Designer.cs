@@ -205,6 +205,15 @@ namespace Shop.Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Email введен неправильно.
+        /// </summary>
+        public static string IncorrectEmailEntered {
+            get {
+                return ResourceManager.GetString("IncorrectEmailEntered", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Неправильно введены символы с картинки!.
         /// </summary>
         public static string InvalidCaptcha {
@@ -259,6 +268,15 @@ namespace Shop.Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на компания “Listelli”.
+        /// </summary>
+        public static string ListelliCompany {
+            get {
+                return ResourceManager.GetString("ListelliCompany", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на оформление интерьеров паркетом и мрамором.
         /// </summary>
         public static string LogoTitle {
@@ -273,6 +291,15 @@ namespace Shop.Resources {
         public static string MessageSent {
             get {
                 return ResourceManager.GetString("MessageSent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Дизайн сайта — &lt;a href=&quot;http://eugene-miller.com&quot; class=&quot;footerMiller&quot;&gt;Евгений Миллер&lt;/a&gt;.
+        /// </summary>
+        public static string MillerDesign {
+            get {
+                return ResourceManager.GetString("MillerDesign", resourceCulture);
             }
         }
         
@@ -403,6 +430,15 @@ namespace Shop.Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на .
+        /// </summary>
+        public static string String1 {
+            get {
+                return ResourceManager.GetString("String1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Подписаться.
         /// </summary>
         public static string Subscribe {
@@ -435,6 +471,15 @@ namespace Shop.Resources {
         public static string WordEnter {
             get {
                 return ResourceManager.GetString("WordEnter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Вы подписаны на новости!.
+        /// </summary>
+        public static string YouAreSubscribed {
+            get {
+                return ResourceManager.GetString("YouAreSubscribed", resourceCulture);
             }
         }
         

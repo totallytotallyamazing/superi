@@ -255,4 +255,16 @@
   <data name="Sorting" xml:space="preserve">
     <value>Display</value>
   </data>
+  <data name="IncorrectEmailEntered" xml:space="preserve">
+    <value>Email entered incorrectly</value>
+  </data>
+  <data name="ListelliCompany" xml:space="preserve">
+    <value>“Listelli” company</value>
+  </data>
+  <data name="MillerDesign" xml:space="preserve">
+    <value>Site created in &lt;a href="http://eugene-miller.com" class="footerMiller"&gt;Eugene MIller Studio&lt;/a&gt;</value>
+  </data>
+  <data name="YouAreSubscribed" xml:space="preserve">
+    <value>You are subscribed for the news!</value>
+  </data>
 </root>

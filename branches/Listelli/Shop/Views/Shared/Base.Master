@@ -41,6 +41,7 @@
         var unsubscribeVal = '<%= Shop.Resources.Global.Unsubscribe %>';
         var subscribeVal = '<%= Shop.Resources.Global.Subscribe %>';
         var enterEmail = '<%= Shop.Resources.Global.EnterEmail %>';
+        var incorrectEmailEntered = '<%= Shop.Resources.Global.IncorrectEmailEntered %>';
     </script>
     <%-- суперскрипт--%>
     <asp:ContentPlaceHolder runat="server" ID="includes">
@@ -163,9 +164,9 @@
                 <div id="designedBy">
                     <p class="footerText">
                         ©
-                        <%=DateTime.Now.Year%>, компания “Listelli”
+                        <%=DateTime.Now.Year%>, <%= Shop.Resources.Global.ListelliCompany %>
                         <br />
-                        Дизайн сайта — <a href="http://eugene-miller.com" class="footerMiller">Евгений Миллер</a>
+                        <%= Shop.Resources.Global.MillerDesign %>
                     </p>
                 </div>
                 <div id="strip">

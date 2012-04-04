@@ -1,4 +1,5 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<Shop.Models.Product>" %>
+<%@ Import Namespace="System.Reflection" %>
 <%@ Import Namespace="Shop.Helpers" %>
 <%@ Import Namespace="Dev.Mvc.Helpers" %>
 <%@ Import Namespace="Dev.Helpers" %>
@@ -65,7 +66,11 @@
                { %>
             <p>
                 <span class="attributeLabel"><%= Shop.Resources.Global.Color %>:</span> <span class="attributeValue">
-                    <%= typeof(Shop.Resources.Global).GetProperty(Model.Color).GetValue(null, null) %></span>
+                    <% PropertyInfo info = typeof (Shop.Resources.Global).GetProperty(Model.Color); %>                                                                                            -
+                    <% if(info!=null){ %>
+                        <%= info.GetValue(null, null) %>
+                    <% } %>
+                </span>
             </p>
             <%} %>
             <%if (!string.IsNullOrWhiteSpace(Model.Tint))

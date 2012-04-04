@@ -22,7 +22,7 @@
     <div id="contName">
         <div id="pageName">
             <p class="txtPageName">
-                Наши события
+                <%= Shop.Resources.Global.Events %>
             </p>
         </div>
     </div>

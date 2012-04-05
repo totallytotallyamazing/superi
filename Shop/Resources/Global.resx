@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Address" xml:space="preserve">
-    <value>Киев, &lt;a id="ourCoords" title="Наши координаты" href="/Home/Map" class="mainAdress"&gt;ул. Жилянская, 68&lt;/a&gt;</value>
+    <value>г.Киев, Украина, 01033&lt;br/&gt;&lt;a id="ourCoords" title="Наши координаты" href="/Home/Map" class="mainAdress"&gt;ул. Жилянская, 68&lt;/a&gt;</value>
   </data>
   <data name="AddToBookmarks" xml:space="preserve">
     <value>Отметить товар</value>

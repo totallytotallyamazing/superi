@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Address" xml:space="preserve">
-    <value>&lt;a id="ourCoords" title="Our coordinates" href="/Home/Map" class="mainAdress"&gt;68 Zhylianska St.&lt;/a&gt;, Kyiv</value>
+    <value>&lt;a id="ourCoords" title="Our coordinates" href="/Home/Map" class="mainAdress"&gt;68 Zhylianska St.&lt;/a&gt;&lt;br/&gt;Kyiv, Ukraine, 01033</value>
   </data>
   <data name="AddToBookmarks" xml:space="preserve">
     <value>Add to bookmarks</value>

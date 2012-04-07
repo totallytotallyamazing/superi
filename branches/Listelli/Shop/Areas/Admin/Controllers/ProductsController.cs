@@ -105,15 +105,16 @@ namespace Shop.Areas.Admin.Controllers
 
                     if (brandId.HasValue)
                     {
-                        EntityKey brand = new EntityKey("ShopStorage.Brands", "Id", brandId.Value);
-                        product.BrandReference.EntityKey = brand;
+                        var brand = new Brand { Id = brandId.Value };
+                        brand.EntityKey = new EntityKey("ShopStorage.Brands", "Id", brandId.Value);
+                        context.Attach(brand);
+                        product.Brand = brand;
                     }
 
                     object categoryItem;
                     context.TryGetObjectByKey(category, out categoryItem);
 
                     product.Categories.Add((Category)categoryItem);
-                    product.Brand = null;
                     context.AddToProducts(product);
                 }
 
@@ -121,7 +122,7 @@ namespace Shop.Areas.Admin.Controllers
                 TryUpdateModel(product,
                     new[] 
                     { 
-                        "Name", "PartNumber", "SeoDescription", "SeoKeywords", /*"ShortDescription",
+                        "PartNumber", "SeoDescription", "SeoKeywords", /*"ShortDescription",
                         "Description", */"IsNew", "SortOrder", "Color", "Published", "IsSpecialOffer", 
                         "PersonalExperience", "PersonalExperienceSet", "ShowInRoot", "Tint"
                     },
@@ -132,13 +133,14 @@ namespace Shop.Areas.Admin.Controllers
 
                 UpdateProductAttributes(product, form);
 
+                product.UpdateValues(localizations.Where(l => l.Language == "ru-RU"));
+
                 if (add)
                 {
                     context.SaveChanges();
                 }
 
                 localizations.SaveLocalizationsTo(context.ShopLocalResources, false);
-                product.UpdateValues(localizations.Where(l => l.Language == "ru-RU"));
 
                 context.SaveChanges();
             }

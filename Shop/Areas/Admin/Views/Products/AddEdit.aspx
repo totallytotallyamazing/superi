@@ -22,6 +22,8 @@
             $(".fancyAdmin").fancybox({ showCloseButton: true, hideOnOverlayClick: false, hideOnContentClick: false });
         });
     </script>
+    <script type="text/javascript" src="/Scripts/localization.js"></script>
+    <script type="text/javascript">        Localization.bindLocalizationSwitch();</script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <%
@@ -101,7 +103,7 @@
                         <%= Html.LabelFor(model => model.Color) %>
                     </td>
                     <td>
-                        <%= Html.DropDownListFor(model => model.Color, new List<SelectListItem> { new SelectListItem { Text = "", Value = "" }, new SelectListItem { Text = "Светлый", Value = "Светлый" }, new SelectListItem { Text = "Темный", Value = "Темный" } })%>
+                        <%= Html.DropDownListFor(model => model.Color, new List<SelectListItem> { new SelectListItem { Text = "Светлый", Value = "Светлый" }, new SelectListItem { Text = "Темный", Value = "Темный" } })%>
                     </td>
                     <td>
                         <%= Html.ValidationMessageFor(model => model.Color)%>

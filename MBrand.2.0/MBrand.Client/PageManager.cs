@@ -7,6 +7,7 @@ using jQueryApi.Address;
 using MBrand.Client.Pages;
 using jQueryApi;
 using System.Html;
+using jQueryApi.jQueryUi;
 
 namespace MBrand.Client
 {
@@ -45,7 +46,7 @@ namespace MBrand.Client
             Address.Make.Change(OnAddressChanged);
             ScrollerOptions options = new ScrollerOptions();
             options.MouseScrollVertically = false;
-            ContentScroller.Enable(options);
+           // ContentScroller.Enable(options);
             jQuery.Document.Click(delegate { jQuery.Select("a").Blur(); });
             _instance = this;
         }
@@ -64,11 +65,11 @@ namespace MBrand.Client
             }
 
             string a = options.PathNames[0] ?? string.Empty;
-            jQuery.Select("#mainNav > *").FadeTo(Page.TransitionDuration, 0.5);
-            jQuery.Select("[rel='address:/" + a + "'], [rel='address:" + options.Value + "']", Document.GetElementById("mainNav"))
-                .FadeTo(Page.TransitionDuration, 1)
-                .Parents("#logo")
-                .FadeTo(Page.TransitionDuration, 1);
+            jQueryUi.Select("#mainNav > *").RemoveClass("current", Page.TransitionDuration);
+            jQueryUi.Select("[rel='address:/" + a + "'], [rel='address:" + options.Value + "']",
+                          Document.GetElementById("mainNav"))
+                .AddClass("current", Page.TransitionDuration);
+                
 
             if (_pages.ContainsKey(a))
             {

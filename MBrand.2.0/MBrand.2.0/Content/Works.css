@@ -3,19 +3,19 @@
     font-family: PFDinTextCondProMedium;
     float: left;
     color: #faaf4c;
-    font-size: 30px;
+    font-size: 20px;
 }
 
 #workGroups, .works-side-bar
 {
-    width: 221px;
-    padding: 23px 7px;
+    width: 141px;
+    padding: 55px 87px 23px 7px;
 }
 
 .work-side-bar
 {
     width: 234px;
-    padding: 23px 7px 23px 0;
+    padding: 55px 7px 23px 0;
 }
 
 #page
@@ -68,10 +68,9 @@
 {
     margin-left: 241px;
     padding-left: 49px;
-    padding-top: 80px;
+    padding-top: 55px;
 }
 #WorkPage .group-name{ color: #faaf4c;display: block;padding-bottom: 20px;}
-.work-side-bar > span{ font-size: 15px;}
 .works-content
 {
     min-height: 472px;
@@ -102,6 +101,7 @@
     font-size: 15px;
     cursor: pointer;
     display: inline-block;
+    vertical-align: top;
     margin: 55px 60px;
     opacity: 1;
     filter: alpha(opacity = 100);

@@ -75,7 +75,7 @@
     <div class="mainMenuItemSplitter">
     </div>
     <div class="<%= eugeneClass %>">
-        <%= Html.ActionLink("Тарифы", "Index", "Eugene") %>
+        <%= Html.ActionLink("Наши услуги", "Index", "Eugene") %>
     </div>
     
     <%--    <div class="mainMenuItemSplitter"></div>

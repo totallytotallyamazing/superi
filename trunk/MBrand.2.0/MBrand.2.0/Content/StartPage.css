@@ -5,7 +5,7 @@
 {
     background: transparent url(img/max.png) no-repeat;
     width: 345px;
-    height: 735px;
+    height: 672px;
     bottom: 0;
     bottom: 0;
     right: -735px;
@@ -29,7 +29,7 @@
 
 #startContent
 {
-    margin: 115px 0 0 167px;
+    margin: 0 0 0 167px;
     font-family: PFDinTextCondPro;
     font-size: 15px;
 }

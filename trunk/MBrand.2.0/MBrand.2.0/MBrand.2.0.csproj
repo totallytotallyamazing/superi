@@ -105,6 +105,7 @@
     <Content Include="Content\AdminPage.css" />
     <Content Include="Content\CkAdmin.css" />
     <Content Include="Content\Fonts\pfdindisplaypro-black-webfont.svg" />
+    <Content Include="Content\Fonts\pfdintextcomppro-lightital-webfont.svg" />
     <Content Include="Content\Fonts\pfdintextcomppro-regular-webfont.svg" />
     <Content Include="Content\Fonts\pfdintextcomppro-thin-webfont.svg" />
     <Content Include="Content\Fonts\pfdintextcondpro-bold-webfont.svg" />
@@ -184,6 +185,9 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\Works\Show.cshtml" />
+    <None Include="Content\Fonts\pfdintextcomppro-lightital-webfont.eot" />
+    <None Include="Content\Fonts\pfdintextcomppro-lightital-webfont.ttf" />
+    <None Include="Content\Fonts\pfdintextcomppro-lightital-webfont.woff" />
     <None Include="_bin_deployableAssemblies\Microsoft.Web.Infrastructure.dll" />
     <None Include="_bin_deployableAssemblies\System.Web.WebPages.Razor.dll" />
     <None Include="_bin_deployableAssemblies\System.Web.WebPages.dll" />

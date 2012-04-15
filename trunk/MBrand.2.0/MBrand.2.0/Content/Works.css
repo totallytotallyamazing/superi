@@ -69,7 +69,16 @@
     margin-left: 241px;
     padding-left: 49px;
     padding-top: 55px;
+    width: 720px;
+    min-width: 720px;
+    position: relative;
+    margin: 0 auto;
 }
+
+#WorkPage {
+    margin-right: 0;    
+}
+
 #WorkPage .group-name{ color: #faaf4c;display: block;padding-bottom: 20px;}
 .works-content
 {

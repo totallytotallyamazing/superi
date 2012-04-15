@@ -125,7 +125,14 @@ namespace MBrand.Client.Pages
                 vanishProps["opacity"] = 0;
                 vanishProps["height"] = "toggle";
                 vanishProps["minHeight"] = "toggle";
-                oldObject.Animate(vanishProps, TransitionDuration);
+                try
+                {
+                    oldObject.Animate(vanishProps, TransitionDuration);
+                }
+                catch
+                {
+                    
+                }
                 Window.SetTimeout
                     (
                         delegate

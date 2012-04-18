@@ -26,5 +26,9 @@ namespace MBrand.Controllers
             return Content(contentText);
         }
 
+        public ActionResult GetChild(string id)
+        {
+            return Get(id);
+        }
     }
 }

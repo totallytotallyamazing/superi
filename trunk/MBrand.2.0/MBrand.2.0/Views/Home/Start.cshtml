@@ -9,5 +9,5 @@
 <div id="startContent">
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;МЫ СЧИТАЕМ, ЧТО
     @{Html.RenderPartial("Statements", Model);}
-    @{Html.RenderPartial("WeCreate");}
+    @{Html.RenderAction("GetChild", "Content", new { id = "startPage"});}
 </div>

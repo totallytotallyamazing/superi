@@ -50,6 +50,13 @@
         @Html.Hidden("workGroupId")
     }
     @Html.ValidationSummary(true)
+    
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Image)
+    </div>
+    <div class="editor-field">
+        <input type="file" name="workImage" id="workImage" />
+    </div>
     <div class="editor-label">
         @Html.LabelFor(model => model.Name)
         &nbsp;
@@ -65,7 +72,7 @@
     <div class="editor-label">
         @Html.LabelFor(model => model.Description)
         &nbsp;&nbsp;
-        @Html.TextBoxFor(model => model.Description, new {style = "width:424px;"})
+        @Html.TextBoxFor(model => model.Description, new { style = "width:424px;" })
         @Html.ValidationMessageFor(model => model.Description)
     </div>
     <br/>
@@ -85,12 +92,6 @@
         @Html.ValidationMessageFor(model => model.Text)
     </div>
 
-    <div class="editor-label">
-        @Html.LabelFor(model => model.Image)
-    </div>
-    <div class="editor-field">
-        <input type="file" name="workImage" id="workImage" />
-    </div>
 
     <div class="editor-label">
         @Html.LabelFor(model => model.BottomImage)

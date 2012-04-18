@@ -140,17 +140,17 @@
     width: 17px;
     height: 17px;
     background: transparent url(img/page.png) no-repeat;
-    background-position: 0 0;
+    background-position: -17px 0;
     font-family: PFDinTextCondProMedium;
     font-size: 8.55pt;
-    color: black;
+    color: #faaf4c;
     line-height: 17px;
     cursor: pointer;
 }
 
 #worksPager a.current
 {
-    color: #faaf4c;
-    background-position: -17px 0;
+    color: black;
+    background-position: 0 0;
     cursor: default;
 }

@@ -107,6 +107,9 @@
 }
 
 /*html, body{height:100%; overflow:hidden;}*/
+a{ color: #faaf4c;}
+a:visited{ color: #996633; }
+
 .trace{position:fixed; color:Lime; border: 1px solid lime; width: 300px; left:0; top:0; background:black;}
 #page, #footer, #mainNav{min-width:1250px;}
 #page{min-height:700px; position:relative; padding:1px;}

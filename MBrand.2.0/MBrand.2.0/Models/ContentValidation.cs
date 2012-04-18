@@ -43,7 +43,7 @@ namespace MBrand.Models
     [Bind(Exclude = "Id")]
     public class WorkValidation : ContentValidation
     {
-        [DisplayName("Картинка")]
+        [DisplayName("Превьюшка")]
         public string Image { get; set; }
 
         [DisplayName("Картинка снизу")]

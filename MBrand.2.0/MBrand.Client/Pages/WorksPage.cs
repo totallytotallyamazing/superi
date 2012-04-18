@@ -116,7 +116,8 @@ namespace MBrand.Client.Pages
 
             Array page = GetCurrentPage(works);
             string layout = JsRender.Select(WorkItemTemplateSelector).Render(page);
-            jQuery.Select("#worksContent").Empty().Html(layout);
+
+            jQuery.Select("#worksContent").After(jQuery.Select("#addLink").Hide(0)).Empty().Html(layout);
 
             jQuery.Select(".workItem *").Each(delegate(int index, Element element)
             {
@@ -135,6 +136,7 @@ namespace MBrand.Client.Pages
         private void WindowResized(jQueryEvent e)
         {
             RenderWorks(_works);
+            RenderPager();
         }
 
         private void UpdatePageSize()
@@ -164,6 +166,10 @@ namespace MBrand.Client.Pages
                 jQuery.Select("#worksPager").Html(pagesLayout);
                 jQuery.Select("#worksPager a").Click(ChangePage);
             }
+            else
+            {
+                jQuery.Select("#worksPager").Empty();
+            }
         }
 
         private void ChangePage(jQueryEvent e)
@@ -183,7 +189,13 @@ namespace MBrand.Client.Pages
         private Array GetCurrentPage(Array items)
         {
             int startIndex = _pageSize * _currentPage;
-            return items.Extract(startIndex, _pageSize);
+            Array result = items.Extract(startIndex, _pageSize);
+            if (result.Length == 0 && _currentPage > 0)
+            {
+                _currentPage--;
+                result = GetCurrentPage(items);
+            }
+            return result;
         }
 
         private void BindWorkEvents()

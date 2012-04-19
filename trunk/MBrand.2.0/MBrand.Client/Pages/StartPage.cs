@@ -37,13 +37,14 @@ namespace MBrand.Client.Pages
             Dictionary maxAnimation = new Dictionary();
             maxAnimation["opacity"] = 1;
             maxAnimation["right"] = 0;
-            jQuery.Select("#maks").Animate(maxAnimation, TransitionDuration);
+            int maxNumber = Math.Round(Math.Random());
+            jQuery.Select("#maks" + maxNumber).Animate(maxAnimation, TransitionDuration);
         }
 
         protected override void BeforeChange()
         {
             base.BeforeChange();
-            jQuery.Select("#maks").Hide(0);
+            jQuery.Select(".maks").Hide(0);
         }
     }
 }

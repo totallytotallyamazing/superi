@@ -1,9 +1,19 @@
 ﻿#StartPage
 {
 }
-#maks
+
+#maks0
 {
     background: transparent url(img/max.png) no-repeat;
+}
+
+#maks1
+{
+    background: transparent url(img/max1.png) no-repeat;
+}
+
+.maks
+{
     width: 345px;
     height: 672px;
     bottom: 0;
@@ -14,7 +24,7 @@
     filter: alpha(opacity=0);
 }
 
-#maks .maks-caption
+.maks .maks-caption
 {
     font-family: PFDinTextCompPro;
     color: #fcb040;
@@ -22,14 +32,14 @@
     padding-left: 230px;
 }
 
-#maks .maks-caption p
+.maks .maks-caption p
 {
     font-size: 16px;
 }
 
 #startContent
 {
-    margin: 0 0 0 167px;
+    margin: 100px 0 0 292px;
     font-family: PFDinTextCondPro;
     font-size: 15px;
 }
@@ -40,46 +50,49 @@
     border-top: 1px solid #faaf4c;
     border-bottom: 1px solid #faaf4c;
     margin: 10px 0 16px;
-    width: 600px;
+    width: 520px;
 }
 
 #statements
 {
-    width: 600px;
-    font-size: 30pt;
+    width: 520px;
+    font-size: 27px;
     color: white;
     font-family: PFDinTextCompProThin;
+    height: 144px;
 }
 
 #statements > div
-{ 
-    padding-top: 20px;
+{
+    padding-top: 28px;
 }
 
 /*#statements em{ font-family: PFDinTextCondPro;font-style: italic;}*/
 
-.bx-prev, .bx-next {
+.bx-prev, .bx-next
+{
     position: absolute;
     display: block;
     text-indent: -999999px;
     width: 60px;
     height: 60px;
-    top: 80px;
+    top: 60px;
 }
 
-.bx-prev 
+.bx-prev
 {
     left: -80px;
-    background: transparent url(img/scrollLeft.png) 50% 50% no-repeat;    
+    background: transparent url(img/scrollLeft.png) 50% 50% no-repeat;
 }
 
-.bx-next 
+.bx-next
 {
     right: -80px;
-    background: transparent url(img/scrollright.png) 50% 50% no-repeat;    
+    background: transparent url(img/scrollright.png) 50% 50% no-repeat;
 }
 
-#weCreate {
+#weCreate
+{
     list-style: none;
     color: white;
     margin-top: 10px;
@@ -87,4 +100,8 @@
     line-height: 40px;
 }
 
-#weCreate a{ color: #faaf4c;font-family: PFDinTextCondPro;}
+#weCreate a
+{
+    color: #faaf4c;
+    font-family: PFDinTextCondPro;
+}

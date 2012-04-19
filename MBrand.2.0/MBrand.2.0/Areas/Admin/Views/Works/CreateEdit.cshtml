@@ -1,6 +1,6 @@
 ﻿@model MBrand.Models.Work
 @{
-    ViewBag.Title = "Работа, а не хрен собачий";
+    ViewBag.Title = "Студия Евгения Миллера" + Model == null ? string.Empty : Model.Title;
     string actionName = (string)ViewContext.RouteData.Values["action"];
 }
 @section Scripts
@@ -57,6 +57,7 @@
     <div class="editor-field">
         <input type="file" name="workImage" id="workImage" />
     </div>
+    <br />
     <div class="editor-label">
         @Html.LabelFor(model => model.Name)
         &nbsp;
@@ -83,7 +84,8 @@
         @Html.TextAreaFor(model => model.SideBarText)
         @Html.ValidationMessageFor(model => model.SideBarText)
     </div>
-
+    <br />
+    <br />
     <div class="editor-label">
         @Html.LabelFor(model => model.Text)
     </div>
@@ -91,8 +93,7 @@
         @Html.TextAreaFor(model => model.Text)
         @Html.ValidationMessageFor(model => model.Text)
     </div>
-
-
+    <br />
     <div class="editor-label">
         @Html.LabelFor(model => model.BottomImage)
     </div>
@@ -105,5 +106,5 @@
     </p>
 }
 <div>
-    <a href="@ViewBag.RedirecTo">Нозад</a>
+    <a href="@ViewBag.RedirecTo">Назад</a>
 </div>

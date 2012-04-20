@@ -374,6 +374,7 @@
     <Content Include="Content\LislelliStyles\img\leftArrow.png" />
     <Content Include="Content\LislelliStyles\img\Logo.png" />
     <Content Include="Content\LislelliStyles\img\LogoBrandCatalog.png" />
+    <Content Include="Content\LislelliStyles\img\mafi-button.jpg" />
     <Content Include="Content\LislelliStyles\img\new.gif" />
     <Content Include="Content\LislelliStyles\img\obzor-bg-bottom.gif" />
     <Content Include="Content\LislelliStyles\img\obzor-bg-top.gif" />

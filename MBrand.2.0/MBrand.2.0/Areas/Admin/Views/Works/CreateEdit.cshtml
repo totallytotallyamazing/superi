@@ -1,6 +1,6 @@
 ﻿@model MBrand.Models.Work
 @{
-    ViewBag.Title = "Студия Евгения Миллера" + Model == null ? string.Empty : Model.Title;
+    ViewBag.Title = "Студия Евгения Миллера" + ((Model == null) ? string.Empty : Model.Title);
     string actionName = (string)ViewContext.RouteData.Values["action"];
 }
 @section Scripts

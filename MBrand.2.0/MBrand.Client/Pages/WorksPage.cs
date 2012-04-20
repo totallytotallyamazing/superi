@@ -68,7 +68,7 @@ namespace MBrand.Client.Pages
         {
             if (Path.Length > 1)
             {
-                return Create(typeof (WorkPage), (string[])Path.Extract(1));
+                return Create(typeof(WorkPage), (string[])Path.Extract(1));
             }
             return base.UpdateInstance();
         }
@@ -95,6 +95,7 @@ namespace MBrand.Client.Pages
             if (works == null || works.Length == 0)
             {
                 jQuery.Select(WorksContentSelector).Empty();
+                ShowAdminLink();
                 return;
             }
 
@@ -127,10 +128,22 @@ namespace MBrand.Client.Pages
                         TransitionDuration / 10 * index);
                 }, 100);
             });
-
-            jQuery.Select("#addLink").AppendTo("#worksContent").Show(0);
+            ShowAdminLink();
 
             BindWorkEvents();
+        }
+
+        private void ShowAdminLink()
+        {
+            jQuery.Select("#addLink").AppendTo("#worksContent").Show(0);
+            jQuery.Select("#addLink a")
+                .Click(delegate
+                {
+                    Window.Location.Href = string.Format(
+                        "/Admin/Works/Create?workGroupId={0}&redirectTo={1}",
+                        _workGroupId,
+                        Window.Location.Href.EncodeUri());
+                });
         }
 
         private void WindowResized(jQueryEvent e)

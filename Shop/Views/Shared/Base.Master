@@ -124,6 +124,11 @@
                                     <img src="../../Content/LislelliStyles/img/bannerHackwood.png" alt="Hackwood" />
                                 </a>
                             </div>
+                            <div class="banners">
+                                <a href="#" style="cursor:default">
+                                    <img src="../../Content/LislelliStyles/img/mafi-button.jpg" alt="Mafi" />
+                                </a>
+                            </div>
                         </div>
                         <div id="altButton" class="<%= System.Globalization.CultureInfo.CurrentUICulture.Name %>">
                             <a href="/to/alt-obzor"></a>

@@ -52,6 +52,7 @@ namespace MBrand.Areas.Admin.Controllers
                     work.BottomImage = fileName;
                 }
                 work.WorkGroupReference.EntityKey = new EntityKey("ContentContainer.Contents", "Id", workGroupId);
+                work.Title = work.Description;
                 _db.Contents.AddObject(work);
                 _db.SaveChanges();
                 return Redirect(redirectTo);  

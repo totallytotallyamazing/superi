@@ -24,7 +24,10 @@ namespace MBrand.Controllers
         {
             var workGroup =
                 _context.Contents.OfType<WorkGroup>().Include("Works").Single(w => w.Name == id);
-            var result = new { workGroup.Id, works = workGroup.Works.Select(w => new { w.Name, w.Title, w.Description, w.Image }).ToArray() };
+            var result = new { workGroup.Id, works = workGroup.Works
+                .OrderByDescending(w=>w.SortOrder)
+                .Select(w => new { w.Name, w.Title, w.Description, w.Image })
+                .ToArray() };
             
             return Json(result, JsonRequestBehavior.AllowGet);
         }

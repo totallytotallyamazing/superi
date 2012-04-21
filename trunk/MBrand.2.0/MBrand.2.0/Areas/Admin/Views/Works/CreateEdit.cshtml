@@ -52,9 +52,12 @@
     @Html.ValidationSummary(true)
     
     <div class="editor-label">
-        @Html.LabelFor(model => model.Image)
-    </div>
-    <div class="editor-field">
+        @Html.LabelFor(model => model.SortOrder)&nbsp;
+        @Html.EditorFor(model => model.SortOrder)
+        @Html.ValidationMessageFor(model => model.SortOrder)
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+        @Html.LabelFor(model => model.Image)&nbsp;
         <input type="file" name="workImage" id="workImage" />
     </div>
     <br />

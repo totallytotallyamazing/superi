@@ -24,6 +24,7 @@ namespace MBrand.Client.Pages
         protected override void Initialize()
         {
             SliderOptions options = new SliderOptions();
+            options.RandomStart = true;
             options.OnNextSlide = options.OnPrevSlide = delegate
                                                             {
                                                                 jQuery.Select("a.bx-prev, a.bx-next").Blur();

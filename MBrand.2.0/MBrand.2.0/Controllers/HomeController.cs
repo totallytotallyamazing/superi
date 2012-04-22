@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
+using Dev.Helpers;
+using MBrand.Helpers;
 using MBrand.Models;
+using MBrand.Models.MBrand.Models;
 
 namespace MBrand.Controllers
 {
@@ -33,7 +37,23 @@ namespace MBrand.Controllers
             return PartialView();
         }
 
-        protected override void Dispose(bool disposing)
+        [OutputCache(NoStore = true, Duration = 1, VaryByParam = "*")]
+        public PartialViewResult Feedback()
+        {
+            return PartialView();
+        }
+
+        [HttpPost]
+        public JsonResult Feedback(FeedbackFormModel feedbackFormModel)
+        {
+          //  if(captchaValid)
+            {
+                MailHelper.SendTemplate(new List<MailAddress> { new MailAddress("miller.kak.miller@gmail.com") }, "Форма обратной связи", "FeedbackTemplate.htm", null, true, feedbackFormModel.Name, feedbackFormModel.Email, feedbackFormModel.Text);
+            }
+            return Json(true);
+        }
+
+         override protected void Dispose(bool disposing)
         {
             context.Dispose();
             base.Dispose(disposing);

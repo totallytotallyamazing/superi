@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Shop.Helpers.Validation;
 
 namespace MBrand
 {
@@ -20,6 +21,8 @@ namespace MBrand
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+            routes.IgnoreRoute("favicon.ico");
+            routes.IgnoreRoute("captcha.ashx");
 
             routes.MapRoute(
                 "Default", // Route name
@@ -33,7 +36,7 @@ namespace MBrand
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
-
+            DataAnnotationsModelValidatorProvider.RegisterAdapter(typeof(CaptchaAttribute), typeof(CaptchaAttributeAdapter));
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
         }

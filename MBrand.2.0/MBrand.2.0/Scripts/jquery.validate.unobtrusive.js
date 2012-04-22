@@ -93,7 +93,8 @@
                     invalidHandler: $.proxy(onErrors, form),
                     messages: {},
                     rules: {},
-                    success: $.proxy(onSuccess, form)
+                    success: $.proxy(onSuccess, form),
+                    onkeyup: false
                 },
                 attachValidation: function () {
                     $form.validate(this.options);
@@ -278,6 +279,29 @@
         return (match && (match.index === 0) && (match[0].length === value.length));
     });
 
+    $jQval.addMethod("captcha", function (value, element, params) {
+        var captchaGuid = document.getElementById("captcha_guid").value;
+        var body = null;
+        eval('body = {value : "' + encodeURIComponent(value) + '", "captcha-guid": "' + captchaGuid + '"}');
+
+        var result = true;
+        var url = params;
+        var completedCallback = function (data) {
+            var responseData = data;
+            if (responseData != 'true') {
+                if (typeof (window.OnCaptchaValidationError) !== "undefined") {
+                    window.OnCaptchaValidationError();
+                }
+                result = false;
+            }
+        };
+
+
+        $.ajax({ type: "POST", url: url, success: completedCallback, async: false, data: body });
+
+        return result;
+    });
+
     adapters.addSingleVal("accept", "exts").addSingleVal("regex", "pattern");
     adapters.addBool("creditcard").addBool("date").addBool("digits").addBool("email").addBool("number").addBool("url");
     adapters.addMinMax("length", "minlength", "maxlength", "rangelength").addMinMax("range", "min", "max", "range");
@@ -294,6 +318,12 @@
         if (options.element.tagName.toUpperCase() !== "INPUT" || options.element.type.toUpperCase() !== "CHECKBOX") {
             setValidationValues(options, "required", true);
         }
+    });
+    adapters.add("captcha", function (options) {
+        var captchaUrl = $(options.element).attr("data-val-captcha-url");
+        options.messages["captcha"] = options.message;
+        options.rules["captcha"] = captchaUrl;
+        options.onkeyup = false;
     });
     adapters.add("remote", ["url", "type", "additionalfields"], function (options) {
         var value = {
@@ -316,4 +346,4 @@
     $(function () {
         $jQval.unobtrusive.parse(document);
     });
-}(jQuery));
+} (jQuery));

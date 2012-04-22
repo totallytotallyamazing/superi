@@ -49,6 +49,7 @@
     <Compile Include="EventArgs.cs" />
     <Compile Include="PageManager.cs" />
     <Compile Include="Pages\ContentPage.cs" />
+    <Compile Include="Pages\FeedbackPage.cs" />
     <Compile Include="Pages\WorkPage.cs" />
     <Compile Include="ScriptManager.cs" />
     <Compile Include="Utility\Uri.cs" />

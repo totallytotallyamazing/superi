@@ -83,6 +83,7 @@
     <Compile Include="Areas\Admin\Controllers\WorkGroupsController.cs" />
     <Compile Include="Areas\Admin\Controllers\WorksController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CaptchaController.cs" />
     <Compile Include="Controllers\ContentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\ValidationController.cs" />
@@ -90,7 +91,16 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\Captcha\CaptchaAttribute.cs" />
+    <Compile Include="Helpers\Captcha\CaptchaAttributeAdapter.cs" />
+    <Compile Include="Helpers\Captcha\CaptchaExtensions.cs" />
+    <Compile Include="Helpers\Captcha\CaptchaImage.cs" />
+    <Compile Include="Helpers\Captcha\CaptchaImageHandler.cs" />
+    <Compile Include="Helpers\Captcha\CaptchaValidationAttribute.cs" />
     <Compile Include="Helpers\IOHelper.cs" />
+    <Compile Include="Helpers\MailHelper.cs" />
+    <Compile Include="Helpers\Validation\RemoteAttribute.cs" />
+    <Compile Include="Helpers\Validation\RemoteAttributeAdapter.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Content.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -98,6 +108,7 @@
       <DependentUpon>Content.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\ContentValidation.cs" />
+    <Compile Include="Models\FeedbackFormModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -189,6 +200,7 @@
     <None Include="Content\Fonts\pfdintextcomppro-lightital-webfont.eot" />
     <None Include="Content\Fonts\pfdintextcomppro-lightital-webfont.ttf" />
     <None Include="Content\Fonts\pfdintextcomppro-lightital-webfont.woff" />
+    <Content Include="Views\Home\Feedback.cshtml" />
     <None Include="_bin_deployableAssemblies\Microsoft.Web.Infrastructure.dll" />
     <None Include="_bin_deployableAssemblies\System.Web.WebPages.Razor.dll" />
     <None Include="_bin_deployableAssemblies\System.Web.WebPages.dll" />

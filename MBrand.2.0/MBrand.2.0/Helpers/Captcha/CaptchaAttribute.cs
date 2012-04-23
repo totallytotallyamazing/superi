@@ -34,7 +34,6 @@ namespace Shop.Helpers.Validation
         public virtual string GetUrl(ControllerContext controllerContext)
         {
             var pathData = RouteTable.Routes.GetVirtualPathForArea(controllerContext.RequestContext,
-                                                            RouteName,
                                                             RouteData);
 
             if (pathData == null)

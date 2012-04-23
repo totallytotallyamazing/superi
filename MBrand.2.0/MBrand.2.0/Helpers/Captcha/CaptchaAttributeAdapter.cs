@@ -24,6 +24,7 @@ namespace Shop.Helpers.Validation
             };
 
             rule.ValidationParameters["url"] = Attribute.GetUrl(ControllerContext);
+            //rule.ValidationParameters["parameterName"] = Attribute.ParameterName;
             return new ModelClientValidationRule[] { rule };
         }
     }

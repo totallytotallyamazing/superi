@@ -131,6 +131,8 @@
     <Content Include="Content\img\page.png" />
     <Content Include="Content\img\scrollLeft.png" />
     <Content Include="Content\img\scrollRight.png" />
+    <Content Include="Content\MailTemplates\FeedbackTemplate.htm" />
+    <Content Include="Content\MailTemplates\MailTemplate.htm" />
     <Content Include="Content\StartPage.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />

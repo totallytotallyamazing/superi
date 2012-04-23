@@ -118,7 +118,7 @@ namespace Dev.Helpers
 		/// <summary>
 		/// 
 		/// </summary>
-		private static readonly Color[] RandomColor = { Color.Red, Color.Green, Color.Blue, Color.Black, Color.Purple, Color.Orange };
+		private static readonly Color[] RandomColor = { Color.Red, Color.Green, Color.Blue, Color.Teal, Color.Purple, Color.Orange };
 
 		/// <summary>
 		/// Gets or sets a string of available text characters for the generator to use.
@@ -366,7 +366,7 @@ namespace Dev.Helpers
 			using (Graphics gr = Graphics.FromImage(bmp))
 			{
 				gr.SmoothingMode = SmoothingMode.AntiAlias;
-                gr.Clear(ColorTranslator.FromHtml("#f7f6ef"));
+                gr.Clear(ColorTranslator.FromHtml("#000000"));
 
 				int charOffset = 0;
 				double charWidth = _width / TextLength;

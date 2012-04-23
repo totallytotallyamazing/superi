@@ -94,7 +94,7 @@ namespace MBrand.Client.Pages
             Array works = (Array)workGroup["works"];
             if (works == null || works.Length == 0)
             {
-                jQuery.Select(WorksContentSelector).Empty();
+                jQuery.Select(WorksContentSelector).After(jQuery.Select("#addLink").Hide(0)).Empty();
                 ShowAdminLink();
                 return;
             }

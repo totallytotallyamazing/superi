@@ -20,7 +20,6 @@ namespace MBrand.Controllers
             Response.Write(CaptchaExtensions.CaptchaImage(200, 60));
         }
 
-
         [CaptchaValidation("value")]
         public string ValidateCaptcha(bool captchaValid)
         {

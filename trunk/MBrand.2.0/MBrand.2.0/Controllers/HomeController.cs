@@ -43,14 +43,19 @@ namespace MBrand.Controllers
             return PartialView();
         }
 
-        [HttpPost]
-        public JsonResult Feedback(FeedbackFormModel feedbackFormModel)
+        [HttpPost,CaptchaValidation("Captcha")]
+        public JsonResult Feedback(FormCollection form, bool captchaValid)
         {
-          //  if(captchaValid)
+            FeedbackFormModel feedbackFormModel = new FeedbackFormModel();
+
+            feedbackFormModel.Email = form["Email"];
+            feedbackFormModel.Name = form["Name"];
+            feedbackFormModel.Text = form["Text"];
+            if(captchaValid)
             {
                 MailHelper.SendTemplate(new List<MailAddress> { new MailAddress("miller.kak.miller@gmail.com") }, "Форма обратной связи", "FeedbackTemplate.htm", null, true, feedbackFormModel.Name, feedbackFormModel.Email, feedbackFormModel.Text);
             }
-            return Json(true);
+            return Json(captchaValid);
         }
 
          override protected void Dispose(bool disposing)

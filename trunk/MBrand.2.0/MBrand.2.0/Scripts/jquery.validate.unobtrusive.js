@@ -289,16 +289,16 @@
         var completedCallback = function (data) {
             var responseData = data;
             if (responseData != 'true') {
-                if (typeof (window.OnCaptchaValidationError) !== "undefined") {
-                    window.OnCaptchaValidationError();
-                }
                 result = false;
             }
         };
 
-
         $.ajax({ type: "POST", url: url, success: completedCallback, async: false, data: body });
-
+        if (!result) {
+            if (typeof (window.OnCaptchaValidationError) !== "undefined") {
+                window.OnCaptchaValidationError();
+            }
+        }
         return result;
     });
 

@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
 using MBrand.Models;
+using System.Web;
 
 namespace MBrand.Controllers
 {
@@ -20,7 +21,7 @@ namespace MBrand.Controllers
                 contentText = content.Text;
                 if(Request.IsAuthenticated)
                 {
-                    contentText+="<div><a class=\"adminLink\" href=\"javascript:location.href='/Admin/Content/Edit/" + id + "?redirectTo='+escape(location.href);\">Править</a></div>";
+                    contentText+="<div><a class=\"adminLink\" href=\"javascript:location.href='"+VirtualPathUtility.ToAbsolute("~/Admin/Content/Edit/") + id + "?redirectTo='+escape(location.href);\">Править</a></div>";
                 }
             }
             return Content(contentText);

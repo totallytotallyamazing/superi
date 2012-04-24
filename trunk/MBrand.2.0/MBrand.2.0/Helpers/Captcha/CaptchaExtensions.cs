@@ -26,7 +26,7 @@ namespace Dev.Helpers
             stringBuilder.Append("\" />");
             stringBuilder.AppendLine();
             stringBuilder.Append("<img src=\"");
-            stringBuilder.Append("/captcha.ashx?guid=" + image.UniqueId);
+            stringBuilder.Append(VirtualPathUtility.ToAbsolute("~/captcha.ashx?guid=" + image.UniqueId));
             stringBuilder.Append("\" alt=\"CAPTCHA\" width=\"");
             stringBuilder.Append(width);
             stringBuilder.Append("\" height=\"");

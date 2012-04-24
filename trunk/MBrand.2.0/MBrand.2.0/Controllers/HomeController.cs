@@ -44,7 +44,7 @@ namespace MBrand.Controllers
         }
 
         [HttpPost,CaptchaValidation("Captcha")]
-        public JsonResult Feedback(FormCollection form, bool captchaValid)
+        public void Feedback(FormCollection form, bool captchaValid)
         {
             FeedbackFormModel feedbackFormModel = new FeedbackFormModel();
 
@@ -55,7 +55,10 @@ namespace MBrand.Controllers
             {
                 MailHelper.SendTemplate(new List<MailAddress> { new MailAddress("miller.kak.miller@gmail.com") }, "Форма обратной связи", "FeedbackTemplate.htm", null, true, feedbackFormModel.Name, feedbackFormModel.Email, feedbackFormModel.Text);
             }
-            return Json(captchaValid);
+            else
+            {
+                throw new HttpException(400, "Wrong captcha");
+            }
         }
 
          override protected void Dispose(bool disposing)

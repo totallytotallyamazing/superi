@@ -1,0 +1,38 @@
+﻿#FeedbackPage {
+    padding-top: 90px;
+    margin-left: 352px;
+}
+
+.editor-label {
+    margin-top: 20px;
+}
+
+#captchaImage{ margin-top: 40px}
+               
+textarea{ width: 400px;height: 75px;}
+
+.input-validation-error{ background: #ffdddd; border: 1px solid #ffdddd}
+
+p.submitButton{ margin-top: 40px}
+
+p.submitButton input {
+    background-color: #faaf4c;
+    border: 2px solid white;
+    padding: 5px;
+    color: white;
+    border-radius: 10px;
+    font-size: 15px;
+    
+}
+
+input[type=text], textarea {
+    filter:progid:DXImageTransform.Microsoft.Glow(Color=black,Strength=5);
+}
+
+input[type=text]:focus, textarea:focus {
+    -moz-box-shadow: 0 0 3px 3px #63451e;
+     -webkit-box-shadow: 0 0 3px 3px #63451e;
+     box-shadow: 0 0 3px 3px #63451e;
+     filter:progid:DXImageTransform.Microsoft.Glow(Color=#63451e,Strength=5);
+}
+

@@ -10,6 +10,11 @@ namespace MBrand.Client.Utility
     {
         private const string PageNamePattern = "[a-zA-Z/:0-9.]*/(\\w+\\.html)";
 
+        public static string SiteRoot
+        {
+            get { return (string)Script.Literal("window.SiteRoot"); }
+        }
+
         public static string GetQueryString(WindowInstance window, string key)
         {
             string value = string.Empty;

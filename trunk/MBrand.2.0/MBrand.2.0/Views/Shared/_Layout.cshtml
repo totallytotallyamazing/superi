@@ -11,11 +11,11 @@
     @if (!((Route)ViewContext.RouteData.Route).Url.StartsWith("Admin"))
     {
         
-        <script type="text/javascript" src="/Scripts/jquery.address-1.4.min.js"> </script>
+        <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.address-1.4.min.js")"> </script>
         <script type="text/javascript" src="http://bxslider.com/sites/default/files/jquery.bxSlider.min.js"> </script>
-        <script type="text/javascript" src="/Scripts/jsrender.js"></script>
-        <script type="text/javascript" src="/Scripts/mscorlib.js"> </script>
-        <script type="text/javascript" src="/Scripts/MBrand.Client.debug.js"> </script>
+        <script type="text/javascript" src="@Url.Content("~/Scripts/jsrender.js")"></script>
+        <script type="text/javascript" src="@Url.Content("~/Scripts/mscorlib.js")"> </script>
+        <script type="text/javascript" src="@Url.Content("~/Scripts/MBrand.Client.debug.js")")> </script>
     }
     else
     {
@@ -30,6 +30,10 @@
         @:<link href="@Url.Content("~/Content/Webkit.css")" rel="stylesheet" type="text/css"/>
     }
     @RenderSection("Scripts", required: false)
+    
+    <script type="text/javascript">
+        var SiteRoot = "@Url.Content("~/").TrimEnd('/')";
+    </script>
 </head>
 <body>
     @*<div class="trace"></div>*@

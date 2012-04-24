@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using MBrand.Client.Utility;
 using jQueryApi;
 
 namespace MBrand.Client.Pages
@@ -28,7 +29,7 @@ namespace MBrand.Client.Pages
         {
             base.PathSet();
             jQueryObject container = CreateContainer(this);
-            container.Load(Url, null, delegate(object data, string status, jQueryDataHttpRequest<object> request)
+            container.Load(Uri.SiteRoot + Url, null, delegate(object data, string status, jQueryDataHttpRequest<object> request)
             {
                 PerformTransition(_oldObject, container);                                              
             });

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System;
+using MBrand.Client.Utility;
 using jQueryApi;
 using System.Collections;
 using jQueryApi.jQueryUi;
@@ -91,7 +92,7 @@ namespace MBrand.Client.Pages
         {
             _container = container;
             _loadedHandler = Loaded;
-            _container.Load(Url, null, _loadedHandler);
+            _container.Load(Uri.SiteRoot + Url, null, _loadedHandler);
         }
 
         private void Loaded(object data, string status, jQueryDataHttpRequest<object> request)

@@ -1,16 +1,21 @@
 ﻿@model MBrand.Models.MBrand.Models.FeedbackFormModel
 <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.js")" type="text/javascript"></script>
+<link rel="stylesheet" href="@Url.Content("~/Content/Feedback.css")" />
     <script type="text/javascript">
         function OnCaptchaValidationError() {
             $.get("/Captcha/DrawAsync", function (data) { $("#captchaImage").html(data); });
         }
+
+        function FeedbackSubmitted() {
+            alert("Сообщение отправлено");
+            location.href = "/";
+        }
     </script>
-@using (Html.BeginForm())
+@using (Ajax.BeginForm(new AjaxOptions{ HttpMethod = "POST", OnSuccess = "FeedbackSubmitted"}))
 {
     @Html.ValidationSummary(true)
-    <fieldset>
-        <legend>FeedbackFormModel</legend>
         <div class="editor-label">
             @Html.LabelFor(model => model.Name)
         </div>
@@ -29,7 +34,7 @@
             @Html.LabelFor(model => model.Text)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Text)
+            @Html.TextAreaFor(model => model.Text)
             @Html.ValidationMessageFor(model => model.Text)
         </div>
         <div id="captchaImage">
@@ -41,8 +46,7 @@
         <div class="editor-field">
             @Html.TextBoxFor(model => model.Captcha) @Html.ValidationMessageFor(model => model.Captcha)
         </div>
-        <p>
-            <input type="submit" value="Create" />
+        <p class="submitButton">
+            Все верно, &nbsp;&nbsp;<input type="submit" value="отправить!" />
         </p>
-    </fieldset>
 }

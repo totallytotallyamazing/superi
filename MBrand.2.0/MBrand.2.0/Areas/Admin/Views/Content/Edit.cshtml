@@ -7,6 +7,11 @@
     <script type="text/javascript">
         $(function () {
             $("textarea").ckeditor(function () { }, { toolbar: "Media", uiColor: "#999", contentsCss: "/Content/Site.css" });
+
+            $("#Name").attr("data-val", false);
+            $('form').removeData('unobtrusiveValidation');
+            $('form').removeData('validator');
+            $.validator.unobtrusive.parse('form');
         });
     </script>
 }

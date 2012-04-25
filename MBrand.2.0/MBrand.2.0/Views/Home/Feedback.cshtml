@@ -3,16 +3,19 @@
 <script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.js")" type="text/javascript"></script>
 <link rel="stylesheet" href="@Url.Content("~/Content/Feedback.css")" />
-    <script type="text/javascript">
-        function OnCaptchaValidationError() {
-            $.get("/Captcha/DrawAsync", function (data) { $("#captchaImage").html(data); });
-        }
+<script type="text/javascript">
+    function OnCaptchaValidationError() {
+        $.get("/Captcha/DrawAsync", function (data) { $("#captchaImage").html(data); });
+    }
 
-        function FeedbackSubmitted() {
-            alert("Сообщение отправлено");
-            location.href = "/";
-        }
-    </script>
+    function FeedbackSubmitted() {
+        alert("Сообщение отправлено");
+        location.href = "/";
+    }
+</script>
+
+@{Html.RenderAction("GetChild", "Content", new { id = "contacts" });}
+
 @using (Ajax.BeginForm(new AjaxOptions{ HttpMethod = "POST", OnSuccess = "FeedbackSubmitted"}))
 {
     @Html.ValidationSummary(true)

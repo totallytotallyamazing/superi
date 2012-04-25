@@ -92,7 +92,7 @@ namespace MBrand.Client.Pages
         {
             _container = container;
             _loadedHandler = Loaded;
-            _container.Load(Uri.SiteRoot + Url, null, _loadedHandler);
+            _container.Load(Url, null, _loadedHandler);
         }
 
         private void Loaded(object data, string status, jQueryDataHttpRequest<object> request)
@@ -120,6 +120,8 @@ namespace MBrand.Client.Pages
 
         protected void PerformTransition(jQueryObject oldObject, jQueryObject newObject)
         {
+            int transitionDuration = !Browser.IsFirefox ? TransitionDuration : 0;
+
             if (oldObject != null)
             {
                 Dictionary vanishProps = new Dictionary();
@@ -128,7 +130,7 @@ namespace MBrand.Client.Pages
                 vanishProps["minHeight"] = "toggle";
                 try
                 {
-                    oldObject.Animate(vanishProps, TransitionDuration);
+                    oldObject.Animate(vanishProps, transitionDuration);
                 }
                 catch
                 {
@@ -140,16 +142,16 @@ namespace MBrand.Client.Pages
                         {
                             oldObject.Remove();
                         },
-                        TransitionDuration
+                        transitionDuration
                     );
             }
 
             Dictionary comeInProps = new Dictionary();
             comeInProps["opacity"] = 1;
             Document.Body.ScrollTop = 0;
-            newObject.Animate(comeInProps, TransitionDuration);
+            newObject.Animate(comeInProps, transitionDuration);
             ContentScroller.GoToTop();
-            Window.SetTimeout(TransitionComplete, TransitionDuration);
+            Window.SetTimeout(TransitionComplete, transitionDuration);
         }
         #endregion
 

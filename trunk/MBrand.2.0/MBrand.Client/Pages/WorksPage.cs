@@ -1,4 +1,5 @@
 ﻿using System.Html;
+using MBrand.Client.Utility;
 using jQueryApi;
 using System;
 using System.Runtime.CompilerServices;
@@ -102,7 +103,10 @@ namespace MBrand.Client.Pages
             _works = works;
 
             _currentPage = 0;
-            jQuery.Window.Resize(WindowResized);
+            if(!Browser.IsFirefox && ! Browser.IsIpad && !Browser.IsIphone)
+            {
+                jQuery.Window.Resize(WindowResized);
+            }
 
             RenderWorks(_works);
 
@@ -119,15 +123,21 @@ namespace MBrand.Client.Pages
             string layout = JsRender.Select(WorkItemTemplateSelector).Render(page);
 
             jQuery.Select("#worksContent").After(jQuery.Select("#addLink").Hide(0)).Empty().Html(layout);
-
-            jQuery.Select(".workItem *").Each(delegate(int index, Element element)
+            if (!Browser.IsFirefox)
             {
-                Window.SetTimeout(delegate
-                {
-                    jQuery.FromElement(element).FadeIn(
-                        TransitionDuration / 10 * index);
-                }, 100);
-            });
+                jQuery.Select(".workItem *").Each(delegate(int index, Element element)
+                                                  {
+                                                      Window.SetTimeout(delegate
+                                                                        {
+                                                                            jQuery.FromElement(element).FadeIn(
+                                                                                TransitionDuration/10*index);
+                                                                        }, 100);
+                                                  });
+            }
+            else
+            {
+                jQuery.Select(".workItem *").Show(0);
+            }
             ShowAdminLink();
 
             BindWorkEvents();

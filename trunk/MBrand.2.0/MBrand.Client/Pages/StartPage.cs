@@ -1,6 +1,7 @@
 // StartPage.cs
 //
 
+using MBrand.Client.Utility;
 using jQueryApi.BxSlider;
 using jQueryApi;
 using System.Collections;
@@ -39,7 +40,8 @@ namespace MBrand.Client.Pages
             maxAnimation["opacity"] = 1;
             maxAnimation["right"] = 0;
             int maxNumber = Math.Round(Math.Random());
-            jQuery.Select("#maks" + maxNumber).Animate(maxAnimation, TransitionDuration);
+            int transitionDuration = !Browser.IsFirefox ? TransitionDuration : 0;
+            jQuery.Select("#maks" + maxNumber).Animate(maxAnimation, transitionDuration);
         }
 
         protected override void BeforeChange()

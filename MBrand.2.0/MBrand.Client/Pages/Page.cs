@@ -120,7 +120,7 @@ namespace MBrand.Client.Pages
 
         protected void PerformTransition(jQueryObject oldObject, jQueryObject newObject)
         {
-            int transitionDuration = !Browser.IsFirefox ? TransitionDuration : 0;
+            int transitionDuration = (!Browser.IsFirefox ? TransitionDuration : 0);
 
             if (oldObject != null)
             {

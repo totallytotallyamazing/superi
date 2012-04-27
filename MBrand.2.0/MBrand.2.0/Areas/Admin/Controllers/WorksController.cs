@@ -75,13 +75,13 @@ namespace MBrand.Areas.Admin.Controllers
         // POST: /Admin/Works/Edit/5
 
         [HttpPost, ValidateInput(false)]
-        public ActionResult Edit(FormCollection form, string redirectTo, HttpPostedFileBase workImage, HttpPostedFileBase workBottomImage)
+        public ActionResult Edit(FormCollection form, string redirectTo, HttpPostedFileBase workImage, HttpPostedFileBase workBottomImage, bool deleteBottomImage)
         {
             int id = int.Parse(form["_id"]);
             Work work = _db.Contents.OfType<Work>().Single(w => w.Id == id);
             if (ModelState.IsValid)
             {
-                TryUpdateModel(work, new[] { "Text", "Description", "Name", "Title", "SideBarText" });
+                TryUpdateModel(work, new[] { "Text", "Description", "Name", "Title", "SideBarText", "SortOrder" });
                 if (workImage != null)
                 {
                     if(!string.IsNullOrEmpty(work.Image))
@@ -106,6 +106,15 @@ namespace MBrand.Areas.Admin.Controllers
                     fileName = IOHelper.GetUniqueFileName(WorkBottomImagesLocation, fileName);
                     workBottomImage.SaveFile(WorkBottomImagesLocation, fileName);
                     work.BottomImage = fileName;
+                }
+
+                if (deleteBottomImage)
+                {
+                    if (!string.IsNullOrEmpty(work.BottomImage))
+                    {
+                        IOHelper.DeleteFile(WorkBottomImagesLocation, work.BottomImage);
+                    }
+                    work.BottomImage = null;
                 }
                 _db.SaveChanges();
                 return Redirect(redirectTo);

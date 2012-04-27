@@ -101,7 +101,8 @@
         @Html.LabelFor(model => model.BottomImage)
     </div>
     <div class="editor-field">
-        <input type="file" name="workBottomImage" id="workBottomImage" />
+        <input type="file" name="workBottomImage" id="workBottomImage" /><br/>
+        @Html.CheckBox("deleteBottomImage") Удалить
     </div>
 
     <p style="float:right; margin-top:-20px;">

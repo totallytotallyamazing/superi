@@ -121,11 +121,11 @@ a:visited{ color: #996633; }
     height:62px;    
 }
 
-#footer #copyright{font-family:PFDinDisplayProBlack; color:Black;}
+#footer #copyright{font-family:PFDinDisplayProBlack; color:Black; float: left}
 
 #footer #copyright p.large{font-size:52px; display:inline-block;}
 #footer #copyright p.small{font-size:11px; display:inline-block; width:60px;}
-#secretLink{ float: right;width: 80px;font-family: PFDinTextCondPro;padding-top: 16px;}
+#secretLink{ width: 80px;font-family: PFDinTextCondPro;padding-top: 16px;margin-left: 1010px;}
 #secretLink a{ color: white;}
 *
 {

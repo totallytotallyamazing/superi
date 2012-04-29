@@ -22,8 +22,8 @@ namespace MBrand.Models
             [DisplayName("Ваш вопрос")]
             public string Text { get; set; }
             [Captcha("ValidateCaptcha", "Captcha", ErrorMessage = "Неправильные символы!")]
-            [Required(ErrorMessage = "Введите символы с картинки")]
-            [DisplayName("Антиспам-проверка: если вы не робот...")]
+            [Required(ErrorMessage = "Обязательно!")]
+            [DisplayName("Антиспам-проверка: если вы не робот, введите символы с картинки")]
             public string Captcha { get; set; }
         }
     }

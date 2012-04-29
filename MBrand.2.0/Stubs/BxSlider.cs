@@ -15,6 +15,7 @@ namespace jQueryApi.BxSlider
         public static BxSliderObject Select(string selector) { return null; }
     }
 
+    [Imported]
     public class BxSliderObject : jQueryObject
     {
         public BxSliderObject BxSlider() { return null; }

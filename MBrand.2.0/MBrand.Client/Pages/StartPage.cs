@@ -41,7 +41,7 @@ namespace MBrand.Client.Pages
             maxAnimation["right"] = 0;
             int maxNumber = Math.Round(Math.Random());
             int transitionDuration = (!Browser.IsFirefox ? TransitionDuration : 0);
-            jQuery.Select("#maks" + maxNumber).Animate(maxAnimation, transitionDuration);
+            jQuery.Select("#maks" + maxNumber).CSS("display", "block").Animate(maxAnimation, transitionDuration);
         }
 
         protected override void BeforeChange()

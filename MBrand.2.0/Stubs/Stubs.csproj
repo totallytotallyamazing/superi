@@ -46,6 +46,7 @@
     <Compile Include="Address.cs" />
     <Compile Include="BxSlider.cs" />
     <Compile Include="ChangeOptions.cs" />
+    <Compile Include="jCrop.cs" />
     <Compile Include="jQueryUi.cs" />
     <Compile Include="JsRender.cs" />
     <Compile Include="MouseWheel.cs" />

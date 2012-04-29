@@ -132,6 +132,8 @@
     <Content Include="Content\img\page.png" />
     <Content Include="Content\img\scrollLeft.png" />
     <Content Include="Content\img\scrollRight.png" />
+    <Content Include="Content\jcrop\Jcrop.gif" />
+    <Content Include="Content\jcrop\jquery.Jcrop.css" />
     <Content Include="Content\MailTemplates\FeedbackTemplate.htm" />
     <Content Include="Content\MailTemplates\MailTemplate.htm" />
     <Content Include="Content\StartPage.css" />
@@ -170,6 +172,7 @@
     <Content Include="Scripts\jquery-ui-1.8.11.js" />
     <Content Include="Scripts\jquery-ui-1.8.11.min.js" />
     <Content Include="Scripts\jquery.address-1.4.min.js" />
+    <Content Include="Scripts\jquery.Jcrop.min.js" />
     <Content Include="Scripts\jquery.mousewheel.min.js" />
     <Content Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />

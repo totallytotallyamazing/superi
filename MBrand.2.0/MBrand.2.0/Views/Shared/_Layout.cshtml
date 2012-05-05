@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html>
+<html xmlns:fb="http://ogp.me/ns/fb#">
 <head>
     <meta charset="utf-8" />
     <meta name="google-site-verification" content="agTeQlPTdwrpR3rSvT7ptoNTY0kamSOGcsbo49z2NTo" />
@@ -25,18 +25,34 @@
     @if (Request.IsAuthenticated)
     {
         @:<link href="@Url.Content("~/Content/Admin.css")" rel="stylesheet" type="text/css"/>
-    }
+                }
     @if (Request.UserAgent.ToLowerInvariant().Contains("webkit"))
     { 
         @:<link href="@Url.Content("~/Content/Webkit.css")" rel="stylesheet" type="text/css"/>
-    }
+                }
     @RenderSection("Scripts", required: false)
-    
     <script type="text/javascript">
         var SiteRoot = "@Url.Content("~/").TrimEnd('/')";
     </script>
+    <script type="text/javascript" src="http://vkontakte.ru/js/api/share.js?9" charset="windows-1251"></script>
+    <script>
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+            fjs.parentNode.insertBefore(js, fjs);
+        } (document, 'script', 'facebook-jssdk'));</script>
+    <script>!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = "//platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs); } } (document, "script", "twitter-wjs");</script>
+    
+    <script type="text/javascript" src="https://apis.google.com/js/plusone.js">
+        { parsetags: 'explicit' } 
+    </script> 
+
 </head>
 <body>
+    <div id="fb-root">
+    </div>
     @*<div class="trace"></div>*@
     @{Html.RenderPartial("TopMenu");}
     <div id="page">

@@ -206,7 +206,8 @@ body
     vertical-align: middle;
     float:left;
     width: 75px;
-    height: 65px;
+    height: 67px;
+    cursor: pointer;
     font-family: PFDinTextCompProLight;
     font-style: italic;
     font-size: 15px;

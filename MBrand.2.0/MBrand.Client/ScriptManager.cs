@@ -3,6 +3,7 @@
 
 using System.Runtime.CompilerServices;
 using jQueryApi;
+using System.Html;
 
 namespace MBrand.Client
 {
@@ -16,6 +17,14 @@ namespace MBrand.Client
                                            PageManager manager = new PageManager();
                                            manager.Initialize();
                                            Socials.Bind();
+
+                                           jQuery.Select("#logo").Click(delegate
+                                                                        {
+                                                                            if(Window.Location.Hash.Length>1)
+                                                                            {
+                                                                                Window.Location.Href = "/";
+                                                                            }
+                                                                        });
                                        });
         }
     }

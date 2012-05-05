@@ -13,9 +13,10 @@ namespace MBrand.Client
         {
             jQuery.OnDocumentReady(delegate
                                        {
-                PageManager manager = new PageManager();
-                manager.Initialize();
-            });
+                                           PageManager manager = new PageManager();
+                                           manager.Initialize();
+                                           Socials.Bind();
+                                       });
         }
     }
 }

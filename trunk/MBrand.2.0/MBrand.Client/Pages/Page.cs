@@ -34,6 +34,10 @@ namespace MBrand.Client.Pages
         }
         #endregion
 
+        #region Events
+        public static event Action PageChanged;
+        #endregion
+
         #region Abstract members
         public abstract string Url { get; }
         public abstract string Name { get; }
@@ -97,6 +101,10 @@ namespace MBrand.Client.Pages
 
         private void Loaded(object data, string status, jQueryDataHttpRequest<object> request)
         {
+            if (PageChanged != null)
+            {
+                PageChanged();
+            }
             Initialize();
             jQueryUiObject oldObject = null;
             if (Current != null)

@@ -125,7 +125,43 @@ a:visited{ color: #996633; }
 
 #footer #copyright p.large{font-size:52px; display:inline-block;}
 #footer #copyright p.small{font-size:11px; display:inline-block; width:60px;}
-#secretLink{ width: 80px;font-family: PFDinTextCondPro;padding-top: 16px;margin-left: 1010px;}
+#secretLink{ width: 80px;font-family: PFDinTextCondPro;padding-top: 16px; float: right}
+#footer #footerContent {
+    width: 1090px;
+}
+
+#footer .social {
+    display: block;
+    float: left;
+    width: 100px;
+    margin: auto;
+    margin-top: 22px;
+    vertical-align: top;
+}
+
+#footer .social.fb 
+{
+    margin-top: 22px;
+    width: 110px;
+}
+
+.likePlease {
+    display: block;
+    float: left;
+    margin-left: 120px;
+    margin-top: 22px;
+    padding-right: 20px;
+    font-size: 18px;
+    color: white;
+}
+
+/*#footer .social.vk-share{ width: 70px;}*/
+
+#footer .socials 
+{
+    margin: 0 90px 0 230px;
+    text-align: center;
+}
 #secretLink a{ color: white;}
 *
 {

@@ -52,6 +52,7 @@
     <Compile Include="Pages\FeedbackPage.cs" />
     <Compile Include="Pages\WorkPage.cs" />
     <Compile Include="ScriptManager.cs" />
+    <Compile Include="Socials.cs" />
     <Compile Include="Utility\Browser.cs" />
     <Compile Include="Utility\Uri.cs" />
     <Compile Include="Pages\WorksPage.cs" />

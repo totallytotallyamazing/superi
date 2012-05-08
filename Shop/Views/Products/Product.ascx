@@ -59,7 +59,7 @@
             
             
             <span class="brandName"><sup>TM</sup>
-            <%= productClickLink.Replace("[IMAGE]", Model.Brand.Name)%></span>
+            <%= productClickLink.Replace("[IMAGE]", Model.Brand==null ? "no brand" : Model.Brand.Name)%></span>
 
         <div class="itemDescription">
             <% if (!string.IsNullOrWhiteSpace(Model.Color))

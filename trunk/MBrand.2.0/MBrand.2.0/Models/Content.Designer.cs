@@ -101,6 +101,22 @@ namespace MBrand.Models
             }
         }
         private ObjectSet<Content> _Contents;
+    
+        /// <summary>
+        /// Нет доступной документации по метаданным.
+        /// </summary>
+        public ObjectSet<Secret> Secrets
+        {
+            get
+            {
+                if ((_Secrets == null))
+                {
+                    _Secrets = base.CreateObjectSet<Secret>("Secrets");
+                }
+                return _Secrets;
+            }
+        }
+        private ObjectSet<Secret> _Secrets;
 
         #endregion
         #region Методы AddTo
@@ -119,6 +135,14 @@ namespace MBrand.Models
         public void AddToContents(Content content)
         {
             base.AddObject("Contents", content);
+        }
+    
+        /// <summary>
+        /// Устаревший метод для добавления новых объектов в набор EntitySet Secrets. Взамен можно использовать метод .Add связанного свойства ObjectSet&lt;T&gt;.
+        /// </summary>
+        public void AddToSecrets(Secret secret)
+        {
+            base.AddObject("Secrets", secret);
         }
 
         #endregion
@@ -330,6 +354,113 @@ namespace MBrand.Models
         private global::System.String _Description;
         partial void OnDescriptionChanging(global::System.String value);
         partial void OnDescriptionChanged();
+
+        #endregion
+    
+    }
+    
+    /// <summary>
+    /// Нет доступной документации по метаданным.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="Content", Name="Secret")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class Secret : EntityObject
+    {
+        #region Фабричный метод
+    
+        /// <summary>
+        /// Создание нового объекта Secret.
+        /// </summary>
+        /// <param name="id">Исходное значение свойства Id.</param>
+        /// <param name="fileName">Исходное значение свойства FileName.</param>
+        /// <param name="sortOrder">Исходное значение свойства SortOrder.</param>
+        public static Secret CreateSecret(global::System.Int32 id, global::System.String fileName, global::System.Int64 sortOrder)
+        {
+            Secret secret = new Secret();
+            secret.Id = id;
+            secret.FileName = fileName;
+            secret.SortOrder = sortOrder;
+            return secret;
+        }
+
+        #endregion
+        #region Свойства-примитивы
+    
+        /// <summary>
+        /// Нет доступной документации по метаданным.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 Id
+        {
+            get
+            {
+                return _Id;
+            }
+            set
+            {
+                if (_Id != value)
+                {
+                    OnIdChanging(value);
+                    ReportPropertyChanging("Id");
+                    _Id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("Id");
+                    OnIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _Id;
+        partial void OnIdChanging(global::System.Int32 value);
+        partial void OnIdChanged();
+    
+        /// <summary>
+        /// Нет доступной документации по метаданным.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String FileName
+        {
+            get
+            {
+                return _FileName;
+            }
+            set
+            {
+                OnFileNameChanging(value);
+                ReportPropertyChanging("FileName");
+                _FileName = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("FileName");
+                OnFileNameChanged();
+            }
+        }
+        private global::System.String _FileName;
+        partial void OnFileNameChanging(global::System.String value);
+        partial void OnFileNameChanged();
+    
+        /// <summary>
+        /// Нет доступной документации по метаданным.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 SortOrder
+        {
+            get
+            {
+                return _SortOrder;
+            }
+            set
+            {
+                OnSortOrderChanging(value);
+                ReportPropertyChanging("SortOrder");
+                _SortOrder = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SortOrder");
+                OnSortOrderChanged();
+            }
+        }
+        private global::System.Int64 _SortOrder;
+        partial void OnSortOrderChanging(global::System.Int64 value);
+        partial void OnSortOrderChanged();
 
         #endregion
     

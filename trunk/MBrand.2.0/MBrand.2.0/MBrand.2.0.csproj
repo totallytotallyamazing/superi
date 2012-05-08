@@ -79,6 +79,7 @@
   <ItemGroup>
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\ContentController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SecretController.cs" />
     <Compile Include="Areas\Admin\Controllers\StatementsController.cs" />
     <Compile Include="Areas\Admin\Controllers\WorkGroupsController.cs" />
     <Compile Include="Areas\Admin\Controllers\WorksController.cs" />
@@ -166,6 +167,18 @@
     <Content Include="Content\themes\base\jquery.ui.theme.css" />
     <Content Include="Content\Webkit.css" />
     <Content Include="Content\Works.css" />
+    <Content Include="Controls\fancybox\blank.gif" />
+    <Content Include="Controls\fancybox\fancybox_loading.gif" />
+    <Content Include="Controls\fancybox\fancybox_sprite.png" />
+    <Content Include="Controls\fancybox\helpers\fancybox_buttons.png" />
+    <Content Include="Controls\fancybox\helpers\jquery.fancybox-buttons.css" />
+    <Content Include="Controls\fancybox\helpers\jquery.fancybox-buttons.js" />
+    <Content Include="Controls\fancybox\helpers\jquery.fancybox-media.js" />
+    <Content Include="Controls\fancybox\helpers\jquery.fancybox-thumbs.css" />
+    <Content Include="Controls\fancybox\helpers\jquery.fancybox-thumbs.js" />
+    <Content Include="Controls\fancybox\jquery.fancybox.css" />
+    <Content Include="Controls\fancybox\jquery.fancybox.js" />
+    <Content Include="Controls\fancybox\jquery.fancybox.pack.js" />
     <Content Include="Global.asax" />
     <Content Include="HTMLPage1.htm" />
     <Content Include="Models\Content.edmx.sql" />
@@ -203,6 +216,8 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\Works\Show.cshtml" />
+    <Content Include="Areas\Admin\Views\Secret\AddSecret.cshtml" />
+    <Content Include="Areas\Admin\Views\Secret\MakeThumbnail.cshtml" />
     <None Include="Content\Fonts\pfdintextcomppro-lightital-webfont.eot" />
     <None Include="Content\Fonts\pfdintextcomppro-lightital-webfont.ttf" />
     <None Include="Content\Fonts\pfdintextcomppro-lightital-webfont.woff" />
@@ -230,9 +245,9 @@
   <ItemGroup>
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Admin\Views\Shared\" />
+    <Folder Include="Content\secret\preview\" />
     <Folder Include="Content\workBottomImages\" />
     <Folder Include="Content\workImages\" />
-    <Folder Include="Controls\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\TopMenu.cshtml" />

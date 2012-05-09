@@ -4,7 +4,8 @@ using System.Web.Mvc;
 using MBrand.Models;
 
 namespace MBrand.Areas.Admin.Controllers
-{ 
+{
+    [Authorize]
     public class WorkGroupsController : Controller
     {
         private readonly ContentContainer _db = new ContentContainer();

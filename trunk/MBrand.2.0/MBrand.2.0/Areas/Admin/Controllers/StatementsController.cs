@@ -7,6 +7,7 @@ using MBrand.Models;
 
 namespace MBrand.Areas.Admin.Controllers
 {
+    [Authorize]
     public class StatementsController : Controller
     {
         ContentContainer context = new ContentContainer();

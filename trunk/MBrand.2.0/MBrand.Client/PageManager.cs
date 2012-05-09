@@ -39,6 +39,7 @@ namespace MBrand.Client
             _pages[""] = typeof(StartPage);
             _pages["works"] = typeof(WorksPage);
             _pages["feedback"] = typeof(FeedbackPage);
+            _pages["secretLink"] = typeof(SecretPage);
             _pages["content"] = typeof(ContentPage);
         }
 

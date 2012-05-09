@@ -10,6 +10,7 @@ using System.Drawing;
 
 namespace MBrand.Areas.Admin.Controllers
 {
+    [Authorize]
     public class SecretController : Controller
     {
         //
@@ -35,28 +36,33 @@ namespace MBrand.Areas.Admin.Controllers
                 secret.SortOrder = sortOrder;
                 _db.AddToSecrets(secret);
                 _db.SaveChanges();
-                return View("Ok", secret);
+                return PartialView(secret);
             }
 
             ModelState.AddModelError("secretImage", "Вы не указали файл с изображением");
-            return View();
+            return PartialView();
         }
 
+        [OutputCache(NoStore = true, Duration = 1, VaryByParam = "*")]
         public ActionResult MakeThumbnail(int id)
         {
             var secret = _db.Secrets.First(s => s.Id == id);
-            return View();
+            return PartialView(secret);
         }
 
         [HttpPost]
-        public JsonResult MakeThumbnail(int x, int y, int id)
+        [OutputCache(NoStore = true, Duration = 1, VaryByParam = "*")]
+        public void MakeThumbnail(int x, int y, int id)
         {
             var secret = _db.Secrets.First(s => s.Id == id);
             var sourceFile = Bitmap.FromFile(IOHelper.CreateAbsolutePath("~/Content/secret", secret.FileName));
             var bitmap = new Bitmap(180, 180);
             var graphics = Graphics.FromImage(bitmap);
-            graphics.DrawImage(sourceFile, 0, 0, new Rectangle(x, y, 180, 180), GraphicsUnit.Pixel);
+            graphics.DrawImage(sourceFile, new Rectangle(0, 0, 180, 180), new Rectangle(x, y, 180, 180),
+                               GraphicsUnit.Pixel);
             bitmap.Save(IOHelper.CreateAbsolutePath("~/Content/secret/preview", secret.FileName));
+
+            //return  //(true, "application/json");
         }
 
         public JsonResult Delete(int id)

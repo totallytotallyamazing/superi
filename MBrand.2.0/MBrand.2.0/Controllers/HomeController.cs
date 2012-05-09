@@ -32,9 +32,17 @@ namespace MBrand.Controllers
             return PartialView();
         }
 
+        [OutputCache(NoStore = true, Duration = 1, VaryByParam = "*")]
         public PartialViewResult SecretLink()
         {
             return PartialView();
+        }
+
+        [OutputCache(NoStore = true, Duration = 1, VaryByParam = "*")]
+        public JsonResult SecretItems()
+        {
+            return Json(context.Secrets.OrderByDescending(s => s.SortOrder).Select(s => new {s.FileName}),
+                        JsonRequestBehavior.AllowGet);
         }
 
         [OutputCache(NoStore = true, Duration = 1, VaryByParam = "*")]

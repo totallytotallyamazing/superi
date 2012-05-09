@@ -137,6 +137,7 @@
     <Content Include="Content\jcrop\jquery.Jcrop.css" />
     <Content Include="Content\MailTemplates\FeedbackTemplate.htm" />
     <Content Include="Content\MailTemplates\MailTemplate.htm" />
+    <Content Include="Content\Secret.css" />
     <Content Include="Content\StartPage.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -218,10 +219,12 @@
     <Content Include="Views\Works\Show.cshtml" />
     <Content Include="Areas\Admin\Views\Secret\AddSecret.cshtml" />
     <Content Include="Areas\Admin\Views\Secret\MakeThumbnail.cshtml" />
+    <Content Include="Areas\Admin\Views\Secret\Ok.cshtml" />
     <None Include="Content\Fonts\pfdintextcomppro-lightital-webfont.eot" />
     <None Include="Content\Fonts\pfdintextcomppro-lightital-webfont.ttf" />
     <None Include="Content\Fonts\pfdintextcomppro-lightital-webfont.woff" />
     <Content Include="Views\Home\Feedback.cshtml" />
+    <Content Include="Views\Home\SecretLink.cshtml" />
     <None Include="_bin_deployableAssemblies\Microsoft.Web.Infrastructure.dll" />
     <None Include="_bin_deployableAssemblies\System.Web.WebPages.Razor.dll" />
     <None Include="_bin_deployableAssemblies\System.Web.WebPages.dll" />

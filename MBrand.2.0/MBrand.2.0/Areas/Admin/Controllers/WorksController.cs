@@ -11,6 +11,7 @@ using MBrand.Helpers;
 
 namespace MBrand.Areas.Admin.Controllers
 { 
+    [Authorize]
     public class WorksController : Controller
     {
         private const string WorkImagesLocation = "~/Content/workImages";

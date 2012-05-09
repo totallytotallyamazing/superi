@@ -4,6 +4,7 @@ using MBrand.Models;
 
 namespace MBrand.Areas.Admin.Controllers
 {
+    [Authorize]
     public class ValidationController : Controller
     {
         //

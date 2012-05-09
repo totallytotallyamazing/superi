@@ -6,6 +6,7 @@ using System.Web;
 
 namespace MBrand.Areas.Admin.Controllers
 {
+    [Authorize]
     public class ContentController : Controller
     {
         readonly ContentContainer _db = new ContentContainer();

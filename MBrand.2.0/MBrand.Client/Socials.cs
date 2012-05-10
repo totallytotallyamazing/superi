@@ -29,7 +29,6 @@ namespace MBrand.Client
                 attributes["layout"] = "button_count";
                 attributes["show_faces"] = false;
                 elem.Attribute(attributes);
-                //<fb:like href="http://www.asas.com" send="false" layout="button_count" width="450" show_faces="false"></fb:like>
                 jQuery.Select("div#likeContainer").Empty().Append(elem);
                 Script.Literal("FB.XFBML.parse($('div#Container').get(0))");
             }
@@ -63,6 +62,5 @@ namespace MBrand.Client
                                   UpdatePlusOne();
                               };
         }
-
     }
 }

@@ -1,4 +1,7 @@
 ﻿@model IEnumerable<MBrand.Models.Statement>
+
+@Html.Hidden("pageTitle", "Студия Евгения Миллера")
+
 <div id="maks0" class="maks" style="display: none;">
     <div class="maks-caption">
         <p>ЕВГЕНИЙ МИЛЛЕР,</p>
@@ -16,5 +19,6 @@
 <div id="startContent">
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;МЫ СЧИТАЕМ, ЧТО
     @{Html.RenderPartial("Statements", Model);}
-    @{Html.RenderAction("GetChild", "Content", new { id = "startPage"});}
+    @{Html.RenderAction("GetChild", "Content", new { id = "startPage" });}
 </div>
+

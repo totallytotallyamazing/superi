@@ -1,11 +1,10 @@
 // SecretPage.cs
 //
 
-using System;
-using System.Collections.Generic;
 using jQueryApi;
 using jQueryApi.JsRender;
 using System.Runtime.CompilerServices;
+using System;
 
 namespace MBrand.Client.Pages
 {

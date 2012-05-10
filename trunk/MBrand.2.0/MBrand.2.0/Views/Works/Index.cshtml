@@ -1,4 +1,7 @@
 ﻿@model IEnumerable<MBrand.Models.WorkGroup>
+
+@Html.Hidden("pageTitle", "Студия Евгения Миллера - Наши работы")
+
 <div id="workGroups" class="works-side-bar">
     <ul>
         @foreach (var workGroup in Model)

@@ -101,11 +101,12 @@ namespace MBrand.Client.Pages
 
         private void Loaded(object data, string status, jQueryDataHttpRequest<object> request)
         {
+            Initialize();
+
             if (PageChanged != null)
             {
                 PageChanged();
             }
-            Initialize();
             jQueryUiObject oldObject = null;
             if (Current != null)
             {
@@ -142,13 +143,14 @@ namespace MBrand.Client.Pages
                 }
                 catch
                 {
-                    
+
                 }
                 Window.SetTimeout
                     (
                         delegate
                         {
                             oldObject.Remove();
+                            Document.Title = Title;
                         },
                         transitionDuration
                     );
@@ -163,7 +165,11 @@ namespace MBrand.Client.Pages
         }
         #endregion
 
-        #region Virtual Methods
+        #region Virtual Members
+        public virtual string Title { get { return ((InputElement) Document.GetElementById("pageTitle")).Value; } }
+
+        public string ImageUrl { get { return "/Content/img/logo.png"; } }
+
         protected virtual void TransitionComplete() { }
 
         protected virtual void BeforeChange() { }

@@ -19,7 +19,6 @@ namespace MBrand.Client.Pages
             get { return "ContentPage" + Path[0]; }
         }
 
-
         protected override void Initialize()
         {
             

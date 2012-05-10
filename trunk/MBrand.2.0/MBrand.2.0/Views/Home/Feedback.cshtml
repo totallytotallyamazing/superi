@@ -1,4 +1,7 @@
 ﻿@model MBrand.Models.MBrand.Models.FeedbackFormModel
+
+@Html.Hidden("pageTitle", "Студия Евгения Миллера - Обратная связь")
+
 <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.js")" type="text/javascript"></script>
@@ -16,7 +19,7 @@
 
 @{Html.RenderAction("GetChild", "Content", new { id = "contacts" });}
 
-@using (Ajax.BeginForm(new AjaxOptions{ HttpMethod = "POST", OnSuccess = "FeedbackSubmitted"}))
+@using (Ajax.BeginForm(new AjaxOptions { HttpMethod = "POST", OnSuccess = "FeedbackSubmitted" }))
 {
     @Html.ValidationSummary(true)
         <div class="editor-label">
@@ -41,7 +44,7 @@
             @Html.ValidationMessageFor(model => model.Text)
         </div>
         <div id="captchaImage">
-            @Html.Action("Draw", new {area="", controller="Captcha"})
+            @Html.Action("Draw", new { area = "", controller = "Captcha" })
         </div>
         <div class="editor-label">
             @Html.LabelFor(model => model.Captcha)

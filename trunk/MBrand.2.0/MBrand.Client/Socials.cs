@@ -17,6 +17,20 @@ namespace MBrand.Client
             return "http://eugene-miller.com/" + Window.Location.Hash;
         }
 
+        private static void UpdateFbOpenGraph()
+        {
+            jQuery.Select("meta[property*=\"og:\"]").Remove();
+            Element title = Document.CreateElement("meta");
+            title.SetAttribute("property", "og:title");
+            title.SetAttribute("content", Page.Current.Title);
+            Element firstScript = Document.GetElementsByTagName("script")[0];
+            firstScript.ParentNode.InsertBefore(title, firstScript);
+            Element image = Document.CreateElement("meta");
+            image.SetAttribute("property", "og:image");
+            image.SetAttribute("content", Page.Current.ImageUrl);
+            firstScript.ParentNode.InsertBefore(image, firstScript);
+        }
+
         private static void UpdateFacebook()
         {
             try
@@ -29,6 +43,7 @@ namespace MBrand.Client
                 attributes["layout"] = "button_count";
                 attributes["show_faces"] = false;
                 elem.Attribute(attributes);
+               // UpdateFbOpenGraph();
                 jQuery.Select("div#likeContainer").Empty().Append(elem);
                 Script.Literal("FB.XFBML.parse($('div#Container').get(0))");
             }

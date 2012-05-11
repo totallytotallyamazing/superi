@@ -103,10 +103,6 @@ namespace MBrand.Client.Pages
         {
             Initialize();
 
-            if (PageChanged != null)
-            {
-                PageChanged();
-            }
             jQueryUiObject oldObject = null;
             if (Current != null)
             {
@@ -123,7 +119,10 @@ namespace MBrand.Client.Pages
                 _current.Dispose();
             }
             _current = this;
-
+            if (PageChanged != null)
+            {
+                PageChanged();
+            }
             PerformTransition(oldObject, _container);
         }
 

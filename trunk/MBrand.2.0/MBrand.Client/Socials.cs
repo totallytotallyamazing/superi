@@ -57,8 +57,12 @@ namespace MBrand.Client
 
         private static void UpdateTwitter()
         {
-            jQuery.Select(".twitter-share-button").Attribute("data-href", GetUrl());
-            Script.Literal("twttr.widgets.load()");
+            try
+            {
+                jQuery.Select(".twitter-share-button").Attribute("data-href", GetUrl());
+                Script.Literal("twttr.widgets.load()");
+            }
+            catch { /*whatever*/ }
         }
 
         private static void UpdatePlusOne()

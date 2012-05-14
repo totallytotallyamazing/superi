@@ -41,7 +41,7 @@ namespace MBrand.Controllers
         [OutputCache(NoStore = true, Duration = 1, VaryByParam = "*")]
         public JsonResult SecretItems()
         {
-            return Json(context.Secrets.OrderByDescending(s => s.SortOrder).Select(s => new {s.FileName}),
+            return Json(context.Secrets.OrderByDescending(s => s.SortOrder).Select(s => new {s.FileName, s.Id}),
                         JsonRequestBehavior.AllowGet);
         }
 

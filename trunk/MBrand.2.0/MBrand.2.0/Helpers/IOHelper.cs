@@ -1,14 +1,28 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Web;
+using System.Threading;
 
 namespace MBrand.Helpers
 {
     public static class IOHelper
     {
-        public static void DeleteFile(string relativePath, string fileName)
+        public static void DeleteFile(string relativePath, string fileName, int count = 0)
         {
             string absolutePath = HttpContext.Current.Server.MapPath(relativePath);
-            File.Delete(Path.Combine(absolutePath, fileName));
+            try
+            {
+                File.Delete(Path.Combine(absolutePath, fileName));
+            }
+            catch (Exception)
+            {
+                if (count >= 10)
+                {
+                    return;
+                }
+                Thread.Sleep(500);
+                DeleteFile(relativePath, fileName, count + 1);
+            }
         }
 
         public static string CreateAbsolutePath(string relativePath, string fileName)

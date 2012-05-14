@@ -24,7 +24,7 @@ namespace MBrand.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddSecret(HttpPostedFileBase secretImage, int sortOrder)
+        public ActionResult AddSecret(HttpPostedFileBase secretImage, string title, int sortOrder)
         {
             Secret secret = new Secret();
             if (secretImage != null)
@@ -34,6 +34,7 @@ namespace MBrand.Areas.Admin.Controllers
                 secretImage.SaveFile("~/Content/secret/", fileName);
                 secret.FileName = fileName;
                 secret.SortOrder = sortOrder;
+                secret.Title = title;
                 _db.AddToSecrets(secret);
                 _db.SaveChanges();
                 return PartialView(secret);
@@ -68,7 +69,10 @@ namespace MBrand.Areas.Admin.Controllers
         public JsonResult Delete(int id)
         {
             var secret = _db.Secrets.First(s => s.Id == id);
+            IOHelper.DeleteFile("~/Content/secret", secret.FileName);
+            IOHelper.DeleteFile("~/Content/secret/preview", secret.FileName);
             _db.DeleteObject(secret);
+            _db.SaveChanges();
             return Json(true);
         }
 

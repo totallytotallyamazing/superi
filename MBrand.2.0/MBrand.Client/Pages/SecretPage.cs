@@ -5,6 +5,7 @@ using jQueryApi;
 using jQueryApi.JsRender;
 using System.Runtime.CompilerServices;
 using System;
+using System.Html;
 
 namespace MBrand.Client.Pages
 {
@@ -32,7 +33,23 @@ namespace MBrand.Client.Pages
             {
                 jQuery.Select("#secretImages").Empty().Html(
                     JsRender.Select("#secretItemTemplate").Render(data));
+                BindAdminLinks();
             });
+        }
+
+        private static void BindAdminLinks()
+        {
+            jQuery.Select(".secretItem a.adminLink").Click(delegate(jQueryEvent e)
+                                                           {
+                                                               if (Script.Confirm("Are you sure?"))
+                                                               {
+                                                                   jQuery.Post(((AnchorElement) e.CurrentTarget).Href,
+                                                                               delegate {
+                                                                                            LoadData();
+                                                                               });
+                                                               }
+                                                               e.PreventDefault();
+                                                           });
         }
     }
 }

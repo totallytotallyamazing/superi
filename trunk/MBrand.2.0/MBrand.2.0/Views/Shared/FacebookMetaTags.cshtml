@@ -1,0 +1,20 @@
+﻿@{
+    var title = "Студия Евгения Миллера";
+    var image = "http://eugene-miller.com/Content/img/logo.png";
+    var escapedFragment = Request.QueryString["_escaped_fragment_"];
+    var url = "";
+    if(!string.IsNullOrEmpty(escapedFragment))
+    {
+        MBrand.Utils.OpenGraph graph = MBrand.Utils.UrlParser.GetTitle(escapedFragment);
+        title += " - " + graph.Title;
+        if (!string.IsNullOrEmpty(graph.Image))
+        {
+            image = graph.Image;
+        }
+        url = graph.Url;
+    }
+    <meta property="og:title" content="@title" />
+    <meta property="og:image" content="@image" />
+    <meta property="og:url" content="@url" />
+}
+

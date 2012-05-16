@@ -45,6 +45,7 @@ namespace MBrand.Client
 
         public void Initialize()
         {
+            Address.Make.Crawlable(true);
             Address.Make.Change(OnAddressChanged);
             ScrollerOptions options = new ScrollerOptions();
             options.MouseScrollVertically = false;

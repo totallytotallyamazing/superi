@@ -43,7 +43,7 @@ namespace MBrand.Client
                 attributes["layout"] = "button_count";
                 attributes["show_faces"] = false;
                 elem.Attribute(attributes);
-               // UpdateFbOpenGraph();
+                UpdateFbOpenGraph();
                 jQuery.Select("div#likeContainer").Empty().Append(elem);
                 Script.Literal("FB.XFBML.parse($('div#Container').get(0))");
             }

@@ -19,5 +19,10 @@ namespace jQueryApi.Address
         public Address ExternalChange(AddressChangeCallback callback) { return null; }
 
         public Address AutoUpdate(bool enable) { return null; }
+
+        [ScriptName("crawlable")]
+        public bool GetCrawlable() { return false; }
+
+        public Address Crawlable(bool value) { return null; }
     }
 }

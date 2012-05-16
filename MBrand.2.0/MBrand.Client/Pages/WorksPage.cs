@@ -235,7 +235,7 @@ namespace MBrand.Client.Pages
                 .Click(delegate(jQueryEvent @event)
                            {
                                string name = jQuery.FromElement(@event.CurrentTarget).GetAttribute("data-name");
-                               Window.Location.Href = "/#/works/" + WorkGroupName + "/" + name;
+                               Window.Location.Href = "/#!/works/" + WorkGroupName + "/" + name;
                            });
 
             jQuery.Select(".workItem").Parent()

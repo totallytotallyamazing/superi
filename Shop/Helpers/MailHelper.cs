@@ -51,7 +51,7 @@ namespace Dev.Helpers
                     message.Subject = subject;
 
                     mailAddresses.ForEach(t => message.To.Add(t));
-                    message.From = new MailAddress("site@listelli.ua","Listelli");
+                    message.From = new MailAddress("news@listelli.ua","Listelli");
                     message.IsBodyHtml = isBodyHtml;
                     client.Send(message);
                 }

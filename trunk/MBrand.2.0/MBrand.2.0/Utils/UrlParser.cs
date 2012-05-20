@@ -17,7 +17,7 @@ namespace MBrand.Utils
         private static Dictionary<string, Func<string[], OpenGraph>> navigation = new Dictionary<string, Func<string[], OpenGraph>>{
                                                                    {"works", ProcessWorks},
                                                                    {"feedback", a=>new OpenGraph{Title = "Обратная связь"}},
-                                                                   {"secret", ProcessSecretLink}
+                                                                   {"secretLink", ProcessSecretLink}
                                                                };
 
         public static OpenGraph GetTitle(string url)
@@ -67,7 +67,22 @@ namespace MBrand.Utils
 
         public static OpenGraph ProcessSecretLink(string[] path)
         {
-            return new OpenGraph();
+            var result = new OpenGraph();
+            if (path.Length == 0)
+            {
+                result.Title = "Секретная ссылка";
+            }
+            else
+            {
+                int secretId = int.Parse(path[0]);
+                using (ContentContainer context = new ContentContainer())
+                {
+                    var secret  =context.Secrets.First(s => s.Id == secretId);
+                    result.Title = secret.Title;
+                    result.Image = "http://www.eugene-miller.com/Content/secret/preview/" + secret.FileName;
+                }
+            }
+            return result;
         }
 
     }

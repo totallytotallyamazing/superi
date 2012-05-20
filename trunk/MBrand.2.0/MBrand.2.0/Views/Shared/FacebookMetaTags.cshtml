@@ -3,7 +3,7 @@
     var image = "http://eugene-miller.com/Content/img/logo.png";
     var escapedFragment = Request.QueryString["_escaped_fragment_"];
     var url = "";
-    if(!string.IsNullOrEmpty(escapedFragment))
+    if (!string.IsNullOrEmpty(escapedFragment))
     {
         MBrand.Utils.OpenGraph graph = MBrand.Utils.UrlParser.GetTitle(escapedFragment);
         title += " - " + graph.Title;
@@ -17,4 +17,3 @@
     <meta property="og:image" content="@image" />
     <meta property="og:url" content="@url" />
 }
-

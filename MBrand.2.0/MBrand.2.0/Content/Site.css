@@ -255,3 +255,17 @@ body
 #WorkPage {
     border-top: 1px solid #faaf4c;
 }
+
+.fancybox-title{ height: 20px; font-size: 16px !important;font-family: PFDinTextCondPro !important;  font-weight: bold !important;padding: 10px 20px;margin-top: 0 !important; }
+
+.fancybox-title .likePlease{ display: none;}
+.fancybox-title .social {
+    display: block;
+    float: left;
+    width: 100px;
+    margin: auto;
+    /*margin-top: 10px;*/
+    vertical-align: top;
+}
+
+.fancybox-title .socials{ float: right;}

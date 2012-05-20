@@ -14,7 +14,7 @@ namespace MBrand.Modules
 
         void BeginRequest(object sender, EventArgs e)
         {
-            if (!HttpContext.Current.Request.UserAgent.Contains("Facebook"))
+            if (!HttpContext.Current.Request.UserAgent.ToLower().Contains("facebook"))
             {
                 string escapedFragment = HttpContext.Current.Request.QueryString["_escaped_fragment_"];
                 if (!string.IsNullOrEmpty(escapedFragment))

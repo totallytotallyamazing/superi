@@ -7,6 +7,7 @@ using MBrand.Client.Pages;
 using System.Html;
 using jQueryApi;
 using System.Collections;
+using System.Runtime.CompilerServices;
 
 namespace MBrand.Client
 {
@@ -17,25 +18,16 @@ namespace MBrand.Client
             return "http://eugene-miller.com/" + Window.Location.Hash;
         }
 
-        private static void UpdateFbOpenGraph()
-        {
-            jQuery.Select("meta[property*=\"og:\"]").Remove();
-            Element title = Document.CreateElement("meta");
-            title.SetAttribute("property", "og:title");
-            title.SetAttribute("content", Page.Current.Title);
-            Element firstScript = Document.GetElementsByTagName("script")[0];
-            firstScript.ParentNode.InsertBefore(title, firstScript);
-            Element image = Document.CreateElement("meta");
-            image.SetAttribute("property", "og:image");
-            image.SetAttribute("content", Page.Current.ImageUrl);
-            firstScript.ParentNode.InsertBefore(image, firstScript);
-        }
 
-        private static void UpdateFacebook()
+        private static void UpdateFacebook(bool secret, int id)
         {
             try
             {
                 string url = GetUrl();
+                if (secret)
+                {
+                    url += "/" + id;
+                }
                 jQueryObject elem = jQuery.FromElement(Document.CreateElement("fb:like"));
                 Dictionary attributes = new Dictionary();
                 attributes["href"] = url;
@@ -43,19 +35,18 @@ namespace MBrand.Client
                 attributes["layout"] = "button_count";
                 attributes["show_faces"] = false;
                 elem.Attribute(attributes);
-                UpdateFbOpenGraph();
                 jQuery.Select("div#likeContainer").Empty().Append(elem);
                 Script.Literal("FB.XFBML.parse($('div#Container').get(0))");
             }
             catch (Exception) { }
         }
 
-        private static void UpdateVK()
+        private static void UpdateVK(bool secret, int id)
         {
-            jQuery.Select(".vk-share").Html((string)Script.Literal("VK.Share.button(false, {type:'button', text: '&hearts;'})"));
+            jQuery.Select(".vk-share").Empty().Html((string)Script.Literal("VK.Share.button(false, {type:'button', text: '&hearts;'})"));
         }
 
-        private static void UpdateTwitter()
+        private static void UpdateTwitter(bool secret, int id)
         {
             try
             {
@@ -65,7 +56,7 @@ namespace MBrand.Client
             catch { /*whatever*/ }
         }
 
-        private static void UpdatePlusOne()
+        private static void UpdatePlusOne(bool secret, int id)
         {
             jQuery.Select("#plusOne").Empty().Append(jQuery.FromElement(Document.CreateElement("g:plusone")).Attribute("size", "medium"));
             Script.Literal("gapi.plusone.go()");
@@ -73,13 +64,16 @@ namespace MBrand.Client
 
         public static void Bind()
         {
-            Page.PageChanged += delegate
-                              {
-                                  UpdateFacebook();
-                                  UpdateVK();
-                                  UpdateTwitter();
-                                  UpdatePlusOne();
-                              };
+            Page.PageChanged += delegate { UpdateAll(false, 0); };
+        }
+
+        [PreserveCase]
+        public static void UpdateAll(bool secret, int id)
+        {
+            UpdateFacebook(secret, id);
+            UpdateVK(secret, id);
+            UpdateTwitter(secret, id);
+            UpdatePlusOne(secret, id);
         }
     }
 }

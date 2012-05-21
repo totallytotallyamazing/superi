@@ -145,6 +145,10 @@ var BrandCatalogue = {
             $("#mainLeftArrow").css("visibility", "visible");
             var imgAnchor = $("#mainCatalogImage img");
             index = 1 * imgAnchor[0].getAttribute("index");
+
+            if (index == 1)
+                $("#mainLeftArrow").css("visibility", "hidden");
+
             if (index > 0) {
                 index--;
                 $("#mainCatalogImage").empty().append($("<img>").attr("index", index).attr("src", imageArray[index]));

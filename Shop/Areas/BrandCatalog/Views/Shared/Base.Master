@@ -66,7 +66,10 @@
             <asp:ContentPlaceHolder runat="server" ID="ContentTitle">
             </asp:ContentPlaceHolder>
             <div id="tmp">
+                
                 <div id="contentBoxBrandCatalog">
+                     <div id="mainLeftArrow"></div>
+                <div id="mainRightArrow"></div>
                     <div class="corner_ne">
                         <%--corner--%>
                     </div>
@@ -80,6 +83,7 @@
                         <%--corner--%>
                     </div>
                     <div id="mainCatalogImage">
+               
                         <asp:ContentPlaceHolder ID="MainContent" runat="server">
                         </asp:ContentPlaceHolder>
                     </div>

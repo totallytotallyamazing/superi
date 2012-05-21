@@ -109,22 +109,36 @@ var BrandCatalogue = {
                valign: 'bottom',
                halign: 'center'
            });
-        var imageArray = data.ImageArray; ;
+
+
+        var imageArray = data.ImageArray;
         var index = 0;
+
+
+
+
         $("#mainCatalogImage img").live("click", function () {
-            index++;
-            $("#mainCatalogImage").empty().append($("<img>").attr("src", imageArray[index]));
-            $("#mainCatalogImage img").load(function () {
-                $("#contentBoxBrandCatalog").height(this.offsetHeight); ;
-            });
+            var imgAnchor = this;
+            index = 1 * imgAnchor.getAttribute("index");
+            if (index < imageArray.length-1) {
+                index++;
+                $("#mainCatalogImage").empty().append($("<img>").attr("index", index).attr("src", imageArray[index]));
+                $("#mainCatalogImage img").load(function() {
+                    $("#contentBoxBrandCatalog").height(this.offsetHeight);
+                    ;
+                });
+            }
 
         });
+
+
         $(".dock-item").click(function () {
             //mainCatalogImage
             var imgAnchor = this;
             index = 1 * imgAnchor.getAttribute("index");
 
-            $("#mainCatalogImage").empty().append($("<img>").attr("src", imageArray[index]));
+            //$("#mainCatalogImage").empty().append($("<img>").attr("src", imageArray[index]));
+            $("#mainCatalogImage").empty().append($("<img>").attr("index", index).attr("src", imageArray[index]));
 
 
             //            $.post(this.href, function (data) {
@@ -142,9 +156,9 @@ var BrandCatalogue = {
             //                });
             //            });
             $(".dock-item").removeClass("selecteditem");
-                            $("#mainCatalogImage img").load(function () {
-                                $("#contentBoxBrandCatalog").height(this.offsetHeight); ;
-                            });
+            $("#mainCatalogImage img").load(function () {
+                $("#contentBoxBrandCatalog").height(this.offsetHeight); ;
+            });
             $(this).addClass("selecteditem");
             this.blur();
             return false;

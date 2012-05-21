@@ -95,6 +95,14 @@
                     <div id="rightBox">
                         <% Html.RenderPartial("Subscribe"); %>
                         <% //Html.RenderPartial("ContestLinkBubble"); %>
+                        
+                        <div class="bubbleNew">
+                            <div class="bubbleText">
+                                <a href="http://listelli.ua/content/files/listell_presentation.pdf">Скачать нашу презентацию</a>
+
+                            </div>
+                        </div>
+
                         <div id="brand">
                             <a href="/BrandCatalog/Home/Index" class="txtBrand"><%: Shop.Resources.Global.BrandCatalogues %></a>
                         </div>

@@ -981,11 +981,30 @@ a.txtBubbleNew:visited{color:#3399ff !important;}
     left:-40px;
 }
 
+#mainLeftArrow, #mainRightArrow {
+    position: absolute;
+    cursor: pointer;
+    top: 300px;
+    height: 80px;
+     width: 38px;
+}
+
+#mainLeftArrow {
+    background: url('img/leftArrow.png') no-repeat;
+    left: -40px;
+}
+
+#mainRightArrow {
+    background: url('img/rightArrow.png') no-repeat;
+    left: 1000px;
+}
+
 #leftArrow, #rightArrow
 {
     height: 83px;
     cursor: pointer;
     position:relative;
+    left: 70px;
 }
 
 #leftArrow

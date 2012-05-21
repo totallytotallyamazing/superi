@@ -113,22 +113,63 @@ var BrandCatalogue = {
 
         var imageArray = data.ImageArray;
         var index = 0;
+        $("#mainRightArrow").css("visibility", "visible");
+        $("#mainLeftArrow").css("visibility", "visible");
+
+        $("#mainRightArrow").live("click", function () {
+            $("#mainRightArrow").css("visibility", "visible");
+            $("#mainLeftArrow").css("visibility", "visible");
+            
 
 
+            var imgAnchor = $("#mainCatalogImage img");
+            index = 1 * imgAnchor[0].getAttribute("index");
+
+            if (index == imageArray.length - 2)
+                $("#mainRightArrow").css("visibility", "hidden");
+
+            if (index < imageArray.length - 1) {
+                index++;
+                $("#mainCatalogImage").empty().append($("<img>").attr("index", index).attr("src", imageArray[index]));
+                $("#mainCatalogImage img").load(function () {
+                    $("#contentBoxBrandCatalog").height(this.offsetHeight);
+                    ;
+                });
+            } else {
+                $("#mainRightArrow").css("visibility", "hidden");
+            }
+        });
+
+        $("#mainLeftArrow").live("click", function () {
+            $("#mainRightArrow").css("visibility", "visible");
+            $("#mainLeftArrow").css("visibility", "visible");
+            var imgAnchor = $("#mainCatalogImage img");
+            index = 1 * imgAnchor[0].getAttribute("index");
+            if (index > 0) {
+                index--;
+                $("#mainCatalogImage").empty().append($("<img>").attr("index", index).attr("src", imageArray[index]));
+                $("#mainCatalogImage img").load(function () {
+                    $("#contentBoxBrandCatalog").height(this.offsetHeight);
+                });
+            } else {
+                $("#mainLeftArrow").css("visibility", "hidden");
+            }
+        });
 
 
         $("#mainCatalogImage img").live("click", function () {
+            $("#mainRightArrow").css("visibility", "visible");
+            $("#mainLeftArrow").css("visibility", "visible");
             var imgAnchor = this;
             index = 1 * imgAnchor.getAttribute("index");
-            if (index < imageArray.length-1) {
+            if (index < imageArray.length - 1) {
                 index++;
                 $("#mainCatalogImage").empty().append($("<img>").attr("index", index).attr("src", imageArray[index]));
-                $("#mainCatalogImage img").load(function() {
+                $("#mainCatalogImage img").load(function () {
                     $("#contentBoxBrandCatalog").height(this.offsetHeight);
                     ;
                 });
             }
-
         });
 
 
@@ -140,7 +181,9 @@ var BrandCatalogue = {
             //$("#mainCatalogImage").empty().append($("<img>").attr("src", imageArray[index]));
             $("#mainCatalogImage").empty().append($("<img>").attr("index", index).attr("src", imageArray[index]));
 
-
+            $("#mainRightArrow").css("visibility", "visible");
+            $("#mainLeftArrow").css("visibility", "visible");
+            
             //            $.post(this.href, function (data) {
             //                $("#mainCatalogImage").html(data);
             //                var index = 1 * imgAnchor.getAttribute("index");

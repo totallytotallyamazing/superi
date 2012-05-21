@@ -117,19 +117,20 @@ img
 }
 #logoBoxBrandCatalog .slogan
 {
-    /*line-height: 12px;*/
-    font-size: 12px;
+    line-height: 12px;
+    font-size: 10px;
     font-family: Arial, Helvetica, sans-serif;
     color: White;
 }
 
 #logoBox .slogan
 {
-    /*line-height: 12px;*/
-    font-size: 12px;
+    line-height: 12px;
+    font-size: 10px;
     text-align: center;
     font-family: 'PT Sans' , arial, serif;
     color: White;
+    margin-top: 5px;
 }
 
 #logo
@@ -786,14 +787,14 @@ img
 }
 
 
-#bubbleNew
+#bubbleNew, .bubbleNew
 {
     position: relative;
     z-index: 2;
     width: 295px;
 }
 
-#bubbleNew
+#bubbleNew, .bubbleNew
 {
     /*position: relative;     z-index: 2;*/
     width: 172px;
@@ -803,6 +804,10 @@ img
     margin-top: 55px;
     text-align: center;
     line-height: 17px; /*top: 55px;*/
+}
+
+.bubbleNew {
+    margin-top: 20px !important;
 }
 
 #bubbleNew .txtBubbleNew
@@ -865,7 +870,7 @@ a.txtBubbleNew:visited{color:#3399ff !important;}
 #brand
 {
     /* position: relative;     z-index: 2; */
-    margin: 115px 0px 0px 155px;
+    margin: 40px 0px 0px 145px;
     width: 120px;
 }
 

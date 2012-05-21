@@ -53,9 +53,9 @@ var BrandCatalogue = {
             });
         }
     },
-    
+
     fetchBrands: function (callback) {
-        var element = document.getElementById("selectBrand")
+        var element = document.getElementById("selectBrand");
         var id = element.options[element.selectedIndex].value;
         $.get("/BrandCatalog/Brands/BrandLinks/" + id, function (data) {
             $("#topMenu").html(data);
@@ -109,30 +109,48 @@ var BrandCatalogue = {
                valign: 'bottom',
                halign: 'center'
            });
-        var imageArray = null;
+        var imageArray = data.ImageArray; ;
+        var index = 0;
+        $("#mainCatalogImage img").live("click", function () {
+            index++;
+            $("#mainCatalogImage").empty().append($("<img>").attr("src", imageArray[index]));
+            $("#mainCatalogImage img").load(function () {
+                $("#contentBoxBrandCatalog").height(this.offsetHeight); ;
+            });
+
+        });
         $(".dock-item").click(function () {
             //mainCatalogImage
             var imgAnchor = this;
-            imageArray = data.ImageArray;
-            $.post(this.href, function (data) {
-                $("#mainCatalogImage").html(data);
-                var index = 1 * imgAnchor.getAttribute("index");
-                $(".fancyCustom").click(function () {
-                    var specialArray = new Array();
-                    for (var i = 0; i < imageArray.length; i++) {
-                        specialArray[i] = imageArray[i];
-                    }
-                    $.fancybox(specialArray, { index: index, hideOnContentClick: true, showCloseButton: false, type: "image", padding: 0, margin: 20 });
-                });
-                $("#mainCatalogImage img").load(function () {
-                    $("#contentBoxBrandCatalog").height(this.offsetHeight); ;
-                });
-            });
+            index = 1 * imgAnchor.getAttribute("index");
+
+            $("#mainCatalogImage").empty().append($("<img>").attr("src", imageArray[index]));
+
+
+            //            $.post(this.href, function (data) {
+            //                $("#mainCatalogImage").html(data);
+            //                var index = 1 * imgAnchor.getAttribute("index");
+            //                $(".fancyCustom").click(function () {
+            //                    var specialArray = new Array();
+            //                    for (var i = 0; i < imageArray.length; i++) {
+            //                        specialArray[i] = imageArray[i];
+            //                    }
+            //                    $.fancybox(specialArray, { index: index, hideOnContentClick: true, showCloseButton: false, type: "image", padding: 0, margin: 20 });
+            //                });
+            //                $("#mainCatalogImage img").load(function () {
+            //                    $("#contentBoxBrandCatalog").height(this.offsetHeight); ;
+            //                });
+            //            });
             $(".dock-item").removeClass("selecteditem");
+                            $("#mainCatalogImage img").load(function () {
+                                $("#contentBoxBrandCatalog").height(this.offsetHeight); ;
+                            });
             $(this).addClass("selecteditem");
             this.blur();
             return false;
         });
+
+        //$(".dock-item").eq(0).click();
     },
 
     _changePage: function (brandId, groupId, page) {

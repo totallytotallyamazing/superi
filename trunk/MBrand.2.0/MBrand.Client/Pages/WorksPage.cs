@@ -58,6 +58,7 @@ namespace MBrand.Client.Pages
 
         void CurrentAddressChanged(AddressChangeEventArgs args)
         {
+            jQuery.Select("#workGroups li a").RemoveClass("current");
             if (args.Path.Length > 1)
             {
                 args.PreventDefault = true;
@@ -76,6 +77,11 @@ namespace MBrand.Client.Pages
 
         private void LoadContent()
         {
+            if (Path.Length > 0)
+            {
+                jQuery.Select("#mainNav .current").AddClass("expanded");
+            }
+
             if (Path.Length == 0)
             {
                 jQuery.Select(WorksContentSelector)
@@ -85,6 +91,8 @@ namespace MBrand.Client.Pages
             {
                 string url = string.Format(WorksUrlFormat, WorkGroupName);
                 jQuery.Get(url, LoadWorks);
+                jQuery.Select("#workGroups li a").RemoveClass("current");
+                jQuery.Select("#workGroups li a[rel='address:/works/" + Path[0] + "']").AddClass("current");
             }
         }
 

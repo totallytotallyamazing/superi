@@ -42,6 +42,12 @@
     color: #faaf4c;
 }
 
+.works-side-bar a.current {
+    text-decoration: none;
+    color: #996633 !important;
+    cursor: default;
+}
+
 .works-side-bar > p
 {
     padding-top: 20px;

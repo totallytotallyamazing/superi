@@ -68,7 +68,7 @@ namespace MBrand.Client
             }
 
             string a = options.PathNames[0] ?? string.Empty;
-            jQueryUi.Select("#mainNav > *").RemoveClass("current", Page.TransitionDuration);
+            jQueryUi.Select("#mainNav a").RemoveClass("current", Page.TransitionDuration).RemoveClass("expanded");
             jQueryUi.Select("[rel='address:/" + a + "'], [rel='address:" + options.Value + "']",
                           Document.GetElementById("mainNav"))
                 .AddClass("current", Page.TransitionDuration);

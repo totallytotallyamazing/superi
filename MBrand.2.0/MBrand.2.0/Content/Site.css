@@ -196,7 +196,18 @@ body
 }
 
 #mainNav > *.current {
-    color: #996633
+    color: #996633;
+    cursor: default;
+}
+
+#mainNav *.current {
+    text-decoration: none;
+    cursor: default;
+}
+
+#mainNav *.current.expanded {
+    text-decoration: underline;
+    cursor: pointer;
 }
 
 

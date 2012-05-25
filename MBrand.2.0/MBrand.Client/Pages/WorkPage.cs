@@ -4,6 +4,7 @@
 using System;
 using System.Collections.Generic;
 using System.Html;
+using jQueryApi;
 using jQueryApi.Address;
 
 namespace MBrand.Client.Pages
@@ -28,6 +29,7 @@ namespace MBrand.Client.Pages
         protected override void Initialize()
         {
             PageManager.Current.AddressChanged += AddressChanged;
+            jQuery.Select("#mainNav .current").AddClass("expanded");
         }
 
         void AddressChanged(AddressChangeEventArgs args)

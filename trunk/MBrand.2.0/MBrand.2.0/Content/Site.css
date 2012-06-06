@@ -257,14 +257,10 @@ body
 /* Pages */
 
 #WorksPage {
-    margin-bottom: 80px;
+    margin-bottom: 35px;
     min-height: 718px;
-    border-top: 1px solid #faaf4c;
-    border-bottom: 1px solid #faaf4c;
-}
-
-#WorkPage {
-    border-top: 1px solid #faaf4c;
+/*    border-top: 1px solid #faaf4c;
+    border-bottom: 1px solid #faaf4c;/*/
 }
 
 .fancybox-title{ height: 20px; font-size: 16px !important;font-family: PFDinTextCondPro !important;  font-weight: bold !important;padding: 10px 20px;margin-top: 0 !important; }
@@ -280,3 +276,8 @@ body
 }
 
 .fancybox-title .socials{ float: right;}
+
+.notFound {
+    padding-top: 180px;
+    float: right;
+}

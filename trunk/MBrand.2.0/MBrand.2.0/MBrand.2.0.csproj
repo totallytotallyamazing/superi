@@ -128,6 +128,7 @@
     <Content Include="Content\Fonts\pfdintextcondpro-light-webfont.svg" />
     <Content Include="Content\Fonts\pfdintextcondpro-medium-webfont.svg" />
     <Content Include="Content\Fonts\pfdintextcondpro-regular-webfont.svg" />
+    <Content Include="Content\img\404.gif" />
     <Content Include="Content\img\copyLarge.png" />
     <Content Include="Content\img\logo.png" />
     <Content Include="Content\img\max.png" />
@@ -228,6 +229,7 @@
     <Content Include="Views\Home\Feedback.cshtml" />
     <Content Include="Views\Home\SecretLink.cshtml" />
     <Content Include="Views\Shared\FacebookMetaTags.cshtml" />
+    <Content Include="Views\Home\NotFound.cshtml" />
     <None Include="_bin_deployableAssemblies\Microsoft.Web.Infrastructure.dll" />
     <None Include="_bin_deployableAssemblies\System.Web.WebPages.Razor.dll" />
     <None Include="_bin_deployableAssemblies\System.Web.WebPages.dll" />

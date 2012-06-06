@@ -41,6 +41,7 @@ namespace MBrand.Client
             _pages["feedback"] = typeof(FeedbackPage);
             _pages["secretLink"] = typeof(SecretPage);
             _pages["content"] = typeof(ContentPage);
+            _pages["notFound"] = typeof(NotFoundPage);
         }
 
         public void Initialize()

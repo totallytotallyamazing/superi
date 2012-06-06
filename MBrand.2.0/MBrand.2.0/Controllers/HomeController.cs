@@ -69,6 +69,11 @@ namespace MBrand.Controllers
             }
         }
 
+        public ActionResult NotFound()
+        {
+            return PartialView();
+        }
+
          override protected void Dispose(bool disposing)
         {
             context.Dispose();

@@ -183,6 +183,7 @@
     <Content Include="Controls\fancybox\jquery.fancybox.css" />
     <Content Include="Controls\fancybox\jquery.fancybox.js" />
     <Content Include="Controls\fancybox\jquery.fancybox.pack.js" />
+    <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="HTMLPage1.htm" />
     <Content Include="Models\Content.edmx.sql" />

@@ -85,7 +85,7 @@ namespace Shop.Controllers
         public ActionResult FeedbackForm(FeedbackFormModel feedbackFormModel)
         {
             SiteSettings settings = Configurator.LoadSettings();
-            MailHelper.SendTemplate(new List<MailAddress> { new MailAddress(settings.ReceiverMail) }, 
+            MailHelper.SendTemplate(new List<MailAddress> { new MailAddress(settings.ReceiverMail), new MailAddress(settings.ReceiverMail2) }, 
                 "Форма обратной связи", "FeedbackTemplate.htm", 
                 null, true, feedbackFormModel.Name, feedbackFormModel.Email, feedbackFormModel.Text);
             return RedirectToAction("FeedbackSent");

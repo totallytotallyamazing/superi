@@ -18,5 +18,9 @@ namespace Shop.Models
         public int PageSize { get; set; }
         [DisplayName("Языки")]
         public string Languages { get; set; }
+        [Required(ErrorMessage = "*")]
+        [Editable(false)]
+        [DisplayName("Почтовый ящик администратора")]
+        public string ReceiverMail2 { get; set; }
     }
 }

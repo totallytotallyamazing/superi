@@ -113,8 +113,8 @@ namespace Shop.Controllers
         IQueryable<Product> ApplyPaging(IQueryable<Product> products, int? page)
         {
             int currentPage = page ?? 0;
-            SiteSettings settings = Configurator.LoadSettings();
-            int pageSize = settings.PageSize;
+           // SiteSettings settings = Configurator.LoadSettings();
+            int pageSize = 10;//settings.PageSize;
             if (page < 0)
                 return products;
             return products.Skip(currentPage * pageSize).Take(pageSize);

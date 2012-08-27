@@ -20,7 +20,7 @@ namespace Dev.Mvc.Runtime
         private static Configuration LoadConfiguration()
         {
             if (configuration == null)
-                configuration = WebConfigurationManager.OpenWebConfiguration("/Configuration");
+                configuration = WebConfigurationManager.OpenWebConfiguration("~/Configuration");
             return configuration;
         }
 

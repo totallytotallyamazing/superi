@@ -5,7 +5,7 @@
     bool showPager = ViewData["showPager"] != null;
     if(showPager)
     {
-    int pageSize = Configurator.LoadSettings().PageSize;
+        int pageSize = 10;// Configurator.LoadSettings().PageSize;
     int totalCount = (int)ViewData["totalCount"];
     int pageCount = totalCount / pageSize;
     int page = (int)ViewData["page"];

@@ -40,7 +40,7 @@
         <tr>
             <td style="float:left; width:300px; height:100%; border:1px solid #969696;" valign="top">
                 <asp:TreeView runat="server" ID="twGroups" ShowCheckBoxes="All"></asp:TreeView>
-                <div style="display:none"><asp:TextBox runat="server" ID="tbGroupName"></asp:TextBox>
+                <div style="display:block"><asp:TextBox runat="server" ID="tbGroupName"></asp:TextBox>
                 <asp:Button runat="server" Text="Создать группу" ID="btnAddGroup" OnClick="btnAddGroup_Click" /><br />
                 <asp:Button runat ="server" Text="(в корне)" ID="btnAddRootGroup" OnClick="btnAddRootGroup_Click" />
                 <asp:Button runat="server" ID="btnRemoveScopes" Text="Удалить отмеченные" OnClick="btnRemoveScopes_Click" /></div>

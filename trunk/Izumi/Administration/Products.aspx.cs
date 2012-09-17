@@ -1,4 +1,7 @@
 using System;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
 using System.IO;
 using System.Web.UI.WebControls;
 using Superi.Shop;
@@ -185,8 +188,9 @@ public partial class Administration_Products : System.Web.UI.Page
             if (node.Checked)
             {
                 int id = int.Parse(node.Value);
-                ProductGroup group = new ProductGroup(id);
-                group.Remove();
+                //ProductGroup group = new ProductGroup(id);
+                //group.Remove();
+                RemoveProductGroupByHand(id);
             }
         }
     }
@@ -201,9 +205,23 @@ public partial class Administration_Products : System.Web.UI.Page
             if (node.Checked)
             {
                 int id = int.Parse(node.Value);
-                ProductGroup scope = new ProductGroup(id);
-                scope.Remove();
+                //ProductGroup scope = new ProductGroup(id);
+                //scope.Remove();
+                RemoveProductGroupByHand(id);
             }
+        }
+    }
+
+    private void RemoveProductGroupByHand(int id)
+    {
+        SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["AppData"].ToString());
+        using (conn)
+        {
+            conn.Open();
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "delete from ProductGroups where id=" + id;
+            cmd.ExecuteNonQuery();
         }
     }
 }

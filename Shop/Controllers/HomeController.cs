@@ -84,9 +84,9 @@ namespace Shop.Controllers
         [HttpPost]
         public ActionResult FeedbackForm(FeedbackFormModel feedbackFormModel)
         {
-            SiteSettings settings = Configurator.LoadSettings();
+            //SiteSettings settings = Configurator.LoadSettings();
             //MailHelper.SendFeedbackTemplate(new List<MailAddress> { new MailAddress(settings.ReceiverMail), new MailAddress(settings.ReceiverMail2) }, "Форма обратной связи", "FeedbackTemplate.htm", null, true, feedbackFormModel.Name, feedbackFormModel.Email, feedbackFormModel.Text);
-            MailHelper.SendFeedbackTemplate(new List<MailAddress> { new MailAddress("kushko.alex@gmail.com") }, "Форма обратной связи", "FeedbackTemplate.htm", null, true, feedbackFormModel.Name, feedbackFormModel.Email, feedbackFormModel.Text);
+            MailHelper.SendFeedbackTemplate(new List<MailAddress> { new MailAddress("kushko.alex@gmail.com"), new MailAddress("d.velychko@listelli.ua") }, "Форма обратной связи", "FeedbackTemplate.htm", null, true, feedbackFormModel.Name, feedbackFormModel.Email, feedbackFormModel.Text);
             return RedirectToAction("FeedbackSent");
         }
 

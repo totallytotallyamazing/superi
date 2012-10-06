@@ -130,7 +130,7 @@ var BrandCatalogue = {
 
             if (index < imageArray.length - 1) {
                 index++;
-                $("#mainCatalogImage").empty().append($("<img>").attr("index", index).attr("src", imageArray[index]));
+                $("#mainCatalogImage").empty().append($(imageArray[index]).attr("index", index));
                 $("#mainCatalogImage img").load(function () {
                     $("#contentBoxBrandCatalog").height(this.offsetHeight);
                     ;
@@ -168,7 +168,7 @@ var BrandCatalogue = {
             index = 1 * imgAnchor.getAttribute("index");
             if (index < imageArray.length - 1) {
                 index++;
-                $("#mainCatalogImage").empty().append($("<img>").attr("index", index).attr("src", imageArray[index]));
+                $("#mainCatalogImage").empty().append($(imageArray[index]).attr("index", index));
                 $("#mainCatalogImage img").load(function () {
                     $("#contentBoxBrandCatalog").height(this.offsetHeight);
                     ;
@@ -183,7 +183,7 @@ var BrandCatalogue = {
             index = 1 * imgAnchor.getAttribute("index");
 
             //$("#mainCatalogImage").empty().append($("<img>").attr("src", imageArray[index]));
-            $("#mainCatalogImage").empty().append($("<img>").attr("index", index).attr("src", imageArray[index]));
+            $("#mainCatalogImage").empty().append($(imageArray[index]).attr("index", index));
 
             $("#mainRightArrow").css("visibility", "visible");
             $("#mainLeftArrow").css("visibility", "visible");

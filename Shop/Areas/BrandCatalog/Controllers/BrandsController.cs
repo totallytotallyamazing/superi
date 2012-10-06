@@ -34,9 +34,11 @@ namespace Shop.Areas.BrandCatalog.Controllers
                 var images = allImg
                     .Skip(skip)
                     .Take(7)
-                    .Select((img, i) => new { Id = img.Id, Image = img.Image, Index = i });
+                    .Select((img, i) => new { Id = img.Id, Image = img.Image, Index = i }).ToList();
 
-                var imgArray = allImg.Select(i => "http://listelli.ua/ImageCache/catalogueMain/" + i.Image).ToArray();
+
+
+                var imgArray = allImg.Select(i => GraphicsHelper.CachedImage(null, string.Format("~/Content/CatalogueImages/Brand{0}Group{1}", brandId, groupId), i.Image, "catalogueMain", "")).ToArray();
                 ViewData["imgArray"] = imgArray;
                 StringBuilder dockContent = new StringBuilder();
                 dockContent.Append(@"<div id=""dock"">");

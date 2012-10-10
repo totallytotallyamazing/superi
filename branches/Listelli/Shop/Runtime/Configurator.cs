@@ -21,7 +21,7 @@ namespace Dev.Mvc.Runtime
                                   {"ReceiverMail", "d.velychko@listelli.ua"},
                                   {"ReceiverMail2", "kushko.alex@gmail.com"},
                                   {"PageSize", "12"},
-                                  {"Language", "ru-RU;en-US;"}
+                                  {"Language", "ru-RU;en-US"}
                               };
         }
 

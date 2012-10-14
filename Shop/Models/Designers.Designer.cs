@@ -8,12 +8,13 @@
 //------------------------------------------------------------------------------
 
 using System;
+using System.ComponentModel;
+using System.Data.EntityClient;
 using System.Data.Objects;
 using System.Data.Objects.DataClasses;
-using System.Data.EntityClient;
-using System.ComponentModel;
-using System.Xml.Serialization;
+using System.Linq;
 using System.Runtime.Serialization;
+using System.Xml.Serialization;
 
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
@@ -120,6 +121,7 @@ namespace Shop.Models
         private ObjectSet<DesignerContentImages> _DesignerContentImages;
 
         #endregion
+
         #region AddTo Methods
     
         /// <summary>
@@ -147,11 +149,11 @@ namespace Shop.Models
         }
 
         #endregion
+
     }
-    
 
     #endregion
-    
+
     #region Entities
     
     /// <summary>
@@ -182,6 +184,7 @@ namespace Shop.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -404,6 +407,7 @@ namespace Shop.Models
         partial void OnRoom0Changed();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -430,6 +434,7 @@ namespace Shop.Models
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -456,6 +461,7 @@ namespace Shop.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -582,6 +588,7 @@ namespace Shop.Models
         partial void OnRoomTypeChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -646,6 +653,7 @@ namespace Shop.Models
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -676,6 +684,7 @@ namespace Shop.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -802,6 +811,7 @@ namespace Shop.Models
         partial void OnSortOrderChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -844,8 +854,10 @@ namespace Shop.Models
         }
 
         #endregion
+
     }
 
     #endregion
+
     
 }

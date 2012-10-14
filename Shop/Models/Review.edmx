@@ -27,7 +27,7 @@
           <Property Name="EntityName" Type="varchar" Nullable="false" MaxLength="250" />
           <Property Name="EntityId" Type="int" Nullable="false" />
           <Property Name="Language" Type="varchar" Nullable="false" MaxLength="5" />
-          <Property Name="Text" Type="varchar(max)" />
+          <Property Name="Text" Type="nvarchar(max)" />
           <Property Name="FieldName" Type="varchar" MaxLength="250" />
         </EntityType>
         <EntityType Name="ReviewContent">
@@ -35,13 +35,13 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Title" Type="varchar" MaxLength="500" />
-          <Property Name="Description" Type="varchar" MaxLength="1000" />
-          <Property Name="ImageSource" Type="varchar" MaxLength="1000" />
+          <Property Name="Title" Type="nvarchar" MaxLength="500" />
+          <Property Name="Description" Type="nvarchar" MaxLength="1000" />
+          <Property Name="ImageSource" Type="nvarchar" MaxLength="1000" />
           <Property Name="SortOrder" Type="int" Nullable="false" />
-          <Property Name="Name" Type="varchar" MaxLength="100" />
-          <Property Name="PageTitle" Type="varchar" MaxLength="1000" />
-          <Property Name="SeoDescription" Type="varchar(max)" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="PageTitle" Type="nvarchar" MaxLength="1000" />
+          <Property Name="SeoDescription" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="ReviewContentItem">
           <Key>
@@ -49,7 +49,7 @@
           </Key>
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="ReviewContentId" Type="int" Nullable="false" />
-          <Property Name="Text" Type="varchar(max)" />
+          <Property Name="Text" Type="nvarchar(max)" />
           <Property Name="ContentType" Type="int" Nullable="false" />
           <Property Name="SortOrder" Type="int" Nullable="false" />
         </EntityType>
@@ -58,7 +58,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="ImageSource" Type="varchar" Nullable="false" MaxLength="500" />
+          <Property Name="ImageSource" Type="nvarchar" Nullable="false" MaxLength="500" />
           <Property Name="SortOrder" Type="int" Nullable="false" />
           <Property Name="ReviewContentItemId" Type="int" Nullable="false" />
         </EntityType>

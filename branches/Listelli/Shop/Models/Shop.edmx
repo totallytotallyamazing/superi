@@ -115,10 +115,10 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="500" />
-          <Property Name="SeoKeywords" Type="varchar" MaxLength="500" />
-          <Property Name="SeoDescription" Type="varchar" MaxLength="500" />
-          <Property Name="Description" Type="varchar" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="500" />
+          <Property Name="SeoKeywords" Type="nvarchar" MaxLength="500" />
+          <Property Name="SeoDescription" Type="nvarchar" MaxLength="500" />
+          <Property Name="Description" Type="nvarchar" />
           <Property Name="Logo" Type="varchar" MaxLength="250" />
           <Property Name="HasCatalogue" Type="bit" Nullable="false" />
           <Property Name="SortOrder" Type="int" Nullable="false" />
@@ -137,9 +137,9 @@
           </Key>
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="ParentId" Type="int" />
-          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="250" />
-          <Property Name="SeoKeywords" Type="varchar" MaxLength="500" />
-          <Property Name="SeoDescription" Type="varchar" MaxLength="1000" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="250" />
+          <Property Name="SeoKeywords" Type="nvarchar" MaxLength="500" />
+          <Property Name="SeoDescription" Type="nvarchar" MaxLength="1000" />
           <Property Name="SortOrder" Type="int" Nullable="false" />
           <Property Name="Image" Type="varchar" MaxLength="500" />
           <Property Name="Published" Type="bit" Nullable="false" />
@@ -179,7 +179,7 @@
           <Property Name="EntityName" Type="varchar" Nullable="false" MaxLength="250" />
           <Property Name="EntityId" Type="int" Nullable="false" />
           <Property Name="Language" Type="varchar" Nullable="false" MaxLength="5" />
-          <Property Name="Text" Type="varchar(max)" />
+          <Property Name="Text" Type="nvarchar(max)" />
           <Property Name="FieldName" Type="varchar" MaxLength="250" />
         </EntityType>
         <EntityType Name="Product">
@@ -188,28 +188,28 @@
           </Key>
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="BrandId" Type="int" />
-          <Property Name="PartNumber" Type="varchar" MaxLength="45" />
-          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="500" />
-          <Property Name="ShortDescription" Type="varchar" MaxLength="500" />
-          <Property Name="Description" Type="varchar" />
-          <Property Name="SeoDescription" Type="varchar" MaxLength="500" />
-          <Property Name="SeoKeywords" Type="varchar" MaxLength="500" />
+          <Property Name="PartNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="500" />
+          <Property Name="ShortDescription" Type="nvarchar" MaxLength="500" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="SeoDescription" Type="nvarchar" MaxLength="500" />
+          <Property Name="SeoKeywords" Type="nvarchar" MaxLength="500" />
           <Property Name="Price" Type="float" Nullable="false" />
           <Property Name="OldPrice" Type="float" />
           <Property Name="IsNew" Type="bit" Nullable="false" />
-          <Property Name="Color" Type="varchar" MaxLength="100" />
+          <Property Name="Color" Type="nvarchar" MaxLength="100" />
           <Property Name="SortOrder" Type="int" Nullable="false" />
           <Property Name="Published" Type="bit" Nullable="false" />
           <Property Name="ShowInRoot" Type="bit" Nullable="false" />
-          <Property Name="Tint" Type="varchar" MaxLength="150" />
+          <Property Name="Tint" Type="nvarchar" MaxLength="150" />
         </EntityType>
         <EntityType Name="ProductAttribute">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="250" />
-          <Property Name="ValueType" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="250" />
+          <Property Name="ValueType" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="Static" Type="bit" Nullable="false" />
           <Property Name="SortOrder" Type="int" Nullable="false" />
         </EntityType>
@@ -220,7 +220,7 @@
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="ProductId" Type="int" Nullable="false" />
           <Property Name="ProductAttributeId" Type="int" Nullable="false" />
-          <Property Name="Value" Type="varchar(max)" />
+          <Property Name="Value" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="ProductAttributeValue">
           <Key>
@@ -228,7 +228,7 @@
           </Key>
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="ProductAttributeId" Type="int" Nullable="false" />
-          <Property Name="Value" Type="varchar" Nullable="false" MaxLength="500" />
+          <Property Name="Value" Type="nvarchar" Nullable="false" MaxLength="500" />
           <Property Name="SortOrder" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="ProductAttributeValueAvailable">
@@ -300,7 +300,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Value" Type="varchar" Nullable="false" MaxLength="500" />
+          <Property Name="Value" Type="nvarchar" Nullable="false" MaxLength="500" />
         </EntityType>
         <Association Name="FK__Category__Parent__1ED998B2">
           <End Role="Category" Type="shop_model.Store.Category" Multiplicity="0..1" />
@@ -574,9 +574,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Function Name="searchProducts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="searchString" Type="varchar" Mode="In" />
-        </Function>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -1061,7 +1058,6 @@
               <ScalarProperty Name="Id" ColumnName="ProductAttributeId" />
             </EndProperty>
           </AssociationSetMapping>
-          <FunctionImportMapping FunctionImportName="searchProducts" FunctionName="shop_model.Store.searchProducts" />
           <EntitySetMapping Name="ShopLocalResources">
             <EntityTypeMapping TypeName="shop_model.ShopLocalResource">
               <MappingFragment StoreEntitySet="LocalResource">

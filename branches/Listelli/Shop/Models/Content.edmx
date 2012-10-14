@@ -20,13 +20,13 @@
           </Key>
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Date" Type="datetime" Nullable="false" />
-          <Property Name="Keywords" Type="varchar(max)" />
+          <Property Name="Keywords" Type="nvarchar(max)" />
           <Property Name="Description" Type="text" />
-          <Property Name="Language" Type="varchar" MaxLength="5" />
-          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="255" />
-          <Property Name="Text" Type="varchar(max)" />
-          <Property Name="Preview" Type="varchar" MaxLength="500" />
-          <Property Name="Title" Type="varchar" Nullable="false" MaxLength="500" />
+          <Property Name="Language" Type="nvarchar" MaxLength="50" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="Text" Type="nvarchar(max)" />
+          <Property Name="Preview" Type="nvarchar" MaxLength="500" />
+          <Property Name="Title" Type="nvarchar" Nullable="false" MaxLength="500" />
           <Property Name="Type" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Content">
@@ -34,14 +34,14 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="255" />
-          <Property Name="Language" Type="varchar" MaxLength="5" />
-          <Property Name="Title" Type="varchar" MaxLength="500" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="Language" Type="nvarchar" MaxLength="50" />
+          <Property Name="Title" Type="nvarchar" MaxLength="500" />
           <Property Name="ParentId" Type="int" />
-          <Property Name="Description" Type="varchar(max)" />
-          <Property Name="Text" Type="varchar(max)" />
-          <Property Name="Keywords" Type="varchar(max)" />
-          <Property Name="PageTitle" Type="varchar" MaxLength="500" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Text" Type="nvarchar(max)" />
+          <Property Name="Keywords" Type="nvarchar(max)" />
+          <Property Name="PageTitle" Type="nvarchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="LocalResource">
           <Key>
@@ -51,7 +51,7 @@
           <Property Name="EntityName" Type="varchar" Nullable="false" MaxLength="250" />
           <Property Name="EntityId" Type="int" Nullable="false" />
           <Property Name="Language" Type="varchar" Nullable="false" MaxLength="5" />
-          <Property Name="Text" Type="varchar(max)" />
+          <Property Name="Text" Type="nvarchar(max)" />
           <Property Name="FieldName" Type="varchar" MaxLength="250" />
         </EntityType>
         <Association Name="FK__Content__ParentI__07020F21">

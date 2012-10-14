@@ -4,66 +4,98 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="shop_Orders.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="shop_Orders.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="shop_OrdersStoreContainer">
-          <EntitySet Name="DeliveryType" EntityType="shop_Orders.Store.DeliveryType" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Order" EntityType="shop_Orders.Store.Order" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="OrderItem" EntityType="shop_Orders.Store.OrderItem" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="PaymentProperty" EntityType="shop_Orders.Store.PaymentProperty" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="PaymentPropertyValue" EntityType="shop_Orders.Store.PaymentPropertyValue" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="PaymentType" EntityType="shop_Orders.Store.PaymentType" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="PaymentTypeAvailable" EntityType="shop_Orders.Store.PaymentTypeAvailable" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="DeliveryType" EntityType="shop_Orders.Store.DeliveryType" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Order" EntityType="shop_Orders.Store.Order" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="OrderItem" EntityType="shop_Orders.Store.OrderItem" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PaymentProperty" EntityType="shop_Orders.Store.PaymentProperty" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PaymentPropertyValue" EntityType="shop_Orders.Store.PaymentPropertyValue" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PaymentType" EntityType="shop_Orders.Store.PaymentType" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PaymentTypeAvailable" EntityType="shop_Orders.Store.PaymentTypeAvailable" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK__Order__DeliveryT__0E6E26BF" Association="shop_Orders.Store.FK__Order__DeliveryT__0E6E26BF">
+            <End Role="DeliveryType" EntitySet="DeliveryType" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Order__PaymentTy__0F624AF8" Association="shop_Orders.Store.FK__Order__PaymentTy__0F624AF8">
+            <End Role="PaymentType" EntitySet="PaymentType" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderItem__Order__1F98B2C1" Association="shop_Orders.Store.FK__OrderItem__Order__1F98B2C1">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="OrderItem" EntitySet="OrderItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PaymentPr__Order__2FCF1A8A" Association="shop_Orders.Store.FK__PaymentPr__Order__2FCF1A8A">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="PaymentPropertyValue" EntitySet="PaymentPropertyValue" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PaymentPr__Payme__29221CFB" Association="shop_Orders.Store.FK__PaymentPr__Payme__29221CFB">
+            <End Role="PaymentType" EntitySet="PaymentType" />
+            <End Role="PaymentProperty" EntitySet="PaymentProperty" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PaymentPr__Payme__30C33EC3" Association="shop_Orders.Store.FK__PaymentPr__Payme__30C33EC3">
+            <End Role="PaymentProperty" EntitySet="PaymentProperty" />
+            <End Role="PaymentPropertyValue" EntitySet="PaymentPropertyValue" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PaymentTy__Deliv__73BA3083" Association="shop_Orders.Store.FK__PaymentTy__Deliv__73BA3083">
+            <End Role="DeliveryType" EntitySet="DeliveryType" />
+            <End Role="PaymentTypeAvailable" EntitySet="PaymentTypeAvailable" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PaymentTy__Payme__74AE54BC" Association="shop_Orders.Store.FK__PaymentTy__Payme__74AE54BC">
+            <End Role="PaymentType" EntitySet="PaymentType" />
+            <End Role="PaymentTypeAvailable" EntitySet="PaymentTypeAvailable" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="DeliveryType">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="AdditionalFee" Type="float" />
-          <Property Name="Disabled" Type="bit" Nullable="false" />
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="500" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="500" />
+          <Property Name="Disabled" Type="bit" Nullable="false" />
+          <Property Name="AdditionalFee" Type="float" />
         </EntityType>
         <EntityType Name="Order">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="AdditionalDeliveryInfo" Type="varchar" MaxLength="2000" />
-          <Property Name="AdditionalProperties" Type="varchar" />
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="BillingEmail" Type="varchar" MaxLength="2063" />
           <Property Name="BillingName" Type="varchar" MaxLength="500" />
           <Property Name="BillingPhone" Type="varchar" MaxLength="20" />
-          <Property Name="DeliveryAddress" Type="varchar" MaxLength="2000" />
           <Property Name="DeliveryName" Type="varchar" MaxLength="500" />
           <Property Name="DeliveryPhone" Type="varchar" MaxLength="20" />
+          <Property Name="DeliveryAddress" Type="varchar" MaxLength="2000" />
+          <Property Name="AdditionalDeliveryInfo" Type="varchar" MaxLength="2000" />
+          <Property Name="AdditionalProperties" Type="varchar(max)" />
           <Property Name="DeliveryTypeId" Type="int" />
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="OrderDate" Type="datetime" />
           <Property Name="PaymentTypeId" Type="int" />
-          <Property Name="UniqueId" Type="varchar" MaxLength="32" />
+          <Property Name="OrderDate" Type="datetime" />
+          <Property Name="UniqueId" Type="varchar" MaxLength="36" />
         </EntityType>
         <EntityType Name="OrderItem">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Description" Type="varchar" />
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Image" Type="varchar" MaxLength="2000" />
-          <Property Name="Name" Type="varchar" MaxLength="500" />
           <Property Name="OrderId" Type="int" Nullable="false" />
-          <Property Name="Price" Type="float" Nullable="false" />
-          <Property Name="ProductAttributes" Type="varchar" />
           <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="ProductAttributes" Type="varchar(max)" />
           <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="Price" Type="float" Nullable="false" />
+          <Property Name="Image" Type="varchar" MaxLength="2000" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="Name" Type="varchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="PaymentProperty">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Disabled" Type="bit" Nullable="false" />
-          <Property Name="FieldName" Type="varchar" MaxLength="45" />
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="varchar" Nullable="false" MaxLength="500" />
+          <Property Name="Disabled" Type="bit" Nullable="false" />
           <Property Name="PaymentTypeId" Type="int" Nullable="false" />
+          <Property Name="FieldName" Type="varchar" MaxLength="45" />
         </EntityType>
         <EntityType Name="PaymentPropertyValue">
           <Key>
@@ -78,12 +110,12 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Disabled" Type="bit" Nullable="false" />
-          <Property Name="DocumentCaption" Type="varchar" MaxLength="500" />
-          <Property Name="DocumentName" Type="varchar" MaxLength="250" />
-          <Property Name="HasDocument" Type="bit" />
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="varchar" Nullable="false" MaxLength="500" />
+          <Property Name="Disabled" Type="bit" Nullable="false" />
+          <Property Name="DocumentName" Type="varchar" MaxLength="250" />
+          <Property Name="DocumentCaption" Type="varchar" MaxLength="500" />
+          <Property Name="HasDocument" Type="bit" />
         </EntityType>
         <EntityType Name="PaymentTypeAvailable">
           <Key>
@@ -93,6 +125,102 @@
           <Property Name="DeliveryTypeId" Type="int" Nullable="false" />
           <Property Name="PaymentTypeId" Type="int" Nullable="false" />
         </EntityType>
+        <Association Name="FK__Order__DeliveryT__0E6E26BF">
+          <End Role="DeliveryType" Type="shop_Orders.Store.DeliveryType" Multiplicity="0..1" />
+          <End Role="Order" Type="shop_Orders.Store.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DeliveryType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="DeliveryTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Order__PaymentTy__0F624AF8">
+          <End Role="PaymentType" Type="shop_Orders.Store.PaymentType" Multiplicity="0..1" />
+          <End Role="Order" Type="shop_Orders.Store.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="PaymentTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderItem__Order__1F98B2C1">
+          <End Role="Order" Type="shop_Orders.Store.Order" Multiplicity="1" />
+          <End Role="OrderItem" Type="shop_Orders.Store.OrderItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrderItem">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PaymentPr__Order__2FCF1A8A">
+          <End Role="Order" Type="shop_Orders.Store.Order" Multiplicity="1" />
+          <End Role="PaymentPropertyValue" Type="shop_Orders.Store.PaymentPropertyValue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PaymentPropertyValue">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PaymentPr__Payme__29221CFB">
+          <End Role="PaymentType" Type="shop_Orders.Store.PaymentType" Multiplicity="1" />
+          <End Role="PaymentProperty" Type="shop_Orders.Store.PaymentProperty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PaymentProperty">
+              <PropertyRef Name="PaymentTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PaymentPr__Payme__30C33EC3">
+          <End Role="PaymentProperty" Type="shop_Orders.Store.PaymentProperty" Multiplicity="1" />
+          <End Role="PaymentPropertyValue" Type="shop_Orders.Store.PaymentPropertyValue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentProperty">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PaymentPropertyValue">
+              <PropertyRef Name="PaymentPropertyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PaymentTy__Deliv__73BA3083">
+          <End Role="DeliveryType" Type="shop_Orders.Store.DeliveryType" Multiplicity="1" />
+          <End Role="PaymentTypeAvailable" Type="shop_Orders.Store.PaymentTypeAvailable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DeliveryType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PaymentTypeAvailable">
+              <PropertyRef Name="DeliveryTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PaymentTy__Payme__74AE54BC">
+          <End Role="PaymentType" Type="shop_Orders.Store.PaymentType" Multiplicity="1" />
+          <End Role="PaymentTypeAvailable" Type="shop_Orders.Store.PaymentTypeAvailable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PaymentTypeAvailable">
+              <PropertyRef Name="PaymentTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -333,6 +461,8 @@
     <edmx:Options>
       <DesignerInfoPropertySet xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
       </DesignerInfoPropertySet>
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->

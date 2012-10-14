@@ -23,14 +23,14 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="255" />
-          <Property Name="Url" Type="varchar" Nullable="false" MaxLength="500" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="Url" Type="nvarchar" Nullable="false" MaxLength="500" />
           <Property Name="Title" Type="text" />
           <Property Name="Summary" Type="text" />
-          <Property Name="Logo" Type="varchar" MaxLength="500" />
-          <Property Name="NameF" Type="varchar" Nullable="false" MaxLength="255" />
-          <Property Name="Room1" Type="varchar" MaxLength="255" />
-          <Property Name="Room0" Type="varchar" MaxLength="255" />
+          <Property Name="Logo" Type="nvarchar" MaxLength="500" />
+          <Property Name="NameF" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="Room1" Type="nvarchar" MaxLength="255" />
+          <Property Name="Room0" Type="nvarchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="DesignerContent">
           <Key>
@@ -39,7 +39,7 @@
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="DesignerId" Type="int" Nullable="false" />
           <Property Name="Summary" Type="text" />
-          <Property Name="RoomName" Type="varchar" MaxLength="255" />
+          <Property Name="RoomName" Type="nvarchar" MaxLength="255" />
           <Property Name="RoomType" Type="smallint" />
         </EntityType>
         <EntityType Name="DesignerContentImages">
@@ -48,8 +48,8 @@
           </Key>
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="DesignerContentId" Type="int" Nullable="false" />
-          <Property Name="ImageSource" Type="varchar" Nullable="false" MaxLength="500" />
-          <Property Name="Description" Type="varchar" MaxLength="1000" />
+          <Property Name="ImageSource" Type="nvarchar" Nullable="false" MaxLength="500" />
+          <Property Name="Description" Type="nvarchar" MaxLength="1000" />
           <Property Name="SortOrder" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_DesignerContent_Designer">

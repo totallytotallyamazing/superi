@@ -8,12 +8,13 @@
 //------------------------------------------------------------------------------
 
 using System;
+using System.ComponentModel;
+using System.Data.EntityClient;
 using System.Data.Objects;
 using System.Data.Objects.DataClasses;
-using System.Data.EntityClient;
-using System.ComponentModel;
-using System.Xml.Serialization;
+using System.Linq;
 using System.Runtime.Serialization;
+using System.Xml.Serialization;
 
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
@@ -258,6 +259,7 @@ namespace Shop.Models
         private ObjectSet<ShopLocalResource> _ShopLocalResources;
 
         #endregion
+
         #region AddTo Methods
     
         /// <summary>
@@ -349,6 +351,7 @@ namespace Shop.Models
         }
 
         #endregion
+
         #region Function Imports
     
         /// <summary>
@@ -371,11 +374,11 @@ namespace Shop.Models
         }
 
         #endregion
+
     }
-    
 
     #endregion
-    
+
     #region Entities
     
     /// <summary>
@@ -406,6 +409,7 @@ namespace Shop.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -604,6 +608,7 @@ namespace Shop.Models
         partial void OnSortOrderChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -652,6 +657,7 @@ namespace Shop.Models
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -686,6 +692,7 @@ namespace Shop.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -908,6 +915,7 @@ namespace Shop.Models
         partial void OnIsContestChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -1038,6 +1046,7 @@ namespace Shop.Models
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -1068,6 +1077,7 @@ namespace Shop.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -1170,6 +1180,7 @@ namespace Shop.Models
         partial void OnSpecialDiscountChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -1240,6 +1251,7 @@ namespace Shop.Models
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -1276,6 +1288,7 @@ namespace Shop.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -1642,6 +1655,7 @@ namespace Shop.Models
         partial void OnTintChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -1882,6 +1896,7 @@ namespace Shop.Models
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -1914,6 +1929,7 @@ namespace Shop.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -2040,6 +2056,7 @@ namespace Shop.Models
         partial void OnSortOrderChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -2110,6 +2127,7 @@ namespace Shop.Models
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -2134,6 +2152,7 @@ namespace Shop.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -2188,6 +2207,7 @@ namespace Shop.Models
         partial void OnValueChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -2268,6 +2288,7 @@ namespace Shop.Models
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -2296,6 +2317,7 @@ namespace Shop.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -2374,6 +2396,7 @@ namespace Shop.Models
         partial void OnSortOrderChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -2438,6 +2461,7 @@ namespace Shop.Models
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -2466,6 +2490,7 @@ namespace Shop.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -2544,6 +2569,7 @@ namespace Shop.Models
         partial void OnImageSourceChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -2586,6 +2612,7 @@ namespace Shop.Models
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -2622,6 +2649,7 @@ namespace Shop.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -2844,6 +2872,7 @@ namespace Shop.Models
         partial void OnImageChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -2886,6 +2915,7 @@ namespace Shop.Models
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -2916,6 +2946,7 @@ namespace Shop.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -3066,6 +3097,7 @@ namespace Shop.Models
         partial void OnFieldNameChanged();
 
         #endregion
+
     
     }
     
@@ -3093,6 +3125,7 @@ namespace Shop.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -3147,6 +3180,7 @@ namespace Shop.Models
         partial void OnValueChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -3173,8 +3207,10 @@ namespace Shop.Models
         }
 
         #endregion
+
     }
 
     #endregion
+
     
 }

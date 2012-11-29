@@ -112,12 +112,25 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\SecurityModule.cs" />
+    <Compile Include="Controllers\ProfileV2Controller.cs" />
+    <Compile Include="Models\V2\BonusPoint.cs" />
+    <Compile Include="Models\V2\BonusPointOperation.cs" />
+    <Compile Include="Models\V2\BonusPointRangedPromotionInfo.cs" />
+    <Compile Include="Models\V2\BonusPointsForPeriod.cs" />
+    <Compile Include="Models\V2\IPublicService.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\V2\BonusAdjustOperationsResult.cs" />
     <Compile Include="Models\Entities.cs" />
     <Compile Include="Models\IPublicService.cs" />
+    <Compile Include="Models\V2\Profile.cs" />
+    <Compile Include="Models\V2\Property.cs" />
+    <Compile Include="Models\V2\Receipt.cs" />
+    <Compile Include="Models\V2\ReceiptLine.cs" />
+    <Compile Include="Models\V2\ReceiptsResult.cs" />
+    <Compile Include="Models\V2\RewardStep.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -151,7 +151,7 @@ var BrandCatalogue = {
 
             if (index > 0) {
                 index--;
-                $("#mainCatalogImage").empty().append($("<img>").attr("index", index).attr("src", imageArray[index]));
+                $("#mainCatalogImage").empty().append($(imageArray[index]).attr("index", index));
                 $("#mainCatalogImage img").load(function () {
                     $("#contentBoxBrandCatalog").height(this.offsetHeight);
                 });

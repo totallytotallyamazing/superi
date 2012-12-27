@@ -6,6 +6,7 @@ using System.Text;
 
 namespace BrsmProxy.Models.V2
 {
+    [DataContract(Namespace = "http://loyalty.eps.lt/2012/08/public")]
     public class BonusPointsForPeriod
     {
         [DataMember]

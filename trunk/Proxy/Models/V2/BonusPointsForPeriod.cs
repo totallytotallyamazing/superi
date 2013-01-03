@@ -6,7 +6,7 @@ using System.Text;
 
 namespace BrsmProxy.Models.V2
 {
-    [DataContract(Namespace = "http://loyalty.eps.lt/2012/08/public")]
+    [DataContract(Namespace = "http://loyalty.eps.lt/2012/11/public")]
     public class BonusPointsForPeriod
     {
         [DataMember]
@@ -16,6 +16,7 @@ namespace BrsmProxy.Models.V2
         public TimePeriod TimePeriod { get; set; }
     }
 
+    [DataContract(Namespace = "http://loyalty.eps.lt/2012/11/public")]
     public enum TimePeriod
     {
         Total,

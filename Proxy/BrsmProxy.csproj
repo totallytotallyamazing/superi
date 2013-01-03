@@ -126,6 +126,7 @@
     <Compile Include="Models\Entities.cs" />
     <Compile Include="Models\IPublicService.cs" />
     <Compile Include="Models\V2\Profile.cs" />
+    <Compile Include="Models\V2\Promotion.cs" />
     <Compile Include="Models\V2\Property.cs" />
     <Compile Include="Models\V2\Receipt.cs" />
     <Compile Include="Models\V2\ReceiptLine.cs" />

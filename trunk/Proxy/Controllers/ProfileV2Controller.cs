@@ -39,7 +39,8 @@ namespace BrsmProxy.Controllers
 
         public BonusAdjustOperationsResult GetBonusAdjustOperations(string profileId, string pageToken, DateTime from, DateTime to)
         {
-            return _serviceClient.GetBonusAdjustOperations(profileId, pageToken, from, to);
+            var result = _serviceClient.GetBonusAdjustOperations(profileId, pageToken, from, to);
+            return result;
         }
 
         public ReceiptsResult GetReceipts(bool receipts, string profileId, string pageToken, DateTime from, DateTime to)

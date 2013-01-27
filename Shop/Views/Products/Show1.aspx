@@ -105,6 +105,7 @@
 <asp:Content ID="Content5" runat="server" ContentPlaceHolderID="Footer">
     <div id="pager">
         <p class="pgt1">
-            <a href="#" class="pgt1">« <%= Shop.Resources.Global.ToCatalogue %></a></p>
+            
+            <a href="javascript:history.back();" class="pgt1">« <%= Shop.Resources.Global.ToCatalogue %></a></p>
     </div>
 </asp:Content>

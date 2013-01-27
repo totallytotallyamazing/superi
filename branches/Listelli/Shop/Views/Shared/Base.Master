@@ -98,7 +98,7 @@
                         
                         <div class="bubbleNew">
                             <div class="bubbleText">
-                                <a href="http://listelli.ua/content/files/listell_presentation.pdf">Скачать нашу презентацию</a>
+                                <a href="http://listelli.ua/content/files/listell_presentation.pdf"><%= Shop.Resources.Global.PresentationDownload %></a>
 
                             </div>
                         </div>

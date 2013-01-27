@@ -8,15 +8,15 @@
 //------------------------------------------------------------------------------
 
 using System;
+using System.ComponentModel;
+using System.Data.EntityClient;
 using System.Data.Objects;
 using System.Data.Objects.DataClasses;
-using System.Data.EntityClient;
-using System.ComponentModel;
-using System.Xml.Serialization;
+using System.Linq;
 using System.Runtime.Serialization;
+using System.Xml.Serialization;
 
 [assembly: EdmSchemaAttribute()]
-
 namespace Shop.Models
 {
     #region Contexts
@@ -82,6 +82,7 @@ namespace Shop.Models
         private ObjectSet<Subscriber> _Subscribers;
 
         #endregion
+
         #region AddTo Methods
     
         /// <summary>
@@ -93,11 +94,11 @@ namespace Shop.Models
         }
 
         #endregion
+
     }
-    
 
     #endregion
-    
+
     #region Entities
     
     /// <summary>
@@ -126,6 +127,7 @@ namespace Shop.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -204,9 +206,11 @@ namespace Shop.Models
         partial void OnIsActiveChanged();
 
         #endregion
+
     
     }
 
     #endregion
+
     
 }

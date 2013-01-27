@@ -270,4 +270,7 @@
   <data name="YouAreSubscribed" xml:space="preserve">
     <value>Вы подписаны на новости!</value>
   </data>
+  <data name="PresentationDownload" xml:space="preserve">
+    <value>Скачать нашу презентацию</value>
+  </data>
 </root>

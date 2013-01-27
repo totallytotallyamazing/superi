@@ -175,7 +175,7 @@
     <value>Call us to learn more about this product, ur just</value>
   </data>
   <data name="LogoTitle" xml:space="preserve">
-    <value>execution of interiors with parquet and marble</value>
+    <value>execution of interiors with wood and marble</value>
   </data>
   <data name="MessageSent" xml:space="preserve">
     <value>The message has been sent. Thank you!</value>
@@ -266,5 +266,8 @@
   </data>
   <data name="YouAreSubscribed" xml:space="preserve">
     <value>You are subscribed for the news!</value>
+  </data>
+  <data name="PresentationDownload" xml:space="preserve">
+    <value>Download presentation</value>
   </data>
 </root>

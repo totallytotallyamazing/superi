@@ -56,7 +56,7 @@ namespace BrsmProxy.Controllers
             binding.Security.Message.EstablishSecurityContext = false;
             binding.Security.Message.NegotiateServiceCredential = false;
 
-            var address = new EndpointAddress(new Uri("http://91.220.114.71:8998/public"), new DnsEndpointIdentity("EpsLoyBackOffice"));
+            var address = new EndpointAddress(new Uri("http://91.220.114.37:8998/public"), new DnsEndpointIdentity("EpsLoyBackOffice"));
 
             var factory = new ChannelFactory<IPublicService>(binding, address);
             factory.Credentials.ClientCertificate.Certificate = new X509Certificate2(System.Web.HttpContext.Current.Server.MapPath("~/brsm.pfx"), "aaaa");

@@ -46,7 +46,14 @@ namespace Shop.Controllers
                 ViewData["reviewContentId"] = content.Id;
                 ViewData["reviewContentName"] = content.Name;
 
-                ViewData["reviewHeaderText"] = context.ReviewContent.Where(c => c.Id == 6).Select(c => c.Description).FirstOrDefault();
+                //ViewData["reviewHeaderText"] = context.ReviewContent.Where(c => c.Id == 6).Select(c => c.Description).FirstOrDefault();
+                var contents = context.ReviewContent
+                    .Localize((c, l) => new { Content = c, Localizations = l }, context.ReviewLocalResources, null)
+                    .ToList()
+                    .Select(item => item.Content.UpdateValues(item.Localizations));
+                ViewData["reviewHeaderText"] = contents.First(c => c.Id == 6).Description;
+
+
                 ViewData["description"] = content.SeoDescription;
                 return View(content);
             }

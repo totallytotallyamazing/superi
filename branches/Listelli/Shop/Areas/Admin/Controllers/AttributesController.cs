@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 using Shop.Models;
@@ -49,7 +50,7 @@ namespace Shop.Areas.Admin.Controllers
         {
             using (ShopStorage context = new ShopStorage())
             {
-                attribute.UpdateValues(localizations.Where(l=>l.Language == "ru-RU"));
+                attribute.UpdateValues(localizations.Where(l=>l.Language == Thread.CurrentThread.CurrentUICulture.Name));
                 if (attribute.Id > 0)
                 {
                     object originalItem;

@@ -144,6 +144,14 @@ namespace Shop.Areas.Admin.Controllers
                 localizations.SaveLocalizationsTo(context.ShopLocalResources, false);
 
                 context.SaveChanges();
+
+                List<ShopLocalResource> resources = new List<ShopLocalResource>();
+                foreach (var item in product.ProductAttributeStaticValues)
+                {
+                    resources.Add(CreateAttributeLocalization(item));
+                }
+
+                resources.SaveLocalizationsTo(_context.ShopLocalResources);
             }
 
             return RedirectToAction("AddEdit", new { id = product.Id, cId, bId });
@@ -167,13 +175,18 @@ namespace Shop.Areas.Admin.Controllers
                     product.ProductAttributeStaticValues.Add(value);
                 }
                 value.Value = attributeValue;
-                _context.ShopLocalResources.Where()
+                
             }
         }
 
-        private ShopLocalResource CreateAttributeLocalizations()
+        private ShopLocalResource CreateAttributeLocalization(ProductAttributeStaticValue value)
         {
-
+            ShopLocalResource resource = new ShopLocalResource();
+            resource.EntityName = value.GetType().Name;
+            resource.EntityId = value.Id;
+            resource.FieldName = "Value";
+            resource.Language = Thread.CurrentThread.CurrentUICulture.Name;
+            return resource;
         }
 
         public ActionResult AddProductImage(int productId, bool isDefault, int? categoryId)

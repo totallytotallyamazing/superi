@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 using Shop.Models;
@@ -151,7 +152,7 @@ namespace Shop.Areas.Admin.Controllers
         private void UpdateProductAttributes(Product product, FormCollection form)
         {
             PostData postData = form.ProcessPostData(prefix: "pa_");
-
+            string currentLocale = Thread.CurrentThread.CurrentUICulture.Name;
             foreach (var item in postData)
             {
                 int attributeId = int.Parse(item.Key);
@@ -166,7 +167,13 @@ namespace Shop.Areas.Admin.Controllers
                     product.ProductAttributeStaticValues.Add(value);
                 }
                 value.Value = attributeValue;
+                _context.ShopLocalResources.Where()
             }
+        }
+
+        private ShopLocalResource CreateAttributeLocalizations()
+        {
+
         }
 
         public ActionResult AddProductImage(int productId, bool isDefault, int? categoryId)

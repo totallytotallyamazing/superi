@@ -1,0 +1,28 @@
+﻿@model IEnumerable<Jackson.Models.Group>
+
+<div id="aboveMenu"></div>
+
+<div id="mainMenu">
+    <div class="fadeIn"></div>
+    <div class="fadeOut"></div>
+    <div class="bar-content">
+        @foreach (var item in Model)
+        {
+            if (item.Url == ViewBag.Id)
+            {
+                <span>@item.Name</span>
+            }
+            else
+            { 
+                @Html.ActionLink(item.Name, "Index", new { controller = "Home", id = item.Url });
+            }
+        }
+        @if (Request.IsAuthenticated)
+        { 
+            <span id="addMenu" class="admin">
+            </span>
+        }
+    </div>
+</div>
+
+<div id="belowMenu"></div>

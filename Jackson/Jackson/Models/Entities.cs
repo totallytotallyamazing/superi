@@ -15,6 +15,7 @@ namespace Jackson.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public string Url { get; set; }
+        public int SortOrder { get; set; }
         public virtual ICollection<Item> Items { get; set; }
     }
 
@@ -25,6 +26,7 @@ namespace Jackson.Models
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public string ImageUrl { get; set; }
+        public int SortOrder { get; set; }
         public virtual Group Group { get; set; }
     }
 }

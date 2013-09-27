@@ -258,6 +258,7 @@
     <Content Include="Content\img\head.jpg" />
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
+    <None Include="Properties\PublishProfiles\ftp.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\admin.js" />
     <Content Include="Scripts\FileUpload\angularjs\angular.debug.js" />

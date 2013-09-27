@@ -21,12 +21,35 @@ namespace Jackson.Controllers
 
         public ActionResult Index(string id)
         {
-            Group model = null;
+            IEnumerable<Item> model = null;
+            Group group = null;
             if (string.IsNullOrEmpty(id))
             {
-                model = _context.Groups.FirstOrDefault();
+                group = _context.Groups.Include("Items").FirstOrDefault();
             }
-            return View();
+            else 
+            {
+                group = _context.Groups.Include("Items").FirstOrDefault(g=>g.Url == id);
+            }
+
+            if (group != null)
+            {
+                model = group.Items;
+                ViewBag.Id = group.Url;
+            }
+            else if(!string.IsNullOrEmpty(id))
+            {
+                return RedirectToAction("Index", new { controller = "Home", id = UrlParameter.Optional });
+            }
+
+            return View(model);
+        }
+
+        [ChildActionOnly]
+        public ActionResult Menu(string id) 
+        {
+            ViewBag.Id = id;
+            return PartialView(_context.Groups);
         }
 
     }

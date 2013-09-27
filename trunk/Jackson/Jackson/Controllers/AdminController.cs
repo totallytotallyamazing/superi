@@ -25,9 +25,26 @@ namespace Jackson.Controllers
 
         public ActionResult AddGroup(Group group, string currentGroup)
         {
+            group.Url = Utils.Transliterator.Transliterate(group.Name);
             _context.Groups.Add(group);
             _context.SaveChanges();
-            return RedirectToAction("Index", "Home", new { id = currentGroup });
+            return Json(group.Name);
+        }
+
+        public ActionResult DeleteGroup(string id)
+        {
+            bool result = true;
+            try
+            {
+                var group = _context.Groups.First(g => g.Url == id);
+                _context.Groups.Remove(group);
+                _context.SaveChanges();
+            }
+            catch
+            {
+                result = false;
+            }
+            return Json(result);
         }
     }
 }

@@ -14,6 +14,6 @@ namespace Jackson.Models
         }
 
         public DbSet<Group> Groups{ get; set; }
-        public DbSet<Group> Items { get; set; }
+        public DbSet<Item> Items { get; set; }
     }
 }

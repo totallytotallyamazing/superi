@@ -1,2 +1,11 @@
-﻿@model IEnumerable<Jackson.Models.Group>
+﻿@model IEnumerable<Jackson.Models.Item>
 
+<div id="content">
+    @if (Request.IsAuthenticated)
+    { 
+        <div class="admin">
+            @Ajax.ActionLink("Удалить этот раздел", "DeleteGroup", new { controller = "Admin", id = ViewBag.Id }, new AjaxOptions {HttpMethod="POST", Confirm="Точно?", OnSuccess="groupDeleted" })
+        </div>
+    }
+
+</div>

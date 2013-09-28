@@ -9,3 +9,26 @@
     cursor: pointer;
     text-decoration:underline;
 }
+
+.drop-location {
+    border: #2c2c2c 2px dashed;
+    height: 200px;
+    line-height: 200px;
+    text-align: center;
+    border-radius: 1em;
+    margin: 10px;
+    position:relative;
+    overflow: hidden;
+}
+
+#progressBar {
+    width:0%;
+    position:absolute;
+    opacity:0.4;
+    background-color: #ec5d30;
+    height: 100%;
+    top:0;
+    left:0; 
+}
+
+#sortCompleted{ display: none;}

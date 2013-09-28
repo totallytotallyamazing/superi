@@ -1,3 +1,5 @@
+using System.Web.Http;
+
 [assembly: WebActivator.PreApplicationStartMethod(typeof(Jackson.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivator.ApplicationShutdownMethodAttribute(typeof(Jackson.App_Start.NinjectWebCommon), "Stop")]
 
@@ -45,6 +47,9 @@ namespace Jackson.App_Start
             kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
             
             RegisterServices(kernel);
+
+            GlobalConfiguration.Configuration.DependencyResolver = new NinjectDependencyResolver(kernel);
+
             return kernel;
         }
 

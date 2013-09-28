@@ -8,8 +8,9 @@
     @if (Request.IsAuthenticated)
     { 
         @Styles.Render("~/Content/Admin.css")
-        @Scripts.Render("~/Scripts/jquery.jeditable.mini.js", "~/Scripts/admin.js") 
+        @Scripts.Render("~/bundles/admin") 
     }    
+    @RenderSection("scripts", false)
 </head>
 <body>
     <div id="main">

@@ -123,6 +123,14 @@ div#belowMenu {
     margin-top: 3px;
 }
 
+div#content {
+    text-align: center;
+}
+div#content #items li {
+    display: inline-block;
+    vertical-align: top;
+}
+
 div#foot {
     height: 52px;
     background-color:#2c2c2c;

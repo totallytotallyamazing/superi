@@ -1,0 +1,19 @@
+﻿@if (Request.IsAuthenticated)
+{ 
+    <a href="javascript:void(0)" class="admin" id="sortCompleted">Готово</a>
+    <a href="javascript:void(0)" class="admin" id="enableSort">Сортировать</a>
+
+    <div class="admin">
+        @Ajax.ActionLink("Удалить этот раздел", "DeleteGroup", new { controller = "Admin", id = ViewBag.Id }, new AjaxOptions { HttpMethod = "POST", Confirm = "Точно?", OnSuccess = "groupDeleted" })
+    </div>
+    <div class="drop-location">
+        Перетащи файлы сюда
+            <div id="progressBar"></div>
+    </div>
+    <div>
+        или
+    </div>
+    <div>
+        <input type="file" name="files[]" multiple data-url="/Files/Upload?objectContext=@ViewBag.Id" id="upload" />
+    </div>
+}

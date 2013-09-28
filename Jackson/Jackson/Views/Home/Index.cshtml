@@ -1,11 +1,22 @@
 ﻿@model IEnumerable<Jackson.Models.Item>
+@section scripts
+{
+    <script>
+        var GroupId = '@ViewBag.Id';
+    </script>
+}
+
 
 <div id="content">
-    @if (Request.IsAuthenticated)
-    { 
-        <div class="admin">
-            @Ajax.ActionLink("Удалить этот раздел", "DeleteGroup", new { controller = "Admin", id = ViewBag.Id }, new AjaxOptions {HttpMethod="POST", Confirm="Точно?", OnSuccess="groupDeleted" })
-        </div>
-    }
-
+    <ul id="items">
+        @foreach (var item in Model)
+        {
+            <li data-id="@item.Id">
+                <a href="@Url.Content("~/Files/" + ViewBag.Id + "/" + item.ImageUrl)">
+                    <img alt="@item.Id" src="@Url.Content("~/Files/" + ViewBag.Id + "/_thumbs/" + item.ThumbnailUrl)"/>
+                </a>
+            </li>  
+        }
+    </ul>
 </div>
+@{Html.RenderPartial("AdminUpload");}

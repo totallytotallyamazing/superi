@@ -260,6 +260,10 @@
     <Content Include="Content\FileUpload\img\loading.gif" />
     <Content Include="Content\FileUpload\img\progressbar.gif" />
     <Content Include="Content\FileUpload\img\progressblue.gif" />
+    <Content Include="Content\img\arrowLeft.png" />
+    <Content Include="Content\img\arrowRight.png" />
+    <Content Include="Content\img\closePopup.png" />
+    <Content Include="Content\img\cross.png" />
     <Content Include="Content\img\head.jpg" />
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
@@ -313,13 +317,13 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Auth\Login.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Shared\Menu.cshtml" />
     <Content Include="Views\Shared\Footer.cshtml" />
     <Content Include="Views\Shared\Header.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\BackloadDemo\Index.cshtml" />
     <Content Include="Views\Home\AdminUpload.cshtml" />
+    <Content Include="Views\Home\ItemPopup.cshtml" />
     <None Include="Web.Backload.Default.config" />
     <None Include="Web.Backload.xsd">
       <SubType>Designer</SubType>

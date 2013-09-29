@@ -4,20 +4,21 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     @Styles.Render("~/Content/Site.css")
-    @Scripts.Render("~/Scripts/jquery-1.10.2.min.js", "~/Scripts/jquery.unobtrusive-ajax.min.js")
+    @Scripts.Render("~/bundles/js/common")
     @if (Request.IsAuthenticated)
     { 
         @Styles.Render("~/Content/Admin.css")
-        @Scripts.Render("~/bundles/admin") 
+        @Scripts.Render("~/bundles/js/admin") 
     }    
     @RenderSection("scripts", false)
 </head>
-<body>
-    <div id="main">
-        @{Html.RenderPartial("Header");}
-        @{Html.RenderAction("Menu", new {controller = "Home", id=ViewBag.Id});}
-        @RenderBody()
-        @{Html.RenderPartial("Footer");}
-    </div>
-</body>
+    <body>
+        <div id="main">
+            @{Html.RenderPartial("Header");}
+            @{Html.RenderAction("Menu", new {controller = "Home", id=ViewBag.Id});}
+            @RenderBody()
+            @{Html.RenderPartial("Footer");}
+        </div>
+        @RenderSection("outer", false)
+    </body>
 </html>

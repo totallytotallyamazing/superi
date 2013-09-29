@@ -12,7 +12,7 @@ namespace Jackson.Controllers
         //
         // GET: /Home/
 
-        SiteContext _context = null;
+        readonly SiteContext _context = null;
 
         public HomeController(SiteContext context)
         {
@@ -25,11 +25,11 @@ namespace Jackson.Controllers
             Group group = null;
             if (string.IsNullOrEmpty(id))
             {
-                group = _context.Groups.Include("Items").FirstOrDefault();
+                group = _context.Groups.AsNoTracking().Include("Items").FirstOrDefault();
             }
             else 
             {
-                group = _context.Groups.Include("Items").FirstOrDefault(g=>g.Url == id);
+                group = _context.Groups.AsNoTracking().Include("Items").FirstOrDefault(g=>g.Url == id);
             }
 
             if (group != null)
@@ -40,6 +40,11 @@ namespace Jackson.Controllers
             else if(!string.IsNullOrEmpty(id))
             {
                 return RedirectToAction("Index", new { controller = "Home", id = UrlParameter.Optional });
+            }
+            
+            if (model != null)
+            {
+                model = model.OrderBy(i => i.SortOrder);
             }
 
             return View(model);

@@ -22,18 +22,9 @@ namespace Jackson.Controllers
         {
             FileUploadHandler handler = new FileUploadHandler(Request, this);
             handler.StoreFileRequestFinished += handler_StoreFileRequestFinished;
-            handler.StoreFileRequestException += handler_StoreFileRequestException;
-            handler.ProcessPipelineExceptionOccured += handler_ProcessPipelineExceptionOccured;
             ActionResult result = await handler.HandleRequestAsync();
+            
             return result;
-        }
-
-        void handler_ProcessPipelineExceptionOccured(object sender, Backload.Eventing.Args.ProcessPipelineExceptionEventArgs e)
-        {
-        }
-
-        void handler_StoreFileRequestException(object sender, Backload.Eventing.Args.StoreFileRequestEventArgs e)
-        {
         }
 
         void handler_StoreFileRequestFinished(object sender, Backload.Eventing.Args.StoreFileRequestEventArgs e)
@@ -48,8 +39,8 @@ namespace Jackson.Controllers
                 ImageUrl = status.FileName,
                 ThumbnailUrl = status.ThumbnailName,
             };
-            _context.SaveChanges();
             _context.Items.Add(item);
+            _context.SaveChanges();
         }
 
     }

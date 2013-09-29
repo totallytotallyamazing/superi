@@ -1,12 +1,13 @@
 ﻿$(function () {
-    $("#addMenu").editable('/api/Group', {
+    $("#addMenu").editable('/Admin/AddGroup', {
         type: 'text',
         name: 'name',
         onblur: 'ignore',
         cssclass: 'add-group',
         placeholder: 'Добавить раздел',
-        callback: function () {
-            location.href = location.href;
+        callback: function (data) {
+            var href = "/" + data.replace(/"/gi, "");
+            location.href = href;
         }
     });
 
@@ -38,11 +39,9 @@
     });
 
     $("#sortCompleted").click(function() {
-        this.style.display = "none";
-        document.getElementById("enableSort").style.display = "inline";
         $("#items").sortable("disable");
-
-
+        var completeLink = this;
+        completeLink.setAttribute("disabled", "disabled");
         var order = $.map($("#items li"), function(a, index) {
             return $(a).data("id");
         });
@@ -52,7 +51,11 @@
             type: "Post",
             contentType: "application/json",
             accepts: "application/json",
-            data: JSON.stringify(order)            
+            data: JSON.stringify(order),
+        }).success(function() {
+            completeLink.style.display = "none";
+            document.getElementById("enableSort").style.display = "inline";
+            completeLink.removeAttribute("disabled");
         });
     });
 });

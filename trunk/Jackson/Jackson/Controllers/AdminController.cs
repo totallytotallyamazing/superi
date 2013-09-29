@@ -1,4 +1,5 @@
-﻿using Jackson.Models;
+﻿using System.IO;
+using Jackson.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,19 +17,13 @@ namespace Jackson.Controllers
         {
             _context = context;
         }
-        //
-        // GET: /Admin/
-        public ActionResult Index()
-        {
-            return View();
-        }
 
         public ActionResult AddGroup(Group group, string currentGroup)
         {
             group.Url = Utils.Transliterator.Transliterate(group.Name);
             _context.Groups.Add(group);
             _context.SaveChanges();
-            return Json(group.Name);
+            return Json(group.Url);
         }
 
         public ActionResult DeleteGroup(string id)
@@ -37,6 +32,7 @@ namespace Jackson.Controllers
             try
             {
                 var group = _context.Groups.First(g => g.Url == id);
+                DeleteImages(group);
                 _context.Groups.Remove(group);
                 _context.SaveChanges();
             }
@@ -45,6 +41,13 @@ namespace Jackson.Controllers
                 result = false;
             }
             return Json(result);
+        }
+
+        private void DeleteImages(Group group)
+        {
+            string filesPath = Server.MapPath("~/Files");
+            string folderPath = Path.Combine(filesPath, group.Url);
+            Directory.Delete(folderPath, true);
         }
     }
 }

@@ -17,6 +17,7 @@ namespace Jackson.Controllers
             _context = context;
         }
 
+        [HttpPost]
         public void Sort(string id, [FromBody]int[] order)
         {
             var items = _context.Items.Where(i => i.Group.Url == id).ToList();

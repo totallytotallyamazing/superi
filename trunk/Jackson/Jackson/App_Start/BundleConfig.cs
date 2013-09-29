@@ -10,7 +10,12 @@ namespace Jackson
     {
         public static void RegisterBundles(BundleCollection bundles)
         {
-            bundles.Add(new ScriptBundle("~/bundles/admin").Include(
+            bundles.Add(new ScriptBundle("~/bundles/js/common").Include(
+                "~/Scripts/jquery-1.10.2.min.js", 
+                "~/Scripts/jquery.unobtrusive-ajax.min.js",
+                "~/Scripts/site.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/js/admin").Include(
                 "~/Scripts/jquery.jeditable.mini.js",
                 "~/Scripts/jquery.ui.widget.js",
                 "~/Scripts/jquery.ui.core.js",

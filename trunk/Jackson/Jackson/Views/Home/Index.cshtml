@@ -6,13 +6,17 @@
     </script>
 }
 
+@section outer
+{
+    @{Html.RenderPartial("ItemPopup");}
+}
 
 <div id="content">
     <ul id="items">
         @foreach (var item in Model)
         {
             <li data-id="@item.Id">
-                <a href="@Url.Content("~/Files/" + ViewBag.Id + "/" + item.ImageUrl)">
+                <a href="#!@Url.Content("~/Files/" + ViewBag.Id + "/" + item.ImageUrl)">
                     <img alt="@item.Id" src="@Url.Content("~/Files/" + ViewBag.Id + "/_thumbs/" + item.ThumbnailUrl)"/>
                 </a>
             </li>  

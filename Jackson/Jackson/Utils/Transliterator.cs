@@ -78,6 +78,15 @@ namespace Jackson.Utils
             m_replacementRules['э'] = "e";
             m_replacementRules['ю'] = "yu";
             m_replacementRules['я'] = "ya";
+            m_replacementRules[' '] = "-";
+            m_replacementRules['/'] = "";
+            m_replacementRules['\\'] = "";
+            m_replacementRules['*'] = "";
+            m_replacementRules[':'] = "";
+            m_replacementRules['"'] = "";
+            m_replacementRules['>'] = "";
+            m_replacementRules['<'] = "";
+            m_replacementRules['|'] = "";
         }
     }
 }

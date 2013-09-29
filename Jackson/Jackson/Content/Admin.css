@@ -2,6 +2,10 @@
     color: red;
 }
 
+.addmin a[disabled] {
+    color: grey;
+}
+
 #addMenu {
     display: inline-block;
     margin-left: 10px;

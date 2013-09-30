@@ -27,7 +27,9 @@ namespace Jackson.Models
         public int Id { get; set; }
         public string ImageUrl { get; set; }
         public int SortOrder { get; set; }
+        public int Group_Id { get; set; }
         public string ThumbnailUrl { get; set; }
+        [ForeignKey("Group_Id")]
         public virtual Group Group { get; set; }
     }
 }

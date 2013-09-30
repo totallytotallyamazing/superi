@@ -10,17 +10,16 @@
         {
             if (item.Url == ViewBag.Id)
             {
-                <span>@item.Name</span>
+            <span>@item.Name</span>
             }
             else
             { 
-                @Html.ActionLink(item.Name, "Index", new { controller = "Home", id = item.Url });
+            @Html.ActionLink(item.Name, "Index", new { controller = "Home", id = item.Url }, new { data_url = item.Url });
             }
         }
         @if (Request.IsAuthenticated)
         { 
-            <span id="addMenu" class="admin">
-            </span>
+            <span id="addMenu" class="admin"></span>
         }
     </div>
 </div>

@@ -1,11 +1,7 @@
-﻿$(function () {
-    var current;
+﻿var current;
 
-    $("#content #items a").click(function (evt) {
-        var href = parseHref(this.href);
-        showImage(href);
-        current = this;
-    });
+$(function () {
+    hookDefaultItemClick();
 
     $("#leftArrow, #rightArrow").click(function (evt) {
         var dir = this.getAttribute("data-dir");
@@ -26,6 +22,14 @@
         adjustImagePopup(document.getElementById("modalOverlay"));
     });
 });
+
+function hookDefaultItemClick() {
+    $("#content #items a").click(function (evt) {
+        var href = parseHref(this.href);
+        showImage(href);
+        current = this;
+    });
+}
 
 function showImage(href) {
     document.getElementById("largeImage").src = href;

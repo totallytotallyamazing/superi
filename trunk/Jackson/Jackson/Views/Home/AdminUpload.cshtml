@@ -1,11 +1,13 @@
 ﻿@if (Request.IsAuthenticated)
 { 
-    <a href="javascript:void(0)" class="admin" id="sortCompleted">Готово</a>
-    <a href="javascript:void(0)" class="admin" id="enableSort">Сортировать</a>
-
-    <div class="admin">
+    <div class="admin" style="float: right">
         @Ajax.ActionLink("Удалить этот раздел", "DeleteGroup", new { controller = "Admin", id = ViewBag.Id }, new AjaxOptions { HttpMethod = "POST", Confirm = "Точно?", OnSuccess = "groupDeleted" })
     </div>
+    <a href="javascript:void(0)" class="admin" id="sortCompleted">Готово</a>
+    <a href="javascript:void(0)" class="admin" id="enableSort">Сортировать</a>
+    <a href="javascript:void(0)" class="admin" id="enableSelection">Выбрать</a>
+    <a href="javascript:void(0)" class="admin" id="cancelSelection">Не выбирать</a>
+
     <div class="drop-location">
         Перетащи файлы сюда
             <div id="progressBar"></div>

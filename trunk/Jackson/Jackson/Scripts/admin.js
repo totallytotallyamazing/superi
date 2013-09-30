@@ -63,6 +63,28 @@
     $("#enableSelection").click(function (evt) {
         this.style.display = "none";
         document.getElementById("cancelSelection").style.display = "inline";
+        $("#trashCan")
+            .show(0)
+            .bind("dragover dragenter", function(evt) {
+                if ($("#content #items li.selected").length > 0) {
+                    evt.preventDefault();
+                }
+            })
+            .bind("drop", function(evt) {
+                var items = evt.originalEvent.dataTransfer.getData("Text");
+                $.ajax({
+                    url: "/api/Items/Delete",
+                    type: "DELETE",
+                    contentType: "application/json",
+                    accepts: "application/json",
+                    data: items,
+                    success: function () {
+                        location.href = location.href;
+                    }
+                });
+            });
+
+        document.getElementById("trashCan").style.display = "block";
         $("#content #items a")
             .unbind()
             .click(function (evt) {
@@ -86,24 +108,21 @@
 
             });
         $("#mainMenu .bar-content a")
-            .bind("dragover", function (evt) {
-                //alert("dragover");
-                evt.preventDefault();
-            })
-            .bind("dragenter", function (evt) {
-                evt.preventDefault();
-                //alert("enter");
+            .bind("dragover dragenter", function (evt) {
+                if ($("#content #items li.selected").length > 0) {
+                    evt.preventDefault();
+                }
             })
             .bind("drop", function (evt) {
                 var items = evt.originalEvent.dataTransfer.getData("Text");
                 var moveTo = $(evt.target).data("url");
                 $.ajax({
-                    url: "/api/Items/Move?moveTo=" + moveTo,
+                    url: "/api/Items/Move?moveFrom=" + GroupId + "&moveTo=" + moveTo,
                     type: "PUT",
                     contentType: "application/json",
                     accepts: "application/json",
                     data: items,
-                    success: function() {
+                    success: function () {
                         location.href = "/" + moveTo;
                     }
                 });
@@ -111,6 +130,7 @@
     });
 
     $("#cancelSelection").click(function (evt) {
+        document.getElementById("trashCan").style.display = "none";
         this.style.display = "none";
         $("#content #items a").unbind();
         hookDefaultItemClick();
@@ -120,6 +140,10 @@
             .attr("draggable", false)
             .unbind("dragstart");
 
+        $("#trashCan")
+            .hide(0)
+            .unbind();
+        
         $("#mainMenu .bar-content a")
             .unbind("dragover")
             .unbind("dragenter")

@@ -10,17 +10,11 @@ namespace Jackson.Models
     {
         public SiteContext() : base("DefaultConnection")
         {
-
+            this.Configuration.LazyLoadingEnabled = true;
         }
 
         public DbSet<Group> Groups{ get; set; }
         public DbSet<Item> Items { get; set; }
 
-        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        //{
-        //    base.OnModelCreating(modelBuilder);
-
-        //    modelBuilder.Entity<Item>().HasRequired(i => i.Group).WithMany(g => g.Items).Map(m=>m.MapKey("Group_Id"));
-        //}
     }
 }

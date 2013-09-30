@@ -37,7 +37,7 @@ namespace Jackson.Controllers
         }
 
         [HttpPut]
-        public void Move([FromUri]string moveTo, [FromBody]int[] items)
+        public void Move([FromUri]string moveFrom, [FromUri]string moveTo, [FromBody]int[] items)
         {
             var sql = string.Format("SELECT * FROM Item WHERE Id IN ({0})", string.Join(", ", items));
             var itemsToMove = _context.Items.SqlQuery(sql);
@@ -48,8 +48,9 @@ namespace Jackson.Controllers
             {
                 foreach (var item in itemsToMove.ToArray())
                 {
+                    MoveFiles(item, moveFrom, moveTo);
+                    
                     item.Group_Id = group.Id;
-                    MoveFiles(item, moveTo);
                 }
             }
 
@@ -59,7 +60,7 @@ namespace Jackson.Controllers
         [HttpDelete]
         public void Delete([FromBody]int[] items)
         {
-            var sql = string.Format("SELECT * FROM Item WHERE Id IN ({0})", items);
+            var sql = string.Format("SELECT * FROM Item WHERE Id IN ({0})", string.Join(", ", items));
             var itemsToDelete = _context.Items.SqlQuery(sql);
 
             foreach (var item in itemsToDelete.ToArray())
@@ -81,13 +82,13 @@ namespace Jackson.Controllers
             File.Delete(thumbPath);
         }
 
-        private void MoveFiles(Item item, string group)
+        private void MoveFiles(Item item, string fromGroup, string toGroup)
         {
             string filesPath = HostingEnvironment.MapPath("~/Files");
-            string imagePath = Path.Combine(filesPath, item.Group.Url, item.ImageUrl);
-            string thumbPath = Path.Combine(filesPath, item.Group.Url, "_thumbs", item.ThumbnailUrl);
+            string imagePath = Path.Combine(filesPath, fromGroup, item.ImageUrl);
+            string thumbPath = Path.Combine(filesPath, fromGroup, "_thumbs", item.ThumbnailUrl);
 
-            string newImageFolder = Path.Combine(filesPath, group);
+            string newImageFolder = Path.Combine(filesPath, toGroup);
             if (!Directory.Exists(newImageFolder))
             {
                 Directory.CreateDirectory(newImageFolder);

@@ -36,3 +36,9 @@
 }
 
 #sortCompleted{ display: none;}
+
+#cancelSelection{ display: none;}
+
+div#content ul#items li.selected img {
+    border-color: #ec5d30;
+}

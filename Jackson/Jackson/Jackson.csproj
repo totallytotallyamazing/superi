@@ -148,7 +148,6 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
-    <Compile Include="Controllers\BackloadDemoController.cs" />
     <Compile Include="Controllers\FilesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ItemsController.cs" />
@@ -321,7 +320,6 @@
     <Content Include="Views\Shared\Footer.cshtml" />
     <Content Include="Views\Shared\Header.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\BackloadDemo\Index.cshtml" />
     <Content Include="Views\Home\AdminUpload.cshtml" />
     <Content Include="Views\Home\ItemPopup.cshtml" />
     <None Include="Web.Backload.Default.config" />

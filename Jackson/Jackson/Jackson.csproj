@@ -264,6 +264,7 @@
     <Content Include="Content\img\closePopup.png" />
     <Content Include="Content\img\cross.png" />
     <Content Include="Content\img\head.jpg" />
+    <Content Include="Content\img\trash.png" />
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
     <None Include="Properties\PublishProfiles\ftp.pubxml" />

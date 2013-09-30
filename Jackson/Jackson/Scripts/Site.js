@@ -45,7 +45,7 @@ function adjustImagePopup(overlay) {
 }
 
 function parseHref(href) {
-    return href.replace("#!/", "");
+    return href.substr(href.indexOf("#!") + 1);
 }
 
 function getNextItem(item, dir) {

@@ -32,20 +32,45 @@ function hookDefaultItemClick() {
 }
 
 function showImage(href) {
-    document.getElementById("largeImage").src = href;
     var overlay = document.getElementById("modalOverlay");
+    $("#largeImage").attr("src", href)
+    .bind('load', function () {
+        $(this).unbind("load");
+        adjustImagePopup(overlay, this);
+        });
+    document.getElementById("largeImage").src = href;
     overlay.style.display = "block";
-    adjustImagePopup(overlay);
 }
 
-function adjustImagePopup(overlay) {
+function adjustImagePopup(overlay, image) {
+    if(!image){
+        image = document.getElementById("largeImage");
+    }
     var popup = document.getElementById("imagePopup");
     popup.style.width = overlay.offsetWidth + "px";
     popup.style.height = overlay.offsetHeight + "px";
+    var size = getClientDimensions();
+    if (size.height - 150 < image.offsetHeight)
+    {
+        image.style.height = (size.height - 150) + "px";
+        document.getElementById("arrows").style.top = (image.offsetHeight / 2) + "px";
+    }
+}
+
+function getClientDimensions(){
+    var w=window.innerWidth
+|| document.documentElement.clientWidth
+|| document.body.clientWidth;
+
+    var h=window.innerHeight
+    || document.documentElement.clientHeight
+    || document.body.clientHeight; 
+
+    return {width: w, height:h};
 }
 
 function parseHref(href) {
-    return href.substr(href.indexOf("#!") + 1);
+    return href.substr(href.indexOf("#!") + 2);
 }
 
 function getNextItem(item, dir) {

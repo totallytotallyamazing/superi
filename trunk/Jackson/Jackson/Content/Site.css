@@ -153,7 +153,7 @@ div#content {
     }
 
 div#modalOverlay {
-    min-height: 1000px;
+    /*min-height: 1000px;*/
     position: fixed;
     left: 0;
     top: 0;
@@ -170,21 +170,22 @@ div#modalOverlay {
 div#imagePopup {
     display: table-cell;
     vertical-align: middle;
+    text-align: center;
     min-width: 1000px;
-    min-height: 1000px;
+    /*min-height: 1000px;*/
 }
 
 #arrows, #imageContainer {
     -ms-border-radius: 35px;
     border-radius: 28px;
     overflow: hidden;
-    width: 696px;
     margin: 0 auto;
     position: relative;
 }
 
 #imageContainer {
     top: -70px;
+    display: inline-block
 }
 
     #imageContainer #closePopup {

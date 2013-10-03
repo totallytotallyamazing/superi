@@ -10,6 +10,22 @@ $(function () {
 
     hookDefaultItemClick();
 
+    $(".phone a").hide(0);
+
+    $("#phone").inputmask("(999)999-99-99", {
+        oncomplete: function () {
+            $(".phone a").show(0);
+        },
+        onclear: function() {
+            $(".phone a").hide(0);
+        },
+        onincomplete: function () {
+            $(".phone a").hide(0);
+        },
+
+        clearIncomplete: true
+    });
+
     $("#leftArrow, #rightArrow").click(function (evt) {
         var dir = this.getAttribute("data-dir");
         var next = getNextItem(current, dir);

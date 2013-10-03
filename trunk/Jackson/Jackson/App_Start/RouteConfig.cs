@@ -13,6 +13,13 @@ namespace Jackson
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            //routes.MapRoute(
+            //    name: "Facebook",
+            //    url: "{_escaped_fragment_}",
+            //    defaults: new { controller = "Home", action = "Facebook", _escaped_fragment_ = UrlParameter.Optional }
+            //    );
+
+
             routes.MapRoute(
                 name: "IdOnly",
                 url: "{id}",

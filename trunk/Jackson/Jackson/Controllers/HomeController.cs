@@ -1,4 +1,5 @@
-﻿using Jackson.Models;
+﻿using System.Web.Management;
+using Jackson.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,8 +20,18 @@ namespace Jackson.Controllers
             _context = context;
         }
 
-        public ActionResult Index(string id)
+        public ActionResult Index(string id, string _escaped_fragment_)
         {
+            if (!string.IsNullOrEmpty(_escaped_fragment_))
+            {
+                if (Request.UserAgent.Contains("facebookexternalhit"))
+                {
+                    ViewBag.Url = _escaped_fragment_;
+                    return View("Facebook");
+                }
+                return Redirect("~/#!" + _escaped_fragment_);
+            }
+
             IEnumerable<Item> model = null;
             Group group = null;
             if (string.IsNullOrEmpty(id))

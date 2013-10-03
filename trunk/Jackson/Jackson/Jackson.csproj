@@ -270,7 +270,6 @@
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
     <None Include="Properties\PublishProfiles\fs.pubxml" />
-    <None Include="Properties\PublishProfiles\ftp.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\admin.js" />
     <Content Include="Scripts\FileUpload\angularjs\angular.debug.js" />
@@ -327,6 +326,7 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Home\AdminUpload.cshtml" />
     <Content Include="Views\Home\ItemPopup.cshtml" />
+    <Content Include="Views\Home\Facebook.cshtml" />
     <None Include="Web.Backload.Default.config" />
     <None Include="Web.Backload.xsd">
       <SubType>Designer</SubType>

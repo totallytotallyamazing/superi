@@ -300,6 +300,7 @@
     <Content Include="Scripts\FileUpload\tmpl.debug.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jquery.address-1.5.min.js" />
     <Content Include="Scripts\jquery.jeditable.mini.js" />
     <Content Include="Scripts\jquery.ui.core.js" />
     <Content Include="Scripts\jquery.ui.mouse.js" />

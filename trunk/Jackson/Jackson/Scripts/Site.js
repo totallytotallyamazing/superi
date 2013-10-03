@@ -1,6 +1,13 @@
 ﻿var current;
-
 $(function () {
+    $.address.crawlable(true);
+    $.address.change(function (href) {
+        if (href.value.length > 2 && $("#modalOverlay:visible").length == 0)
+        {
+            showImage(href.value);
+        }
+    });
+
     hookDefaultItemClick();
 
     $("#leftArrow, #rightArrow").click(function (evt) {
@@ -40,6 +47,15 @@ function showImage(href) {
         });
     document.getElementById("largeImage").src = href;
     overlay.style.display = "block";
+
+    var innerHref = location.href;
+
+    if (location.href.indexOf("#") >= 0)
+    {
+        innerHref = location.href.substr(0, location.href.indexOf("#"));
+    }
+
+    location.href = innerHref + "#!" + href;
 }
 
 function adjustImagePopup(overlay, image) {
@@ -86,4 +102,11 @@ function getNextItem(item, dir) {
 
 function closePopup() {
     document.getElementById("modalOverlay").style.display = "none";
+
+    var innerHref = location.href;
+
+    if (location.href.indexOf("#") >= 0) {
+        innerHref = location.href.substr(0, location.href.indexOf("#"));
+        location.href = innerHref + "#";
+    }
 }

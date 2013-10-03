@@ -11,9 +11,12 @@ namespace Jackson
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/js/common").Include(
-                "~/Scripts/jquery-1.10.2.min.js", 
+                "~/Scripts/jquery-1.10.2.min.js",
                 "~/Scripts/jquery.unobtrusive-ajax.min.js",
                 "~/Scripts/jquery.address-1.5.min.js",
+                "~/Scripts/jquery.inputmask-2.3.51.min.js",
+                "~/Scripts/jquery.inputmask.extensions-2.3.51.min.js",
+                "~/Scripts/jquery.inputmask.phone.extensions-2.3.51.min.js",
                 "~/Scripts/site.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/js/admin").Include(

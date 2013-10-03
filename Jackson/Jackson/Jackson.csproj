@@ -300,6 +300,12 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery.address-1.5.min.js" />
+    <Content Include="Scripts\jquery.inputmask-2.3.51.min.js" />
+    <Content Include="Scripts\jquery.inputmask\jquery.inputmask.date.extensions-2.3.51.min.js" />
+    <Content Include="Scripts\jquery.inputmask.extensions-2.3.51.min.js" />
+    <Content Include="Scripts\jquery.inputmask\jquery.inputmask.numeric.extensions-2.3.51.min.js" />
+    <Content Include="Scripts\jquery.inputmask.phone.extensions-2.3.51.min.js" />
+    <Content Include="Scripts\jquery.inputmask\jquery.inputmask.regex.extensions-2.3.51.min.js" />
     <Content Include="Scripts\jquery.jeditable.mini.js" />
     <Content Include="Scripts\jquery.ui.core.js" />
     <Content Include="Scripts\jquery.ui.mouse.js" />

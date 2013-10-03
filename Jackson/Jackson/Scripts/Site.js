@@ -46,6 +46,7 @@ function adjustImagePopup(overlay, image) {
     if(!image){
         image = document.getElementById("largeImage");
     }
+    image.style.height = "992px";
     var popup = document.getElementById("imagePopup");
     popup.style.width = overlay.offsetWidth + "px";
     popup.style.height = overlay.offsetHeight + "px";

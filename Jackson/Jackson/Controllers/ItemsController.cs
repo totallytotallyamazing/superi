@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.Mail;
 using System.Web;
 using System.Web.Hosting;
 using System.Web.Http;
@@ -20,6 +21,20 @@ namespace Jackson.Controllers
         public ItemsController(SiteContext context)
         {
             _context = context;
+        }
+
+        [AllowAnonymous]
+        public void NotifyMiller([FromUri]string url, [FromUri]string phone)
+        {
+            SmtpClient client = new SmtpClient();
+            MailMessage message = new MailMessage();
+            message.To.Add("miller.kak.miller@gmail.com");
+            //message.From = new MailAddress("m@m-brand.com.ua");
+            message.Subject = "m-j - Перезвони по футболке";
+            message.Body = string.Format("<div>Телефон: {0}</div><div><img src=\"{1}\" /></div>", phone, url);
+            message.IsBodyHtml = true;
+            client.Send(message);
+            message.Dispose();
         }
 
         [HttpPost]

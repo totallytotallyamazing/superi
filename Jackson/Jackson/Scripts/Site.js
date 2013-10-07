@@ -10,21 +10,41 @@ $(function () {
 
     hookDefaultItemClick();
 
-    $(".phone a").hide(0);
 
     $("#phone").inputmask("(999)999-99-99", {
         oncomplete: function () {
-            $(".phone a").show(0);
+            $(".phone a").css("visibility", "visible")
+                .removeAttr("disabled");
         },
         onclear: function() {
-            $(".phone a").hide(0);
+            $(".phone a").css("visibility", "hidden")
+                .attr("disabled", "disabled");
         },
         onincomplete: function () {
-            $(".phone a").hide(0);
+            $(".phone a").css("visibility", "hidden")
+            .attr("disabled", "disabled");
         },
 
         clearIncomplete: true
     });
+    
+    $(".phone a").click(function () {
+        $(".phone a").css("visibility", "hidden")
+            .attr("disabled", "disabled");
+
+        var url = escape(document.getElementById("largeImage").src);
+        var phone = escape(document.getElementById("phone").value);
+        $.ajax({
+            url: "/api/Items/NotifyMiller?url=" + url + "&phone=" + phone,
+            contentType: "application/json",
+            accepts: "application/json",
+            type: "POST",
+            success: function () {
+                $(".phone a").css("visibility", "visible")
+                    .removeAttr("disabled");
+            }
+        });
+    })
 
     $("#leftArrow, #rightArrow").click(function (evt) {
         var dir = this.getAttribute("data-dir");

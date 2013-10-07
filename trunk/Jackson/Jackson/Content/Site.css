@@ -256,12 +256,11 @@ div#imagePopup {
 #imageContainer #imageFooter div.image-title {
     width: 200px;
     padding-left: 40px;
-    padding-right: 130px;
 }
 
 #imageContainer #imageFooter input#phone {
     font-size: 18px;
-    padding: 10px 28px;
+    padding: 10px;
     color: #bbb;
     border: none;
     background: white;
@@ -271,8 +270,16 @@ div#imagePopup {
     display: inline-block;
 }
 
+#imageContainer #imageFooter .phone {
+    float: right;
+    padding-top: 15px;
+    white-space: nowrap;
+}
+
 #imageContainer #imageFooter .phone a {
     color: white;
+    visibility: hidden;
+    padding-right: 40px;
 }
 
 div#foot {

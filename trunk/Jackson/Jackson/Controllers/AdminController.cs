@@ -47,7 +47,10 @@ namespace Jackson.Controllers
         {
             string filesPath = Server.MapPath("~/Files");
             string folderPath = Path.Combine(filesPath, group.Url);
-            Directory.Delete(folderPath, true);
+            if (Directory.Exists(folderPath))
+            {
+                Directory.Delete(folderPath, true);
+            }
         }
     }
 }

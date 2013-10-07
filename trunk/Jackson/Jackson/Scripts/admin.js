@@ -25,7 +25,7 @@
             $('#progressBar').css(
                 'width', '0'
             );
-            location.href = location.href;
+            location.reload();
         }
     });
 
@@ -88,6 +88,7 @@
         $("#content #items a")
             .unbind()
             .click(function (evt) {
+                evt.preventDefault();
                 var li = $(this).closest("li");
                 li.toggleClass("selected");
                 if (li.hasClass("selected")) {
@@ -151,4 +152,4 @@
     });
 });
 
-function groupDeleted() { location.href = location.href; }
+function groupDeleted() { location.reload(); }

@@ -274,8 +274,16 @@ div#imagePopup {
 
         #imageContainer #imageFooter .phone a {
             color: white;
-            visibility: hidden;
             padding-right: 40px;
+        }
+
+        #imageContainer #imageFooter .phone span {
+            color: black;
+        }
+
+        #imageContainer #imageFooter .phone a[disabled] {
+            color: #ebebeb;
+            cursor: not-allowed;
         }
 
 div#foot {

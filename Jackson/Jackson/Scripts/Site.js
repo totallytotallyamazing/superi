@@ -13,22 +13,19 @@ $(function () {
 
     $("#phone").inputmask("(999)999-99-99", {
         oncomplete: function () {
-            $(".phone a").css("visibility", "visible")
-                .removeAttr("disabled");
+            $(".phone a").removeAttr("disabled");
         },
         onclear: function() {
-            $(".phone a").css("visibility", "hidden")
-                .attr("disabled", "disabled");
+            $(".phone a").attr("disabled", "disabled");
         },
         onincomplete: function () {
-            $(".phone a").css("visibility", "hidden")
-            .attr("disabled", "disabled");
+            $(".phone a").attr("disabled", "disabled");
         },
 
         clearIncomplete: true
     });
-    
-    $(".phone a").click(function () {
+
+    $(".phone a").click(function() {
         $(".phone a").css("visibility", "hidden")
             .attr("disabled", "disabled");
 
@@ -39,12 +36,12 @@ $(function () {
             contentType: "application/json",
             accepts: "application/json",
             type: "POST",
-            success: function () {
-                $(".phone a").css("visibility", "visible")
-                    .removeAttr("disabled");
+            success: function() {
+                $(".phone a").hide(0);
+                $(".phone span").show(0);
             }
         });
-    })
+    });
 
     $("#leftArrow, #rightArrow").click(function (evt) {
         var dir = this.getAttribute("data-dir");
@@ -75,6 +72,8 @@ function hookDefaultItemClick() {
 }
 
 function showImage(href) {
+    $(".phone a").show(0);
+    $(".phone span").hide(0);
     var overlay = document.getElementById("modalOverlay");
     $("#largeImage").attr("src", href)
     .bind('load', function () {

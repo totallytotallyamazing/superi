@@ -71,6 +71,15 @@ div#head {
             line-height: 30px;
         }
 
+    div#head .social-links a{
+        display: inline-block;
+        margin: 0 8px;
+    }
+
+    div#head .social-links a img{
+        border: 0;
+    }
+
 div#mainMenu, div#foot {
     position: relative;
     box-sizing: border-box;

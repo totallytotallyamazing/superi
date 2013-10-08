@@ -36,7 +36,7 @@ namespace Jackson.Controllers
             Group group = null;
             if (string.IsNullOrEmpty(id))
             {
-                group = _context.Groups.AsNoTracking().Include("Items").FirstOrDefault();
+                group = _context.Groups.AsNoTracking().Include("Items").OrderBy(g=>g.SortOrder).FirstOrDefault();
             }
             else 
             {
@@ -65,7 +65,7 @@ namespace Jackson.Controllers
         public ActionResult Menu(string id) 
         {
             ViewBag.Id = id;
-            return PartialView(_context.Groups);
+            return PartialView(_context.Groups.OrderBy(g=>g.SortOrder));
         }
 
     }

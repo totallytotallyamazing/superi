@@ -29,7 +29,6 @@ namespace Jackson.Controllers
             SmtpClient client = new SmtpClient();
             MailMessage message = new MailMessage();
             message.To.Add("miller.kak.miller@gmail.com");
-            //message.From = new MailAddress("m@m-brand.com.ua");
             message.Subject = "m-j - Перезвони по футболке";
             message.Body = string.Format("<div>Телефон: {0}</div><div><img src=\"{1}\" /></div>", phone, url);
             message.IsBodyHtml = true;
@@ -45,6 +44,20 @@ namespace Jackson.Controllers
             for (int i = 0; i < order.Length; i++)
             {
                 var item = items.Single(it => it.Id == order[i]);
+                item.SortOrder = i;
+            }
+
+            _context.SaveChanges();
+        }
+
+        [HttpPost]
+        public void SortGroups([FromBody]string[] order)
+        {
+            var groups = _context.Groups.ToList();
+
+            for (int i = 0; i < order.Length; i++)
+            {
+                var item = groups.First(it => it.Url == order[i]);
                 item.SortOrder = i;
             }
 

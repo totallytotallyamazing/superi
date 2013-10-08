@@ -10,7 +10,7 @@
         {
             if (item.Url == ViewBag.Id)
             {
-            <span>@item.Name</span>
+            <span data-url="@item.Url">@item.Name</span>
             }
             else
             { 
@@ -20,6 +20,8 @@
         @if (Request.IsAuthenticated)
         { 
             <span id="addMenu" class="admin"></span>
+            <a href="javascript:void(0)" id="sortMenu" class="admin">Сортировать разделы</a>
+            <a href="javascript:void(0)" id="endSortMenu" class="admin" style="display: none;">Посортировал</a>
         }
     </div>
 </div>

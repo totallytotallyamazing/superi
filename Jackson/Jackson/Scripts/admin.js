@@ -29,9 +29,37 @@
         }
     });
 
-    $("#items").sortable({
+    $("#items, .bar-content").sortable({
         disabled: true
     });
+
+    $("#sortMenu").click(function() {
+        this.style.display = "none";
+        document.getElementById("endSortMenu").style.display = "inline";
+        $("#mainMenu .bar-content").sortable("enable");
+    })
+    
+    $("#endSortMenu").click(function () {
+        $("#mainMenu .bar-content").sortable("disable");
+        var endLink = this;
+        endLink.setAttribute("disabled", "disabled");
+        var order = $.map($("#mainMenu .bar-content *[data-url]"), function(a, index) {
+            return $(a).data("url");
+        })
+
+        $.ajax({
+            url: "/api/Items/SortGroups/",
+            type: "POST",
+            contentType: "application/json",
+            accepts: "application/json",
+            data: JSON.stringify(order),
+        }).success(function () {
+            endLink.style.display = "none";
+            document.getElementById("sortMenu").style.display = "inline";
+            endLink.removeAttribute("disabled");
+        });
+
+    })
 
     $("#enableSort").click(function () {
         this.style.display = "none";

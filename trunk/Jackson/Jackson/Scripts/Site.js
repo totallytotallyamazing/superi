@@ -10,6 +10,20 @@ $(function () {
 
     hookDefaultItemClick();
 
+    $("a.topLink").click(function () {
+        $('body,html').animate({
+            scrollTop: 0
+        }, "fast");
+        return false;
+    }).fadeOut(0);
+
+    $(window).scroll(function () {
+        if ($(this).scrollTop() > 100) {
+            $('a.topLink').fadeIn();
+        } else {
+            $('a.topLink').fadeOut();
+        }
+    });
 
     $("#phone").inputmask("(999)999-99-99", {
         oncomplete: function () {

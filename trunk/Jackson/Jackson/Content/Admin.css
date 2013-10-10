@@ -52,3 +52,7 @@ div#content ul#items li.selected img {
     background: transparent url(img/trash.png) 50% 50% no-repeat;
     display: none;
 }
+
+div#head {
+    position: relative;
+}

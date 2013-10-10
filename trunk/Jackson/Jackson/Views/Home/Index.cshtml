@@ -13,6 +13,14 @@
 }
 
 <div id="content">
+    
+    <a class="topLink left" href="javascript:void(0)">
+        <img src="@Url.Content("~/Content/img/goTop.png")" alt="Наверх"/>
+    </a>
+    <a class="topLink right" href="javascript:void(0)">
+        <img src="@Url.Content("~/Content/img/goTop.png")" alt="Наверх"/>
+    </a>
+
     @{Html.RenderPartial("AdminGroupRename", (Group)ViewBag.Group);}
     <ul id="items">
         @foreach (var item in Model)

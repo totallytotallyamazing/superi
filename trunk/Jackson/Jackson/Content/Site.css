@@ -87,6 +87,7 @@ div#mainMenu, div#foot {
 
     div#mainMenu .bar-content > * {
         margin: 0 5px;
+        display: inline-block;
     }
 
 div#mainMenu {

@@ -20,6 +20,7 @@ namespace Jackson.Controllers
             _context = context;
         }
 
+        [OutputCache(Duration = 1, NoStore = true, VaryByParam = "*")]
         public ActionResult Index(string id, string _escaped_fragment_)
         {
             if (!string.IsNullOrEmpty(_escaped_fragment_))

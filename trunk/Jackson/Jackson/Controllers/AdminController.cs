@@ -26,6 +26,16 @@ namespace Jackson.Controllers
             return Json(group.Url);
         }
 
+        [HttpPost]
+        public ActionResult RenameGroup(int id, string title)
+        {
+            var group = _context.Groups.First(g => g.Id == id);
+            group.Name = title;
+            group.Url = Utils.Transliterator.Transliterate(title);
+            _context.SaveChanges();
+            return Json(true);
+        }
+
         public ActionResult DeleteGroup(string id)
         {
             bool result = true;

@@ -14,6 +14,7 @@ namespace Jackson.Models
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public string Name { get; set; }
+        [Display(Name = "Адресная строка")]
         public string Url { get; set; }
         public int SortOrder { get; set; }
         public virtual ICollection<Item> Items { get; set; }

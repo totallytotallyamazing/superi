@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Jackson.Models.Item>
+﻿@using Jackson.Models
+@model IEnumerable<Jackson.Models.Item>
 @section scripts
 {
     <script>
@@ -12,6 +13,7 @@
 }
 
 <div id="content">
+    @{Html.RenderPartial("AdminGroupRename", (Group)ViewBag.Group);}
     <ul id="items">
         @foreach (var item in Model)
         {

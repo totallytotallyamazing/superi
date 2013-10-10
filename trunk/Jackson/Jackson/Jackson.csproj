@@ -336,6 +336,7 @@
     <Content Include="Views\Home\AdminUpload.cshtml" />
     <Content Include="Views\Home\ItemPopup.cshtml" />
     <Content Include="Views\Home\Facebook.cshtml" />
+    <Content Include="Views\Home\AdminGroupRename.cshtml" />
     <None Include="Web.Backload.Default.config" />
     <None Include="Web.Backload.xsd">
       <SubType>Designer</SubType>

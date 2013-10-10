@@ -59,6 +59,7 @@ namespace Jackson.Controllers
                 model = model.OrderBy(i => i.SortOrder);
             }
             ViewBag.Group = group;
+            ViewBag.Title = group.Name;
             return View(model);
         }
 

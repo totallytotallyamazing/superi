@@ -17,6 +17,13 @@ namespace Jackson.Controllers
             return View();
         }
 
+        [Authorize]
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Index", "Home");
+        }
+
         [HttpPost]
         public ActionResult Login(LoginModel loginModel, string returnUrl)
         {

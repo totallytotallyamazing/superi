@@ -71,14 +71,14 @@ div#head {
             line-height: 30px;
         }
 
-    div#head .social-links a{
+    div#head .social-links a {
         display: inline-block;
         margin: 0 8px;
     }
 
-    div#head .social-links a img{
-        border: 0;
-    }
+        div#head .social-links a img {
+            border: 0;
+        }
 
 div#mainMenu, div#foot {
     position: relative;
@@ -141,10 +141,28 @@ div#belowMenu {
 div#content {
     text-align: center;
     padding: 18px 95px;
+    position: relative;
 }
 
+    div#content a.topLink {
+        /*opacity: 0;*/
+        position: fixed;
+        top: 330px;
+    }
 
-    div#content ul#items li img {
+    div#content a.topLink.left {
+        left: 50px;
+    }
+
+    div#content a.topLink.right {
+        right: 50px;
+    }
+
+    div#content a.topLink img {
+        border: 0;
+    }
+
+div#content ul#items li img {
         border: 6px solid #2d2d2d;
     }
 

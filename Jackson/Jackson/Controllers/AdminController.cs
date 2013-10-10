@@ -31,10 +31,21 @@ namespace Jackson.Controllers
         {
             var group = _context.Groups.First(g => g.Id == id);
             group.Name = title;
-            group.Url = Utils.Transliterator.Transliterate(title);
             _context.SaveChanges();
             return Json(true);
         }
+
+        [HttpPost]
+        public ActionResult ChangeUrl(int groupId, string url)
+        {
+            var group = _context.Groups.First(g => g.Id == groupId);
+            string oldUrl = group.Url;
+            group.Url = Utils.Transliterator.Transliterate(url);
+            MoveDir(group, oldUrl);
+            _context.SaveChanges();
+            return Json(true);
+        }
+
 
         public ActionResult DeleteGroup(string id)
         {
@@ -51,6 +62,22 @@ namespace Jackson.Controllers
                 result = false;
             }
             return Json(result);
+        }
+
+        private void MoveDir(Group group, string oldUrl)
+        {
+            string filesPath = Server.MapPath("~/Files");
+            string srcPath = Path.Combine(filesPath, oldUrl);
+            string targetPath = Path.Combine(filesPath, group.Url);
+
+            if (Directory.Exists(srcPath) && !Directory.Exists(targetPath))
+            {
+                Directory.Move(srcPath, targetPath);
+            }
+            else
+            {
+                throw new ArgumentException("the images foolder cannot be moved");
+            }
         }
 
         private void DeleteImages(Group group)

@@ -1,0 +1,12 @@
+﻿@model Jackson.Models.Group
+@if (Request.IsAuthenticated)
+{
+    using (Ajax.BeginForm("ChangeUrl", "Admin", new AjaxOptions { HttpMethod = "POST", OnSuccess = "sayOk"}))
+    {
+    @Html.Hidden("groupId", Model.Id)
+    @Html.LabelFor(model=>model.Url)
+    @Html.Raw(":&nbsp;")
+    @Html.EditorFor(model => model.Url)
+    <input type="submit" value="Сохранить" />
+    }
+}

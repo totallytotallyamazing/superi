@@ -58,7 +58,7 @@ namespace Jackson.Controllers
             {
                 model = model.OrderBy(i => i.SortOrder);
             }
-
+            ViewBag.Group = group;
             return View(model);
         }
 

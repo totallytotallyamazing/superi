@@ -197,3 +197,5 @@
 });
 
 function groupDeleted() { location.reload(); }
+
+function sayOk() {alert("Готово")}

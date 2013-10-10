@@ -21,7 +21,7 @@
             );
         },
         singleFileUploads: false,
-        done: function (e, data) {
+        done: function () {
             $('#progressBar').css(
                 'width', '0'
             );
@@ -35,7 +35,7 @@
 
     var editabjeEvent = null;
 
-    $("#sortMenu").click(function () {
+    $("#sortMenu").click(function() {
         $("#mainMenu .bar-content *[data-url]").editable("/Admin/RenameGroup", {
             type: 'text',
             name: 'title',
@@ -52,16 +52,16 @@
         this.style.display = "none";
         document.getElementById("endSortMenu").style.display = "inline";
         $("#mainMenu .bar-content").sortable("enable");
-    })
+    });
 
-    $("#endSortMenu").click(function () {
+    $("#endSortMenu").click(function() {
         $("#mainMenu .bar-content").sortable("disable");
         $("#mainMenu .bar-content *[data-url]").unbind(editabjeEvent);
         var endLink = this;
         endLink.setAttribute("disabled", "disabled");
-        var order = $.map($("#mainMenu .bar-content *[data-url]"), function (a, index) {
+        var order = $.map($("#mainMenu .bar-content *[data-url]"), function(a) {
             return $(a).data("url");
-        })
+        });
 
         $.ajax({
             url: "/api/Items/SortGroups/",
@@ -69,13 +69,13 @@
             contentType: "application/json",
             accepts: "application/json",
             data: JSON.stringify(order),
-        }).success(function () {
+        }).success(function() {
             endLink.style.display = "none";
             document.getElementById("sortMenu").style.display = "inline";
             endLink.removeAttribute("disabled");
         });
 
-    })
+    });
 
     $("#enableSort").click(function () {
         this.style.display = "none";
@@ -87,12 +87,12 @@
         $("#items").sortable("disable");
         var completeLink = this;
         completeLink.setAttribute("disabled", "disabled");
-        var order = $.map($("#items li"), function (a, index) {
+        var order = $.map($("#items li"), function (a) {
             return $(a).data("id");
         });
 
         $.ajax({
-            url: "/api/Items/Sort/" + GroupId,
+            url: "/api/Items/Sort/" + window.GroupId,
             type: "POST",
             contentType: "application/json",
             accepts: "application/json",
@@ -104,7 +104,7 @@
         });
     });
 
-    $("#enableSelection").click(function (evt) {
+    $("#enableSelection").click(function () {
         this.style.display = "none";
         document.getElementById("cancelSelection").style.display = "inline";
         $("#trashCan")
@@ -116,16 +116,7 @@
             })
             .bind("drop", function (evt) {
                 var items = evt.originalEvent.dataTransfer.getData("Text");
-                $.ajax({
-                    url: "/api/Items/Delete",
-                    type: "DELETE",
-                    contentType: "application/json",
-                    accepts: "application/json",
-                    data: items,
-                    success: function () {
-                        location.href = location.href;
-                    }
-                });
+                deleteItems(items);
             });
 
         document.getElementById("trashCan").style.display = "block";
@@ -139,7 +130,7 @@
                     li
                         .attr("draggable", true)
                         .bind("dragstart", function (evt) {
-                            var items = $.map($("#content #items li.selected"), function (a, index) {
+                            var items = $.map($("#content #items li.selected"), function (a) {
                                 return $(a).data("id");
                             });
                             var dataToSend = JSON.stringify(items);
@@ -162,7 +153,7 @@
                 var items = evt.originalEvent.dataTransfer.getData("Text");
                 var moveTo = $(evt.target).data("url");
                 $.ajax({
-                    url: "/api/Items/Move?moveFrom=" + GroupId + "&moveTo=" + moveTo,
+                    url: "/api/Items/Move?moveFrom=" + window.GroupId + "&moveTo=" + moveTo,
                     type: "PUT",
                     contentType: "application/json",
                     accepts: "application/json",
@@ -174,7 +165,7 @@
             });
     });
 
-    $("#cancelSelection").click(function (evt) {
+    $("#cancelSelection").click(function () {
         document.getElementById("trashCan").style.display = "none";
         this.style.display = "none";
         $("#content #items a").unbind();
@@ -194,8 +185,35 @@
             .unbind("dragenter")
             .unbind("drop");
     });
+
+    $(document).keydown(function(e) {
+        if (e.keyCode == 8 || e.keyCode == 46) {
+            e.preventDefault();
+            var items = $.map($("#content #items li.selected"), function (a) {
+                return $(a).data("id");
+            });
+            if (items.length > 0) {
+                var dataToSend = JSON.stringify(items);
+                deleteItems(dataToSend);
+            }
+        }
+    });
 });
 
 function groupDeleted() { location.reload(); }
 
-function sayOk() {alert("Готово")}
+function sayOk() { alert("Готово"); }
+
+function deleteItems(items) {
+       $.ajax({
+                    url: "/api/Items/Delete",
+                    type: "DELETE",
+                    contentType: "application/json",
+                    accepts: "application/json",
+                    data: items,
+                    success: function () {
+                        location.href = location.href;
+                    }
+                });
+    
+}

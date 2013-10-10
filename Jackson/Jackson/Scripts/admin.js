@@ -33,17 +33,33 @@
         disabled: true
     });
 
-    $("#sortMenu").click(function() {
+    var editabjeEvent = null;
+
+    $("#sortMenu").click(function () {
+        $("#mainMenu .bar-content *[data-url]").editable("/Admin/RenameGroup", {
+            type: 'text',
+            name: 'title',
+            onblur: 'ignore',
+            cssclass: 'add-group',
+            placeholder: 'Переименовать раздел',
+            callback: function(data, settings) {
+                var href = "/" + data.replace(/"/gi, "");
+                location.href = href;
+                editabjeEvent = settings.event;
+                location.reload();
+            }
+        });
         this.style.display = "none";
         document.getElementById("endSortMenu").style.display = "inline";
         $("#mainMenu .bar-content").sortable("enable");
     })
-    
+
     $("#endSortMenu").click(function () {
         $("#mainMenu .bar-content").sortable("disable");
+        $("#mainMenu .bar-content *[data-url]").unbind(editabjeEvent);
         var endLink = this;
         endLink.setAttribute("disabled", "disabled");
-        var order = $.map($("#mainMenu .bar-content *[data-url]"), function(a, index) {
+        var order = $.map($("#mainMenu .bar-content *[data-url]"), function (a, index) {
             return $(a).data("url");
         })
 
@@ -93,12 +109,12 @@
         document.getElementById("cancelSelection").style.display = "inline";
         $("#trashCan")
             .show(0)
-            .bind("dragover dragenter", function(evt) {
+            .bind("dragover dragenter", function (evt) {
                 if ($("#content #items li.selected").length > 0) {
                     evt.preventDefault();
                 }
             })
-            .bind("drop", function(evt) {
+            .bind("drop", function (evt) {
                 var items = evt.originalEvent.dataTransfer.getData("Text");
                 $.ajax({
                     url: "/api/Items/Delete",
@@ -172,7 +188,7 @@
         $("#trashCan")
             .hide(0)
             .unbind();
-        
+
         $("#mainMenu .bar-content a")
             .unbind("dragover")
             .unbind("dragenter")

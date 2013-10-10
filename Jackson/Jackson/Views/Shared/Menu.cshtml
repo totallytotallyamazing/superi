@@ -10,17 +10,17 @@
         {
             if (item.Url == ViewBag.Id)
             {
-            <span data-url="@item.Url">@item.Name</span>
+            <span id="@item.Id" data-url="@item.Url">@item.Name</span>
             }
             else
             { 
-            @Html.ActionLink(item.Name, "Index", new { controller = "Home", id = item.Url }, new { data_url = item.Url });
+            @Html.ActionLink(item.Name, "Index", new { controller = "Home", id = item.Url }, new { data_url = item.Url, id=item.Id });
             }
         }
         @if (Request.IsAuthenticated)
         { 
             <span id="addMenu" class="admin"></span>
-            <a href="javascript:void(0)" id="sortMenu" class="admin">Сортировать разделы</a>
+            <a href="javascript:void(0)" id="sortMenu" class="admin">Изменить</a>
             <a href="javascript:void(0)" id="endSortMenu" class="admin" style="display: none;">Готово</a>
         }
     </div>

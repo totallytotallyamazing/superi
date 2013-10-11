@@ -150,19 +150,19 @@ div#content {
         top: 330px;
     }
 
-    div#content a.topLink.left {
-        left: 50px;
-    }
+        div#content a.topLink.left {
+            left: 50px;
+        }
 
-    div#content a.topLink.right {
-        right: 50px;
-    }
+        div#content a.topLink.right {
+            right: 50px;
+        }
 
-    div#content a.topLink img {
-        border: 0;
-    }
+        div#content a.topLink img {
+            border: 0;
+        }
 
-div#content ul#items li img {
+    div#content ul#items li img {
         border: 6px solid #2d2d2d;
     }
 
@@ -273,7 +273,7 @@ div#imagePopup {
     }
 
     #imageContainer #imageFooter div.image-title,
-    #imageContainer #imageFooter .phone a {
+    #imageContainer #imageFooter .phone * {
         font-size: 14px;
     }
 
@@ -300,9 +300,14 @@ div#imagePopup {
         white-space: nowrap;
     }
 
+
+        #imageContainer #imageFooter .phone a,
+        #imageContainer #imageFooter .phone span {
+            padding-right: 40px;
+        }
+
         #imageContainer #imageFooter .phone a {
             color: white;
-            padding-right: 40px;
         }
 
         #imageContainer #imageFooter .phone span {

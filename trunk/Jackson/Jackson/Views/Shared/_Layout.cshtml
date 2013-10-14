@@ -6,7 +6,6 @@
     @RenderSection("meta", false)
 
     @Styles.Render("~/Content/Site.css")
-    @Scripts.Render("~/bundles/js/common")
     @if (Request.IsAuthenticated)
     { 
         @Styles.Render("~/Content/Admin.css")
@@ -20,7 +19,6 @@
     <body>
         <div id="main">
             @{Html.RenderPartial("Header");}
-            @{Html.RenderAction("Menu", new {controller = "Home", id=ViewBag.Id});}
             @RenderBody()
             @{Html.RenderPartial("Footer");}
         </div>

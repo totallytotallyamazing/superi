@@ -51,7 +51,7 @@ namespace Jackson.Controllers
             }
             else if(!string.IsNullOrEmpty(id))
             {
-                return RedirectToAction("Index", new { controller = "Home", id = UrlParameter.Optional });
+                throw new HttpException(404, "Not Found");
             }
             
             if (model != null)
@@ -69,6 +69,5 @@ namespace Jackson.Controllers
             ViewBag.Id = id;
             return PartialView(_context.Groups.OrderBy(g=>g.SortOrder));
         }
-
     }
 }

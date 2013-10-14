@@ -139,10 +139,14 @@ div#belowMenu {
     margin-top: 3px;
 }
 
-div#content {
+div#content,
+div#errorContent {
     text-align: center;
-    padding: 18px 95px;
     position: relative;
+}
+
+div#content {
+    padding: 18px 95px;
 }
 
     div#content a.topLink {
@@ -343,4 +347,20 @@ div#aboveFooter, div#belowFooter {
     background-color: #222222;
     background-image: linear-gradient(to right, #040404, #141414, #040404);
     height: 10px;
+}
+
+.error-description {
+    display: inline-block;
+    width: 375px;
+    margin-top: 186px;
+}
+
+.error-description .description {
+    padding-top: 40px;
+    padding-bottom: 175px;
+    font-size: 14px;
+}
+
+.error-description .description a {
+    color: #8f8f8f;
 }

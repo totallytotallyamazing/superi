@@ -1,0 +1,18 @@
+﻿@{
+    ViewBag.Title = "Провал!";
+}
+
+@{Html.RenderPartial("FakeMenu");}
+
+<div id="errorContent">
+    <div class="error-description">
+        <div class="picture">
+            <img alt="500" src="@Url.Content("~/Content/img/500.png")"/>
+        </div>
+        <div class="description highlight">
+            Вас приветствует Пятисотая! <br/>
+            Что-то пошло не так. <a href="mailto:miller.kak.miller@gmail.com">Напишите</a> нам, мы исправим.<br/><br/>
+            - Робот Маекджексон -
+        </div>
+    </div>
+</div>

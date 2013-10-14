@@ -1,0 +1,16 @@
+﻿@{
+    ViewBag.Title = "Страница потерялась";
+}
+@{Html.RenderAction("Menu", "Home");}
+<div id="errorContent">
+    <div class="error-description">
+        <div class="picture">
+            <img alt="404" src="@Url.Content("~/Content/img/404.png")"/>
+        </div>
+        <div class="description highlight">
+            Вас приветствует Четыреста Четвертая! <br/>
+            Настоящим сообщаю что запрашиваемая вами страница не найдена.<br/><br/>
+            - Робот Маекджексон -
+        </div>
+    </div>
+</div>

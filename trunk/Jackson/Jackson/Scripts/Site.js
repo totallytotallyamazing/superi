@@ -111,15 +111,16 @@ function adjustImagePopup(overlay, image) {
     if(!image){
         image = document.getElementById("largeImage");
     }
-    image.style.height = "992px";
-    var popup = document.getElementById("imagePopup");
-    popup.style.width = overlay.offsetWidth + "px";
-    popup.style.height = overlay.offsetHeight + "px";
-    var size = getClientDimensions();
-    if (size.height - 150 < image.offsetHeight)
-    {
-        image.style.height = (size.height - 150) + "px";
-        document.getElementById("arrows").style.top = (image.offsetHeight / 2) + "px";
+    if (image) {
+        image.style.height = "992px";
+        var popup = document.getElementById("imagePopup");
+        popup.style.width = overlay.offsetWidth + "px";
+        popup.style.height = overlay.offsetHeight + "px";
+        var size = getClientDimensions();
+        if (size.height - 150 < image.offsetHeight) {
+            image.style.height = (size.height - 150) + "px";
+            document.getElementById("arrows").style.top = (image.offsetHeight / 2) + "px";
+        }
     }
 }
 

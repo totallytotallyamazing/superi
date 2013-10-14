@@ -2,6 +2,7 @@
 @model IEnumerable<Jackson.Models.Item>
 @section scripts
 {
+    @Scripts.Render("~/bundles/js/common")
     <script>
         var GroupId = '@ViewBag.Id';
     </script>
@@ -11,9 +12,9 @@
 {
     @{Html.RenderPartial("ItemPopup");}
 }
-
+@{Html.RenderAction("Menu", new {controller = "Home", id=ViewBag.Id});}
 <div id="content">
-    
+
     <a class="topLink left" href="javascript:void(0)">
         <img src="@Url.Content("~/Content/img/goTop.png")" alt="Наверх"/>
     </a>

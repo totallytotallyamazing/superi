@@ -4,14 +4,13 @@
     <meta name="viewport" content="width=device-width" />
     <link rel="shortcut icon" href="/favicon.ico?v=1.1" type="image/x-icon"> 
     @RenderSection("meta", false)
-
+    @RenderSection("scripts", false)
     @Styles.Render("~/Content/Site.css")
     @if (Request.IsAuthenticated)
     { 
         @Styles.Render("~/Content/Admin.css")
         @Scripts.Render("~/bundles/js/admin") 
     }    
-    @RenderSection("scripts", false)
     <title>
        Майкиджексон - «@ViewBag.Title»
     </title>

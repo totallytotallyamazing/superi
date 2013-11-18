@@ -2,8 +2,7 @@
 $(function () {
     $.address.crawlable(true);
     $.address.change(function (href) {
-        if (href.value.length > 2 && $("#modalOverlay:visible").length == 0)
-        {
+        if (href.value.length > 2 && $("#modalOverlay:visible").length == 0) {
             showImage(href.value);
         }
     });
@@ -29,7 +28,7 @@ $(function () {
         oncomplete: function () {
             $(".phone a").removeAttr("disabled");
         },
-        onclear: function() {
+        onclear: function () {
             $(".phone a").attr("disabled", "disabled");
         },
         onincomplete: function () {
@@ -39,9 +38,12 @@ $(function () {
         clearIncomplete: true
     });
 
-    $(".phone a").click(function() {
-        $(".phone a").css("visibility", "hidden")
-            .attr("disabled", "disabled");
+    $(".phone a").click(function () {
+        if ($(".phone a").attr("disabled") != null) {
+            return;
+        }
+
+        $(".phone a").hide(0);
 
         var url = escape(document.getElementById("largeImage").src);
         var phone = escape(document.getElementById("phone").value);
@@ -50,11 +52,18 @@ $(function () {
             contentType: "application/json",
             accepts: "application/json",
             type: "POST",
-            success: function() {
-                $(".phone a").hide(0);
+            success: function () {
                 $(".phone span").show(0);
+            },
+            error: function (err) {
+                alert("Введите номер телефона.");
+                $(".phone a").show(0);
+                $(".phone span").hide(0);
             }
-        });
+        })
+          .always(function () {
+              $(".phone a").css("visibility", "visible");
+          });
     });
 
     $("#leftArrow, #rightArrow").click(function (evt) {
@@ -68,11 +77,11 @@ $(function () {
     });
 
     $("#modalOverlay, #closePopup").click(closePopup);
-    $("#arrows, #imageContainer").click(function(evt) {
+    $("#arrows, #imageContainer").click(function (evt) {
         evt.stopPropagation();
     });
 
-    $(window).resize(function() {
+    $(window).resize(function () {
         adjustImagePopup(document.getElementById("modalOverlay"));
     });
 });
@@ -93,14 +102,13 @@ function showImage(href) {
     .bind('load', function () {
         $(this).unbind("load");
         adjustImagePopup(overlay, this);
-        });
+    });
     document.getElementById("largeImage").src = href;
     overlay.style.display = "block";
 
     var innerHref = location.href;
 
-    if (location.href.indexOf("#") >= 0)
-    {
+    if (location.href.indexOf("#") >= 0) {
         innerHref = location.href.substr(0, location.href.indexOf("#"));
     }
 
@@ -108,7 +116,7 @@ function showImage(href) {
 }
 
 function adjustImagePopup(overlay, image) {
-    if(!image){
+    if (!image) {
         image = document.getElementById("largeImage");
     }
     if (image) {
@@ -124,16 +132,16 @@ function adjustImagePopup(overlay, image) {
     }
 }
 
-function getClientDimensions(){
-    var w=window.innerWidth
-|| document.documentElement.clientWidth
-|| document.body.clientWidth;
+function getClientDimensions() {
+    var w = window.innerWidth
+  || document.documentElement.clientWidth
+  || document.body.clientWidth;
 
-    var h=window.innerHeight
+    var h = window.innerHeight
     || document.documentElement.clientHeight
-    || document.body.clientHeight; 
+    || document.body.clientHeight;
 
-    return {width: w, height:h};
+    return { width: w, height: h };
 }
 
 function parseHref(href) {
@@ -157,6 +165,6 @@ function closePopup() {
 
     if (location.href.indexOf("#") >= 0) {
         innerHref = location.href.substr(0, location.href.indexOf("#"));
-        location.href = innerHref + "#";
+        location.href = innerHref + "#!";
     }
 }

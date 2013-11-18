@@ -26,6 +26,8 @@ namespace Jackson.Controllers
         [AllowAnonymous]
         public void NotifyMiller([FromUri]string url, [FromUri]string phone)
         {
+            if (string.IsNullOrEmpty(url) || string.IsNullOrEmpty(phone))
+                throw new HttpException(400, "Phone and url are required");
             SmtpClient client = new SmtpClient();
             MailMessage message = new MailMessage();
             message.To.Add("miller.kak.miller@gmail.com");

@@ -11,6 +11,7 @@ namespace Jackson
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             routes.IgnoreRoute("favicon.ico");
+            routes.IgnoreRoute("robots.txt");
 
             routes.MapRoute("IdOnly", "{id}", new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );

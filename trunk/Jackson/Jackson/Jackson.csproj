@@ -279,6 +279,7 @@
     <None Include="Properties\PublishProfiles\fs.pubxml" />
     <None Include="Properties\PublishProfiles\ftp.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="robots.txt" />
     <Content Include="Scripts\admin.js" />
     <Content Include="Scripts\FileUpload\angularjs\angular.debug.js" />
     <Content Include="Scripts\FileUpload\backload.demo.js" />
